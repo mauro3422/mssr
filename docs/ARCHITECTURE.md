@@ -4,17 +4,23 @@ MSSR separates discovery and recommendation from execution.
 
 ```mermaid
 flowchart LR
-  A["Host agent"] --> P["MSSR agent protocol"]
-  P --> C["mssr-core\ndeterministic routing"]
-  R["mssr-registry\nimmutable snapshots"] --> C
-  F["Filesystem skills"] --> R
-  M["MCP / host catalogs"] --> R
-  C --> O["Advisory plan"]
-  O --> A
-  A --> X["Direct skill or tool execution"]
-  B["MauroPrime Bridge adapter"] --> C
-  B --> R
+    C["Codex local"] --> P["MSSR protocol<br/>AGENTS + transversal skill"]
+    W["ChatGPT web"] --> B["MauroPrime Bridge<br/>MSSR adapter"]
+    B --> P
+    P --> M["MSSR core<br/>deterministic routing"]
+    M --> R["Concurrent registry<br/>skills + plugins + providers"]
+    R --> S["Search / inspect<br/>required capabilities"]
+    M --> A["Advisory phase plan"]
+    A --> X["Direct execution<br/>through authorized tools"]
+    X --> E["Errors, new evidence<br/>or missing capability"]
+    E --> P
 ```
+
+The diagram separates the control plane from the execution plane. Codex may use
+its local filesystem, shell, or direct application MCPs, while ChatGPT web uses
+MauroPrime Bridge for approved access to the same machine. Both can consult the
+same MSSR contract without forcing actual tool execution through MSSR or the
+Bridge.
 
 ## Components
 
@@ -43,4 +49,3 @@ metadata without being forced through a single execution bridge.
 4. Registry data is dynamic; agent protocol is stable and compact.
 5. Skill source repositories remain Git-owned; runtime installations may be
    junctions or host-managed copies.
-

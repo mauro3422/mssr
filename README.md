@@ -21,19 +21,24 @@ permissions remain authoritative.
 
 ## Architecture
 
-```text
-Agent / ChatGPT / Codex
-        │ intent + bounded context
-        ▼
-  MSSR agent protocol ───────► MSSR core (deterministic plan)
-        │                              │
-        │                         registry snapshot
-        ▼                              ▼
-  native skill loading            skill / MCP providers
-        │                              │
-        └──────────────► direct execution ◄──────────────┘
-                         (never proxied by MSSR)
+```mermaid
+flowchart LR
+    C["Codex local"] --> P["MSSR protocol<br/>AGENTS + transversal skill"]
+    W["ChatGPT web"] --> B["MauroPrime Bridge<br/>MSSR adapter"]
+    B --> P
+    P --> M["MSSR core<br/>deterministic routing"]
+    M --> R["Concurrent registry<br/>skills + plugins + providers"]
+    R --> S["Search / inspect<br/>required capabilities"]
+    M --> A["Advisory phase plan"]
+    A --> X["Direct execution<br/>through authorized tools"]
+    X --> E["Errors, new evidence<br/>or missing capability"]
+    E --> P
 ```
+
+Codex can use local filesystem, shell, and direct application MCPs. ChatGPT web
+uses MauroPrime Bridge when it needs approved access to the same machine.
+Neither route executes through MSSR: MSSR only discovers, ranks, explains, and
+re-plans capabilities.
 
 See [architecture](docs/ARCHITECTURE.md), the
 [agent protocol](docs/AGENT_PROTOCOL.md), and the
@@ -70,4 +75,3 @@ capabilities and belong in the registry.
 
 Version `0.1.0` establishes the independent repository and contract. The
 roadmap documents the staged extraction and optional standalone MCP server.
-

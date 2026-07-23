@@ -23,3 +23,6 @@ All notable changes to MSSR are documented here.
   fixture, and routing-audit regressions.
 - Recorded and recovered MSSR-008, where unsafe cleanup of a temporary
   `file:`-dependency junction traversed into the canonical repository.
+- Added the canonical Codex/ChatGPT web/Bridge/MSSR architecture diagram and
+  clarified that filesystem and application tools remain caller-owned direct
+  execution routes.
