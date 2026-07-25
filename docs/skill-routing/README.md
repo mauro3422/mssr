@@ -112,6 +112,20 @@ tarea especializada sustancial
 Para ChatGPT web, ese hook debe llamar al adaptador del Bridge. Para Codex local, debe estar en el bootstrap `AGENTS.md` y la skill transversal. Una tarea que omite la llamada no queda protegida por MSSR aunque el router y las skills existan.
 
 
+### Routing Evidence Checkpoint y notices
+
+El “segundo tick” no es acceso a pensamientos privados. Es la frontera observable donde el agente, después de interpretar la consulta, emite la intención estructurada y llama MSSR. El resultado vuelve al agente para una segunda inferencia con skills/capacidades candidatas.
+
+El Bridge puede sumar notices acotados a respuestas o a una bandeja: errores, agentes activos, archivos con ownership, capturas pendientes, contexto obsoleto, required skills omitidas o métricas anómalas. Esos notices son evidencia para contexto o replanning; no son permisos.
+
+`mssr-agent-routing` es la skill transversal que gobierna este contrato. En conversaciones sobre routing, expresiones como “tags”, “metadata del pensamiento”, “activadores”, “segundo tick”, “helper MSSR” o “inyección de contexto” remiten a esta arquitectura.
+
+### Outcomes y métricas por skill
+
+Cada tarea sustancial cierra un único outcome efectivo por trace. Una `primarySkill` recibe responsabilidad; `supportingSkills` conservan contribución sin duplicar éxitos. Reintentos y revisión final reutilizan el trace y el observatorio cuenta el último outcome.
+
+Las métricas se separan en activación/routing, cumplimiento de cargas, verificación/persistencia y calidad del outcome. El dashboard del Bridge muestra routing semántico, required-load compliance, éxito, aceptación, score y resultados por skill primaria. El contrato completo está en `../ROUTING_EVIDENCE_OBSERVATORY.md`.
+
 ## Perfil del caller
 
 ### Límites de replanificación y trazas

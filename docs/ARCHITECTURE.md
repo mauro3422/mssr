@@ -41,6 +41,44 @@ Adapters translate host-specific discovery to the shared contract. MauroPrime
 Bridge, Roblox Studio, Codex-local, and a web client can therefore share routing
 metadata without being forced through a single execution bridge.
 
+## Reasoning-to-routing boundary
+
+The current model or agent produces a bounded Routing Evidence Checkpoint after interpreting the visible request. MSSR receives that observable classification, not private chain-of-thought. The host activation hook is therefore part of the control plane: without the tool call or equivalent structured action, the deterministic router cannot observe the task.
+
+Host adapters may also deliver a bounded context-notice inbox. Runtime errors, provider drift, concurrent agents, pending reviews, changed project state, or missing routing compliance become new evidence for context retrieval or replanning. Notices carry information; they do not grant authorization.
+
+Outcome observability follows the same boundary. One primary skill owns the latest outcome on a task trace, supporting skills remain visible as contributors, and objective evidence determines success or acceptance where available. This prevents one task from being counted as several successes merely because several skills collaborated.
+
+
+## Durable project context layer
+
+MSSR does not own a project's facts or full history. Each repository owns its
+architecture, vocabulary, canonical paths, current state, open blockers, and
+local incident evidence through durable project files. A host first resolves the
+smallest relevant project context, then sends a bounded summary with the current
+intent to MSSR.
+
+This creates two independent retrieval axes:
+
+```text
+project context retrieval -> what is true here
+MSSR routing             -> which reusable procedure is needed now
+```
+
+The host may therefore keep hundreds of available skills without injecting their
+contents. Registry metadata remains searchable, while only the active phase's
+procedures are loaded. Historical project evidence is referenced or summarized,
+not copied wholesale into the route.
+
+## Observability and learning boundary
+
+Route plans, skill loads, replans, verification, persistence, outcomes, context
+sources, and friction checkpoints may be recorded as privacy-preserving structured
+telemetry. The telemetry can reveal missed activations, unused required skills,
+repeated workarounds, or phase failures, but it cannot silently rewrite routing or
+skills. Confirmed patterns are promoted through explicit maintenance tasks and
+regression fixtures.
+
 ## Invariants
 
 1. Routing is recommendation, not authorization.

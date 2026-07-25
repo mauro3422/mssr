@@ -11,39 +11,87 @@
 - Fixtures positivos, negativos y de continuación.
 - Configuración y pruebas versionadas en Git.
 - Dashboard generado y skill mantenedora.
+- Observatory del Bridge con trazas, privacidad, outcome por skill primaria y dashboard local.
+- Adaptador inicial Photo Rig que registra outcome técnico desde el manifest y permite reemplazarlo con revisión visual final.
 
 ## Próximo nivel útil
 
-### Observabilidad de decisiones
+### 1. Cumplimiento del hook de activación
 
-Registrar sin contenido sensible:
+La prioridad principal es poder demostrar que cada host ejecutó el protocolo, no sólo que MSSR estaba disponible:
 
-- nombre del fixture o hash de intención;
-- skills activas/diferidas;
-- warnings y metadata inferida;
-- duración y resultado de la fase;
-- correcciones manuales realizadas después.
+- cargar contexto durable del proyecto antes de trabajo especializado sustancial;
+- producir intención estructurada con `signals` explícitas;
+- llamar `skill_route_plan` o `skill_bootstrap`;
+- cargar las skills requeridas de la fase activa;
+- conservar el mismo trace en loads, replans y checkpoints;
+- replanificar al cambiar de fase o aparecer evidencia/capacidades nuevas.
 
-Esto permitiría descubrir falsos positivos frecuentes sin almacenar mensajes completos.
+El resultado debe distinguir una ruta correcta de una tarea que omitió completamente MSSR.
 
-### Evaluación basada en historial
+### 2. Autoridad de contexto de proyecto
 
-Convertir errores reales confirmados en fixtures de regresión. No aprender automáticamente de una única ejecución ni reescribir el contrato por frecuencia.
+Añadir un preflight portable que detecte y resuma las fuentes durables disponibles sin copiar todo su contenido:
 
-### Herramienta de edición asistida
+- `AGENTS.md` o equivalente del host;
+- contexto, memoria y estado bajo `.bridge/` cuando existan;
+- documentación canónica y estado operativo del proyecto;
+- incidentes, checkpoints, commits o snapshots relevantes para la tarea actual.
 
-Crear una operación que proponga un patch de metadata para una skill nueva usando la salida de `skill_route_audit`, pero requiera confirmación, snapshot y pruebas antes de escribir.
+Debe informar fuentes ausentes, contradictorias o obsoletas. Los hechos locales permanecen en el proyecto; sólo los procedimientos realmente transversales ascienden a skills globales.
 
-### Checkpoints de workflows largos
+### 3. Observabilidad de decisiones
 
-Añadir estado durable cuando un workflow necesite sobrevivir reinicios, pausas, aprobaciones humanas o varios días. El estado mínimo sería:
+Registrar sin prompts ni transcripciones completas:
 
-- intención resuelta;
-- fase actual;
-- fases completadas;
+- hash de intención, caller, fase y trace;
+- fuentes de contexto utilizadas;
+- skills activas, diferidas, requeridas y realmente cargadas;
+- replans, warnings, salud de providers y fallos de tool/schema;
+- duración y resultado de fases;
+- verificación, persistencia, correcciones del usuario y señales de fricción.
+
+Esto permitirá medir activación omitida, sobre-activación, required-load compliance y continuidad entre fases sin saturar contexto ni guardar razonamiento privado.
+
+Implementado en el adaptador Bridge: trazas correlacionadas, structured-vs-lexical rate, required-load compliance, cobertura de verify/persist/outcome, una única skill primaria por outcome, colaboradores, aceptación, score y tabla por skill. El siguiente paso es medir cobertura del hook contra un universo explícito de tareas elegibles y no sólo contra traces que ya llegaron al observatorio.
+
+### 3.1 Bandeja de notices y contexto dinámico
+
+Extender el canal existente de notices para producir evidencia accionable sobre agentes concurrentes, rutas con ownership, capturas/revisiones pendientes, contexto de proyecto obsoleto, fallos de activación, required skills omitidas y métricas anómalas. El host debe drenar o adjuntar notices en puntos seguros, resumirlos dentro de presupuesto y replanificar sólo cuando cambien materialmente la tarea.
+
+La entrega preferida es piggyback/pull en el siguiente tool result; las notificaciones push MCP pueden complementar, pero no se asume que todos los hosts despierten una nueva inferencia al recibirlas.
+
+### 4. Evaluación histórica y promoción de aprendizaje
+
+Convertir evidencia confirmada mediante una escalera explícita:
+
+```text
+evento aislado
+  -> telemetría o documentación local
+fallo reproducible del proyecto
+  -> fix + regresión local
+patrón procedural entre proyectos
+  -> actualización de la skill propietaria
+fallo de activación/fase/dependencia
+  -> metadata MSSR + fixtures
+objetivo reusable independiente
+  -> skill nueva
+```
+
+No aprender automáticamente de una única ejecución ni reescribir el contrato por frecuencia. Crear un benchmark de replay con incidentes reales confirmados y casos nominales cercanos.
+
+### 5. Checkpoints y edición asistida
+
+Añadir estado durable para workflows que sobrevivan reinicios, pausas o varios días:
+
+- intención resuelta y fase actual;
+- fases completadas y skills cargadas;
 - artefactos producidos;
 - verificaciones pendientes;
-- referencias a snapshots o commits.
+- señales/fricciones observadas;
+- referencias a commits o snapshots.
+
+Una herramienta futura podrá proponer patches de metadata o fixtures desde auditoría e historial, pero deberá exigir confirmación, snapshot, diff y pruebas antes de escribir.
 
 ## LangGraph
 

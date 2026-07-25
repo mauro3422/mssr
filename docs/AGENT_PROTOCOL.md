@@ -6,18 +6,19 @@ through a proxy.
 
 ## Intent envelope
 
-Before substantial specialized work, an agent may form:
+Before substantial specialized work, the host must form a compact intent using
+the canonical vocabulary, for example:
 
 ```json
 {
-  "domains": ["roblox", "skills"],
-  "actions": ["diagnose", "change"],
-  "artifacts": ["MCP catalog", "AGENTS.md"],
-  "needs": ["routing", "verification"],
-  "risk": "medium",
+  "domains": ["roblox", "skill-system"],
+  "actions": ["analyze", "edit", "verify"],
+  "artifacts": ["mcp", "document"],
+  "needs": ["integrity-verification", "cross-agent"],
+  "signals": ["degraded-capability", "replan-needed"],
+  "risk": "write",
   "ambiguity": "low",
-  "signals": ["degraded-capability"],
-  "capabilityNeeds": ["catalog-discovery"]
+  "capabilityNeeds": ["inspect the live provider catalog"]
 }
 ```
 
@@ -26,11 +27,42 @@ continuation or multi-turn plan. It contains the accepted goal, constraints,
 current phase, completed work, and unresolved references—not the transcript or
 chain-of-thought.
 
-## Phases
+## Project context and context budget
 
-Plan one phase at a time: `discover`, `analyze`, `implement`, `verify`,
-`persist`, and `close`. Re-plan after a material result, a failure, or a new
-capability requirement. A prior plan never locks the agent out of another tool.
+MSSR keeps procedural guidance and project state in separate layers:
+
+- reusable cross-project procedure belongs in a skill;
+- project-specific architecture, vocabulary, paths, decisions, current state,
+  and open blockers belong in the repository's durable context and docs;
+- the host loads only the project material needed to resolve the current intent,
+  then asks MSSR for the smallest phase-scoped skill set.
+
+A new project does not require a new skill by default. Create or generalize a
+skill only when the lesson has an independent reusable objective across projects.
+This separation is the main context-pressure control: durable project facts stay
+available without placing every skill or historical transcript in the prompt.
+
+The host is responsible for the activation hook. Before substantial specialized
+work it must load the relevant project context, produce the compact intent, call
+`skill_route_plan` or `skill_bootstrap`, and preserve the returned trace across
+phase boundaries. MSSR cannot activate itself in a host that never calls it.
+
+## Routing evidence checkpoint and notices
+
+The host's first observable action after deliberating about substantial specialized work is a compact Routing Evidence Checkpoint. It contains operational conclusions suitable for MSSR—not private reasoning. This boundary is sometimes described as the second tick: the model interprets the request, emits structured routing metadata, receives the route, and then reasons again with the selected capabilities.
+
+Runtime or project evidence may arrive later through bounded notices attached to tool results or a drainable inbox. Errors, active agents, owned files, pending captures/reviews, stale project context, missing routing, required skills not loaded, and unusual metrics can trigger a context request or replan. Notices never authorize mutations.
+
+See `ROUTING_EVIDENCE_OBSERVATORY.md` for the full contract.
+
+## Stages and phases
+
+The host passes one execution `stage`: `start`, `implement`, `verify`, `persist`,
+`close`, or `resume`. MSSR maps it into workflow phases such as `discovery`,
+`safety`, `implementation`, `verification`, `persistence`, and `maintenance`.
+Load only the active returned phase. Re-plan when the stage advances, after a
+material result or failure, or when a new capability becomes necessary. A prior
+plan never locks the agent out of another authorized tool.
 
 ## Signals and capability chaining
 
@@ -54,6 +86,33 @@ verification, or context gaps should additionally compose
 `capability-gap-recovery`. Both routes are gated by matching signals so ordinary
 nominal implementation and review remain outside the debugging/recovery branch.
 
+## Friction and learning loop
+
+Friction is observable control metadata, not permission to rewrite the system.
+A host should checkpoint bounded facts when a tool fails, a workaround repeats,
+a required skill was not loaded, a route changes materially, or verification and
+persistence disagree. The checkpoint should identify the route/phase, signals,
+selected and loaded skills, result, and a short redacted summary—never the raw
+prompt or transcript.
+
+Promotion follows an evidence ladder:
+
+1. one isolated event remains telemetry or project-local documentation;
+2. a reproduced project defect becomes a focused regression and project fix;
+3. a repeated cross-project procedural gap updates the owning skill;
+4. an activation, dependency, phase, or signal defect updates MSSR metadata and
+   positive, negative, and continuation fixtures;
+5. only an independently reusable objective justifies a new skill.
+
+Frequency alone must not change routing. Historical evidence proposes maintenance;
+a visible task with snapshot, diff, tests, and review applies the change.
+
+## Outcome attribution
+
+Close each substantial routed trace with one latest effective outcome. Exactly one `primarySkill` owns the result; `supportingSkills` record collaboration without duplicating success. Prefer manifests, tests, runtime readback, or explicit review over self-scoring. Reuse the trace for retries and final review so the latest outcome replaces preliminary evidence in metrics.
+
+Track activation, required-load compliance, verification, persistence, outcome success, and artifact acceptance separately. No single percentage represents all of MSSR quality.
+
 ## When skills change
 
 Creating or materially changing a skill should trigger a routing audit:
@@ -66,4 +125,3 @@ Creating or materially changing a skill should trigger a routing audit:
 Do not edit this protocol merely because a new tool appears. Auto-registry
 discovers volatile capability names and schemas. Update this document only when
 the routing contract itself changes.
-

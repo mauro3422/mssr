@@ -50,7 +50,8 @@ Neither route executes through MSSR: MSSR only discovers, ranks, explains, and
 re-plans capabilities.
 
 See [architecture](docs/ARCHITECTURE.md), the
-[agent protocol](docs/AGENT_PROTOCOL.md), and the
+[agent protocol](docs/AGENT_PROTOCOL.md), the
+[routing evidence and observatory contract](docs/ROUTING_EVIDENCE_OBSERVATORY.md), and the
 [registry model](docs/REGISTRY.md).
 
 ## Install and develop
