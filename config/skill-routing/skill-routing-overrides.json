@@ -929,6 +929,7 @@
       "phase": "discovery",
       "coversPhases": [
         "discovery",
+        "implementation",
         "verification"
       ],
       "domains": [
@@ -937,46 +938,84 @@
         "browser",
         "roblox",
         "blender",
+        "figma",
+        "github",
+        "git",
+        "opencode",
+        "agent-orchestration",
+        "skill-system",
         "other"
       ],
       "actions": [
         "debug",
         "analyze",
         "review",
-        "verify"
+        "verify",
+        "test",
+        "recover"
       ],
       "artifacts": [
         "code",
+        "game",
         "project",
         "repository",
-        "mcp"
+        "place-file",
+        "backup",
+        "ui",
+        "animation",
+        "model-3d",
+        "asset",
+        "document",
+        "spreadsheet",
+        "presentation",
+        "diagram",
+        "website",
+        "skill",
+        "mcp",
+        "placement-system",
+        "network-system",
+        "resource-system"
       ],
       "needs": [
         "integrity-verification",
-        "history-recovery"
+        "history-recovery",
+        "visual-qa",
+        "scene-analysis",
+        "unit-tests",
+        "version-control"
       ],
       "signals": [
         "error-observed",
         "warning-observed",
+        "degraded-capability",
         "uncertainty",
         "conflicting-evidence",
-        "repeated-friction"
+        "repeated-friction",
+        "manual-workaround",
+        "missing-capability",
+        "recovery-needed",
+        "skill-gap",
+        "reusable-pattern",
+        "replan-needed"
       ],
       "requires": [],
       "complements": [
+        "capability-gap-recovery",
         "skill-maintenance-loop"
       ],
       "excludes": [],
       "negativeIntents": [
+        "nominal",
         "simple rewrite",
         "ordinary feature implementation without a failure",
         "trivial typo with a proven fix",
         "general explanation without debugging"
       ],
-      "requireNeedMatch": true,
+      "requireNeedMatch": false,
       "requireActionMatch": true,
-      "priority": 91,
-      "activation": "on-demand"
+      "priority": 96,
+      "activation": "on-demand",
+      "requireSignalMatch": true
     },
     "visual-reference-replication": {
       "phase": "implementation",
@@ -1171,37 +1210,93 @@
     "skill-maintenance-loop": {
       "phase": "maintenance",
       "domains": [
-        "skill-system",
-        "agent-orchestration",
         "coding",
+        "filesystem",
+        "browser",
         "roblox",
-        "blender"
+        "blender",
+        "figma",
+        "github",
+        "git",
+        "opencode",
+        "agent-orchestration",
+        "skill-system",
+        "other"
       ],
       "actions": [
         "review",
         "maintain",
-        "document"
+        "document",
+        "analyze",
+        "recover",
+        "coordinate",
+        "create",
+        "edit"
       ],
       "artifacts": [
-        "skill"
+        "code",
+        "game",
+        "project",
+        "repository",
+        "place-file",
+        "backup",
+        "ui",
+        "animation",
+        "model-3d",
+        "asset",
+        "document",
+        "spreadsheet",
+        "presentation",
+        "diagram",
+        "website",
+        "skill",
+        "mcp",
+        "placement-system",
+        "network-system",
+        "resource-system"
       ],
-      "needs": [],
+      "needs": [
+        "integrity-verification",
+        "history-recovery",
+        "cross-agent",
+        "version-control"
+      ],
       "signals": [
         "error-observed",
+        "warning-observed",
+        "degraded-capability",
         "repeated-friction",
         "manual-workaround",
         "missing-capability",
+        "recovery-needed",
         "skill-gap",
-        "reusable-pattern"
+        "reusable-pattern",
+        "capability-discovery-needed",
+        "additional-capability-needed",
+        "tool-chain-needed",
+        "provider-refresh-needed",
+        "replan-needed"
       ],
       "requires": [
         "shared-skill-governance"
       ],
-      "complements": [],
+      "complements": [
+        "capability-gap-recovery",
+        "systematic-debugging",
+        "skill-routing-maintainer"
+      ],
       "excludes": [],
-      "negativeIntents": [],
-      "priority": 88,
-      "activation": "closing"
+      "negativeIntents": [
+        "nominal close with no reusable learning"
+      ],
+      "priority": 92,
+      "activation": "closing",
+      "coversPhases": [
+        "maintenance"
+      ],
+      "requireNeedMatch": false,
+      "requireActionMatch": false,
+      "requireSignalMatch": true
     },
     "skill-routing-maintainer": {
       "phase": "implementation",
@@ -1242,6 +1337,111 @@
       "excludes": [],
       "negativeIntents": [],
       "priority": 95,
+      "activation": "on-demand"
+    },
+    "capability-gap-recovery": {
+      "phase": "discovery",
+      "coversPhases": [
+        "discovery",
+        "implementation",
+        "verification",
+        "maintenance"
+      ],
+      "domains": [
+        "coding",
+        "filesystem",
+        "browser",
+        "roblox",
+        "blender",
+        "figma",
+        "github",
+        "git",
+        "opencode",
+        "agent-orchestration",
+        "skill-system",
+        "other"
+      ],
+      "actions": [
+        "discover",
+        "debug",
+        "analyze",
+        "review",
+        "verify",
+        "recover",
+        "coordinate",
+        "maintain"
+      ],
+      "artifacts": [
+        "code",
+        "game",
+        "project",
+        "repository",
+        "place-file",
+        "backup",
+        "ui",
+        "animation",
+        "model-3d",
+        "asset",
+        "document",
+        "spreadsheet",
+        "presentation",
+        "diagram",
+        "website",
+        "skill",
+        "mcp",
+        "placement-system",
+        "network-system",
+        "resource-system"
+      ],
+      "needs": [
+        "official-docs",
+        "safe-editing",
+        "unit-tests",
+        "playtest",
+        "visual-qa",
+        "device-testing",
+        "performance",
+        "scene-analysis",
+        "backup",
+        "integrity-verification",
+        "version-control",
+        "history-recovery",
+        "cross-agent",
+        "human-approval"
+      ],
+      "signals": [
+        "degraded-capability",
+        "conflicting-evidence",
+        "repeated-friction",
+        "manual-workaround",
+        "missing-capability",
+        "recovery-needed",
+        "skill-gap",
+        "reusable-pattern",
+        "capability-discovery-needed",
+        "additional-capability-needed",
+        "tool-chain-needed",
+        "provider-refresh-needed",
+        "replan-needed"
+      ],
+      "requires": [
+        "mssr-agent-routing"
+      ],
+      "complements": [
+        "systematic-debugging",
+        "shared-skill-governance",
+        "skill-routing-maintainer",
+        "skill-maintenance-loop"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "nominal",
+        "ordinary task with sufficient capability"
+      ],
+      "requireNeedMatch": false,
+      "requireActionMatch": true,
+      "requireSignalMatch": true,
+      "priority": 98,
       "activation": "on-demand"
     }
   },

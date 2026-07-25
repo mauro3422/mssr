@@ -1204,8 +1204,10 @@
         "activeExcludes": [
           "roblox-mcp-incident-recovery"
         ],
-        "deferredIncludes": [
-          "mssr-agent-routing"
+        "activeIncludes": [
+          "mssr-agent-routing",
+          "capability-gap-recovery",
+          "systematic-debugging"
         ]
       }
     },
@@ -1431,6 +1433,306 @@
         ],
         "activeExcludes": [
           "systematic-debugging"
+        ]
+      }
+    },
+    {
+      "name": "systematic-debugging-any-domain-figma-anomaly",
+      "task": "La UI de Figma cambia entre el componente fuente y la instancia exportada. Trazá la causa y verificá una corrección reversible.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Depurar una inconsistencia visual de Figma entre fuente e instancia",
+        "domains": [
+          "figma"
+        ],
+        "actions": [
+          "debug",
+          "analyze",
+          "verify"
+        ],
+        "artifacts": [
+          "ui",
+          "asset"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "error-observed",
+          "conflicting-evidence"
+        ],
+        "risk": "read-only",
+        "ambiguity": "medium"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "systematic-debugging"
+        ]
+      }
+    },
+    {
+      "name": "systematic-debugging-any-domain-git-release-drift",
+      "task": "El código y el package dicen una versión, la documentación otra y el servicio vivo una anterior. Aislá el drift y cerrá el release.",
+      "stage": "verify",
+      "completedPhases": [
+        "discovery",
+        "implementation"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Depurar drift de versión entre Git, archivos generados y servicio vivo",
+        "domains": [
+          "git",
+          "github"
+        ],
+        "actions": [
+          "debug",
+          "analyze",
+          "review",
+          "verify"
+        ],
+        "artifacts": [
+          "repository",
+          "document",
+          "project"
+        ],
+        "needs": [
+          "version-control",
+          "integrity-verification"
+        ],
+        "signals": [
+          "warning-observed",
+          "conflicting-evidence"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "systematic-debugging"
+        ]
+      }
+    },
+    {
+      "name": "systematic-debugging-signal-gate-negative",
+      "task": "Revisá una pantalla nominal de Figma y sugerí mejoras de jerarquía; no hay error ni comportamiento contradictorio.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Revisión visual nominal sin investigación causal",
+        "domains": [
+          "figma"
+        ],
+        "actions": [
+          "review",
+          "analyze"
+        ],
+        "artifacts": [
+          "ui"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "systematic-debugging",
+          "capability-gap-recovery"
+        ]
+      }
+    },
+    {
+      "name": "capability-gap-recovery-context-switch",
+      "task": "Este chat no puede leer el archivo local ni comprobar la app viva. Verificá la brecha y prepará el cambio al contexto que sí tenga acceso.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Recuperar una tarea bloqueada por falta de acceso local y contexto vivo",
+        "domains": [
+          "agent-orchestration",
+          "filesystem"
+        ],
+        "actions": [
+          "discover",
+          "analyze",
+          "recover",
+          "coordinate"
+        ],
+        "artifacts": [
+          "project",
+          "document"
+        ],
+        "needs": [
+          "cross-agent",
+          "integrity-verification"
+        ],
+        "signals": [
+          "missing-capability",
+          "additional-capability-needed",
+          "replan-needed"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "capability-gap-recovery",
+          "systematic-debugging",
+          "mssr-agent-routing"
+        ]
+      }
+    },
+    {
+      "name": "capability-gap-recovery-skill-route-repair",
+      "task": "La skill existe pero no se activa en el dominio correcto y el workaround se repitió. Reproducí la ruta, corregí la skill o MSSR y dejá fixtures.",
+      "stage": "implement",
+      "completedPhases": [
+        "discovery"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Reparar una skill y su routing después de un falso negativo repetido",
+        "domains": [
+          "skill-system",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "debug",
+          "analyze",
+          "edit",
+          "maintain",
+          "verify"
+        ],
+        "artifacts": [
+          "skill",
+          "mcp"
+        ],
+        "needs": [
+          "integrity-verification",
+          "cross-agent"
+        ],
+        "signals": [
+          "skill-gap",
+          "repeated-friction",
+          "conflicting-evidence"
+        ],
+        "risk": "write",
+        "ambiguity": "medium"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "capability-gap-recovery",
+          "systematic-debugging",
+          "skill-routing-maintainer",
+          "shared-skill-governance"
+        ]
+      }
+    },
+    {
+      "name": "capability-gap-recovery-continuation",
+      "task": "Dale, seguí con el cambio de contexto",
+      "taskVariants": [
+        "Prepará el handoff",
+        "Seguí con la recuperación de capacidades"
+      ],
+      "context": "La tarea aceptada quedó bloqueada porque el contexto actual no puede acceder al archivo local ni verificar la aplicación viva. Ya se comprobó que otra aplicación conectada tiene la autoridad necesaria; ahora hay que producir un handoff acotado con objetivo, estado, rutas, evidencia, siguiente acción y rollback.",
+      "stage": "resume",
+      "completedPhases": [
+        "discovery"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar un handoff por brecha de contexto ya demostrada",
+        "domains": [
+          "agent-orchestration",
+          "filesystem"
+        ],
+        "actions": [
+          "recover",
+          "coordinate",
+          "document"
+        ],
+        "artifacts": [
+          "project",
+          "document"
+        ],
+        "needs": [
+          "cross-agent"
+        ],
+        "signals": [
+          "missing-capability",
+          "replan-needed"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "capability-gap-recovery"
+        ]
+      }
+    },
+    {
+      "name": "capability-gap-recovery-negative-nominal",
+      "task": "Implementá una función pequeña con las herramientas actuales; el entorno está sano y la verificación está disponible.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Implementación nominal con capacidades suficientes",
+        "domains": [
+          "coding"
+        ],
+        "actions": [
+          "create",
+          "edit",
+          "test"
+        ],
+        "artifacts": [
+          "code"
+        ],
+        "needs": [
+          "unit-tests",
+          "safe-editing"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "capability-gap-recovery",
+          "systematic-debugging",
+          "skill-maintenance-loop"
         ]
       }
     }

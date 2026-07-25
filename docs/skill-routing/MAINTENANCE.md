@@ -87,6 +87,8 @@ Estos cambios no requieren tocar routing si no cambian propósito, fase, depende
 
 - **Se activa de más:** añadir artefacto específico, `requireNeedMatch`, intención negativa o fixture negativo.
 - **Coincide por artefacto pero no por operación:** añadir `requireActionMatch` y un caso negativo cercano.
+- **Skill transversal de anomalías se abre en trabajo nominal:** añadir `requireSignalMatch`, declarar sólo señales no nominales y exigir un fixture anómalo positivo más un nominal negativo.
+- **Existe la capacidad pero no en el contexto actual:** activar `capability-gap-recovery`, probar el límite de autoridad/estado y producir un handoff acotado al producto o provider que pueda ejecutar y verificar la operación.
 - **No se activa:** mejorar descripción, metadata, dependencia o fixture positivo.
 - **Fase incorrecta:** corregir `phase`, workflow y `completedPhases` del caso.
 - **Una continuación breve pierde el plan:** el caller debe enviar siempre un `context` resuelto y acotado para trabajos multi-turno, no depender de detectar una frase literal.

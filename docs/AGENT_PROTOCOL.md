@@ -47,6 +47,13 @@ When a selected skill/tool reveals another need, record the signal and a short
 then re-plan. The host retains normal authority to use any available authorized
 tool; MSSR is not an allowlist.
 
+Non-nominal evidence signals combined with `debug`, `analyze`, `review`, `test`,
+`verify`, or `recover` should compose `systematic-debugging` with the narrowest
+relevant domain skill. Capability, provider, skill, routing, permission,
+verification, or context gaps should additionally compose
+`capability-gap-recovery`. Both routes are gated by matching signals so ordinary
+nominal implementation and review remain outside the debugging/recovery branch.
+
 ## When skills change
 
 Creating or materially changing a skill should trigger a routing audit:

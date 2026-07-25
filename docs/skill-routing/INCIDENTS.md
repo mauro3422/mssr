@@ -315,3 +315,47 @@ This was a procedural-content correction, not a change to skill purpose, activat
 - `verify-skills.ps1` and Codex discovery checks to pass;
 - the full MSSR routing suite and skill audit to remain green;
 - the project-specific `roblox-distance-render-regression` guide to be selected for a positive distance-color task and not for an unrelated static writing task.
+
+## MSSR-011 — Transversal debugging was domain-gated and capability gaps lacked an owner
+
+**Date:** 2026-07-24
+
+### Trigger
+
+A real Roblox regression required `systematic-debugging` to work simultaneously with Roblox QA. The procedure itself was domain-neutral, but a structured intent containing only `domains=["roblox"]` did not select it. During the same maintenance pass, branch integration, stale generated docs, a test process that printed success but did not exit, a source/live version mismatch, and a product-context access boundary showed that no single skill owned recovery of missing tools, providers, permissions, verification paths or context handoffs.
+
+### Observed failures
+
+- `systematic-debugging` could be manually loaded and contained the correct procedure, yet MSSR excluded it outside its enumerated domains or when an explicit integrity/history need was absent.
+- Extending domains alone risked opening debugging during nominal review and feature work because routing had action and need gates but no reusable anomaly-signal gate.
+- Capability-chain continuations could re-plan, but there was no dedicated procedure for choosing between repairing routing, improving an existing skill, adding a script/tool/guide, creating a new skill, or changing product context.
+- Maintenance knowledge about sibling branches, generated outputs, process lifecycle, release drift and context handoff was scattered across task transcripts rather than preserved as a reusable system.
+
+### Root causes
+
+- Transversal intent was represented as a finite domain allowlist instead of broad domain coverage plus observable anomaly gates.
+- The routing contract lacked `requireSignalMatch`.
+- Skill maintenance focused on procedural learning but did not map canonical repositories, execution support, generated artifacts, live-service gates or context adequacy.
+- Capability discovery and provider refresh existed in MSSR, but recovery ownership and handoff format were implicit.
+
+### Correction
+
+- Added `requireSignalMatch` to the TypeScript metadata schema, JSON schema, audit output and deterministic scorer.
+- Generalized `systematic-debugging` to every supported domain and to discovery, implementation and verification; it now requires both a matching debugging/recovery action and a matching non-nominal signal.
+- Added `capability-gap-recovery` with explicit routing across domains and procedures for routing-gap, skill-gap, tool-gap, provider-gap, permission-gap, verification-gap and context-gap recovery.
+- Expanded `skill-maintenance-loop` with a canonical system map, a catalog of generalized friction patterns and a cross-repository verification script that separates source checks from post-restart live checks.
+- Updated governance and agent-routing procedures so debugging composes with narrow domain skills, capability gaps re-plan rather than retry blindly, and context switches carry a bounded verifiable handoff.
+
+### Regression fixtures
+
+- `systematic-debugging-any-domain-figma-anomaly`
+- `systematic-debugging-any-domain-git-release-drift`
+- `systematic-debugging-signal-gate-negative`
+- `capability-gap-recovery-context-switch`
+- `capability-gap-recovery-skill-route-repair`
+- `capability-gap-recovery-continuation`
+- `capability-gap-recovery-negative-nominal`
+
+### Verification
+
+The regression requires anomalous Figma, Git/release and Roblox cases to compose `systematic-debugging` with their domain routes; nominal Figma and coding work must exclude debugging and recovery. Capability/context and skill-routing gaps must activate `capability-gap-recovery`, while short continuation variants preserve the accepted handoff through bounded context.
