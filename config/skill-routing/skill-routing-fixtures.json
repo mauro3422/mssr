@@ -762,101 +762,405 @@
       }
     },
     {
+      "name": "roblox-photo-rig-explicit-capture",
+      "task": "Montá este modelo en el Photo Rig, calculá frontal y tres cuartos según su tamaño, guardá los PNG master en máxima calidad y preparalos para el dashboard",
+      "stage": "implement",
+      "intent": {
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "create",
+          "review",
+          "test"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "activeIncludes": [
+          "roblox-mcp-skill-router",
+          "roblox-photo-rig-capture"
+        ],
+        "activeExcludes": [
+          "roblox-asset-review",
+          "roblox-technique-animation-authoring"
+        ]
+      }
+    },
+    {
+      "name": "roblox-photo-rig-continuation-context",
+      "task": "Dale, sacá esas fotos",
+      "taskVariants": [
+        "Sí, seguí con esas capturas",
+        "Mandale con el frontal y tres cuartos"
+      ],
+      "stage": "implement",
+      "context": "El usuario aceptó montar el modelo seleccionado de Roblox en el Photo Rig, calcular cámaras adaptativas y capturar vistas frontal y tres cuartos. La fase activa debe generar capturas raw, master, review y thumb; conservar resolución nativa, hash y procedencia; y validar escala renderizada, centrado, limpieza y correspondencia semántica antes de promoverlas al dashboard.",
+      "expect": {
+        "lexicalFallback": {
+          "contextUsed": true
+        },
+        "activeIncludes": [
+          "roblox-mcp-skill-router",
+          "roblox-photo-rig-capture"
+        ],
+        "activeExcludes": [
+          "roblox-asset-review",
+          "opencode-cli-audit"
+        ]
+      }
+    },
+    {
+      "name": "roblox-photo-rig-negative-edit-only",
+      "task": "Cambiá el color y la forma del hongo procedural, pero no saques fotos ni abras el dashboard",
+      "stage": "implement",
+      "intent": {
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "edit"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d"
+        ],
+        "needs": [
+          "safe-editing"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "activeIncludes": [
+          "roblox-mcp-skill-router",
+          "roblox-safe-editing"
+        ],
+        "activeExcludes": [
+          "roblox-photo-rig-capture",
+          "roblox-model-turnaround-review"
+        ]
+      }
+    },
+    {
       "name": "roblox-mcp-connected-but-empty-catalog",
       "task": "Roblox MCP dice connected true pero tools/list devuelve count 0; diagnosticá y recuperá la conexión sin matar las rutas válidas",
       "stage": "start",
-      "sources": ["codex-local"],
+      "sources": [
+        "codex-local"
+      ],
       "intent": {
         "summary": "Diagnosticar evidencia contradictoria y recuperar un catálogo Roblox MCP vacío",
-        "domains": ["roblox", "agent-orchestration"],
-        "actions": ["analyze", "debug", "recover", "verify"],
-        "artifacts": ["mcp"],
-        "needs": ["integrity-verification", "cross-agent"],
-        "signals": ["error-observed", "degraded-capability", "conflicting-evidence", "recovery-needed"],
+        "domains": [
+          "roblox",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "analyze",
+          "debug",
+          "recover",
+          "verify"
+        ],
+        "artifacts": [
+          "mcp"
+        ],
+        "needs": [
+          "integrity-verification",
+          "cross-agent"
+        ],
+        "signals": [
+          "error-observed",
+          "degraded-capability",
+          "conflicting-evidence",
+          "recovery-needed"
+        ],
         "risk": "read-only",
         "ambiguity": "low"
       },
       "expect": {
         "classificationMode": "structured-semantic",
-        "activeIncludes": ["roblox-mcp-incident-recovery", "roblox-mcp-skill-router"],
-        "activeExcludes": ["roblox-safe-editing"]
+        "activeIncludes": [
+          "roblox-mcp-incident-recovery",
+          "roblox-mcp-skill-router"
+        ],
+        "activeExcludes": [
+          "roblox-safe-editing"
+        ]
       }
     },
     {
       "name": "ordinary-roblox-ui-work-is-not-an-mcp-incident",
       "task": "Creá una interfaz de inventario adaptable en Roblox",
       "stage": "start",
-      "sources": ["codex-local"],
+      "sources": [
+        "codex-local"
+      ],
       "intent": {
         "summary": "Crear una interfaz de inventario Roblox sin anomalías MCP",
-        "domains": ["roblox"],
-        "actions": ["design", "create"],
-        "artifacts": ["ui", "game"],
-        "needs": ["safe-editing", "visual-qa"],
-        "signals": ["nominal"],
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "design",
+          "create"
+        ],
+        "artifacts": [
+          "ui",
+          "game"
+        ],
+        "needs": [
+          "safe-editing",
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
         "risk": "write",
         "ambiguity": "low"
       },
       "expect": {
         "classificationMode": "structured-semantic",
-        "activeIncludes": ["roblox-mcp-skill-router", "roblox-safe-editing"],
-        "activeExcludes": ["roblox-mcp-incident-recovery"]
+        "activeIncludes": [
+          "roblox-mcp-skill-router",
+          "roblox-safe-editing"
+        ],
+        "activeExcludes": [
+          "roblox-mcp-incident-recovery"
+        ]
       }
     },
     {
       "name": "roblox-mcp-incident-continuation-uses-context",
       "task": "seguí diagnosticándolo",
-      "taskVariants": ["dale, recuperalo", "continuá con esa verificación"],
+      "taskVariants": [
+        "dale, recuperalo",
+        "continuá con esa verificación"
+      ],
       "context": "El objetivo aceptado es recuperar Roblox Studio MCP. Inicialización exitosa pero tools/list devolvió 0 y hay varios procesos StudioMCP. Debemos preservar las rutas directas y del Bridge que tengan padres válidos, identificar ownership por PID/PPID, evitar matar por nombre y verificar un catálogo vivo no vacío.",
       "stage": "verify",
-      "completedPhases": ["discovery"],
-      "sources": ["codex-local"],
+      "completedPhases": [
+        "discovery"
+      ],
+      "sources": [
+        "codex-local"
+      ],
       "expect": {
         "classificationMode": "lexical-fallback",
         "contextUsed": true,
-        "activeIncludes": ["roblox-mcp-incident-recovery"]
+        "activeIncludes": [
+          "roblox-mcp-incident-recovery"
+        ]
       }
     },
     {
       "name": "roblox-mcp-repeated-friction-closes-through-maintenance",
       "task": "Cerrá el incidente recurrente y documentá el workaround como patrón reusable",
       "stage": "close",
-      "completedPhases": ["discovery", "verification"],
-      "sources": ["codex-local"],
+      "completedPhases": [
+        "discovery",
+        "verification"
+      ],
+      "sources": [
+        "codex-local"
+      ],
       "intent": {
         "summary": "Preservar un patrón reutilizable después de fricción repetida en Roblox MCP",
-        "domains": ["roblox", "skill-system"],
-        "actions": ["review", "maintain", "document"],
-        "artifacts": ["mcp", "skill"],
-        "needs": ["cross-agent"],
-        "signals": ["repeated-friction", "manual-workaround", "reusable-pattern"],
+        "domains": [
+          "roblox",
+          "skill-system"
+        ],
+        "actions": [
+          "review",
+          "maintain",
+          "document"
+        ],
+        "artifacts": [
+          "mcp",
+          "skill"
+        ],
+        "needs": [
+          "cross-agent"
+        ],
+        "signals": [
+          "repeated-friction",
+          "manual-workaround",
+          "reusable-pattern"
+        ],
         "risk": "write",
         "ambiguity": "low"
       },
       "expect": {
         "classificationMode": "structured-semantic",
-        "activeIncludes": ["skill-maintenance-loop", "roblox-mcp-incident-recovery"]
+        "activeIncludes": [
+          "skill-maintenance-loop",
+          "roblox-mcp-incident-recovery"
+        ]
+      }
+    },
+    {
+      "name": "visual-reference-replication-positive",
+      "task": "Replicá esta imagen lo más fiel posible en Roblox, respetá el estilo, la silueta, la geografía de la tierra y hacé que el micelio siga la superficie; capturá vistas comparables e iterá por el mayor error",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Replicar una referencia visual con fidelidad mediante iteraciones verificadas",
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "design",
+          "create",
+          "review",
+          "analyze"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d"
+        ],
+        "needs": [
+          "visual-qa",
+          "scene-analysis",
+          "integrity-verification"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "visual-reference-replication",
+          "roblox-photo-rig-capture"
+        ],
+        "activeExcludes": [
+          "roblox-asset-review"
+        ]
+      }
+    },
+    {
+      "name": "visual-reference-replication-continuation",
+      "task": "Sí, pulila y seguí comparando",
+      "context": "El usuario aceptó iterar un modelo Roblox contra una referencia preservada. La siguiente fase debe evaluar lectura dominante, silueta, masas, relación tierra-micelio y vistas comparables; no puede promover una revisión sólo porque cambió el código o aumentaron las piezas.",
+      "stage": "resume",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar una réplica visual guiada por evidencia",
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "edit",
+          "review",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "visual-reference-replication"
+        ],
+        "activeExcludes": [
+          "roblox-asset-review"
+        ]
+      }
+    },
+    {
+      "name": "visual-reference-replication-negative-text-only",
+      "task": "Explicame en texto qué es el micelio y no crees ni revises imágenes o modelos",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Responder una consulta textual sin trabajo visual",
+        "domains": [
+          "other"
+        ],
+        "actions": [
+          "analyze"
+        ],
+        "artifacts": [
+          "document"
+        ],
+        "needs": [],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "visual-reference-replication",
+          "roblox-photo-rig-capture",
+          "roblox-visual-asset-forge"
+        ]
       }
     },
     {
       "name": "mssr-discovers-and-chains-an-additional-capability",
       "task": "La tool inicial no alcanza; buscá otra capacidad, inspeccioná su schema y replanificá la cadena",
       "stage": "start",
-      "sources": ["codex-local"],
+      "sources": [
+        "codex-local"
+      ],
       "intent": {
         "summary": "Descubrir e inspeccionar una capacidad adicional antes de continuar",
-        "domains": ["skill-system", "agent-orchestration"],
-        "actions": ["discover", "analyze", "coordinate"],
-        "artifacts": ["mcp", "skill"],
-        "needs": ["cross-agent", "integrity-verification"],
-        "signals": ["additional-capability-needed", "tool-chain-needed", "replan-needed"],
+        "domains": [
+          "skill-system",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "discover",
+          "analyze",
+          "coordinate"
+        ],
+        "artifacts": [
+          "mcp",
+          "skill"
+        ],
+        "needs": [
+          "cross-agent",
+          "integrity-verification"
+        ],
+        "signals": [
+          "additional-capability-needed",
+          "tool-chain-needed",
+          "replan-needed"
+        ],
         "risk": "read-only",
         "ambiguity": "low"
       },
       "expect": {
         "classificationMode": "structured-semantic",
-        "activeIncludes": ["mssr-agent-routing"],
-        "activeExcludes": ["skill-maintenance-loop", "roblox-mcp-incident-recovery"]
+        "activeIncludes": [
+          "mssr-agent-routing"
+        ],
+        "activeExcludes": [
+          "skill-maintenance-loop",
+          "roblox-mcp-incident-recovery"
+        ]
       }
     },
     {
@@ -864,23 +1168,177 @@
       "task": "dale, seguí con la otra tool",
       "context": "El objetivo aceptado requiere una capacidad que no estaba en el plan inicial. Ya se completó discovery, el proveedor fue refrescado y ahora hay que inspeccionar el schema candidato, replanificar y continuar sin ampliar permisos.",
       "stage": "resume",
-      "completedPhases": ["discovery"],
-      "sources": ["codex-local"],
+      "completedPhases": [
+        "discovery"
+      ],
+      "sources": [
+        "codex-local"
+      ],
       "intent": {
         "summary": "Retomar una cadena con capacidad adicional ya descubierta",
-        "domains": ["skill-system", "agent-orchestration"],
-        "actions": ["discover", "coordinate", "verify"],
-        "artifacts": ["mcp"],
-        "needs": ["cross-agent"],
-        "signals": ["tool-chain-needed", "replan-needed"],
+        "domains": [
+          "skill-system",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "discover",
+          "coordinate",
+          "verify"
+        ],
+        "artifacts": [
+          "mcp"
+        ],
+        "needs": [
+          "cross-agent"
+        ],
+        "signals": [
+          "tool-chain-needed",
+          "replan-needed"
+        ],
         "risk": "read-only",
         "ambiguity": "low"
       },
       "expect": {
         "classificationMode": "structured-semantic",
         "contextUsed": true,
-        "activeExcludes": ["roblox-mcp-incident-recovery"],
-        "deferredIncludes": ["mssr-agent-routing"]
+        "activeExcludes": [
+          "roblox-mcp-incident-recovery"
+        ],
+        "deferredIncludes": [
+          "mssr-agent-routing"
+        ]
+      }
+    },
+    {
+      "name": "systematic-debugging-positive-flow-regression",
+      "task": "La importación terminó bien pero el runtime usa otro estado y el archivo guardado no coincide. Trazá el flujo completo, compará el último estado sano, aislá una variable por prueba y encontrá la causa raíz antes de editar.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Diagnosticar una regresión contradictoria trazando control, datos, estado y persistencia",
+        "domains": [
+          "coding",
+          "filesystem"
+        ],
+        "actions": [
+          "debug",
+          "analyze",
+          "verify"
+        ],
+        "artifacts": [
+          "code",
+          "project"
+        ],
+        "needs": [
+          "history-recovery",
+          "integrity-verification"
+        ],
+        "signals": [
+          "error-observed",
+          "conflicting-evidence",
+          "uncertainty"
+        ],
+        "risk": "read-only",
+        "ambiguity": "medium"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "systematic-debugging"
+        ],
+        "activeExcludes": [
+          "roblox-studio-qa",
+          "blender-visual-review"
+        ]
+      }
+    },
+    {
+      "name": "systematic-debugging-continuation-preserves-flow",
+      "task": "Dale, seguí con eso",
+      "taskVariants": [
+        "Sí, seguí",
+        "Mandale con la depuración",
+        "Continuá desde la causa que estabas aislando"
+      ],
+      "context": "La tarea aceptada es depurar una regresión general de software. Ya se reconstruyó el flujo entre fuente, runtime y persistencia; ahora hay que continuar con pruebas de una variable, conservar controles, leer de vuelta las mutaciones y verificar la causa raíz sin abrir una rama específica de Roblox o Blender.",
+      "stage": "resume",
+      "completedPhases": [],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar una depuración sistemática transversal ya iniciada",
+        "domains": [
+          "coding",
+          "filesystem"
+        ],
+        "actions": [
+          "debug",
+          "analyze",
+          "verify"
+        ],
+        "artifacts": [
+          "code",
+          "project"
+        ],
+        "needs": [
+          "integrity-verification"
+        ],
+        "signals": [
+          "uncertainty",
+          "conflicting-evidence"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "systematic-debugging"
+        ],
+        "activeExcludes": [
+          "roblox-studio-qa",
+          "blender-visual-review"
+        ]
+      }
+    },
+    {
+      "name": "systematic-debugging-negative-ordinary-feature",
+      "task": "Agregá una opción para ordenar la lista alfabéticamente; no hay ningún error ni regresión que investigar.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Implementar una mejora ordinaria sin fallo ni investigación causal",
+        "domains": [
+          "coding"
+        ],
+        "actions": [
+          "create",
+          "edit"
+        ],
+        "artifacts": [
+          "code",
+          "project"
+        ],
+        "needs": [
+          "safe-editing"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "systematic-debugging"
+        ]
       }
     }
   ]

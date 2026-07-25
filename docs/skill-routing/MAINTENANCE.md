@@ -60,6 +60,29 @@ Cuando una tool cambia qué workflows son posibles:
 5. regenerar `TOOLS.md`;
 6. ejecutar handshake y suite integral cuando corresponda.
 
+## Patrones de ejecución que disparan mantenimiento de skills
+
+Un fallo de proyecto también puede revelar una skill incompleta aunque el routing haya sido correcto. Al cerrar una tarea, captura mensaje exacto, stack, modo y propiedades antes de decidir qué skill actualizar.
+
+- **Contenido object-backed desaparece entre Edit y Play:** si `EditableMesh`, `EditableImage` u otro contenido aparece en Edit pero llega como `None`, placeholder o caja de bounds al Server/Client, emite `reusable-pattern` y `skill-gap`. Actualiza la skill propietaria de authoring/persistencia visual, la QA/captura y la guía del proyecto.
+- **El mismo carrier dinámico se reconstruye o clona para varias variantes:** si una segunda generación idéntica se bloquea, agota presupuesto o un `Clone()` object-backed no completa, emite `repeated-friction` y `reusable-pattern`. La corrección general es hidratar una fuente una sola vez, ordenar dependencias explícitamente, derivar representaciones adicionales desde el `MeshContent` runtime validado y conservar capas dependientes en coordenadas locales. Exige evidencia Server/Client y cardinalidad de las capas preservadas.
+- **`lacking capability <X>` en un callback:** emite `missing-capability`. La línea del evento es el síntoma; inspecciona el `LuaSourceContainer` definidor, `Sandboxed` y `Capabilities` antes de atribuirlo a una tabla o conexión.
+- **La herramienta no puede ampliar capabilities:** emite `capability-gap` o la señal equivalente vigente y `manual-workaround`. No repitas la mutación; exige fuente autorizada o cambio arquitectónico y registra la limitación en la skill de edición segura.
+- **Pivot correcto, bounds incorrectos:** emite `reusable-pattern`; actualiza placement/QA para validar bottom y containment desde el bounding box final después de rotación.
+- **Placeholder confundido con defecto artístico o de cámara:** emite `skill-gap`; la skill de captura debe bloquear antes del camera-fit y la de referencia debe insertar un gate de representación runtime.
+- **Línea de `table.insert(... CharacterAdded:Connect(...))`:** separa dos hipótesis y pruébalas en orden: capability del evento y lifecycle de la colección. Sólo actualiza la regla de conexiones si la tabla realmente no fue inicializada, se nombró de forma inconsistente o no se limpia.
+
+Mapa mínimo de ownership:
+
+- runtime visual/persistencia → `roblox-visual-asset-forge`, `roblox-photo-rig-capture`, `visual-reference-replication`;
+- consola/capabilities/Client-Server → `roblox-studio-qa`, `roblox-safe-editing`;
+- soporte/footprint/creación autoritativa → `roblox-placement-system-authoring`;
+- detección y propagación del aprendizaje → `skill-maintenance-loop`;
+- hechos y rutas concretas → guía y docs del proyecto.
+
+Estos cambios no requieren tocar routing si no cambian propósito, fase, dependencias o activación. Si se agregan nuevos disparadores o signals, añade fixtures positivo, negativo y de continuación y registra el incidente reproducible.
+
+
 ## Errores de activación
 
 - **Se activa de más:** añadir artefacto específico, `requireNeedMatch`, intención negativa o fixture negativo.

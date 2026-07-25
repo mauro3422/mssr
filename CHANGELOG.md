@@ -2,6 +2,14 @@
 
 All notable changes to MSSR are documented here.
 
+## Unreleased
+
+- Added explicit routing for the new transversal `systematic-debugging` skill, with positive root-cause/flow-tracing, bounded continuation, and nearby ordinary-feature negative fixtures.
+- Recorded MSSR-010: corrected procedural Roblox QA that wrongly excluded `UnionOperation` from `RenderFidelity`, and added pre-import render-profile plus Atmosphere distance-isolation gates without changing skill activation or routing metadata.
+- Added explicit routing metadata for `roblox-photo-rig-capture`, covering Photo Rig implementation and verification without activating for edit-only or inventory-only work.
+- Added positive, bounded-context continuation, and negative regression fixtures for Roblox model photography.
+- Verified 55 routing fixtures, 30 explicitly routed local skills, and a live audit with no owned skills left unconfigured.
+
 ## 0.1.0 — 2026-07-23
 
 - Established MSSR as an independent Git repository and routing contract.

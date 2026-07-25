@@ -247,3 +247,71 @@ of the registry, MCP facade, tests, and documentation.
 Recovery is accepted only after `npm run verify` passes in `C:\Dev\mssr`, the
 Bridge resolves `@mauroprime/mssr` from that canonical path, and both Git
 repositories retain their expected independent roots.
+
+## MSSR-009 — Reference-driven asset work advanced without a fidelity gate
+
+**Date:** 2026-07-23
+
+### Symptom
+
+Several Roblox soil/mycelium revisions advanced after successful generation and
+camera capture even though direct inspection still read as balls in a wire cage,
+a stacked coil, or overlapping disks. Changing the carrier soil geography also
+left the dependent mycelium buried or floating because its placement contract
+was not tied to the rendered carrier surface.
+
+### Cause
+
+The routed capture and forge skills strongly specified technical evidence but
+did not require a transversal reference-replication contract before authoring
+or an explicit `accepted`, `degraded`, or `rejected` result after every capture.
+Technique assumptions were expanded across the asset before a representative
+primitive proof.
+
+### Correction and regression
+
+- Add `visual-reference-replication` with dominant-read, silhouette/mass,
+  topology, surface/style, layer-relationship, detail, and multi-view gates.
+- Require risky primitive/technique proofs before full authoring.
+- Treat surface-bound networks as dependents of current carrier geography and
+  rebuild them when that geography changes.
+- Support estimated masks, depth/height, normals, slope, texture-frequency, and
+  network skeletons as auxiliary evidence without calling them ground truth.
+- Add structured positive, bounded continuation, and nearby text-only negative
+  routing fixtures.
+
+## MSSR-010 — Procedural Roblox QA excluded a supported CSG property
+
+**Date:** 2026-07-24
+
+### Trigger
+
+A distance-dependent blue/cyan render regression in MyceliumFront required separating Atmosphere, Sky, environment reflection, built-in material behavior, z-fighting and CSG/mesh LOD. Live Studio inspection showed that the affected `UnionOperation` instances expose `RenderFidelity` through `PartOperation`.
+
+### Observed failure
+
+The canonical `roblox-studio-qa` and `roblox-safe-editing` procedures stated that `RenderFidelity` was only a `MeshPart` concern and explicitly excluded `UnionOperation`. That instruction could create a false negative during future diagnosis, even though the current incident was ultimately solved by `Atmosphere.Density` rather than a CSG fidelity mutation.
+
+The same maintenance pass also exposed a weaker attribution gap: Blender/import work could be blamed chronologically without first proving that Lighting, Atmosphere, Sky and post effects changed.
+
+### Cause
+
+A class-applicability rule was generalized from `MeshPart` without checking the inheritance contract of `PartOperation`. The visual workflow also had strong one-variable capture guidance but no durable pre-import render-profile diff gate.
+
+### Correction
+
+- Correct both canonical skills: `RenderFidelity` applies to `MeshPart` and `PartOperation` descendants such as `UnionOperation`, but not to plain `Part` or `WedgePart`.
+- Require live property inspection, actual camera-distance calculation and a treated/control comparison before any CSG fidelity change, especially in bulk.
+- Add pre-import versus post-import render-profile comparison for Lighting, Atmosphere, all six Skybox IDs, fog and post effects.
+- Add a distinct fixed-camera Atmosphere `Density` ladder for whole groups that converge toward the Sky hue with distance, separate from material-local and environment-specular trials.
+- Update Photo Rig and Visual Asset Forge procedures so Sky removal remains diagnostic unless a new art direction is explicitly approved.
+
+### Regression evidence
+
+This was a procedural-content correction, not a change to skill purpose, activation, dependencies or routing phase, so no routing fixture change was required. Acceptance requires:
+
+- the obsolete `RenderFidelity` exclusion to be absent from both canonical skill files;
+- runtime Codex junctions to resolve to the corrected Git-tracked sources;
+- `verify-skills.ps1` and Codex discovery checks to pass;
+- the full MSSR routing suite and skill audit to remain green;
+- the project-specific `roblox-distance-render-regression` guide to be selected for a positive distance-color task and not for an unrelated static writing task.

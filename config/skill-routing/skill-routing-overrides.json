@@ -583,6 +583,52 @@
       "priority": 83,
       "activation": "on-demand"
     },
+    "roblox-photo-rig-capture": {
+      "phase": "implementation",
+      "coversPhases": [
+        "verification"
+      ],
+      "domains": [
+        "roblox"
+      ],
+      "actions": [
+        "design",
+        "create",
+        "review",
+        "test",
+        "debug",
+        "analyze"
+      ],
+      "artifacts": [
+        "game",
+        "model-3d",
+        "asset",
+        "animation"
+      ],
+      "needs": [
+        "visual-qa",
+        "integrity-verification"
+      ],
+      "requires": [
+        "roblox-mcp-skill-router"
+      ],
+      "complements": [
+        "visual-reference-replication",
+        "roblox-visual-asset-forge",
+        "roblox-model-turnaround-review",
+        "roblox-animation-frame-review"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "creator-store-discovery",
+        "inventory-only",
+        "text-only"
+      ],
+      "requireNeedMatch": true,
+      "requireActionMatch": true,
+      "priority": 94,
+      "activation": "on-demand"
+    },
     "roblox-placement-system-authoring": {
       "phase": "implementation",
       "domains": [
@@ -879,6 +925,107 @@
       "priority": 82,
       "activation": "on-demand"
     },
+    "systematic-debugging": {
+      "phase": "discovery",
+      "coversPhases": [
+        "discovery",
+        "verification"
+      ],
+      "domains": [
+        "coding",
+        "filesystem",
+        "browser",
+        "other"
+      ],
+      "actions": [
+        "debug",
+        "analyze",
+        "review",
+        "verify"
+      ],
+      "artifacts": [
+        "code",
+        "project",
+        "repository",
+        "mcp"
+      ],
+      "needs": [
+        "integrity-verification",
+        "history-recovery"
+      ],
+      "signals": [
+        "error-observed",
+        "warning-observed",
+        "uncertainty",
+        "conflicting-evidence",
+        "repeated-friction"
+      ],
+      "requires": [],
+      "complements": [
+        "skill-maintenance-loop"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "simple rewrite",
+        "ordinary feature implementation without a failure",
+        "trivial typo with a proven fix",
+        "general explanation without debugging"
+      ],
+      "requireNeedMatch": true,
+      "requireActionMatch": true,
+      "priority": 91,
+      "activation": "on-demand"
+    },
+    "visual-reference-replication": {
+      "phase": "implementation",
+      "coversPhases": [
+        "verification"
+      ],
+      "domains": [
+        "roblox",
+        "blender",
+        "coding",
+        "other"
+      ],
+      "actions": [
+        "design",
+        "create",
+        "edit",
+        "review",
+        "verify",
+        "optimize",
+        "analyze"
+      ],
+      "artifacts": [
+        "asset",
+        "model-3d",
+        "ui",
+        "animation"
+      ],
+      "needs": [
+        "visual-qa",
+        "scene-analysis",
+        "integrity-verification"
+      ],
+      "requires": [],
+      "complements": [
+        "roblox-visual-asset-forge",
+        "roblox-photo-rig-capture",
+        "roblox-model-turnaround-review",
+        "blender-object-iteration",
+        "blender-visual-review"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "creator-store-discovery",
+        "inventory-only",
+        "text-only"
+      ],
+      "priority": 96,
+      "activation": "on-demand",
+      "requireNeedMatch": true,
+      "requireActionMatch": true
+    },
     "roblox-visual-asset-forge": {
       "phase": "implementation",
       "coversPhases": [
@@ -906,6 +1053,7 @@
         "roblox-mcp-skill-router"
       ],
       "complements": [
+        "visual-reference-replication",
         "roblox-model-turnaround-review",
         "roblox-animation-frame-review",
         "roblox-studio-qa"
