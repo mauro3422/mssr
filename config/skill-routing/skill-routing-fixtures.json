@@ -800,7 +800,101 @@
         ],
         "activeExcludes": [
           "roblox-asset-review",
-          "roblox-technique-animation-authoring"
+          "roblox-technique-animation-authoring",
+          "systematic-debugging"
+        ]
+      }
+    },
+    {
+      "name": "roblox-photo-rig-sequential-session",
+      "task": "Procesá estos tres modelos registrados uno por uno en la cabina, asigná V001 o V002 automáticamente, capturá sus fases de crecimiento y reanudá sólo las tomas firmadas.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Ejecutar una sesión secuencial y reanudable de fotografía Roblox sobre varios assets registrados",
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "create",
+          "review",
+          "test"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "roblox-photo-rig-capture"
+        ],
+        "activeExcludes": [
+          "roblox-asset-review",
+          "systematic-debugging"
+        ]
+      }
+    },
+    {
+      "name": "roblox-photo-rig-sequential-session-continuation",
+      "task": "Dale, seguí con el próximo objeto",
+      "taskVariants": [
+        "Continuá la sesión con los que faltan",
+        "Mandale con el siguiente asset"
+      ],
+      "stage": "implement",
+      "context": "El usuario pidió ejecutar una sesión secuencial de Photo Rig sobre varios assets Roblox registrados. La fase activa debe montar el próximo sujeto, generar capturas PNG raw, master y review de sus fases de crecimiento mediante CaptureService, conservar resolución nativa, firmas y hashes, desmontar el sujeto y registrar el run en el dashboard antes de continuar.",
+      "expect": {
+        "lexicalFallback": {
+          "contextUsed": true
+        },
+        "activeIncludes": [
+          "roblox-photo-rig-capture"
+        ],
+        "activeExcludes": [
+          "roblox-asset-review",
+          "systematic-debugging"
+        ]
+      }
+    },
+    {
+      "name": "roblox-photo-session-negative-modeling-only",
+      "task": "Rehacé los tres hongos uno por uno, pero no saques fotos ni prepares evidencia todavía.",
+      "stage": "implement",
+      "intent": {
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "edit"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d"
+        ],
+        "needs": [
+          "safe-editing"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "activeIncludes": [
+          "roblox-mcp-skill-router",
+          "roblox-safe-editing"
+        ],
+        "activeExcludes": [
+          "roblox-photo-rig-capture",
+          "roblox-model-turnaround-review"
         ]
       }
     },
@@ -824,6 +918,99 @@
         "activeExcludes": [
           "roblox-asset-review",
           "opencode-cli-audit"
+        ]
+      }
+    },
+    {
+      "name": "roblox-photo-rig-maintenance-pattern",
+      "task": "El dashboard-gate estaba ready-to-persist y volvió a review-before-persist; además Studio quedó en Play. Diagnosticá ownership, locks y cleanup sin generar otra versión del asset.",
+      "taskVariants": [
+        "Dos agentes usaron el mismo runId y la crítica completa volvió a pendiente; arreglá la carrera y agregá una regresión.",
+        "Las vistas frontal y lateral tienen el mismo hash y el dashboard está mostrando el raw con CoreGui; corregí el pipeline antes de juzgar el modelo."
+      ],
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Diagnosticar una regresión de ownership, lifecycle e identidad de evidencia en el Photo Rig",
+        "domains": [
+          "roblox",
+          "coding",
+          "filesystem"
+        ],
+        "actions": [
+          "debug",
+          "analyze",
+          "test",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "code",
+          "project"
+        ],
+        "needs": [
+          "visual-qa",
+          "history-recovery",
+          "integrity-verification"
+        ],
+        "signals": [
+          "error-observed",
+          "conflicting-evidence",
+          "reusable-pattern"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "roblox-photo-rig-capture",
+          "systematic-debugging"
+        ],
+        "activeExcludes": [
+          "roblox-asset-review",
+          "roblox-model-turnaround-review"
+        ]
+      }
+    },
+    {
+      "name": "roblox-photo-rig-normal-iteration-no-maintenance",
+      "task": "La pipeline está sana: sacá frontal, lateral, tres cuartos y superior del modelo, registralas y dejalas listas para crítica.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Capturar un turnaround normal con el Photo Rig sin depurar infraestructura",
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "create",
+          "review",
+          "test"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "roblox-photo-rig-capture"
+        ],
+        "activeExcludes": [
+          "systematic-debugging",
+          "skill-maintenance-loop"
         ]
       }
     },
@@ -2186,6 +2373,119 @@
         ],
         "missingRequiredPhases": [],
         "agentFallbackPhases": []
+      }
+    },
+    {
+      "name": "visual-evidence-catalog-stateful-dashboard",
+      "task": "Tengo tres assets distintos que aparecen todos como V1 y sus fotos de crecimiento están mezcladas. Separá los tracks, ordená por etapa y cámara, guardá cronología y elegí un preview final válido.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Catalogar evidencia visual multi-asset y stateful con identidad, cronología y cover estable",
+        "domains": [
+          "filesystem",
+          "roblox"
+        ],
+        "actions": [
+          "analyze",
+          "design",
+          "document",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "project"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "visual-evidence-cataloging"
+        ]
+      }
+    },
+    {
+      "name": "visual-evidence-catalog-continuation",
+      "task": "Dale, aplicá ese orden y el preview representativo",
+      "taskVariants": [
+        "Sí, separá esos V1",
+        "Mandale con la catalogación"
+      ],
+      "stage": "implement",
+      "context": "El trabajo anterior consiste en clasificar, identificar, ordenar y validar una colección de evidencia visual con imágenes mezcladas, varios assets lógicos que comparten V1, cronología faltante y un preview no representativo. Debe conservar asset, versión, etapa, cámara y captura como identidades separadas.",
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "visual-evidence-cataloging"
+        ]
+      },
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar la catalogación semántica de evidencia visual multi-asset y stateful",
+        "domains": [
+          "filesystem",
+          "roblox"
+        ],
+        "actions": [
+          "analyze",
+          "design",
+          "document",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "project"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      }
+    },
+    {
+      "name": "visual-evidence-catalog-negative-ordinary-album",
+      "task": "Mostrame las cinco fotos familiares del álbum en el orden en que están, sin clasificarlas ni cambiar metadatos.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Abrir un álbum ordinario sin catalogación semántica",
+        "domains": [
+          "filesystem"
+        ],
+        "actions": [
+          "review"
+        ],
+        "artifacts": [
+          "document"
+        ],
+        "needs": [],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "activeExcludes": [
+          "visual-evidence-cataloging"
+        ]
       }
     }
   ]

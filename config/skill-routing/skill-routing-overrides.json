@@ -1570,6 +1570,52 @@
       "priority": 90,
       "activation": "on-demand",
       "requireArtifactMatch": true
+    },
+    "visual-evidence-cataloging": {
+      "phase": "implementation",
+      "coversPhases": [
+        "verification"
+      ],
+      "domains": [
+        "filesystem",
+        "roblox",
+        "blender"
+      ],
+      "actions": [
+        "analyze",
+        "review",
+        "design",
+        "document",
+        "verify"
+      ],
+      "artifacts": [
+        "asset",
+        "model-3d",
+        "animation",
+        "document",
+        "project"
+      ],
+      "needs": [
+        "visual-qa",
+        "integrity-verification"
+      ],
+      "requires": [],
+      "complements": [
+        "roblox-photo-rig-capture",
+        "roblox-visual-asset-forge",
+        "blender-visual-review"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "ordinary-photo-browsing",
+        "capture-only",
+        "style-only",
+        "text-only"
+      ],
+      "requireNeedMatch": true,
+      "requireActionMatch": true,
+      "priority": 88,
+      "activation": "on-demand"
     }
   },
   "workflows": [
