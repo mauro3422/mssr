@@ -47,6 +47,7 @@
         "negativeIntents": { "type": "array", "items": { "type": "string" } },
         "requireNeedMatch": { "type": "boolean", "default": false },
         "requireActionMatch": { "type": "boolean", "default": false },
+        "requireArtifactMatch": { "type": "boolean", "default": false },
         "requireSignalMatch": { "type": "boolean", "default": false },
         "priority": { "type": "integer", "minimum": 0, "maximum": 100 },
         "activation": { "enum": ["on-demand", "always", "closing"] }
@@ -75,3 +76,4 @@
     }
   }
 }
+

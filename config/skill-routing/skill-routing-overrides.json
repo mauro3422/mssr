@@ -1065,7 +1065,8 @@
       "priority": 96,
       "activation": "on-demand",
       "requireNeedMatch": true,
-      "requireActionMatch": true
+      "requireActionMatch": true,
+      "requireArtifactMatch": true
     },
     "roblox-visual-asset-forge": {
       "phase": "implementation",
@@ -1507,6 +1508,68 @@
       "requireSignalMatch": false,
       "priority": 89,
       "activation": "on-demand"
+    },
+    "mauroprime-bridge-tool-authoring": {
+      "phase": "implementation",
+      "coversPhases": [
+        "safety",
+        "verification",
+        "persistence",
+        "maintenance"
+      ],
+      "domains": [
+        "agent-orchestration"
+      ],
+      "actions": [
+        "design",
+        "create",
+        "edit",
+        "test",
+        "version",
+        "publish",
+        "document"
+      ],
+      "artifacts": [
+        "mcp"
+      ],
+      "needs": [
+        "safe-editing",
+        "unit-tests"
+      ],
+      "signals": [
+        "nominal",
+        "error-observed",
+        "warning-observed",
+        "repeated-friction",
+        "manual-workaround",
+        "skill-gap",
+        "reusable-pattern",
+        "additional-capability-needed",
+        "tool-chain-needed",
+        "replan-needed"
+      ],
+      "requires": [
+        "mauroprime-bridge-collaboration"
+      ],
+      "complements": [
+        "systematic-debugging",
+        "capability-gap-recovery",
+        "skill-routing-maintainer",
+        "git-change-publication"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "use an existing Bridge tool",
+        "read Bridge health or metrics",
+        "one-off shell command",
+        "explain MCP concepts"
+      ],
+      "requireNeedMatch": true,
+      "requireActionMatch": true,
+      "requireSignalMatch": false,
+      "priority": 90,
+      "activation": "on-demand",
+      "requireArtifactMatch": true
     }
   },
   "workflows": [
@@ -1795,6 +1858,71 @@
               "reusable-pattern"
             ]
           }
+        }
+      ]
+    },
+    {
+      "name": "mauroprime-bridge-tool-authoring",
+      "match": {
+        "domains": [
+          "agent-orchestration"
+        ],
+        "actions": [
+          "design",
+          "create",
+          "edit",
+          "test",
+          "version",
+          "publish",
+          "document"
+        ],
+        "artifacts": [
+          "mcp"
+        ],
+        "needs": [
+          "safe-editing",
+          "unit-tests",
+          "cross-agent"
+        ],
+        "stages": [
+          "implement",
+          "verify",
+          "persist",
+          "close",
+          "resume"
+        ],
+        "signals": [
+          "nominal"
+        ]
+      },
+      "phases": [
+        {
+          "phase": "safety",
+          "skills": [
+            "mauroprime-bridge-tool-authoring"
+          ],
+          "required": true
+        },
+        {
+          "phase": "implementation",
+          "skills": [
+            "mauroprime-bridge-tool-authoring"
+          ],
+          "required": true
+        },
+        {
+          "phase": "verification",
+          "skills": [
+            "mauroprime-bridge-tool-authoring"
+          ],
+          "required": true
+        },
+        {
+          "phase": "persistence",
+          "skills": [
+            "mauroprime-bridge-tool-authoring"
+          ],
+          "required": true
         }
       ]
     }

@@ -399,3 +399,55 @@ A real cross-repository closure had to separate source and durable visual eviden
 ### Verification
 
 The regression requires nominal commit/publication work to select `git-change-publication`; an ambiguous remote race must compose it with `systematic-debugging`; a short accepted continuation must preserve the route through bounded context; read-only conceptual Git questions and implementation explicitly not ready for commit must exclude the skill. Publication procedures must never infer remote success from `push` output alone or authorize blind force.
+
+## MSSR-013 — Tool authoring lacked an owner and routing maintenance missed closed-vocabulary and deferred pollution
+
+**Date:** 2026-07-24
+
+### Trigger
+
+A maintenance pass created a general Git publication skill, updated visual evidence rules, integrated MSSR fixtures and published multiple repositories. During the work, invalid command-shaped intent values were discovered only by the full Zod suite, a route passed its initial expectations while appearing as an irrelevant deferred skill elsewhere, and no skill owned the complete lifecycle for adding reusable MauroPrime Bridge tools. Bridge telemetry also confirmed repeated `ENAMETOOLONG` failures in Git helpers and synthetic test errors contaminating operational metrics.
+
+### Observed failures
+
+- Routing drafts used values such as `commit`, `stage`, `organize`, `explain`, `generated-output`, `evidence`, `secret-scan` and `conceptual-explanation`, none of which belong to the closed MSSR vocabulary.
+- Positive and negative fixtures could pass while a new skill still polluted unrelated `activeSkills` or `deferredSkills`.
+- A first Bridge-tool-authoring route used the broad `coding` domain and accidentally satisfied generic coding verification coverage.
+- Shared needs such as `integrity-verification` and `cross-agent` could select Bridge-tool or visual-reference skills even when the actual artifact was a skill, repository or incident rather than an MCP tool or visual asset.
+- A persistence workflow made `git-change-publication` active during verification because required skills can cover multiple phases.
+- Short continuations inferred `cross-agent` rather than authoring-specific needs, so the accepted tool-authoring route was lost until the workflow matched action, MCP artifact and cross-agent context together.
+- Tool creation knowledge was split between Bridge collaboration, skill maintenance and project rules; no owned skill covered schema, risk, handler, regression, generated docs, version, restart and live catalog verification as one objective.
+
+### Root causes
+
+- The canonical enums were present in TypeScript and tool schemas but lacked a small read-only preflight intended for routing authors.
+- Regression expectations focused on named active selection more often than full active/deferred composition.
+- Broad domains and common needs were treated as harmless, and the contract lacked an explicit gate requiring the target artifact itself to match.
+- Phase-covering skills were added to workflows without checking how required persistence rules interact with verification or how broad start-stage continuations infer context.
+- Repeated executable friction had not been separated from procedural guidance: Git argument-vector limits and metrics filtering required code, while tool-authoring decisions required a skill.
+
+### Correction
+
+- Added `skill_route_vocabulary`, exposing the canonical closed domains, actions, artifacts, needs, signals, risks, stages, phases and callers before routing edits.
+- Added `mauroprime-bridge-tool-authoring` as the owner of Bridge tool design, schema, risk, implementation, regression, documentation, release and live verification.
+- Added `requireArtifactMatch` to the TypeScript metadata contract, JSON schema, audit output and deterministic scorer, then applied it to Bridge tool authoring and visual-reference replication.
+- Scoped the tool-authoring workflow to MCP artifacts, authoring actions, safe-editing/unit-test/cross-agent needs, active lifecycle stages and nominal signals.
+- Added active and deferred negative expectations for existing-tool use, one-off commands, ordinary skill maintenance, OpenCode continuations and Roblox/MSSR incident recovery.
+- Removed the broad `coding` route and premature Git requirement after regression runs exposed real overactivation.
+- Updated maintenance guidance to inspect full active/deferred plans, validate vocabulary first and distinguish executable tool fixes from procedural skill fixes.
+
+### Regression fixtures
+
+- `bridge-tool-authoring-positive`
+- `bridge-tool-authoring-verification`
+- `bridge-tool-authoring-continuation`
+- `bridge-tool-authoring-negative-existing-tool-use`
+- `bridge-tool-authoring-negative-one-off-command`
+
+### Verification
+
+The routing suite must retain generic coding and skill-maintenance behavior, activate the new skill only for explicit MCP tool authoring and verification, preserve it through bounded short continuations, and exclude it from both active and deferred plans for existing-tool queries, one-off Git commands, OpenCode swarms and Roblox/MSSR incidents. `visual-reference-replication` must also stay out of nominal non-visual verification despite sharing `integrity-verification`. The live audit must report no unconfigured owned skills, missing descriptions, missing workflow references or cycles.
+
+
+
+

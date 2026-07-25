@@ -85,8 +85,9 @@ Estos cambios no requieren tocar routing si no cambian propósito, fase, depende
 
 ## Errores de activación
 
-- **Se activa de más:** añadir artefacto específico, `requireNeedMatch`, intención negativa o fixture negativo.
+- **Se activa de más por una necesidad genérica aunque el artefacto no coincide:** añadir un artefacto específico, `requireArtifactMatch` y un caso negativo cercano.
 - **Coincide por artefacto pero no por operación:** añadir `requireActionMatch` y un caso negativo cercano.
+- **Coincide por operación/artefacto pero no existe la necesidad especializada:** añadir `requireNeedMatch` y un caso negativo cercano.
 - **Skill transversal de anomalías se abre en trabajo nominal:** añadir `requireSignalMatch`, declarar sólo señales no nominales y exigir un fixture anómalo positivo más un nominal negativo.
 - **Existe la capacidad pero no en el contexto actual:** activar `capability-gap-recovery`, probar el límite de autoridad/estado y producir un handoff acotado al producto o provider que pueda ejecutar y verificar la operación.
 - **No se activa:** mejorar descripción, metadata, dependencia o fixture positivo.
@@ -124,3 +125,4 @@ npm run verify
 ```
 
 La detección se puede ejecutar automáticamente en CI o al cerrar una tarea. La reparación debe conservar revisión humana/agente, diff y rollback.
+

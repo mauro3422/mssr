@@ -69,6 +69,7 @@ const routeMetadataSchema = z.object({
   negativeIntents: z.array(z.string()).default([]),
   requireNeedMatch: z.boolean().default(false),
   requireActionMatch: z.boolean().default(false),
+  requireArtifactMatch: z.boolean().default(false),
   requireSignalMatch: z.boolean().default(false),
   priority: z.number().int().min(0).max(100).default(40),
   activation: z.enum(["on-demand", "always", "closing"]).default("on-demand"),
@@ -274,6 +275,7 @@ function inferredMetadata(skill: SkillEntry): RouteMetadata {
     negativeIntents: [],
     requireNeedMatch: false,
     requireActionMatch: false,
+    requireArtifactMatch: false,
     requireSignalMatch: false,
     priority: skill.source === "codex-local" ? 55 : skill.source === "roblox" ? 50 : skill.source === "codex-system" ? 45 : 25,
     activation: "on-demand",
@@ -394,6 +396,7 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
         negativeIntents: entry.negativeIntents,
         requireNeedMatch: entry.requireNeedMatch,
         requireActionMatch: entry.requireActionMatch,
+        requireArtifactMatch: entry.requireArtifactMatch,
         requireSignalMatch: entry.requireSignalMatch,
         priority: entry.priority,
         activation: entry.activation,
@@ -611,6 +614,7 @@ function scoreEntry(skill: SkillEntry & RouteMetadata, intent: StructuredSkillIn
   const specificNeedMatched = skillSpecificNeeds.some((need) => intentSpecificNeeds.includes(need as StructuredSkillIntent["needs"][number]));
   const anyNeedMatched = skill.needs.some((need) => intent.needs.includes(need as StructuredSkillIntent["needs"][number]));
   const anyActionMatched = skill.actions.some((action) => intent.actions.includes(action as StructuredSkillIntent["actions"][number]));
+  const anyArtifactMatched = skill.artifacts.some((artifact) => intent.artifacts.includes(artifact as StructuredSkillIntent["artifacts"][number]));
   const anySignalMatched = skill.signals.some((signal) => intent.signals.includes(signal as StructuredSkillIntent["signals"][number]));
   const domainMatched = skill.domains.some((domain) => intent.domains.includes(domain as StructuredSkillIntent["domains"][number]));
   const intentHasAnchors = intent.artifacts.length > 0 || intent.needs.length > 0;
@@ -620,6 +624,9 @@ function scoreEntry(skill: SkillEntry & RouteMetadata, intent: StructuredSkillIn
   }
   if (skill.requireActionMatch && !anyActionMatched && !explicitNameMatched) {
     return { score: 0, reasons: [...reasons, "explicit action gate failed"], excluded: false };
+  }
+  if (skill.requireArtifactMatch && !anyArtifactMatched && !explicitNameMatched) {
+    return { score: 0, reasons: [...reasons, "explicit artifact gate failed"], excluded: false };
   }
   if (skill.requireSignalMatch && !anySignalMatched && !explicitNameMatched) {
     return { score: 0, reasons: [...reasons, "explicit signal gate failed"], excluded: false };

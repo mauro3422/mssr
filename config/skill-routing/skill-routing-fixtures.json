@@ -129,7 +129,11 @@
           "blender-visual-review",
           "opencode-agent-swarm",
           "opencode-cli-audit",
-          "roblox-mcp-skill-router"
+          "roblox-mcp-skill-router",
+          "mauroprime-bridge-tool-authoring"
+        ],
+        "deferredExcludes": [
+          "mauroprime-bridge-tool-authoring"
         ]
       }
     },
@@ -372,7 +376,11 @@
         "activeExcludes": [
           "roblox-mcp-incident-recovery",
           "roblox-mcp-skill-router",
-          "roblox-connection-network-authoring"
+          "roblox-connection-network-authoring",
+          "mauroprime-bridge-tool-authoring"
+        ],
+        "deferredExcludes": [
+          "mauroprime-bridge-tool-authoring"
         ]
       }
     },
@@ -893,7 +901,11 @@
           "roblox-mcp-skill-router"
         ],
         "activeExcludes": [
-          "roblox-safe-editing"
+          "roblox-safe-editing",
+          "mauroprime-bridge-tool-authoring"
+        ],
+        "deferredExcludes": [
+          "mauroprime-bridge-tool-authoring"
         ]
       }
     },
@@ -958,6 +970,12 @@
         "contextUsed": true,
         "activeIncludes": [
           "roblox-mcp-incident-recovery"
+        ],
+        "activeExcludes": [
+          "mauroprime-bridge-tool-authoring"
+        ],
+        "deferredExcludes": [
+          "mauroprime-bridge-tool-authoring"
         ]
       }
     },
@@ -1202,12 +1220,16 @@
         "classificationMode": "structured-semantic",
         "contextUsed": true,
         "activeExcludes": [
-          "roblox-mcp-incident-recovery"
+          "roblox-mcp-incident-recovery",
+          "mauroprime-bridge-tool-authoring"
         ],
         "activeIncludes": [
           "mssr-agent-routing",
           "capability-gap-recovery",
           "systematic-debugging"
+        ],
+        "deferredExcludes": [
+          "mauroprime-bridge-tool-authoring"
         ]
       }
     },
@@ -1646,6 +1668,12 @@
           "systematic-debugging",
           "skill-routing-maintainer",
           "shared-skill-governance"
+        ],
+        "activeExcludes": [
+          "mauroprime-bridge-tool-authoring"
+        ],
+        "deferredExcludes": [
+          "mauroprime-bridge-tool-authoring"
         ]
       }
     },
@@ -1933,6 +1961,231 @@
         "activeExcludes": [
           "git-change-publication"
         ]
+      }
+    },
+    {
+      "name": "bridge-tool-authoring-positive",
+      "task": "Agregá una tool read-only al MauroPrime Bridge que exponga el vocabulario cerrado del MSSR, con schema, riesgo, tests y documentación generada.",
+      "caller": "chatgpt-web",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Crear una tool reusable del Bridge con contrato y regresiones",
+        "domains": [
+          "coding",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "design",
+          "create",
+          "edit",
+          "test"
+        ],
+        "artifacts": [
+          "mcp",
+          "code"
+        ],
+        "needs": [
+          "safe-editing",
+          "unit-tests"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": false,
+        "activeIncludes": [
+          "mauroprime-bridge-tool-authoring",
+          "mauroprime-bridge-collaboration"
+        ],
+        "activeExcludes": [
+          "roblox-mcp-incident-recovery",
+          "systematic-debugging",
+          "visual-reference-replication"
+        ],
+        "missingRequiredPhases": [],
+        "agentFallbackPhases": [],
+        "deferredExcludes": [
+          "systematic-debugging",
+          "visual-reference-replication"
+        ]
+      }
+    },
+    {
+      "name": "bridge-tool-authoring-verification",
+      "task": "Verificá la nueva tool del Bridge contra el registry, regresiones, TOOLS.md y catálogo vivo antes del release.",
+      "caller": "codex-local",
+      "stage": "verify",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Verificar una tool nueva del Bridge",
+        "domains": [
+          "coding",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "test",
+          "verify",
+          "document"
+        ],
+        "artifacts": [
+          "mcp",
+          "code"
+        ],
+        "needs": [
+          "unit-tests",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": false,
+        "activeIncludes": [
+          "mauroprime-bridge-tool-authoring"
+        ],
+        "activeExcludes": [
+          "git-change-publication",
+          "systematic-debugging",
+          "visual-reference-replication"
+        ],
+        "missingRequiredPhases": [],
+        "agentFallbackPhases": [],
+        "deferredExcludes": [
+          "systematic-debugging",
+          "visual-reference-replication"
+        ]
+      }
+    },
+    {
+      "name": "bridge-tool-authoring-continuation",
+      "task": "Dale, seguí con esa tool",
+      "taskVariants": [
+        "Sí, terminá el schema y los tests",
+        "Mandale con el release del Bridge"
+      ],
+      "context": "La tarea aceptada es agregar una tool reusable al MauroPrime Bridge, clasificar su riesgo, probar límites, regenerar TOOLS.md y verificarla en el catálogo vivo.",
+      "caller": "chatgpt-web",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "expect": {
+        "classificationMode": "lexical-fallback",
+        "contextUsed": true,
+        "activeIncludes": [
+          "mauroprime-bridge-tool-authoring",
+          "mauroprime-bridge-collaboration"
+        ],
+        "missingRequiredPhases": [],
+        "agentFallbackPhases": [],
+        "activeExcludes": [
+          "systematic-debugging",
+          "visual-reference-replication",
+          "opencode-agent-swarm",
+          "roblox-mcp-skill-router"
+        ],
+        "deferredExcludes": [
+          "systematic-debugging",
+          "visual-reference-replication",
+          "opencode-agent-swarm",
+          "roblox-mcp-skill-router"
+        ]
+      }
+    },
+    {
+      "name": "bridge-tool-authoring-negative-existing-tool-use",
+      "task": "Usá bridge_health para decirme si el Bridge está listo.",
+      "caller": "chatgpt-web",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Consultar una tool existente sin cambiar el Bridge",
+        "domains": [
+          "agent-orchestration"
+        ],
+        "actions": [
+          "discover",
+          "review"
+        ],
+        "artifacts": [
+          "mcp"
+        ],
+        "needs": [
+          "cross-agent"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": false,
+        "activeExcludes": [
+          "mauroprime-bridge-tool-authoring"
+        ],
+        "deferredExcludes": [
+          "mauroprime-bridge-tool-authoring"
+        ],
+        "missingRequiredPhases": [],
+        "agentFallbackPhases": []
+      }
+    },
+    {
+      "name": "bridge-tool-authoring-negative-one-off-command",
+      "task": "Ejecutá una vez git status en este repositorio.",
+      "caller": "codex-local",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Ejecutar un comando Git puntual",
+        "domains": [
+          "git"
+        ],
+        "actions": [
+          "review"
+        ],
+        "artifacts": [
+          "repository"
+        ],
+        "needs": [
+          "version-control"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": false,
+        "activeExcludes": [
+          "mauroprime-bridge-tool-authoring"
+        ],
+        "deferredExcludes": [
+          "mauroprime-bridge-tool-authoring"
+        ],
+        "missingRequiredPhases": [],
+        "agentFallbackPhases": []
       }
     }
   ]

@@ -4,6 +4,12 @@ All notable changes to MSSR are documented here.
 
 ## Unreleased
 
+- Added explicit routing and a phase workflow for `mauroprime-bridge-tool-authoring`, with positive implementation/verification, bounded continuation and nearby existing-tool/one-off-command negatives.
+- Added a Bridge-backed `skill_route_vocabulary` preflight so routing authors can consult the canonical closed enum before writing intents or fixtures; command-shaped labels remain outside the semantic protocol.
+- Tightened the new route after regression discovery: it now requires `agent-orchestration`, the exact MCP artifact, an authoring action and a safe-editing/unit-test need; its workflow is also bounded by active stages and nominal signals, preventing generic coding, skill-maintenance, OpenCode and incident-recovery pollution.
+- Added the reusable `requireArtifactMatch` metadata gate to TypeScript, JSON schema, audit output and deterministic scoring, then applied it to Bridge tool authoring and visual-reference replication so generic needs cannot override the real artifact target.
+- Expanded the routing suite to 83 effective cases, 33 explicitly routed local skills and 6 workflows with no owned skill left unconfigured.
+
 - Added explicit persistence/verification routing for `git-change-publication`, the general owner of mixed-worktree classification, focused commit design, staged-index gates, large path-set handling, safe push recovery and direct remote-ref verification.
 - Added a `git-change-publication` workflow plus positive publication, ambiguous `cannot lock ref`, bounded continuation, read-only explanation and unverified-implementation fixtures; the suite now proves nominal use, anomaly composition with `systematic-debugging`, and nearby exclusions.
 - Kept the semantic protocol compact by mapping Git-specific language onto the existing `save`, `version`, `publish`, `coordinate`, `integrity-verification` and `version-control` vocabulary rather than expanding the public enum for command names.
@@ -42,3 +48,4 @@ All notable changes to MSSR are documented here.
 - Added the canonical Codex/ChatGPT web/Bridge/MSSR architecture diagram and
   clarified that filesystem and application tools remain caller-owned direct
   execution routes.
+
