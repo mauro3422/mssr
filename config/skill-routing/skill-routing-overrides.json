@@ -1443,6 +1443,70 @@
       "requireSignalMatch": true,
       "priority": 98,
       "activation": "on-demand"
+    },
+    "git-change-publication": {
+      "phase": "persistence",
+      "coversPhases": [
+        "verification",
+        "persistence"
+      ],
+      "domains": [
+        "git",
+        "github"
+      ],
+      "actions": [
+        "review",
+        "analyze",
+        "coordinate",
+        "save",
+        "version",
+        "publish",
+        "verify",
+        "recover",
+        "document"
+      ],
+      "artifacts": [
+        "repository",
+        "project",
+        "code",
+        "document",
+        "asset",
+        "backup",
+        "skill"
+      ],
+      "needs": [
+        "version-control",
+        "integrity-verification",
+        "history-recovery"
+      ],
+      "signals": [
+        "nominal",
+        "error-observed",
+        "warning-observed",
+        "uncertainty",
+        "conflicting-evidence",
+        "repeated-friction",
+        "manual-workaround",
+        "recovery-needed",
+        "reusable-pattern"
+      ],
+      "requires": [],
+      "complements": [
+        "systematic-debugging",
+        "skill-maintenance-loop",
+        "shared-skill-governance"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "explain git concepts without changing a repository",
+        "read-only history inspection",
+        "implementation not ready for persistence"
+      ],
+      "requireNeedMatch": true,
+      "requireActionMatch": true,
+      "requireSignalMatch": false,
+      "priority": 89,
+      "activation": "on-demand"
     }
   },
   "workflows": [
@@ -1664,6 +1728,71 @@
           "when": {
             "stages": [
               "close"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "git-change-publication",
+      "match": {
+        "domains": [
+          "git",
+          "github"
+        ],
+        "artifacts": [
+          "repository",
+          "project"
+        ],
+        "needs": [
+          "version-control"
+        ]
+      },
+      "phases": [
+        {
+          "phase": "verification",
+          "skills": [
+            "git-change-publication"
+          ],
+          "required": true,
+          "when": {
+            "actions": [
+              "review",
+              "analyze",
+              "verify",
+              "recover",
+              "publish"
+            ]
+          }
+        },
+        {
+          "phase": "persistence",
+          "skills": [
+            "git-change-publication"
+          ],
+          "required": true,
+          "when": {
+            "actions": [
+              "coordinate",
+              "save",
+              "version",
+              "publish",
+              "document"
+            ]
+          }
+        },
+        {
+          "phase": "maintenance",
+          "skills": [
+            "skill-maintenance-loop"
+          ],
+          "required": true,
+          "when": {
+            "signals": [
+              "repeated-friction",
+              "manual-workaround",
+              "skill-gap",
+              "reusable-pattern"
             ]
           }
         }

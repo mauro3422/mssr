@@ -1735,6 +1735,205 @@
           "skill-maintenance-loop"
         ]
       }
+    },
+    {
+      "name": "git-change-publication-focused-commits",
+      "task": "Revisá este worktree grande, separá fuente y evidencia en commits coherentes, validá sólo lo staged y publicá main sin force, comprobando el hash remoto directo.",
+      "stage": "persist",
+      "completedPhases": [
+        "discovery",
+        "implementation",
+        "verification"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Particionar, validar, commitear y publicar un repositorio con evidencia durable",
+        "domains": [
+          "git",
+          "github",
+          "filesystem"
+        ],
+        "actions": [
+          "review",
+          "coordinate",
+          "save",
+          "version",
+          "publish",
+          "verify"
+        ],
+        "artifacts": [
+          "repository",
+          "project",
+          "document",
+          "asset"
+        ],
+        "needs": [
+          "version-control",
+          "integrity-verification",
+          "backup"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "external-side-effect",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "git-change-publication"
+        ]
+      }
+    },
+    {
+      "name": "git-change-publication-push-race",
+      "task": "El push devolvió cannot lock ref pero GitHub parece haber avanzado al hash local. No fuerces ni reintentes a ciegas: verificá HEAD, origin/main y ls-remote y cerrá la causa.",
+      "stage": "verify",
+      "completedPhases": [
+        "discovery",
+        "implementation"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Resolver evidencia contradictoria después de una publicación Git concurrente",
+        "domains": [
+          "git",
+          "github"
+        ],
+        "actions": [
+          "debug",
+          "analyze",
+          "recover",
+          "verify",
+          "publish"
+        ],
+        "artifacts": [
+          "repository",
+          "project"
+        ],
+        "needs": [
+          "version-control",
+          "integrity-verification",
+          "history-recovery"
+        ],
+        "signals": [
+          "warning-observed",
+          "conflicting-evidence",
+          "uncertainty",
+          "recovery-needed"
+        ],
+        "risk": "read-only",
+        "ambiguity": "medium"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "git-change-publication",
+          "systematic-debugging"
+        ]
+      }
+    },
+    {
+      "name": "git-change-publication-continuation",
+      "task": "Dale, publicalos",
+      "taskVariants": [
+        "Sí, mandale",
+        "Seguí con los commits",
+        "De una, subilos",
+        "Bueno, cerrá Git",
+        "Publicá eso"
+      ],
+      "context": "La propuesta aceptada fue separar un worktree mixto en dos commits coherentes, ejecutar gates sobre el index, publicar ambos en origin/main sin force y verificar el ref remoto directo.",
+      "stage": "persist",
+      "sources": [
+        "codex-local"
+      ],
+      "expect": {
+        "classificationMode": "lexical-fallback",
+        "contextUsed": true,
+        "activeIncludes": [
+          "git-change-publication"
+        ]
+      }
+    },
+    {
+      "name": "git-change-publication-negative-explanation",
+      "task": "Explicame qué diferencia hay entre commit, push y pull; no cambies ni publiques ningún repositorio.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Explicar conceptos de Git sin mutar repositorios",
+        "domains": [
+          "git"
+        ],
+        "actions": [
+          "review"
+        ],
+        "artifacts": [
+          "repository",
+          "document"
+        ],
+        "needs": [
+          "official-docs"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "git-change-publication"
+        ],
+        "deferredExcludes": [
+          "git-change-publication"
+        ]
+      }
+    },
+    {
+      "name": "git-change-publication-negative-unverified-implementation",
+      "task": "Implementá el filtro nuevo en el código, pero todavía no hagas commit ni push porque faltan las pruebas.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Implementar una feature todavía no lista para persistencia Git",
+        "domains": [
+          "coding"
+        ],
+        "actions": [
+          "create",
+          "edit"
+        ],
+        "artifacts": [
+          "code",
+          "project"
+        ],
+        "needs": [
+          "safe-editing",
+          "unit-tests"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "git-change-publication"
+        ]
+      }
     }
   ]
 }

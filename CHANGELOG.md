@@ -4,6 +4,9 @@ All notable changes to MSSR are documented here.
 
 ## Unreleased
 
+- Added explicit persistence/verification routing for `git-change-publication`, the general owner of mixed-worktree classification, focused commit design, staged-index gates, large path-set handling, safe push recovery and direct remote-ref verification.
+- Added a `git-change-publication` workflow plus positive publication, ambiguous `cannot lock ref`, bounded continuation, read-only explanation and unverified-implementation fixtures; the suite now proves nominal use, anomaly composition with `systematic-debugging`, and nearby exclusions.
+- Kept the semantic protocol compact by mapping Git-specific language onto the existing `save`, `version`, `publish`, `coordinate`, `integrity-verification` and `version-control` vocabulary rather than expanding the public enum for command names.
 - Added the explicit `requireSignalMatch` routing gate so transversal debugging, recovery and maintenance skills can require non-nominal evidence without relying on fragile negative prose.
 - Added explicit routing for `capability-gap-recovery`, covering missing/degraded skills, tools, providers, permissions, verification paths and product-context handoffs across all supported domains.
 - Generalized `systematic-debugging` to all routed domains and to discovery, implementation and verification, while preserving action and anomaly-signal gates so nominal review or feature work does not activate it.

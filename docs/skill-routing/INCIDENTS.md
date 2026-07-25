@@ -359,3 +359,43 @@ A real Roblox regression required `systematic-debugging` to work simultaneously 
 ### Verification
 
 The regression requires anomalous Figma, Git/release and Roblox cases to compose `systematic-debugging` with their domain routes; nominal Figma and coding work must exclude debugging and recovery. Capability/context and skill-routing gaps must activate `capability-gap-recovery`, while short continuation variants preserve the accepted handoff through bounded context.
+## MSSR-012 — Git publication lacked a dedicated owner and ambiguous push results were unsafe
+
+**Date:** 2026-07-24
+
+### Trigger
+
+A real cross-repository closure had to separate source and durable visual evidence, validate hundreds of staged files, publish focused commits and prove the remote state. The automatic all-file commit helper hit Windows `ENAMETOOLONG`; `git diff --cached --check` then found whitespace inside an archived source file; finally a normal push returned `cannot lock ref` while the remote branch had already advanced to the same local hash.
+
+### Observed failures
+
+- Git appeared only as a detail of Bridge collaboration or generic debugging; no owned skill governed mixed-worktree classification, commit partitioning, staged-index verification and remote publication as one reusable objective.
+- A path-per-argument commit helper expanded hundreds of files and exceeded the process command-line limit even though staging the coherent directory was valid.
+- A tool-level push error did not determine the final repository state: local `HEAD`, the tracking ref and the direct remote ref had to be inspected separately.
+- The first routing draft used literal Git nouns such as `commit`, `stage` and `secret-scan` as public semantic tags, violating the intentionally small MSSR vocabulary.
+
+### Root causes
+
+- No general persistence owner existed between domain verification and skill maintenance.
+- Publication success was implicitly inferred from command output instead of requiring readback from the direct remote ref.
+- Large path sets lacked a durable recommendation to stage by semantic root, pathspec or manifest rather than expanding every filename.
+- The route design initially mirrored command vocabulary instead of mapping onto MSSR capabilities.
+
+### Correction
+
+- Added `git-change-publication`, covering worktree classification, focused/reversible commit planning, bounded staging, staged gates, commit readback, multi-repository ordering, normal push and three-ref remote verification.
+- Added a persistence/verification route and workflow gated by the existing `version-control` need.
+- Required ambiguous push recovery to compare `git rev-parse HEAD`, the tracking ref and `git ls-remote` before retrying, forcing or declaring failure.
+- Reused the existing semantic actions and needs (`coordinate`, `save`, `version`, `publish`, `verify`, `recover`, `version-control`, `integrity-verification`, `history-recovery`) rather than expanding the protocol with shell-command names.
+
+### Regression fixtures
+
+- `git-change-publication-focused-commits`
+- `git-change-publication-push-race`
+- `git-change-publication-continuation`
+- `git-change-publication-negative-explanation`
+- `git-change-publication-negative-unverified-implementation`
+
+### Verification
+
+The regression requires nominal commit/publication work to select `git-change-publication`; an ambiguous remote race must compose it with `systematic-debugging`; a short accepted continuation must preserve the route through bounded context; read-only conceptual Git questions and implementation explicitly not ready for commit must exclude the skill. Publication procedures must never infer remote success from `push` output alone or authorize blind force.
