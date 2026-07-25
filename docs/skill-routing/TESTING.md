@@ -116,6 +116,6 @@ La cadena de evidencia preferida es:
 recommended → loaded → followed → verified → persisted → outcome / recurrence
 ```
 
-Las pruebas de integración de Bridge usan una base SQLite temporal y un cliente MCP in-memory real. Exigen que una ruta sin ID manual propague la misma traza a cargas requeridas, wrapper de dispatch, replan, verificación, persistencia y outcome; también prueban notices de carga huérfana, mismatch, skill requerida omitida, outcome sin ruta y reemplazo prematuro. Cierran bases y providers antes de limpiar el sandbox.
+Las pruebas de integración de Bridge usan una base SQLite temporal y clientes MCP in-memory nuevos para cada llamada. Exigen que una ruta sin ID manual sobreviva al patrón stateless y propague la misma traza a cargas requeridas, wrapper de dispatch, replan, verificación, persistencia y outcome; también prueban carga huérfana, mismatch, skill requerida omitida, outcome sin ruta, reemplazo prematuro, schema sin `stage` y dos agentes ambiguos. Cierran bases y providers antes de limpiar el sandbox.
 
 `trace-contract-v1` abre una época lógica nueva sólo después de pasar esa regresión. `scope=active` mide el contrato actual; `scope=all` conserva la telemetría anterior sin retrofabricarla como trazas correctas.

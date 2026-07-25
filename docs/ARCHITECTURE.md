@@ -41,7 +41,7 @@ Adapters translate host-specific discovery to the shared contract. MauroPrime
 Bridge, Roblox Studio, Codex-local, and a web client can therefore share routing
 metadata without being forced through a single execution bridge.
 
-Session trace continuity is also adapter-owned. `trace-contract-v1` keeps one bounded active trace per MCP session, propagates it through direct calls and generic dispatch wrappers, closes it on outcome, and emits notices when required loads or boundaries disagree. The core remains stateless. Measurement epochs and active/all-history filtering are likewise host observability concerns, not routing inputs.
+Trace continuity is adapter-owned. `trace-contract-v1` keeps local session state and a bounded process-shared lease so stateless calls can recover exactly one compatible trace by observable task, caller, or skill metadata. It never guesses across multiple candidates: ambiguity requires an explicit ID. The adapter propagates through direct calls and generic dispatch wrappers, closes on outcome, and emits notices when required loads or boundaries disagree. The core remains stateless. Measurement epochs and active/all-history filtering are likewise host observability concerns, not routing inputs.
 
 ## Reasoning-to-routing boundary
 

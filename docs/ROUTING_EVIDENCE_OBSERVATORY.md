@@ -62,7 +62,7 @@ Many candidates are acceptable. MSSR may optimize for high recall in metadata wh
 
 ## Trace contract v1
 
-The deterministic MSSR core remains stateless. A host adapter may maintain one bounded active trace per MCP session and propagate it automatically after a successful route:
+The deterministic MSSR core remains stateless. A host adapter may maintain local session continuity plus a bounded process-shared lease. After a successful route it may propagate automatically only when one compatible trace can be identified:
 
 ```text
 route
@@ -74,7 +74,7 @@ route
   -> latest effective outcome
 ```
 
-Within the same session, callers should not have to copy `traceId` into every action. Explicit IDs remain necessary for cross-session resume, deliberate historical trace selection, or hosts that do not implement session propagation. Generic dispatch wrappers must propagate into the delegated tool as well as direct calls.
+Within the same session, callers should not have to copy `traceId` into every action. When a host issues stateless calls, the adapter may recover one unique candidate from observable task fingerprints, caller identity, selected/required skills, lifecycle state, and a bounded lease. It must emit an ambiguity notice and decline injection when several candidates fit. Explicit IDs remain necessary after restart, across processes, for ambiguous candidates, deliberate historical selection, or hosts that do not implement propagation. Generic dispatch wrappers must propagate into the delegated tool as well as direct calls.
 
 The host emits bounded notices when continuity becomes unreliable:
 
@@ -83,7 +83,8 @@ The host emits bounded notices when continuity becomes unreliable:
 - `mssr-trace-mismatch`;
 - `mssr-required-skill-not-loaded`;
 - `mssr-outcome-without-route`;
-- active trace replacement before an outcome.
+- active trace replacement before an outcome;
+- `mssr-trace-ambiguous` when several concurrent traces fit.
 
 An outcome closes the current task trace. A later `stage=start` request for another task receives a new trace. Replans, retries, verification, persistence, and later review of the same task retain the existing trace.
 

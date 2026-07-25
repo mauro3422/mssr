@@ -45,10 +45,10 @@ available without placing every skill or historical transcript in the prompt.
 The host is responsible for the activation hook. Before substantial specialized
 work it must load the relevant project context, produce the compact intent, and
 call `skill_route_plan` or `skill_bootstrap`. A `trace-contract-v1` adapter then
-keeps one active trace per MCP session and propagates it through direct and
-delegated skill loads, compatible domain tools, replans, verification,
-persistence, and outcome; explicit IDs are reserved for cross-session resume.
-MSSR cannot activate itself in a host that never calls it.
+keeps local session continuity and may recover a trace across stateless calls
+through a bounded process-shared lease only when one compatible candidate exists.
+Ambiguity, restart, cross-process resume, and deliberate selection require an
+explicit ID. MSSR cannot activate itself in a host that never calls it.
 
 ## Routing evidence checkpoint and notices
 

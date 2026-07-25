@@ -14,8 +14,9 @@ discovery, provider-refresh, tool-chain, or replan signal set.
 
 Use MSSR to plan only the active phase and pass bounded resolved context for
 multi-turn continuations. When the host implements `trace-contract-v1`, let it
-propagate the active trace automatically within the MCP session; provide an
-explicit `traceId` only for cross-session resume. Record bounded
+propagate locally in-session and recover across stateless calls only when one
+compatible trace exists; provide an explicit `traceId` after restart, across
+processes, or when candidates are ambiguous. Record bounded
 context/verification/persistence/outcome checkpoints, react to trace-continuity
 notices, and never store a raw prompt, transcript, secret, or private reasoning
 in telemetry.

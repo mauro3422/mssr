@@ -29,7 +29,7 @@
 
 ## v0.4 — activation observability and durable learning
 
-- [x] Bridge `trace-contract-v1`: one active trace per MCP session, automatic propagation through direct and delegated calls, required-skill tracking, continuity notices, verification/persistence/outcome closure, and an end-to-end MCP regression.
+- [x] Bridge `trace-contract-v1`: local session continuity plus bounded process-shared recovery for stateless calls, unique-candidate propagation through direct and delegated calls, ambiguity protection, required-skill tracking, verification/persistence/outcome closure, and a multi-session MCP regression.
 - [x] Logical observability epochs with a clean active baseline and preserved all-history telemetry instead of destructive metric deletion.
 - [ ] Host compliance coverage proving that every eligible substantial task—not only traces already observed—loaded project context, produced a Routing Evidence Checkpoint, and invoked MSSR.
 - [x] Privacy-preserving Bridge observatory for route plans, skill loads, context sources, verification, persistence, outcomes, user corrections, and friction signals without raw prompts or transcripts.

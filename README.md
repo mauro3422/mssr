@@ -23,7 +23,7 @@ request its schema, refresh the registry, and re-plan. Host policy and tool
 permissions remain authoritative.
 
 
-A Bridge host may additionally maintain one privacy-preserving active `traceId` per MCP session and propagate it automatically from plans into routed skill loads, trace-aware domain tools, replans, verification, persistence and outcome checkpoints. Explicit IDs remain useful for cross-session resume. This observability lives in the host adapter, not the deterministic core, stores no raw prompt or conversation transcript, and may expose an active measurement epoch while preserving legacy telemetry for comparison.
+A Bridge host may additionally maintain privacy-preserving trace continuity locally per session and through a bounded process-shared lease for stateless calls. It propagates a trace only when one compatible candidate is identifiable; ambiguity, restart, cross-process resume, and deliberate historical selection require an explicit `traceId`. This observability lives in the host adapter, not the deterministic core, stores no raw prompt or conversation transcript, and may expose an active measurement epoch while preserving legacy telemetry for comparison.
 
 ## Architecture
 

@@ -12,7 +12,7 @@
 - Configuración y pruebas versionadas en Git.
 - Dashboard generado y skill mantenedora.
 - Observatory del Bridge con trazas, privacidad, outcome por skill primaria y dashboard local.
-- `trace-contract-v1` implementado: continuidad automática por sesión, propagación por direct tools y dispatch wrappers, notices de incumplimiento, regresión MCP end-to-end y época activa limpia con historia preservada.
+- `trace-contract-v1` implementado: continuidad local más lease acotada por proceso para llamadas stateless, selección inequívoca, protección de ambigüedad, propagación por direct tools y dispatch wrappers, regresión MCP multisesión y época activa limpia con historia preservada.
 - Adaptador inicial Photo Rig que registra outcome técnico desde el manifest y permite reemplazarlo con revisión visual final.
 
 ## Próximo nivel útil
