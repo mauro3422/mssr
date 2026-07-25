@@ -4,6 +4,9 @@ All notable changes to MSSR are documented here.
 
 ## Unreleased
 
+- Expanded close-phase incident routing so structured, lexical and bounded-continuation requests activate `skill-maintenance-loop` only when observable non-nominal signals exist; nominal closes remain excluded.
+- Recorded MSSR-015 and added four regressions for long-iteration incident logging, lexical fallback, short continuation context and nominal no-op closure.
+
 - Unified the Bridge compatibility `skill_recommend` entrypoint with the deterministic MSSR phase router; structured intent now produces the same active/deferred plan as `skill_route_plan`, while missing intent is visibly marked lexical fallback.
 - Added trace correlation for route plans, skill loads, replans, context sources, verification, persistence, outcomes and user corrections through the privacy-preserving Bridge MSSR Observatory. Raw prompts and transcripts are not stored.
 - Added explicit routing and positive/continuation/negative fixtures for `conversation-history-review`, which reconstructs prior work only from currently available conversation, personal-context, project, Git, telemetry, upload or connected-session evidence.

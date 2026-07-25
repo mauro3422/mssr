@@ -479,3 +479,40 @@ A review of the previous four days showed that formal `skill_route_plan` calls s
 - MSSR routing suite: 103 effective cases, including history-review positive/continuation/negative and visual-catalog exclusion.
 - Bridge `test-v060-tools.mjs`: structured `skill_recommend`, stable trace id, traced skill load, verification checkpoint, trace query, privacy status and 122-tool registry.
 - Full MSSR and Bridge verification remain required before publication and live restart.
+
+## MSSR-015 — Incident-close language fell back to nominal maintenance
+
+**Date:** 2026-07-25
+
+### Trigger
+
+A long technical iteration ended with two observable defects: a workflow-guide recommendation duplicated an existing skill, and a legacy workspace snapshot id could not resolve its manifest. The close request asked to register incidents, friction and the owning correction.
+
+### Observed failures
+
+- Lexical fallback did not recognize `incidente`, `defecto`, `problema confirmado`, runtime/source drift or an incorrect recommendation as non-nominal signals.
+- Post-iteration phrases such as `cerrar la iteración` and `registrar el bug` did not reliably infer the `maintain` and `document` actions.
+- Without structured intent, the route could remain `nominal`, so `skill-maintenance-loop` stayed inactive despite an observable maintenance requirement.
+- A short continuation such as `dale, registrá eso` depended on context but had no dedicated regression proving the incident survived into the close phase.
+
+### Root cause
+
+The signal fallback covered generic `error`, `bug`, timeout and repeated friction, but not the vocabulary used by real post-iteration reviews. The action fallback also treated documentation and maintenance as explicit command words rather than a close-phase incident workflow.
+
+### Correction
+
+- Expanded fallback signals for confirmed incidents/defects, stale live runtimes/version drift and routing/replan failures.
+- Expanded `maintain` and `document` action detection for iteration close, postmortem and incident-ledger language.
+- Preserved `requireSignalMatch` on `skill-maintenance-loop`; nominal closes remain excluded instead of activating maintenance unconditionally.
+- Added server and skill guidance that incidents contain observable facts, evidence, cause or unresolved status, correction, regression and follow-up, never hidden chain-of-thought.
+
+### Regression fixtures
+
+- `maintenance-close-records-observable-incidents`
+- `maintenance-close-lexical-incident-not-nominal`
+- `maintenance-close-continuation-uses-context`
+- `maintenance-close-nominal-does-not-log-incident`
+
+### Verification
+
+`npm run test:skill-routing` passes 109 effective cases. The positive structured, lexical and bounded-continuation cases activate `skill-maintenance-loop`; the nearby nominal close explicitly excludes it. `skill_route_audit` remains clean with no maintenance required.

@@ -493,8 +493,8 @@ function fallbackIntent(task: string): StructuredSkillIntent {
     ["debug", /debug|fall|error|bug/], ["optimize", /optimizar|performance|rendimiento|profil/],
     ["save", /guardar|save|backup|respaldo/], ["recover", /recuperar|recovery|rollback|restore/],
     ["version", /versionar|versionado|git init|commit|\btag\b|version control/], ["publish", /publicar|publish|deploy|push/],
-    ["coordinate", /coordinar|codex.*chatgpt|bridge|agentes/], ["maintain", /mantener|actualizar skill|mejorar skill|governance/],
-    ["document", /documentar|documentacion|docs|readme|roadmap|changelog|informe|report/], ["analyze", /analizar|analysis|auditar|medir/],
+    ["coordinate", /coordinar|codex.*chatgpt|bridge|agentes/], ["maintain", /mantener|actualizar skill|mejorar skill|governance|cerrar.*iteracion|cierre de iteracion|postmortem|incidente|friccion/],
+    ["document", /documentar|documentacion|docs|readme|roadmap|changelog|informe|report|registrar.*(?:incidente|bug|friccion)|incident ledger|bug log/], ["analyze", /analizar|analysis|auditar|medir/],
   ];
   for (const [action, pattern] of mapping) if (pattern.test(text)) actions.push(action);
   if (!actions.length) actions.push("analyze");
@@ -530,7 +530,9 @@ function fallbackIntent(task: string): StructuredSkillIntent {
   if (/codex.*chatgpt|chatgpt.*codex|bridge|coordinar agentes|subagente|subagent|swarm/.test(text)) needs.push("cross-agent");
 
   const signals: StructuredSkillIntent["signals"] = [];
-  if (/error|fall|bug|exception|timeout|se rompio|no funciona/.test(text)) signals.push("error-observed");
+  if (/error|falla|fallo|fallar|failed|failure|bug|exception|timeout|incidente|defecto|problema confirmado|se rompio|no funciona/.test(text)) signals.push("error-observed");
+  if (/runtime stale|servicio vivo.*(?:viejo|anterior)|version (?:vieja|anterior)|older live|drift de version|provider stale/.test(text)) signals.push("provider-refresh-needed");
+  if (/routing incorrecto|ruta incorrecta|recomienda.*(?:mal|duplic)|replan|volver a planificar/.test(text)) signals.push("replan-needed");
   if (/warning|advertencia|aviso/.test(text)) signals.push("warning-observed");
   if (/degrad|catalogo vacio|lista vacia|tools?[^a-z0-9]+0|count[^a-z0-9]+0|ciego de tools/.test(text)) signals.push("degraded-capability");
   if (/no se|duda|quizas|tal vez|parece|incierto|uncertain/.test(text)) signals.push("uncertainty");

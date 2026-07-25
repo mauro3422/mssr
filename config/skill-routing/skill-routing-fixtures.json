@@ -1212,6 +1212,126 @@
       }
     },
     {
+      "name": "maintenance-close-records-observable-incidents",
+      "task": "Cerrá esta iteración larga, registrá los incidentes y la fricción observable, y corregí la skill o tool propietaria",
+      "stage": "close",
+      "completedPhases": [
+        "verification",
+        "persistence"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Cerrar una iteración larga preservando incidentes observables y la corrección durable",
+        "domains": [
+          "skill-system",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "review",
+          "maintain",
+          "document"
+        ],
+        "artifacts": [
+          "skill",
+          "project",
+          "mcp"
+        ],
+        "needs": [
+          "integrity-verification"
+        ],
+        "signals": [
+          "error-observed",
+          "repeated-friction",
+          "reusable-pattern"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "skill-maintenance-loop"
+        ]
+      }
+    },
+    {
+      "name": "maintenance-close-lexical-incident-not-nominal",
+      "task": "Hubo un incidente confirmado: el routing recomendó una guía duplicada. Registrá el bug, corregí la skill propietaria y cerrá la iteración",
+      "stage": "close",
+      "sources": [
+        "codex-local"
+      ],
+      "expect": {
+        "classificationMode": "lexical-fallback",
+        "activeIncludes": [
+          "skill-maintenance-loop"
+        ]
+      }
+    },
+    {
+      "name": "maintenance-close-continuation-uses-context",
+      "task": "Dale, registrá eso y cerralo",
+      "taskVariants": [
+        "sí, dejá asentado el incidente",
+        "mandale con el registro y el cierre"
+      ],
+      "context": "La iteración larga ya fue verificada y persistida. Ocurrió un error observable: workspace_diff recibió un identificador legacy sin manifest.json y el recomendador de guides propuso una guía duplicada aunque existía skill-maintenance-loop. Hay que registrar síntoma, evidencia, causa o estado no resuelto, corrección y regresión sin guardar cadena de pensamiento.",
+      "stage": "close",
+      "completedPhases": [
+        "verification",
+        "persistence"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "expect": {
+        "classificationMode": "lexical-fallback",
+        "contextUsed": true,
+        "activeIncludes": [
+          "skill-maintenance-loop"
+        ]
+      }
+    },
+    {
+      "name": "maintenance-close-nominal-does-not-log-incident",
+      "task": "La iteración terminó correctamente, sin errores, warnings, workarounds ni aprendizaje reusable; cerrá sin crear un incidente",
+      "stage": "close",
+      "completedPhases": [
+        "verification",
+        "persistence"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Cerrar una iteración nominal sin registrar incidentes",
+        "domains": [
+          "coding"
+        ],
+        "actions": [
+          "review"
+        ],
+        "artifacts": [
+          "project"
+        ],
+        "needs": [],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "skill-maintenance-loop"
+        ]
+      }
+    },
+
+    {
       "name": "visual-reference-replication-positive",
       "task": "Replicá esta imagen lo más fiel posible en Roblox, respetá el estilo, la silueta, la geografía de la tierra y hacé que el micelio siga la superficie; capturá vistas comparables e iterá por el mayor error",
       "stage": "implement",
