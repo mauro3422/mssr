@@ -9,8 +9,11 @@ one consumer and adapter, not the owner of the routing contract.
 - turns observable request intent into a compact routing plan;
 - discovers skills and capabilities from registered providers;
 - selects only the skills needed for the current phase;
+- keeps durable project facts separate from reusable global procedures;
 - preserves provenance and health in immutable registry snapshots;
 - supports re-planning when a task reveals a missing or chained capability;
+- supports bounded friction/outcome checkpoints that can become reviewed
+  regressions, documentation, or skill/routing maintenance;
 - exposes the same contract through a library, optional MCP facade, and a
   managed `AGENTS.md` bootstrap block.
 
@@ -18,6 +21,12 @@ MSSR recommends and explains. It **does not grant, revoke, proxy, or enforce
 permissions**. A host agent may always inspect another available capability,
 request its schema, refresh the registry, and re-plan. Host policy and tool
 permissions remain authoritative.
+
+
+A Bridge host may additionally attach a privacy-preserving `traceId` to plans,
+skill loads, verification, persistence and outcome checkpoints. This observability
+lives in the host adapter, not the deterministic core, and stores no raw prompt or
+conversation transcript.
 
 ## Architecture
 

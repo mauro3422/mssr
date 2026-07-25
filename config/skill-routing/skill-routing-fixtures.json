@@ -2487,6 +2487,150 @@
           "visual-evidence-cataloging"
         ]
       }
+    },
+    {
+      "name": "conversation-history-review-positive",
+      "task": "Revisá los chats y sesiones de estos últimos tres días para comparar cómo evolucionaron MSSR y Bridge, qué errores repetíamos y si las skills mejoraron el resultado.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Reconstruir y comparar sesiones previas sobre la evolución de MSSR y Bridge",
+        "domains": [
+          "agent-orchestration",
+          "filesystem",
+          "skill-system"
+        ],
+        "actions": [
+          "analyze",
+          "review",
+          "document"
+        ],
+        "artifacts": [
+          "project",
+          "skill",
+          "mcp"
+        ],
+        "needs": [
+          "history-recovery",
+          "cross-agent",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "medium"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "mssr-agent-routing",
+          "conversation-history-review"
+        ],
+        "activeExcludes": [
+          "visual-evidence-cataloging",
+          "roblox-photo-rig-capture"
+        ]
+      }
+    },
+    {
+      "name": "conversation-history-review-continuation",
+      "task": "Dale, revisá esas sesiones y compará el antes y el después.",
+      "taskVariants": [
+        "Sí, mirá el historial",
+        "Seguí con la comparación histórica",
+        "Mandale con esas sesiones"
+      ],
+      "context": "Se acordó reconstruir los últimos tres días de trabajo usando sólo fuentes disponibles: conversación actual, contexto personal cuando aporte, documentos del proyecto, Git y métricas de Bridge. El objetivo es comparar activación de MSSR, fricción, correcciones y resultados antes y después, declarando las fuentes no conectadas.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar la revisión histórica de sesiones y comparar la evolución del sistema",
+        "domains": [
+          "agent-orchestration",
+          "filesystem",
+          "skill-system"
+        ],
+        "actions": [
+          "analyze",
+          "review",
+          "document"
+        ],
+        "artifacts": [
+          "project",
+          "skill",
+          "mcp"
+        ],
+        "needs": [
+          "history-recovery",
+          "cross-agent",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "mssr-agent-routing",
+          "conversation-history-review"
+        ],
+        "activeExcludes": [
+          "visual-evidence-cataloging"
+        ]
+      }
+    },
+    {
+      "name": "conversation-history-review-negative-current-implementation",
+      "task": "Actualizá ahora el código de MSSR, agregá pruebas y verificá el Bridge; no revises chats ni sesiones anteriores.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Modificar y verificar el código actual de MSSR sin reconstrucción histórica",
+        "domains": [
+          "skill-system",
+          "agent-orchestration",
+          "coding",
+          "filesystem"
+        ],
+        "actions": [
+          "edit",
+          "test",
+          "verify"
+        ],
+        "artifacts": [
+          "skill",
+          "mcp",
+          "code",
+          "project"
+        ],
+        "needs": [
+          "unit-tests",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "conversation-history-review",
+          "visual-evidence-cataloging"
+        ]
+      }
     }
   ]
 }

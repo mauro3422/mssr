@@ -102,3 +102,20 @@ Además del catálogo, comprobar que:
 7. shutdown HTTP/stdio libera el transporte hijo.
 
 Para un falso positivo o falso negativo confirmado, conserva primero la salida que falla, añade el incidente a `INCIDENTS.md` y crea un fixture que exija tanto la selección correcta como la exclusión explícita de las ramas incorrectas. Después de modificar código o contrato, lee de vuelta los archivos: un exit code exitoso de un script no demuestra por sí solo que la configuración cambió.
+
+## Benchmark de activación y resultado
+
+Los fixtures responden “¿la ruta determinista seleccionó correctamente?”. El Bridge MSSR Observatory agrega dos niveles posteriores:
+
+1. **Activation benchmark:** correlaciona `route_planned` con `skill_loaded`, calcula cobertura de cargas requeridas, loads huérfanos y replans.
+2. **Outcome benchmark:** correlaciona la ruta con checkpoints de verificación, persistencia, resultado, fricción y correcciones del usuario.
+
+La cadena de evidencia preferida es:
+
+```text
+recommended → loaded → followed → verified → persisted → outcome / recurrence
+```
+
+Las pruebas de integración de Bridge usan una base SQLite temporal, exigen `traceId` estable, verifican recomendación estructurada, carga correlacionada, checkpoint y consulta de traza, y cierran la base antes de limpiar el sandbox. Los eventos sintéticos usan ids `__test_*` y quedan fuera de resúmenes operativos.
+
+El observatorio comienza a medir desde su instalación. Métricas históricas anteriores pueden probar llamadas a tools, pero no deben retrofabricarse como trazas de skills exactas.

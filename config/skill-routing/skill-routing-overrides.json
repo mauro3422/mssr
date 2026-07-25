@@ -627,7 +627,8 @@
       "requireNeedMatch": true,
       "requireActionMatch": true,
       "priority": 94,
-      "activation": "on-demand"
+      "activation": "on-demand",
+      "oversizeReviewed": true
     },
     "roblox-placement-system-authoring": {
       "phase": "implementation",
@@ -1591,9 +1592,7 @@
       "artifacts": [
         "asset",
         "model-3d",
-        "animation",
-        "document",
-        "project"
+        "animation"
       ],
       "needs": [
         "visual-qa",
@@ -1615,6 +1614,58 @@
       "requireNeedMatch": true,
       "requireActionMatch": true,
       "priority": 88,
+      "activation": "on-demand",
+      "requireArtifactMatch": true
+    },
+    "conversation-history-review": {
+      "phase": "discovery",
+      "coversPhases": [
+        "verification",
+        "maintenance"
+      ],
+      "domains": [
+        "agent-orchestration",
+        "filesystem",
+        "git",
+        "github",
+        "skill-system",
+        "coding",
+        "roblox",
+        "blender"
+      ],
+      "actions": [
+        "analyze",
+        "review",
+        "recover",
+        "verify",
+        "document"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "skill",
+        "mcp",
+        "code",
+        "game",
+        "asset",
+        "document"
+      ],
+      "needs": [
+        "history-recovery",
+        "cross-agent",
+        "integrity-verification"
+      ],
+      "requires": [],
+      "complements": [
+        "mssr-agent-routing",
+        "systematic-debugging",
+        "mauroprime-bridge-collaboration"
+      ],
+      "excludes": [],
+      "negativeIntents": [],
+      "requireNeedMatch": true,
+      "requireActionMatch": true,
+      "priority": 91,
       "activation": "on-demand"
     }
   },

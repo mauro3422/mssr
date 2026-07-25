@@ -4,6 +4,17 @@ All notable changes to MSSR are documented here.
 
 ## Unreleased
 
+- Unified the Bridge compatibility `skill_recommend` entrypoint with the deterministic MSSR phase router; structured intent now produces the same active/deferred plan as `skill_route_plan`, while missing intent is visibly marked lexical fallback.
+- Added trace correlation for route plans, skill loads, replans, context sources, verification, persistence, outcomes and user corrections through the privacy-preserving Bridge MSSR Observatory. Raw prompts and transcripts are not stored.
+- Added explicit routing and positive/continuation/negative fixtures for `conversation-history-review`, which reconstructs prior work only from currently available conversation, personal-context, project, Git, telemetry, upload or connected-session evidence.
+- Narrowed `visual-evidence-cataloging` with a required visual-artifact gate after it polluted a non-visual MSSR observability task.
+- Added `oversizeReviewed` so an intentionally large owned skill remains visible in audit output without forcing perpetual maintenance after an explicit size review.
+- Expanded the deterministic suite to 103 effective cases and 35 explicitly routed local skills.
+
+- Clarified the host activation contract: substantial specialized work must load bounded project context, emit structured intent with explicit signals, route only the active stage, and preserve a trace across required loads, replans, verification, persistence, and outcome checkpoints.
+- Defined the context-budget boundary between project-owned facts, reusable global skills, and resumable execution checkpoints so the skill catalog can grow without injecting every procedure or conversation into each task.
+- Added the reviewed friction-promotion ladder and v0.4 roadmap for host compliance, project-context preflight, privacy-preserving observability, historical replay, and safe promotion from local regression to owning skill or MSSR fixtures.
+- Updated the managed `AGENTS.md` bootstrap template so friction and capability changes trigger evidence, re-planning, and visible maintenance rather than silent self-modification.
 - Added explicit routing and a phase workflow for `mauroprime-bridge-tool-authoring`, with positive implementation/verification, bounded continuation and nearby existing-tool/one-off-command negatives.
 - Added a Bridge-backed `skill_route_vocabulary` preflight so routing authors can consult the canonical closed enum before writing intents or fixtures; command-shaped labels remain outside the semantic protocol.
 - Tightened the new route after regression discovery: it now requires `agent-orchestration`, the exact MCP artifact, an authoring action and a safe-editing/unit-test need; its workflow is also bounded by active stages and nominal signals, preventing generic coding, skill-maintenance, OpenCode and incident-recovery pollution.
@@ -48,4 +59,3 @@ All notable changes to MSSR are documented here.
 - Added the canonical Codex/ChatGPT web/Bridge/MSSR architecture diagram and
   clarified that filesystem and application tools remain caller-owned direct
   execution routes.
-

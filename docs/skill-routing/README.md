@@ -40,8 +40,9 @@ La clasificación puede reutilizarse como capa de control para seleccionar skill
 | Componente | Ruta |
 |---|---|
 | Motor y auditoría | `src/skill-routing.ts` |
-| Tools MCP y carga de skills | `src/tools/skill-catalog-tools.ts` |
-| Registro de tools/riesgo | `src/tool-registry.ts` |
+| Adaptador ChatGPT/Bridge de routing y carga | `C:\Dev\bridge-mcp\src\tools\skill-catalog-tools.ts` |
+| Observatorio de activación/resultado | `C:\Dev\bridge-mcp\src\mssr-observatory.ts` |
+| Registro de tools/riesgo del Bridge | `C:\Dev\bridge-mcp\src\tool-registry.ts` |
 | Contrato de activación | `config/skill-routing/skill-routing-overrides.json` |
 | Schema del contrato | `config/skill-routing/skill-routing.schema.json` |
 | Casos de comportamiento | `config/skill-routing/skill-routing-fixtures.json` |
@@ -58,11 +59,13 @@ La clasificación puede reutilizarse como capa de control para seleccionar skill
 ## Tools públicas
 
 - `skill_catalog`: inventario vivo.
-- `skill_recommend`: recomendación léxica simple y compatible con clientes antiguos.
+- `skill_recommend`: entrada compatible que delega al router MSSR; usa intención estructurada cuando el caller la envía y marca explícitamente el fallback léxico cuando falta.
 - `skill_route_audit`: drift, referencias, ciclos, tamaño y metadata inferida.
 - `skill_route_plan`: plan de fases sin cargar contenido.
 - `skill_bootstrap`: carga sólo las skills activas de la fase actual.
-- `skill_load`: carga explícita de una skill.
+- `skill_load`: carga explícita de una skill y, cuando recibe `traceId`, registra la activación.
+- `mssr_observatory_query`: estado, benchmark, eventos recientes o una traza concreta sin guardar prompts crudos.
+- `mssr_trace_record`: checkpoint acotado de contexto, fase, verificación, persistencia, resultado, fricción o replanificación.
 
 ## Skills requeridas, opcionales y diferidas
 
@@ -82,7 +85,42 @@ La política recomendada es enviar normalmente entre 500 y 2000 caracteres de co
 
 `context` no debe ser una transcripción completa, conversación irrelevante ni cadena de pensamiento. Es evidencia adicional: el mensaje actual, las instrucciones superiores y la intención explícita conservan prioridad.
 
+### Contexto de proyecto vs. skills reutilizables
+
+MSSR no debe crear una skill distinta por cada repositorio. El sistema separa:
+
+- **hechos del proyecto:** arquitectura, vocabulario, rutas, decisiones, estado actual, blockers e incidentes locales; viven en `AGENTS.md`, `.bridge/` y documentación versionada del proyecto;
+- **procedimiento reutilizable:** pasos y criterios que aplican en varios proyectos; viven en una skill global;
+- **estado de ejecución:** fase, resultados, verificaciones y referencias a commits/snapshots; se conserva como checkpoint acotado cuando el workflow debe reanudarse.
+
+El host recupera primero el contexto mínimo del proyecto y después solicita a MSSR sólo las skills de la fase activa. Así el catálogo puede crecer sin inyectar todas las instrucciones en cada turno.
+
+### Garantía de activación
+
+MSSR no puede activarse solo desde fuera del host. La garantía depende de un hook explícito en las instrucciones del agente o cliente:
+
+```text
+tarea especializada sustancial
+  -> cargar contexto durable del proyecto
+  -> producir intent estructurado
+  -> skill_route_plan o skill_bootstrap
+  -> cargar sólo la fase activa
+  -> ejecutar y observar
+  -> replanificar ante cambio de fase, fallo o capacidad nueva
+```
+
+Para ChatGPT web, ese hook debe llamar al adaptador del Bridge. Para Codex local, debe estar en el bootstrap `AGENTS.md` y la skill transversal. Una tarea que omite la llamada no queda protegida por MSSR aunque el router y las skills existan.
+
+
 ## Perfil del caller
+
+### Límites de replanificación y trazas
+
+MSSR no debe ejecutarse entre cada llamada de herramienta. El caller planifica antes de una cadena especializada y vuelve a planificar cuando cambia la fase, aparece un fallo material, cambia la salud/schema de un provider, se descubre una capability nueva o aparece fricción reusable. Lecturas y comandos adyacentes exitosos dentro de la misma fase comparten la ruta vigente.
+
+`skill_recommend`, `skill_route_plan` y `skill_bootstrap` devuelven un `traceId`. El caller lo conserva en `skill_load` y en checkpoints posteriores. El observatorio diferencia `recommended`, `loaded`, `verified`, `persisted` y `outcome`; cargar una skill no demuestra por sí solo efectividad.
+
+La telemetría guarda fingerprints SHA-256 de tareas y metadata estructurada acotada. No guarda prompts completos, transcripciones ni cadena de pensamiento. `personal_context`, contexto de proyecto, Git y revisión histórica son fuentes de evidencia separadas; su uso depende de si aportan información material, no de una cuota obligatoria.
 
 `skill_route_plan` y `skill_bootstrap` aceptan `caller`:
 
@@ -150,5 +188,7 @@ No se cargan todas a la vez. El caller vuelve a planificar con `stage=verify`, `
 `missingRequiredPhases` conserva compatibilidad y señala fases obligatorias sin una skill seleccionada. `agentFallbackPhases` hace explícito que esas fases siguen siendo responsabilidad del agente usando sus procedimientos generales; una lista vacía de skills no autoriza a omitir análisis, pruebas o persistencia requeridos.
 
 ## Principio de seguridad
+
+`oversizeReviewed=true` reconoce que el tamaño de una skill propia fue inspeccionado y aceptado temporalmente. La skill sigue apareciendo en `oversizedSkills`, pero no obliga mantenimiento en cada auditoría. El flag no reemplaza una revisión real ni debe aplicarse automáticamente.
 
 La detección puede ser automática. La autoedición silenciosa no. Cualquier cambio de skill, contrato o fixture debe ocurrir en una tarea visible con snapshot, diff, pruebas y verificación integral.

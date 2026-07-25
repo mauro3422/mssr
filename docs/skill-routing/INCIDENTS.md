@@ -448,6 +448,34 @@ A maintenance pass created a general Git publication skill, updated visual evide
 
 The routing suite must retain generic coding and skill-maintenance behavior, activate the new skill only for explicit MCP tool authoring and verification, preserve it through bounded short continuations, and exclude it from both active and deferred plans for existing-tool queries, one-off Git commands, OpenCode swarms and Roblox/MSSR incidents. `visual-reference-replication` must also stay out of nominal non-visual verification despite sharing `integrity-verification`. The live audit must report no unconfigured owned skills, missing descriptions, missing workflow references or cycles.
 
+## MSSR-014 — Recommendation bypassed the structured router and activation had no outcome trace
 
+**Date:** 2026-07-25
 
+### Trigger
 
+A review of the previous four days showed that formal `skill_route_plan` calls stopped after 2026-07-23 while `skill_recommend` and `skill_load` continued. A direct recommendation for mixed visual evidence ranked the exact `visual-evidence-cataloging` skill below broad maintenance/UI skills, and no durable record connected recommendation, load, verification and persisted outcome.
+
+### Observed failures
+
+- `skill_recommend` used a separate token-overlap scorer instead of the deterministic MSSR metadata, gates, dependencies and phases.
+- A successful `skill_load` could not be correlated with the route that requested it.
+- Existing Bridge tool telemetry showed tool names, timing and success, but not which skill was recommended or whether a result was verified/persisted.
+- The broad `project/document + integrity-verification` metadata of `visual-evidence-cataloging` polluted a non-visual MSSR observability task.
+- Reviewing prior chats lacked a reusable source-availability/provenance procedure.
+
+### Correction
+
+- Made `skill_recommend` a compatibility facade over `planSkillRoute`, accepting structured intent, context, caller, stage, completed phases and trace id.
+- Added a privacy-preserving MSSR Observatory in Bridge with route, load and bounded checkpoint events; prompts/transcripts are excluded and tasks are stored only as SHA-256 fingerprints.
+- Added `mssr_observatory_query` and `mssr_trace_record` plus trace-aware `skill_load`/`skill_bootstrap`.
+- Added `conversation-history-review` and routing fixtures for positive, bounded continuation and current-only negative cases.
+- Required a true visual artifact for `visual-evidence-cataloging`.
+- Documented meaningful replan boundaries instead of routing between every low-level tool call.
+- Added an explicit reviewed-oversize acknowledgement so size remains observable without blocking every suite after human review.
+
+### Regression
+
+- MSSR routing suite: 103 effective cases, including history-review positive/continuation/negative and visual-catalog exclusion.
+- Bridge `test-v060-tools.mjs`: structured `skill_recommend`, stable trace id, traced skill load, verification checkpoint, trace query, privacy status and 122-tool registry.
+- Full MSSR and Bridge verification remain required before publication and live restart.

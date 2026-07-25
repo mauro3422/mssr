@@ -71,6 +71,7 @@ const routeMetadataSchema = z.object({
   requireActionMatch: z.boolean().default(false),
   requireArtifactMatch: z.boolean().default(false),
   requireSignalMatch: z.boolean().default(false),
+  oversizeReviewed: z.boolean().default(false),
   priority: z.number().int().min(0).max(100).default(40),
   activation: z.enum(["on-demand", "always", "closing"]).default("on-demand"),
 }).strict();
@@ -277,6 +278,7 @@ function inferredMetadata(skill: SkillEntry): RouteMetadata {
     requireActionMatch: false,
     requireArtifactMatch: false,
     requireSignalMatch: false,
+    oversizeReviewed: false,
     priority: skill.source === "codex-local" ? 55 : skill.source === "roblox" ? 50 : skill.source === "codex-system" ? 45 : 25,
     activation: "on-demand",
   };
@@ -422,7 +424,8 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
   const cycles = routingDependencyCycles(registry.entries);
   const fileHealth = (await Promise.all(registry.entries.map(skillFileHealth))).filter((item): item is NonNullable<typeof item> => Boolean(item));
   const oversizedSkills = fileHealth.filter((item) => item.lines > 500 || item.chars > MAX_SAFE_SKILL_CHARS);
-  const oversizedOwnedSkills = oversizedSkills.filter((item) => ownedSources.has(item.source));
+  const metadataByName = new Map(registry.entries.map((entry) => [entry.name, entry]));
+  const oversizedOwnedSkills = oversizedSkills.filter((item) => ownedSources.has(item.source) && metadataByName.get(item.name)?.oversizeReviewed !== true);
   const missingDescriptions = fileHealth.filter((item) => item.source === "codex-local" && item.descriptionMissing);
   const unreadableSkills = fileHealth.filter((item) => "unreadable" in item && item.unreadable);
   const errors = [

@@ -1,26 +1,42 @@
 <!-- mssr:managed:start -->
 ## MSSR transversal routing
 
-For substantial specialized work, derive a compact observable intent object:
-`domains`, `actions`, `artifacts`, `needs`, `risk`, `ambiguity`, optional
-`signals`, and optional `capabilityNeeds`. This is classification, never hidden
-chain-of-thought.
+Before substantial specialized work in a known repository, load the smallest
+durable project context that establishes its rules, architecture, vocabulary,
+current state, and unresolved references. Keep project-specific facts in the
+repository; do not turn every project into a global skill.
 
-Use MSSR to plan only the active phase (`discover`, `analyze`, `implement`,
-`verify`, `persist`, or `close`) and provide a bounded resolved context on
-multi-turn continuations. Load or invoke the recommended capabilities directly
-through their authoritative host; MSSR advises and does not proxy execution or
-change tool permissions.
+Derive a compact observable intent object with `domains`, `actions`, `artifacts`,
+`needs`, `signals`, `risk`, and `ambiguity`. This is classification metadata,
+never hidden chain-of-thought. `signals` is required: use only `nominal` for clean
+work; otherwise declare the smallest truthful anomaly, friction, recovery,
+discovery, provider-refresh, tool-chain, or replan signal set.
 
-If work exposes an error, degradation, missing capability, or a needed tool
-chain, record an appropriate signal (`capability-discovery-needed`,
-`additional-capability-needed`, `tool-chain-needed`, `provider-refresh-needed`,
-or `replan-needed`), inspect/refresh the registry if useful, and re-plan. Never
-treat an initial route as an allowlist: use any otherwise authorized capability
-when it becomes relevant.
+Use MSSR to plan only the active phase and pass bounded resolved context for
+multi-turn continuations. Keep the returned `traceId`, pass it into routed
+skill loads, and record bounded context/verification/persistence/outcome
+checkpoints when the host exposes MSSR observability. Never store a raw prompt,
+transcript, secret, or private reasoning in telemetry.
 
-Tool catalogs are dynamic registry data. Do not maintain a giant manual list of
-tool names here. Update routing metadata, fixtures, and this protocol only when
-a durable activation rule, skill contract, or routing schema changes.
+Do not route mechanically between every tool call. Re-plan at meaningful
+boundaries: before a substantial specialized chain, when the stage changes to
+verify/persist/close/resume, after a material failure or provider/schema change,
+when a new capability is required, or when repeated friction/reusable patterns
+appear. Adjacent successful calls inside the same unchanged phase share the
+current route.
+
+Load or invoke selected capabilities through their authoritative host. MSSR is
+advisory and never proxies execution, changes permissions, or makes the initial
+plan an allowlist. When a capability is missing or degraded, record the smallest
+truthful signal, inspect/refresh the registry if useful, and re-plan.
+
+Repeated friction, manual workarounds, missed required loads, user corrections,
+and failed phase gates are bounded evidence, not permission for silent rewriting.
+Promote confirmed patterns through a visible maintenance task with snapshot, diff,
+tests, and review: project regression first, owning skill when cross-project
+procedure changes, and MSSR metadata/fixtures when activation semantics change.
+
+Tool catalogs are dynamic registry data. Update routing metadata, fixtures, and
+this protocol only when a durable activation rule, skill contract, observability
+contract, or routing schema changes.
 <!-- mssr:managed:end -->
-
