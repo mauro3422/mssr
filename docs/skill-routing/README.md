@@ -63,9 +63,9 @@ La clasificación puede reutilizarse como capa de control para seleccionar skill
 - `skill_route_audit`: drift, referencias, ciclos, tamaño y metadata inferida.
 - `skill_route_plan`: plan de fases sin cargar contenido.
 - `skill_bootstrap`: carga sólo las skills activas de la fase actual.
-- `skill_load`: carga explícita de una skill y, cuando recibe `traceId`, registra la activación.
-- `mssr_observatory_query`: estado, benchmark, eventos recientes o una traza concreta sin guardar prompts crudos.
-- `mssr_trace_record`: checkpoint acotado de contexto, fase, verificación, persistencia, resultado, fricción o replanificación.
+- `skill_load`: carga explícita de una skill; el adapter Bridge propaga automáticamente la traza activa dentro de la misma sesión y registra la activación.
+- `mssr_observatory_query`: estado, benchmark, eventos recientes o una traza concreta, por época activa o historia completa, sin guardar prompts crudos.
+- `mssr_trace_record`: checkpoint acotado de contexto, fase, verificación, persistencia, resultado, fricción o replanificación; recibe automáticamente la traza activa cuando el host implementa `trace-contract-v1`.
 
 ## Skills requeridas, opcionales y diferidas
 
@@ -132,7 +132,7 @@ Las métricas se separan en activación/routing, cumplimiento de cargas, verific
 
 MSSR no debe ejecutarse entre cada llamada de herramienta. El caller planifica antes de una cadena especializada y vuelve a planificar cuando cambia la fase, aparece un fallo material, cambia la salud/schema de un provider, se descubre una capability nueva o aparece fricción reusable. Lecturas y comandos adyacentes exitosos dentro de la misma fase comparten la ruta vigente.
 
-`skill_recommend`, `skill_route_plan` y `skill_bootstrap` devuelven un `traceId`. El caller lo conserva en `skill_load` y en checkpoints posteriores. El observatorio diferencia `recommended`, `loaded`, `verified`, `persisted` y `outcome`; cargar una skill no demuestra por sí solo efectividad.
+`skill_recommend`, `skill_route_plan` y `skill_bootstrap` devuelven un `traceId`. En hosts con `trace-contract-v1`, el adapter mantiene una traza activa por sesión y la propaga automáticamente a `skill_load`, wrappers de dispatch, domain tools compatibles y checkpoints posteriores; el caller usa un ID explícito sólo para reanudar entre sesiones. El observatorio diferencia `recommended`, `loaded`, `verified`, `persisted` y `outcome`; cargar una skill no demuestra por sí solo efectividad.
 
 La telemetría guarda fingerprints SHA-256 de tareas y metadata estructurada acotada. No guarda prompts completos, transcripciones ni cadena de pensamiento. `personal_context`, contexto de proyecto, Git y revisión histórica son fuentes de evidencia separadas; su uso depende de si aportan información material, no de una cuota obligatoria.
 

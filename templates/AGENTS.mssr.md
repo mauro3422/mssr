@@ -13,10 +13,12 @@ work; otherwise declare the smallest truthful anomaly, friction, recovery,
 discovery, provider-refresh, tool-chain, or replan signal set.
 
 Use MSSR to plan only the active phase and pass bounded resolved context for
-multi-turn continuations. Keep the returned `traceId`, pass it into routed
-skill loads, and record bounded context/verification/persistence/outcome
-checkpoints when the host exposes MSSR observability. Never store a raw prompt,
-transcript, secret, or private reasoning in telemetry.
+multi-turn continuations. When the host implements `trace-contract-v1`, let it
+propagate the active trace automatically within the MCP session; provide an
+explicit `traceId` only for cross-session resume. Record bounded
+context/verification/persistence/outcome checkpoints, react to trace-continuity
+notices, and never store a raw prompt, transcript, secret, or private reasoning
+in telemetry.
 
 Do not route mechanically between every tool call. Re-plan at meaningful
 boundaries: before a substantial specialized chain, when the stage changes to

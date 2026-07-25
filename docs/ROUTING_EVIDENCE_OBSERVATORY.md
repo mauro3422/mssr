@@ -60,6 +60,44 @@ Many candidates are acceptable. MSSR may optimize for high recall in metadata wh
 
 `mssr-agent-routing` is the transversal owner of this protocol. Phrases such as “tags”, “metadata del pensamiento”, “segundo tick”, “activadores”, “MSSR helper”, “qué skill cargar” or “contexto inyectado” refer to this architecture when the conversation concerns routing or agent orchestration.
 
+## Trace contract v1
+
+The deterministic MSSR core remains stateless. A host adapter may maintain one bounded active trace per MCP session and propagate it automatically after a successful route:
+
+```text
+route
+  -> required/current-phase skill loads
+  -> trace-aware domain tools
+  -> replan
+  -> verification
+  -> persistence
+  -> latest effective outcome
+```
+
+Within the same session, callers should not have to copy `traceId` into every action. Explicit IDs remain necessary for cross-session resume, deliberate historical trace selection, or hosts that do not implement session propagation. Generic dispatch wrappers must propagate into the delegated tool as well as direct calls.
+
+The host emits bounded notices when continuity becomes unreliable:
+
+- `mssr-orphan-skill-load`;
+- `mssr-trace-missing`;
+- `mssr-trace-mismatch`;
+- `mssr-required-skill-not-loaded`;
+- `mssr-outcome-without-route`;
+- active trace replacement before an outcome.
+
+An outcome closes the current task trace. A later `stage=start` request for another task receives a new trace. Replans, retries, verification, persistence, and later review of the same task retain the existing trace.
+
+## Observability epochs
+
+Telemetry is not deleted to improve rates. A host may introduce a logical epoch when a measurement contract changes:
+
+- `scope=active` evaluates only events stamped with the current epoch and begins at its persisted `baselineAt`;
+- `scope=all` preserves previous events for historical comparison;
+- every new event records `observabilityEpoch` and `contractVersion` as bounded metadata;
+- epoch state is runtime data, not source-controlled configuration.
+
+The first host implementation uses `trace-contract-v1`. Its clean baseline begins only after automatic continuity and its end-to-end regression are active.
+
 ## Context notice inbox
 
 A host may attach bounded notices to the next tool result or expose a drainable inbox. Notices are runtime-authored evidence, not autonomous model thoughts.
@@ -126,7 +164,8 @@ No single percentage describes MSSR quality. The dashboard separates:
 
 - required skill loads expected and satisfied;
 - required-load compliance;
-- orphan skill loads without a route;
+- skill-load coverage and correlated route→load coverage as separate metrics;
+- orphan skill loads and orphan-load rate;
 - selected-versus-loaded distributions.
 
 ### Execution discipline
@@ -151,11 +190,13 @@ A dashboard may display current numbers, but maintenance decisions require enoug
 
 MauroPrime Bridge provides:
 
-- `mssr_observatory_query` for status, summary, benchmark, recent events, and trace inspection;
+- per-session automatic `traceId` propagation for direct calls and generic dispatch wrappers;
+- `mssr_observatory_query` for active-epoch or all-history status, summary, benchmark, recent events, and trace inspection;
 - `mssr_trace_record` for bounded checkpoints and attributed outcomes;
-- SQLite plus JSONL storage without raw prompts/transcripts;
-- dashboard cards for structured routing, required-load compliance, outcome success, acceptance, and per-primary-skill results;
-- Bridge notices that can carry errors and workflow/context anomalies into a later model turn.
+- SQLite plus JSONL storage without raw prompts/transcripts and a persisted runtime epoch state;
+- dashboard cards for structured routing, route→load continuity, required-load compliance, outcome success, acceptance, and per-primary-skill results;
+- Bridge notices for orphan loads, mismatches, omitted required skills, outcomes without routes, errors, and workflow/context anomalies;
+- an end-to-end in-memory MCP regression proving route→loads→replan→verification→persistence→outcome continuity.
 
 The deterministic MSSR core remains host-neutral. Observability, notices, and context delivery belong to adapters because only a host can know whether the protocol was actually invoked and which tools/results occurred.
 

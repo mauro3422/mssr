@@ -29,15 +29,11 @@
 
 ## v0.4 — activation observability and durable learning
 
-- [ ] Host compliance contract proving that substantial specialized work loaded
-  project context, produced a Routing Evidence Checkpoint, routed the active
-  phase, and carried the same trace through required skill loads/checkpoints.
-- [x] Privacy-preserving Bridge observatory for route plans, skill loads,
-  context sources, verification, persistence, outcomes, user corrections, and
-  friction signals without raw prompts or transcripts.
-- [x] Transversal outcome attribution with one primary skill, supporting-skill
-  contributions, latest-outcome-per-trace deduplication, success/acceptance
-  rates, normalized scores, and an initial local dashboard.
+- [x] Bridge `trace-contract-v1`: one active trace per MCP session, automatic propagation through direct and delegated calls, required-skill tracking, continuity notices, verification/persistence/outcome closure, and an end-to-end MCP regression.
+- [x] Logical observability epochs with a clean active baseline and preserved all-history telemetry instead of destructive metric deletion.
+- [ ] Host compliance coverage proving that every eligible substantial task—not only traces already observed—loaded project context, produced a Routing Evidence Checkpoint, and invoked MSSR.
+- [x] Privacy-preserving Bridge observatory for route plans, skill loads, context sources, verification, persistence, outcomes, user corrections, and friction signals without raw prompts or transcripts.
+- [x] Transversal outcome attribution with one primary skill, supporting-skill contributions, latest-outcome-per-trace deduplication, success/acceptance rates, normalized scores, and an initial local dashboard.
 - [ ] Context notice inbox covering provider/runtime failures, active agents,
   pending reviews, changed project state, missing routing compliance, and
   bounded context requests.

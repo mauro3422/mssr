@@ -116,6 +116,6 @@ La cadena de evidencia preferida es:
 recommended → loaded → followed → verified → persisted → outcome / recurrence
 ```
 
-Las pruebas de integración de Bridge usan una base SQLite temporal, exigen `traceId` estable, verifican recomendación estructurada, carga correlacionada, checkpoint y consulta de traza, y cierran la base antes de limpiar el sandbox. Los eventos sintéticos usan ids `__test_*` y quedan fuera de resúmenes operativos.
+Las pruebas de integración de Bridge usan una base SQLite temporal y un cliente MCP in-memory real. Exigen que una ruta sin ID manual propague la misma traza a cargas requeridas, wrapper de dispatch, replan, verificación, persistencia y outcome; también prueban notices de carga huérfana, mismatch, skill requerida omitida, outcome sin ruta y reemplazo prematuro. Cierran bases y providers antes de limpiar el sandbox.
 
-El observatorio comienza a medir desde su instalación. Métricas históricas anteriores pueden probar llamadas a tools, pero no deben retrofabricarse como trazas de skills exactas.
+`trace-contract-v1` abre una época lógica nueva sólo después de pasar esa regresión. `scope=active` mide el contrato actual; `scope=all` conserva la telemetría anterior sin retrofabricarla como trazas correctas.

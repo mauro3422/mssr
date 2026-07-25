@@ -41,6 +41,8 @@ Adapters translate host-specific discovery to the shared contract. MauroPrime
 Bridge, Roblox Studio, Codex-local, and a web client can therefore share routing
 metadata without being forced through a single execution bridge.
 
+Session trace continuity is also adapter-owned. `trace-contract-v1` keeps one bounded active trace per MCP session, propagates it through direct calls and generic dispatch wrappers, closes it on outcome, and emits notices when required loads or boundaries disagree. The core remains stateless. Measurement epochs and active/all-history filtering are likewise host observability concerns, not routing inputs.
+
 ## Reasoning-to-routing boundary
 
 The current model or agent produces a bounded Routing Evidence Checkpoint after interpreting the visible request. MSSR receives that observable classification, not private chain-of-thought. The host activation hook is therefore part of the control plane: without the tool call or equivalent structured action, the deterministic router cannot observe the task.

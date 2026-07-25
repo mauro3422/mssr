@@ -4,6 +4,9 @@ All notable changes to MSSR are documented here.
 
 ## Unreleased
 
+- Defined `trace-contract-v1`: host adapters may keep one active trace per MCP session, propagate it through direct and delegated calls, close it on outcome, and emit bounded continuity notices without changing the stateless deterministic core.
+- Added logical observability epochs so current metrics start from a clean persisted baseline while `scope=all` preserves legacy evidence for comparison.
+- Added the canonical end-to-end contract for route→required loads→replan→verification→persistence→outcome plus negative cases for orphan loads, mismatches, omitted requirements, outcomes without routes, and premature trace replacement.
 - Expanded close-phase incident routing so structured, lexical and bounded-continuation requests activate `skill-maintenance-loop` only when observable non-nominal signals exist; nominal closes remain excluded.
 - Recorded MSSR-015 and added four regressions for long-iteration incident logging, lexical fallback, short continuation context and nominal no-op closure.
 

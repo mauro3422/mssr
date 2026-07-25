@@ -23,10 +23,7 @@ request its schema, refresh the registry, and re-plan. Host policy and tool
 permissions remain authoritative.
 
 
-A Bridge host may additionally attach a privacy-preserving `traceId` to plans,
-skill loads, verification, persistence and outcome checkpoints. This observability
-lives in the host adapter, not the deterministic core, and stores no raw prompt or
-conversation transcript.
+A Bridge host may additionally maintain one privacy-preserving active `traceId` per MCP session and propagate it automatically from plans into routed skill loads, trace-aware domain tools, replans, verification, persistence and outcome checkpoints. Explicit IDs remain useful for cross-session resume. This observability lives in the host adapter, not the deterministic core, stores no raw prompt or conversation transcript, and may expose an active measurement epoch while preserving legacy telemetry for comparison.
 
 ## Architecture
 

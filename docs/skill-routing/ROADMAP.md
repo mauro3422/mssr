@@ -12,22 +12,22 @@
 - Configuración y pruebas versionadas en Git.
 - Dashboard generado y skill mantenedora.
 - Observatory del Bridge con trazas, privacidad, outcome por skill primaria y dashboard local.
+- `trace-contract-v1` implementado: continuidad automática por sesión, propagación por direct tools y dispatch wrappers, notices de incumplimiento, regresión MCP end-to-end y época activa limpia con historia preservada.
 - Adaptador inicial Photo Rig que registra outcome técnico desde el manifest y permite reemplazarlo con revisión visual final.
 
 ## Próximo nivel útil
 
 ### 1. Cumplimiento del hook de activación
+La continuidad interna de una tarea ya está probada por `trace-contract-v1`. La prioridad restante es medir el denominador que el observatorio todavía no ve: tareas elegibles donde el host pudo omitir completamente MSSR.
 
-La prioridad principal es poder demostrar que cada host ejecutó el protocolo, no sólo que MSSR estaba disponible:
+- definir qué constituye trabajo especializado sustancial frente a consultas estáticas o no operativas;
+- emitir un checkpoint/heartbeat del hook antes de la primera cadena especializada;
+- registrar si se cargó contexto durable del proyecto y si se produjo intención estructurada;
+- detectar sesiones con tools de código/Roblox/Blender pero sin ruta previa;
+- separar activación omitida, fallback deliberado y tareas correctamente excluidas;
+- mostrar cobertura del hook por caller y tipo de tarea.
 
-- cargar contexto durable del proyecto antes de trabajo especializado sustancial;
-- producir intención estructurada con `signals` explícitas;
-- llamar `skill_route_plan` o `skill_bootstrap`;
-- cargar las skills requeridas de la fase activa;
-- conservar el mismo trace en loads, replans y checkpoints;
-- replanificar al cambiar de fase o aparecer evidencia/capacidades nuevas.
-
-El resultado debe distinguir una ruta correcta de una tarea que omitió completamente MSSR.
+El resultado debe distinguir una ruta continua y correcta de una tarea invisible para el observatorio porque omitió completamente MSSR.
 
 ### 2. Autoridad de contexto de proyecto
 
