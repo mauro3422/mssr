@@ -935,6 +935,8 @@
         "coding",
         "filesystem",
         "browser",
+        "roblox",
+        "blender",
         "other"
       ],
       "actions": [

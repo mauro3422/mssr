@@ -1340,6 +1340,99 @@
           "systematic-debugging"
         ]
       }
+    },
+    {
+      "name": "systematic-debugging-composes-with-roblox-verification",
+      "task": "En Roblox Studio Edit se ve bien, Client usa otro estado y el archivo guardado no coincide. Trazá la causa raíz y verificá el arreglo junto con las pruebas específicas de Roblox.",
+      "stage": "verify",
+      "completedPhases": [
+        "discovery",
+        "safety",
+        "implementation"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Depurar una regresión de Roblox entre Edit, Client y persistencia con QA de dominio",
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "debug",
+          "analyze",
+          "test",
+          "verify"
+        ],
+        "artifacts": [
+          "game",
+          "code",
+          "place-file"
+        ],
+        "needs": [
+          "integrity-verification",
+          "history-recovery",
+          "visual-qa",
+          "playtest"
+        ],
+        "signals": [
+          "error-observed",
+          "conflicting-evidence",
+          "uncertainty"
+        ],
+        "risk": "read-only",
+        "ambiguity": "medium"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "systematic-debugging",
+          "roblox-mcp-skill-router",
+          "roblox-studio-qa",
+          "roblox-playtest"
+        ]
+      }
+    },
+    {
+      "name": "systematic-debugging-roblox-negative-nominal-feature",
+      "task": "Agregá una opción visual nueva al menú de Roblox; no hay error, regresión ni evidencia contradictoria que investigar.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Implementar una feature nominal de Roblox sin investigación causal",
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "create",
+          "edit"
+        ],
+        "artifacts": [
+          "game",
+          "ui",
+          "code"
+        ],
+        "needs": [
+          "safe-editing"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "roblox-mcp-skill-router",
+          "roblox-safe-editing"
+        ],
+        "activeExcludes": [
+          "systematic-debugging"
+        ]
+      }
     }
   ]
 }

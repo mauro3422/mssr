@@ -4,6 +4,7 @@ All notable changes to MSSR are documented here.
 
 ## Unreleased
 
+- Extended `systematic-debugging` to compose with Roblox and Blender domain skills when anomaly signals, debugging actions and integrity/history needs are present; added Roblox verification and nominal-feature regressions proving simultaneous activation without opening on ordinary work.
 - Added explicit routing for the new transversal `systematic-debugging` skill, with positive root-cause/flow-tracing, bounded continuation, and nearby ordinary-feature negative fixtures.
 - Recorded MSSR-010: corrected procedural Roblox QA that wrongly excluded `UnionOperation` from `RenderFidelity`, and added pre-import render-profile plus Atmosphere distance-isolation gates without changing skill activation or routing metadata.
 - Added explicit routing metadata for `roblox-photo-rig-capture`, covering Photo Rig implementation and verification without activating for edit-only or inventory-only work.
