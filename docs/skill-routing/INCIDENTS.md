@@ -782,3 +782,39 @@ Se añadió el workflow `visual-evidence-lifecycle`. Cuando una decisión visual
 - `visual-evidence-lifecycle-negative-single-image-description`.
 - `visual-evidence-lifecycle-negative-photo-rig-create-and-verify`.
 - Suite focal: 147 casos efectivos, 38/38 skills propias con fixtures positivos y negativos, 7 workflows, mantenimiento pendiente `false`.
+
+## MSSR-023 — La poda visual perdió ownership en verify/persist y aceptaba hash-only
+
+**Date:** 2026-07-26
+**Status:** Corregida en source
+
+### Trigger
+
+Después de ejecutar una poda visual real se pidió convertir las fricciones observadas —versiones canónicas contradictorias, imágenes duplicadas o malas, referencias dentro de runs y tracks sin portada— en prevención transversal mantenida por skills y MSSR.
+
+### Observed failure
+
+Dos route plans reales reprodujeron que `visual-evidence-lifecycle` seguía reconocido, pero `visual-evidence-pruning` desaparecía al replanificar desde implementation hacia `stage=verify` y `stage=persist`. La skill dueña de fingerprints, candidates ausentes, pending sin cover, idempotencia y manifiesto durable ya no estaba activa. Al añadir un negativo cercano, una solicitud destructiva de borrar hashes repetidos sin abrir píxeles ni aprobación también activó pruning y arrastró audit por dependencia.
+
+### Root cause
+
+Las fases verification/persistence del workflow estaban condicionadas a `edit|maintain + risk=destructive`, una forma propia de implementación que no representa el readback read-only ni la persistencia write. Además, la metadata directa de pruning aceptaba cualquier match de necesidades técnicas (`integrity-verification`, backup o version-control); `requireNeedMatch` es intersección de al menos una necesidad, no autorización humana acumulativa.
+
+### Correction
+
+- Verification ahora requiere `stage=verify`, acción de review/analyze/verify e `integrity-verification` dentro del lifecycle aprobado.
+- Persistence ahora requiere `stage=persist`, acciones document/version/save/verify y version-control o integrity-verification.
+- La activación directa de `visual-evidence-pruning` exige `human-approval`; las necesidades técnicas no autorizan poda por sí solas.
+- Las skills visuales incorporan `logicalCaptureKey`, conteos físicos/lógicos, taxonomía de duplicados, colisiones entre cámaras, autoridad canónica explícita, protección de referencias por path/hash, pending con `cover=null` e idempotencia de segunda pasada.
+- Se añadió un contrato reusable y un validador dependency-free con preflight, postflight y self-test.
+
+### Regression
+
+- `visual-evidence-audit-cross-camera-collision`.
+- `visual-evidence-audit-canonical-conflict-old-preferred`.
+- `visual-evidence-pruning-verify-postflight`.
+- `visual-evidence-pruning-persist-manifest`.
+- `visual-evidence-pruning-reference-copy-protection`.
+- `visual-evidence-lifecycle-negative-hash-only-auto-delete`.
+- `visual-evidence-catalog-logical-versus-physical-counts`.
+- Suite focal: 154 casos, 38/38 skills propias con positivos/negativos, 7 workflows y mantenimiento pendiente `false`.

@@ -132,3 +132,17 @@ La detección se puede ejecutar automáticamente en CI o al cerrar una tarea. La
 ## Workflows transversales y presupuesto
 
 Una skill crítica que debe cumplirse como garantía de proceso no debe competir indefinidamente como optional. Cuando el comportamiento forme un lifecycle reusable —por ejemplo `visual-evidence-audit → visual-evidence-pruning`— decláralo como workflow requerido con condiciones semánticas estrechas y fixtures de presupuesto concurrido. Usa la señal semántica que distingue la garantía real (`human-approval` para decidir qué evidencia conservar), no una capacidad genérica como `visual-qa` que también aparece en descripción de una imagen o captura Photo Rig. No aumentes `maxSkills` globalmente para ocultar una relación contractual faltante.
+
+## Lifecycle visual: identidad, duplicados y continuidad de fase
+
+Para colecciones visuales versionadas:
+
+- no uses cantidad de archivos como cantidad de vistas; declara `physicalImageCount`, `logicalCaptureCount` y `logicalCaptureKey`;
+- separa derivados raw/review/thumb de colisiones donde cámaras o estados distintos repiten el mismo frame;
+- no dejes que `preferred` o el número de versión resuelvan un conflicto con la fuente vigente;
+- protege referencias conceptuales por path y hash aunque estén dentro de un run candidato;
+- un track sin píxeles debe seguir visible como pending con `cover=null`;
+- una skill que muta y posee postcondiciones debe continuar requerida en `stage=verify` y `stage=persist`; condiciona esas reglas por stage y necesidades de integridad/versionado, no por el riesgo destructivo propio de implementation;
+- la activación destructiva directa debe exigir `human-approval`; backup, integrity y version-control son gates técnicos, no autorización.
+
+Mantén positivos de audit/pruning, continuidad verify/persist y un negativo cercano de hash-only sin aprobación.

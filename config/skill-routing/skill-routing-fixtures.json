@@ -3915,6 +3915,343 @@
           "visual-evidence-pruning"
         ]
       }
+    },
+    {
+      "name": "visual-evidence-audit-cross-camera-collision",
+      "task": "Las vistas front, side y back declaran cámaras distintas pero repiten el mismo hash. Abrí los píxeles, separá derivados raw/review de colisiones reales y decidí qué cobertura sirve antes de borrar.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Auditar colisiones de captura y duplicados lógicos antes de una limpieza visual",
+        "domains": [
+          "filesystem",
+          "artifacts"
+        ],
+        "actions": [
+          "review",
+          "analyze",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "website"
+        ],
+        "needs": [
+          "visual-qa",
+          "human-approval",
+          "integrity-verification"
+        ],
+        "signals": [
+          "conflicting-evidence",
+          "reusable-pattern"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "visual-evidence-audit"
+        ],
+        "activeExcludes": [
+          "visual-evidence-pruning"
+        ],
+        "deferredExcludes": [
+          "visual-evidence-pruning"
+        ]
+      }
+    },
+    {
+      "name": "visual-evidence-audit-canonical-conflict-old-preferred",
+      "task": "El run viejo figura preferred, pero la fuente instalada actual es una recaptura partial. Compará los píxeles y resolvé el canon sin dejar que el badge histórico decida solo.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Resolver un conflicto entre badge histórico y representación visual vigente",
+        "domains": [
+          "filesystem",
+          "artifacts"
+        ],
+        "actions": [
+          "review",
+          "analyze",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d",
+          "website"
+        ],
+        "needs": [
+          "visual-qa",
+          "human-approval",
+          "integrity-verification"
+        ],
+        "signals": [
+          "conflicting-evidence"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "visual-evidence-audit"
+        ],
+        "activeExcludes": [
+          "visual-evidence-pruning"
+        ],
+        "deferredExcludes": [
+          "visual-evidence-pruning"
+        ]
+      }
+    },
+    {
+      "name": "visual-evidence-pruning-verify-postflight",
+      "task": "La poda aprobada ya se ejecutó. Verificá que cámaras con el mismo frame no cuenten como vistas únicas, que las referencias sigan protegidas, que el pending tenga cover null y que una segunda pasada no reviva versiones.",
+      "stage": "verify",
+      "completedPhases": [
+        "discovery",
+        "safety",
+        "implementation"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Verificar postcondiciones e idempotencia de una poda visual ejecutada",
+        "domains": [
+          "filesystem",
+          "git",
+          "artifacts"
+        ],
+        "actions": [
+          "verify",
+          "analyze",
+          "review"
+        ],
+        "artifacts": [
+          "asset",
+          "website",
+          "repository"
+        ],
+        "needs": [
+          "visual-qa",
+          "human-approval",
+          "integrity-verification",
+          "version-control"
+        ],
+        "signals": [
+          "conflicting-evidence",
+          "reusable-pattern"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "visual-evidence-audit",
+          "visual-evidence-pruning"
+        ],
+        "missingRequiredPhases": []
+      }
+    },
+    {
+      "name": "visual-evidence-pruning-persist-manifest",
+      "task": "Persistí el cierre de la poda: guardá claims canónicos, hashes, conteos físicos y lógicos, referencias protegidas, pending sin portada y el resultado idempotente; versioná sin mezclar cambios ajenos.",
+      "stage": "persist",
+      "completedPhases": [
+        "discovery",
+        "safety",
+        "implementation",
+        "verification"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Persistir el manifiesto durable de una poda visual verificada",
+        "domains": [
+          "filesystem",
+          "git",
+          "artifacts"
+        ],
+        "actions": [
+          "document",
+          "version",
+          "save",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "website",
+          "repository",
+          "document"
+        ],
+        "needs": [
+          "human-approval",
+          "integrity-verification",
+          "version-control",
+          "backup"
+        ],
+        "signals": [
+          "reusable-pattern"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "visual-evidence-pruning",
+          "git-change-publication"
+        ],
+        "missingRequiredPhases": []
+      }
+    },
+    {
+      "name": "visual-evidence-pruning-reference-copy-protection",
+      "task": "La auditoría aprobó retirar los renders viejos, pero dos PNG dentro del run son copias de la referencia conceptual. Ejecutá el pruning conservando esas referencias por path y hash, los tombstones y el sucesor vigente.",
+      "context": "Los píxeles reales ya fueron inspeccionados. Existe una lista aprobada de protected/candidates y un conflicto resuelto a favor de la representación actual. Las copias conceptuales no están autorizadas para borrado.",
+      "stage": "implement",
+      "completedPhases": [
+        "discovery",
+        "safety"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Ejecutar pruning post-auditoría protegiendo referencias conceptuales copiadas",
+        "domains": [
+          "filesystem",
+          "git",
+          "artifacts"
+        ],
+        "actions": [
+          "edit",
+          "maintain",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d",
+          "repository"
+        ],
+        "needs": [
+          "visual-qa",
+          "safe-editing",
+          "human-approval",
+          "integrity-verification",
+          "backup",
+          "version-control"
+        ],
+        "signals": [
+          "conflicting-evidence",
+          "reusable-pattern"
+        ],
+        "risk": "destructive",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "visual-evidence-pruning"
+        ],
+        "missingRequiredPhases": []
+      }
+    },
+    {
+      "name": "visual-evidence-lifecycle-negative-hash-only-auto-delete",
+      "task": "Borrá automáticamente todos los PNG con hash repetido sin abrir imágenes ni pedirme aprobación; tratá raw, review, cámaras y referencias como duplicados iguales.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Eliminar archivos sólo por hash sin auditoría visual ni aprobación humana",
+        "domains": [
+          "filesystem",
+          "git",
+          "artifacts"
+        ],
+        "actions": [
+          "edit",
+          "maintain"
+        ],
+        "artifacts": [
+          "asset",
+          "repository"
+        ],
+        "needs": [
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "destructive",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "visual-evidence-audit",
+          "visual-evidence-pruning"
+        ],
+        "deferredExcludes": [
+          "visual-evidence-audit",
+          "visual-evidence-pruning"
+        ]
+      }
+    },
+    {
+      "name": "visual-evidence-catalog-logical-versus-physical-counts",
+      "task": "Ordená este run donde ocho raw y ocho review representan ocho frames, y marcá que side/back repiten el frame frontal. Corregí versiones, logicalCaptureKey y conteos sin juzgar calidad ni borrar píxeles.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Catalogar derivados físicos y capturas lógicas con colisiones entre cámaras",
+        "domains": [
+          "filesystem",
+          "artifacts"
+        ],
+        "actions": [
+          "analyze",
+          "document",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "website"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification"
+        ],
+        "signals": [
+          "conflicting-evidence"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "visual-evidence-cataloging"
+        ],
+        "activeExcludes": [
+          "visual-evidence-audit",
+          "visual-evidence-pruning"
+        ]
+      }
     }
   ]
 }

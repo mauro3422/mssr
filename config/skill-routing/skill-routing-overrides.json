@@ -1833,12 +1833,7 @@
         "repository"
       ],
       "needs": [
-        "visual-qa",
-        "safe-editing",
-        "human-approval",
-        "integrity-verification",
-        "backup",
-        "version-control"
+        "human-approval"
       ],
       "requires": [
         "visual-evidence-audit"
@@ -2230,7 +2225,10 @@
           "analyze",
           "verify",
           "edit",
-          "maintain"
+          "maintain",
+          "document",
+          "version",
+          "save"
         ],
         "artifacts": [
           "asset",
@@ -2286,11 +2284,15 @@
           "required": true,
           "when": {
             "actions": [
-              "edit",
-              "maintain"
+              "verify",
+              "review",
+              "analyze"
             ],
-            "risks": [
-              "destructive"
+            "needs": [
+              "integrity-verification"
+            ],
+            "stages": [
+              "verify"
             ]
           }
         },
@@ -2302,11 +2304,17 @@
           "required": true,
           "when": {
             "actions": [
-              "edit",
-              "maintain"
+              "document",
+              "version",
+              "save",
+              "verify"
             ],
-            "risks": [
-              "destructive"
+            "needs": [
+              "version-control",
+              "integrity-verification"
+            ],
+            "stages": [
+              "persist"
             ]
           }
         }
