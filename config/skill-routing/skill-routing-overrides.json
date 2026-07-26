@@ -1189,6 +1189,69 @@
       "priority": 100,
       "activation": "always"
     },
+    "mssr-observability-maintenance": {
+      "phase": "discovery",
+      "coversPhases": [
+        "implementation",
+        "verification",
+        "maintenance"
+      ],
+      "domains": [
+        "skill-system",
+        "agent-orchestration",
+        "browser",
+        "coding"
+      ],
+      "actions": [
+        "debug",
+        "analyze",
+        "review",
+        "verify",
+        "test",
+        "maintain"
+      ],
+      "artifacts": [
+        "mcp",
+        "ui",
+        "code",
+        "skill"
+      ],
+      "needs": [
+        "integrity-verification",
+        "unit-tests",
+        "cross-agent"
+      ],
+      "signals": [
+        "error-observed",
+        "warning-observed",
+        "degraded-capability",
+        "uncertainty",
+        "conflicting-evidence",
+        "repeated-friction",
+        "manual-workaround",
+        "recovery-needed",
+        "skill-gap",
+        "reusable-pattern",
+        "tool-chain-needed",
+        "replan-needed"
+      ],
+      "requires": [
+        "mssr-agent-routing"
+      ],
+      "complements": [
+        "systematic-debugging",
+        "skill-maintenance-loop"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "ordinary application dashboard",
+        "nominal feature implementation"
+      ],
+      "priority": 96,
+      "activation": "on-demand",
+      "requireNeedMatch": true,
+      "requireSignalMatch": true
+    },
     "shared-skill-governance": {
       "phase": "discovery",
       "domains": [

@@ -3053,6 +3053,143 @@
           "skill-routing-maintainer"
         ]
       }
+    },
+    {
+      "name": "mssr-observability-web-loop-positive",
+      "task": "Auditá por qué ChatGPT Web queda varios minutos en silencio, corrige el outcome prematuro y mostrámelo separado por traza en el dashboard MSSR.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Diagnosticar y corregir el ciclo observable de ChatGPT Web en Bridge y MSSR",
+        "domains": [
+          "skill-system",
+          "agent-orchestration",
+          "browser",
+          "coding"
+        ],
+        "actions": [
+          "debug",
+          "analyze",
+          "edit",
+          "test"
+        ],
+        "artifacts": [
+          "mcp",
+          "ui",
+          "code"
+        ],
+        "needs": [
+          "integrity-verification",
+          "unit-tests",
+          "cross-agent"
+        ],
+        "signals": [
+          "error-observed",
+          "repeated-friction",
+          "reusable-pattern"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "mssr-agent-routing",
+          "mssr-observability-maintenance"
+        ]
+      }
+    },
+    {
+      "name": "ordinary-dashboard-bug-excludes-mssr-observability",
+      "task": "Arreglá el padding roto del dashboard de ventas y verificá el componente.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Corregir un defecto visual ordinario en una aplicación",
+        "domains": [
+          "coding",
+          "browser"
+        ],
+        "actions": [
+          "debug",
+          "edit",
+          "test"
+        ],
+        "artifacts": [
+          "ui",
+          "code"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "error-observed"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "mssr-observability-maintenance"
+        ],
+        "deferredExcludes": [
+          "mssr-observability-maintenance"
+        ]
+      }
+    },
+    {
+      "name": "mssr-observability-continuation",
+      "task": "Dale, verificá esa traza y dejá cerrada la regresión.",
+      "taskVariants": [
+        "Sí, seguí con la auditoría del loop Web",
+        "Mandale con la verificación del dashboard MSSR"
+      ],
+      "context": "La fase anterior reprodujo un ciclo de ChatGPT Web donde se registró un outcome exitoso antes de cargar todas las skills requeridas, hubo una carga posterior y un segundo outcome. Se debe verificar el guardrail, la atribución de la traza y la proyección del dashboard sin almacenar prompts ni razonamiento privado.",
+      "stage": "verify",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar la verificación de observabilidad MSSR y del ciclo Web",
+        "domains": [
+          "skill-system",
+          "agent-orchestration",
+          "coding"
+        ],
+        "actions": [
+          "verify",
+          "test",
+          "analyze"
+        ],
+        "artifacts": [
+          "mcp",
+          "ui",
+          "code"
+        ],
+        "needs": [
+          "integrity-verification",
+          "unit-tests",
+          "cross-agent"
+        ],
+        "signals": [
+          "repeated-friction",
+          "recovery-needed"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "mssr-observability-maintenance"
+        ]
+      }
     }
   ]
 }

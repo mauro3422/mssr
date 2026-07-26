@@ -686,3 +686,39 @@ convertirse automáticamente en mantenimiento del contrato.
   reales de skills y routing, incluidas variantes de tarea.
 - `mssr-dashboard-ux-does-not-require-routing-maintainer` excluye la maintainer
   tanto activa como diferida para una edición de UI sin cambios de routing.
+
+## MSSR-020 — Faltaba un owner reusable para observabilidad y loops Web
+
+**Date:** 2026-07-26
+**Status:** Corregida en source
+
+### Trigger
+
+Una traza real de ChatGPT Web cerró éxito antes de cargar todas las skills
+requeridas, continuó trabajando después del cierre y registró otro outcome.
+
+### Observed failure
+
+La investigación exigía reconstruir límites de observación, atribución,
+route→load, cierre, tiempos de silencio y proyección del dashboard. Ese
+procedimiento quedaba repartido entre debugging, routing y mantenimiento sin un
+owner reusable específico.
+
+### Root cause
+
+No existía una skill que distinguiera telemetría Bridge de actividad nativa del
+host ni que definiera invariantes y métricas para ciclos silenciosos de
+ChatGPT Web.
+
+### Correction
+
+Se añadió `mssr-observability-maintenance`, con gates de necesidad y señal para
+activarse sólo ante observabilidad MSSR/Bridge, atribución, trazas o loops Web
+no nominales. Conserva privacidad y dirige cada defecto al owner mínimo.
+
+### Regression
+
+- `mssr-observability-web-loop-positive`.
+- `ordinary-dashboard-bug-excludes-mssr-observability`.
+- `mssr-observability-continuation`.
+- Suite MSSR: 126 casos, audit limpio y sin ciclos.
