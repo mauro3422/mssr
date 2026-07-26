@@ -3143,6 +3143,64 @@
       }
     },
     {
+      "name": "mssr-observability-audits-roblox-evidence-without-routing-roblox",
+      "task": "Auditar dos tareas de ChatGPT Web sobre assets Roblox y corregir su atribución de sesión, proyecto y traza en el dashboard MSSR.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Corregir la observabilidad MCP de tareas Web que incidentalmente trabajaron con evidencia Roblox",
+        "domains": [
+          "skill-system",
+          "agent-orchestration",
+          "coding"
+        ],
+        "actions": [
+          "debug",
+          "analyze",
+          "edit",
+          "test"
+        ],
+        "artifacts": [
+          "mcp",
+          "ui",
+          "code"
+        ],
+        "needs": [
+          "integrity-verification",
+          "unit-tests"
+        ],
+        "signals": [
+          "error-observed",
+          "conflicting-evidence",
+          "repeated-friction"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "mssr-observability-maintenance"
+        ],
+        "activeExcludes": [
+          "roblox-mcp-incident-recovery",
+          "roblox-mcp-skill-router",
+          "roblox-safe-editing",
+          "roblox-studio-qa",
+          "roblox-playtest"
+        ],
+        "deferredExcludes": [
+          "roblox-mcp-incident-recovery",
+          "roblox-mcp-skill-router",
+          "roblox-safe-editing",
+          "roblox-studio-qa",
+          "roblox-playtest"
+        ]
+      }
+    },
+    {
       "name": "mssr-observability-continuation",
       "task": "Dale, verificá esa traza y dejá cerrada la regresión.",
       "taskVariants": [
