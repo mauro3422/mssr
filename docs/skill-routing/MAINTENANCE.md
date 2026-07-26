@@ -128,3 +128,7 @@ npm run verify
 La detección se puede ejecutar automáticamente en CI o al cerrar una tarea. La reparación debe conservar revisión humana/agente, diff y rollback.
 
 
+
+## Workflows transversales y presupuesto
+
+Una skill crítica que debe cumplirse como garantía de proceso no debe competir indefinidamente como optional. Cuando el comportamiento forme un lifecycle reusable —por ejemplo `visual-evidence-audit → visual-evidence-pruning`— decláralo como workflow requerido con condiciones semánticas estrechas y fixtures de presupuesto concurrido. Usa la señal semántica que distingue la garantía real (`human-approval` para decidir qué evidencia conservar), no una capacidad genérica como `visual-qa` que también aparece en descripción de una imagen o captura Photo Rig. No aumentes `maxSkills` globalmente para ocultar una relación contractual faltante.

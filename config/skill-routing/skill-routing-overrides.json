@@ -1680,7 +1680,6 @@
         "game"
       ],
       "needs": [
-        "visual-qa",
         "human-approval"
       ],
       "requires": [],
@@ -1688,7 +1687,8 @@
         "visual-evidence-cataloging",
         "roblox-photo-rig-capture",
         "blender-visual-review",
-        "roblox-safe-editing"
+        "roblox-safe-editing",
+        "visual-evidence-pruning"
       ],
       "excludes": [],
       "negativeIntents": [
@@ -1798,6 +1798,70 @@
       "requireNeedMatch": true,
       "requireActionMatch": true,
       "priority": 91,
+      "activation": "on-demand"
+    },
+    "visual-evidence-pruning": {
+      "phase": "implementation",
+      "coversPhases": [
+        "safety",
+        "verification",
+        "persistence"
+      ],
+      "domains": [
+        "filesystem",
+        "artifacts",
+        "git",
+        "roblox",
+        "blender"
+      ],
+      "actions": [
+        "edit",
+        "maintain",
+        "verify",
+        "document",
+        "version"
+      ],
+      "artifacts": [
+        "asset",
+        "model-3d",
+        "animation",
+        "ui",
+        "document",
+        "presentation",
+        "website",
+        "game",
+        "repository"
+      ],
+      "needs": [
+        "visual-qa",
+        "safe-editing",
+        "human-approval",
+        "integrity-verification",
+        "backup",
+        "version-control"
+      ],
+      "requires": [
+        "visual-evidence-audit"
+      ],
+      "complements": [
+        "visual-evidence-cataloging",
+        "git-change-publication",
+        "roblox-safe-editing"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "generation-only",
+        "capture-only",
+        "metadata-only",
+        "single-image-delete",
+        "read-only",
+        "write",
+        "external-side-effect"
+      ],
+      "requireNeedMatch": true,
+      "requireActionMatch": true,
+      "requireArtifactMatch": true,
+      "priority": 97,
       "activation": "on-demand"
     }
   },
@@ -2155,6 +2219,96 @@
             "mauroprime-bridge-tool-authoring"
           ],
           "required": true
+        }
+      ]
+    },
+    {
+      "name": "visual-evidence-lifecycle",
+      "match": {
+        "actions": [
+          "review",
+          "analyze",
+          "verify",
+          "edit",
+          "maintain"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d",
+          "animation",
+          "ui",
+          "document",
+          "presentation",
+          "website",
+          "game"
+        ],
+        "needs": [
+          "human-approval"
+        ]
+      },
+      "phases": [
+        {
+          "phase": "discovery",
+          "skills": [
+            "visual-evidence-audit"
+          ],
+          "required": true,
+          "when": {
+            "actions": [
+              "review",
+              "analyze",
+              "verify"
+            ]
+          }
+        },
+        {
+          "phase": "implementation",
+          "skills": [
+            "visual-evidence-pruning"
+          ],
+          "required": true,
+          "when": {
+            "actions": [
+              "edit",
+              "maintain"
+            ],
+            "risks": [
+              "destructive"
+            ]
+          }
+        },
+        {
+          "phase": "verification",
+          "skills": [
+            "visual-evidence-audit",
+            "visual-evidence-pruning"
+          ],
+          "required": true,
+          "when": {
+            "actions": [
+              "edit",
+              "maintain"
+            ],
+            "risks": [
+              "destructive"
+            ]
+          }
+        },
+        {
+          "phase": "persistence",
+          "skills": [
+            "visual-evidence-pruning"
+          ],
+          "required": true,
+          "when": {
+            "actions": [
+              "edit",
+              "maintain"
+            ],
+            "risks": [
+              "destructive"
+            ]
+          }
         }
       ]
     }

@@ -751,3 +751,34 @@ Se añadió `visual-evidence-audit`, que separa procedencia de apariencia, exige
 - Cobertura completa: 37/37 skills propias con fixture positivo y negativo aplicable.
 - Suite MSSR: 139 casos, audit limpio y sin mantenimiento pendiente.
 
+
+## MSSR-022 — La auditoría visual transversal perdió el presupuesto opcional
+
+**Date:** 2026-07-26
+**Status:** Corregida en source
+
+### Trigger
+
+Una tarea destructiva de MyceliumFront pidió abrir y comparar varias colecciones de fotos reales, conservar sólo la evidencia vigente, borrar versiones obsoletas y dejar un asset sin fotos como pendiente.
+
+### Observed failure
+
+El structured intent declaró `visual-qa`, `review`, `analyze`, `verify`, artifacts visuales y evidencia contradictoria. `visual-evidence-audit` existía en el catálogo y su metadata coincidía, pero no apareció en el plan: los workflows generales aportaron siete roots requeridos dentro de un presupuesto de ocho y una skill general obtuvo el único slot opcional.
+
+### Root cause
+
+La auditoría visual estaba configurada como coincidencia on-demand de alta prioridad, no como fase requerida de un lifecycle visual. La selección respetó correctamente el presupuesto; el contrato era incompleto porque una garantía transversal crítica dependía de competir como optional.
+
+### Correction
+
+Se añadió el workflow `visual-evidence-lifecycle`. Cuando una decisión visual requiere `human-approval`, artifacts visuales y acciones de review/analyze/verify, `visual-evidence-audit` es requerida. Cuando además existe `risk=destructive` con edit/maintain, `visual-evidence-pruning` es requerida y depende de la auditoría. El gate de workflow usa `human-approval` —no el genérico `visual-qa`— para no interceptar descripciones de una sola imagen ni sesiones Photo Rig de captura+verify. La skill nueva separa decisión visual read-only de ejecución destructiva, preserva tombstones, exige protected/candidates con hashes y mantiene visibles los tracks `pending` sin portada.
+
+### Regression
+
+- `visual-evidence-lifecycle-audit-required-under-crowded-budget`.
+- `visual-evidence-pruning-positive-post-audit`.
+- `visual-evidence-pruning-continuation`.
+- `visual-evidence-pruning-negative-capture-only`.
+- `visual-evidence-lifecycle-negative-single-image-description`.
+- `visual-evidence-lifecycle-negative-photo-rig-create-and-verify`.
+- Suite focal: 147 casos efectivos, 38/38 skills propias con fixtures positivos y negativos, 7 workflows, mantenimiento pendiente `false`.

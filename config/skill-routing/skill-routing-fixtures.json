@@ -3636,6 +3636,285 @@
           "roblox-placement-ui-review"
         ]
       }
+    },
+    {
+      "name": "visual-evidence-lifecycle-audit-required-under-crowded-budget",
+      "task": "Abrí y compará todas las fotos reales del carrier, el micelio y la flor; decidí por píxeles cuál representa el estado actual antes de borrar nada.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Auditar varias versiones visuales reales antes de una decisión",
+        "domains": [
+          "filesystem",
+          "git",
+          "roblox",
+          "artifacts"
+        ],
+        "actions": [
+          "review",
+          "analyze",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d",
+          "game",
+          "repository"
+        ],
+        "needs": [
+          "visual-qa",
+          "human-approval",
+          "integrity-verification",
+          "version-control"
+        ],
+        "signals": [
+          "conflicting-evidence"
+        ],
+        "risk": "read-only",
+        "ambiguity": "medium"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "visual-evidence-audit"
+        ],
+        "activeExcludes": [
+          "visual-evidence-pruning"
+        ],
+        "deferredExcludes": [
+          "visual-evidence-pruning"
+        ]
+      }
+    },
+    {
+      "name": "visual-evidence-pruning-positive-post-audit",
+      "task": "Ya auditamos las fotos reales. Conservá sólo la recaptura vigente, borrá los píxeles viejos aprobados, mantené los tombstones y dejá la flor visible como pendiente sin fotos; regenerá y verificá el dashboard.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Ejecutar pruning destructivo post-auditoría con track pendiente",
+        "domains": [
+          "filesystem",
+          "git",
+          "roblox",
+          "artifacts"
+        ],
+        "actions": [
+          "review",
+          "analyze",
+          "edit",
+          "verify",
+          "maintain",
+          "document",
+          "version"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d",
+          "game",
+          "repository"
+        ],
+        "needs": [
+          "visual-qa",
+          "safe-editing",
+          "human-approval",
+          "integrity-verification",
+          "backup",
+          "version-control"
+        ],
+        "signals": [
+          "reusable-pattern"
+        ],
+        "risk": "destructive",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "visual-evidence-audit",
+          "visual-evidence-pruning"
+        ]
+      }
+    },
+    {
+      "name": "visual-evidence-pruning-continuation",
+      "task": "Dale, aplicá esa lista y dejá el asset pendiente.",
+      "taskVariants": [
+        "Sí, borrá sólo esas fotos y verificá el dashboard",
+        "Mandale con el pruning aprobado"
+      ],
+      "context": "La auditoría visual ya abrió las imágenes reales, confirmó el run vigente de cada track, congeló hashes de protected y candidates, aprobó borrar únicamente píxeles viejos y dejar un track sin fotos como pending-recapture.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar un pruning visual ya auditado y aprobado",
+        "domains": [
+          "filesystem",
+          "git",
+          "artifacts"
+        ],
+        "actions": [
+          "edit",
+          "verify",
+          "maintain",
+          "document",
+          "version"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d",
+          "repository"
+        ],
+        "needs": [
+          "visual-qa",
+          "safe-editing",
+          "human-approval",
+          "integrity-verification",
+          "backup",
+          "version-control"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "destructive",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "visual-evidence-audit",
+          "visual-evidence-pruning"
+        ]
+      }
+    },
+    {
+      "name": "visual-evidence-pruning-negative-capture-only",
+      "task": "Generá una nueva tanda de fotos del modelo con el Photo Rig; no audites ni borres evidencia existente.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Capturar evidencia nueva sin auditoría ni pruning",
+        "domains": [
+          "roblox",
+          "filesystem"
+        ],
+        "actions": [
+          "create"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d",
+          "game"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "activeExcludes": [
+          "visual-evidence-audit",
+          "visual-evidence-pruning"
+        ],
+        "deferredExcludes": [
+          "visual-evidence-audit",
+          "visual-evidence-pruning"
+        ]
+      }
+    },
+    {
+      "name": "visual-evidence-lifecycle-negative-single-image-description",
+      "task": "Describí esta única captura y señalá el defecto principal; no compares una colección ni borres evidencia.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Revisar una sola captura sin auditoría de colección",
+        "domains": [
+          "artifacts"
+        ],
+        "actions": [
+          "review",
+          "verify"
+        ],
+        "artifacts": [
+          "asset"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "activeExcludes": [
+          "visual-evidence-audit",
+          "visual-evidence-pruning"
+        ],
+        "deferredExcludes": [
+          "visual-evidence-audit",
+          "visual-evidence-pruning"
+        ]
+      }
+    },
+    {
+      "name": "visual-evidence-lifecycle-negative-photo-rig-create-and-verify",
+      "task": "Generá y verificá una nueva tanda de fotos con el Photo Rig; no audites una colección histórica ni borres evidencia.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Capturar y verificar evidencia nueva sin lifecycle de auditoría o pruning",
+        "domains": [
+          "roblox",
+          "filesystem"
+        ],
+        "actions": [
+          "create",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d",
+          "game"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "activeExcludes": [
+          "visual-evidence-audit",
+          "visual-evidence-pruning"
+        ],
+        "deferredExcludes": [
+          "visual-evidence-audit",
+          "visual-evidence-pruning"
+        ]
+      }
     }
   ]
 }
