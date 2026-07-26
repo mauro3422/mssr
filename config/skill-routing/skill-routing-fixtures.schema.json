@@ -24,6 +24,7 @@
             "type": "array",
             "items": { "enum": ["discovery", "safety", "implementation", "verification", "persistence", "maintenance"] }
           },
+          "maxSkills": { "type": "integer", "minimum": 1, "maximum": 16 },
           "sources": {
             "type": "array",
             "items": { "enum": ["codex-local", "codex-system", "codex-plugin", "roblox"] }
@@ -40,6 +41,7 @@
               "deferredExcludes": { "type": "array", "items": { "type": "string" } },
               "missingRequiredPhases": { "type": "array", "items": { "enum": ["discovery", "safety", "implementation", "verification", "persistence", "maintenance"] }, "uniqueItems": true },
               "agentFallbackPhases": { "type": "array", "items": { "enum": ["discovery", "safety", "implementation", "verification", "persistence", "maintenance"] }, "uniqueItems": true }
+              ,"rootSelectedAtMost": { "type": "integer", "minimum": 1, "maximum": 32 }
             },
             "additionalProperties": false
           }

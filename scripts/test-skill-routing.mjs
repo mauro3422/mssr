@@ -46,7 +46,7 @@ for (const testCase of expandedCases) {
     caller: testCase.caller,
     stage: testCase.stage,
     completedPhases: testCase.completedPhases ?? [],
-    maxSkills: 12,
+    maxSkills: testCase.maxSkills ?? 16,
     skills,
   });
   const expected = testCase.expect ?? {};
@@ -67,6 +67,10 @@ for (const testCase of expandedCases) {
     if (JSON.stringify(actual) !== JSON.stringify(wanted)) {
       failures.push(`${testCase.name}: expected ${key}=${wanted.join(", ") || "none"}, got ${actual.join(", ") || "none"}`);
     }
+  }
+  if (Number.isInteger(expected.rootSelectedAtMost)
+      && route.selectionBudget.selectedRootSkills > expected.rootSelectedAtMost) {
+    failures.push(`${testCase.name}: expected at most ${expected.rootSelectedAtMost} root skills, got ${route.selectionBudget.selectedRootSkills}`);
   }
 }
 

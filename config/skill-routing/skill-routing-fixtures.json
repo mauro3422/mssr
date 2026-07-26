@@ -1330,7 +1330,6 @@
         ]
       }
     },
-
     {
       "name": "visual-reference-replication-positive",
       "task": "Replicá esta imagen lo más fiel posible en Roblox, respetá el estilo, la silueta, la geografía de la tierra y hacé que el micelio siga la superficie; capturá vistas comparables e iterá por el mayor error",
@@ -2749,6 +2748,309 @@
         "activeExcludes": [
           "conversation-history-review",
           "visual-evidence-cataloging"
+        ]
+      }
+    },
+    {
+      "name": "roblox-bounded-cleanup-exact-target",
+      "task": "Archivá sólo los objetos exactos de revisión en Workspace, conservá los roots protegidos, verificá Edit, Client, Server, Stop y guardá el lugar.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Aplicar un cleanup acotado y reversible en un place Roblox",
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "move",
+          "edit"
+        ],
+        "artifacts": [
+          "game",
+          "place-file"
+        ],
+        "needs": [
+          "safe-editing",
+          "integrity-verification",
+          "backup",
+          "playtest"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "destructive",
+        "ambiguity": "medium"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "roblox-mcp-skill-router",
+          "roblox-safe-editing"
+        ],
+        "deferredIncludes": [
+          "roblox-studio-qa",
+          "roblox-playtest",
+          "roblox-save-backup-recovery"
+        ]
+      }
+    },
+    {
+      "name": "roblox-spatial-scene-inspection-read-only",
+      "task": "Explicame qué son las plataformas con hongos que se ven debajo de la cámara, sin modificar nada.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Inspeccionar y explicar objetos visibles de una escena Roblox sin modificarla",
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "review",
+          "analyze"
+        ],
+        "artifacts": [
+          "game",
+          "model-3d"
+        ],
+        "needs": [
+          "scene-analysis"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "high"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "roblox-safe-editing"
+        ],
+        "deferredExcludes": [
+          "roblox-safe-editing",
+          "roblox-save-backup-recovery"
+        ],
+        "deferredIncludes": [
+          "roblox-studio-qa"
+        ]
+      }
+    },
+    {
+      "name": "roblox-bounded-cleanup-continuation",
+      "task": "Dale, limpiá sólo eso y no toques las otras plataformas del juego.",
+      "taskVariants": [
+        "Sí, archivá sólo esos modelos del juego",
+        "Mandale con el cleanup de Roblox, pero conservá lo demás",
+        "Seguí con el cleanup exacto del Workspace"
+      ],
+      "context": "La propuesta aceptada inmediatamente anterior fue editar de forma segura el juego y place de Roblox Studio: mover y archivar paths exactos de modelos en Workspace, conservar una lista completa de roots protegidos, hacer backup, playtest y verificar Edit, Client, Server, Stop y disco.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "expect": {
+        "classificationMode": "lexical-fallback",
+        "contextUsed": true,
+        "activeIncludes": [
+          "roblox-mcp-skill-router",
+          "roblox-safe-editing"
+        ],
+        "deferredIncludes": [
+          "roblox-studio-qa",
+          "roblox-save-backup-recovery"
+        ]
+      }
+    },
+    {
+      "name": "structured-context-history-does-not-reactivate-named-skills",
+      "task": "Afiná la precisión del router y verificá sus pruebas focales.",
+      "context": "La prueba anterior cargó visual-reference-replication y mencionó document, pero ambas capacidades pertenecían al benchmark visual ya cerrado y no forman parte del mantenimiento actual.",
+      "stage": "start",
+      "maxSkills": 2,
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Corregir y verificar la precisión de MSSR",
+        "domains": [
+          "skill-system",
+          "coding"
+        ],
+        "actions": [
+          "optimize",
+          "verify"
+        ],
+        "artifacts": [
+          "mcp",
+          "code"
+        ],
+        "needs": [
+          "unit-tests",
+          "integrity-verification"
+        ],
+        "signals": [
+          "repeated-friction"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "mssr-agent-routing",
+          "shared-skill-governance"
+        ],
+        "activeExcludes": [
+          "visual-reference-replication",
+          "document"
+        ],
+        "deferredExcludes": [
+          "visual-reference-replication",
+          "document"
+        ],
+        "rootSelectedAtMost": 2
+      }
+    },
+    {
+      "name": "visual-reference-design-contract-without-capture",
+      "task": "Analizá esta lámina y diseñá un contrato geométrico fiel para un modelo Roblox; no abras Studio, no captures y no catalogues evidencia todavía.",
+      "stage": "start",
+      "maxSkills": 2,
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Extraer un contrato visual y una receta geométrica sin construir ni capturar",
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "design",
+          "analyze"
+        ],
+        "artifacts": [
+          "model-3d",
+          "asset"
+        ],
+        "needs": [
+          "scene-analysis"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "roblox-mcp-skill-router",
+          "visual-reference-replication"
+        ],
+        "activeExcludes": [
+          "roblox-photo-rig-capture",
+          "visual-evidence-cataloging",
+          "roblox-visual-asset-forge"
+        ],
+        "deferredExcludes": [
+          "roblox-photo-rig-capture",
+          "visual-evidence-cataloging",
+          "roblox-visual-asset-forge"
+        ],
+        "rootSelectedAtMost": 2
+      }
+    },
+    {
+      "name": "skill-routing-contract-change-positive",
+      "task": "Corregí la activación de skill-routing-maintainer, actualizá el contrato de skills y agregá fixtures positivos y negativos.",
+      "taskVariants": [
+        "Ajustá el routing de skills y verificá que no queden activaciones falsas",
+        "Modificá el contrato MSSR para que esta skill se active sólo en su alcance"
+      ],
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Corregir semántica de activación en el contrato de skills",
+        "domains": [
+          "skill-system",
+          "coding"
+        ],
+        "actions": [
+          "edit",
+          "maintain",
+          "test"
+        ],
+        "artifacts": [
+          "skill",
+          "mcp",
+          "code"
+        ],
+        "needs": [
+          "unit-tests",
+          "integrity-verification"
+        ],
+        "signals": [
+          "repeated-friction"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "mssr-agent-routing",
+          "shared-skill-governance",
+          "skill-routing-maintainer"
+        ]
+      }
+    },
+    {
+      "name": "mssr-dashboard-ux-does-not-require-routing-maintainer",
+      "task": "Corregí las etiquetas del dashboard MSSR: mostrÃ¡ tareas abiertas como pendientes y explicÃ¡ las conexiones HTTP, sin cambiar skills ni reglas de routing.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Depurar y mejorar la UX del dashboard de observabilidad MSSR",
+        "domains": [
+          "skill-system",
+          "coding"
+        ],
+        "actions": [
+          "debug",
+          "edit",
+          "test"
+        ],
+        "artifacts": [
+          "ui",
+          "mcp",
+          "code"
+        ],
+        "needs": [
+          "unit-tests",
+          "integrity-verification"
+        ],
+        "signals": [
+          "conflicting-evidence",
+          "repeated-friction"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "skill-routing-maintainer"
+        ],
+        "deferredExcludes": [
+          "skill-routing-maintainer"
         ]
       }
     }

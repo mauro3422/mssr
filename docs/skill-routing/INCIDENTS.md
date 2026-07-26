@@ -516,3 +516,173 @@ The signal fallback covered generic `error`, `bug`, timeout and repeated frictio
 ### Verification
 
 `npm run test:skill-routing` passes 109 effective cases. The positive structured, lexical and bounded-continuation cases activate `skill-maintenance-loop`; the nearby nominal close explicitly excludes it. `skill_route_audit` remains clean with no maintenance required.
+## MSSR-016 — Roblox cleanup routing did not encode hierarchical target identity
+
+**Date:** 2026-07-25
+
+### Trigger
+
+A Roblox scene cleanup was described through visible content and spatial language: mushroom plates near or beneath a photo booth had to disappear while the photo booth and the adjacent modeling platform had to remain. The first iterations misclassified protected scene roots, and one recovery attempt reconstructed a saved V4 Photo Rig from an older V2 factory before the exact saved structure was restored.
+
+### Observed failures
+
+- The first answer skipped the project context-first gate, so MSSR and the domain workflow did not run before scene classification.
+- Screenshot and spatial clues were treated as mutation scope instead of a search region to resolve against the live hierarchy.
+- Mushroom descendants transferred candidate status incorrectly to their parent platform.
+- `protected` was treated as an exclusion comment rather than a complete set of required postconditions.
+- Verification proved that one candidate disappeared but did not assert every protected root, allowing a missing workstation to pass.
+- A protected root already missing at baseline was not classified as a blocking pre-existing regression.
+- Recovery did not initially prefer the exact archived instance or exact matching backup subtree; visual similarity to an older factory was overtrusted.
+- Opening an auxiliary Studio for backup inspection introduced temporary ownership ambiguity.
+- Reports conflated intended protection with observed live readback.
+- The global `roblox-safe-editing` routing metadata underrepresented move/recover/place-file structural work and lacked a regression for bounded cleanup continuations.
+
+### Root cause
+
+The operation was represented as broad visual cleanup rather than a bounded hierarchy mutation with explicit `targets`, `protected`, `expectedAbsent`, and `unknown` sets. Existing global editing and QA guidance covered ordered safe changes but did not encode non-propagating parent/child scope, baseline invariant failure, exact-subtree restoration, or one-editor authority as a reusable contract.
+
+### Correction
+
+- Hardened the transversal `roblox-safe-editing` skill with positive target identity, non-propagating hierarchy/proximity scope, required protected invariants, an expected-delta manifest, one-target-at-a-time reversible mutation, exact archived/subtree recovery, and single-editor authority.
+- Hardened `roblox-studio-qa` with parent/child/sibling/spatial-neighbor/same-name/factory/archive/runtime ambiguity checks and complete Edit/Client/Server/Stop/disk invariant verification.
+- Added cross-domain friction patterns for visible-child scope leakage, protected allowlists treated as commentary, broad rollback during subtree recovery, and auxiliary editors becoming accidental authorities.
+- Updated MSSR routing metadata so Roblox structural edits route `roblox-safe-editing` without polluting read-only scene inspection or filesystem-only repository migration.
+- Kept the project-specific `roblox-scene-state-reconciliation` guide as the MyceliumFront specialization instead of creating a duplicate global skill.
+
+### Regression fixtures
+
+- `roblox-bounded-cleanup-exact-target`
+- `roblox-spatial-scene-inspection-read-only`
+- `roblox-bounded-cleanup-continuation`
+
+### Verification
+
+- Skill frontmatter validation: `35/35` valid.
+- Skill junction/runtime verification and Codex discovery: `35/35` present.
+- MSSR routing: `115` effective cases passed; audit `ok=true`, `maintenanceRequired=false`.
+- Bridge routing integration: `70` canonical base cases, `115` canonical effective cases and `10` integration cases passed.
+- Full source maintenance gate passed: skill checks, MSSR typecheck/build/routing/audit, Bridge typecheck/build/regressions/routing/docs and all diff checks.
+- Live Bridge restart/version verification remains a separate release gate; no restart was required to complete this source-level correction.
+
+## MSSR-017 — Required-load compliance confundió skips justificados con incumplimiento
+
+**Date:** 2026-07-25
+
+### Trigger
+
+Una continuación estrictamente file-only del Photo Rig cargó contexto y routing de Roblox por el historial del proyecto, pero no mutó Studio ni `1.rbxl`. En `stage=close`, la traza informó como faltantes `roblox-playtest`, `roblox-save-backup-recovery` y `roblox-studio-qa`.
+
+### Observed failure
+
+La métrica de required-load compliance no conserva una disposición explícita para una capability requerida en una fase previa pero posteriormente demostrada como inaplicable. El warning mezcla un skip justificado con una omisión real y degrada comparaciones entre `chatgpt-web` y `codex-local`.
+
+### Root cause
+
+El contrato de observabilidad registra load y phase completion, pero no un evento `required-skill-disposition` con razón acotada, evidencia y fase. Por eso el cierre sólo puede inferir `loaded` o `missing`.
+
+### Correction
+
+No se modificó routing silenciosamente: el caso demuestra una carencia de medición, no que las skills de Roblox deban dejar de ser requeridas para mutaciones reales.
+
+### Regression / follow-up
+
+Agregar una disposición `loaded | skipped-not-applicable | unavailable | failed` vinculada a `traceId`, skill y fase. La compliance debe excluir únicamente `skipped-not-applicable` con razón observable; agregar fixtures para continuación file-only positiva y para una mutación Studio donde el mismo skip siga fallando.
+
+## MSSR-018 — El contrato de respuesta del route plan es demasiado verboso y sobreselecciona en diseño visual read-only
+
+**Date:** 2026-07-25
+**Status:** Corregida en source; pendiente de release/restart vivo
+
+### Trigger
+
+Dos agentes recibieron el mismo benchmark read-only para diseñar, revisar y analizar
+un asset Roblox desde una referencia visual. Sólo necesitaban
+`roblox-mcp-skill-router` y `visual-reference-replication`.
+
+### Observed failure
+
+- `skill_route_plan` no expone un modo de respuesta compacto y devuelve
+  incondicionalmente el plan completo, incluyendo active/deferred skills, scores,
+  reasons, workflow metadata, source health y warnings.
+- La traza `mssr-20260725231336-a41fa1c7-767` seleccionó cuatro skills activas;
+  la traza `mssr-20260725231358-06b17402-eb5` seleccionó cinco activas y tres
+  diferidas. Ambos agentes cargaron correctamente sólo las dos aplicables.
+- La selección incluyó captura y catalogación aunque la fase prohibía acceder a
+  Studio y sólo pedía producir el contrato de diseño.
+- En la traza Sol se reportó `maxSkills=3`, pero el resultado conservó cuatro
+  activas.
+
+### Root cause
+
+El handler de Bridge retornaba `{ ...route, traceId, sourceHealth, warnings }` y
+el schema no ofrecía `responseMode=compact`. MSSR interpretaba `maxSkills` como
+“opcionales además de required”, no como presupuesto raíz total. Además,
+`scoreEntry` buscaba nombres explícitos dentro de task + contexto resuelto, por lo
+que una skill mencionada como antecedente o rechazo se reactivaba. El fixture
+inicial también declaró `visual-qa` durante una fase de diseño sin captura; esa
+necesidad invitaba legítimamente capacidades Photo Rig.
+
+### Correction
+
+- `maxSkills` ahora limita la selección raíz completa; required y dependencias
+  pueden excederla de forma explícita en `selectionBudget`.
+- Sólo la tarea actual puede nombrar explícitamente una skill; el contexto
+  conserva continuidad semántica sin reactivar nombres históricos.
+- Bridge `0.6.15` ofrece `responseMode=compact` por defecto y `debug` para scores
+  y planes completos.
+- El fixture de diseño visual usa `scene-analysis` y `maxSkills=2`; `visual-qa`
+  se reserva para la fase de captura.
+- `visual-reference-replication` distingue vistas, estados, cutaways y variantes,
+  y bloquea recetas cuya primitiva o conteo contradigan antiobjetivos.
+
+### Regression / follow-up
+
+- `structured-context-history-does-not-reactivate-named-skills`.
+- `visual-reference-design-contract-without-capture`.
+- Suite MSSR: 117 casos, audit limpio.
+- Bridge: 123 tools, regresiones, integración de routing y docs-tools limpias.
+- Medición focal: respuesta compacta 2.593 caracteres frente a 6.932 en debug,
+  reducción de 62,6%, con exactamente dos loads sugeridos.
+- Seguimiento: publicar/reiniciar Bridge sólo después de que termine el trabajo
+  visual concurrente; entonces abrir una nueva época activa sin borrar
+  `scope=all`.
+
+## MSSR-019 — El dashboard de observabilidad activaba mantenimiento de routing
+
+**Date:** 2026-07-26
+**Status:** Corregida en source
+
+### Trigger
+
+Una tarea para depurar etiquetas y porcentajes del dashboard MSSR declaró el
+dominio `skill-system`, acciones `debug/edit/test` y artefactos `ui/mcp/code`.
+No cambiaba una skill ni el contrato de routing.
+
+### Observed failure
+
+El workflow `skill-system-maintenance` marcó `skill-routing-maintainer` como
+requerida. La tarea cargó las capacidades de diagnóstico aplicables y omitió
+justificadamente la maintainer, pero el observatorio mostró required-load
+compliance de 66,7% y la trató como incumplimiento.
+
+### Root cause
+
+El workflow sólo exigía coincidencia de dominio `skill-system`; su fase de
+implementación requería la maintainer ante cualquier acción `create`, `edit` o
+`maintain`. La metadata individual aceptaba artefactos genéricos `mcp` y `code`,
+por lo que una UI de observabilidad entraba en el mismo alcance que una skill o
+su contrato.
+
+### Correction
+
+El workflow `skill-system-maintenance` ahora requiere el artefacto `skill`.
+`skill-routing-maintainer` usa el mismo artefacto como gate explícito. El código,
+MCP o dashboard pueden seguir componiendo depuración y protocolo MSSR sin
+convertirse automáticamente en mantenimiento del contrato.
+
+### Regression
+
+- `skill-routing-contract-change-positive` conserva la activación para cambios
+  reales de skills y routing, incluidas variantes de tarea.
+- `mssr-dashboard-ux-does-not-require-routing-maintainer` excluye la maintainer
+  tanto activa como diferida para una edición de UI sin cambios de routing.

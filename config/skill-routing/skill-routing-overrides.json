@@ -764,14 +764,21 @@
       "actions": [
         "create",
         "edit",
-        "debug"
+        "move",
+        "debug",
+        "recover"
       ],
       "artifacts": [
         "code",
         "game",
+        "project",
+        "place-file",
+        "backup",
         "ui",
         "animation",
         "model-3d",
+        "asset",
+        "placement-system",
         "network-system",
         "resource-system"
       ],
@@ -788,6 +795,8 @@
       "negativeIntents": [
         "read-only"
       ],
+      "requireActionMatch": true,
+      "requireNeedMatch": true,
       "priority": 95,
       "activation": "on-demand"
     },
@@ -1315,9 +1324,7 @@
         "analyze"
       ],
       "artifacts": [
-        "skill",
-        "mcp",
-        "code"
+        "skill"
       ],
       "needs": [
         "cross-agent"
@@ -1338,6 +1345,7 @@
       ],
       "excludes": [],
       "negativeIntents": [],
+      "requireArtifactMatch": true,
       "priority": 95,
       "activation": "on-demand"
     },
@@ -1839,6 +1847,9 @@
               "create",
               "edit",
               "maintain"
+            ],
+            "artifacts": [
+              "skill"
             ]
           }
         },

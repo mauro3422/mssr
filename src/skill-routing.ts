@@ -743,7 +743,10 @@ export async function planSkillRoute(args: {
 
   const scored: RoutedSkill[] = [];
   for (const skill of registry.entries) {
-    const result = scoreEntry(skill, intent, routingText);
+    // Only the current task can explicitly name a skill. Bounded continuation
+    // context may describe previously loaded/rejected skills and must not turn
+    // those historical mentions into fresh activation anchors.
+    const result = scoreEntry(skill, intent, args.task);
     if (result.excluded) continue;
     const requiredReasons = requiredBy.get(skill.name) ?? [];
     if (result.score <= 0 && !requiredReasons.length && skill.activation !== "always") continue;
@@ -764,7 +767,11 @@ export async function planSkillRoute(args: {
 
   scored.sort((a, b) => Number(b.required) - Number(a.required) || b.score - a.score || (phaseOrder.get(a.phase ?? "implementation") ?? 0) - (phaseOrder.get(b.phase ?? "implementation") ?? 0) || a.name.localeCompare(b.name));
   const requiredSelected = scored.filter((skill) => skill.required);
-  const optionalSelected = scored.filter((skill) => !skill.required).slice(0, maxSkills);
+  // maxSkills is a root-selection budget, not "optional skills in addition to
+  // every required skill". Required workflow skills may exceed the budget and
+  // dependencies may expand it, but optional matches may not.
+  const optionalBudget = Math.max(0, maxSkills - requiredSelected.length);
+  const optionalSelected = scored.filter((skill) => !skill.required).slice(0, optionalBudget);
   const selected: RoutedSkill[] = [...requiredSelected, ...optionalSelected];
   const rootSelectedNames = new Set(selected.map((skill) => skill.name));
   const selectedNames = new Set(rootSelectedNames);
@@ -877,6 +884,14 @@ export async function planSkillRoute(args: {
       routingConfigPath: registry.configPath,
       routingFixturesPath: registry.fixturesPath,
       liveRescan: true,
+    },
+    selectionBudget: {
+      requestedMaxSkills: maxSkills,
+      requiredRootSkills: requiredSelected.length,
+      optionalSlots: optionalBudget,
+      selectedRootSkills: rootSelectedNames.size,
+      expandedSkills: ordered.order.length,
+      requiredOrDependencyOverflow: Math.max(0, ordered.order.length - maxSkills),
     },
     workflows: matchedWorkflows.map((workflow) => workflow.name),
     phasePlan,

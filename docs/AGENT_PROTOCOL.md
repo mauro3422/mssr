@@ -50,6 +50,13 @@ through a bounded process-shared lease only when one compatible candidate exists
 Ambiguity, restart, cross-process resume, and deliberate selection require an
 explicit ID. MSSR cannot activate itself in a host that never calls it.
 
+When the host can prove them, it should also attach its observable model
+identifier and reasoning effort to every route checkpoint (for example
+`gpt-5.6-terra` with `high`). If either value is not exposed by the product,
+record `unknown`; never infer model or effort from latency, output length,
+quality, or behavior. These fields are measurement dimensions, not routing
+inputs, and changing them does not grant capabilities or permissions.
+
 ## Routing evidence checkpoint and notices
 
 The host's first observable action after deliberating about substantial specialized work is a compact Routing Evidence Checkpoint. It contains operational conclusions suitable for MSSR—not private reasoning. This boundary is sometimes described as the second tick: the model interprets the request, emits structured routing metadata, receives the route, and then reasons again with the selected capabilities.
@@ -66,6 +73,22 @@ The host passes one execution `stage`: `start`, `implement`, `verify`, `persist`
 Load only the active returned phase. Re-plan when the stage advances, after a
 material result or failure, or when a new capability becomes necessary. A prior
 plan never locks the agent out of another authorized tool.
+
+## Skill-load lifetime
+
+`skill_load` returns the selected `SKILL.md` as a normal host tool result. MSSR
+records that the load happened, but it does not maintain a hidden server-side
+instruction injection or resend the skill on every later tool call.
+
+- Within the same uncompacted conversation phase, keep using the loaded guidance
+  without loading it again between adjacent calls.
+- A re-plan does not unload already seen text; it only changes which capabilities
+  are active or deferred for the next phase.
+- Reload when work moves to a new agent/thread, the host compacted away the
+  instructions, a restart/resume cannot prove the skill remains in context, or
+  the skill changed materially since it was loaded.
+- Telemetry proving `skill_loaded` does not prove that a host still retains the
+  full text after its own context compaction.
 
 ## Signals and capability chaining
 
