@@ -15,6 +15,7 @@ Trata la integridad del contrato y la disponibilidad de fuentes como verificacio
 7. Ejecutar `npm run test:skill-routing` y `npm run verify`.
 
 La skill ya es visible antes del paso 4 porque el catálogo se reescanea, pero permanece en estado inferido y no se considera estable.
+`skill_route_audit` mantiene ese gate de forma determinista: reporta skills propias sin metadata explícita, sin fixture positivo o sin negativo cercano. Las skills `activation=always` quedan exentas únicamente del negativo. La continuación sigue siendo obligatoria por contrato cuando el flujo sea resumible, aunque no se infiere automáticamente para todos los procedimientos.
 
 ## Al modificar una skill
 
@@ -125,4 +126,5 @@ npm run verify
 ```
 
 La detección se puede ejecutar automáticamente en CI o al cerrar una tarea. La reparación debe conservar revisión humana/agente, diff y rollback.
+
 

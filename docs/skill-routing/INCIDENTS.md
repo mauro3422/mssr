@@ -722,3 +722,32 @@ no nominales. Conserva privacidad y dirige cada defecto al owner mínimo.
 - `ordinary-dashboard-bug-excludes-mssr-observability`.
 - `mssr-observability-continuation`.
 - Suite MSSR: 126 casos, audit limpio y sin ciclos.
+## MSSR-021 — Una auditoría visual decidió desde metadata sin abrir los píxeles
+
+**Date:** 2026-07-26
+**Status:** Corregida en source
+
+### Trigger
+
+El usuario pidió auditar todas las imágenes históricas y nuevas de un dashboard para decidir cuáles conservar o retirar.
+
+### Observed failure
+
+La primera clasificación se apoyó en nombres de runs, manifests, hashes y estado del proyecto. No se habían abierto las imágenes reales. Además, `image_file_attach` existía en el catálogo runtime del Bridge, pero su schema dedicado no estaba expuesto en el conector y no fue descubierto hasta activar MSSR y usar dispatch read-only.
+
+### Root cause
+
+`visual-evidence-cataloging` cubría identidad, versiones y orden, pero excluía crítica artística. No existía un owner transversal que obligara a inspeccionar píxeles reales antes de juzgar calidad, canon, reemplazos o seguridad de borrado. El audit MSSR verificaba metadata explícita para skills propias, pero no comprobaba que cada skill tuviera fixtures positivos y negativos.
+
+### Correction
+
+Se añadió `visual-evidence-audit`, que separa procedencia de apariencia, exige una capacidad visual real, clasifica conservación/exclusión/archivo/borrado y mantiene el loop read-only hasta aprobación. `skill_route_audit` ahora reporta skills propias sin fixture positivo o sin negativo cercano; `activation=always` queda exenta sólo del negativo. `skill-routing-maintainer` y `shared-skill-governance` tratan una skill nueva como `routing-unstable` hasta completar metadata, fixtures y route plan real.
+
+### Regression
+
+- `visual-evidence-audit-positive-real-pixels-before-cleanup`.
+- `visual-evidence-audit-continuation`.
+- `visual-evidence-audit-negative-metadata-only`.
+- Cobertura completa: 37/37 skills propias con fixture positivo y negativo aplicable.
+- Suite MSSR: 139 casos, audit limpio y sin mantenimiento pendiente.
+

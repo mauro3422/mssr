@@ -3248,6 +3248,394 @@
           "mssr-observability-maintenance"
         ]
       }
+    },
+    {
+      "name": "visual-evidence-audit-positive-real-pixels-before-cleanup",
+      "task": "Audita todas las imágenes del dashboard, abrí los píxeles reales, compará calidad y decime cuáles conservar, archivar o proponer para borrar; no borres nada todavía.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Auditar visualmente una colección real antes de decidir su limpieza",
+        "domains": [
+          "filesystem",
+          "roblox"
+        ],
+        "actions": [
+          "review",
+          "analyze",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "game"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification",
+          "human-approval"
+        ],
+        "signals": [
+          "conflicting-evidence"
+        ],
+        "risk": "read-only",
+        "ambiguity": "medium"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "visual-evidence-audit"
+        ]
+      }
+    },
+    {
+      "name": "visual-evidence-audit-continuation",
+      "task": "Dale, miralas de verdad y cerrá la clasificación.",
+      "taskVariants": [
+        "Sí, seguí con la auditoría visual",
+        "Mandale, abrí todas las versiones comparables"
+      ],
+      "context": "La tarea aceptada es auditar una colección de capturas de un dashboard: abrir imágenes reales, comparar versiones, separar defectos del asset y de captura, y clasificar conservar, excluir, archivar o candidato de borrado sin mutar todavía.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar una auditoría visual real de evidencia existente",
+        "domains": [
+          "filesystem",
+          "roblox"
+        ],
+        "actions": [
+          "review",
+          "analyze",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "game"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification",
+          "human-approval"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "visual-evidence-audit"
+        ]
+      }
+    },
+    {
+      "name": "visual-evidence-audit-negative-metadata-only",
+      "task": "Ordená el manifest por versión y cámara usando sólo metadata; no juzgues la apariencia ni abras imágenes.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Ordenar metadata de evidencia sin revisión visual",
+        "domains": [
+          "filesystem"
+        ],
+        "actions": [
+          "analyze",
+          "document"
+        ],
+        "artifacts": [
+          "asset"
+        ],
+        "needs": [
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "visual-evidence-audit"
+        ],
+        "deferredExcludes": [
+          "visual-evidence-audit"
+        ]
+      }
+    },
+    {
+      "name": "blender-reference-pipeline-positive",
+      "task": "Prepará en Blender un modelo 3D nuevo desde referencias frontal y lateral, con escala consistente y revisión visual posterior.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Crear un modelo Blender desde referencias visuales",
+        "domains": [
+          "blender"
+        ],
+        "actions": [
+          "design",
+          "create"
+        ],
+        "artifacts": [
+          "model-3d",
+          "asset"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "activeIncludes": [
+          "blender-reference-pipeline"
+        ]
+      }
+    },
+    {
+      "name": "roblox-locomotion-animation-review-positive",
+      "task": "Revisá en Roblox los frames extremos de la animación de carrera y cómo responde la cámara durante la locomoción; detectá pops y deslizamiento de pies.",
+      "stage": "verify",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Revisar animación y cámara de locomoción en Roblox",
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "review",
+          "test",
+          "debug"
+        ],
+        "artifacts": [
+          "animation",
+          "game"
+        ],
+        "needs": [
+          "visual-qa",
+          "playtest"
+        ],
+        "signals": [
+          "warning-observed"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "activeIncludes": [
+          "roblox-animation-frame-review",
+          "roblox-locomotion-camera-review"
+        ]
+      }
+    },
+    {
+      "name": "roblox-placement-system-authoring-positive",
+      "task": "Implementá el sistema de colocación de plantas con preview, validación de superficie, rotación y confirmación segura.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Implementar un sistema de colocación Roblox",
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "design",
+          "create",
+          "edit"
+        ],
+        "artifacts": [
+          "placement-system",
+          "game"
+        ],
+        "needs": [
+          "safe-editing"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "activeIncludes": [
+          "roblox-placement-system-authoring"
+        ]
+      }
+    },
+    {
+      "name": "roblox-placement-ui-review-positive",
+      "task": "Verificá la UI de colocación en móvil: preview válido e inválido, botones, escala y feedback en distintos dispositivos.",
+      "stage": "verify",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Revisar la interfaz móvil del sistema de colocación Roblox",
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "review",
+          "test",
+          "edit"
+        ],
+        "artifacts": [
+          "ui",
+          "game"
+        ],
+        "needs": [
+          "visual-qa",
+          "device-testing"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "activeIncludes": [
+          "roblox-placement-ui-review"
+        ]
+      }
+    },
+    {
+      "name": "roblox-technique-animation-authoring-positive",
+      "task": "Creá y ajustá por código la animación procedural de crecimiento en Roblox, con fases reproducibles y edición segura.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Crear una animación procedural por código en Roblox",
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "design",
+          "create",
+          "edit"
+        ],
+        "artifacts": [
+          "animation",
+          "code",
+          "game"
+        ],
+        "needs": [
+          "safe-editing"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "activeIncludes": [
+          "roblox-technique-animation-authoring"
+        ]
+      }
+    },
+    {
+      "name": "shared-skill-governance-negative-unrelated-game-edit",
+      "task": "Ajustá el daño de una torre existente y verificá el playtest; no crees ni mantengas skills.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Editar gameplay Roblox sin cambiar el sistema de skills",
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "edit",
+          "test"
+        ],
+        "artifacts": [
+          "game",
+          "code"
+        ],
+        "needs": [
+          "safe-editing",
+          "playtest"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "activeExcludes": [
+          "shared-skill-governance"
+        ],
+        "deferredExcludes": [
+          "shared-skill-governance"
+        ]
+      }
+    },
+    {
+      "name": "roblox-static-model-review-excludes-animation-and-placement-ui",
+      "task": "Revisá únicamente la silueta y materiales de este modelo estático de Roblox; no hay animación, locomoción, cámara ni interfaz de colocación.",
+      "stage": "verify",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Revisar un modelo Roblox estático sin animación ni UI de colocación",
+        "domains": [
+          "roblox"
+        ],
+        "actions": [
+          "review",
+          "verify"
+        ],
+        "artifacts": [
+          "model-3d",
+          "asset"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "activeExcludes": [
+          "roblox-animation-frame-review",
+          "roblox-locomotion-camera-review",
+          "roblox-placement-ui-review"
+        ],
+        "deferredExcludes": [
+          "roblox-animation-frame-review",
+          "roblox-locomotion-camera-review",
+          "roblox-placement-ui-review"
+        ]
+      }
     }
   ]
 }

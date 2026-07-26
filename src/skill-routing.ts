@@ -372,6 +372,73 @@ async function skillFileHealth(entry: RoutingRegistrySkill) {
     return { name: entry.name, source: entry.source, path: entry.path, lines: 0, chars: 0, descriptionMissing: !entry.description.trim(), unreadable: true };
   }
 }
+type FixtureCoverage = {
+  positive: number;
+  negative: number;
+  continuation: number;
+  positiveCases: string[];
+  negativeCases: string[];
+  continuationCases: string[];
+};
+
+async function auditOwnedFixtureCoverage(ownedNames: Set<string>) {
+  const coverage = new Map<string, FixtureCoverage>([...ownedNames].map((name) => [name, {
+    positive: 0,
+    negative: 0,
+    continuation: 0,
+    positiveCases: [],
+    negativeCases: [],
+    continuationCases: [],
+  }]));
+  const errors: string[] = [];
+  try {
+    const raw = JSON.parse(await fs.readFile(routingFixturesPath(), "utf8")) as {
+      cases?: Array<{
+        name?: unknown;
+        context?: unknown;
+        expect?: {
+          activeIncludes?: unknown;
+          deferredIncludes?: unknown;
+          activeExcludes?: unknown;
+          deferredExcludes?: unknown;
+        };
+      }>;
+    };
+    if (!Array.isArray(raw.cases)) throw new Error("fixtures.cases must be an array");
+    for (const [index, fixture] of raw.cases.entries()) {
+      const caseName = typeof fixture.name === "string" && fixture.name.trim() ? fixture.name : `case-${index + 1}`;
+      const expected = fixture.expect ?? {};
+      const included = new Set([
+        ...(Array.isArray(expected.activeIncludes) ? expected.activeIncludes : []),
+        ...(Array.isArray(expected.deferredIncludes) ? expected.deferredIncludes : []),
+      ].filter((value): value is string => typeof value === "string"));
+      const excluded = new Set([
+        ...(Array.isArray(expected.activeExcludes) ? expected.activeExcludes : []),
+        ...(Array.isArray(expected.deferredExcludes) ? expected.deferredExcludes : []),
+      ].filter((value): value is string => typeof value === "string"));
+      for (const name of included) {
+        const item = coverage.get(name);
+        if (!item) continue;
+        item.positive += 1;
+        item.positiveCases.push(caseName);
+        if (typeof fixture.context === "string" && fixture.context.trim()) {
+          item.continuation += 1;
+          item.continuationCases.push(caseName);
+        }
+      }
+      for (const name of excluded) {
+        const item = coverage.get(name);
+        if (!item) continue;
+        item.negative += 1;
+        item.negativeCases.push(caseName);
+      }
+    }
+  } catch (error) {
+    errors.push(`Unable to audit routing fixtures at ${routingFixturesPath()}: ${error instanceof Error ? error.message : String(error)}`);
+  }
+  return { coverage, errors };
+}
+
 
 export async function auditSkillRouting(skills: SkillEntry[]) {
   const registry = await buildSkillRoutingRegistry(skills);
@@ -379,6 +446,23 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
   const configuredNames = new Set(Object.keys(registry.config.skills));
   const knownNames = new Set([...catalogNames, ...configuredNames]);
   const ownedSources = new Set<SkillSource>(["codex-local"]);
+  const ownedEntries = registry.entries.filter((entry) => ownedSources.has(entry.source));
+  const fixtureAudit = await auditOwnedFixtureCoverage(new Set(ownedEntries.map((entry) => entry.name)));
+  const ownedFixtureCoverage = ownedEntries.map((entry) => ({
+    name: entry.name,
+    activation: entry.activation,
+    ...(fixtureAudit.coverage.get(entry.name) ?? {
+      positive: 0,
+      negative: 0,
+      continuation: 0,
+      positiveCases: [],
+      negativeCases: [],
+      continuationCases: [],
+    }),
+  }));
+  const ownedSkillsMissingPositiveFixtures = ownedFixtureCoverage.filter((item) => item.positive === 0);
+  const ownedSkillsMissingNegativeFixtures = ownedFixtureCoverage.filter((item) => item.activation !== "always" && item.negative === 0);
+
   const unconfiguredOwnedSkills = registry.entries
     .filter((entry) => ownedSources.has(entry.source) && entry.routingMetadataSource === "inferred")
     .map((entry) => ({
@@ -430,6 +514,7 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
   const unreadableSkills = fileHealth.filter((item) => "unreadable" in item && item.unreadable);
   const errors = [
     ...registry.warnings,
+    ...fixtureAudit.errors,
     ...missingReferences.map((item) => `${item.owner}.${item.relation} references missing skill ${item.target}`),
     ...missingWorkflowSkills.map((item) => `Workflow ${item.workflow}/${item.phase} references missing skill ${item.skill}`),
     ...cycles.map((cycle) => `Dependency cycle: ${cycle.join(" -> ")}`),
@@ -437,6 +522,8 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
   ];
   const maintenanceReasons = [
     ...unconfiguredOwnedSkills.map((item) => `Owned skill lacks explicit routing metadata: ${item.name}`),
+    ...ownedSkillsMissingPositiveFixtures.map((item) => `Owned skill lacks a positive routing fixture: ${item.name}`),
+    ...ownedSkillsMissingNegativeFixtures.map((item) => `Owned skill lacks a nearby negative routing fixture: ${item.name}`),
     ...staleConfigEntries.map((name) => `Routing config entry is stale: ${name}`),
     ...oversizedOwnedSkills.map((item) => `Owned skill may need splitting: ${item.name} (${item.lines} lines, ${item.chars} chars)`),
     ...missingDescriptions.map((item) => `Skill description is missing: ${item.name}`),
@@ -446,8 +533,11 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
     maintenanceRequired: maintenanceReasons.length > 0,
     counts: {
       catalogSkills: registry.entries.length,
+      ownedSkills: ownedEntries.length,
       explicitRouting: registry.entries.filter((entry) => entry.routingMetadataSource === "explicit").length,
       inferredRouting: registry.entries.filter((entry) => entry.routingMetadataSource === "inferred").length,
+      ownedWithPositiveFixtures: ownedFixtureCoverage.filter((item) => item.positive > 0).length,
+      ownedWithNegativeFixtures: ownedFixtureCoverage.filter((item) => item.activation === "always" || item.negative > 0).length,
       duplicateNames: registry.duplicates.length,
       workflows: registry.workflows.length,
     },
@@ -455,6 +545,9 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
     errors,
     maintenanceReasons,
     unconfiguredOwnedSkills,
+    ownedSkillsMissingPositiveFixtures,
+    ownedSkillsMissingNegativeFixtures,
+    ownedFixtureCoverage,
     inferredExternalSkills,
     staleConfigEntries,
     missingReferences,
@@ -912,3 +1005,6 @@ export async function planSkillRoute(args: {
       : "This plan used lexical fallback. Before mutations, the agent should infer and resubmit a structured intent object when possible.",
   };
 }
+
+
+

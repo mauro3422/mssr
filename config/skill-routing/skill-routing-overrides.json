@@ -75,7 +75,8 @@
       ],
       "requires": [],
       "complements": [
-        "blender-object-iteration"
+        "blender-object-iteration",
+        "visual-evidence-audit"
       ],
       "excludes": [],
       "negativeIntents": [],
@@ -380,12 +381,14 @@
         "roblox-mcp-skill-router"
       ],
       "complements": [
-        "roblox-playtest"
+        "roblox-playtest",
+        "visual-evidence-audit"
       ],
       "excludes": [],
       "negativeIntents": [],
       "priority": 86,
-      "activation": "on-demand"
+      "activation": "on-demand",
+      "requireArtifactMatch": true
     },
     "roblox-asset-review": {
       "phase": "discovery",
@@ -478,7 +481,8 @@
       "excludes": [],
       "negativeIntents": [],
       "priority": 88,
-      "activation": "on-demand"
+      "activation": "on-demand",
+      "requireArtifactMatch": true
     },
     "roblox-mcp-incident-recovery": {
       "phase": "discovery",
@@ -576,7 +580,8 @@
         "roblox-mcp-skill-router"
       ],
       "complements": [
-        "blender-object-iteration"
+        "blender-object-iteration",
+        "visual-evidence-audit"
       ],
       "excludes": [],
       "negativeIntents": [],
@@ -616,7 +621,8 @@
         "visual-reference-replication",
         "roblox-visual-asset-forge",
         "roblox-model-turnaround-review",
-        "roblox-animation-frame-review"
+        "roblox-animation-frame-review",
+        "visual-evidence-audit"
       ],
       "excludes": [],
       "negativeIntents": [
@@ -687,7 +693,8 @@
       "excludes": [],
       "negativeIntents": [],
       "priority": 84,
-      "activation": "on-demand"
+      "activation": "on-demand",
+      "requireArtifactMatch": true
     },
     "roblox-playtest": {
       "phase": "verification",
@@ -1064,7 +1071,8 @@
         "roblox-photo-rig-capture",
         "roblox-model-turnaround-review",
         "blender-object-iteration",
-        "blender-visual-review"
+        "blender-visual-review",
+        "visual-evidence-audit"
       ],
       "excludes": [],
       "negativeIntents": [
@@ -1108,7 +1116,8 @@
         "visual-reference-replication",
         "roblox-model-turnaround-review",
         "roblox-animation-frame-review",
-        "roblox-studio-qa"
+        "roblox-studio-qa",
+        "visual-evidence-audit"
       ],
       "excludes": [],
       "negativeIntents": [
@@ -1643,6 +1652,57 @@
       "activation": "on-demand",
       "requireArtifactMatch": true
     },
+    "visual-evidence-audit": {
+      "phase": "discovery",
+      "coversPhases": [
+        "safety",
+        "verification"
+      ],
+      "domains": [
+        "filesystem",
+        "roblox",
+        "blender",
+        "artifacts"
+      ],
+      "actions": [
+        "review",
+        "analyze",
+        "verify"
+      ],
+      "artifacts": [
+        "asset",
+        "model-3d",
+        "animation",
+        "ui",
+        "document",
+        "presentation",
+        "website",
+        "game"
+      ],
+      "needs": [
+        "visual-qa",
+        "human-approval"
+      ],
+      "requires": [],
+      "complements": [
+        "visual-evidence-cataloging",
+        "roblox-photo-rig-capture",
+        "blender-visual-review",
+        "roblox-safe-editing"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "generation-only",
+        "capture-only",
+        "metadata-only",
+        "single-image-description"
+      ],
+      "requireNeedMatch": true,
+      "requireActionMatch": true,
+      "requireArtifactMatch": true,
+      "priority": 94,
+      "activation": "on-demand"
+    },
     "visual-evidence-cataloging": {
       "phase": "implementation",
       "coversPhases": [
@@ -1673,7 +1733,8 @@
       "complements": [
         "roblox-photo-rig-capture",
         "roblox-visual-asset-forge",
-        "blender-visual-review"
+        "blender-visual-review",
+        "visual-evidence-audit"
       ],
       "excludes": [],
       "negativeIntents": [
