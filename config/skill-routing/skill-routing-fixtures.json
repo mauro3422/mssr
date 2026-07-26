@@ -4055,6 +4055,7 @@
       "expect": {
         "classificationMode": "structured-semantic",
         "activeIncludes": [
+          "visual-evidence-cataloging",
           "visual-evidence-audit",
           "visual-evidence-pruning"
         ],
@@ -4251,6 +4252,61 @@
           "visual-evidence-audit",
           "visual-evidence-pruning"
         ]
+      }
+    },
+    {
+      "name": "visual-evidence-capture-successor-same-semantic-version",
+      "task": "La recaptura turntable corregida conserva la misma versión visual del asset, pero reemplaza el run anterior porque frontal y tres cuartos repetían el mismo frame. Auditá ambas tandas, heredá el mismo assetTrack, dejá el run anterior como tombstone y conserva sólo el successor completo.",
+      "stage": "implement",
+      "completedPhases": [
+        "discovery"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Integrar un successor de captura técnica dentro de la misma versión semántica y podar el lote colisionado",
+        "domains": [
+          "artifacts",
+          "filesystem",
+          "git"
+        ],
+        "actions": [
+          "review",
+          "analyze",
+          "edit",
+          "maintain",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "website",
+          "repository",
+          "document"
+        ],
+        "needs": [
+          "visual-qa",
+          "human-approval",
+          "integrity-verification",
+          "version-control",
+          "backup"
+        ],
+        "signals": [
+          "conflicting-evidence",
+          "reusable-pattern"
+        ],
+        "risk": "destructive",
+        "ambiguity": "low"
+      },
+      "context": "La fuente y geometría del asset no cambiaron. El nuevo run corrige cobertura de cámaras y debe conservar la misma identidad de track y versión artística.",
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "visual-evidence-audit",
+          "visual-evidence-cataloging",
+          "visual-evidence-pruning"
+        ],
+        "missingRequiredPhases": []
       }
     }
   ]

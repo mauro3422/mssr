@@ -818,3 +818,31 @@ Las fases verification/persistence del workflow estaban condicionadas a `edit|ma
 - `visual-evidence-lifecycle-negative-hash-only-auto-delete`.
 - `visual-evidence-catalog-logical-versus-physical-counts`.
 - Suite focal: 154 casos, 38/38 skills propias con positivos/negativos, 7 workflows y mantenimiento pendiente `false`.
+## MSSR-024 — La sucesión de captura perdió catalogado bajo presupuesto
+
+**Date:** 2026-07-26
+**Status:** Corregida en source
+
+### Trigger
+
+Una recaptura turntable corrigió cámaras repetidas de dos runs visuales sin cambiar el asset, la fuente ni las versiones artísticas V8.3.1/V8.4.4. La tarea debía heredar el mismo `assetTrack`, promover el run completo y dejar el lote colisionado como tombstone.
+
+### Observed failure
+
+El route plan real activó `visual-evidence-audit` y `visual-evidence-pruning`, pero `visual-evidence-cataloging` quedó fuera del presupuesto opcional. La fase destructiva tenía ownership para decidir y borrar píxeles, pero no garantizaba el procedimiento que separa versión artística, identidad del track y revisión técnica de captura.
+
+### Root cause
+
+`visual-evidence-lifecycle` exigía auditoría en discovery y pruning en implementation/verification. Cataloging seguía siendo una coincidencia opcional aun cuando una poda multi-run requiere resolver identidad y sucesión antes de mutar.
+
+### Correction
+
+- `visual-evidence-cataloging` es requerida junto a pruning durante implementation y junto a audit/pruning durante verification del lifecycle destructivo aprobado.
+- Las skills y el validador distinguen `semanticVersion` de `captureRevisionKind=technical-recapture`, exigen `artVersionChanged=false`, herencia explícita de `assetTrack`, autoridad por track, successor protegido y predecessor tombstone.
+- La recaptura no crea una nueva versión artística ni mantiene dos runs activos de la misma revisión.
+
+### Regression
+
+- `visual-evidence-capture-successor-same-semantic-version`.
+- `visual-evidence-pruning-verify-postflight` ahora exige también `visual-evidence-cataloging`.
+- Suite focal: 155 casos, 38/38 skills propias con cobertura positiva/negativa, 7 workflows y mantenimiento pendiente `false`.

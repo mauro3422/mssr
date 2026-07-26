@@ -2262,6 +2262,7 @@
         {
           "phase": "implementation",
           "skills": [
+            "visual-evidence-cataloging",
             "visual-evidence-pruning"
           ],
           "required": true,
@@ -2278,6 +2279,7 @@
         {
           "phase": "verification",
           "skills": [
+            "visual-evidence-cataloging",
             "visual-evidence-audit",
             "visual-evidence-pruning"
           ],

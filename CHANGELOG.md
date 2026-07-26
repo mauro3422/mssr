@@ -7,6 +7,8 @@ All notable changes to MSSR are documented here.
 - Hardened `visual-evidence-lifecycle` so `visual-evidence-pruning` remains required during explicit `verify` and `persist` replans after an approved pruning, instead of disappearing after implementation.
 - Restricted direct pruning activation to `human-approval`; integrity/version-control needs alone can no longer authorize hash-only destructive cleanup or transitively pull the visual audit.
 - Added seven regressions for cross-camera capture collisions, physical-versus-logical counts, historical-canon conflicts, reference-copy protection, postflight idempotence, persistence and hash-only auto-delete rejection; routing now covers 154 cases.
+- Made `visual-evidence-cataloging` required during destructive visual-evidence implementation and verification, preventing capture-run identity work from losing the optional-skill budget.
+- Added `visual-evidence-capture-successor-same-semantic-version`, proving audit + cataloging + pruning compose when a technical recapture replaces a collided batch without creating a new art version; the router suite now covers 155 cases.
 
 - Defined `trace-contract-v1`: host adapters may keep local session continuity plus a bounded process-shared lease for stateless calls, propagate only a unique compatible trace through direct and delegated calls, close it on outcome, and emit bounded ambiguity/continuity notices without changing the stateless deterministic core.
 - Added logical observability epochs so current metrics start from a clean persisted baseline while `scope=all` preserves legacy evidence for comparison.
