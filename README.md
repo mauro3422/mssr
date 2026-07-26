@@ -48,8 +48,9 @@ re-plans capabilities.
 
 See [architecture](docs/ARCHITECTURE.md), the
 [agent protocol](docs/AGENT_PROTOCOL.md), the
-[routing evidence and observatory contract](docs/ROUTING_EVIDENCE_OBSERVATORY.md), and the
-[registry model](docs/REGISTRY.md).
+[routing evidence and observatory contract](docs/ROUTING_EVIDENCE_OBSERVATORY.md), the
+[registry model](docs/REGISTRY.md), and the
+[repository structure and aggregation boundaries](docs/REPOSITORY_STRUCTURE.md).
 
 ## Install and develop
 
