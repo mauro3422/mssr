@@ -33,6 +33,18 @@ advisory and never proxies execution, changes permissions, or makes the initial
 plan an allowlist. When a capability is missing or degraded, record the smallest
 truthful signal, inspect/refresh the registry if useful, and re-plan.
 
+For long or multi-phase work, keep the user-visible host responsive with bounded progress
+checkpoints. Emit observable status at scope/owner resolution, before a long tool phase,
+after a candidate or material result, at delegated handoffs, after classified failures or
+replans, before persistence, and at closure. These updates report completed facts, the
+active phase and next gate; they are never private chain-of-thought. A single blocking
+tool call may prevent intermediate updates, so when control returns after roughly 8–10
+minutes of silence, send a checkpoint before starting another long phase. Bridge/MSSR
+telemetry can prove backend activity but cannot replace a host-visible progress message.
+Do not load a full observability-maintenance skill for every ordinary task; keep this
+minimal contract transversal and route the larger skill only for telemetry diagnosis.
+
+
 Repeated friction, manual workarounds, missed required loads, user corrections,
 and failed phase gates are bounded evidence, not permission for silent rewriting.
 Promote confirmed patterns through a visible maintenance task with snapshot, diff,

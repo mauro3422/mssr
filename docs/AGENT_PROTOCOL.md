@@ -65,6 +65,26 @@ Runtime or project evidence may arrive later through bounded notices attached to
 
 See `ROUTING_EVIDENCE_OBSERVATORY.md` for the full contract.
 
+## User-visible progress contract
+
+MSSR telemetry and a visible ChatGPT/Codex progress update solve different problems. Telemetry correlates backend routing and tool activity; the host remains responsible for telling the user that a long task is active and what observable phase comes next.
+
+For long or multi-phase work, the host should emit bounded progress checkpoints at:
+
+1. scope and active-owner resolution;
+2. before a long or opaque tool phase;
+3. after a candidate or material result exists;
+4. at a delegated handoff such as modeler → photographer;
+5. after capture, verification or a classified failure;
+6. after a material replan;
+7. before persistence/publication;
+8. closure.
+
+A checkpoint contains only completed observable facts, the active phase, the current owner and the next gate. It must never expose private chain-of-thought. One blocking tool call may prevent intermediate messages; when control returns after roughly 8–10 minutes without a user-visible update, the host should checkpoint before launching another long phase.
+
+This is a minimal transversal host rule, not a reason to inject the entire `mssr-observability-maintenance` skill into every task. Route that larger skill only when the work is actually diagnosing telemetry, traces, dashboards, identities or observability failures. A Bridge heartbeat or recent MSSR call proves backend activity only; it does not prove that the user received a progress message or final response.
+
+
 ## Stages and phases
 
 The host passes one execution `stage`: `start`, `implement`, `verify`, `persist`,

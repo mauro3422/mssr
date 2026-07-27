@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import { canonicalizeSkillEntries, planSkillRoute, structuredSkillIntentSchema } from "../dist/index.js";
 
 const entries = canonicalizeSkillEntries([
@@ -12,4 +13,10 @@ const route = await planSkillRoute({ task: "Create code", skills: entries.entrie
 assert.equal(route.classificationMode, "structured-semantic");
 assert.equal(route.canReplan, true);
 assert.equal(route.permissionInvariant.includes("never grants"), true);
+
+const bootstrapTemplate = fs.readFileSync(new URL("../templates/AGENTS.mssr.md", import.meta.url), "utf8");
+assert.match(bootstrapTemplate, /user-visible host responsive/);
+assert.match(bootstrapTemplate, /roughly 8–10/);
+assert.match(bootstrapTemplate, /observability-maintenance skill for every ordinary task/);
+
 console.log("core tests passed");

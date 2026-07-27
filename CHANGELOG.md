@@ -10,6 +10,9 @@ All notable changes to MSSR are documented here.
 
 ## Unreleased
 
+- Added a transversal user-visible progress contract for long/multi-phase work: bounded phase/owner/next-gate checkpoints, an 8–10 minute return-to-control rule, and an explicit boundary between backend MSSR telemetry and host-visible communication.
+- Kept `mssr-observability-maintenance` on-demand for real telemetry diagnosis instead of injecting its full procedure into every routed task.
+
 - Added explicit MSSR metadata for `visual-reference-authoring`, separating pre-modeling reference creation from real Roblox capture and later fidelity iteration.
 - Added positive, continuation and nearby text-only negative coverage plus a structured handoff case that routes `modeling-context.json` into `visual-reference-replication` and `roblox-visual-asset-forge`.
 - The deterministic routing suite now covers 159 cases with all 39 owned skills explicitly configured and positive/negative fixture coverage complete.
