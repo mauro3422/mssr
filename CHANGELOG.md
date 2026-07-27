@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-07-27 — Visual reference integrity routing
+
+- Added explicit routing for `visual-reference-integrity`, including positive, continuation and generation-only negative fixtures.
+- Made persisted reference authoring and reference-driven replication require byte/role/provenance validation before handoff or modeling.
+- Composed the integrity gate with Roblox forge, Blender reference setup, visual audit and cataloging without forcing it onto ordinary image generation or capture-only work.
+
 All notable changes to MSSR are documented here.
 
 ## Unreleased

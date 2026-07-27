@@ -47,7 +47,8 @@
       ],
       "requires": [],
       "complements": [
-        "blender-visual-review"
+        "blender-visual-review",
+        "visual-reference-integrity"
       ],
       "excludes": [],
       "negativeIntents": [],
@@ -1067,7 +1068,9 @@
         "visual-qa",
         "integrity-verification"
       ],
-      "requires": [],
+      "requires": [
+        "visual-reference-integrity"
+      ],
       "complements": [
         "visual-reference-replication",
         "roblox-visual-asset-forge",
@@ -1119,7 +1122,9 @@
         "scene-analysis",
         "integrity-verification"
       ],
-      "requires": [],
+      "requires": [
+        "visual-reference-integrity"
+      ],
       "complements": [
         "roblox-visual-asset-forge",
         "roblox-photo-rig-capture",
@@ -1171,7 +1176,8 @@
         "roblox-model-turnaround-review",
         "roblox-animation-frame-review",
         "roblox-studio-qa",
-        "visual-evidence-audit"
+        "visual-evidence-audit",
+        "visual-reference-integrity"
       ],
       "excludes": [],
       "negativeIntents": [
@@ -1742,7 +1748,8 @@
         "roblox-photo-rig-capture",
         "blender-visual-review",
         "roblox-safe-editing",
-        "visual-evidence-pruning"
+        "visual-evidence-pruning",
+        "visual-reference-integrity"
       ],
       "excludes": [],
       "negativeIntents": [
@@ -1788,7 +1795,8 @@
         "roblox-photo-rig-capture",
         "roblox-visual-asset-forge",
         "blender-visual-review",
-        "visual-evidence-audit"
+        "visual-evidence-audit",
+        "visual-reference-integrity"
       ],
       "excludes": [],
       "negativeIntents": [
@@ -1912,6 +1920,60 @@
       "requireArtifactMatch": true,
       "priority": 97,
       "activation": "on-demand"
+    },
+    "visual-reference-integrity": {
+      "phase": "implementation",
+      "coversPhases": [
+        "verification",
+        "persistence"
+      ],
+      "domains": [
+        "artifacts",
+        "filesystem",
+        "roblox",
+        "blender",
+        "openai-development",
+        "other"
+      ],
+      "actions": [
+        "review",
+        "verify",
+        "analyze",
+        "save",
+        "document"
+      ],
+      "artifacts": [
+        "asset",
+        "model-3d",
+        "document",
+        "ui",
+        "animation"
+      ],
+      "needs": [
+        "integrity-verification",
+        "visual-qa"
+      ],
+      "requires": [],
+      "complements": [
+        "visual-reference-authoring",
+        "visual-reference-replication",
+        "visual-evidence-audit",
+        "visual-evidence-cataloging",
+        "roblox-visual-asset-forge",
+        "blender-reference-pipeline"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "generation-only",
+        "capture-only",
+        "text-only",
+        "ordinary-photo-browsing"
+      ],
+      "priority": 98,
+      "activation": "on-demand",
+      "requireNeedMatch": true,
+      "requireActionMatch": true,
+      "requireArtifactMatch": true
     }
   },
   "workflows": [

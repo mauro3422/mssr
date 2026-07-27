@@ -1366,7 +1366,8 @@
       "expect": {
         "classificationMode": "structured-semantic",
         "activeIncludes": [
-          "visual-reference-authoring"
+          "visual-reference-authoring",
+          "visual-reference-integrity"
         ],
         "activeExcludes": [
           "roblox-photo-rig-capture"
@@ -1410,7 +1411,8 @@
         "classificationMode": "structured-semantic",
         "contextUsed": true,
         "activeIncludes": [
-          "visual-reference-authoring"
+          "visual-reference-authoring",
+          "visual-reference-integrity"
         ]
       }
     },
@@ -1490,7 +1492,8 @@
         "contextUsed": true,
         "activeIncludes": [
           "visual-reference-replication",
-          "roblox-visual-asset-forge"
+          "roblox-visual-asset-forge",
+          "visual-reference-integrity"
         ]
       }
     },
@@ -4471,6 +4474,123 @@
           "visual-evidence-pruning"
         ],
         "missingRequiredPhases": []
+      }
+    },
+    {
+      "name": "visual-reference-integrity-positive-preview-master-mismatch",
+      "task": "Auditá este paquete de referencia antes de modelar: el manifest dice 1536x1024 pero el archivo guardado parece una preview pequeña; verificá bytes, hash, roles master/review/thumb y bloqueá el handoff si contradice disco",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Validar integridad técnica de masters visuales persistidos y su handoff",
+        "domains": [
+          "artifacts",
+          "filesystem"
+        ],
+        "actions": [
+          "review",
+          "verify",
+          "analyze"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d",
+          "document"
+        ],
+        "needs": [
+          "integrity-verification",
+          "visual-qa"
+        ],
+        "signals": [
+          "conflicting-evidence",
+          "repeated-friction"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "visual-reference-integrity"
+        ]
+      }
+    },
+    {
+      "name": "visual-reference-integrity-continuation",
+      "task": "Dale, validá el pack y frená si el master termina siendo la miniatura",
+      "context": "El paquete ya existe. Hay que leer los archivos reales, comparar dimensiones, bytes y SHA-256 con el manifest, verificar lineage master/review/thumb y comprobar que modeling-context.json siga vigente antes del modelado.",
+      "stage": "resume",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar la validación de integridad de un paquete visual persistido",
+        "domains": [
+          "artifacts",
+          "filesystem"
+        ],
+        "actions": [
+          "verify",
+          "analyze"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d",
+          "document"
+        ],
+        "needs": [
+          "integrity-verification",
+          "visual-qa"
+        ],
+        "signals": [
+          "conflicting-evidence"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "visual-reference-integrity"
+        ]
+      }
+    },
+    {
+      "name": "visual-reference-integrity-negative-generation-only",
+      "task": "Generá una ilustración decorativa para un saludo, no la guardes como referencia, no armes manifest ni modelo",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Crear una imagen decorativa sin persistencia técnica ni handoff",
+        "domains": [
+          "artifacts"
+        ],
+        "actions": [
+          "create"
+        ],
+        "artifacts": [
+          "asset"
+        ],
+        "needs": [],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "visual-reference-integrity"
+        ],
+        "deferredExcludes": [
+          "visual-reference-integrity"
+        ]
       }
     }
   ]
