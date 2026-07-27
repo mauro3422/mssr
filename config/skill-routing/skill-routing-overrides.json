@@ -1034,6 +1034,60 @@
       "activation": "on-demand",
       "requireSignalMatch": true
     },
+    "visual-reference-authoring": {
+      "phase": "implementation",
+      "coversPhases": [
+        "verification",
+        "persistence"
+      ],
+      "domains": [
+        "artifacts",
+        "roblox",
+        "blender",
+        "other"
+      ],
+      "actions": [
+        "design",
+        "create",
+        "edit",
+        "review",
+        "verify",
+        "save",
+        "document",
+        "analyze"
+      ],
+      "artifacts": [
+        "asset",
+        "model-3d",
+        "document",
+        "ui",
+        "animation"
+      ],
+      "needs": [
+        "visual-qa",
+        "integrity-verification"
+      ],
+      "requires": [],
+      "complements": [
+        "visual-reference-replication",
+        "roblox-visual-asset-forge",
+        "blender-reference-pipeline",
+        "roblox-photo-rig-capture",
+        "visual-evidence-cataloging"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "existing-model-capture-only",
+        "review-existing-model-only",
+        "text-only",
+        "inventory-only"
+      ],
+      "priority": 97,
+      "activation": "on-demand",
+      "requireNeedMatch": true,
+      "requireActionMatch": true,
+      "requireArtifactMatch": true
+    },
     "visual-reference-replication": {
       "phase": "implementation",
       "coversPhases": [

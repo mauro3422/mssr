@@ -4,6 +4,10 @@ All notable changes to MSSR are documented here.
 
 ## Unreleased
 
+- Added explicit MSSR metadata for `visual-reference-authoring`, separating pre-modeling reference creation from real Roblox capture and later fidelity iteration.
+- Added positive, continuation and nearby text-only negative coverage plus a structured handoff case that routes `modeling-context.json` into `visual-reference-replication` and `roblox-visual-asset-forge`.
+- The deterministic routing suite now covers 159 cases with all 39 owned skills explicitly configured and positive/negative fixture coverage complete.
+
 - Hardened `visual-evidence-lifecycle` so `visual-evidence-pruning` remains required during explicit `verify` and `persist` replans after an approved pruning, instead of disappearing after implementation.
 - Restricted direct pruning activation to `human-approval`; integrity/version-control needs alone can no longer authorize hash-only destructive cleanup or transitively pull the visual audit.
 - Added seven regressions for cross-camera capture collisions, physical-versus-logical counts, historical-canon conflicts, reference-copy protection, postflight idempotence, persistence and hash-only auto-delete rejection; routing now covers 154 cases.

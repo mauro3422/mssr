@@ -1331,6 +1331,170 @@
       }
     },
     {
+      "name": "visual-reference-authoring-positive",
+      "task": "Generá una referencia maestra en alta calidad para modelar este puerto-hongo en Roblox: hero tres cuartos, front, side, top y detalle; guardá el prompt exacto, hashes, crítica, incertidumbres y roles para el dashboard",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Crear y persistir un paquete visual modelable con vistas semánticas y procedencia completa",
+        "domains": [
+          "artifacts"
+        ],
+        "actions": [
+          "design",
+          "create",
+          "save",
+          "document"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d",
+          "document"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "visual-reference-authoring"
+        ],
+        "activeExcludes": [
+          "roblox-photo-rig-capture"
+        ]
+      }
+    },
+    {
+      "name": "visual-reference-authoring-continuation",
+      "task": "Dale, generá el pack y dejá también el contexto para el modelador",
+      "context": "El usuario aprobó crear una referencia visual antes del modelado. Debe persistirse el master nativo, las vistas front/side/top/three-quarter/detail, el prompt exacto, restricciones, revisión visual, receta, hashes y un modeling-context.json para el agente Roblox.",
+      "stage": "resume",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar la creación y persistencia del paquete de referencia modelable",
+        "domains": [
+          "artifacts"
+        ],
+        "actions": [
+          "create",
+          "save",
+          "document"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d",
+          "document"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "visual-reference-authoring"
+        ]
+      }
+    },
+    {
+      "name": "visual-reference-authoring-negative-text-only",
+      "task": "Explicame en texto qué diferencia hay entre una vista ortográfica y una perspectiva, sin crear ni guardar imágenes, modelos o referencias",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Responder una explicación textual sin authoring visual",
+        "domains": [
+          "other"
+        ],
+        "actions": [
+          "analyze"
+        ],
+        "artifacts": [
+          "document"
+        ],
+        "needs": [],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "visual-reference-authoring"
+        ],
+        "deferredExcludes": [
+          "visual-reference-authoring"
+        ]
+      }
+    },
+    {
+      "name": "visual-reference-context-handoff-to-roblox-model",
+      "task": "La referencia ya está creada. Usá el modeling-context.json, el prompt original, la crítica y la receta para construir la copia en Roblox e iterar por el mayor error visual",
+      "context": "Existe un paquete aceptado con masters semánticos, prompt exacto, selectedTraits, rejectedTraits, crítica, incertidumbres, comparisonPairs y hashes. El modelador debe inspeccionar píxeles, respetar el orden de autoridad y no tratar la receta como geometría verdadera cuando contradice la imagen.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Construir e iterar un modelo Roblox consumiendo el contexto estructurado de una referencia ya persistida",
+        "domains": [
+          "roblox",
+          "artifacts"
+        ],
+        "actions": [
+          "create",
+          "edit",
+          "document"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d",
+          "document"
+        ],
+        "needs": [
+          "visual-qa",
+          "scene-analysis",
+          "integrity-verification",
+          "safe-editing"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "visual-reference-replication",
+          "roblox-visual-asset-forge"
+        ]
+      }
+    },
+    {
       "name": "visual-reference-replication-positive",
       "task": "Replicá esta imagen lo más fiel posible en Roblox, respetá el estilo, la silueta, la geografía de la tierra y hacé que el micelio siga la superficie; capturá vistas comparables e iterá por el mayor error",
       "stage": "implement",
