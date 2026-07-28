@@ -1,6 +1,6 @@
 {
   "name": "@mauroprime/mssr",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "MauroPrime Structured Skill Router: portable advisory routing, registry, and optional MCP facade.",
   "type": "module",
   "main": "./dist/index.js",
@@ -28,15 +28,26 @@
     "test:registry": "node scripts/test-registry.mjs",
     "test:mcp": "node scripts/test-mcp.mjs",
     "test:router": "node scripts/test-skill-routing.mjs",
+    "test:context": "node scripts/test-skill-context.mjs",
     "test:skill-routing": "npm run build && npm run test:router",
-    "test": "npm run build && npm run test:core && npm run test:registry && npm run test:mcp && npm run test:router",
+    "test:skill-context": "npm run build && npm run test:context",
+    "test": "npm run build && npm run test:core && npm run test:context && npm run test:registry && npm run test:mcp && npm run test:router",
     "audit": "python scripts/audit-skills.py",
     "verify": "npm run check && npm run test && npm run audit",
     "prepare": "npm run build"
   },
-  "keywords": ["mcp", "skills", "routing", "registry", "agents", "mssr"],
+  "keywords": [
+    "mcp",
+    "skills",
+    "routing",
+    "registry",
+    "agents",
+    "mssr"
+  ],
   "license": "UNLICENSED",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.9.0",
     "zod": "^3.24.1"

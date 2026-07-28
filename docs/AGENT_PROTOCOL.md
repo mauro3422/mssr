@@ -42,6 +42,12 @@ skill only when the lesson has an independent reusable objective across projects
 This separation is the main context-pressure control: durable project facts stay
 available without placing every skill or historical transcript in the prompt.
 
+
+### Selective procedural context
+
+When the host applies a route through `skill_bootstrap`, the default context mode is selective. A skill may declare a `context-modules.json` manifest containing one compact core and optional modules filtered by stage and structured intent. MSSR selects modules deterministically; true alternatives may share an `exclusiveGroup`, where a unique winner loads and a top-score tie returns candidates without loading either. The host adapter resolves only paths inside the owning skill, extracts exact Markdown sections, applies the global character budget, and reports omitted modules or compatibility fallbacks.
+
+`skill_load` remains the explicit full-file operation. `contentMode=full` is available for diagnosis and rollback, while a missing or invalid manifest falls back to the complete `SKILL.md` with observable telemetry. Optional skill context that cannot fit is skipped whole; required context may overflow only with explicit evidence. Module selection does not create a second routing graph, change permissions, or prove that the host still retains text after compaction.
 The host is responsible for the activation hook. Before substantial specialized
 work it must load the relevant project context, produce the compact intent, and
 call `skill_route_plan` or `skill_bootstrap`. A `trace-contract-v1` adapter then

@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "select-matching-required-first",
+      "stage": "start",
+      "maxModuleChars": 900,
+      "intent": {
+        "domains": ["skill-system"],
+        "actions": ["debug"],
+        "artifacts": ["skill"],
+        "needs": ["integrity-verification"],
+        "signals": ["skill-gap"],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "modules": [
+        {"id":"routing-recovery","description":"Routing recovery.","source":{"path":"references/routing.md"},"stages":["start","implement"],"domains":["skill-system"],"actions":["debug"],"signals":["skill-gap"],"priority":20,"chars":500},
+        {"id":"visual-only","description":"Visual review.","source":{"path":"references/visual.md"},"domains":["roblox"],"actions":["review"],"signals":["nominal"],"chars":500},
+        {"id":"required-contract","description":"Required contract.","source":{"sections":["## Required"]},"stages":["start"],"required":true,"priority":100,"chars":300}
+      ],
+      "expectSelected": ["required-contract", "routing-recovery"],
+      "expectReasons": {"visual-only":"intent-mismatch"}
+    },
+    {
+      "id": "budget-omits-lower-ranked-module",
+      "stage": "start",
+      "maxModuleChars": 700,
+      "intent": {
+        "domains": ["skill-system"],
+        "actions": ["debug"],
+        "artifacts": ["skill"],
+        "needs": [],
+        "signals": ["skill-gap"],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "modules": [
+        {"id":"routing-recovery","description":"Routing recovery.","source":{"path":"references/routing.md"},"domains":["skill-system"],"actions":["debug"],"signals":["skill-gap"],"priority":20,"chars":500},
+        {"id":"required-contract","description":"Required contract.","source":{"sections":["## Required"]},"required":true,"priority":100,"chars":300}
+      ],
+      "expectSelected": ["required-contract"],
+      "expectReasons": {"routing-recovery":"budget-exceeded"}
+    },
+    {
+      "id": "stage-mismatch-is-not-selected",
+      "stage": "verify",
+      "maxModuleChars": 1000,
+      "intent": {
+        "domains": ["coding"],
+        "actions": ["verify"],
+        "artifacts": ["code"],
+        "needs": ["unit-tests"],
+        "signals": ["nominal"],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "modules": [
+        {"id":"implementation-only","description":"Implementation details.","source":{"sections":["## Implement"]},"stages":["implement"],"actions":["verify"],"chars":300}
+      ],
+      "expectSelected": [],
+      "expectReasons": {"implementation-only":"stage-mismatch"}
+    },
+    {
+      "id": "exclusive-group-tie-returns-candidates",
+      "stage": "start",
+      "maxModuleChars": 1000,
+      "intent": {
+        "domains": ["skill-system"],
+        "actions": ["review"],
+        "artifacts": ["skill"],
+        "needs": [],
+        "signals": ["uncertainty"],
+        "risk": "read-only",
+        "ambiguity": "medium"
+      },
+      "modules": [
+        {"id":"repair-owner","description":"Repair the owning skill.","source":{"sections":["## Repair owner"]},"actions":["review"],"signals":["uncertainty"],"exclusiveGroup":"capability-change","chars":300},
+        {"id":"create-adapter","description":"Create an adapter.","source":{"sections":["## Create adapter"]},"actions":["review"],"signals":["uncertainty"],"exclusiveGroup":"capability-change","chars":300}
+      ],
+      "expectSelected": [],
+      "expectReasons": {"repair-owner":"ambiguous-candidate","create-adapter":"ambiguous-candidate"},
+      "expectAmbiguousGroups": [{"group":"capability-change","candidates":["create-adapter","repair-owner"]}]
+    }
+  ]
+}

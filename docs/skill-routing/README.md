@@ -40,14 +40,17 @@ La clasificación puede reutilizarse como capa de control para seleccionar skill
 | Componente | Ruta |
 |---|---|
 | Motor y auditoría | `src/skill-routing.ts` |
+| Contrato y selector portable de contexto | `src/skill-context.ts` |
+| Schema y fixtures de módulos | `config/skill-context/` |
 | Adaptador ChatGPT/Bridge de routing y carga | `C:\Dev\bridge-mcp\src\tools\skill-catalog-tools.ts` |
+| Assembler filesystem de contexto | `C:\Dev\bridge-mcp\src\skill-context-assembler.ts` |
 | Observatorio de activación/resultado | `C:\Dev\bridge-mcp\src\mssr-observatory.ts` |
 | Registro de tools/riesgo del Bridge | `C:\Dev\bridge-mcp\src\tool-registry.ts` |
 | Contrato de activación | `config/skill-routing/skill-routing-overrides.json` |
 | Schema del contrato | `config/skill-routing/skill-routing.schema.json` |
 | Casos de comportamiento | `config/skill-routing/skill-routing-fixtures.json` |
 | Schema de fixtures | `config/skill-routing/skill-routing-fixtures.schema.json` |
-| Prueba dedicada | `scripts/test-skill-routing.mjs` |
+| Pruebas dedicadas | `scripts/test-skill-routing.mjs`, `scripts/test-skill-context.mjs` |
 | Auditoría visual | `scripts/audit-skills.py` |
 | Fuente Git de skills propias | `C:\Dev\mauroprime-skills\skills` |
 | Montaje runtime de Codex | `~/.codex/skills/<name>` como junction |
@@ -62,7 +65,7 @@ La clasificación puede reutilizarse como capa de control para seleccionar skill
 - `skill_recommend`: entrada compatible que delega al router MSSR; usa intención estructurada cuando el caller la envía y marca explícitamente el fallback léxico cuando falta.
 - `skill_route_audit`: drift, referencias, ciclos, tamaño y metadata inferida.
 - `skill_route_plan`: plan de fases sin cargar contenido.
-- `skill_bootstrap`: carga sólo las skills activas de la fase actual.
+- `skill_bootstrap`: carga sólo las skills activas de la fase y, por defecto, ensambla para cada skill propia un núcleo compacto más los módulos declarados que coinciden con `intent` y `stage` dentro de un presupuesto global. `contentMode=full` conserva la carga completa explícita; skills sin manifiesto usan fallback completo observable.
 - `skill_load`: carga explícita de una skill; el adapter Bridge propaga dentro de la sesión y puede recuperar entre llamadas stateless sólo una traza candidata inequívoca, registrando la activación.
 - `mssr_observatory_query`: estado, benchmark, eventos recientes o una traza concreta, por época activa o historia completa, sin guardar prompts crudos.
 - `mssr_trace_record`: checkpoint acotado de contexto, fase, verificación, persistencia, resultado, fricción o replanificación; recibe automáticamente la traza activa cuando el host implementa `trace-contract-v1`.
@@ -72,6 +75,29 @@ La clasificación puede reutilizarse como capa de control para seleccionar skill
 El plan distingue entre skills requeridas por un workflow o dependencia, skills opcionales seleccionadas por relevancia y skills diferidas para fases posteriores. El agente puede descartar una skill opcional si resulta claramente irrelevante o impráctica para la fase actual, usando el conjunto mínimo suficiente. Una skill requerida sólo debe omitirse cuando una regla superior de seguridad o una capacidad realmente ausente lo impida, y el motivo debe reportarse. Las diferidas no se cargan antes de tiempo.
 
 `phase` indica la fase principal de carga. `coversPhases` permite que un único procedimiento coherente cubra varias fases sin crear skills artificiales. Cuando `coversPhases` no se declara, la cobertura es únicamente la `phase` explícita; la fase inferida por descripción nunca debe reemplazar una fase explícita.
+
+## Ensamblado selectivo de contexto
+
+MSSR sigue enrutando capacidades por `SKILL.md`; los módulos internos no se convierten en nodos independientes. Una skill propia puede declarar `context-modules.json` junto a su `SKILL.md`:
+
+- `core` selecciona secciones exactas del `SKILL.md` o un archivo interno que siempre debe entrar cuando la skill está activa;
+- cada módulo declara una fuente y filtros opcionales por `stage`, `domains`, `actions`, `artifacts`, `needs` y `signals`;
+- todos los filtros declarados por un módulo deben tener al menos una coincidencia; un módulo sin filtros sólo puede entrar con `required=true`;
+- `exclusiveGroup` declara alternativas internas: una ganadora única entra, pero un empate superior no carga ninguna y devuelve candidatos ambiguos;
+- los módulos elegibles se ordenan de forma determinista por obligatoriedad, score, prioridad e id;
+- el presupuesto se aplica primero al núcleo y luego a los módulos; un módulo no se trunca silenciosamente, se omite como `budget-exceeded`; si el contexto completo de una skill opcional no cabe, se omite esa skill y sólo una requerida puede desbordar con evidencia explícita;
+- las rutas relativas deben permanecer dentro de la carpeta de la skill y las secciones Markdown deben existir exactamente una vez.
+
+El selector y schema viven en MSSR. El Bridge materializa archivos y secciones, aplica el presupuesto global de `maxContextChars` y devuelve telemetría acotada: caracteres de núcleo/módulos, tamaño completo, ahorro estimado, módulos seleccionados, estado del manifiesto y overflow. No guarda el texto procedural en el observatorio.
+
+Compatibilidad:
+
+- `contentMode=selective` es el default de `skill_bootstrap`;
+- `includeReferences=none` ensambla sólo el núcleo declarado;
+- `contentMode=full` devuelve el `SKILL.md` exacto para diagnóstico o rollback;
+- una skill sin manifiesto o con manifiesto inválido cae a carga completa y lo reporta como fallback, sin dejar de funcionar;
+- `skill_load` continúa siendo la lectura completa explícita de una skill individual.
+
 
 ## Contexto conversacional
 
@@ -142,7 +168,7 @@ La telemetría guarda fingerprints SHA-256 de tareas y metadata estructurada aco
 - `chatgpt-web`: el acceso aprobado a MauroPrime normalmente ocurre mediante el Bridge y el túnel seguro.
 - `other`: el agente debe inspeccionar las capacidades disponibles y elegir la ruta autoritativa más corta.
 
-El router devuelve `executionGuidance` y también declara en `classifier` si la clasificación provino del agente o del fallback. `skill_route_plan` es la opción compacta; `skill_bootstrap` añade el contenido completo de las skills activas y por eso tiene mayor costo de contexto.
+El router devuelve `executionGuidance` y también declara en `classifier` si la clasificación provino del agente o del fallback. `skill_route_plan` es la opción compacta sin contenido; `skill_bootstrap` agrega contexto procedural de la fase. En modo selectivo carga núcleos y módulos coincidentes dentro del presupuesto; sólo `contentMode=full` o el fallback de una skill no modularizada devuelve el `SKILL.md` completo.
 
 ## Vocabulario estructurado
 

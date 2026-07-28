@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.0 — 2026-07-27
+
+- Added the portable `skill-context` contract and deterministic module selector.
+- Added versioned `context-modules.json` schema plus stage, intent, budget, and negative-selection fixtures.
+- Defined selective bootstrap semantics without turning internal references into independent routing nodes.
+- Preserved explicit full-file loading and compatibility fallback for skills that are not modularized yet.
+- Added exclusive module groups: tied top candidates are reported without injecting multiple ambiguous procedures.
+- Defined hard optional-context budgeting while allowing only required context to overflow with explicit evidence.
+
+
 ## 2026-07-27 — Visual reference integrity routing
 
 - Added explicit routing for `visual-reference-integrity`, including positive, continuation and generation-only negative fixtures.

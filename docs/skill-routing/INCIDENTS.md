@@ -846,3 +846,42 @@ El route plan real activó `visual-evidence-audit` y `visual-evidence-pruning`, 
 - `visual-evidence-capture-successor-same-semantic-version`.
 - `visual-evidence-pruning-verify-postflight` ahora exige también `visual-evidence-cataloging`.
 - Suite focal: 155 casos, 38/38 skills propias con cobertura positiva/negativa, 7 workflows y mantenimiento pendiente `false`.
+
+## MSSR-025 — Bootstrap de skills activas inyectaba archivos completos aunque existían módulos selectivos
+
+**Date:** 2026-07-27
+**Status:** Corregida en MSSR 0.2.0 y Bridge 0.6.42
+
+### Trigger
+
+Una auditoría de ChatGPT Web comparó el diseño documentado de `references/MEMORY_INDEX.md` con la respuesta real de `skill_bootstrap`. La ruta seleccionaba correctamente pocas skills por fase, pero cada skill activa devolvía todo su `SKILL.md`, incluso cuando sólo una parte del procedimiento aplicaba al intent actual.
+
+### Observed failure
+
+- `skill_bootstrap` recorría `route.loadOrder` y llamaba a un loader equivalente a `fs.readFile(entry.path, "utf8")` para cada skill Codex activa.
+- `references/` y `MEMORY_INDEX.md` reducían tamaño en disco del archivo principal, pero no participaban en la carga runtime.
+- La selección de la referencia correcta quedaba como una segunda decisión manual del agente.
+- No existían presupuesto global, métricas de caracteres, estado de fallback ni prueba de que una reference no aplicable quedara fuera.
+
+### Root cause
+
+MSSR sólo poseía routing a nivel de skill. El contrato modular describía navegación humana dentro de una skill, pero no había un manifiesto machine-readable ni un selector portable. El adapter Bridge era un cargador agregado de archivos completos y no un context assembler.
+
+### Correction
+
+- MSSR 0.2.0 añadió `src/skill-context.ts`, schema Zod, JSON Schema versionado y fixtures deterministas para módulos por `stage`, intent, prioridad y presupuesto.
+- Cada skill puede declarar `context-modules.json` con un `core` y módulos que referencian secciones exactas de `SKILL.md` o archivos internos.
+- Bridge 0.6.42 ensambla `selective` por defecto, restringe paths a la carpeta propietaria, exige headings únicos, aplica un presupuesto global y conserva `contentMode=full` y `skill_load` como rutas explícitas completas.
+- Skills sin manifiesto o con manifiesto inválido conservan compatibilidad mediante fallback completo observable.
+- La telemetría registra sólo tamaños, ids de módulos, estado del manifiesto, ahorro y overflow; no guarda texto procedural.
+- Diez skills transversales recibieron manifiestos iniciales; el resto migra sólo cuando exista evidencia de presión de contexto o procedimiento realmente opcional.
+- El presupuesto global omite skills opcionales completas cuando su contexto no cabe; sólo una skill requerida puede desbordar con metadata explícita.
+- `exclusiveGroup` permite declarar alternativas internas; un empate superior devuelve candidatos ambiguos y no inyecta ambas opciones.
+
+### Regression
+
+- MSSR: `scripts/test-skill-context.mjs`, 4/4 fixtures de matching, presupuesto, stage mismatch y ambigüedad exclusiva; suite completa de routing y auditoría limpia.
+- Bridge: `scripts/test-selective-skill-context.mjs` cubre selección real, core-only, full exacto, fallback heredado y path traversal.
+- Handler: `scripts/test-delegated-mssr-route-project.mjs` exige `contextAssembly.mode=selective`, continuidad del trace y descarte controlado de contexto opcional por presupuesto.
+- Skills: `scripts/validate-context-modules.py` y `verify-skills.ps1` validan 10 manifiestos, headings, paths y junctions.
+- Medición inicial: `mssr-agent-routing` cargó 6.525 caracteres frente a 9.955 completos, con ahorro de 3.430 y tres módulos pertinentes seleccionados.
