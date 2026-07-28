@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-07-28 — Visual routing precision
+
+- Require `visual-reference-replication` to match `visual-qa` or `scene-analysis`; generic `integrity-verification` plus a `ui` artifact no longer activates visual replication during Bridge telemetry/dashboard maintenance.
+- Add a structured negative fixture reproducing process-observability work and asserting that visual replication and its integrity dependency remain inactive and undeferred.
+
 ## 2026-07-28 — Global host context planning
 
 - Documented the host-side `global-required-core-first` contract while preserving MSSR ownership of deterministic module scoring and filtering.

@@ -4592,6 +4592,55 @@
           "visual-reference-integrity"
         ]
       }
+    },
+    {
+      "name": "visual-reference-replication-negative-observability-ui",
+      "task": "Separá el éxito del handler MCP del resultado del proceso hijo y corregí las métricas y el dashboard sin trabajo visual.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Corregir observabilidad de procesos y etiquetas del dashboard del Bridge",
+        "domains": [
+          "agent-orchestration",
+          "coding"
+        ],
+        "actions": [
+          "design",
+          "edit",
+          "debug",
+          "test",
+          "maintain"
+        ],
+        "artifacts": [
+          "mcp",
+          "code",
+          "ui"
+        ],
+        "needs": [
+          "safe-editing",
+          "unit-tests",
+          "integrity-verification"
+        ],
+        "signals": [
+          "conflicting-evidence",
+          "repeated-friction"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "visual-reference-replication",
+          "visual-reference-integrity"
+        ],
+        "deferredExcludes": [
+          "visual-reference-replication",
+          "visual-reference-integrity"
+        ]
+      }
     }
   ]
 }

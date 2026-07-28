@@ -1119,8 +1119,7 @@
       ],
       "needs": [
         "visual-qa",
-        "scene-analysis",
-        "integrity-verification"
+        "scene-analysis"
       ],
       "requires": [
         "visual-reference-integrity"
