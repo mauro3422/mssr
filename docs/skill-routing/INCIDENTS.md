@@ -885,3 +885,40 @@ MSSR sólo poseía routing a nivel de skill. El contrato modular describía nave
 - Handler: `scripts/test-delegated-mssr-route-project.mjs` exige `contextAssembly.mode=selective`, continuidad del trace y descarte controlado de contexto opcional por presupuesto.
 - Skills: `scripts/validate-context-modules.py` y `verify-skills.ps1` validan 10 manifiestos, headings, paths y junctions.
 - Medición inicial: `mssr-agent-routing` cargó 6.525 caracteres frente a 9.955 completos, con ahorro de 3.430 y tres módulos pertinentes seleccionados.
+
+## MSSR-026 — El presupuesto secuencial del host podía desplazar módulos más relevantes de skills requeridas posteriores
+
+**Date:** 2026-07-28
+**Status:** Corregida en Bridge 0.6.43; contrato MSSR documentado
+
+### Trigger
+
+Una ejecución real de mantenimiento con tres skills requeridas y `maxContextChars=18000` mostró que los módulos opcionales de las primeras skills consumían el presupuesto antes de evaluar globalmente los módulos de una skill requerida posterior.
+
+### Observed failure
+
+- todos los cores requeridos entraban, pero la calidad del contexto modular dependía del orden de `route.loadOrder`;
+- un módulo posterior con score superior podía quedar como `budget-exceeded` después de que módulos anteriores menos relevantes ya hubieran entrado;
+- una sección incluida dentro del core podía volver a aparecer como módulo si el manifest superponía headings;
+- el observatorio registraba tamaños por carga, pero no agregaba presión de contexto por traza o skill.
+
+### Root cause
+
+MSSR ya seleccionaba y puntuaba módulos correctamente, pero Bridge aplicaba el presupuesto durante el recorrido de cada skill. El host no materializaba el conjunto completo antes de distribuir el presupuesto y no poseía una fase de deduplicación entre core y módulos.
+
+### Correction
+
+- Bridge materializa todos los candidatos y usa `global-required-core-first`.
+- Orden: cores requeridos → módulos requeridos → módulos opcionales globales de skills requeridas → paquetes mínimos de skills opcionales → módulos opcionales globales.
+- El contenido ya cubierto se marca `already-covered-by-loaded-context` y suma `duplicateCharsAvoided`.
+- El observatorio agrega loaded/full/saved, fallbacks, skips, overflow, planner, trazas recientes y presión por skill.
+- `conversation-history-review` recibió el undécimo manifest por fallback full repetido.
+- No se añadió un `exclusiveGroup` real: las rutas observadas eran composables y no justificaban exclusividad.
+
+### Regression
+
+- fixture de starvation con dos skills requeridas y un módulo posterior más relevante;
+- fixture de sección solapada que debe aparecer una sola vez;
+- handler exige reserva de todos los cores requeridos;
+- resumen MSSR exige planner global, trazas recientes y presión por skill;
+- manifests validados: 11.

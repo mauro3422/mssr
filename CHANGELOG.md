@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-07-28 — Global host context planning
+
+- Documented the host-side `global-required-core-first` contract while preserving MSSR ownership of deterministic module scoring and filtering.
+- Added duplicate-context avoidance, allocation-tier, and context-pressure observability requirements.
+- Recorded MSSR-026 for sequential host budgeting and the evidence-driven migration of `conversation-history-review`.
+
 ## 0.2.0 — 2026-07-27
 
 - Added the portable `skill-context` contract and deterministic module selector.

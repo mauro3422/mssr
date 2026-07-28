@@ -84,11 +84,13 @@ MSSR sigue enrutando capacidades por `SKILL.md`; los módulos internos no se con
 - cada módulo declara una fuente y filtros opcionales por `stage`, `domains`, `actions`, `artifacts`, `needs` y `signals`;
 - todos los filtros declarados por un módulo deben tener al menos una coincidencia; un módulo sin filtros sólo puede entrar con `required=true`;
 - `exclusiveGroup` declara alternativas internas: una ganadora única entra, pero un empate superior no carga ninguna y devuelve candidatos ambiguos;
-- los módulos elegibles se ordenan de forma determinista por obligatoriedad, score, prioridad e id;
-- el presupuesto se aplica primero al núcleo y luego a los módulos; un módulo no se trunca silenciosamente, se omite como `budget-exceeded`; si el contexto completo de una skill opcional no cabe, se omite esa skill y sólo una requerida puede desbordar con evidencia explícita;
+- MSSR puntúa y filtra módulos elegibles; el host materializa todos los candidatos activos antes de presupuestar;
+- el planner global reserva primero todos los cores de skills requeridas, luego módulos requeridos, ordena globalmente módulos opcionales de skills requeridas, admite skills opcionales sólo como paquetes mínimos completos y finalmente ordena sus módulos opcionales;
+- ningún módulo se trunca silenciosamente; una skill opcional se omite completa si no cabe y sólo contexto requerido puede desbordar con evidencia explícita;
+- una sección ya contenida en contexto cargado no se inyecta otra vez y se registra como duplicación evitada;
 - las rutas relativas deben permanecer dentro de la carpeta de la skill y las secciones Markdown deben existir exactamente una vez.
 
-El selector y schema viven en MSSR. El Bridge materializa archivos y secciones, aplica el presupuesto global de `maxContextChars` y devuelve telemetría acotada: caracteres de núcleo/módulos, tamaño completo, ahorro estimado, módulos seleccionados, estado del manifiesto y overflow. No guarda el texto procedural en el observatorio.
+El selector y schema viven en MSSR. El Bridge materializa archivos y secciones, ejecuta `global-required-core-first` y devuelve telemetría acotada: caracteres de núcleo/módulos/full, ahorro, módulos seleccionados, tiers de asignación, grupos ambiguos, fallback, skip, overflow y duplicación evitada. El observatorio agrega presión por traza y skill para guiar migraciones sin guardar texto procedural.
 
 Compatibilidad:
 
