@@ -922,3 +922,57 @@ MSSR ya seleccionaba y puntuaba módulos correctamente, pero Bridge aplicaba el 
 - handler exige reserva de todos los cores requeridos;
 - resumen MSSR exige planner global, trazas recientes y presión por skill;
 - manifests validados: 11.
+
+## MSSR-027 — Workflow visual exige pruning en una auditoría read-only
+
+**Date:** 2026-07-30
+**Status:** No resuelta
+
+### Trigger
+
+El cierre read-only de una auditoría integral de `MyceliumFront` ejecutó
+`skill_bootstrap` en `stage=verify` con `risk=read-only` y sin acciones de
+edición, borrado ni persistencia.
+
+### Observed failure
+
+- El workflow `visual-evidence-lifecycle` marcó `visual-evidence-pruning` como
+  requerida en `safety`, `implementation`, `verification` y `persistence`.
+- La propia metadata de `visual-evidence-pruning` declara `read-only` como
+  `negativeIntent`.
+- El bootstrap cargó 12.632 caracteres de esa skill y desbordó el presupuesto
+  global solicitado, aunque no existía una operación destructiva autorizada.
+- No se ejecutó pruning ni se modificó evidencia visual.
+
+### Evidence
+
+- Trace: `mssr-20260730163215-5defc2d9-925`
+- Workflow: `myceliumfront-current-state-audit`
+- Intent observable: `review`, `verify`, `analyze`; `risk=read-only`.
+- Verificación del proyecto: `verify-visual-pipeline.cmd --quick`, 22/22 PASS.
+- Segunda reproducción: trace `mssr-20260730170327-8bcf6e70-e07`,
+  `stage=persist`, al registrar una aprobación humana y regenerar metadata y
+  dashboards sin borrar, archivar ni podar evidencia. El workflow volvió a
+  exigir y cargar `visual-evidence-pruning`; el agente omitió toda acción
+  destructiva y el proyecto cerró 22/22 PASS.
+
+### Root cause
+
+No resuelta. La evidencia apunta a que la obligatoriedad de la skill heredada
+desde el workflow prevalece sobre su exclusión por intent negativo.
+
+### Correction
+
+Pendiente. No se cambió routing ni fixtures durante esta auditoría.
+
+### Regression / follow-up
+
+- Agregar un fixture negativo: auditoría visual read-only en `verify` no debe
+  requerir ni cargar `visual-evidence-pruning`.
+- Agregar otro fixture negativo: aprobación/metadata con `risk=write`, pero sin
+  acción destructiva, tampoco debe activar la rama de pruning.
+- Conservar un caso nominal cercano donde una poda aprobada sí la requiera en
+  `safety`, `implementation`, `verification` y `persistence`.
+- Auditar si los `negativeIntents` deben excluir skills heredadas por workflow o
+  si el workflow debe condicionar su rama destructiva por una acción de poda
+  explícita además de `human-approval`.
