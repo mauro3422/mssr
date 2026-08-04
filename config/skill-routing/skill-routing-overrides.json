@@ -2,6 +2,125 @@
   "$schema": "./skill-routing.schema.json",
   "schemaVersion": 1,
   "skills": {
+    "godot-project-inspection": {
+      "phase": "discovery",
+      "domains": [
+        "godot"
+      ],
+      "actions": [
+        "discover",
+        "review",
+        "verify",
+        "analyze"
+      ],
+      "artifacts": [
+        "project",
+        "game",
+        "code",
+        "mcp"
+      ],
+      "needs": [
+        "scene-analysis",
+        "integrity-verification"
+      ],
+      "requires": [],
+      "complements": [
+        "godot-visual-review",
+        "godot-runtime-debugging"
+      ],
+      "excludes": [
+        "blender-visual-review"
+      ],
+      "negativeIntents": [
+        "Blender-only modeling or render review"
+      ],
+      "priority": 94,
+      "activation": "on-demand",
+      "coversPhases": [
+        "discovery",
+        "verification"
+      ]
+    },
+    "godot-visual-review": {
+      "phase": "verification",
+      "domains": [
+        "godot"
+      ],
+      "actions": [
+        "review",
+        "verify",
+        "test",
+        "analyze"
+      ],
+      "artifacts": [
+        "game",
+        "ui",
+        "model-3d",
+        "asset",
+        "animation"
+      ],
+      "needs": [
+        "visual-qa"
+      ],
+      "requires": [
+        "godot-project-inspection"
+      ],
+      "complements": [
+        "visual-evidence-audit"
+      ],
+      "excludes": [
+        "blender-visual-review"
+      ],
+      "negativeIntents": [
+        "Blender viewport or render review",
+        "text-only Godot code explanation without visual evidence"
+      ],
+      "requireNeedMatch": true,
+      "priority": 95,
+      "activation": "on-demand"
+    },
+    "godot-runtime-debugging": {
+      "phase": "verification",
+      "domains": [
+        "godot"
+      ],
+      "actions": [
+        "debug",
+        "analyze",
+        "test",
+        "verify"
+      ],
+      "artifacts": [
+        "game",
+        "code",
+        "project"
+      ],
+      "needs": [
+        "playtest",
+        "scene-analysis",
+        "integrity-verification"
+      ],
+      "signals": [
+        "error-observed",
+        "warning-observed",
+        "conflicting-evidence"
+      ],
+      "requires": [
+        "godot-project-inspection"
+      ],
+      "complements": [
+        "systematic-debugging"
+      ],
+      "excludes": [
+        "blender-visual-review"
+      ],
+      "negativeIntents": [
+        "ordinary Godot scene inspection without a runtime anomaly"
+      ],
+      "requireActionMatch": true,
+      "priority": 96,
+      "activation": "on-demand"
+    },
     "blender-object-iteration": {
       "phase": "implementation",
       "domains": [

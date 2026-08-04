@@ -976,3 +976,45 @@ Pendiente. No se cambió routing ni fixtures durante esta auditoría.
 - Auditar si los `negativeIntents` deben excluir skills heredadas por workflow o
   si el workflow debe condicionar su rama destructiva por una acción de poda
   explícita además de `human-approval`.
+
+## MSSR-028 - Godot no existía como dominio y las escenas se ruteaban hacia Blender
+
+**Date:** 2026-08-04
+
+### Trigger
+
+Una tarea pidió inspeccionar escenas, viewport, scripts, recursos, señales y runtime de Godot para un nuevo simulador educativo.
+
+### Observed failure
+
+- `godot` no era un valor válido del vocabulario estructurado.
+- La ruta debía degradar el dominio a `other` y, por compartir `model-3d`, `asset`, `visual-qa` y `scene-analysis`, activó el workflow y la skill de revisión de Blender.
+- No existían skills propias para distinguir inspección de proyecto, revisión visual y debugging de runtime Godot.
+
+### Root cause
+
+MSSR tenía dominios canónicos para Roblox y Blender, pero ninguna representación de Godot. La inferencia de skills y el fallback léxico tampoco reconocían `Godot`, `GDScript`, `.tscn` o `.tres`.
+
+### Correction
+
+- Se agregó `godot` al vocabulario TypeScript y al schema de manifiestos de contexto.
+- Se agregó detección inferida y fallback léxico para Godot/GDScript/escenas y recursos.
+- Se crearon `godot-project-inspection`, `godot-visual-review` y `godot-runtime-debugging`.
+- La revisión visual exige `visual-qa`, y el debugging de runtime exige dominio Godot y señales/anomalías específicas para no cubrir debugging TypeScript genérico.
+- Las tres skills excluyen la rama de revisión visual Blender.
+
+### Regression fixtures
+
+- `godot-project-inspection-start`
+- `godot-visual-review-verify`
+- `godot-runtime-debugging-verify`
+- `blender-review-does-not-route-godot`
+- `godot-inspection-continuation`
+
+### Verification
+
+- `npm run test:skill-routing`: 168 casos expandidos pasaron.
+- `skill_route_audit`: limpio; las 43 skills propias tienen fixtures positivos y negativos.
+- La continuación corta recupera `godot-project-inspection` desde contexto.
+- El fixture Blender excluye las tres skills Godot.
+- El debugging TypeScript genérico vuelve a conservar su fallback de verificación y no activa `godot-runtime-debugging`.

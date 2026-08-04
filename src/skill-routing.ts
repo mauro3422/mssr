@@ -12,7 +12,7 @@ export const SKILL_CALLERS = ["codex-local", "chatgpt-web", "other"] as const;
 export type SkillCaller = typeof SKILL_CALLERS[number];
 
 export const SKILL_DOMAINS = [
-  "roblox", "blender", "figma", "github", "git", "filesystem", "google-workspace", "openai-development", "artifacts",
+  "roblox", "godot", "blender", "figma", "github", "git", "filesystem", "google-workspace", "openai-development", "artifacts",
   "browser", "coding", "opencode", "agent-orchestration", "skill-system", "other",
 ] as const;
 export const SKILL_ACTIONS = [
@@ -228,7 +228,7 @@ async function loadRoutingConfig(): Promise<{ config: RoutingConfig; warnings: s
 function inferredDomain(skill: SkillEntry): string[] {
   const text = normalize(`${skill.name} ${skill.description} ${skill.path ?? ""}`);
   const domains: Array<[string, RegExp]> = [
-    ["roblox", /\broblox\b|\brbx\b/], ["blender", /\bblender\b/], ["figma", /\bfigma\b/],
+    ["roblox", /\broblox\b|\brbx\b/], ["godot", /\bgodot\b|\.tscn\b|\.tres\b|\bgdscript\b/], ["blender", /\bblender\b/], ["figma", /\bfigma\b/],
     ["github", /\bgithub\b|\bgh\b/], ["google-workspace", /google drive|google docs|google sheets|google slides/],
     ["openai-development", /openai|chatgpt app|agents sdk/], ["artifacts", /spreadsheet|document|presentation|pdf|template/],
     ["browser", /browser|chrome|website|sites/], ["agent-orchestration", /agent|swarm|orchestrat|bridge/],
@@ -565,6 +565,7 @@ function fallbackIntent(task: string): StructuredSkillIntent {
   const text = normalize(task);
   const domains: StructuredSkillIntent["domains"] = [];
   if (/roblox|studio|luau|rbxl/.test(text)) domains.push("roblox");
+  if (/godot|gdscript|\.tscn|\.tres/.test(text)) domains.push("godot");
   if (/blender|blend|modelado 3d/.test(text)) domains.push("blender");
   if (/figma/.test(text)) domains.push("figma");
   if (/github|pull request|\bpr\b/.test(text)) domains.push("github");

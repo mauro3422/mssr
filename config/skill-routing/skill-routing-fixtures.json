@@ -3,6 +3,222 @@
   "schemaVersion": 1,
   "cases": [
     {
+      "name": "godot-project-inspection-start",
+      "task": "Revisá mi proyecto Godot y explicame la escena, los scripts y cómo están conectadas las señales sin modificar nada",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Inspeccionar una escena y sus conexiones en Godot sin autoría automática",
+        "domains": [
+          "godot",
+          "coding"
+        ],
+        "actions": [
+          "discover",
+          "review",
+          "analyze"
+        ],
+        "artifacts": [
+          "project",
+          "game",
+          "code"
+        ],
+        "needs": [
+          "scene-analysis",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "godot-project-inspection"
+        ],
+        "activeExcludes": [
+          "godot-visual-review",
+          "godot-runtime-debugging",
+          "blender-visual-review",
+          "blender-object-iteration"
+        ]
+      }
+    },
+    {
+      "name": "godot-visual-review-verify",
+      "task": "Capturá el juego de Godot y revisá si el modelo, la cámara y la iluminación se ven bien",
+      "stage": "verify",
+      "completedPhases": [
+        "discovery",
+        "safety",
+        "implementation"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Revisar visualmente un juego Godot con captura y escena",
+        "domains": [
+          "godot"
+        ],
+        "actions": [
+          "review",
+          "verify",
+          "test"
+        ],
+        "artifacts": [
+          "game",
+          "model-3d",
+          "asset"
+        ],
+        "needs": [
+          "visual-qa",
+          "scene-analysis"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "godot-project-inspection",
+          "godot-visual-review"
+        ],
+        "activeExcludes": [
+          "blender-visual-review",
+          "blender-object-iteration"
+        ]
+      }
+    },
+    {
+      "name": "godot-runtime-debugging-verify",
+      "task": "En Godot el celular aparece bien en el editor pero al ejecutar no responde; revisá errores, runtime, nodos y señales",
+      "stage": "verify",
+      "completedPhases": [
+        "discovery",
+        "safety",
+        "implementation"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Diagnosticar una diferencia entre escena Godot y runtime",
+        "domains": [
+          "godot",
+          "coding"
+        ],
+        "actions": [
+          "debug",
+          "analyze",
+          "test",
+          "verify"
+        ],
+        "artifacts": [
+          "game",
+          "code",
+          "project"
+        ],
+        "needs": [
+          "playtest",
+          "scene-analysis",
+          "integrity-verification"
+        ],
+        "signals": [
+          "error-observed",
+          "conflicting-evidence"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "godot-project-inspection",
+          "godot-runtime-debugging",
+          "systematic-debugging"
+        ],
+        "activeExcludes": [
+          "godot-visual-review",
+          "blender-visual-review"
+        ]
+      }
+    },
+    {
+      "name": "blender-review-does-not-route-godot",
+      "task": "Revisá en Blender la topología y el render del modelo de celular",
+      "stage": "verify",
+      "completedPhases": [
+        "discovery",
+        "safety",
+        "implementation"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Revisar un modelo y render dentro de Blender",
+        "domains": [
+          "blender"
+        ],
+        "actions": [
+          "review",
+          "verify",
+          "analyze"
+        ],
+        "artifacts": [
+          "model-3d",
+          "asset"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "blender-visual-review"
+        ],
+        "activeExcludes": [
+          "godot-project-inspection",
+          "godot-visual-review",
+          "godot-runtime-debugging"
+        ]
+      }
+    },
+    {
+      "name": "godot-inspection-continuation",
+      "task": "Dale, revisá esa escena",
+      "context": "La propuesta aceptada fue inspeccionar en modo lectura una escena del proyecto Godot del simulador de reparación, leer sus nodos, scripts, recursos y conexiones, y explicarle a Mauro lo que construyó sin editar archivos ni escenas.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "expect": {
+        "classificationMode": "lexical-fallback",
+        "contextUsed": true,
+        "activeIncludes": [
+          "godot-project-inspection"
+        ],
+        "activeExcludes": [
+          "blender-visual-review",
+          "blender-object-iteration"
+        ]
+      }
+    },
+    {
       "name": "roblox-network-start",
       "task": "Quiero conectar las plantas como Astroneer, arrastrar el micelio, probar nutrientes y guardar el juego",
       "stage": "start",
