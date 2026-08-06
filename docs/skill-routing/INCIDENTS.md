@@ -1099,3 +1099,39 @@ La regla de workflow que hace obligatoria `blender-visual-review` ahora exige ta
 - El fixture nuevo falló antes del cambio por `blender-visual-review` diferida.
 - `npm run verify` pasó con 174 casos efectivos, audit limpio y cero ciclos.
 - La reproducción viva posterior excluyó `blender-visual-review` y `git-change-publication` y mantuvo las cuatro capacidades de referencias esperadas.
+## MSSR-031 — Una continuación de referencias se interpretó como rediseño completo
+
+**Date:** 2026-08-06
+
+### Trigger
+
+El usuario pidió `Encárgate de la radio, continuemos` después de haber verificado un paquete parcial persistido con cinco vistas, dos faltantes y una contradicción constructiva.
+
+### Observed failure
+
+La ejecución saltó la auditoría del paquete y llamó directamente al generador de imágenes. Produjo un master y seis vistas de una radio distinta, cambiando manija, antena, panel frontal y controles, aunque no existía aprobación explícita para reiniciar el diseño.
+
+### Root causes
+
+- `visual-reference-authoring` indicaba regenerar sólo roles fallidos después de la inspección, pero no tenía una compuerta core previa a toda generación.
+- El contrato no clasificaba explícitamente `continue`, `repair`, `extend` y `reset`.
+- La metadata de routing no declaraba `recover` ni `history-recovery`, debilitando el ownership de paquetes parciales existentes.
+- El fixture de continuación existente cubría la ejecución de un pack ya aprobado para creación, no una continuación ambigua sobre un pack persistido incompleto.
+- El guide del proyecto no prohibía interpretar frases breves de continuidad como autorización para rediseñar.
+
+### Correction
+
+- `visual-reference-authoring` ahora carga en su core una compuerta `audit-before-generate` que exige inventariar manifest, archivos, hashes, roles aceptados, faltantes y contradicciones.
+- El contrato distingue `continue`, `repair`, `extend` y `reset`; sólo `reset` permite reemplazar la identidad completa y requiere aprobación explícita.
+- Los alternativos generados quedan como candidatos no promovidos y nunca reemplazan silenciosamente el canon.
+- El routing de la skill incorpora `recover` y `history-recovery`.
+- El guide del simulador exige que `continuá`, `seguí`, `dale`, `encárgate` y `arreglá` preserven la revisión canónica y limiten la generación a roles faltantes o fallidos.
+
+### Regression fixtures
+
+- `visual-reference-authoring-existing-pack-repair-continuation`
+- `visual-reference-authoring-negative-existing-package-inventory-only`
+
+### Verification
+
+Verified with `npm run verify` (TypeScript, core, context, registry, MCP and 176 routing cases), `skill_route_audit` with zero maintenance findings, and two live structured routes: repair/extend selected `visual-reference-authoring` plus `visual-reference-integrity`, while `risk=read-only` inventory selected integrity and excluded authoring. Project image hashes remained byte-identical. Git persistence is recorded in the closing commits for the three repositories.

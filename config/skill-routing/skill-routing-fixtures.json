@@ -1633,6 +1633,109 @@
       }
     },
     {
+      "name": "visual-reference-authoring-existing-pack-repair-continuation",
+      "task": "Encárgate de la radio, continuemos",
+      "context": "Ya existe portable_radio_v001 con cinco previews persistidas y hashes verificados. Hero, front, top y bottom preservan una identidad aprobada; rear y side_b faltan; side_a contradice la tapa inferior de baterías. No existe aprobación para rediseñar la radio ni regenerar el set completo. Debe auditarse el canon, conservar roles aceptados y generar solamente los roles faltantes o fallidos.",
+      "stage": "resume",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar y reparar un paquete visual existente sin reemplazar su identidad canónica",
+        "domains": [
+          "artifacts",
+          "blender",
+          "filesystem"
+        ],
+        "actions": [
+          "discover",
+          "review",
+          "analyze",
+          "recover",
+          "edit",
+          "create",
+          "verify",
+          "save",
+          "document"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d",
+          "document"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification",
+          "history-recovery"
+        ],
+        "signals": [
+          "conflicting-evidence",
+          "recovery-needed"
+        ],
+        "risk": "write",
+        "ambiguity": "medium"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "visual-reference-authoring",
+          "visual-reference-integrity"
+        ],
+        "activeExcludes": [
+          "roblox-photo-rig-capture"
+        ]
+      }
+    },
+    {
+      "name": "visual-reference-authoring-negative-existing-package-inventory-only",
+      "task": "Revisá qué referencias de la radio ya están guardadas y decime qué falta; no generes, reemplaces ni guardes imágenes",
+      "context": "Hay un paquete visual existente y el usuario pide solamente inventario y diagnóstico en modo lectura.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Inventariar un paquete visual existente sin authoring ni mutaciones",
+        "domains": [
+          "artifacts",
+          "filesystem"
+        ],
+        "actions": [
+          "discover",
+          "review",
+          "verify",
+          "analyze"
+        ],
+        "artifacts": [
+          "asset",
+          "document"
+        ],
+        "needs": [
+          "integrity-verification",
+          "history-recovery"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "visual-reference-integrity"
+        ],
+        "activeExcludes": [
+          "visual-reference-authoring"
+        ],
+        "deferredExcludes": [
+          "visual-reference-authoring"
+        ]
+      }
+    },
+    {
       "name": "visual-reference-authoring-negative-text-only",
       "task": "Explicame en texto qué diferencia hay entre una vista ortográfica y una perspectiva, sin crear ni guardar imágenes, modelos o referencias",
       "stage": "start",

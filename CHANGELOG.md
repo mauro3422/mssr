@@ -35,6 +35,7 @@ All notable changes to MSSR are documented here.
 - Clarified selective-context budget semantics so optional skill/module omissions remain observable without reporting a required bootstrap overflow.
 - Added a transversal user-visible progress contract for long/multi-phase work: bounded phase/owner/next-gate checkpoints, an 8–10 minute return-to-control rule, and an explicit boundary between backend MSSR telemetry and host-visible communication.
 - Kept `mssr-observability-maintenance` on-demand for real telemetry diagnosis instead of injecting its full procedure into every routed task.
+- Hardened `visual-reference-authoring` routing for existing-package continuations: added `recover` and `history-recovery`, made `read-only` a strict negative for authoring, and added positive repair/extend plus inventory-only regressions. The deterministic suite now passes 176 cases.
 
 - Added explicit MSSR metadata for `visual-reference-authoring`, separating pre-modeling reference creation from real Roblox capture and later fidelity iteration.
 - Added positive, continuation and nearby text-only negative coverage plus a structured handoff case that routes `modeling-context.json` into `visual-reference-replication` and `roblox-visual-asset-forge`.

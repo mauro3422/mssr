@@ -1191,6 +1191,7 @@
         "review",
         "verify",
         "save",
+        "recover",
         "document",
         "analyze"
       ],
@@ -1203,7 +1204,8 @@
       ],
       "needs": [
         "visual-qa",
-        "integrity-verification"
+        "integrity-verification",
+        "history-recovery"
       ],
       "requires": [
         "visual-reference-integrity"
@@ -1221,7 +1223,8 @@
         "existing-model-capture-only",
         "review-existing-model-only",
         "text-only",
-        "inventory-only"
+        "inventory-only",
+        "read-only"
       ],
       "priority": 97,
       "activation": "on-demand",
