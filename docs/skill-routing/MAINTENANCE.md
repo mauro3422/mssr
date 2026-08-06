@@ -146,3 +146,18 @@ Para colecciones visuales versionadas:
 - la activación destructiva directa debe exigir `human-approval`; backup, integrity y version-control son gates técnicos, no autorización.
 
 Mantén positivos de audit/pruning, continuidad verify/persist y un negativo cercano de hash-only sin aprobación.
+
+## Duplicate provenance and context-budget interpretation
+
+`skill_route_audit` classifies duplicate names instead of treating every cached copy as the same defect:
+
+- `owned-error`: more than one `codex-local` source owns the same canonical name; this is an audit error.
+- `external-version-info`: plugin-cache versions have the same normalized semantic description; deterministic precedence selects one and the duplicate is informational.
+- `conflicting-source-warning`: external/system sources expose different contracts; preserve provenance and review before changing routing.
+
+Never edit plugin caches to silence duplicate counts.
+
+Selective context exposes two separate facts:
+
+- `requiredBudgetExceeded=true` means required core or required module context could not fit normally and the host had to overflow or omit required material.
+- `optionalContextOmitted=true` means optional skill/module context was skipped under the hard budget. This remains observable but does not imply bootstrap failure; `budgetExceeded` follows the required-overflow meaning for compatibility with operational health checks.

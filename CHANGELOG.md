@@ -31,6 +31,8 @@ All notable changes to MSSR are documented here.
 
 ## Unreleased
 
+- Classified duplicate skills by ownership and provenance: duplicate owned skills are audit errors, equivalent cached plugin versions are informational, and divergent external contracts are maintenance warnings.
+- Clarified selective-context budget semantics so optional skill/module omissions remain observable without reporting a required bootstrap overflow.
 - Added a transversal user-visible progress contract for long/multi-phase work: bounded phase/owner/next-gate checkpoints, an 8–10 minute return-to-control rule, and an explicit boundary between backend MSSR telemetry and host-visible communication.
 - Kept `mssr-observability-maintenance` on-demand for real telemetry diagnosis instead of injecting its full procedure into every routed task.
 

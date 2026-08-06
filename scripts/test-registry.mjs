@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import { CapabilityRegistry, FilesystemSkillProvider } from "../dist/index.js";
+import { CapabilityRegistry, FilesystemSkillProvider, canonicalizeSkillEntries } from "../dist/index.js";
 
 let calls = 0;
 let fail = false;
@@ -47,5 +47,26 @@ try {
   await fs.unlink(runtimeLink).catch(() => undefined);
   await fs.rm(tempRoot, { recursive: true, force: true });
 }
+const externalVersions = canonicalizeSkillEntries([
+  { name: "plugin-skill", description: "Same contract.", source: "codex-plugin", path: "C:\\cache\\v1\\SKILL.md", origin: "Plugin cache" },
+  { name: "plugin-skill", description: "Same contract.", source: "codex-plugin", path: "C:\\cache\\v2\\SKILL.md", origin: "Plugin cache" },
+]);
+assert.equal(externalVersions.duplicates[0].classification, "external-version-info");
+assert.equal(externalVersions.duplicates[0].severity, "info");
+
+const ownedDuplicates = canonicalizeSkillEntries([
+  { name: "owned-skill", description: "Owned A.", source: "codex-local", path: "C:\\skills-a\\SKILL.md", origin: "Local" },
+  { name: "owned-skill", description: "Owned B.", source: "codex-local", path: "C:\\skills-b\\SKILL.md", origin: "Local" },
+]);
+assert.equal(ownedDuplicates.duplicates[0].classification, "owned-error");
+assert.equal(ownedDuplicates.duplicates[0].severity, "error");
+
+const conflictingSources = canonicalizeSkillEntries([
+  { name: "mixed-skill", description: "First external contract.", source: "codex-plugin", path: "C:\\cache\\a\\SKILL.md", origin: "Plugin cache" },
+  { name: "mixed-skill", description: "Different external contract.", source: "codex-system", path: "C:\\system\\SKILL.md", origin: "System" },
+]);
+assert.equal(conflictingSources.duplicates[0].classification, "conflicting-source-warning");
+assert.equal(conflictingSources.duplicates[0].severity, "warning");
+
 
 console.log("registry tests passed");

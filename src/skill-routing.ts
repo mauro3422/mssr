@@ -196,7 +196,42 @@ function compareEntries(a: SkillEntry, b: SkillEntry): number {
   return (a.path ?? "").localeCompare(b.path ?? "");
 }
 
-export function canonicalizeSkillEntries(skills: SkillEntry[]): { entries: SkillEntry[]; duplicates: Array<{ name: string; chosen: SkillEntry; alternatives: SkillEntry[] }> } {
+export type SkillDuplicateClassification = "owned-error" | "external-version-info" | "conflicting-source-warning";
+export type SkillDuplicate = {
+  name: string;
+  chosen: SkillEntry;
+  alternatives: SkillEntry[];
+  classification: SkillDuplicateClassification;
+  severity: "error" | "info" | "warning";
+  reason: string;
+};
+
+function classifyDuplicateGroup(group: SkillEntry[]): Pick<SkillDuplicate, "classification" | "severity" | "reason"> {
+  const ownedCount = group.filter((entry) => entry.source === "codex-local").length;
+  if (ownedCount > 1) {
+    return {
+      classification: "owned-error",
+      severity: "error",
+      reason: "Multiple owned codex-local skills share the same canonical name.",
+    };
+  }
+  const externalPluginOnly = group.every((entry) => entry.source === "codex-plugin");
+  const semanticDescriptions = new Set(group.map((entry) => normalize(entry.description)));
+  if (externalPluginOnly && semanticDescriptions.size === 1) {
+    return {
+      classification: "external-version-info",
+      severity: "info",
+      reason: "Multiple cached plugin versions expose the same semantic skill; deterministic precedence selected one version.",
+    };
+  }
+  return {
+    classification: "conflicting-source-warning",
+    severity: "warning",
+    reason: "Duplicate skill sources expose different descriptions, ownership, or contracts and require provenance-aware review.",
+  };
+}
+
+export function canonicalizeSkillEntries(skills: SkillEntry[]): { entries: SkillEntry[]; duplicates: SkillDuplicate[] } {
   const groups = new Map<string, SkillEntry[]>();
   for (const skill of skills) {
     const group = groups.get(skill.name) ?? [];
@@ -204,11 +239,14 @@ export function canonicalizeSkillEntries(skills: SkillEntry[]): { entries: Skill
     groups.set(skill.name, group);
   }
   const entries: SkillEntry[] = [];
-  const duplicates: Array<{ name: string; chosen: SkillEntry; alternatives: SkillEntry[] }> = [];
+  const duplicates: SkillDuplicate[] = [];
   for (const [name, group] of groups) {
     const sorted = [...group].sort(compareEntries);
     entries.push(sorted[0]);
-    if (sorted.length > 1) duplicates.push({ name, chosen: sorted[0], alternatives: sorted.slice(1) });
+    if (sorted.length > 1) {
+      const classification = classifyDuplicateGroup(sorted);
+      duplicates.push({ name, chosen: sorted[0], alternatives: sorted.slice(1), ...classification });
+    }
   }
   entries.sort((a, b) => a.name.localeCompare(b.name));
   return { entries, duplicates };
@@ -512,6 +550,9 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
   const oversizedOwnedSkills = oversizedSkills.filter((item) => ownedSources.has(item.source) && metadataByName.get(item.name)?.oversizeReviewed !== true);
   const missingDescriptions = fileHealth.filter((item) => item.source === "codex-local" && item.descriptionMissing);
   const unreadableSkills = fileHealth.filter((item) => "unreadable" in item && item.unreadable);
+  const duplicateOwnedErrors = registry.duplicates.filter((item) => item.classification === "owned-error");
+  const duplicateConflictWarnings = registry.duplicates.filter((item) => item.classification === "conflicting-source-warning");
+  const duplicateExternalVersions = registry.duplicates.filter((item) => item.classification === "external-version-info");
   const errors = [
     ...registry.warnings,
     ...fixtureAudit.errors,
@@ -519,6 +560,7 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
     ...missingWorkflowSkills.map((item) => `Workflow ${item.workflow}/${item.phase} references missing skill ${item.skill}`),
     ...cycles.map((cycle) => `Dependency cycle: ${cycle.join(" -> ")}`),
     ...unreadableSkills.map((item) => `Unreadable skill file: ${item.name} (${item.path})`),
+    ...duplicateOwnedErrors.map((item) => `Owned duplicate skill name: ${item.name}`),
   ];
   const maintenanceReasons = [
     ...unconfiguredOwnedSkills.map((item) => `Owned skill lacks explicit routing metadata: ${item.name}`),
@@ -528,6 +570,7 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
     ...oversizedOwnedSkills.map((item) => `Owned skill may need splitting: ${item.name} (${item.lines} lines, ${item.chars} chars)`),
     ...missingDescriptions.map((item) => `Skill description is missing: ${item.name}`),
   ];
+  const warnings = duplicateConflictWarnings.map((item) => `Conflicting duplicate skill sources require review: ${item.name}`);
   return {
     ok: errors.length === 0,
     maintenanceRequired: maintenanceReasons.length > 0,
@@ -539,11 +582,15 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
       ownedWithPositiveFixtures: ownedFixtureCoverage.filter((item) => item.positive > 0).length,
       ownedWithNegativeFixtures: ownedFixtureCoverage.filter((item) => item.activation === "always" || item.negative > 0).length,
       duplicateNames: registry.duplicates.length,
+      duplicateOwnedErrors: duplicateOwnedErrors.length,
+      duplicateExternalVersions: duplicateExternalVersions.length,
+      duplicateConflictWarnings: duplicateConflictWarnings.length,
       workflows: registry.workflows.length,
     },
     paths: { config: registry.configPath, fixtures: registry.fixturesPath },
     errors,
     maintenanceReasons,
+    warnings,
     unconfiguredOwnedSkills,
     ownedSkillsMissingPositiveFixtures,
     ownedSkillsMissingNegativeFixtures,
@@ -1006,6 +1053,3 @@ export async function planSkillRoute(args: {
       : "This plan used lexical fallback. Before mutations, the agent should infer and resubmit a structured intent object when possible.",
   };
 }
-
-
-
