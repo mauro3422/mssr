@@ -139,7 +139,9 @@
         "visual-qa",
         "backup"
       ],
-      "requires": [],
+      "requires": [
+        "blender-session-coordination"
+      ],
       "complements": [
         "blender-visual-review"
       ],
@@ -150,29 +152,43 @@
     },
     "blender-reference-pipeline": {
       "phase": "implementation",
+      "coversPhases": [
+        "verification",
+        "persistence"
+      ],
       "domains": [
         "blender"
       ],
       "actions": [
         "design",
-        "create"
+        "create",
+        "edit",
+        "verify",
+        "test",
+        "debug",
+        "save"
       ],
       "artifacts": [
         "model-3d",
         "asset"
       ],
       "needs": [
-        "visual-qa"
+        "visual-qa",
+        "scene-analysis",
+        "integrity-verification"
       ],
-      "requires": [],
+      "requires": [
+        "blender-session-coordination"
+      ],
       "complements": [
         "blender-visual-review",
-        "visual-reference-integrity"
+        "visual-reference-integrity",
+        "systematic-debugging"
       ],
       "excludes": [],
       "negativeIntents": [],
       "requireActionMatch": true,
-      "priority": 84,
+      "priority": 90,
       "activation": "on-demand"
     },
     "blender-visual-review": {
@@ -193,7 +209,9 @@
       "needs": [
         "visual-qa"
       ],
-      "requires": [],
+      "requires": [
+        "blender-session-coordination"
+      ],
       "complements": [
         "blender-object-iteration",
         "visual-evidence-audit"
@@ -1199,6 +1217,7 @@
       ],
       "excludes": [],
       "negativeIntents": [
+        "debug",
         "existing-model-capture-only",
         "review-existing-model-only",
         "text-only",
@@ -2092,6 +2111,60 @@
       "requireNeedMatch": true,
       "requireActionMatch": true,
       "requireArtifactMatch": true
+    },
+    "blender-session-coordination": {
+      "phase": "safety",
+      "domains": [
+        "blender",
+        "agent-orchestration"
+      ],
+      "actions": [
+        "discover",
+        "review",
+        "verify",
+        "coordinate",
+        "analyze",
+        "edit",
+        "save"
+      ],
+      "artifacts": [
+        "model-3d",
+        "asset",
+        "project",
+        "mcp"
+      ],
+      "needs": [
+        "safe-editing",
+        "scene-analysis",
+        "integrity-verification",
+        "cross-agent"
+      ],
+      "signals": [
+        "conflicting-evidence",
+        "repeated-friction",
+        "manual-workaround",
+        "reusable-pattern"
+      ],
+      "requires": [],
+      "complements": [
+        "blender-object-iteration",
+        "blender-reference-pipeline",
+        "blender-visual-review",
+        "systematic-debugging"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "offline image generation unrelated to Blender",
+        "text-only explanation unrelated to Blender"
+      ],
+      "priority": 99,
+      "activation": "on-demand",
+      "coversPhases": [
+        "safety",
+        "implementation",
+        "verification",
+        "persistence"
+      ]
     }
   },
   "workflows": [
@@ -2304,6 +2377,9 @@
               "edit",
               "review",
               "optimize"
+            ],
+            "needs": [
+              "scene-analysis"
             ]
           }
         },

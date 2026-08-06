@@ -3792,6 +3792,109 @@
       }
     },
     {
+      "name": "blender-reference-authoring-multiview-positive",
+      "task": "Genera referencias fotográficas multivista para Blender y persístelas.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Crear y persistir un paquete multivista nuevo para Blender",
+        "domains": [
+          "blender",
+          "artifacts",
+          "filesystem"
+        ],
+        "actions": [
+          "design",
+          "create",
+          "review",
+          "verify",
+          "save"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d",
+          "project"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification",
+          "safe-editing"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "visual-reference-authoring",
+          "visual-reference-integrity",
+          "blender-reference-pipeline"
+        ]
+      }
+    },
+    {
+      "name": "blender-reference-existing-install-repair-positive",
+      "task": "Las imágenes ya están descargadas; arregla las vistas de referencia existentes en Blender y verifica todas las perspectivas.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Depurar y reparar referencias multivista existentes sin regenerar imágenes",
+        "domains": [
+          "blender",
+          "filesystem"
+        ],
+        "actions": [
+          "analyze",
+          "debug",
+          "edit",
+          "review",
+          "verify",
+          "test",
+          "save"
+        ],
+        "artifacts": [
+          "asset",
+          "model-3d",
+          "project"
+        ],
+        "needs": [
+          "visual-qa",
+          "scene-analysis",
+          "integrity-verification",
+          "safe-editing"
+        ],
+        "signals": [
+          "error-observed",
+          "conflicting-evidence",
+          "recovery-needed",
+          "replan-needed"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "systematic-debugging",
+          "visual-reference-integrity",
+          "blender-reference-pipeline"
+        ],
+        "activeExcludes": [
+          "visual-reference-authoring"
+        ],
+        "deferredExcludes": [
+          "visual-reference-authoring"
+        ]
+      }
+    },
+    {
       "name": "roblox-locomotion-animation-review-positive",
       "task": "Revisá en Roblox los frames extremos de la animación de carrera y cómo responde la cámara durante la locomoción; detectá pops y deslizamiento de pies.",
       "stage": "verify",
@@ -4855,6 +4958,195 @@
         "deferredExcludes": [
           "visual-reference-replication",
           "visual-reference-integrity"
+        ]
+      }
+    },
+    {
+      "name": "blender-session-coordination-reference-only-positive",
+      "task": "Estoy modelando en Blender; generame y guardame nuevas referencias mientras sigo trabajando, pero no toques, enfoques ni captures mi Blender.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Generar referencias Blender en paralelo sin interactuar con la sesión humana activa",
+        "domains": [
+          "blender",
+          "artifacts",
+          "filesystem",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "create",
+          "save",
+          "coordinate",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "project"
+        ],
+        "needs": [
+          "safe-editing",
+          "cross-agent",
+          "integrity-verification"
+        ],
+        "signals": [
+          "reusable-pattern"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "blender-session-coordination",
+          "blender-reference-pipeline",
+          "visual-reference-authoring",
+          "visual-reference-integrity"
+        ],
+        "activeExcludes": [
+          "blender-visual-review",
+          "git-change-publication"
+        ],
+        "deferredExcludes": [
+          "blender-visual-review",
+          "git-change-publication"
+        ]
+      }
+    },
+    {
+      "name": "blender-session-coordination-scene-write-positive",
+      "task": "Editá el modelo que está abierto en el .blend exacto del proyecto, pero verificá primero la ruta, el PID, el guardado y que yo no lo esté tocando.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Coordinar una escritura segura en una sesión Blender exacta",
+        "domains": [
+          "blender",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "edit",
+          "coordinate",
+          "verify",
+          "save"
+        ],
+        "artifacts": [
+          "model-3d",
+          "project",
+          "mcp"
+        ],
+        "needs": [
+          "safe-editing",
+          "scene-analysis",
+          "integrity-verification",
+          "cross-agent"
+        ],
+        "signals": [
+          "conflicting-evidence"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "blender-session-coordination"
+        ]
+      }
+    },
+    {
+      "name": "blender-session-coordination-reference-only-continuation",
+      "task": "Dale, seguí con las referencias",
+      "context": "Mauro está modelando en Blender y aprobó que el agente genere, persista y valide referencias en disco sin abrir, enfocar, capturar, modificar ni guardar la sesión Blender activa.",
+      "stage": "resume",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar generación de referencias en modo reference-only",
+        "domains": [
+          "blender",
+          "artifacts",
+          "filesystem",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "create",
+          "save",
+          "coordinate",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "project"
+        ],
+        "needs": [
+          "safe-editing",
+          "cross-agent",
+          "integrity-verification"
+        ],
+        "signals": [
+          "reusable-pattern"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "blender-session-coordination",
+          "blender-reference-pipeline",
+          "visual-reference-authoring",
+          "visual-reference-integrity"
+        ],
+        "activeExcludes": [
+          "blender-visual-review",
+          "git-change-publication"
+        ],
+        "deferredExcludes": [
+          "blender-visual-review",
+          "git-change-publication"
+        ]
+      }
+    },
+    {
+      "name": "blender-session-coordination-negative-unrelated-image",
+      "task": "Creá una imagen conceptual para una portada; no se usará en Blender ni en modelado 3D.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Crear una imagen conceptual sin relación con Blender",
+        "domains": [
+          "artifacts"
+        ],
+        "actions": [
+          "create"
+        ],
+        "artifacts": [
+          "asset"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "blender-session-coordination"
+        ],
+        "deferredExcludes": [
+          "blender-session-coordination"
         ]
       }
     }

@@ -1018,3 +1018,84 @@ MSSR tenía dominios canónicos para Roblox y Blender, pero ninguna representaci
 - La continuación corta recupera `godot-project-inspection` desde contexto.
 - El fixture Blender excluye las tres skills Godot.
 - El debugging TypeScript genérico vuelve a conservar su fallback de verificación y no activa `godot-runtime-debugging`.
+
+## MSSR-029 — La reparación de referencias Blender omitía el pipeline e iniciaba autoría
+
+**Date:** 2026-08-05
+
+### Trigger
+
+Se compararon dos intents estructurados:
+
+1. `Genera referencias fotográficas multivista para Blender y persístelas.`
+2. `Las imágenes ya están descargadas; arregla las vistas de referencia existentes en Blender y verifica todas las perspectivas.`
+
+### Observed failure
+
+El caso de creación seleccionaba correctamente `visual-reference-authoring`, `visual-reference-integrity` y `blender-reference-pipeline`. El caso de reparación seleccionaba debugging e integridad, pero omitía `blender-reference-pipeline` y activaba `visual-reference-authoring` aunque el usuario había prohibido regenerar o descargar imágenes.
+
+### Root causes
+
+- `blender-reference-pipeline` sólo declaraba las acciones `design/create`, de modo que no podía poseer una instalación existente durante `debug/edit/verify/test/save`.
+- `visual-reference-authoring` aceptaba acciones amplias y no excluía el intent canónico `debug`.
+- La skill de pipeline describía creación e instalación, pero no exigía un procedimiento explícito para auditar Image Empties existentes, separar metadata de píxeles, verificar las seis vistas cardinales ni reabrir desde disco.
+
+### Correction
+
+- `blender-reference-pipeline` ahora cubre `edit`, `verify`, `test`, `debug` y `save`, además de creación, y conserva ownership durante verificación y persistencia.
+- Se añadieron `scene-analysis` e `integrity-verification` a sus necesidades y `systematic-debugging` como complemento.
+- `visual-reference-authoring` excluye intents con la acción canónica `debug`; la edición normal de una imagen generada continúa disponible.
+- La skill canónica `blender-reference-pipeline` ahora incluye un flujo de reparación: inventario completo de propiedades, evidencia fresca del fallo, matriz FRONT/BACK/RIGHT/LEFT/TOP/BOTTOM, comparación de píxeles con fuentes aprobadas, inspección de `empty_image_side` y normales antes de rotar, corrección mínima versionada, reapertura desde disco y gate de persistencia.
+
+### Regression fixtures
+
+- `blender-reference-authoring-multiview-positive`
+- `blender-reference-existing-install-repair-positive`
+
+El segundo fixture exige `systematic-debugging`, `visual-reference-integrity` y `blender-reference-pipeline`, y excluye `visual-reference-authoring` tanto de active como de deferred. El fixture genérico `blender-review-does-not-open-roblox-branch` continúa excluyendo el pipeline, evitando que una revisión Blender ordinaria se convierta en trabajo de referencias.
+
+### Verification
+
+- `npm run test:skill-routing`: 170/170 casos pasaron.
+- `skill_route_audit`, verificación de junctions/discovery y la reproducción viva de los dos casos mínimos se registran en el cierre del incidente.
+
+### Verification addendum — MSSR-029
+
+- `npm run verify` passed the complete MSSR suite.
+- `npm run test:skill-routing` passed 170/170 effective cases.
+- `skill_route_audit` returned `maintenanceRequired=false`.
+- Canonical skill junction installation, skill verification and Codex discovery passed for all 43 managed skills.
+- Live authoring intent selected `visual-reference-authoring`, `visual-reference-integrity` and `blender-reference-pipeline`.
+- Live existing-install repair intent selected `systematic-debugging`, `visual-reference-integrity` and `blender-reference-pipeline`, while excluding `visual-reference-authoring`.
+
+## MSSR-030 — El modo Blender reference-only arrastraba revisión de escena viva
+
+**Date:** 2026-08-06
+
+### Trigger
+
+Intent estructurado para crear, guardar y verificar referencias visuales en disco mientras la sesión Blender humana permanece fuera de alcance.
+
+### Observed failure
+
+`blender-iteration` coincidía por `domain=blender` y exigía `blender-visual-review` en verificación sólo porque aparecía `create` o `review`, aunque no existía necesidad de inspeccionar escena, viewport ni render vivo.
+
+### Cause
+
+La fase de verificación del workflow condicionaba la revisión únicamente por acciones amplias. No distinguía trabajo sobre una escena Blender de autoría e integridad de referencias externas.
+
+### Correction
+
+La regla de workflow que hace obligatoria `blender-visual-review` ahora exige también `need=scene-analysis`. Las tareas reference-only conservan `blender-session-coordination`, `blender-reference-pipeline`, `visual-reference-authoring` y `visual-reference-integrity`, sin abrir la rama de revisión viva ni publicación Git.
+
+### Regression fixtures
+
+- `blender-session-coordination-reference-only-positive`
+- `blender-session-coordination-reference-only-continuation`
+- `blender-review-does-not-open-roblox-branch` conserva la revisión diferida porque declara `scene-analysis`.
+
+### Verification
+
+- El fixture nuevo falló antes del cambio por `blender-visual-review` diferida.
+- `npm run verify` pasó con 174 casos efectivos, audit limpio y cero ciclos.
+- La reproducción viva posterior excluyó `blender-visual-review` y `git-change-publication` y mantuvo las cuatro capacidades de referencias esperadas.
