@@ -31,6 +31,10 @@ All notable changes to MSSR are documented here.
 
 ## Unreleased
 
+- Added explicit routing for `asset-completion-gate` and the transversal `asset-production-completion` workflow so 3D model creation/revision cannot close before its review-card, evidence, catalog and dashboard gates are complete.
+- Added Blender, Roblox and Godot positives, a continuation case, and read-only/reference-authoring negatives; the routing suite now passes 182 structured cases with all 45 owned skills explicitly configured.
+- Kept activation scoped to `model-3d` production work so ordinary image/reference authoring and read-only model inspection do not inherit the completion workflow.
+
 - Classified duplicate skills by ownership and provenance: duplicate owned skills are audit errors, equivalent cached plugin versions are informational, and divergent external contracts are maintenance warnings.
 - Clarified selective-context budget semantics so optional skill/module omissions remain observable without reporting a required bootstrap overflow.
 - Added a transversal user-visible progress contract for long/multi-phase work: bounded phase/owner/next-gate checkpoints, an 8–10 minute return-to-control rule, and an explicit boundary between backend MSSR telemetry and host-visible communication.

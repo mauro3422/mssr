@@ -2168,6 +2168,60 @@
         "verification",
         "persistence"
       ]
+    },
+    "asset-completion-gate": {
+      "phase": "verification",
+      "coversPhases": [
+        "persistence",
+        "maintenance"
+      ],
+      "domains": [
+        "blender",
+        "roblox",
+        "godot",
+        "artifacts",
+        "filesystem",
+        "other"
+      ],
+      "actions": [
+        "create",
+        "edit",
+        "optimize",
+        "save",
+        "version",
+        "publish",
+        "coordinate",
+        "document"
+      ],
+      "artifacts": [
+        "model-3d"
+      ],
+      "needs": [
+        "visual-qa",
+        "integrity-verification",
+        "version-control"
+      ],
+      "requires": [],
+      "complements": [
+        "blender-visual-review",
+        "roblox-model-turnaround-review",
+        "roblox-photo-rig-capture",
+        "godot-visual-review",
+        "visual-evidence-cataloging",
+        "visual-reference-integrity"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "read-only-asset-inspection",
+        "marketplace-selection",
+        "reference-authoring-only",
+        "image-generation-only",
+        "gameplay-only"
+      ],
+      "requireArtifactMatch": true,
+      "requireActionMatch": true,
+      "priority": 97,
+      "activation": "on-demand"
     }
   },
   "workflows": [
@@ -2630,6 +2684,74 @@
             ],
             "stages": [
               "persist"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "asset-production-completion",
+      "match": {
+        "domains": [
+          "blender",
+          "roblox",
+          "godot"
+        ],
+        "actions": [
+          "create",
+          "edit",
+          "optimize",
+          "save",
+          "version",
+          "publish"
+        ],
+        "artifacts": [
+          "model-3d"
+        ]
+      },
+      "phases": [
+        {
+          "phase": "verification",
+          "skills": [
+            "asset-completion-gate"
+          ],
+          "required": true,
+          "when": {
+            "actions": [
+              "create",
+              "edit",
+              "optimize",
+              "verify"
+            ]
+          }
+        },
+        {
+          "phase": "persistence",
+          "skills": [
+            "asset-completion-gate"
+          ],
+          "required": true,
+          "when": {
+            "actions": [
+              "create",
+              "edit",
+              "optimize",
+              "save",
+              "version",
+              "publish",
+              "document"
+            ]
+          }
+        },
+        {
+          "phase": "maintenance",
+          "skills": [
+            "asset-completion-gate"
+          ],
+          "required": true,
+          "when": {
+            "stages": [
+              "close"
             ]
           }
         }

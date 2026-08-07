@@ -5252,6 +5252,258 @@
           "blender-session-coordination"
         ]
       }
+    },
+    {
+      "name": "asset-completion-gate-blender-positive-verify",
+      "task": "Terminá este asset 3D de Blender: verificá el modelo final, sacá las seis vistas, armá su ficha de completion y dejalo listo para persistir y publicar en el dashboard.",
+      "stage": "verify",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Cerrar la verificación visual y técnica de un asset 3D recién creado en Blender",
+        "domains": [
+          "blender",
+          "artifacts",
+          "filesystem"
+        ],
+        "actions": [
+          "create",
+          "verify",
+          "review",
+          "save"
+        ],
+        "artifacts": [
+          "model-3d"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification",
+          "version-control"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "asset-completion-gate"
+        ]
+      }
+    },
+    {
+      "name": "asset-completion-gate-roblox-positive-close",
+      "task": "Cerrá este modelo 3D de Roblox que acabamos de crear: no lo des por terminado hasta que tenga turnaround, evidencia persistida y el dashboard real verificado.",
+      "stage": "close",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Cerrar durablemente un asset 3D creado para Roblox",
+        "domains": [
+          "roblox",
+          "artifacts",
+          "filesystem"
+        ],
+        "actions": [
+          "create",
+          "save",
+          "publish",
+          "document"
+        ],
+        "artifacts": [
+          "model-3d"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification",
+          "version-control"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "asset-completion-gate"
+        ]
+      }
+    },
+    {
+      "name": "asset-completion-gate-godot-positive-persist",
+      "task": "Persistí y cerrá la iteración del modelo 3D integrado en Godot; conservá la ficha multi-vista, hashes y publicación del catálogo antes de marcarlo completo.",
+      "stage": "persist",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Persistir el cierre verificable de un asset 3D integrado en Godot",
+        "domains": [
+          "godot",
+          "artifacts",
+          "filesystem",
+          "git"
+        ],
+        "actions": [
+          "edit",
+          "verify",
+          "save",
+          "version",
+          "publish"
+        ],
+        "artifacts": [
+          "model-3d",
+          "repository"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification",
+          "version-control"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "asset-completion-gate"
+        ]
+      }
+    },
+    {
+      "name": "asset-completion-gate-continuation",
+      "task": "Dale, cerralo con la ficha y el dashboard y ahí sí terminamos.",
+      "context": "Se acaba de crear y validar parcialmente un modelo 3D. Falta ejecutar el cierre estándar: seis vistas reproducibles, completion card, technical y promotion gates desde evidencia real, hashes persistidos, refresh de MauroAssetLibrary y verificación visual del dashboard consumidor.",
+      "stage": "resume",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Retomar el cierre pendiente de un asset 3D ya creado",
+        "domains": [
+          "blender",
+          "artifacts",
+          "filesystem"
+        ],
+        "actions": [
+          "save",
+          "publish",
+          "coordinate",
+          "document"
+        ],
+        "artifacts": [
+          "model-3d"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification",
+          "version-control"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "asset-completion-gate"
+        ]
+      }
+    },
+    {
+      "name": "asset-completion-gate-negative-read-only-inspection",
+      "task": "Inspeccioná este modelo de Blender y decime si las proporciones se ven bien. No edites, no guardes, no publiques y no cierres la iteración.",
+      "stage": "verify",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Revisar visualmente un modelo 3D sin cambiar ni cerrar su iteración",
+        "domains": [
+          "blender"
+        ],
+        "actions": [
+          "review",
+          "analyze",
+          "verify"
+        ],
+        "artifacts": [
+          "model-3d"
+        ],
+        "needs": [
+          "visual-qa",
+          "scene-analysis"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "asset-completion-gate"
+        ],
+        "deferredExcludes": [
+          "asset-completion-gate"
+        ]
+      }
+    },
+    {
+      "name": "asset-completion-gate-negative-reference-authoring",
+      "task": "Generá y guardá referencias visuales para el próximo modelo de Blender; todavía no existe ningún modelo 3D que cerrar.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Crear referencias visuales previas al modelado sin producir un asset 3D",
+        "domains": [
+          "blender",
+          "artifacts",
+          "filesystem"
+        ],
+        "actions": [
+          "create",
+          "save",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "document"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "asset-completion-gate"
+        ],
+        "deferredExcludes": [
+          "asset-completion-gate"
+        ]
+      }
     }
   ]
 }
