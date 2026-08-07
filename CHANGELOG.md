@@ -31,6 +31,9 @@ All notable changes to MSSR are documented here.
 
 ## Unreleased
 
+- Hardened `trace-contract-v1` with a fresh-close invariant: when `maintenance` is required, `status=success` outcomes must follow a close/maintenance pass newer than the latest continuation or persistence checkpoint; stale success closes are rejected while partial/failed/skipped outcomes remain recordable.
+- Defined `mssr-success-outcome-blocked-stale-close` and restart-safe lifecycle reconstruction from existing route/checkpoint observability, without moving state into the deterministic MSSR core or hard-coding a maintenance skill name.
+
 - Added explicit routing for `asset-completion-gate` and the transversal `asset-production-completion` workflow so 3D model creation/revision cannot close before its review-card, evidence, catalog and dashboard gates are complete.
 - Added Blender, Roblox and Godot positives, a continuation case, and read-only/reference-authoring negatives; the routing suite now passes 182 structured cases with all 45 owned skills explicitly configured.
 - Kept activation scoped to `model-3d` production work so ordinary image/reference authoring and read-only model inspection do not inherit the completion workflow.

@@ -71,6 +71,8 @@ route
   -> replan
   -> verification
   -> persistence
+  -> close replan
+  -> required maintenance on the latest persisted state
   -> latest effective outcome
 ```
 
@@ -83,10 +85,11 @@ The host emits bounded notices when continuity becomes unreliable:
 - `mssr-trace-mismatch`;
 - `mssr-required-skill-not-loaded`;
 - `mssr-outcome-without-route`;
+- `mssr-success-outcome-blocked-stale-close` when required maintenance belongs to an older lifecycle generation than later work or persistence;
 - active trace replacement before an outcome;
 - `mssr-trace-ambiguous` when several concurrent traces fit.
 
-An outcome closes the current task trace. A later `stage=start` request for another task receives a new trace. Replans, retries, verification, persistence, and later review of the same task retain the existing trace.
+An outcome closes the current task trace. A later `stage=start` request for another task receives a new trace. Replans, retries, verification, persistence, and later review of the same task retain the existing trace. When `maintenance` is required, a successful outcome additionally requires a `stage=close` route and successful maintenance completion newer than the latest non-close replan and persistence checkpoint. A later continuation invalidates the previous close evidence and requires a fresh close pass; non-success outcomes remain recordable.
 
 ## Observability epochs
 
@@ -196,8 +199,8 @@ MauroPrime Bridge provides:
 - `mssr_trace_record` for bounded checkpoints and attributed outcomes;
 - SQLite plus JSONL storage without raw prompts/transcripts and a persisted runtime epoch state;
 - dashboard cards for structured routing, route→load continuity, required-load compliance, outcome success, acceptance, and per-primary-skill results;
-- Bridge notices for orphan loads, mismatches, omitted required skills, outcomes without routes, errors, and workflow/context anomalies;
-- an end-to-end in-memory MCP regression proving route→loads→replan→verification→persistence→outcome continuity.
+- Bridge notices for orphan loads, mismatches, omitted required skills, outcomes without routes, stale close/maintenance attempts, errors, and workflow/context anomalies;
+- an end-to-end MCP regression proving route→loads→replan→verification→persistence→fresh close/maintenance→outcome continuity, including stale-close recovery after coordinator-memory loss.
 
 The deterministic MSSR core remains host-neutral. Observability, notices, and context delivery belong to adapters because only a host can know whether the protocol was actually invoked and which tools/results occurred.
 

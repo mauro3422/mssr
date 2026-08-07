@@ -100,6 +100,27 @@ Load only the active returned phase. Re-plan when the stage advances, after a
 material result or failure, or when a new capability becomes necessary. A prior
 plan never locks the agent out of another authorized tool.
 
+### Fresh-close invariant
+
+When the route declares `maintenance` as a required phase, a successful final
+`outcome` is valid only for the latest lifecycle generation. The host must:
+
+1. complete verification and the latest persistence checkpoint;
+2. re-plan the same trace at `stage=close`;
+3. complete the required close/maintenance phase on that current state;
+4. only then record `status=success` outcome.
+
+Any later `start`, `implement`, `verify`, `persist`, or `resume` replan on the
+same trace, and any later persistence checkpoint, makes the previous close and
+maintenance evidence stale. The trace must pass through `stage=close` and
+maintenance again before another successful outcome. Read-only observability or
+context inspection does not by itself invalidate a close.
+
+A host adapter may enforce this invariant from observable route/checkpoint
+history. This is lifecycle-integrity validation, not a permission boundary:
+`partial`, `failed`, or `skipped` outcomes remain recordable so unfinished or
+blocked work can close truthfully.
+
 ## Skill-load lifetime
 
 `skill_load` returns the selected `SKILL.md` as a normal host tool result. MSSR
