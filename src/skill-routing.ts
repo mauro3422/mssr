@@ -25,7 +25,7 @@ export const SKILL_ARTIFACTS = [
 ] as const;
 export const SKILL_NEEDS = [
   "official-docs", "safe-editing", "unit-tests", "playtest", "visual-qa", "device-testing", "performance",
-  "scene-analysis", "backup", "integrity-verification", "version-control", "history-recovery", "cross-agent", "human-approval",
+  "scene-analysis", "backup", "integrity-verification", "version-control", "history-recovery", "cross-agent", "human-approval", "component-reuse",
 ] as const;
 export const SKILL_SIGNALS = [
   "nominal", "error-observed", "warning-observed", "degraded-capability", "uncertainty", "conflicting-evidence",

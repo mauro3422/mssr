@@ -5504,6 +5504,186 @@
           "asset-completion-gate"
         ]
       }
+    },
+    {
+      "name": "asset-component-reuse-positive-existing-fastener",
+      "task": "Antes de modelar tornillos nuevos, revisá el set de microtornillos ya validado y decidí si conviene instanciarlo o derivar una variante compatible con este dispositivo.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Reutilizar o derivar un componente 3D validado antes de crear geometría duplicada",
+        "domains": [
+          "blender",
+          "artifacts"
+        ],
+        "actions": [
+          "discover",
+          "analyze",
+          "design"
+        ],
+        "artifacts": [
+          "model-3d",
+          "asset"
+        ],
+        "needs": [
+          "component-reuse",
+          "scene-analysis",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "asset-component-reuse"
+        ],
+        "activeExcludes": [
+          "skill-maintenance-loop"
+        ]
+      }
+    },
+    {
+      "name": "asset-component-reuse-negative-original-model",
+      "task": "Modelá una escultura orgánica original en Blender desde cero; no hay componentes existentes ni una biblioteca de piezas que reutilizar.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Crear un modelo 3D original sin reutilización de componentes",
+        "domains": [
+          "blender"
+        ],
+        "actions": [
+          "design",
+          "create"
+        ],
+        "artifacts": [
+          "model-3d",
+          "asset"
+        ],
+        "needs": [
+          "scene-analysis",
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "asset-component-reuse",
+          "skill-maintenance-loop"
+        ],
+        "deferredExcludes": [
+          "asset-component-reuse"
+        ]
+      }
+    },
+    {
+      "name": "asset-component-reuse-continuation-migration",
+      "task": "Dale, migrá esos tornillos sin romper lo que ya funciona.",
+      "context": "Se aceptó evaluar la migración de tornillos específicos de una radio hacia una familia reusable ya validada. Deben conservarse drive/tool compatibility, dimensiones, mount plane, fastener_index, visual_axis, anchors, node identity y regresiones del ensamblaje; si la familia no coincide se deriva una variante en vez de escalar o sustituir a ciegas.",
+      "stage": "resume",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Migrar un componente integrado a una familia reusable preservando su contrato de interacción",
+        "domains": [
+          "blender",
+          "artifacts"
+        ],
+        "actions": [
+          "edit",
+          "analyze",
+          "verify"
+        ],
+        "artifacts": [
+          "model-3d",
+          "asset",
+          "game"
+        ],
+        "needs": [
+          "component-reuse",
+          "safe-editing",
+          "integrity-verification",
+          "playtest"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "asset-component-reuse"
+        ],
+        "activeExcludes": [
+          "skill-maintenance-loop"
+        ]
+      }
+    },
+    {
+      "name": "skill-maintenance-loop-repeated-blender-friction-close",
+      "task": "La iteración ya terminó; convertí las fricciones repetidas del review de Blender en prevención reusable y cerrá el mantenimiento del sistema.",
+      "context": "Durante el asset se repitieron errores verificables de bounds procedurales, transforms evaluados en colecciones ocultas, cámara degenerada e iluminación dependiente de escala. El asset ya fue verificado y persistido; ahora corresponde mantenimiento transversal, no más modelado.",
+      "stage": "close",
+      "completedPhases": [
+        "discovery",
+        "safety",
+        "implementation",
+        "verification",
+        "persistence"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Cerrar una iteración con prevención reusable a partir de fricción repetida verificada",
+        "domains": [
+          "blender",
+          "skill-system"
+        ],
+        "actions": [
+          "maintain",
+          "document",
+          "analyze"
+        ],
+        "artifacts": [
+          "skill",
+          "model-3d"
+        ],
+        "needs": [
+          "integrity-verification"
+        ],
+        "signals": [
+          "repeated-friction",
+          "reusable-pattern"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "skill-maintenance-loop"
+        ],
+        "activeExcludes": [
+          "asset-component-reuse"
+        ]
+      }
     }
   ]
 }

@@ -2169,6 +2169,49 @@
         "persistence"
       ]
     },
+    "asset-component-reuse": {
+      "phase": "discovery",
+      "coversPhases": [
+        "implementation",
+        "verification"
+      ],
+      "domains": [
+        "artifacts",
+        "blender",
+        "godot",
+        "roblox"
+      ],
+      "actions": [
+        "discover",
+        "design",
+        "create",
+        "edit",
+        "review",
+        "verify",
+        "analyze"
+      ],
+      "artifacts": [
+        "model-3d",
+        "asset",
+        "game"
+      ],
+      "needs": [
+        "component-reuse"
+      ],
+      "signals": [],
+      "requires": [],
+      "complements": [
+        "asset-completion-gate"
+      ],
+      "excludes": [],
+      "negativeIntents": [],
+      "requireNeedMatch": true,
+      "requireActionMatch": true,
+      "requireArtifactMatch": true,
+      "requireSignalMatch": false,
+      "priority": 94,
+      "activation": "on-demand"
+    },
     "asset-completion-gate": {
       "phase": "verification",
       "coversPhases": [

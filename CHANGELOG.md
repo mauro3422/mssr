@@ -31,6 +31,16 @@ All notable changes to MSSR are documented here.
 
 ## Unreleased
 
+- Added canonical `component-reuse` intent need and explicit routing for `asset-component-reuse`, separating healthy reuse of validated 3D components from maintenance signals such as `reusable-pattern` and `repeated-friction`.
+- Added positive, nearby-negative and continuation/migration regressions for component reuse plus a close-stage Blender friction regression proving `skill-maintenance-loop` activates on reusable non-nominal lessons; the deterministic suite now passes 186 cases with 46 owned skills explicitly routed.
+- Modularized the heaviest Blender procedural skills with selective `context-modules.json`, so reference/session/review guidance can remain routable under bounded host context budgets instead of being skipped as whole optional files.
+
+- Renamed the expanded architecture to **MSSR — Modular Semantic Skill Router**, preserving the acronym while making modularity and semantic selection explicit.
+- Added the portable modular project-context contract: `.bridge/project-context.json`, minimal core context, stage/intent-selected `context`/`memory`/`state`/`directive` modules, bounded budgeting, exclusive alternatives, and a documented legacy fallback.
+- Extracted the generic semantic context selector and canonical intent normalizer into `@mauroprime/mssr`, reducing Bridge-owned routing logic and allowing skill context and project context to share one deterministic primitive without sharing authority.
+- Added project-context and intent-normalization regressions plus the project memory/update discipline that separates stable facts, durable decisions, mutable state, scoped directives, AGENTS rules, and cross-project skills.
+- Added portable stable-section update helpers for durable project knowledge and manifest module upserts so host writers can implement optimistic concurrency and bounded Markdown+manifest transactions without moving filesystem mutation into MSSR core.
+
 - Hardened `trace-contract-v1` with a fresh-close invariant: when `maintenance` is required, `status=success` outcomes must follow a close/maintenance pass newer than the latest continuation or persistence checkpoint; stale success closes are rejected while partial/failed/skipped outcomes remain recordable.
 - Defined `mssr-success-outcome-blocked-stale-close` and restart-safe lifecycle reconstruction from existing route/checkpoint observability, without moving state into the deterministic MSSR core or hard-coding a maintenance skill name.
 

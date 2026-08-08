@@ -29,18 +29,19 @@ chain-of-thought.
 
 ## Project context and context budget
 
-MSSR keeps procedural guidance and project state in separate layers:
+MSSR keeps procedural guidance and project knowledge in separate layers:
 
 - reusable cross-project procedure belongs in a skill;
-- project-specific architecture, vocabulary, paths, decisions, current state,
-  and open blockers belong in the repository's durable context and docs;
-- the host loads only the project material needed to resolve the current intent,
-  then asks MSSR for the smallest phase-scoped skill set.
+- repository-wide permanent instructions belong in `AGENTS.md`;
+- project-specific architecture, vocabulary, paths, durable decisions, current state, and blockers belong in the repository's durable project documents;
+- project-specific conditional instructions may be indexed as `directive` modules, but only when their stage and structured-intent selectors match;
+- the host loads the smallest project core first, then selects project modules and the smallest phase-scoped skill set from canonical intent.
 
-A new project does not require a new skill by default. Create or generalize a
-skill only when the lesson has an independent reusable objective across projects.
-This separation is the main context-pressure control: durable project facts stay
-available without placing every skill or historical transcript in the prompt.
+With `.bridge/project-context.json`, project selection becomes modular instead of loading `PROJECT_CONTEXT.md`, `PROJECT_MEMORY.md`, and `PROJECT_STATE.md` wholesale. The manifest may point to stable Markdown sections and classify them as `context`, `memory`, `state`, or `directive`. The same deterministic selector primitive used by skill context scores project modules, but project knowledge is not converted into a skill and directives are not authorization.
+
+A new project does not require a new skill by default. Create or generalize a skill only when the lesson has an independent reusable objective across projects. Keep broad permanent project instructions in AGENTS; keep conditional local instructions narrow and selector-driven; keep mutable state curated rather than append-only. This separation is the main context-pressure control.
+
+Distinguish a healthy reusable capability from a maintenance signal. For example, `needs=["component-reuse"]` requests the normal procedure for finding and reusing an existing validated 3D component, while `signals=["reusable-pattern"]` means the current work itself exposed a reusable lesson that should be considered for transversal maintenance. Do not mark nominal component reuse as system friction merely to route a skill.
 
 
 ### Selective procedural context
@@ -48,14 +49,9 @@ available without placing every skill or historical transcript in the prompt.
 When the host applies a route through `skill_bootstrap`, the default context mode is selective. A skill may declare a `context-modules.json` manifest containing one compact core and optional modules filtered by stage and structured intent. MSSR scores and filters modules deterministically; true alternatives may share an `exclusiveGroup`, where a unique winner loads and a top-score tie returns candidates without loading either. The host adapter materializes all active Codex candidates before budgeting, reserves every required skill core first, then required modules, globally ranks optional modules, admits optional skill packages only when complete, and avoids reinjecting text already covered by loaded context.
 
 `skill_load` remains the explicit full-file operation. `contentMode=full` is available for diagnosis and rollback, while a missing or invalid manifest falls back to the complete `SKILL.md` with observable telemetry. Optional skill context that cannot fit is skipped whole; required context may overflow only with explicit evidence. The host reports planner mode, allocation tier, savings, skip/overflow and duplicate avoidance without storing procedural text. Module selection does not create a second routing graph, change permissions, or prove that the host still retains text after compaction.
-The host is responsible for the activation hook. Before substantial specialized
-work it must load the relevant project context, produce the compact intent, and
-call `skill_route_plan` or `skill_bootstrap`. A `trace-contract-v1` adapter then
-keeps local session continuity and may recover a trace across stateless calls
-through a bounded process-shared lease only when one compatible candidate exists.
-Ambiguity, restart, cross-process resume, and deliberate selection require an
-explicit ID. MSSR cannot activate itself in a host that never calls it.
+The host is responsible for the activation hook. Before substantial specialized work it should load AGENTS and the minimal project core, produce canonical structured intent, select any matching project modules, and call `skill_route_plan` or `skill_bootstrap`. When applying the route, the host should carry the same resolved project root so `skill_bootstrap` can re-select phase-scoped project modules together with procedural skill context.
 
+At `verify`, `persist`, `close`, `resume`, a material failure, or a newly discovered capability need, re-plan the active trace and re-select both project modules and skill modules. Already loaded core context need not be duplicated when the host can prove it is still present. A `trace-contract-v1` adapter may keep local session continuity and recover a trace across stateless calls only when one compatible candidate exists. Ambiguity, restart, cross-process resume, and deliberate selection require an explicit ID. MSSR cannot activate itself in a host that never calls it.
 When the host can prove them, it should also attach its observable model
 identifier and reasoning effort to every route checkpoint (for example
 `gpt-5.6-terra` with `high`). If either value is not exposed by the product,

@@ -1,4 +1,4 @@
-# MauroPrime Structured Skill Router
+# MSSR — Modular Semantic Skill Router
 
 Nombre corto: **MSSR**.
 
@@ -34,6 +34,8 @@ mensaje del usuario
 La clasificación puede reutilizarse como capa de control para seleccionar skills, tools, pruebas, permisos o pipelines. No debe ejecutar por sí sola mutaciones destructivas o efectos externos: los tags recomiendan o enrutan; la autorización y las barreras de cada tool siguen gobernando la acción.
 
 `signals` siempre contiene al menos un valor. Usa `nominal` sólo cuando no hay anomalías; si existe evidencia relevante, omite `nominal` y declara `error-observed`, `warning-observed`, `degraded-capability`, `uncertainty`, `conflicting-evidence`, `repeated-friction`, `manual-workaround`, `missing-capability`, `recovery-needed`, `skill-gap` o `reusable-pattern`. Las señales de incidente fuerzan verificación; las de fricción o patrón requieren considerar mantenimiento al cerrar.
+
+`needs` expresa capacidades o garantías requeridas aunque la tarea sea nominal. `component-reuse` significa que un ensamblaje 3D debe auditar componentes validados existentes y decidir `instance | derive | create`; no debe sustituirse por `reusable-pattern`, porque esa señal significa que apareció una lección/fricción digna de mantenimiento del sistema.
 
 ## Componentes canónicos
 
