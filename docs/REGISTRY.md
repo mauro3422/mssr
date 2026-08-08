@@ -55,3 +55,28 @@ labels the cached data as planning evidence rather than live availability.
 Use `createStdioMcpClientFactory` only with local, operator-provided stdio
 parameters. Runtime catalog metadata cannot register a command or cause MSSR to
 launch an arbitrary process.
+
+## Operator provider file
+
+The standalone stdio entrypoints load optional external providers from the JSON
+file named by `MSSR_MCP_PROVIDERS_PATH`. The file is operator-owned and versioned:
+
+```json
+{
+  "schemaVersion": 1,
+  "providers": [
+    {
+      "id": "local-tools",
+      "transport": "stdio",
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": ["C:\\path\\to\\server.js"],
+      "cwd": "C:\\path\\to",
+      "source": "mcp:local-tools"
+    }
+  ]
+}
+```
+
+Only local stdio is accepted. Unknown fields and invalid provider identifiers
+are rejected. The configuration starts metadata connections for `tools/list`;
+it does not give MSSR a tool-call surface or change host permissions.

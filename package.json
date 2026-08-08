@@ -29,6 +29,7 @@
     "test:trace-contract": "node scripts/test-trace-contract.mjs",
     "test:registry": "node scripts/test-registry.mjs",
     "test:mcp-provider": "node scripts/test-mcp-provider.mjs",
+    "test:provider-config": "node scripts/test-provider-config.mjs",
     "test:mcp": "node scripts/test-mcp.mjs",
     "test:codex-standalone": "node scripts/test-codex-standalone.mjs",
     "test:router": "node scripts/test-skill-routing.mjs",
@@ -38,7 +39,7 @@
     "test:intent-normalizer": "node scripts/test-intent-normalizer.mjs",
     "test:skill-routing": "npm run build && npm run test:router",
     "test:skill-context": "npm run build && npm run test:context",
-    "test": "npm run build && npm run test:core && npm run test:trace-contract && npm run test:context && npm run test:skill-context-loader && npm run test:project-context && npm run test:intent-normalizer && npm run test:registry && npm run test:mcp-provider && npm run test:mcp && npm run test:codex-standalone && npm run test:router",
+    "test": "npm run build && npm run test:core && npm run test:trace-contract && npm run test:context && npm run test:skill-context-loader && npm run test:project-context && npm run test:intent-normalizer && npm run test:registry && npm run test:mcp-provider && npm run test:provider-config && npm run test:mcp && npm run test:codex-standalone && npm run test:router",
     "audit": "python scripts/audit-skills.py",
     "verify": "npm run check && npm run test && npm run audit",
     "prepare": "npm run build"
@@ -56,7 +57,7 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.9.0",
+    "@modelcontextprotocol/sdk": "^1.30.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {

@@ -31,6 +31,13 @@ All notable changes to MSSR are documented here.
 
 ## Unreleased
 
+- Added a strict, versioned operator provider file selected by
+  `MSSR_MCP_PROVIDERS_PATH`, allowing standalone Codex and portable MCP hosts to
+  discover real local stdio catalogs through metadata-only `tools/list`.
+- Documented the portable OpenCode CLI integration, using the generic stdio
+  facade with `caller="other"` and host-owned execution.
+- Aligned the MCP SDK dependency with Bridge at `^1.30.0`.
+
 - Moved selective skill-context materialization into the portable package via
   `planCodexSkillContexts` and `assembleCodexSkillContext`, allowing Bridge and
   Codex-local adapters to share one bounded loader without moving host state or

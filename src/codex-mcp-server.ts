@@ -4,6 +4,7 @@ import { z } from "zod";
 import { SKILL_PHASES, SKILL_STAGES, structuredSkillIntentSchema } from "./skill-routing.js";
 import { MSSR_CHECKPOINT_STATUSES, MSSR_CHECKPOINT_TYPES } from "./trace-contract.js";
 import { CodexMssrAdapter } from "./codex-adapter.js";
+import { createMssrRegistryFromEnvironment } from "./provider-config.js";
 
 function response(value: unknown) {
   return {
@@ -59,7 +60,9 @@ export function createCodexMssrMcpServer(adapter = new CodexMssrAdapter()) {
 }
 
 export async function startCodexMssrServer(): Promise<void> {
-  const { server, adapter } = createCodexMssrMcpServer();
+  const registry = await createMssrRegistryFromEnvironment();
+  const adapter = new CodexMssrAdapter(registry);
+  const { server } = createCodexMssrMcpServer(adapter);
   await adapter.initialize();
   await server.connect(new StdioServerTransport());
 }

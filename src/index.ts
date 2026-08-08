@@ -1,6 +1,7 @@
 export * from "./skill-routing.js";
 export * from "./registry.js";
 export * from "./providers/mcp-tools-provider.js";
+export * from "./provider-config.js";
 export * from "./mcp-server.js";
 export * from "./codex-adapter.js";
 export * from "./codex-mcp-server.js";

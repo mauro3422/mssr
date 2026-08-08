@@ -16,6 +16,7 @@ import {
 } from "./skill-routing.js";
 import { normalizeMssrIntent } from "./intent-normalizer.js";
 import { CapabilityRegistry, FilesystemSkillProvider } from "./registry.js";
+import { createMssrRegistryFromEnvironment } from "./provider-config.js";
 import {
   MSSR_CHECKPOINT_TYPES,
   MSSR_OUTCOME_DIMENSION_STATUSES,
@@ -146,7 +147,8 @@ export function createMssrMcpServer(registry = new CapabilityRegistry([new Files
 }
 
 export async function startMssrStdioServer(): Promise<void> {
-  const { server, registry } = createMssrMcpServer();
+  const registry = await createMssrRegistryFromEnvironment();
+  const { server } = createMssrMcpServer(registry);
   await registry.refresh();
   await server.connect(new StdioServerTransport());
 }
