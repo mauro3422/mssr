@@ -5254,6 +5254,64 @@
       }
     },
     {
+      "name": "blender-session-name-mentioned-as-bad-route-does-not-reactivate",
+      "task": "Corregí el routing MSSR: blender-session-coordination fue seleccionado incorrectamente durante el cierre de un trabajo Godot Companion y no debe volver a activarse por nombrarlo en este diagnóstico.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Corregir un falso positivo cross-domain del router durante mantenimiento de MSSR y Bridge",
+        "domains": [
+          "coding",
+          "filesystem",
+          "agent-orchestration",
+          "skill-system"
+        ],
+        "actions": [
+          "debug",
+          "analyze",
+          "edit",
+          "test",
+          "verify",
+          "maintain"
+        ],
+        "artifacts": [
+          "code",
+          "mcp",
+          "skill",
+          "repository"
+        ],
+        "needs": [
+          "unit-tests",
+          "integrity-verification",
+          "cross-agent"
+        ],
+        "signals": [
+          "error-observed",
+          "repeated-friction",
+          "reusable-pattern",
+          "replan-needed"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "mssr-agent-routing",
+          "skill-routing-maintainer"
+        ],
+        "activeExcludes": [
+          "blender-session-coordination"
+        ],
+        "deferredExcludes": [
+          "blender-session-coordination"
+        ]
+      }
+    },
+
+    {
       "name": "asset-completion-gate-blender-positive-verify",
       "task": "Terminá este asset 3D de Blender: verificá el modelo final, sacá las seis vistas, armá su ficha de completion y dejalo listo para persistir y publicar en el dashboard.",
       "stage": "verify",

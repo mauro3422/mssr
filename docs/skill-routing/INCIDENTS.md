@@ -1135,3 +1135,34 @@ La ejecución saltó la auditoría del paquete y llamó directamente al generado
 ### Verification
 
 Verified with `npm run verify` (TypeScript, core, context, registry, MCP and 176 routing cases), `skill_route_audit` with zero maintenance findings, and two live structured routes: repair/extend selected `visual-reference-authoring` plus `visual-reference-integrity`, while `risk=read-only` inventory selected integrity and excluded authoring. Project image hashes remained byte-identical. Git persistence is recorded in the closing commits for the three repositories.
+
+## MSSR-032 — Nombrar una skill equivocada en un diagnóstico podía reactivarla
+
+**Date:** 2026-08-08
+
+### Trigger
+
+Durante el mantenimiento del Godot Companion, una tarea estructurada explicó que `blender-session-coordination` había sido seleccionada incorrectamente y debía corregirse.
+
+### Observed failure
+
+El router volvió a considerar `blender-session-coordination` porque el nombre literal de la skill aparecía en el texto de la tarea, aunque el intent estructurado describía código, filesystem, orquestación y mantenimiento de skills sin dominio Blender.
+
+### Root causes
+
+- `scoreEntry` convertía cualquier mención literal del nombre de una skill en `matched + anchorMatched` y permitía que esa mención sustituyera las compuertas semánticas.
+- `blender-session-coordination` declaraba además el dominio transversal `agent-orchestration`, por lo que podía sobrevivir la compuerta de dominio sin evidencia de Blender.
+
+### Correction
+
+- En `structured-semantic`, nombrar una skill conserva sólo un bonus de ranking y ya no crea elegibilidad semántica ni evita las compuertas de need/action/artifact/signal.
+- El comportamiento de nombre explícito como ancla se conserva para `lexical-fallback`, donde no existe intent estructurado que pueda decidir la elegibilidad.
+- `blender-session-coordination` queda restringida al dominio `blender`; la coordinación transversal general sigue perteneciendo a skills de orquestación no específicas de Blender.
+
+### Regression fixture
+
+- `blender-session-name-mentioned-as-bad-route-does-not-reactivate`
+
+### Verification
+
+- `npm run build && npm run test:skill-routing` pasó con 187 casos y audit limpio; los casos positivos reales de `blender-session-coordination` continúan pasando.

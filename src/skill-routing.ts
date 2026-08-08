@@ -717,7 +717,12 @@ function intentTags(intent: StructuredSkillIntent): string[] {
   return [...intent.domains, ...intent.actions, ...intent.artifacts, ...intent.needs, ...intent.signals, intent.risk];
 }
 
-function scoreEntry(skill: SkillEntry & RouteMetadata, intent: StructuredSkillIntent, task: string): { score: number; reasons: string[]; excluded: boolean } {
+function scoreEntry(
+  skill: SkillEntry & RouteMetadata,
+  intent: StructuredSkillIntent,
+  task: string,
+  classificationMode: "structured-semantic" | "lexical-fallback",
+): { score: number; reasons: string[]; excluded: boolean } {
   const reasons: string[] = [];
   const tags = intentTags(intent);
   if (skill.negativeIntents.some((item) => tokenSet(tags).has(normalize(item)))) {
@@ -729,11 +734,16 @@ function scoreEntry(skill: SkillEntry & RouteMetadata, intent: StructuredSkillIn
   let anchorMatched = false;
   const taskText = normalize(task);
   const explicitNameMatched = taskText.includes(normalize(skill.name));
+  const explicitNameOverridesSemantics = explicitNameMatched && classificationMode === "lexical-fallback";
   if (explicitNameMatched) {
     score += 30;
-    matched = true;
-    anchorMatched = true;
-    reasons.push("skill named explicitly");
+    if (explicitNameOverridesSemantics) {
+      matched = true;
+      anchorMatched = true;
+      reasons.push("skill named explicitly");
+    } else {
+      reasons.push("skill named explicitly (ranking only in structured mode)");
+    }
   }
   const dimensions: Array<[string, string[], string[], number, boolean]> = [
     ["domain", skill.domains, intent.domains, 18, false], ["action", skill.actions, intent.actions, 12, false],
@@ -765,16 +775,16 @@ function scoreEntry(skill: SkillEntry & RouteMetadata, intent: StructuredSkillIn
   const domainMatched = skill.domains.some((domain) => intent.domains.includes(domain as StructuredSkillIntent["domains"][number]));
   const intentHasAnchors = intent.artifacts.length > 0 || intent.needs.length > 0;
   if (!matched || (intentHasAnchors && !anchorMatched)) return { score: 0, reasons, excluded: false };
-  if (skill.requireNeedMatch && !anyNeedMatched && !explicitNameMatched) {
+  if (skill.requireNeedMatch && !anyNeedMatched && !explicitNameOverridesSemantics) {
     return { score: 0, reasons: [...reasons, "explicit need gate failed"], excluded: false };
   }
-  if (skill.requireActionMatch && !anyActionMatched && !explicitNameMatched) {
+  if (skill.requireActionMatch && !anyActionMatched && !explicitNameOverridesSemantics) {
     return { score: 0, reasons: [...reasons, "explicit action gate failed"], excluded: false };
   }
-  if (skill.requireArtifactMatch && !anyArtifactMatched && !explicitNameMatched) {
+  if (skill.requireArtifactMatch && !anyArtifactMatched && !explicitNameOverridesSemantics) {
     return { score: 0, reasons: [...reasons, "explicit artifact gate failed"], excluded: false };
   }
-  if (skill.requireSignalMatch && !anySignalMatched && !explicitNameMatched) {
+  if (skill.requireSignalMatch && !anySignalMatched && !explicitNameOverridesSemantics) {
     return { score: 0, reasons: [...reasons, "explicit signal gate failed"], excluded: false };
   }
   if (skill.domains.length > 0 && !domainMatched) return { score: 0, reasons: [...reasons, "domain gate failed"], excluded: false };
@@ -887,7 +897,7 @@ export async function planSkillRoute(args: {
     // Only the current task can explicitly name a skill. Bounded continuation
     // context may describe previously loaded/rejected skills and must not turn
     // those historical mentions into fresh activation anchors.
-    const result = scoreEntry(skill, intent, args.task);
+    const result = scoreEntry(skill, intent, args.task, classificationMode);
     if (result.excluded) continue;
     const requiredReasons = requiredBy.get(skill.name) ?? [];
     if (result.score <= 0 && !requiredReasons.length && skill.activation !== "always") continue;

@@ -2118,8 +2118,7 @@
     "blender-session-coordination": {
       "phase": "safety",
       "domains": [
-        "blender",
-        "agent-orchestration"
+        "blender"
       ],
       "actions": [
         "discover",
