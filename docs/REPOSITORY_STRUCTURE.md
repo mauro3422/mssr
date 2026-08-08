@@ -2,16 +2,21 @@
 
 ## Ownership
 
-This repository is the portable source of truth for MauroPrime Structured Skill Router. It owns advisory classification/routing contracts, provider registry normalization, fixtures, audits and the optional MCP facade. It does not own local tool execution, Bridge transport, ChatGPT UI or project-specific state.
+This repository is the portable source of truth for MSSR — Modular Semantic Skill Router. It owns advisory classification/routing contracts, provider registry normalization, fixtures, audits and the optional MCP facade. It does not own local tool execution, Bridge transport, ChatGPT UI or project-specific state.
 
 ## Canonical layout
 
 ```text
 src/
-├── skill-routing.ts    deterministic routing engine and public types
-├── registry.ts         provider snapshots, provenance and degradation state
-├── mcp-server.ts       optional MCP facade
-└── index.ts            package exports
+├── skill-routing.ts       deterministic routing engine and public intent vocabulary
+├── intent-normalizer.ts   portable canonical intent normalization and recovery hints
+├── context-selection.ts   generic deterministic semantic module selector
+├── skill-context.ts       skill context manifest and selector adapter
+├── project-context.ts     modular project context/directive manifest and selector adapter
+├── project-context-update.ts pure stable-section and manifest-module update helpers
+├── registry.ts            provider snapshots, provenance and degradation state
+├── mcp-server.ts          optional MCP facade
+└── index.ts               package exports
 
 config/skill-routing/
 ├── skill-routing.schema.json
@@ -19,14 +24,20 @@ config/skill-routing/
 ├── skill-routing-fixtures.json
 └── skill-routing-vocabulary.json
 
+config/skill-context/
+  Skill context manifest schema and deterministic fixtures.
+
+config/project-context/
+  Portable `.bridge/project-context.json` manifest schema.
+
 scripts/
-  Core, registry, MCP and routing tests plus the skill audit generator.
+  Core, registry, MCP, routing, skill-context, project-context and intent-normalization tests plus the skill audit generator.
 
 templates/
   Managed bootstrap/instruction templates.
 
 docs/
-  Architecture, public protocol, registry, maintenance and incident history.
+  Architecture, public protocol, project context, registry, maintenance and incident history.
 ```
 
 ## Aggregate routing files

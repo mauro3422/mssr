@@ -1,4 +1,4 @@
-# MSSR — MauroPrime Structured Skill Router
+# MSSR — Modular Semantic Skill Router
 
 MSSR is a portable, advisory routing layer for agents, skills, MCP tools, and
 workflow phases. It is deliberately separate from MauroPrime Bridge: Bridge is
@@ -10,6 +10,7 @@ one consumer and adapter, not the owner of the routing contract.
 - discovers skills and capabilities from registered providers;
 - selects only the skills needed for the current phase;
 - keeps durable project facts separate from reusable global procedures;
+- optionally selects modular project `context`, `memory`, `state`, and scoped `directive` sections by the same structured semantic evidence used for routing;
 - preserves provenance and health in immutable registry snapshots;
 - supports re-planning when a task reveals a missing or chained capability;
 - supports bounded friction/outcome checkpoints that can become reviewed
@@ -47,6 +48,7 @@ Neither route executes through MSSR: MSSR only discovers, ranks, explains, and
 re-plans capabilities.
 
 See [architecture](docs/ARCHITECTURE.md), the
+[modular project-context contract](docs/PROJECT_CONTEXT.md), the
 [agent protocol](docs/AGENT_PROTOCOL.md), the
 [routing evidence and observatory contract](docs/ROUTING_EVIDENCE_OBSERVATORY.md), the
 [registry model](docs/REGISTRY.md), and the

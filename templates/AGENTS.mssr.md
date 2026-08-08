@@ -1,10 +1,9 @@
 <!-- mssr:managed:start -->
 ## MSSR transversal routing
 
-Before substantial specialized work in a known repository, load the smallest
-durable project context that establishes its rules, architecture, vocabulary,
-current state, and unresolved references. Keep project-specific facts in the
-repository; do not turn every project into a global skill.
+Before substantial specialized work in a known repository, load the smallest durable project context that establishes its rules, architecture, vocabulary, current state, and unresolved references. When `.bridge/project-context.json` exists, load its small core first and defer optional `context`, `memory`, `state`, and scoped `directive` modules until canonical structured intent is available. Keep project-specific facts in the repository; do not turn every project into a global skill.
+
+`AGENTS.md` remains the repository-level instruction authority. A project `directive` module is active only when its stage and semantic selectors match; it may refine the current workflow but cannot weaken user instructions, safety, approvals, permissions, AGENTS, or verification. Broad permanent rules belong here in AGENTS, while reusable cross-project procedure belongs in an owning skill.
 
 Derive a compact observable intent object with `domains`, `actions`, `artifacts`,
 `needs`, `signals`, `risk`, and `ambiguity`. This is classification metadata,

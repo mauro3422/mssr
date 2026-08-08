@@ -54,23 +54,25 @@ Outcome observability follows the same boundary. One primary skill owns the late
 
 ## Durable project context layer
 
-MSSR does not own a project's facts or full history. Each repository owns its
-architecture, vocabulary, canonical paths, current state, open blockers, and
-local incident evidence through durable project files. A host first resolves the
-smallest relevant project context, then sends a bounded summary with the current
-intent to MSSR.
+MSSR does not own a project's facts or full history. Each repository owns its architecture, vocabulary, canonical paths, durable decisions, current state, blockers, and local evidence. The portable core defines how a host may select that material; the repository remains the source of truth.
 
-This creates two independent retrieval axes:
+A project may publish `.bridge/project-context.json` with two layers:
+
+- `core`: a deliberately small set of `context`, `memory`, or `state` sections needed before or alongside intent classification;
+- `modules`: optional or required `context`, `memory`, `state`, or scoped `directive` sections selected by the current `stage`, `domains`, `actions`, `artifacts`, `needs`, and `signals`.
+
+Project-module selection and skill-module selection reuse the same deterministic semantic selection primitive, but they are independent retrieval axes:
 
 ```text
-project context retrieval -> what is true here
-MSSR routing             -> which reusable procedure is needed now
+project context retrieval -> what is true here + which local refinement applies now
+MSSR skill routing        -> which reusable procedure is needed now
 ```
 
-The host may therefore keep hundreds of available skills without injecting their
-contents. Registry metadata remains searchable, while only the active phase's
-procedures are loaded. Historical project evidence is referenced or summarized,
-not copied wholesale into the route.
+`AGENTS.md` remains the repository-level instruction authority. A project `directive` is only a scoped refinement for a matching intent/stage; it cannot weaken user instructions, host policy, approvals, permissions, AGENTS, or verification. Broad permanent rules belong in AGENTS, while cross-project procedures belong in skills.
+
+Before canonical intent is available, a host may load only the project core. After intent exists, it selects bounded project modules and the active skill modules. At meaningful stage changes such as verify, persist, close, resume, or a material replan, both sets may be selected again. Hosts without a modular manifest may preserve an observable legacy full-document fallback during migration.
+
+See `PROJECT_CONTEXT.md` for the manifest and memory-maintenance contract.
 
 ## Observability and learning boundary
 

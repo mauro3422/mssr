@@ -37,8 +37,8 @@
 - [ ] Context notice inbox covering provider/runtime failures, active agents,
   pending reviews, changed project state, missing routing compliance, and
   bounded context requests.
-- [ ] Project bootstrap preflight that distinguishes durable project facts from
-  reusable global procedures and reports missing/stale context authorities.
+- [x] Portable modular project-context contract plus Bridge adapter: optional `.bridge/project-context.json`, minimal core loading, stage/intent-selected context-memory-state-directive modules, legacy full-document fallback, and shared semantic selection with skill context.
+- [ ] Complete project bootstrap authority/staleness preflight across hosts, including explicit reporting for missing or stale context authorities beyond manifest validity.
 - [ ] Friction checkpoint and promotion pipeline: isolated event -> project
   regression -> owning skill update -> MSSR fixture/metadata correction.
 - [ ] Historical replay benchmark measuring missed activation, over-activation,
