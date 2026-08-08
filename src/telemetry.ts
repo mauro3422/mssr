@@ -15,6 +15,7 @@ import {
 } from "./trace-contract.js";
 
 export const MSSR_TELEMETRY_PROTOCOL_VERSION = "mssr-telemetry-v1" as const;
+export const MSSR_HOST_CALL_PROTOCOL_VERSION = "mssr-host-call-v1" as const;
 
 const traceIdSchema = z.string().regex(/^[A-Za-z0-9._:-]{6,128}$/);
 const boundedName = z.string().trim().min(1).max(160);
@@ -117,8 +118,47 @@ export const mssrTelemetryEnvelopeSchema = z.object({
 export type MssrTelemetryEnvelope = z.infer<typeof mssrTelemetryEnvelopeSchema>;
 export type MssrHostCheckpoint = z.infer<typeof mssrHostCheckpointSchema>;
 
+const hashedHostIdSchema = z.string().regex(/^[a-f0-9]{64}$/);
+export const mssrHostCallEnvelopeSchema = z.object({
+  protocolVersion: z.literal(MSSR_HOST_CALL_PROTOCOL_VERSION),
+  eventId: z.string().regex(/^mssr-host-[a-f0-9]{64}$/),
+  emittedAt: z.string().datetime(),
+  source: z.literal("opencode-plugin"),
+  caller: z.literal("opencode-local"),
+  traceId: traceIdSchema.optional(),
+  host: z.object({
+    sessionKey: hashedHostIdSchema,
+    messageKey: hashedHostIdSchema.optional(),
+    callKey: hashedHostIdSchema,
+    agent: boundedName,
+    model: z.string().trim().min(1).max(160),
+    reasoningEffort: reasoningEffortSchema,
+    variant: z.string().trim().min(1).max(80).optional(),
+    project: z.string().trim().min(1).max(120),
+    projectKey: hashedHostIdSchema,
+  }).strict(),
+  tool: z.object({
+    name: boundedName,
+    startedAt: z.string().datetime(),
+    endedAt: z.string().datetime(),
+    durationMs: z.number().int().min(0).max(24 * 60 * 60_000),
+    status: z.enum(["success", "error"]),
+  }).strict(),
+}).strict();
+
+export const mssrExternalTelemetryEnvelopeSchema = z.union([
+  mssrTelemetryEnvelopeSchema,
+  mssrHostCallEnvelopeSchema,
+]);
+export type MssrHostCallEnvelope = z.infer<typeof mssrHostCallEnvelopeSchema>;
+export type MssrExternalTelemetryEnvelope = z.infer<typeof mssrExternalTelemetryEnvelopeSchema>;
+
 export interface MssrTelemetrySink {
   emit(event: MssrTelemetryEnvelope): Promise<void>;
+}
+
+export interface MssrExternalTelemetrySink {
+  emit(event: MssrExternalTelemetryEnvelope): Promise<void>;
 }
 
 export function hashMssrTelemetryTask(task: string): string {
@@ -148,7 +188,7 @@ export class HttpMssrTelemetrySink implements MssrTelemetrySink {
     }
   }
 
-  async emit(event: MssrTelemetryEnvelope): Promise<void> {
+  async emit(event: MssrExternalTelemetryEnvelope): Promise<void> {
     const token = (await fs.readFile(this.tokenFile, "utf8")).trim();
     if (token.length < 32) throw new Error("MSSR telemetry token file is missing a valid token.");
     const response = await fetch(this.endpoint, {
@@ -157,7 +197,7 @@ export class HttpMssrTelemetrySink implements MssrTelemetrySink {
         "authorization": `Bearer ${token}`,
         "content-type": "application/json",
       },
-      body: JSON.stringify(mssrTelemetryEnvelopeSchema.parse(event)),
+      body: JSON.stringify(mssrExternalTelemetryEnvelopeSchema.parse(event)),
       signal: AbortSignal.timeout(this.timeoutMs),
     });
     if (!response.ok) throw new Error(`MSSR telemetry endpoint returned HTTP ${response.status}.`);

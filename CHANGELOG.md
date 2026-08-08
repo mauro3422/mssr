@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.2 — 2026-08-08
+
+- Added a privacy-bounded OpenCode host plugin and strict
+  `mssr-host-call-v1` envelope for actual agent/model/tool-call attribution.
+- Correlates terminal OpenCode tool calls with a session's MSSR trace when a
+  route/bootstrap result exposes one, without storing prompts, arguments,
+  outputs, error text, transcripts, secrets, or private reasoning.
+- Keeps host telemetry best-effort so Bridge or telemetry degradation cannot
+  break OpenCode execution.
+
 ## 2026-07-28 — Visual routing precision
 
 - Require `visual-reference-replication` to match `visual-qa` or `scene-analysis`; generic `integrity-verification` plus a `ui` artifact no longer activates visual replication during Bridge telemetry/dashboard maintenance.

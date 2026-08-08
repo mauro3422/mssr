@@ -40,3 +40,28 @@ permission ownership.
 Run `opencode mcp list` to verify the connection. External provider health is
 visible through `mssr_registry_status`; a catalog entry remains planning
 metadata and never grants permission to execute its tool.
+
+## Host metadata plugin
+
+The MCP child process cannot reliably know which OpenCode agent and model
+actually selected a tool. Install the companion plugin from
+`dist/opencode-plugin.js` in OpenCode's global plugin directory to observe that
+host-owned boundary. The plugin uses `chat.message`, `chat.params`, and terminal
+`message.part.updated` tool events to deliver `mssr-host-call-v1` envelopes to
+the same authenticated endpoint configured for the `mssr` MCP entry.
+
+It records only salted SHA-256 session/message/call/project identifiers,
+agent, provider/model, explicit reasoning effort or `unknown`, variant, tool
+name, status, timestamps, duration, and an optional MSSR trace. It never sends
+prompt text, tool arguments, tool output, raw errors, transcripts, secrets, or
+private reasoning. Delivery is best-effort: telemetry failures are caught and
+must not fail the intercepted OpenCode operation.
+
+For a source checkout, a minimal global loader can re-export the built plugin:
+
+```js
+export { default } from "file:///C:/Dev/mssr/dist/opencode-plugin.js";
+```
+
+Official references: <https://opencode.ai/docs/plugins/>,
+<https://opencode.ai/docs/models/>, and <https://opencode.ai/docs/agents/>.

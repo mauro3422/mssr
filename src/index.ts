@@ -6,6 +6,7 @@ export * from "./mcp-server.js";
 export * from "./codex-adapter.js";
 export * from "./codex-mcp-server.js";
 export * from "./opencode-mcp-server.js";
+export * from "./opencode-plugin.js";
 export * from "./skill-context.js";
 export * from "./skill-context-loader.js";
 export * from "./context-selection.js";
