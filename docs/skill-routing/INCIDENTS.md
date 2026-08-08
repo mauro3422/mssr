@@ -1166,3 +1166,36 @@ El router volvió a considerar `blender-session-coordination` porque el nombre l
 ### Verification
 
 - `npm run build && npm run test:skill-routing` pasó con 187 casos y audit limpio; los casos positivos reales de `blender-session-coordination` continúan pasando.
+
+## MSSR-033 — OpenCode necesitaba identidad y lifecycle observable sin convertir MSSR en proxy
+
+**Date:** 2026-08-08
+
+### Trigger
+
+La configuración OpenCode CLI consumía el facade MSSR stateless y descubría el catálogo Bridge mediante `tools/list`, pero el observatorio mostraba cero rutas OpenCode y ninguna evidencia de verificación, persistencia u outcome.
+
+### Observed failure
+
+`caller="other"` mezclaba OpenCode con clientes desconocidos. El provider dinámico era correctamente metadata-only y por diseño no podía persistir rutas. El adaptador standalone mantenía estado sólo en memoria y no tenía un contrato opcional de entrega.
+
+### Root cause
+
+Faltaba una frontera portable de telemetría de host. Usar Bridge como proxy de todas las tools habría violado el diseño advisory y exponer 141 tools no era necesario para medir lifecycle.
+
+### Correction
+
+- Se agregó el caller canónico `opencode-local` y guidance que conserva ejecución/permissions en OpenCode y providers autoritativos.
+- `mssr-opencode-mcp` mantiene el trace local, carga skills de la fase y acepta únicamente checkpoints explícitos.
+- `mssr-telemetry-v1` transmite hash de task, ruta reducida, cargas y checkpoints acotados mediante un sink autenticado opcional. El schema no contiene task text, prompt ni transcript.
+- Codex-local puede usar el mismo sink, pero ningún adaptador infiere éxito por idle, exit o ausencia de llamadas.
+
+### Regression
+
+- `scripts/test-opencode-standalone.mjs`
+- `scripts/test-mssr-http-telemetry.mjs` en el consumidor Bridge
+- Suite MSSR completa: 187 fixtures y audit limpio.
+
+### Follow-up
+
+Verificar una ejecución OpenCode real contra el runtime Bridge publicado y mantener modelo/effort como `unknown` cuando el host no los exponga en la llamada.

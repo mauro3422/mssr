@@ -1,6 +1,6 @@
 {
   "name": "@mauroprime/mssr",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Modular Semantic Skill Router: portable advisory semantic routing, modular context, registry, and optional MCP facade.",
   "type": "module",
   "main": "./dist/index.js",
@@ -13,7 +13,8 @@
   },
   "bin": {
     "mssr-mcp": "./dist/mcp-server.js",
-    "mssr-codex-mcp": "./dist/codex-mcp-server.js"
+    "mssr-codex-mcp": "./dist/codex-mcp-server.js",
+    "mssr-opencode-mcp": "./dist/opencode-mcp-server.js"
   },
   "files": [
     "dist",
@@ -32,6 +33,7 @@
     "test:provider-config": "node scripts/test-provider-config.mjs",
     "test:mcp": "node scripts/test-mcp.mjs",
     "test:codex-standalone": "node scripts/test-codex-standalone.mjs",
+    "test:opencode-standalone": "node scripts/test-opencode-standalone.mjs",
     "test:router": "node scripts/test-skill-routing.mjs",
     "test:context": "node scripts/test-skill-context.mjs",
     "test:skill-context-loader": "node scripts/test-skill-context-loader.mjs",
@@ -39,7 +41,7 @@
     "test:intent-normalizer": "node scripts/test-intent-normalizer.mjs",
     "test:skill-routing": "npm run build && npm run test:router",
     "test:skill-context": "npm run build && npm run test:context",
-    "test": "npm run build && npm run test:core && npm run test:trace-contract && npm run test:context && npm run test:skill-context-loader && npm run test:project-context && npm run test:intent-normalizer && npm run test:registry && npm run test:mcp-provider && npm run test:provider-config && npm run test:mcp && npm run test:codex-standalone && npm run test:router",
+    "test": "npm run build && npm run test:core && npm run test:trace-contract && npm run test:context && npm run test:skill-context-loader && npm run test:project-context && npm run test:intent-normalizer && npm run test:registry && npm run test:mcp-provider && npm run test:provider-config && npm run test:mcp && npm run test:codex-standalone && npm run test:opencode-standalone && npm run test:router",
     "audit": "python scripts/audit-skills.py",
     "verify": "npm run check && npm run test && npm run audit",
     "prepare": "npm run build"

@@ -29,13 +29,20 @@
 
 All notable changes to MSSR are documented here.
 
-## Unreleased
+## 0.2.1 — 2026-08-08
+
+- Added a stateful `mssr-opencode-mcp` host adapter with canonical
+  `opencode-local` attribution, explicit lifecycle checkpoints, and an optional
+  authenticated `mssr-telemetry-v1` sink. The sink transmits hashes and bounded
+  routing/load/checkpoint metadata, never task text, transcripts, secrets, or
+  inferred outcomes.
+- Extended the Codex-local adapter to use the same optional telemetry sink while
+  preserving explicit, evidence-backed outcome recording.
 
 - Added a strict, versioned operator provider file selected by
   `MSSR_MCP_PROVIDERS_PATH`, allowing standalone Codex and portable MCP hosts to
   discover real local stdio catalogs through metadata-only `tools/list`.
-- Documented the portable OpenCode CLI integration, using the generic stdio
-  facade with `caller="other"` and host-owned execution.
+- Documented the OpenCode CLI adapter while preserving host-owned execution.
 - Aligned the MCP SDK dependency with Bridge at `^1.30.0`.
 
 - Moved selective skill-context materialization into the portable package via

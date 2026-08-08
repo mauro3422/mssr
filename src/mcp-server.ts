@@ -61,7 +61,7 @@ const traceEventSchema = z.discriminatedUnion("type", [
 ]);
 
 export function createMssrMcpServer(registry = new CapabilityRegistry([new FilesystemSkillProvider()])) {
-  const server = new McpServer({ name: "mssr", version: "0.2.0" });
+  const server = new McpServer({ name: "mssr", version: "0.2.1" });
 
   server.registerTool(MSSR_TOOL_NAMES[0], {
     description: "Show the immutable MSSR capability snapshot and provider health. Optionally refresh providers first.",

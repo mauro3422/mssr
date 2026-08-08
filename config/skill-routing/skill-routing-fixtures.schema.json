@@ -18,7 +18,7 @@
           "task": { "type": "string", "minLength": 1 },
           "taskVariants": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
           "context": { "type": "string", "maxLength": 4000 },
-          "caller": { "enum": ["codex-local", "chatgpt-web", "other"] },
+          "caller": { "enum": ["codex-local", "opencode-local", "chatgpt-web", "other"] },
           "stage": { "enum": ["start", "implement", "verify", "persist", "close", "resume"] },
           "completedPhases": {
             "type": "array",

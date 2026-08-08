@@ -8,7 +8,7 @@ export const SKILL_PHASES = ["discovery", "safety", "implementation", "verificat
 export type SkillPhase = typeof SKILL_PHASES[number];
 export const SKILL_STAGES = ["start", "implement", "verify", "persist", "close", "resume"] as const;
 export type SkillStage = typeof SKILL_STAGES[number];
-export const SKILL_CALLERS = ["codex-local", "chatgpt-web", "other"] as const;
+export const SKILL_CALLERS = ["codex-local", "opencode-local", "chatgpt-web", "other"] as const;
 export type SkillCaller = typeof SKILL_CALLERS[number];
 
 export const SKILL_DOMAINS = [
@@ -821,6 +821,12 @@ function callerExecutionGuidance(caller: SkillCaller): string[] {
     return [
       "Use MauroPrime Bridge for approved access to the local machine, project files, terminals, snapshots, and connected desktop applications.",
       "Do not assume direct local filesystem or terminal access outside the capabilities exposed by the Bridge and installed apps.",
+    ];
+  }
+  if (caller === "opencode-local") {
+    return [
+      "Prefer OpenCode's direct filesystem and shell capabilities when they are authoritative and sufficient.",
+      "Use configured MCP providers for their owning capabilities; MSSR discovery metadata is advisory and never executes provider tools.",
     ];
   }
   return ["Select the shortest authoritative tool route from the capabilities actually available to the current client."];

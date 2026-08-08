@@ -78,9 +78,16 @@ and bootstraps only locally discovered `SKILL.md` files, then records portable
 lifecycle checkpoints. Neither server executes a selected capability or proxies
 another MCP tool.
 
+`mssr-opencode-mcp` is the corresponding OpenCode CLI adapter. It identifies
+routes as `opencode-local`, loads active local skills, and records only explicit
+checkpoints. When `MSSR_TELEMETRY_ENDPOINT` and
+`MSSR_TELEMETRY_TOKEN_FILE` are configured together, it sends authenticated,
+privacy-bounded events to the observability owner without proxying execution.
+
 ```powershell
 npm run build
 npm run test:codex-standalone
+npm run test:opencode-standalone
 ```
 
 The standalone test uses only this package, the MCP SDK, and Codex filesystem
