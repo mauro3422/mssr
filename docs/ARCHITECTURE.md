@@ -53,9 +53,12 @@ task text and never synthesize success from idle time or process termination.
 The optional OpenCode host plugin separately observes host-owned terminal tool
 events. Its `mssr-host-call-v1` records are privacy-bounded and may include a
 hashed parent session only when OpenCode explicitly emits that `parentID` in a
-session lifecycle event. Failed host-call delivery is placed in a small local
-retry spool; this best-effort transport is never allowed to block or alter an
-OpenCode tool execution.
+session lifecycle event, or when the authoritative read-only session endpoint
+returns that exact session with `parentID` after an out-of-order terminal event.
+It never derives a relationship from tool order, recency, agent names, or a
+delegated `task` call. Failed host-call delivery is placed in a small local retry
+spool; this best-effort transport is never allowed to block or alter an OpenCode
+tool execution.
 
 Adapters translate host-specific discovery to the shared contract. MauroPrime
 Bridge, Roblox Studio, Codex-local, and a web client can therefore share routing

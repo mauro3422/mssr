@@ -30,7 +30,14 @@ export type OpenCodePluginInput = {
   project?: { id?: string; worktree?: string };
   directory?: string;
   worktree?: string;
-  client?: { app?: { log?: (input: unknown) => Promise<unknown> } };
+  client?: {
+    app?: { log?: (input: unknown) => Promise<unknown> };
+    /**
+     * OpenCode's read-only `GET /session/:id` SDK endpoint. It is optional so
+     * the plugin continues to work across supported host SDK versions.
+     */
+    session?: { get?: (input: { path: { id: string } }) => Promise<unknown> | unknown };
+  };
 };
 
 export type OpenCodePluginOptions = {
@@ -42,6 +49,8 @@ export type OpenCodePluginOptions = {
   queueMaxEntries?: number;
   queueMaxAttempts?: number;
   retryBaseMs?: number;
+  /** Bound the optional read-only parent lookup; never delay host execution. */
+  parentLookupTimeoutMs?: number;
 };
 
 const efforts = new Set(["low", "medium", "high", "xhigh", "max", "ultra"]);
@@ -270,6 +279,12 @@ export async function createMssrOpenCodePlugin(input: OpenCodePluginInput, optio
   const salt = options.salt ?? process.env.MSSR_OPENCODE_HASH_SALT ?? "mssr-opencode-host-metadata-v1";
   const sessionProfiles = new Map<string, HostProfile>();
   const sessionParents = new Map<string, string>();
+  // A lifecycle event (or an authoritative GET /session/:id fallback) tells us
+  // that the absence of parentID is meaningful. Do not fill it from ordering,
+  // agent names, a task call, or another session's recent activity.
+  const observedSessionParents = new Set<string>();
+  const sessionParentLookups = new Map<string, Promise<void>>();
+  const sessionParentLookupAttempts = new Set<string>();
   const sessionTraces = new Map<string, string>();
   const emittedCalls = new Set<string>();
   const queue = sink ? new MssrHostCallRetryQueue(
@@ -279,6 +294,7 @@ export async function createMssrOpenCodePlugin(input: OpenCodePluginInput, optio
     positiveInteger(options.queueMaxAttempts, 5, 12),
     positiveInteger(options.retryBaseMs, 1_000, 60_000),
   ) : null;
+  const parentLookupTimeoutMs = positiveInteger(options.parentLookupTimeoutMs, 250, 5_000);
   let draining = false;
   let retryTimer: ReturnType<typeof setTimeout> | undefined;
   const projectPath = input.worktree || input.directory || input.project?.worktree || "unknown";
@@ -360,6 +376,52 @@ export async function createMssrOpenCodePlugin(input: OpenCodePluginInput, optio
     const parentID = bounded(info.parentID, "", 300);
     if (parentID) sessionParents.set(sessionID, hash(salt, "session", parentID));
     else sessionParents.delete(sessionID);
+    observedSessionParents.add(sessionID);
+  };
+
+  const hydrateSessionParent = (sessionID: string): Promise<void> => {
+    if (observedSessionParents.has(sessionID)) return Promise.resolve();
+    const active = sessionParentLookups.get(sessionID);
+    if (active) return active;
+    const get = input.client?.session?.get;
+    if (!get || sessionParentLookupAttempts.has(sessionID)) return Promise.resolve();
+    sessionParentLookupAttempts.add(sessionID);
+    let timeout: number | undefined;
+    const expires = new Promise<undefined>((resolve) => {
+      timeout = setTimeout(resolve, parentLookupTimeoutMs);
+    });
+    const lookup = Promise.race([
+      Promise.resolve().then(() => get({ path: { id: sessionID } })),
+      expires,
+    ])
+      .then((response) => {
+        // Ignore a late lookup after an explicit deletion cleaned this session
+        // from the in-memory observation boundary.
+        if (!sessionParentLookupAttempts.has(sessionID)) return;
+        // A lifecycle event that arrived while this request was in flight is
+        // newer authoritative evidence. Never let the fallback overwrite it.
+        if (observedSessionParents.has(sessionID)) return;
+        // The generated OpenCode SDK returns `{ data: Session }`; accept a
+        // direct Session only for compatibility with a minimal host mock.
+        const outer = asRecord(response);
+        const info = asRecord(outer.data);
+        const session = bounded(info.id, "", 300) ? info : outer;
+        if (bounded(session.id, "", 300) !== sessionID) return;
+        const parentID = bounded(session.parentID, "", 300);
+        if (parentID) sessionParents.set(sessionID, hash(salt, "session", parentID));
+        else sessionParents.delete(sessionID);
+        observedSessionParents.add(sessionID);
+      })
+      .catch(() => {
+        // This is an optional enrichment path. Its failure leaves the parent
+        // unknown; it must not block a hook or create a guessed relationship.
+      })
+      .finally(() => {
+        if (timeout) clearTimeout(timeout);
+        sessionParentLookups.delete(sessionID);
+      });
+    sessionParentLookups.set(sessionID, lookup);
+    return lookup;
   };
 
   const emitTerminalCall = async (part: JsonRecord) => {
@@ -377,37 +439,41 @@ export async function createMssrOpenCodePlugin(input: OpenCodePluginInput, optio
     const endedMs = typeof timing.end === "number" ? timing.end : now().getTime();
     const startedMs = typeof timing.start === "number" ? timing.start : endedMs;
     const profile = sessionProfiles.get(sessionID) ?? { agent: "unknown", model: "unknown", reasoningEffort: "unknown" as const };
-    const envelope = mssrHostCallEnvelopeSchema.parse({
-      protocolVersion: MSSR_HOST_CALL_PROTOCOL_VERSION,
-      eventId: `mssr-host-${callKey}`,
-      emittedAt: now().toISOString(),
-      source: "opencode-plugin",
-      caller: "opencode-local",
-      traceId: sessionTraces.get(sessionID),
-      host: {
-        sessionKey: hash(salt, "session", sessionID),
-        parentSessionKey: sessionParents.get(sessionID),
-        messageKey: typeof part.messageID === "string" ? hash(salt, "message", part.messageID) : profile.messageKey,
-        callKey,
-        agent: profile.agent,
-        model: profile.model,
-        reasoningEffort: profile.reasoningEffort,
-        variant: profile.variant,
-        project,
-        projectKey,
-      },
-      tool: {
-        name: toolName,
-        startedAt: new Date(startedMs).toISOString(),
-        endedAt: new Date(endedMs).toISOString(),
-        durationMs: Math.max(0, Math.min(24 * 60 * 60_000, Math.round(endedMs - startedMs))),
-        status: status === "completed" ? "success" : "error",
-      },
-    });
     emittedCalls.add(callKey);
+    const emit = () => {
+      const envelope = mssrHostCallEnvelopeSchema.parse({
+        protocolVersion: MSSR_HOST_CALL_PROTOCOL_VERSION,
+        eventId: `mssr-host-${callKey}`,
+        emittedAt: now().toISOString(),
+        source: "opencode-plugin",
+        caller: "opencode-local",
+        traceId: sessionTraces.get(sessionID),
+        host: {
+          sessionKey: hash(salt, "session", sessionID),
+          parentSessionKey: sessionParents.get(sessionID),
+          messageKey: typeof part.messageID === "string" ? hash(salt, "message", part.messageID) : profile.messageKey,
+          callKey,
+          agent: profile.agent,
+          model: profile.model,
+          reasoningEffort: profile.reasoningEffort,
+          variant: profile.variant,
+          project,
+          projectKey,
+        },
+        tool: {
+          name: toolName,
+          startedAt: new Date(startedMs).toISOString(),
+          endedAt: new Date(endedMs).toISOString(),
+          durationMs: Math.max(0, Math.min(24 * 60 * 60_000, Math.round(endedMs - startedMs))),
+          status: status === "completed" ? "success" : "error",
+        },
+      });
+      void deliverOrQueue(envelope);
+    };
     // Do not await transport or local I/O from a host hook. OpenCode execution
     // remains authoritative even if Bridge and the local queue are unavailable.
-    void deliverOrQueue(envelope);
+    if (observedSessionParents.has(sessionID) || !input.client?.session?.get) emit();
+    else void hydrateSessionParent(sessionID).finally(emit);
   };
 
   // A queue from a previous OpenCode process should recover opportunistically,
@@ -459,7 +525,14 @@ export async function createMssrOpenCodePlugin(input: OpenCodePluginInput, optio
         }
         if (record.type === "session.deleted") {
           const sessionID = bounded(asRecord(asRecord(record.properties).info).id, "", 300);
-          if (sessionID) sessionParents.delete(sessionID);
+          if (sessionID) {
+            sessionParents.delete(sessionID);
+            observedSessionParents.delete(sessionID);
+            sessionParentLookups.delete(sessionID);
+            sessionParentLookupAttempts.delete(sessionID);
+            sessionProfiles.delete(sessionID);
+            sessionTraces.delete(sessionID);
+          }
           return;
         }
         if (record.type !== "message.part.updated") return;

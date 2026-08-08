@@ -54,8 +54,12 @@ It records only salted SHA-256 session/message/call/project identifiers,
 agent, provider/model, explicit reasoning effort or `unknown`, variant, tool
 name, status, timestamps, duration, and an optional MSSR trace. When OpenCode
 explicitly publishes a session `parentID` through `session.created` or
-`session.updated`, the plugin adds a salted `parentSessionKey`; it never infers
-parent/subagent relationships from agent names or tool order. It never sends
+`session.updated`, the plugin adds a salted `parentSessionKey`. If a terminal
+child-session tool event arrives before that lifecycle event, the plugin may make
+one bounded, read-only SDK `GET /session/:id` lookup and uses a parent only when
+that exact returned session exposes `parentID`. A missing, failed, or mismatched
+response remains absent. It never infers parent/subagent relationships from agent
+names, tool order, recency, or sibling sessions. It never sends
 prompt text, tool arguments, tool output, raw errors, transcripts, secrets, or
 private reasoning.
 
@@ -77,7 +81,8 @@ export { default } from "file:///C:/Dev/mssr/dist/opencode-plugin.js";
 ```
 
 Official references: <https://opencode.ai/docs/plugins/>,
-<https://opencode.ai/docs/models/>, and <https://opencode.ai/docs/agents/>.
+<https://opencode.ai/docs/models/>, <https://opencode.ai/docs/agents/>, and
+<https://opencode.ai/docs/server/>.
 
 ### OpenCode global-project limitation
 
@@ -100,5 +105,8 @@ An OpenCode `task` delegation is observable as a terminal tool call in the
 parent session. In the tested 1.18.15 CLI, the primary plugin did not receive
 the delegated agent's internal tool events or an exposed `parentID`; therefore
 the dashboard correctly reports zero observed parent sessions for that run.
+The read-only SDK fallback can recover an explicit parent only for a child
+session whose terminal tool event reaches this plugin; it cannot invent events
+for a delegated agent that OpenCode never delivers to the plugin.
 This does not mean no subagent ran—it means the relationship was not exposed to
 this plugin boundary.

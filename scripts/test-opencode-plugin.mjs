@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -72,6 +73,114 @@ const serialized = JSON.stringify(events);
 for (const forbidden of ["raw-session-secret", "raw-parent-session-secret", "raw-user-message", "raw-shell-call", "must-not-leak", "token=secret", "private"]) {
   assert.equal(serialized.includes(forbidden), false, `private value leaked: ${forbidden}`);
 }
+
+// A lifecycle session without parentID is authoritative evidence that this is
+// not an observed child. The plugin must not manufacture a relationship from
+// the tool name, agent profile, or prior session activity.
+const noInferenceEvents = [];
+const noInferenceHooks = await createMssrOpenCodePlugin({ directory: "C:\\Dev\\fixture-project", client: {
+  session: { async get() { throw new Error("lifecycle should prevent a session lookup"); } },
+} }, {
+  salt: "fixture-salt",
+  sink: { async emit(event) { noInferenceEvents.push(mssrHostCallEnvelopeSchema.parse(event)); } },
+});
+await noInferenceHooks.event({ event: { type: "session.created", properties: { info: { id: "root-without-parent" } } } });
+await noInferenceHooks.event({ event: { type: "message.part.updated", properties: { part: {
+  type: "tool", sessionID: "root-without-parent", callID: "root-task-call", tool: "task",
+  state: { status: "completed", output: "delegation is not a parentID", time: { start: 3000, end: 3010 } },
+} } } });
+await waitFor(() => noInferenceEvents.length === 1);
+assert.equal(noInferenceEvents[0].host.parentSessionKey, undefined, "absent parentID must remain absent; task delegation is not parent evidence");
+
+// A child tool event can arrive before a lifecycle event. The optional SDK
+// session read supplies a parent only when the host returns that exact session
+// and an explicit parentID; no sibling/session ordering is consulted.
+const childEvents = [];
+let sessionLookups = 0;
+const childHooks = await createMssrOpenCodePlugin({ directory: "C:\\Dev\\fixture-project", client: {
+  session: {
+    async get({ path: { id } }) {
+      sessionLookups += 1;
+      return { data: { id, parentID: "explicit-parent-from-host" } };
+    },
+  },
+} }, {
+  salt: "fixture-salt",
+  sink: { async emit(event) { childEvents.push(mssrHostCallEnvelopeSchema.parse(event)); } },
+});
+await childHooks.event({ event: { type: "message.part.updated", properties: { part: {
+  type: "tool", sessionID: "child-before-lifecycle", callID: "child-read-call", tool: "read",
+  state: { status: "completed", output: "not stored", time: { start: 4000, end: 4015 } },
+} } } });
+await childHooks.event({ event: { type: "message.part.updated", properties: { part: {
+  type: "tool", sessionID: "child-before-lifecycle", callID: "child-bash-call", tool: "bash",
+  state: { status: "completed", output: "not stored", time: { start: 4020, end: 4030 } },
+} } } });
+await waitFor(() => childEvents.length === 2);
+assert.equal(sessionLookups, 1, "one bounded read-only lookup enriches concurrent terminal calls from one otherwise unobserved session");
+assert.equal(childEvents[0].host.parentSessionKey?.length, 64, "explicit SDK parentID is hashed before transport");
+assert.equal(childEvents[1].host.parentSessionKey, childEvents[0].host.parentSessionKey, "two observed child calls retain one exact host-provided parent key");
+assert.equal(new Set(childEvents.map((event) => event.host.callKey)).size, 2, "distinct exposed child calls retain physical-call cardinality");
+assert.notEqual(childEvents[0].host.parentSessionKey, noInferenceEvents[0].host.sessionKey, "a parent key comes only from the host value, never another observed session");
+
+// A mismatched SDK response is not evidence about the child session.
+const mismatchedEvents = [];
+const mismatchedHooks = await createMssrOpenCodePlugin({ directory: "C:\\Dev\\fixture-project", client: {
+  session: { async get() { return { data: { id: "some-other-session", parentID: "do-not-attach" } }; } },
+} }, {
+  salt: "fixture-salt",
+  sink: { async emit(event) { mismatchedEvents.push(mssrHostCallEnvelopeSchema.parse(event)); } },
+});
+await mismatchedHooks.event({ event: { type: "message.part.updated", properties: { part: {
+  type: "tool", sessionID: "unmatched-child", callID: "unmatched-call", tool: "bash",
+  state: { status: "completed", output: "not stored", time: { start: 5000, end: 5010 } },
+} } } });
+await waitFor(() => mismatchedEvents.length === 1);
+assert.equal(mismatchedEvents[0].host.parentSessionKey, undefined, "a response for another session must never be used as parent evidence");
+
+// Lifecycle metadata wins when it arrives while the fallback request is still
+// in flight. A stale endpoint response must not overwrite that newer evidence.
+const lifecycleRaceEvents = [];
+let resolveLifecycleRace;
+const lifecycleRaceHooks = await createMssrOpenCodePlugin({ directory: "C:\\Dev\\fixture-project", client: {
+  session: { get() { return new Promise((resolve) => { resolveLifecycleRace = resolve; }); } },
+} }, {
+  salt: "fixture-salt",
+  sink: { async emit(event) { lifecycleRaceEvents.push(mssrHostCallEnvelopeSchema.parse(event)); } },
+});
+await lifecycleRaceHooks.event({ event: { type: "message.part.updated", properties: { part: {
+  type: "tool", sessionID: "lifecycle-race-child", callID: "lifecycle-race-call", tool: "read",
+  state: { status: "completed", output: "not stored", time: { start: 5500, end: 5510 } },
+} } } });
+await lifecycleRaceHooks.event({ event: { type: "session.updated", properties: { info: {
+  id: "lifecycle-race-child", parentID: "authoritative-lifecycle-parent",
+} } } });
+resolveLifecycleRace({ data: { id: "lifecycle-race-child", parentID: "stale-lookup-parent" } });
+await waitFor(() => lifecycleRaceEvents.length === 1);
+const expectedLifecycleParent = createHash("sha256").update("fixture-salt\0session\0authoritative-lifecycle-parent").digest("hex");
+assert.equal(lifecycleRaceEvents[0].host.parentSessionKey, expectedLifecycleParent, "lifecycle metadata must win over an in-flight fallback response");
+
+// An unavailable session endpoint cannot indefinitely postpone host telemetry or
+// the intercepted OpenCode hook. It is an optional enrichment, not a transport
+// dependency.
+const timedLookupEvents = [];
+const timedLookupHooks = await createMssrOpenCodePlugin({ directory: "C:\\Dev\\fixture-project", client: {
+  session: { async get() { await new Promise(() => {}); } },
+} }, {
+  salt: "fixture-salt",
+  parentLookupTimeoutMs: 5,
+  sink: { async emit(event) { timedLookupEvents.push(mssrHostCallEnvelopeSchema.parse(event)); } },
+});
+const timedLookupResult = await Promise.race([
+  timedLookupHooks.event({ event: { type: "message.part.updated", properties: { part: {
+    type: "tool", sessionID: "timed-child", callID: "timed-call", tool: "read",
+    state: { status: "completed", output: "not stored", time: { start: 6000, end: 6010 } },
+  } } } }).then(() => "returned"),
+  delay(50).then(() => "timed-out"),
+]);
+assert.equal(timedLookupResult, "returned", "a hung read-only enrichment must not block the host event hook");
+await waitFor(() => timedLookupEvents.length === 1);
+assert.equal(timedLookupEvents[0].host.parentSessionKey, undefined, "timed-out parent metadata remains absent");
 
 const temporaryRoot = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-opencode-plugin-"));
 try {

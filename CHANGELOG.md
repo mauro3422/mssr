@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.4 — 2026-08-08
+
+- Added one bounded read-only exact-session lookup when an OpenCode terminal
+  tool event arrives before lifecycle metadata. A parent is recorded only when
+  the host returns that same session with an explicit `parentID`; lifecycle
+  evidence always takes precedence over an in-flight fallback.
+- Preserved physical-call cardinality and privacy boundaries: no relationship
+  is inferred from recency, ordering, agent names, task delegation, or sibling
+  sessions, and a missing/mismatched/timed-out response remains unknown.
+
 ## 0.2.3 — 2026-08-08
 
 - Added a bounded, privacy-safe local retry spool for failed OpenCode host-call

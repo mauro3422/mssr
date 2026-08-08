@@ -1199,3 +1199,41 @@ Faltaba una frontera portable de telemetría de host. Usar Bridge como proxy de 
 ### Follow-up
 
 El adaptador OpenCode publicado entregó al runtime Bridge `0.6.74` la traza `mssr-opencode-e0fb7eef-bf3f-4250-aab4-ce23e10c3bb0`, cerrada con verificación, persistencia y outcome explícitos. El dashboard la atribuye a `opencode-local`. La ejecución del modelo Terra quedó bloqueada antes de iniciar el agente por credenciales externas (balance OpenCode y API key OpenAI), así que modelo/effort permanecen correctamente como `unknown` hasta que el host los exponga en una ejecución autenticada.
+
+## MSSR-034 - OpenCode child tool event can precede lifecycle metadata
+
+**Date:** 2026-08-08
+
+### Trigger
+
+An OpenCode delegation exposed the parent `task` call, while child-session event
+availability varied by host. The plugin could not turn partial ordering into an
+inferred relationship.
+
+### Root cause
+
+The plugin retained `parentID` only from `session.created` or `session.updated`.
+OpenCode also exposes read-only `GET /session/:id`, but the plugin did not use it
+when a legitimate terminal event arrived before lifecycle metadata.
+
+### Correction
+
+- For a session with no observed lifecycle, the plugin makes at most one
+  read-only SDK lookup of that exact session.
+- It stores `parentSessionKey` only when the response matches the same
+  `sessionID` and explicitly contains `parentID`; the value is hashed first.
+- Missing, failed, parentless, or mismatched responses leave the field absent.
+  Tool order, recency, agent names, and `task` are not used as evidence.
+- The lookup is detached from the hook and cannot delay OpenCode execution.
+
+### Regression
+
+`scripts/test-opencode-plugin.mjs` covers explicit lifecycle parent, absent
+parent without inference, out-of-order child with exact host response, and a
+mismatched SDK response.
+
+### Follow-up
+
+When OpenCode does not deliver a delegated agent's internal terminal tool events
+to the plugin, MSSR cannot count or link them. That is a host observation limit,
+not evidence that the subagent did not run.
