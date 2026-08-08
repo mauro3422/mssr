@@ -7,8 +7,8 @@ listing of tools.
 
 Each provider supplies a catalog plus metadata: provider id, source, refresh
 time, health, errors, and optional TTL. Initial providers include filesystem
-skill roots and host/MCP catalogs. Future providers may include dynamic MCP
-servers and project-local skill roots.
+skill roots and host/MCP catalogs. Providers may include dynamic MCP servers and
+project-local skill roots.
 
 Refreshes run concurrently. The registry uses a single-flight refresh per
 provider and atomically publishes a new immutable aggregate snapshot. A provider
@@ -38,3 +38,20 @@ It is not evidence that the universe has no tools. Surface provider health and
 offer alternate providers, direct paths, refresh, or manual recovery before
 concluding a capability is unavailable.
 
+## Dynamic MCP tool catalogs
+
+`McpToolsProvider` connects to an operator-configured MCP client and discovers
+only `tools/list` metadata: a tool's name, description and input schema become
+immutable `Capability` entries with explicit `providerId`, `source` and optional
+`location`. It accepts `tools/list_changed` through the MCP SDK and asks the
+registry for an isolated refresh of that provider.
+
+The provider never exports `callTool` and MSSR never proxies tool execution.
+The host that owns authorization and the selected MCP connection remains solely
+responsible for invoking a tool. If refresh or connection fails, the registry
+keeps the provider's last known-good entries, marks its health degraded and
+labels the cached data as planning evidence rather than live availability.
+
+Use `createStdioMcpClientFactory` only with local, operator-provided stdio
+parameters. Runtime catalog metadata cannot register a command or cause MSSR to
+launch an arbitrary process.

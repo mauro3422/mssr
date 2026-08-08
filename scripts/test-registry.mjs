@@ -28,6 +28,21 @@ assert.equal(degraded.providers[0].status, "degraded");
 assert.equal(degraded.providers[0].usingCachedCapabilities, true);
 assert.equal(degraded.capabilities.length, 1);
 
+let unsubscribed = 0;
+const removableRegistry = new CapabilityRegistry([{
+  id: "removable",
+  subscribe() {
+    return () => { unsubscribed += 1; };
+  },
+  async refresh() {
+    return { capabilities: [] };
+  },
+}]);
+assert.equal(removableRegistry.removeProvider("removable"), true);
+assert.equal(removableRegistry.removeProvider("removable"), false);
+assert.equal(unsubscribed, 1, "removing a provider must release its subscription");
+assert.equal(removableRegistry.getSnapshot().providers.length, 0);
+
 const tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-registry-"));
 const sourceRoot = path.join(tempRoot, "source");
 const runtimeRoot = path.join(tempRoot, "runtime");

@@ -34,8 +34,15 @@ Readers get the last valid snapshot while a refresh runs; a failed provider does
 not erase healthy providers.
 
 `mssr-mcp` is optional. It exposes registry and planning operations to hosts
-that speak MCP. It never executes a selected third-party tool on the agent's
-behalf.
+that speak MCP, plus portable intent normalization, vocabulary, trace validation,
+and trace reduction. It is stateless: callers supply lifecycle state and own its
+persistence. It never executes a selected third-party tool on the agent's behalf.
+
+`mssr-codex-mcp` is the separate Codex-local adapter. It owns a process-local
+trace map, invokes the same portable reducers, and may read a locally discovered
+`SKILL.md` only after the route selects it. This is deliberately an adapter
+boundary rather than a Bridge dependency: it does not execute selected tools,
+proxy MCP calls, or make persistence part of the MSSR core.
 
 Adapters translate host-specific discovery to the shared contract. MauroPrime
 Bridge, Roblox Studio, Codex-local, and a web client can therefore share routing

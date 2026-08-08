@@ -31,6 +31,11 @@ All notable changes to MSSR are documented here.
 
 ## Unreleased
 
+- Added `McpToolsProvider` for dynamic, metadata-only MCP `tools/list`
+  discovery with native `tools/list_changed` refreshes, immutable provenance,
+  timestamped health and last-known-good degradation behavior. MCP tool
+  execution remains host-owned and is not exposed through MSSR.
+
 - Added canonical `component-reuse` intent need and explicit routing for `asset-component-reuse`, separating healthy reuse of validated 3D components from maintenance signals such as `reusable-pattern` and `repeated-friction`.
 - Added positive, nearby-negative and continuation/migration regressions for component reuse plus a close-stage Blender friction regression proving `skill-maintenance-loop` activates on reusable non-nominal lessons; the deterministic suite now passes 186 cases with 46 owned skills explicitly routed.
 - Modularized the heaviest Blender procedural skills with selective `context-modules.json`, so reference/session/review guidance can remain routable under bounded host context budgets instead of being skipped as whole optional files.

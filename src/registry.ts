@@ -25,6 +25,12 @@ export type ProviderResult = Readonly<{
 export interface CapabilityProvider {
   readonly id: string;
   refresh(): Promise<ProviderResult>;
+
+  /** Lets dynamic providers announce a catalog change without coupling the registry to their transport. */
+  subscribe?(listener: () => void): () => void;
+
+  /** Releases provider-owned resources, such as an MCP client transport. */
+  close?(): Promise<void>;
 }
 
 export type ProviderHealth = Readonly<{
@@ -73,6 +79,7 @@ function emptyHealth(id: string): ProviderHealth {
 export class CapabilityRegistry {
   private readonly providers = new Map<string, CapabilityProvider>();
   private readonly states = new Map<string, ProviderState>();
+  private readonly providerSubscriptions = new Map<string, () => void>();
   private version = 0;
   private snapshot: CapabilitySnapshot;
 
@@ -85,7 +92,32 @@ export class CapabilityRegistry {
     if (this.providers.has(provider.id)) throw new Error(`Capability provider already registered: ${provider.id}`);
     this.providers.set(provider.id, provider);
     this.states.set(provider.id, { capabilities: freeze([]), health: emptyHealth(provider.id) });
+    if (provider.subscribe) {
+      const unsubscribe = provider.subscribe(() => {
+        // A failed refresh retains the last known-good snapshot and records
+        // degradation; a notification must not produce an unhandled rejection.
+        void this.refresh([provider.id]).catch(() => undefined);
+      });
+      this.providerSubscriptions.set(provider.id, unsubscribe);
+    }
     this.snapshot = this.makeSnapshot();
+  }
+
+  removeProvider(providerId: string): boolean {
+    const provider = this.providers.get(providerId);
+    if (!provider) return false;
+    this.providerSubscriptions.get(providerId)?.();
+    this.providerSubscriptions.delete(providerId);
+    this.providers.delete(providerId);
+    this.states.delete(providerId);
+    this.snapshot = this.makeSnapshot();
+    return true;
+  }
+
+  async close(): Promise<void> {
+    for (const unsubscribe of this.providerSubscriptions.values()) unsubscribe();
+    this.providerSubscriptions.clear();
+    await Promise.all([...this.providers.values()].map((provider) => provider.close ? provider.close() : Promise.resolve()));
   }
 
   getSnapshot(): CapabilitySnapshot { return this.snapshot; }

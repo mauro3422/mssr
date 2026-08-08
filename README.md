@@ -67,6 +67,25 @@ Bridge may consume this repository locally during development with a
 `file:../mssr` dependency. A published package is a later distribution concern;
 the source of truth is this Git repository.
 
+## Standalone MCP entrypoints
+
+`mssr-mcp` is the portable stateless facade. It exposes capability discovery,
+route planning, intent normalization, vocabulary, and trace validation/reduction;
+the MCP caller supplies lifecycle state and owns persistence.
+
+`mssr-codex-mcp` is a Codex-local adapter with an in-memory trace map. It plans
+and bootstraps only locally discovered `SKILL.md` files, then records portable
+lifecycle checkpoints. Neither server executes a selected capability or proxies
+another MCP tool.
+
+```powershell
+npm run build
+npm run test:codex-standalone
+```
+
+The standalone test uses only this package, the MCP SDK, and Codex filesystem
+skill discovery; it does not require MauroPrime Bridge.
+
 ## Agent bootstrap
 
 The template at [templates/AGENTS.mssr.md](templates/AGENTS.mssr.md) is a small
