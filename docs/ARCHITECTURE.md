@@ -50,6 +50,13 @@ to an operator-configured authenticated sink. Envelopes contain task hashes,
 bounded route metadata, skill-load results, and explicit checkpoints; they omit
 task text and never synthesize success from idle time or process termination.
 
+The optional OpenCode host plugin separately observes host-owned terminal tool
+events. Its `mssr-host-call-v1` records are privacy-bounded and may include a
+hashed parent session only when OpenCode explicitly emits that `parentID` in a
+session lifecycle event. Failed host-call delivery is placed in a small local
+retry spool; this best-effort transport is never allowed to block or alter an
+OpenCode tool execution.
+
 Adapters translate host-specific discovery to the shared contract. MauroPrime
 Bridge, Roblox Studio, Codex-local, and a web client can therefore share routing
 metadata without being forced through a single execution bridge.

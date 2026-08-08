@@ -1,6 +1,6 @@
 {
   "name": "@mauroprime/mssr",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Modular Semantic Skill Router: portable advisory semantic routing, modular context, registry, and optional MCP facade.",
   "type": "module",
   "main": "./dist/index.js",

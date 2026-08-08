@@ -128,6 +128,9 @@ export const mssrHostCallEnvelopeSchema = z.object({
   traceId: traceIdSchema.optional(),
   host: z.object({
     sessionKey: hashedHostIdSchema,
+    // OpenCode exposes this only on session lifecycle events.  It is a hash of
+    // the host-provided parentID, never an inferred agent relationship.
+    parentSessionKey: hashedHostIdSchema.optional(),
     messageKey: hashedHostIdSchema.optional(),
     callKey: hashedHostIdSchema,
     agent: boundedName,

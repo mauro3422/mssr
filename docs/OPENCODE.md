@@ -52,10 +52,23 @@ the same authenticated endpoint configured for the `mssr` MCP entry.
 
 It records only salted SHA-256 session/message/call/project identifiers,
 agent, provider/model, explicit reasoning effort or `unknown`, variant, tool
-name, status, timestamps, duration, and an optional MSSR trace. It never sends
+name, status, timestamps, duration, and an optional MSSR trace. When OpenCode
+explicitly publishes a session `parentID` through `session.created` or
+`session.updated`, the plugin adds a salted `parentSessionKey`; it never infers
+parent/subagent relationships from agent names or tool order. It never sends
 prompt text, tool arguments, tool output, raw errors, transcripts, secrets, or
-private reasoning. Delivery is best-effort: telemetry failures are caught and
-must not fail the intercepted OpenCode operation.
+private reasoning.
+
+Delivery is best-effort and never delays an OpenCode hook. If the authenticated
+endpoint is temporarily unavailable, the plugin stores only the already
+validated, privacy-bounded host-call envelope in a local queue (default:
+`%LOCALAPPDATA%\\MauroPrime\\MSSR\\opencode-host-call-queue.json` on Windows).
+The queue holds at most 128 entries, retries with bounded exponential backoff,
+cleans up delivered/expired entries, and stops after five attempts. Override the
+path only for operations/testing with `MSSR_OPENCODE_TELEMETRY_QUEUE_PATH`; do
+not point it at a shared or cloud-synced location. Multiple local OpenCode CLI
+processes coordinate queue read/modify/write operations through a short-lived
+lock; an abandoned lock is recovered after a bounded timeout.
 
 For a source checkout, a minimal global loader can re-export the built plugin:
 
@@ -65,3 +78,27 @@ export { default } from "file:///C:/Dev/mssr/dist/opencode-plugin.js";
 
 Official references: <https://opencode.ai/docs/plugins/>,
 <https://opencode.ai/docs/models/>, and <https://opencode.ai/docs/agents/>.
+
+### OpenCode global-project limitation
+
+OpenCode CLI 1.18.15 classifies `~/.config/opencode` itself as the special
+`global` project. Controlled tests showed that MSSR MCP lifecycle events still
+work there, but neither the normal global plugin loader nor an explicit/project
+loader emits host-call hooks. The same model, agent, prompt, and `--variant low`
+emit host calls normally from a repository workspace. Until OpenCode changes
+that behavior, do not use the config directory as the working project when host
+call attribution is required; run with `--dir C:\path\to\project` instead.
+
+The config dependency files may also describe different
+`@opencode-ai/plugin` versions when npm and Bun locks coexist. The MSSR loader
+imports the built plugin directly and has no runtime import from that package,
+so version drift is not a demonstrated cause of missing host calls. Reconcile
+to one package manager only during a separate dependency upgrade with a CLI
+smoke test; do not rewrite locks merely to improve an audit result.
+
+An OpenCode `task` delegation is observable as a terminal tool call in the
+parent session. In the tested 1.18.15 CLI, the primary plugin did not receive
+the delegated agent's internal tool events or an exposed `parentID`; therefore
+the dashboard correctly reports zero observed parent sessions for that run.
+This does not mean no subagent ran—it means the relationship was not exposed to
+this plugin boundary.

@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.2.3 — 2026-08-08
+
+- Added a bounded, privacy-safe local retry spool for failed OpenCode host-call
+  telemetry. It retries asynchronously with exponential backoff, cleans up on
+  delivery, expires old/over-retried records, and never blocks an OpenCode hook.
+  Concurrent local OpenCode processes use a bounded lock with stale recovery so
+  their queue read/modify/write cycles do not drop each other's events.
+- Added optional `parentSessionKey` to `mssr-host-call-v1`, populated only from
+  OpenCode `session.created` or `session.updated` events that explicitly expose
+  a `parentID`. The raw parent session identifier is never persisted or sent.
+- Documented the OpenCode 1.18.15 `global` project limitation: MSSR lifecycle
+  remains available from the config root, but host plugin hooks are not emitted;
+  repository workspaces remain the supported attribution path.
+- Clarified that a parent `task` delegation is observable while delegated
+  internal tool events/parent identity remain unknown unless OpenCode emits
+  them to the plugin lifecycle surface.
+
 ## 0.2.2 — 2026-08-08
 
 - Added a privacy-bounded OpenCode host plugin and strict
