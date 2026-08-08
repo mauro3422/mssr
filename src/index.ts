@@ -5,6 +5,7 @@ export * from "./mcp-server.js";
 export * from "./codex-adapter.js";
 export * from "./codex-mcp-server.js";
 export * from "./skill-context.js";
+export * from "./skill-context-loader.js";
 export * from "./context-selection.js";
 export * from "./project-context.js";
 export * from "./project-context-update.js";

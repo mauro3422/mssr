@@ -31,6 +31,11 @@ All notable changes to MSSR are documented here.
 
 ## Unreleased
 
+- Moved selective skill-context materialization into the portable package via
+  `planCodexSkillContexts` and `assembleCodexSkillContext`, allowing Bridge and
+  Codex-local adapters to share one bounded loader without moving host state or
+  permissions into MSSR.
+
 - Added `McpToolsProvider` for dynamic, metadata-only MCP `tools/list`
   discovery with native `tools/list_changed` refreshes, immutable provenance,
   timestamped health and last-known-good degradation behavior. MCP tool

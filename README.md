@@ -86,6 +86,11 @@ npm run test:codex-standalone
 The standalone test uses only this package, the MCP SDK, and Codex filesystem
 skill discovery; it does not require MauroPrime Bridge.
 
+The package also exports `planCodexSkillContexts` and
+`assembleCodexSkillContext`. These portable filesystem loaders materialize the
+deterministic selective-context plan; hosts retain ownership of sessions,
+telemetry, permissions, and delivery.
+
 ## Agent bootstrap
 
 The template at [templates/AGENTS.mssr.md](templates/AGENTS.mssr.md) is a small
