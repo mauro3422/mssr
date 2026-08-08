@@ -1198,4 +1198,4 @@ Faltaba una frontera portable de telemetría de host. Usar Bridge como proxy de 
 
 ### Follow-up
 
-Verificar una ejecución OpenCode real contra el runtime Bridge publicado y mantener modelo/effort como `unknown` cuando el host no los exponga en la llamada.
+El adaptador OpenCode publicado entregó al runtime Bridge `0.6.74` la traza `mssr-opencode-e0fb7eef-bf3f-4250-aab4-ce23e10c3bb0`, cerrada con verificación, persistencia y outcome explícitos. El dashboard la atribuye a `opencode-local`. La ejecución del modelo Terra quedó bloqueada antes de iniciar el agente por credenciales externas (balance OpenCode y API key OpenAI), así que modelo/effort permanecen correctamente como `unknown` hasta que el host los exponga en una ejecución autenticada.
