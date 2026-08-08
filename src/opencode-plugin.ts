@@ -323,13 +323,17 @@ export async function createMssrOpenCodePlugin(input: OpenCodePluginInput, optio
 
   const scheduleDrain = async () => {
     if (!queue || !sink || draining) return;
-    const delay = await queue.nextDelayMs();
-    if (delay === null || retryTimer) return;
-    retryTimer = setTimeout(() => {
-      retryTimer = undefined;
-      void drainQueue();
-    }, Math.min(delay, 60_000));
-    retryTimer.unref?.();
+    try {
+      const delay = await queue.nextDelayMs();
+      if (delay === null || retryTimer) return;
+      retryTimer = setTimeout(() => {
+        retryTimer = undefined;
+        void drainQueue();
+      }, Math.min(delay, 60_000));
+      retryTimer.unref?.();
+    } catch {
+      await warn("Host metadata retry queue could not be scheduled.");
+    }
   };
 
   const drainQueue = async () => {

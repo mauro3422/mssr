@@ -9,6 +9,10 @@
 - Preserved physical-call cardinality and privacy boundaries: no relationship
   is inferred from recency, ordering, agent names, task delegation, or sibling
   sessions, and a missing/mismatched/timed-out response remains unknown.
+- Hardened the non-blocking OpenCode retry scheduler so transient or shutdown-time
+  spool I/O failures remain best-effort instead of surfacing as unhandled promise
+  rejections; the Windows cleanup regression now retries transient recursive-removal
+  races without changing plugin execution semantics.
 
 ## 0.2.3 — 2026-08-08
 

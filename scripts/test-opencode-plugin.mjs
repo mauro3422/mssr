@@ -263,7 +263,7 @@ try {
   ]);
   assert.equal(hookResult, "returned", "a stalled telemetry transport must not block an OpenCode hook");
 } finally {
-  await fs.rm(temporaryRoot, { recursive: true, force: true });
+  await fs.rm(temporaryRoot, { recursive: true, force: true, maxRetries: 5, retryDelay: 20 });
 }
 
 console.log("OpenCode host metadata plugin: PASS");
