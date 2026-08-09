@@ -121,6 +121,60 @@
       "priority": 96,
       "activation": "on-demand"
     },
+    "godot-graph-ux-audit": {
+      "phase": "implementation",
+      "coversPhases": [
+        "verification",
+        "maintenance"
+      ],
+      "domains": [
+        "godot",
+        "coding"
+      ],
+      "actions": [
+        "design",
+        "edit",
+        "review",
+        "verify",
+        "test",
+        "debug",
+        "optimize",
+        "maintain",
+        "analyze"
+      ],
+      "artifacts": [
+        "ui",
+        "project",
+        "mcp"
+      ],
+      "needs": [
+        "visual-qa",
+        "performance",
+        "scene-analysis",
+        "integrity-verification"
+      ],
+      "requires": [
+        "godot-project-inspection"
+      ],
+      "complements": [
+        "systematic-debugging"
+      ],
+      "excludes": [
+        "godot-visual-review",
+        "blender-visual-review",
+        "visual-reference-replication"
+      ],
+      "negativeIntents": [
+        "ordinary Godot gameplay or render review without a graph editor surface",
+        "text-only GDScript debugging without graph or canvas UX",
+        "Blender node editor or viewport review"
+      ],
+      "requireNeedMatch": true,
+      "requireActionMatch": true,
+      "requireArtifactMatch": true,
+      "priority": 98,
+      "activation": "on-demand"
+    },
     "blender-object-iteration": {
       "phase": "implementation",
       "domains": [

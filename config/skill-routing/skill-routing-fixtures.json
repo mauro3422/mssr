@@ -219,6 +219,159 @@
       }
     },
     {
+      "name": "godot-graph-ux-audit-implement",
+      "task": "Iterá Atlas con capturas y métricas: compactá el canvas, revisá overlaps, foco de ramas, scripts y minimapa, y corregí la UX que esté justificada",
+      "context": "El trabajo aceptado es sobre el EditorPlugin Godot Atlas/GraphEdit, no sobre gameplay ni el render del juego.",
+      "stage": "implement",
+      "completedPhases": [
+        "discovery",
+        "safety"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Iterar la UX del grafo Atlas con captura y métricas estructuradas",
+        "domains": [
+          "godot",
+          "coding"
+        ],
+        "actions": [
+          "review",
+          "analyze",
+          "edit",
+          "optimize",
+          "verify",
+          "test"
+        ],
+        "artifacts": [
+          "ui",
+          "mcp",
+          "project"
+        ],
+        "needs": [
+          "visual-qa",
+          "performance",
+          "scene-analysis",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "godot-project-inspection",
+          "godot-graph-ux-audit"
+        ],
+        "activeExcludes": [
+          "godot-visual-review",
+          "blender-visual-review"
+        ]
+      }
+    },
+    {
+      "name": "godot-graph-ux-audit-negative-game-review",
+      "task": "Capturá el juego de Godot y revisá si la radio, la cámara y la iluminación se ven bien durante el gameplay",
+      "stage": "verify",
+      "completedPhases": [
+        "discovery",
+        "safety",
+        "implementation"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Revisar visualmente el render de un juego Godot",
+        "domains": [
+          "godot"
+        ],
+        "actions": [
+          "review",
+          "verify",
+          "test"
+        ],
+        "artifacts": [
+          "game",
+          "model-3d",
+          "asset"
+        ],
+        "needs": [
+          "visual-qa",
+          "scene-analysis"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "godot-project-inspection",
+          "godot-visual-review"
+        ],
+        "activeExcludes": [
+          "godot-graph-ux-audit"
+        ]
+      }
+    },
+    {
+      "name": "godot-graph-ux-audit-continuation",
+      "task": "Dale, seguí iterando eso",
+      "context": "La tarea aceptada fue iterar la UX del canvas GraphEdit de Godot Atlas con capturas reales del editor y métricas de overlap, foco, minimapa, naming y scripts sidecar, sin tocar gameplay.",
+      "stage": "implement",
+      "completedPhases": [
+        "discovery",
+        "safety"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar la iteración UX del grafo Atlas",
+        "domains": [
+          "godot",
+          "coding"
+        ],
+        "actions": [
+          "review",
+          "analyze",
+          "edit",
+          "optimize",
+          "verify"
+        ],
+        "artifacts": [
+          "ui",
+          "mcp",
+          "project"
+        ],
+        "needs": [
+          "visual-qa",
+          "performance",
+          "scene-analysis"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "godot-graph-ux-audit"
+        ]
+      }
+    },
+    {
       "name": "roblox-network-start",
       "task": "Quiero conectar las plantas como Astroneer, arrastrar el micelio, probar nutrientes y guardar el juego",
       "stage": "start",
