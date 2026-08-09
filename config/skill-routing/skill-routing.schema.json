@@ -6,6 +6,7 @@
   "required": ["schemaVersion", "skills", "workflows"],
   "additionalProperties": false,
   "properties": {
+    "$schema": { "type": "string", "minLength": 1 },
     "schemaVersion": { "const": 1 },
     "skills": {
       "type": "object",
@@ -77,4 +78,3 @@
     }
   }
 }
-

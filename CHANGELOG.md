@@ -13,6 +13,35 @@
   spool I/O failures remain best-effort instead of surfacing as unhandled promise
   rejections; the Windows cleanup regression now retries transient recursive-removal
   races without changing plugin execution semantics.
+- Hardened host-metadata hashing: when no salt is supplied, the OpenCode plugin
+  now resolves a random machine-local secret (`host-metadata-salt.key`) instead of
+  a predictable public default, so low-entropy IDs still correlate across OpenCode
+  processes on one host without being dictionary-attackable. Cross-process locking
+  heals empty or partial salt files without races; persistence failures emit a
+  bounded diagnostic and degrade to an ephemeral secret rather than a public
+  constant.
+- Require explicit OpenCode hash salts to use a canonical 32-byte hexadecimal
+  secret with structural diversity/anti-repetition checks, add synchronized
+  atomic persistence and opt-in one-generation rotation, honor conventional
+  macOS/XDG state storage, and enforce POSIX `0600` or a verified current-user-only
+  Windows DACL with bounded diagnostics.
+- Added a portable, read-only audit mode (`audit-skills.py --check`) that analyzes
+  the configured roots, prints a summary, and exits non-zero on routing-contract
+  warnings (missing/invalid frontmatter or description), dependency cycles,
+  unreadable routing, or a missing schema without writing any files. Length
+  warnings remain visible but advisory.
+- Rebased the `verify` script onto the read-only `audit:check` (and the `test`
+  chain now includes the portable `test:audit`), so verification no longer emits a
+  dashboard.
+- Made Python audit commands portable through a Node launcher and made
+  `audit:check` validate both schema and overrides with Ajv Draft 2020-12,
+  including an explicitly declared `$schema` annotation and strict rejection of
+  all other unknown properties.
+- Refreshed the README to cover the OpenCode CLI facade and optional host plugin,
+  the `mssr-host-call-v1` attribution boundary and its `global`-project limitation,
+  and to align the status section with the current `0.2.4` release.
+- Updated the documented routing-maintenance loop to use the read-only audit gate;
+  explicit `npm run audit` remains the dashboard-generation workflow.
 
 ## 0.2.3 — 2026-08-08
 

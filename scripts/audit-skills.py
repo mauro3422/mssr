@@ -1,11 +1,14 @@
 from __future__ import annotations
 
+import argparse
 import hashlib
 import html
 import json
 import math
 import os
 import re
+import subprocess
+import sys
 from collections import Counter, defaultdict, deque
 from dataclasses import dataclass, asdict
 from pathlib import Path
@@ -14,16 +17,15 @@ from typing import Iterable
 MSSR_ROOT = Path(os.environ.get("MSSR_PROJECT_ROOT", Path(__file__).resolve().parents[1]))
 CODEX_HOME = Path(os.environ.get("CODEX_HOME", Path.home() / ".codex"))
 CODEX_SKILLS_ROOT = CODEX_HOME / "skills"
-DEFAULT_SKILL_REPO_ROOT = Path(r"C:\Dev\mauroprime-skills\skills")
-LOCAL_ROOT = Path(os.environ.get("MAUROPRIME_SKILL_REPO_ROOT", DEFAULT_SKILL_REPO_ROOT if DEFAULT_SKILL_REPO_ROOT.exists() else CODEX_SKILLS_ROOT))
+LOCAL_ROOT = Path(os.environ.get("MAUROPRIME_SKILL_REPO_ROOT", CODEX_SKILLS_ROOT))
 SYSTEM_ROOT = CODEX_SKILLS_ROOT / ".system"
 PLUGIN_ROOT = CODEX_HOME / "plugins" / "cache"
-OUTPUT_ROOT = CODEX_SKILLS_ROOT / "_dashboard"
+OUTPUT_ROOT = Path(os.environ.get("MSSR_SKILL_DASHBOARD_ROOT", CODEX_SKILLS_ROOT / "_dashboard"))
 ROUTING_ROOT = MSSR_ROOT / "config" / "skill-routing"
 ROUTING_PATH = Path(os.environ.get("MSSR_SKILL_ROUTING_PATH", ROUTING_ROOT / "skill-routing-overrides.json"))
 ROUTING_SCHEMA_PATH = ROUTING_ROOT / "skill-routing.schema.json"
 ROUTING_FIXTURES_PATH = ROUTING_ROOT / "skill-routing-fixtures.json"
-OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
+ROUTING_VALIDATOR_PATH = Path(__file__).resolve().with_name("validate-routing-schema.mjs")
 
 REMOTE_ROBLOX = [
     {
@@ -79,6 +81,23 @@ def load_routing() -> dict:
     data.setdefault("skills", {})
     data.setdefault("workflows", [])
     return data
+
+
+def schema_violations() -> list[str]:
+    completed = subprocess.run(
+        ["node", str(ROUTING_VALIDATOR_PATH), str(ROUTING_SCHEMA_PATH), str(ROUTING_PATH)],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if not completed.stdout.strip():
+        detail = completed.stderr.strip() or f"validator exited {completed.returncode}"
+        raise RuntimeError(detail)
+    result = json.loads(completed.stdout)
+    errors = result.get("errors", [])
+    if completed.returncode not in {0, 1}:
+        raise RuntimeError(result.get("fatal") or f"validator exited {completed.returncode}")
+    return [str(error) for error in errors]
 
 
 @dataclass
@@ -520,9 +539,57 @@ def render_markdown(report: dict) -> str:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="MSSR skill audit. Generates the inspection dashboard by default; "
+                    "use --check for a read-only verification that writes nothing."
+    )
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="Read-only: analyze the configured roots, print a summary, and exit "
+             "non-zero on routing-contract problems. Never writes files.",
+    )
+    args = parser.parse_args()
+
     skills = discover()
     routing = load_routing()
     report = analyze(skills, routing)
+
+    if args.check:
+        problems = []
+        blocking_warnings = [
+            warning for warning in report["warnings"]
+            if warning.get("type") in {"frontmatter", "description"}
+        ]
+        schema_errors = []
+        if "warning" in routing:
+            problems.append(routing["warning"])
+        elif not ROUTING_SCHEMA_PATH.exists():
+            problems.append(f"Missing routing schema: {ROUTING_SCHEMA_PATH}")
+        else:
+            try:
+                schema_errors = schema_violations()
+            except (OSError, RuntimeError, json.JSONDecodeError) as exc:
+                schema_errors = [f"Routing schema unreadable: {exc}"]
+            problems.extend(schema_errors)
+        if report["cycles"]:
+            problems.append(f"Dependency cycles detected: {report['cycles']}")
+        if blocking_warnings:
+            problems.append(f"Skill contract warnings detected: {blocking_warnings}")
+        print(json.dumps({
+            "mode": "check",
+            "ok": not problems,
+            "roots": {"local": str(LOCAL_ROOT), "plugins": str(PLUGIN_ROOT)},
+            "counts": report["counts"],
+            "warnings": report["warnings"],
+            "blockingWarnings": blocking_warnings,
+            "cycles": report["cycles"],
+            "schema": str(ROUTING_SCHEMA_PATH),
+            "schemaViolations": schema_errors,
+            "problems": problems,
+        }, ensure_ascii=False, indent=2))
+        sys.exit(1 if problems else 0)
+
     registry = {
         "schemaVersion": 1,
         "generatedAt": report["generatedAt"],
@@ -531,6 +598,7 @@ def main() -> None:
         "skills": preferred_entries(report, routing),
         "workflows": routing.get("workflows", []),
     }
+    OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
     (OUTPUT_ROOT / "skills-audit.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     (OUTPUT_ROOT / "skills-registry.json").write_text(json.dumps(registry, ensure_ascii=False, indent=2), encoding="utf-8")
     (OUTPUT_ROOT / "skills-dashboard.html").write_text(render_html(report, routing), encoding="utf-8")

@@ -74,6 +74,22 @@ not point it at a shared or cloud-synced location. Multiple local OpenCode CLI
 processes coordinate queue read/modify/write operations through a short-lived
 lock; an abandoned lock is recovered after a bounded timeout.
 
+Host metadata uses a separate machine-local 32-byte random salt. Generate an
+explicit `MSSR_OPENCODE_HASH_SALT` with a CSPRNG (32 random bytes encoded as 64
+hexadecimal characters). The plugin enforces that format plus a structural
+diversity/anti-repetition minimum; malformed or trivially predictable values are
+rejected without being logged and fall back to the private machine salt. Static
+validation cannot prove randomness, so operators must not invent a patterned
+value. Rotation is deliberately opt-in through `rotateMachineSalt`: it publishes
+the new salt only after preserving one prior generation in
+`host-metadata-salt.key.previous` for operator-led reconciliation; the plugin
+does not emit dual keys automatically. State lives under `%LOCALAPPDATA%` on Windows,
+`~/Library/Application Support/MauroPrime/MSSR` on macOS, and
+`${XDG_STATE_HOME:-~/.local/state}/mssr` on Linux. Salt writes use a synchronized
+temporary file and atomic rename. POSIX permissions are forced to `0600`; Windows
+files receive a protected, current-user-only DACL with readback verification.
+Hardening degradation is observable.
+
 For a source checkout, a minimal global loader can re-export the built plugin:
 
 ```js

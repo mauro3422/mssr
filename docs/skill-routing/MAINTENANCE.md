@@ -121,7 +121,7 @@ Un exit code exitoso de un script de mantenimiento no prueba que el contrato cam
 npm run check
 npm run build
 npm run test:skill-routing
-python scripts\audit-skills.py
+npm run audit:check
 npm run verify
 ```
 

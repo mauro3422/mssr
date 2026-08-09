@@ -31,6 +31,7 @@ A Bridge host may additionally maintain privacy-preserving trace continuity loca
 ```mermaid
 flowchart LR
     C["Codex local"] --> P["MSSR protocol<br/>AGENTS + transversal skill"]
+    O["OpenCode CLI"] --> P
     W["ChatGPT web"] --> B["MauroPrime Bridge<br/>MSSR adapter"]
     B --> P
     P --> M["MSSR core<br/>deterministic routing"]
@@ -42,10 +43,11 @@ flowchart LR
     E --> P
 ```
 
-Codex can use local filesystem, shell, and direct application MCPs. ChatGPT web
-uses MauroPrime Bridge when it needs approved access to the same machine.
-Neither route executes through MSSR: MSSR only discovers, ranks, explains, and
-re-plans capabilities.
+Codex can use local filesystem, shell, and direct application MCPs. OpenCode CLI
+uses the portable MCP facade directly, optionally paired with a host plugin that
+observes host-owned attribution. ChatGPT web uses MauroPrime Bridge when it
+needs approved access to the same machine. Neither route executes through MSSR:
+MSSR only discovers, ranks, explains, and re-plans capabilities.
 
 See [architecture](docs/ARCHITECTURE.md), the
 [modular project-context contract](docs/PROJECT_CONTEXT.md), the
@@ -84,6 +86,13 @@ checkpoints. When `MSSR_TELEMETRY_ENDPOINT` and
 `MSSR_TELEMETRY_TOKEN_FILE` are configured together, it sends authenticated,
 privacy-bounded events to the observability owner without proxying execution.
 
+An optional companion plugin (`dist/opencode-plugin.js`) installs in OpenCode's
+global plugin directory to observe the host-owned boundary the MCP child process
+cannot see, delivering privacy-bounded `mssr-host-call-v1` attribution envelopes
+to the same authenticated endpoint. Delivery is best-effort and never blocks an
+OpenCode hook. See [docs/OPENCODE.md](docs/OPENCODE.md) for the OpenCode config,
+plugin installation, and the `global`-project limitation.
+
 ```powershell
 npm run build
 npm run test:codex-standalone
@@ -114,5 +123,8 @@ capabilities and belong in the registry.
 
 ## Status
 
-Version `0.1.0` establishes the independent repository and contract. The
-roadmap documents the staged extraction and optional standalone MCP server.
+Version `0.1.0` established the independent repository and contract; the current
+release is `0.2.4` (see [CHANGELOG.md](CHANGELOG.md)). It now ships the portable
+core, the standalone `mssr-mcp`, `mssr-codex-mcp`, and `mssr-opencode-mcp`
+servers, and an optional OpenCode host plugin. Bridge remains a consumer adapter
+rather than the owner of the routing contract.

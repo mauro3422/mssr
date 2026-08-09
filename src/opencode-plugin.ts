@@ -1,7 +1,9 @@
-import { createHash } from "node:crypto";
+import { execFile } from "node:child_process";
+import { createHash, randomBytes, randomUUID } from "node:crypto";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import { promisify } from "node:util";
 import {
   HttpMssrTelemetrySink,
   MSSR_HOST_CALL_PROTOCOL_VERSION,
@@ -43,6 +45,10 @@ export type OpenCodePluginInput = {
 export type OpenCodePluginOptions = {
   sink?: MssrExternalTelemetrySink | null;
   salt?: string;
+  /** Override the machine-local secret file consulted when no salt is supplied. */
+  saltPath?: string;
+  /** Receives bounded operational diagnostics without secrets or raw host identifiers. */
+  onDiagnostic?: (diagnostic: { code: string; message: string }) => void;
   now?: () => Date;
   /** Test/operational override; stored records are already schema-validated and privacy-safe. */
   queuePath?: string;
@@ -58,6 +64,8 @@ const queueVersion = 1 as const;
 const maxQueueAgeMs = 24 * 60 * 60_000;
 const queueLockTimeoutMs = 2_000;
 const queueLockStaleMs = 15_000;
+const metadataLockTimeoutMs = 10_000;
+const metadataLockHeartbeatMs = 2_000;
 const asRecord = (value: unknown): JsonRecord => value && typeof value === "object" && !Array.isArray(value) ? value as JsonRecord : {};
 const bounded = (value: unknown, fallback: string, max: number) => typeof value === "string" && value.trim()
   ? value.trim().slice(0, max)
@@ -67,13 +75,296 @@ const positiveInteger = (value: number | undefined, fallback: number, maximum: n
   ? Math.min(value, maximum)
   : fallback;
 
+export function defaultStateRoot(
+  platform: NodeJS.Platform = process.platform,
+  home: string = os.homedir(),
+  localAppData: string | null | undefined = process.env.LOCALAPPDATA,
+  xdgStateHome: string | null | undefined = process.env.XDG_STATE_HOME,
+): string {
+  if (platform === "win32" && localAppData) return path.join(localAppData, "MauroPrime", "MSSR");
+  if (platform === "darwin") return path.join(home, "Library", "Application Support", "MauroPrime", "MSSR");
+  if (platform !== "win32" && xdgStateHome) return path.join(xdgStateHome, "mssr");
+  return path.join(home, ".local", "state", "mssr");
+}
+
 function defaultQueuePath(): string {
   const configured = process.env.MSSR_OPENCODE_TELEMETRY_QUEUE_PATH?.trim();
   if (configured) return configured;
-  const stateRoot = process.env.LOCALAPPDATA
-    ? path.join(process.env.LOCALAPPDATA, "MauroPrime", "MSSR")
-    : path.join(os.homedir(), ".local", "state", "mssr");
-  return path.join(stateRoot, "opencode-host-call-queue.json");
+  return path.join(defaultStateRoot(), "opencode-host-call-queue.json");
+}
+
+function defaultSaltPath(): string {
+  return path.join(defaultStateRoot(), "host-metadata-salt.key");
+}
+
+const saltHexPattern = /^[a-f0-9]{64}$/i;
+const saltRotationPreviousSuffix = ".previous";
+const execFileAsync = promisify(execFile);
+const privateFileCommandTimeoutMs = 5_000;
+
+type Diagnostic = Parameters<NonNullable<OpenCodePluginOptions["onDiagnostic"]>>[0];
+const emitDiagnostic = (
+  onDiagnostic: OpenCodePluginOptions["onDiagnostic"],
+  code: string,
+  message: string,
+): void => {
+  const diagnostic: Diagnostic = { code, message };
+  if (onDiagnostic) onDiagnostic(diagnostic);
+  else process.emitWarning(message, { code });
+};
+
+/**
+ * Windows `0o600` file modes do not restrict NTFS ACLs, so a private metadata
+ * file could remain readable by other local accounts. Restrict the ACL to the
+ * current user when possible. This is best-effort: on any failure a fail-safe
+ * diagnostic is emitted (never the secret) and execution continues.
+ */
+export async function hardenPrivateFile(
+  filePath: string,
+  onDiagnostic: OpenCodePluginOptions["onDiagnostic"] = undefined,
+): Promise<void> {
+  try {
+    if (process.platform !== "win32") {
+      await fs.chmod(filePath, 0o600);
+      return;
+    }
+    // Rebuild the DACL instead of merely changing inheritance: pre-existing
+    // explicit ACEs must not survive. The script also reads the DACL back and
+    // rejects any trustee other than the current user SID.
+    const script = [
+      "$ErrorActionPreference='Stop'",
+      "$p=$env:MSSR_PRIVATE_FILE_PATH",
+      "$identity=[System.Security.Principal.WindowsIdentity]::GetCurrent()",
+      "$sid=$identity.User",
+      "$existing=Get-Acl -LiteralPath $p",
+      "$existingBad=@($existing.Access | Where-Object { $_.AccessControlType -ne 'Allow' -or $_.IdentityReference.Translate([System.Security.Principal.SecurityIdentifier]).Value -ne $sid.Value })",
+      "if ($existing.AreAccessRulesProtected -and $existing.Access.Count -gt 0 -and $existingBad.Count -eq 0) { exit 0 }",
+      "$acl=New-Object System.Security.AccessControl.FileSecurity",
+      "$acl.SetOwner($sid)",
+      "$acl.SetAccessRuleProtection($true,$false)",
+      "$rule=New-Object System.Security.AccessControl.FileSystemAccessRule($sid,'FullControl','Allow')",
+      "[void]$acl.AddAccessRule($rule)",
+      "Set-Acl -LiteralPath $p -AclObject $acl",
+      "$actual=Get-Acl -LiteralPath $p",
+      "$bad=@($actual.Access | Where-Object { $_.AccessControlType -ne 'Allow' -or $_.IdentityReference.Translate([System.Security.Principal.SecurityIdentifier]).Value -ne $sid.Value })",
+      "if (-not $actual.AreAccessRulesProtected -or $bad.Count -ne 0) { throw 'private DACL verification failed' }",
+    ].join("; ");
+    await execFileAsync(
+      "powershell.exe",
+      ["-NoProfile", "-NonInteractive", "-Command", script],
+      {
+        timeout: privateFileCommandTimeoutMs,
+        windowsHide: true,
+        env: { ...process.env, MSSR_PRIVATE_FILE_PATH: filePath },
+      },
+    );
+  } catch {
+    emitDiagnostic(
+      onDiagnostic,
+      process.platform === "win32" ? "mssr-opencode-windows-acl-unavailable" : "mssr-opencode-private-file-permissions-unavailable",
+      process.platform === "win32"
+        ? "MSSR could not restrict Windows ACLs on a private metadata file; continuing in best-effort mode."
+        : "MSSR could not restrict POSIX permissions on a private metadata file; continuing in best-effort mode.",
+    );
+  }
+}
+
+const explicitSaltIsStructurallyStrong = (salt: string): boolean => {
+  if (!saltHexPattern.test(salt)) return false;
+  const counts = new Map<string, number>();
+  for (const character of salt.toLowerCase()) counts.set(character, (counts.get(character) ?? 0) + 1);
+  const entropyPerNibble = [...counts.values()].reduce((entropy, count) => {
+    const probability = count / salt.length;
+    return entropy - probability * Math.log2(probability);
+  }, 0);
+  const periodic = Array.from({ length: salt.length / 2 }, (_, index) => index + 1)
+    .some((period) => salt.length % period === 0 && [...salt].every((character, index) => character === salt[index % period]));
+  return counts.size >= 12 && entropyPerNibble >= 3.5 && !periodic;
+};
+
+async function syncDirectory(directory: string): Promise<void> {
+  if (process.platform === "win32") return;
+  const handle = await fs.open(directory, "r");
+  try { await handle.sync(); } finally { await handle.close(); }
+}
+
+async function writePrivateFileAtomic(
+  filePath: string,
+  value: string,
+  onDiagnostic: OpenCodePluginOptions["onDiagnostic"],
+): Promise<void> {
+  const temporary = `${filePath}.${process.pid}.${randomUUID()}.tmp`;
+  let handle: Awaited<ReturnType<typeof fs.open>> | undefined;
+  try {
+    handle = await fs.open(temporary, "wx", 0o600);
+    await handle.writeFile(value, "utf8");
+    await handle.sync();
+    await handle.close();
+    handle = undefined;
+    await hardenPrivateFile(temporary, onDiagnostic);
+    await fs.rename(temporary, filePath);
+    await syncDirectory(path.dirname(filePath));
+  } finally {
+    await handle?.close().catch(() => undefined);
+    await fs.unlink(temporary).catch(() => undefined);
+  }
+}
+
+/**
+ * A fixed public default salt would let anyone with access to hashed host
+ * metadata dictionary-attack low-entropy session, message, and call IDs. When
+ * the caller supplies no salt, resolve a secret that is random and machine-local
+ * so the same values still correlate across OpenCode processes on one host. The
+ * secret file is best-effort: on any failure it degrades to an ephemeral
+ * per-process secret rather than ever falling back to a public constant.
+ *
+ * All cooperating processes serialize through the same stale-aware lock while
+ * reading or writing, so an empty/partial file is healed without exposing a
+ * half-written value to another plugin process.
+ */
+async function withMetadataLock<T>(saltPath: string, action: () => Promise<T>): Promise<T> {
+  const lockPath = `${saltPath}.lock`;
+  const deadline = Date.now() + metadataLockTimeoutMs;
+  const ownerToken = randomUUID();
+  await fs.mkdir(path.dirname(lockPath), { recursive: true });
+  let lockHandle: Awaited<ReturnType<typeof fs.open>> | undefined;
+  while (!lockHandle && Date.now() < deadline) {
+    try {
+      const candidate = await fs.open(lockPath, "wx", 0o600);
+      try {
+        await candidate.writeFile(ownerToken, "utf8");
+        await candidate.sync();
+        lockHandle = candidate;
+      } catch (error) {
+        await candidate.close().catch(() => undefined);
+        await fs.unlink(lockPath).catch(() => undefined);
+        throw error;
+      }
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
+      try {
+        const stat = await fs.stat(lockPath);
+        if (Date.now() - stat.mtimeMs > queueLockStaleMs) {
+          const stalePath = `${lockPath}.${process.pid}.${Date.now()}.stale`;
+          await fs.rename(lockPath, stalePath).catch(() => undefined);
+          await fs.unlink(stalePath).catch(() => undefined);
+        }
+      } catch {
+        // Another process released or recovered the lock.
+      }
+      await new Promise<void>((resolve) => setTimeout(resolve, 15));
+    }
+  }
+  if (!lockHandle) throw new Error("MSSR OpenCode metadata salt lock timed out.");
+  const heartbeat = setInterval(() => {
+    void fs.readFile(lockPath, "utf8").then(async (currentOwner) => {
+      if (currentOwner === ownerToken) {
+        const now = new Date();
+        await fs.utimes(lockPath, now, now);
+      }
+    }).catch(() => undefined);
+  }, metadataLockHeartbeatMs);
+  heartbeat.unref();
+  try {
+    return await action();
+  } finally {
+    clearInterval(heartbeat);
+    await lockHandle.close().catch(() => undefined);
+    const currentOwner = await fs.readFile(lockPath, "utf8").catch(() => "");
+    if (currentOwner === ownerToken) await fs.unlink(lockPath).catch(() => undefined);
+  }
+}
+
+async function loadOrCreateSalt(
+  saltPath: string,
+  onDiagnostic: OpenCodePluginOptions["onDiagnostic"],
+): Promise<string> {
+  const fresh = randomBytes(32).toString("hex");
+  let persisted = "";
+  await withMetadataLock(saltPath, async () => {
+    const existing = await fs.readFile(saltPath, "utf8").catch(() => "");
+    if (explicitSaltIsStructurallyStrong(existing.trim())) {
+      persisted = existing.trim();
+      await hardenPrivateFile(saltPath, onDiagnostic);
+      return;
+    }
+    // An empty/partial file is healed under the lock.
+    await writePrivateFileAtomic(saltPath, fresh, onDiagnostic);
+    const written = (await fs.readFile(saltPath, "utf8")).trim();
+    if (!explicitSaltIsStructurallyStrong(written)) {
+      throw new Error("MSSR OpenCode metadata salt was not persisted completely.");
+    }
+    persisted = written;
+  });
+  return persisted;
+}
+
+/**
+ * Explicit, observable salt rotation. It never happens implicitly: only a call
+ * to this function (or an operator replacing the file under the same lock)
+ * rotates the secret. Writes are ordered and individually atomic: the prior
+ * generation is durably published before the current generation changes. The
+ * `.previous` sidecar is intended for operator-led reconciliation.
+ */
+export async function rotateMachineSalt(
+  saltPath: string,
+  onDiagnostic: OpenCodePluginOptions["onDiagnostic"] = undefined,
+): Promise<string> {
+  const fresh = randomBytes(32).toString("hex");
+  let rotated = "";
+  await withMetadataLock(saltPath, async () => {
+    const existing = await fs.readFile(saltPath, "utf8").catch(() => "");
+    const current = saltHexPattern.test(existing.trim()) ? existing.trim() : undefined;
+    // Preserve the old generation before publishing the new one. If this write
+    // fails, rotation fails closed and the current salt remains authoritative.
+    // The sidecar intentionally retains exactly one prior generation.
+    if (current) {
+      const previousPath = `${saltPath}${saltRotationPreviousSuffix}`;
+      await writePrivateFileAtomic(previousPath, current, onDiagnostic);
+    }
+    await writePrivateFileAtomic(saltPath, fresh, onDiagnostic);
+    rotated = fresh;
+  });
+  emitDiagnostic(
+    onDiagnostic,
+    "mssr-opencode-salt-rotated",
+    "MSSR rotated its machine-local OpenCode metadata salt. Correlation continues under the new secret; one prior generation is retained for migration.",
+  );
+  return rotated;
+}
+
+async function resolveSalt(
+  provided: string | undefined,
+  saltPath: string,
+  onDiagnostic: OpenCodePluginOptions["onDiagnostic"],
+): Promise<string> {
+  const explicit = provided?.trim();
+  const configured = explicit ? undefined : process.env.MSSR_OPENCODE_HASH_SALT?.trim();
+  const candidate = explicit ?? configured;
+  const source = explicit ? "option" : configured ? "env" : undefined;
+  if (candidate && source) {
+    // Accept only a canonical 32-byte value with a structural diversity and
+    // anti-repetition floor. Operators must still generate it with a CSPRNG;
+    // static validation cannot prove randomness.
+    if (explicitSaltIsStructurallyStrong(candidate)) return candidate;
+    // Reject a weak explicit salt without ever logging its value, then fall
+    // back to a strong machine-local secret so the plugin keeps working.
+    emitDiagnostic(
+      onDiagnostic,
+      "mssr-opencode-salt-rejected-weak",
+      `MSSR ignored the explicit OpenCode hash salt from ${source} because it does not meet the minimum strength requirement; a strong machine-local secret is used instead.`,
+    );
+  }
+  try {
+    return await loadOrCreateSalt(saltPath, onDiagnostic);
+  } catch {
+    emitDiagnostic(
+      onDiagnostic,
+      "mssr-opencode-salt-degraded",
+      "MSSR could not persist its machine-local OpenCode metadata salt; correlation is limited to this process.",
+    );
+    return randomBytes(32).toString("hex");
+  }
 }
 
 /**
@@ -276,7 +567,7 @@ async function defaultSink(): Promise<MssrExternalTelemetrySink | null> {
 export async function createMssrOpenCodePlugin(input: OpenCodePluginInput, options: OpenCodePluginOptions = {}) {
   const sink = options.sink === undefined ? await defaultSink() : options.sink;
   const now = options.now ?? (() => new Date());
-  const salt = options.salt ?? process.env.MSSR_OPENCODE_HASH_SALT ?? "mssr-opencode-host-metadata-v1";
+  const salt = await resolveSalt(options.salt, options.saltPath ?? defaultSaltPath(), options.onDiagnostic);
   const sessionProfiles = new Map<string, HostProfile>();
   const sessionParents = new Map<string, string>();
   // A lifecycle event (or an authoritative GET /session/:id fallback) tells us

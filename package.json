@@ -42,9 +42,11 @@
     "test:intent-normalizer": "node scripts/test-intent-normalizer.mjs",
     "test:skill-routing": "npm run build && npm run test:router",
     "test:skill-context": "npm run build && npm run test:context",
-    "test": "npm run build && npm run test:core && npm run test:trace-contract && npm run test:context && npm run test:skill-context-loader && npm run test:project-context && npm run test:intent-normalizer && npm run test:registry && npm run test:mcp-provider && npm run test:provider-config && npm run test:mcp && npm run test:codex-standalone && npm run test:opencode-standalone && npm run test:opencode-plugin && npm run test:router",
-    "audit": "python scripts/audit-skills.py",
-    "verify": "npm run check && npm run test && npm run audit",
+    "test:audit": "node scripts/run-python.mjs test-audit-skills.py",
+    "test": "npm run build && npm run test:core && npm run test:trace-contract && npm run test:context && npm run test:skill-context-loader && npm run test:project-context && npm run test:intent-normalizer && npm run test:registry && npm run test:mcp-provider && npm run test:provider-config && npm run test:mcp && npm run test:codex-standalone && npm run test:opencode-standalone && npm run test:opencode-plugin && npm run test:router && npm run test:audit",
+    "audit": "node scripts/run-python.mjs audit-skills.py",
+    "audit:check": "node scripts/run-python.mjs audit-skills.py --check",
+    "verify": "npm run check && npm run test && npm run audit:check",
     "prepare": "npm run build"
   },
   "keywords": [
@@ -65,6 +67,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.17.24",
+    "ajv": "^8.20.0",
     "tsx": "^4.21.0",
     "typescript": "^5.3.3"
   },
