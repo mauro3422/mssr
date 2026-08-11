@@ -2,8 +2,13 @@ import { createHash, randomUUID } from "node:crypto";
 import fs from "node:fs/promises";
 import { z } from "zod";
 import {
+  SKILL_ACTIONS,
+  SKILL_ARTIFACTS,
   SKILL_CALLERS,
+  SKILL_DOMAINS,
+  SKILL_NEEDS,
   SKILL_PHASES,
+  SKILL_RISKS,
   SKILL_SIGNALS,
   SKILL_STAGES,
 } from "./skill-routing.js";
@@ -61,6 +66,16 @@ const routedSkillSchema = z.object({
   score: z.number().optional(),
 }).strict();
 
+const routeIntentTelemetrySchema = z.object({
+  domains: z.array(z.enum(SKILL_DOMAINS)).min(1).max(8),
+  actions: z.array(z.enum(SKILL_ACTIONS)).min(1).max(12),
+  artifacts: z.array(z.enum(SKILL_ARTIFACTS)).max(12),
+  needs: z.array(z.enum(SKILL_NEEDS)).max(12),
+  signals: z.array(z.enum(SKILL_SIGNALS)).min(1).max(12),
+  risk: z.enum(SKILL_RISKS),
+  ambiguity: z.enum(["low", "medium", "high"]),
+}).strict();
+
 const routeTelemetrySchema = z.object({
   kind: z.literal("route"),
   action: z.enum(["plan", "bootstrap"]),
@@ -81,6 +96,9 @@ const routeTelemetrySchema = z.object({
     deferredSkills: z.array(routedSkillSchema).max(64),
     loadOrder: z.array(boundedName).max(32),
     deferredLoadOrder: z.array(boundedName).max(64),
+    // Privacy-bounded routing conclusions only. Raw task/context, intent
+    // summaries, capability prose, transcripts, and reasoning are excluded.
+    intent: routeIntentTelemetrySchema.optional(),
     signals: z.array(z.enum(SKILL_SIGNALS)).max(20),
     ambiguity: z.string().max(20).optional(),
     requiredPhases: z.array(z.enum(SKILL_PHASES)).max(6),
@@ -232,6 +250,15 @@ export function routeTelemetrySummary(route: Record<string, unknown>) {
   const intent = asRecord(route.intent);
   const coverage = asRecord(route.coverage);
   const profile = asRecord(route.agentProfile);
+  const boundedIntent = routeIntentTelemetrySchema.safeParse({
+    domains: intent.domains,
+    actions: intent.actions,
+    artifacts: intent.artifacts,
+    needs: intent.needs,
+    signals: intent.signals,
+    risk: intent.risk,
+    ambiguity: intent.ambiguity,
+  });
   return routeTelemetrySchema.shape.route.parse({
     caller: route.caller,
     stage: route.stage,
@@ -248,6 +275,7 @@ export function routeTelemetrySummary(route: Record<string, unknown>) {
     deferredSkills: skills(route.deferredSkills),
     loadOrder: Array.isArray(route.loadOrder) ? route.loadOrder : [],
     deferredLoadOrder: Array.isArray(route.deferredLoadOrder) ? route.deferredLoadOrder : [],
+    intent: boundedIntent.success ? boundedIntent.data : undefined,
     signals: Array.isArray(intent.signals) ? intent.signals : [],
     ambiguity: typeof intent.ambiguity === "string" ? intent.ambiguity : undefined,
     requiredPhases: Array.isArray(coverage.requiredPhases) ? coverage.requiredPhases : [],

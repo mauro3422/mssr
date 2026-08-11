@@ -190,6 +190,32 @@ No single percentage describes MSSR quality. The dashboard separates:
 
 A dashboard may display current numbers, but maintenance decisions require enough samples and examination of concrete traces. Frequency alone never rewrites routing or skills.
 
+### Portable intent analysis
+
+`mssr-telemetry-v1` route events may include an additive `route.intent` object
+with only canonical `domains`, `actions`, `artifacts`, `needs`, `signals`,
+`risk`, and `ambiguity`. The envelope deliberately excludes the intent summary,
+raw task/context, capability prose, prompts, transcripts, and private reasoning.
+Older route events without `route.intent` remain valid; analyzers must not infer
+the missing dimensions from task hashes or prose.
+
+`analyzeMssrTelemetry` deduplicates valid envelopes by `eventId`, groups them by
+`traceId`, and uses the latest route and latest outcome per trace. Its rate
+denominators are explicit:
+
+- structured routing: routed traces;
+- required-load compliance: required active-skill selections;
+- route-to-load coverage: all active-skill selections;
+- verification/persistence: routed traces whose latest route requires that phase;
+- outcome attribution and success: traces with an outcome;
+- acceptance: outcomes where `accepted` was explicitly measured.
+
+A zero denominator produces `value=null`, not a fabricated zero. The analyzer
+may emit review-only maintenance candidates after the same exact non-nominal
+signal or missing required skill occurs on at least three distinct traces by
+default. The threshold is configurable, trace references are bounded, and a
+candidate never edits routing or skills automatically.
+
 ## Current host implementation
 
 MauroPrime Bridge provides:

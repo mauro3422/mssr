@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+- Added privacy-bounded structured intent fields to portable route telemetry;
+  task text, context, intent summaries, capability prose, transcripts, and
+  private reasoning remain excluded.
+- Added a deterministic telemetry analyzer with explicit denominators for
+  routing, skill-load, verification, persistence, outcome, success, and
+  acceptance metrics. It emits thresholded review candidates for recurring
+  exact signals and missing required-skill loads, never automatic rewrites.
+
 ## 0.2.4 — 2026-08-08
 
 - Added one bounded read-only exact-session lookup when an OpenCode terminal

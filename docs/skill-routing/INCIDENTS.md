@@ -1237,3 +1237,30 @@ mismatched SDK response.
 When OpenCode does not deliver a delegated agent's internal terminal tool events
 to the plugin, MSSR cannot count or link them. That is a host observation limit,
 not evidence that the subagent did not run.
+
+## MSSR-035 - A directory migration followed the Bridge-to-MSSR junction
+
+**Date:** 2026-08-09
+
+### Trigger
+
+During the coordinated migration from `C:\Dev` to `D:\Dev`, moving the Bridge tree traversed its internal `node_modules\@mauroprime\mssr` junction and placed the canonical MSSR content under the migrated Bridge tree instead of the initially prepared `D:\Dev\mssr` directory.
+
+### Root cause
+
+The filesystem move treated a directory tree containing a junction as an ordinary self-contained tree. The cutover preflight verified content manifests but did not first inventory and detach internal reparse points.
+
+### Correction
+
+- Recovered the exact MSSR tree from `D:\Dev\bridge-mcp\node_modules\@mauroprime\mssr` into `D:\Dev\mssr`.
+- Recreated `D:\Dev\bridge-mcp\node_modules\@mauroprime\mssr` as a junction targeting `D:\Dev\mssr`.
+- Updated Codex runtime configuration to use `D:\Dev\mssr\dist\codex-mcp-server.js` and the Bridge token under `D:\Dev\bridge-mcp`.
+- Preserved `C:\Dev\mssr` as an empty compatibility placeholder while an older process working directory keeps it locked.
+
+### Regression
+
+The recovered tree matched the pre-migration manifest: 4,104 files and 55,418,202 bytes. The only post-readback hash drift was `.git\index`, with identical length, caused by a subsequent `git status`; no source or project file differed.
+
+### Follow-up
+
+Every future project-tree move must inventory reparse points before mutation, record each junction target, move canonical repositories independently, then recreate and read back junctions. Directory-level copy/move success is not sufficient evidence when reparse points exist.

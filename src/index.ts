@@ -15,3 +15,4 @@ export * from "./project-context-update.js";
 export * from "./intent-normalizer.js";
 export * from "./trace-contract.js";
 export * from "./telemetry.js";
+export * from "./telemetry-analysis.js";
