@@ -147,7 +147,10 @@
         ],
         "activeExcludes": [
           "godot-visual-review",
-          "blender-visual-review"
+          "blender-visual-review",
+          "visual-evidence-audit",
+          "visual-reference-integrity",
+          "visual-reference-replication"
         ]
       }
     },
@@ -215,6 +218,49 @@
         "activeExcludes": [
           "blender-visual-review",
           "blender-object-iteration"
+        ]
+      }
+    },
+    {
+      "name": "godot-graph-panorama-lexical-fallback",
+      "task": "Mejorá el canvas Godot Atlas con visión panorámica, criticá el dashboard y seguí iterando el GraphEdit",
+      "context": "El objetivo es la UX del canvas de tooling dentro del editor, no el render del juego ni una colección de referencias visuales.",
+      "stage": "implement",
+      "completedPhases": [
+        "discovery",
+        "safety"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "expect": {
+        "classificationMode": "lexical-fallback",
+        "contextUsed": true,
+        "activeIncludes": [
+          "godot-graph-ux-audit"
+        ],
+        "activeExcludes": [
+          "godot-visual-review",
+          "visual-evidence-audit",
+          "visual-reference-integrity",
+          "visual-reference-replication"
+        ]
+      }
+    },
+    {
+      "name": "godot-graph-panorama-negative-sales-dashboard",
+      "task": "Revisá y mejorá el dashboard de ventas panorámico de este sitio web",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "expect": {
+        "classificationMode": "lexical-fallback",
+        "activeExcludes": [
+          "godot-graph-ux-audit"
+        ],
+        "deferredExcludes": [
+          "godot-graph-ux-audit"
         ]
       }
     },
@@ -368,6 +414,121 @@
         "contextUsed": true,
         "activeIncludes": [
           "godot-graph-ux-audit"
+        ],
+        "activeExcludes": [
+          "visual-evidence-audit",
+          "systematic-debugging"
+        ]
+      }
+    },
+    {
+      "name": "godot-graph-panorama-dashboard-without-evidence-lifecycle",
+      "task": "Generá un panorama completo del canvas Atlas para el dashboard y seguí iterando su layout visual sin clasificar, archivar ni borrar una colección de imágenes",
+      "context": "El panorama es evidencia emparejada del GraphEdit completo y debe conservar foco, mouse y cámara; no es una auditoría de limpieza de álbumes ni de referencias modelables.",
+      "stage": "implement",
+      "completedPhases": [
+        "discovery",
+        "safety"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Iterar el canvas Godot Atlas y producir un panorama global válido para su dashboard",
+        "domains": [
+          "godot",
+          "coding"
+        ],
+        "actions": [
+          "review",
+          "analyze",
+          "edit",
+          "optimize",
+          "verify",
+          "test"
+        ],
+        "artifacts": [
+          "ui",
+          "mcp",
+          "project"
+        ],
+        "needs": [
+          "visual-qa",
+          "performance",
+          "scene-analysis",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "godot-project-inspection",
+          "godot-graph-ux-audit"
+        ],
+        "activeExcludes": [
+          "visual-evidence-audit",
+          "systematic-debugging"
+        ],
+        "deferredExcludes": [
+          "visual-evidence-audit"
+        ]
+      }
+    },
+    {
+      "name": "transversal-maintenance-to-atlas-continuation-close",
+      "task": "Cerrá las fricciones transversales y dejá preparado el siguiente loop visual de Atlas",
+      "context": "La iteración encontró dos patrones reproducibles: un JSON con métricas pero sin PNG decodificable no era evidencia visual, y una hipótesis de layout con tests verdes no cambió la métrica live y fue revertida. Hay que mantener las skills dueñas y luego replanificar Atlas en implementación.",
+      "stage": "close",
+      "completedPhases": [
+        "discovery",
+        "safety",
+        "implementation",
+        "verification",
+        "persistence"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Cerrar mantenimiento reusable y preservar una continuación acotada del canvas Atlas",
+        "domains": [
+          "skill-system",
+          "godot",
+          "coding"
+        ],
+        "actions": [
+          "maintain",
+          "document",
+          "analyze"
+        ],
+        "artifacts": [
+          "skill",
+          "ui",
+          "project"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification",
+          "cross-agent"
+        ],
+        "signals": [
+          "repeated-friction",
+          "reusable-pattern"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "skill-maintenance-loop"
         ]
       }
     },

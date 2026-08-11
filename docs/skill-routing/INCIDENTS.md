@@ -1264,3 +1264,22 @@ The recovered tree matched the pre-migration manifest: 4,104 files and 55,418,20
 ### Follow-up
 
 Every future project-tree move must inventory reparse points before mutation, record each junction target, move canonical repositories independently, then recreate and read back junctions. Directory-level copy/move success is not sufficient evidence when reparse points exist.
+## MSSR-036 - Lexical fallback missed Godot panorama iteration
+
+**Date:** 2026-08-11
+
+### Trigger
+
+A Spanish request to improve and iterate a Godot Atlas canvas using panoramic dashboard evidence selected only generic Godot analysis when structured intent was unavailable.
+
+### Root cause
+
+The lexical fallback did not recognize `mejorar`, `iterar`, `criticar`, `canvas`, `minimapa`, `dashboard`, or `panorama` as edit/review, UI, and visual-QA signals.
+
+### Correction
+
+Expanded the bounded Spanish lexical rules and added positive Atlas panorama, negative sales-dashboard, structured no-lifecycle, and maintenance-continuation fixtures.
+
+### Regression
+
+The routing suite passes 194 cases and the full MSSR verification suite passes. A sales dashboard remains excluded from `godot-graph-ux-audit`.

@@ -628,8 +628,8 @@ function fallbackIntent(task: string): StructuredSkillIntent {
   const actions: StructuredSkillIntent["actions"] = [];
   const mapping: Array<[StructuredSkillIntent["actions"][number], RegExp]> = [
     ["discover", /buscar|search|discover|listar|leer|inspect/], ["design", /disenar|design|arquitect|plan/],
-    ["create", /crear|create|build|generar|author/], ["edit", /editar|modificar|update|actualizar rutas|arreglar|fix|refactor/],
-    ["move", /mover|trasladar|migrar|move|relocate/], ["review", /revisar|review|auditar|audit/],
+    ["create", /crear|create|build|generar|author/], ["edit", /editar|modificar|mejorar|mejora|iterar|itera|update|actualizar rutas|arreglar|fix|refactor/],
+    ["move", /mover|trasladar|migrar|move|relocate/], ["review", /revisar|review|auditar|audit|criticar|critica/],
     ["verify", /verificar|comprobar|comparar|hash|sha ?256|checksum|integridad|verify/], ["test", /probar|test|playtest|cobertura/],
     ["debug", /debug|fall|error|bug/], ["optimize", /optimizar|performance|rendimiento|profil/],
     ["save", /guardar|save|backup|respaldo/], ["recover", /recuperar|recovery|rollback|restore/],
@@ -646,7 +646,7 @@ function fallbackIntent(task: string): StructuredSkillIntent {
   if (/rbxlx?|place file|archivo de roblox/.test(text)) artifacts.push("place-file");
   if (/backup|respaldo|copia de seguridad/.test(text)) artifacts.push("backup");
   if (/documentacion|docs|readme|roadmap|changelog/.test(text)) artifacts.push("document");
-  if (/\b(?:ui|interfaz|hud)\b/.test(text)) artifacts.push("ui");
+  if (/\b(?:ui|interfaz|hud|canvas|minimapa|dashboard)\b|graph ?edit/.test(text)) artifacts.push("ui");
   if (/animacion|animation|keyframe/.test(text)) artifacts.push("animation");
   if (/modelo|model|mesh|3d/.test(text)) artifacts.push("model-3d");
   if (/placement|colocar|construir|build mode|grilla/.test(text)) artifacts.push("placement-system");
@@ -660,7 +660,7 @@ function fallbackIntent(task: string): StructuredSkillIntent {
   if (/documentacion oficial|official docs|api reference|referencia de api|roblox docs|documentacion de roblox/.test(text)) needs.push("official-docs");
   if (/unit test|prueba unitaria|cobertura/.test(text)) needs.push("unit-tests");
   if (/playtest|probar el juego|gameplay/.test(text)) needs.push("playtest");
-  if (/visual|captura|screenshot|vista/.test(text)) needs.push("visual-qa");
+  if (/visual|captura|screenshot|vista|panorama|panoramica|vision panoramica/.test(text)) needs.push("visual-qa");
   if (/device|movil|tablet|responsive|orientacion/.test(text)) needs.push("device-testing");
   if (/performance|rendimiento|fps|cpu|gpu/.test(text)) needs.push("performance");
   if (/scene analysis|memoria|memory|leak/.test(text)) needs.push("scene-analysis");
