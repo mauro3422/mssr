@@ -13,6 +13,9 @@
 - Dashboard generado y skill mantenedora.
 - Observatory del Bridge con trazas, privacidad, outcome por skill primaria y dashboard local.
 - `trace-contract-v1` implementado: continuidad local más lease acotada por proceso para llamadas stateless, selección inequívoca, protección de ambigüedad, propagación por direct tools y dispatch wrappers, regresión MCP multisesión y época activa limpia con historia preservada.
+- Contrato portable `recommend -> host decision -> load`: `host-gated` mantiene candidatas opcionales fuera del contexto hasta `accepted`, registra `skipped` por motivo y conserva requeridas como obligaciones.
+- Preflight portable de cierre con `closureDue`, gates faltantes y siguiente acción, más working metadata temporal `until-outcome` y purga al cerrar.
+- Analizador portable de decisiones por skill y firma semántica canónica de la tarea; todavía no reescribe routing automáticamente.
 - Adaptador inicial Photo Rig que registra outcome técnico desde el manifest y permite reemplazarlo con revisión visual final.
 
 ## Próximo nivel útil
@@ -42,43 +45,56 @@ Debe informar fuentes ausentes, contradictorias o obsoletas. Los hechos locales 
 
 ### 3. Observabilidad de decisiones
 
-Registrar sin prompts ni transcripciones completas:
+Registrar sin convertir la telemetría durable en un transcript:
 
 - hash de intención, caller, fase y trace;
+- firma semántica canónica: `stage + domains + actions + artifacts + needs + signals`;
 - fuentes de contexto utilizadas;
-- skills activas, diferidas, requeridas y realmente cargadas;
+- skills recomendadas, diferidas y requeridas;
+- para cada candidata opcional: `accepted` o `skipped` y motivo acotado;
+- skills realmente cargadas, distinguiendo un skip deliberado de un fallo de carga;
 - replans, warnings, salud de providers y fallos de tool/schema;
 - duración y resultado de fases;
 - verificación, persistencia, correcciones del usuario y señales de fricción.
 
-Esto permitirá medir activación omitida, sobre-activación, required-load compliance y continuidad entre fases sin saturar contexto ni guardar razonamiento privado.
+El analizador portable ya agrega decisiones por skill y por firma semántica. **Un skip no reduce globalmente la utilidad de una skill.** La evidencia debe responder preguntas contextuales: “¿en tareas con esta firma o firmas cercanas esta candidata suele aceptarse, sobrar o correlacionarse con buenos outcomes?”. El ranker futuro debe exigir un mínimo de evidencia, mantener una cuota de exploración para capacidades nuevas y producir primero propuestas revisables.
 
-Implementado en el adaptador Bridge: trazas correlacionadas, structured-vs-lexical rate, required-load compliance, cobertura de verify/persist/outcome, una única skill primaria por outcome, colaboradores, aceptación, score y tabla por skill. El siguiente paso es medir cobertura del hook contra un universo explícito de tareas elegibles y no sólo contra traces que ya llegaron al observatorio.
+Una segunda capa vectorial puede ser útil para recuperar firmas históricas semánticamente próximas cuando las etiquetas exactas no alcanzan. Debe complementar, no reemplazar, el vocabulario canónico, los gates deterministas, fixtures positivos/negativos y revisión explícita.
+
+El Bridge ya aporta trazas correlacionadas, structured-vs-lexical rate, required-load compliance, cobertura de verify/persist/outcome, una skill primaria por outcome, colaboradores, aceptación y score. Falta conectar allí el nuevo evento de decisión, host-gated bootstrap y visualizaciones por firma semántica, además de medir el hook contra un universo explícito de tareas elegibles.
 
 ### 3.1 Bandeja de notices y contexto dinámico
 
-Extender el canal existente de notices para producir evidencia accionable sobre agentes concurrentes, rutas con ownership, capturas/revisiones pendientes, contexto de proyecto obsoleto, fallos de activación, required skills omitidas y métricas anómalas. El host debe drenar o adjuntar notices en puntos seguros, resumirlos dentro de presupuesto y replanificar sólo cuando cambien materialmente la tarea.
+Extender el canal existente de notices para producir evidencia accionable sobre agentes concurrentes, rutas con ownership, capturas/revisiones pendientes, contexto de proyecto obsoleto, fallos de activación, required skills omitidas y métricas anómalas. Añadir especialmente notices derivados del preflight de cierre: `closureDue`, gates faltantes, `nextRequiredAction` y trazas abiertas/obsoletas que ya no deberían competir con la recuperación automática. El host debe drenar o adjuntar notices en puntos seguros, resumirlos dentro de presupuesto y replanificar sólo cuando cambien materialmente la tarea.
 
-La entrega preferida es piggyback/pull en el siguiente tool result; las notificaciones push MCP pueden complementar, pero no se asume que todos los hosts despierten una nueva inferencia al recibirlas.
+La entrega preferida es piggyback/pull en el siguiente tool result; las notificaciones push MCP pueden complementar, pero no se asume que todos los hosts despierten una nueva inferencia al recibirlas. El idle timeout puede marcar `stale-open` o candidato a cierre; nunca debe inferir `success`.
 
 ### 4. Evaluación histórica y promoción de aprendizaje
 
-Convertir evidencia confirmada mediante una escalera explícita:
+El aprendizaje post-iteración empieza cuando existe un cierre observable, no cuando el usuario recuerda decir “terminamos”. El host detecta que entra en `stage=close`, consulta los gates, completa verificación/persistencia/maintenance cuando corresponda y recién entonces produce outcome. Antes del outcome puede usar working metadata temporal de la traza para conservar hipótesis, decisiones, evidencia y próximo gate; esa memoria efímera se purga al cerrar.
+
+Convertir evidencia confirmada según ownership, no suponiendo que todo termina en una skill:
 
 ```text
 evento aislado
-  -> telemetría o documentación local
+  -> telemetría / no promoción
+hecho o decisión local del proyecto
+  -> context / memory / state / documentación del proyecto
 fallo reproducible del proyecto
   -> fix + regresión local
+regla o decisión arquitectónica durable
+  -> ADR / arquitectura / diseño del proyecto
 patrón procedural entre proyectos
   -> actualización de la skill propietaria
+soporte de ejecución reusable
+  -> tool / script / guide / test del owner correcto
 fallo de activación/fase/dependencia
   -> metadata MSSR + fixtures
 objetivo reusable independiente
   -> skill nueva
 ```
 
-No aprender automáticamente de una única ejecución ni reescribir el contrato por frecuencia. Crear un benchmark de replay con incidentes reales confirmados y casos nominales cercanos.
+No aprender automáticamente de una única ejecución ni reescribir el contrato por frecuencia. El sistema puede proponer una promoción al cierre o comparar múltiples trazas, pero una mutación durable exige owner claro, evidencia, diff y regresión/revisión. Crear un benchmark de replay con incidentes reales confirmados y casos nominales cercanos.
 
 ### 5. Checkpoints y edición asistida
 

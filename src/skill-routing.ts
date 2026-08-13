@@ -115,7 +115,70 @@ export type RoutedSkill = RoutingRegistrySkill & {
   reasons: string[];
   required: boolean;
   requiredBy: string[];
+  selectedAsRoot: boolean;
 };
+export type SkillLoadDecisionLike = Readonly<{
+  skillName: string;
+  decision: "accepted" | "skipped";
+}>;
+
+export type SkillLoadSelection = Readonly<{
+  mode: "auto" | "host-gated";
+  requiredRootNames: readonly string[];
+  optionalRootNames: readonly string[];
+  acceptedOptionalRootNames: readonly string[];
+  eligibleLoadOrder: readonly string[];
+}>;
+
+/** Resolve procedural context eligibility without confusing an optional root's
+ * dependencies with workflow obligations. In host-gated mode, only required
+ * roots plus accepted optional roots seed dependency traversal. */
+export function resolveSkillLoadSelection(
+  route: Readonly<{
+    loadOrder: readonly string[];
+    activeSkills: readonly Pick<RoutedSkill, "name" | "required" | "requires" | "selectedAsRoot">[];
+  }>,
+  mode: "auto" | "host-gated",
+  decisions: readonly SkillLoadDecisionLike[] = [],
+): SkillLoadSelection {
+  const activeByName = new Map(route.activeSkills.map((skill) => [skill.name, skill]));
+  const requiredRootNames = route.activeSkills
+    .filter((skill) => skill.selectedAsRoot && skill.required)
+    .map((skill) => skill.name);
+  const optionalRootNames = route.activeSkills
+    .filter((skill) => skill.selectedAsRoot && !skill.required)
+    .map((skill) => skill.name);
+
+  if (mode === "auto") {
+    return {
+      mode,
+      requiredRootNames,
+      optionalRootNames,
+      acceptedOptionalRootNames: optionalRootNames,
+      eligibleLoadOrder: [...route.loadOrder],
+    };
+  }
+
+  const accepted = new Set(decisions.filter((item) => item.decision === "accepted").map((item) => item.skillName));
+  const acceptedOptionalRootNames = optionalRootNames.filter((name) => accepted.has(name));
+  const eligibleNames = new Set<string>();
+  const visit = (name: string) => {
+    if (eligibleNames.has(name)) return;
+    const skill = activeByName.get(name);
+    if (!skill) return;
+    eligibleNames.add(name);
+    for (const dependencyName of skill.requires) visit(dependencyName);
+  };
+  for (const name of [...requiredRootNames, ...acceptedOptionalRootNames]) visit(name);
+
+  return {
+    mode,
+    requiredRootNames,
+    optionalRootNames,
+    acceptedOptionalRootNames,
+    eligibleLoadOrder: route.loadOrder.filter((name) => eligibleNames.has(name)),
+  };
+}
 
 function codexHome(): string {
   return path.resolve(process.env.CODEX_HOME?.trim() || path.join(os.homedir(), ".codex"));
@@ -908,7 +971,7 @@ export async function planSkillRoute(args: {
     const requiredReasons = requiredBy.get(skill.name) ?? [];
     if (result.score <= 0 && !requiredReasons.length && skill.activation !== "always") continue;
     if (skill.activation === "closing" && stage !== "close") continue;
-    scored.push({ ...skill, score: result.score, reasons: result.reasons, required: requiredReasons.length > 0, requiredBy: requiredReasons });
+    scored.push({ ...skill, score: result.score, reasons: result.reasons, required: requiredReasons.length > 0, requiredBy: requiredReasons, selectedAsRoot: false });
   }
 
   const byName = new Map(scored.map((skill) => [skill.name, skill]));
@@ -916,7 +979,7 @@ export async function planSkillRoute(args: {
     if (byName.has(name)) continue;
     const base = byNameBase.get(name);
     if (base) {
-      const routed: RoutedSkill = { ...base, score: 100, reasons: ["required by workflow"], required: true, requiredBy: reasons };
+      const routed: RoutedSkill = { ...base, score: 100, reasons: ["required by workflow"], required: true, requiredBy: reasons, selectedAsRoot: false };
       scored.push(routed);
       byName.set(name, routed);
     }
@@ -929,7 +992,8 @@ export async function planSkillRoute(args: {
   // dependencies may expand it, but optional matches may not.
   const optionalBudget = Math.max(0, maxSkills - requiredSelected.length);
   const optionalSelected = scored.filter((skill) => !skill.required).slice(0, optionalBudget);
-  const selected: RoutedSkill[] = [...requiredSelected, ...optionalSelected];
+  const selected: RoutedSkill[] = [...requiredSelected, ...optionalSelected].map((skill) => ({ ...skill, selectedAsRoot: true }));
+  for (const root of selected) byName.set(root.name, root);
   const rootSelectedNames = new Set(selected.map((skill) => skill.name));
   const selectedNames = new Set(rootSelectedNames);
 
@@ -937,20 +1001,31 @@ export async function planSkillRoute(args: {
   while (dependencyQueue.length > 0) {
     const skill = dependencyQueue.shift()!;
     for (const dependencyName of skill.requires) {
-      if (selectedNames.has(dependencyName)) continue;
-      let dependency = byName.get(dependencyName);
-      if (!dependency) {
-        const base = byNameBase.get(dependencyName);
-        if (!base) continue;
-        dependency = {
-          ...base,
-          score: 0,
-          reasons: [`dependency of ${skill.name}`],
-          required: true,
-          requiredBy: [`dependency:${skill.name}`],
-        };
-        byName.set(dependencyName, dependency);
+      if (selectedNames.has(dependencyName)) {
+        const existingSelected = byName.get(dependencyName);
+        if (skill.required && existingSelected && !existingSelected.required) {
+          existingSelected.required = true;
+          existingSelected.requiredBy = [...new Set([...existingSelected.requiredBy, `dependency:${skill.name}`])];
+          existingSelected.reasons = [...new Set([...existingSelected.reasons, `dependency of ${skill.name}`])];
+          dependencyQueue.push(existingSelected);
+        }
+        continue;
       }
+      const existing = byName.get(dependencyName);
+      const base = existing ?? byNameBase.get(dependencyName);
+      if (!base) continue;
+      const dependencyRequired = skill.required;
+      const dependency: RoutedSkill = {
+        ...base,
+        score: existing?.score ?? 0,
+        reasons: [...new Set([...(existing?.reasons ?? []), `dependency of ${skill.name}`])],
+        required: dependencyRequired,
+        requiredBy: dependencyRequired
+          ? [...new Set([...(existing?.requiredBy ?? []), `dependency:${skill.name}`])]
+          : existing?.requiredBy ?? [],
+        selectedAsRoot: false,
+      };
+      byName.set(dependencyName, dependency);
       selected.push(dependency);
       selectedNames.add(dependencyName);
       dependencyQueue.push(dependency);

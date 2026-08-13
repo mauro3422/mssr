@@ -18,8 +18,9 @@ The normal host loop is:
 user message + visible context
   -> private model deliberation
   -> observable routing evidence checkpoint
-  -> MSSR deterministic route
-  -> selected skill metadata/content
+  -> MSSR deterministic recommendations
+  -> host decision for optional candidates (accepted / skipped)
+  -> procedural context for required + accepted skills
   -> authorized tools
   -> new observable evidence
   -> replan at a meaningful boundary
@@ -58,6 +59,10 @@ For substantial specialized work, the host protocol is:
 
 Many candidates are acceptable. MSSR may optimize for high recall in metadata while the agent loads only the procedures needed for the active phase. The critical failure is not an extra candidate; it is omitted routing or an omitted required procedure.
 
+For optional candidates, recommendation, decision and load are separate observations. A host may record `accepted` or `skipped` plus a bounded reason code such as `useful`, `irrelevant-domain`, `redundant`, `deferred-phase`, `context-budget`, or `not-evaluated`. A skip is feedback about that candidate in that task signature; it is not a global negative label for the skill and must not silently disable it elsewhere.
+
+Historical selection feedback should first be grouped by auditable semantic signatures such as stage plus canonical domains/actions/artifacts/needs/signals. Frequency may propose a routing review; it must not directly rewrite scores or rules. Vector/embedding similarity may later help retrieve nearby historical signatures, but deterministic routing gates, fixtures, and explicit review remain authoritative.
+
 `mssr-agent-routing` is the transversal owner of this protocol. Phrases such as “tags”, “metadata del pensamiento”, “segundo tick”, “activadores”, “MSSR helper”, “qué skill cargar” or “contexto inyectado” refer to this architecture when the conversation concerns routing or agent orchestration.
 
 ## Trace contract v1
@@ -90,6 +95,10 @@ The host emits bounded notices when continuity becomes unreliable:
 - `mssr-trace-ambiguous` when several concurrent traces fit.
 
 An outcome closes the current task trace. A later `stage=start` request for another task receives a new trace. Replans, retries, verification, persistence, and later review of the same task retain the existing trace. When `maintenance` is required, a successful outcome additionally requires a `stage=close` route and successful maintenance completion newer than the latest non-close replan and persistence checkpoint. A later continuation invalidates the previous close evidence and requires a fresh close pass; non-success outcomes remain recordable.
+
+The portable close preflight exposes `closureDue`, missing required skills/phases, fresh-close/maintenance state, and `nextRequiredAction`. Host adapters should translate that state into bounded notices such as `mssr-trace-closure-due` or `mssr-trace-stale-open`. A timeout may nominate an open trace for review but never proves task completion or authorizes `success`.
+
+A host may also keep **ephemeral trace working memory** while the trace is open: a bounded resolved summary, hypotheses, decisions/evidence, and next gate. This state is for continuation/recovery, not durable observatory history. It is purged on outcome; only separately promoted durable evidence remains in telemetry, project documentation, skills, routing fixtures, or other owning artifacts.
 
 ## Observability epochs
 
@@ -170,7 +179,9 @@ No single percentage describes MSSR quality. The dashboard separates:
 - required-load compliance;
 - skill-load coverage and correlated route→load coverage as separate metrics;
 - orphan skill loads and orphan-load rate;
-- selected-versus-loaded distributions.
+- selected-versus-loaded distributions;
+- optional candidate decision counts (`accepted`, `skipped`, `not-evaluated`) and bounded reason-code distributions;
+- acceptance/skip rates by skill **and semantic task signature**, never as an unconditional global penalty.
 
 ### Execution discipline
 

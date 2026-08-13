@@ -8,7 +8,8 @@ one consumer and adapter, not the owner of the routing contract.
 
 - turns observable request intent into a compact routing plan;
 - discovers skills and capabilities from registered providers;
-- selects only the skills needed for the current phase;
+- separates deterministic recommendations from host `accepted`/`skipped` decisions and procedural context loading, with an opt-in `host-gated` bootstrap mode for optional skills;
+- selects only the required and host-accepted skills needed for the current phase;
 - keeps durable project facts separate from reusable global procedures;
 - optionally selects modular project `context`, `memory`, `state`, and scoped `directive` sections by the same structured semantic evidence used for routing;
 - preserves provenance and health in immutable registry snapshots;
@@ -24,7 +25,7 @@ request its schema, refresh the registry, and re-plan. Host policy and tool
 permissions remain authoritative.
 
 
-A Bridge host may additionally maintain privacy-preserving trace continuity locally per session and through a bounded process-shared lease for stateless calls. It propagates a trace only when one compatible candidate is identifiable; ambiguity, restart, cross-process resume, and deliberate historical selection require an explicit `traceId`. This observability lives in the host adapter, not the deterministic core, stores no raw prompt or conversation transcript, and may expose an active measurement epoch while preserving legacy telemetry for comparison.
+A Bridge host may additionally maintain privacy-preserving trace continuity locally per session and through a bounded process-shared lease for stateless calls. It propagates a trace only when one compatible candidate is identifiable; ambiguity, restart, cross-process resume, and deliberate historical selection require an explicit `traceId`. The portable contract also exposes explicit closure preflight state and permits bounded ephemeral working metadata for one open trace; that working state is purged on outcome and is never a raw prompt, transcript, secret, or private chain-of-thought store. Durable observability remains separate and may expose an active measurement epoch while preserving legacy telemetry for comparison.
 
 ## Architecture
 

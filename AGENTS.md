@@ -17,7 +17,13 @@ MauroPrime Bridge and any one host agent.
 - Plans must permit re-plan and capability chaining. An agent may discover,
   inspect, and use another authorized tool when work reveals it is needed.
 - Do not capture hidden chain-of-thought. Intent and context must be concise,
-  user-relevant, and observable.
+  user-relevant, and observable. A host may keep bounded ephemeral per-trace
+  working metadata (summary, hypotheses, decisions, evidence, next gate) when it
+  helps continuation; it must not contain raw prompts, transcripts, secrets, or
+  private chain-of-thought and should be purged or compacted when the outcome closes.
+- Keep recommendation, host selection, and procedural context loading observable
+  as separate steps. Required skills remain workflow obligations; optional
+  candidates should not be materialized in host-gated mode until accepted.
 
 See `docs/AGENT_PROTOCOL.md` before modifying tags, routing semantics, registry
 behavior, or the managed bootstrap template.

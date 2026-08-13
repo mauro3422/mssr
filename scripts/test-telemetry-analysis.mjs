@@ -64,6 +64,10 @@ const loadEvent = (eventId, traceId, second, skillName) => envelope(eventId, tra
   loaded: true,
   via: "skill_load",
 });
+const decisionEvent = (eventId, traceId, second, decision) => envelope(eventId, traceId, second, {
+  kind: "skill_decision",
+  decision,
+});
 const checkpointEvent = (eventId, traceId, second, checkpoint) => envelope(eventId, traceId, second, {
   kind: "checkpoint",
   checkpoint,
@@ -102,6 +106,8 @@ const legacyRoute = {
 const events = [
   routeEvent("event-0001", "trace-01", 1, baseRoute),
   loadEvent("event-0002", "trace-01", 2, "skill-b"),
+  decisionEvent("event-0009", "trace-01", 2, { skillName: "skill-b", decision: "accepted", reasonCode: "useful", stage: "start" }),
+  decisionEvent("event-0010", "trace-01", 2, { skillName: "skill-c", decision: "skipped", reasonCode: "irrelevant-domain", stage: "start" }),
   checkpointEvent("event-0003", "trace-01", 3, { eventType: "verification", status: "success", verificationPassed: true }),
   checkpointEvent("event-0004", "trace-01", 4, { eventType: "persistence", status: "success", persisted: true }),
   checkpointEvent("event-0005", "trace-01", 5, { eventType: "outcome", status: "success", primarySkill: "skill-a", accepted: true }),
@@ -114,8 +120,8 @@ events.push({ invalid: true });
 
 const analysis = analyzeMssrTelemetry(events);
 assert.deepEqual(analysis.counters, {
-  inputEvents: 10,
-  validEvents: 8,
+  inputEvents: 12,
+  validEvents: 10,
   invalidEvents: 1,
   duplicateEvents: 1,
   routedTraces: 3,
@@ -130,6 +136,16 @@ assert.deepEqual(analysis.rates.outcomeAttributionCoverage, { numerator: 1, deno
 assert.deepEqual(analysis.rates.successRate, { numerator: 0, denominator: 1, value: 0 });
 assert.deepEqual(analysis.rates.acceptanceRate, { numerator: 0, denominator: 1, value: 0 });
 assert.equal(analysis.intentDimensions.domains.coding, 2, "legacy routes must remain valid but cannot invent missing intent dimensions");
+assert.equal(analysis.selectionFeedback.length, 2);
+const skillBFeedback = analysis.selectionFeedback.find((item) => item.skillName === "skill-b");
+assert.deepEqual({ accepted: skillBFeedback.accepted, skipped: skillBFeedback.skipped, total: skillBFeedback.total, acceptanceRate: skillBFeedback.acceptanceRate }, {
+  accepted: 1, skipped: 0, total: 1, acceptanceRate: 1,
+});
+assert.equal(skillBFeedback.reasonCounts.useful, 1);
+assert.equal(skillBFeedback.signatures[0].signature.includes("d=coding,skill-system"), true);
+const skillCFeedback = analysis.selectionFeedback.find((item) => item.skillName === "skill-c");
+assert.equal(skillCFeedback.skipped, 1);
+assert.equal(skillCFeedback.reasonCounts["irrelevant-domain"], 1);
 assert.deepEqual(analysis.maintenanceCandidates.map(({ kind, signal, skillName, distinctTraceCount }) => ({ kind, signal, skillName, distinctTraceCount })), [
   { kind: "recurring-signal", signal: "repeated-friction", skillName: undefined, distinctTraceCount: 3 },
   { kind: "required-load-gap", signal: undefined, skillName: "skill-a", distinctTraceCount: 3 },

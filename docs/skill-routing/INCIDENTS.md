@@ -1283,3 +1283,31 @@ Expanded the bounded Spanish lexical rules and added positive Atlas panorama, ne
 ### Regression
 
 The routing suite passes 194 cases and the full MSSR verification suite passes. A sales dashboard remains excluded from `godot-graph-ux-audit`.
+
+
+## MSSR-037 — Maintenance completion stayed stale when Bridge omitted checkpoint status
+
+**Date:** 2026-08-12
+
+### Trigger
+
+A live ChatGPT Web trace reached `stage=close`, loaded `skill-maintenance-loop`, had no missing required skills, and recorded `phase_completed` with `completedPhases` including `maintenance`. A following `status=success` outcome was still blocked as stale.
+
+### Observable failure
+
+Trace evidence showed `closeRevision == lifecycleRevision`, the maintenance phase-completion event existed, but `maintenanceRevision` remained behind the current lifecycle revision.
+
+### Root cause
+
+The portable `maintenanceCheckpointCompleted()` reducer required `status="success"`. The Bridge `phase_completed` checkpoint schema permits status to be omitted when the completion event itself is the positive evidence, so the reducer ignored a valid host checkpoint.
+
+### Correction
+
+- Treat an omitted phase-completion status as accepted completion while still rejecting explicit failed/skipped statuses.
+- Track required/completed closure phases in portable lifecycle state.
+- Add `getMssrTraceClosureState()` so hosts can expose `closureDue`, missing gates and one next required action.
+- Add bounded `until-outcome` working metadata and host-gated optional skill decisions as part of the same lifecycle-hardening iteration.
+
+### Regression
+
+`test-trace-contract` now reproduces the exact status-omitted maintenance shape and asserts `maintenanceRevision == lifecycleRevision` before a successful outcome. `test-codex-standalone` verifies host-gated optional loading, ephemeral working-memory purge on outcome, and terminal closure state. `test-telemetry-analysis` verifies contextual accepted/skipped decision aggregation.

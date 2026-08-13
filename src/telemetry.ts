@@ -17,6 +17,7 @@ import {
   MSSR_CHECKPOINT_TYPES,
   MSSR_OUTCOME_DIMENSION_STATUSES,
   MSSR_OUTCOME_EVIDENCE_KINDS,
+  mssrSkillDecisionSchema,
 } from "./trace-contract.js";
 
 export const MSSR_TELEMETRY_PROTOCOL_VERSION = "mssr-telemetry-v1" as const;
@@ -118,6 +119,11 @@ const skillLoadTelemetrySchema = z.object({
   warning: z.string().max(300).optional(),
 }).strict();
 
+const skillDecisionTelemetrySchema = z.object({
+  kind: z.literal("skill_decision"),
+  decision: mssrSkillDecisionSchema,
+}).strict();
+
 const checkpointTelemetrySchema = z.object({
   kind: z.literal("checkpoint"),
   checkpoint: mssrHostCheckpointSchema,
@@ -130,7 +136,7 @@ export const mssrTelemetryEnvelopeSchema = z.object({
   source: z.string().trim().min(1).max(80),
   traceId: traceIdSchema,
   caller: z.enum(SKILL_CALLERS),
-  event: z.discriminatedUnion("kind", [routeTelemetrySchema, skillLoadTelemetrySchema, checkpointTelemetrySchema]),
+  event: z.discriminatedUnion("kind", [routeTelemetrySchema, skillLoadTelemetrySchema, skillDecisionTelemetrySchema, checkpointTelemetrySchema]),
 }).strict();
 
 export type MssrTelemetryEnvelope = z.infer<typeof mssrTelemetryEnvelopeSchema>;

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Added portable host-gated skill selection: deterministic routing recommendations can remain metadata while required skills stay mandatory and optional **root** candidates are materialized only after bounded `accepted` decisions; `skipped` decisions carry reason codes and are distinct from load failures. Dependency closure now follows root acceptance: workflow-required roots include their transitive dependencies immediately, while dependencies belonging only to a skipped optional root remain metadata and do not become pre-acceptance obligations.
+- Added `skill_decision` telemetry plus deterministic analysis by skill and canonical semantic task signature, providing contextual acceptance/skip evidence without automatically rewriting routing rules.
+- Added bounded ephemeral per-trace working memory (`workingSummary`, hypotheses, decisions/evidence and `nextGate`) with `until-outcome` retention and automatic purge when an outcome closes the trace; raw prompts, transcripts, secrets and private chain-of-thought remain excluded.
+- Added portable closure preflight with `closureDue`, missing skills/phases, fresh-close/maintenance state and one `nextRequiredAction`; phase gaps remain observable host-enforcement inputs rather than becoming a new universal portable outcome gate.
+- Fixed the fresh-maintenance reducer so a valid `phase_completed` maintenance checkpoint with omitted status counts as successful completion, matching the live Bridge checkpoint shape and preventing a stale `maintenanceRevision` false block.
 - Added privacy-bounded structured intent fields to portable route telemetry;
   task text, context, intent summaries, capability prose, transcripts, and
   private reasoning remain excluded.

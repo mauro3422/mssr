@@ -93,10 +93,11 @@ state = reduceMssrRouteLifecycle(state, {
   ],
 });
 
+// Bridge phase_completed checkpoints may omit status when completion itself is the evidence.
+// This exact shape previously left maintenanceRevision stale and blocked a valid success outcome.
 state = reduceMssrCheckpointLifecycle(state, {
   eventType: "phase_completed",
   stage: "close",
-  status: "success",
   completedPhases: [
     "discovery",
     "implementation",
@@ -105,6 +106,8 @@ state = reduceMssrCheckpointLifecycle(state, {
     "maintenance",
   ],
 });
+
+assert.equal(state.maintenanceRevision, state.lifecycleRevision);
 
 violations = validateMssrCheckpointLifecycle(state, {
   eventType: "outcome",

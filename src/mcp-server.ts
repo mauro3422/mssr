@@ -21,7 +21,10 @@ import {
   MSSR_CHECKPOINT_TYPES,
   MSSR_OUTCOME_DIMENSION_STATUSES,
   MSSR_OUTCOME_EVIDENCE_KINDS,
+  MSSR_SKILL_DECISIONS,
+  MSSR_SKILL_DECISION_REASONS,
   MSSR_TRACE_CONTRACT_VERSION,
+  getMssrTraceClosureState,
   mssrTraceLifecycleStateSchema,
   reduceMssrCheckpointLifecycle,
   reduceMssrRouteLifecycle,
@@ -121,6 +124,8 @@ export function createMssrMcpServer(registry = new CapabilityRegistry([new Files
       checkpointTypes: MSSR_CHECKPOINT_TYPES,
       evidenceKinds: MSSR_OUTCOME_EVIDENCE_KINDS,
       dimensionStatuses: MSSR_OUTCOME_DIMENSION_STATUSES,
+      skillDecisions: MSSR_SKILL_DECISIONS,
+      skillDecisionReasons: MSSR_SKILL_DECISION_REASONS,
     },
   }));
 
@@ -129,7 +134,10 @@ export function createMssrMcpServer(registry = new CapabilityRegistry([new Files
     inputSchema: { state: z.unknown().optional(), checkpoint: z.unknown() },
   }, async ({ state, checkpoint }) => {
     const parsedState = state === undefined ? null : mssrTraceLifecycleStateSchema.parse(state);
-    return response({ violations: validateMssrCheckpointLifecycle(parsedState, checkpoint) });
+    return response({
+      violations: validateMssrCheckpointLifecycle(parsedState, checkpoint),
+      closure: parsedState ? getMssrTraceClosureState(parsedState) : null,
+    });
   });
 
   server.registerTool(MSSR_TOOL_NAMES[8], {

@@ -17,7 +17,7 @@ await client.connect(clientTransport);
 
 const tools = await client.listTools();
 const names = tools.tools.map((tool) => tool.name);
-for (const expected of ["skill_route_plan", "skill_bootstrap", "mssr_trace_record", "mssr_trace_status"]) {
+for (const expected of ["skill_route_plan", "skill_bootstrap", "mssr_trace_record", "mssr_trace_working_update", "mssr_trace_status"]) {
   assert.equal(names.includes(expected), true, `Missing ${expected}`);
 }
 
@@ -34,11 +34,41 @@ const route = json(await client.callTool({ name: "skill_route_plan", arguments: 
 assert.ok(route.traceId);
 assert.equal(route.caller, "codex-local");
 
+const optionalSkills = route.activeSkills.filter((skill) => !skill.required);
+const acceptedOptional = optionalSkills.at(0)?.name;
+const skillDecisions = optionalSkills.map((skill, index) => ({
+  skillName: skill.name,
+  decision: index === 0 ? "accepted" : "skipped",
+  reasonCode: index === 0 ? "useful" : "irrelevant-domain",
+  stage: "start",
+}));
 const bootstrap = json(await client.callTool({
-  name: "skill_bootstrap", arguments: { ...input, traceId: route.traceId },
+  name: "skill_bootstrap", arguments: {
+    ...input,
+    traceId: route.traceId,
+    selectionMode: "host-gated",
+    skillDecisions,
+  },
 }));
 assert.equal(bootstrap.traceId, route.traceId);
-assert.ok(bootstrap.loaded.length > 0, "Expected at least one loaded skill");
+const loadedNames = new Set(bootstrap.loaded.filter((item) => item.loaded).map((item) => item.skill.name));
+for (const skill of route.activeSkills.filter((item) => item.required)) assert.equal(loadedNames.has(skill.name), true);
+for (const skill of optionalSkills.slice(1)) assert.equal(loadedNames.has(skill.name), false, `Skipped optional ${skill.name} must not load`);
+if (acceptedOptional) assert.equal(loadedNames.has(acceptedOptional), true);
+
+const working = json(await client.callTool({
+  name: "mssr_trace_working_update",
+  arguments: {
+    traceId: route.traceId,
+    workingMemory: {
+      workingSummary: "Testing host-gated selection and lifecycle closure.",
+      hypotheses: [{ summary: "Optional skipped skills remain outside context.", status: "supported" }],
+      decisions: [{ subject: "bootstrap", decision: "host-gated", reason: "Separate recommendation from loading." }],
+      nextGate: "verification",
+    },
+  },
+}));
+assert.equal(working.accepted, true);
 
 const verification = json(await client.callTool({
   name: "mssr_trace_record",
@@ -73,6 +103,8 @@ assert.equal(outcome.accepted, true);
 
 const status = json(await client.callTool({ name: "mssr_trace_status", arguments: { traceId: route.traceId } }));
 assert.equal(status.state.closed, true);
+assert.equal(status.workingMemory, null, "Ephemeral working memory must be purged after outcome");
+assert.equal(status.closure.nextRequiredAction, "none");
 console.log("MSSR standalone Codex path: PASS");
 
 await client.close();

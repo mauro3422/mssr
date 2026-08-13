@@ -5,6 +5,7 @@ import { SKILL_PHASES, SKILL_STAGES, structuredSkillIntentSchema } from "./skill
 import { CodexMssrAdapter } from "./codex-adapter.js";
 import { createMssrRegistryFromEnvironment } from "./provider-config.js";
 import { createMssrTelemetrySinkFromEnvironment, mssrHostCheckpointSchema } from "./telemetry.js";
+import { mssrSkillDecisionSchema, mssrTraceWorkingMemorySchema } from "./trace-contract.js";
 
 function response(value: unknown) {
   return {
@@ -19,6 +20,8 @@ const routeInput = {
   stage: z.enum(SKILL_STAGES).optional(),
   completedPhases: z.array(z.enum(SKILL_PHASES)).optional(),
   maxSkills: z.number().int().min(1).max(16).optional(),
+  selectionMode: z.enum(["auto", "host-gated"]).optional(),
+  skillDecisions: z.array(mssrSkillDecisionSchema).max(32).optional(),
   traceId: z.string().min(6).max(128).optional(),
   workflowKey: z.string().min(1).max(160).optional(),
   model: z.string().min(1).max(80).optional(),
@@ -44,10 +47,15 @@ export function createCodexMssrMcpServer(adapter = new CodexMssrAdapter()) {
     inputSchema: { traceId: z.string().min(6).max(128), ...mssrHostCheckpointSchema.shape },
   }, async ({ traceId, ...checkpoint }) => response(await adapter.checkpoint(traceId, checkpoint)));
 
+  server.registerTool("mssr_trace_working_update", {
+    description: "Store bounded ephemeral working metadata for one open trace; it is purged on outcome and must not contain raw prompts, transcripts, secrets, or private chain-of-thought.",
+    inputSchema: { traceId: z.string().min(6).max(128), workingMemory: mssrTraceWorkingMemorySchema },
+  }, async ({ traceId, workingMemory }) => response(adapter.updateWorkingMemory(traceId, workingMemory)));
+
   server.registerTool("mssr_trace_status", {
-    description: "Read one Codex-local MSSR trace state.",
+    description: "Read one Codex-local MSSR trace lifecycle, closure gates, and any ephemeral working metadata.",
     inputSchema: { traceId: z.string().min(6).max(128) },
-  }, async ({ traceId }) => response({ traceId, state: adapter.getTrace(traceId) }));
+  }, async ({ traceId }) => response({ traceId, ...adapter.getTraceStatus(traceId) }));
 
   return { server, adapter };
 }

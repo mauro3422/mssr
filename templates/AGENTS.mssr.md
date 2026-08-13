@@ -18,7 +18,10 @@ compatible trace exists; provide an explicit `traceId` after restart, across
 processes, or when candidates are ambiguous. Record bounded
 context/verification/persistence/outcome checkpoints, react to trace-continuity
 notices, and never store a raw prompt, transcript, secret, or private reasoning
-in telemetry.
+in telemetry. A host may keep bounded ephemeral per-trace working metadata such
+as a resolved summary, hypotheses, decisions, evidence references, and the next
+gate when continuation benefits from it; purge or compact that working metadata
+when an outcome closes the trace.
 
 Do not route mechanically between every tool call. Re-plan at meaningful
 boundaries: before a substantial specialized chain, when the stage changes to
@@ -27,7 +30,11 @@ when a new capability is required, or when repeated friction/reusable patterns
 appear. Adjacent successful calls inside the same unchanged phase share the
 current route.
 
-Load or invoke selected capabilities through their authoritative host. MSSR is
+Treat recommendation, host selection, and context loading as distinct observable
+steps. Required skills remain workflow obligations. In host-gated bootstrap mode,
+record a bounded `accepted` or `skipped` decision for optional candidates before
+materializing their procedural context; a skipped optional is not a load failure.
+Load or invoke accepted capabilities through their authoritative host. MSSR is
 advisory and never proxies execution, changes permissions, or makes the initial
 plan an allowlist. When a capability is missing or degraded, record the smallest
 truthful signal, inspect/refresh the registry if useful, and re-plan.

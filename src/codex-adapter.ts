@@ -3,6 +3,7 @@ import fs from "node:fs/promises";
 import { CapabilityRegistry, FilesystemSkillProvider } from "./registry.js";
 import {
   planSkillRoute,
+  resolveSkillLoadSelection,
   structuredSkillIntentSchema,
   type SkillPhase,
   type SkillStage,
@@ -10,12 +11,17 @@ import {
   type SkillCaller,
 } from "./skill-routing.js";
 import {
+  getMssrTraceClosureState,
+  mssrSkillDecisionSchema,
   mssrTraceLifecycleStateSchema,
+  mssrTraceWorkingMemorySchema,
   reduceMssrCheckpointLifecycle,
   reduceMssrRouteLifecycle,
   reduceMssrSkillLoadLifecycle,
   validateMssrCheckpointLifecycle,
+  type MssrSkillDecisionRecord,
   type MssrTraceLifecycleState,
+  type MssrTraceWorkingMemory,
 } from "./trace-contract.js";
 import {
   createMssrTelemetryEnvelope,
@@ -33,6 +39,8 @@ export type CodexMssrRouteInput = {
   stage?: SkillStage;
   completedPhases?: SkillPhase[];
   maxSkills?: number;
+  selectionMode?: "auto" | "host-gated";
+  skillDecisions?: MssrSkillDecisionRecord[];
   traceId?: string;
   workflowKey?: string;
   model?: string;
@@ -71,6 +79,7 @@ export class CodexMssrAdapter {
   readonly registry: CapabilityRegistry;
   private initialized = false;
   private readonly traces = new Map<string, MssrTraceLifecycleState>();
+  private readonly workingMemory = new Map<string, MssrTraceWorkingMemory>();
   private readonly options: Required<Omit<HostMssrAdapterOptions, "telemetrySink">> & { telemetrySink: MssrTelemetrySink | null };
 
   constructor(
@@ -129,6 +138,23 @@ export class CodexMssrAdapter {
     return this.traces.get(traceId) ?? null;
   }
 
+  getTraceStatus(traceId: string) {
+    const state = this.getTrace(traceId);
+    return {
+      state,
+      closure: state ? getMssrTraceClosureState(state) : null,
+      workingMemory: this.workingMemory.get(traceId) ?? null,
+    };
+  }
+
+  updateWorkingMemory(traceId: string, input: unknown) {
+    const state = this.traces.get(traceId);
+    if (!state || state.closed) return { accepted: false, traceId, reason: state ? "trace-closed" : "trace-missing" };
+    const workingMemory = mssrTraceWorkingMemorySchema.parse(input);
+    this.workingMemory.set(traceId, workingMemory);
+    return { accepted: true, traceId, workingMemory };
+  }
+
   private async plan(input: CodexMssrRouteInput, action: "plan" | "bootstrap") {
     await this.initialize();
     const intent = structuredSkillIntentSchema.parse(input.intent);
@@ -173,8 +199,44 @@ export class CodexMssrAdapter {
     const loaded: LoadedCodexSkill[] = [];
     let lifecycle = route.lifecycle;
     const snapshot = this.registry.getSnapshot();
+    const selectionMode = input.selectionMode ?? "auto";
+    const suppliedDecisions = (input.skillDecisions ?? []).map((decision) => mssrSkillDecisionSchema.parse(decision));
+    const optionalRoots = new Set(route.activeSkills
+      .filter((item) => item.selectedAsRoot && !item.required)
+      .map((item) => item.name));
+    const requiredRoots = new Set(route.activeSkills
+      .filter((item) => item.selectedAsRoot && item.required)
+      .map((item) => item.name));
+    const suppliedDecisionBySkill = new Map<string, MssrSkillDecisionRecord>();
+    for (const decision of suppliedDecisions) {
+      if (suppliedDecisionBySkill.has(decision.skillName)) throw new Error(`Duplicate MSSR skill decision for '${decision.skillName}'.`);
+      if (requiredRoots.has(decision.skillName)) throw new Error(`Required MSSR skill '${decision.skillName}' is a workflow obligation and must not be host-gated.`);
+      if (!optionalRoots.has(decision.skillName)) throw new Error(`MSSR skill decision references a non-root optional candidate: ${decision.skillName}`);
+      suppliedDecisionBySkill.set(decision.skillName, decision);
+    }
 
-    for (const name of route.loadOrder) {
+    const decisions: MssrSkillDecisionRecord[] = [];
+    if (selectionMode === "host-gated") {
+      for (const item of route.activeSkills.filter((skill) => skill.selectedAsRoot && !skill.required)) {
+        const decision = suppliedDecisionBySkill.get(item.name) ?? mssrSkillDecisionSchema.parse({
+          skillName: item.name,
+          decision: "skipped",
+          reasonCode: "not-evaluated",
+          stage: route.stage,
+        });
+        decisions.push(decision);
+        await this.emit({ source: this.options.source, traceId: route.traceId, caller: this.options.caller, event: {
+          kind: "skill_decision", decision,
+        } });
+      }
+    } else {
+      decisions.push(...suppliedDecisions);
+    }
+
+    const loadSelection = resolveSkillLoadSelection(route, selectionMode, decisions);
+    const loadOrder = [...loadSelection.eligibleLoadOrder];
+
+    for (const name of loadOrder) {
       const capability = snapshot.capabilities.find((item) =>
         item.kind === "skill" && item.name === name && item.skill,
       );
@@ -223,7 +285,16 @@ export class CodexMssrAdapter {
     }
 
     this.traces.set(route.traceId, lifecycle);
-    return { ...route, lifecycle, loaded };
+    return {
+      ...route,
+      lifecycle,
+      loaded,
+      selection: {
+        ...loadSelection,
+        decisions,
+        loadedOrder: loadOrder,
+      },
+    };
   }
 
   async checkpoint(traceId: string, checkpoint: unknown) {
@@ -245,12 +316,21 @@ export class CodexMssrAdapter {
 
     const state = reduceMssrCheckpointLifecycle(validatedState, parsedCheckpoint);
     this.traces.set(traceId, state);
+    const workingMemoryPurged = parsedCheckpoint.eventType === "outcome" && this.workingMemory.delete(traceId);
     const telemetry = await this.emit({
       source: this.options.source,
       traceId,
       caller: this.options.caller,
       event: { kind: "checkpoint", checkpoint: parsedCheckpoint as MssrHostCheckpoint },
     });
-    return { accepted: true, traceId, state, violations, telemetry };
+    return {
+      accepted: true,
+      traceId,
+      state,
+      closure: getMssrTraceClosureState(state),
+      workingMemoryPurged,
+      violations,
+      telemetry,
+    };
   }
 }

@@ -20,6 +20,23 @@ export type MssrMaintenanceCandidate = Readonly<{
   traceIds: readonly string[];
 }>;
 
+export type MssrSkillSelectionSignature = Readonly<{
+  signature: string;
+  accepted: number;
+  skipped: number;
+  total: number;
+}>;
+
+export type MssrSkillSelectionFeedback = Readonly<{
+  skillName: string;
+  accepted: number;
+  skipped: number;
+  total: number;
+  acceptanceRate: number | null;
+  reasonCounts: Readonly<Record<string, number>>;
+  signatures: readonly MssrSkillSelectionSignature[];
+}>;
+
 export type MssrTelemetryAnalysis = Readonly<{
   counters: Readonly<{
     inputEvents: number;
@@ -48,6 +65,7 @@ export type MssrTelemetryAnalysis = Readonly<{
     risks: Readonly<Record<string, number>>;
     ambiguities: Readonly<Record<string, number>>;
   }>;
+  selectionFeedback: readonly MssrSkillSelectionFeedback[];
   maintenanceCandidates: readonly MssrMaintenanceCandidate[];
 }>;
 
@@ -57,6 +75,9 @@ type RouteEnvelope = MssrTelemetryEnvelope & {
 type LoadEnvelope = MssrTelemetryEnvelope & {
   event: Extract<MssrTelemetryEnvelope["event"], { kind: "skill_load" }>;
 };
+type DecisionEnvelope = MssrTelemetryEnvelope & {
+  event: Extract<MssrTelemetryEnvelope["event"], { kind: "skill_decision" }>;
+};
 type CheckpointEnvelope = MssrTelemetryEnvelope & {
   event: Extract<MssrTelemetryEnvelope["event"], { kind: "checkpoint" }>;
 };
@@ -64,6 +85,7 @@ type CheckpointEnvelope = MssrTelemetryEnvelope & {
 type TraceEvents = {
   routes: RouteEnvelope[];
   loads: LoadEnvelope[];
+  decisions: DecisionEnvelope[];
   checkpoints: CheckpointEnvelope[];
 };
 
@@ -81,6 +103,27 @@ function sortedCounts(value: Record<string, number>): Readonly<Record<string, nu
 
 function latest<T extends MssrTelemetryEnvelope>(events: readonly T[]): T | undefined {
   return [...events].sort((left, right) => left.emittedAt.localeCompare(right.emittedAt)).at(-1);
+}
+
+function latestAtOrBefore<T extends MssrTelemetryEnvelope>(events: readonly T[], emittedAt: string): T | undefined {
+  return [...events]
+    .filter((event) => event.emittedAt <= emittedAt)
+    .sort((left, right) => left.emittedAt.localeCompare(right.emittedAt))
+    .at(-1);
+}
+
+function routeSemanticSignature(route: RouteEnvelope["event"]["route"]): string {
+  const intent = route.intent;
+  if (!intent) return `stage=${route.stage}|legacy`;
+  const join = (values: readonly string[]) => [...new Set(values)].sort().join(",");
+  return [
+    `stage=${route.stage}`,
+    `d=${join(intent.domains)}`,
+    `a=${join(intent.actions)}`,
+    `r=${join(intent.artifacts)}`,
+    `n=${join(intent.needs)}`,
+    `s=${join(intent.signals)}`,
+  ].join("|");
 }
 
 function boundedCandidate(
@@ -128,9 +171,10 @@ export function analyzeMssrTelemetry(
 
   const traces = new Map<string, TraceEvents>();
   for (const event of events) {
-    const trace = traces.get(event.traceId) ?? { routes: [], loads: [], checkpoints: [] };
+    const trace = traces.get(event.traceId) ?? { routes: [], loads: [], decisions: [], checkpoints: [] };
     if (event.event.kind === "route") trace.routes.push(event as RouteEnvelope);
     if (event.event.kind === "skill_load") trace.loads.push(event as LoadEnvelope);
+    if (event.event.kind === "skill_decision") trace.decisions.push(event as DecisionEnvelope);
     if (event.event.kind === "checkpoint") trace.checkpoints.push(event as CheckpointEnvelope);
     traces.set(event.traceId, trace);
   }
@@ -162,6 +206,12 @@ export function analyzeMssrTelemetry(
   };
   const signalTraces = new Map<string, Set<string>>();
   const missingSkillTraces = new Map<string, Set<string>>();
+  const decisionStats = new Map<string, {
+    accepted: number;
+    skipped: number;
+    reasons: Record<string, number>;
+    signatures: Map<string, { accepted: number; skipped: number }>;
+  }>();
 
   for (const [traceId, trace] of traces) {
     const routeEnvelope = latest(trace.routes);
@@ -182,6 +232,27 @@ export function analyzeMssrTelemetry(
       const ids = missingSkillTraces.get(skillName) ?? new Set<string>();
       ids.add(traceId);
       missingSkillTraces.set(skillName, ids);
+    }
+
+    for (const decisionEnvelope of trace.decisions) {
+      const decision = decisionEnvelope.event.decision;
+      const stats = decisionStats.get(decision.skillName) ?? {
+        accepted: 0,
+        skipped: 0,
+        reasons: {},
+        signatures: new Map<string, { accepted: number; skipped: number }>(),
+      };
+      if (decision.decision === "accepted") stats.accepted += 1;
+      else stats.skipped += 1;
+      stats.reasons[decision.reasonCode] = (stats.reasons[decision.reasonCode] ?? 0) + 1;
+
+      const decisionRoute = latestAtOrBefore(trace.routes, decisionEnvelope.emittedAt) ?? routeEnvelope;
+      const signature = routeSemanticSignature(decisionRoute.event.route);
+      const signatureStats = stats.signatures.get(signature) ?? { accepted: 0, skipped: 0 };
+      if (decision.decision === "accepted") signatureStats.accepted += 1;
+      else signatureStats.skipped += 1;
+      stats.signatures.set(signature, signatureStats);
+      decisionStats.set(decision.skillName, stats);
     }
 
     const checkpoints = trace.checkpoints.map((event) => event.event.checkpoint);
@@ -226,6 +297,28 @@ export function analyzeMssrTelemetry(
     }
   }
 
+  const selectionFeedback: MssrSkillSelectionFeedback[] = [...decisionStats.entries()]
+    .map(([skillName, stats]) => {
+      const total = stats.accepted + stats.skipped;
+      return {
+        skillName,
+        accepted: stats.accepted,
+        skipped: stats.skipped,
+        total,
+        acceptanceRate: total === 0 ? null : stats.accepted / total,
+        reasonCounts: sortedCounts(stats.reasons),
+        signatures: [...stats.signatures.entries()]
+          .map(([signature, values]) => ({
+            signature,
+            accepted: values.accepted,
+            skipped: values.skipped,
+            total: values.accepted + values.skipped,
+          }))
+          .sort((left, right) => left.signature.localeCompare(right.signature)),
+      };
+    })
+    .sort((left, right) => left.skillName.localeCompare(right.skillName));
+
   const maintenanceCandidates = [
     ...[...signalTraces.entries()]
       .filter(([, ids]) => ids.size >= minDistinctTraces)
@@ -264,6 +357,7 @@ export function analyzeMssrTelemetry(
       risks: sortedCounts(dimensionCounts.risks),
       ambiguities: sortedCounts(dimensionCounts.ambiguities),
     },
+    selectionFeedback,
     maintenanceCandidates,
   };
 }

@@ -46,7 +46,7 @@ Distinguish a healthy reusable capability from a maintenance signal. For example
 
 ### Selective procedural context
 
-When the host applies a route through `skill_bootstrap`, the default context mode is selective. A skill may declare a `context-modules.json` manifest containing one compact core and optional modules filtered by stage and structured intent. MSSR scores and filters modules deterministically; true alternatives may share an `exclusiveGroup`, where a unique winner loads and a top-score tie returns candidates without loading either. The host adapter materializes all active Codex candidates before budgeting, reserves every required skill core first, then required modules, globally ranks optional modules, admits optional skill packages only when complete, and avoids reinjecting text already covered by loaded context.
+When the host applies a route through `skill_bootstrap`, the default context mode is selective. A skill may declare a `context-modules.json` manifest containing one compact core and optional modules filtered by stage and structured intent. MSSR scores and filters modules deterministically; true alternatives may share an `exclusiveGroup`, where a unique winner loads and a top-score tie returns candidates without loading either. Context planning reserves every required skill core first, then required modules, globally ranks optional modules, and avoids reinjecting text already covered by loaded context. In `host-gated` mode, optional **root** candidates remain metadata until the host records an `accepted` decision; `skipped` roots remain observable selection evidence and are not materialized as procedural context. Dependencies do not become independent host decisions: workflow-required roots seed their transitive dependency closure immediately, while an optional root's dependencies enter the load closure only after that root is accepted. A dependency that exists solely because of a skipped optional root is not a pre-acceptance obligation. Compatibility `auto` mode may still admit the complete routed dependency closure directly.
 
 `skill_load` remains the explicit full-file operation. `contentMode=full` is available for diagnosis and rollback, while a missing or invalid manifest falls back to the complete `SKILL.md` with observable telemetry. Optional skill context that cannot fit is skipped whole; required context may overflow only with explicit evidence. The host reports planner mode, allocation tier, savings, skip/overflow and duplicate avoidance without storing procedural text. Module selection does not create a second routing graph, change permissions, or prove that the host still retains text after compaction.
 The host is responsible for the activation hook. Before substantial specialized work it should load AGENTS and the minimal project core, produce canonical structured intent, select any matching project modules, and call `skill_route_plan` or `skill_bootstrap`. When applying the route, the host should carry the same resolved project root so `skill_bootstrap` can re-select phase-scoped project modules together with procedural skill context.
@@ -84,6 +84,12 @@ For long or multi-phase work, the host should emit bounded progress checkpoints 
 
 A checkpoint contains only completed observable facts, the active phase, the current owner and the next gate. It must never expose private chain-of-thought. One blocking tool call may prevent intermediate messages; when control returns after roughly 8–10 minutes without a user-visible update, the host should checkpoint before launching another long phase.
 
+### Ephemeral trace working memory
+
+A host may preserve bounded working metadata only while a trace remains open when it materially improves continuation or recovery. The portable shape is deliberately small: a resolved `workingSummary`, bounded hypotheses with evidence references, bounded decisions with short reasons, and the `nextGate`. It may summarize reasoning outcomes, but it is not a transcript or chain-of-thought store.
+
+This working memory has `retention=until-outcome`. On a final outcome the host should purge it, or explicitly compact a durable consequence into the normal evidence/project/skill documentation owned by that consequence. Raw prompts, transcripts, secrets, private chain-of-thought, and unbounded scratchpads remain excluded even from ephemeral trace state.
+
 This is a minimal transversal host rule, not a reason to inject the entire `mssr-observability-maintenance` skill into every task. Route that larger skill only when the work is actually diagnosing telemetry, traces, dashboards, identities or observability failures. A Bridge heartbeat or recent MSSR call proves backend activity only; it does not prove that the user received a progress message or final response.
 
 
@@ -116,6 +122,12 @@ A host adapter may enforce this invariant from observable route/checkpoint
 history. This is lifecycle-integrity validation, not a permission boundary:
 `partial`, `failed`, or `skipped` outcomes remain recordable so unfinished or
 blocked work can close truthfully.
+
+### Explicit close preflight
+
+The portable lifecycle exposes a close preflight rather than relying on an agent remembering the entire ending sequence. Once the host has evidence that the task is entering `stage=close`, `getMssrTraceClosureState` reports `closureDue`, `canCloseSuccess`, missing required skills, missing verification/persistence gates, whether a fresh close replan is required, whether maintenance is still required for the current lifecycle revision, and one `nextRequiredAction`.
+
+The host still owns the question "is the task ending?"; MSSR must not infer successful completion merely from silence or elapsed time. Idle/stale detection may produce a notice or closure candidate, never an automatic success outcome. A host notice should surface the preflight metadata and exact next gate so ChatGPT, Codex, or another caller can resume the same trace instead of leaving it open indefinitely.
 
 ## Skill-load lifetime
 

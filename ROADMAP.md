@@ -34,13 +34,16 @@
 - [ ] Host compliance coverage proving that every eligible substantial task—not only traces already observed—loaded project context, produced a Routing Evidence Checkpoint, and invoked MSSR.
 - [x] Privacy-preserving Bridge observatory for route plans, skill loads, context sources, verification, persistence, outcomes, user corrections, and friction signals without raw prompts or transcripts.
 - [x] Transversal outcome attribution with one primary skill, supporting-skill contributions, latest-outcome-per-trace deduplication, success/acceptance rates, normalized scores, and an initial local dashboard.
+- [x] Portable host-gated skill selection contract: deterministic recommendations remain metadata, required skills remain obligations, optional candidates can be explicitly `accepted`/`skipped` before context loading, and decision telemetry is analyzable by skill plus canonical semantic task signature.
+- [x] Portable trace close preflight with `closureDue`, explicit missing gates / next action, ephemeral `until-outcome` working metadata, outcome purge, and regression coverage for the stale `maintenanceRevision` defect.
+- [ ] Bridge/ChatGPT Web adapter integration for host-gated bootstrap, temporary trace working metadata, closure notices, and dashboard decision metrics.
 - [ ] Context notice inbox covering provider/runtime failures, active agents,
   pending reviews, changed project state, missing routing compliance, and
   bounded context requests.
 - [x] Portable modular project-context contract plus Bridge adapter: optional `.bridge/project-context.json`, minimal core loading, stage/intent-selected context-memory-state-directive modules, legacy full-document fallback, and shared semantic selection with skill context.
 - [ ] Complete project bootstrap authority/staleness preflight across hosts, including explicit reporting for missing or stale context authorities beyond manifest validity.
-- [ ] Friction checkpoint and promotion pipeline: isolated event -> project
-  regression -> owning skill update -> MSSR fixture/metadata correction.
+- [ ] Post-iteration learning/promotion pipeline: isolated evidence -> project regression/context-memory-state update, architecture/design decision, owning skill/tool/guide update, or MSSR fixture/metadata correction according to ownership; never assume every lesson belongs in a skill.
+- [ ] Contextual historical ranker using accepted/skipped/outcome evidence by canonical semantic signature, with minimum-evidence thresholds, an exploration floor, and review-only proposals before routing semantics change. Evaluate vector similarity only as a secondary retrieval signal for nearby signatures.
 - [ ] Historical replay benchmark measuring missed activation, over-activation,
   required-load compliance, phase continuity, latency, recovery, and outcome
   quality on confirmed real cases.

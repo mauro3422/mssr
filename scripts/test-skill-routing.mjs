@@ -5,6 +5,7 @@ import {
   FilesystemSkillProvider,
   auditSkillRouting,
   planSkillRoute,
+  resolveSkillLoadSelection,
   routingFixturesPath,
 } from "../dist/index.js";
 
@@ -73,6 +74,41 @@ for (const testCase of expandedCases) {
     failures.push(`${testCase.name}: expected at most ${expected.rootSelectedAtMost} root skills, got ${route.selectionBudget.selectedRootSkills}`);
   }
 }
+const optionalDependencyRoute = await planSkillRoute({
+  task: "Verify live host-gated optional skill selection after Bridge restart.",
+  intent: {
+    summary: "Verify live host-gated optional skill selection after Bridge restart.",
+    domains: ["skill-system", "agent-orchestration", "coding"],
+    actions: ["analyze", "verify", "review"],
+    artifacts: ["skill", "mcp", "code"],
+    needs: ["integrity-verification", "unit-tests"],
+    signals: ["reusable-pattern"],
+    risk: "read-only",
+    ambiguity: "low",
+  },
+  caller: "chatgpt-web",
+  stage: "verify",
+  completedPhases: ["discovery", "implementation"],
+  maxSkills: 8,
+  skills,
+});
+const graphRoot = optionalDependencyRoute.activeSkills.find((skill) => skill.name === "godot-graph-ux-audit");
+const graphDependency = optionalDependencyRoute.activeSkills.find((skill) => skill.name === "godot-project-inspection");
+if (!graphRoot || !graphDependency) {
+  failures.push("host-gated dependency regression: expected godot graph root and project-inspection dependency in route metadata");
+} else {
+  if (!graphRoot.selectedAsRoot || graphRoot.required) failures.push("host-gated dependency regression: godot-graph-ux-audit must remain an optional root");
+  if (graphDependency.selectedAsRoot || graphDependency.required) failures.push("host-gated dependency regression: dependency-only godot-project-inspection must not become a pre-acceptance obligation");
+  const skipped = resolveSkillLoadSelection(optionalDependencyRoute, "host-gated", []);
+  if (skipped.eligibleLoadOrder.includes(graphRoot.name) || skipped.eligibleLoadOrder.includes(graphDependency.name)) {
+    failures.push(`host-gated dependency regression: skipped optional root leaked into load closure (${skipped.eligibleLoadOrder.join(", ")})`);
+  }
+  const accepted = resolveSkillLoadSelection(optionalDependencyRoute, "host-gated", [{ skillName: graphRoot.name, decision: "accepted" }]);
+  if (!accepted.eligibleLoadOrder.includes(graphRoot.name) || !accepted.eligibleLoadOrder.includes(graphDependency.name)) {
+    failures.push(`host-gated dependency regression: accepted optional root did not carry its dependency (${accepted.eligibleLoadOrder.join(", ")})`);
+  }
+}
+
 
 const audit = await auditSkillRouting(skills);
 if (!audit.ok) failures.push(...audit.errors.map((error) => `audit error: ${error}`));
