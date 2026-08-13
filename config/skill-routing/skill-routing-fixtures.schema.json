@@ -27,7 +27,7 @@
           "maxSkills": { "type": "integer", "minimum": 1, "maximum": 16 },
           "sources": {
             "type": "array",
-            "items": { "enum": ["codex-local", "codex-system", "codex-plugin", "roblox"] }
+            "items": { "enum": ["mssr-first-party", "codex-local", "codex-system", "codex-plugin", "roblox"] }
           },
           "intent": { "type": "object" },
           "expect": {

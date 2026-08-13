@@ -2,7 +2,16 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import { CapabilityRegistry, FilesystemSkillProvider, canonicalizeSkillEntries } from "../dist/index.js";
+import {
+  CapabilityRegistry,
+  FilesystemSkillProvider,
+  MSSR_FIRST_PARTY_SKILL_MANIFEST,
+  MssrFirstPartySkillProvider,
+  auditSkillRouting,
+  buildSkillRoutingRegistry,
+  canonicalizeSkillEntries,
+  isMssrFirstPartySkillName,
+} from "../dist/index.js";
 
 let calls = 0;
 let fail = false;
@@ -82,6 +91,75 @@ const conflictingSources = canonicalizeSkillEntries([
 ]);
 assert.equal(conflictingSources.duplicates[0].classification, "conflicting-source-warning");
 assert.equal(conflictingSources.duplicates[0].severity, "warning");
+
+assert.equal(isMssrFirstPartySkillName("mssr-agent-routing"), true);
+assert.equal(isMssrFirstPartySkillName("external-skill"), false);
+assert.equal(MSSR_FIRST_PARTY_SKILL_MANIFEST.skills.length, 5);
+
+const bundledRoot = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-first-party-"));
+const bundledSkill = path.join(bundledRoot, "mssr-agent-routing");
+const mountedRoot = path.join(bundledRoot, "runtime");
+const mountedSkill = path.join(mountedRoot, "mssr-agent-routing");
+const divergentRoot = path.join(bundledRoot, "divergent");
+const divergentSkill = path.join(divergentRoot, "mssr-agent-routing");
+try {
+  await fs.mkdir(bundledSkill, { recursive: true });
+  await fs.mkdir(mountedRoot, { recursive: true });
+  await fs.writeFile(path.join(bundledSkill, "SKILL.md"), "---\nname: mssr-agent-routing\ndescription: Bundled first-party routing.\n---\n", "utf8");
+
+  const manifest = { schemaVersion: 1, skills: [{ name: "mssr-agent-routing" }] };
+  const directProvider = new MssrFirstPartySkillProvider({ root: bundledRoot, manifest });
+  const directRegistry = new CapabilityRegistry([directProvider]);
+  const direct = await directRegistry.refresh();
+  assert.deepEqual(direct.capabilities.map((item) => [item.name, item.source]), [["mssr-agent-routing", "mssr-first-party"]]);
+  const directRouting = await buildSkillRoutingRegistry([{ name: "first-party-inferred", description: "No explicit metadata.", source: "mssr-first-party" }]);
+  assert.equal(directRouting.entries[0].priority, 60, "first-party inferred routing must rank above local inferred skills");
+  const ownedFirstPartyAudit = await auditSkillRouting(direct.capabilities.flatMap((item) => item.skill ? [item.skill] : []));
+  assert.equal(ownedFirstPartyAudit.counts.ownedSkills, 1, "first-party skills must be audited as owned");
+  assert.equal(ownedFirstPartyAudit.unconfiguredOwnedSkills.length, 0, "configured first-party skills must not be treated as external inferred metadata");
+  const missingDescriptionAudit = await auditSkillRouting([{ name: "mssr-agent-routing", description: "", source: "mssr-first-party", path: path.join(bundledSkill, "SKILL.md") }]);
+  assert.equal(missingDescriptionAudit.missingDescriptions.some((item) => item.name === "mssr-agent-routing"), true, "missing descriptions on first-party skills must be health findings");
+
+  await fs.symlink(bundledSkill, mountedSkill, process.platform === "win32" ? "junction" : "dir");
+  const aliasRegistry = new CapabilityRegistry([
+    new MssrFirstPartySkillProvider({ root: bundledRoot, manifest }),
+    new FilesystemSkillProvider({ roots: [mountedRoot] }),
+  ]);
+  const aliasSnapshot = await aliasRegistry.refresh();
+  const aliasEntries = canonicalizeSkillEntries(aliasSnapshot.capabilities.flatMap((item) => item.skill ? [item.skill] : []));
+  assert.equal(aliasEntries.entries.length, 1, "A mounted first-party skill must be canonicalized once");
+  assert.equal(aliasEntries.entries[0].source, "mssr-first-party");
+  assert.equal(aliasEntries.duplicates[0].classification, "first-party-alias-info");
+  assert.equal(aliasEntries.duplicates[0].severity, "info");
+
+  await fs.mkdir(divergentSkill, { recursive: true });
+  await fs.writeFile(path.join(divergentSkill, "SKILL.md"), "---\nname: mssr-agent-routing\ndescription: Divergent shadow source.\n---\n", "utf8");
+  const conflictRegistry = new CapabilityRegistry([
+    new MssrFirstPartySkillProvider({ root: bundledRoot, manifest }),
+    new FilesystemSkillProvider({ roots: [divergentRoot] }),
+  ]);
+  const conflictSnapshot = await conflictRegistry.refresh();
+  const conflictEntries = canonicalizeSkillEntries(conflictSnapshot.capabilities.flatMap((item) => item.skill ? [item.skill] : []));
+  assert.equal(conflictEntries.entries[0].source, "mssr-first-party");
+  assert.equal(conflictEntries.duplicates[0].classification, "reserved-first-party-conflict");
+  assert.equal(conflictEntries.duplicates[0].severity, "error");
+  const conflictAudit = await auditSkillRouting(conflictSnapshot.capabilities.flatMap((item) => item.skill ? [item.skill] : []));
+  assert.equal(conflictAudit.ok, false, "A divergent reserved name must block the routing audit");
+  assert.equal(conflictAudit.errors.some((error) => error.includes("Reserved first-party skill name is shadowed: mssr-agent-routing")), true);
+
+  const mismatchedRoot = path.join(bundledRoot, "mismatched");
+  const mismatchedSkill = path.join(mismatchedRoot, "directory-name");
+  await fs.mkdir(mismatchedSkill, { recursive: true });
+  await fs.writeFile(path.join(mismatchedSkill, "SKILL.md"), "---\nname: declared-name\ndescription: Mismatched identity.\n---\n", "utf8");
+  const mismatched = await new FilesystemSkillProvider({ roots: [mismatchedRoot] }).refresh();
+  assert.equal(mismatched.capabilities[0].name, "declared-name", "filesystem discovery must use frontmatter identity rather than the directory basename");
+
+  await fs.writeFile(path.join(bundledSkill, "SKILL.md"), "---\nname: wrong-bundled-name\ndescription: Invalid bundled identity.\n---\n", "utf8");
+  await assert.rejects(() => new MssrFirstPartySkillProvider({ root: bundledRoot, manifest }).refresh(), /declares frontmatter name wrong-bundled-name/);
+} finally {
+  await fs.unlink(mountedSkill).catch(() => undefined);
+  await fs.rm(bundledRoot, { recursive: true, force: true });
+}
 
 
 console.log("registry tests passed");

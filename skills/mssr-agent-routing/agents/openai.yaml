@@ -1,0 +1,4 @@
+interface:
+  display_name: "MSSR Agent Routing"
+  short_description: "Route skills, signals, and tool chains"
+  default_prompt: "Use $mssr-agent-routing to classify intent, select the active skills, and re-plan capabilities as evidence changes."

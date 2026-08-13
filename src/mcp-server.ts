@@ -10,12 +10,13 @@ import {
   SKILL_PHASES,
   SKILL_RISKS,
   SKILL_SIGNALS,
+  SKILL_SOURCES,
   SKILL_STAGES,
   auditSkillRouting,
   planSkillRoute,
 } from "./skill-routing.js";
 import { normalizeMssrIntent } from "./intent-normalizer.js";
-import { CapabilityRegistry, FilesystemSkillProvider } from "./registry.js";
+import { CapabilityRegistry, FilesystemSkillProvider, MssrFirstPartySkillProvider } from "./registry.js";
 import { createMssrRegistryFromEnvironment } from "./provider-config.js";
 import {
   MSSR_CHECKPOINT_TYPES,
@@ -63,7 +64,7 @@ const traceEventSchema = z.discriminatedUnion("type", [
   z.object({ type: z.literal("checkpoint"), checkpoint: z.unknown() }),
 ]);
 
-export function createMssrMcpServer(registry = new CapabilityRegistry([new FilesystemSkillProvider()])) {
+export function createMssrMcpServer(registry = new CapabilityRegistry([new MssrFirstPartySkillProvider(), new FilesystemSkillProvider()])) {
   const server = new McpServer({ name: "mssr", version: "0.2.1" });
 
   server.registerTool(MSSR_TOOL_NAMES[0], {
@@ -116,6 +117,7 @@ export function createMssrMcpServer(registry = new CapabilityRegistry([new Files
       needs: SKILL_NEEDS,
       signals: SKILL_SIGNALS,
       risks: SKILL_RISKS,
+      skillSources: SKILL_SOURCES,
       stages: SKILL_STAGES,
       phases: SKILL_PHASES,
       callers: SKILL_CALLERS,

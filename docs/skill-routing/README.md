@@ -56,7 +56,7 @@ La clasificación puede reutilizarse como capa de control para seleccionar skill
 | Auditoría visual | `scripts/audit-skills.py` |
 | Fuente Git de skills propias | `D:\Dev\mauroprime-skills\skills` |
 | Montaje runtime de Codex | `~/.codex/skills/<name>` como junction |
-| Skill mantenedora | `D:\Dev\mauroprime-skills\skills\skill-routing-maintainer\SKILL.md` |
+| Skill mantenedora | `D:\Dev\mssr\skills\skill-routing-maintainer\SKILL.md` |
 | Incidentes y regresiones confirmadas | `docs/skill-routing/INCIDENTS.md` |
 
 `D:\Dev\mssr` versiona el motor y el contrato de routing. `D:\Dev\mauroprime-skills` versiona los procedimientos propios y `D:\Dev\bridge-mcp` consume MSSR mediante un adaptador. Los alias de compatibilidad bajo `C:\Dev` son junctions, no fuentes canónicas. La carpeta `~/.codex/skills/_dashboard` contiene salidas generadas para inspección; no es una fuente editable.

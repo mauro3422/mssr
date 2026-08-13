@@ -2,6 +2,12 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import type { SkillEntry, SkillSource } from "./skill-routing.js";
+import {
+  MSSR_FIRST_PARTY_SKILL_MANIFEST,
+  mssrFirstPartySkillManifestSchema,
+  mssrFirstPartySkillsRoot,
+  type MssrFirstPartySkillManifest,
+} from "./first-party-skills.js";
 
 /** A capability is metadata for discovery. It is never an authorization grant. */
 export type Capability = Readonly<{
@@ -193,10 +199,23 @@ function sourceFor(location: string): SkillSource {
   return "codex-local";
 }
 
-function descriptionFor(text: string): string {
+const SKILL_NAME_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$/;
+
+export type SkillFrontmatter = Readonly<{ name: string; description: string }>;
+
+/**
+ * Skill identity is declared by frontmatter, not inferred from a mount path.
+ * This supports providers whose package layout uses a router directory name
+ * that intentionally differs from the public skill identity.
+ */
+export function parseSkillFrontmatter(text: string): SkillFrontmatter {
   const frontmatter = text.match(/^---\s*\r?\n([\s\S]*?)\r?\n---/);
+  if (!frontmatter) throw new Error("SKILL.md is missing YAML frontmatter");
+  const nameMatch = frontmatter[1].match(/^name:\s*["']?([^"'\r\n#]+?)["']?\s*$/m);
+  const name = nameMatch?.[1]?.trim() ?? "";
+  if (!SKILL_NAME_PATTERN.test(name)) throw new Error("SKILL.md frontmatter name must be a bounded skill identifier");
   const match = frontmatter?.[1].match(/^description:\s*["']?(.+?)["']?\s*$/m);
-  return match?.[1]?.trim() || "Skill discovered from its SKILL.md file.";
+  return { name, description: match?.[1]?.trim() || "Skill discovered from its SKILL.md file." };
 }
 
 async function skillFiles(root: string): Promise<string[]> {
@@ -241,12 +260,49 @@ export class FilesystemSkillProvider implements CapabilityProvider {
   async refresh(): Promise<ProviderResult> {
     const paths = (await Promise.all(this.roots.map(skillFiles))).flat();
     const capabilities = await Promise.all(paths.map(async (location): Promise<Capability> => {
-      const text = await fs.readFile(location, "utf8");
-      const name = path.basename(path.dirname(location));
+      const resolvedLocation = await fs.realpath(location);
+      const text = await fs.readFile(resolvedLocation, "utf8");
+      const frontmatter = parseSkillFrontmatter(text);
+      const name = frontmatter.name;
       const source = sourceFor(location);
-      const skill: SkillEntry = { name, description: descriptionFor(text), source, path: location, origin: this.id };
-      return { id: `${this.id}:skill:${location}`, name, description: skill.description, kind: "skill", providerId: this.id, source, location, skill };
+      const skill: SkillEntry = { name, description: frontmatter.description, source, path: resolvedLocation, origin: this.id };
+      return { id: `${this.id}:skill:${resolvedLocation}`, name, description: skill.description, kind: "skill", providerId: this.id, source, location: resolvedLocation, skill };
     }));
+    return { capabilities, observedAt: now() };
+  }
+}
+
+/**
+ * Reads only skill names reserved and shipped by MSSR. It is independent of a
+ * Codex runtime mount, allowing native MCP and OpenCode to discover the
+ * package-owned source directly after the skill-tree migration lands.
+ */
+export class MssrFirstPartySkillProvider implements CapabilityProvider {
+  readonly id: string;
+  readonly root: string;
+  readonly manifest: MssrFirstPartySkillManifest;
+
+  constructor(options: { id?: string; root?: string; manifest?: MssrFirstPartySkillManifest } = {}) {
+    this.id = options.id ?? "mssr-first-party-skills";
+    this.root = path.resolve(options.root ?? mssrFirstPartySkillsRoot());
+    this.manifest = mssrFirstPartySkillManifestSchema.parse(options.manifest ?? MSSR_FIRST_PARTY_SKILL_MANIFEST);
+  }
+
+  async refresh(): Promise<ProviderResult> {
+    const capabilities = (await Promise.all(this.manifest.skills.map(async ({ name }): Promise<Capability | null> => {
+      const candidate = path.join(this.root, name, "SKILL.md");
+      try {
+        const location = await fs.realpath(candidate);
+        const text = await fs.readFile(location, "utf8");
+        const frontmatter = parseSkillFrontmatter(text);
+        if (frontmatter.name !== name) throw new Error(`Bundled first-party skill ${name} declares frontmatter name ${frontmatter.name}`);
+        const skill: SkillEntry = { name: frontmatter.name, description: frontmatter.description, source: "mssr-first-party", path: location, origin: this.id };
+        return { id: `${this.id}:skill:${location}`, name, description: skill.description, kind: "skill", providerId: this.id, source: skill.source, location, skill };
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code === "ENOENT") return null;
+        throw error;
+      }
+    }))).filter((item): item is Capability => item !== null);
     return { capabilities, observedAt: now() };
   }
 }

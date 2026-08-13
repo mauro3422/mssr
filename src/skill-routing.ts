@@ -3,6 +3,7 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
+import { isMssrFirstPartySkillName } from "./first-party-skills.js";
 
 export const SKILL_PHASES = ["discovery", "safety", "implementation", "verification", "persistence", "maintenance"] as const;
 export type SkillPhase = typeof SKILL_PHASES[number];
@@ -33,8 +34,9 @@ export const SKILL_SIGNALS = [
   "capability-discovery-needed", "additional-capability-needed", "tool-chain-needed", "provider-refresh-needed", "replan-needed",
 ] as const;
 export const SKILL_RISKS = ["read-only", "write", "destructive", "external-side-effect"] as const;
+export const SKILL_SOURCES = ["mssr-first-party", "codex-local", "codex-system", "codex-plugin", "roblox"] as const;
 
-export type SkillSource = "codex-local" | "codex-system" | "codex-plugin" | "roblox";
+export type SkillSource = typeof SKILL_SOURCES[number];
 export type SkillEntry = {
   name: string;
   description: string;
@@ -247,7 +249,7 @@ function compareVersionsDescending(a: SkillEntry, b: SkillEntry): number {
 }
 
 function compareEntries(a: SkillEntry, b: SkillEntry): number {
-  const sourceRank: Record<SkillSource, number> = { "codex-local": 0, "codex-system": 1, roblox: 2, "codex-plugin": 3 };
+  const sourceRank: Record<SkillSource, number> = { "mssr-first-party": 0, "codex-local": 1, "codex-system": 2, roblox: 3, "codex-plugin": 4 };
   const sourceDiff = sourceRank[a.source] - sourceRank[b.source];
   if (sourceDiff) return sourceDiff;
   if (a.source === "codex-plugin" && b.source === "codex-plugin") {
@@ -259,7 +261,7 @@ function compareEntries(a: SkillEntry, b: SkillEntry): number {
   return (a.path ?? "").localeCompare(b.path ?? "");
 }
 
-export type SkillDuplicateClassification = "owned-error" | "external-version-info" | "conflicting-source-warning";
+export type SkillDuplicateClassification = "owned-error" | "external-version-info" | "conflicting-source-warning" | "first-party-alias-info" | "reserved-first-party-conflict";
 export type SkillDuplicate = {
   name: string;
   chosen: SkillEntry;
@@ -270,6 +272,23 @@ export type SkillDuplicate = {
 };
 
 function classifyDuplicateGroup(group: SkillEntry[]): Pick<SkillDuplicate, "classification" | "severity" | "reason"> {
+  const firstParty = group.filter((entry) => entry.source === "mssr-first-party");
+  if (isMssrFirstPartySkillName(group[0]?.name ?? "") && firstParty.length > 0) {
+    const canonicalPath = normalizePath(firstParty[0].path);
+    const allSameRealPath = canonicalPath !== "" && group.every((entry) => normalizePath(entry.path) === canonicalPath);
+    if (firstParty.length === 1 && allSameRealPath) {
+      return {
+        classification: "first-party-alias-info",
+        severity: "info",
+        reason: "A host runtime mount resolves to the same realpath as the bundled first-party skill.",
+      };
+    }
+    return {
+      classification: "reserved-first-party-conflict",
+      severity: "error",
+      reason: "A reserved MSSR first-party skill name is also exposed from a divergent source.",
+    };
+  }
   const ownedCount = group.filter((entry) => entry.source === "codex-local").length;
   if (ownedCount > 1) {
     return {
@@ -292,6 +311,10 @@ function classifyDuplicateGroup(group: SkillEntry[]): Pick<SkillDuplicate, "clas
     severity: "warning",
     reason: "Duplicate skill sources expose different descriptions, ownership, or contracts and require provenance-aware review.",
   };
+}
+
+function normalizePath(value: string | undefined): string {
+  return value ? path.resolve(value).replace(/\\/g, "/").toLocaleLowerCase() : "";
 }
 
 export function canonicalizeSkillEntries(skills: SkillEntry[]): { entries: SkillEntry[]; duplicates: SkillDuplicate[] } {
@@ -380,7 +403,7 @@ function inferredMetadata(skill: SkillEntry): RouteMetadata {
     requireArtifactMatch: false,
     requireSignalMatch: false,
     oversizeReviewed: false,
-    priority: skill.source === "codex-local" ? 55 : skill.source === "roblox" ? 50 : skill.source === "codex-system" ? 45 : 25,
+    priority: skill.source === "mssr-first-party" ? 60 : skill.source === "codex-local" ? 55 : skill.source === "roblox" ? 50 : skill.source === "codex-system" ? 45 : 25,
     activation: "on-demand",
   };
 }
@@ -546,7 +569,7 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
   const catalogNames = new Set(registry.entries.map((entry) => entry.name));
   const configuredNames = new Set(Object.keys(registry.config.skills));
   const knownNames = new Set([...catalogNames, ...configuredNames]);
-  const ownedSources = new Set<SkillSource>(["codex-local"]);
+  const ownedSources = new Set<SkillSource>(["mssr-first-party", "codex-local"]);
   const ownedEntries = registry.entries.filter((entry) => ownedSources.has(entry.source));
   const fixtureAudit = await auditOwnedFixtureCoverage(new Set(ownedEntries.map((entry) => entry.name)));
   const ownedFixtureCoverage = ownedEntries.map((entry) => ({
@@ -611,9 +634,10 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
   const oversizedSkills = fileHealth.filter((item) => item.lines > 500 || item.chars > MAX_SAFE_SKILL_CHARS);
   const metadataByName = new Map(registry.entries.map((entry) => [entry.name, entry]));
   const oversizedOwnedSkills = oversizedSkills.filter((item) => ownedSources.has(item.source) && metadataByName.get(item.name)?.oversizeReviewed !== true);
-  const missingDescriptions = fileHealth.filter((item) => item.source === "codex-local" && item.descriptionMissing);
+  const missingDescriptions = fileHealth.filter((item) => ownedSources.has(item.source) && item.descriptionMissing);
   const unreadableSkills = fileHealth.filter((item) => "unreadable" in item && item.unreadable);
   const duplicateOwnedErrors = registry.duplicates.filter((item) => item.classification === "owned-error");
+  const reservedFirstPartyConflicts = registry.duplicates.filter((item) => item.classification === "reserved-first-party-conflict");
   const duplicateConflictWarnings = registry.duplicates.filter((item) => item.classification === "conflicting-source-warning");
   const duplicateExternalVersions = registry.duplicates.filter((item) => item.classification === "external-version-info");
   const errors = [
@@ -624,6 +648,7 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
     ...cycles.map((cycle) => `Dependency cycle: ${cycle.join(" -> ")}`),
     ...unreadableSkills.map((item) => `Unreadable skill file: ${item.name} (${item.path})`),
     ...duplicateOwnedErrors.map((item) => `Owned duplicate skill name: ${item.name}`),
+    ...reservedFirstPartyConflicts.map((item) => `Reserved first-party skill name is shadowed: ${item.name}`),
   ];
   const maintenanceReasons = [
     ...unconfiguredOwnedSkills.map((item) => `Owned skill lacks explicit routing metadata: ${item.name}`),
@@ -646,6 +671,7 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
       ownedWithNegativeFixtures: ownedFixtureCoverage.filter((item) => item.activation === "always" || item.negative > 0).length,
       duplicateNames: registry.duplicates.length,
       duplicateOwnedErrors: duplicateOwnedErrors.length,
+      reservedFirstPartyConflicts: reservedFirstPartyConflicts.length,
       duplicateExternalVersions: duplicateExternalVersions.length,
       duplicateConflictWarnings: duplicateConflictWarnings.length,
       workflows: registry.workflows.length,

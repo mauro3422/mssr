@@ -3,6 +3,7 @@ import { z } from "zod";
 import {
   CapabilityRegistry,
   FilesystemSkillProvider,
+  MssrFirstPartySkillProvider,
   type CapabilityProvider,
 } from "./registry.js";
 import {
@@ -37,7 +38,7 @@ export async function loadMssrProviderConfig(configPath: string): Promise<MssrPr
 }
 
 export function createRegistryFromProviderConfig(config?: MssrProviderConfig): CapabilityRegistry {
-  const providers: CapabilityProvider[] = [new FilesystemSkillProvider()];
+  const providers: CapabilityProvider[] = [new MssrFirstPartySkillProvider(), new FilesystemSkillProvider()];
   for (const provider of config?.providers ?? []) {
     providers.push(new McpToolsProvider({
       id: provider.id,

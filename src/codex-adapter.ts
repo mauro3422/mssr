@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import fs from "node:fs/promises";
-import { CapabilityRegistry, FilesystemSkillProvider } from "./registry.js";
+import { CapabilityRegistry, FilesystemSkillProvider, MssrFirstPartySkillProvider } from "./registry.js";
 import {
   planSkillRoute,
   resolveSkillLoadSelection,
@@ -83,7 +83,7 @@ export class CodexMssrAdapter {
   private readonly options: Required<Omit<HostMssrAdapterOptions, "telemetrySink">> & { telemetrySink: MssrTelemetrySink | null };
 
   constructor(
-    registry = new CapabilityRegistry([new FilesystemSkillProvider()]),
+    registry = new CapabilityRegistry([new MssrFirstPartySkillProvider(), new FilesystemSkillProvider()]),
     options: HostMssrAdapterOptions = {},
   ) {
     this.registry = registry;

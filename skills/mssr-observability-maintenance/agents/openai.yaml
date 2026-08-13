@@ -1,0 +1,4 @@
+interface:
+  display_name: "MSSR Observability Maintenance"
+  short_description: "Audit MSSR traces, metadata, and dashboard health"
+  default_prompt: "Use $mssr-observability-maintenance to diagnose Bridge/MSSR attribution, lifecycle, or ChatGPT Web silence."

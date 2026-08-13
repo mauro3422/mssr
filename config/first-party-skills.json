@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "skills": [
+    { "name": "mssr-agent-routing" },
+    { "name": "shared-skill-governance" },
+    { "name": "skill-routing-maintainer" },
+    { "name": "skill-maintenance-loop" },
+    { "name": "mssr-observability-maintenance" }
+  ]
+}

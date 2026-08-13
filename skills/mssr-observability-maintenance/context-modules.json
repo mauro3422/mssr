@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "core": {
+    "sections": ["## Purpose", "## Establish the observation boundary", "## Preserve the execution identity hierarchy", "## Classify the defect", "## Enforce lifecycle invariants", "## Verify and close"]
+  },
+  "modules": [
+    {"id":"controlled-trace","description":"Reproduce one bounded trace and compare lifecycle events with dashboard output.","source":{"sections":["## Reproduce one controlled trace"]},"actions":["analyze","verify","test"],"priority":20},
+    {"id":"delegated-attribution","description":"Separate wrapper transport evidence from delegated logical capability evidence.","source":{"sections":["## Audit delegated tool attribution"]},"artifacts":["mcp"],"actions":["analyze","review","maintain"],"priority":25},
+    {"id":"stateless-recovery","description":"Verify persisted trace recovery across dispatch, coordinator loss, and ambiguity.","source":{"sections":["## Test stateless trace recovery"]},"signals":["recovery-needed","conflicting-evidence","repeated-friction"],"priority":25},
+    {"id":"telemetry-safety","description":"Privacy, history preservation, and active observability epoch rules.","source":{"sections":["## Change telemetry safely"]},"actions":["edit","maintain","review"],"artifacts":["mcp","code"],"priority":20}
+  ]
+}

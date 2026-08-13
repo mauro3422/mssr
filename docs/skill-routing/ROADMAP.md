@@ -1,5 +1,28 @@
 # Roadmap de MSSR
 
+## Límite de release 0.2.8 y paquete first-party
+
+`0.2.7` entregó el evaluador portable de cierre: un outcome `success` se
+rechaza cuando queda pendiente una obligación aplicable. `0.2.8` mantiene esa
+semántica y además entrega cinco skills first-party bundled, manifest de nombres
+reservados, precedencia de provider, discovery nativo/Codex/OpenCode, instalador
+Codex opt-in y conformance de fuente. Bridge `0.6.88` está integrado en source
+pero sigue pendiente de restart controlado y readback de catálogo/versión vivo.
+
+La admisión first-party está completada para `mssr-agent-routing`,
+`shared-skill-governance`, `skill-routing-maintainer`,
+`skill-maintenance-loop` y `mssr-observability-maintenance`: fuente canónica
+bundled, manifest/provenance, metadata/fixtures, inclusión en el paquete y
+verificación de fuente. Un mount que resuelve al mismo realpath es alias; una
+fuente externa divergente con nombre reservado bloquea audit. Eso no convierte a
+todas en requeridas para cada tarea.
+
+La instalación Codex es opt-in y limitada a nombres del manifest. Discovery de
+fuente para native/Codex/OpenCode y guards del catálogo custom están cubiertos.
+Siguen pendientes Bridge/ChatGPT Web live tras restart, y la matriz amplia de
+paridad de lifecycle, digest, replay y rollback; no se infiere de conformance
+de package/discovery.
+
 ## Estado actual
 
 - Catálogo vivo de Codex y Roblox.
@@ -32,9 +55,12 @@ La continuidad interna de una tarea ya está probada por `trace-contract-v1`. La
 
 El resultado debe distinguir una ruta continua y correcta de una tarea invisible para el observatorio porque omitió completamente MSSR.
 
-### 2. Autoridad de contexto de proyecto
+### 2. Extender autoridad de contexto de proyecto a todos los hosts
 
-Añadir un preflight portable que detecte y resuma las fuentes durables disponibles sin copiar todo su contenido:
+El contrato portable y el adapter Bridge ya pueden detectar y resumir fuentes
+durables sin copiar todo su contenido. Falta llevar el mismo preflight a
+Codex/OpenCode y definir la política entre repositorios administrados y
+deliberadamente memory-free:
 
 - `AGENTS.md` o equivalente del host;
 - contexto, memoria y estado bajo `.bridge/` cuando existan;
@@ -61,7 +87,7 @@ El analizador portable ya agrega decisiones por skill y por firma semántica. **
 
 Una segunda capa vectorial puede ser útil para recuperar firmas históricas semánticamente próximas cuando las etiquetas exactas no alcanzan. Debe complementar, no reemplazar, el vocabulario canónico, los gates deterministas, fixtures positivos/negativos y revisión explícita.
 
-El Bridge ya aporta trazas correlacionadas, structured-vs-lexical rate, required-load compliance, cobertura de verify/persist/outcome, una skill primaria por outcome, colaboradores, aceptación y score. Falta conectar allí el nuevo evento de decisión, host-gated bootstrap y visualizaciones por firma semántica, además de medir el hook contra un universo explícito de tareas elegibles.
+El Bridge ya aporta trazas correlacionadas, structured-vs-lexical rate, required-load compliance, cobertura de verify/persist/outcome, una skill primaria por outcome, colaboradores, aceptación y score. La prioridad pendiente es medir el hook contra un universo explícito de tareas elegibles y extender esa evidencia a los otros hosts; no se presume cobertura completa por la integración Bridge.
 
 ### 3.1 Bandeja de notices y contexto dinámico
 
@@ -96,9 +122,11 @@ objetivo reusable independiente
 
 No aprender automáticamente de una única ejecución ni reescribir el contrato por frecuencia. El sistema puede proponer una promoción al cierre o comparar múltiples trazas, pero una mutación durable exige owner claro, evidencia, diff y regresión/revisión. Crear un benchmark de replay con incidentes reales confirmados y casos nominales cercanos.
 
-### 5. Checkpoints y edición asistida
+### 5. Checkpoints portables y edición asistida
 
-Añadir estado durable para workflows que sobrevivan reinicios, pausas o varios días:
+`trace-contract-v1` ya mantiene continuidad local y recuperación acotada. Falta
+probar checkpoint/persistencia equivalentes en los adaptadores first-party
+empaquetados para workflows que sobrevivan reinicios, pausas o varios días:
 
 - intención resuelta y fase actual;
 - fases completadas y skills cargadas;

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "core": {
+    "sections": [
+      "## Canonical repositories",
+      "## Generalization rule",
+      "## Conflict handling"
+    ]
+  },
+  "modules": [
+    {
+      "id": "activation-model",
+      "description": "Semantic classification and activation behavior across Codex and ChatGPT Web.",
+      "source": { "sections": ["## Activation model"] },
+      "actions": ["discover", "analyze", "coordinate"],
+      "artifacts": ["skill", "mcp"],
+      "priority": 20
+    },
+    {
+      "id": "routing-contract",
+      "description": "Canonical routing schema, overrides, and generated dashboard boundaries.",
+      "source": { "sections": ["## Routing contract"] },
+      "actions": ["edit", "maintain", "document"],
+      "artifacts": ["skill", "mcp"],
+      "priority": 20
+    },
+    {
+      "id": "skill-updates",
+      "description": "Safe procedure for creating or materially updating shared skills.",
+      "source": { "sections": ["## Updating skills"] },
+      "actions": ["create", "edit", "maintain", "review"],
+      "artifacts": ["skill"],
+      "priority": 30
+    }
+  ]
+}

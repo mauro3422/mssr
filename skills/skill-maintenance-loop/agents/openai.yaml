@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Maintenance Loop"
+  short_description: "Detecta patrones y mejora skills personales"
+  default_prompt: "Usa $skill-maintenance-loop para convertir aprendizajes repetidos en mejoras validadas de mis skills."

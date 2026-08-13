@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "core": {
+    "sections": [
+      "## Produce compact intent",
+      "## Route progressively",
+      "## Route at meaningful boundaries",
+      "## Preserve permissions"
+    ]
+  },
+  "modules": [
+    {
+      "id": "observable-signals",
+      "description": "Semantic signal selection and transversal recovery composition.",
+      "source": { "sections": ["## Tag observable runtime state"] },
+      "signals": ["error-observed", "warning-observed", "degraded-capability", "uncertainty", "conflicting-evidence", "repeated-friction", "manual-workaround", "missing-capability", "recovery-needed", "skill-gap", "reusable-pattern", "replan-needed"],
+      "priority": 30
+    },
+    {
+      "id": "tool-use-recovery",
+      "description": "Bootstrap, runtime identifier preflights, and bounded tool failure recovery.",
+      "source": { "sections": ["## Bootstrap and tool-use recovery"] },
+      "actions": ["discover", "debug", "recover"],
+      "signals": ["tool-chain-needed", "provider-refresh-needed", "replan-needed", "missing-capability", "recovery-needed"],
+      "priority": 25
+    },
+    {
+      "id": "visible-progress",
+      "description": "User-visible checkpoints for long or opaque multi-phase work.",
+      "source": { "sections": ["## Keep long work visibly alive"] },
+      "actions": ["coordinate"],
+      "priority": 5
+    },
+    {
+      "id": "trace-lifecycle",
+      "description": "Trace propagation, evidence-backed outcomes, and active epoch behavior.",
+      "source": { "sections": ["## Carry observable traces"] },
+      "domains": ["skill-system", "agent-orchestration"],
+      "actions": ["verify", "maintain", "analyze"],
+      "priority": 20
+    },
+    {
+      "id": "capability-chaining",
+      "description": "Discover, inspect, and chain new capabilities after runtime evidence changes the route.",
+      "source": { "sections": ["## Discover and chain tools"] },
+      "signals": ["capability-discovery-needed", "additional-capability-needed", "tool-chain-needed", "provider-refresh-needed", "replan-needed"],
+      "priority": 25
+    },
+    {
+      "id": "routing-maintenance",
+      "description": "Autoregistry, routing metadata, fixture, and skill maintenance rules.",
+      "source": { "sections": ["## Maintain autoregistry and skills"] },
+      "actions": ["maintain", "edit", "create"],
+      "artifacts": ["skill", "mcp"],
+      "priority": 15
+    }
+  ]
+}

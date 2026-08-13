@@ -27,6 +27,7 @@ const vocabulary = await client.callTool({ name: "mssr_vocabulary", arguments: {
 const vocabularyText = vocabulary.content.find((entry) => entry.type === "text")?.text;
 assert.ok(vocabularyText);
 assert.equal(JSON.parse(vocabularyText).traceContract, "trace-contract-v1");
+assert.equal(JSON.parse(vocabularyText).routing.skillSources.includes("mssr-first-party"), true);
 
 const reduced = await client.callTool({
   name: "mssr_trace_reduce",

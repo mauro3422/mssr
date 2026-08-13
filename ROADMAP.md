@@ -1,5 +1,18 @@
 # MSSR roadmap
 
+## Release boundary (0.2.8)
+
+- `0.2.7` delivered the portable route-closure evaluator and the success-outcome
+  gate. `0.2.8` records its release boundary, project state, and package scope;
+  it does not add a new routing algorithm or relax a closure obligation.
+- The first-party package now contains five canonical skill trees, a versioned
+  reserved-name manifest, native/Codex/OpenCode provider discovery, opt-in Codex
+  installation, and source-level conformance tests. Bridge `0.6.88` integration
+  remains pending controlled runtime restart and live catalog/version readback.
+- Historical learning remains `observe-only` with `routingInfluence=false`.
+  Dataset audit, replay/holdout, calibration, shadow evaluation, a versioned
+  feature flag, and tested rollback remain separate future gates.
+
 ## v0.1 — independent foundation
 
 - [x] Independent repository, package metadata, routing contract, and docs.
@@ -25,7 +38,12 @@
 - [x] Standalone `mssr-mcp` process exposing registry status/refresh, search,
   inspect, plan, and audit tools.
 - [ ] Dynamic provider registration without making MSSR an execution proxy.
-- [ ] Host adapters for Bridge, Codex-local, and ChatGPT-compatible MCP clients.
+- [x] Bundled first-party provider discovery for the native facade, Codex-local,
+  and OpenCode-local adapters, plus opt-in Codex junction installation. The
+  manifest reserves five canonical names and a divergent external shadow blocks
+  the audit.
+- [ ] Complete Bridge 0.6.88 runtime restart/catalog/version readback and
+  ChatGPT Web runtime validation. Source integration alone is not live proof.
 
 ## v0.4 — activation observability and durable learning
 
@@ -57,14 +75,28 @@
 - [ ] Migrate remaining active managed repositories from legacy or missing project-memory authorities only after reading their real project evidence; do not mass-generate empty PROJECT_* files or manifests.
 - [ ] Post-iteration learning/promotion pipeline: isolated evidence -> project regression/context-memory-state update, architecture/design decision, owning skill/tool/guide update, or MSSR fixture/metadata correction according to ownership; never assume every lesson belongs in a skill.
 - [ ] Feed eligible historical priors back into route/context ranking as a bounded secondary score with an exploration floor, decay/staleness policy, and review-only proposals before durable routing semantics change. Exact deterministic metadata/fixtures remain authoritative; evaluate vector similarity only as a secondary retrieval signal for nearby signatures.
-- [ ] Package MSSR first-party skills under one canonical `mssr` source tree instead of relying on Mauro's external Codex catalog for the router's own operation. Audit and strengthen at least `mssr-agent-routing`, `shared-skill-governance`, `skill-routing-maintainer`, `skill-maintenance-loop`, and on-demand `mssr-observability-maintenance`; distinguish "shipped first-party" from "required on every task".
-- [ ] Add host installation/adapters for packaged MSSR core skills: Codex mount/junction support, OpenCode package/native adapter loading, and Bridge/ChatGPT Web direct package discovery. External/user-created/project/plugin skills remain separate provider catalogs and must not silently shadow reserved first-party names.
-- [ ] Add a cross-host conformance matrix proving the same MSSR core skill versions, activation metadata, dependency closure, maintenance lifecycle, and digest semantics are visible from Codex, OpenCode, and ChatGPT Web without copying multiple editable sources.
+- [x] Established one canonical first-party MSSR skill source inside this package:
+  `mssr-agent-routing`, `shared-skill-governance`,
+  `skill-routing-maintainer`, `skill-maintenance-loop`, and on-demand
+  `mssr-observability-maintenance`. The five directories exactly match the
+  manifest and preserve explicit activation metadata; that does not make every
+  listed skill required for every task.
+- [x] Met the source admission gates: canonical owner/provenance manifest,
+  bundled package inclusion, frontmatter/manifest conformance, provider
+  precedence, reserved-shadow audit failure, opt-in installer, and custom
+  catalog guards.
+- [x] Added source conformance for native, Codex-local, and OpenCode-local
+  discovery plus Codex mounting. External, user-created, project, and plugin
+  skills remain separate catalogs and cannot silently shadow a reserved name.
+- [ ] Complete the runtime conformance matrix: Bridge/ChatGPT Web live
+  discovery after restart, then lifecycle, digest, replay, and rollback parity
+  across all hosts. The current source tests do not prove those broader gates.
 - [ ] Historical replay benchmark measuring missed activation, over-activation,
   required-load compliance, phase continuity, latency, recovery, and outcome
   quality on confirmed real cases.
-- [ ] Cross-host adapters that expose the same trace/checkpoint contract in
-  Codex-local and ChatGPT web while preserving caller-owned execution.
+- [ ] Prove the same trace/checkpoint contract through the packaged host
+  adapters while preserving caller-owned execution; do not infer this from a
+  Bridge-only integration release.
 
 ## v1.0 — portable distribution
 

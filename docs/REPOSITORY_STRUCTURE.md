@@ -30,8 +30,15 @@ config/skill-context/
 config/project-context/
   Portable `.bridge/project-context.json` manifest schema.
 
+config/first-party-skills.json
+  Versioned ownership manifest for the five reserved bundled MSSR skills.
+
+skills/
+  Canonical first-party skill trees named exactly by the manifest. These are
+  shipped package content, not copies of the external custom catalog.
+
 scripts/
-  Core, registry, MCP, routing, skill-context, project-context and intent-normalization tests plus the skill audit generator.
+  Core, registry, MCP, routing, skill-context, project-context and intent-normalization tests, first-party package/installer conformance, the opt-in first-party installer, and the skill audit generator.
 
 templates/
   Managed bootstrap/instruction templates.
@@ -84,10 +91,11 @@ Do not turn generated dashboards, provider caches, logs or prompt dumps into a s
 
 ```text
 D:\Dev\mssr
-  Portable routing contract and engine.
+  Portable routing contract, engine, and the five canonical reserved first-party skill sources.
 
 D:\Dev\mauroprime-skills
-  Git source for Mauro's reusable custom skills.
+  Git source for Mauro's non-reserved reusable custom skills. It may not create
+  an editable source using a name reserved by `config/first-party-skills.json`.
 
 C:\Users\mauro\.codex\skills
   Runtime junctions and installed/plugin/system providers.
@@ -100,6 +108,21 @@ Project repositories
 ```
 
 Bridge may re-export MSSR for compatibility, but must not fork the engine or hard-code an independent routing contract.
+
+## First-party skill installation and precedence
+
+`scripts/install-first-party-skills.ps1` is opt-in: package installation has no
+postinstall mutation. It validates the manifest and matching frontmatter, then
+creates or verifies only the five named Codex junctions. An unexpected existing
+target is refused unless the operator explicitly requests replacement with a
+backup; unrelated runtime skill paths are never enumerated for mutation.
+
+`MssrFirstPartySkillProvider` discovers those bundled sources in the native,
+Codex-local, and OpenCode-local registries. A runtime junction to the same real
+source is deduplicated as an alias. A divergent external source using a reserved
+name is a `reserved-first-party-conflict` and blocks routing audit. Bridge 0.6.88
+still needs controlled restart and live catalog/version verification before its
+runtime integration can be claimed complete.
 
 ## Change classes
 

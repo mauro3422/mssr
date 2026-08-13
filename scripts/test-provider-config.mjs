@@ -40,7 +40,7 @@ try {
 const registry = createRegistryFromProviderConfig(fixture);
 assert.deepEqual(
   registry.getSnapshot().providers.map((provider) => provider.id),
-  ["filesystem-skills", "fixture-mcp"],
+  ["filesystem-skills", "fixture-mcp", "mssr-first-party-skills"],
 );
 await registry.close();
 console.log("operator provider config tests passed");
