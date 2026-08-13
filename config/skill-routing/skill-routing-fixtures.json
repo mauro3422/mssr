@@ -6056,6 +6056,54 @@
           "asset-component-reuse"
         ]
       }
+    },
+    {
+      "name": "godot-graph-ux-audit-excludes-visual-reference-replication",
+      "task": "Audit a Godot GraphEdit canvas with a full panorama, strange routes, distant sidecars, wasted space and auto-layout performance.",
+      "context": "This is an editor graph UX audit, not replication of a visual reference.",
+      "stage": "implement",
+      "completedPhases": [],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Audit UX, layout and routing of a graph canvas inside the Godot editor.",
+        "domains": [
+          "godot",
+          "coding"
+        ],
+        "actions": [
+          "review",
+          "analyze",
+          "debug",
+          "optimize"
+        ],
+        "artifacts": [
+          "ui",
+          "project"
+        ],
+        "needs": [
+          "visual-qa",
+          "scene-analysis",
+          "performance",
+          "integrity-verification"
+        ],
+        "signals": [
+          "reusable-pattern"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "godot-project-inspection",
+          "godot-graph-ux-audit"
+        ],
+        "activeExcludes": [
+          "visual-reference-replication"
+        ]
+      }
     }
   ]
 }

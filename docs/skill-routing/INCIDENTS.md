@@ -1311,3 +1311,27 @@ The portable `maintenanceCheckpointCompleted()` reducer required `status="succes
 ### Regression
 
 `test-trace-contract` now reproduces the exact status-omitted maintenance shape and asserts `maintenanceRevision == lifecycleRevision` before a successful outcome. `test-codex-standalone` verifies host-gated optional loading, ephemeral working-memory purge on outcome, and terminal closure state. `test-telemetry-analysis` verifies contextual accepted/skipped decision aggregation.
+
+## MSSR-038 - Skill exclusions warned but did not resolve optional-root conflicts
+
+**Date:** 2026-08-13
+
+### Trigger
+
+A live Godot GraphEdit UX-audit route selected both `godot-graph-ux-audit` and `visual-reference-replication` even though the graph-audit contract excludes the replication skill. The route emitted an exclusion warning but still returned both as active roots.
+
+### Minimal reproduction
+
+Structured GraphEdit intent with domains `godot,coding`, artifacts `ui,project`, visual-QA/scene-analysis/performance needs and review/analyze/debug/optimize actions.
+
+### Root cause
+
+`src/skill-routing.ts` applied `excludes` only after root selection to populate `conflictWarnings`. Optional roots were chosen by score/budget without considering exclusions, so the declared contract was diagnostic instead of effective.
+
+### Correction
+
+Optional root selection now walks the already-ranked candidates, retains required roots first, and skips an optional candidate when either side declares an exclusion with any retained root. It continues scanning so the optional budget can be filled by the next compatible candidate. Required workflow roots and transitive dependencies are never silently removed; any conflict introduced by those obligations remains observable as a warning.
+
+### Regression
+
+Added `godot-graph-ux-audit-excludes-visual-reference-replication`. Before the engine fix, `npm run test:skill-routing` failed exactly because `visual-reference-replication` remained active. After the fix, all 195 routing fixtures pass.

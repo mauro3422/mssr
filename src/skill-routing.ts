@@ -991,7 +991,16 @@ export async function planSkillRoute(args: {
   // every required skill". Required workflow skills may exceed the budget and
   // dependencies may expand it, but optional matches may not.
   const optionalBudget = Math.max(0, maxSkills - requiredSelected.length);
-  const optionalSelected = scored.filter((skill) => !skill.required).slice(0, optionalBudget);
+  const optionalSelected: RoutedSkill[] = [];
+  const retainedRoots: RoutedSkill[] = [...requiredSelected];
+  const rootsConflict = (candidate: RoutedSkill, retained: RoutedSkill) =>
+    candidate.excludes.includes(retained.name) || retained.excludes.includes(candidate.name);
+  for (const candidate of scored.filter((skill) => !skill.required)) {
+    if (optionalSelected.length >= optionalBudget) break;
+    if (retainedRoots.some((retained) => rootsConflict(candidate, retained))) continue;
+    optionalSelected.push(candidate);
+    retainedRoots.push(candidate);
+  }
   const selected: RoutedSkill[] = [...requiredSelected, ...optionalSelected].map((skill) => ({ ...skill, selectedAsRoot: true }));
   for (const root of selected) byName.set(root.name, root);
   const rootSelectedNames = new Set(selected.map((skill) => skill.name));
