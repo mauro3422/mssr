@@ -36,6 +36,11 @@ import {
   selectMssrContextMessages,
   type MssrContextMessage,
 } from "./context-messages.js";
+import {
+  acknowledgeProjectContextInbox,
+  loadProjectContextHost,
+  type ProjectContextHostResult,
+} from "./context-plane-host.js";
 
 export type CodexMssrRouteInput = {
   task: string;
@@ -53,6 +58,12 @@ export type CodexMssrRouteInput = {
   contextMessages?: MssrContextMessage[];
   maxContextMessages?: number;
   maxContextMessageChars?: number;
+  projectRoot?: string;
+  contextMaxChars?: number;
+  contextMaxModules?: number;
+  contextMessageMaxChars?: number;
+  contextMessageMaxMessages?: number;
+  contextNow?: string;
 };
 
 export type HostMssrAdapterOptions = {
@@ -166,30 +177,56 @@ export class CodexMssrAdapter {
   private async plan(input: CodexMssrRouteInput, action: "plan" | "bootstrap") {
     await this.initialize();
     const intent = structuredSkillIntentSchema.parse(input.intent);
+    const stage = input.stage ?? "start";
     const traceId = input.traceId ?? this.newTraceId();
     const plan = await planSkillRoute({
       task: input.task,
       context: input.context,
       intent,
       caller: this.options.caller,
-      stage: input.stage ?? "start",
+      stage,
       completedPhases: input.completedPhases ?? [],
       maxSkills: input.maxSkills,
       skills: this.discoveredSkills(),
     });
+
+    let host: ProjectContextHostResult | undefined;
+    if (input.projectRoot) {
+      const maxContextMessages = input.contextMessageMaxMessages ?? input.maxContextMessages;
+      const maxContextMessageChars = input.contextMessageMaxChars ?? input.maxContextMessageChars;
+      host = await loadProjectContextHost({
+        projectRoot: input.projectRoot,
+        intent,
+        stage: plan.stage,
+        ...(input.contextNow ? { now: input.contextNow } : {}),
+        ...(input.contextMaxChars !== undefined ? { maxProjectContextChars: input.contextMaxChars } : {}),
+        ...(input.contextMaxModules !== undefined ? { maxProjectContextModules: input.contextMaxModules } : {}),
+        ...(maxContextMessageChars !== undefined ? { maxContextMessageChars } : {}),
+        ...(maxContextMessages !== undefined ? { maxContextMessages } : {}),
+        ...(input.contextMessages ? { contextMessages: mssrContextMessageBatchSchema.parse(input.contextMessages) } : {}),
+      });
+    }
+
     const observedPlan = {
       ...plan,
       workflowKey: input.workflowKey,
       agentProfile: this.profile(input),
-      ...(input.contextMessages ? {
-        contextMessages: selectMssrContextMessages({
-          messages: mssrContextMessageBatchSchema.parse(input.contextMessages),
-          intent,
-          stage: plan.stage,
-          maxMessages: input.maxContextMessages,
-          maxChars: input.maxContextMessageChars,
-        }),
-      } : {}),
+      ...(host
+        ? {
+          contextMessages: host.contextMessages,
+          projectContext: host.projectContext,
+          inbox: host.inbox,
+          repository: host.repository,
+        }
+        : input.contextMessages ? {
+          contextMessages: selectMssrContextMessages({
+            messages: mssrContextMessageBatchSchema.parse(input.contextMessages),
+            intent,
+            stage: plan.stage,
+            maxMessages: input.maxContextMessages,
+            maxChars: input.maxContextMessageChars,
+          }),
+        } : {}),
     };
     const lifecycle = reduceMssrRouteLifecycle(this.traces.get(traceId) ?? null, observedPlan);
     this.traces.set(traceId, lifecycle);
@@ -349,5 +386,18 @@ export class CodexMssrAdapter {
       violations,
       telemetry,
     };
+  }
+
+  /**
+   * Acknowledges delivered context messages for the nominated project's durable
+   * inbox.  Delegates to the shared host helper which atomically persists the
+   * updated state; selection alone never acknowledges.
+   */
+  async acknowledgeContextMessages(projectRoot: string, messageIds: string[], now?: string) {
+    return acknowledgeProjectContextInbox({
+      projectRoot,
+      messageIds,
+      ...(now ? { now } : {}),
+    });
   }
 }

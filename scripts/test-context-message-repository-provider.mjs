@@ -2,7 +2,12 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import { mssrContextMessageSchema } from "../dist/index.js";
+import {
+  mssrContextMessageSchema,
+  produceContextMessages,
+  selectMssrContextMessages,
+  structuredSkillIntentSchema,
+} from "../dist/index.js";
 import { collectRepositoryContextMessages } from "../dist/context-message-repository-provider.js";
 
 const MARKER = "HUGE_LEAK_MARKER_8f2a91";
@@ -233,6 +238,169 @@ try {
     ],
   );
   assert.equal(capped.messages.length, 2);
+
+  // --- Repository-fact selector activation ---
+
+  const selectRefs = (messages, intent, stage) => selectMssrContextMessages({
+    messages,
+    intent: structuredSkillIntentSchema.parse(intent),
+    stage,
+    maxMessages: 32,
+  }).selected.map((message) => message.evidence[0]?.ref).filter(Boolean);
+
+  const incidentSelection = selectRefs(
+    result.messages,
+    { domains: ["coding"], actions: ["analyze"], signals: ["error-observed"], risk: "read-only" },
+    "implement",
+  );
+  assert.equal(incidentSelection.includes("docs/INCIDENTS.md"), true);
+  assert.equal(incidentSelection.includes("CHANGELOG.md"), false);
+  assert.equal(incidentSelection.includes(".bridge/PROJECT_STATE.md"), false);
+
+  const changelogSelection = selectRefs(
+    result.messages,
+    { domains: ["git"], actions: ["version"], artifacts: ["document"], signals: ["nominal"], risk: "write" },
+    "persist",
+  );
+  assert.equal(changelogSelection.includes("CHANGELOG.md"), true);
+  assert.equal(changelogSelection.includes("changelogs/1.0.0.md"), true);
+  assert.equal(changelogSelection.includes("docs/INCIDENTS.md"), false);
+
+  const architectureSelection = selectRefs(
+    result.messages,
+    { domains: ["coding"], actions: ["review"], artifacts: ["repository"], signals: ["nominal"], risk: "read-only" },
+    "verify",
+  );
+  assert.equal(architectureSelection.includes("docs/decisions/0001-use-mssr.md"), true);
+  assert.equal(architectureSelection.includes("docs/decisions/0002-patterns.md"), true);
+  assert.equal(architectureSelection.includes("docs/decisions/0003-huge.md"), true);
+  assert.equal(architectureSelection.includes("docs/INCIDENTS.md"), false);
+
+  const resumeSelection = selectRefs(
+    result.messages,
+    { domains: ["coding"], actions: ["design"], needs: ["history-recovery"], signals: ["nominal"], risk: "read-only" },
+    "resume",
+  );
+  for (const ref of [".bridge/PROJECT_CONTEXT.md", ".bridge/PROJECT_MEMORY.md", ".bridge/PROJECT_STATE.md", "docs/PROJECT_CONTEXT.md"]) {
+    assert.equal(resumeSelection.includes(ref), true, ref);
+  }
+  assert.equal(resumeSelection.includes("docs/INCIDENTS.md"), false);
+
+  const blenderSelection = selectRefs(
+    result.messages,
+    { domains: ["blender"], actions: ["edit"], artifacts: ["model-3d"], signals: ["nominal"], risk: "write" },
+    "implement",
+  );
+  assert.deepEqual(blenderSelection, []);
+
+  const selectorlessObservation = {
+    id: "manual-noselector-fact",
+    sourceKind: "project-context",
+    ref: "manual/noselector.md",
+    title: "Selector-less fact",
+    summary: "Manually produced without selectors.",
+    canonicalOwner: "mssr-test",
+    provenance: "manual",
+    availability: true,
+    revision: "rev-manual",
+  };
+  const selectorlessMessage = produceContextMessages([selectorlessObservation])[0];
+  const selectorlessDecision = selectMssrContextMessages({
+    messages: [selectorlessMessage],
+    intent: structuredSkillIntentSchema.parse({
+      domains: ["coding"],
+      actions: ["design"],
+      needs: ["history-recovery"],
+      signals: ["recovery-needed"],
+      risk: "read-only",
+    }),
+    stage: "resume",
+  }).decisions[0];
+  assert.equal(selectorlessDecision.selected, false);
+  assert.equal(selectorlessDecision.reason, "intent-mismatch");
+
+  // --- Explicit manifest override and fail-closed behavior ---
+
+  await write(root, ".bridge/context-messages.json", JSON.stringify({
+    schemaVersion: 1,
+    entries: {
+      "docs/INCIDENTS.md": { signals: ["replan-needed"], priority: 25 },
+    },
+  }));
+
+  const overridden = await collectRepositoryContextMessages({ projectRoot: root });
+  const overriddenIncident = overridden.observations.find((observation) => observation.ref === "docs/INCIDENTS.md");
+  assert.deepEqual([...overriddenIncident.signals], ["replan-needed"]);
+  assert.equal(overriddenIncident.priority, 25);
+  const replanSelection = selectMssrContextMessages({
+    messages: overridden.messages,
+    intent: structuredSkillIntentSchema.parse({ domains: ["coding"], actions: ["analyze"], signals: ["replan-needed"], risk: "read-only" }),
+    stage: "implement",
+  });
+  assert.equal(replanSelection.selected.some((message) => message.evidence[0]?.ref === "docs/INCIDENTS.md"), true);
+
+  await write(root, ".bridge/context-messages.json", JSON.stringify({
+    schemaVersion: 1,
+    entries: {
+      "docs/INCIDENTS.md": { signals: ["replan-needed"] },
+      "docs/missing.md": { signals: ["recovery-needed"] },
+    },
+  }));
+  const unknownRefResult = await collectRepositoryContextMessages({ projectRoot: root });
+  assert.equal(
+    unknownRefResult.diagnostics.some((diagnostic) => diagnostic.issue === "context-messages-manifest-unknown-ref"),
+    true,
+  );
+  const failedIncident = unknownRefResult.observations.find((observation) => observation.ref === "docs/INCIDENTS.md");
+  assert.deepEqual(
+    [...failedIncident.signals],
+    ["error-observed", "warning-observed", "repeated-friction", "recovery-needed"],
+  );
+
+  await write(root, ".bridge/context-messages.json", JSON.stringify({
+    schemaVersion: 1,
+    entries: { "docs/INCIDENTS.md": { signals: ["replan-needed"] }, "../escape.md": { signals: ["nominal"] } },
+  }));
+  const unsafeRefResult = await collectRepositoryContextMessages({ projectRoot: root });
+  assert.equal(
+    unsafeRefResult.diagnostics.some((diagnostic) => diagnostic.issue === "context-messages-manifest-unsafe-ref"),
+    true,
+  );
+  const unsafeIncident = unsafeRefResult.observations.find((observation) => observation.ref === "docs/INCIDENTS.md");
+  assert.deepEqual(
+    [...unsafeIncident.signals],
+    ["error-observed", "warning-observed", "repeated-friction", "recovery-needed"],
+  );
+
+  await write(root, ".bridge/context-messages.json", "{ not-json");
+  const malformedResult = await collectRepositoryContextMessages({ projectRoot: root });
+  assert.equal(
+    malformedResult.diagnostics.some((diagnostic) => diagnostic.issue === "context-messages-manifest-invalid-json"),
+    true,
+  );
+  const malformedIncident = malformedResult.observations.find((observation) => observation.ref === "docs/INCIDENTS.md");
+  assert.deepEqual(
+    [...malformedIncident.signals],
+    ["error-observed", "warning-observed", "repeated-friction", "recovery-needed"],
+  );
+
+  await write(root, ".bridge/context-messages.json", `{
+  "schemaVersion": 1,
+  "entries": {
+    "docs/INCIDENTS.md": { "signals": ["replan-needed"] },
+    "docs/INCIDENTS.md": { "signals": ["error-observed"] }
+  }
+}`);
+  const duplicateResult = await collectRepositoryContextMessages({ projectRoot: root });
+  assert.equal(
+    duplicateResult.diagnostics.some((diagnostic) => diagnostic.issue.startsWith("context-messages-manifest-duplicate-ref")),
+    true,
+  );
+  const duplicateIncident = duplicateResult.observations.find((observation) => observation.ref === "docs/INCIDENTS.md");
+  assert.deepEqual(
+    [...duplicateIncident.signals],
+    ["error-observed", "warning-observed", "repeated-friction", "recovery-needed"],
+  );
 } finally {
   if (root) await fs.rm(root, { recursive: true, force: true });
 }

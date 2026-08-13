@@ -6,12 +6,17 @@ import { createMssrRegistryFromEnvironment } from "./provider-config.js";
 import { SKILL_PHASES, SKILL_STAGES, structuredSkillIntentSchema } from "./skill-routing.js";
 import { createMssrTelemetrySinkFromEnvironment, mssrHostCheckpointSchema } from "./telemetry.js";
 import { mssrContextMessageBatchSchema } from "./context-messages.js";
+import {
+  MAX_HOST_CONTEXT_MESSAGE_CHARS,
+  MAX_HOST_PROJECT_CONTEXT_CHARS,
+  MAX_HOST_PROJECT_CONTEXT_MODULES,
+} from "./context-plane-host.js";
 
 function response(value: unknown) {
   return { content: [{ type: "text" as const, text: JSON.stringify(value, null, 2) }] };
 }
 
-const routeInput = {
+const routeInput = z.object({
   task: z.string().min(1),
   context: z.string().max(4000).optional(),
   intent: structuredSkillIntentSchema,
@@ -25,7 +30,19 @@ const routeInput = {
   contextMessages: mssrContextMessageBatchSchema.optional(),
   maxContextMessages: z.number().int().min(0).max(32).optional(),
   maxContextMessageChars: z.number().int().min(0).max(20_000).optional(),
-};
+  projectRoot: z.string().min(1).max(4096).optional(),
+  contextNow: z.string().datetime({ offset: true }).optional(),
+  contextMaxChars: z.number().int().min(0).max(MAX_HOST_PROJECT_CONTEXT_CHARS).optional(),
+  contextMaxModules: z.number().int().min(0).max(MAX_HOST_PROJECT_CONTEXT_MODULES).optional(),
+  contextMessageMaxChars: z.number().int().min(0).max(MAX_HOST_CONTEXT_MESSAGE_CHARS).optional(),
+  contextMessageMaxMessages: z.number().int().min(0).max(32).optional(),
+}).strict();
+
+const contextAckInputSchema = z.object({
+  projectRoot: z.string().min(1).max(4096),
+  messageIds: z.array(z.string().regex(/^[a-z0-9][a-z0-9._:-]{1,119}$/)).min(1).max(32),
+  now: z.string().datetime({ offset: true }).optional(),
+}).strict();
 
 /** Stateful OpenCode-local adapter. Execution remains owned by OpenCode and its configured providers. */
 export function createOpenCodeMssrMcpServer(adapter: CodexMssrAdapter) {
@@ -65,6 +82,11 @@ export function createOpenCodeMssrMcpServer(adapter: CodexMssrAdapter) {
     description: "Inspect one capability metadata record without executing it.",
     inputSchema: { idOrName: z.string().min(1) },
   }, async ({ idOrName }) => response({ capability: adapter.registry.inspect(idOrName) ?? null }));
+
+  server.registerTool("mssr_context_ack", {
+    description: "Acknowledge delivered MSSR context messages for one project's durable inbox. Only explicit delivery confirmation persists; selection alone never acknowledges.",
+    inputSchema: contextAckInputSchema,
+  }, async ({ projectRoot, messageIds, now }) => response(await adapter.acknowledgeContextMessages(projectRoot, messageIds, now)));
 
   return { server, adapter };
 }

@@ -1,0 +1,237 @@
+import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
+import fs from "node:fs/promises";
+import os from "node:os";
+import path from "node:path";
+import {
+  MAX_PROJECT_CONTEXT_CHARS,
+  loadProjectContextModuleManifest,
+  loadProjectContextModules,
+  readBoundedMarkdown,
+  safeMarkdownPath,
+} from "../dist/project-context-loader.js";
+import { structuredSkillIntentSchema } from "../dist/index.js";
+
+const base = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-project-context-loader-"));
+
+function mod(id, overrides = {}) {
+  return { id, path: `${id}.md`, priority: 0, required: false, estimatedChars: 256, ...overrides };
+}
+
+async function writeFixture(name, { modules = [], core = [], files = {}, withManifest = true }) {
+  const root = path.join(base, name);
+  await fs.rm(root, { recursive: true, force: true });
+  await fs.mkdir(path.join(root, ".bridge"), { recursive: true });
+  await fs.mkdir(path.join(root, "docs"), { recursive: true });
+  if (withManifest) {
+    await fs.writeFile(
+      path.join(root, ".bridge", "project-context-modules.json"),
+      JSON.stringify({ schemaVersion: 1, canonicalOwner: "test-fixture", core: core.map((id) => ({ id })), modules }),
+      "utf8",
+    );
+  }
+  for (const [rel, content] of Object.entries(files)) {
+    const target = path.join(root, rel);
+    await fs.mkdir(path.dirname(target), { recursive: true });
+    await fs.writeFile(target, content, "utf8");
+  }
+  return root;
+}
+
+function intent(overrides = {}) {
+  return structuredSkillIntentSchema.parse({
+    domains: ["coding"],
+    actions: ["edit"],
+    needs: [],
+    signals: ["nominal"],
+    risk: "write",
+    ambiguity: "low",
+    ...overrides,
+  });
+}
+
+const intentEdit = intent({ domains: ["coding"], actions: ["edit"] });
+const intentBlender = intent({ domains: ["blender"], actions: ["discover"], risk: "read-only" });
+
+try {
+  const filesA = {
+    "core-a.md": "# Core\n\nAlways loaded.\n",
+    "opt-edit.md": "# Edit\n\nChosen when editing.\n",
+    "opt-verify-stage.md": "# Verify stage\n\nOnly in verify stage.\n",
+    "opt-unrelated.md": "# Unrelated\n\nThemed for roblox review.\n",
+  };
+  const modulesA = [
+    mod("core-a", { estimatedChars: 64 }),
+    mod("opt-edit", { domains: ["coding"], actions: ["edit"], stages: ["implement"], estimatedChars: 128 }),
+    mod("opt-verify-stage", { domains: ["coding"], actions: ["edit"], stages: ["verify"], estimatedChars: 128 }),
+    mod("opt-unrelated", { domains: ["roblox"], actions: ["review"], estimatedChars: 128 }),
+  ];
+  const rootA = await writeFixture("a-basic", { modules: modulesA, core: ["core-a"], files: filesA });
+
+  const resA = await loadProjectContextModules({ projectRoot: rootA, intent: intentEdit, stage: "implement" });
+  assert.equal(resA.advisoryOnly, true);
+  assert.deepEqual(resA.core.map((r) => r.ref), ["core-a"]);
+  assert.deepEqual(resA.selected.map((r) => r.ref), ["opt-edit"]);
+  assert.equal(resA.decisions.length, 3);
+  assert.equal(resA.decisions.find((d) => d.id === "opt-verify-stage").selected, false);
+  assert.equal(resA.decisions.find((d) => d.id === "opt-unrelated").selected, false);
+  assert.equal(typeof resA.remainingChars, "number");
+  assert.ok(resA.remainingChars >= 0);
+
+  const resUnrelated = await loadProjectContextModules({ projectRoot: rootA, intent: intentBlender, stage: "close" });
+  assert.deepEqual(resUnrelated.core.map((r) => r.ref), ["core-a"]);
+  assert.deepEqual(resUnrelated.selected.map((r) => r.ref), []);
+  assert.equal(resUnrelated.decisions.every((d) => d.selected === false), true);
+
+  const filesB = { "core-a.md": "Core.", "opt-req.md": "# Req\nTiny.\n", "opt-free.md": "# Free\nTiny.\n" };
+  const modulesB = [
+    mod("core-a", { estimatedChars: 64 }),
+    mod("opt-req", { domains: ["coding"], actions: ["edit"], stages: ["implement"], required: true, estimatedChars: 256 }),
+    mod("opt-free", { domains: ["coding"], actions: ["edit"], stages: ["implement"], estimatedChars: 256 }),
+  ];
+  const rootB = await writeFixture("b-budget", { modules: modulesB, core: ["core-a"], files: filesB });
+  const resB = await loadProjectContextModules({ projectRoot: rootB, intent: intentEdit, stage: "implement", maxChars: 5, maxModules: 1 });
+  assert.deepEqual(resB.selected.map((r) => r.ref), []);
+  assert.deepEqual(resB.requiredBudgetExceeded.sort(), ["opt-req"]);
+  assert.equal(resB.decisions.find((d) => d.id === "opt-free").reason, "budget-exceeded");
+  assert.equal(resB.decisions.find((d) => d.id === "opt-free").selected, false);
+
+  const filesB2 = {
+    "core-big.md": "C".repeat(30_000),
+    "req-big.md": "# Req big\n",
+    "notreq-big.md": "# Not required big\n",
+  };
+  const modulesB2 = [
+    mod("core-big", { estimatedChars: 30_000 }),
+    mod("req-big", { required: true, estimatedChars: 25_000, domains: ["coding"], actions: ["edit"] }),
+    mod("notreq-big", { required: false, estimatedChars: 25_000, domains: ["coding"], actions: ["edit"] }),
+  ];
+  const rootB2 = await writeFixture("b-overflow", { modules: modulesB2, core: ["core-big"], files: filesB2 });
+  const resB2 = await loadProjectContextModules({ projectRoot: rootB2, intent: intentEdit, stage: "implement" });
+  assert.deepEqual(resB2.requiredOverflow.sort(), ["core-big", "req-big"]);
+  assert.equal(resB2.requiredOverflow.includes("notreq-big"), false);
+
+  const dirC = path.join(base, "c-safety");
+  await fs.rm(dirC, { recursive: true, force: true });
+  await fs.mkdir(path.join(dirC, ".bridge"), { recursive: true });
+  assert.throws(() => safeMarkdownPath(dirC, "../evil.md"), /traverse/);
+  assert.throws(() => safeMarkdownPath(dirC, path.join("sub", "..", "..", "escape.md")), /traverse/);
+  assert.throws(() => safeMarkdownPath(dirC, "notes.txt"), /markdown/);
+  assert.throws(() => safeMarkdownPath(dirC, path.join(dirC, "abs.md")), /absolute/);
+  assert.equal(
+    path.resolve(safeMarkdownPath(dirC, "docs/good.md")),
+    path.resolve(path.join(dirC, "docs", "good.md")),
+  );
+
+  const tooBig = path.join(dirC, "big.md");
+  await fs.writeFile(tooBig, "x".repeat(MAX_PROJECT_CONTEXT_CHARS + 1), "utf8");
+  await assert.rejects(() => readBoundedMarkdown(tooBig), /exceeds/);
+
+  const small = path.join(dirC, "small.md");
+  await fs.writeFile(small, "hi", "utf8");
+  const rawSmall = await readBoundedMarkdown(small);
+  assert.equal(rawSmall.content, "hi");
+  assert.equal(rawSmall.bytes, 2);
+  await assert.rejects(() => readBoundedMarkdown(small, 1), /exceeds/);
+
+  const filesC2 = { "core-safe.md": "safe", "evil.md": "evil" };
+  const rootC2 = await writeFixture("c-traverse", {
+    modules: [mod("core-safe", { estimatedChars: 16 }), mod("evil", { path: "../evil.md", estimatedChars: 16 })],
+    core: ["evil"],
+    files: filesC2,
+  });
+  await assert.rejects(
+    () => loadProjectContextModules({ projectRoot: rootC2, intent: intentEdit, stage: "implement" }),
+    /traverse/,
+  );
+
+  const rootC3 = await writeFixture("c-nonmd", {
+    modules: [mod("core-safe", { estimatedChars: 16 }), mod("txt", { path: "core.txt", estimatedChars: 16 })],
+    core: ["txt"],
+    files: { "core-safe.md": "safe", "core.txt": "not markdown" },
+  });
+  await assert.rejects(
+    () => loadProjectContextModules({ projectRoot: rootC3, intent: intentEdit, stage: "implement" }),
+    /markdown/,
+  );
+
+  const rootC4 = await writeFixture("c-oversize", {
+    modules: [mod("huge", { path: "huge.md", estimatedChars: MAX_PROJECT_CONTEXT_CHARS })],
+    core: ["huge"],
+    files: { "huge.md": "x".repeat(MAX_PROJECT_CONTEXT_CHARS + 1) },
+  });
+  await assert.rejects(
+    () => loadProjectContextModules({ projectRoot: rootC4, intent: intentEdit, stage: "implement" }),
+    /exceeds/,
+  );
+
+  const filesD = { "core-x.md": "x", "g-a.md": "alpha\n", "g-b.md": "beta\n", "g-c.md": "gamma\n" };
+  const modulesD = [
+    mod("core-x", { estimatedChars: 16 }),
+    mod("g-a", { exclusiveGroup: "pair", domains: ["coding"], actions: ["edit"], stages: ["implement"], estimatedChars: 128 }),
+    mod("g-b", { exclusiveGroup: "pair", domains: ["coding"], actions: ["edit"], stages: ["implement"], estimatedChars: 128 }),
+    mod("g-c", { exclusiveGroup: "solo", domains: ["coding"], actions: ["edit"], stages: ["implement"], estimatedChars: 128 }),
+  ];
+  const rootD = await writeFixture("d-exclusive", { modules: modulesD, core: ["core-x"], files: filesD });
+  const resD = await loadProjectContextModules({ projectRoot: rootD, intent: intentEdit, stage: "implement" });
+  assert.equal(resD.ambiguousExclusiveGroups.length, 1);
+  const ambiguous = resD.ambiguousExclusiveGroups[0];
+  assert.equal(ambiguous.group, "pair");
+  assert.deepEqual(ambiguous.candidates, ["g-a", "g-b"]);
+  assert.equal(typeof ambiguous.score, "number");
+  assert.deepEqual(resD.selected.map((r) => r.ref), ["g-c"]);
+  assert.equal(resD.decisions.find((d) => d.id === "g-a").reason, "ambiguous-candidate");
+  assert.equal(resD.decisions.find((d) => d.id === "g-a").selected, false);
+  assert.equal(resD.decisions.find((d) => d.id === "g-b").reason, "ambiguous-candidate");
+  assert.equal(resD.decisions.find((d) => d.id === "g-b").selected, false);
+  assert.equal(resD.decisions.find((d) => d.id === "g-c").selected, true);
+
+  const rootE1 = await writeFixture("e-empty", { withManifest: false });
+  const missingManifest = await loadProjectContextModuleManifest(rootE1);
+  assert.equal(missingManifest.found, false);
+  const resE1 = await loadProjectContextModules({ projectRoot: rootE1, intent: intentEdit, stage: "start", allowFullDocumentFallback: true });
+  assert.deepEqual(resE1.core, []);
+  assert.deepEqual(resE1.selected, []);
+  assert.deepEqual(resE1.decisions, []);
+  assert.equal(resE1.advisoryOnly, true);
+  assert.equal(resE1.remainingChars, 6000);
+
+  const rootE2 = await writeFixture("e-docs", { files: { "docs/PROJECT_CONTEXT.md": "# Docs context\n" }, withManifest: false });
+  const resE2 = await loadProjectContextModules({ projectRoot: rootE2, intent: intentEdit, stage: "start", allowFullDocumentFallback: true });
+  assert.equal(resE2.core.length, 1);
+  assert.equal(resE2.core[0].ref, "docs/PROJECT_CONTEXT.md");
+  assert.equal(resE2.core[0].content, "# Docs context\n");
+  assert.equal(resE2.advisoryOnly, true);
+
+  const rootE3 = await writeFixture("e-both", {
+    files: {
+      ".bridge/PROJECT_CONTEXT.md": "# Bridge context\n",
+      "docs/PROJECT_CONTEXT.md": "# Docs context\n",
+    },
+    withManifest: false,
+  });
+  const resE3 = await loadProjectContextModules({ projectRoot: rootE3, intent: intentEdit, stage: "start", allowFullDocumentFallback: true });
+  assert.equal(resE3.core.length, 1);
+  assert.equal(resE3.core[0].ref, ".bridge/PROJECT_CONTEXT.md");
+  assert.equal(resE3.core[0].content, "# Bridge context\n");
+
+  const resE4 = await loadProjectContextModules({ projectRoot: rootE3, intent: intentEdit, stage: "start", allowFullDocumentFallback: false });
+  assert.deepEqual(resE4.core, []);
+  assert.deepEqual(resE4.selected, []);
+
+  const shaFile = path.join(dirC, "sha.md");
+  await fs.writeFile(shaFile, "alpha beta gamma", "utf8");
+  const sha1 = await readBoundedMarkdown(shaFile);
+  const sha2 = await readBoundedMarkdown(shaFile);
+  assert.equal(sha1.sha256, sha2.sha256);
+  assert.equal(sha1.sha256, createHash("sha256").update("alpha beta gamma").digest("hex"));
+
+  const resA2 = await loadProjectContextModules({ projectRoot: rootA, intent: intentEdit, stage: "implement" });
+  assert.equal(resA.core[0].sha256, resA2.core[0].sha256);
+  assert.equal(resA.selected[0].sha256, resA2.selected[0].sha256);
+  assert.equal(resA.advisoryOnly, true);
+
+  console.log("project-context-loader tests passed");
+} finally {
+  await fs.rm(base, { recursive: true, force: true });
+}

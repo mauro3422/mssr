@@ -165,19 +165,58 @@ pure modules. It does not yet wire any host adapter to drain them:
   atomic file persistence. Receipts prove delivery, not authorization, and no
   action auto-executes a persistence proposal.
 
-Host delivery remains adapter-owned and is still pending for phase 2: the
-native facade, Codex-local, OpenCode-local, and Bridge adapters have not yet
-been wired to drain the inbox or piggyback its messages.
+Host delivery is adapter-owned. As of **0.2.11**, native `mssr_route_plan`,
+Codex `skill_route_plan`/`skill_bootstrap`, and OpenCode
+`mssr_route_plan`/`mssr_skill_bootstrap` resolve one advisory context plane
+(`projectContext`, `contextMessages`, `inbox`, `repository`) through the
+shared `loadProjectContextHost` helper when `projectRoot` is supplied, and all
+three host surfaces expose an explicit `mssr_context_ack` that is the only
+delivery acknowledgment that persists (selection alone never acknowledges).
+Bridge delivery remains pending: its local dependency junction crosses the
+OpenCode workspace authority boundary, so the Bridge adapter must consume a
+packaged 0.2.11 artifact instead of an in-place junction. No host is claimed
+to adopt the inbox at runtime/restart beyond the targeted activation probes
+below.
+
+### Keyed project context and the modular loader
+
+0.2.11 makes repository context keyed instead of a wholesale full-document
+read:
+
+- **Repository facts receive selectors, defaults, and a manifest.** Every
+  observation produced by the repository collector now carries explicit
+  `stages`/`domains`/`actions`/`artifacts`/`needs`/`signals` selectors derived
+  from conservative source-kind defaults, so each fact stays derivable by the
+  same deterministic `selectMssrContextMessages` selection used everywhere.
+  An optional `.bridge/context-messages.json` manifest (fallback
+  `config/context-messages.json`) overrides per-ref selectors plus `priority`,
+  `required`, and `advisoryActions`; malformed, unsafe, unknown, or duplicated
+  entries fail closed and default selectors survive.
+- **A modular project-context loader** (`src/project-context-loader.ts`) reads
+  a `.bridge/project-context-modules.json` manifest v1: `core` refs always
+  load, while selector-driven `modules` are deterministically scored under a
+  bounded char/module budget with `priority`, `required`,
+  `exclusiveGroup` (a tied top score stays ambiguous and loads neither
+  alternative), and `estimatedChars`. Paths are validated as safe relative
+  markdown, reads are bounded, and a legacy full-document fallback remains
+  observable when no manifest exists.
+- The shared host helper composes the modular loader, repository facts, and
+  the durable explicit-ack inbox into one advisory snapshot and saves
+  prune/enqueue/selection changes atomically; `mssr_context_ack` persists only
+  explicit delivery confirmation.
 
 
 ## Durable project context layer
 
 MSSR does not own a project's facts or full history. Each repository owns its architecture, vocabulary, canonical paths, durable decisions, current state, blockers, and local evidence. The portable core defines how a host may select that material; the repository remains the source of truth.
 
-A project may publish `.bridge/project-context.json` with two layers:
+A project may publish a modular project-context manifest with two layers. The
+implemented 0.2.11 form is `.bridge/project-context-modules.json` (schema v1 in
+`src/project-context-loader.ts`); earlier docs described an equivalent
+`.bridge/project-context.json` shape. Both express:
 
-- `core`: a deliberately small set of `context`, `memory`, or `state` sections needed before or alongside intent classification;
-- `modules`: optional or required `context`, `memory`, `state`, or scoped `directive` sections selected by the current `stage`, `domains`, `actions`, `artifacts`, `needs`, and `signals`.
+- `core`: a deliberately small set of refs loaded before or alongside intent classification;
+- `modules`: optional or required `context`, `memory`, `state`, or scoped `directive` sections selected by the current `stage`, `domains`, `actions`, `artifacts`, `needs`, and `signals`, under a bounded char/module budget with `priority`, `required`, and `exclusiveGroup` semantics.
 
 Project-module selection and skill-module selection reuse the same deterministic semantic selection primitive, but they are independent retrieval axes:
 

@@ -7,6 +7,11 @@ import { createMssrRegistryFromEnvironment } from "./provider-config.js";
 import { createMssrTelemetrySinkFromEnvironment, mssrHostCheckpointSchema } from "./telemetry.js";
 import { mssrSkillDecisionSchema, mssrTraceWorkingMemorySchema } from "./trace-contract.js";
 import { mssrContextMessageBatchSchema } from "./context-messages.js";
+import {
+  MAX_HOST_CONTEXT_MESSAGE_CHARS,
+  MAX_HOST_PROJECT_CONTEXT_CHARS,
+  MAX_HOST_PROJECT_CONTEXT_MODULES,
+} from "./context-plane-host.js";
 
 function response(value: unknown) {
   return {
@@ -14,7 +19,7 @@ function response(value: unknown) {
   };
 }
 
-const routeInput = {
+const routeInput = z.object({
   task: z.string().min(1),
   context: z.string().max(4000).optional(),
   intent: structuredSkillIntentSchema,
@@ -30,7 +35,19 @@ const routeInput = {
   contextMessages: mssrContextMessageBatchSchema.optional(),
   maxContextMessages: z.number().int().min(0).max(32).optional(),
   maxContextMessageChars: z.number().int().min(0).max(20_000).optional(),
-};
+  projectRoot: z.string().min(1).max(4096).optional(),
+  contextNow: z.string().datetime({ offset: true }).optional(),
+  contextMaxChars: z.number().int().min(0).max(MAX_HOST_PROJECT_CONTEXT_CHARS).optional(),
+  contextMaxModules: z.number().int().min(0).max(MAX_HOST_PROJECT_CONTEXT_MODULES).optional(),
+  contextMessageMaxChars: z.number().int().min(0).max(MAX_HOST_CONTEXT_MESSAGE_CHARS).optional(),
+  contextMessageMaxMessages: z.number().int().min(0).max(32).optional(),
+}).strict();
+
+const contextAckInputSchema = z.object({
+  projectRoot: z.string().min(1).max(4096),
+  messageIds: z.array(z.string().regex(/^[a-z0-9][a-z0-9._:-]{1,119}$/)).min(1).max(32),
+  now: z.string().datetime({ offset: true }).optional(),
+}).strict();
 
 /** MCP entrypoint for the stateful Codex-local MSSR adapter. */
 export function createCodexMssrMcpServer(adapter = new CodexMssrAdapter()) {
@@ -60,6 +77,11 @@ export function createCodexMssrMcpServer(adapter = new CodexMssrAdapter()) {
     description: "Read one Codex-local MSSR trace lifecycle, closure gates, and any ephemeral working metadata.",
     inputSchema: { traceId: z.string().min(6).max(128) },
   }, async ({ traceId }) => response({ traceId, ...adapter.getTraceStatus(traceId) }));
+
+  server.registerTool("mssr_context_ack", {
+    description: "Acknowledge delivered MSSR context messages for one project's durable inbox. Only explicit delivery confirmation persists; selection alone never acknowledges.",
+    inputSchema: contextAckInputSchema,
+  }, async ({ projectRoot, messageIds, now }) => response(await adapter.acknowledgeContextMessages(projectRoot, messageIds, now)));
 
   return { server, adapter };
 }

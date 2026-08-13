@@ -18,4 +18,8 @@ MSSR is the portable transport contract for bounded contextual guidance in addit
 
 ## Phase 2 core boundary
 
-The 0.2.10 portable core (strict producers, repository collector, freshness revalidation, and a durable explicit-ack advisory-only JSON inbox) proves the portable message plane and repository scan. It is not proof of host delivery: draining the inbox or piggybacking receipts on native, Codex, OpenCode, or Bridge remains a separate pending gate, and the OpenCode adapter has not adopted the inbox at runtime. Prevent blocked `external_directory` approval waits by using/reading back the canonical session directory before writes and preserving/resuming only when aligned.
+The 0.2.10 portable core (strict producers, repository collector, freshness revalidation, and a durable explicit-ack advisory-only JSON inbox) proved the portable message plane and repository scan. 0.2.11 adds keyed repository facts (selectors, source-kind defaults, optional `.bridge/context-messages.json` manifest), the modular `.bridge/project-context-modules.json` loader, and wires the durable plane into native, Codex, and OpenCode route/bootstrap through `loadProjectContextHost` plus explicit `mssr_context_ack`.
+
+## Bridge delivery boundary
+
+The Bridge adapter does not yet expose the 0.2.11 context plane. Its local dependency junction crosses the OpenCode workspace authority boundary, so the Bridge adapter must consume a packaged 0.2.11 artifact rather than an in-place junction. Never claim Bridge or live-restart inbox adoption for this release; only the targeted activation probes on native/Codex/OpenCode are proven.

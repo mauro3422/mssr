@@ -8,13 +8,29 @@ import {
   type MssrProducerObservation,
   type ProducerSourceKind,
 } from "./context-message-producers.js";
-import type { MssrContextMessage } from "./context-messages.js";
+import {
+  MSSR_CONTEXT_ADVISORY_ACTIONS,
+  type MssrContextMessage,
+} from "./context-messages.js";
+import {
+  SKILL_ACTIONS,
+  SKILL_ARTIFACTS,
+  SKILL_DOMAINS,
+  SKILL_NEEDS,
+  SKILL_SIGNALS,
+  SKILL_STAGES,
+  type SkillStage,
+  type StructuredSkillIntent,
+} from "./skill-routing.js";
 
 const MAX_FILE_FACTS = 32;
 const MAX_FILE_BYTES = 128 * 1024;
 const MAX_TITLE_CHARS = 120;
 const MAX_SUMMARY_CHARS = 300;
 const MAX_DIAGNOSTICS = 64;
+const MAX_MANIFEST_ENTRIES = 32;
+const CONTEXT_MESSAGES_MANIFEST_REL_PATH = ".bridge/context-messages.json";
+const CONTEXT_MESSAGES_MANIFEST_FALLBACK_REL_PATH = "config/context-messages.json";
 
 const CANONICAL_PROJECT_CONTEXT_FACTS: ReadonlyArray<{ relPath: string; sourceKind: ProducerSourceKind }> = [
   { relPath: ".bridge/PROJECT_CONTEXT.md", sourceKind: "project-context" },
@@ -28,10 +44,281 @@ type CanonicalFact = {
   sourceKind: ProducerSourceKind;
 };
 
+type SkillDomain = StructuredSkillIntent["domains"][number];
+type SkillAction = StructuredSkillIntent["actions"][number];
+type SkillArtifact = StructuredSkillIntent["artifacts"][number];
+type SkillNeed = StructuredSkillIntent["needs"][number];
+type SkillSignal = StructuredSkillIntent["signals"][number];
+
+type RepositoryFactSelectors = {
+  stages: readonly SkillStage[];
+  domains: readonly SkillDomain[];
+  actions: readonly SkillAction[];
+  artifacts: readonly SkillArtifact[];
+  needs: readonly SkillNeed[];
+  signals: readonly SkillSignal[];
+};
+
+/**
+ * Conservative selector defaults that activate a produced repository
+ * observation for the intent dimensions its evidence is relevant to.  Every
+ * produced observation keeps at least one selector so it stays derivable by
+ * `selectMssrContextMessages`; an explicit manifest entry replaces a dimension
+ * but never eliminates every selector.
+ */
+const SOURCE_KIND_DEFAULT_SELECTORS: Record<ProducerSourceKind, RepositoryFactSelectors> = {
+  "architecture-decision": {
+    stages: [],
+    domains: [],
+    actions: ["design", "review", "verify"],
+    artifacts: ["code", "project", "repository", "mcp", "skill"],
+    needs: [],
+    signals: [],
+  },
+  incident: {
+    stages: [],
+    domains: [],
+    actions: [],
+    artifacts: [],
+    needs: [],
+    signals: ["error-observed", "warning-observed", "repeated-friction", "recovery-needed"],
+  },
+  changelog: {
+    stages: ["persist", "close"],
+    domains: [],
+    actions: ["version", "publish"],
+    artifacts: [],
+    needs: [],
+    signals: [],
+  },
+  "git-receipt": {
+    stages: ["persist", "close"],
+    domains: [],
+    actions: ["version", "publish"],
+    artifacts: [],
+    needs: [],
+    signals: [],
+  },
+  "provider-receipt": {
+    stages: [],
+    domains: [],
+    actions: [],
+    artifacts: [],
+    needs: [],
+    signals: ["provider-refresh-needed", "degraded-capability", "recovery-needed"],
+  },
+  "project-context": {
+    stages: ["start", "resume"],
+    domains: [],
+    actions: [],
+    artifacts: [],
+    needs: ["history-recovery", "cross-agent"],
+    signals: [],
+  },
+  "project-memory": {
+    stages: ["start", "resume"],
+    domains: [],
+    actions: [],
+    artifacts: [],
+    needs: ["history-recovery", "cross-agent"],
+    signals: [],
+  },
+  "project-state": {
+    stages: ["start", "resume"],
+    domains: [],
+    actions: [],
+    artifacts: [],
+    needs: ["history-recovery", "cross-agent"],
+    signals: [],
+  },
+};
+
+export const mssrContextMessagesManifestEntrySchema = z.object({
+  stages: z.array(z.enum(SKILL_STAGES)).max(6).optional(),
+  domains: z.array(z.enum(SKILL_DOMAINS)).max(8).optional(),
+  actions: z.array(z.enum(SKILL_ACTIONS)).max(12).optional(),
+  artifacts: z.array(z.enum(SKILL_ARTIFACTS)).max(12).optional(),
+  needs: z.array(z.enum(SKILL_NEEDS)).max(12).optional(),
+  signals: z.array(z.enum(SKILL_SIGNALS)).max(12).optional(),
+  priority: z.number().int().min(-100).max(100).optional(),
+  required: z.boolean().optional(),
+  advisoryActions: z.array(z.enum(MSSR_CONTEXT_ADVISORY_ACTIONS)).max(4).optional(),
+}).strict().superRefine((value, ctx) => {
+  const hasSelector = (["stages", "domains", "actions", "artifacts", "needs", "signals"] as const)
+    .some((key) => (value[key]?.length ?? 0) > 0);
+  if (!hasSelector) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Manifest entry requires at least one selector." });
+  }
+});
+
+export type MssrContextMessagesManifestEntry = z.infer<typeof mssrContextMessagesManifestEntrySchema>;
+
+export const mssrContextMessagesManifestSchema = z.object({
+  schemaVersion: z.literal(1),
+  entries: z.record(z.string().min(1).max(240), mssrContextMessagesManifestEntrySchema)
+    .refine(
+      (value) => Object.keys(value).length <= MAX_MANIFEST_ENTRIES,
+      { message: "Manifest supports at most 32 entries." },
+    ),
+}).strict();
+
+export type MssrContextMessagesManifest = z.infer<typeof mssrContextMessagesManifestSchema>;
+
 export type MssrRepositoryProviderDiagnostic = {
   ref: string;
   issue: string;
 };
+
+function isSafeRelativeRef(ref: string): boolean {
+  if (!ref || ref.length > 240) return false;
+  if (ref.includes("\0") || ref.includes("\\")) return false;
+  if (path.posix.isAbsolute(ref)) return false;
+  if (/^[A-Za-z]:/.test(ref)) return false;
+  const segments = ref.split("/");
+  return segments.length > 0 && segments.every((segment) => segment.length > 0 && segment !== "." && segment !== "..");
+}
+
+/**
+ * Detects duplicate member names inside the same JSON object.  Duplicate keys
+ * across sibling objects are legitimate and must not be flagged, so each open
+ * object tracks its own member names.  Tolerates malformed input: it only
+ * reports keys actually observed and never throws.
+ */
+function findDuplicateJsonObjectKeys(text: string): string[] {
+  const duplicates: string[] = [];
+  const openObjects: Array<Set<string>> = [];
+  let index = 0;
+  while (index < text.length) {
+    const ch = text[index];
+    if (ch === '"') {
+      index += 1;
+      let key = "";
+      while (index < text.length && text[index] !== '"') {
+        const current = text[index];
+        if (current === "\\") {
+          key += current;
+          const escaped = text[index + 1] ?? "";
+          key += escaped;
+          if (escaped === "u") {
+            key += text.slice(index + 2, index + 6);
+            index += 6;
+          } else {
+            index += 2;
+          }
+        } else {
+          key += current;
+          index += 1;
+        }
+      }
+      if (index < text.length) index += 1;
+      while (index < text.length && /\s/.test(text[index])) index += 1;
+      if (text[index] !== ":" || openObjects.length === 0) continue;
+      index += 1;
+      const current = openObjects[openObjects.length - 1];
+      if (current.has(key)) duplicates.push(key);
+      current.add(key);
+    } else if (ch === "{") {
+      openObjects.push(new Set<string>());
+      index += 1;
+    } else if (ch === "}") {
+      openObjects.pop();
+      index += 1;
+    } else if (ch === "[" || ch === "]") {
+      index += 1;
+    } else {
+      index += 1;
+    }
+  }
+  return duplicates;
+}
+
+async function firstExistingManifestPath(projectRoot: string): Promise<string | null> {
+  for (const rel of [CONTEXT_MESSAGES_MANIFEST_REL_PATH, CONTEXT_MESSAGES_MANIFEST_FALLBACK_REL_PATH]) {
+    try {
+      await fs.access(path.join(projectRoot, ...rel.split("/")));
+      return rel;
+    } catch {
+      // Absent manifests are optional; fall back to defaults.
+    }
+  }
+  return null;
+}
+
+/**
+ * Loads the strict optional repository selector manifest.  Any duplicate ref,
+ * unsafe path, unknown ref, or malformed document yields bounded diagnostics
+ * and fails closed: no override is applied and default selectors survive.
+ */
+async function loadContextMessagesManifest(
+  projectRoot: string,
+  knownRefs: ReadonlySet<string>,
+): Promise<{ overrides: Map<string, MssrContextMessagesManifestEntry>; diagnostics: MssrRepositoryProviderDiagnostic[] }> {
+  const overrides = new Map<string, MssrContextMessagesManifestEntry>();
+  const diagnostics: MssrRepositoryProviderDiagnostic[] = [];
+
+  const manifestRel = await firstExistingManifestPath(projectRoot);
+  if (!manifestRel) return { overrides, diagnostics };
+
+  let text: string;
+  try {
+    text = await fs.readFile(path.join(projectRoot, ...manifestRel.split("/")), "utf8");
+  } catch (error) {
+    if (!isMissingError(error)) pushDiagnostic(diagnostics, manifestRel, "context-messages-manifest-unreadable");
+    return { overrides, diagnostics };
+  }
+
+  const duplicateRefs = findDuplicateJsonObjectKeys(text);
+  for (const ref of duplicateRefs) {
+    pushDiagnostic(diagnostics, manifestRel, `context-messages-manifest-duplicate-ref ${ref}`);
+  }
+  if (duplicateRefs.length > 0) return { overrides, diagnostics };
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(text);
+  } catch {
+    pushDiagnostic(diagnostics, manifestRel, "context-messages-manifest-invalid-json");
+    return { overrides, diagnostics };
+  }
+
+  const validated = mssrContextMessagesManifestSchema.safeParse(parsed);
+  if (!validated.success) {
+    pushDiagnostic(diagnostics, manifestRel, "context-messages-manifest-invalid");
+    return { overrides, diagnostics };
+  }
+
+  const refs = Object.keys(validated.data.entries);
+  let safe = true;
+  for (const ref of refs) {
+    if (!isSafeRelativeRef(ref)) {
+      pushDiagnostic(diagnostics, ref, "context-messages-manifest-unsafe-ref");
+      safe = false;
+    } else if (!knownRefs.has(ref)) {
+      pushDiagnostic(diagnostics, ref, "context-messages-manifest-unknown-ref");
+      safe = false;
+    }
+  }
+  if (!safe) return { overrides, diagnostics };
+
+  for (const [ref, entry] of Object.entries(validated.data.entries)) overrides.set(ref, entry);
+  return { overrides, diagnostics };
+}
+
+function selectorsFor(
+  sourceKind: ProducerSourceKind,
+  override: MssrContextMessagesManifestEntry | undefined,
+): RepositoryFactSelectors {
+  const defaults = SOURCE_KIND_DEFAULT_SELECTORS[sourceKind];
+  if (!override) return defaults;
+  return {
+    stages: override.stages ?? defaults.stages,
+    domains: override.domains ?? defaults.domains,
+    actions: override.actions ?? defaults.actions,
+    artifacts: override.artifacts ?? defaults.artifacts,
+    needs: override.needs ?? defaults.needs,
+    signals: override.signals ?? defaults.signals,
+  };
+}
 
 export const mssrRepositoryProviderOptionsSchema = z.object({
   projectRoot: z.string().min(1),
@@ -254,7 +541,16 @@ function mergeReceipts(
       pushDiagnostic(diagnostics, parsed.data.ref, "source-kind-mismatch");
       continue;
     }
-    observations.push(parsed.data);
+    const defaults = SOURCE_KIND_DEFAULT_SELECTORS[parsed.data.sourceKind];
+    observations.push({
+      ...parsed.data,
+      stages: parsed.data.stages.length > 0 ? parsed.data.stages : [...defaults.stages],
+      domains: parsed.data.domains.length > 0 ? parsed.data.domains : [...defaults.domains],
+      actions: parsed.data.actions.length > 0 ? parsed.data.actions : [...defaults.actions],
+      artifacts: parsed.data.artifacts.length > 0 ? parsed.data.artifacts : [...defaults.artifacts],
+      needs: parsed.data.needs.length > 0 ? parsed.data.needs : [...defaults.needs],
+      signals: parsed.data.signals.length > 0 ? parsed.data.signals : [...defaults.signals],
+    });
   }
 }
 
@@ -270,6 +566,9 @@ export async function collectRepositoryContextMessages(
   const overflow: string[] = [];
 
   const facts = await enumerateCanonicalFacts(projectRoot);
+  const knownRefs = new Set(facts.map((fact) => fact.relPath));
+  const manifest = await loadContextMessagesManifest(projectRoot, knownRefs);
+  for (const item of manifest.diagnostics) pushDiagnostic(diagnostics, item.ref, item.issue);
 
   for (const fact of facts) {
     if (observations.length >= maxObservations) {
@@ -289,6 +588,9 @@ export async function collectRepositoryContextMessages(
     const title = clampText(firstHeading(text) ?? (fallbackTitle || fact.relPath), MAX_TITLE_CHARS);
     const summary = clampText(firstProseLine(text) ?? title, MAX_SUMMARY_CHARS);
 
+    const override = manifest.overrides.get(fact.relPath);
+    const selectors = selectorsFor(fact.sourceKind, override);
+
     observations.push(
       mssrProducerObservationSchema.parse({
         id: stableObservationId(fact.sourceKind, fact.relPath),
@@ -302,6 +604,13 @@ export async function collectRepositoryContextMessages(
         authoritative: true,
         observedAt: new Date(file.mtimeMs).toISOString(),
         revision: createHash("sha256").update(file.buffer).digest("hex"),
+        ...(override ? { priority: override.priority, required: override.required, advisoryActions: override.advisoryActions } : {}),
+        stages: [...selectors.stages],
+        domains: [...selectors.domains],
+        actions: [...selectors.actions],
+        artifacts: [...selectors.artifacts],
+        needs: [...selectors.needs],
+        signals: [...selectors.signals],
       }),
     );
   }

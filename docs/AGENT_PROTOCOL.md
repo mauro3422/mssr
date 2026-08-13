@@ -37,7 +37,7 @@ MSSR keeps procedural guidance and project knowledge in separate layers:
 - project-specific conditional instructions may be indexed as `directive` modules, but only when their stage and structured-intent selectors match;
 - the host loads the smallest project core first, then selects project modules and the smallest phase-scoped skill set from canonical intent.
 
-With `.bridge/project-context.json`, project selection becomes modular instead of loading `PROJECT_CONTEXT.md`, `PROJECT_MEMORY.md`, and `PROJECT_STATE.md` wholesale. The manifest may point to stable Markdown sections and classify them as `context`, `memory`, `state`, or `directive`. The same deterministic selector primitive used by skill context scores project modules, but project knowledge is not converted into a skill and directives are not authorization.
+With `.bridge/project-context-modules.json` (the 0.2.11 loader; earlier docs used the equivalent `.bridge/project-context.json`), project selection becomes modular instead of loading `PROJECT_CONTEXT.md`, `PROJECT_MEMORY.md`, and `PROJECT_STATE.md` wholesale. The manifest points to stable Markdown files and classifies modules by stage/intent selectors. The same deterministic selector primitive used by skill context scores project modules, but project knowledge is not converted into a skill and directives are not authorization.
 
 A new project does not require a new skill by default. Create or generalize a skill only when the lesson has an independent reusable objective across projects. Keep broad permanent project instructions in AGENTS; keep conditional local instructions narrow and selector-driven; keep mutable state curated rather than append-only. This separation is the main context-pressure control.
 
@@ -50,6 +50,18 @@ When the host applies a route through `skill_bootstrap`, the default context mod
 
 `skill_load` remains the explicit full-file operation. `contentMode=full` is available for diagnosis and rollback, while a missing or invalid manifest falls back to the complete `SKILL.md` with observable telemetry. Optional skill context that cannot fit is skipped whole; required context may overflow only with explicit evidence. The host reports planner mode, allocation tier, savings, skip/overflow and duplicate avoidance without storing procedural text. Module selection does not create a second routing graph, change permissions, or prove that the host still retains text after compaction.
 The host is responsible for the activation hook. Before substantial specialized work it should load AGENTS and the minimal project core, produce canonical structured intent, select any matching project modules, and call `skill_route_plan` or `skill_bootstrap`. When applying the route, the host should carry the same resolved project root so `skill_bootstrap` can re-select phase-scoped project modules together with procedural skill context.
+
+On native, Codex, and OpenCode (0.2.11), carrying `projectRoot` on a route or
+bootstrap call resolves the whole advisory context plane through the shared
+`loadProjectContextHost` helper: keyed repository facts (with selectors,
+source-kind defaults, and the optional `.bridge/context-messages.json`
+manifest), the modular `.bridge/project-context-modules.json` loader, and the
+durable explicit-ack inbox. The response carries `projectContext`,
+`contextMessages`, `inbox`, and `repository`; selection never persists
+delivery. When the host has actually delivered selected messages, the explicit
+`mssr_context_ack` tool is the only acknowledgment that mutates the durable
+inbox, and it enqueues nothing new on its own. Bridge adapter delivery is still
+pending and must consume a packaged artifact before it can expose this plane.
 
 At `verify`, `persist`, `close`, `resume`, a material failure, or a newly discovered capability need, re-plan the active trace and re-select both project modules and skill modules. Already loaded core context need not be duplicated when the host can prove it is still present. A `trace-contract-v1` adapter may keep local session continuity and recover a trace across stateless calls only when one compatible candidate exists. Ambiguity, restart, cross-process resume, and deliberate selection require an explicit ID. MSSR cannot activate itself in a host that never calls it.
 When the host can prove them, it should also attach its observable model

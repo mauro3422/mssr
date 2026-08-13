@@ -14,6 +14,7 @@ import {
   SKILL_STAGES,
   auditSkillRouting,
   planSkillRoute,
+  structuredSkillIntentSchema,
 } from "./skill-routing.js";
 import { normalizeMssrIntent } from "./intent-normalizer.js";
 import { CapabilityRegistry, FilesystemSkillProvider, MssrFirstPartySkillProvider } from "./registry.js";
@@ -33,6 +34,13 @@ import {
   validateMssrCheckpointLifecycle,
 } from "./trace-contract.js";
 import { mssrContextMessageBatchSchema, selectMssrContextMessages } from "./context-messages.js";
+import {
+  MAX_HOST_CONTEXT_MESSAGE_CHARS,
+  MAX_HOST_PROJECT_CONTEXT_CHARS,
+  MAX_HOST_PROJECT_CONTEXT_MODULES,
+  acknowledgeProjectContextInbox,
+  loadProjectContextHost,
+} from "./context-plane-host.js";
 
 /** The portable, stateless MSSR MCP facade. */
 export const MSSR_TOOL_NAMES = [
@@ -45,6 +53,7 @@ export const MSSR_TOOL_NAMES = [
   "mssr_vocabulary",
   "mssr_trace_validate",
   "mssr_trace_reduce",
+  "mssr_context_ack",
 ] as const;
 
 function response(value: unknown) {
@@ -65,6 +74,31 @@ const traceEventSchema = z.discriminatedUnion("type", [
   z.object({ type: z.literal("checkpoint"), checkpoint: z.unknown() }),
 ]);
 
+const nativeRouteInputSchema = z.object({
+  task: z.string().min(1),
+  context: z.string().max(4000).optional(),
+  intent: z.unknown().optional(),
+  caller: z.enum(SKILL_CALLERS).optional(),
+  stage: z.enum(SKILL_STAGES).optional(),
+  completedPhases: z.array(z.enum(SKILL_PHASES)).optional(),
+  maxSkills: z.number().int().min(1).max(16).optional(),
+  contextMessages: mssrContextMessageBatchSchema.optional(),
+  maxContextMessages: z.number().int().min(0).max(32).optional(),
+  maxContextMessageChars: z.number().int().min(0).max(20_000).optional(),
+  projectRoot: z.string().min(1).max(4096).optional(),
+  contextNow: z.string().datetime({ offset: true }).optional(),
+  contextMaxChars: z.number().int().min(0).max(MAX_HOST_PROJECT_CONTEXT_CHARS).optional(),
+  contextMaxModules: z.number().int().min(0).max(MAX_HOST_PROJECT_CONTEXT_MODULES).optional(),
+  contextMessageMaxChars: z.number().int().min(0).max(MAX_HOST_CONTEXT_MESSAGE_CHARS).optional(),
+  contextMessageMaxMessages: z.number().int().min(0).max(32).optional(),
+}).strict();
+
+const nativeContextAckInputSchema = z.object({
+  projectRoot: z.string().min(1).max(4096),
+  messageIds: z.array(z.string().regex(/^[a-z0-9][a-z0-9._:-]{1,119}$/)).min(1).max(32),
+  now: z.string().datetime({ offset: true }).optional(),
+}).strict();
+
 export function createMssrMcpServer(registry = new CapabilityRegistry([new MssrFirstPartySkillProvider(), new FilesystemSkillProvider()])) {
   const server = new McpServer({ name: "mssr", version: "0.2.1" });
 
@@ -84,21 +118,31 @@ export function createMssrMcpServer(registry = new CapabilityRegistry([new MssrF
   }, async ({ idOrName }) => response({ capability: registry.inspect(idOrName) ?? null }));
 
   server.registerTool(MSSR_TOOL_NAMES[3], {
-    description: "Plan a phase-scoped MSSR skill route. Advisory only.",
-    inputSchema: {
-      task: z.string().min(1),
-      context: z.string().max(4000).optional(),
-      intent: z.unknown().optional(),
-      caller: z.enum(SKILL_CALLERS).optional(),
-      stage: z.enum(SKILL_STAGES).optional(),
-      completedPhases: z.array(z.enum(SKILL_PHASES)).optional(),
-      maxSkills: z.number().int().min(1).max(16).optional(),
-      contextMessages: mssrContextMessageBatchSchema.optional(),
-      maxContextMessages: z.number().int().min(0).max(32).optional(),
-      maxContextMessageChars: z.number().int().min(0).max(20_000).optional(),
-    },
-  }, async ({ contextMessages, maxContextMessages, maxContextMessageChars, ...args }) => {
-    const plan = await planSkillRoute({ ...args, skills: skills(registry) });
+    description: "Plan a phase-scoped MSSR skill route. Advisory only. When projectRoot is provided, the route resolves the project context plane through the same host helper as the Codex/OpenCode adapters.",
+    inputSchema: nativeRouteInputSchema,
+  }, async ({ intent, contextMessages, maxContextMessages, maxContextMessageChars, projectRoot, contextNow, contextMaxChars, contextMaxModules, contextMessageMaxChars, contextMessageMaxMessages, ...args }) => {
+    const plan = await planSkillRoute({ ...args, intent, skills: skills(registry) });
+    if (projectRoot) {
+      const host = await loadProjectContextHost({
+        projectRoot,
+        intent: intent === undefined ? plan.intent : structuredSkillIntentSchema.parse(intent),
+        stage: plan.stage,
+        ...(contextNow ? { now: contextNow } : {}),
+        ...(contextMaxChars !== undefined ? { maxProjectContextChars: contextMaxChars } : {}),
+        ...(contextMaxModules !== undefined ? { maxProjectContextModules: contextMaxModules } : {}),
+        ...(contextMessageMaxChars !== undefined || maxContextMessageChars !== undefined ? { maxContextMessageChars: contextMessageMaxChars ?? maxContextMessageChars } : {}),
+        ...(contextMessageMaxMessages !== undefined || maxContextMessages !== undefined ? { maxContextMessages: contextMessageMaxMessages ?? maxContextMessages } : {}),
+        ...(contextMessages ? { contextMessages } : {}),
+      });
+      return response({
+        ...plan,
+        projectContext: host.projectContext,
+        contextMessages: host.contextMessages,
+        inbox: host.inbox,
+        repository: host.repository,
+        registry: registry.getSnapshot(),
+      });
+    }
     return response({
       ...plan,
       ...(contextMessages ? {
@@ -171,6 +215,15 @@ export function createMssrMcpServer(registry = new CapabilityRegistry([new MssrF
     if (event.type === "skill_load") return response({ state: reduceMssrSkillLoadLifecycle(previous, event.name) });
     return response({ state: reduceMssrCheckpointLifecycle(previous, event.checkpoint) });
   });
+
+  server.registerTool(MSSR_TOOL_NAMES[9], {
+    description: "Acknowledge delivered MSSR context messages for one project's durable inbox. Only explicit delivery confirmation persists; selection alone never acknowledges.",
+    inputSchema: nativeContextAckInputSchema,
+  }, async ({ projectRoot, messageIds, now }) => response(await acknowledgeProjectContextInbox({
+    projectRoot,
+    messageIds,
+    ...(now ? { now } : {}),
+  })));
 
   return { server, registry };
 }

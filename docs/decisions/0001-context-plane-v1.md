@@ -81,9 +81,17 @@ be replaced by inference.
 As of MSSR 0.2.10, phase 2 adds the portable strict producers, the bounded
 repository collector (ADR/incident/changelog/PROJECT_* facts plus supplied
 Git/provider receipts), evidence freshness revalidation, and a durable
-explicit-ack advisory-only JSON inbox. These are pure core modules; no native,
-Codex, OpenCode, or Bridge host adapter is wired to drain the inbox or
-piggyback its messages yet.
+explicit-ack advisory-only JSON inbox. These are pure core modules with no host
+adapter wired to drain them.
+
+As of MSSR 0.2.11, repository facts become keyed (explicit selectors,
+source-kind defaults, and an optional `.bridge/context-messages.json` manifest),
+a modular `.bridge/project-context-modules.json` loader is added, and the
+durable plane is wired into native, Codex, and OpenCode route/bootstrap through
+the shared `loadProjectContextHost` helper plus an explicit `mssr_context_ack`.
+The Bridge adapter delivery remains pending because its local dependency
+junction crosses the OpenCode workspace authority boundary and must consume a
+packaged 0.2.11 artifact.
 
 ## Staged adoption gates
 
@@ -92,9 +100,14 @@ piggyback its messages yet.
 2. [x] Portable core: strict producers, repository collector, freshness
    revalidation, and a durable explicit-ack advisory-only JSON inbox (0.2.10).
    This proves the selectable/accounted message plane, not adapter delivery.
-3. [ ] Add adapter delivery — native, Codex, OpenCode, and Bridge/ChatGPT Web
-   draining the inbox or piggybacking receipts — and prove receipt
-   freshness/provenance on those hosts. Still pending.
+3. [x] Adapter delivery (native, Codex, OpenCode) — native/Codex/OpenCode
+   route and bootstrap drain the durable inbox through one shared host helper,
+   return the advisory context plane, and expose explicit `mssr_context_ack`
+   (0.2.11), proven by the six-probe activation tests including an
+   unrelated-domain negative.
+   [ ] Adapter delivery (Bridge/ChatGPT Web) — pending; the Bridge adapter must
+   consume a packaged 0.2.11 artifact because its dependency junction crosses
+   the OpenCode workspace authority boundary.
 4. [ ] Prove resume and persistence-proposal behavior on native, Codex,
    OpenCode, and Bridge/ChatGPT Web.
 5. [ ] Only then use aggregate observability to review context quality; learning

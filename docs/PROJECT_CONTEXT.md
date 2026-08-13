@@ -1,6 +1,6 @@
 # Modular project context
 
-MSSR treats project knowledge as a separate retrieval layer from reusable skills. A host may use `.bridge/project-context.json` so project context is selected with the same structured semantic dimensions used by routing instead of loading every project document in full for every task.
+MSSR treats project knowledge as a separate retrieval layer from reusable skills. A repository may publish a modular project-context manifest so project context is selected with the same structured semantic dimensions used by routing instead of loading every project document in full for every task. The 0.2.11 loader implements `.bridge/project-context-modules.json` (schema v1); earlier docs described the equivalent `.bridge/project-context.json` shape.
 
 ## Authorities and roles
 
@@ -27,7 +27,7 @@ known repository
 
 The core provides only the durable information needed to understand and begin work safely. Before canonical intent exists, optional modules remain deferred. Once intent exists, MSSR evaluates `stage`, `domains`, `actions`, `artifacts`, `needs`, and `signals` deterministically under a bounded context budget.
 
-If `.bridge/project-context.json` is absent, a host adapter may preserve the legacy behavior of loading the three project Markdown documents in full. Projects can therefore migrate incrementally.
+If the modular project-context manifest is absent, a host adapter may preserve the legacy behavior of loading the three project Markdown documents in full. Projects can therefore migrate incrementally. When no manifest exists the 0.2.11 loader keeps an observable full-document fallback (`allowFullDocumentFallback`); without that flag, no modules are materialized rather than guessing.
 
 ## Context messages and continuation receipts
 
@@ -92,8 +92,39 @@ stores bounded messages without making any host drain them yet:
   receipts, TTL pruning, and atomic temp+rename file persistence with
   fail-closed load.
 
-Delivery to native, Codex, OpenCode, and Bridge hosts remains pending; adapter
-integration is the next gate, not a claim of this release.
+Delivery is adapter-owned. As of **0.2.11**, native `mssr_route_plan`, Codex
+`skill_route_plan`/`skill_bootstrap`, and OpenCode
+`mssr_route_plan`/`mssr_skill_bootstrap` resolve one advisory context plane
+through the shared `loadProjectContextHost` helper when `projectRoot` is
+supplied, and all three host surfaces expose an explicit `mssr_context_ack`
+persistence tool. Bridge adapter delivery remains pending: its local
+dependency junction crosses the OpenCode workspace authority boundary, so the
+Bridge adapter must consume a packaged 0.2.11 artifact. This release claims no
+Bridge delivery and no live/restart adoption on any host.
+
+### Keyed repository facts (0.2.11)
+
+Repository facts are now keyed so the same deterministic selection used for
+skills also selects project evidence:
+
+- Every observation produced by the repository collector carries explicit
+  `stages`, `domains`, `actions`, `artifacts`, `needs`, and `signals` selectors,
+  each backed by a conservative source-kind default so it stays derivable.
+- An optional `.bridge/context-messages.json` manifest (fallback
+  `config/context-messages.json`) v1 overrides per-ref selectors plus
+  `priority`, `required`, and `advisoryActions`. Duplicate refs, unsafe paths,
+  unknown refs, and malformed JSON fail closed with bounded diagnostics and the
+  default selectors survive.
+
+### Modular project-context loader (0.2.11)
+
+`loadProjectContextModules` reads `.bridge/project-context-modules.json` v1:
+`core` refs always load, then selector-driven `modules` are deterministically
+scored against the bounded stage/intent budget with `priority`, `required`,
+`exclusiveGroup` (a tied top score stays ambiguous and loads neither
+alternative), and `estimatedChars`. Paths are safe relative markdown, reads are
+bounded, `requiredBudgetExceeded`/`requiredOverflow` are explicit, and a full
+document fallback remains observable when present.
 
 ### Authority and migration preflight
 
@@ -188,6 +219,10 @@ Canonical schema: `config/project-context/project-context-manifest.schema.json`.
   ]
 }
 ```
+
+### Implemented 0.2.11 manifest (`.bridge/project-context-modules.json`)
+
+The 0.2.11 loader implements schema v1 under `.bridge/project-context-modules.json` with a compact form: `core` is a list of `{ id }` refs and `modules` is a bounded list of `{ id, path, stages, domains, actions, artifacts, needs, signals, priority, required, estimatedChars, exclusiveGroup? }`. `id`/`exclusiveGroup` use bounded `[a-z0-9._-]` ids, `path` must be a safe relative markdown path, and a required module cannot belong to an exclusive group. `loadProjectContextModules` loads core first, scores modules deterministically under a bounded char/module budget, and returns explicit `decisions`, `requiredBudgetExceeded`, `requiredOverflow`, and `ambiguousExclusiveGroups`. The earlier `.bridge/project-context.json` shape above (with `kind`, `description`, `source.path`/`source.sections`, `maxChars`) remains the documented migration form; hosts may map it onto the compact v1 form.
 
 `core` entries may be `context`, `memory`, or `state`; they may not be directives. Optional modules may additionally use `kind: "directive"`. Required modules should remain rare. Required project modules may exceed the nominal project-context budget only with explicit `requiredBudgetExceeded` evidence; optional modules never inherit extra budget from that overflow. `exclusiveGroup` represents real alternatives; a tied top score stays ambiguous instead of loading both alternatives.
 

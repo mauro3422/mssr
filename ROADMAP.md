@@ -25,6 +25,24 @@
   the portable core and repository scan, not restart/runtime adoption on any
   host.
 
+## Release boundary (0.2.11)
+
+- `0.2.11` wires the durable Context Plane into native, Codex, and OpenCode
+  delivery and makes project context keyed. Repositories now receive explicit
+  per-fact selectors with source-kind defaults plus an optional
+  `.bridge/context-messages.json` manifest, a modular
+  `.bridge/project-context-modules.json` loader, and a shared
+  `loadProjectContextHost` that resolves one advisory plane
+  (`projectContext`, `contextMessages`, `inbox`, `repository`) on route and
+  bootstrap with an explicit `mssr_context_ack`.
+- Six-probe activation evidence moves from 0/8 before this release to passing
+  targeted activation tests (native/Codex/OpenCode route and bootstrap plus
+  explicit ack), including an unrelated-domain negative.
+- Bridge adapter delivery remains pending: its local dependency junction
+  crosses the OpenCode workspace authority boundary, so it must consume a
+  packaged 0.2.11 artifact instead of an in-place junction. This release
+  claims no Bridge and no live/restart adoption on any host.
+
 ## v0.1 — independent foundation
 
 - [x] Independent repository, package metadata, routing contract, and docs.
@@ -94,11 +112,15 @@
   collector (ADR/incident/changelog/PROJECT_* facts plus supplied Git/provider
   receipts), evidence freshness revalidation, and a durable explicit-ack
   advisory-only JSON inbox (0.2.10).
-- [ ] Context Plane gate B — adapter delivery: native, Codex, OpenCode, and
-  Bridge draining the durable inbox or piggybacking receipts without assuming
-  server push creates a host turn; preserve `unknown`/`stale`/`unavailable`
-  rather than fabricating facts. The portable inbox/repository plane is proven;
-  host delivery integration is still pending.
+- [x] Context Plane gate B (native, Codex, OpenCode) — adapter delivery: one
+  shared host helper drains the durable inbox on native/Codex/OpenCode route
+  and bootstrap, returns `projectContext`/`contextMessages`/`inbox`/
+  `repository`, and exposes explicit `mssr_context_ack`, without assuming
+  server push creates a host turn and preserving `unknown`/`stale`/
+  `unavailable` rather than fabricating facts (0.2.11).
+- [ ] Context Plane gate B (Bridge/ChatGPT Web) — Bridge adapter delivery
+  remains pending and must consume a packaged 0.2.11 artifact because its
+  local dependency junction crosses the OpenCode workspace authority boundary.
 - [ ] Context Plane gate C — prove continuation and persistence-proposal
   behavior across native, Codex, OpenCode, and Bridge/ChatGPT Web. A proposal
   must remain reviewable repository-owned work and never auto-write memory,
@@ -106,7 +128,13 @@
 - [x] Portable modular project-context contract plus Bridge adapter: optional `.bridge/project-context.json`, minimal core loading, stage/intent-selected context-memory-state-directive modules, legacy full-document fallback, and shared semantic selection with skill context.
 - [x] Portable versioned change-history contract: strict `changelogs/X.Y.Z.md` parser, PROJECT_CONTEXT/PROJECT_MEMORY/PROJECT_STATE impact declarations (`updated` / `reviewed-none` / `pending`), pure consistency evaluator, and deterministic history-loading predicate for debugging/recovery/release work.
 - [x] Bridge project-authority/change-consistency host implementation: workspace audit distinguishes modular/legacy/invalid/empty/not-initialized authorities, project load surfaces migration debt, and persist-mode Git/changelog/memory drift can block publish readiness without auto-writing memory.
-- [ ] Extend project bootstrap authority/staleness preflight to Codex/OpenCode/native MSSR hosts and add cross-workspace policy for which repositories are intentionally managed versus deliberately memory-free.
+- [x] Keyed project-context resolution on native, Codex, and OpenCode route and
+  bootstrap through the shared host helper: modular `.bridge` context modules,
+  repository-fact selectors/defaults/manifest, and the durable inbox (0.2.11).
+- [ ] Extend the same project bootstrap authority/staleness preflight to every
+  host and add cross-workspace policy for which repositories are intentionally
+  managed versus deliberately memory-free. Bridge preflight still requires a
+  packaged artifact.
 - [ ] Migrate remaining active managed repositories from legacy or missing project-memory authorities only after reading their real project evidence; do not mass-generate empty PROJECT_* files or manifests.
 - [ ] Post-iteration learning/promotion pipeline: isolated evidence -> project regression/context-memory-state update, architecture/design decision, owning skill/tool/guide update, or MSSR fixture/metadata correction according to ownership; never assume every lesson belongs in a skill.
 - [ ] Feed eligible historical priors back into route/context ranking as a bounded secondary score with an exploration floor, decay/staleness policy, and review-only proposals before durable routing semantics change. Exact deterministic metadata/fixtures remain authoritative; evaluate vector similarity only as a secondary retrieval signal for nearby signatures.

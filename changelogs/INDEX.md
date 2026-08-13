@@ -4,6 +4,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.11](0.2.11.md) - keyed project context delivery: repository facts receive explicit selectors, defaults, and an optional manifest; a modular project-context loader; a durable context plane wired into native/Codex/OpenCode route and bootstrap plus explicit `mssr_context_ack`. Bridge adapter delivery remains pending on a packaged artifact.
 - [0.2.10](0.2.10.md) - portable strict producers, bounded repository collector, freshness revalidation, and a durable explicit-ack advisory-only JSON inbox; host delivery integration remains pending.
 - [0.2.9](0.2.9.md) - portable Context Messages v1, continuation receipts, cross-host selection parity, and reviewed documentation-persistence guidance.
 - [0.2.8](0.2.8.md) - five bundled first-party skills, reserved-name/provider guards, opt-in Codex installation, and explicit live-adapter boundary.
