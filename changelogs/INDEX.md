@@ -4,6 +4,8 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.7](0.2.7.md) - portable route-closure obligations and success validation.
+
 - [0.2.6](0.2.6.md) — portable change-history contract, project-memory consistency evaluation, learning rollout documentation.
 
 ## Historical archive

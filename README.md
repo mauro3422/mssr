@@ -62,7 +62,7 @@ See [architecture](docs/ARCHITECTURE.md), the
 ## Install and develop
 
 ```powershell
-cd C:\Dev\mssr
+cd D:\Dev\mssr
 npm install
 npm run check
 npm run test:skill-routing

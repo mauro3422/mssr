@@ -1256,6 +1256,7 @@ The filesystem move treated a directory tree containing a junction as an ordinar
 - Recreated `D:\Dev\bridge-mcp\node_modules\@mauroprime\mssr` as a junction targeting `D:\Dev\mssr`.
 - Updated Codex runtime configuration to use `D:\Dev\mssr\dist\codex-mcp-server.js` and the Bridge token under `D:\Dev\bridge-mcp`.
 - Preserved `C:\Dev\mssr` as an empty compatibility placeholder while an older process working directory keeps it locked.
+- On 2026-08-13, after the lock was no longer blocking the cutover, replaced that empty placeholder with a directory junction to `D:\Dev\mssr`, matching the existing Bridge and skill-repository compatibility aliases.
 
 ### Regression
 

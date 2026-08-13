@@ -52,6 +52,20 @@ export const MSSR_CHECKPOINT_STATUSES = [
   "skipped",
 ] as const;
 
+/**
+ * Portable close gates derived from one route lifecycle. They deliberately name
+ * obligations rather than adapter events so every host can evaluate the same
+ * contract before it records a successful outcome.
+ */
+export const MSSR_CLOSURE_OBLIGATION_KINDS = [
+  "required-skills",
+  "verification",
+  "persistence",
+  "close",
+  "maintenance",
+  "outcome",
+] as const;
+
 export const MSSR_SKILL_DECISIONS = ["accepted", "skipped"] as const;
 export const MSSR_SKILL_DECISION_REASONS = [
   "required",
@@ -70,6 +84,7 @@ export type MssrCheckpointType = typeof MSSR_CHECKPOINT_TYPES[number];
 export type MssrOutcomeEvidenceKind = typeof MSSR_OUTCOME_EVIDENCE_KINDS[number];
 export type MssrOutcomeDimensionStatus = typeof MSSR_OUTCOME_DIMENSION_STATUSES[number];
 export type MssrCheckpointStatus = typeof MSSR_CHECKPOINT_STATUSES[number];
+export type MssrClosureObligationKind = typeof MSSR_CLOSURE_OBLIGATION_KINDS[number];
 export type MssrSkillDecision = typeof MSSR_SKILL_DECISIONS[number];
 export type MssrSkillDecisionReason = typeof MSSR_SKILL_DECISION_REASONS[number];
 
@@ -157,6 +172,7 @@ export type MssrTraceViolation = Readonly<{
     | "mssr-outcome-without-route"
     | "mssr-success-outcome-blocked-required-skills"
     | "mssr-success-outcome-blocked-required-phases"
+    | "mssr-success-outcome-blocked-close"
     | "mssr-success-outcome-blocked-stale-close";
   blocking: boolean;
   missingSkills?: readonly string[];
@@ -281,9 +297,19 @@ export function hasFreshMaintenanceClose(state: MssrTraceLifecycleState): boolea
   );
 }
 
+export type MssrRouteClosureObligation = Readonly<{
+  kind: MssrClosureObligationKind;
+  required: boolean;
+  /** `ready` is only used for the prospective outcome checkpoint. */
+  status: "not-applicable" | "complete" | "pending" | "ready";
+  missingSkills?: readonly string[];
+  missingPhases?: readonly SkillPhase[];
+}>;
+
 export type MssrTraceClosureState = Readonly<{
   closureDue: boolean;
   canCloseSuccess: boolean;
+  obligations: readonly MssrRouteClosureObligation[];
   missingRequiredSkills: readonly string[];
   missingRequiredPhases: readonly SkillPhase[];
   needsCloseReplan: boolean;
@@ -291,17 +317,65 @@ export type MssrTraceClosureState = Readonly<{
   nextRequiredAction: "load-required-skills" | "verify" | "persist" | "replan-close" | "complete-maintenance" | "record-outcome" | "none";
 }>;
 
-/** Portable close preflight. The host decides when a task is actually ending;
- * once it enters stage=close this reports the exact observable gates instead of
- * relying on the model to remember them. */
-export function getMssrTraceClosureState(input: MssrTraceLifecycleState): MssrTraceClosureState {
+/**
+ * Evaluate every portable obligation required by the current route lifecycle.
+ * `outcome: ready` means that a successful outcome checkpoint may be recorded;
+ * it does not claim that an outcome has already been persisted.
+ */
+export function evaluateMssrRouteClosureObligations(input: MssrTraceLifecycleState): MssrTraceClosureState {
   const state = mssrTraceLifecycleStateSchema.parse(input);
   const missingSkills = missingRequiredSkills(state);
   const missingPhases = missingRequiredClosurePhases(state);
-  const needsCloseReplan = state.maintenanceRequired && state.closeRevision !== state.lifecycleRevision;
+  const closeComplete = state.routeCount > 0
+    && state.stage === "close"
+    && state.closeRevision === state.lifecycleRevision;
+  const needsCloseReplan = state.routeCount > 0 && !closeComplete;
   const needsMaintenance = state.maintenanceRequired
-    && state.closeRevision === state.lifecycleRevision
+    && closeComplete
     && state.maintenanceRevision !== state.lifecycleRevision;
+
+  const obligations: MssrRouteClosureObligation[] = [
+    {
+      kind: "required-skills",
+      required: state.requiredSkills.length > 0,
+      status: missingSkills.length === 0 ? "complete" : "pending",
+      ...(missingSkills.length > 0 ? { missingSkills } : {}),
+    },
+    {
+      kind: "verification",
+      required: state.requiredPhases.includes("verification"),
+      status: !state.requiredPhases.includes("verification")
+        ? "not-applicable"
+        : missingPhases.includes("verification") ? "pending" : "complete",
+    },
+    {
+      kind: "persistence",
+      required: state.requiredPhases.includes("persistence"),
+      status: !state.requiredPhases.includes("persistence")
+        ? "not-applicable"
+        : missingPhases.includes("persistence") ? "pending" : "complete",
+    },
+    {
+      kind: "close",
+      required: state.routeCount > 0,
+      status: state.routeCount === 0 ? "not-applicable" : closeComplete ? "complete" : "pending",
+    },
+    {
+      kind: "maintenance",
+      required: state.maintenanceRequired,
+      status: !state.maintenanceRequired
+        ? "not-applicable"
+        : needsMaintenance ? "pending" : hasFreshMaintenanceClose(state) && closeComplete ? "complete" : "pending",
+    },
+  ];
+  const preOutcomeReady = !state.closed && obligations.every((obligation) =>
+    !obligation.required || obligation.status === "complete",
+  );
+  obligations.push({
+    kind: "outcome",
+    required: true,
+    status: preOutcomeReady ? "ready" : "pending",
+  });
 
   let nextRequiredAction: MssrTraceClosureState["nextRequiredAction"] = "record-outcome";
   if (state.closed) nextRequiredAction = "none";
@@ -313,18 +387,19 @@ export function getMssrTraceClosureState(input: MssrTraceLifecycleState): MssrTr
 
   return {
     closureDue: state.stage === "close" && !state.closed,
-    canCloseSuccess: !state.closed
-      && state.routeCount > 0
-      && missingSkills.length === 0
-      && missingPhases.length === 0
-      && !needsCloseReplan
-      && !needsMaintenance,
+    canCloseSuccess: preOutcomeReady,
+    obligations,
     missingRequiredSkills: missingSkills,
     missingRequiredPhases: missingPhases,
     needsCloseReplan,
     needsMaintenance,
     nextRequiredAction,
   };
+}
+
+/** Backwards-compatible name for the portable close preflight. */
+export function getMssrTraceClosureState(input: MssrTraceLifecycleState): MssrTraceClosureState {
+  return evaluateMssrRouteClosureObligations(input);
 }
 
 export function createMssrTraceLifecycleState(
@@ -454,26 +529,36 @@ export function validateMssrCheckpointLifecycle(
   if (checkpoint.eventType !== "outcome" || checkpoint.status !== "success") return [];
 
   if (!state) {
-    return [{ code: "mssr-outcome-without-route", blocking: false }];
+    return [{ code: "mssr-outcome-without-route", blocking: true }];
   }
 
-  if (state.closed) return [];
+  if (state.closed) {
+    return [{ code: "mssr-success-outcome-blocked-close", blocking: true }];
+  }
 
   const violations: MssrTraceViolation[] = [];
-  const missing = missingRequiredSkills(state);
-  if (missing.length > 0) {
+  const closure = evaluateMssrRouteClosureObligations(state);
+  if (closure.missingRequiredSkills.length > 0) {
     violations.push({
       code: "mssr-success-outcome-blocked-required-skills",
       blocking: true,
-      missingSkills: missing,
+      missingSkills: closure.missingRequiredSkills,
     });
   }
 
-  // Required phases describe workflow coverage and are surfaced by the close
-  // preflight. They are not a universal portable hard gate: each host decides
-  // which phase requirements it can authoritatively enforce. Fresh maintenance
-  // and required-skill loads remain portable integrity invariants.
-  if (!hasFreshMaintenanceClose(state)) {
+  if (closure.missingRequiredPhases.length > 0) {
+    violations.push({
+      code: "mssr-success-outcome-blocked-required-phases",
+      blocking: true,
+      missingPhases: closure.missingRequiredPhases,
+    });
+  }
+
+  if (closure.needsCloseReplan || checkpoint.stage !== "close") {
+    violations.push({ code: "mssr-success-outcome-blocked-close", blocking: true });
+  }
+
+  if (state.maintenanceRequired && !hasFreshMaintenanceClose(state)) {
     violations.push({
       code: "mssr-success-outcome-blocked-stale-close",
       blocking: true,

@@ -44,22 +44,22 @@ La clasificación puede reutilizarse como capa de control para seleccionar skill
 | Motor y auditoría | `src/skill-routing.ts` |
 | Contrato y selector portable de contexto | `src/skill-context.ts` |
 | Schema y fixtures de módulos | `config/skill-context/` |
-| Adaptador ChatGPT/Bridge de routing y carga | `C:\Dev\bridge-mcp\src\tools\skill-catalog-tools.ts` |
-| Assembler filesystem de contexto | `C:\Dev\bridge-mcp\src\skill-context-assembler.ts` |
-| Observatorio de activación/resultado | `C:\Dev\bridge-mcp\src\mssr-observatory.ts` |
-| Registro de tools/riesgo del Bridge | `C:\Dev\bridge-mcp\src\tool-registry.ts` |
+| Adaptador ChatGPT/Bridge de routing y carga | `D:\Dev\bridge-mcp\src\tools\skill-catalog-tools.ts` |
+| Assembler filesystem de contexto | `D:\Dev\bridge-mcp\src\skill-context-assembler.ts` |
+| Observatorio de activación/resultado | `D:\Dev\bridge-mcp\src\mssr-observatory.ts` |
+| Registro de tools/riesgo del Bridge | `D:\Dev\bridge-mcp\src\tool-registry.ts` |
 | Contrato de activación | `config/skill-routing/skill-routing-overrides.json` |
 | Schema del contrato | `config/skill-routing/skill-routing.schema.json` |
 | Casos de comportamiento | `config/skill-routing/skill-routing-fixtures.json` |
 | Schema de fixtures | `config/skill-routing/skill-routing-fixtures.schema.json` |
 | Pruebas dedicadas | `scripts/test-skill-routing.mjs`, `scripts/test-skill-context.mjs` |
 | Auditoría visual | `scripts/audit-skills.py` |
-| Fuente Git de skills propias | `C:\Dev\mauroprime-skills\skills` |
+| Fuente Git de skills propias | `D:\Dev\mauroprime-skills\skills` |
 | Montaje runtime de Codex | `~/.codex/skills/<name>` como junction |
-| Skill mantenedora | `C:\Dev\mauroprime-skills\skills\skill-routing-maintainer\SKILL.md` |
+| Skill mantenedora | `D:\Dev\mauroprime-skills\skills\skill-routing-maintainer\SKILL.md` |
 | Incidentes y regresiones confirmadas | `docs/skill-routing/INCIDENTS.md` |
 
-`C:\Dev\mssr` versiona el motor y el contrato de routing. `C:\Dev\mauroprime-skills` versiona los procedimientos propios y `C:\Dev\bridge-mcp` consume MSSR mediante un adaptador. La carpeta `~/.codex/skills/_dashboard` contiene salidas generadas para inspección; no es una fuente editable.
+`D:\Dev\mssr` versiona el motor y el contrato de routing. `D:\Dev\mauroprime-skills` versiona los procedimientos propios y `D:\Dev\bridge-mcp` consume MSSR mediante un adaptador. Los alias de compatibilidad bajo `C:\Dev` son junctions, no fuentes canónicas. La carpeta `~/.codex/skills/_dashboard` contiene salidas generadas para inspección; no es una fuente editable.
 
 ## Tools públicas
 

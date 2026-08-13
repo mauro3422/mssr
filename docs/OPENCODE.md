@@ -93,7 +93,7 @@ Hardening degradation is observable.
 For a source checkout, a minimal global loader can re-export the built plugin:
 
 ```js
-export { default } from "file:///C:/Dev/mssr/dist/opencode-plugin.js";
+export { default } from "file:///D:/Dev/mssr/dist/opencode-plugin.js";
 ```
 
 Official references: <https://opencode.ai/docs/plugins/>,

@@ -1,11 +1,21 @@
 import assert from "node:assert/strict";
 
 import {
+  evaluateMssrRouteClosureObligations,
   reduceMssrCheckpointLifecycle,
   reduceMssrRouteLifecycle,
   reduceMssrSkillLoadLifecycle,
   validateMssrCheckpointLifecycle,
 } from "../dist/index.js";
+
+assert.deepEqual(
+  validateMssrCheckpointLifecycle(null, {
+    eventType: "outcome",
+    status: "success",
+    stage: "close",
+  }),
+  [{ code: "mssr-outcome-without-route", blocking: true }],
+);
 
 let state = reduceMssrRouteLifecycle(null, {
   stage: "implement",
@@ -14,11 +24,25 @@ let state = reduceMssrRouteLifecycle(null, {
     { name: "skill-b", required: true },
   ],
   phasePlan: [{ phase: "maintenance", required: true }],
+  coverage: { requiredPhases: ["verification", "persistence", "maintenance"] },
 });
 
 assert.equal(state.routeCount, 1);
 assert.equal(state.lifecycleRevision, 1);
 assert.equal(state.maintenanceRequired, true);
+
+let closure = evaluateMssrRouteClosureObligations(state);
+assert.deepEqual(
+  closure.obligations.map((item) => [item.kind, item.required, item.status]),
+  [
+    ["required-skills", true, "pending"],
+    ["verification", true, "pending"],
+    ["persistence", true, "pending"],
+    ["close", true, "pending"],
+    ["maintenance", true, "pending"],
+    ["outcome", true, "pending"],
+  ],
+);
 
 state = reduceMssrSkillLoadLifecycle(state, "skill-a");
 
@@ -28,13 +52,35 @@ let violations = validateMssrCheckpointLifecycle(state, {
   stage: "close",
 });
 
-assert.equal(violations.length, 2);
+assert.equal(violations.length, 4);
 assert.equal(
   violations.some((item) => item.code === "mssr-success-outcome-blocked-required-skills"),
   true,
 );
+assert.equal(
+  violations.some((item) => item.code === "mssr-success-outcome-blocked-required-phases"),
+  true,
+);
+assert.equal(
+  violations.some((item) => item.code === "mssr-success-outcome-blocked-close"),
+  true,
+);
 
 state = reduceMssrSkillLoadLifecycle(state, "skill-b");
+
+state = reduceMssrCheckpointLifecycle(state, {
+  eventType: "verification",
+  stage: "verify",
+  status: "success",
+  verificationPassed: true,
+});
+
+state = reduceMssrCheckpointLifecycle(state, {
+  eventType: "persistence",
+  stage: "persist",
+  status: "success",
+  persisted: true,
+});
 
 // A close replan does not increment lifecycleRevision.
 state = reduceMssrRouteLifecycle(state, {
@@ -66,6 +112,20 @@ violations = validateMssrCheckpointLifecycle(state, {
   stage: "close",
 });
 assert.deepEqual(violations, []);
+
+closure = evaluateMssrRouteClosureObligations(state);
+assert.equal(closure.canCloseSuccess, true);
+assert.deepEqual(
+  closure.obligations.map((item) => [item.kind, item.status]),
+  [
+    ["required-skills", "complete"],
+    ["verification", "complete"],
+    ["persistence", "complete"],
+    ["close", "complete"],
+    ["maintenance", "complete"],
+    ["outcome", "ready"],
+  ],
+);
 
 // A post-close persistence checkpoint makes close evidence stale.
 state = reduceMssrCheckpointLifecycle(state, {

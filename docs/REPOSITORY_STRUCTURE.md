@@ -83,16 +83,16 @@ Do not turn generated dashboards, provider caches, logs or prompt dumps into a s
 ## Cross-repository boundaries
 
 ```text
-C:\Dev\mssr
+D:\Dev\mssr
   Portable routing contract and engine.
 
-C:\Dev\mauroprime-skills
+D:\Dev\mauroprime-skills
   Git source for Mauro's reusable custom skills.
 
 C:\Users\mauro\.codex\skills
   Runtime junctions and installed/plugin/system providers.
 
-C:\Dev\bridge-mcp
+D:\Dev\bridge-mcp
   ChatGPT/local adapter, provider discovery, content loading, observability and tools.
 
 Project repositories

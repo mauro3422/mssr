@@ -37,9 +37,27 @@ assert.ok(reducedText);
 const state = JSON.parse(reducedText).state;
 assert.equal(state.routeCount, 1);
 
-const validation = await client.callTool({
+const preflight = await client.callTool({
   name: "mssr_trace_validate",
   arguments: { state, checkpoint: { eventType: "outcome", stage: "close", status: "success" } },
+});
+const preflightText = preflight.content.find((entry) => entry.type === "text")?.text;
+assert.ok(preflightText);
+assert.equal(
+  JSON.parse(preflightText).violations.some((item) => item.code === "mssr-success-outcome-blocked-close"),
+  true,
+);
+
+const closedRoute = await client.callTool({
+  name: "mssr_trace_reduce",
+  arguments: { state, event: { type: "route", route: { stage: "close", activeSkills: [] } } },
+});
+const closedRouteText = closedRoute.content.find((entry) => entry.type === "text")?.text;
+assert.ok(closedRouteText);
+
+const validation = await client.callTool({
+  name: "mssr_trace_validate",
+  arguments: { state: JSON.parse(closedRouteText).state, checkpoint: { eventType: "outcome", stage: "close", status: "success" } },
 });
 const validationText = validation.content.find((entry) => entry.type === "text")?.text;
 assert.ok(validationText);

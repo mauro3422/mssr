@@ -57,12 +57,49 @@ assert.match(route.traceId, /^mssr-opencode-/);
 assert.equal(events.at(-1).event.kind, "route");
 assert.equal("task" in events.at(-1).event, false, "telemetry must not contain raw task text");
 
-const failedOutcome = json(await client.callTool({
+const prematureOutcome = json(await client.callTool({
   name: "mssr_trace_record",
   arguments: { traceId: route.traceId, eventType: "outcome", stage: "close", status: "success", primarySkill: "fixture-skill" },
 }));
-assert.equal(failedOutcome.accepted, true, "A read-only route without required loads may close explicitly");
-assert.equal(events.filter((event) => event.event.kind === "checkpoint").length, 1, "outcome must be explicit, never automatic");
+assert.equal(prematureOutcome.accepted, false, "A successful outcome requires an explicit close route even for read-only work");
+assert.equal(
+  prematureOutcome.violations.some((item) => item.code === "mssr-success-outcome-blocked-close"),
+  true,
+);
+
+const verification = json(await client.callTool({
+  name: "mssr_trace_record",
+  arguments: { traceId: route.traceId, eventType: "verification", stage: "verify", status: "success", verificationPassed: true },
+}));
+assert.equal(verification.accepted, true);
+
+const persistence = json(await client.callTool({
+  name: "mssr_trace_record",
+  arguments: { traceId: route.traceId, eventType: "persistence", stage: "persist", status: "success", persisted: true },
+}));
+assert.equal(persistence.accepted, true);
+
+const close = json(await client.callTool({
+  name: "mssr_route_plan",
+  arguments: { ...input, traceId: route.traceId, stage: "close", completedPhases: ["verification", "persistence"] },
+}));
+assert.equal(close.traceId, route.traceId);
+let expectedCheckpointCount = 3;
+if (close.lifecycle.maintenanceRequired) {
+  const maintenance = json(await client.callTool({
+    name: "mssr_trace_record",
+    arguments: { traceId: route.traceId, eventType: "phase_completed", stage: "close", status: "success", completedPhases: ["maintenance"] },
+  }));
+  assert.equal(maintenance.accepted, true);
+  expectedCheckpointCount += 1;
+}
+
+const outcome = json(await client.callTool({
+  name: "mssr_trace_record",
+  arguments: { traceId: route.traceId, eventType: "outcome", stage: "close", status: "success", primarySkill: "fixture-skill" },
+}));
+assert.equal(outcome.accepted, true, "A read-only route without required loads may close after applicable gates complete");
+assert.equal(events.filter((event) => event.event.kind === "checkpoint").length, expectedCheckpointCount, "outcome must be explicit, never automatic");
 
 await client.close();
 await server.close();

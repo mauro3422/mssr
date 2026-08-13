@@ -38,6 +38,14 @@ that speak MCP, plus portable intent normalization, vocabulary, trace validation
 and trace reduction. It is stateless: callers supply lifecycle state and own its
 persistence. It never executes a selected third-party tool on the agent's behalf.
 
+The portable trace contract also evaluates closure obligations from supplied
+lifecycle state. Required skills, verification, persistence, a fresh `close`
+route, required maintenance, and the prospective outcome are separate explicit
+gates. A successful outcome is rejected while any applicable gate remains
+pending; failed, partial, and skipped outcomes remain available for truthful
+closure. This pure evaluation has no knowledge of Bridge, Codex, sessions,
+timers, persistence stores, or host permissions.
+
 `mssr-codex-mcp` is the separate Codex-local adapter. It owns a process-local
 trace map, invokes the same portable reducers, and may read a locally discovered
 `SKILL.md` only after the route selects it. This is deliberately an adapter

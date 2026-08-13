@@ -127,7 +127,9 @@ blocked work can close truthfully.
 
 ### Explicit close preflight
 
-The portable lifecycle exposes a close preflight rather than relying on an agent remembering the entire ending sequence. Once the host has evidence that the task is entering `stage=close`, `getMssrTraceClosureState` reports `closureDue`, `canCloseSuccess`, missing required skills, missing verification/persistence gates, whether a fresh close replan is required, whether maintenance is still required for the current lifecycle revision, and one `nextRequiredAction`.
+The portable lifecycle exposes `evaluateMssrRouteClosureObligations` (also available through the compatible `getMssrTraceClosureState` name) rather than relying on an agent remembering the entire ending sequence. It evaluates the route's `required-skills`, `verification`, `persistence`, `close`, `maintenance`, and prospective `outcome` obligations with explicit `not-applicable`, `pending`, `complete`, or `ready` status. Once the host has evidence that the task is entering `stage=close`, it reports `closureDue`, `canCloseSuccess`, missing required skills/phases, whether a fresh close replan or maintenance completion is required, and one `nextRequiredAction`.
+
+A `status=success` outcome is rejected when a compatible route is absent, any applicable obligation remains pending, or the outcome is not recorded at `stage=close`. The shared reducer does not close the trace on that rejection. This is lifecycle-integrity validation, not authorization: `partial`, `failed`, and `skipped` outcomes remain recordable so unfinished, rejected, or blocked work can close truthfully.
 
 The host still owns the question "is the task ending?"; MSSR must not infer successful completion merely from silence or elapsed time. Idle/stale detection may produce a notice or closure candidate, never an automatic success outcome. A host notice should surface the preflight metadata and exact next gate so ChatGPT, Codex, or another caller can resume the same trace instead of leaving it open indefinitely.
 
