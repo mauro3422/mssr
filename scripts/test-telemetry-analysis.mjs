@@ -72,6 +72,10 @@ const checkpointEvent = (eventId, traceId, second, checkpoint) => envelope(event
   kind: "checkpoint",
   checkpoint,
 });
+const learningDigestEvent = (eventId, traceId, second, digest) => envelope(eventId, traceId, second, {
+  kind: "learning_digest",
+  digest,
+});
 
 const baseRoute = {
   caller: "opencode-local",
@@ -126,6 +130,7 @@ assert.deepEqual(analysis.counters, {
   duplicateEvents: 1,
   routedTraces: 3,
   tracesWithOutcome: 1,
+  learningDigests: 0,
 });
 assert.equal(analysis.rates.structuredRouteRate.value, 2 / 3);
 assert.deepEqual(analysis.rates.requiredLoadCompliance, { numerator: 0, denominator: 3, value: 0 });
@@ -152,6 +157,76 @@ assert.deepEqual(analysis.maintenanceCandidates.map(({ kind, signal, skillName, 
 ]);
 
 assert.equal(analyzeMssrTelemetry(events, { minDistinctTraces: 4 }).maintenanceCandidates.length, 0);
+
+const learningSignature = "stage=verify|d=coding,skill-system|a=analyze,verify|r=code|n=integrity-verification|s=repeated-friction";
+const learningEvents = Array.from({ length: 5 }, (_, index) => learningDigestEvent(
+  `learn-000${index + 1}`,
+  `learn-trace-${index + 1}`,
+  20 + index,
+  {
+    semanticSignature: learningSignature,
+    finalStage: "verify",
+    signals: ["repeated-friction", "reusable-pattern"],
+    recommendedSkills: ["skill-b"],
+    loadedSkills: index < 4 ? ["skill-b"] : [],
+    skillDecisions: [{
+      skillName: "skill-b",
+      decision: index < 4 ? "accepted" : "skipped",
+      reasonCode: index < 4 ? "useful" : "irrelevant-domain",
+      stage: "verify",
+    }],
+    skillTransitions: [{ fromStage: "implement", toStage: "verify", skillName: "skill-b" }],
+    contextSelections: [{
+      scope: "skill",
+      owner: "skill-b",
+      module: "verification",
+      selected: index < 4,
+      reasonCode: index < 4 ? "selected" : "intent-mismatch",
+    }],
+    findings: [{
+      summary: "Verification module was evidence-backed.",
+      status: "supported",
+      evidenceRef: `test:${index + 1}`,
+      signals: ["reusable-pattern"],
+    }],
+    outcome: {
+      status: index < 4 ? "success" : "partial",
+      accepted: index < 4,
+      primarySkill: "skill-b",
+      supportingSkills: [],
+      verificationPassed: index < 4,
+      persisted: true,
+      userCorrections: 0,
+    },
+  },
+));
+const learning = analyzeMssrTelemetry(learningEvents, { minLearningTraces: 5 });
+assert.equal(learning.counters.learningDigests, 5);
+assert.equal(learning.learning.mode, "observe-only");
+assert.equal(learning.learning.routingInfluence, false);
+assert.equal(learning.learning.digestCount, 5);
+assert.equal(learning.learning.minEvidence, 5);
+const skillPrior = learning.learning.skillPriors.find((item) => item.skillName === "skill-b");
+assert.ok(skillPrior);
+assert.equal(skillPrior.evidenceCount, 5);
+assert.equal(skillPrior.acceptanceRate, 0.8);
+assert.equal(skillPrior.activationRate, 0.8);
+assert.equal(skillPrior.successRateWhenLoaded, 1);
+assert.equal(skillPrior.eligible, true);
+assert.equal(skillPrior.recommendation, "prefer");
+const transitionPrior = learning.learning.transitions.find((item) => item.skillName === "skill-b");
+assert.equal(transitionPrior?.count, 5);
+assert.equal(transitionPrior?.eligible, true);
+const contextPrior = learning.learning.contextPriors.find((item) => item.module === "verification");
+assert.equal(contextPrior?.selectionRate, 0.8);
+assert.equal(contextPrior?.recommendation, "prefer");
+assert.throws(() => learningDigestEvent("learn-private", "learn-private-trace", 30, {
+  semanticSignature: learningSignature,
+  finalStage: "verify",
+  workingSummary: "must never become durable learning data",
+  outcome: { status: "success", supportingSkills: [], userCorrections: 0 },
+}));
+
 const empty = analyzeMssrTelemetry([]);
 for (const metric of Object.values(empty.rates)) assert.equal(metric.value, null);
 assert.throws(() => analyzeMssrTelemetry([], { minDistinctTraces: 1 }));

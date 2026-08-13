@@ -16,6 +16,7 @@ one consumer and adapter, not the owner of the routing contract.
 - supports re-planning when a task reveals a missing or chained capability;
 - supports bounded friction/outcome checkpoints that can become reviewed
   regressions, documentation, or skill/routing maintenance;
+- distills a strict `learning-digest-v1` at outcome so useful structured evidence can improve historical skill/context priors without persisting the ephemeral `workingSummary` or private scratch state;
 - exposes the same contract through a library, optional MCP facade, and a
   managed `AGENTS.md` bootstrap block.
 
@@ -125,7 +126,7 @@ capabilities and belong in the registry.
 ## Status
 
 Version `0.1.0` established the independent repository and contract; the current
-release is `0.2.4` (see [CHANGELOG.md](CHANGELOG.md)). It now ships the portable
+release is `0.2.5` (see [CHANGELOG.md](CHANGELOG.md)). It now ships the portable
 core, the standalone `mssr-mcp`, `mssr-codex-mcp`, and `mssr-opencode-mcp`
 servers, and an optional OpenCode host plugin. Bridge remains a consumer adapter
 rather than the owner of the routing contract.

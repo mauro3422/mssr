@@ -19,6 +19,7 @@ import {
   MSSR_OUTCOME_EVIDENCE_KINDS,
   mssrSkillDecisionSchema,
 } from "./trace-contract.js";
+import { mssrLearningDigestSchema } from "./learning.js";
 
 export const MSSR_TELEMETRY_PROTOCOL_VERSION = "mssr-telemetry-v1" as const;
 export const MSSR_HOST_CALL_PROTOCOL_VERSION = "mssr-host-call-v1" as const;
@@ -129,6 +130,11 @@ const checkpointTelemetrySchema = z.object({
   checkpoint: mssrHostCheckpointSchema,
 }).strict();
 
+const learningDigestTelemetrySchema = z.object({
+  kind: z.literal("learning_digest"),
+  digest: mssrLearningDigestSchema,
+}).strict();
+
 export const mssrTelemetryEnvelopeSchema = z.object({
   protocolVersion: z.literal(MSSR_TELEMETRY_PROTOCOL_VERSION),
   eventId: z.string().regex(/^[A-Za-z0-9._:-]{8,160}$/),
@@ -136,7 +142,7 @@ export const mssrTelemetryEnvelopeSchema = z.object({
   source: z.string().trim().min(1).max(80),
   traceId: traceIdSchema,
   caller: z.enum(SKILL_CALLERS),
-  event: z.discriminatedUnion("kind", [routeTelemetrySchema, skillLoadTelemetrySchema, skillDecisionTelemetrySchema, checkpointTelemetrySchema]),
+  event: z.discriminatedUnion("kind", [routeTelemetrySchema, skillLoadTelemetrySchema, skillDecisionTelemetrySchema, checkpointTelemetrySchema, learningDigestTelemetrySchema]),
 }).strict();
 
 export type MssrTelemetryEnvelope = z.infer<typeof mssrTelemetryEnvelopeSchema>;
