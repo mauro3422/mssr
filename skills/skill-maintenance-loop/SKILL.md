@@ -18,6 +18,7 @@ Antes de editar, resuelve sólo el módulo necesario:
 - `references/skill-memory-modules.md`: contrato para memorias internas selectivas.
 - `references/capability-evolution-proposals.md`: criterio entre documentación, owner update, módulo, script/tool/guide, nueva skill o cambio de contexto.
 - `references/learning-review-promotion.md`: etapa durable `digest -> learning-review -> promotion proposal`, sus gates de evidencia y el límite de promoción humana.
+- `references/architecture-documentation-consistency.md`: reconciliación acotada entre arquitectura, ADRs, contexto/estado, changelogs e incidentes antes de persistir una propuesta.
 
 En hosts con ensamblado selectivo, `context-modules.json` carga sólo el núcleo y los módulos cuyo trigger coincide. Los enlaces siguen siendo el fallback para Codex y revisión humana.
 

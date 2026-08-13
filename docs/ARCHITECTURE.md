@@ -68,16 +68,25 @@ delegated `task` call. Failed host-call delivery is placed in a small local retr
 spool; this best-effort transport is never allowed to block or alter an OpenCode
 tool execution.
 
-Adapters translate host-specific discovery to the shared contract. MauroPrime
-Bridge, Roblox Studio, Codex-local, and a web client can therefore share routing
-metadata without being forced through a single execution bridge.
+Adapters translate host-specific discovery and delivery to the shared contract.
+MauroPrime Bridge is an adapter and transport owner, not the semantic owner of a
+repository or of MSSR routing. Codex-local, OpenCode-local, Bridge, and other
+hosts can therefore share portable routing metadata without being forced through
+a single execution bridge.
 
 `skill-context-loader` is the portable filesystem materializer for selected
 skill context. It reads bounded `SKILL.md` and manifest sources and applies the
 shared global budget plan, while host adapters continue to own session state,
 telemetry, authorization, and transport.
 
-Trace continuity is adapter-owned. `trace-contract-v1` keeps local session state and a bounded process-shared lease so stateless calls can recover exactly one compatible trace by observable task, caller, or skill metadata. It never guesses across multiple candidates: ambiguity requires an explicit ID. The adapter propagates through direct calls and generic dispatch wrappers, closes on outcome, and emits notices when required loads or boundaries disagree. The core remains stateless. Measurement epochs and active/all-history filtering are likewise host observability concerns, not routing inputs.
+Trace continuity is adapter-owned. `trace-contract-v1` supplies the portable
+lifecycle reducers and closure rules; each host decides how it retains a trace.
+Bridge currently adds bounded process-shared and persisted unique-candidate
+recovery for its adapter. The native facade is stateless, while Codex-local and
+OpenCode-local adapters currently retain their trace map only for the process.
+No adapter may guess across multiple candidates: ambiguity requires an explicit
+ID. Measurement epochs and active/all-history filtering are likewise host
+observability concerns, not routing inputs.
 
 The telemetry transport is optional and separate from routing. A host adapter
 may report a validated lifecycle to an observability owner, but delivery failure
@@ -91,6 +100,45 @@ The current model or agent produces a bounded Routing Evidence Checkpoint after 
 Host adapters may also deliver a bounded context-notice inbox. Runtime errors, provider drift, concurrent agents, pending reviews, changed project state, or missing routing compliance become new evidence for context retrieval or replanning. Notices carry information; they do not grant authorization.
 
 Outcome observability follows the same boundary. One primary skill owns the latest outcome on a task trace, supporting skills remain visible as contributors, and objective evidence determines success or acceptance where available. This prevents one task from being counted as several successes merely because several skills collaborated.
+
+## MSSR Context Plane v1
+
+The Context Plane is the portable contract for selecting, carrying, and
+accounting for bounded context messages. It is distinct from both the routing
+control plane and host execution:
+
+```text
+repository-owned facts + runtime/Git/trace evidence
+                 -> adapter/provider reads and delivery
+                 -> portable MSSR selection, continuity, and message contract
+                 -> host inbox or next-result piggyback
+                 -> agent reviews evidence and performs only separately authorized work
+```
+
+MSSR owns the portable selection dimensions, message/receipt semantics,
+continuation identity, provenance/freshness requirements, and the rule that a
+message is evidence rather than authorization. Repositories own the meaning and
+truth of their project documents, ADRs, changelogs, incidents, and current
+state. Providers and adapters own I/O, authentication, delivery timing, runtime
+readback, and local retention. Bridge may assemble or deliver a message but does
+not become the semantic owner of its contents.
+
+A Context Plane message is a bounded, typed reference to evidence or a request
+to obtain it. It may be delivered in a pull inbox or piggybacked on a normal
+tool response because an MCP server cannot assume a client will turn a push into
+a model turn. It contains no capability grant: a recipient must still verify
+the source, select the proper owner tool, and obey normal user authorization,
+approvals, permissions, and safety policy.
+
+The staged v1 contract covers messages from project authorities, ADRs,
+changelogs, incidents, Git/runtime evidence, provider state, and a compatible
+task trace. A continuation receives a compact receipt of already selected
+sources, their provenance/freshness, unresolved evidence, and the next gate;
+it does not receive a raw transcript or a claim that stale evidence is current.
+Durable persistence is a reviewable proposal directed to the repository or
+other canonical owner. Telemetry may record bounded receipts and evidence
+references, but it must not silently write project facts, routing metadata,
+skills, or release history. See [ADR 0001](decisions/0001-context-plane-v1.md).
 
 
 ## Durable project context layer

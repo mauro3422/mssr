@@ -31,6 +31,11 @@ import {
   type MssrHostCheckpoint,
   type MssrTelemetrySink,
 } from "./telemetry.js";
+import {
+  mssrContextMessageBatchSchema,
+  selectMssrContextMessages,
+  type MssrContextMessage,
+} from "./context-messages.js";
 
 export type CodexMssrRouteInput = {
   task: string;
@@ -45,6 +50,9 @@ export type CodexMssrRouteInput = {
   workflowKey?: string;
   model?: string;
   reasoningEffort?: "low" | "medium" | "high" | "xhigh" | "max" | "ultra" | "unknown";
+  contextMessages?: MssrContextMessage[];
+  maxContextMessages?: number;
+  maxContextMessageChars?: number;
 };
 
 export type HostMssrAdapterOptions = {
@@ -173,6 +181,15 @@ export class CodexMssrAdapter {
       ...plan,
       workflowKey: input.workflowKey,
       agentProfile: this.profile(input),
+      ...(input.contextMessages ? {
+        contextMessages: selectMssrContextMessages({
+          messages: mssrContextMessageBatchSchema.parse(input.contextMessages),
+          intent,
+          stage: plan.stage,
+          maxMessages: input.maxContextMessages,
+          maxChars: input.maxContextMessageChars,
+        }),
+      } : {}),
     };
     const lifecycle = reduceMssrRouteLifecycle(this.traces.get(traceId) ?? null, observedPlan);
     this.traces.set(traceId, lifecycle);

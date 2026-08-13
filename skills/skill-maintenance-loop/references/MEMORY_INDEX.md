@@ -9,6 +9,7 @@ Use this index to load only the module needed for the current maintenance sympto
 | [skill-memory-modules.md](skill-memory-modules.md) | invariant | a skill is accumulating optional notes, bugs, recipes, compatibility facts or recovery procedures and needs selective loading | `reusable-pattern`, `skill-gap`, growing references | active | skill-maintenance-loop | 2026-07-27 |
 | [capability-evolution-proposals.md](capability-evolution-proposals.md) | decision-record | evidence suggests a reusable capability change and the system must choose update, module, script/tool/guide, new skill or context handoff without automatic mutation | `repeated-friction`, `skill-gap`, `reusable-pattern`, `missing-capability` | active | skill-maintenance-loop | 2026-07-27 |
 | [learning-review-promotion.md](learning-review-promotion.md) | verification | a digest has zero findings, observed friction, optional decisions or a candidate learning that could be proposed for promotion | `nominal`, `repeated-friction`, `manual-workaround`, `reusable-pattern`, `missing-capability`, `conflicting-evidence` | active | skill-maintenance-loop | 2026-08-13 |
+| [architecture-documentation-consistency.md](architecture-documentation-consistency.md) | invariant | architecture, ADR, context/state, changelog or incident evidence conflicts, is stale, or needs a reviewed persistence proposal | `conflicting-evidence`, `repeated-friction`, `reusable-pattern`, stale/unknown provenance | active | skill-maintenance-loop | 2026-08-13 |
 
 ## Current high-value memory
 

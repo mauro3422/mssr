@@ -47,6 +47,10 @@ docs/
   Architecture, public protocol, project context, registry, maintenance and incident history.
 ```
 
+`src/context-messages.ts` owns the bounded portable Context Messages v1 schemas,
+selection, receipts and accounting. `docs/decisions/` is the indexed canonical
+ADR collection; transported messages may reference an ADR but never replace it.
+
 ## Aggregate routing files
 
 `skill-routing-overrides.json` and `skill-routing-fixtures.json` are intentionally single canonical aggregates today. Their size is a maintenance signal, not permission to create parallel editable fragments.

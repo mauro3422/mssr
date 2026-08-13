@@ -32,6 +32,7 @@ import {
   reduceMssrSkillLoadLifecycle,
   validateMssrCheckpointLifecycle,
 } from "./trace-contract.js";
+import { mssrContextMessageBatchSchema, selectMssrContextMessages } from "./context-messages.js";
 
 /** The portable, stateless MSSR MCP facade. */
 export const MSSR_TOOL_NAMES = [
@@ -92,8 +93,26 @@ export function createMssrMcpServer(registry = new CapabilityRegistry([new MssrF
       stage: z.enum(SKILL_STAGES).optional(),
       completedPhases: z.array(z.enum(SKILL_PHASES)).optional(),
       maxSkills: z.number().int().min(1).max(16).optional(),
+      contextMessages: mssrContextMessageBatchSchema.optional(),
+      maxContextMessages: z.number().int().min(0).max(32).optional(),
+      maxContextMessageChars: z.number().int().min(0).max(20_000).optional(),
     },
-  }, async (args) => response({ ...(await planSkillRoute({ ...args, skills: skills(registry) })), registry: registry.getSnapshot() }));
+  }, async ({ contextMessages, maxContextMessages, maxContextMessageChars, ...args }) => {
+    const plan = await planSkillRoute({ ...args, skills: skills(registry) });
+    return response({
+      ...plan,
+      ...(contextMessages ? {
+        contextMessages: selectMssrContextMessages({
+          messages: contextMessages,
+          intent: plan.intent,
+          stage: plan.stage,
+          maxMessages: maxContextMessages,
+          maxChars: maxContextMessageChars,
+        }),
+      } : {}),
+      registry: registry.getSnapshot(),
+    });
+  });
 
   server.registerTool(MSSR_TOOL_NAMES[4], {
     description: "Audit discovered skills against the MSSR routing contract.",

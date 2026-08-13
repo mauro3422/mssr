@@ -11,6 +11,7 @@ export * from "./opencode-plugin.js";
 export * from "./skill-context.js";
 export * from "./skill-context-loader.js";
 export * from "./context-selection.js";
+export * from "./context-messages.js";
 export * from "./project-context.js";
 export * from "./project-context-update.js";
 export * from "./intent-normalizer.js";

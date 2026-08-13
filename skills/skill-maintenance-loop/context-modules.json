@@ -97,6 +97,15 @@
       "actions": ["analyze", "review", "verify", "maintain"],
       "signals": ["nominal", "repeated-friction", "manual-workaround", "reusable-pattern", "missing-capability", "conflicting-evidence"],
       "priority": 30
+    },
+    {
+      "id": "architecture-documentation-consistency",
+      "description": "Reconcile repository-owned architecture, ADR, context/state, changelog, and incident evidence before reviewed persistence.",
+      "source": { "path": "references/architecture-documentation-consistency.md" },
+      "actions": ["analyze", "review", "edit", "maintain"],
+      "artifacts": ["document", "project", "repository"],
+      "signals": ["conflicting-evidence", "repeated-friction", "reusable-pattern"],
+      "priority": 30
     }
   ]
 }

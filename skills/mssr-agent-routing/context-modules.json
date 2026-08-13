@@ -4,6 +4,7 @@
     "sections": [
       "## Produce compact intent",
       "## Route progressively",
+      "## Consume context messages",
       "## Route at meaningful boundaries",
       "## Preserve permissions"
     ]

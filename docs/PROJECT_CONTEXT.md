@@ -29,6 +29,44 @@ The core provides only the durable information needed to understand and begin wo
 
 If `.bridge/project-context.json` is absent, a host adapter may preserve the legacy behavior of loading the three project Markdown documents in full. Projects can therefore migrate incrementally.
 
+## Context messages and continuation receipts
+
+Project context participates in **MSSR Context Plane v1** as evidence selected
+from a repository, not as data owned by a host adapter. A portable context
+message must identify, at minimum, its source class, canonical owner, bounded
+reference, provenance, observed time or revision when available, freshness
+state, and purpose. The message contains the smallest useful excerpt or
+reference; it never contains a raw transcript, secret, or private reasoning.
+
+Typical source classes are project authorities, ADRs, versioned changelogs,
+incidents, Git history, live runtime/provider readback, and the active task
+trace. Their authority differs:
+
+- project documents and ADRs own local facts and decisions;
+- changelogs own published change history, not current runtime truth;
+- Git and runtime reads provide time-bound observable evidence;
+- trace data records workflow continuity, not project semantics;
+- an adapter or provider owns only how the evidence is read and delivered.
+
+When a task continues, the host should carry a **continuation receipt** rather
+than reload an unbounded conversation. The receipt records selected source
+references, observed revisions/times, freshness or staleness, unresolved
+contradictions, the trace identifier when compatible, and the next gate. It is
+evidence for selecting or re-reading context; it is never proof that a source
+still describes the repository after a restart, handoff, or external edit.
+
+Messages may arrive through an inbox or piggyback on the next normal tool
+response. They may request revalidation, a route replan, or a human review, but
+they never authorize a mutation, publication, rollback, or context write. A
+durable change suggested by a message remains a proposal for the owning
+repository: review the source evidence, apply the normal persistence workflow,
+and record the resulting fact in its canonical authority only when accepted.
+
+The v1 documentation contract is deliberately ahead of universal runtime
+support. Hosts must expose only the message fields and delivery guarantees they
+actually implement, and preserve an explicit `unknown`, `stale`, or
+`unavailable` condition rather than fabricating freshness.
+
 ### Authority and migration preflight
 
 The manifest is optional for repositories that deliberately do not use MSSR project memory, but absence must not be confused with a healthy modular authority once project-memory infrastructure already exists.

@@ -111,9 +111,13 @@ Telemetry is not deleted to improve rates. A host may introduce a logical epoch 
 
 The first host implementation uses `trace-contract-v1`. Its clean baseline begins only after automatic continuity and its end-to-end regression are active.
 
-## Context notice inbox
+## Context messages, inboxes, and receipts
 
-A host may attach bounded notices to the next tool result or expose a drainable inbox. Notices are runtime-authored evidence, not autonomous model thoughts.
+MSSR Context Plane v1 treats a notice as one kind of bounded context message.
+A host may attach a message to the next tool result or expose a drainable inbox;
+this delivery choice is adapter I/O, not a semantic ownership transfer. Messages
+are runtime-authored or repository-sourced evidence, not autonomous model
+thoughts and never authorization to mutate.
 
 Useful notice classes include:
 
@@ -127,6 +131,19 @@ Useful notice classes include:
 Each notice should contain a bounded code, severity, source, timestamp, dedupe key, short message, optional evidence reference, and suggested next action. A notice may trigger a replan or context request, but never authorizes a destructive action.
 
 Delivery may be pull-based or piggybacked on the next tool response. This is generally more reliable than assuming every MCP client will turn a server push notification into a new model inference.
+
+A portable receipt for a delivered context message should also preserve the
+source class, canonical owner, provenance/revision when available, observed
+time, freshness state, trace association when compatible, and bounded purpose.
+The observatory may retain receipt metadata and evidence references, but not
+raw document bodies, prompts, transcripts, secrets, or private reasoning.
+Unknown, stale, conflicting, or unavailable evidence remains visible as such.
+
+Continuation uses a compact receipt of selected sources, unresolved evidence,
+and the next gate. It must not make a new host session appear to have read a
+document it cannot prove it loaded. A persistence suggestion is recorded as a
+reviewable proposal for the repository or other canonical owner; observability
+does not auto-write project knowledge, skills, routing fixtures, or changelogs.
 
 ## Progressive context providers
 
@@ -227,7 +244,7 @@ signal or missing required skill occurs on at least three distinct traces by
 default. The threshold is configurable, trace references are bounded, and a
 candidate never edits routing or skills automatically.
 
-## Current host implementation
+## Current host implementation and limits
 
 MauroPrime Bridge provides:
 
@@ -238,6 +255,12 @@ MauroPrime Bridge provides:
 - dashboard cards for structured routing, route→load continuity, required-load compliance, outcome success, acceptance, and per-primary-skill results;
 - Bridge notices for orphan loads, mismatches, omitted required skills, outcomes without routes, stale close/maintenance attempts, errors, and workflow/context anomalies;
 - an end-to-end MCP regression proving route→loads→replan→verification→persistence→fresh close/maintenance→outcome continuity, including stale-close recovery after coordinator-memory loss.
+
+This is a Bridge adapter implementation, not a claim that Bridge owns project
+semantics or that every Context Plane v1 message/runtime gate is implemented on
+every host. The native facade remains stateless; Codex-local and OpenCode-local
+adapters have process-local continuity; ChatGPT Web and full cross-host
+lifecycle/digest/replay/rollback parity remain explicit verification work.
 
 The deterministic MSSR core remains host-neutral. Observability, notices, and context delivery belong to adapters because only a host can know whether the protocol was actually invoked and which tools/results occurred.
 

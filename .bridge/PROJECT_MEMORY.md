@@ -11,3 +11,7 @@ Every release uses `changelogs/X.Y.Z.md` with explicit PROJECT_CONTEXT/PROJECT_M
 ## First-party core skill direction
 
 MSSR-owned operational skills have one canonical bundled source for the five names in `config/first-party-skills.json`. Native, Codex-local, and OpenCode-local source providers discover that package with reserved-name precedence; a custom catalog may not reclaim one of those names as an editable owner. The package boundary does not imply loading every first-party skill on every task; required/on-demand/closing activation remains explicit. Bridge 0.6.88 completed its controlled runtime restart and live catalog/version readback on 2026-08-13.
+
+## Context-plane ownership decision
+
+MSSR is the portable transport contract for bounded contextual guidance in addition to skill routing. It selects and accounts for messages by intent and stage, carries explicit evidence provenance/freshness and continuation receipts, and keeps persistence proposals review-only. Repository documents remain authoritative; Bridge and other hosts may piggyback or queue delivery but do not own project meaning. Unknown, stale, conflicting, or unavailable evidence triggers verification, context loading, or replanning rather than silent inference.

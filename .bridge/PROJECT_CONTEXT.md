@@ -13,7 +13,10 @@ MSSR is the portable deterministic/advisory control layer for skill routing, mod
 - A bundled source wins precedence. A runtime mount to the same real source is an alias; a divergent external source with a reserved name is a blocking shadow conflict rather than an alternative editable owner.
 - Codex mounting is opt-in through `scripts/install-first-party-skills.ps1`; installation never runs implicitly at package install time and only mutates manifest-named targets.
 - Versioned release history lives in `changelogs/`; root `CHANGELOG.md` is a compatibility pointer.
+- Context Messages v1 is owned by portable MSSR: bounded schemas, deterministic intent/stage selection, evidence provenance/freshness, continuation receipts, dedupe/accounting, and review-only persistence proposals. Repositories remain the canonical owners of facts; adapters own reads and delivery only.
 
 ## Project knowledge governance
 
 Project-local facts, decisions, and mutable state are explicit `.bridge` authorities. Metrics, telemetry, learning digests, and audits may recommend maintenance but never silently rewrite project memory, routing, skills, or changelog content.
+
+Architecture decisions live under `docs/decisions/`. A Context Message may reference an ADR, incident, changelog, context/state authority, Git revision, provider observation, or trace receipt, but its summary never replaces the referenced owner.

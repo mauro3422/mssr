@@ -23,6 +23,14 @@ as a resolved summary, hypotheses, decisions, evidence references, and the next
 gate when continuation benefits from it; purge or compact that working metadata
 when an outcome closes the trace.
 
+When a route or bootstrap returns selected context messages, consume them as
+bounded advisory evidence. Check each message's canonical owner, provenance, and
+freshness before relying on it; stale, unknown, conflicting, or unavailable
+evidence should trigger the smallest applicable load, verification, context
+request, or re-plan. Advisory actions never authorize mutations, and a
+`persistence-proposal` must be reviewed against its repository-owned source
+before any project context, ADR, changelog, incident, skill, or fixture is edited.
+
 Do not route mechanically between every tool call. Re-plan at meaningful
 boundaries: before a substantial specialized chain, when the stage changes to
 verify/persist/close/resume, after a material failure or provider/schema change,

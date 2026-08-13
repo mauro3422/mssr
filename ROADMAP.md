@@ -69,6 +69,22 @@
 - [ ] Context notice inbox covering provider/runtime failures, active agents,
   pending reviews, changed project state, missing routing compliance, and
   bounded context requests.
+- [x] Documented MSSR Context Plane v1 ownership and safety contract: portable
+  selection/continuity/message semantics; repository-owned facts; adapter and
+  provider-owned I/O/delivery; provenance/freshness receipts; and
+  review-only persistence proposals. This is an ADR/documentation boundary,
+  not a claim of universal runtime message support.
+- [ ] Context Plane gate A — define versioned portable message and
+  continuation-receipt fixtures, including source class, canonical owner,
+  provenance, freshness, trace association, privacy bounds, and no-authority
+  invariants.
+- [ ] Context Plane gate B — implement and test adapter delivery through a
+  piggyback response or pull inbox without assuming server push creates a host
+  turn; preserve `unknown`/`stale`/`unavailable` rather than fabricating facts.
+- [ ] Context Plane gate C — prove continuation and persistence-proposal
+  behavior across native, Codex, OpenCode, and Bridge/ChatGPT Web. A proposal
+  must remain reviewable repository-owned work and never auto-write memory,
+  skills, routing, or changelogs.
 - [x] Portable modular project-context contract plus Bridge adapter: optional `.bridge/project-context.json`, minimal core loading, stage/intent-selected context-memory-state-directive modules, legacy full-document fallback, and shared semantic selection with skill context.
 - [x] Portable versioned change-history contract: strict `changelogs/X.Y.Z.md` parser, PROJECT_CONTEXT/PROJECT_MEMORY/PROJECT_STATE impact declarations (`updated` / `reviewed-none` / `pending`), pure consistency evaluator, and deterministic history-loading predicate for debugging/recovery/release work.
 - [x] Bridge project-authority/change-consistency host implementation: workspace audit distinguishes modular/legacy/invalid/empty/not-initialized authorities, project load surfaces migration debt, and persist-mode Git/changelog/memory drift can block publish readiness without auto-writing memory.

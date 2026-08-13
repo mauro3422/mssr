@@ -5,6 +5,7 @@ import { CodexMssrAdapter } from "./codex-adapter.js";
 import { createMssrRegistryFromEnvironment } from "./provider-config.js";
 import { SKILL_PHASES, SKILL_STAGES, structuredSkillIntentSchema } from "./skill-routing.js";
 import { createMssrTelemetrySinkFromEnvironment, mssrHostCheckpointSchema } from "./telemetry.js";
+import { mssrContextMessageBatchSchema } from "./context-messages.js";
 
 function response(value: unknown) {
   return { content: [{ type: "text" as const, text: JSON.stringify(value, null, 2) }] };
@@ -21,6 +22,9 @@ const routeInput = {
   workflowKey: z.string().min(1).max(160).optional(),
   model: z.string().min(1).max(80).optional(),
   reasoningEffort: z.enum(["low", "medium", "high", "xhigh", "max", "ultra", "unknown"]).optional(),
+  contextMessages: mssrContextMessageBatchSchema.optional(),
+  maxContextMessages: z.number().int().min(0).max(32).optional(),
+  maxContextMessageChars: z.number().int().min(0).max(20_000).optional(),
 };
 
 /** Stateful OpenCode-local adapter. Execution remains owned by OpenCode and its configured providers. */

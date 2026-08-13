@@ -6,6 +6,7 @@ import { CodexMssrAdapter } from "./codex-adapter.js";
 import { createMssrRegistryFromEnvironment } from "./provider-config.js";
 import { createMssrTelemetrySinkFromEnvironment, mssrHostCheckpointSchema } from "./telemetry.js";
 import { mssrSkillDecisionSchema, mssrTraceWorkingMemorySchema } from "./trace-contract.js";
+import { mssrContextMessageBatchSchema } from "./context-messages.js";
 
 function response(value: unknown) {
   return {
@@ -26,6 +27,9 @@ const routeInput = {
   workflowKey: z.string().min(1).max(160).optional(),
   model: z.string().min(1).max(80).optional(),
   reasoningEffort: z.enum(["low", "medium", "high", "xhigh", "max", "ultra", "unknown"]).optional(),
+  contextMessages: mssrContextMessageBatchSchema.optional(),
+  maxContextMessages: z.number().int().min(0).max(32).optional(),
+  maxContextMessageChars: z.number().int().min(0).max(20_000).optional(),
 };
 
 /** MCP entrypoint for the stateful Codex-local MSSR adapter. */

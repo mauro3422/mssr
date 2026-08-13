@@ -4,6 +4,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.9](0.2.9.md) - portable Context Messages v1, continuation receipts, cross-host selection parity, and reviewed documentation-persistence guidance.
 - [0.2.8](0.2.8.md) - five bundled first-party skills, reserved-name/provider guards, opt-in Codex installation, and explicit live-adapter boundary.
 - [0.2.7](0.2.7.md) - portable route-closure obligations and success validation.
 
