@@ -7,8 +7,8 @@
   it does not add a new routing algorithm or relax a closure obligation.
 - The first-party package now contains five canonical skill trees, a versioned
   reserved-name manifest, native/Codex/OpenCode provider discovery, opt-in Codex
-  installation, and source-level conformance tests. Bridge `0.6.88` integration
-  remains pending controlled runtime restart and live catalog/version readback.
+  installation, and source-level conformance tests. Bridge `0.6.88` completed a
+  controlled full restart and live catalog/version readback on 2026-08-13.
 - Historical learning remains `observe-only` with `routingInfluence=false`.
   Dataset audit, replay/holdout, calibration, shadow evaluation, a versioned
   feature flag, and tested rollback remain separate future gates.
@@ -42,8 +42,9 @@
   and OpenCode-local adapters, plus opt-in Codex junction installation. The
   manifest reserves five canonical names and a divergent external shadow blocks
   the audit.
-- [ ] Complete Bridge 0.6.88 runtime restart/catalog/version readback and
-  ChatGPT Web runtime validation. Source integration alone is not live proof.
+- [x] Complete Bridge 0.6.88 runtime restart/catalog/version readback.
+- [ ] Complete ChatGPT Web runtime validation; source and local Bridge proof do
+  not establish every external host path.
 
 ## v0.4 — activation observability and durable learning
 
@@ -88,9 +89,10 @@
 - [x] Added source conformance for native, Codex-local, and OpenCode-local
   discovery plus Codex mounting. External, user-created, project, and plugin
   skills remain separate catalogs and cannot silently shadow a reserved name.
-- [ ] Complete the runtime conformance matrix: Bridge/ChatGPT Web live
-  discovery after restart, then lifecycle, digest, replay, and rollback parity
-  across all hosts. The current source tests do not prove those broader gates.
+- [ ] Complete the runtime conformance matrix: Bridge live discovery after
+  restart is proven; ChatGPT Web discovery plus lifecycle, digest, replay, and
+  rollback parity across all hosts remain. Source tests do not prove those
+  broader gates.
 - [ ] Historical replay benchmark measuring missed activation, over-activation,
   required-load compliance, phase continuity, latency, recovery, and outcome
   quality on confirmed real cases.
