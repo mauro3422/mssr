@@ -10,8 +10,16 @@ MauroPrime Bridge and any one host agent.
 - Tool names and schemas are runtime registry data. Do not hard-code an entire
   tool catalog into agent instructions.
 - A provider refresh may update a snapshot automatically; changing durable
-  routing semantics, schemas, fixtures, or bootstrap behavior requires tests,
-  changelog, and documentation updates.
+  routing semantics, schemas, fixtures, bootstrap behavior, or project-knowledge
+  contracts requires tests, documentation, and a versioned `changelogs/X.Y.Z.md`
+  entry referenced from `changelogs/INDEX.md`.
+- Every versioned changelog must declare `PROJECT_CONTEXT`, `PROJECT_MEMORY`, and
+  `PROJECT_STATE` impact as `updated`, `reviewed-none`, or `pending`. `pending`
+  blocks persistence. Hosts may audit this contract but must not auto-write
+  project knowledge from telemetry or heuristics.
+- Repositories that deliberately use `.bridge/PROJECT_*` authorities should also
+  maintain `.bridge/project-context.json` so project context remains selectively
+  loadable instead of staying in legacy full-document fallback indefinitely.
 - Preserve provenance, health, timestamps, and degradation state. An empty or
   stale provider catalog is evidence, not proof that no capability exists.
 - Plans must permit re-plan and capability chaining. An agent may discover,

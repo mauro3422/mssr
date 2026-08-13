@@ -17,3 +17,4 @@ export * from "./trace-contract.js";
 export * from "./telemetry.js";
 export * from "./telemetry-analysis.js";
 export * from "./learning.js";
+export * from "./change-history.js";

@@ -54,6 +54,7 @@ MSSR only discovers, ranks, explains, and re-plans capabilities.
 See [architecture](docs/ARCHITECTURE.md), the
 [modular project-context contract](docs/PROJECT_CONTEXT.md), the
 [agent protocol](docs/AGENT_PROTOCOL.md), the
+[operational learning loop and activation gates](docs/LEARNING_LOOP.md), the
 [routing evidence and observatory contract](docs/ROUTING_EVIDENCE_OBSERVATORY.md), the
 [registry model](docs/REGISTRY.md), and the
 [repository structure and aggregation boundaries](docs/REPOSITORY_STRUCTURE.md).
@@ -126,7 +127,7 @@ capabilities and belong in the registry.
 ## Status
 
 Version `0.1.0` established the independent repository and contract; the current
-release is `0.2.5` (see [CHANGELOG.md](CHANGELOG.md)). It now ships the portable
+release is `0.2.6` (see [CHANGELOG.md](CHANGELOG.md)). It now ships the portable
 core, the standalone `mssr-mcp`, `mssr-codex-mcp`, and `mssr-opencode-mcp`
 servers, and an optional OpenCode host plugin. Bridge remains a consumer adapter
 rather than the owner of the routing contract.

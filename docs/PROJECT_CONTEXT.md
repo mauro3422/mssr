@@ -29,6 +29,49 @@ The core provides only the durable information needed to understand and begin wo
 
 If `.bridge/project-context.json` is absent, a host adapter may preserve the legacy behavior of loading the three project Markdown documents in full. Projects can therefore migrate incrementally.
 
+### Authority and migration preflight
+
+The manifest is optional for repositories that deliberately do not use MSSR project memory, but absence must not be confused with a healthy modular authority once project-memory infrastructure already exists.
+
+Hosts should classify repository state explicitly:
+
+- `modular`: valid `.bridge/project-context.json` is present;
+- `legacy`: one or more `PROJECT_CONTEXT.md`, `PROJECT_MEMORY.md`, or `PROJECT_STATE.md` authorities exist without a manifest;
+- `invalid`: a manifest exists but fails the canonical schema;
+- `empty-bridge`: `.bridge` exists but contains no durable PROJECT_* authority and no manifest;
+- `not-initialized`: the managed repository has no `.bridge` project-memory authority yet;
+- `unmanaged`: the repository does not opt into the managed project-memory contract.
+
+Detection is read-only evidence. A host may recommend migration or block a release gate when a repository already claims project-memory authority but is structurally inconsistent; it must not synthesize durable facts or empty memory merely to make the audit green.
+
+## Versioned change history and memory consistency
+
+Repositories using the change-consistency contract keep new release notes in `changelogs/X.Y.Z.md` and an index in `changelogs/INDEX.md`. The root `CHANGELOG.md` may remain a compatibility pointer. Historical monolithic material can stay in `changelogs/LEGACY.md` and should not be loaded by default.
+
+Each version file has a small deterministic contract:
+
+```md
+# 1.2.3 — 2026-08-13
+
+## Contract
+
+- Summary: Short bounded release summary.
+- Areas: routing, project-context
+- PROJECT_CONTEXT: reviewed-none
+- PROJECT_MEMORY: updated
+- PROJECT_STATE: updated
+```
+
+Allowed PROJECT_* impact values are:
+
+- `updated`: the release changed that durable authority;
+- `reviewed-none`: impact was explicitly reviewed and no durable update was needed;
+- `pending`: impact is unresolved and persistence is incomplete.
+
+A host may compare these declarations with the observed Git change set and project authorities. `pending`, a missing current-version file, a missing index reference, or an invalid changelog contract can block persistence. Declaring `updated` while the corresponding authority is absent or not part of the observed release change set is drift evidence that must be reviewed.
+
+MSSR exports a pure parser/evaluator for this contract plus a deterministic predicate for when version history is useful. Host adapters may selectively load `changelogs/INDEX.md` and the current version note for debugging, recovery, history-recovery, repeated friction, conflicting evidence, or release lifecycle work. Loading the full legacy archive remains explicit and exceptional.
+
 ## Manifest
 
 Canonical schema: `config/project-context/project-context-manifest.schema.json`.
