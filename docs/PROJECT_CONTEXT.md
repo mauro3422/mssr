@@ -67,6 +67,34 @@ support. Hosts must expose only the message fields and delivery guarantees they
 actually implement, and preserve an explicit `unknown`, `stale`, or
 `unavailable` condition rather than fabricating freshness.
 
+### Phase 2 portable context planes
+
+Phase 2 delivers the portable core that produces, collects, revalidates, and
+stores bounded messages without making any host drain them yet:
+
+- Strict producers map bounded observations (`architecture-decision`,
+  `incident`, `changelog`, `project-context`, `project-memory`,
+  `project-state`, `git-receipt`, `provider-receipt`) onto Context Messages
+  with deterministic dedupe keys derived from `sourceKind:canonicalOwner:ref`
+  rather than a caller message id.
+- The repository collector scans canonical facts — ADRs under `docs/decisions`,
+  `docs/INCIDENTS.md`, the root `CHANGELOG.md`, the newest semver
+  `changelogs/X.Y.Z.md`, and the canonical `.bridge`/`docs` PROJECT_*
+  authorities — and merges caller-supplied Git/provider receipts. Reads are
+  bounded to 128 KiB per file, receive sha256-revision provenance, and report
+  `unreadable`/`truncated-at-128kib`/`invalid-receipt`/`source-kind-mismatch`
+  diagnostics without leaking file bodies.
+- Freshness revalidation (`revalidateMssrContextEvidence`) always resolves to
+  `fresh`, `stale`, `conflicting`, `unavailable`, or `unknown`; it never infers
+  currentness from a receipt alone.
+- A durable explicit-ack JSON inbox stores schema-versioned `advisoryOnly`
+  state with strict enqueue/select/acknowledge/prune actions, bounded delivery
+  receipts, TTL pruning, and atomic temp+rename file persistence with
+  fail-closed load.
+
+Delivery to native, Codex, OpenCode, and Bridge hosts remains pending; adapter
+integration is the next gate, not a claim of this release.
+
 ### Authority and migration preflight
 
 The manifest is optional for repositories that deliberately do not use MSSR project memory, but absence must not be confused with a healthy modular authority once project-memory infrastructure already exists.

@@ -78,14 +78,26 @@ be replaced by inference.
 - Hosts can expose only proven fields while preserving explicit uncertainty.
 - Cross-host parity requires fixtures and runtime evidence, not matching prose.
 
+As of MSSR 0.2.10, phase 2 adds the portable strict producers, the bounded
+repository collector (ADR/incident/changelog/PROJECT_* facts plus supplied
+Git/provider receipts), evidence freshness revalidation, and a durable
+explicit-ack advisory-only JSON inbox. These are pure core modules; no native,
+Codex, OpenCode, or Bridge host adapter is wired to drain the inbox or
+piggyback its messages yet.
+
 ## Staged adoption gates
 
-1. Publish portable message and continuation-receipt fixtures with no-authority
-   and privacy assertions.
-2. Add adapter inbox/piggyback delivery and prove receipt freshness/provenance.
-3. Prove resume and persistence-proposal behavior on native, Codex, OpenCode,
-   and Bridge/ChatGPT Web.
-4. Only then use aggregate observability to review context quality; learning
+1. [x] Publish portable message and continuation-receipt fixtures with
+   no-authority and privacy assertions (0.2.9 cross-host fixtures).
+2. [x] Portable core: strict producers, repository collector, freshness
+   revalidation, and a durable explicit-ack advisory-only JSON inbox (0.2.10).
+   This proves the selectable/accounted message plane, not adapter delivery.
+3. [ ] Add adapter delivery — native, Codex, OpenCode, and Bridge/ChatGPT Web
+   draining the inbox or piggybacking receipts — and prove receipt
+   freshness/provenance on those hosts. Still pending.
+4. [ ] Prove resume and persistence-proposal behavior on native, Codex,
+   OpenCode, and Bridge/ChatGPT Web.
+5. [ ] Only then use aggregate observability to review context quality; learning
    remains observe-only until its separate replay, calibration, shadow, feature
    flag, and rollback gates pass.
 

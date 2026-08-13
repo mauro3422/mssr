@@ -15,3 +15,7 @@ MSSR-owned operational skills have one canonical bundled source for the five nam
 ## Context-plane ownership decision
 
 MSSR is the portable transport contract for bounded contextual guidance in addition to skill routing. It selects and accounts for messages by intent and stage, carries explicit evidence provenance/freshness and continuation receipts, and keeps persistence proposals review-only. Repository documents remain authoritative; Bridge and other hosts may piggyback or queue delivery but do not own project meaning. Unknown, stale, conflicting, or unavailable evidence triggers verification, context loading, or replanning rather than silent inference.
+
+## Phase 2 core boundary
+
+The 0.2.10 portable core (strict producers, repository collector, freshness revalidation, and a durable explicit-ack advisory-only JSON inbox) proves the portable message plane and repository scan. It is not proof of host delivery: draining the inbox or piggybacking receipts on native, Codex, OpenCode, or Bridge remains a separate pending gate, and the OpenCode adapter has not adopted the inbox at runtime. Prevent blocked `external_directory` approval waits by using/reading back the canonical session directory before writes and preserving/resuming only when aligned.

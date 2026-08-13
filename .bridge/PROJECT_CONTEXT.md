@@ -14,6 +14,7 @@ MSSR is the portable deterministic/advisory control layer for skill routing, mod
 - Codex mounting is opt-in through `scripts/install-first-party-skills.ps1`; installation never runs implicitly at package install time and only mutates manifest-named targets.
 - Versioned release history lives in `changelogs/`; root `CHANGELOG.md` is a compatibility pointer.
 - Context Messages v1 is owned by portable MSSR: bounded schemas, deterministic intent/stage selection, evidence provenance/freshness, continuation receipts, dedupe/accounting, and review-only persistence proposals. Repositories remain the canonical owners of facts; adapters own reads and delivery only.
+- Context Plane phase 2 (0.2.10) adds the portable strict producers, the bounded repository collector over ADR/incident/changelog/PROJECT_* facts plus supplied Git/provider receipts, freshness revalidation, and a durable explicit-ack advisory-only JSON inbox. Native/Codex/OpenCode/Bridge host delivery integration is still pending.
 
 ## Project knowledge governance
 

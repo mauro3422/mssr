@@ -13,6 +13,18 @@
   Dataset audit, replay/holdout, calibration, shadow evaluation, a versioned
   feature flag, and tested rollback remain separate future gates.
 
+## Release boundary (0.2.10)
+
+- `0.2.9` published the portable Context Messages v1 contract and cross-host
+  selection parity. `0.2.10` adds the Context Plane phase 2 portable core:
+  strict producers, a bounded repository collector over ADR/incident/changelog/
+  PROJECT_* facts plus supplied Git/provider receipts, evidence freshness
+  revalidation, and a durable explicit-ack advisory-only JSON inbox.
+- Host delivery integration — draining the inbox or piggybacking receipts on
+  native, Codex, OpenCode, or Bridge — is still pending. This release proves
+  the portable core and repository scan, not restart/runtime adoption on any
+  host.
+
 ## v0.1 — independent foundation
 
 - [x] Independent repository, package metadata, routing contract, and docs.
@@ -74,13 +86,19 @@
   provider-owned I/O/delivery; provenance/freshness receipts; and
   review-only persistence proposals. This is an ADR/documentation boundary,
   not a claim of universal runtime message support.
-- [ ] Context Plane gate A — define versioned portable message and
-  continuation-receipt fixtures, including source class, canonical owner,
-  provenance, freshness, trace association, privacy bounds, and no-authority
-  invariants.
-- [ ] Context Plane gate B — implement and test adapter delivery through a
-  piggyback response or pull inbox without assuming server push creates a host
-  turn; preserve `unknown`/`stale`/`unavailable` rather than fabricating facts.
+- [x] Context Plane gate A — versioned portable message and
+  continuation-receipt fixtures and cross-host selection parity, including
+  source class, canonical owner, provenance, freshness, trace association,
+  privacy bounds, and no-authority invariants (0.2.9).
+- [x] Context Plane phase 2 — portable strict producers, bounded repository
+  collector (ADR/incident/changelog/PROJECT_* facts plus supplied Git/provider
+  receipts), evidence freshness revalidation, and a durable explicit-ack
+  advisory-only JSON inbox (0.2.10).
+- [ ] Context Plane gate B — adapter delivery: native, Codex, OpenCode, and
+  Bridge draining the durable inbox or piggybacking receipts without assuming
+  server push creates a host turn; preserve `unknown`/`stale`/`unavailable`
+  rather than fabricating facts. The portable inbox/repository plane is proven;
+  host delivery integration is still pending.
 - [ ] Context Plane gate C — prove continuation and persistence-proposal
   behavior across native, Codex, OpenCode, and Bridge/ChatGPT Web. A proposal
   must remain reviewable repository-owned work and never auto-write memory,

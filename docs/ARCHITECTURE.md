@@ -140,6 +140,35 @@ other canonical owner. Telemetry may record bounded receipts and evidence
 references, but it must not silently write project facts, routing metadata,
 skills, or release history. See [ADR 0001](decisions/0001-context-plane-v1.md).
 
+### Phase 2 portable implementation
+
+Phase 2 adds the portable, host-neutral core behind those semantics as
+pure modules. It does not yet wire any host adapter to drain them:
+
+- Strict producers (`src/context-message-producers.ts`) convert bounded
+  observations about architecture decisions, incidents, changelogs, project
+  authorities, Git, and providers into Context Messages with deterministic
+  dedupe keys derived from `sourceKind:canonicalOwner:ref`. Unavailable
+  surveys are `unavailable`, authoritative available reads are `fresh`, and a
+  receipt alone stays `unknown` rather than pretending to prove freshness.
+- The repository collector (`src/context-message-repository-provider.ts`)
+  scans canonical repository facts (ADRs, `docs/INCIDENTS.md`, root and newest
+  versioned changelogs, canonical `.bridge`/`docs` PROJECT_* authorities) and
+  merges caller-supplied Git/provider receipts. Reads are bounded and report
+  diagnostics/overflow without exposing file bodies.
+- Freshness revalidation (`src/context-message-freshness.ts`) compares stored
+  evidence against a bounded current observation and always resolves to
+  `fresh`, `stale`, `conflicting`, `unavailable`, or `unknown`.
+- The durable explicit-ack JSON inbox (`src/context-message-inbox.ts`) keeps a
+  schema-versioned `advisoryOnly` state with strict enqueue/select/
+  acknowledge/prune actions, bounded delivery receipts, TTL pruning, and
+  atomic file persistence. Receipts prove delivery, not authorization, and no
+  action auto-executes a persistence proposal.
+
+Host delivery remains adapter-owned and is still pending for phase 2: the
+native facade, Codex-local, OpenCode-local, and Bridge adapters have not yet
+been wired to drain the inbox or piggyback its messages.
+
 
 ## Durable project context layer
 

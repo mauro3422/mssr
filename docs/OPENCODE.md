@@ -126,3 +126,15 @@ session whose terminal tool event reaches this plugin; it cannot invent events
 for a delegated agent that OpenCode never delivers to the plugin.
 This does not mean no subagent ran—it means the relationship was not exposed to
 this plugin boundary.
+
+## Session-directory alignment incident (factual)
+
+During 0.2.10 work, the host resolved the canonical session directory as
+`D:\Dev\mssr`, but edits were attempted from noncanonical `C:\Dev\mssr`. The
+resulting `external_directory` approval waits were invisible to the OpenCode
+host session because the tool asked about a directory outside the session's
+resolved physical root. Prevention: always use/read back the canonical session
+directory before writes, and preserve/resume a session only when the resolved
+directory is aligned with the working tree. This is an operational note; the
+OpenCode adapter has not been wired to drain the context inbox or piggyback
+Context Plane messages at runtime in 0.2.10.
