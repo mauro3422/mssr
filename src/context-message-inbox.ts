@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { promises as fs } from "node:fs";
 import { z } from "zod";
 import {
@@ -15,10 +15,12 @@ import {
   type SkillStage,
 } from "./skill-routing.js";
 
-export const MSSR_CONTEXT_INBOX_SCHEMA_VERSION = 1 as const;
+export const MSSR_CONTEXT_INBOX_SCHEMA_VERSION = 2 as const;
+export const MSSR_CONTEXT_INBOX_LEGACY_SCHEMA_VERSION = 1 as const;
 
 const boundedId = z.string().regex(/^[a-z0-9][a-z0-9._:-]{1,119}$/);
 const timestamp = z.string().datetime({ offset: true });
+const fingerprint = z.string().regex(/^[a-f0-9]{64}$/);
 
 export const mssrContextInboxConfigSchema = z.object({
   maxPending: z.number().int().min(0).max(32).default(32),
@@ -48,6 +50,14 @@ export const mssrContextDeliveryReceiptSchema = z.object({
   lastSelectedAt: timestamp,
   expiresAt: timestamp.optional(),
   acknowledgedAt: timestamp.optional(),
+  /**
+   * Stable content signature of the validated message at delivery time.  It
+   * identifies "the same evidence" so an acknowledged receipt can act as a
+   * temporary tombstone: enqueue suppresses a message only when a receipt with
+   * the same messageId and the same fingerprint is already acknowledged.
+   * Migrated legacy v1 receipts carry no fingerprint and never suppress.
+   */
+  fingerprint: fingerprint.optional(),
   sources: z.array(mssrContextEvidenceReferenceSchema).max(8).default([]),
   traceId: boundedId.optional(),
   nextGate: z.string().min(1).max(240).optional(),
@@ -113,6 +123,56 @@ function dedupeKeyOf(message: MssrContextMessage): string {
   return message.dedupeKey ?? message.id;
 }
 
+/**
+ * Deterministic canonical form: object keys sorted, `undefined` omitted, arrays
+ * sorted by their canonical serialization, so the same bounded content always
+ * hashes identically regardless of key or element ordering.
+ */
+function canonicalize(value: unknown): unknown {
+  if (Array.isArray(value)) {
+    return value.map(canonicalize).sort((left, right) => {
+      const l = JSON.stringify(left);
+      const r = JSON.stringify(right);
+      return l < r ? -1 : l > r ? 1 : 0;
+    });
+  }
+  if (value !== null && typeof value === "object") {
+    const record: Record<string, unknown> = {};
+    for (const key of Object.keys(value as Record<string, unknown>).sort()) {
+      const child = (value as Record<string, unknown>)[key];
+      if (child === undefined) continue;
+      record[key] = canonicalize(child);
+    }
+    return record;
+  }
+  return value;
+}
+
+/**
+ * Stable, bounded fingerprint of a validated message's advisory content.
+ * Identity (`id`) and the caller budget hint (`estimatedChars`) are excluded so
+ * the same evidence under a different delivery identity hashes the same; any
+ * content or revision change (summary, evidence revision, selectors, ...)
+ * produces a different fingerprint.
+ */
+export function fingerprintMssrContextMessage(message: MssrContextMessage): string {
+  const { id: _id, estimatedChars: _estimatedChars, ...content } = message;
+  return createHash("sha256").update(JSON.stringify(canonicalize(content))).digest("hex");
+}
+
+/**
+ * The acknowledged-receipt tombstone set: `messageId:fingerprint` pairs that an
+ * enqueue must suppress.  Only receipts with a stored fingerprint can act as
+ * tombstones; migrated legacy receipts cannot and never suppress.
+ */
+function acknowledgedTombstones(deliveries: readonly MssrContextDeliveryReceipt[]): Set<string> {
+  return new Set(
+    deliveries
+      .filter((receipt) => receipt.acknowledgedAt && receipt.fingerprint)
+      .map((receipt) => `${receipt.messageId}:${receipt.fingerprint}`),
+  );
+}
+
 function resolveConfig(config?: MssrContextInboxConfig): MssrContextInboxConfig {
   return mssrContextInboxConfigSchema.parse(config ?? {});
 }
@@ -154,13 +214,19 @@ export function enqueueMssrContextMessages(
 ): { state: MssrContextInboxState; enqueued: string[]; deduplicated: string[]; overflow: string[] } {
   const resolved = resolveConfig(config);
   const validatedMessages = z.array(mssrContextMessageSchema).max(32).parse(messages);
-  const pending = [...validateState(state).pending];
+  const validated = validateState(state);
+  const pending = [...validated.pending];
+  const tombstones = acknowledgedTombstones(validated.deliveries);
   const claimed = new Set(pending.map((entry) => dedupeKeyOf(entry.message)));
   const enqueued: string[] = [];
   const deduplicated: string[] = [];
   const overflow: string[] = [];
 
   for (const message of validatedMessages) {
+    if (tombstones.has(`${message.id}:${fingerprintMssrContextMessage(message)}`)) {
+      deduplicated.push(message.id);
+      continue;
+    }
     const key = dedupeKeyOf(message);
     if (claimed.has(key)) {
       deduplicated.push(message.id);
@@ -230,6 +296,7 @@ export function selectMssrContextInboxMessages(
         ...existing,
         lastSelectedAt: args.now,
         selectedCount: existing.selectedCount + 1,
+        fingerprint: fingerprintMssrContextMessage(message),
         expiresAt,
         acknowledgedAt: undefined,
       });
@@ -246,6 +313,7 @@ export function selectMssrContextInboxMessages(
       selectedCount: 1,
       firstSelectedAt: args.now,
       lastSelectedAt: args.now,
+      fingerprint: fingerprintMssrContextMessage(message),
       expiresAt,
       sources: message.evidence.slice(0, 8),
       traceId: message.continuation?.traceId,
@@ -405,6 +473,12 @@ export async function loadMssrContextInboxStateFromFile(filePath: string): Promi
 
   const check = mssrContextInboxStateSchema.safeParse(parsed);
   if (!check.success) {
+    const legacy = mssrContextInboxStateSchema
+      .extend({ schemaVersion: z.literal(MSSR_CONTEXT_INBOX_LEGACY_SCHEMA_VERSION) })
+      .safeParse(parsed);
+    if (legacy.success) {
+      return { ...legacy.data, schemaVersion: MSSR_CONTEXT_INBOX_SCHEMA_VERSION };
+    }
     throw new Error(`MSSR context inbox state at ${filePath} failed validation; refusing to load malformed state.`);
   }
   return check.data;

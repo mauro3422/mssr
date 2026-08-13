@@ -90,7 +90,13 @@ stores bounded messages without making any host drain them yet:
 - A durable explicit-ack JSON inbox stores schema-versioned `advisoryOnly`
   state with strict enqueue/select/acknowledge/prune actions, bounded delivery
   receipts, TTL pruning, and atomic temp+rename file persistence with
-  fail-closed load.
+  fail-closed load. As of **0.2.12** each delivery receipt carries a stable
+  content `fingerprint` and an acknowledged receipt acts as a temporary
+  tombstone: enqueue suppresses only a message with the same `messageId` and
+  fingerprint, so a content/revision change or a new id reappears, and
+  `receiptRetentionMs` pruning lets identical evidence be delivered again.
+  Inbox state schema is v2 with transparent v1 migration; legacy v1 receipts
+  carry no fingerprint and never suppress.
 
 Delivery is adapter-owned. As of **0.2.11**, native `mssr_route_plan`, Codex
 `skill_route_plan`/`skill_bootstrap`, and OpenCode

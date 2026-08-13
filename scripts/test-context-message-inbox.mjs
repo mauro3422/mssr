@@ -52,7 +52,7 @@ assert.equal(mssrContextInboxStateSchema.safeParse(empty).success, true);
 
 // --- State schema is strict and fail-closed ---
 
-assert.equal(mssrContextInboxStateSchema.safeParse({ ...empty, schemaVersion: 2 }).success, false);
+assert.equal(mssrContextInboxStateSchema.safeParse({ ...empty, schemaVersion: 99 }).success, false);
 assert.equal(mssrContextInboxStateSchema.safeParse({ ...empty, advisoryOnly: false }).success, false);
 assert.equal(mssrContextInboxStateSchema.safeParse({ ...empty, secret: "raw" }).success, false);
 const tooMany = Array.from({ length: 33 }, (_, index) => ({
@@ -206,6 +206,71 @@ assert.deepEqual(neverDelivered.acknowledged, []);
 assert.deepEqual(neverDelivered.unknown, ["never-delivered"]);
 assert.equal(neverDelivered.state.pending.length, 0);
 
+// --- Acknowledged receipt is a temporary tombstone for identical content ---
+
+const tombEnqueued = enqueueMssrContextMessages(empty, [
+  message({ id: "tomb-a", dedupeKey: "tomb-a-key" }),
+], now);
+const tombSelected = selectMssrContextInboxMessages(tombEnqueued.state, { now, intent, stage: "implement" });
+const tombAcked = acknowledgeMssrContextMessages(tombSelected.state, ["tomb-a"], now);
+const tombReceipt = tombAcked.state.deliveries.find((item) => item.messageId === "tomb-a");
+assert.equal(tombReceipt?.acknowledgedAt, now);
+assert.match(tombReceipt?.fingerprint ?? "", /^[a-f0-9]{64}$/);
+
+const reEnqueueIdentical = enqueueMssrContextMessages(tombAcked.state, [
+  message({ id: "tomb-a", dedupeKey: "tomb-a-key" }),
+], now);
+assert.deepEqual(reEnqueueIdentical.deduplicated, ["tomb-a"]);
+assert.deepEqual(reEnqueueIdentical.enqueued, []);
+assert.equal(reEnqueueIdentical.state.pending.length, 0);
+
+// --- Same id with changed revision/content reappears after ack ---
+
+const reEnqueueChanged = enqueueMssrContextMessages(tombAcked.state, [
+  message({
+    id: "tomb-a",
+    dedupeKey: "tomb-a-key",
+    summary: "Revised summary after ack.",
+    evidence: [{
+      kind: "architecture-decision",
+      ref: "adr-inbox",
+      summary: "Revised evidence.",
+      canonicalOwner: "mssr",
+      provenance: "project",
+      freshness: "fresh",
+      revision: "rev-2",
+    }],
+  }),
+], now);
+assert.deepEqual(reEnqueueChanged.enqueued, ["tomb-a"]);
+assert.deepEqual(reEnqueueChanged.deduplicated, []);
+assert.equal(reEnqueueChanged.state.pending.length, 1);
+assert.equal(reEnqueueChanged.state.pending[0]?.message.summary, "Revised summary after ack.");
+
+// --- Same content under a different id reappears after ack ---
+
+const reEnqueueNewId = enqueueMssrContextMessages(tombAcked.state, [
+  message({ id: "tomb-a-2", dedupeKey: "tomb-a-2-key" }),
+], now);
+assert.deepEqual(reEnqueueNewId.enqueued, ["tomb-a-2"]);
+assert.equal(reEnqueueNewId.state.pending.length, 1);
+
+// --- Retention cleanup lets identical content be delivered again ---
+
+const retentionConfig = mssrContextInboxConfigSchema.parse({ receiptRetentionMs: 0 });
+const retentionEnqueued = enqueueMssrContextMessages(empty, [
+  message({ id: "ret-a", dedupeKey: "ret-a-key" }),
+], now, retentionConfig);
+const retentionSelected = selectMssrContextInboxMessages(retentionEnqueued.state, { now, intent, stage: "implement" }, retentionConfig);
+const retentionAcked = acknowledgeMssrContextMessages(retentionSelected.state, ["ret-a"], now, retentionConfig);
+const retentionPruned = pruneMssrContextInbox(retentionAcked.state, "2026-08-13T12:00:02.000Z", retentionConfig);
+assert.deepEqual(retentionPruned.prunedReceiptIds, ["ret-a"]);
+const reDeliverIdentical = enqueueMssrContextMessages(retentionPruned.state, [
+  message({ id: "ret-a", dedupeKey: "ret-a-key" }),
+], now, retentionConfig);
+assert.deepEqual(reDeliverIdentical.enqueued, ["ret-a"]);
+assert.deepEqual(reDeliverIdentical.deduplicated, []);
+
 // --- Pruning is deterministic for acknowledged/expired entries with a supplied now ---
 
 const ttlConfig = mssrContextInboxConfigSchema.parse({
@@ -351,6 +416,35 @@ try {
     "utf8",
   );
   await assert.rejects(() => loadMssrContextInboxStateFromFile(badVersionPath), /failed validation/);
+
+  const legacyV1Path = join(directory, "legacy-v1.json");
+  await writeFile(
+    legacyV1Path,
+    JSON.stringify({
+      schemaVersion: 1,
+      pending: [],
+      deliveries: [{
+        messageId: "legacy-ack",
+        messageKind: "architecture-decision",
+        selectedCount: 1,
+        firstSelectedAt: now,
+        lastSelectedAt: now,
+        acknowledgedAt: now,
+        sources: [],
+      }],
+      advisoryOnly: true,
+    }),
+    "utf8",
+  );
+  const migrated = await loadMssrContextInboxStateFromFile(legacyV1Path);
+  assert.equal(migrated.schemaVersion, MSSR_CONTEXT_INBOX_SCHEMA_VERSION);
+  assert.equal(migrated.deliveries.length, 1);
+  assert.equal(migrated.deliveries[0]?.messageId, "legacy-ack");
+  assert.equal(migrated.deliveries[0]?.fingerprint, undefined);
+  const reEnqueueLegacy = enqueueMssrContextMessages(migrated, [
+    message({ id: "legacy-ack", dedupeKey: "legacy-ack-key" }),
+  ], now);
+  assert.deepEqual(reEnqueueLegacy.enqueued, ["legacy-ack"]);
 
   await assert.rejects(() => saveMssrContextInboxStateToFile(inboxPath, { ...empty, schemaVersion: 99 }));
 } finally {
