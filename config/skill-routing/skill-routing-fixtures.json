@@ -6202,6 +6202,173 @@
           "blender-visual-review"
         ]
       }
+    },
+    {
+      "name": "complex-system-design-positive-greenfield",
+      "task": "Antes de programar el sistema de sincronización de inventario definamos bien la fuente de verdad, ownership, estados, transiciones, invariantes, fallos y una escalera de casos mínimos para ir escalando.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Diseñar un sistema complejo desde su contrato e invariantes antes de implementar",
+        "domains": [
+          "coding",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "design",
+          "analyze"
+        ],
+        "artifacts": [
+          "project",
+          "code",
+          "resource-system"
+        ],
+        "needs": [
+          "unit-tests",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "medium"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "complex-system-design"
+        ]
+      }
+    },
+    {
+      "name": "complex-system-design-positive-reset-after-patches",
+      "task": "El scheduler ya tiene un montón de pesos y excepciones; cada parche arregla un caso y rompe otro. Paremos de tunear y reconstruyamos primero el modelo, las reglas básicas y fixtures chicos antes de volver al sistema completo.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Reiniciar la autoridad de diseño de un sistema complejo tras regresiones por heurísticas acumuladas",
+        "domains": [
+          "coding"
+        ],
+        "actions": [
+          "design",
+          "analyze",
+          "review"
+        ],
+        "artifacts": [
+          "code",
+          "project"
+        ],
+        "needs": [
+          "unit-tests",
+          "integrity-verification"
+        ],
+        "signals": [
+          "repeated-friction",
+          "conflicting-evidence",
+          "replan-needed"
+        ],
+        "risk": "write",
+        "ambiguity": "medium"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "complex-system-design"
+        ]
+      }
+    },
+    {
+      "name": "complex-system-design-negative-small-specified-feature",
+      "task": "La especificación ya dice exactamente cómo debe funcionar. Agregá el flag include_archived a esta función y cubrilo con un test; no hay que rediseñar el sistema.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Implementar una mejora pequeña con contrato ya definido",
+        "domains": [
+          "coding"
+        ],
+        "actions": [
+          "create",
+          "edit",
+          "test"
+        ],
+        "artifacts": [
+          "code",
+          "project"
+        ],
+        "needs": [
+          "safe-editing",
+          "unit-tests"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "complex-system-design"
+        ],
+        "deferredExcludes": [
+          "complex-system-design"
+        ]
+      }
+    },
+    {
+      "name": "complex-system-design-continuation-next-fixture",
+      "task": "Dale, sigamos con el próximo fixture",
+      "taskVariants": [
+        "Seguí con el siguiente caso mínimo",
+        "Mandale con el próximo nivel"
+      ],
+      "context": "Estamos rediseñando un sistema complejo porque la implementación anterior acumuló heurísticas sin reglas básicas. Ya definimos goal, fuente de verdad, ownership e invariantes y aprobamos el fixture mínimo A. La próxima acción es continuar la escalera de escenarios sin volver todavía al sistema real grande.",
+      "stage": "resume",
+      "completedPhases": [
+        "discovery"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar la escalera de fixtures de un rediseño de sistema complejo",
+        "domains": [
+          "coding"
+        ],
+        "actions": [
+          "design",
+          "test",
+          "analyze"
+        ],
+        "artifacts": [
+          "code",
+          "project"
+        ],
+        "needs": [
+          "unit-tests",
+          "integrity-verification"
+        ],
+        "signals": [
+          "reusable-pattern"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "complex-system-design"
+        ]
+      }
     }
   ]
 }

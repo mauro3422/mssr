@@ -1133,6 +1133,73 @@
       "priority": 82,
       "activation": "on-demand"
     },
+    "complex-system-design": {
+      "phase": "discovery",
+      "coversPhases": [
+        "discovery",
+        "implementation",
+        "verification"
+      ],
+      "domains": [
+        "coding",
+        "godot",
+        "roblox",
+        "blender",
+        "figma",
+        "filesystem",
+        "openai-development",
+        "agent-orchestration",
+        "skill-system",
+        "other"
+      ],
+      "actions": [
+        "design"
+      ],
+      "artifacts": [
+        "code",
+        "game",
+        "project",
+        "repository",
+        "ui",
+        "website",
+        "skill",
+        "mcp",
+        "placement-system",
+        "network-system",
+        "resource-system"
+      ],
+      "needs": [
+        "safe-editing",
+        "unit-tests",
+        "performance",
+        "integrity-verification"
+      ],
+      "signals": [
+        "uncertainty",
+        "conflicting-evidence",
+        "repeated-friction",
+        "manual-workaround",
+        "reusable-pattern",
+        "replan-needed"
+      ],
+      "requires": [],
+      "complements": [
+        "systematic-debugging",
+        "capability-gap-recovery"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "small feature with an already defined contract",
+        "trivial typo or mechanical edit",
+        "isolated bug with a known expected behavior",
+        "ordinary implementation of a stable specification",
+        "general explanation without system design"
+      ],
+      "requireActionMatch": true,
+      "requireArtifactMatch": true,
+      "priority": 95,
+      "activation": "on-demand"
+    },
     "systematic-debugging": {
       "phase": "discovery",
       "coversPhases": [
