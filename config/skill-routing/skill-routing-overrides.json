@@ -41,6 +41,54 @@
         "verification"
       ]
     },
+    "godot-scene-authoring": {
+      "phase": "implementation",
+      "coversPhases": [
+        "discovery",
+        "verification",
+        "persistence"
+      ],
+      "domains": [
+        "godot"
+      ],
+      "actions": [
+        "create",
+        "edit",
+        "move",
+        "save"
+      ],
+      "artifacts": [
+        "project",
+        "game",
+        "resource-system",
+        "mcp"
+      ],
+      "needs": [
+        "scene-analysis",
+        "safe-editing",
+        "integrity-verification",
+        "human-approval"
+      ],
+      "requires": [
+        "godot-project-inspection"
+      ],
+      "complements": [
+        "godot-visual-review",
+        "godot-runtime-debugging"
+      ],
+      "excludes": [
+        "blender-visual-review"
+      ],
+      "negativeIntents": [
+        "read-only Godot inspection with no request to open create or edit scenes",
+        "runtime-only Godot debugging with no scene authoring",
+        "Blender scene or viewport authoring"
+      ],
+      "requireActionMatch": true,
+      "requireArtifactMatch": true,
+      "priority": 97,
+      "activation": "on-demand"
+    },
     "godot-visual-review": {
       "phase": "verification",
       "domains": [

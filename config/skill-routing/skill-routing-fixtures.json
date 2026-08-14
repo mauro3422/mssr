@@ -6369,6 +6369,184 @@
           "complex-system-design"
         ]
       }
+    },
+    {
+      "name": "godot-scene-authoring-open-batch",
+      "task": "Abrime estas escenas .tscn en el Godot que ya está abierto para revisarlas, sin usar Ctrl+O ni clicks, y dejá la última activa",
+      "stage": "implement",
+      "completedPhases": [
+        "discovery",
+        "safety"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Abrir varias escenas Godot nativamente en el editor existente para revisión humana",
+        "domains": [
+          "godot"
+        ],
+        "actions": [
+          "edit"
+        ],
+        "artifacts": [
+          "project",
+          "game"
+        ],
+        "needs": [
+          "scene-analysis",
+          "human-approval"
+        ],
+        "signals": [
+          "manual-workaround"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "godot-project-inspection",
+          "godot-scene-authoring"
+        ],
+        "activeExcludes": [
+          "godot-runtime-debugging",
+          "blender-visual-review"
+        ]
+      }
+    },
+    {
+      "name": "godot-scene-authoring-create-scene",
+      "task": "Creá una escena Godot nueva res://tests/demo.tscn con Node3D raíz, agregale sus hijos, guardala y abrila en el editor existente",
+      "stage": "implement",
+      "completedPhases": [
+        "discovery",
+        "safety"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Crear persistir y abrir una escena Godot nueva",
+        "domains": [
+          "godot"
+        ],
+        "actions": [
+          "create",
+          "edit",
+          "save"
+        ],
+        "artifacts": [
+          "project",
+          "resource-system"
+        ],
+        "needs": [
+          "safe-editing",
+          "scene-analysis",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "godot-project-inspection",
+          "godot-scene-authoring"
+        ],
+        "activeExcludes": [
+          "godot-visual-review",
+          "blender-visual-review"
+        ]
+      }
+    },
+    {
+      "name": "godot-inspection-excludes-scene-authoring",
+      "task": "Revisá mi proyecto Godot y explicame cómo está armada esta escena, pero no modifiques, no abras otras escenas y no crees nada",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Inspeccionar una escena Godot existente sin autoría ni cambios de editor",
+        "domains": [
+          "godot"
+        ],
+        "actions": [
+          "discover",
+          "review",
+          "analyze"
+        ],
+        "artifacts": [
+          "project",
+          "code"
+        ],
+        "needs": [
+          "scene-analysis",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "godot-project-inspection"
+        ],
+        "activeExcludes": [
+          "godot-scene-authoring",
+          "godot-visual-review",
+          "godot-runtime-debugging"
+        ]
+      }
+    },
+    {
+      "name": "godot-scene-authoring-continuation-open-rest",
+      "task": "Dale, abrí las otras y dejame D activa",
+      "context": "Estamos revisando fixtures reales del Layout Lab dentro del editor Godot ya abierto. La acción acordada es abrir varias escenas .tscn de forma nativa en ese mismo editor, sin Ctrl+O, clicks ni otra instancia, para que Mauro pueda recorrer las pestañas y opinar.",
+      "stage": "resume",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar abriendo escenas Godot nativamente en el editor existente",
+        "domains": [
+          "godot"
+        ],
+        "actions": [
+          "edit"
+        ],
+        "artifacts": [
+          "project",
+          "game"
+        ],
+        "needs": [
+          "scene-analysis",
+          "human-approval"
+        ],
+        "signals": [
+          "manual-workaround"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "godot-project-inspection",
+          "godot-scene-authoring"
+        ],
+        "activeExcludes": [
+          "blender-visual-review"
+        ]
+      }
     }
   ]
 }
