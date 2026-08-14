@@ -75,13 +75,13 @@ for (const testCase of expandedCases) {
   }
 }
 const optionalDependencyRoute = await planSkillRoute({
-  task: "Verify live host-gated optional skill selection after Bridge restart.",
+  task: "Verify live host-gated optional skill selection after Bridge restart on the Atlas graph editor.",
   intent: {
-    summary: "Verify live host-gated optional skill selection after Bridge restart.",
-    domains: ["skill-system", "agent-orchestration", "coding"],
-    actions: ["analyze", "verify", "review"],
-    artifacts: ["skill", "mcp", "code"],
-    needs: ["integrity-verification", "unit-tests"],
+    summary: "Verify live host-gated optional skill selection after Bridge restart on the Atlas graph editor.",
+    domains: ["godot", "coding"],
+    actions: ["review", "analyze", "verify", "edit"],
+    artifacts: ["ui"],
+    needs: ["visual-qa", "performance"],
     signals: ["reusable-pattern"],
     risk: "read-only",
     ambiguity: "low",

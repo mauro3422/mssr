@@ -6104,6 +6104,104 @@
           "visual-reference-replication"
         ]
       }
+    },
+    {
+      "name": "architecture-verify-excludes-godot",
+      "task": "Revisá la arquitectura del repo, el estado del CI y la salud del código antes de publicar",
+      "stage": "verify",
+      "completedPhases": [
+        "discovery",
+        "safety",
+        "implementation"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Verificar arquitectura, integridad y estado del repo en un intent de aceptación genérico",
+        "domains": [
+          "coding",
+          "skill-system"
+        ],
+        "actions": [
+          "review",
+          "verify"
+        ],
+        "artifacts": [
+          "code",
+          "project",
+          "repository"
+        ],
+        "needs": [
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "godot-project-inspection",
+          "godot-graph-ux-audit",
+          "godot-visual-review",
+          "godot-runtime-debugging"
+        ]
+      }
+    },
+    {
+      "name": "godot-graph-ux-audit-verify",
+      "task": "Verificá el grafo del EditorPlugin Atlas de Godot: revisá overlaps, foco de ramas, scripts, minimapa y métricas de la UX con capturas",
+      "stage": "verify",
+      "completedPhases": [
+        "discovery",
+        "safety"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Verificar la UX del grafo Atlas de Godot con captura y métricas estructuradas",
+        "domains": [
+          "godot",
+          "coding"
+        ],
+        "actions": [
+          "review",
+          "analyze",
+          "verify",
+          "test"
+        ],
+        "artifacts": [
+          "ui",
+          "mcp",
+          "project"
+        ],
+        "needs": [
+          "visual-qa",
+          "performance",
+          "scene-analysis",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "godot-project-inspection",
+          "godot-graph-ux-audit"
+        ],
+        "activeExcludes": [
+          "godot-visual-review",
+          "blender-visual-review"
+        ]
+      }
     }
   ]
 }

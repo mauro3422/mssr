@@ -128,8 +128,7 @@
         "maintenance"
       ],
       "domains": [
-        "godot",
-        "coding"
+        "godot"
       ],
       "actions": [
         "design",
