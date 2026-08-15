@@ -6416,6 +6416,53 @@
       }
     },
     {
+      "name": "godot-scene-authoring-exact-review-set",
+      "task": "Preparame estas seis escenas para la auditoría: quiero que queden solamente esas pestañas abiertas, en ese orden, sin escenas viejas mezcladas, y verificá el set real antes de decirme que está listo",
+      "stage": "implement",
+      "completedPhases": [
+        "discovery",
+        "safety"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Sincronizar exactamente el conjunto de escenas Godot abiertas para una revisión humana",
+        "domains": [
+          "godot"
+        ],
+        "actions": [
+          "edit",
+          "verify"
+        ],
+        "artifacts": [
+          "project",
+          "game"
+        ],
+        "needs": [
+          "scene-analysis",
+          "integrity-verification",
+          "human-approval"
+        ],
+        "signals": [
+          "reusable-pattern"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "godot-project-inspection",
+          "godot-scene-authoring"
+        ],
+        "activeExcludes": [
+          "godot-runtime-debugging",
+          "blender-visual-review"
+        ]
+      }
+    },
+    {
       "name": "godot-scene-authoring-create-scene",
       "task": "Creá una escena Godot nueva res://tests/demo.tscn con Node3D raíz, agregale sus hijos, guardala y abrila en el editor existente",
       "stage": "implement",

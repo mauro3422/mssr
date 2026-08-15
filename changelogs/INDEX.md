@@ -4,6 +4,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.15](0.2.15.md) - strengthens `godot-scene-authoring` routing for exact human review/test scene-tab sets: successful opens no longer imply exclusivity, and review preparation requires complete open-scene verification.
 - [0.2.14](0.2.14.md) - explicit `godot-scene-authoring` routing for native scene open/create/save workflows, with read-only inspection kept outside authoring and continuation fixtures covering multi-scene review.
 - [0.2.13](0.2.13.md) - routing precision: `godot-graph-ux-audit` is narrowed to Godot-only routing, while user-owned `complex-system-design` gains explicit design-only cross-domain routing with positive, nearby-negative and continuation fixtures; no new gate or contract surface added.
 - [0.2.12](0.2.12.md) - acknowledged inbox receipts act as temporary tombstones for identical evidence: enqueue suppresses only acknowledged same-id+same-fingerprint messages, content/revision changes reappear, retention pruning re-enables delivery, and the inbox schema moves to v2 with transparent v1 migration.
