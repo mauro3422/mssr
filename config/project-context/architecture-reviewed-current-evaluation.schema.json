@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mauroprime.local/schemas/architecture-reviewed-current-evaluation.schema.json",
+  "title": "MSSR Architecture Reviewed Current Evaluation v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion","architectureId","state","level","suppressRepeatedReview","reasonCodes","receiptValid","canonicalRewriteAllowed","advisoryOnly"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "architectureId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{1,79}$" },
+    "state": { "enum": ["not-applicable","review-required","reviewed-current","receipt-invalidated"] },
+    "level": { "enum": ["ok","review"] },
+    "suppressRepeatedReview": { "type": "boolean" },
+    "reasonCodes": { "type": "array", "minItems": 1, "maxItems": 8, "items": { "enum": ["architecture-aligned","review-receipt-missing","review-evidence-incomplete","receipt-architecture-mismatch","declaration-fingerprint-changed","reviewed-baseline-changed","authority-revision-changed","source-set-fingerprint-changed","projection-fingerprint-changed","receipt-fingerprint-invalid","reviewed-current-match"] } },
+    "receiptValid": { "type": "boolean" },
+    "canonicalRewriteAllowed": { "const": false },
+    "advisoryOnly": { "const": true }
+  }
+}

@@ -137,7 +137,8 @@ A successful same-process route/load test is insufficient for a stateless contin
 
 ## Change telemetry safely
 
-- Store bounded classifications, identifiers, durations, counters, and allow-listed operation subjects.
+- Store bounded classifications, identifiers, durations, counters, allow-listed operation subjects, and privacy-safe project-maintenance hints such as path categories, material-write counts, runtime/package/routing flags and freshness counters.
+- Project-maintenance metadata may feed `evaluateMssrProjectKnowledgeMaintenance` and notices, but it is diagnostic evidence only; never infer a durable project fact from a counter or auto-write `AGENTS.md`, `.mssr/PROJECT_*`, skills or references.
 - Never store raw prompts, transcripts, secrets, cookies, access tokens, or private reasoning.
 - Hash anonymous host session identifiers.
 - Prefer explicit project roles such as primary and related over path guessing.

@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "architectures": [
+    {
+      "architectureId": "architecture-impact-plane",
+      "authorityAnchors": [
+        "impact-relation-meaning",
+        "impact-ownership",
+        "impact-structural-map"
+      ],
+      "implementation": [
+        {
+          "ref": "src/architecture-impact.ts",
+          "selectors": [
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "findArchitectureImpactForTouchedRefs",
+              "aspect": "body"
+            }
+          ]
+        },
+        {
+          "ref": "src/architecture-impact-structure.ts",
+          "selectors": [
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "validateArchitectureStructureAgainstImpactManifest",
+              "aspect": "body"
+            },
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "findArchitectureTouchContext",
+              "aspect": "body"
+            }
+          ]
+        },
+        {
+          "ref": "src/architecture-markdown.ts",
+          "selectors": [
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "parseMarkdownArchitectureSections",
+              "aspect": "body"
+            },
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "fingerprintMarkdownArchitectureAnchors",
+              "aspect": "signature"
+            }
+          ]
+        },
+        {
+          "ref": "src/architecture-symbol-analysis.ts",
+          "selectors": [
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "planArchitectureSymbolAnalysis",
+              "aspect": "signature"
+            },
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "normalizeArchitectureSymbolAnalysisEvidence",
+              "aspect": "body"
+            },
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "analyzeArchitectureStructureManifest",
+              "aspect": "body"
+            }
+          ]
+        },
+        {
+          "ref": "src/architecture-typescript-analyzer.ts",
+          "selectors": [
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "MSSR_TYPESCRIPT_SYMBOL_FINGERPRINT_SCHEME_BASE",
+              "aspect": "body"
+            },
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "analyzeArchitectureTypeScriptSource",
+              "aspect": "body"
+            }
+          ]
+        },
+        {
+          "ref": "src/architecture-structural-contract.ts",
+          "selectors": [
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "buildArchitectureStructureFingerprint",
+              "aspect": "signature"
+            },
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "normalizeArchitectureStructuralEvidence",
+              "aspect": "body"
+            }
+          ]
+        },
+        {
+          "ref": "src/architecture-structural-refinement.ts",
+          "selectors": [
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "createArchitectureStructuralReviewedBaseline",
+              "aspect": "body"
+            },
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "evaluateArchitectureStructuralRefinement",
+              "aspect": "body"
+            }
+          ]
+        },
+        {
+          "ref": "src/architecture-derived-graph.ts",
+          "selectors": [
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "deriveArchitectureGraphCandidates",
+              "aspect": "body"
+            }
+          ]
+        },
+        {
+          "ref": "src/architecture-invariants.ts",
+          "selectors": [
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "validateArchitectureInvariantManifestAgainstImpactManifest",
+              "aspect": "body"
+            },
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "evaluateArchitectureInvariants",
+              "aspect": "body"
+            }
+          ]
+        }
+,
+        {
+          "ref": "src/architecture-context-feedback.ts",
+          "selectors": [
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "buildArchitectureContextFeedback",
+              "aspect": "body"
+            }
+          ]
+        }
+,
+        {
+          "ref": "src/architecture-reviewed-current.ts",
+          "selectors": [
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "createArchitectureReviewedCurrentReceipt",
+              "aspect": "body"
+            },
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "evaluateArchitectureReviewedCurrent",
+              "aspect": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "architectureId": "project-context-plane",
+      "authorityAnchors": [
+        "context-plane-ownership"
+      ],
+      "implementation": [
+        {
+          "ref": "src/project-context-loader.ts",
+          "selectors": [
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "loadProjectContextModuleManifest",
+              "aspect": "signature"
+            },
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "loadProjectContextModules",
+              "aspect": "body"
+            }
+          ]
+        },
+        {
+          "ref": "src/context-plane-host.ts",
+          "selectors": [
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "loadProjectContextHost",
+              "aspect": "body"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

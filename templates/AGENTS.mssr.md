@@ -1,9 +1,13 @@
 <!-- mssr:managed:start -->
 ## MSSR transversal routing
 
-Before substantial specialized work in a known repository, load the smallest durable project context that establishes its rules, architecture, vocabulary, current state, and unresolved references. When `.bridge/project-context.json` exists, load its small core first and defer optional `context`, `memory`, `state`, and scoped `directive` modules until canonical structured intent is available. Keep project-specific facts in the repository; do not turn every project into a global skill.
+Before substantial specialized work in a known repository, load the smallest durable project context that establishes its rules, architecture, vocabulary, current state, and unresolved references. The only active portable project-control home is `.mssr/`; a managed repository must be explicitly initialized with `.mssr/project-context.json` before MSSR project knowledge is considered healthy. Load its small core first and defer optional `context`, `memory`, `state`, and scoped `directive` modules until canonical structured intent is available. Active MSSR project-control files under `.bridge/` are migration debt, never fallback authority. Keep PROJECT_* compact; move situational architecture/design/laws/patterns/vocabulary/decisions/state/phases/references/operations into indexed `.mssr/knowledge/` modules when they grow. Keep `.mssr/.gitignore` narrow: ignore `/runtime/` only, never the whole `.mssr/` directory or versioned PROJECT_*/manifest/knowledge authorities. Keep project-specific facts in the repository; do not turn every project into a global skill.
 
 `AGENTS.md` remains the repository-level instruction authority. A project `directive` module is active only when its stage and semantic selectors match; it may refine the current workflow but cannot weaken user instructions, safety, approvals, permissions, AGENTS, or verification. Broad permanent rules belong here in AGENTS, while reusable cross-project procedure belongs in an owning skill.
+
+Keep durable project knowledge separated by ownership: `PROJECT_CONTEXT.md` stores stable architecture, facts, ownership and invariants; `PROJECT_MEMORY.md` stores durable decisions, lessons and rationale; `PROJECT_STATE.md` stores mutable current versions, blockers and handoff state and should replace superseded status instead of accumulating it. A routed `SKILL.md` is a reusable capability/control plane; conditional procedures stay as parent-owned `references/` selected by `context-modules.json` unless they have independent activation, outcome, owner and verification.
+
+Treat drift checks as evidence, never mutation authority. `project_change_consistency` compares a release diff/changelog with PROJECT_* authorities; Context Plane freshness compares stored evidence with current source revisions; Project Context Health inspects initialization, size/core/module/index pressure; `mssr_project_modularization_plan` proposes exact hash-addressed knowledge moves without writing; and `skill_route_audit` plus structural Skill Health inspect routing/skill modularity debt. MSSR may also derive a bounded project-knowledge maintenance advisory from trace stage plus observable host metadata such as changed paths, tool categories, package/runtime adoption, routing/skill-structure changes, freshness conflicts and user corrections. `WATCH` is informational; `REVIEW` or `REQUIRED` should activate the maintenance phase and load only the relevant project authority/modules plus `skill-maintenance-loop` (and `skill-routing-maintainer` only for routing/skill/reference debt). When evidence disagrees with an authority, perform a visible maintenance review and update the canonical owner only after evidence; never auto-rewrite AGENTS, PROJECT_*, skills, references or routing from telemetry/receipts alone.
 
 Derive a compact observable intent object with `domains`, `actions`, `artifacts`,
 `needs`, `signals`, `risk`, and `ambiguity`. This is classification metadata,
@@ -39,10 +43,12 @@ appear. Adjacent successful calls inside the same unchanged phase share the
 current route.
 
 Treat recommendation, host selection, and context loading as distinct observable
-steps. Required skills remain workflow obligations. In host-gated bootstrap mode,
-record a bounded `accepted` or `skipped` decision for optional candidates before
-materializing their procedural context; a skipped optional is not a load failure.
-Load or invoke accepted capabilities through their authoritative host. MSSR is
+steps. Required skills remain workflow obligations. Stateful MSSR host adapters
+default to `host-gated`: optional candidates materialize only after an explicit
+`accepted` decision, explicit `skipped` remains bounded evidence, and an absent
+decision remains `pending` rather than becoming a synthetic skip. `auto` is an
+explicit compatibility/debug mode, not the normal stateful-host default. Load or
+invoke accepted capabilities through their authoritative host. MSSR is
 advisory and never proxies execution, changes permissions, or makes the initial
 plan an allowlist. When a capability is missing or degraded, record the smallest
 truthful signal, inspect/refresh the registry if useful, and re-plan.

@@ -217,7 +217,9 @@ export function enqueueMssrContextMessages(
   const validated = validateState(state);
   const pending = [...validated.pending];
   const tombstones = acknowledgedTombstones(validated.deliveries);
-  const claimed = new Set(pending.map((entry) => dedupeKeyOf(entry.message)));
+  const pendingIndexByKey = new Map(
+    pending.map((entry, index) => [dedupeKeyOf(entry.message), index] as const),
+  );
   const enqueued: string[] = [];
   const deduplicated: string[] = [];
   const overflow: string[] = [];
@@ -228,15 +230,30 @@ export function enqueueMssrContextMessages(
       continue;
     }
     const key = dedupeKeyOf(message);
-    if (claimed.has(key)) {
-      deduplicated.push(message.id);
+    const pendingIndex = pendingIndexByKey.get(key);
+    if (pendingIndex !== undefined) {
+      const existing = pending[pendingIndex];
+      if (
+        existing
+        && fingerprintMssrContextMessage(existing.message) === fingerprintMssrContextMessage(message)
+      ) {
+        deduplicated.push(message.id);
+        continue;
+      }
+
+      // The dedupe key identifies one advisory subject, not immutable content.
+      // When its authoritative source changes while an older revision is still
+      // pending, replace that stale pending entry instead of suppressing the
+      // updated evidence. Historical delivery receipts remain intact.
+      pending[pendingIndex] = { message, enqueuedAt: now };
+      enqueued.push(message.id);
       continue;
     }
     if (pending.length >= resolved.maxPending) {
       overflow.push(message.id);
       continue;
     }
-    claimed.add(key);
+    pendingIndexByKey.set(key, pending.length);
     pending.push({ message, enqueuedAt: now });
     enqueued.push(message.id);
   }
@@ -299,6 +316,9 @@ export function selectMssrContextInboxMessages(
         fingerprint: fingerprintMssrContextMessage(message),
         expiresAt,
         acknowledgedAt: undefined,
+        sources: message.evidence.slice(0, 8),
+        traceId: message.continuation?.traceId,
+        nextGate: message.continuation?.nextGate,
       });
       continue;
     }

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mauroprime.local/schemas/architecture-impact-projection.schema.json",
+  "title": "MSSR Architecture Impact Projection v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "architectureId", "status", "level", "relationshipClass", "evidenceClass", "declarationFingerprint", "baselineFingerprint", "baselineAuthorityRevision", "currentAuthorityRevision", "baselineSourceSetFingerprint", "currentSourceSetFingerprint", "reasonCodes", "changes", "unresolvedRefs", "evidenceComplete", "fingerprint", "notifyOnWatch", "advisoryOnly"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "architectureId": { "$ref": "#/$defs/stableId" },
+    "status": { "enum": ["aligned", "possible-impact", "unresolved"] },
+    "level": { "enum": ["ok", "review"] },
+    "relationshipClass": { "const": "declared" },
+    "evidenceClass": { "const": "observed" },
+    "declarationFingerprint": { "$ref": "#/$defs/fingerprint" },
+    "baselineFingerprint": { "$ref": "#/$defs/fingerprint" },
+    "baselineAuthorityRevision": { "$ref": "#/$defs/revision" },
+    "currentAuthorityRevision": { "anyOf": [{ "$ref": "#/$defs/revision" }, { "type": "null" }] },
+    "baselineSourceSetFingerprint": { "$ref": "#/$defs/fingerprint" },
+    "currentSourceSetFingerprint": { "anyOf": [{ "$ref": "#/$defs/fingerprint" }, { "type": "null" }] },
+    "reasonCodes": { "type": "array", "maxItems": 16, "items": { "enum": ["aligned", "architecture-authority-revision-changed", "architecture-authority-missing", "architecture-authority-unavailable", "declared-relationship-changed", "impact-availability-changed", "impact-revision-changed", "impact-source-unavailable"] } },
+    "changes": { "type": "array", "maxItems": 65, "items": { "$ref": "#/$defs/change" } },
+    "unresolvedRefs": { "type": "array", "maxItems": 65, "items": { "$ref": "#/$defs/fileObservation" } },
+    "evidenceComplete": { "type": "boolean" },
+    "fingerprint": { "$ref": "#/$defs/fingerprint" },
+    "notifyOnWatch": { "const": false },
+    "advisoryOnly": { "const": true }
+  },
+  "$defs": {
+    "stableId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{1,79}$" },
+    "exactRef": {
+      "type": "string", "minLength": 1, "maxLength": 320,
+      "allOf": [
+        { "not": { "pattern": "^/" } },
+        { "not": { "pattern": "^[A-Za-z]:/" } },
+        { "not": { "pattern": "\\\\" } },
+        { "not": { "pattern": "(^|/)\\.\\.?(/|$)" } },
+        { "not": { "pattern": "//" } },
+        { "not": { "pattern": "[?*\\[\\]{}!#]" } }
+      ]
+    },
+    "revision": { "type": "string", "minLength": 1, "maxLength": 160, "pattern": "^(?!\\s)(?!.*\\s$)[^\\r\\n]+$" },
+    "reasonCode": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]{0,79}$" },
+    "fingerprint": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "available": { "type": "object", "additionalProperties": false, "required": ["ref", "availability", "revision"], "properties": { "ref": { "$ref": "#/$defs/exactRef" }, "availability": { "const": "available" }, "revision": { "$ref": "#/$defs/revision" } } },
+    "missing": { "type": "object", "additionalProperties": false, "required": ["ref", "availability"], "properties": { "ref": { "$ref": "#/$defs/exactRef" }, "availability": { "const": "missing" } } },
+    "unavailable": { "type": "object", "additionalProperties": false, "required": ["ref", "availability"], "properties": { "ref": { "$ref": "#/$defs/exactRef" }, "availability": { "const": "unavailable" }, "reasonCode": { "$ref": "#/$defs/reasonCode" } } },
+    "comparable": { "oneOf": [{ "$ref": "#/$defs/available" }, { "$ref": "#/$defs/missing" }] },
+    "fileObservation": { "oneOf": [{ "$ref": "#/$defs/available" }, { "$ref": "#/$defs/missing" }, { "$ref": "#/$defs/unavailable" }] },
+    "change": {
+      "type": "object", "additionalProperties": false,
+      "required": ["role", "ref", "kind", "baseline", "current"],
+      "properties": {
+        "role": { "enum": ["authority", "impact"] },
+        "ref": { "$ref": "#/$defs/exactRef" },
+        "kind": { "enum": ["revision", "availability"] },
+        "baseline": { "$ref": "#/$defs/comparable" },
+        "current": { "$ref": "#/$defs/comparable" }
+      }
+    }
+  }
+}

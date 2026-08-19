@@ -43,6 +43,8 @@ export type SkillEntry = {
   source: SkillSource;
   path?: string;
   origin?: string;
+  /** SHA-256 of the exact SKILL.md bytes when the discovery provider can prove it. */
+  contentHash?: string;
 };
 
 export const structuredSkillIntentSchema = z.object({
@@ -276,11 +278,15 @@ function classifyDuplicateGroup(group: SkillEntry[]): Pick<SkillDuplicate, "clas
   if (isMssrFirstPartySkillName(group[0]?.name ?? "") && firstParty.length > 0) {
     const canonicalPath = normalizePath(firstParty[0].path);
     const allSameRealPath = canonicalPath !== "" && group.every((entry) => normalizePath(entry.path) === canonicalPath);
-    if (firstParty.length === 1 && allSameRealPath) {
+    const canonicalHash = firstParty[0].contentHash ?? "";
+    const allSameContent = canonicalHash !== "" && group.every((entry) => entry.contentHash === canonicalHash);
+    if (firstParty.length === 1 && (allSameRealPath || allSameContent)) {
       return {
         classification: "first-party-alias-info",
         severity: "info",
-        reason: "A host runtime mount resolves to the same realpath as the bundled first-party skill.",
+        reason: allSameRealPath
+          ? "A host runtime mount resolves to the same realpath as the bundled first-party skill."
+          : "A host runtime mount is a byte-identical copy of the bundled first-party skill.",
       };
     }
     return {
@@ -484,6 +490,38 @@ async function skillFileHealth(entry: RoutingRegistrySkill) {
   if (!entry.path || entry.source === "roblox") return null;
   try {
     const text = await fs.readFile(entry.path, "utf8");
+    const skillDir = path.dirname(entry.path);
+    const manifestPath = path.join(skillDir, "context-modules.json");
+    let contextManifestStatus: "loaded" | "missing" | "invalid" = "missing";
+    let contextModuleCount = 0;
+    let contextManifestError: string | undefined;
+    try {
+      const raw = JSON.parse(await fs.readFile(manifestPath, "utf8")) as { modules?: unknown };
+      if (!Array.isArray(raw.modules)) throw new Error("modules must be an array");
+      contextManifestStatus = "loaded";
+      contextModuleCount = raw.modules.length;
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
+        contextManifestStatus = "invalid";
+        contextManifestError = error instanceof Error ? error.message.slice(0, 240) : String(error).slice(0, 240);
+      }
+    }
+
+    let referenceFiles = 0;
+    let referenceChars = 0;
+    try {
+      const referenceDir = path.join(skillDir, "references");
+      const items = await fs.readdir(referenceDir, { withFileTypes: true });
+      const files = items.filter((item) => item.isFile());
+      referenceFiles = files.length;
+      for (const item of files) {
+        try { referenceChars += (await fs.readFile(path.join(referenceDir, item.name), "utf8")).length; }
+        catch { /* unreadable reference is reported indirectly by zero/partial size; skill core remains auditable */ }
+      }
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== "ENOENT") contextManifestError ??= `references: ${error instanceof Error ? error.message.slice(0, 200) : String(error).slice(0, 200)}`;
+    }
+
     return {
       name: entry.name,
       source: entry.source,
@@ -491,9 +529,28 @@ async function skillFileHealth(entry: RoutingRegistrySkill) {
       lines: text.split(/\r?\n/).length,
       chars: text.length,
       descriptionMissing: !entry.description.trim(),
+      contextManifestStatus,
+      contextModuleCount,
+      contextManifestPath: manifestPath,
+      contextManifestError,
+      referenceFiles,
+      referenceChars,
     };
   } catch {
-    return { name: entry.name, source: entry.source, path: entry.path, lines: 0, chars: 0, descriptionMissing: !entry.description.trim(), unreadable: true };
+    return {
+      name: entry.name,
+      source: entry.source,
+      path: entry.path,
+      lines: 0,
+      chars: 0,
+      descriptionMissing: !entry.description.trim(),
+      contextManifestStatus: "missing" as const,
+      contextModuleCount: 0,
+      contextManifestPath: path.join(path.dirname(entry.path), "context-modules.json"),
+      referenceFiles: 0,
+      referenceChars: 0,
+      unreadable: true,
+    };
   }
 }
 type FixtureCoverage = {
@@ -633,6 +690,41 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
   const fileHealth = (await Promise.all(registry.entries.map(skillFileHealth))).filter((item): item is NonNullable<typeof item> => Boolean(item));
   const oversizedSkills = fileHealth.filter((item) => item.lines > 500 || item.chars > MAX_SAFE_SKILL_CHARS);
   const metadataByName = new Map(registry.entries.map((entry) => [entry.name, entry]));
+  const ownedStructuralHealth = fileHealth
+    .filter((item) => ownedSources.has(item.source))
+    .map((item) => {
+      const reasonCodes: string[] = [];
+      if (item.contextManifestStatus === "invalid") reasonCodes.push("invalid-context-manifest");
+      if (item.contextManifestStatus === "missing" && item.referenceFiles > 0) reasonCodes.push("unindexed-references");
+      if (item.contextManifestStatus === "missing" && (item.lines >= STRUCTURAL_WATCH_LINES || item.chars >= STRUCTURAL_WATCH_CHARS)) reasonCodes.push("full-fallback-risk");
+      if (item.contextManifestStatus === "missing" && item.chars >= STRUCTURAL_REVIEW_CHARS) reasonCodes.push("monolithic-core-review");
+      const status: "ok" | "watch" | "review" = reasonCodes.includes("invalid-context-manifest") || reasonCodes.includes("monolithic-core-review")
+        ? "review"
+        : reasonCodes.length > 0 ? "watch" : "ok";
+      const recommendation = status === "ok"
+        ? "keep"
+        : reasonCodes.includes("invalid-context-manifest")
+          ? "fix-context-manifest"
+          : reasonCodes.includes("unindexed-references")
+            ? "index-existing-references"
+            : "review-core-vs-recipes";
+      return {
+        name: item.name,
+        source: item.source,
+        path: item.path,
+        status,
+        reasonCodes,
+        recommendation,
+        lines: item.lines,
+        chars: item.chars,
+        contextManifestStatus: item.contextManifestStatus,
+        contextModuleCount: item.contextModuleCount,
+        referenceFiles: item.referenceFiles,
+        referenceChars: item.referenceChars,
+        contextManifestError: item.contextManifestError,
+      };
+    });
+  const structuralReviewCandidates = ownedStructuralHealth.filter((item) => item.status !== "ok");
   const oversizedOwnedSkills = oversizedSkills.filter((item) => ownedSources.has(item.source) && metadataByName.get(item.name)?.oversizeReviewed !== true);
   const missingDescriptions = fileHealth.filter((item) => ownedSources.has(item.source) && item.descriptionMissing);
   const unreadableSkills = fileHealth.filter((item) => "unreadable" in item && item.unreadable);
@@ -662,6 +754,7 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
   return {
     ok: errors.length === 0,
     maintenanceRequired: maintenanceReasons.length > 0,
+    healthReviewRecommended: structuralReviewCandidates.length > 0,
     counts: {
       catalogSkills: registry.entries.length,
       ownedSkills: ownedEntries.length,
@@ -669,6 +762,9 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
       inferredRouting: registry.entries.filter((entry) => entry.routingMetadataSource === "inferred").length,
       ownedWithPositiveFixtures: ownedFixtureCoverage.filter((item) => item.positive > 0).length,
       ownedWithNegativeFixtures: ownedFixtureCoverage.filter((item) => item.activation === "always" || item.negative > 0).length,
+      ownedWithContextManifest: ownedStructuralHealth.filter((item) => item.contextManifestStatus === "loaded").length,
+      ownedStructuralWatch: ownedStructuralHealth.filter((item) => item.status === "watch").length,
+      ownedStructuralReview: ownedStructuralHealth.filter((item) => item.status === "review").length,
       duplicateNames: registry.duplicates.length,
       duplicateOwnedErrors: duplicateOwnedErrors.length,
       reservedFirstPartyConflicts: reservedFirstPartyConflicts.length,
@@ -690,11 +786,16 @@ export async function auditSkillRouting(skills: SkillEntry[]) {
     missingWorkflowSkills,
     cycles,
     oversizedSkills,
+    structuralHealth: ownedStructuralHealth,
+    structuralReviewCandidates,
     missingDescriptions,
     duplicates: registry.duplicates,
   };
 }
 
+const STRUCTURAL_WATCH_LINES = 160;
+const STRUCTURAL_WATCH_CHARS = 8_000;
+const STRUCTURAL_REVIEW_CHARS = 20_000;
 const MAX_SAFE_SKILL_CHARS = 120_000;
 
 function fallbackIntent(task: string): StructuredSkillIntent {

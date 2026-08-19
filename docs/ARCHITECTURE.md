@@ -153,7 +153,7 @@ pure modules. It does not yet wire any host adapter to drain them:
   receipt alone stays `unknown` rather than pretending to prove freshness.
 - The repository collector (`src/context-message-repository-provider.ts`)
   scans canonical repository facts (ADRs, `docs/INCIDENTS.md`, root and newest
-  versioned changelogs, canonical `.bridge`/`docs` PROJECT_* authorities) and
+  versioned changelogs, canonical `.mssr/PROJECT_*` authorities) and
   merges caller-supplied Git/provider receipts. Reads are bounded and report
   diagnostics/overflow without exposing file bodies.
 - Freshness revalidation (`src/context-message-freshness.ts`) compares stored
@@ -188,18 +188,16 @@ read:
   `stages`/`domains`/`actions`/`artifacts`/`needs`/`signals` selectors derived
   from conservative source-kind defaults, so each fact stays derivable by the
   same deterministic `selectMssrContextMessages` selection used everywhere.
-  An optional `.bridge/context-messages.json` manifest (fallback
-  `config/context-messages.json`) overrides per-ref selectors plus `priority`,
+  An optional `.mssr/context-messages.json` manifest overrides per-ref selectors plus `priority`,
   `required`, and `advisoryActions`; malformed, unsafe, unknown, or duplicated
   entries fail closed and default selectors survive.
 - **A modular project-context loader** (`src/project-context-loader.ts`) reads
-  a `.bridge/project-context-modules.json` manifest v1: `core` refs always
-  load, while selector-driven `modules` are deterministically scored under a
-  bounded char/module budget with `priority`, `required`,
+  the single `.mssr/project-context.json` manifest v1: a compact `core` loads
+  first, while selector-driven `modules` (including semantic `topic`/`area`)
+  are deterministically scored under a bounded char/module budget with `priority`, `required`,
   `exclusiveGroup` (a tied top score stays ambiguous and loads neither
   alternative), and `estimatedChars`. Paths are validated as safe relative
-  markdown, reads are bounded, and a legacy full-document fallback remains
-  observable when no manifest exists.
+  markdown and reads are bounded. A missing/invalid manifest is an explicit initialization/health condition; MSSR 0.2.18 does not fall back to `.bridge`, arbitrary docs, or wholesale PROJECT_* loading.
 - The shared host helper composes the modular loader, repository facts, and
   the durable explicit-ack inbox into one advisory snapshot and saves
   prune/enqueue/selection changes atomically; `mssr_context_ack` persists only
@@ -210,13 +208,12 @@ read:
 
 MSSR does not own a project's facts or full history. Each repository owns its architecture, vocabulary, canonical paths, durable decisions, current state, blockers, and local evidence. The portable core defines how a host may select that material; the repository remains the source of truth.
 
-A project may publish a modular project-context manifest with two layers. The
-implemented 0.2.11 form is `.bridge/project-context-modules.json` (schema v1 in
-`src/project-context-loader.ts`); earlier docs described an equivalent
-`.bridge/project-context.json` shape. Both express:
+A managed project publishes one active `.mssr/project-context.json` manifest with two layers:
 
-- `core`: a deliberately small set of refs loaded before or alongside intent classification;
-- `modules`: optional or required `context`, `memory`, `state`, or scoped `directive` sections selected by the current `stage`, `domains`, `actions`, `artifacts`, `needs`, and `signals`, under a bounded char/module budget with `priority`, `required`, and `exclusiveGroup` semantics.
+- `core`: a deliberately small set of context/memory/state records loaded before optional context is useful;
+- `modules`: optional or required `context`, `memory`, `state`, or scoped `directive` records selected by the current `stage`, `domains`, `actions`, `artifacts`, `needs`, and `signals`, under bounded char/module budgets with `priority`, `required`, and `exclusiveGroup` semantics.
+
+Each record may declare semantic `topic` (`architecture`, `design`, `law`, `pattern`, `vocabulary`, `decision`, `state`, `phase`, `reference`, `operations`, `other`) plus an optional project-local `area`. PROJECT_* stays compact while larger/situational material lives under indexed `.mssr/knowledge/<topic>/` files. Ephemeral Context Plane inbox/receipt state lives under `.mssr/runtime/` and is not repository truth.
 
 Project-module selection and skill-module selection reuse the same deterministic semantic selection primitive, but they are independent retrieval axes:
 
@@ -227,9 +224,19 @@ MSSR skill routing        -> which reusable procedure is needed now
 
 `AGENTS.md` remains the repository-level instruction authority. A project `directive` is only a scoped refinement for a matching intent/stage; it cannot weaken user instructions, host policy, approvals, permissions, AGENTS, or verification. Broad permanent rules belong in AGENTS, while cross-project procedures belong in skills.
 
-Before canonical intent is available, a host may load only the project core. After intent exists, it selects bounded project modules and the active skill modules. At meaningful stage changes such as verify, persist, close, resume, or a material replan, both sets may be selected again. Hosts without a modular manifest may preserve an observable legacy full-document fallback during migration.
+MSSR 0.2.18 is canonical-only: missing/invalid `.mssr/project-context.json` is an initialization/health condition, not a signal to read `.bridge` or arbitrary project docs wholesale. `initializeMssrProject`/`initializeMssrWorkspace` establish that contract; Project Context Health reports growth, missing indexing, legacy artifacts, and structural drift without silently rewriting knowledge.
 
 See `PROJECT_CONTEXT.md` for the manifest and memory-maintenance contract.
+
+## Operational Notice Plane
+
+MSSR owns the pure host-neutral policy that decides whether bounded operational evidence crossed an attention boundary; hosts own how that candidate is observed and delivered. The initial portable levels are `ok < watch < review < error`, with REVIEW as the default notification threshold. Stable OK/WATCH remains quiet, unchanged actionable evidence is suppressed by previous-state plus bounded fingerprint comparison, and entering/changing/escalating/deescalating/leaving the actionable threshold yields explicit transition candidates. Bridge maps those candidates onto its existing `bridgeNotices` queue/TTL/history/automatic-response transport instead of creating a parallel MSSR queue. Trace, outcome, Context Message, and operational notice remain separate contracts, and no notice authorizes its suggested action. See `OPERATIONAL_NOTICE_PLANE.md` and ADR 0002.
+
+## Situation Model
+
+C2e connects project knowledge to the existing consistency/recommendation/notice stack. Repository facts, Context Plane delivery receipts, runtime/test observations and explicit semantic claims are normalized as bounded Situation observations with orthogonal `authority`, `role`, `category`, `evidenceClass`, revision/value and required-state metadata. `observed`, `declared`, `inferred`, and `learned` describe evidence reliability; they do not override repository ownership. Inferred/learned evidence cannot be canonical. C2e-D accepts only already-structured semantic facts through closed claim/source kinds (`release-version`, `state-value`, `ownership`, `decision-revision`) and maps them into the same Situation vocabulary; it does not parse arbitrary document prose.
+
+The first project-knowledge contract remains revision-first: current repository hashes/revisions are canonical observations, while context previously selected/delivered to an agent is historical evidence. A revision mismatch proves stale operating context without parsing arbitrary PROJECT_MEMORY/ADR prose. C2e-D adds semantic comparison only when a host/repository already supplies a bounded structured fact: source kind deterministically maps to C2c role, Situation category, and observed/declared evidence class, while authority remains explicit. C2e-E then projects already-active C2c/C2d attention into bounded context-refresh requests: it resolves the canonical Situation `sourceRef` against `.mssr/project-context.json`, returns an exact module only when that mapping is unique (optionally via a section selector), and otherwise abstains to authority-only/unresolved guidance rather than guessing. The Context Plane host exposes this feedback without auto-loading it or changing existing budgets/selection semantics. Situation Model output still feeds C2c diagnosis and C2d evidence-first planning, then the existing Operational Notice Plane carries classified advisory attention. No producer, feedback request, Situation observation, confidence score, receipt, inference or learned prior can authorize a write or silently update project truth. See ADR 0004.
 
 ## Observability and learning boundary
 

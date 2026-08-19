@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mauroprime.local/schemas/architecture-context-feedback.schema.json",
+  "title": "MSSR Architecture Context Feedback v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "architectureId", "architectureStatus", "architectureLevel", "trigger", "requests", "replanOnly", "semanticRetrievalRerun", "autoLoad", "budgetOverride", "selectionPolicy", "advisoryOnly"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "architectureId": { "$ref": "#/$defs/stableId" },
+    "architectureStatus": { "enum": ["aligned", "possible-impact", "unresolved"] },
+    "architectureLevel": { "enum": ["ok", "review"] },
+    "trigger": { "const": "natural-replan" },
+    "requests": { "type": "array", "maxItems": 2, "items": { "$ref": "#/$defs/feedbackRequest" } },
+    "replanOnly": { "const": true },
+    "semanticRetrievalRerun": { "const": false },
+    "autoLoad": { "const": false },
+    "budgetOverride": { "const": false },
+    "selectionPolicy": { "const": "normal-budgeted-selection" },
+    "advisoryOnly": { "const": true }
+  },
+  "$defs": {
+    "stableId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{1,79}$" },
+    "manifestEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "placement", "kind", "sourcePath"],
+      "properties": {
+        "id": { "$ref": "#/$defs/stableId" },
+        "placement": { "enum": ["core", "module"] },
+        "kind": { "enum": ["context", "memory", "state", "directive"] },
+        "sourcePath": { "type": "string", "minLength": 1, "maxLength": 240 },
+        "sections": { "type": "array", "minItems": 1, "maxItems": 24, "items": { "type": "string", "minLength": 1, "maxLength": 160 } },
+        "topic": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "area": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "suggestedMaxChars": { "type": "integer", "minimum": 200, "maximum": 20000 }
+      }
+    },
+    "contextRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "resolution", "key", "action", "authorityRef", "category", "priority", "required", "reasonCodes", "advisoryOnly"],
+      "properties": {
+        "kind": { "enum": ["project-context-entry", "canonical-authority"] },
+        "resolution": { "enum": ["exact-entry", "ambiguous-authority", "unindexed-authority"] },
+        "key": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "action": { "enum": ["load-canonical-authority", "inspect-canonical-authorities", "revalidate-context-evidence"] },
+        "authorityRef": { "type": "string", "minLength": 1, "maxLength": 240 },
+        "category": { "const": "architecture" },
+        "priority": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "required": { "type": "boolean" },
+        "entry": { "$ref": "#/$defs/manifestEntry" },
+        "reasonCodes": { "type": "array", "maxItems": 20, "items": { "type": "string", "minLength": 1, "maxLength": 120 } },
+        "advisoryOnly": { "const": true }
+      }
+    },
+    "feedbackRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "request"],
+      "properties": {
+        "role": { "enum": ["context", "authority"] },
+        "contextRef": { "$ref": "#/$defs/stableId" },
+        "request": { "$ref": "#/$defs/contextRequest" }
+      },
+      "allOf": [
+        { "if": { "properties": { "role": { "const": "context" } } }, "then": { "required": ["contextRef"] } },
+        { "if": { "properties": { "role": { "const": "authority" } } }, "then": { "not": { "required": ["contextRef"] } } }
+      ]
+    }
+  },
+  "allOf": [
+    { "if": { "properties": { "architectureLevel": { "const": "ok" } } }, "then": { "properties": { "requests": { "maxItems": 0 } } } },
+    { "if": { "properties": { "architectureLevel": { "const": "review" } } }, "then": { "properties": { "requests": { "minItems": 1 } } } }
+  ]
+}

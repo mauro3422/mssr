@@ -176,4 +176,19 @@ violations = validateMssrCheckpointLifecycle(state, {
 });
 assert.deepEqual(violations, []);
 
+state = reduceMssrCheckpointLifecycle(state, {
+  eventType: "outcome",
+  status: "success",
+  stage: "close",
+});
+assert.equal(state.closed, true);
+closure = evaluateMssrRouteClosureObligations(state);
+assert.equal(closure.canCloseSuccess, false, "canCloseSuccess is a prospective pre-outcome gate only");
+assert.equal(closure.nextRequiredAction, "none");
+assert.equal(
+  closure.obligations.find((item) => item.kind === "outcome")?.status,
+  "complete",
+  "a persisted outcome on a closed trace must never project as pending",
+);
+
 console.log("trace-contract: ok");

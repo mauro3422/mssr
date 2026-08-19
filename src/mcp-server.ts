@@ -17,6 +17,9 @@ import {
   structuredSkillIntentSchema,
 } from "./skill-routing.js";
 import { normalizeMssrIntent } from "./intent-normalizer.js";
+import { MSSR_PROJECT_CONTROL_TOOL_NAMES, registerMssrProjectControlTools } from "./project-control-contract.js";
+import { MSSR_CONSISTENCY_TOOL_NAMES, registerMssrConsistencyTools } from "./consistency-contract.js";
+import { MSSR_OPERATIONAL_NOTICE_TOOL_NAMES, registerMssrOperationalNoticeTools } from "./operational-notice-contract.js";
 import { CapabilityRegistry, FilesystemSkillProvider, MssrFirstPartySkillProvider } from "./registry.js";
 import { createMssrRegistryFromEnvironment } from "./provider-config.js";
 import {
@@ -54,6 +57,9 @@ export const MSSR_TOOL_NAMES = [
   "mssr_trace_validate",
   "mssr_trace_reduce",
   "mssr_context_ack",
+  ...MSSR_CONSISTENCY_TOOL_NAMES,
+  ...MSSR_OPERATIONAL_NOTICE_TOOL_NAMES,
+  ...MSSR_PROJECT_CONTROL_TOOL_NAMES,
 ] as const;
 
 function response(value: unknown) {
@@ -89,6 +95,7 @@ const nativeRouteInputSchema = z.object({
   contextNow: z.string().datetime({ offset: true }).optional(),
   contextMaxChars: z.number().int().min(0).max(MAX_HOST_PROJECT_CONTEXT_CHARS).optional(),
   contextMaxModules: z.number().int().min(0).max(MAX_HOST_PROJECT_CONTEXT_MODULES).optional(),
+  contextIncludeCore: z.boolean().optional(),
   contextMessageMaxChars: z.number().int().min(0).max(MAX_HOST_CONTEXT_MESSAGE_CHARS).optional(),
   contextMessageMaxMessages: z.number().int().min(0).max(32).optional(),
 }).strict();
@@ -101,6 +108,9 @@ const nativeContextAckInputSchema = z.object({
 
 export function createMssrMcpServer(registry = new CapabilityRegistry([new MssrFirstPartySkillProvider(), new FilesystemSkillProvider()])) {
   const server = new McpServer({ name: "mssr", version: "0.2.1" });
+  registerMssrProjectControlTools(server);
+  registerMssrConsistencyTools(server);
+  registerMssrOperationalNoticeTools(server);
 
   server.registerTool(MSSR_TOOL_NAMES[0], {
     description: "Show the immutable MSSR capability snapshot and provider health. Optionally refresh providers first.",
@@ -120,7 +130,7 @@ export function createMssrMcpServer(registry = new CapabilityRegistry([new MssrF
   server.registerTool(MSSR_TOOL_NAMES[3], {
     description: "Plan a phase-scoped MSSR skill route. Advisory only. When projectRoot is provided, the route resolves the project context plane through the same host helper as the Codex/OpenCode adapters.",
     inputSchema: nativeRouteInputSchema,
-  }, async ({ intent, contextMessages, maxContextMessages, maxContextMessageChars, projectRoot, contextNow, contextMaxChars, contextMaxModules, contextMessageMaxChars, contextMessageMaxMessages, ...args }) => {
+  }, async ({ intent, contextMessages, maxContextMessages, maxContextMessageChars, projectRoot, contextNow, contextMaxChars, contextMaxModules, contextIncludeCore, contextMessageMaxChars, contextMessageMaxMessages, ...args }) => {
     const plan = await planSkillRoute({ ...args, intent, skills: skills(registry) });
     if (projectRoot) {
       const host = await loadProjectContextHost({
@@ -130,6 +140,7 @@ export function createMssrMcpServer(registry = new CapabilityRegistry([new MssrF
         ...(contextNow ? { now: contextNow } : {}),
         ...(contextMaxChars !== undefined ? { maxProjectContextChars: contextMaxChars } : {}),
         ...(contextMaxModules !== undefined ? { maxProjectContextModules: contextMaxModules } : {}),
+        ...(contextIncludeCore !== undefined ? { includeCore: contextIncludeCore } : {}),
         ...(contextMessageMaxChars !== undefined || maxContextMessageChars !== undefined ? { maxContextMessageChars: contextMessageMaxChars ?? maxContextMessageChars } : {}),
         ...(contextMessageMaxMessages !== undefined || maxContextMessages !== undefined ? { maxContextMessages: contextMessageMaxMessages ?? maxContextMessages } : {}),
         ...(contextMessages ? { contextMessages } : {}),

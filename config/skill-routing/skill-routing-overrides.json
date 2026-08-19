@@ -363,6 +363,7 @@
       ],
       "excludes": [],
       "negativeIntents": [],
+      "requireActionMatch": true,
       "priority": 78,
       "activation": "on-demand",
       "coversPhases": [
@@ -1318,7 +1319,6 @@
         "missing-capability",
         "recovery-needed",
         "skill-gap",
-        "reusable-pattern",
         "replan-needed"
       ],
       "requires": [],
@@ -1608,7 +1608,6 @@
         "manual-workaround",
         "recovery-needed",
         "skill-gap",
-        "reusable-pattern",
         "tool-chain-needed",
         "replan-needed"
       ],
@@ -1867,7 +1866,6 @@
         "missing-capability",
         "recovery-needed",
         "skill-gap",
-        "reusable-pattern",
         "capability-discovery-needed",
         "additional-capability-needed",
         "tool-chain-needed",
@@ -1956,6 +1954,70 @@
       "requireActionMatch": true,
       "requireSignalMatch": false,
       "priority": 89,
+      "activation": "on-demand"
+    },
+    "steam-workshop-publication": {
+      "phase": "persistence",
+      "coversPhases": [
+        "discovery",
+        "safety",
+        "verification",
+        "persistence"
+      ],
+      "domains": [
+        "filesystem",
+        "coding",
+        "other"
+      ],
+      "actions": [
+        "review",
+        "create",
+        "edit",
+        "save",
+        "version",
+        "publish",
+        "verify",
+        "recover",
+        "document"
+      ],
+      "artifacts": [
+        "game",
+        "project",
+        "asset",
+        "code",
+        "document"
+      ],
+      "needs": [
+        "safe-editing",
+        "integrity-verification",
+        "human-approval"
+      ],
+      "signals": [
+        "nominal",
+        "error-observed",
+        "warning-observed",
+        "uncertainty",
+        "conflicting-evidence",
+        "recovery-needed",
+        "reusable-pattern"
+      ],
+      "requires": [],
+      "complements": [
+        "git-change-publication",
+        "systematic-debugging",
+        "skill-maintenance-loop"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "explain Steam Workshop without publishing",
+        "install or subscribe to a Workshop item as an end user",
+        "publish Git commits or push a repository",
+        "upload files to generic cloud storage"
+      ],
+      "requireNeedMatch": false,
+      "requireActionMatch": true,
+      "requireSignalMatch": false,
+      "priority": 94,
       "activation": "on-demand"
     },
     "mauroprime-bridge-tool-authoring": {
@@ -2154,8 +2216,7 @@
       ],
       "needs": [
         "history-recovery",
-        "cross-agent",
-        "integrity-verification"
+        "cross-agent"
       ],
       "requires": [],
       "complements": [
@@ -2253,7 +2314,6 @@
       "artifacts": [
         "asset",
         "model-3d",
-        "document",
         "ui",
         "animation"
       ],

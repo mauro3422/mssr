@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mauroprime.local/schemas/architecture-invariant-manifest.schema.json",
+  "title": "MSSR Architecture Invariant Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "invariants"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "invariants": {
+      "type": "array",
+      "maxItems": 128,
+      "items": { "$ref": "#/$defs/invariant" }
+    }
+  },
+  "$defs": {
+    "stableId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{1,79}$" },
+    "description": { "type": "string", "minLength": 1, "maxLength": 240, "pattern": "^(?!\\s)[^\\r\\n]*\\S$" },
+    "exactProjectRelativeRef": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 320,
+      "allOf": [
+        { "not": { "pattern": "^/" } },
+        { "not": { "pattern": "^[A-Za-z]:/" } },
+        { "not": { "pattern": "\\\\" } },
+        { "not": { "pattern": "(^|/)\\.\\.?(/|$)" } },
+        { "not": { "pattern": "//" } },
+        { "not": { "pattern": "[?*\\[\\]{}!#]" } }
+      ]
+    },
+    "invariant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["invariantId", "architectureId", "relationshipClass", "description", "kind", "edgeKind", "sourceRef", "targetRef"],
+      "properties": {
+        "invariantId": { "$ref": "#/$defs/stableId" },
+        "architectureId": { "$ref": "#/$defs/stableId" },
+        "relationshipClass": { "const": "declared" },
+        "description": { "$ref": "#/$defs/description" },
+        "kind": { "enum": ["forbid-edge", "require-edge"] },
+        "edgeKind": { "enum": ["import", "call", "dependency"] },
+        "sourceRef": { "$ref": "#/$defs/exactProjectRelativeRef" },
+        "targetRef": { "$ref": "#/$defs/exactProjectRelativeRef" }
+      }
+    }
+  }
+}

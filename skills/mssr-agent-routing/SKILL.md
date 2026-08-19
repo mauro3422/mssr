@@ -155,6 +155,7 @@ Prefer chains such as `search -> inspect -> execute -> verify` when schemas are 
 - When a durable skill activation, phase, dependency or signal relationship changes, use `skill-routing-maintainer`, update the MSSR contract and add positive, negative and continuation fixtures.
 - When a new tool merely appears with an existing capability shape, refresh the provider and test discovery; do not edit routing prose unnecessarily.
 - Keep telemetry diagnostic. Never let background metrics silently rewrite skills or routing metadata.
+- When a host exposes bounded change metadata, let portable MSSR classify project-knowledge maintenance separately from routing: `WATCH` stays low-noise evidence; `REVIEW`/`REQUIRED` is a close/replan signal to load `skill-maintenance-loop` plus only the named `.mssr` authority/module. Trace data, diffs, runtime/package state and freshness may trigger review but never become the durable fact themselves.
 
 ## Preserve permissions
 

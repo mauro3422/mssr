@@ -88,6 +88,54 @@ assert.deepEqual(dedupePending.deduplicated, ["one-new"]);
 assert.deepEqual(dedupePending.enqueued, ["three"]);
 assert.equal(dedupePending.state.pending.length, 3);
 
+// --- Same pending subject with changed content replaces the stale revision ---
+
+const pendingRevision1 = enqueueMssrContextMessages(empty, [
+  message({
+    id: "project-state",
+    dedupeKey: "project-state:mssr",
+    summary: "MSSR 0.2.13 is current.",
+    evidence: [{
+      kind: "project-state",
+      ref: ".mssr/PROJECT_STATE.md",
+      summary: "Old project state.",
+      canonicalOwner: "mssr",
+      provenance: "project",
+      freshness: "fresh",
+      revision: "state-rev-1",
+    }],
+  }),
+], now);
+const pendingRevision2 = enqueueMssrContextMessages(pendingRevision1.state, [
+  message({
+    id: "project-state",
+    dedupeKey: "project-state:mssr",
+    summary: "MSSR 0.2.17 is current.",
+    evidence: [{
+      kind: "project-state",
+      ref: ".mssr/PROJECT_STATE.md",
+      summary: "Updated project state.",
+      canonicalOwner: "mssr",
+      provenance: "project",
+      freshness: "fresh",
+      revision: "state-rev-2",
+    }],
+  }),
+], "2026-08-13T12:00:01.000Z");
+assert.deepEqual(pendingRevision2.enqueued, ["project-state"]);
+assert.deepEqual(pendingRevision2.deduplicated, []);
+assert.equal(pendingRevision2.state.pending.length, 1);
+assert.equal(pendingRevision2.state.pending[0]?.message.summary, "MSSR 0.2.17 is current.");
+assert.equal(pendingRevision2.state.pending[0]?.message.evidence[0]?.revision, "state-rev-2");
+assert.equal(pendingRevision2.state.pending[0]?.enqueuedAt, "2026-08-13T12:00:01.000Z");
+
+const pendingRevisionIdentical = enqueueMssrContextMessages(pendingRevision2.state, [
+  pendingRevision2.state.pending[0].message,
+], "2026-08-13T12:00:02.000Z");
+assert.deepEqual(pendingRevisionIdentical.enqueued, []);
+assert.deepEqual(pendingRevisionIdentical.deduplicated, ["project-state"]);
+assert.equal(pendingRevisionIdentical.state.pending[0]?.enqueuedAt, "2026-08-13T12:00:01.000Z");
+
 // --- Enqueue is bounded at 32 pending with deterministic arrival order ---
 
 const firstThirtyTwo = Array.from({ length: 32 }, (_, index) => message({
@@ -139,6 +187,28 @@ const reselectReceipt = reselect.state.deliveries.find((item) => item.messageId 
 assert.equal(reselectReceipt?.selectedCount, 2);
 assert.equal(reselectReceipt?.lastSelectedAt, now);
 assert.equal(reselect.state.pending.length, 3);
+const updatedSelA = message({
+  id: "sel-a",
+  dedupeKey: "sel-a-key",
+  required: true,
+  evidence: [{ kind: "architecture-decision", ref: "adr-inbox", summary: "Inbox evidence refreshed.", canonicalOwner: "mssr", provenance: "project", freshness: "fresh", revision: "def456" }],
+  continuation: {
+    traceId: "trace-inbox-refreshed",
+    freshness: "fresh",
+    currentStage: "implement",
+    nextGate: "Verify refreshed inbox evidence.",
+    summary: "Refreshed inbox continuation.",
+  },
+});
+const refreshedPending = enqueueMssrContextMessages(reselect.state, [updatedSelA], "2026-08-13T12:00:01.000Z");
+assert.deepEqual(refreshedPending.enqueued, ["sel-a"]);
+const refreshedSelection = selectMssrContextInboxMessages(refreshedPending.state, { now: "2026-08-13T12:00:02.000Z", intent, stage: "implement" });
+const refreshedReceipt = refreshedSelection.state.deliveries.find((item) => item.messageId === "sel-a");
+assert.equal(refreshedReceipt?.selectedCount, 3);
+assert.equal(refreshedReceipt?.sources[0]?.revision, "def456", "re-selection must refresh durable receipt sources, not only its fingerprint/timestamp");
+assert.equal(refreshedReceipt?.traceId, "trace-inbox-refreshed");
+assert.equal(refreshedReceipt?.nextGate, "Verify refreshed inbox evidence.");
+
 
 // --- maxDeliveries 0 records nothing but still returns the full advisory selection ---
 

@@ -6,7 +6,7 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
 import {
   CapabilityRegistry,
-  CodexMssrAdapter,
+  OpenCodeMssrAdapter,
   createOpenCodeMssrMcpServer,
   mssrTelemetryEnvelopeSchema,
 } from "../dist/index.js";
@@ -37,32 +37,33 @@ const noticeMessage = {
   advisoryActions: ["verify-runtime"],
   stages: ["start"],
   domains: ["coding"],
-  actions: ["review", "verify"],
-  signals: ["nominal"],
+  actions: ["debug", "review", "verify"],
+  signals: ["error-observed"],
   required: false,
   priority: 20,
   estimatedChars: 160,
 };
 
 try {
-  await fs.mkdir(path.join(fixtureRoot, ".bridge"), { recursive: true });
+  await fs.mkdir(path.join(fixtureRoot, ".mssr"), { recursive: true });
   await fs.mkdir(path.join(fixtureRoot, "context"), { recursive: true });
   await fs.writeFile(
-    path.join(fixtureRoot, ".bridge", "project-context-modules.json"),
+    path.join(fixtureRoot, ".mssr", "project-context.json"),
     JSON.stringify({
       schemaVersion: 1,
-      canonicalOwner: "standalone-fixture",
       core: [],
       modules: [{
         id: "review-guardrail",
-        path: "context/review-guardrail.md",
+        kind: "directive",
+        topic: "operations",
+        description: "Review guardrail fixture.",
+        source: { path: "context/review-guardrail.md" },
         priority: 0,
         required: false,
-        estimatedChars: 256,
         stages: ["start"],
         domains: ["coding"],
         actions: ["review"],
-        signals: ["nominal"],
+        signals: ["error-observed"],
       }],
     }),
     "utf8",
@@ -72,20 +73,28 @@ try {
     "# Review guardrail\n\nRead-only review evidence module.\n",
     "utf8",
   );
+  const skillDir = path.join(fixtureRoot, "systematic-debugging");
+  await fs.mkdir(skillDir, { recursive: true });
+  const skillPath = path.join(skillDir, "SKILL.md");
+  await fs.writeFile(skillPath, "# Fixture Skill\n\n## Core\n\nCore host guidance.\n\n## Review Recipe\n\nSelective review recipe.\n", "utf8");
+  await fs.writeFile(path.join(skillDir, "context-modules.json"), JSON.stringify({
+    schemaVersion: 1,
+    core: { sections: ["## Core"] },
+    modules: [{ id: "review-recipe", description: "Review recipe", source: { sections: ["## Review Recipe"] }, actions: ["review"] }],
+  }), "utf8");
 
   const events = [];
   const registry = new CapabilityRegistry([{
     id: "fixture",
     async refresh() {
       return { capabilities: [{
-        id: "skill:fixture", name: "fixture-skill", kind: "skill", providerId: "fixture",
+        id: "skill:fixture", name: "systematic-debugging", kind: "skill", providerId: "fixture",
         description: "Review and verify code.",
-        skill: { name: "fixture-skill", description: "Review and verify code.", source: "fixture" },
+        skill: { name: "systematic-debugging", description: "Review and verify code.", source: "codex-local", path: skillPath },
       }] };
     },
   }]);
-  const adapter = new CodexMssrAdapter(registry, {
-    caller: "opencode-local", source: "opencode-cli", tracePrefix: "mssr-opencode",
+  const adapter = new OpenCodeMssrAdapter(registry, {
     telemetrySink: { async emit(event) { events.push(mssrTelemetryEnvelopeSchema.parse(event)); } },
   });
   await adapter.initialize();
@@ -95,16 +104,21 @@ try {
   const client = new Client({ name: "opencode-fixture", version: "1.0.0" });
   await client.connect(clientTransport);
 
-  const names = (await client.listTools()).tools.map((tool) => tool.name);
+  const listedTools = await client.listTools();
+  const names = listedTools.tools.map((tool) => tool.name);
   for (const name of ["mssr_route_plan", "mssr_skill_bootstrap", "mssr_trace_record", "mssr_trace_status", "mssr_registry_status"]) {
     assert.ok(names.includes(name), `missing ${name}`);
+  }
+  const bootstrapSchema = listedTools.tools.find((tool) => tool.name === "mssr_skill_bootstrap")?.inputSchema?.properties ?? {};
+  for (const field of ["selectionMode", "skillDecisions", "contentMode", "includeReferences", "maxContextChars"]) {
+    assert.ok(field in bootstrapSchema, `OpenCode bootstrap must inherit shared MSSR field ${field}`);
   }
 
   const input = {
     task: "Review code with evidence.",
     intent: {
-      summary: "Review code with evidence.", domains: ["opencode", "coding"], actions: ["review", "verify"],
-      artifacts: ["code"], needs: ["unit-tests"], signals: ["nominal"], risk: "read-only", ambiguity: "low",
+      summary: "Review code with evidence.", domains: ["opencode", "coding"], actions: ["debug", "review", "verify"],
+      artifacts: ["code"], needs: ["unit-tests"], signals: ["error-observed"], risk: "read-only", ambiguity: "low",
     },
     stage: "start",
     model: "unknown",
@@ -115,10 +129,32 @@ try {
   assert.match(route.traceId, /^mssr-opencode-/);
   assert.equal(events.at(-1).event.kind, "route");
   assert.equal("task" in events.at(-1).event, false, "telemetry must not contain raw task text");
+  const pendingBootstrap = json(await client.callTool({
+    name: "mssr_skill_bootstrap",
+    arguments: { ...input, traceId: route.traceId },
+  }));
+  assert.equal(pendingBootstrap.selection.mode, "host-gated", "OpenCode should inherit host-gated selection by default");
+  assert.equal(pendingBootstrap.loaded.filter((item) => item.loaded).length, 0, "optional skills without a decision must remain outside context");
+  assert.ok(pendingBootstrap.selection.pendingCandidates.some((item) => item.skill === "systematic-debugging"), JSON.stringify({ selection: pendingBootstrap.selection, activeSkills: pendingBootstrap.activeSkills }, null, 2));
+
+  const acceptedBootstrap = json(await client.callTool({
+    name: "mssr_skill_bootstrap",
+    arguments: {
+      ...input,
+      traceId: route.traceId,
+      skillDecisions: [{ skillName: "systematic-debugging", decision: "accepted", reasonCode: "useful", stage: "start" }],
+    },
+  }));
+  const loadedFixture = acceptedBootstrap.loaded.find((item) => item.skill.name === "systematic-debugging");
+  assert.equal(loadedFixture?.loaded, true, "accepted optional skill must load through the shared adapter");
+  assert.equal(loadedFixture?.contextAssembly?.manifestStatus, "loaded");
+  assert.deepEqual(loadedFixture?.contextAssembly?.selectedModules, ["review-recipe"]);
+  assert.equal(loadedFixture?.content.includes("Selective review recipe."), true);
+
 
   const prematureOutcome = json(await client.callTool({
     name: "mssr_trace_record",
-    arguments: { traceId: route.traceId, eventType: "outcome", stage: "close", status: "success", primarySkill: "fixture-skill" },
+    arguments: { traceId: route.traceId, eventType: "outcome", stage: "close", status: "success", primarySkill: "systematic-debugging" },
   }));
   assert.equal(prematureOutcome.accepted, false, "A successful outcome requires an explicit close route even for read-only work");
   assert.equal(
@@ -155,7 +191,7 @@ try {
 
   const outcome = json(await client.callTool({
     name: "mssr_trace_record",
-    arguments: { traceId: route.traceId, eventType: "outcome", stage: "close", status: "success", primarySkill: "fixture-skill" },
+    arguments: { traceId: route.traceId, eventType: "outcome", stage: "close", status: "success", primarySkill: "systematic-debugging" },
   }));
   assert.equal(outcome.accepted, true, "A read-only route without required loads may close after applicable gates complete");
   assert.equal(events.filter((event) => event.event.kind === "checkpoint").length, expectedCheckpointCount, "outcome must be explicit, never automatic");
@@ -177,7 +213,7 @@ try {
   assert.deepEqual(hostRoute.inbox.enqueued, ["notice-review-001"]);
   assert.deepEqual(hostRoute.inbox.prunedMessageIds, []);
   assert.ok(hostRoute.projectContext.receipts.some((receipt) => receipt.messageId === "notice-review-001"));
-  const inboxPath = path.join(fixtureRoot, ".bridge", "mssr-context-inbox.json");
+  const inboxPath = path.join(fixtureRoot, ".mssr", "runtime", "context-inbox.json");
   await fs.access(inboxPath);
 
   const ack = await adapter.acknowledgeContextMessages(fixtureRoot, ["notice-review-001"], contextNow);

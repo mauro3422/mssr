@@ -14,6 +14,23 @@ import { selectContextModules, type ContextModuleDecision } from "./context-sele
 export const PROJECT_CONTEXT_KINDS = ["context", "memory", "state", "directive"] as const;
 export type ProjectContextKind = typeof PROJECT_CONTEXT_KINDS[number];
 
+export const PROJECT_CONTEXT_TOPICS = [
+  "architecture",
+  "design",
+  "law",
+  "pattern",
+  "vocabulary",
+  "decision",
+  "state",
+  "phase",
+  "reference",
+  "operations",
+  "other",
+] as const;
+export type ProjectContextTopic = typeof PROJECT_CONTEXT_TOPICS[number];
+
+const areaSchema = z.string().regex(/^[a-z0-9][a-z0-9._-]{0,79}$/);
+
 const selectorFields = {
   stages: z.array(z.enum(SKILL_STAGES)).max(6).default([]),
   domains: z.array(z.enum(SKILL_DOMAINS)).max(8).default([]),
@@ -28,11 +45,17 @@ export const projectContextSourceSchema = z.object({
   sections: z.array(z.string().min(1).max(160)).min(1).max(24).optional(),
 }).strict();
 
+const semanticFields = {
+  topic: z.enum(PROJECT_CONTEXT_TOPICS).optional(),
+  area: areaSchema.optional(),
+};
+
 export const projectContextCoreSchema = z.object({
   id: z.string().regex(/^[a-z0-9][a-z0-9._-]{1,79}$/),
   kind: z.enum(["context", "memory", "state"]),
   description: z.string().min(1).max(300),
   source: projectContextSourceSchema,
+  ...semanticFields,
   maxChars: z.number().int().min(200).max(80_000).optional(),
 }).strict();
 
@@ -41,6 +64,7 @@ export const projectContextModuleSchema = z.object({
   kind: z.enum(PROJECT_CONTEXT_KINDS),
   description: z.string().min(1).max(300),
   source: projectContextSourceSchema,
+  ...semanticFields,
   ...selectorFields,
   required: z.boolean().default(false),
   priority: z.number().int().min(-100).max(100).default(0),
@@ -74,6 +98,12 @@ export type ProjectContextModule = z.infer<typeof projectContextModuleSchema>;
 export type ProjectContextManifest = z.infer<typeof projectContextManifestSchema>;
 export type MaterializedProjectContextModule = ProjectContextModule & { chars: number };
 export type ProjectContextModuleDecision = ContextModuleDecision;
+
+export function defaultKindForProjectContextTopic(topic: ProjectContextTopic): "context" | "memory" | "state" {
+  if (topic === "decision") return "memory";
+  if (topic === "state" || topic === "phase") return "state";
+  return "context";
+}
 
 export function selectProjectContextModules(args: {
   modules: MaterializedProjectContextModule[];

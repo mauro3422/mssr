@@ -86,20 +86,21 @@ assert.equal(rejectedUnknown.isError, true, "native mssr_route_plan must reject 
 const fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-native-context-plane-"));
 const contextNow = new Date().toISOString();
 try {
-  await fs.mkdir(path.join(fixtureRoot, ".bridge"), { recursive: true });
+  await fs.mkdir(path.join(fixtureRoot, ".mssr"), { recursive: true });
   await fs.mkdir(path.join(fixtureRoot, "context"), { recursive: true });
   await fs.writeFile(
-    path.join(fixtureRoot, ".bridge", "project-context-modules.json"),
+    path.join(fixtureRoot, ".mssr", "project-context.json"),
     JSON.stringify({
       schemaVersion: 1,
-      canonicalOwner: "native-fixture",
       core: [],
       modules: [{
         id: "review-guardrail",
-        path: "context/review-guardrail.md",
+        kind: "directive",
+        topic: "operations",
+        description: "Review guardrail fixture.",
+        source: { path: "context/review-guardrail.md" },
         priority: 0,
         required: false,
-        estimatedChars: 256,
         stages: ["start"],
         domains: ["coding"],
         actions: ["review"],
@@ -158,7 +159,7 @@ try {
   assert.deepEqual(hostRoute.inbox.enqueued, ["notice-native-001"]);
   assert.ok(hostRoute.projectContext.receipts.some((receipt) => receipt.messageId === "notice-native-001"));
 
-  const inboxPath = path.join(fixtureRoot, ".bridge", "mssr-context-inbox.json");
+  const inboxPath = path.join(fixtureRoot, ".mssr", "runtime", "context-inbox.json");
   await fs.access(inboxPath);
 
   const ack = json(await client.callTool({

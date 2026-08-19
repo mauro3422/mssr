@@ -1,14 +1,18 @@
 # Modular project context
 
-MSSR treats project knowledge as a separate retrieval layer from reusable skills. A repository may publish a modular project-context manifest so project context is selected with the same structured semantic dimensions used by routing instead of loading every project document in full for every task. The 0.2.11 loader implements `.bridge/project-context-modules.json` (schema v1); earlier docs described the equivalent `.bridge/project-context.json` shape.
+MSSR treats project knowledge as a separate retrieval layer from reusable skills. Starting with 0.2.18, `.mssr/` is the **only active project-control home**. A managed repository is healthy only after explicit MSSR initialization creates a valid `.mssr/project-context.json`; `.bridge/` is not a read fallback and active MSSR artifacts there are cleanup debt. Hosts must not synthesize project truth merely because a repository is missing context.
 
 ## Authorities and roles
 
 1. `AGENTS.md` or `AGENTS.override.md`: repository-level instructions intended to apply broadly.
-2. `PROJECT_CONTEXT.md`: durable facts such as architecture, vocabulary, ownership, canonical paths, and invariants.
-3. `PROJECT_MEMORY.md`: durable decisions and lessons that remain useful across sessions but are not automatically instructions.
-4. `PROJECT_STATE.md`: mutable current state such as active work, blockers, handoffs, and current versions.
-5. Manifest modules with `kind: "directive"`: small project-specific instructions that apply only when their structured selectors match the current MSSR intent and stage.
+2. `.mssr/PROJECT_CONTEXT.md`: compact stable facts such as project identity, architecture, vocabulary, ownership, canonical paths, and invariants.
+3. `.mssr/PROJECT_MEMORY.md`: compact durable decisions and lessons that remain useful across sessions but are not automatically instructions.
+4. `.mssr/PROJECT_STATE.md`: compact mutable current state such as active phase, blockers, handoffs, and current versions.
+5. `.mssr/knowledge/<topic>/*.md`: situational project-local knowledge selected through the manifest when the control-plane authorities would otherwise grow or become task-specific.
+6. Manifest modules with `kind: "directive"`: small project-specific instructions that apply only when their structured selectors match the current MSSR intent and stage.
+7. `.mssr/runtime/`: ephemeral inbox/receipt/cache state; it is never project authority and is Git-ignored as a directory.
+
+Knowledge topics are `architecture`, `design`, `law`, `pattern`, `vocabulary`, `decision`, `state`, `phase`, `reference`, `operations`, and `other`. `kind` answers how authoritative content behaves (`context`/`memory`/`state`/`directive`); `topic` answers what the content is about. A decision normally maps to memory, state/phase to state, and architecture/design/law/pattern/vocabulary/reference/operations to context unless an explicit reviewed override is justified.
 
 A directive is a scoped refinement, not a new authority tier. It cannot weaken the current user request, host safety policy, `AGENTS.md`, approvals, permissions, or verification requirements. If an instruction should apply to almost every task in the repository, it belongs in `AGENTS.md`.
 
@@ -16,18 +20,18 @@ A directive is a scoped refinement, not a new authority tier. It cannot weaken t
 
 ```text
 known repository
+  -> verify/initialize .mssr contract
   -> load AGENTS
-  -> load project-context core
+  -> load small project-context core
   -> classify canonical MSSR intent
   -> select project context/memory/state/directive modules
   -> route and load active skill modules
   -> execute authorized tools
   -> re-select project + skill modules at verify/persist/close or a material replan
+  -> run Project Context Health / knowledge maintenance when evidence warrants it
 ```
 
-The core provides only the durable information needed to understand and begin work safely. Before canonical intent exists, optional modules remain deferred. Once intent exists, MSSR evaluates `stage`, `domains`, `actions`, `artifacts`, `needs`, and `signals` deterministically under a bounded context budget.
-
-If the modular project-context manifest is absent, a host adapter may preserve the legacy behavior of loading the three project Markdown documents in full. Projects can therefore migrate incrementally. When no manifest exists the 0.2.11 loader keeps an observable full-document fallback (`allowFullDocumentFallback`); without that flag, no modules are materialized rather than guessing.
+The core provides only the durable information needed to understand and begin work safely. Before canonical intent exists, optional modules remain deferred. Once intent exists, MSSR evaluates `stage`, `domains`, `actions`, `artifacts`, `needs`, and `signals` deterministically under a bounded context budget. A missing or invalid manifest is an initialization/health condition, not permission to load PROJECT_* or arbitrary docs wholesale.
 
 ## Context messages and continuation receipts
 
@@ -67,86 +71,76 @@ support. Hosts must expose only the message fields and delivery guarantees they
 actually implement, and preserve an explicit `unknown`, `stale`, or
 `unavailable` condition rather than fabricating freshness.
 
-### Phase 2 portable context planes
+### Portable Context Plane and repository facts
 
-Phase 2 delivers the portable core that produces, collects, revalidates, and
-stores bounded messages without making any host drain them yet:
+MSSR Context Plane collects bounded evidence, revalidates freshness, selects messages by the same structured semantic dimensions, and stores explicit-ack delivery state under `.mssr/runtime/context-inbox.json`. Runtime receipts are reconstructable evidence and are never versioned project authority.
 
-- Strict producers map bounded observations (`architecture-decision`,
-  `incident`, `changelog`, `project-context`, `project-memory`,
-  `project-state`, `git-receipt`, `provider-receipt`) onto Context Messages
-  with deterministic dedupe keys derived from `sourceKind:canonicalOwner:ref`
-  rather than a caller message id.
-- The repository collector scans canonical facts — ADRs under `docs/decisions`,
-  `docs/INCIDENTS.md`, the root `CHANGELOG.md`, the newest semver
-  `changelogs/X.Y.Z.md`, and the canonical `.bridge`/`docs` PROJECT_*
-  authorities — and merges caller-supplied Git/provider receipts. Reads are
-  bounded to 128 KiB per file, receive sha256-revision provenance, and report
-  `unreadable`/`truncated-at-128kib`/`invalid-receipt`/`source-kind-mismatch`
-  diagnostics without leaking file bodies.
-- Freshness revalidation (`revalidateMssrContextEvidence`) always resolves to
-  `fresh`, `stale`, `conflicting`, `unavailable`, or `unknown`; it never infers
-  currentness from a receipt alone.
-- A durable explicit-ack JSON inbox stores schema-versioned `advisoryOnly`
-  state with strict enqueue/select/acknowledge/prune actions, bounded delivery
-  receipts, TTL pruning, and atomic temp+rename file persistence with
-  fail-closed load. As of **0.2.12** each delivery receipt carries a stable
-  content `fingerprint` and an acknowledged receipt acts as a temporary
-  tombstone: enqueue suppresses only a message with the same `messageId` and
-  fingerprint, so a content/revision change or a new id reappears, and
-  `receiptRetentionMs` pruning lets identical evidence be delivered again.
-  Inbox state schema is v2 with transparent v1 migration; legacy v1 receipts
-  carry no fingerprint and never suppress.
+The repository collector publishes only intentional canonical sources:
 
-Delivery is adapter-owned. As of **0.2.11**, native `mssr_route_plan`, Codex
-`skill_route_plan`/`skill_bootstrap`, and OpenCode
-`mssr_route_plan`/`mssr_skill_bootstrap` resolve one advisory context plane
-through the shared `loadProjectContextHost` helper when `projectRoot` is
-supplied, and all three host surfaces expose an explicit `mssr_context_ack`
-persistence tool. Bridge adapter delivery remains pending: its local
-dependency junction crosses the OpenCode workspace authority boundary, so the
-Bridge adapter must consume a packaged 0.2.11 artifact. This release claims no
-Bridge delivery and no live/restart adoption on any host.
+- ADRs under `docs/decisions/`;
+- `INCIDENTS.md` ledgers discovered under `docs/`;
+- root `CHANGELOG.md` and the newest semver `changelogs/X.Y.Z.md`;
+- canonical `.mssr/PROJECT_CONTEXT.md`, `.mssr/PROJECT_MEMORY.md`, and `.mssr/PROJECT_STATE.md`;
+- caller-supplied Git/provider receipts with bounded provenance.
 
-### Keyed repository facts (0.2.11)
+It does **not** discover project authorities from `.bridge/`, does not auto-publish `docs/PROJECT_CONTEXT.md`, and does not search fallback selector manifests outside `.mssr/context-messages.json`. Historical sources can still be inspected explicitly as ordinary repository evidence, but they do not enter the active project context by path convention.
 
-Repository facts are now keyed so the same deterministic selection used for
-skills also selects project evidence:
+Freshness revalidation resolves to `fresh`, `stale`, `conflicting`, `unavailable`, or `unknown`; a receipt alone never proves currentness. Pending inbox messages deduplicate only when both advisory subject and content fingerprint match. A new source revision replaces stale pending evidence.
 
-- Every observation produced by the repository collector carries explicit
-  `stages`, `domains`, `actions`, `artifacts`, `needs`, and `signals` selectors,
-  each backed by a conservative source-kind default so it stays derivable.
-- An optional `.bridge/context-messages.json` manifest (fallback
-  `config/context-messages.json`) v1 overrides per-ref selectors plus
-  `priority`, `required`, and `advisoryActions`. Duplicate refs, unsafe paths,
-  unknown refs, and malformed JSON fail closed with bounded diagnostics and the
-  default selectors survive.
+### Single project-context manifest (0.2.18)
 
-### Modular project-context loader (0.2.11)
+`.mssr/project-context.json` is the single active selective project-knowledge manifest. It contains:
 
-`loadProjectContextModules` reads `.bridge/project-context-modules.json` v1:
-`core` refs always load, then selector-driven `modules` are deterministically
-scored against the bounded stage/intent budget with `priority`, `required`,
-`exclusiveGroup` (a tied top score stays ambiguous and loads neither
-alternative), and `estimatedChars`. Paths are safe relative markdown, reads are
-bounded, `requiredBudgetExceeded`/`requiredOverflow` are explicit, and a full
-document fallback remains observable when present.
+- `core`: small entries loaded before optional context is useful;
+- `modules`: selector-driven project knowledge with `kind`, optional semantic `topic`/`area`, source path/sections, priority, required status, and the standard stage/domain/action/artifact/need/signal selectors.
 
-### Authority and migration preflight
+Optional module files are read only after semantic eligibility is established, which avoids spending I/O/context on irrelevant project knowledge. Required modules can overflow the nominal budget only with explicit `requiredBudgetExceeded`; optional modules do not silently inherit extra budget. Tied `exclusiveGroup` candidates remain ambiguous instead of loading both.
 
-The manifest is optional for repositories that deliberately do not use MSSR project memory, but absence must not be confused with a healthy modular authority once project-memory infrastructure already exists.
+### Project Knowledge layout
 
-Hosts should classify repository state explicitly:
+When PROJECT_* starts mixing unrelated areas or large situational detail, keep the invariant/summary in the authority and move the detail into an indexed module:
 
-- `modular`: valid `.bridge/project-context.json` is present;
-- `legacy`: one or more `PROJECT_CONTEXT.md`, `PROJECT_MEMORY.md`, or `PROJECT_STATE.md` authorities exist without a manifest;
-- `invalid`: a manifest exists but fails the canonical schema;
-- `empty-bridge`: `.bridge` exists but contains no durable PROJECT_* authority and no manifest;
-- `not-initialized`: the managed repository has no `.bridge` project-memory authority yet;
-- `unmanaged`: the repository does not opt into the managed project-memory contract.
+```text
+.mssr/
+  PROJECT_CONTEXT.md
+  PROJECT_MEMORY.md
+  PROJECT_STATE.md
+  project-context.json
+  context-messages.json        # optional
+  knowledge/
+    architecture/
+    design/
+    law/
+    pattern/
+    vocabulary/
+    decision/
+    state/
+    phase/
+    reference/
+    operations/
+    other/
+  runtime/
+    context-inbox.json         # ephemeral
+```
 
-Detection is read-only evidence. A host may recommend migration or block a release gate when a repository already claims project-memory authority but is structurally inconsistent; it must not synthesize durable facts or empty memory merely to make the audit green.
+`Project Context Health` is advisory and reports structural debt such as missing/invalid initialization, oversized PROJECT_* authorities, oversized or whole-file modules, too many modules, missing module sources, unindexed knowledge files, or active MSSR artifacts under `.bridge/`. Typical levels are `ok`, `watch`, and `review`. `watch` should not interrupt normal work; `review` is a maintenance/replan signal.
 
+### Initialization and canonical-only cutover
+
+A managed repository must pass the MSSR initialization contract. `initializeMssrProject` is idempotent for one repository; `initializeMssrWorkspace` discovers Git repositories recursively (with bounded depth/noisy-directory exclusions) and applies the same contract without duplicating host logic.
+
+Initialization can:
+
+- create missing PROJECT_* skeletons and a minimal valid manifest without inventing project-specific architecture facts;
+- create `.mssr/knowledge/` and `.mssr/runtime/`;
+- normalize `.mssr/.gitignore` to ignore `/runtime/` only;
+- remove the obsolete pre-0.2.18 `.mssr/mssr-context-inbox.json` rather than carry stale receipts forward;
+- remove known MSSR-owned `.bridge` artifacts only when durable canonical counterparts exist; ephemeral legacy inbox state may be discarded because it is reconstructable;
+- block rather than erase a durable legacy authority when no canonical counterpart exists.
+
+`.bridge/` may continue to contain files genuinely owned by Bridge or historical workspace snapshots. MSSR initialization only knows its bounded list of old MSSR-owned filenames and must not delete unrelated `.bridge` content.
+
+A repository without `.mssr/project-context.json` is `not-initialized` for MSSR project knowledge. A repository with an invalid manifest or legacy MSSR artifacts is structurally unhealthy. The watcher/maintenance evaluator may surface those conditions, but detection itself never writes durable project knowledge.
 ## Versioned change history and memory consistency
 
 Repositories using the change-consistency contract keep new release notes in `changelogs/X.Y.Z.md` and an index in `changelogs/INDEX.md`. The root `CHANGELOG.md` may remain a compatibility pointer. Historical monolithic material can stay in `changelogs/LEGACY.md` and should not be loaded by default.
@@ -188,7 +182,7 @@ Canonical schema: `config/project-context/project-context-manifest.schema.json`.
       "kind": "context",
       "description": "Architecture and ownership needed for substantial work.",
       "source": {
-        "path": ".bridge/PROJECT_CONTEXT.md",
+        "path": ".mssr/PROJECT_CONTEXT.md",
         "sections": ["## Architecture", "## Canonical ownership"]
       },
       "maxChars": 5000
@@ -200,7 +194,7 @@ Canonical schema: `config/project-context/project-context-manifest.schema.json`.
       "kind": "state",
       "description": "Mutable asset pipeline state.",
       "source": {
-        "path": ".bridge/PROJECT_STATE.md",
+        "path": ".mssr/PROJECT_STATE.md",
         "sections": ["## Asset pipeline"]
       },
       "domains": ["blender"],
@@ -213,7 +207,7 @@ Canonical schema: `config/project-context/project-context-manifest.schema.json`.
       "kind": "directive",
       "description": "Use a bounded snapshot before broad repository refactors.",
       "source": {
-        "path": ".bridge/PROJECT_MEMORY.md",
+        "path": ".mssr/PROJECT_MEMORY.md",
         "sections": ["## Broad refactor safety"]
       },
       "domains": ["coding"],
@@ -226,34 +220,40 @@ Canonical schema: `config/project-context/project-context-manifest.schema.json`.
 }
 ```
 
-### Implemented 0.2.11 manifest (`.bridge/project-context-modules.json`)
+### Active manifest contract (0.2.18)
 
-The 0.2.11 loader implements schema v1 under `.bridge/project-context-modules.json` with a compact form: `core` is a list of `{ id }` refs and `modules` is a bounded list of `{ id, path, stages, domains, actions, artifacts, needs, signals, priority, required, estimatedChars, exclusiveGroup? }`. `id`/`exclusiveGroup` use bounded `[a-z0-9._-]` ids, `path` must be a safe relative markdown path, and a required module cannot belong to an exclusive group. `loadProjectContextModules` loads core first, scores modules deterministically under a bounded char/module budget, and returns explicit `decisions`, `requiredBudgetExceeded`, `requiredOverflow`, and `ambiguousExclusiveGroups`. The earlier `.bridge/project-context.json` shape above (with `kind`, `description`, `source.path`/`source.sections`, `maxChars`) remains the documented migration form; hosts may map it onto the compact v1 form.
+The active schema v1 is `.mssr/project-context.json`. `core` and `modules` both carry explicit `kind`, `description`, `source.path` plus optional stable `source.sections`; they may additionally declare semantic `topic` and `area`. Modules keep stage/intent selectors, `priority`, `required`, `maxChars`, and optional `exclusiveGroup`. The older compact `project-context-modules.json` format is historical and is not read by current MSSR.
 
-`core` entries may be `context`, `memory`, or `state`; they may not be directives. Optional modules may additionally use `kind: "directive"`. Required modules should remain rare. Required project modules may exceed the nominal project-context budget only with explicit `requiredBudgetExceeded` evidence; optional modules never inherit extra budget from that overflow. `exclusiveGroup` represents real alternatives; a tied top score stays ambiguous instead of loading both alternatives.
+`maxChars` bounds the **materialized selection** after `source.sections` extraction, not the size of the backing Markdown authority. The source file still has the global hard cap, so a large durable authority may safely expose one small bounded section without failing merely because unrelated sections exist in the same file.
+
+`core` entries may be `context`, `memory`, or `state`; they may not be directives. Optional modules may additionally use `kind: "directive"`. Required modules should remain rare. Required project modules may exceed the nominal project-context budget only with explicit `requiredBudgetExceeded` evidence. `exclusiveGroup` represents real alternatives; a tied top score stays ambiguous instead of loading both.
+
+Hosts may set `contextIncludeCore: false` on a route/bootstrap phase replan **only when that same host has already delivered the project core**. This explicit host contract preserves budget for newly relevant stage/intent modules without hidden session inference; first delivery still includes core by default.
 
 ## Memory update discipline
 
 When persisting project knowledge:
 
-- store stable facts in `PROJECT_CONTEXT.md`;
-- store durable decisions, recurring local lessons, and rationale in `PROJECT_MEMORY.md`;
-- replace or curate superseded mutable information in `PROJECT_STATE.md` instead of accumulating stale status;
-- keep secrets, raw transcripts, large logs, and transient tool output out of project memory;
-- give recurring sections stable headings so the manifest can retrieve them surgically;
+- keep PROJECT_* compact: stable cross-area facts in `.mssr/PROJECT_CONTEXT.md`, durable cross-area decisions/lessons in `.mssr/PROJECT_MEMORY.md`, and mutable cross-area status in `.mssr/PROJECT_STATE.md`;
+- move cohesive situational detail into `.mssr/knowledge/<topic>/` and register it in `.mssr/project-context.json` instead of extending PROJECT_* indefinitely;
+- use semantic `topic` and optional `area` so design, laws, patterns, vocabulary, decisions, state/phases, references, and operations can be retrieved independently;
+- replace or curate superseded mutable state instead of accumulating stale chronology in an active state module;
+- keep secrets, raw transcripts, private reasoning, large logs, and transient tool output out of project knowledge;
+- capture only a reviewed durable statement from a conversation, not the conversation itself;
+- give recurring sections stable headings when a module intentionally shares a larger Markdown file;
 - promote an instruction to a `directive` module only when it is project-specific, conditionally useful, and has clear selectors;
 - promote broadly applicable repository rules to `AGENTS.md`;
 - promote cross-project procedures to an owning skill instead of copying them into many project memories.
 
-Maintenance may detect stale references, duplicate decisions, contradictory state, oversized core sections, or directives that match too broadly. Detection may propose maintenance; it must not silently rewrite project memory or routing semantics.
+Maintenance may detect stale references, duplicate decisions, contradictory state, oversized PROJECT_* or modules, unindexed knowledge files, too many modules, or directives that match too broadly. Detection may propose maintenance; it must not silently rewrite project memory or routing semantics.
 
 ## Safe update contract
 
 Hosts that expose a project-memory writer should prefer **stable-section upsert** over free-form append. A durable update identifies the physical knowledge kind (`context`, `memory`, or `state`) plus one exact Markdown heading, replaces only that section, and verifies the resulting bytes/hash. When the caller already read the target, an `expectedSha256` precondition should fail closed on concurrent change instead of silently replacing newer project knowledge.
 
-If the same operation registers the section in `.bridge/project-context.json`, the Markdown update and manifest update should be treated as one bounded transaction: validate the module before writing, derive its source path/section rather than accepting an arbitrary source override, preserve a single module id on update, verify both outputs, and restore the previous pair when a write fails. Registering `kind: "directive"` makes the section *selectable*; it does not make the instruction globally active.
+If the same operation registers the section in `.mssr/project-context.json`, the Markdown update and manifest update should be treated as one bounded transaction: validate the module before writing, derive its source path/section rather than accepting an arbitrary source override, preserve a single module id on update, verify both outputs, and restore the previous pair when a write fails. Registering `kind: "directive"` makes the section *selectable*; it does not make the instruction globally active.
 
-MSSR exports pure `upsertMarkdownSection` and `upsertProjectContextManifestModule` helpers so host adapters can implement this safely without making filesystem mutation part of the deterministic core.
+MSSR exports pure `upsertMarkdownSection` and `upsertProjectContextManifestModule` helpers plus `planMssrProjectKnowledgeCapture`. The capture planner normalizes a reviewed durable statement into a deterministic `.mssr/knowledge/<topic>/<id>.md` target and validated manifest module; the host still owns the explicit filesystem transaction, conflict checks, and verification. No helper persists raw conversation text automatically.
 
 ## Separation from skill context
 

@@ -25,6 +25,8 @@
       "type": "string",
       "pattern": "^[a-z0-9][a-z0-9._-]{1,79}$"
     },
+    "topic": { "enum": ["architecture", "design", "law", "pattern", "vocabulary", "decision", "state", "phase", "reference", "operations", "other"] },
+    "area": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,79}$" },
     "source": {
       "type": "object",
       "additionalProperties": false,
@@ -48,6 +50,8 @@
         "kind": { "enum": ["context", "memory", "state"] },
         "description": { "type": "string", "minLength": 1, "maxLength": 300 },
         "source": { "$ref": "#/$defs/source" },
+        "topic": { "$ref": "#/$defs/topic" },
+        "area": { "$ref": "#/$defs/area" },
         "maxChars": { "type": "integer", "minimum": 200, "maximum": 80000 }
       }
     },
@@ -60,6 +64,8 @@
         "kind": { "enum": ["context", "memory", "state", "directive"] },
         "description": { "type": "string", "minLength": 1, "maxLength": 300 },
         "source": { "$ref": "#/$defs/source" },
+        "topic": { "$ref": "#/$defs/topic" },
+        "area": { "$ref": "#/$defs/area" },
         "stages": { "type": "array", "maxItems": 6, "items": { "enum": ["start", "implement", "verify", "persist", "close", "resume"] }, "default": [] },
         "domains": { "type": "array", "maxItems": 8, "items": { "enum": ["roblox", "godot", "blender", "figma", "github", "git", "filesystem", "google-workspace", "openai-development", "artifacts", "browser", "coding", "opencode", "agent-orchestration", "skill-system", "other"] }, "default": [] },
         "actions": { "type": "array", "maxItems": 12, "items": { "enum": ["discover", "design", "create", "edit", "move", "review", "verify", "test", "debug", "optimize", "save", "recover", "version", "publish", "coordinate", "maintain", "document", "analyze"] }, "default": [] },

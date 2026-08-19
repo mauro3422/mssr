@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "architectures": [
+    {
+      "architectureId": "architecture-impact-plane",
+      "authorityRef": "docs/decisions/0005-architecture-impact-drift-links.md",
+      "contextRef": "mssr-architecture-impact-decision",
+      "impactRefs": [
+        "src/architecture-impact.ts",
+        "src/architecture-impact-observation.ts",
+        "src/architecture-impact-projection.ts",
+        "src/architecture-impact-structure.ts",
+        "src/architecture-markdown.ts",
+        "src/architecture-symbol-analysis.ts",
+        "src/architecture-typescript-analyzer.ts",
+        "src/project-home.ts",
+        ".mssr/architecture-structure.json",
+        "config/project-context/architecture-impact-manifest.schema.json",
+        "config/project-context/architecture-impact-observation.schema.json",
+        "config/project-context/architecture-impact-review-baseline.schema.json",
+        "config/project-context/architecture-impact-projection.schema.json",
+        "config/project-context/architecture-impact-structure.schema.json",
+        "config/project-context/architecture-impact-symbol-analysis.schema.json",
+        "src/architecture-structural-contract.ts",
+        "src/architecture-structural-refinement.ts",
+        "config/project-context/architecture-structural-refinement.schema.json",
+        "src/architecture-derived-graph.ts",
+        "src/architecture-invariants.ts",
+        ".mssr/architecture-invariants.json",
+        "config/project-context/architecture-derived-graph.schema.json",
+        "config/project-context/architecture-invariant-manifest.schema.json",
+        "config/project-context/architecture-invariant-graph-evidence.schema.json",
+        "config/project-context/architecture-invariant-evaluation.schema.json",
+        "src/architecture-context-feedback.ts",
+        "config/project-context/architecture-context-feedback.schema.json",
+        "src/architecture-reviewed-current.ts",
+        "config/project-context/architecture-reviewed-current-receipt.schema.json",
+        "config/project-context/architecture-reviewed-current-evaluation.schema.json"
+      ]
+    },
+    {
+      "architectureId": "project-context-plane",
+      "authorityRef": "docs/decisions/0001-context-plane-v1.md",
+      "contextRef": "mssr-project-context-plane-architecture",
+      "impactRefs": [
+        "src/project-context.ts",
+        "src/project-context-loader.ts",
+        "src/context-plane-host.ts",
+        "src/project-home.ts"
+      ]
+    }
+  ]
+}

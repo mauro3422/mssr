@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mauroprime.local/schemas/architecture-derived-graph.schema.json",
+  "title": "MSSR Architecture Derived Graph Candidates v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "architectureId", "relationshipClass", "evidenceClass", "analyzerId", "canonicalReviewEligible", "candidates"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "architectureId": { "$ref": "#/$defs/stableId" },
+    "relationshipClass": { "const": "derived" },
+    "evidenceClass": { "const": "observed" },
+    "analyzerId": { "$ref": "#/$defs/boundedSingleLine" },
+    "canonicalReviewEligible": { "const": false },
+    "candidates": {
+      "type": "array",
+      "maxItems": 256,
+      "items": { "$ref": "#/$defs/candidate" }
+    }
+  },
+  "$defs": {
+    "stableId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{1,79}$" },
+    "boundedSingleLine": { "type": "string", "minLength": 1, "maxLength": 160, "pattern": "^(?!\\s)[^\\r\\n]*\\S$" },
+    "exactProjectRelativeRef": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 320,
+      "allOf": [
+        { "not": { "pattern": "^/" } },
+        { "not": { "pattern": "^[A-Za-z]:/" } },
+        { "not": { "pattern": "\\\\" } },
+        { "not": { "pattern": "(^|/)\\.\\.?(/|$)" } },
+        { "not": { "pattern": "//" } },
+        { "not": { "pattern": "[?*\\[\\]{}!#]" } }
+      ]
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "sourceRef", "targetRef", "promotionState"],
+      "properties": {
+        "kind": { "enum": ["import", "call", "dependency"] },
+        "sourceRef": { "$ref": "#/$defs/exactProjectRelativeRef" },
+        "targetRef": { "$ref": "#/$defs/exactProjectRelativeRef" },
+        "sourceSymbol": { "$ref": "#/$defs/boundedSingleLine" },
+        "targetSymbol": { "$ref": "#/$defs/boundedSingleLine" },
+        "promotionState": { "const": "candidate" }
+      }
+    }
+  }
+}

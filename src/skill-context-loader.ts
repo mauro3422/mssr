@@ -157,3 +157,7 @@ export async function assembleCodexSkillContext(args: { skill: SkillEntry; inten
   if (!item || !item.loaded) throw new Error(`Required skill context was unexpectedly skipped: ${args.skill.name}`);
   return item;
 }
+
+// Host-neutral names for shared adapter code. Legacy Codex names remain exported for compatibility.
+export const planSkillContexts = planCodexSkillContexts;
+export const assembleSkillContext = assembleCodexSkillContext;

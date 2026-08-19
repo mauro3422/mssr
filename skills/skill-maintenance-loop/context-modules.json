@@ -1,111 +1,307 @@
 {
   "schemaVersion": 1,
   "core": {
-    "sections": ["## Mapa y recursos", "## Loop adaptativo", "## Auditoría obligatoria", "## Límites", "## Salida"]
+    "sections": [
+      "## Mapa y recursos",
+      "## Loop adaptativo",
+      "## Auditoría obligatoria",
+      "## Límites",
+      "## Salida"
+    ]
   },
   "modules": [
     {
       "id": "audit-only",
       "description": "Audit skills, tools, routing, providers and reusable learning without mutating the system.",
-      "source": { "path": "references/maintenance-audit.md" },
-      "actions": ["review", "analyze", "verify"],
-      "signals": ["warning-observed", "conflicting-evidence", "repeated-friction", "reusable-pattern"],
+      "source": {
+        "path": "references/maintenance-audit.md"
+      },
+      "actions": [
+        "review",
+        "analyze",
+        "verify"
+      ],
+      "signals": [
+        "warning-observed",
+        "conflicting-evidence",
+        "repeated-friction",
+        "reusable-pattern"
+      ],
       "priority": 45
     },
     {
       "id": "routing-edit",
       "description": "Update activation, phases, dependencies, exclusions and routing fixtures safely.",
-      "source": { "path": "references/maintenance-routing.md" },
-      "actions": ["create", "edit", "maintain"],
-      "artifacts": ["skill"],
-      "signals": ["skill-gap", "replan-needed", "reusable-pattern"],
+      "source": {
+        "path": "references/maintenance-routing.md"
+      },
+      "actions": [
+        "create",
+        "edit",
+        "maintain"
+      ],
+      "artifacts": [
+        "skill"
+      ],
+      "signals": [
+        "skill-gap",
+        "replan-needed",
+        "reusable-pattern"
+      ],
       "priority": 40
     },
     {
       "id": "provider-refresh",
       "description": "Recover or refresh a degraded provider without contaminating unrelated routing.",
-      "source": { "path": "references/maintenance-provider.md" },
-      "actions": ["discover", "debug", "recover", "maintain"],
-      "signals": ["degraded-capability", "provider-refresh-needed", "missing-capability"],
+      "source": {
+        "path": "references/maintenance-provider.md"
+      },
+      "actions": [
+        "discover",
+        "debug",
+        "recover",
+        "maintain"
+      ],
+      "signals": [
+        "degraded-capability",
+        "provider-refresh-needed",
+        "missing-capability"
+      ],
       "priority": 45
     },
     {
       "id": "fixture-authoring",
       "description": "Author bounded positive, negative and continuation regression fixtures.",
-      "source": { "path": "references/maintenance-fixtures.md" },
-      "actions": ["create", "edit", "test", "verify"],
-      "artifacts": ["skill"],
-      "signals": ["skill-gap", "reusable-pattern", "conflicting-evidence"],
+      "source": {
+        "path": "references/maintenance-fixtures.md"
+      },
+      "actions": [
+        "create",
+        "edit",
+        "test",
+        "verify"
+      ],
+      "artifacts": [
+        "skill"
+      ],
+      "signals": [
+        "skill-gap",
+        "reusable-pattern",
+        "conflicting-evidence"
+      ],
       "priority": 35
     },
     {
       "id": "publication-close",
       "description": "Close, publish, restart and verify cross-repository capability changes.",
-      "source": { "path": "references/maintenance-publication.md" },
-      "actions": ["version", "publish", "verify", "maintain"],
-      "artifacts": ["repository", "project", "skill", "mcp"],
-      "needs": ["version-control", "integrity-verification"],
+      "source": {
+        "path": "references/maintenance-publication.md"
+      },
+      "actions": [
+        "version",
+        "publish",
+        "verify",
+        "maintain"
+      ],
+      "artifacts": [
+        "repository",
+        "project",
+        "skill",
+        "mcp"
+      ],
+      "needs": [
+        "version-control",
+        "integrity-verification"
+      ],
       "priority": 45
     },
     {
       "id": "incident-ledger",
       "description": "Record one observable non-nominal incident in the canonical owner ledger.",
-      "source": { "path": "references/maintenance-incidents.md" },
-      "signals": ["error-observed", "warning-observed", "degraded-capability", "conflicting-evidence", "repeated-friction", "manual-workaround", "missing-capability", "recovery-needed"],
+      "source": {
+        "path": "references/maintenance-incidents.md"
+      },
+      "signals": [
+        "error-observed",
+        "warning-observed",
+        "degraded-capability",
+        "conflicting-evidence",
+        "repeated-friction",
+        "manual-workaround",
+        "missing-capability",
+        "recovery-needed"
+      ],
       "priority": 35
     },
     {
       "id": "context-handoff",
       "description": "Produce a bounded verifiable handoff when another context owns the required state.",
-      "source": { "path": "references/maintenance-handoff.md" },
-      "signals": ["missing-capability", "degraded-capability", "capability-discovery-needed"],
+      "source": {
+        "path": "references/maintenance-handoff.md"
+      },
+      "signals": [
+        "missing-capability",
+        "degraded-capability",
+        "capability-discovery-needed"
+      ],
       "priority": 30
     },
     {
       "id": "system-ownership",
       "description": "Choose the canonical owner across repositories, project docs, skills, tools, guides and contexts.",
-      "source": { "path": "references/system-map.md" },
-      "actions": ["design", "edit", "maintain", "review"],
-      "artifacts": ["skill", "mcp", "project", "repository"],
+      "source": {
+        "path": "references/system-map.md"
+      },
+      "actions": [
+        "design",
+        "edit",
+        "maintain",
+        "review"
+      ],
+      "artifacts": [
+        "skill",
+        "mcp",
+        "project",
+        "repository"
+      ],
       "priority": 25
     },
     {
       "id": "friction-patterns",
       "description": "Recognize generalized persistence, lifecycle, routing, output, release and context failure patterns.",
-      "source": { "path": "references/friction-patterns.md" },
-      "signals": ["error-observed", "warning-observed", "repeated-friction", "manual-workaround"],
+      "source": {
+        "path": "references/friction-patterns.md"
+      },
+      "signals": [
+        "error-observed",
+        "warning-observed",
+        "repeated-friction",
+        "manual-workaround"
+      ],
       "priority": 25
     },
     {
       "id": "skill-memory-modules",
       "description": "Design selective durable memory modules without creating unnecessary skills.",
-      "source": { "path": "references/skill-memory-modules.md" },
-      "signals": ["skill-gap", "reusable-pattern"],
+      "source": {
+        "path": "references/skill-memory-modules.md"
+      },
+      "signals": [
+        "skill-gap",
+        "reusable-pattern"
+      ],
       "priority": 25
     },
     {
       "id": "capability-evolution",
       "description": "Choose between local docs, owner update, module, script/tool/guide, new skill or context handoff.",
-      "source": { "path": "references/capability-evolution-proposals.md" },
-      "signals": ["repeated-friction", "skill-gap", "reusable-pattern", "missing-capability"],
+      "source": {
+        "path": "references/capability-evolution-proposals.md"
+      },
+      "signals": [
+        "repeated-friction",
+        "skill-gap",
+        "reusable-pattern",
+        "missing-capability"
+      ],
       "priority": 25
     },
     {
       "id": "learning-review-promotion",
       "description": "Turn a zero-finding or friction digest into an explicit observe-only learning decision and guarded human-review proposal.",
-      "source": { "path": "references/learning-review-promotion.md" },
-      "actions": ["analyze", "review", "verify", "maintain"],
-      "signals": ["nominal", "repeated-friction", "manual-workaround", "reusable-pattern", "missing-capability", "conflicting-evidence"],
+      "source": {
+        "path": "references/learning-review-promotion.md"
+      },
+      "actions": [
+        "analyze",
+        "review",
+        "verify",
+        "maintain"
+      ],
+      "signals": [
+        "nominal",
+        "repeated-friction",
+        "manual-workaround",
+        "reusable-pattern",
+        "missing-capability",
+        "conflicting-evidence"
+      ],
       "priority": 30
     },
     {
       "id": "architecture-documentation-consistency",
       "description": "Reconcile repository-owned architecture, ADR, context/state, changelog, and incident evidence before reviewed persistence.",
-      "source": { "path": "references/architecture-documentation-consistency.md" },
-      "actions": ["analyze", "review", "edit", "maintain"],
-      "artifacts": ["document", "project", "repository"],
-      "signals": ["conflicting-evidence", "repeated-friction", "reusable-pattern"],
+      "source": {
+        "path": "references/architecture-documentation-consistency.md"
+      },
+      "actions": [
+        "analyze",
+        "review",
+        "edit",
+        "maintain"
+      ],
+      "artifacts": [
+        "document",
+        "project",
+        "repository"
+      ],
+      "signals": [
+        "conflicting-evidence",
+        "repeated-friction",
+        "reusable-pattern"
+      ],
       "priority": 30
+    },
+    {
+      "id": "operational-pattern-automation",
+      "description": "Promote repeated deterministic operational sequences into bounded script/tool/guide candidates without automating semantic authority or approval.",
+      "source": {
+        "path": "references/operational-pattern-automation.md"
+      },
+      "actions": [
+        "analyze",
+        "optimize",
+        "maintain",
+        "verify"
+      ],
+      "artifacts": [
+        "code",
+        "project",
+        "repository",
+        "skill"
+      ],
+      "signals": [
+        "repeated-friction",
+        "manual-workaround",
+        "reusable-pattern"
+      ],
+      "priority": 42
+    },
+    {
+      "id": "project-context-modularization",
+      "description": "Resolve Project Context Health growth by moving reviewed situational project knowledge out of compact PROJECT_* authorities without changing semantic ownership.",
+      "source": {
+        "path": "references/project-context-modularization.md"
+      },
+      "actions": [
+        "analyze",
+        "review",
+        "edit",
+        "maintain",
+        "document"
+      ],
+      "artifacts": [
+        "document",
+        "project",
+        "repository"
+      ],
+      "signals": [
+        "warning-observed",
+        "conflicting-evidence",
+        "repeated-friction",
+        "reusable-pattern"
+      ],
+      "priority": 38
     }
   ]
 }

@@ -13,7 +13,7 @@ Usa esta skill cuando ocurra cualquiera de estos casos:
 
 - se crea, instala, renombra, mueve o elimina una skill;
 - cambia de forma material el objetivo, los disparadores, la fase o las dependencias de una skill;
-- una skill empieza a mezclar más de un objetivo independiente o supera aproximadamente 500 líneas;
+- una skill empieza a mezclar más de un objetivo independiente, cae a `full` por falta/rotura de `context-modules.json`, acumula `references/` no indexadas o supera los umbrales estructurales del audit;
 - aparece una tool nueva que modifica qué skill debe activarse;
 - `skill_route_plan` selecciona demasiado, demasiado poco o en una fase incorrecta;
 - `skill_route_audit` informa drift, referencias faltantes, ciclos o metadata inferida para una skill propia.
@@ -35,9 +35,9 @@ Usa esta skill cuando ocurra cualquiera de estos casos:
 
 ## Arquitectura modular
 
-Cuando una skill supere aproximadamente 500 líneas, mezcle protocolos largos o cargue detalles que sólo aplican a algunas fases, lee [modular-skill-architecture.md](references/modular-skill-architecture.md).
+No esperes a que una skill llegue a 500 líneas. Usa `skill_route_audit.structuralHealth` como señal preventiva: `WATCH`/`REVIEW`, `full-fallback-risk`, `unindexed-references`, `invalid-context-manifest` o `monolithic-core-review` justifican revisión aunque el hard oversize siga verde. Estas señales son advisory y no convierten por sí solas el routing en inválido.
 
-Mantén un diseño superficial: `SKILL.md` enlaza directamente cada módulo con una condición explícita de carga. No construyas una red recursiva de referencias. Crea otra skill sólo cuando el contenido extraído tenga objetivo, activación, owner y verificación independientes.
+Cuando el audit lo sugiera, lee [modular-skill-architecture.md](references/modular-skill-architecture.md). Mantén un diseño superficial: `SKILL.md` conserva capability, invariantes y workflow; `context-modules.json` selecciona recetas; `references/` guarda procedimientos situacionales. Crea otra skill sólo cuando el contenido extraído tenga objetivo, activación, owner y verificación independientes.
 
 ## Loop de mantenimiento
 
@@ -59,7 +59,7 @@ Mantén un diseño superficial: `SKILL.md` enlaza directamente cada módulo con 
 10. Si una skill coincide por necesidad u operación pero el artefacto real no pertenece a su alcance, usa `requireArtifactMatch` y un negativo cercano. Si coincide por artefacto pero no por la operación solicitada, usa `requireActionMatch`. Usa `requireNeedMatch` para capacidades que sólo son válidas cuando existe una necesidad explícita. Usa `requireSignalMatch` cuando una skill transversal de depuración, recuperación o mantenimiento sólo deba abrirse ante evidencia no nominal; acompaña cada gate con al menos un positivo y un negativo que fallen antes del ajuste.
 11. Inspecciona el plan completo de casos cercanos, incluyendo `activeSkills` y `deferredSkills`. Una ruta que no se activa pero contamina tareas ajenas como deferred sigue siendo un falso positivo de composición; estrecha dominios, artifacts, needs o workflow match y agrega `deferredExcludes` cuando corresponda.
 12. Si cambia el descubrimiento, prueba por separado `~/.codex/skills`, junctions permitidos y `~/.codex/plugins/cache`. El caché de plugins sólo debe recorrerse dentro de su raíz resuelta y en modo lectura; una raíz completa rechazada debe producir un warning observable.
-13. Si la skill creció demasiado, aplica `references/modular-skill-architecture.md`: conserva `SKILL.md` como control plane, extrae módulos cohesivos con triggers de carga y crea otra skill sólo para un objetivo reusable independiente. No dividas por longitud ni cambies routing cuando sólo cambió la organización interna.
+13. Si `structuralHealth` marca deuda aunque la skill no sea enorme, aplica `references/modular-skill-architecture.md`: conserva `SKILL.md` como control plane, indexa recipes existentes o extrae módulos cohesivos con triggers de carga y crea otra skill sólo para un objetivo reusable independiente. No dividas por longitud ni cambies routing cuando sólo cambió la organización interna.
 14. Si se creó, renombró o movió una skill, ejecuta en `D:\Dev\mauroprime-skills`:
 
 ```powershell

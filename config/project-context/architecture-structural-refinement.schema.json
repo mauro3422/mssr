@@ -1,0 +1,324 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mauroprime.local/schemas/architecture-structural-refinement.schema.json",
+  "title": "MSSR Architecture Structural Refinement Contract v1",
+  "oneOf": [
+    { "$ref": "#/$defs/structuralEvidence" },
+    { "$ref": "#/$defs/reviewedBaseline" },
+    { "$ref": "#/$defs/refinement" }
+  ],
+  "$defs": {
+    "architectureId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{1,79}$"
+    },
+    "stableId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{0,79}$"
+    },
+    "anchorId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,79}$"
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "pattern": "^(?!\\s)[^\\r\\n]*\\S$"
+    },
+    "fingerprint": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "landmarkKey": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 720
+    },
+    "exactProjectRelativeRef": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 320,
+      "allOf": [
+        { "not": { "pattern": "^/" } },
+        { "not": { "pattern": "^[A-Za-z]:/" } },
+        { "not": { "pattern": "\\\\" } },
+        { "not": { "pattern": "(^|/)\\.\\.?(/|$)" } },
+        { "not": { "pattern": "//" } },
+        { "not": { "pattern": "[?*\\[\\]{}!#]" } }
+      ]
+    },
+    "selector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "language", "name", "aspect"],
+      "properties": {
+        "kind": { "const": "symbol" },
+        "language": { "enum": ["typescript", "javascript"] },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160,
+          "pattern": "^(?!\\s)[^\\r\\n]*\\S$"
+        },
+        "aspect": { "enum": ["signature", "body", "shape"] }
+      }
+    },
+    "markdownIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "anchorId"],
+      "properties": {
+        "kind": { "const": "markdown-anchor" },
+        "anchorId": { "$ref": "#/$defs/anchorId" }
+      }
+    },
+    "codeIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "selector"],
+      "properties": {
+        "kind": { "const": "code-symbol" },
+        "selector": { "$ref": "#/$defs/selector" }
+      }
+    },
+    "markdownObserved": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "sourceRevision", "fingerprintScheme", "landmark", "availability", "structuralFingerprint"],
+      "properties": {
+        "ref": { "$ref": "#/$defs/exactProjectRelativeRef" },
+        "sourceRevision": { "$ref": "#/$defs/revision" },
+        "fingerprintScheme": { "$ref": "#/$defs/stableId" },
+        "landmark": { "$ref": "#/$defs/markdownIdentity" },
+        "availability": { "const": "observed" },
+        "structuralFingerprint": { "$ref": "#/$defs/fingerprint" }
+      }
+    },
+    "markdownMissing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "sourceRevision", "fingerprintScheme", "landmark", "availability"],
+      "properties": {
+        "ref": { "$ref": "#/$defs/exactProjectRelativeRef" },
+        "sourceRevision": { "$ref": "#/$defs/revision" },
+        "fingerprintScheme": { "$ref": "#/$defs/stableId" },
+        "landmark": { "$ref": "#/$defs/markdownIdentity" },
+        "availability": { "const": "missing" }
+      }
+    },
+    "markdownUnavailable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "sourceRevision", "fingerprintScheme", "landmark", "availability"],
+      "properties": {
+        "ref": { "$ref": "#/$defs/exactProjectRelativeRef" },
+        "sourceRevision": { "$ref": "#/$defs/revision" },
+        "fingerprintScheme": { "$ref": "#/$defs/stableId" },
+        "landmark": { "$ref": "#/$defs/markdownIdentity" },
+        "availability": { "const": "unavailable" },
+        "reasonCode": { "$ref": "#/$defs/stableId" }
+      }
+    },
+    "codeObserved": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "sourceRevision", "fingerprintScheme", "analyzerId", "landmark", "availability", "structuralFingerprint"],
+      "properties": {
+        "ref": { "$ref": "#/$defs/exactProjectRelativeRef" },
+        "sourceRevision": { "$ref": "#/$defs/revision" },
+        "fingerprintScheme": { "$ref": "#/$defs/stableId" },
+        "analyzerId": { "$ref": "#/$defs/stableId" },
+        "landmark": { "$ref": "#/$defs/codeIdentity" },
+        "availability": { "const": "observed" },
+        "structuralFingerprint": { "$ref": "#/$defs/fingerprint" }
+      }
+    },
+    "codeMissing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "sourceRevision", "fingerprintScheme", "analyzerId", "landmark", "availability"],
+      "properties": {
+        "ref": { "$ref": "#/$defs/exactProjectRelativeRef" },
+        "sourceRevision": { "$ref": "#/$defs/revision" },
+        "fingerprintScheme": { "$ref": "#/$defs/stableId" },
+        "analyzerId": { "$ref": "#/$defs/stableId" },
+        "landmark": { "$ref": "#/$defs/codeIdentity" },
+        "availability": { "const": "missing" }
+      }
+    },
+    "codeUnavailable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "sourceRevision", "fingerprintScheme", "analyzerId", "landmark", "availability"],
+      "properties": {
+        "ref": { "$ref": "#/$defs/exactProjectRelativeRef" },
+        "sourceRevision": { "$ref": "#/$defs/revision" },
+        "fingerprintScheme": { "$ref": "#/$defs/stableId" },
+        "analyzerId": { "$ref": "#/$defs/stableId" },
+        "landmark": { "$ref": "#/$defs/codeIdentity" },
+        "availability": { "const": "unavailable" },
+        "reasonCode": { "$ref": "#/$defs/stableId" }
+      }
+    },
+    "landmarkEvidence": {
+      "oneOf": [
+        { "$ref": "#/$defs/markdownObserved" },
+        { "$ref": "#/$defs/markdownMissing" },
+        { "$ref": "#/$defs/markdownUnavailable" },
+        { "$ref": "#/$defs/codeObserved" },
+        { "$ref": "#/$defs/codeMissing" },
+        { "$ref": "#/$defs/codeUnavailable" }
+      ]
+    },
+    "reviewedLandmark": {
+      "oneOf": [
+        { "$ref": "#/$defs/markdownObserved" },
+        { "$ref": "#/$defs/codeObserved" }
+      ]
+    },
+    "structuralEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "architectureId", "relationshipClass", "evidenceClass", "landmarks"],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "architectureId": { "$ref": "#/$defs/architectureId" },
+        "relationshipClass": { "const": "declared" },
+        "evidenceClass": { "const": "observed" },
+        "landmarks": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "items": { "$ref": "#/$defs/landmarkEvidence" }
+        }
+      }
+    },
+    "reviewedBaseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "architectureId", "relationshipClass", "evidenceClass", "reviewClass", "coarseBaselineFingerprint", "structureFingerprint", "landmarks", "baselineFingerprint"],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "architectureId": { "$ref": "#/$defs/architectureId" },
+        "relationshipClass": { "const": "declared" },
+        "evidenceClass": { "const": "observed" },
+        "reviewClass": { "const": "reviewed" },
+        "coarseBaselineFingerprint": { "$ref": "#/$defs/fingerprint" },
+        "structureFingerprint": { "$ref": "#/$defs/fingerprint" },
+        "landmarks": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "items": { "$ref": "#/$defs/reviewedLandmark" }
+        },
+        "baselineFingerprint": { "$ref": "#/$defs/fingerprint" }
+      }
+    },
+    "structuralChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "ref", "landmark", "fingerprintScheme", "baselineFingerprint", "currentFingerprint"],
+      "properties": {
+        "key": { "$ref": "#/$defs/landmarkKey" },
+        "ref": { "$ref": "#/$defs/exactProjectRelativeRef" },
+        "landmark": {
+          "oneOf": [
+            { "$ref": "#/$defs/markdownIdentity" },
+            { "$ref": "#/$defs/codeIdentity" }
+          ]
+        },
+        "fingerprintScheme": { "$ref": "#/$defs/stableId" },
+        "baselineFingerprint": { "$ref": "#/$defs/fingerprint" },
+        "currentFingerprint": { "$ref": "#/$defs/fingerprint" }
+      }
+    },
+    "structuralUnresolved": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "ref", "landmark", "reasonCode"],
+      "properties": {
+        "key": { "$ref": "#/$defs/landmarkKey" },
+        "ref": { "$ref": "#/$defs/exactProjectRelativeRef" },
+        "landmark": {
+          "oneOf": [
+            { "$ref": "#/$defs/markdownIdentity" },
+            { "$ref": "#/$defs/codeIdentity" }
+          ]
+        },
+        "reasonCode": {
+          "enum": [
+            "coarse-aligned",
+            "coarse-unresolved",
+            "structural-evidence-required",
+            "structure-declaration-changed",
+            "changed-source-without-structural-landmark",
+            "coarse-availability-change-unresolved",
+            "structural-landmark-missing",
+            "structural-landmark-unavailable",
+            "structural-fingerprint-scheme-mismatch",
+            "structural-source-revision-mismatch",
+            "structural-fingerprint-changed",
+            "structural-fingerprints-aligned"
+          ]
+        }
+      }
+    },
+    "refinement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "architectureId", "coarseStatus", "coarseFingerprint", "status", "level", "relationshipClass", "evidenceClass", "structureFingerprint", "structuralBaselineFingerprint", "reasonCodes", "comparedLandmarkKeys", "changes", "unresolved", "evidenceComplete", "fingerprint", "notifyOnWatch", "advisoryOnly"],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "architectureId": { "$ref": "#/$defs/architectureId" },
+        "coarseStatus": { "enum": ["aligned", "possible-impact", "unresolved"] },
+        "coarseFingerprint": { "$ref": "#/$defs/fingerprint" },
+        "status": { "enum": ["not-applicable", "noise-candidate", "structural-possible-impact", "unresolved"] },
+        "level": { "enum": ["ok", "watch", "review"] },
+        "relationshipClass": { "const": "declared" },
+        "evidenceClass": { "const": "observed" },
+        "structureFingerprint": { "$ref": "#/$defs/fingerprint" },
+        "structuralBaselineFingerprint": { "$ref": "#/$defs/fingerprint" },
+        "reasonCodes": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "enum": [
+              "coarse-aligned",
+              "coarse-unresolved",
+              "structural-evidence-required",
+              "structure-declaration-changed",
+              "changed-source-without-structural-landmark",
+              "coarse-availability-change-unresolved",
+              "structural-landmark-missing",
+              "structural-landmark-unavailable",
+              "structural-fingerprint-scheme-mismatch",
+              "structural-source-revision-mismatch",
+              "structural-fingerprint-changed",
+              "structural-fingerprints-aligned"
+            ]
+          }
+        },
+        "comparedLandmarkKeys": {
+          "type": "array",
+          "maxItems": 128,
+          "items": { "$ref": "#/$defs/landmarkKey" }
+        },
+        "changes": {
+          "type": "array",
+          "maxItems": 128,
+          "items": { "$ref": "#/$defs/structuralChange" }
+        },
+        "unresolved": {
+          "type": "array",
+          "maxItems": 128,
+          "items": { "$ref": "#/$defs/structuralUnresolved" }
+        },
+        "evidenceComplete": { "type": "boolean" },
+        "fingerprint": { "$ref": "#/$defs/fingerprint" },
+        "notifyOnWatch": { "const": false },
+        "advisoryOnly": { "const": true }
+      }
+    }
+  }
+}

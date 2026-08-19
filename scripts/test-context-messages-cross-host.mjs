@@ -163,20 +163,22 @@ for (const [client, tool] of [
 }
 
 async function seedFixture(root) {
-  await fs.mkdir(path.join(root, ".bridge"), { recursive: true });
+  await fs.mkdir(path.join(root, ".mssr"), { recursive: true });
   await fs.mkdir(path.join(root, "context"), { recursive: true });
   await fs.writeFile(
-    path.join(root, ".bridge", "project-context-modules.json"),
+    path.join(root, ".mssr", "project-context.json"),
     JSON.stringify({
       schemaVersion: 1,
-      canonicalOwner: "cross-host-fixture",
       core: [],
       modules: [{
         id: "review-guardrail",
-        path: "context/review-guardrail.md",
+        kind: "directive",
+        topic: "operations",
+        area: "review",
+        description: "Cross-host review guardrail fixture.",
+        source: { path: "context/review-guardrail.md" },
         priority: 0,
         required: false,
-        estimatedChars: 256,
         stages: ["start"],
         domains: ["coding"],
         actions: ["review"],
@@ -227,7 +229,7 @@ try {
     assert.deepEqual(plane(result), expectedPlane, "All hosts must return the same project context plane and portable selection");
   }
 
-  const inboxPath = path.join(fixtureRoot, ".bridge", "mssr-context-inbox.json");
+  const inboxPath = path.join(fixtureRoot, ".mssr", "runtime", "context-inbox.json");
   await fs.access(inboxPath);
 
   async function verifyAckPersistence(host, routeTool, root) {
@@ -240,7 +242,7 @@ try {
     assert.deepEqual(ack.acknowledged, ["context.required-continuation"]);
     assert.deepEqual(ack.unknown, []);
     assert.equal(ack.saved, true, `ack must persist on ${routeTool}`);
-    await fs.access(path.join(root, ".bridge", "mssr-context-inbox.json"));
+    await fs.access(path.join(root, ".mssr", "runtime", "context-inbox.json"));
     const reAck = json(await host.client.callTool({
       name: "mssr_context_ack",
       arguments: { projectRoot: root, messageIds: ["context.required-continuation"], now: contextNow },

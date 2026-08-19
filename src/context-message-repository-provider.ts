@@ -22,6 +22,12 @@ import {
   type SkillStage,
   type StructuredSkillIntent,
 } from "./skill-routing.js";
+import {
+  MSSR_PROJECT_AUTHORITY_FILES,
+  MSSR_PROJECT_CONTROL_FILES,
+  mssrProjectRelativePath,
+  resolveMssrProjectFile,
+} from "./project-home.js";
 
 const MAX_FILE_FACTS = 32;
 const MAX_FILE_BYTES = 128 * 1024;
@@ -29,15 +35,7 @@ const MAX_TITLE_CHARS = 120;
 const MAX_SUMMARY_CHARS = 300;
 const MAX_DIAGNOSTICS = 64;
 const MAX_MANIFEST_ENTRIES = 32;
-const CONTEXT_MESSAGES_MANIFEST_REL_PATH = ".bridge/context-messages.json";
-const CONTEXT_MESSAGES_MANIFEST_FALLBACK_REL_PATH = "config/context-messages.json";
-
-const CANONICAL_PROJECT_CONTEXT_FACTS: ReadonlyArray<{ relPath: string; sourceKind: ProducerSourceKind }> = [
-  { relPath: ".bridge/PROJECT_CONTEXT.md", sourceKind: "project-context" },
-  { relPath: ".bridge/PROJECT_MEMORY.md", sourceKind: "project-memory" },
-  { relPath: ".bridge/PROJECT_STATE.md", sourceKind: "project-state" },
-  { relPath: "docs/PROJECT_CONTEXT.md", sourceKind: "project-context" },
-];
+const CONTEXT_MESSAGES_MANIFEST_REL_PATH = mssrProjectRelativePath(MSSR_PROJECT_CONTROL_FILES.contextMessagesManifest);
 
 type CanonicalFact = {
   relPath: string;
@@ -233,15 +231,13 @@ function findDuplicateJsonObjectKeys(text: string): string[] {
 }
 
 async function firstExistingManifestPath(projectRoot: string): Promise<string | null> {
-  for (const rel of [CONTEXT_MESSAGES_MANIFEST_REL_PATH, CONTEXT_MESSAGES_MANIFEST_FALLBACK_REL_PATH]) {
-    try {
-      await fs.access(path.join(projectRoot, ...rel.split("/")));
-      return rel;
-    } catch {
-      // Absent manifests are optional; fall back to defaults.
-    }
+  try {
+    await fs.access(path.join(projectRoot, ...CONTEXT_MESSAGES_MANIFEST_REL_PATH.split("/")));
+    return CONTEXT_MESSAGES_MANIFEST_REL_PATH;
+  } catch {
+    // Absent selector manifests are optional; source-kind defaults remain active.
+    return null;
   }
-  return null;
 }
 
 /**
@@ -448,8 +444,14 @@ async function enumerateCanonicalFacts(root: string): Promise<CanonicalFact[]> {
   const newest = await newestVersionChangelog(path.join(root, "changelogs"));
   if (newest) facts.push({ relPath: `changelogs/${newest}`, sourceKind: "changelog" });
 
-  facts.push(...CANONICAL_PROJECT_CONTEXT_FACTS);
-
+  for (const [fileName, sourceKind] of [
+    [MSSR_PROJECT_AUTHORITY_FILES.context, "project-context"],
+    [MSSR_PROJECT_AUTHORITY_FILES.memory, "project-memory"],
+    [MSSR_PROJECT_AUTHORITY_FILES.state, "project-state"],
+  ] as const) {
+    const resolved = await resolveMssrProjectFile(root, fileName);
+    if (resolved.source !== "missing") facts.push({ relPath: resolved.relativePath, sourceKind });
+  }
   const seen = new Set<string>();
   const unique = facts.filter((fact) => {
     if (seen.has(fact.relPath)) return false;

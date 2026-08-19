@@ -63,7 +63,7 @@ Codex/OpenCode y definir la política entre repositorios administrados y
 deliberadamente memory-free:
 
 - `AGENTS.md` o equivalente del host;
-- contexto, memoria y estado bajo `.bridge/` cuando existan;
+- contexto, memoria y estado bajo `.mssr/` cuando existan;
 - documentación canónica y estado operativo del proyecto;
 - incidentes, checkpoints, commits o snapshots relevantes para la tarea actual.
 

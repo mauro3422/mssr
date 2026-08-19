@@ -1,42 +1,19 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
-import { CodexMssrAdapter } from "./codex-adapter.js";
+import { OpenCodeMssrAdapter } from "./opencode-adapter.js";
 import { createMssrRegistryFromEnvironment } from "./provider-config.js";
-import { SKILL_PHASES, SKILL_STAGES, structuredSkillIntentSchema } from "./skill-routing.js";
+import { mssrHostRouteInputSchema } from "./host-adapter-contract.js";
 import { createMssrTelemetrySinkFromEnvironment, mssrHostCheckpointSchema } from "./telemetry.js";
-import { mssrContextMessageBatchSchema } from "./context-messages.js";
-import {
-  MAX_HOST_CONTEXT_MESSAGE_CHARS,
-  MAX_HOST_PROJECT_CONTEXT_CHARS,
-  MAX_HOST_PROJECT_CONTEXT_MODULES,
-} from "./context-plane-host.js";
+import { registerMssrProjectControlTools } from "./project-control-contract.js";
+import { registerMssrConsistencyTools } from "./consistency-contract.js";
+import { registerMssrOperationalNoticeTools } from "./operational-notice-contract.js";
 
 function response(value: unknown) {
   return { content: [{ type: "text" as const, text: JSON.stringify(value, null, 2) }] };
 }
 
-const routeInput = z.object({
-  task: z.string().min(1),
-  context: z.string().max(4000).optional(),
-  intent: structuredSkillIntentSchema,
-  stage: z.enum(SKILL_STAGES).optional(),
-  completedPhases: z.array(z.enum(SKILL_PHASES)).optional(),
-  maxSkills: z.number().int().min(1).max(16).optional(),
-  traceId: z.string().min(6).max(128).optional(),
-  workflowKey: z.string().min(1).max(160).optional(),
-  model: z.string().min(1).max(80).optional(),
-  reasoningEffort: z.enum(["low", "medium", "high", "xhigh", "max", "ultra", "unknown"]).optional(),
-  contextMessages: mssrContextMessageBatchSchema.optional(),
-  maxContextMessages: z.number().int().min(0).max(32).optional(),
-  maxContextMessageChars: z.number().int().min(0).max(20_000).optional(),
-  projectRoot: z.string().min(1).max(4096).optional(),
-  contextNow: z.string().datetime({ offset: true }).optional(),
-  contextMaxChars: z.number().int().min(0).max(MAX_HOST_PROJECT_CONTEXT_CHARS).optional(),
-  contextMaxModules: z.number().int().min(0).max(MAX_HOST_PROJECT_CONTEXT_MODULES).optional(),
-  contextMessageMaxChars: z.number().int().min(0).max(MAX_HOST_CONTEXT_MESSAGE_CHARS).optional(),
-  contextMessageMaxMessages: z.number().int().min(0).max(32).optional(),
-}).strict();
+const routeInput = mssrHostRouteInputSchema;
 
 const contextAckInputSchema = z.object({
   projectRoot: z.string().min(1).max(4096),
@@ -45,8 +22,11 @@ const contextAckInputSchema = z.object({
 }).strict();
 
 /** Stateful OpenCode-local adapter. Execution remains owned by OpenCode and its configured providers. */
-export function createOpenCodeMssrMcpServer(adapter: CodexMssrAdapter) {
+export function createOpenCodeMssrMcpServer(adapter: OpenCodeMssrAdapter) {
   const server = new McpServer({ name: "mssr-opencode", version: "0.2.1" });
+  registerMssrProjectControlTools(server, adapter);
+  registerMssrConsistencyTools(server);
+  registerMssrOperationalNoticeTools(server);
 
   server.registerTool("mssr_route_plan", {
     description: "Plan an advisory MSSR route for OpenCode-local and return a persistent traceId.",
@@ -93,10 +73,7 @@ export function createOpenCodeMssrMcpServer(adapter: CodexMssrAdapter) {
 
 export async function startOpenCodeMssrServer(): Promise<void> {
   const registry = await createMssrRegistryFromEnvironment();
-  const adapter = new CodexMssrAdapter(registry, {
-    caller: "opencode-local",
-    source: "opencode-cli",
-    tracePrefix: "mssr-opencode",
+  const adapter = new OpenCodeMssrAdapter(registry, {
     telemetrySink: createMssrTelemetrySinkFromEnvironment(),
     model: process.env.MSSR_HOST_MODEL || "unknown",
     reasoningEffort: (process.env.MSSR_HOST_REASONING_EFFORT as "low" | "medium" | "high" | "xhigh" | "max" | "ultra" | "unknown" | undefined) ?? "unknown",

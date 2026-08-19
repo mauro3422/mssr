@@ -28,7 +28,7 @@ config/skill-context/
   Skill context manifest schema and deterministic fixtures.
 
 config/project-context/
-  Portable `.bridge/project-context.json` manifest schema.
+  Portable `.mssr/project-context.json` manifest schema.
 
 config/first-party-skills.json
   Versioned ownership manifest for the five reserved bundled MSSR skills.
@@ -86,7 +86,7 @@ logs/
 tmp/
 dist/
 node_modules/
-.bridge/runtime/ when present
+.mssr/runtime/ when present
 ```
 
 Do not turn generated dashboards, provider caches, logs or prompt dumps into a second contract.

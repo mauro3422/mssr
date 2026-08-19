@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mauroprime.local/schemas/architecture-impact-observation.schema.json",
+  "title": "MSSR Architecture Impact Host Evidence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "architectureId", "authority", "impacts"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "architectureId": { "$ref": "#/$defs/stableId" },
+    "authority": { "$ref": "#/$defs/fileObservation" },
+    "impacts": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": { "$ref": "#/$defs/fileObservation" }
+    }
+  },
+  "$defs": {
+    "stableId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{1,79}$"
+    },
+    "exactProjectRelativeRef": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 320,
+      "allOf": [
+        { "not": { "pattern": "^/" } },
+        { "not": { "pattern": "^[A-Za-z]:/" } },
+        { "not": { "pattern": "\\\\" } },
+        { "not": { "pattern": "(^|/)\\.\\.?(/|$)" } },
+        { "not": { "pattern": "//" } },
+        { "not": { "pattern": "[?*\\[\\]{}!#]" } }
+      ]
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "pattern": "^(?!\\s)(?!.*\\s$)[^\\r\\n]+$"
+    },
+    "reasonCode": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{0,79}$"
+    },
+    "fileObservation": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["ref", "availability", "revision"],
+          "properties": {
+            "ref": { "$ref": "#/$defs/exactProjectRelativeRef" },
+            "availability": { "const": "available" },
+            "revision": { "$ref": "#/$defs/revision" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["ref", "availability"],
+          "properties": {
+            "ref": { "$ref": "#/$defs/exactProjectRelativeRef" },
+            "availability": { "const": "missing" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["ref", "availability"],
+          "properties": {
+            "ref": { "$ref": "#/$defs/exactProjectRelativeRef" },
+            "availability": { "const": "unavailable" },
+            "reasonCode": { "$ref": "#/$defs/reasonCode" }
+          }
+        }
+      ]
+    },
+    "observationPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "architectureId", "authorityRef", "impactRefs"],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "architectureId": { "$ref": "#/$defs/stableId" },
+        "authorityRef": { "$ref": "#/$defs/exactProjectRelativeRef" },
+        "impactRefs": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/exactProjectRelativeRef" }
+        }
+      }
+    }
+  }
+}

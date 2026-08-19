@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mauroprime.local/schemas/architecture-impact-structure.schema.json",
+  "title": "MSSR Architecture Impact Structure Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "architectures"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "architectures": {
+      "type": "array",
+      "maxItems": 64,
+      "items": { "$ref": "#/$defs/architectureStructureEntry" }
+    }
+  },
+  "$defs": {
+    "stableId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{1,79}$"
+    },
+    "anchorId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,79}$"
+    },
+    "exactProjectRelativeRef": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 320,
+      "allOf": [
+        { "not": { "pattern": "^/" } },
+        { "not": { "pattern": "^[A-Za-z]:/" } },
+        { "not": { "pattern": "\\\\" } },
+        { "not": { "pattern": "(^|/)\\.\\.?(/|$)" } },
+        { "not": { "pattern": "//" } },
+        { "not": { "pattern": "[?*\\[\\]{}!#]" } }
+      ]
+    },
+    "symbolSelector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "language", "name", "aspect"],
+      "properties": {
+        "kind": { "const": "symbol" },
+        "language": { "enum": ["typescript", "javascript"] },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160,
+          "pattern": "^(?!\\s)[^\\r\\n]*\\S$"
+        },
+        "aspect": { "enum": ["signature", "body", "shape"] }
+      }
+    },
+    "implementationStructure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "selectors"],
+      "properties": {
+        "ref": { "$ref": "#/$defs/exactProjectRelativeRef" },
+        "selectors": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/symbolSelector" }
+        }
+      }
+    },
+    "architectureStructureEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["architectureId"],
+      "minProperties": 2,
+      "properties": {
+        "architectureId": { "$ref": "#/$defs/stableId" },
+        "authorityAnchors": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/anchorId" }
+        },
+        "implementation": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "items": { "$ref": "#/$defs/implementationStructure" }
+        }
+      }
+    }
+  }
+}

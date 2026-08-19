@@ -40,20 +40,21 @@ const noticeMessage = {
 };
 
 try {
-  await fs.mkdir(path.join(fixtureRoot, ".bridge"), { recursive: true });
+  await fs.mkdir(path.join(fixtureRoot, ".mssr"), { recursive: true });
   await fs.mkdir(path.join(fixtureRoot, "context"), { recursive: true });
   await fs.writeFile(
-    path.join(fixtureRoot, ".bridge", "project-context-modules.json"),
+    path.join(fixtureRoot, ".mssr", "project-context.json"),
     JSON.stringify({
       schemaVersion: 1,
-      canonicalOwner: "standalone-fixture",
       core: [],
       modules: [{
         id: "review-guardrail",
-        path: "context/review-guardrail.md",
+        kind: "directive",
+        topic: "operations",
+        description: "Review guardrail fixture.",
+        source: { path: "context/review-guardrail.md" },
         priority: 0,
         required: false,
-        estimatedChars: 256,
         stages: ["start"],
         domains: ["coding"],
         actions: ["review"],
@@ -78,6 +79,10 @@ try {
   const names = tools.tools.map((tool) => tool.name);
   for (const expected of ["skill_route_plan", "skill_bootstrap", "mssr_trace_record", "mssr_trace_working_update", "mssr_trace_status"]) {
     assert.equal(names.includes(expected), true, `Missing ${expected}`);
+  }
+  const bootstrapSchema = tools.tools.find((tool) => tool.name === "skill_bootstrap")?.inputSchema?.properties ?? {};
+  for (const field of ["selectionMode", "skillDecisions", "contentMode", "includeReferences", "maxContextChars"]) {
+    assert.ok(field in bootstrapSchema, `Codex bootstrap must inherit shared MSSR field ${field}`);
   }
 
   const input = {
@@ -110,7 +115,7 @@ try {
   assert.deepEqual(hostRoute.inbox.enqueued, ["notice-review-001"]);
   assert.deepEqual(hostRoute.inbox.prunedMessageIds, []);
   assert.ok(hostRoute.projectContext.receipts.some((receipt) => receipt.messageId === "notice-review-001"));
-  const inboxPath = path.join(fixtureRoot, ".bridge", "mssr-context-inbox.json");
+  const inboxPath = path.join(fixtureRoot, ".mssr", "runtime", "context-inbox.json");
   await fs.access(inboxPath);
 
   const ack = await adapter.acknowledgeContextMessages(fixtureRoot, ["notice-review-001"], contextNow);
@@ -195,6 +200,11 @@ try {
   assert.equal(status.state.closed, true);
   assert.equal(status.workingMemory, null, "Ephemeral working memory must be purged after outcome");
   assert.equal(status.closure.nextRequiredAction, "none");
+  assert.equal(
+    status.closure.obligations.find((item) => item.kind === "outcome")?.status,
+    "complete",
+    "closed adapter traces must expose a completed outcome obligation",
+  );
   console.log("MSSR standalone Codex path: PASS");
 
   await client.close();

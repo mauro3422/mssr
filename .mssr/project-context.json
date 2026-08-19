@@ -1,0 +1,417 @@
+{
+  "schemaVersion": 1,
+  "core": [
+    {
+      "id": "mssr-architecture-core",
+      "kind": "context",
+      "description": "Portable MSSR architecture core.",
+      "source": {
+        "path": ".mssr/PROJECT_CONTEXT.md",
+        "sections": [
+          "## Architecture"
+        ]
+      },
+      "maxChars": 5000,
+      "topic": "architecture",
+      "area": "core"
+    },
+    {
+      "id": "mssr-current-release",
+      "kind": "state",
+      "description": "Current MSSR source release and verification state.",
+      "source": {
+        "path": ".mssr/PROJECT_STATE.md",
+        "sections": [
+          "## Current release"
+        ]
+      },
+      "maxChars": 2500,
+      "topic": "state",
+      "area": "release"
+    }
+  ],
+  "modules": [
+    {
+      "id": "mssr-learning-activation-decision",
+      "kind": "memory",
+      "description": "Observe-only learning boundary and future activation gates.",
+      "source": {
+        "path": ".mssr/PROJECT_MEMORY.md",
+        "sections": [
+          "## Learning activation decision"
+        ]
+      },
+      "domains": [
+        "skill-system",
+        "agent-orchestration"
+      ],
+      "actions": [
+        "analyze",
+        "review",
+        "maintain",
+        "debug"
+      ],
+      "priority": 60,
+      "maxChars": 3500,
+      "topic": "decision",
+      "area": "learning"
+    },
+    {
+      "id": "mssr-change-history-contract",
+      "kind": "memory",
+      "description": "Versioned changelog and project-knowledge consistency contract.",
+      "source": {
+        "path": ".mssr/PROJECT_MEMORY.md",
+        "sections": [
+          "## Change-history contract"
+        ]
+      },
+      "actions": [
+        "maintain",
+        "version",
+        "publish",
+        "verify",
+        "debug",
+        "recover"
+      ],
+      "needs": [
+        "integrity-verification",
+        "version-control"
+      ],
+      "priority": 70,
+      "maxChars": 3500,
+      "topic": "pattern",
+      "area": "release"
+    },
+    {
+      "id": "mssr-project-knowledge-drift-review",
+      "kind": "memory",
+      "description": "Ownership and review loop for AGENTS, PROJECT_* authorities, skills, references, and drift detectors.",
+      "source": {
+        "path": ".mssr/PROJECT_MEMORY.md",
+        "sections": [
+          "## Project knowledge drift review decision"
+        ]
+      },
+      "domains": [
+        "skill-system",
+        "agent-orchestration",
+        "filesystem"
+      ],
+      "actions": [
+        "maintain",
+        "verify",
+        "document",
+        "review"
+      ],
+      "needs": [
+        "integrity-verification",
+        "version-control"
+      ],
+      "signals": [
+        "conflicting-evidence",
+        "reusable-pattern",
+        "repeated-friction"
+      ],
+      "priority": 75,
+      "maxChars": 4200,
+      "topic": "operations",
+      "area": "project-context"
+    },
+    {
+      "id": "mssr-architecture-impact-decision",
+      "kind": "memory",
+      "description": "Planned explicit architecture-impact links, possible-impact semantics, bounded context refresh, and reviewed-current receipts.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+        "sections": [
+          "## Architecture impact review decision"
+        ]
+      },
+      "domains": [
+        "agent-orchestration",
+        "coding",
+        "filesystem"
+      ],
+      "actions": [
+        "analyze",
+        "design",
+        "review",
+        "verify",
+        "maintain",
+        "document"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document",
+        "mcp"
+      ],
+      "needs": [
+        "integrity-verification",
+        "cross-agent"
+      ],
+      "priority": 88,
+      "maxChars": 3000,
+      "topic": "decision",
+      "area": "project-context"
+    },
+    {
+      "id": "mssr-architecture-impact-history",
+      "kind": "memory",
+      "description": "Release-by-release Architecture Impact decision history for debugging and recovery.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/architecture-impact-review-history.md"
+      },
+      "domains": [
+        "agent-orchestration",
+        "coding",
+        "filesystem"
+      ],
+      "actions": [
+        "debug",
+        "recover",
+        "analyze",
+        "review"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document"
+      ],
+      "needs": [
+        "history-recovery"
+      ],
+      "priority": 55,
+      "maxChars": 4500,
+      "topic": "reference",
+      "area": "architecture-impact"
+    },
+    {
+      "id": "mssr-first-party-skill-direction",
+      "kind": "memory",
+      "description": "Decision about MSSR-owned operational skill packaging.",
+      "source": {
+        "path": ".mssr/PROJECT_MEMORY.md",
+        "sections": [
+          "## First-party core skill direction"
+        ]
+      },
+      "domains": [
+        "skill-system",
+        "agent-orchestration"
+      ],
+      "actions": [
+        "design",
+        "maintain",
+        "document"
+      ],
+      "artifacts": [
+        "skill",
+        "project"
+      ],
+      "priority": 45,
+      "maxChars": 3000,
+      "topic": "decision",
+      "area": "skills"
+    },
+    {
+      "id": "mssr-learning-dataset-state",
+      "kind": "state",
+      "description": "Current strict learning-digest collection state.",
+      "source": {
+        "path": ".mssr/PROJECT_STATE.md",
+        "sections": [
+          "## Learning dataset state"
+        ]
+      },
+      "domains": [
+        "skill-system",
+        "agent-orchestration"
+      ],
+      "actions": [
+        "analyze",
+        "review",
+        "maintain"
+      ],
+      "priority": 35,
+      "maxChars": 2500,
+      "topic": "state",
+      "area": "learning"
+    },
+    {
+      "id": "mssr-core-skill-package-state",
+      "kind": "state",
+      "description": "Current first-party core skill migration state.",
+      "source": {
+        "path": ".mssr/PROJECT_STATE.md",
+        "sections": [
+          "## Core skill package state"
+        ]
+      },
+      "domains": [
+        "skill-system",
+        "agent-orchestration"
+      ],
+      "actions": [
+        "maintain",
+        "design",
+        "review"
+      ],
+      "artifacts": [
+        "skill",
+        "project"
+      ],
+      "priority": 30,
+      "maxChars": 2500,
+      "topic": "state",
+      "area": "skills"
+    },
+    {
+      "id": "mssr-canonical-ownership",
+      "kind": "context",
+      "topic": "architecture",
+      "area": "core",
+      "description": "Detailed canonical ownership, host boundaries, Context Plane and Operational Notice Plane ownership contracts.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/canonical-ownership.md"
+      },
+      "domains": [
+        "skill-system",
+        "agent-orchestration",
+        "filesystem"
+      ],
+      "actions": [
+        "design",
+        "review",
+        "maintain",
+        "analyze",
+        "debug"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "mcp",
+        "document"
+      ],
+      "needs": [
+        "integrity-verification",
+        "cross-agent"
+      ],
+      "priority": 85,
+      "maxChars": 5000
+    },
+    {
+      "id": "mssr-project-context-plane-architecture",
+      "kind": "context",
+      "topic": "architecture",
+      "area": "project-context",
+      "description": "Canonical project-context plane, knowledge topics, runtime boundary, initialization and health contract.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/project-context-plane.md"
+      },
+      "domains": [
+        "skill-system",
+        "agent-orchestration",
+        "filesystem"
+      ],
+      "actions": [
+        "design",
+        "review",
+        "maintain",
+        "analyze",
+        "debug"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "mcp",
+        "document"
+      ],
+      "needs": [
+        "integrity-verification",
+        "cross-agent"
+      ],
+      "priority": 80,
+      "maxChars": 4000
+    },
+    {
+      "id": "mssr-canonical-project-context-cutover",
+      "kind": "memory",
+      "topic": "decision",
+      "area": "project-context",
+      "description": "Decision to remove active .bridge fallback and require explicit canonical MSSR initialization.",
+      "source": {
+        "path": ".mssr/knowledge/decision/canonical-project-context-cutover.md"
+      },
+      "domains": [
+        "skill-system",
+        "agent-orchestration",
+        "filesystem"
+      ],
+      "actions": [
+        "design",
+        "review",
+        "maintain",
+        "recover",
+        "version"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "mcp"
+      ],
+      "needs": [
+        "integrity-verification",
+        "version-control",
+        "cross-agent"
+      ],
+      "signals": [
+        "conflicting-evidence",
+        "reusable-pattern"
+      ],
+      "priority": 85,
+      "maxChars": 3000
+    }
+,
+    {
+      "id": "mssr-trace-lifecycle-integrity",
+      "kind": "memory",
+      "topic": "decision",
+      "area": "observability",
+      "description": "Portable trace close semantics and cross-project trace-identity ownership boundary.",
+      "source": {
+        "path": ".mssr/knowledge/decision/trace-lifecycle-integrity.md"
+      },
+      "domains": [
+        "agent-orchestration",
+        "skill-system",
+        "coding"
+      ],
+      "actions": [
+        "debug",
+        "verify",
+        "recover",
+        "maintain"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "mcp",
+        "code"
+      ],
+      "needs": [
+        "integrity-verification",
+        "history-recovery",
+        "cross-agent"
+      ],
+      "signals": [
+        "error-observed",
+        "conflicting-evidence",
+        "replan-needed"
+      ],
+      "priority": 92,
+      "maxChars": 1800
+    }
+  ]
+}

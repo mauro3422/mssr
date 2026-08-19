@@ -13,7 +13,7 @@ Use this map before deciding where a maintenance change belongs.
 | Routing contract | `D:\Dev\mssr\config\skill-routing\` | Domains, actions, artifacts, needs, signals, phases, dependencies, workflows, fixtures | `_dashboard` output |
 | Routing implementation | `D:\Dev\mssr\src\` | Deterministic planning, provider registry, audit, schemas | Bridge-specific shortcuts |
 | Bridge adapter and tools | `D:\Dev\bridge-mcp\src\`, `scripts\`, `TOOLS.md` | Local access, tool schemas, risk classification, provider adapters, restart lifecycle | Stale live process or generated docs alone |
-| Project-local state | Project `AGENTS.md`, `.bridge`, docs, tests, evidence | Exact paths, architecture, current decisions, accepted artifacts | Global skill prose |
+| Project-local state | Project `AGENTS.md`, canonical `.mssr/` authorities, docs, tests, evidence | Exact paths, architecture, current decisions, accepted artifacts | Global skill prose or legacy `.bridge/` as a second authority |
 | Live application state | Connected MCP/runtime | Open scene, active session, in-memory state, current tool catalog | Source files or cached catalog alone |
 | Product context | ChatGPT, Codex, Roblox Studio, Blender, browser, connectors | Available authority, UI and direct state | Assumed access based on another product |
 

@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -265,7 +266,7 @@ export class FilesystemSkillProvider implements CapabilityProvider {
       const frontmatter = parseSkillFrontmatter(text);
       const name = frontmatter.name;
       const source = sourceFor(location);
-      const skill: SkillEntry = { name, description: frontmatter.description, source, path: resolvedLocation, origin: this.id };
+      const skill: SkillEntry = { name, description: frontmatter.description, source, path: resolvedLocation, origin: this.id, contentHash: createHash("sha256").update(text).digest("hex") };
       return { id: `${this.id}:skill:${resolvedLocation}`, name, description: skill.description, kind: "skill", providerId: this.id, source, location: resolvedLocation, skill };
     }));
     return { capabilities, observedAt: now() };
@@ -296,7 +297,7 @@ export class MssrFirstPartySkillProvider implements CapabilityProvider {
         const text = await fs.readFile(location, "utf8");
         const frontmatter = parseSkillFrontmatter(text);
         if (frontmatter.name !== name) throw new Error(`Bundled first-party skill ${name} declares frontmatter name ${frontmatter.name}`);
-        const skill: SkillEntry = { name: frontmatter.name, description: frontmatter.description, source: "mssr-first-party", path: location, origin: this.id };
+        const skill: SkillEntry = { name: frontmatter.name, description: frontmatter.description, source: "mssr-first-party", path: location, origin: this.id, contentHash: createHash("sha256").update(text).digest("hex") };
         return { id: `${this.id}:skill:${location}`, name, description: skill.description, kind: "skill", providerId: this.id, source: skill.source, location, skill };
       } catch (error) {
         if ((error as NodeJS.ErrnoException).code === "ENOENT") return null;

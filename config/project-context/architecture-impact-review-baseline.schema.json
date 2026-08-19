@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mauroprime.local/schemas/architecture-impact-review-baseline.schema.json",
+  "title": "MSSR Architecture Impact Reviewed Baseline v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "architectureId", "relationshipClass", "evidenceClass", "reviewClass", "declared", "authority", "impacts", "declarationFingerprint", "sourceSetFingerprint", "baselineFingerprint"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "architectureId": { "$ref": "#/$defs/stableId" },
+    "relationshipClass": { "const": "declared" },
+    "evidenceClass": { "const": "observed" },
+    "reviewClass": { "const": "reviewed" },
+    "declared": { "$ref": "#/$defs/declared" },
+    "authority": { "$ref": "#/$defs/available" },
+    "impacts": { "type": "array", "minItems": 1, "maxItems": 64, "items": { "$ref": "#/$defs/comparable" } },
+    "declarationFingerprint": { "$ref": "#/$defs/fingerprint" },
+    "sourceSetFingerprint": { "$ref": "#/$defs/fingerprint" },
+    "baselineFingerprint": { "$ref": "#/$defs/fingerprint" }
+  },
+  "$defs": {
+    "stableId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{1,79}$" },
+    "exactRef": {
+      "type": "string", "minLength": 1, "maxLength": 320,
+      "allOf": [
+        { "not": { "pattern": "^/" } },
+        { "not": { "pattern": "^[A-Za-z]:/" } },
+        { "not": { "pattern": "\\\\" } },
+        { "not": { "pattern": "(^|/)\\.\\.?(/|$)" } },
+        { "not": { "pattern": "//" } },
+        { "not": { "pattern": "[?*\\[\\]{}!#]" } }
+      ]
+    },
+    "revision": { "type": "string", "minLength": 1, "maxLength": 160, "pattern": "^(?!\\s)(?!.*\\s$)[^\\r\\n]+$" },
+    "fingerprint": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "available": {
+      "type": "object", "additionalProperties": false,
+      "required": ["ref", "availability", "revision"],
+      "properties": { "ref": { "$ref": "#/$defs/exactRef" }, "availability": { "const": "available" }, "revision": { "$ref": "#/$defs/revision" } }
+    },
+    "missing": {
+      "type": "object", "additionalProperties": false,
+      "required": ["ref", "availability"],
+      "properties": { "ref": { "$ref": "#/$defs/exactRef" }, "availability": { "const": "missing" } }
+    },
+    "comparable": { "oneOf": [{ "$ref": "#/$defs/available" }, { "$ref": "#/$defs/missing" }] },
+    "declared": {
+      "type": "object", "additionalProperties": false,
+      "required": ["authorityRef", "impactRefs"],
+      "properties": {
+        "authorityRef": { "$ref": "#/$defs/exactRef" },
+        "contextRef": { "$ref": "#/$defs/stableId" },
+        "impactRefs": { "type": "array", "minItems": 1, "maxItems": 64, "uniqueItems": true, "items": { "$ref": "#/$defs/exactRef" } }
+      }
+    }
+  }
+}

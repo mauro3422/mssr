@@ -374,7 +374,7 @@ export function evaluateMssrRouteClosureObligations(input: MssrTraceLifecycleSta
   obligations.push({
     kind: "outcome",
     required: true,
-    status: preOutcomeReady ? "ready" : "pending",
+    status: state.closed ? "complete" : preOutcomeReady ? "ready" : "pending",
   });
 
   let nextRequiredAction: MssrTraceClosureState["nextRequiredAction"] = "record-outcome";

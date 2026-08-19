@@ -59,11 +59,11 @@ const passing = evaluateProjectChangeConsistency({
   packageVersion: "0.2.6",
   changelog: parsed,
   indexContainsVersion: true,
-  changedPaths: [".bridge/PROJECT_MEMORY.md", ".bridge/PROJECT_STATE.md", "src/change-history.ts", "changelogs/0.2.6.md"],
+  changedPaths: [".mssr/PROJECT_MEMORY.md", ".mssr/PROJECT_STATE.md", "src/change-history.ts", "changelogs/0.2.6.md"],
   authorityPaths: {
-    context: ".bridge/PROJECT_CONTEXT.md",
-    memory: ".bridge/PROJECT_MEMORY.md",
-    state: ".bridge/PROJECT_STATE.md",
+    context: ".mssr/PROJECT_CONTEXT.md",
+    memory: ".mssr/PROJECT_MEMORY.md",
+    state: ".mssr/PROJECT_STATE.md",
   },
 });
 assert.equal(passing.ok, true);
@@ -76,9 +76,9 @@ const failing = evaluateProjectChangeConsistency({
   indexContainsVersion: false,
   changedPaths: ["src/change-history.ts"],
   authorityPaths: {
-    context: ".bridge/PROJECT_CONTEXT.md",
-    memory: ".bridge/PROJECT_MEMORY.md",
-    state: ".bridge/PROJECT_STATE.md",
+    context: ".mssr/PROJECT_CONTEXT.md",
+    memory: ".mssr/PROJECT_MEMORY.md",
+    state: ".mssr/PROJECT_STATE.md",
   },
 });
 assert.equal(failing.ok, false);

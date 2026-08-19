@@ -100,6 +100,8 @@ const bundledRoot = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-first-party-")
 const bundledSkill = path.join(bundledRoot, "mssr-agent-routing");
 const mountedRoot = path.join(bundledRoot, "runtime");
 const mountedSkill = path.join(mountedRoot, "mssr-agent-routing");
+const copiedRoot = path.join(bundledRoot, "copied-runtime");
+const copiedSkill = path.join(copiedRoot, "mssr-agent-routing");
 const divergentRoot = path.join(bundledRoot, "divergent");
 const divergentSkill = path.join(divergentRoot, "mssr-agent-routing");
 try {
@@ -119,6 +121,22 @@ try {
   assert.equal(ownedFirstPartyAudit.unconfiguredOwnedSkills.length, 0, "configured first-party skills must not be treated as external inferred metadata");
   const missingDescriptionAudit = await auditSkillRouting([{ name: "mssr-agent-routing", description: "", source: "mssr-first-party", path: path.join(bundledSkill, "SKILL.md") }]);
   assert.equal(missingDescriptionAudit.missingDescriptions.some((item) => item.name === "mssr-agent-routing"), true, "missing descriptions on first-party skills must be health findings");
+  const structuralSkill = path.join(bundledRoot, "complex-system-design");
+  await fs.mkdir(structuralSkill, { recursive: true });
+  const structuralBody = "# Structural review fixture\n\n" + "Situational recipe guidance without a manifest.\n".repeat(230);
+  await fs.writeFile(path.join(structuralSkill, "SKILL.md"), `---\nname: complex-system-design\ndescription: Synthetic structural-health fixture.\n---\n\n${structuralBody}`, "utf8");
+  const structuralAudit = await auditSkillRouting([{
+    name: "complex-system-design",
+    description: "Synthetic structural-health fixture.",
+    source: "codex-local",
+    path: path.join(structuralSkill, "SKILL.md"),
+  }]);
+  const structuralHealth = structuralAudit.structuralHealth.find((item) => item.name === "complex-system-design");
+  assert.ok(structuralHealth && structuralHealth.status !== "ok", "large manifest-less owned skill must receive an advisory structural review");
+  assert.ok(structuralHealth.reasonCodes.includes("full-fallback-risk"));
+  assert.equal(structuralAudit.healthReviewRecommended, true);
+  assert.equal(structuralAudit.maintenanceReasons.some((reason) => reason.includes("complex-system-design")), false, "structural advisory debt must not become a blocking routing maintenance reason");
+
 
   await fs.symlink(bundledSkill, mountedSkill, process.platform === "win32" ? "junction" : "dir");
   const aliasRegistry = new CapabilityRegistry([
@@ -131,6 +149,17 @@ try {
   assert.equal(aliasEntries.entries[0].source, "mssr-first-party");
   assert.equal(aliasEntries.duplicates[0].classification, "first-party-alias-info");
   assert.equal(aliasEntries.duplicates[0].severity, "info");
+
+  await fs.mkdir(copiedSkill, { recursive: true });
+  await fs.copyFile(path.join(bundledSkill, "SKILL.md"), path.join(copiedSkill, "SKILL.md"));
+  const copiedRegistry = new CapabilityRegistry([
+    new MssrFirstPartySkillProvider({ root: bundledRoot, manifest }),
+    new FilesystemSkillProvider({ roots: [copiedRoot] }),
+  ]);
+  const copiedSnapshot = await copiedRegistry.refresh();
+  const copiedEntries = canonicalizeSkillEntries(copiedSnapshot.capabilities.flatMap((item) => item.skill ? [item.skill] : []));
+  assert.equal(copiedEntries.duplicates[0].classification, "first-party-alias-info", "a byte-identical packaged/runtime copy must not be treated as a reserved shadow conflict");
+  assert.equal((await auditSkillRouting(copiedSnapshot.capabilities.flatMap((item) => item.skill ? [item.skill] : []))).ok, true);
 
   await fs.mkdir(divergentSkill, { recursive: true });
   await fs.writeFile(path.join(divergentSkill, "SKILL.md"), "---\nname: mssr-agent-routing\ndescription: Divergent shadow source.\n---\n", "utf8");

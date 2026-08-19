@@ -37,7 +37,7 @@ MSSR keeps procedural guidance and project knowledge in separate layers:
 - project-specific conditional instructions may be indexed as `directive` modules, but only when their stage and structured-intent selectors match;
 - the host loads the smallest project core first, then selects project modules and the smallest phase-scoped skill set from canonical intent.
 
-With `.bridge/project-context-modules.json` (the 0.2.11 loader; earlier docs used the equivalent `.bridge/project-context.json`), project selection becomes modular instead of loading `PROJECT_CONTEXT.md`, `PROJECT_MEMORY.md`, and `PROJECT_STATE.md` wholesale. The manifest points to stable Markdown files and classifies modules by stage/intent selectors. The same deterministic selector primitive used by skill context scores project modules, but project knowledge is not converted into a skill and directives are not authorization.
+With `.mssr/project-context.json`, project selection is modular instead of loading `PROJECT_CONTEXT.md`, `PROJECT_MEMORY.md`, and `PROJECT_STATE.md` wholesale. The manifest points to stable Markdown authorities or `.mssr/knowledge/<topic>/` modules, classifies them by `kind` plus optional semantic `topic`/`area`, and selects them by stage/intent. The same deterministic selector primitive used by skill context scores project modules, but project knowledge is not converted into a skill and directives are not authorization. A missing manifest is an initialization/health condition; MSSR does not fall back to `.bridge` or arbitrary docs.
 
 A new project does not require a new skill by default. Create or generalize a skill only when the lesson has an independent reusable objective across projects. Keep broad permanent project instructions in AGENTS; keep conditional local instructions narrow and selector-driven; keep mutable state curated rather than append-only. This separation is the main context-pressure control.
 
@@ -54,9 +54,9 @@ The host is responsible for the activation hook. Before substantial specialized 
 On native, Codex, and OpenCode (0.2.11), carrying `projectRoot` on a route or
 bootstrap call resolves the whole advisory context plane through the shared
 `loadProjectContextHost` helper: keyed repository facts (with selectors,
-source-kind defaults, and the optional `.bridge/context-messages.json`
-manifest), the modular `.bridge/project-context-modules.json` loader, and the
-durable explicit-ack inbox. The response carries `projectContext`,
+source-kind defaults, and the optional `.mssr/context-messages.json`
+manifest), the modular `.mssr/project-context.json` loader, Project Context Health,
+and the durable explicit-ack inbox under `.mssr/runtime/context-inbox.json`. The response carries `projectContext`,
 `contextMessages`, `inbox`, and `repository`; selection never persists
 delivery. When the host has actually delivered selected messages, the explicit
 `mssr_context_ack` tool is the only acknowledgment that mutates the durable
@@ -149,7 +149,7 @@ blocked work can close truthfully.
 
 ### Explicit close preflight
 
-The portable lifecycle exposes `evaluateMssrRouteClosureObligations` (also available through the compatible `getMssrTraceClosureState` name) rather than relying on an agent remembering the entire ending sequence. It evaluates the route's `required-skills`, `verification`, `persistence`, `close`, `maintenance`, and prospective `outcome` obligations with explicit `not-applicable`, `pending`, `complete`, or `ready` status. Once the host has evidence that the task is entering `stage=close`, it reports `closureDue`, `canCloseSuccess`, missing required skills/phases, whether a fresh close replan or maintenance completion is required, and one `nextRequiredAction`.
+The portable lifecycle exposes `evaluateMssrRouteClosureObligations` (also available through the compatible `getMssrTraceClosureState` name) rather than relying on an agent remembering the entire ending sequence. It evaluates the route's `required-skills`, `verification`, `persistence`, `close`, `maintenance`, and prospective `outcome` obligations with explicit `not-applicable`, `pending`, `complete`, or `ready` status. Once the host has evidence that the task is entering `stage=close`, it reports `closureDue`, `canCloseSuccess`, missing required skills/phases, whether a fresh close replan or maintenance completion is required, and one `nextRequiredAction`. `canCloseSuccess` is prospective only: before the outcome it becomes true when all required preconditions are complete and `outcome` is `ready`; after a persisted outcome closes the lifecycle, the outcome obligation is `complete`, `canCloseSuccess` is false, and `nextRequiredAction` is `none`.
 
 A `status=success` outcome is rejected when a compatible route is absent, any applicable obligation remains pending, or the outcome is not recorded at `stage=close`. The shared reducer does not close the trace on that rejection. This is lifecycle-integrity validation, not authorization: `partial`, `failed`, and `skipped` outcomes remain recordable so unfinished, rejected, or blocked work can close truthfully.
 

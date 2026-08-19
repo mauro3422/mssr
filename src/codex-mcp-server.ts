@@ -1,17 +1,14 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
-import { SKILL_PHASES, SKILL_STAGES, structuredSkillIntentSchema } from "./skill-routing.js";
+import { mssrHostRouteInputSchema } from "./host-adapter-contract.js";
 import { CodexMssrAdapter } from "./codex-adapter.js";
 import { createMssrRegistryFromEnvironment } from "./provider-config.js";
 import { createMssrTelemetrySinkFromEnvironment, mssrHostCheckpointSchema } from "./telemetry.js";
-import { mssrSkillDecisionSchema, mssrTraceWorkingMemorySchema } from "./trace-contract.js";
-import { mssrContextMessageBatchSchema } from "./context-messages.js";
-import {
-  MAX_HOST_CONTEXT_MESSAGE_CHARS,
-  MAX_HOST_PROJECT_CONTEXT_CHARS,
-  MAX_HOST_PROJECT_CONTEXT_MODULES,
-} from "./context-plane-host.js";
+import { mssrTraceWorkingMemorySchema } from "./trace-contract.js";
+import { registerMssrProjectControlTools } from "./project-control-contract.js";
+import { registerMssrConsistencyTools } from "./consistency-contract.js";
+import { registerMssrOperationalNoticeTools } from "./operational-notice-contract.js";
 
 function response(value: unknown) {
   return {
@@ -19,29 +16,7 @@ function response(value: unknown) {
   };
 }
 
-const routeInput = z.object({
-  task: z.string().min(1),
-  context: z.string().max(4000).optional(),
-  intent: structuredSkillIntentSchema,
-  stage: z.enum(SKILL_STAGES).optional(),
-  completedPhases: z.array(z.enum(SKILL_PHASES)).optional(),
-  maxSkills: z.number().int().min(1).max(16).optional(),
-  selectionMode: z.enum(["auto", "host-gated"]).optional(),
-  skillDecisions: z.array(mssrSkillDecisionSchema).max(32).optional(),
-  traceId: z.string().min(6).max(128).optional(),
-  workflowKey: z.string().min(1).max(160).optional(),
-  model: z.string().min(1).max(80).optional(),
-  reasoningEffort: z.enum(["low", "medium", "high", "xhigh", "max", "ultra", "unknown"]).optional(),
-  contextMessages: mssrContextMessageBatchSchema.optional(),
-  maxContextMessages: z.number().int().min(0).max(32).optional(),
-  maxContextMessageChars: z.number().int().min(0).max(20_000).optional(),
-  projectRoot: z.string().min(1).max(4096).optional(),
-  contextNow: z.string().datetime({ offset: true }).optional(),
-  contextMaxChars: z.number().int().min(0).max(MAX_HOST_PROJECT_CONTEXT_CHARS).optional(),
-  contextMaxModules: z.number().int().min(0).max(MAX_HOST_PROJECT_CONTEXT_MODULES).optional(),
-  contextMessageMaxChars: z.number().int().min(0).max(MAX_HOST_CONTEXT_MESSAGE_CHARS).optional(),
-  contextMessageMaxMessages: z.number().int().min(0).max(32).optional(),
-}).strict();
+const routeInput = mssrHostRouteInputSchema;
 
 const contextAckInputSchema = z.object({
   projectRoot: z.string().min(1).max(4096),
@@ -52,6 +27,9 @@ const contextAckInputSchema = z.object({
 /** MCP entrypoint for the stateful Codex-local MSSR adapter. */
 export function createCodexMssrMcpServer(adapter = new CodexMssrAdapter()) {
   const server = new McpServer({ name: "mssr-codex", version: "0.2.1" });
+  registerMssrProjectControlTools(server, adapter);
+  registerMssrConsistencyTools(server);
+  registerMssrOperationalNoticeTools(server);
 
   server.registerTool("skill_route_plan", {
     description: "Plan an MSSR route for Codex-local without MauroPrime Bridge.",

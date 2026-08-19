@@ -119,7 +119,7 @@ La política recomendada es enviar normalmente entre 500 y 2000 caracteres de co
 
 MSSR no debe crear una skill distinta por cada repositorio. El sistema separa:
 
-- **hechos del proyecto:** arquitectura, vocabulario, rutas, decisiones, estado actual, blockers e incidentes locales; viven en `AGENTS.md`, `.bridge/` y documentación versionada del proyecto;
+- **hechos del proyecto:** arquitectura, vocabulario, rutas, decisiones, estado actual, blockers e incidentes locales; viven en `AGENTS.md`, `.mssr/` y documentación versionada del proyecto;
 - **procedimiento reutilizable:** pasos y criterios que aplican en varios proyectos; viven en una skill global;
 - **estado de ejecución:** fase, resultados, verificaciones y referencias a commits/snapshots; se conserva como checkpoint acotado cuando el workflow debe reanudarse.
 

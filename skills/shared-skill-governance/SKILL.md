@@ -12,7 +12,7 @@ description: Govern the shared skill system used by Codex, MauroPrime Bridge, Ch
 - `C:\Users\mauro\.codex\skills\<name>` is the runtime mount expected by Codex and must be a directory junction to the matching Git source. Install reserved MSSR skills with the MSSR first-party installer; install non-reserved custom skills with `D:\Dev\mauroprime-skills\scripts\install-junctions.ps1`. Edits through either junction affect the single owning source.
 - A compatibility alias such as `C:\Dev\mauroprime-skills` may itself be a junction to the real Git root. Before mutating through Bridge, resolve the runtime junction and `git rev-parse --show-toplevel`; if an alias is outside allowed roots, use the resolved Git root or the verified runtime junction. Never create a copied mirror just to bypass a root policy.
 - MauroPrime Bridge discovers the runtime tree live on each catalog, recommendation, route, bootstrap, or load request and follows allowed junctions. Never maintain copied mirrors.
-- Project-specific facts, architecture and current state belong in the project repository (`AGENTS.md`, `.bridge`, docs, tests), not in a global skill.
+- Project-specific facts, architecture and current state belong in the project repository (`AGENTS.md`, canonical `.mssr/` project authorities/knowledge modules, docs, tests), not in a global skill. Managed MSSR project knowledge is canonical-only under `.mssr/`; active MSSR artifacts under `.bridge/` are initialization/cleanup debt, never fallback authority.
 - A workflow that applies across projects should be generalized and stored as a global skill.
 - Roblox-authored `rbx-*` skills remain inside the live `Roblox_Studio` MCP and must not be copied locally.
 

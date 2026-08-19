@@ -1,9 +1,9 @@
 node_modules/
 dist/
 coverage/
-.mssr/
 *.log
 .env
 .env.*
 !\.env.example
+mauroprime-mssr-*.tgz
 

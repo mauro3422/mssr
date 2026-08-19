@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mauroprime.local/schemas/architecture-reviewed-current-receipt.schema.json",
+  "title": "MSSR Architecture Reviewed Current Receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion","architectureId","relationshipClass","reviewClass","declarationFingerprint","reviewedBaselineFingerprint","reviewedAuthorityRevision","reviewedSourceSetFingerprint","reviewedProjectionFingerprint","reviewedAt","receiptFingerprint","metadataOnly","advisoryOnly"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "architectureId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{1,79}$" },
+    "relationshipClass": { "const": "declared" },
+    "reviewClass": { "const": "reviewed-current" },
+    "declarationFingerprint": { "$ref": "#/$defs/fingerprint" },
+    "reviewedBaselineFingerprint": { "$ref": "#/$defs/fingerprint" },
+    "reviewedAuthorityRevision": { "type": "string", "minLength": 1, "maxLength": 160 },
+    "reviewedSourceSetFingerprint": { "$ref": "#/$defs/fingerprint" },
+    "reviewedProjectionFingerprint": { "$ref": "#/$defs/fingerprint" },
+    "reviewedAt": { "type": "string", "format": "date-time" },
+    "receiptFingerprint": { "$ref": "#/$defs/fingerprint" },
+    "metadataOnly": { "const": true },
+    "advisoryOnly": { "const": true }
+  },
+  "$defs": { "fingerprint": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" } }
+}

@@ -19,6 +19,7 @@ Define **MSSR Context Plane v1** as the portable contract for selecting,
 carrying, receiving, and accounting for bounded context messages.
 
 ### Ownership
+<!-- mssr-arch-anchor: context-plane-ownership -->
 
 | Concern | Canonical owner |
 |---|---|
@@ -93,6 +94,19 @@ The Bridge adapter delivery remains pending because its local dependency
 junction crosses the OpenCode workspace authority boundary and must consume a
 packaged 0.2.11 artifact.
 
+## 0.2.18 canonical project-knowledge amendment
+
+The earlier 0.2.11 `.bridge/...` and compact `project-context-modules.json` paths above are historical implementation records, not current authority. MSSR 0.2.18 adopts a canonical-only project contract:
+
+- `.mssr/project-context.json` is the single active selective manifest;
+- PROJECT_* remains a compact control plane while situational project knowledge may live under indexed `.mssr/knowledge/<topic>/` modules;
+- `.mssr/runtime/` owns ephemeral inbox/receipt state and is not versioned project truth;
+- `.bridge/` is never a Context Plane retrieval fallback. Known old MSSR artifacts there are reported as initialization/cleanup debt and handled only by explicit initialization tooling;
+- repository initialization is a portable MSSR operation, not host-specific setup. Missing or invalid initialization is observable maintenance evidence;
+- Project Context Health may detect growth, missing indexing, stale structure, or legacy artifacts, but remains advisory and never rewrites durable project knowledge;
+- reviewed project statements can be normalized into a bounded knowledge-capture proposal (`topic`, `area`, `kind`, selectors, target path/module), while raw conversations, private reasoning, secrets, and transient tool output remain excluded.
+
+This amendment preserves the original ADR ownership boundary: repositories own meaning, MSSR owns portable selection/health contracts, and hosts own authorized filesystem/runtime delivery.
 ## Staged adoption gates
 
 1. [x] Publish portable message and continuation-receipt fixtures with

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "invariants": [
+    {
+      "invariantId": "architecture-impact-projection-no-context-host-dependency",
+      "architectureId": "architecture-impact-plane",
+      "relationshipClass": "declared",
+      "description": "Portable Architecture Impact projection must not depend on Context Plane host I/O.",
+      "kind": "forbid-edge",
+      "edgeKind": "dependency",
+      "sourceRef": "src/architecture-impact-projection.ts",
+      "targetRef": "src/context-plane-host.ts"
+    }
+  ]
+}

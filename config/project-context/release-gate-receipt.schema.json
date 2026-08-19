@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mauroprime.local/schemas/release-gate-receipt.schema.json",
+  "title": "MSSR release gate receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "package", "changelog", "verification", "artifact", "alias", "observedAt", "advisoryOnly"],
+  "properties": {
+    "schemaVersion": { "const": "mssr-release-receipt-v1" },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 214 },
+        "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(?:[-+][0-9A-Za-z.-]+)?$" }
+      }
+    },
+    "changelog": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "date", "knowledgeImpact"],
+      "properties": {
+        "path": { "type": "string", "pattern": "^changelogs/[^/]+\\.md$", "maxLength": 160 },
+        "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "knowledgeImpact": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["context", "memory", "state"],
+          "properties": {
+            "context": { "enum": ["updated", "reviewed-none"] },
+            "memory": { "enum": ["updated", "reviewed-none"] },
+            "state": { "enum": ["updated", "reviewed-none"] }
+          }
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command", "status", "exitCode"],
+      "properties": {
+        "command": { "const": "npm run verify" },
+        "status": { "const": "pass" },
+        "exitCode": { "const": 0 }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["filename", "bytes", "sha256"],
+      "properties": {
+        "filename": { "type": "string", "minLength": 1, "maxLength": 260, "pattern": "^[^/\\\\]+\\.tgz$" },
+        "bytes": { "type": "integer", "minimum": 1 },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "npmShasum": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "npmIntegrity": { "type": "string", "minLength": 1, "maxLength": 512 }
+      }
+    },
+    "alias": { "type": "string", "pattern": "^pkg:\\d+\\.\\d+\\.\\d+(?:[-+][0-9A-Za-z.-]+)?#[0-9a-f]{8}$", "maxLength": 120 },
+    "observedAt": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{3})?Z$" },
+    "advisoryOnly": { "const": true }
+  }
+}

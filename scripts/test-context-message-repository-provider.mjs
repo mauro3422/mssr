@@ -28,13 +28,14 @@ async function buildRepository(root) {
   await write(root, "changelogs/0.2.0.md", "# 0.2.0\n\nOlder release.\n");
   await write(root, "changelogs/1.0.0.md", "# 1.0.0\n\nNewest release.\n");
   await write(root, "changelogs/2.0.0-beta.1.md", "# 2.0.0-beta.1\n\nPre-release must be ignored.\n");
-  await write(root, ".bridge/PROJECT_CONTEXT.md", "# Bridge Context\n\nBridge facts.\n");
-  await write(root, ".bridge/PROJECT_MEMORY.md", "# Bridge Memory\n\nMemory notes.\n");
+  await write(root, ".mssr/PROJECT_CONTEXT.md", "# Bridge Context\n\nBridge facts.\n");
+  await write(root, ".mssr/PROJECT_MEMORY.md", "# Bridge Memory\n\nMemory notes.\n");
   await write(
     root,
-    ".bridge/PROJECT_STATE.md",
+    ".mssr/PROJECT_STATE.md",
     `${"# STATE HEADING ".repeat(20)}\n\n${"ABCDEFGHIJKLMNOPQRSTUVWX".repeat(20)}\n`,
   );
+  await write(root, ".bridge/PROJECT_STATE.md", "# Stale legacy state\n\nMSSR 0.2.13 must never be collected.\n");
   const payload = "lorem-ipsum-payload-line\n".repeat(12000);
   await write(
     root,
@@ -72,13 +73,12 @@ const wrongKindProvider = { ...validProviderReceipt, id: "prov-wrong-kind" };
 const wrongKindGit = { ...validGitReceipt, id: "git-wrong-kind" };
 
 const EXPECTED_FACT_REFS = [
-  ".bridge/PROJECT_CONTEXT.md",
-  ".bridge/PROJECT_MEMORY.md",
-  ".bridge/PROJECT_STATE.md",
+  ".mssr/PROJECT_CONTEXT.md",
+  ".mssr/PROJECT_MEMORY.md",
+  ".mssr/PROJECT_STATE.md",
   "CHANGELOG.md",
   "changelogs/1.0.0.md",
   "docs/INCIDENTS.md",
-  "docs/PROJECT_CONTEXT.md",
   "docs/decisions/0001-use-mssr.md",
   "docs/decisions/0002-patterns.md",
   "docs/decisions/0003-huge.md",
@@ -130,12 +130,13 @@ try {
     factObservations.map((observation) => observation.ref),
     [...EXPECTED_FACT_REFS].sort(),
   );
+  assert.equal(refs.includes(".bridge/PROJECT_STATE.md"), false, "legacy MSSR authorities must be invisible");
 
   // --- Distinct PROJECT_CONTEXT / MEMORY / STATE source kinds ---
 
-  const bridgeContext = result.observations.find((o) => o.ref === ".bridge/PROJECT_CONTEXT.md");
-  const bridgeMemory = result.observations.find((o) => o.ref === ".bridge/PROJECT_MEMORY.md");
-  const bridgeState = result.observations.find((o) => o.ref === ".bridge/PROJECT_STATE.md");
+  const bridgeContext = result.observations.find((o) => o.ref === ".mssr/PROJECT_CONTEXT.md");
+  const bridgeMemory = result.observations.find((o) => o.ref === ".mssr/PROJECT_MEMORY.md");
+  const bridgeState = result.observations.find((o) => o.ref === ".mssr/PROJECT_STATE.md");
   assert.equal(bridgeContext.sourceKind, "project-context");
   assert.equal(bridgeMemory.sourceKind, "project-memory");
   assert.equal(bridgeState.sourceKind, "project-state");
@@ -166,12 +167,12 @@ try {
     assert.equal(mssrContextMessageSchema.safeParse(message).success, true);
   }
   const byRef = new Map(result.messages.map((message) => [message.evidence[0]?.ref, message]));
-  assert.equal(byRef.get(".bridge/PROJECT_CONTEXT.md").kind, "context-request");
-  assert.equal(byRef.get(".bridge/PROJECT_CONTEXT.md").evidence[0].kind, "project-context");
-  assert.equal(byRef.get(".bridge/PROJECT_MEMORY.md").kind, "context-request");
-  assert.equal(byRef.get(".bridge/PROJECT_MEMORY.md").evidence[0].kind, "project-memory");
-  assert.equal(byRef.get(".bridge/PROJECT_STATE.md").kind, "context-request");
-  assert.equal(byRef.get(".bridge/PROJECT_STATE.md").evidence[0].kind, "project-state");
+  assert.equal(byRef.get(".mssr/PROJECT_CONTEXT.md").kind, "context-request");
+  assert.equal(byRef.get(".mssr/PROJECT_CONTEXT.md").evidence[0].kind, "project-context");
+  assert.equal(byRef.get(".mssr/PROJECT_MEMORY.md").kind, "context-request");
+  assert.equal(byRef.get(".mssr/PROJECT_MEMORY.md").evidence[0].kind, "project-memory");
+  assert.equal(byRef.get(".mssr/PROJECT_STATE.md").kind, "context-request");
+  assert.equal(byRef.get(".mssr/PROJECT_STATE.md").evidence[0].kind, "project-state");
   assert.equal(byRef.get("CHANGELOG.md").kind, "recent-changelog");
   assert.equal(byRef.get("docs/INCIDENTS.md").kind, "related-incident");
   assert.equal(byRef.get("docs/decisions/0001-use-mssr.md").kind, "architecture-decision");
@@ -220,17 +221,16 @@ try {
   assert.equal(capped.observations.length, 2);
   assert.deepEqual(
     capped.observations.map((observation) => observation.ref),
-    [".bridge/PROJECT_CONTEXT.md", ".bridge/PROJECT_MEMORY.md"],
+    [".mssr/PROJECT_CONTEXT.md", ".mssr/PROJECT_MEMORY.md"],
   );
   assert.deepEqual(
     capped.overflow,
     [
-      ".bridge/PROJECT_STATE.md",
+      ".mssr/PROJECT_STATE.md",
       "CHANGELOG.md",
       "changelogs/1.0.0.md",
       "docs/INCIDENTS.md",
-      "docs/PROJECT_CONTEXT.md",
-      "docs/decisions/0001-use-mssr.md",
+          "docs/decisions/0001-use-mssr.md",
       "docs/decisions/0002-patterns.md",
       "docs/decisions/0003-huge.md",
       "commit/abc123",
@@ -255,7 +255,7 @@ try {
   );
   assert.equal(incidentSelection.includes("docs/INCIDENTS.md"), true);
   assert.equal(incidentSelection.includes("CHANGELOG.md"), false);
-  assert.equal(incidentSelection.includes(".bridge/PROJECT_STATE.md"), false);
+  assert.equal(incidentSelection.includes(".mssr/PROJECT_STATE.md"), false);
 
   const changelogSelection = selectRefs(
     result.messages,
@@ -281,7 +281,7 @@ try {
     { domains: ["coding"], actions: ["design"], needs: ["history-recovery"], signals: ["nominal"], risk: "read-only" },
     "resume",
   );
-  for (const ref of [".bridge/PROJECT_CONTEXT.md", ".bridge/PROJECT_MEMORY.md", ".bridge/PROJECT_STATE.md", "docs/PROJECT_CONTEXT.md"]) {
+  for (const ref of [".mssr/PROJECT_CONTEXT.md", ".mssr/PROJECT_MEMORY.md", ".mssr/PROJECT_STATE.md"]) {
     assert.equal(resumeSelection.includes(ref), true, ref);
   }
   assert.equal(resumeSelection.includes("docs/INCIDENTS.md"), false);
@@ -321,7 +321,7 @@ try {
 
   // --- Explicit manifest override and fail-closed behavior ---
 
-  await write(root, ".bridge/context-messages.json", JSON.stringify({
+  await write(root, ".mssr/context-messages.json", JSON.stringify({
     schemaVersion: 1,
     entries: {
       "docs/INCIDENTS.md": { signals: ["replan-needed"], priority: 25 },
@@ -339,7 +339,7 @@ try {
   });
   assert.equal(replanSelection.selected.some((message) => message.evidence[0]?.ref === "docs/INCIDENTS.md"), true);
 
-  await write(root, ".bridge/context-messages.json", JSON.stringify({
+  await write(root, ".mssr/context-messages.json", JSON.stringify({
     schemaVersion: 1,
     entries: {
       "docs/INCIDENTS.md": { signals: ["replan-needed"] },
@@ -357,7 +357,7 @@ try {
     ["error-observed", "warning-observed", "repeated-friction", "recovery-needed"],
   );
 
-  await write(root, ".bridge/context-messages.json", JSON.stringify({
+  await write(root, ".mssr/context-messages.json", JSON.stringify({
     schemaVersion: 1,
     entries: { "docs/INCIDENTS.md": { signals: ["replan-needed"] }, "../escape.md": { signals: ["nominal"] } },
   }));
@@ -372,7 +372,7 @@ try {
     ["error-observed", "warning-observed", "repeated-friction", "recovery-needed"],
   );
 
-  await write(root, ".bridge/context-messages.json", "{ not-json");
+  await write(root, ".mssr/context-messages.json", "{ not-json");
   const malformedResult = await collectRepositoryContextMessages({ projectRoot: root });
   assert.equal(
     malformedResult.diagnostics.some((diagnostic) => diagnostic.issue === "context-messages-manifest-invalid-json"),
@@ -384,7 +384,7 @@ try {
     ["error-observed", "warning-observed", "repeated-friction", "recovery-needed"],
   );
 
-  await write(root, ".bridge/context-messages.json", `{
+  await write(root, ".mssr/context-messages.json", `{
   "schemaVersion": 1,
   "entries": {
     "docs/INCIDENTS.md": { "signals": ["replan-needed"] },

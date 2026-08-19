@@ -21,12 +21,35 @@ function mod(id, overrides = {}) {
 async function writeFixture(name, { modules = [], core = [], files = {}, withManifest = true }) {
   const root = path.join(base, name);
   await fs.rm(root, { recursive: true, force: true });
-  await fs.mkdir(path.join(root, ".bridge"), { recursive: true });
+  await fs.mkdir(path.join(root, ".mssr"), { recursive: true });
   await fs.mkdir(path.join(root, "docs"), { recursive: true });
   if (withManifest) {
+    const toRich = (module) => ({
+      id: module.id,
+      kind: "context",
+      description: `Fixture ${module.id}`,
+      source: { path: module.path },
+      stages: module.stages ?? [],
+      domains: module.domains ?? [],
+      actions: module.actions ?? [],
+      artifacts: module.artifacts ?? [],
+      needs: module.needs ?? [],
+      signals: module.signals ?? [],
+      priority: module.priority ?? 0,
+      required: module.required ?? false,
+      ...(module.exclusiveGroup ? { exclusiveGroup: module.exclusiveGroup } : {}),
+    });
+    const coreSet = new Set(core);
     await fs.writeFile(
-      path.join(root, ".bridge", "project-context-modules.json"),
-      JSON.stringify({ schemaVersion: 1, canonicalOwner: "test-fixture", core: core.map((id) => ({ id })), modules }),
+      path.join(root, ".mssr", "project-context.json"),
+      JSON.stringify({
+        schemaVersion: 1,
+        core: modules.filter((module) => coreSet.has(module.id)).map((module) => {
+          const rich = toRich(module);
+          return { id: rich.id, kind: rich.kind, description: rich.description, source: rich.source };
+        }),
+        modules: modules.filter((module) => !coreSet.has(module.id)).map(toRich),
+      }),
       "utf8",
     );
   }
@@ -78,6 +101,11 @@ try {
   assert.equal(typeof resA.remainingChars, "number");
   assert.ok(resA.remainingChars >= 0);
 
+  const resAWithoutCore = await loadProjectContextModules({ projectRoot: rootA, intent: intentEdit, stage: "implement", includeCore: false });
+  assert.deepEqual(resAWithoutCore.core, []);
+  assert.deepEqual(resAWithoutCore.selected.map((r) => r.ref), ["opt-edit"]);
+  assert.ok(resAWithoutCore.remainingChars > resA.remainingChars);
+
   const resUnrelated = await loadProjectContextModules({ projectRoot: rootA, intent: intentBlender, stage: "close" });
   assert.deepEqual(resUnrelated.core.map((r) => r.ref), ["core-a"]);
   assert.deepEqual(resUnrelated.selected.map((r) => r.ref), []);
@@ -91,15 +119,15 @@ try {
   ];
   const rootB = await writeFixture("b-budget", { modules: modulesB, core: ["core-a"], files: filesB });
   const resB = await loadProjectContextModules({ projectRoot: rootB, intent: intentEdit, stage: "implement", maxChars: 5, maxModules: 1 });
-  assert.deepEqual(resB.selected.map((r) => r.ref), []);
+  assert.deepEqual(resB.selected.map((r) => r.ref), ["opt-req"]);
   assert.deepEqual(resB.requiredBudgetExceeded.sort(), ["opt-req"]);
   assert.equal(resB.decisions.find((d) => d.id === "opt-free").reason, "budget-exceeded");
   assert.equal(resB.decisions.find((d) => d.id === "opt-free").selected, false);
 
   const filesB2 = {
     "core-big.md": "C".repeat(30_000),
-    "req-big.md": "# Req big\n",
-    "notreq-big.md": "# Not required big\n",
+    "req-big.md": "R".repeat(25_000),
+    "notreq-big.md": "N".repeat(25_000),
   };
   const modulesB2 = [
     mod("core-big", { estimatedChars: 30_000 }),
@@ -113,7 +141,7 @@ try {
 
   const dirC = path.join(base, "c-safety");
   await fs.rm(dirC, { recursive: true, force: true });
-  await fs.mkdir(path.join(dirC, ".bridge"), { recursive: true });
+  await fs.mkdir(path.join(dirC, ".mssr"), { recursive: true });
   assert.throws(() => safeMarkdownPath(dirC, "../evil.md"), /traverse/);
   assert.throws(() => safeMarkdownPath(dirC, path.join("sub", "..", "..", "escape.md")), /traverse/);
   assert.throws(() => safeMarkdownPath(dirC, "notes.txt"), /markdown/);
@@ -133,6 +161,36 @@ try {
   assert.equal(rawSmall.content, "hi");
   assert.equal(rawSmall.bytes, 2);
   await assert.rejects(() => readBoundedMarkdown(small, 1), /exceeds/);
+
+  // A per-entry maxChars limit applies after section extraction. The backing
+  // authority may be larger as long as it stays under the global source cap.
+  const rootSectionMax = path.join(base, "c-section-max");
+  await fs.rm(rootSectionMax, { recursive: true, force: true });
+  await fs.mkdir(path.join(rootSectionMax, ".mssr"), { recursive: true });
+  const sectionPayload = "r".repeat(215);
+  const sectionAuthority = `# History\n${"x".repeat(3_000)}\n\n## Current release\n${sectionPayload}\n\n## Other\n${"y".repeat(500)}\n`;
+  await fs.writeFile(path.join(rootSectionMax, "authority.md"), sectionAuthority, "utf8");
+  const sectionManifest = (maxChars) => ({
+    schemaVersion: 1,
+    core: [{
+      id: "section-core",
+      kind: "state",
+      description: "Small selected section from a larger authority",
+      source: { path: "authority.md", sections: ["## Current release"] },
+      maxChars,
+    }],
+    modules: [],
+  });
+  await fs.writeFile(path.join(rootSectionMax, ".mssr", "project-context.json"), JSON.stringify(sectionManifest(256)), "utf8");
+  const sectionLimited = await loadProjectContextModules({ projectRoot: rootSectionMax, intent: intentEdit, stage: "start" });
+  assert.equal(sectionLimited.core[0].content, `## Current release\n${sectionPayload}`);
+  assert.ok(sectionLimited.core[0].bytes > 200 && sectionLimited.core[0].bytes < 256);
+
+  await fs.writeFile(path.join(rootSectionMax, ".mssr", "project-context.json"), JSON.stringify(sectionManifest(200)), "utf8");
+  await assert.rejects(
+    () => loadProjectContextModules({ projectRoot: rootSectionMax, intent: intentEdit, stage: "start" }),
+    /selection exceeds 200 bytes/,
+  );
 
   const filesC2 = { "core-safe.md": "safe", "evil.md": "evil" };
   const rootC2 = await writeFixture("c-traverse", {
@@ -189,35 +247,27 @@ try {
   const rootE1 = await writeFixture("e-empty", { withManifest: false });
   const missingManifest = await loadProjectContextModuleManifest(rootE1);
   assert.equal(missingManifest.found, false);
-  const resE1 = await loadProjectContextModules({ projectRoot: rootE1, intent: intentEdit, stage: "start", allowFullDocumentFallback: true });
+  const resE1 = await loadProjectContextModules({ projectRoot: rootE1, intent: intentEdit, stage: "start" });
+  assert.equal(resE1.manifestStatus, "missing");
   assert.deepEqual(resE1.core, []);
   assert.deepEqual(resE1.selected, []);
   assert.deepEqual(resE1.decisions, []);
-  assert.equal(resE1.advisoryOnly, true);
   assert.equal(resE1.remainingChars, 6000);
 
+  // Docs or PROJECT_* files alone never bypass explicit MSSR initialization.
   const rootE2 = await writeFixture("e-docs", { files: { "docs/PROJECT_CONTEXT.md": "# Docs context\n" }, withManifest: false });
-  const resE2 = await loadProjectContextModules({ projectRoot: rootE2, intent: intentEdit, stage: "start", allowFullDocumentFallback: true });
-  assert.equal(resE2.core.length, 1);
-  assert.equal(resE2.core[0].ref, "docs/PROJECT_CONTEXT.md");
-  assert.equal(resE2.core[0].content, "# Docs context\n");
-  assert.equal(resE2.advisoryOnly, true);
+  const resE2 = await loadProjectContextModules({ projectRoot: rootE2, intent: intentEdit, stage: "start" });
+  assert.equal(resE2.manifestStatus, "missing");
+  assert.deepEqual(resE2.core, []);
 
-  const rootE3 = await writeFixture("e-both", {
-    files: {
-      ".bridge/PROJECT_CONTEXT.md": "# Bridge context\n",
-      "docs/PROJECT_CONTEXT.md": "# Docs context\n",
-    },
+  const rootE3 = await writeFixture("e-authority-without-contract", {
+    files: { ".mssr/PROJECT_CONTEXT.md": "# Canonical context\n", "docs/PROJECT_CONTEXT.md": "# Docs context\n" },
     withManifest: false,
   });
-  const resE3 = await loadProjectContextModules({ projectRoot: rootE3, intent: intentEdit, stage: "start", allowFullDocumentFallback: true });
-  assert.equal(resE3.core.length, 1);
-  assert.equal(resE3.core[0].ref, ".bridge/PROJECT_CONTEXT.md");
-  assert.equal(resE3.core[0].content, "# Bridge context\n");
-
-  const resE4 = await loadProjectContextModules({ projectRoot: rootE3, intent: intentEdit, stage: "start", allowFullDocumentFallback: false });
-  assert.deepEqual(resE4.core, []);
-  assert.deepEqual(resE4.selected, []);
+  const resE3 = await loadProjectContextModules({ projectRoot: rootE3, intent: intentEdit, stage: "start" });
+  assert.equal(resE3.manifestStatus, "missing");
+  assert.deepEqual(resE3.core, []);
+  assert.deepEqual(resE3.selected, []);
 
   const shaFile = path.join(dirC, "sha.md");
   await fs.writeFile(shaFile, "alpha beta gamma", "utf8");

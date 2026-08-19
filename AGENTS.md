@@ -17,9 +17,28 @@ MauroPrime Bridge and any one host agent.
   `PROJECT_STATE` impact as `updated`, `reviewed-none`, or `pending`. `pending`
   blocks persistence. Hosts may audit this contract but must not auto-write
   project knowledge from telemetry or heuristics.
-- Repositories that deliberately use `.bridge/PROJECT_*` authorities should also
-  maintain `.bridge/project-context.json` so project context remains selectively
-  loadable instead of staying in legacy full-document fallback indefinitely.
+- Repositories managed by MSSR use `.mssr/` as the only active project-control
+  home and maintain `.mssr/project-context.json` so project knowledge remains
+  selectively loadable. Active MSSR project authorities must never be read from
+  `.bridge/`; repositories with historical MSSR artifacts there require explicit
+  initialization/cleanup before they are considered healthy. Keep versioned
+  knowledge in PROJECT_* and `.mssr/knowledge/`, and ephemeral delivery/receipt
+  state under `.mssr/runtime/`. Track a narrow `.mssr/.gitignore` that ignores
+  `/runtime/` only; PROJECT_*, manifests, knowledge modules, and other deliberate
+  project-control files must remain versionable.
+- Keep project knowledge ownership explicit: `AGENTS.md` owns broad repository
+  instructions; `PROJECT_CONTEXT.md` owns stable architecture/facts/ownership;
+  `PROJECT_MEMORY.md` owns durable decisions/lessons; `PROJECT_STATE.md` owns
+  mutable current status; scoped `directive` modules own only conditional local
+  refinements. Cross-project reusable procedure belongs in an owning skill, with
+  `SKILL.md` as the routed capability core and `references/` as parent-owned
+  situational recipes selected by `context-modules.json`.
+- Drift detectors are evidence producers, not writers. `project_change_consistency`
+  checks release/project-authority diffs, Context Plane freshness checks source
+  revisions, and skill audit/Skill Health checks routing or structural skill debt.
+  A visible maintenance task applies an accepted change to the canonical owner;
+  telemetry, receipts, and heuristics never auto-rewrite AGENTS, PROJECT_*, skills,
+  references, or routing.
 - Preserve provenance, health, timestamps, and degradation state. An empty or
   stale provider catalog is evidence, not proof that no capability exists.
 - Plans must permit re-plan and capability chaining. An agent may discover,

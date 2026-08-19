@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mauroprime.local/schemas/architecture-invariant-evaluation.schema.json",
+  "title": "MSSR Architecture Invariant Evaluation v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "invariantId", "architectureId", "relationshipClass", "evidenceClass", "status", "level", "attentionClass", "reasonCode", "canonicalRewriteAllowed", "fingerprint"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "invariantId": { "$ref": "#/$defs/stableId" },
+    "architectureId": { "$ref": "#/$defs/stableId" },
+    "relationshipClass": { "const": "declared" },
+    "evidenceClass": { "const": "observed" },
+    "status": { "enum": ["satisfied", "violated", "unresolved"] },
+    "level": { "enum": ["ok", "watch", "review"] },
+    "attentionClass": { "enum": ["none", "invariant-unresolved", "invariant-violation"] },
+    "reasonCode": { "enum": ["forbidden-edge-absent", "forbidden-edge-observed", "required-edge-observed", "required-edge-absent", "graph-evidence-partial"] },
+    "matchedEdge": { "$ref": "#/$defs/edge" },
+    "canonicalRewriteAllowed": { "const": false },
+    "fingerprint": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+  },
+  "$defs": {
+    "stableId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{1,79}$" },
+    "boundedSingleLine": { "type": "string", "minLength": 1, "maxLength": 160, "pattern": "^(?!\\s)[^\\r\\n]*\\S$" },
+    "exactProjectRelativeRef": {
+      "type": "string", "minLength": 1, "maxLength": 320,
+      "allOf": [
+        { "not": { "pattern": "^/" } }, { "not": { "pattern": "^[A-Za-z]:/" } },
+        { "not": { "pattern": "\\\\" } }, { "not": { "pattern": "(^|/)\\.\\.?(/|$)" } },
+        { "not": { "pattern": "//" } }, { "not": { "pattern": "[?*\\[\\]{}!#]" } }
+      ]
+    },
+    "edge": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "sourceRef", "targetRef"],
+      "properties": {
+        "kind": { "enum": ["import", "call", "dependency"] },
+        "sourceRef": { "$ref": "#/$defs/exactProjectRelativeRef" },
+        "targetRef": { "$ref": "#/$defs/exactProjectRelativeRef" },
+        "sourceSymbol": { "$ref": "#/$defs/boundedSingleLine" },
+        "targetSymbol": { "$ref": "#/$defs/boundedSingleLine" }
+      }
+    }
+  },
+  "allOf": [
+    { "if": { "properties": { "status": { "const": "satisfied" } } }, "then": { "properties": { "level": { "const": "ok" }, "attentionClass": { "const": "none" } } } },
+    { "if": { "properties": { "status": { "const": "unresolved" } } }, "then": { "properties": { "level": { "const": "watch" }, "attentionClass": { "const": "invariant-unresolved" } } } },
+    { "if": { "properties": { "status": { "const": "violated" } } }, "then": { "properties": { "level": { "const": "review" }, "attentionClass": { "const": "invariant-violation" } } } }
+  ]
+}

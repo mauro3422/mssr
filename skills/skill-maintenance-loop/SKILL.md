@@ -19,6 +19,8 @@ Antes de editar, resuelve sólo el módulo necesario:
 - `references/capability-evolution-proposals.md`: criterio entre documentación, owner update, módulo, script/tool/guide, nueva skill o cambio de contexto.
 - `references/learning-review-promotion.md`: etapa durable `digest -> learning-review -> promotion proposal`, sus gates de evidencia y el límite de promoción humana.
 - `references/architecture-documentation-consistency.md`: reconciliación acotada entre arquitectura, ADRs, contexto/estado, changelogs e incidentes antes de persistir una propuesta.
+- `references/project-context-modularization.md`: receta para resolver presión estructural de Project Context Health mediante extracción exacta a `.mssr/knowledge/<topic>/`, preservando selectors y tratando el core como decisión explícita.
+- `references/operational-pattern-automation.md`: convierte secuencias operativas deterministas repetidas en candidatos a script/tool/guide, automatizando mecánica y receipts sin automatizar decisiones de autoridad, aprobación o verdad semántica.
 
 En hosts con ensamblado selectivo, `context-modules.json` carga sólo el núcleo y los módulos cuyo trigger coincide. Los enlaces siguen siendo el fallback para Codex y revisión humana.
 
@@ -61,7 +63,9 @@ Las decisiones opcionales no se presumen. Si el host declara que tiene evidencia
 
 Exige evidencia antes de generalizar: dos apariciones, una corrección repetida o un fallo único de alto impacto con causa clara. Revisa el catálogo completo para encontrar el owner existente. Conserva señales observables como `repeated-friction`, `manual-workaround`, `missing-capability`, `skill-gap`, `provider-refresh-needed` o `reusable-pattern`.
 
-Para una auditoría read-only carga `references/maintenance-audit.md`. Las métricas proponen dónde mirar; nunca autorizan mutaciones o deprecaciones por sí solas.
+Cuando la evidencia muestre la misma secuencia operativa determinista repetida —mismos pasos mecánicos, mismos inputs/outputs y mismos gates objetivos— carga `references/operational-pattern-automation.md` y clasifícala explícitamente como candidata a automatización. Automatiza sólo la mecánica y los receipts; decisiones de autoridad, aprobación, verdad semántica o promoción continúan siendo gates revisados.
+
+Para una auditoría read-only carga `references/maintenance-audit.md`. Las métricas proponen dónde mirar; nunca autorizan mutaciones o deprecaciones por sí solas. Cuando MSSR devuelva un project-knowledge advisory, `WATCH` queda como evidencia de baja prioridad sin forzar contexto extra; `REVIEW`/`REQUIRED` carga `references/architecture-documentation-consistency.md` y sólo la autoridad `.mssr` señalada para decidir `updated` o `reviewed-none` con diff/readback. Si Project Context Health señala presión por tamaño/core/módulos, carga además `references/project-context-modularization.md` y usa el planner read-only antes de mover conocimiento.
 
 ## Evidencia y ownership
 
@@ -69,7 +73,7 @@ Para una auditoría read-only carga `references/maintenance-audit.md`. Las métr
 - Routing: consulta `skill_route_audit`, planes reales y fixtures; un provider degradado no prueba que el routing ajeno esté roto.
 - Skills first-party reservadas de MSSR: fuente Git en `D:\Dev\mssr\skills`; skills propias no reservadas: `D:\Dev\mauroprime-skills\skills`. El runtime Codex usa junctions hacia el owner correspondiente, nunca copias editables.
 - MSSR: contrato y fixtures en `D:\Dev\mssr`; dashboards son proyecciones generadas.
-- Proyecto: decisiones, rutas, assets, blockers y estado actual permanecen en el repositorio del proyecto.
+- Proyecto: `AGENTS.md` y las autoridades canónicas `.mssr/PROJECT_CONTEXT.md`, `.mssr/PROJECT_MEMORY.md`, `.mssr/PROJECT_STATE.md` conservan instrucciones amplias, arquitectura/ownership, decisiones durables y estado actual. `.mssr/project-context.json` selecciona módulos; cuando el conocimiento crece o es situacional, muévelo a `.mssr/knowledge/<topic>/` (`architecture`, `design`, `law`, `pattern`, `vocabulary`, `decision`, `state`, `phase`, `reference`, `operations`) y mantenlo indexado. `.mssr/runtime/` es efímero. MSSR no lee autoridades activas desde `.bridge/`; su presencia es deuda de inicialización/cleanup.
 
 No edites caches de plugins o skills de sistema como personalización durable. Distingue duplicado propio —error—, versiones externas equivalentes —información— y fuentes externas con contratos divergentes —warning—.
 

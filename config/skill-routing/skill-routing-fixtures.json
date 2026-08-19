@@ -5624,7 +5624,6 @@
         ]
       }
     },
-
     {
       "name": "asset-completion-gate-blender-positive-verify",
       "task": "Terminá este asset 3D de Blender: verificá el modelo final, sacá las seis vistas, armá su ficha de completion y dejalo listo para persistir y publicar en el dashboard.",
@@ -6592,6 +6591,263 @@
         ],
         "activeExcludes": [
           "blender-visual-review"
+        ]
+      }
+    },
+    {
+      "name": "architecture-modular-review-negative-specialized-noise",
+      "task": "Revisá y diseñá una modularización gradual de este workspace con ownership explícito, Functional Core / Imperative Shell y fronteras ganadas por fixtures; todavía no implementes.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Revisar arquitectura modular y definir fronteras de extracción comprobables sin implementar todavía",
+        "domains": [
+          "coding",
+          "filesystem"
+        ],
+        "actions": [
+          "review",
+          "analyze",
+          "design"
+        ],
+        "artifacts": [
+          "project",
+          "code",
+          "document"
+        ],
+        "needs": [
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "complex-system-design"
+        ],
+        "activeExcludes": [
+          "capability-gap-recovery",
+          "systematic-debugging",
+          "mssr-observability-maintenance",
+          "conversation-history-review",
+          "visual-reference-integrity",
+          "mauroprime-bridge-collaboration"
+        ]
+      }
+    },
+    {
+      "name": "architecture-reusable-pattern-is-not-failure",
+      "task": "Este patrón de modularización parece reusable para otros sistemas; revisá el diseño y dejá claras las fronteras, sin tratarlo como una incidencia o falta de capacidad.",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Revisar un patrón reusable de arquitectura modular sin incidente ni brecha de capacidad",
+        "domains": [
+          "coding",
+          "filesystem"
+        ],
+        "actions": [
+          "review",
+          "analyze",
+          "design"
+        ],
+        "artifacts": [
+          "project",
+          "code",
+          "document"
+        ],
+        "needs": [
+          "integrity-verification"
+        ],
+        "signals": [
+          "reusable-pattern"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "complex-system-design"
+        ],
+        "activeExcludes": [
+          "capability-gap-recovery",
+          "systematic-debugging",
+          "mssr-observability-maintenance",
+          "conversation-history-review",
+          "visual-reference-integrity",
+          "mauroprime-bridge-collaboration"
+        ]
+      }
+    },
+    {
+      "name": "steam-workshop-publication-update",
+      "task": "Publica este mod en Steam Workshop con SteamCMD, conserva la descripcion permanente y verifica que el item actualizado quede descargable.",
+      "stage": "persist",
+      "completedPhases": [
+        "discovery",
+        "safety",
+        "implementation",
+        "verification"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Actualizar un item existente de Steam Workshop con metadata minima y readback posterior",
+        "domains": [
+          "other",
+          "filesystem"
+        ],
+        "actions": [
+          "review",
+          "publish",
+          "verify",
+          "save",
+          "version"
+        ],
+        "artifacts": [
+          "game",
+          "project",
+          "asset"
+        ],
+        "needs": [
+          "safe-editing",
+          "integrity-verification",
+          "human-approval"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "external-side-effect",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "steam-workshop-publication"
+        ]
+      }
+    },
+    {
+      "name": "steam-workshop-publication-live-verification",
+      "task": "SteamCMD termino sin error pero no quiero asumir que se publico: verifica el item exacto de Workshop y hace una descarga fresca si esta disponible.",
+      "stage": "verify",
+      "completedPhases": [
+        "discovery",
+        "safety",
+        "implementation"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Verificar una publicacion Steam Workshop sin confiar solo en el exit code",
+        "domains": [
+          "other",
+          "filesystem"
+        ],
+        "actions": [
+          "verify",
+          "test",
+          "review",
+          "recover"
+        ],
+        "artifacts": [
+          "game",
+          "project",
+          "asset"
+        ],
+        "needs": [
+          "integrity-verification"
+        ],
+        "signals": [
+          "uncertainty"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "steam-workshop-publication"
+        ]
+      }
+    },
+    {
+      "name": "steam-workshop-publication-continuation",
+      "task": "Dale, subilo",
+      "taskVariants": [
+        "Si, mandale al Workshop",
+        "Segui con la subida",
+        "Publicalo ya",
+        "Dale con SteamCMD"
+      ],
+      "context": "El mod ya tiene staging validado, VDF en dry-run y el item existente de Steam Workshop resuelto. Falta autenticacion local, ejecutar workshop_build_item y verificar el item vivo sin tocar la descripcion permanente.",
+      "stage": "persist",
+      "sources": [
+        "codex-local"
+      ],
+      "expect": {
+        "classificationMode": "lexical-fallback",
+        "contextUsed": true,
+        "activeIncludes": [
+          "steam-workshop-publication"
+        ]
+      }
+    },
+    {
+      "name": "steam-workshop-publication-negative-git-push",
+      "task": "Publica estos commits en GitHub con push normal y verifica el hash remoto; no hay ningun item de Steam Workshop.",
+      "stage": "persist",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Publicar commits Git en el remoto sin usar Steam Workshop",
+        "domains": [
+          "git",
+          "github"
+        ],
+        "actions": [
+          "publish",
+          "verify",
+          "save",
+          "version"
+        ],
+        "artifacts": [
+          "repository",
+          "project",
+          "code"
+        ],
+        "needs": [
+          "version-control",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "external-side-effect",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "git-change-publication"
+        ],
+        "activeExcludes": [
+          "steam-workshop-publication"
+        ],
+        "deferredExcludes": [
+          "steam-workshop-publication"
         ]
       }
     }
