@@ -4,6 +4,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.45](0.2.45.md) - Release-integrity reconciliation: publish the `steam-workshop-publication` routing metadata and positive/negative/continuation fixtures already present in verified Git source but absent from the immutable 0.2.44 tarball, without weakening routing audit or changing portable runtime semantics.
 - [0.2.44](0.2.44.md) - Trace Integrity portable closure fix: closed traces keep the persisted outcome obligation `complete` while `canCloseSuccess` remains pre-outcome-only; exact pure-contract/Codex regressions and indexed lifecycle-integrity memory prevent observability from reporting a successful trace as outcome-pending.
 - [0.2.43](0.2.43.md) - Situation Model C2f-E: metadata-only reviewed-current receipts let hosts suppress only an exact previously reviewed Architecture Impact state; any missing, corrupt, incomplete or changed declaration/baseline/authority/source-set/projection evidence fails open to REVIEW without rewriting canonical architecture.
 - [0.2.42](0.2.42.md) - Situation Model C2f-D: bounded architecture-context feedback reuses C2e-E exact resolution at natural replans to recommend only declared contextRef + authority under normal budgets, with no semantic rerun, auto-load, budget override, or per-tool-response injection.
