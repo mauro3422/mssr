@@ -35,7 +35,9 @@
         "config/project-context/architecture-context-feedback.schema.json",
         "src/architecture-reviewed-current.ts",
         "config/project-context/architecture-reviewed-current-receipt.schema.json",
-        "config/project-context/architecture-reviewed-current-evaluation.schema.json"
+        "config/project-context/architecture-reviewed-current-evaluation.schema.json",
+        "src/architecture-host-adoption.ts",
+        "config/project-context/architecture-host-adoption.schema.json"
       ]
     },
     {

@@ -185,6 +185,23 @@
               "aspect": "body"
             }
           ]
+        },
+        {
+          "ref": "src/architecture-host-adoption.ts",
+          "selectors": [
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "planArchitectureHostAdoption",
+              "aspect": "body"
+            },
+            {
+              "kind": "symbol",
+              "language": "typescript",
+              "name": "evaluateArchitectureHostAdoption",
+              "aspect": "body"
+            }
+          ]
         }
       ]
     },

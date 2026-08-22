@@ -37,6 +37,7 @@ async function writeFixture(name, { modules = [], core = [], files = {}, withMan
       signals: module.signals ?? [],
       priority: module.priority ?? 0,
       required: module.required ?? false,
+      ...(module.requiredWhen ? { requiredWhen: module.requiredWhen } : {}),
       ...(module.exclusiveGroup ? { exclusiveGroup: module.exclusiveGroup } : {}),
     });
     const coreSet = new Set(core);
@@ -123,6 +124,45 @@ try {
   assert.deepEqual(resB.requiredBudgetExceeded.sort(), ["opt-req"]);
   assert.equal(resB.decisions.find((d) => d.id === "opt-free").reason, "budget-exceeded");
   assert.equal(resB.decisions.find((d) => d.id === "opt-free").selected, false);
+
+  // Cross-cutting mutation contracts are materialized before semantic ranking. This
+  // reproduces the failure mode where a UTF-8/runtime rule exists durably but the
+  // task intent is narrowly classified around an unrelated subsystem.
+  const filesB1 = {
+    "critical-utf8.md": "# UTF-8 runtime invariant\nPayload text must remain UTF-8.\n",
+    "semantic-map.md": "# Map sync\nSubsystem-specific implementation notes.\n",
+  };
+  const modulesB1 = [
+    mod("critical-utf8", {
+      domains: ["other"],
+      actions: ["review"],
+      requiredWhen: { mutation: true, artifacts: ["code"] },
+      priority: -80,
+    }),
+    mod("semantic-map", { domains: ["coding"], actions: ["edit"], artifacts: ["code"], priority: 90 }),
+  ];
+  const rootB1 = await writeFixture("b1-cross-cutting", { modules: modulesB1, files: filesB1 });
+  const mutationB1 = await loadProjectContextModules({
+    projectRoot: rootB1,
+    intent: intent({ domains: ["coding"], actions: ["edit"], artifacts: ["code"], risk: "write" }),
+    stage: "implement",
+    maxChars: 40,
+    maxModules: 1,
+  });
+  assert.deepEqual(mutationB1.selected.map((record) => record.ref), ["critical-utf8"]);
+  assert.deepEqual(mutationB1.requiredBudgetExceeded, ["critical-utf8"]);
+  assert.equal(mutationB1.decisions.find((d) => d.id === "critical-utf8").required, true);
+  assert.deepEqual(mutationB1.decisions.find((d) => d.id === "critical-utf8").requiredBy, ["mutation", "artifact:code"]);
+  assert.equal(mutationB1.decisions.find((d) => d.id === "semantic-map").selected, false);
+
+  const readOnlyB1 = await loadProjectContextModules({
+    projectRoot: rootB1,
+    intent: intent({ domains: ["coding"], actions: ["review"], artifacts: ["code"], risk: "read-only" }),
+    stage: "implement",
+  });
+  assert.equal(readOnlyB1.selected.some((record) => record.ref === "critical-utf8"), false);
+  assert.equal(readOnlyB1.decisions.find((d) => d.id === "critical-utf8").required, false);
+  assert.equal(readOnlyB1.decisions.find((d) => d.id === "critical-utf8").reason, "intent-mismatch");
 
   const filesB2 = {
     "core-big.md": "C".repeat(30_000),

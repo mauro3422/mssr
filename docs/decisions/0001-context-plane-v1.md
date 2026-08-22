@@ -107,6 +107,15 @@ The earlier 0.2.11 `.bridge/...` and compact `project-context-modules.json` path
 - reviewed project statements can be normalized into a bounded knowledge-capture proposal (`topic`, `area`, `kind`, selectors, target path/module), while raw conversations, private reasoning, secrets, and transient tool output remain excluded.
 
 This amendment preserves the original ADR ownership boundary: repositories own meaning, MSSR owns portable selection/health contracts, and hosts own authorized filesystem/runtime delivery.
+
+## 0.2.49 cross-cutting applicability amendment
+
+Semantic similarity is not sufficient for every project rule. A repository may have a narrow subsystem task while still mutating a payload governed by encoding/localization, packaging, trust-boundary, persistence, or runtime invariants. Requiring those modules unconditionally would bloat every read-only turn; leaving them purely semantic can omit a critical contract.
+
+Portable Project Context therefore supports explicit conditional applicability on selective modules: `requiredWhen: { mutation: true, artifacts?: [...] }`. `required:true` keeps its existing unconditional-within-stage meaning. A `requiredWhen` match makes the module effectively required before semantic ranking and required-context budgeting; a read-only task does not activate it. Mutation is determined only from canonical structured intent (`risk` and the bounded mutating-action set), with optional artifact overlap as an additional gate. The repository must declare this relationship explicitly: MSSR does not infer criticality from prose, memory content, filenames, or semantic similarity, and the resulting context never grants write permission.
+
+Conditional-required modules cannot belong to an `exclusiveGroup`. If required context exceeds the task budget, the loader reports required budget debt/overflow rather than silently dropping the contract or increasing limits. This preserves the original ownership boundary and selective-loading goal while adding a fail-visible path for cross-cutting invariants.
+
 ## Staged adoption gates
 
 1. [x] Publish portable message and continuation-receipt fixtures with

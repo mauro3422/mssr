@@ -281,13 +281,19 @@ export function missingRequiredSkills(state: MssrTraceLifecycleState): string[] 
   return state.requiredSkills.filter((name) => !loaded.has(name)).sort();
 }
 
-/** Only phases that are objective success gates are enforced at outcome. Discovery,
- * safety and implementation may be represented by the route/host workflow itself. */
+/** Only phases with independently observable success evidence gate a successful outcome.
+ * Discovery, safety and implementation may be represented by the route/host workflow itself;
+ * maintenance has its own close-revision obligation. Keep every projection on this shared set. */
+export const MSSR_OBJECTIVE_CLOSURE_PHASES = ["verification", "persistence"] as const satisfies readonly SkillPhase[];
+
+export function objectiveClosurePhases(phases: readonly string[] | undefined): SkillPhase[] {
+  const required = new Set(phases ?? []);
+  return MSSR_OBJECTIVE_CLOSURE_PHASES.filter((phase) => required.has(phase));
+}
+
 export function missingRequiredClosurePhases(state: MssrTraceLifecycleState): SkillPhase[] {
   const completed = new Set(state.completedPhases);
-  return state.requiredPhases
-    .filter((phase) => phase === "verification" || phase === "persistence")
-    .filter((phase) => !completed.has(phase));
+  return objectiveClosurePhases(state.requiredPhases).filter((phase) => !completed.has(phase));
 }
 
 export function hasFreshMaintenanceClose(state: MssrTraceLifecycleState): boolean {

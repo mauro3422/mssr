@@ -6805,6 +6805,111 @@
       }
     },
     {
+      "name": "steam-workshop-publication-preview-only",
+      "task": "Cambia solo la imagen principal del Workshop por este preview nuevo; no subas el contenido del mod ni cambies descripcion, titulo o visibilidad, y verifica el preview servido por Steam.",
+      "stage": "persist",
+      "completedPhases": [
+        "discovery",
+        "safety",
+        "implementation",
+        "verification"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Actualizar solo el preview principal de un item existente de Steam Workshop y verificarlo sin reenviar payload",
+        "domains": [
+          "filesystem",
+          "other"
+        ],
+        "actions": [
+          "edit",
+          "publish",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "game",
+          "project"
+        ],
+        "needs": [
+          "safe-editing",
+          "integrity-verification",
+          "human-approval"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "external-side-effect",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "steam-workshop-publication"
+        ]
+      }
+    },
+    {
+      "name": "steam-workshop-publication-preview-continuation",
+      "task": "Si, cambia solo el preview",
+      "taskVariants": [
+        "Dale con el preview",
+        "Si, subi esa imagen nada mas",
+        "Mandale solo la preview"
+      ],
+      "context": "Ya validamos la imagen y el item de Steam Workshop. La operacion acordada es metadata-only: actualizar previewfile, preservar content identity, titulo, descripcion y visibilidad, y verificar preview_url/CDN despues de SteamCMD. Falta ejecutar la subida.",
+      "stage": "persist",
+      "sources": [
+        "codex-local"
+      ],
+      "expect": {
+        "classificationMode": "lexical-fallback",
+        "contextUsed": true,
+        "activeIncludes": [
+          "steam-workshop-publication"
+        ]
+      }
+    },
+    {
+      "name": "steam-workshop-publication-negative-local-preview-optimization",
+      "task": "Optimiza esta imagen local para que pese menos y guardala como candidato de preview para una futura publicacion; no publiques nada en Steam ahora.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Optimizar un asset local candidato a preview sin publicacion remota",
+        "domains": [
+          "filesystem"
+        ],
+        "actions": [
+          "optimize"
+        ],
+        "artifacts": [
+          "asset"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "steam-workshop-publication"
+        ],
+        "deferredExcludes": [
+          "steam-workshop-publication"
+        ]
+      }
+    },
+    {
       "name": "steam-workshop-publication-negative-git-push",
       "task": "Publica estos commits en GitHub con push normal y verifica el hash remoto; no hay ningun item de Steam Workshop.",
       "stage": "persist",

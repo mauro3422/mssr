@@ -28,6 +28,8 @@ const decision = planMssrProjectKnowledgeCapture({
 });
 assert.equal(decision.module.kind, "memory");
 assert.equal(decision.relativePath, ".mssr/knowledge/decision/canonical-owner-decision.md");
+assert.match(decision.policy, /reference-backed by default/);
+assert.match(decision.policy, /Keep PROJECT_MEMORY\.md for compact core\/cross-area memory/);
 
 const phase = planMssrProjectKnowledgeCapture({
   id: "current-repair-phase",
@@ -37,6 +39,19 @@ const phase = planMssrProjectKnowledgeCapture({
   stages: ["start", "resume"],
 });
 assert.equal(phase.module.kind, "state");
+
+const criticalRuntime = planMssrProjectKnowledgeCapture({
+  id: "critical-runtime-localization",
+  topic: "operations",
+  kind: "directive",
+  title: "Critical runtime localization",
+  content: "Payload text must preserve UTF-8 regardless of the subsystem-specific task classification.",
+  requiredWhen: { mutation: true, artifacts: ["code"] },
+  priority: 80,
+});
+assert.deepEqual(criticalRuntime.module.requiredWhen, { mutation: true, artifacts: ["code"] });
+assert.deepEqual(criticalRuntime.module.domains, []);
+assert.deepEqual(criticalRuntime.module.actions, []);
 
 assert.throws(
   () => planMssrProjectKnowledgeCapture({

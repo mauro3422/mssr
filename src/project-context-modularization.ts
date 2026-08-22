@@ -67,6 +67,7 @@ type ModularizationCandidate = {
   area: string | null;
   suggestedPath: string;
   suggestedModuleId: string;
+  preserveModuleId: boolean;
   preserveSelectorsFrom: string;
   preserveKind: string;
   requiresCoreDecision: boolean;
@@ -137,13 +138,29 @@ export async function planMssrProjectContextModularization(projectRootInput: str
       .filter((finding) => finding.code === "oversized-core-module"
         || finding.code === "growing-core-module"
         || finding.code === "oversized-module"
-        || finding.code === "growing-module")
+        || finding.code === "growing-module"
+        || finding.code === "core-entry-budget-pressure"
+        || finding.code === "core-entry-budget-exceeded"
+        || finding.code === "module-entry-budget-pressure"
+        || finding.code === "module-entry-budget-exceeded")
       .map((finding) => finding.target),
   );
   const pressuredAuthorities = new Set(
     health.findings
-      .filter((finding) => finding.code === "oversized-authority" || finding.code === "growing-authority")
+      .filter((finding) => finding.code === "oversized-authority"
+        || finding.code === "growing-authority"
+        || finding.code === "root-backed-memory-fanout")
       .map((finding) => finding.target.toLowerCase()),
+  );
+  const referenceStoragePressuredAuthorities = new Set(
+    health.findings
+      .filter((finding) => finding.code === "root-backed-memory-fanout")
+      .map((finding) => finding.target.toLowerCase()),
+  );
+  const budgetPressuredWholeFileSources = new Set(
+    entries
+      .filter(({ entry }) => pressuredIds.has(entry.id) && !(entry.source.sections?.length))
+      .map(({ entry }) => entry.source.path.replace(/\\/g, "/").toLowerCase()),
   );
 
   const candidates: ModularizationCandidate[] = [];
@@ -167,10 +184,12 @@ export async function planMssrProjectContextModularization(projectRootInput: str
       } catch {
         continue;
       }
-      if (materialized.chars < 1_000 && !entryPressured) continue;
+      const referenceStoragePressure = referenceStoragePressuredAuthorities.has(sourceKey);
+      if (materialized.chars < 1_000 && !entryPressured && !referenceStoragePressure) continue;
       const topic = inferredTopic(entry);
       const suffix = slug(heading);
-      const moduleId = boundedId(entry.id, suffix);
+      const preserveModuleId = !core && headings.length === 1;
+      const moduleId = preserveModuleId ? entry.id : boundedId(entry.id, suffix);
       const fileName = `${moduleId.replace(/[.]+/g, "-")}.md`;
       candidates.push({
         action: "extract-indexed-section",
@@ -185,28 +204,38 @@ export async function planMssrProjectContextModularization(projectRootInput: str
         area: entry.area ?? null,
         suggestedPath: path.posix.join(".mssr", "knowledge", topic, fileName),
         suggestedModuleId: moduleId,
+        preserveModuleId,
         preserveSelectorsFrom: entry.id,
         preserveKind: entry.kind,
         requiresCoreDecision: core,
         rationale: core
           ? "Core pressure requires an explicit decision about which minimum invariant remains always loaded."
-          : "Move exact indexed section bytes to knowledge/ and preserve the parent module selectors; no semantic rewrite is required.",
+          : referenceStoragePressure && entry.kind === "memory"
+            ? "Optional memory is semantically modular already; move the exact indexed section to a reference-backed knowledge file while preserving its module id, kind and selectors."
+            : "Move exact indexed section bytes to knowledge/ and preserve the parent module selectors; no semantic rewrite is required.",
       });
     }
   }
 
   const authoritySections = [];
-  for (const finding of health.findings.filter((item) => item.code === "oversized-authority" || item.code === "growing-authority")) {
-    const rel = finding.target.replace(/\\/g, "/");
+  const sectionInspectionSources = new Set([
+    ...pressuredAuthorities,
+    ...budgetPressuredWholeFileSources,
+  ]);
+  for (const sourceKey of [...sectionInspectionSources].sort()) {
+    const entry = entries.find(({ entry }) => entry.source.path.replace(/\\/g, "/").toLowerCase() === sourceKey);
+    const rel = entry?.entry.source.path.replace(/\\/g, "/") ?? sourceKey;
     let text: string;
     try {
       text = await fs.readFile(path.resolve(projectRoot, rel), "utf8");
     } catch {
       continue;
     }
-    const indexed = indexedHeadings.get(rel.toLowerCase()) ?? new Set<string>();
+    const indexed = indexedHeadings.get(sourceKey) ?? new Set<string>();
     authoritySections.push({
       authority: rel,
+      pressureSource: budgetPressuredWholeFileSources.has(sourceKey) ? "entry-budget" : "authority-size",
+      requiresSelectorReview: budgetPressuredWholeFileSources.has(sourceKey),
       largestSections: enumerateSections(text)
         .slice(0, 12)
         .map((section) => ({
@@ -214,9 +243,11 @@ export async function planMssrProjectContextModularization(projectRootInput: str
           indexed: indexed.has(section.heading),
           recommendation: indexed.has(section.heading)
             ? "EXTRACT_INDEXED_SECTION"
-            : section.chars >= 4_000
-              ? "REVIEW_FOR_KNOWLEDGE_CAPTURE"
-              : "KEEP_OR_CURATE",
+            : section.chars >= 1_000 && budgetPressuredWholeFileSources.has(sourceKey)
+              ? "REVIEW_FOR_MODULE_SPLIT"
+              : section.chars >= 4_000
+                ? "REVIEW_FOR_KNOWLEDGE_CAPTURE"
+                : "KEEP_OR_CURATE",
         })),
     });
   }

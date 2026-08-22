@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { projectContextManifestSchema, type ProjectContextManifest } from "./project-context.js";
+import { evaluateProjectContextEntryBudget } from "./project-context-budget.js";
 import { extractProjectContextSections } from "./project-context-loader.js";
 import { MSSR_PROJECT_AUTHORITY_FILES, MSSR_PROJECT_CONTROL_FILES, MSSR_PROJECT_HOME_DIR } from "./project-home.js";
 
@@ -13,6 +14,12 @@ export type ProjectContextHealthFinding = {
   target: string;
   message: string;
   recommendation: string;
+  budget?: {
+    selectedBytes: number;
+    budgetBytes: number;
+    remainingBytes: number;
+    utilization: number;
+  };
 };
 
 const LEGACY_MSSR_FILES = [
@@ -91,16 +98,54 @@ export async function auditMssrProjectContextHealth(projectRootInput: string) {
 
     for (const entry of manifest.core) {
       const chars = await selectedChars(projectRoot, entry.source);
-      if (chars === null) findings.push({ code: "missing-core-source", level: "review", target: entry.source.path, message: `Core module ${entry.id} cannot be materialized.`, recommendation: "REPAIR_MODULE_SOURCE" });
-      else if (chars > 10_000) findings.push({ code: "oversized-core-module", level: "review", target: entry.id, message: `Core module ${entry.id} loads ${chars} bytes.`, recommendation: "SPLIT_TO_KNOWLEDGE_MODULES" });
+      if (chars === null) {
+        findings.push({ code: "missing-core-source", level: "review", target: entry.source.path, message: `Core module ${entry.id} cannot be materialized.`, recommendation: "REPAIR_MODULE_SOURCE" });
+      } else if (entry.maxChars !== undefined) {
+        const budget = evaluateProjectContextEntryBudget({ entryId: entry.id, core: true, sourcePath: entry.source.path, selectedBytes: chars, maxChars: entry.maxChars });
+        if (budget.level !== "ok") findings.push({
+          code: budget.exceeded ? "core-entry-budget-exceeded" : "core-entry-budget-pressure",
+          level: budget.level,
+          target: entry.id,
+          message: `Core module ${entry.id} loads ${chars}/${budget.budgetBytes} bytes (${Math.round(budget.utilization * 100)}%).`,
+          recommendation: budget.level === "review" ? "SPLIT_TO_KNOWLEDGE_MODULES" : "NARROW_CORE",
+          budget: { selectedBytes: budget.selectedBytes, budgetBytes: budget.budgetBytes, remainingBytes: budget.remainingBytes, utilization: budget.utilization },
+        });
+      } else if (chars > 10_000) findings.push({ code: "oversized-core-module", level: "review", target: entry.id, message: `Core module ${entry.id} loads ${chars} bytes.`, recommendation: "SPLIT_TO_KNOWLEDGE_MODULES" });
       else if (chars > 5_000) findings.push({ code: "growing-core-module", level: "watch", target: entry.id, message: `Core module ${entry.id} loads ${chars} bytes.`, recommendation: "NARROW_CORE" });
     }
     for (const entry of manifest.modules) {
       const chars = await selectedChars(projectRoot, entry.source);
-      if (chars === null) findings.push({ code: "missing-module-source", level: "review", target: entry.source.path, message: `Module ${entry.id} cannot be materialized.`, recommendation: "REPAIR_MODULE_SOURCE" });
-      else if (chars > 14_000) findings.push({ code: "oversized-module", level: "review", target: entry.id, message: `Module ${entry.id} loads ${chars} bytes.`, recommendation: "SPLIT_MODULE" });
+      if (chars === null) {
+        findings.push({ code: "missing-module-source", level: "review", target: entry.source.path, message: `Module ${entry.id} cannot be materialized.`, recommendation: "REPAIR_MODULE_SOURCE" });
+      } else if (entry.maxChars !== undefined) {
+        const budget = evaluateProjectContextEntryBudget({ entryId: entry.id, core: false, sourcePath: entry.source.path, selectedBytes: chars, maxChars: entry.maxChars });
+        if (budget.level !== "ok") findings.push({
+          code: budget.exceeded ? "module-entry-budget-exceeded" : "module-entry-budget-pressure",
+          level: budget.level,
+          target: entry.id,
+          message: `Module ${entry.id} loads ${chars}/${budget.budgetBytes} bytes (${Math.round(budget.utilization * 100)}%).`,
+          recommendation: budget.level === "review" ? "SPLIT_MODULE" : "REVIEW_MODULE_SPLIT",
+          budget: { selectedBytes: budget.selectedBytes, budgetBytes: budget.budgetBytes, remainingBytes: budget.remainingBytes, utilization: budget.utilization },
+        });
+      } else if (chars > 14_000) findings.push({ code: "oversized-module", level: "review", target: entry.id, message: `Module ${entry.id} loads ${chars} bytes.`, recommendation: "SPLIT_MODULE" });
       else if (chars > 7_000) findings.push({ code: "growing-module", level: "watch", target: entry.id, message: `Module ${entry.id} loads ${chars} bytes.`, recommendation: "REVIEW_MODULE_SPLIT" });
       if (!entry.source.sections?.length && chars !== null && chars > 24_000) findings.push({ code: "whole-file-module", level: chars > 48_000 ? "review" : "watch", target: entry.id, message: `Module ${entry.id} loads an entire ${chars}-byte file.`, recommendation: "SELECT_STABLE_SECTION" });
+    }
+
+    const projectMemoryPath = `.mssr/${MSSR_PROJECT_AUTHORITY_FILES.memory}`.toLowerCase();
+    const rootBackedMemoryModules = manifest.modules.filter((entry) =>
+      entry.kind === "memory"
+      && entry.source.path.replace(/\\/g, "/").toLowerCase() === projectMemoryPath,
+    );
+    if (rootBackedMemoryModules.length >= 2) {
+      const level: ProjectContextHealthLevel = rootBackedMemoryModules.length >= 8 ? "review" : "watch";
+      findings.push({
+        code: "root-backed-memory-fanout",
+        level,
+        target: `.mssr/${MSSR_PROJECT_AUTHORITY_FILES.memory}`,
+        message: `${rootBackedMemoryModules.length} optional memory modules share PROJECT_MEMORY.md; semantic selection is modular but physical storage is still accumulating in the root authority.`,
+        recommendation: "EXTRACT_MEMORY_REFS",
+      });
     }
 
     const indexed = new Set([...manifest.core, ...manifest.modules].map((entry) => entry.source.path.replace(/\\/g, "/").toLowerCase()));

@@ -1,6 +1,6 @@
 # ADR 0005 — Architecture Impact / Drift Links
 
-Status: accepted through C2f-E (0.2.43): touch-time reverse mapping, non-widening structural refinement, sparse Markdown architecture anchors, host-neutral symbol analysis, reviewed structural baseline refinement, non-authoritative derived graph candidates, repository-declared executable architecture invariants, bounded architecture-context feedback, and metadata-only reviewed-current receipt semantics are implemented and focused-tested. Host persistence remains reconstructable runtime state and explicit maintenance remains the only writer of canonical architecture truth.
+Status: accepted through Architecture Impact host adoption B (0.2.47): touch-time reverse mapping, non-widening structural refinement, sparse Markdown architecture anchors, host-neutral symbol analysis, reviewed structural baseline refinement, non-authoritative derived graph candidates, repository-declared executable architecture invariants, bounded architecture-context feedback, metadata-only reviewed-current receipts, and one portable coordinator that aggregates those optional evidence layers into final OK/WATCH/REVIEW attention without moving semantic ownership into a host. Host persistence remains reconstructable runtime state and explicit maintenance remains the only writer of canonical architecture truth.
 
 ## Context
 
@@ -112,6 +112,14 @@ C2f-C.5 refines the declared file-level relation before bounded context feedback
 6. **Executable invariants are a separate stronger declared signal.** Optional `.mssr/architecture-invariants.json` owns explicit `require-edge` / `forbid-edge` rules for an existing `architectureId`. Host graph evidence declares `complete` or `partial` coverage: an observed matching edge can prove presence immediately, but partial evidence never proves absence. Satisfied rules are OK, incomplete absence stays WATCH/unresolved, and verified violations become REVIEW/`invariant-violation`; every evaluation fixes `canonicalRewriteAllowed=false`, so even a proven violation cannot auto-rewrite architecture truth.
 
 C2f-D therefore consumes a more precise map: it should load the smallest architecture note/ADR/context related to the touched or review-worthy structural surface, not merely react to an arbitrary whole-file hash difference.
+## Host adoption boundary
+
+Host adoption composes the existing C2f contracts; it does not create a second architecture engine. `planArchitectureHostAdoption(...)` accepts exact refs a host intends to touch and returns only already-declared affected architectures plus their existing C2f-B observation plans. When optional structure or invariant declarations exist, the same plan may also expose sparse Markdown anchors, host-neutral symbol-analysis plans, candidate-only graph capability, and the exact invariant rules for that architecture. This is observation guidance only: `analyzersRequired=false`, and the host still owns whether/how those observations are produced.
+
+After host-owned observation, `evaluateArchitectureHostAdoption(...)` keeps the coarse C2f-C projection as the base evidence fact and may compose the existing structural refinement, derived graph, invariant evaluation, reviewed-current, and natural-replan context-feedback contracts. Compatible unchanged structural fingerprints may refine coarse `possible-impact` attention down to WATCH without erasing that coarse fact; changed/unresolved structural landmarks remain REVIEW. Derived graph output stays `relationshipClass=derived`, `promotionState=candidate`, `canonicalReviewEligible=false`, and never raises canonical attention. Declared invariant evidence may raise WATCH or REVIEW. A coarse reviewed-current receipt suppresses only the exact repeated coarse review and can never silence newer structural or invariant REVIEW evidence.
+
+The aggregate lifecycle fixes `semanticOwner=mssr`, `canonicalRewriteAllowed=false`, and `advisoryOnly=true`. Aggregate REVIEW reuses C2f-D exact bounded `contextRef` + authority feedback; WATCH causes no forced replan/context load. Unrelated touched refs produce no architecture work, and a shared ref may legitimately produce multiple adoption plans. Native/Codex/OpenCode/Bridge runtime wiring remains separate host-adoption gates, so package parity still cannot be mistaken for lifecycle adoption.
+
 ## Consequences
 
 - architecture impact becomes explicit and reviewable rather than reconstructed from prose;

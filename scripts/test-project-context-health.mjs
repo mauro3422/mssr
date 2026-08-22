@@ -14,6 +14,43 @@ try {
   assert.equal(healthy.manifestStatus, "valid");
   assert.equal(healthy.findings.some((item) => item.code === "missing-manifest"), false);
 
+  const manifestPath = path.join(repo, ".mssr", "project-context.json");
+  const manifest = JSON.parse(await fs.readFile(manifestPath, "utf8"));
+  const initializedMemoryPath = path.join(repo, ".mssr", "PROJECT_MEMORY.md");
+  const initializedMemory = await fs.readFile(initializedMemoryPath, "utf8");
+  await fs.writeFile(
+    initializedMemoryPath,
+    `${initializedMemory.trimEnd()}\n\n## Decision A\n\nKeep A.\n\n## Decision B\n\nKeep B.\n`,
+    "utf8",
+  );
+  manifest.modules.push(
+    {
+      id: "decision-a",
+      kind: "memory",
+      topic: "decision",
+      description: "Decision A.",
+      source: { path: ".mssr/PROJECT_MEMORY.md", sections: ["## Decision A"] },
+      actions: ["maintain"],
+      maxChars: 1000,
+    },
+    {
+      id: "decision-b",
+      kind: "memory",
+      topic: "decision",
+      description: "Decision B.",
+      source: { path: ".mssr/PROJECT_MEMORY.md", sections: ["## Decision B"] },
+      actions: ["maintain"],
+      maxChars: 1000,
+    },
+  );
+  await fs.writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+  const memoryFanout = await auditMssrProjectContextHealth(repo);
+  const memoryFanoutFinding = memoryFanout.findings.find((item) => item.code === "root-backed-memory-fanout");
+  assert.ok(memoryFanoutFinding);
+  assert.equal(memoryFanoutFinding.level, "watch");
+  assert.equal(memoryFanoutFinding.target, ".mssr/PROJECT_MEMORY.md");
+  assert.equal(memoryFanoutFinding.recommendation, "EXTRACT_MEMORY_REFS");
+
   await fs.mkdir(path.join(repo, ".mssr", "knowledge", "design"), { recursive: true });
   await fs.writeFile(path.join(repo, ".mssr", "knowledge", "design", "unindexed.md"), "# Design\n\nNot indexed yet.\n", "utf8");
   const unindexed = await auditMssrProjectContextHealth(repo);

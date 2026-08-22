@@ -3,6 +3,7 @@ import {
   PROJECT_CONTEXT_TOPICS,
   defaultKindForProjectContextTopic,
   projectContextModuleSchema,
+  projectContextRequiredWhenSchema,
   type ProjectContextModule,
 } from "./project-context.js";
 import { mssrKnowledgeRelativePath } from "./project-home.js";
@@ -34,17 +35,19 @@ export const mssrProjectKnowledgeCaptureInputSchema = z.object({
   description: z.string().trim().min(1).max(300).optional(),
   ...selectorFields,
   required: z.boolean().default(false),
+  requiredWhen: projectContextRequiredWhenSchema.optional(),
   priority: z.number().int().min(-100).max(100).default(20),
   maxChars: z.number().int().min(200).max(20_000).optional(),
   exclusiveGroup: z.string().regex(/^[a-z0-9][a-z0-9._-]{1,79}$/).optional(),
 }).strict().superRefine((value, ctx) => {
-  if (value.required && value.exclusiveGroup) {
-    ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Required project knowledge cannot belong to an exclusive group." });
+  if ((value.required || value.requiredWhen) && value.exclusiveGroup) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Required or conditionally required project knowledge cannot belong to an exclusive group." });
   }
   const inferredKind = value.kind ?? defaultKindForProjectContextTopic(value.topic);
-  const hasSelector = [value.stages, value.domains, value.actions, value.artifacts, value.needs, value.signals].some((items) => items.length > 0);
+  const hasSelector = value.requiredWhen !== undefined
+    || [value.stages, value.domains, value.actions, value.artifacts, value.needs, value.signals].some((items) => items.length > 0);
   if (inferredKind === "directive" && !hasSelector) {
-    ctx.addIssue({ code: z.ZodIssueCode.custom, message: "A directive capture requires at least one selector." });
+    ctx.addIssue({ code: z.ZodIssueCode.custom, message: "A directive capture requires at least one selector or requiredWhen applicability rule." });
   }
 });
 
@@ -75,6 +78,7 @@ export function planMssrProjectKnowledgeCapture(input: MssrProjectKnowledgeCaptu
     needs: parsed.needs,
     signals: parsed.signals,
     required: parsed.required,
+    ...(parsed.requiredWhen ? { requiredWhen: parsed.requiredWhen } : {}),
     priority: parsed.priority,
     maxChars: parsed.maxChars ?? Math.max(500, Math.min(20_000, Buffer.byteLength(markdown, "utf8") + 512)),
     ...(parsed.exclusiveGroup ? { exclusiveGroup: parsed.exclusiveGroup } : {}),
@@ -84,6 +88,8 @@ export function planMssrProjectKnowledgeCapture(input: MssrProjectKnowledgeCaptu
     markdown,
     module,
     advisoryOnly: true,
-    policy: "Capture only reviewed durable project knowledge. Never persist a raw conversation, hidden reasoning, secrets, or transient tool output.",
+    policy: kind === "memory"
+      ? "Optional durable memory is reference-backed by default: capture reviewed project knowledge in .mssr/knowledge and index it through the single project-context manifest. Keep PROJECT_MEMORY.md for compact core/cross-area memory. Never persist a raw conversation, hidden reasoning, secrets, or transient tool output."
+      : "Capture only reviewed durable project knowledge. Never persist a raw conversation, hidden reasoning, secrets, or transient tool output.",
   };
 }

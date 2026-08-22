@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import { planMssrProjectContextModularization } from "../dist/index.js";
+import { loadProjectContextModules, planMssrProjectContextModularization } from "../dist/index.js";
 
 const root = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-context-modularization-"));
 try {
@@ -83,6 +83,89 @@ try {
   assert.equal(await fs.readFile(path.join(root, ".mssr", "project-context.json"), "utf8"), beforeManifest);
   const knowledgeEntries = await fs.readdir(path.join(root, ".mssr", "knowledge"));
   assert.deepEqual(knowledgeEntries, []);
+
+  const memoryRepo = path.join(root, "memory-repo");
+  await fs.mkdir(path.join(memoryRepo, ".git"), { recursive: true });
+  await fs.mkdir(path.join(memoryRepo, ".mssr", "knowledge", "decision"), { recursive: true });
+  const memoryA = "## Decision A\n\nKeep A as durable project memory.";
+  const memoryB = "## Decision B\n\nKeep B as durable project memory.";
+  await fs.writeFile(path.join(memoryRepo, ".mssr", "PROJECT_CONTEXT.md"), "# Project Context\n", "utf8");
+  await fs.writeFile(path.join(memoryRepo, ".mssr", "PROJECT_STATE.md"), "# Project State\n", "utf8");
+  await fs.writeFile(path.join(memoryRepo, ".mssr", "PROJECT_MEMORY.md"), `# Project Memory\n\n${memoryA}\n\n${memoryB}\n`, "utf8");
+  const memoryManifest = {
+    schemaVersion: 1,
+    core: [],
+    modules: [
+      {
+        id: "decision-a",
+        kind: "memory",
+        topic: "decision",
+        area: "routing",
+        description: "Decision A.",
+        source: { path: ".mssr/PROJECT_MEMORY.md", sections: ["## Decision A"] },
+        domains: ["coding"],
+        actions: ["maintain"],
+        artifacts: ["project"],
+        priority: 20,
+        maxChars: 1000,
+      },
+      {
+        id: "decision-b",
+        kind: "memory",
+        topic: "decision",
+        area: "routing",
+        description: "Decision B.",
+        source: { path: ".mssr/PROJECT_MEMORY.md", sections: ["## Decision B"] },
+        domains: ["coding"],
+        actions: ["maintain"],
+        artifacts: ["project"],
+        priority: 20,
+        maxChars: 1000,
+      },
+    ],
+  };
+  const memoryManifestPath = path.join(memoryRepo, ".mssr", "project-context.json");
+  await fs.writeFile(memoryManifestPath, `${JSON.stringify(memoryManifest, null, 2)}\n`, "utf8");
+  const intent = {
+    summary: "Maintain project memory refs.",
+    domains: ["coding"],
+    actions: ["maintain"],
+    artifacts: ["project"],
+    needs: [],
+    signals: ["warning-observed"],
+    risk: "write",
+    ambiguity: "low",
+  };
+  const beforeSelection = await loadProjectContextModules({ projectRoot: memoryRepo, intent, stage: "implement", includeCore: false, maxChars: 4000 });
+  const memoryPlan = await planMssrProjectContextModularization(memoryRepo);
+  assert.equal(memoryPlan.status, "watch");
+  assert.equal(memoryPlan.health.findings.some((item) => item.code === "root-backed-memory-fanout"), true);
+  const decisionACandidate = memoryPlan.candidates.find((item) => item.entryId === "decision-a");
+  const decisionBCandidate = memoryPlan.candidates.find((item) => item.entryId === "decision-b");
+  assert.ok(decisionACandidate);
+  assert.ok(decisionBCandidate);
+  assert.equal(decisionACandidate.preserveModuleId, true);
+  assert.equal(decisionACandidate.suggestedModuleId, "decision-a");
+  assert.equal(decisionACandidate.preserveKind, "memory");
+  assert.equal(decisionACandidate.chars < 1000, true);
+  assert.equal(decisionACandidate.suggestedPath, ".mssr/knowledge/decision/decision-a.md");
+
+  for (const candidate of [decisionACandidate, decisionBCandidate]) {
+    const selectedText = candidate.entryId === "decision-a" ? memoryA : memoryB;
+    await fs.writeFile(path.join(memoryRepo, candidate.suggestedPath), `${selectedText}\n`, "utf8");
+    const module = memoryManifest.modules.find((item) => item.id === candidate.entryId);
+    module.source = { path: candidate.suggestedPath };
+  }
+  await fs.writeFile(path.join(memoryRepo, ".mssr", "PROJECT_MEMORY.md"), "# Project Memory\n", "utf8");
+  await fs.writeFile(memoryManifestPath, `${JSON.stringify(memoryManifest, null, 2)}\n`, "utf8");
+
+  const afterSelection = await loadProjectContextModules({ projectRoot: memoryRepo, intent, stage: "implement", includeCore: false, maxChars: 4000 });
+  const beforeById = new Map(beforeSelection.selected.map((item) => [item.id, item.content]));
+  const afterById = new Map(afterSelection.selected.map((item) => [item.id, item.content]));
+  assert.deepEqual([...afterById.keys()].sort(), [...beforeById.keys()].sort());
+  for (const [id, content] of beforeById) assert.equal(afterById.get(id), content);
+  const afterPlan = await planMssrProjectContextModularization(memoryRepo);
+  assert.equal(afterPlan.health.findings.some((item) => item.code === "root-backed-memory-fanout"), false);
 } finally {
   await fs.rm(root, { recursive: true, force: true });
 }

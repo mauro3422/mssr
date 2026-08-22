@@ -36,10 +36,7 @@
       "kind": "memory",
       "description": "Observe-only learning boundary and future activation gates.",
       "source": {
-        "path": ".mssr/PROJECT_MEMORY.md",
-        "sections": [
-          "## Learning activation decision"
-        ]
+        "path": ".mssr/knowledge/decision/mssr-learning-activation-decision.md"
       },
       "domains": [
         "skill-system",
@@ -61,10 +58,7 @@
       "kind": "memory",
       "description": "Versioned changelog and project-knowledge consistency contract.",
       "source": {
-        "path": ".mssr/PROJECT_MEMORY.md",
-        "sections": [
-          "## Change-history contract"
-        ]
+        "path": ".mssr/knowledge/pattern/mssr-change-history-contract.md"
       },
       "actions": [
         "maintain",
@@ -88,10 +82,7 @@
       "kind": "memory",
       "description": "Ownership and review loop for AGENTS, PROJECT_* authorities, skills, references, and drift detectors.",
       "source": {
-        "path": ".mssr/PROJECT_MEMORY.md",
-        "sections": [
-          "## Project knowledge drift review decision"
-        ]
+        "path": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md"
       },
       "domains": [
         "skill-system",
@@ -192,10 +183,7 @@
       "kind": "memory",
       "description": "Decision about MSSR-owned operational skill packaging.",
       "source": {
-        "path": ".mssr/PROJECT_MEMORY.md",
-        "sections": [
-          "## First-party core skill direction"
-        ]
+        "path": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md"
       },
       "domains": [
         "skill-system",
@@ -272,7 +260,7 @@
       "kind": "context",
       "topic": "architecture",
       "area": "core",
-      "description": "Detailed canonical ownership, host boundaries, Context Plane and Operational Notice Plane ownership contracts.",
+      "description": "Compact canonical ownership and host-boundary contract; subsystem release history is indexed separately.",
       "source": {
         "path": ".mssr/knowledge/architecture/canonical-ownership.md"
       },
@@ -300,6 +288,44 @@
       ],
       "priority": 85,
       "maxChars": 5000
+    },
+    {
+      "id": "mssr-context-plane-history",
+      "kind": "memory",
+      "topic": "reference",
+      "area": "project-context",
+      "description": "Release-by-release Context Plane ownership and delivery history for debugging and recovery.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/context-plane-history.md"
+      },
+      "actions": [
+        "debug",
+        "recover"
+      ],
+      "needs": [
+        "history-recovery"
+      ],
+      "priority": 55,
+      "maxChars": 3200
+    },
+    {
+      "id": "mssr-operational-notice-plane-history",
+      "kind": "memory",
+      "topic": "reference",
+      "area": "operations",
+      "description": "Operational Notice Plane ownership and host-delivery evolution for debugging and recovery.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/operational-notice-plane-history.md"
+      },
+      "actions": [
+        "debug",
+        "recover"
+      ],
+      "needs": [
+        "history-recovery"
+      ],
+      "priority": 50,
+      "maxChars": 2200
     },
     {
       "id": "mssr-project-context-plane-architecture",

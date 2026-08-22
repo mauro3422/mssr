@@ -6,6 +6,7 @@ import path from "node:path";
 import {
   createMssrOpenCodePlugin,
   defaultStateRoot,
+  generatePersistableMachineSalt,
   hardenPrivateFile,
   MssrHostCallRetryQueue,
   mssrHostCallEnvelopeSchema,
@@ -15,6 +16,30 @@ import {
 // A high-entropy explicit salt the plugin accepts. Low-entropy fixture salts
 // ("fixture-salt", "retry-salt") are now intentionally rejected as insecure.
 const STRONG_SALT = "7f83b1657ff1fc53b92dc18148a1d65dfa13514eb5d8459d6e6c7b80e2f41b2f";
+
+function assertPrivateFileHardeningOutcome(diagnostics, message) {
+  if (process.platform !== "win32" || diagnostics.length === 0) {
+    assert.deepEqual(diagnostics, [], message);
+    return;
+  }
+  assert.ok(
+    diagnostics.every((diagnostic) => diagnostic.code === "mssr-opencode-windows-acl-unavailable"),
+    `${message}: a policy-restricted Windows host may report only the bounded ACL degradation diagnostic`,
+  );
+}
+
+// Internally generated salts must satisfy the same structural floor that later
+// readers apply. Rejection sampling prevents a rare but valid CSPRNG sample
+// from being persisted, rejected by its creator, and replaced concurrently.
+{
+  const weakButWellShaped = "00".repeat(32);
+  const candidates = [weakButWellShaped, STRONG_SALT];
+  assert.equal(generatePersistableMachineSalt(() => candidates.shift()), STRONG_SALT);
+  assert.throws(
+    () => generatePersistableMachineSalt(() => weakButWellShaped),
+    /could not generate a structurally valid OpenCode metadata salt/i,
+  );
+}
 
 const delay = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 async function waitFor(predicate, timeout = 1_000) {
@@ -212,7 +237,7 @@ try {
   await waitFor(() => saltEvents.length === 1);
 
   const storedSalt = (await fs.readFile(saltPath, "utf8")).trim();
-  assert.deepEqual(saltDiagnostics, [], "ordinary atomic salt creation hardens without a false degradation diagnostic");
+  assertPrivateFileHardeningOutcome(saltDiagnostics, "ordinary atomic salt creation either hardens or reports the bounded Windows ACL degradation");
   assert.equal(storedSalt.length, 64, "machine salt is a 32-byte random hex secret");
   assert.notEqual(storedSalt, "mssr-opencode-host-metadata-v1", "the predictable public default must never be persisted or used");
   const expectedKey = hashSecret(storedSalt, "session", "shared-session-secret");
@@ -231,7 +256,7 @@ try {
     state: { status: "completed", output: "not stored", time: { start: 3, end: 4 } },
   } } } });
   await waitFor(() => saltEventsB.length === 1);
-  assert.deepEqual(saltDiagnosticsB, [], "reloading an already protected salt is idempotent");
+  assertPrivateFileHardeningOutcome(saltDiagnosticsB, "reloading an existing salt remains idempotent under the host ACL policy");
   assert.equal(saltEventsB[0].host.sessionKey, expectedKey, "a second process on the same host correlates via the persisted machine secret");
 
   const emptySaltPath = path.join(saltRoot, "empty-host-metadata-salt.key");
@@ -615,7 +640,7 @@ if (process.platform === "win32") {
     await hardenPrivateFile(aclFile, (diagnostic) => aclDiagnostics.push(diagnostic));
     await hardenPrivateFile(aclFile, (diagnostic) => aclDiagnostics.push(diagnostic));
     assert.equal((await fs.readFile(aclFile, "utf8")).trim(), secret, "ACL hardening does not alter the secret content");
-    assert.deepEqual(aclDiagnostics, [], "hardening a normal or already protected file is idempotent");
+    assertPrivateFileHardeningOutcome(aclDiagnostics, "hardening a normal or already protected file is idempotent or explicitly degraded by host policy");
 
     const failDiagnostics = [];
     await hardenPrivateFile(path.join(aclRoot, "does-not-exist.key"), (diagnostic) => failDiagnostics.push(diagnostic));

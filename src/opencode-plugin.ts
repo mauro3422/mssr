@@ -182,6 +182,26 @@ const explicitSaltIsStructurallyStrong = (salt: string): boolean => {
   return counts.size >= 12 && entropyPerNibble >= 3.5 && !periodic;
 };
 
+/**
+ * Machine-local salts are CSPRNG-generated, but the persisted format is also
+ * guarded by the structural validator used on later reads. A cryptographically
+ * random 32-byte sample can rarely fail that statistical floor by chance; if we
+ * persisted such a sample, one process would reject its own write and degrade
+ * to an ephemeral salt while a concurrent process healed the file with another
+ * value, breaking host correlation. Rejection-sample before persistence so
+ * every internally generated durable salt satisfies the contract it will later
+ * be read under.
+ */
+export function generatePersistableMachineSalt(
+  candidateSource: () => string = () => randomBytes(32).toString("hex"),
+): string {
+  for (let attempt = 0; attempt < 64; attempt += 1) {
+    const candidate = candidateSource();
+    if (explicitSaltIsStructurallyStrong(candidate)) return candidate;
+  }
+  throw new Error("MSSR could not generate a structurally valid OpenCode metadata salt.");
+}
+
 async function syncDirectory(directory: string): Promise<void> {
   if (process.platform === "win32") return;
   const handle = await fs.open(directory, "r");
@@ -279,7 +299,6 @@ async function loadOrCreateSalt(
   saltPath: string,
   onDiagnostic: OpenCodePluginOptions["onDiagnostic"],
 ): Promise<string> {
-  const fresh = randomBytes(32).toString("hex");
   let persisted = "";
   await withMetadataLock(saltPath, async () => {
     const existing = await fs.readFile(saltPath, "utf8").catch(() => "");
@@ -288,7 +307,10 @@ async function loadOrCreateSalt(
       await hardenPrivateFile(saltPath, onDiagnostic);
       return;
     }
-    // An empty/partial file is healed under the lock.
+    // An empty/partial file is healed under the lock. Generate only when a
+    // durable replacement is actually needed, and ensure the replacement
+    // already satisfies the validator used by every later process.
+    const fresh = generatePersistableMachineSalt();
     await writePrivateFileAtomic(saltPath, fresh, onDiagnostic);
     const written = (await fs.readFile(saltPath, "utf8")).trim();
     if (!explicitSaltIsStructurallyStrong(written)) {
@@ -310,7 +332,7 @@ export async function rotateMachineSalt(
   saltPath: string,
   onDiagnostic: OpenCodePluginOptions["onDiagnostic"] = undefined,
 ): Promise<string> {
-  const fresh = randomBytes(32).toString("hex");
+  const fresh = generatePersistableMachineSalt();
   let rotated = "";
   await withMetadataLock(saltPath, async () => {
     const existing = await fs.readFile(saltPath, "utf8").catch(() => "");

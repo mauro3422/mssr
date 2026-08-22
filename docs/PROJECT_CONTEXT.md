@@ -6,9 +6,9 @@ MSSR treats project knowledge as a separate retrieval layer from reusable skills
 
 1. `AGENTS.md` or `AGENTS.override.md`: repository-level instructions intended to apply broadly.
 2. `.mssr/PROJECT_CONTEXT.md`: compact stable facts such as project identity, architecture, vocabulary, ownership, canonical paths, and invariants.
-3. `.mssr/PROJECT_MEMORY.md`: compact durable decisions and lessons that remain useful across sessions but are not automatically instructions.
+3. `.mssr/PROJECT_MEMORY.md`: compact **core/cross-area** durable decisions and lessons that remain useful across sessions but are not automatically instructions. It is not the default container for every optional memory module.
 4. `.mssr/PROJECT_STATE.md`: compact mutable current state such as active phase, blockers, handoffs, and current versions.
-5. `.mssr/knowledge/<topic>/*.md`: situational project-local knowledge selected through the manifest when the control-plane authorities would otherwise grow or become task-specific.
+5. `.mssr/knowledge/<topic>/*.md`: selector-backed project-local knowledge. Optional `kind: "memory"` belongs here by default, with `.mssr/project-context.json` preserving its id/kind/topic/area/selectors; context/state detail uses the same layout when it is situational or would bloat the control-plane authorities.
 6. Manifest modules with `kind: "directive"`: small project-specific instructions that apply only when their structured selectors match the current MSSR intent and stage.
 7. `.mssr/runtime/`: ephemeral inbox/receipt/cache state; it is never project authority and is Git-ignored as a directory.
 
@@ -123,7 +123,13 @@ When PROJECT_* starts mixing unrelated areas or large situational detail, keep t
     context-inbox.json         # ephemeral
 ```
 
-`Project Context Health` is advisory and reports structural debt such as missing/invalid initialization, oversized PROJECT_* authorities, oversized or whole-file modules, too many modules, missing module sources, unindexed knowledge files, or active MSSR artifacts under `.bridge/`. Typical levels are `ok`, `watch`, and `review`. `watch` should not interrupt normal work; `review` is a maintenance/replan signal.
+`Project Context Health` is advisory and reports structural debt such as missing/invalid initialization, oversized PROJECT_* authorities, oversized or whole-file modules, too many modules, missing module sources, unindexed knowledge files, or active MSSR artifacts under `.bridge/`. It also detects **root-backed memory fanout** before raw file-size pressure: once two or more optional `kind: "memory"` modules use sections of `.mssr/PROJECT_MEMORY.md`, semantic selection may still be efficient but the physical authority has become a growing module container. That is a `WATCH`/`EXTRACT_MEMORY_REFS` condition; very high fanout may escalate to `REVIEW`. Typical levels are `ok`, `watch`, and `review`. `watch` should not interrupt unrelated work; `review` is a maintenance/replan signal.
+
+### Reference-backed memory invariant
+
+Project memory uses the same high-level **core + manifest + references** shape as modular skills, while remaining a separate project authority. `PROJECT_MEMORY.md` holds only compact cross-area decisions/lessons that genuinely deserve root authority. An optional memory selected by intent/stage should normally be a standalone `.mssr/knowledge/<topic>/<id>.md` source registered under the existing `.mssr/project-context.json`; MSSR does not introduce `memory-modules.json` or a second selector.
+
+Migrating an already-indexed root memory is a storage move, not a semantic routing change. For a single-section optional module, preserve its module `id`, `kind`, `topic`, `area`, selectors, priority/required metadata and materialized Markdown bytes; change only the physical source path and remove the exact old root section after destination+manifest verification. A module that intentionally indexes multiple sections should be moved as one logical module unless a reviewed semantic split is desired. Core memory is different: extracting it requires an explicit decision about which minimum cross-area invariant remains always loaded.
 
 ### Initialization and canonical-only cutover
 
@@ -234,7 +240,8 @@ Hosts may set `contextIncludeCore: false` on a route/bootstrap phase replan **on
 
 When persisting project knowledge:
 
-- keep PROJECT_* compact: stable cross-area facts in `.mssr/PROJECT_CONTEXT.md`, durable cross-area decisions/lessons in `.mssr/PROJECT_MEMORY.md`, and mutable cross-area status in `.mssr/PROJECT_STATE.md`;
+- keep PROJECT_* compact: stable cross-area facts in `.mssr/PROJECT_CONTEXT.md`, only durable **cross-area/core** decisions/lessons in `.mssr/PROJECT_MEMORY.md`, and mutable cross-area status in `.mssr/PROJECT_STATE.md`;
+- for a new optional memory, prefer `planMssrProjectKnowledgeCapture` / a host `project_context_capture`-style transaction so it is born reference-backed in `.mssr/knowledge/<topic>/`; do not create another selectable root-memory section merely because `source.sections` can technically bound it;
 - move cohesive situational detail into `.mssr/knowledge/<topic>/` and register it in `.mssr/project-context.json` instead of extending PROJECT_* indefinitely;
 - use semantic `topic` and optional `area` so design, laws, patterns, vocabulary, decisions, state/phases, references, and operations can be retrieved independently;
 - replace or curate superseded mutable state instead of accumulating stale chronology in an active state module;
@@ -249,9 +256,9 @@ Maintenance may detect stale references, duplicate decisions, contradictory stat
 
 ## Safe update contract
 
-Hosts that expose a project-memory writer should prefer **stable-section upsert** over free-form append. A durable update identifies the physical knowledge kind (`context`, `memory`, or `state`) plus one exact Markdown heading, replaces only that section, and verifies the resulting bytes/hash. When the caller already read the target, an `expectedSha256` precondition should fail closed on concurrent change instead of silently replacing newer project knowledge.
+Hosts that expose a project-authority writer should prefer **stable-section upsert** over free-form append for deliberate edits to root/core authorities. A durable update identifies the physical knowledge kind (`context`, `memory`, or `state`) plus one exact Markdown heading, replaces only that section, and verifies the resulting bytes/hash. When the caller already read the target, an `expectedSha256` precondition should fail closed on concurrent change instead of silently replacing newer project knowledge. This root-section writer is not the preferred creation path for a new optional memory; reference-backed capture is.
 
-If the same operation registers the section in `.mssr/project-context.json`, the Markdown update and manifest update should be treated as one bounded transaction: validate the module before writing, derive its source path/section rather than accepting an arbitrary source override, preserve a single module id on update, verify both outputs, and restore the previous pair when a write fails. Registering `kind: "directive"` makes the section *selectable*; it does not make the instruction globally active.
+If a root update deliberately registers a section in `.mssr/project-context.json`, the Markdown update and manifest update should be treated as one bounded transaction: validate the module before writing, derive its source path/section rather than accepting an arbitrary source override, preserve a single module id on update, verify both outputs, and restore the previous pair when a write fails. Project Context Health may then report `root-backed-memory-fanout`; hosts should route that advisory to reference-backed capture/modularization rather than silently increasing the root. Registering `kind: "directive"` makes the section *selectable*; it does not make the instruction globally active.
 
 MSSR exports pure `upsertMarkdownSection` and `upsertProjectContextManifestModule` helpers plus `planMssrProjectKnowledgeCapture`. The capture planner normalizes a reviewed durable statement into a deterministic `.mssr/knowledge/<topic>/<id>.md` target and validated manifest module; the host still owns the explicit filesystem transaction, conflict checks, and verification. No helper persists raw conversation text automatically.
 

@@ -284,7 +284,9 @@ export class MssrAdapter implements MssrProjectControlAdapter {
       const routed = routedByName.get(name);
       return skill?.path && routed ? [{
         skill,
-        required: selectionMode === "host-gated" ? true : routed.required === true,
+        // Host acceptance makes an optional root eligible, not a new workflow
+        // obligation. The portable page contract preserves that distinction.
+        obligation: routed.required === true ? "required" as const : "accepted" as const,
         routeIndex,
         routeScore: Number(routed.score ?? 0),
       }] : [];
@@ -296,6 +298,7 @@ export class MssrAdapter implements MssrProjectControlAdapter {
       mode: input.contentMode ?? "selective",
       references: input.includeReferences ?? "auto",
       maxContextChars: Math.min(100_000, Math.max(4_000, Math.floor(input.maxContextChars ?? 24_000))),
+      ...(input.contextCursor ? { cursor: input.contextCursor } : {}),
     });
     const contextByName = new Map(contextPlan.skills.map((item) => [item.skill.name, item]));
 

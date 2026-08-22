@@ -63,12 +63,19 @@ export type BuildArchitectureContextFeedbackArgs = Readonly<{
   architectureManifest: ArchitectureImpactManifest;
   projection: ArchitectureImpactProjection;
   projectContextManifest: ProjectContextManifest;
+  architectureLevelOverride?: "ok" | "review";
+  additionalReasonCodes?: readonly string[];
 }>;
 
-function requestReasonCodes(projection: ArchitectureImpactProjection, reasonCode?: string): string[] {
+function requestReasonCodes(
+  projection: ArchitectureImpactProjection,
+  reasonCode?: string,
+  additionalReasonCodes: readonly string[] = [],
+): string[] {
   return [...new Set([
     "architecture-review-active",
     ...projection.reasonCodes,
+    ...additionalReasonCodes,
     ...(reasonCode ? [reasonCode] : []),
   ])].sort().slice(0, 20);
 }
@@ -91,17 +98,19 @@ export function buildArchitectureContextFeedback(
   );
   const projection = architectureImpactProjectionSchema.parse(args.projection);
   const projectContextManifest = projectContextManifestSchema.parse(args.projectContextManifest);
+  const architectureLevel = args.architectureLevelOverride ?? projection.level;
+  const additionalReasonCodes = args.additionalReasonCodes ?? [];
   const architecture = architectureManifest.architectures.find((entry) => entry.architectureId === projection.architectureId);
   if (!architecture) {
     throw new Error(`Architecture context feedback references unknown architectureId: ${projection.architectureId}`);
   }
 
-  if (projection.level === "ok") {
+  if (architectureLevel === "ok") {
     return architectureContextFeedbackSchema.parse({
       schemaVersion: MSSR_ARCHITECTURE_CONTEXT_FEEDBACK_SCHEMA_VERSION,
       architectureId: projection.architectureId,
       architectureStatus: projection.status,
-      architectureLevel: projection.level,
+      architectureLevel,
       trigger: "natural-replan",
       requests: [],
       replanOnly: true,
@@ -132,7 +141,7 @@ export function buildArchitectureContextFeedback(
         priority: 90,
         required: false,
         entry: resolvedContext.entry,
-        reasonCodes: requestReasonCodes(projection, resolvedContext.reasonCode),
+        reasonCodes: requestReasonCodes(projection, resolvedContext.reasonCode, additionalReasonCodes),
         advisoryOnly: true,
       }),
     });
@@ -151,7 +160,7 @@ export function buildArchitectureContextFeedback(
       priority: 90,
       required: false,
       ...(resolvedAuthority.entry ? { entry: resolvedAuthority.entry } : {}),
-      reasonCodes: requestReasonCodes(projection, resolvedAuthority.reasonCode),
+      reasonCodes: requestReasonCodes(projection, resolvedAuthority.reasonCode, additionalReasonCodes),
       advisoryOnly: true,
     }),
   });
@@ -160,7 +169,7 @@ export function buildArchitectureContextFeedback(
     schemaVersion: MSSR_ARCHITECTURE_CONTEXT_FEEDBACK_SCHEMA_VERSION,
     architectureId: projection.architectureId,
     architectureStatus: projection.status,
-    architectureLevel: projection.level,
+    architectureLevel,
     trigger: "natural-replan",
     requests,
     replanOnly: true,

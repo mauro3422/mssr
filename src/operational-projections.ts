@@ -4,6 +4,7 @@ import type { MssrProjectKnowledgeMaintenanceResult } from "./project-knowledge-
 import {
   evaluateMssrRouteClosureObligations,
   hasFreshMaintenanceClose,
+  objectiveClosurePhases,
   type MssrTraceLifecycleState,
 } from "./trace-contract.js";
 
@@ -396,7 +397,7 @@ export function evaluateMssrRoutingComplianceOperationalAttention(
 ): MssrRoutingComplianceOperationalProjection {
   const missingSkills = missingValues(observation.requiredSkills, observation.loadedSkills);
   const missingPhases = observation.boundary === "outcome"
-    ? missingValues(observation.requiredPhases, observation.completedPhases)
+    ? missingValues(objectiveClosurePhases(observation.requiredPhases), observation.completedPhases)
     : [];
   const reasonCodes: string[] = [];
   const recommendedActions = new Set<MssrRoutingComplianceAction>();
@@ -490,4 +491,201 @@ export function evaluateMssrRoutingComplianceOperationalAttention(
     notifyOnWatch: false,
     advisoryOnly: true,
   };
+}
+
+
+export type MssrToolFrictionSeverity = "warning" | "error";
+export type MssrToolFrictionAction =
+  | "inspect-tool-contract"
+  | "inspect-tool-guidance"
+  | "route-maintenance-review";
+
+/**
+ * Host-observed, privacy-bounded failure evidence. `signature` must be a stable,
+ * sanitized classification such as `schema:timeoutMs:maximum`; never pass a raw
+ * prompt, argument payload, stack trace, token, path containing secrets, or full
+ * error message. Hosts own observation; portable MSSR owns clustering/priority.
+ */
+export type MssrToolFrictionObservation = Readonly<{
+  toolName: string;
+  signature: string;
+  observedAt: string;
+  workflowKey?: string;
+  traceId?: string;
+  severity?: MssrToolFrictionSeverity;
+}>;
+
+export type MssrToolFrictionEvaluationOptions = Readonly<{
+  evaluatedAt: string;
+  maxGroups?: number;
+}>;
+
+export type MssrToolFrictionOperationalProjection = MssrOperationalProjection & Readonly<{
+  toolName: string;
+  signature: string;
+  occurrenceCount: number;
+  distinctWorkflowCount: number;
+  distinctTraceCount: number;
+  latestObservedAt: string;
+  ageHours: number;
+  severity: MssrToolFrictionSeverity;
+  priorityScore: number;
+  signal: "error-observed" | "warning-observed" | "repeated-friction";
+  reasonCodes: readonly string[];
+  recommendedActions: readonly MssrToolFrictionAction[];
+  recommendedOwner: "skill-maintenance-loop";
+}>;
+
+type ToolFrictionGroup = {
+  toolName: string;
+  signature: string;
+  occurrences: number;
+  workflows: Set<string>;
+  traces: Set<string>;
+  latestObservedAtMs: number;
+  severity: MssrToolFrictionSeverity;
+};
+
+function normalizeBoundedOperationalToken(value: string, maxLength: number): string {
+  return value.trim().replace(/\s+/g, " ").slice(0, maxLength);
+}
+
+function parseOperationalTimestamp(value: string, field: string): number {
+  const parsed = Date.parse(value);
+  if (!Number.isFinite(parsed)) throw new RangeError(`${field} must be a valid timestamp`);
+  return parsed;
+}
+
+function frictionLevelRank(level: MssrOperationalNoticeLevel): number {
+  if (level === "error") return 3;
+  if (level === "review") return 2;
+  if (level === "watch") return 1;
+  return 0;
+}
+
+/**
+ * Cluster repeated host-observed tool failures by stable tool+signature identity
+ * and rank maintenance attention by recurrence, workflow breadth, recency and
+ * severity. The projection is advisory only: it never rewrites a tool, skill or
+ * routing contract and deliberately stays separate from routing-quality scores.
+ */
+export function evaluateMssrToolFrictionOperationalAttention(
+  observations: readonly MssrToolFrictionObservation[],
+  options: MssrToolFrictionEvaluationOptions,
+): readonly MssrToolFrictionOperationalProjection[] {
+  const evaluatedAtMs = parseOperationalTimestamp(options.evaluatedAt, "evaluatedAt");
+  const maxGroups = options.maxGroups ?? 50;
+  if (!Number.isInteger(maxGroups) || maxGroups < 1 || maxGroups > 200) {
+    throw new RangeError("maxGroups must be an integer between 1 and 200");
+  }
+
+  const groups = new Map<string, ToolFrictionGroup>();
+  for (const observation of observations) {
+    const toolName = normalizeBoundedOperationalToken(observation.toolName, 160);
+    const signature = normalizeBoundedOperationalToken(observation.signature, 240);
+    if (!toolName || !signature) continue;
+
+    const observedAtMs = parseOperationalTimestamp(observation.observedAt, "observedAt");
+    const key = `${toolName.toLowerCase()}\u0000${signature.toLowerCase()}`;
+    const existing = groups.get(key);
+    const severity = observation.severity ?? "error";
+    const workflowKey = normalizeBoundedOperationalToken(observation.workflowKey ?? "", 128);
+    const traceId = normalizeBoundedOperationalToken(observation.traceId ?? "", 128);
+
+    if (!existing) {
+      groups.set(key, {
+        toolName,
+        signature,
+        occurrences: 1,
+        workflows: new Set(workflowKey ? [workflowKey] : []),
+        traces: new Set(traceId ? [traceId] : []),
+        latestObservedAtMs: observedAtMs,
+        severity,
+      });
+      continue;
+    }
+
+    existing.occurrences += 1;
+    if (workflowKey) existing.workflows.add(workflowKey);
+    if (traceId) existing.traces.add(traceId);
+    existing.latestObservedAtMs = Math.max(existing.latestObservedAtMs, observedAtMs);
+    if (severity === "error") existing.severity = "error";
+  }
+
+  const projections = [...groups.values()].map((group): MssrToolFrictionOperationalProjection => {
+    const occurrenceCount = group.occurrences;
+    const distinctWorkflowCount = group.workflows.size;
+    const distinctTraceCount = group.traces.size;
+    const ageHours = Math.max(0, (evaluatedAtMs - group.latestObservedAtMs) / 3_600_000);
+
+    const recurrencePoints = occurrenceCount >= 25 ? 4 : occurrenceCount >= 10 ? 3 : occurrenceCount >= 3 ? 2 : occurrenceCount >= 2 ? 1 : 0;
+    const breadthPoints = distinctWorkflowCount >= 5 ? 3 : distinctWorkflowCount >= 2 ? 2 : distinctWorkflowCount >= 1 ? 1 : 0;
+    const recencyPoints = ageHours <= 24 ? 2 : ageHours <= 168 ? 1 : 0;
+    const severityPoints = group.severity === "error" ? 2 : 1;
+    const priorityScore = Math.round(((recurrencePoints + breadthPoints + recencyPoints + severityPoints) / 11) * 100);
+
+    const level: MssrOperationalNoticeLevel =
+      (occurrenceCount >= 25 && priorityScore >= 73)
+        || (occurrenceCount >= 10 && distinctWorkflowCount >= 2 && priorityScore >= 82)
+        ? "error"
+        : (occurrenceCount >= 3 && priorityScore >= 55)
+          || (occurrenceCount >= 2 && distinctWorkflowCount >= 2 && priorityScore >= 55)
+          ? "review"
+          : "watch";
+
+    const reasonCodes: string[] = [];
+    if (occurrenceCount >= 2) reasonCodes.push("repeated-signature");
+    if (occurrenceCount >= 10) reasonCodes.push("high-recurrence");
+    if (distinctWorkflowCount >= 2) reasonCodes.push("cross-workflow");
+    if (ageHours <= 24) reasonCodes.push("recent-friction");
+    if (group.severity === "error") reasonCodes.push("error-severity");
+    const sortedReasons = reasonCodes.sort();
+
+    const recommendedActions = new Set<MssrToolFrictionAction>();
+    recommendedActions.add("inspect-tool-contract");
+    if (occurrenceCount >= 2) recommendedActions.add("inspect-tool-guidance");
+    if (level === "review" || level === "error") recommendedActions.add("route-maintenance-review");
+    const sortedActions = [...recommendedActions].sort();
+    const signal = occurrenceCount >= 2
+      ? "repeated-friction"
+      : group.severity === "error" ? "error-observed" : "warning-observed";
+    const latestObservedAt = new Date(group.latestObservedAtMs).toISOString();
+
+    return {
+      level,
+      fingerprint: buildMssrOperationalFingerprint([
+        `tool:${group.toolName.toLowerCase()}`,
+        `signature:${group.signature.toLowerCase()}`,
+        `occurrences:${occurrenceCount}`,
+        `workflows:${distinctWorkflowCount}`,
+        `traces:${distinctTraceCount}`,
+        `latest:${latestObservedAt}`,
+        `severity:${group.severity}`,
+        `priority:${priorityScore}`,
+        `reasons:${sortedReasons.join(",")}`,
+      ]),
+      toolName: group.toolName,
+      signature: group.signature,
+      occurrenceCount,
+      distinctWorkflowCount,
+      distinctTraceCount,
+      latestObservedAt,
+      ageHours: Math.round(ageHours * 100) / 100,
+      severity: group.severity,
+      priorityScore,
+      signal,
+      reasonCodes: sortedReasons,
+      recommendedActions: sortedActions,
+      recommendedOwner: "skill-maintenance-loop",
+      advisoryOnly: true,
+    };
+  });
+
+  return projections
+    .sort((left, right) => frictionLevelRank(right.level) - frictionLevelRank(left.level)
+      || right.priorityScore - left.priorityScore
+      || right.occurrenceCount - left.occurrenceCount
+      || left.toolName.localeCompare(right.toolName)
+      || left.signature.localeCompare(right.signature))
+    .slice(0, maxGroups);
 }

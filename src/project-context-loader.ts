@@ -189,6 +189,7 @@ export async function loadProjectContextModules(args: LoadProjectContextModulesA
   const proxies: MaterializedProjectContextModule[] = manifest.modules.map((module) => ({ ...module, chars: 0 }));
   const eligibility = selectProjectContextModules({ modules: proxies, intent: args.intent, stage: args.stage, maxModuleChars: Number.MAX_SAFE_INTEGER });
   const eligibleIds = new Set(eligibility.selected.map((module) => module.id));
+  const effectiveRequiredIds = new Set(eligibility.requiredIds);
   const materialized: MaterializedProjectContextModule[] = [];
   const records = new Map<string, ProjectContextContentRecord>();
   for (const module of manifest.modules) {
@@ -196,10 +197,10 @@ export async function loadProjectContextModules(args: LoadProjectContextModulesA
     const record = await loadModule(args.projectRoot, module);
     records.set(module.id, record);
     materialized.push({ ...module, chars: record.bytes });
-    if (module.required && record.bytes > HARD_MAX_CHARS) requiredOverflow.add(module.id);
+    if (effectiveRequiredIds.has(module.id) && record.bytes > HARD_MAX_CHARS) requiredOverflow.add(module.id);
   }
 
-  const requiredChars = materialized.filter((module) => module.required).reduce((sum, module) => sum + module.chars, 0);
+  const requiredChars = materialized.filter((module) => effectiveRequiredIds.has(module.id)).reduce((sum, module) => sum + module.chars, 0);
   const moduleBudget = Math.max(0, budgetChars - coreBytes);
   const finalSelection = selectProjectContextModules({
     modules: materialized,
@@ -210,13 +211,20 @@ export async function loadProjectContextModules(args: LoadProjectContextModulesA
   const selectedIds = new Set(finalSelection.selected.slice(0, budgetModules).map((module) => module.id));
   const selected = finalSelection.selected.slice(0, budgetModules).map((module) => records.get(module.id)!).filter(Boolean);
   const requiredBudgetExceeded = requiredChars > moduleBudget
-    ? materialized.filter((module) => module.required).map((module) => module.id)
-    : materialized.filter((module) => module.required && !selectedIds.has(module.id)).map((module) => module.id);
+    ? materialized.filter((module) => effectiveRequiredIds.has(module.id)).map((module) => module.id)
+    : materialized.filter((module) => effectiveRequiredIds.has(module.id) && !selectedIds.has(module.id)).map((module) => module.id);
 
   const eligibilityById = new Map(eligibility.decisions.map((decision) => [decision.id, decision]));
   const finalById = new Map(finalSelection.decisions.map((decision) => [decision.id, decision]));
   const decisions = manifest.modules.map((module) => finalById.get(module.id) ?? eligibilityById.get(module.id) ?? {
-    id: module.id, selected: false, score: 0, chars: 0, reason: "intent-mismatch" as const, matched: [],
+    id: module.id,
+    selected: false,
+    score: 0,
+    chars: 0,
+    reason: "intent-mismatch" as const,
+    matched: [],
+    required: false,
+    requiredBy: [],
   }).map((decision) => selectedIds.has(decision.id) ? { ...decision, selected: true, reason: "selected" as const } : decision);
 
   return {

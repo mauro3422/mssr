@@ -37,6 +37,8 @@ export const mssrHostRouteInputSchema = z.object({
   contentMode: z.enum(MSSR_SKILL_CONTEXT_MODES).optional(),
   includeReferences: z.enum(MSSR_REFERENCE_MODES).optional(),
   maxContextChars: z.number().int().min(4000).max(100000).optional(),
+  /** Opaque portable cursor returned by a partial skill-context page. */
+  contextCursor: z.string().min(16).max(2048).optional(),
   traceId: z.string().min(6).max(128).optional(),
   workflowKey: z.string().min(1).max(160).optional(),
   model: z.string().min(1).max(80).optional(),

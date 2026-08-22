@@ -60,6 +60,95 @@ assert.deepEqual(selection.selected.map((module) => module.id), ["write-safety"]
 assert.equal(selection.decisions.find((item) => item.id === "roblox-state")?.reason, "intent-mismatch");
 assert.equal(selection.selected[0].kind, "directive");
 
+const criticalManifest = projectContextManifestSchema.parse({
+  schemaVersion: 1,
+  modules: [{
+    id: "critical-utf8-runtime",
+    kind: "directive",
+    description: "UTF-8/runtime payload invariant that must survive narrow semantic routing.",
+    source: { path: ".mssr/PROJECT_MEMORY.md", sections: ["## UTF-8 runtime invariant"] },
+    domains: ["other"],
+    actions: ["review"],
+    requiredWhen: { mutation: true, artifacts: ["code"] },
+    priority: -50,
+  }],
+});
+const mutationIntent = structuredSkillIntentSchema.parse({
+  domains: ["coding"],
+  actions: ["edit"],
+  artifacts: ["code"],
+  needs: [],
+  signals: ["nominal"],
+  risk: "write",
+});
+const criticalMutation = selectProjectContextModules({
+  modules: criticalManifest.modules.map((module) => ({ ...module, chars: 300 })),
+  intent: mutationIntent,
+  stage: "implement",
+  maxModuleChars: 1000,
+});
+assert.deepEqual(criticalMutation.selected.map((module) => module.id), ["critical-utf8-runtime"]);
+assert.deepEqual(criticalMutation.requiredIds, ["critical-utf8-runtime"]);
+assert.equal(criticalMutation.decisions[0].required, true);
+assert.deepEqual(criticalMutation.decisions[0].requiredBy, ["mutation", "artifact:code"]);
+
+const readOnlyCritical = selectProjectContextModules({
+  modules: criticalManifest.modules.map((module) => ({ ...module, chars: 300 })),
+  intent: structuredSkillIntentSchema.parse({
+    domains: ["coding"], actions: ["review"], artifacts: ["code"], needs: [], signals: ["nominal"], risk: "read-only",
+  }),
+  stage: "implement",
+  maxModuleChars: 1000,
+});
+assert.deepEqual(readOnlyCritical.selected, []);
+assert.equal(readOnlyCritical.decisions[0].required, false);
+assert.equal(readOnlyCritical.decisions[0].reason, "intent-mismatch");
+
+const wrongArtifactCritical = selectProjectContextModules({
+  modules: criticalManifest.modules.map((module) => ({ ...module, chars: 300 })),
+  intent: structuredSkillIntentSchema.parse({
+    domains: ["coding"], actions: ["edit"], artifacts: ["document"], needs: [], signals: ["nominal"], risk: "write",
+  }),
+  stage: "implement",
+  maxModuleChars: 1000,
+});
+assert.deepEqual(wrongArtifactCritical.selected, []);
+assert.equal(wrongArtifactCritical.decisions[0].required, false);
+
+const stagedCriticalManifest = projectContextManifestSchema.parse({
+  schemaVersion: 1,
+  modules: [{
+    id: "critical-utf8-close-only",
+    kind: "directive",
+    description: "Mutation rule scoped to close only.",
+    source: { path: ".mssr/PROJECT_MEMORY.md", sections: ["## UTF-8 runtime invariant"] },
+    stages: ["close"],
+    requiredWhen: { mutation: true, artifacts: ["code"] },
+  }],
+});
+const wrongStageCritical = selectProjectContextModules({
+  modules: stagedCriticalManifest.modules.map((module) => ({ ...module, chars: 300 })),
+  intent: mutationIntent,
+  stage: "implement",
+  maxModuleChars: 1000,
+});
+assert.deepEqual(wrongStageCritical.requiredIds, []);
+assert.equal(wrongStageCritical.decisions[0].required, false);
+assert.equal(wrongStageCritical.decisions[0].reason, "stage-mismatch");
+
+const invalidConditionalExclusive = projectContextManifestSchema.safeParse({
+  schemaVersion: 1,
+  modules: [{
+    id: "invalid-conditional-exclusive",
+    kind: "directive",
+    description: "Invalid conditional/exclusive combination.",
+    source: { path: "rule.md" },
+    requiredWhen: { mutation: true },
+    exclusiveGroup: "alternatives",
+  }],
+});
+assert.equal(invalidConditionalExclusive.success, false);
+
 const duplicate = projectContextManifestSchema.safeParse({
   schemaVersion: 1,
   core: [{ id: "same-id", kind: "context", description: "core", source: { path: "a.md" } }],

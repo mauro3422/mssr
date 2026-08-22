@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mauroprime.local/mssr/architecture-host-adoption.schema.json",
+  "title": "MSSR Architecture Impact Host Adoption v2",
+  "$defs": {
+    "planItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "touch", "observationPlan", "optionalEvidence", "semanticOwner", "hostOwnsObservation", "advisoryOnly"],
+      "properties": {
+        "schemaVersion": { "const": 2 },
+        "touch": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["architectureId", "authorityRef", "matchedRefs"],
+          "properties": {
+            "architectureId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{1,79}$" },
+            "authorityRef": { "type": "string", "minLength": 1 },
+            "contextRef": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{1,79}$" },
+            "matchedRefs": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["ref", "role"],
+                "properties": {
+                  "ref": { "type": "string", "minLength": 1 },
+                  "role": { "enum": ["authority", "impact"] }
+                }
+              }
+            }
+          }
+        },
+        "observationPlan": { "type": "object" },
+        "optionalEvidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["structural", "derivedGraph", "invariants", "analyzersRequired"],
+          "properties": {
+            "structural": {
+              "type": ["object", "null"],
+              "additionalProperties": false,
+              "required": ["authorityAnchors", "symbolAnalysisPlans"],
+              "properties": {
+                "authorityAnchors": { "type": "array", "items": { "type": "string" } },
+                "symbolAnalysisPlans": { "type": "array", "items": { "type": "object" } }
+              }
+            },
+            "derivedGraph": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["optional", "relationshipClass", "canonicalReviewEligible"],
+              "properties": {
+                "optional": { "const": true },
+                "relationshipClass": { "const": "derived" },
+                "canonicalReviewEligible": { "const": false }
+              }
+            },
+            "invariants": {
+              "type": ["object", "null"],
+              "additionalProperties": false,
+              "required": ["rules"],
+              "properties": {
+                "rules": { "type": "array", "items": { "type": "object" } }
+              }
+            },
+            "analyzersRequired": { "const": false }
+          }
+        },
+        "semanticOwner": { "const": "mssr" },
+        "hostOwnsObservation": { "const": true },
+        "advisoryOnly": { "const": true }
+      }
+    },
+    "evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "architectureId", "projection", "reviewedCurrent", "structuralRefinement", "derivedGraph", "invariants", "attentionLevel", "reviewRequired", "replanRequired", "contextFeedback", "semanticOwner", "canonicalRewriteAllowed", "advisoryOnly"],
+      "properties": {
+        "schemaVersion": { "const": 2 },
+        "architectureId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{1,79}$" },
+        "projection": { "type": "object" },
+        "reviewedCurrent": { "type": "object" },
+        "structuralRefinement": { "type": ["object", "null"] },
+        "derivedGraph": { "type": ["object", "null"] },
+        "invariants": { "type": "array", "items": { "type": "object" } },
+        "attentionLevel": { "enum": ["ok", "watch", "review"] },
+        "reviewRequired": { "type": "boolean" },
+        "replanRequired": { "type": "boolean" },
+        "contextFeedback": { "type": ["object", "null"] },
+        "semanticOwner": { "const": "mssr" },
+        "canonicalRewriteAllowed": { "const": false },
+        "advisoryOnly": { "const": true }
+      }
+    }
+  }
+}
