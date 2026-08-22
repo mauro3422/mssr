@@ -4,6 +4,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.57](0.2.57.md) - Skill-context cursors preserve selection integrity while allowing each continuation page to use the host envelope space actually available.
 - [0.2.56](0.2.56.md) - Context-message budgets use measured serialized bytes as a floor, preventing optimistic hints from overflowing host envelopes.
 - [0.2.55](0.2.55.md) - Selective maintenance-friction modules prevent a generic warning from materializing one indivisible 20 KB context unit.
 - [0.2.54](0.2.54.md) - Provider TTL/change reliability, cross-host Architecture/Context conformance, observe-only learning evaluation, and compact first-party skill distribution.

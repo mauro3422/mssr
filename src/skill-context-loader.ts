@@ -11,7 +11,7 @@ import type { SkillEntry, SkillStage, StructuredSkillIntent } from "./skill-rout
 const MANIFEST_NAME = "context-modules.json";
 const MAX_SKILL_FILE_CHARS = 160_000;
 const MAX_MODULE_FILE_CHARS = 80_000;
-const CURSOR_VERSION = 1;
+const CURSOR_VERSION = 2;
 
 export type SkillContextMode = "selective" | "full";
 export type SkillReferenceMode = "auto" | "none";
@@ -173,8 +173,10 @@ function buildUnits(states: Prepared[]): DeliveryUnit[] {
 }
 function planFingerprint(args: SkillContextPageInput, units: DeliveryUnit[]): string {
   // Cursor payload deliberately contains no task prompt or skill text. This
-  // fingerprint binds it to reconstructed bytes, order, obligation and budget.
-  return sha256(JSON.stringify({ v: CURSOR_VERSION, stage: args.stage, mode: args.mode, references: args.references, maxContextChars: args.maxContextChars, skills: args.skills.map((item) => ({ name: item.skill.name, obligation: item.obligation, routeIndex: item.routeIndex, routeScore: item.routeScore })), units: units.map((item) => ({ id: item.id, obligation: item.obligation, chars: item.chars, contentFingerprint: sha256(item.content) })) }));
+  // fingerprint binds it to reconstructed bytes, order and obligation. The
+  // page budget is deliberately excluded so a host can resize later pages to
+  // the space left by its own envelope metadata without invalidating the chain.
+  return sha256(JSON.stringify({ v: CURSOR_VERSION, stage: args.stage, mode: args.mode, references: args.references, skills: args.skills.map((item) => ({ name: item.skill.name, obligation: item.obligation, routeIndex: item.routeIndex, routeScore: item.routeScore })), units: units.map((item) => ({ id: item.id, obligation: item.obligation, chars: item.chars, contentFingerprint: sha256(item.content) })) }));
 }
 function skillResult(state: Prepared, delivered: DeliveryUnit[], all: DeliveryUnit[], deferred: Set<string>, blocked: Set<string>, limit: number): PlannedSkillContext {
   const own = delivered.filter((unit) => unit.state === state);

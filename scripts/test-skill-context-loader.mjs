@@ -72,9 +72,10 @@ try {
   assert.ok(firstPage.cursor);
   assert.ok(firstPage.deliveredChars <= 18_000);
   assert.ok(firstPage.remaining.required.length > 0);
-  const secondPage = await continueSkillContextPage({ skills: pagingSkills, intent, stage: "implement", mode: "selective", references: "auto", maxContextChars: 18_000, cursor: firstPage.cursor });
+  const secondPage = await continueSkillContextPage({ skills: pagingSkills, intent, stage: "implement", mode: "selective", references: "auto", maxContextChars: 10_000, cursor: firstPage.cursor });
   assert.equal(secondPage.status, "complete");
   assert.equal(secondPage.mustContinue, false);
+  assert.equal(secondPage.maxContextChars, 10_000, "a continuation may use a different host page budget without weakening selection integrity");
   const deliveredIds = [...firstPage.units, ...secondPage.units].map((unit) => unit.id);
   assert.equal(new Set(deliveredIds).size, deliveredIds.length, "a continued page must not replay selected units");
   assert.deepEqual(deliveredIds.sort(), ["paging-a:core", "paging-b:core", "paging-c:core"].sort());
@@ -82,7 +83,7 @@ try {
   const tampered = `${firstPage.cursor.slice(0, -1)}${firstPage.cursor.endsWith("A") ? "B" : "A"}`;
   await assert.rejects(() => continueSkillContextPage({ skills: pagingSkills, intent, stage: "implement", mode: "selective", references: "auto", maxContextChars: 18_000, cursor: tampered }), /cursor/i);
   await fs.appendFile(pagingC.path, "changed", "utf8");
-  await assert.rejects(() => continueSkillContextPage({ skills: pagingSkills, intent, stage: "implement", mode: "selective", references: "auto", maxContextChars: 18_000, cursor: firstPage.cursor }), /Stale skill context cursor/);
+  await assert.rejects(() => continueSkillContextPage({ skills: pagingSkills, intent, stage: "implement", mode: "selective", references: "auto", maxContextChars: 10_000, cursor: firstPage.cursor }), /Stale skill context cursor/);
 
   const oversized = await fixture("oversized", `# Oversized\n\n## Core\n\n${"x".repeat(4_500)}`, []);
   const blocked = await planSkillContextPage({ skills: [{ skill: oversized, obligation: "required", routeIndex: 0, routeScore: 1 }], intent, stage: "implement", mode: "selective", references: "auto", maxContextChars: 4_000 });
