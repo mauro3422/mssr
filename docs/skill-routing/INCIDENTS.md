@@ -1336,3 +1336,23 @@ Optional root selection now walks the already-ranked candidates, retains require
 ### Regression
 
 Added `godot-graph-ux-audit-excludes-visual-reference-replication`. Before the engine fix, `npm run test:skill-routing` failed exactly because `visual-reference-replication` remained active. After the fix, all 195 routing fixtures pass.
+
+## MSSR-039 - Compact skill root still selected a monolithic friction catalog
+
+**Date:** 2026-08-22
+
+### Trigger
+
+A close-stage Bridge bootstrap correctly selected the compact `skill-maintenance-loop` root, but continuation could not fit its `friction-patterns` context unit within the bounded procedural page.
+
+### Root cause
+
+The first-party refactor reduced `SKILL.md` while leaving a 20,718-character reference behind one selector based only on generic anomaly signals. Progressive disclosure existed at the file graph but not at the delivered-unit boundary.
+
+### Correction
+
+The broad pattern file is now a compact index. Nine topic-owned references retain the durable procedures and use conjunctive stage/intent selectors, so generic warning evidence does not load detailed integration, routing, tooling, verification, visual, learning, mutation or cross-project procedures.
+
+### Regression
+
+Package conformance asserts every friction reference is below 5,000 characters, a generic close-stage warning selects only the compact index among friction modules, and no indivisible unit is blocked at a 14,000-character page budget.

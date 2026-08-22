@@ -3,7 +3,7 @@ import { execFile } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { parseSkillFrontmatter, skillContextManifestSchema } from "../dist/index.js";
+import { parseSkillFrontmatter, planSkillContextPage, skillContextManifestSchema, structuredSkillIntentSchema } from "../dist/index.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const manifest = JSON.parse(await fs.readFile(path.join(root, "config", "first-party-skills.json"), "utf8"));
@@ -47,6 +47,41 @@ for (const name of names) {
   }
   expectedPackageFiles.push(...(await filesUnder(path.join(skillRoot, name))).map((file) => path.relative(root, file).replace(/\\/g, "/")));
 }
+
+const maintenanceRoot = path.join(skillRoot, "skill-maintenance-loop");
+const maintenanceReferences = (await fs.readdir(path.join(maintenanceRoot, "references")))
+  .filter((name) => name.startsWith("friction-") && name.endsWith(".md"));
+assert.ok(maintenanceReferences.length >= 10, "maintenance friction catalog must remain semantically partitioned");
+for (const name of maintenanceReferences) {
+  const chars = (await fs.readFile(path.join(maintenanceRoot, "references", name), "utf8")).length;
+  assert.ok(chars < 5000, `maintenance friction module must remain below 5000 characters: ${name} (${chars})`);
+}
+const warningOnly = await planSkillContextPage({
+  skills: [{
+    skill: {
+      name: "skill-maintenance-loop",
+      description: "First-party maintenance regression.",
+      source: "mssr-first-party",
+      path: path.join(maintenanceRoot, "SKILL.md"),
+    },
+    obligation: "required",
+    routeIndex: 0,
+    routeScore: 100,
+  }],
+  intent: structuredSkillIntentSchema.parse({
+    domains: ["skill-system"], actions: ["analyze"], artifacts: ["skill"], needs: [],
+    signals: ["warning-observed"], risk: "read-only", ambiguity: "low",
+  }),
+  stage: "close",
+  mode: "selective",
+  references: "auto",
+  maxContextChars: 14_000,
+});
+const warningModules = warningOnly.skills[0].contextAssembly.selectedModules;
+assert.equal(warningModules.includes("friction-index"), true, "generic warning must select only the compact friction index");
+assert.equal(warningModules.some((id) => id.startsWith("friction-") && id !== "friction-index"), false, "generic warning must not select a detailed friction module");
+assert.equal(warningOnly.blocked.length, 0, "generic maintenance warning must fit one bounded page");
+
 const v1Guide = "docs/FIRST_PARTY_SKILLS_V1.md";
 assert.equal(await fs.stat(path.join(root, v1Guide)).then(() => true, () => false), true, "v1 distribution/migration/evaluation guide is required");
 
