@@ -177,9 +177,16 @@ function overlap(left: readonly string[], right: readonly string[]): string[] {
   return left.filter((value) => wanted.has(value));
 }
 
+function effectiveMessageChars(message: MssrContextMessage): number {
+  // estimatedChars is an advisory lower bound, never permission to under-budget
+  // the exact structured message that will be serialized into a host response.
+  return Math.max(message.estimatedChars, JSON.stringify(message).length);
+}
+
 function evaluateMessage(message: MssrContextMessage, intent: StructuredSkillIntent, stage: SkillStage) {
+  const chars = effectiveMessageChars(message);
   if (message.stages.length > 0 && !message.stages.includes(stage)) {
-    return { message, eligible: false, score: -1, matched: [] as string[], reason: "stage-mismatch" as const };
+    return { message, chars, eligible: false, score: -1, matched: [] as string[], reason: "stage-mismatch" as const };
   }
 
   const dimensions = [
@@ -205,7 +212,7 @@ function evaluateMessage(message: MssrContextMessage, intent: StructuredSkillInt
   }
 
   const eligible = message.required || (hasSelector && allSpecifiedMatch);
-  return { message, eligible, score, matched, reason: eligible ? "selected" as const : "intent-mismatch" as const };
+  return { message, chars, eligible, score, matched, reason: eligible ? "selected" as const : "intent-mismatch" as const };
 }
 
 /**
@@ -247,7 +254,7 @@ export function selectMssrContextMessages(args: {
       continue;
     }
     const exceedsHardMessageCap = selected.length >= 32;
-    const exceedsHardCharCap = item.message.estimatedChars > Math.max(0, 20_000 - selectedChars);
+    const exceedsHardCharCap = item.chars > Math.max(0, 20_000 - selectedChars);
     if (item.message.required && (exceedsHardMessageCap || exceedsHardCharCap)) {
       reasons.set(item.message.id, "required-message-overflow");
       requiredMessageOverflow.push(item.message.id);
@@ -257,16 +264,16 @@ export function selectMssrContextMessages(args: {
       reasons.set(item.message.id, "max-messages-exceeded");
       continue;
     }
-    if (!item.message.required && item.message.estimatedChars > remainingChars) {
+    if (!item.message.required && item.chars > remainingChars) {
       reasons.set(item.message.id, "budget-exceeded");
       continue;
     }
-    if (item.message.required && (selected.length >= maxMessages || item.message.estimatedChars > remainingChars)) requiredBudgetExceeded = true;
+    if (item.message.required && (selected.length >= maxMessages || item.chars > remainingChars)) requiredBudgetExceeded = true;
     selected.push(item.message);
     selectedIds.add(item.message.id);
     selectedDedupeKeys.add(dedupeKey);
-    remainingChars -= item.message.estimatedChars;
-    selectedChars += item.message.estimatedChars;
+    remainingChars -= item.chars;
+    selectedChars += item.chars;
   }
 
   return {
@@ -275,7 +282,7 @@ export function selectMssrContextMessages(args: {
       id: item.message.id,
       selected: selectedIds.has(item.message.id),
       score: item.score,
-      estimatedChars: item.message.estimatedChars,
+      estimatedChars: item.chars,
       reason: selectedIds.has(item.message.id) ? "selected" : reasons.get(item.message.id) ?? item.reason,
       matched: item.matched,
     })),

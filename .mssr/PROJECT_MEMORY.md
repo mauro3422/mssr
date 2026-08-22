@@ -4,6 +4,8 @@
 
 MSSR is the portable transport contract for bounded contextual guidance in addition to skill routing. It selects and accounts for messages by intent and stage, carries explicit evidence provenance/freshness and continuation receipts, and keeps persistence proposals review-only. Repository documents remain authoritative; Bridge and other hosts may piggyback or queue delivery but do not own project meaning. Unknown, stale, conflicting, or unavailable evidence triggers verification, context loading, or replanning rather than silent inference.
 
+The 0.2.56 envelope regression established that `estimatedChars` is only a reservation hint, not trusted size evidence. Selection must budget at least the exact serialized structured message; producers should report the measured value when representable, while legacy or external underestimates are corrected at selection time without changing message authority.
+
 ## Phase 2 core boundary
 
 The 0.2.10 portable core (strict producers, repository collector, freshness revalidation, and a durable explicit-ack advisory-only JSON inbox) proved the portable message plane and repository scan. 0.2.11 introduced keyed repository facts and native/Codex/OpenCode `loadProjectContextHost` delivery under the then-current `.bridge/` convention; 0.2.12 added acknowledged-receipt tombstones and inbox v2; 0.2.17 moved canonical ownership to `.mssr/`. The 0.2.18 cutover removes active `.bridge` fallback entirely, unifies selection on `.mssr/project-context.json`, separates durable `.mssr/knowledge/` from ephemeral `.mssr/runtime/`, and makes initialization plus Project Context Health portable MSSR contracts. Hosts expose filesystem/runtime operations but do not redefine these semantics.

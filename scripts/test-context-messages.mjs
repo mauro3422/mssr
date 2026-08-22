@@ -106,7 +106,7 @@ const messages = mssrContextMessageSchema.array().parse([
   },
 ]);
 
-const selected = selectMssrContextMessages({ messages, intent, stage: "implement", maxMessages: 6, maxChars: 900 });
+const selected = selectMssrContextMessages({ messages, intent, stage: "implement", maxMessages: 6, maxChars: 5_000 });
 assert.deepEqual(selected.selected.map((message) => message.id), [
   "required-continuation",
   "stale-publication",
@@ -119,7 +119,7 @@ assert.equal(selected.decisions.find((decision) => decision.id === "incident-pro
 assert.equal(selected.continuationReceipts[0]?.nextGate, "Verify the serving host after restart.");
 assert.equal(selected.continuationReceipts[0]?.freshness, "stale");
 assert.equal(selected.advisoryOnly, true);
-assert.equal(selected.selectedChars <= 900, true);
+assert.equal(selected.selectedChars <= 5_000, true);
 
 assert.equal(mssrContextMessageSchema.parse({
   id: "conflicting-evidence",
@@ -141,12 +141,12 @@ assert.equal(mssrContextMessageSchema.parse({
 const bounded = selectMssrContextMessages({ messages, intent, stage: "implement", maxMessages: 2, maxChars: 390 });
 assert.deepEqual(bounded.selected.map((message) => message.id), ["required-continuation", "stale-publication"]);
 assert.equal(bounded.decisions.find((decision) => decision.id === "incident-provider-new")?.reason, "max-messages-exceeded");
-assert.equal(bounded.selectedChars, 380);
+assert.equal(bounded.selectedChars, bounded.selected.reduce((sum, message) => sum + Math.max(message.estimatedChars, JSON.stringify(message).length), 0));
 
 const budgetRejected = selectMssrContextMessages({ messages, intent, stage: "implement", maxMessages: 6, maxChars: 250 });
 assert.deepEqual(budgetRejected.selected.map((message) => message.id), ["required-continuation", "stale-publication"]);
 assert.equal(budgetRejected.requiredBudgetExceeded, true);
-assert.equal(budgetRejected.selectedChars, 380);
+assert.equal(budgetRejected.selectedChars, budgetRejected.selected.reduce((sum, message) => sum + Math.max(message.estimatedChars, JSON.stringify(message).length), 0));
 assert.equal(budgetRejected.remainingChars, 0);
 assert.equal(budgetRejected.remainingMessages, 4);
 
@@ -186,6 +186,20 @@ assert.equal(hardCap.selected.length, 10);
 assert.equal(hardCap.requiredBudgetExceeded, true);
 assert.equal(hardCap.requiredMessageOverflow.length, 1);
 assert.equal(hardCap.decisions.find((decision) => decision.id === hardCap.requiredMessageOverflow[0])?.reason, "required-message-overflow");
+
+const underestimated = mssrContextMessageSchema.parse({
+  id: "underestimated-message",
+  kind: "related-incident",
+  title: "Serialized size outranks an optimistic hint",
+  summary: "x".repeat(500),
+  signals: ["warning-observed"],
+  estimatedChars: 40,
+});
+const actualUnderestimatedChars = JSON.stringify(underestimated).length;
+const underestimatedSelection = selectMssrContextMessages({ messages: [underestimated], intent, stage: "implement", maxMessages: 1, maxChars: actualUnderestimatedChars - 1 });
+assert.deepEqual(underestimatedSelection.selected, []);
+assert.equal(underestimatedSelection.decisions[0].reason, "budget-exceeded");
+assert.equal(underestimatedSelection.decisions[0].estimatedChars, actualUnderestimatedChars);
 
 const forbiddenExtraField = mssrContextMessageSchema.safeParse({
   id: "bad-message",

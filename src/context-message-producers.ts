@@ -180,7 +180,7 @@ export function produceContextMessages(
 
     const advisoryActions = obs.advisoryActions ?? [...mapping.defaultAdvisoryActions];
 
-    return mssrContextMessageSchema.parse({
+    const message = mssrContextMessageSchema.parse({
       id: obs.id,
       dedupeKey: deterministicProducerDedupeKey(obs),
       kind: mapping.messageKind,
@@ -198,6 +198,10 @@ export function produceContextMessages(
       required: obs.required,
       priority: obs.priority,
       estimatedChars: obs.estimatedChars,
+    });
+    return mssrContextMessageSchema.parse({
+      ...message,
+      estimatedChars: Math.min(2_000, Math.max(message.estimatedChars, JSON.stringify(message).length)),
     });
   });
 }

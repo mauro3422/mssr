@@ -1356,3 +1356,23 @@ The broad pattern file is now a compact index. Nine topic-owned references retai
 ### Regression
 
 Package conformance asserts every friction reference is below 5,000 characters, a generic close-stage warning selects only the compact index among friction modules, and no indivisible unit is blocked at a 14,000-character page budget.
+
+## MSSR-040 - Context Message estimates undercounted serialized host bytes
+
+**Date:** 2026-08-22
+
+### Trigger
+
+A real close bootstrap selected twelve historical changelog messages at `estimatedChars=320` each. Their structured serialized form occupied 14,704 characters, helping compact metadata reach 58,329 characters before any procedural page could fit.
+
+### Root cause
+
+Portable selection trusted a producer-supplied estimate as exact budget consumption. Legacy inbox messages therefore retained an optimistic default even though title, summary, evidence, selectors and receipts made each message roughly three to four times larger.
+
+### Correction
+
+Context Message selection now uses `max(estimatedChars, serialized structured chars)` for normal budgets, hard caps, selected totals and decision evidence. First-party producers also publish the measured estimate when it fits the existing hint field.
+
+### Regression
+
+An explicitly underestimated 500-character message is rejected from a budget one character below its serialized form, and repository/producer selection suites verify the measured accounting path.

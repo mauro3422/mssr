@@ -110,7 +110,7 @@ const input = {
   stage: "start",
   contextMessages,
   maxContextMessages: 2,
-  maxContextMessageChars: 500,
+  maxContextMessageChars: 2_000,
 };
 
 const native = await connect(createMssrMcpServer(emptyRegistry()), "native-context-test");

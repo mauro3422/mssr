@@ -247,7 +247,7 @@ const prioObs = {
 const prioMsg = produceSingleContextMessage(prioObs);
 assert.equal(prioMsg.severity, "warning");
 assert.equal(prioMsg.priority, 50);
-assert.equal(prioMsg.estimatedChars, 200);
+assert.equal(prioMsg.estimatedChars, JSON.stringify({ ...prioMsg, estimatedChars: 200 }).length);
 
 // --- Missing observedAt and revision rejected ---
 

@@ -4,6 +4,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.56](0.2.56.md) - Context-message budgets use measured serialized bytes as a floor, preventing optimistic hints from overflowing host envelopes.
 - [0.2.55](0.2.55.md) - Selective maintenance-friction modules prevent a generic warning from materializing one indivisible 20 KB context unit.
 - [0.2.54](0.2.54.md) - Provider TTL/change reliability, cross-host Architecture/Context conformance, observe-only learning evaluation, and compact first-party skill distribution.
 - [0.2.53](0.2.53.md) - Restores deterministic core/module deduplication to paged skill context: already-covered selected material is recorded as such, not emitted twice, and contributes to duplicate-savings accounting.
