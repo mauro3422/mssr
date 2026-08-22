@@ -70,11 +70,13 @@
   manifest reserves five canonical names and a divergent external shadow blocks
   the audit.
 - [x] Complete Bridge 0.6.88 runtime restart/catalog/version readback.
-- [ ] Complete ChatGPT Web runtime validation; Bridge `0.6.114` runtime/catalog
-  readback and local continuation regressions prove that `skill_context_next` is
-  available and bounded, but do not yet prove a real Web
-  `skill_bootstrap -> skill_context_next... -> complete` chain or every external
-  host path.
+- [x] Complete ChatGPT Web runtime validation for bounded skill context (Bridge
+  `0.6.114` / MSSR `0.2.53`): live Terra trace
+  `mssr-20260822065818-eb306985-a40` executed
+  `skill_bootstrap -> skill_context_next -> skill_context_next -> complete` with
+  every response inside the 32,000-character envelope and zero selected units
+  left pending. Broader cross-host lifecycle parity remains in the runtime
+  conformance gates below.
 
 ## v0.4 — activation observability and durable learning
 
