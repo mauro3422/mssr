@@ -52,19 +52,21 @@
 
 - [x] Provider interface plus a filesystem provider for local/system/plugin
   skills; generic providers can supply MCP catalogs and host capabilities.
-- [ ] Native MCP `tools/list` / `listChanged` provider and host-provided
+- [x] Native MCP `tools/list` / `listChanged` provider and host-provided
   capabilities.
 - [x] Concurrent refresh single-flight, immutable snapshots, provenance, health,
   and stale-but-usable degradation.
 - [x] Search/inspect APIs and routing fixtures for missing capability and
   additional-tool chains.
-- [ ] Provider TTL policy and change notifications.
+- [x] Provider TTL policy, independent freshness, bounded pagination and
+  coalesced change notifications (0.2.54).
 
 ## v0.3 — optional MCP facade
 
 - [x] Standalone `mssr-mcp` process exposing registry status/refresh, search,
   inspect, plan, and audit tools.
-- [ ] Dynamic provider registration without making MSSR an execution proxy.
+- [x] Dynamic provider registration/removal and immutable change receipts
+  without making MSSR an execution proxy (0.2.54).
 - [x] Bundled first-party provider discovery for the native facade, Codex-local,
   and OpenCode-local adapters, plus opt-in Codex junction installation. The
   manifest reserves five canonical names and a divergent external shadow blocks
@@ -95,10 +97,10 @@
 - [x] Exact-signature historical priors with minimum evidence threshold for skill activation/acceptance, stage-to-skill transitions, and selective skill/project context. Current mode is explicitly `observe-only`: priors are empirical observability outputs (`prefer` / `neutral` / `deprioritize` / `insufficient-evidence`) and do not affect deterministic routing, scores, context loading, or permissions.
 - [x] Hard observe-only boundary: `routingInfluence=false`; current learning analysis has no consumption path from priors into deterministic route scoring or context selection. The minimum-evidence threshold is eligibility to analyze a pattern, not permission to activate it.
 - [ ] Learning gate A — representative data collection: accumulate strict digests across domains, stages, callers, skill revisions and outcomes; track independent trace support, explicit-vs-default optional decisions, signature coverage and context-module coverage without changing runtime decisions.
-- [ ] Learning gate B — dataset-quality audit: separate deliberate `accepted`/`skipped` evidence from `not-evaluated`, detect incomplete/ambiguous outcomes, retries/correlated traces, stale skill/routing revisions and host/model/runtime drift, and keep legacy selection telemetry distinct from strict learning digests unless explicitly migrated.
-- [ ] Learning gate C — historical replay/holdout evaluation: using only evidence available before each historical decision, compare learned predictions against the unchanged deterministic baseline for activation precision/recall where measurable, over-activation/false-skip rates, required-load misses, outcome/acceptance lift, context cost/quality and calibration.
-- [ ] Learning gate D — confidence calibration: replace raw empirical rates with support-aware bounded estimates before any decision use; evaluate smoothing, uncertainty intervals, minimum distinct-trace support, recency decay/staleness and sparse-signature back-off. Exact signatures remain the baseline; vector/semantic-neighbor retrieval is secondary and separately evaluated.
-- [ ] Learning gate E — shadow decision model: compute what historical evidence *would* have suggested on new traces while continuing to execute the existing deterministic/host-gated route. Measure counterfactual disagreements and future predictive value without affecting skills, scores or context.
+- [x] Learning gate B — portable dataset-quality audit separates strict digests from legacy telemetry and detects not-evaluated/ambiguous decisions, incomplete outcomes, duplicate/correlated attempts, revision gaps and host/model/runtime drift; insufficient evidence abstains (0.2.54).
+- [x] Learning gate C — chronological replay plus frozen holdout uses only prior evidence and measures precision/recall, over-activation, false-skip, Brier score and deterministic-baseline disagreement where measurable; the current digest explicitly reports required-load quality as not measurable (0.2.54).
+- [x] Learning gate D — support-aware Beta(1,1) smoothing, Wilson-95 bounds, minimum distinct-trace support and recency decay calibrate observe-only predictions; sparse signatures abstain (0.2.54).
+- [x] Learning gate E — counterfactual shadow evaluation is implemented with `routingInfluence=false` and no import/consumption path into deterministic routing (0.2.54).
 - [ ] Learning gate F — reviewed bounded activation, future only: only after replay plus shadow evidence shows repeatable net benefit, add an explicit versioned feature flag, bounded secondary historical score, exploration floor, explanations and instant rollback. Workflow-required skills, dependency invariants, safety/permissions and deterministic hard rules remain authoritative.
 - [ ] Gate context-ranking influence separately from skill-ranking influence; module frequency alone must not count as usefulness without downstream outcome/evidence support.
 - [x] Operational Notice Plane ownership: portable MSSR owns host-neutral attention/transition semantics while Bridge/other hosts own observation I/O and delivery. Trace, outcome, Context Message, and operational notice remain separate contracts; notices are advisory and never authorize actions. See `docs/OPERATIONAL_NOTICE_PLANE.md` and ADR 0002.
@@ -138,8 +140,8 @@
   - [x] Host adoption A — portable lifecycle coordinator: exact touched refs resolve only declared affected architectures and their existing C2f-B observation plans; host evidence then flows through the existing C2f-C projection, C2f-E reviewed-current suppression, and C2f-D natural-replan context feedback with `semanticOwner=mssr`, no I/O/watcher/autoload, and `canonicalRewriteAllowed=false`.
   - [x] Host adoption B — compose optional structural/AST/derived-graph/invariant evidence through the same coordinator (0.2.47): structural fingerprints refine coarse `possible-impact` into WATCH/REVIEW without erasing the coarse fact; derived graph remains candidate-only and never raises canonical attention; declared invariant evidence may raise WATCH/REVIEW and cannot be silenced by a coarse reviewed-current receipt; analyzers remain optional host capabilities and `canonicalRewriteAllowed=false`.
   - [x] Host adoption C — Bridge/ChatGPT Web (Bridge 0.6.111 / packaged MSSR 0.2.47): explicit-path pre/post observation, optional structural/import-graph evidence, host-local reviewed receipts and bounded REVIEW/context feedback are proven end to end, including cross-instance workflow continuity, controlled restart/catalog readback and live ChatGPT Web mutation/restoration evidence. Bridge remains an observation/persistence adapter; MSSR remains the semantic owner.
-  - [ ] Host adoption D — wire Codex next to the same portable lifecycle and prove behavioral parity against the verified Bridge path without depending on Bridge-only metadata or tools.
-  - [ ] Host adoption E — complete native + OpenCode lifecycle adoption and final cross-host parity over the same portable coordinator, including equivalent REVIEW/WATCH decisions, receipt invalidation, context feedback, and no canonical auto-rewrite.
+  - [x] Host adoption D — Codex registers the shared I/O-free plan/evaluate boundary and returns the same REVIEW/context feedback as native/OpenCode for identical bounded evidence, with no Bridge metadata dependency (0.2.54 source/package conformance).
+  - [x] Host adoption E — native + OpenCode register the same portable coordinator; cross-host MCP parity proves exact touched-ref plans, REVIEW decisions and `canonicalRewriteAllowed=false`. Host observation and explicit reviewed-current persistence remain host-owned (0.2.54).
 - [x] Documented MSSR Context Plane v1 ownership and safety contract: portable
   selection/continuity/message semantics; repository-owned facts; adapter and
   provider-owned I/O/delivery; provenance/freshness receipts; and
@@ -160,7 +162,7 @@
   server push creates a host turn and preserving `unknown`/`stale`/
   `unavailable` rather than fabricating facts (0.2.11).
 - [x] Context Plane gate B (Bridge/ChatGPT Web) — Bridge consumes packaged MSSR artifacts and delivers selected Context Messages plus the durable `.mssr/runtime/context-inbox.json` plane through the same host adapter contract. Source/runtime adoption is proven separately by package version and live restart/readback rather than inferred from the sibling workspace.
-- [ ] Context Plane gate C — expand continuation/persistence-proposal conformance across native, Codex, OpenCode, and Bridge/ChatGPT Web. A proposal must remain reviewable repository-owned work and never auto-write memory, skills, routing, or changelogs.
+- [x] Context Plane gate C — native, Codex and OpenCode expose the same persistence-proposal review contract: fresh evidence is review-ready, stale/unknown evidence requires refresh, conflicting/unavailable evidence blocks, and every result keeps `reviewRequired=true` plus `autoWriteAllowed=false` (0.2.54). Bridge/ChatGPT Web delivery consumes the packaged contract separately.
 - [x] Canonical modular project-context contract plus Bridge adapter: `.mssr/project-context.json` is the single active manifest, minimal core loads first, stage/intent selects bounded context/memory/state/directive modules, and missing/invalid initialization is explicit health evidence rather than a legacy/full-document fallback.
 - [ ] Project Memory reference-backed storage parity — make physical memory storage match the already-modular semantic selector instead of letting optional memories accumulate as sections in `PROJECT_MEMORY.md`. Keep `.mssr/project-context.json` as the only manifest; no parallel memory index.
   - [x] Gate A — portable contract/early attention: `PROJECT_MEMORY.md` is core-oriented, two or more optional `kind=memory` modules backed by that root produce `root-backed-memory-fanout`, and the read-only modularization planner proposes exact ref extraction even for small sections while preserving an existing single-section module id/kind/selectors. Regression proves selected module bytes/ids remain equivalent after the physical move.
@@ -204,7 +206,6 @@
 
 ## v1.0 — portable distribution
 
-- [ ] Published or packaged distribution with reproducible installation.
-- [ ] Compatibility matrix and migration guide for a new machine.
-- [ ] Evaluation suite measuring route precision, recall, latency, and safe
-  degradation rather than relying on anecdotal success rates.
+- [x] Packaged distribution plus reproducible, non-publishing first-party skill verification and opt-in junction installation.
+- [x] Compatibility/migration guide with refusal, backup, runtime readback and rollback boundaries for a new machine.
+- [x] Evaluation suite covers routing fixtures, context effectiveness, provider safe degradation and observe-only replay precision/recall/calibration. Real representative-data sufficiency remains an evidence gate, not a release claim.

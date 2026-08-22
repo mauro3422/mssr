@@ -12,6 +12,8 @@ The 0.2.10 portable core (strict producers, repository collector, freshness reva
 
 A routed skill is the reusable capability/control plane: activation boundary, invariants, workflow and verification contract stay in `SKILL.md`. Situational procedures, recovery recipes and conditional detail remain parent-owned `references/` selected by `context-modules.json`; they are not independent routing nodes. Create a new skill only when the extracted behavior has independent activation, outcome, owner and verification. Structural health is preventive/advisory: `WATCH`/`REVIEW`, full fallback and unindexed references justify human review but never authorize background mutation or invalidate routing by themselves.
 
+The 0.2.54 first-party refactor applies that architecture to all five bundled MSSR skills: compact roots retain activation/invariants/workflow/verification, while direct parent-owned references carry situational procedure. Distribution is opt-in and reproducible; a reserved divergent runtime target is refused rather than overwritten, and package/discovery evidence never changes routing authority.
+
 ## Host adapter inheritance decision
 
 Stateful hosts must inherit one portable MSSR routing/bootstrap contract instead of cloning Codex behavior. `MssrAdapter` owns shared lifecycle, host-gating and selective context assembly; Codex/OpenCode are thin specializations and Bridge consumes the same pure schema/selection helpers while retaining its host-specific Roblox/project/system-awareness integration. An absent optional decision means `pending`, not synthetic `skipped`.

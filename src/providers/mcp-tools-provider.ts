@@ -25,7 +25,18 @@ export type McpToolsProviderOptions = {
   /** Metadata only; it does not authorize a tool invocation. */
   source?: string;
   location?: string;
+
+  /** Optional operator-defined maximum age for tools/list metadata. */
+  catalogTtlMs?: number;
 };
+
+const MAX_TOOLS_LIST_PAGES = 100;
+
+function validCatalogTtlMs(value: unknown): number | undefined {
+  return typeof value === "number" && Number.isSafeInteger(value) && value > 0 && value <= 86_400_000
+    ? value
+    : undefined;
+}
 
 function toolCapabilities(
   providerId: string,
@@ -77,7 +88,10 @@ export class McpToolsProvider implements CapabilityProvider {
 
   private notifyChanged(error?: Error): void {
     this.notificationWarning = error?.message;
-    for (const listener of this.listeners) listener();
+    for (const listener of this.listeners) {
+      // One broken observer must not suppress another registry's refresh.
+      try { listener(); } catch { /* observers are advisory */ }
+    }
   }
 
   private async connect(): Promise<McpClientHandle> {
@@ -107,10 +121,18 @@ export class McpToolsProvider implements CapabilityProvider {
       const handle = await this.connect();
       const tools: unknown[] = [];
       let cursor: string | undefined;
+      const seenCursors = new Set<string>();
+      let pages = 0;
       do {
         const result = await handle.client.listTools(cursor ? { cursor } : undefined);
         tools.push(...result.tools);
         cursor = result.nextCursor;
+        pages += 1;
+        if (pages > MAX_TOOLS_LIST_PAGES) throw new Error(`tools/list exceeded ${MAX_TOOLS_LIST_PAGES} pages`);
+        if (cursor) {
+          if (seenCursors.has(cursor)) throw new Error("tools/list returned a repeated pagination cursor");
+          seenCursors.add(cursor);
+        }
       } while (cursor);
 
       const warning = this.notificationWarning;
@@ -124,6 +146,7 @@ export class McpToolsProvider implements CapabilityProvider {
         ),
         observedAt: new Date().toISOString(),
         warning,
+        ttlMs: validCatalogTtlMs(this.options.catalogTtlMs),
       };
     } catch (error) {
       await this.reset();

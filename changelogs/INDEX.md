@@ -4,6 +4,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.54](0.2.54.md) - Provider TTL/change reliability, cross-host Architecture/Context conformance, observe-only learning evaluation, and compact first-party skill distribution.
 - [0.2.53](0.2.53.md) - Restores deterministic core/module deduplication to paged skill context: already-covered selected material is recorded as such, not emitted twice, and contributes to duplicate-savings accounting.
 - [0.2.52](0.2.52.md) - Portable paged skill-context delivery: required and accepted roots retain distinct obligations, bounded pages expose an opaque validated continuation cursor, and selected units are delivered, deferred explicitly, or reported as indivisible budget blockers.
 - [0.2.51](0.2.51.md) - Project Memory reference-backed storage parity: optional memories live under `.mssr/knowledge/`, root-backed fanout is detected before size pressure, exact modularization preserves module identity/selectors, and capture is the preferred creation path.

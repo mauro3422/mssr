@@ -27,6 +27,12 @@ export type ProviderResult = Readonly<{
   capabilities: readonly Capability[];
   warning?: string;
   observedAt?: string;
+  /**
+   * Optional validity window for this catalog observation. Absence means the
+   * registry cannot claim the catalog is current; it does not make the
+   * provider unavailable.
+   */
+  ttlMs?: number;
 }>;
 
 export interface CapabilityProvider {
@@ -43,10 +49,21 @@ export interface CapabilityProvider {
 export type ProviderHealth = Readonly<{
   id: string;
   status: "healthy" | "degraded" | "unavailable";
+  /** Freshness of catalog metadata, independent from transport health. */
+  freshness: "fresh" | "stale" | "unknown";
   observedAt: string;
+  lastAttemptAt: string;
   capabilityCount: number;
   warning?: string;
   usingCachedCapabilities: boolean;
+  ttlMs?: number;
+  expiresAt?: string;
+}>;
+
+export type CapabilityRegistryChange = Readonly<{
+  kind: "provider-added" | "provider-removed" | "provider-change-notified" | "provider-refreshed" | "provider-refresh-failed" | "provider-catalog-stale";
+  providerId: string;
+  observedAt: string;
 }>;
 
 export type CapabilitySnapshot = Readonly<{
@@ -55,12 +72,15 @@ export type CapabilitySnapshot = Readonly<{
   capabilities: readonly Capability[];
   providers: readonly ProviderHealth[];
   warnings: readonly string[];
+  /** Bounded reason for the current published snapshot, when it changed. */
+  lastChange?: CapabilityRegistryChange;
 }>;
 
 type ProviderState = {
   capabilities: readonly Capability[];
   health: ProviderHealth;
   inflight?: Promise<void>;
+  refreshQueued?: boolean;
 };
 
 function freeze<T>(value: T): T {
@@ -74,7 +94,23 @@ function freeze<T>(value: T): T {
 function now(): string { return new Date().toISOString(); }
 
 function emptyHealth(id: string): ProviderHealth {
-  return freeze({ id, status: "unavailable", observedAt: now(), capabilityCount: 0, usingCachedCapabilities: false });
+  const observedAt = now();
+  return freeze({ id, status: "unavailable", freshness: "unknown", observedAt, lastAttemptAt: observedAt, capabilityCount: 0, usingCachedCapabilities: false });
+}
+
+function normalizedTtlMs(value: unknown): number | undefined {
+  return typeof value === "number" && Number.isSafeInteger(value) && value > 0 && value <= 86_400_000
+    ? value
+    : undefined;
+}
+
+function normalizedObservedAt(value: unknown, fallback: string): string {
+  return typeof value === "string" && Number.isFinite(Date.parse(value)) ? value : fallback;
+}
+
+function effectiveHealth(health: ProviderHealth, at = Date.now()): ProviderHealth {
+  if (health.freshness !== "fresh" || !health.expiresAt || Date.parse(health.expiresAt) > at) return health;
+  return freeze({ ...health, freshness: "stale", usingCachedCapabilities: health.capabilityCount > 0 || health.usingCachedCapabilities });
 }
 
 /**
@@ -87,12 +123,13 @@ export class CapabilityRegistry {
   private readonly providers = new Map<string, CapabilityProvider>();
   private readonly states = new Map<string, ProviderState>();
   private readonly providerSubscriptions = new Map<string, () => void>();
+  private readonly snapshotListeners = new Set<(snapshot: CapabilitySnapshot) => void>();
   private version = 0;
   private snapshot: CapabilitySnapshot;
 
   constructor(providers: readonly CapabilityProvider[] = []) {
-    for (const provider of providers) this.addProvider(provider);
     this.snapshot = this.makeSnapshot();
+    for (const provider of providers) this.addProvider(provider);
   }
 
   addProvider(provider: CapabilityProvider): void {
@@ -101,13 +138,11 @@ export class CapabilityRegistry {
     this.states.set(provider.id, { capabilities: freeze([]), health: emptyHealth(provider.id) });
     if (provider.subscribe) {
       const unsubscribe = provider.subscribe(() => {
-        // A failed refresh retains the last known-good snapshot and records
-        // degradation; a notification must not produce an unhandled rejection.
-        void this.refresh([provider.id]).catch(() => undefined);
+        this.scheduleProviderRefresh(provider.id);
       });
       this.providerSubscriptions.set(provider.id, unsubscribe);
     }
-    this.snapshot = this.makeSnapshot();
+    this.publish({ kind: "provider-added", providerId: provider.id, observedAt: now() });
   }
 
   removeProvider(providerId: string): boolean {
@@ -117,7 +152,7 @@ export class CapabilityRegistry {
     this.providerSubscriptions.delete(providerId);
     this.providers.delete(providerId);
     this.states.delete(providerId);
-    this.snapshot = this.makeSnapshot();
+    this.publish({ kind: "provider-removed", providerId, observedAt: now() });
     return true;
   }
 
@@ -127,13 +162,25 @@ export class CapabilityRegistry {
     await Promise.all([...this.providers.values()].map((provider) => provider.close ? provider.close() : Promise.resolve()));
   }
 
-  getSnapshot(): CapabilitySnapshot { return this.snapshot; }
+  /**
+   * Observes TTL expiry without performing I/O. Callers may decide to refresh
+   * a stale provider; reading metadata never invokes a provider tool.
+   */
+  getSnapshot(): CapabilitySnapshot {
+    this.expireStaleCatalogs();
+    return this.snapshot;
+  }
+
+  /** Lets adapters observe dynamic provider registration and catalog changes. */
+  subscribe(listener: (snapshot: CapabilitySnapshot) => void): () => void {
+    this.snapshotListeners.add(listener);
+    return () => this.snapshotListeners.delete(listener);
+  }
 
   async refresh(providerIds?: readonly string[]): Promise<CapabilitySnapshot> {
     const ids = providerIds?.length ? [...new Set(providerIds)] : [...this.providers.keys()];
     for (const id of ids) if (!this.providers.has(id)) throw new Error(`Unknown capability provider: ${id}`);
     await Promise.all(ids.map((id) => this.refreshProvider(id)));
-    this.snapshot = this.makeSnapshot();
     return this.snapshot;
   }
 
@@ -157,29 +204,89 @@ export class CapabilityRegistry {
     if (current.inflight) return current.inflight;
     const provider = this.providers.get(id)!;
     const inflight = (async () => {
-      try {
-        const result = await provider.refresh();
-        const capabilities = freeze([...result.capabilities].map((item) => freeze({ ...item, providerId: provider.id })));
-        current.capabilities = capabilities;
-        current.health = freeze({ id, status: "healthy", observedAt: result.observedAt ?? now(), capabilityCount: capabilities.length, warning: result.warning, usingCachedCapabilities: false });
-      } catch (error) {
-        const warning = error instanceof Error ? error.message : String(error);
-        const stale = current.capabilities.length > 0;
-        current.health = freeze({ id, status: stale ? "degraded" : "unavailable", observedAt: now(), capabilityCount: current.capabilities.length, warning, usingCachedCapabilities: stale });
-      } finally {
-        current.inflight = undefined;
-      }
+      do {
+        current.refreshQueued = false;
+        const attemptedAt = now();
+        try {
+          const result = await provider.refresh();
+          const capabilities = freeze([...result.capabilities].map((item) => freeze({ ...item, providerId: provider.id })));
+          const ttlMs = normalizedTtlMs(result.ttlMs);
+          const observedAt = normalizedObservedAt(result.observedAt, attemptedAt);
+          const expiresAt = ttlMs ? new Date(Date.parse(observedAt) + ttlMs).toISOString() : undefined;
+          current.capabilities = capabilities;
+          current.health = freeze({
+            id,
+            status: "healthy",
+            freshness: ttlMs ? "fresh" : "unknown",
+            observedAt,
+            lastAttemptAt: attemptedAt,
+            capabilityCount: capabilities.length,
+            warning: result.warning,
+            usingCachedCapabilities: false,
+            ttlMs,
+            expiresAt,
+          });
+          this.publish({ kind: "provider-refreshed", providerId: id, observedAt: attemptedAt });
+        } catch (error) {
+          const warning = error instanceof Error ? error.message : String(error);
+          const stale = current.capabilities.length > 0;
+          const prior = effectiveHealth(current.health);
+          current.health = freeze({
+            ...prior,
+            status: stale ? "degraded" : "unavailable",
+            lastAttemptAt: attemptedAt,
+            capabilityCount: current.capabilities.length,
+            warning,
+            usingCachedCapabilities: stale || prior.usingCachedCapabilities,
+          });
+          this.publish({ kind: "provider-refresh-failed", providerId: id, observedAt: attemptedAt });
+        }
+      } while (current.refreshQueued);
+      current.inflight = undefined;
     })();
     current.inflight = inflight;
     return inflight;
   }
 
   private makeSnapshot(): CapabilitySnapshot {
-    const providers = [...this.states.values()].map((state) => state.health).sort((a, b) => a.id.localeCompare(b.id));
+    const providers = [...this.states.values()].map((state) => effectiveHealth(state.health)).sort((a, b) => a.id.localeCompare(b.id));
     const capabilities = [...this.states.values()].flatMap((state) => state.capabilities).sort((a, b) => a.name.localeCompare(b.name) || a.id.localeCompare(b.id));
     const warnings = providers.flatMap((provider) => provider.warning ? [`${provider.id}: ${provider.warning}`] : []);
     this.version += 1;
     return freeze({ version: this.version, observedAt: now(), capabilities, providers, warnings });
+  }
+
+  private publish(change?: CapabilityRegistryChange): void {
+    this.snapshot = freeze({ ...this.makeSnapshot(), ...(change ? { lastChange: change } : {}) });
+    for (const listener of this.snapshotListeners) {
+      try { listener(this.snapshot); } catch { /* Registry observers are advisory only. */ }
+    }
+  }
+
+  private scheduleProviderRefresh(providerId: string): void {
+    const state = this.states.get(providerId);
+    if (!state || !this.providers.has(providerId)) return;
+    this.publish({ kind: "provider-change-notified", providerId, observedAt: now() });
+    if (state.inflight) {
+      // A change notification that races an in-flight tools/list must result in
+      // one additional list, otherwise the final snapshot can miss the change.
+      state.refreshQueued = true;
+      return;
+    }
+    // A failed refresh retains the last known-good snapshot and records
+    // degradation; a notification must not produce an unhandled rejection.
+    void this.refresh([providerId]).catch(() => undefined);
+  }
+
+  private expireStaleCatalogs(): void {
+    const expired = [...this.states.entries()].filter(([, state]) => {
+      const health = state.health;
+      return health.freshness === "fresh" && health.expiresAt && Date.parse(health.expiresAt) <= Date.now();
+    });
+    if (!expired.length) return;
+    for (const [, state] of expired) state.health = effectiveHealth(state.health);
+    const [providerId] = expired[0];
+    this.publish({ kind: "provider-catalog-stale", providerId, observedAt: now() });
   }
 }
 

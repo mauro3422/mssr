@@ -18,6 +18,7 @@ const fixture = {
     cwd: "C:\\fixture",
     source: "mcp:fixture",
     location: "local-fixture",
+    catalogTtlMs: 300000,
   }],
 };
 
@@ -27,6 +28,10 @@ assert.throws(() => mssrProviderConfigSchema.parse({
   schemaVersion: 1,
   providers: [{ ...fixture.providers[0], id: "invalid id" }],
 }));
+assert.throws(() => mssrProviderConfigSchema.parse({
+  ...fixture,
+  providers: [{ ...fixture.providers[0], catalogTtlMs: 0 }],
+}), /greater than 0/);
 
 const directory = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-provider-config-"));
 const configPath = path.join(directory, "providers.json");

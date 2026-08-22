@@ -52,6 +52,17 @@ assert.equal(removableRegistry.removeProvider("removable"), false);
 assert.equal(unsubscribed, 1, "removing a provider must release its subscription");
 assert.equal(removableRegistry.getSnapshot().providers.length, 0);
 
+const observableRegistry = new CapabilityRegistry();
+const observedChanges = [];
+const unsubscribeSnapshot = observableRegistry.subscribe((snapshot) => observedChanges.push(snapshot.lastChange?.kind));
+observableRegistry.addProvider({ id: "dynamic", async refresh() { return { capabilities: [] }; } });
+assert.equal(observableRegistry.getSnapshot().lastChange?.kind, "provider-added");
+assert.equal(observedChanges.at(-1), "provider-added", "dynamic registration must publish an observable snapshot");
+assert.equal(observableRegistry.removeProvider("dynamic"), true);
+assert.equal(observableRegistry.getSnapshot().lastChange?.kind, "provider-removed");
+assert.equal(observedChanges.at(-1), "provider-removed", "dynamic removal must publish an observable snapshot");
+unsubscribeSnapshot();
+
 const tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-registry-"));
 const sourceRoot = path.join(tempRoot, "source");
 const runtimeRoot = path.join(tempRoot, "runtime");

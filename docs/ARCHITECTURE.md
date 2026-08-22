@@ -172,11 +172,15 @@ Codex `skill_route_plan`/`skill_bootstrap`, and OpenCode
 shared `loadProjectContextHost` helper when `projectRoot` is supplied, and all
 three host surfaces expose an explicit `mssr_context_ack` that is the only
 delivery acknowledgment that persists (selection alone never acknowledges).
-Bridge delivery remains pending: its local dependency junction crosses the
-OpenCode workspace authority boundary, so the Bridge adapter must consume a
-packaged 0.2.11 artifact instead of an in-place junction. No host is claimed
-to adopt the inbox at runtime/restart beyond the targeted activation probes
-below.
+Bridge consumes the packaged MSSR artifact and proves its runtime adoption
+separately from source conformance. Native, Codex and OpenCode additionally
+register one identical I/O-free host-conformance boundary: exact touched refs
+flow through `mssr_architecture_impact_plan` and host-supplied evidence through
+`mssr_architecture_impact_evaluate`; `mssr_context_proposal_review` classifies
+selected persistence proposals as `review-ready`, `refresh-required`, or
+`blocked`. Every result remains advisory, hosts own observation and delivery,
+and neither architecture evaluation nor proposal delivery writes canonical
+project truth or a reviewed-current receipt.
 
 ### Keyed project context and the modular loader
 
@@ -246,6 +250,13 @@ telemetry. The telemetry can reveal missed activations, unused required skills,
 repeated workarounds, or phase failures, but it cannot silently rewrite routing or
 skills. Confirmed patterns are promoted through explicit maintenance tasks and
 regression fixtures.
+
+The learning evaluation plane keeps this boundary executable. Dataset quality,
+chronological replay/holdout, support-aware calibration and counterfactual
+shadow decisions all return `mode=observe-only`, `routingInfluence=false` and
+`automaticPromotionPerformed=false`. Sparse, ambiguous, drifted or
+unmeasurable evidence produces an explicit abstention; there is no import or
+consumption path from the evaluation module into deterministic routing.
 
 ## Invariants
 

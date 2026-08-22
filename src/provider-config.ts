@@ -19,6 +19,8 @@ const stdioProviderSchema = z.object({
   cwd: z.string().min(1).optional(),
   source: z.string().min(1).optional(),
   location: z.string().min(1).optional(),
+  /** Operator policy for how long a tools/list observation may be called fresh. */
+  catalogTtlMs: z.number().int().positive().max(86_400_000).optional(),
 }).strict();
 
 export const mssrProviderConfigSchema = z.object({
@@ -44,6 +46,7 @@ export function createRegistryFromProviderConfig(config?: MssrProviderConfig): C
       id: provider.id,
       source: provider.source,
       location: provider.location ?? `${provider.transport}:${provider.command}`,
+      catalogTtlMs: provider.catalogTtlMs,
       clientFactory: createStdioMcpClientFactory({
         command: provider.command,
         args: provider.args,

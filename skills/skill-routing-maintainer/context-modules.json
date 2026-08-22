@@ -1,28 +1,8 @@
 {
   "schemaVersion": 1,
-  "core": {
-    "sections": [
-      "## Activación obligatoria",
-      "## Fuentes canónicas",
-      "## Automatización segura",
-      "## Criterios de salida"
-    ]
-  },
+  "core": { "sections": ["## Core protocol", "## Exit"] },
   "modules": [
-    {
-      "id": "modular-architecture",
-      "description": "Decision boundary and structure for modular skills and selective references.",
-      "source": { "path": "references/modular-skill-architecture.md" },
-      "signals": ["skill-gap", "reusable-pattern"],
-      "priority": 30
-    },
-    {
-      "id": "routing-maintenance-loop",
-      "description": "Full routing contract, fixtures, audit, and cross-repository verification loop.",
-      "source": { "sections": ["## Loop de mantenimiento"] },
-      "actions": ["edit", "maintain", "create", "review", "document"],
-      "artifacts": ["skill"],
-      "priority": 25
-    }
+    {"id":"modular-architecture","description":"Decision boundary and structure for modular skills and selective references.","source":{"path":"references/modular-skill-architecture.md"},"signals":["skill-gap","reusable-pattern"],"priority":30},
+    {"id":"routing-contract-maintenance","description":"Routing metadata, fixtures, audit, discovery, and verification procedure.","source":{"path":"references/routing-contract-maintenance.md"},"actions":["edit","maintain","create","review","document"],"artifacts":["skill"],"priority":25}
   ]
 }
