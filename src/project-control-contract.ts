@@ -12,6 +12,7 @@ import {
   type MssrProjectKnowledgeCaptureInput,
 } from "./project-context-capture.js";
 import { planMssrProjectContextModularization } from "./project-context-modularization.js";
+import { maintainMssrProjectContext, mssrProjectContextMaintenanceInputSchema, type MssrProjectContextMaintenanceInput } from "./project-context-maintenance.js";
 
 export const MSSR_PROJECT_CONTROL_TOOL_NAMES = [
   "mssr_project_health",
@@ -19,6 +20,7 @@ export const MSSR_PROJECT_CONTROL_TOOL_NAMES = [
   "mssr_workspace_initialize",
   "mssr_project_capture_plan",
   "mssr_project_modularization_plan",
+  "mssr_project_maintain",
 ] as const;
 
 export const mssrProjectHealthInputSchema = z.object({
@@ -40,6 +42,7 @@ export const mssrWorkspaceInitializeInputSchema = z.object({
 
 export const mssrProjectCapturePlanInputSchema = mssrProjectKnowledgeCaptureInputSchema;
 export const mssrProjectModularizationPlanInputSchema = mssrProjectHealthInputSchema;
+export const mssrProjectMaintenanceInputSchema = mssrProjectContextMaintenanceInputSchema;
 
 export interface MssrProjectControlAdapter {
   projectHealth(projectRoot: string): Promise<unknown> | unknown;
@@ -47,6 +50,7 @@ export interface MssrProjectControlAdapter {
   initializeWorkspace(workspaceRoot: string, options?: InitializeMssrProjectOptions & { maxDepth?: number }): Promise<unknown> | unknown;
   planProjectKnowledgeCapture(input: MssrProjectKnowledgeCaptureInput): Promise<unknown> | unknown;
   planProjectContextModularization(projectRoot: string): Promise<unknown> | unknown;
+  maintainProjectContext(input: MssrProjectContextMaintenanceInput): Promise<unknown> | unknown;
 }
 
 export function createPortableMssrProjectControlAdapter(): MssrProjectControlAdapter {
@@ -56,6 +60,7 @@ export function createPortableMssrProjectControlAdapter(): MssrProjectControlAda
     initializeWorkspace: (workspaceRoot, options) => initializeMssrWorkspace(workspaceRoot, options),
     planProjectKnowledgeCapture: (input) => planMssrProjectKnowledgeCapture(input),
     planProjectContextModularization: (projectRoot) => planMssrProjectContextModularization(projectRoot),
+    maintainProjectContext: (input) => maintainMssrProjectContext(input),
   };
 }
 
@@ -70,8 +75,8 @@ function response(value: unknown) {
  *
  * The schemas and semantics live here so native, Codex, OpenCode and Bridge-like
  * adapters cannot drift independently. Initialization is explicit and idempotent;
- * health/capture planning are advisory. Durable knowledge still requires a reviewed
- * host write rather than an automatic mutation from telemetry.
+ * health/capture planning remain advisory; safe structural maintenance is owned by MSSR
+ * and may relocate only exact already-indexed bytes. Semantic persistence still requires review and never follows telemetry alone.
  */
 export function registerMssrProjectControlTools(
   server: McpServer,
@@ -108,4 +113,8 @@ export function registerMssrProjectControlTools(
     description: "Plan how to reduce Project Context Health pressure by moving exact already-indexed Markdown sections from growing PROJECT_* authorities into .mssr/knowledge/<topic>/. Read-only: reports section hashes, sizes, suggested paths/module ids, selector preservation and core decisions; never mutates or semantically rewrites knowledge.",
     inputSchema: mssrProjectModularizationPlanInputSchema,
   }, async ({ projectRoot }) => response(await adapter.planProjectContextModularization(projectRoot)));
+  server.registerTool(MSSR_PROJECT_CONTROL_TOOL_NAMES[5], {
+    description: "Apply MSSR-owned safe Project Context maintenance. It may relocate exact already-indexed non-core Markdown sections into .mssr/knowledge while preserving module identity, kind and selectors with hash/readback verification. Core narrowing, whole-file semantic splits, selector invention and summarization remain review-only.",
+    inputSchema: mssrProjectContextMaintenanceInputSchema,
+  }, async (input) => response(await adapter.maintainProjectContext(input)));
 }

@@ -48,6 +48,7 @@ export * from "./project-initialization.js";
 export * from "./project-context-health.js";
 export * from "./project-context-budget.js";
 export * from "./project-context-modularization.js";
+export * from "./project-context-maintenance.js";
 export * from "./project-control-contract.js";
 export * from "./project-knowledge-maintenance.js";
 export * from "./operational-notices.js";

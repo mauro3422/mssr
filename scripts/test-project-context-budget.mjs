@@ -73,10 +73,17 @@ try {
   const projectedReviewText = `# Budgeted\n\n${"b".repeat(2000)}\n`;
   const preflightReview = await preflightMssrProjectContextWrite({ projectRoot: root, targetPath: modulePath, nextText: projectedReviewText });
   assert.equal(preflightReview.level, "review");
-  assert.equal(preflightReview.contractValid, true);
+  assert.equal(preflightReview.contractValid, false, "growth into REVIEW must be blocked before the write lands");
   assert.equal(preflightReview.replanBeforeWrite, true);
-  assert.equal(preflightReview.recommendedAction, "project_context_modularization_plan");
+  assert.equal(preflightReview.maintenanceRequiredBeforeWrite, true);
+  assert.deepEqual(preflightReview.growthBlockedEntries, ["budgeted-module"]);
+  assert.equal(preflightReview.recommendedAction, "mssr_project_maintain");
   assert.deepEqual(preflightReview.recommendedSkills, ["skill-maintenance-loop"]);
+
+  const projectedShrinkText = `# Budgeted\n\n${"s".repeat(1000)}\n`;
+  const preflightShrink = await preflightMssrProjectContextWrite({ projectRoot: root, targetPath: modulePath, nextText: projectedShrinkText });
+  assert.equal(preflightShrink.contractValid, true, "shrinking a pressured module must remain allowed");
+  assert.equal(preflightShrink.maintenanceRequiredBeforeWrite, false);
 
   const projectedOverflowText = `# Budgeted\n\n${"c".repeat(2300)}\n`;
   const preflightOverflow = await preflightMssrProjectContextWrite({ projectRoot: root, targetPath: modulePath, nextText: projectedOverflowText });

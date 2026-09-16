@@ -1,3 +1,4 @@
+import fs from "node:fs/promises";
 import path from "node:path";
 
 import {
@@ -39,7 +40,9 @@ export type ProjectContextWritePreflight = Readonly<{
   level: ProjectContextBudgetLevel;
   contractValid: boolean;
   replanBeforeWrite: boolean;
-  recommendedAction: "none" | "project_context_modularization_plan";
+  maintenanceRequiredBeforeWrite: boolean;
+  growthBlockedEntries: readonly string[];
+  recommendedAction: "none" | "project_context_modularization_plan" | "mssr_project_maintain";
   recommendedSkills: readonly string[];
   advisoryOnly: true;
 }>;
@@ -112,9 +115,10 @@ function targetEntries(manifest: ProjectContextManifest, targetRef: string): Arr
  *
  * This is a portable integrity/preflight contract. It does not perform the write, mutate
  * manifests, increase budgets, or decide project truth. Hosts may use `contractValid=false`
- * as a deterministic validation failure because the proposed bytes cannot be materialized
- * under the repository-declared maxChars contract. REVIEW below the hard limit remains an
- * advisory replan signal and recommends the existing maintenance loop.
+ * as a deterministic validation failure when the proposed bytes exceed maxChars or would
+ * grow an indexed entry into REVIEW pressure. Shrinking an already-pressured entry remains
+ * allowed. REVIEW triggers MSSR maintenance/replan; semantic restructuring still requires
+ * explicit review when the maintenance executor cannot prove an exact structural move.
  */
 export async function preflightMssrProjectContextWrite(args: {
   projectRoot: string;
@@ -140,13 +144,20 @@ export async function preflightMssrProjectContextWrite(args: {
       level: "ok",
       contractValid: true,
       replanBeforeWrite: false,
+      maintenanceRequiredBeforeWrite: false,
+      growthBlockedEntries: [],
       recommendedAction: "none",
       recommendedSkills: [],
       advisoryOnly: true,
     };
   }
 
+  const currentText = await fs.readFile(targetAbsolute, "utf8").catch((error) => {
+    if (error && typeof error === "object" && "code" in error && error.code === "ENOENT") return null;
+    throw error;
+  });
   const evaluations: ProjectContextBudgetEvaluation[] = [];
+  const growthBlockedEntries: string[] = [];
   for (const { entry, core } of targetEntries(loaded.manifest, targetRef)) {
     let selectedBytes: number;
     try {
@@ -154,19 +165,27 @@ export async function preflightMssrProjectContextWrite(args: {
     } catch (error) {
       throw new Error(`Project-context preflight cannot materialize '${entry.id}' from proposed ${targetRef}: ${error instanceof Error ? error.message : String(error)}`);
     }
-    evaluations.push(evaluateProjectContextEntryBudget({
+    let currentSelectedBytes = 0;
+    if (currentText !== null) {
+      try { currentSelectedBytes = materializeSelectedBytes(currentText, entry); }
+      catch { currentSelectedBytes = 0; }
+    }
+    const evaluation = evaluateProjectContextEntryBudget({
       entryId: entry.id,
       core,
       sourcePath: entry.source.path,
       selectedBytes,
       maxChars: entry.maxChars,
-    }));
+    });
+    evaluations.push(evaluation);
+    if (evaluation.level === "review" && selectedBytes > currentSelectedBytes) growthBlockedEntries.push(entry.id);
   }
 
   let level: ProjectContextBudgetLevel = "ok";
   for (const evaluation of evaluations) level = maxLevel(level, evaluation.level);
-  const contractValid = evaluations.every((evaluation) => !evaluation.exceeded);
-  const replanBeforeWrite = evaluations.some((evaluation) => evaluation.level === "review");
+  const maintenanceRequiredBeforeWrite = growthBlockedEntries.length > 0;
+  const contractValid = evaluations.every((evaluation) => !evaluation.exceeded) && !maintenanceRequiredBeforeWrite;
+  const replanBeforeWrite = maintenanceRequiredBeforeWrite || evaluations.some((evaluation) => evaluation.level === "review");
   return {
     projectRoot,
     targetRef,
@@ -175,7 +194,11 @@ export async function preflightMssrProjectContextWrite(args: {
     level,
     contractValid,
     replanBeforeWrite,
-    recommendedAction: level === "ok" ? "none" : "project_context_modularization_plan",
+    maintenanceRequiredBeforeWrite,
+    growthBlockedEntries,
+    recommendedAction: maintenanceRequiredBeforeWrite
+      ? "mssr_project_maintain"
+      : level === "ok" ? "none" : "project_context_modularization_plan",
     recommendedSkills: replanBeforeWrite ? ["skill-maintenance-loop"] : [],
     advisoryOnly: true,
   };

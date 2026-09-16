@@ -47,6 +47,7 @@ import { initializeMssrProject, initializeMssrWorkspace, type InitializeMssrProj
 import { auditMssrProjectContextHealth } from "./project-context-health.js";
 import { planMssrProjectKnowledgeCapture, type MssrProjectKnowledgeCaptureInput } from "./project-context-capture.js";
 import { planMssrProjectContextModularization } from "./project-context-modularization.js";
+import { maintainMssrProjectContext, type MssrProjectContextMaintenanceInput } from "./project-context-maintenance.js";
 import type { MssrProjectControlAdapter } from "./project-control-contract.js";
 import { deliverMssrNoticeV1, MssrNoticeDeliveryTracker, type MssrNoticeHostBoundary, type MssrNoticeTrackerSnapshot } from "./mssr-notice-delivery.js";
 import { evaluateMssrServerBuildOperationalAttention } from "./operational-projections.js";
@@ -204,6 +205,10 @@ export class MssrAdapter implements MssrProjectControlAdapter {
 
   planProjectContextModularization(projectRoot: string) {
     return planMssrProjectContextModularization(projectRoot);
+  }
+
+  maintainProjectContext(input: MssrProjectContextMaintenanceInput) {
+    return maintainMssrProjectContext(input);
   }
   getTraceStatus(traceId: string) {
     const state = this.getTrace(traceId);

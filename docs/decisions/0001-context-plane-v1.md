@@ -115,6 +115,12 @@ Semantic similarity is not sufficient for every project rule. A repository may h
 Portable Project Context therefore supports explicit conditional applicability on selective modules: `requiredWhen: { mutation: true, artifacts?: [...] }`. `required:true` keeps its existing unconditional-within-stage meaning. A `requiredWhen` match makes the module effectively required before semantic ranking and required-context budgeting; a read-only task does not activate it. Mutation is determined only from canonical structured intent (`risk` and the bounded mutating-action set), with optional artifact overlap as an additional gate. The repository must declare this relationship explicitly: MSSR does not infer criticality from prose, memory content, filenames, or semantic similarity, and the resulting context never grants write permission.
 
 Conditional-required modules cannot belong to an `exclusiveGroup`. If required context exceeds the task budget, the loader reports required budget debt/overflow rather than silently dropping the contract or increasing limits. This preserves the original ownership boundary and selective-loading goal while adding a fail-visible path for cross-cutting invariants.
+## 0.2.62 structural maintenance amendment
+
+Project Context maintenance is an MSSR semantic responsibility; Bridge and other hosts remain transport/I/O adapters. Health or telemetry evidence alone still never authorizes a semantic rewrite. MSSR may, however, execute a narrowly provable structural normalization when project meaning is unchanged: one already-indexed non-core Markdown section may move to `.mssr/knowledge/` only while preserving its exact bytes, logical module id, kind and selectors, with source/manifest hash preconditions, collision checks, atomic persistence, rollback and readback.
+
+Automatic maintenance abstains when another selector overlaps the moved bytes, a whole-file consumer depends on the source, core would need narrowing, the destination conflicts, or current source identity differs from the plan. Whole-file segmentation, selector invention, summarization and reclassification remain explicit review work. Write preflight blocks growth that would newly cross an entry into REVIEW pressure and directs the caller to MSSR maintenance; shrinking an already-pressured entry remains valid. This extends portable MSSR ownership without making a notice, telemetry event, host adapter or Bridge delivery path an authority over repository meaning.
+
 
 ## Staged adoption gates
 

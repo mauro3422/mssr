@@ -16,7 +16,7 @@ traces, incomplete outcomes and host/model cohorts when evaluating utility.
 
 ## Context-plane ownership decision
 
-MSSR is the portable transport contract for bounded contextual guidance in addition to skill routing. It selects and accounts for messages by intent and stage, carries explicit evidence provenance/freshness and continuation receipts, and keeps persistence proposals review-only. Repository documents remain authoritative; Bridge and other hosts may piggyback or queue delivery but do not own project meaning. Unknown, stale, conflicting, or unavailable evidence triggers verification, context loading, or replanning rather than silent inference.
+MSSR owns the portable semantic contract for bounded project context in addition to skill routing: selection, budgeting, provenance/freshness, continuity and safe structural maintenance. Repository documents remain authoritative. Bridge and other hosts own authorized I/O and delivery/transport only; they do not own project meaning. MSSR may relocate exact already-indexed bytes while preserving their logical contract, but semantic splits, new selectors, summaries or reclassification remain review-only. Unknown, stale, conflicting or unavailable evidence triggers verification or replanning rather than inference.
 
 The 0.2.56 envelope regression established that `estimatedChars` is only a reservation hint, not trusted size evidence. Selection must budget at least the exact serialized structured message; producers should report the measured value when representable, while legacy or external underestimates are corrected at selection time without changing message authority.
 

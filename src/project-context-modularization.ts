@@ -47,14 +47,14 @@ function headingLevel(line: string): number | null {
   return match ? match[1].length : null;
 }
 
-type MarkdownSection = {
+export type MarkdownSection = {
   heading: string;
   level: number;
   chars: number;
   sha256: string;
 };
 
-type ModularizationCandidate = {
+export type ModularizationCandidate = {
   action: "extract-indexed-section";
   entryId: string;
   core: boolean;
