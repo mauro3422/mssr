@@ -1,56 +1,29 @@
-# MauroPrime capability-system map
+# Maintenance ownership
 
-Use this map before deciding where a maintenance change belongs.
+Read when a finding's owner is unresolved. Choose one canonical source:
 
-## Sources of truth
+| Finding | Owner |
+|---|---|
+| Project facts, decisions, state | Project `AGENTS.md`, `.mssr/`, docs/tests |
+| MSSR first-party procedure | `D:\Dev\mssr\skills` |
+| Other custom procedure | `D:\Dev\mauroprime-skills\skills` |
+| Activation/phase/module selection | MSSR `config/skill-routing`, owning manifest, fixtures |
+| Portable selector/schema/lifecycle | `D:\Dev\mssr\src` |
+| Bridge execution/transport/adapter | `D:\Dev\bridge-mcp\src`, `scripts`, `TOOLS.md` |
+| Skill install/discovery incident | `D:\Dev\mauroprime-skills\docs\INCIDENTS.md` |
+| Live scene/session state | Connected MCP/runtime; verify disk separately |
 
-| Layer | Canonical location | Owns | Never treat as canonical |
-|---|---|---|---|
-| MSSR first-party procedures | `D:\Dev\mssr\skills\<name>\SKILL.md` | Reserved MSSR skill instructions, references, scripts, agent metadata | External editable shadow, runtime copy, plugin cache |
-| Custom reusable procedures | `D:\Dev\mauroprime-skills\skills\<name>\SKILL.md` | Non-reserved skill instructions, references, scripts, agent metadata | Copied prompt text, reserved MSSR name, generated dashboard |
-| Skill lifecycle incidents | `D:\Dev\mauroprime-skills\docs\INCIDENTS.md` | Chronology of source/install/discovery/procedure failures | Generalized procedure duplicated from skill modules |
-| Runtime skill mounts | `C:\Users\mauro\.codex\skills\<name>` junctions | Discovery path only | Independent copied directories |
-| Routing contract | `D:\Dev\mssr\config\skill-routing\` | Domains, actions, artifacts, needs, signals, phases, dependencies, workflows, fixtures | `_dashboard` output |
-| Routing implementation | `D:\Dev\mssr\src\` | Deterministic planning, provider registry, audit, schemas | Bridge-specific shortcuts |
-| Bridge adapter and tools | `D:\Dev\bridge-mcp\src\`, `scripts\`, `TOOLS.md` | Local access, tool schemas, risk classification, provider adapters, restart lifecycle | Stale live process or generated docs alone |
-| Project-local state | Project `AGENTS.md`, canonical `.mssr/` authorities, docs, tests, evidence | Exact paths, architecture, current decisions, accepted artifacts | Global skill prose or legacy `.bridge/` as a second authority |
-| Live application state | Connected MCP/runtime | Open scene, active session, in-memory state, current tool catalog | Source files or cached catalog alone |
-| Product context | ChatGPT, Codex, Roblox Studio, Blender, browser, connectors | Available authority, UI and direct state | Assumed access based on another product |
+Runtime junctions under `C:\Users\mauro\.codex\skills`, caches, dashboards and
+legacy `.bridge/` project control are not editable authorities. Access in another
+product does not prove access here.
 
-## Ownership decision
+Keep facts project-local. Extend an existing skill for reusable procedure, use
+scripts/tools for deterministic mechanics and guides for orchestration. Create a
+skill only for an independent objective. For state owned elsewhere, use
+`capability-gap-recovery` and a bounded handoff.
 
-1. Exact fact about one repository or artifact → project documentation.
-2. Reusable procedure within an existing objective → update the owning skill.
-3. Incorrect selection, phase or composition → MSSR metadata and fixtures.
-4. Missing execution primitive → script, adapter or tool with tests and risk classification.
-5. Repeated multi-step orchestration → workflow guide.
-6. Independent reusable objective → new skill.
-7. State or authority only available elsewhere → context handoff through `capability-gap-recovery`.
-
-## Required maintenance order
-
-```text
-Observe friction
-→ freeze evidence
-→ identify owner
-→ reproduce the failure or bad route
-→ apply smallest durable change
-→ verify source/runtime/user-facing/persistence layers
-→ update routing and fixtures when semantics changed
-→ regenerate generated outputs
-→ run cross-repository checks
-→ commit and push each canonical repository
-→ restart live services only after source verification
-→ verify the live version/catalog
-```
-
-## Context choices
-
-- **Codex:** direct local repository, terminal, build, refactor and test work.
-- **ChatGPT + MauroPrime Bridge:** shared routing, cross-client coordination, connected apps, verified local operations and resumable handoff.
-- **Roblox Studio MCP:** live DataModel, Edit/Server/Client state, Play tests and exact place persistence.
-- **Blender bridge:** live scene, object state, viewport captures and batch scripts.
-- **Browser/web:** current external documentation, releases, services and public sources.
-- **Connected app:** private account data only when the relevant connector is installed and authorized.
-
-A context switch is a technical decision, not a failure. Name the missing authority and preserve a bounded handoff packet.
+Freeze evidence, reproduce, change the owner, then test the failure and a nearby
+valid case. Update routing/fixtures only when semantics change; regenerate and
+verify affected source/runtime/persistence layers. Publish or restart only in
+scope, then read back the exact revision. A review may end `reviewed-none`;
+this map does not imply a publication chain.

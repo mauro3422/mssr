@@ -38,6 +38,7 @@ import {
   validateMssrCheckpointLifecycle,
 } from "./trace-contract.js";
 import { mssrContextMessageBatchSchema, selectMssrContextMessages } from "./context-messages.js";
+import { routeEnvelopeDiagnostics, summarizeRegistrySnapshot } from "./route-envelope.js";
 import {
   MAX_HOST_CONTEXT_MESSAGE_CHARS,
   MAX_HOST_PROJECT_CONTEXT_CHARS,
@@ -154,7 +155,8 @@ export function createMssrMcpServer(registry = new CapabilityRegistry([new MssrF
         contextMessages: host.contextMessages,
         inbox: host.inbox,
         repository: host.repository,
-        registry: registry.getSnapshot(),
+        registrySummary: summarizeRegistrySnapshot(registry.getSnapshot()),
+        diagnostics: routeEnvelopeDiagnostics(),
       });
     }
     return response({
@@ -168,7 +170,8 @@ export function createMssrMcpServer(registry = new CapabilityRegistry([new MssrF
           maxChars: maxContextMessageChars,
         }),
       } : {}),
-      registry: registry.getSnapshot(),
+      registrySummary: summarizeRegistrySnapshot(registry.getSnapshot()),
+      diagnostics: routeEnvelopeDiagnostics(),
     });
   });
 

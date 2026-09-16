@@ -6,6 +6,7 @@ import { CodexMssrAdapter } from "./codex-adapter.js";
 import { createMssrRegistryFromEnvironment } from "./provider-config.js";
 import { createMssrTelemetrySinkFromEnvironment, mssrHostCheckpointSchema } from "./telemetry.js";
 import { mssrTraceWorkingMemorySchema } from "./trace-contract.js";
+import { createStderrMssrNoticeBoundary } from "./mssr-notice-delivery.js";
 import { registerMssrProjectControlTools } from "./project-control-contract.js";
 import { registerMssrConsistencyTools } from "./consistency-contract.js";
 import { registerMssrOperationalNoticeTools } from "./operational-notice-contract.js";
@@ -58,6 +59,21 @@ export function createCodexMssrMcpServer(adapter = new CodexMssrAdapter()) {
     inputSchema: { traceId: z.string().min(6).max(128) },
   }, async ({ traceId }) => response({ traceId, ...adapter.getTraceStatus(traceId) }));
 
+  server.registerTool("mssr_registry_status", {
+    description: "Show the current advisory capability snapshot and provider health.",
+    inputSchema: { refresh: z.boolean().optional(), providerIds: z.array(z.string()).optional() },
+  }, async ({ refresh, providerIds }) => response(refresh ? await adapter.registry.refresh(providerIds) : adapter.registry.getSnapshot()));
+
+  server.registerTool("mssr_capability_search", {
+    description: "Search discovered capability metadata without executing tools.",
+    inputSchema: { query: z.string().min(1), limit: z.number().int().min(1).max(100).optional() },
+  }, async ({ query, limit }) => response({ query, matches: adapter.registry.search(query, limit) }));
+
+  server.registerTool("mssr_capability_inspect", {
+    description: "Inspect one capability metadata record without executing it.",
+    inputSchema: { idOrName: z.string().min(1) },
+  }, async ({ idOrName }) => response({ capability: adapter.registry.inspect(idOrName) ?? null }));
+
   server.registerTool("mssr_context_ack", {
     description: "Acknowledge delivered MSSR context messages for one project's durable inbox. Only explicit delivery confirmation persists; selection alone never acknowledges.",
     inputSchema: contextAckInputSchema,
@@ -70,6 +86,7 @@ export async function startCodexMssrServer(): Promise<void> {
   const registry = await createMssrRegistryFromEnvironment();
   const adapter = new CodexMssrAdapter(registry, {
     telemetrySink: createMssrTelemetrySinkFromEnvironment(),
+    noticeDelivery: createStderrMssrNoticeBoundary("mssr-codex"),
     model: process.env.MSSR_HOST_MODEL || "unknown",
     reasoningEffort: (process.env.MSSR_HOST_REASONING_EFFORT as "low" | "medium" | "high" | "xhigh" | "max" | "ultra" | "unknown" | undefined) ?? "unknown",
   });

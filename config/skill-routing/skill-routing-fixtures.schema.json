@@ -39,6 +39,8 @@
               "activeExcludes": { "type": "array", "items": { "type": "string" } },
               "deferredIncludes": { "type": "array", "items": { "type": "string" } },
               "deferredExcludes": { "type": "array", "items": { "type": "string" } },
+              "hostGatedEligibleIncludes": { "type": "array", "items": { "type": "string" } },
+              "hostGatedEligibleExcludes": { "type": "array", "items": { "type": "string" } },
               "missingRequiredPhases": { "type": "array", "items": { "enum": ["discovery", "safety", "implementation", "verification", "persistence", "maintenance"] }, "uniqueItems": true },
               "agentFallbackPhases": { "type": "array", "items": { "enum": ["discovery", "safety", "implementation", "verification", "persistence", "maintenance"] }, "uniqueItems": true }
               ,"rootSelectedAtMost": { "type": "integer", "minimum": 1, "maximum": 32 }

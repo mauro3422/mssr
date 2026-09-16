@@ -48,7 +48,19 @@ import { auditMssrProjectContextHealth } from "./project-context-health.js";
 import { planMssrProjectKnowledgeCapture, type MssrProjectKnowledgeCaptureInput } from "./project-context-capture.js";
 import { planMssrProjectContextModularization } from "./project-context-modularization.js";
 import type { MssrProjectControlAdapter } from "./project-control-contract.js";
-import { deliverMssrNoticeV1, type MssrNoticeHostBoundary } from "./mssr-notice-delivery.js";
+import { deliverMssrNoticeV1, MssrNoticeDeliveryTracker, type MssrNoticeHostBoundary, type MssrNoticeTrackerSnapshot } from "./mssr-notice-delivery.js";
+import { evaluateMssrServerBuildOperationalAttention } from "./operational-projections.js";
+import {
+  isSameMssrServerBuild,
+  readMssrServerBuildId,
+  resolveMssrServerDistDir,
+  type MssrServerBuildId,
+} from "./server-build.js";
+import {
+  projectContextPageForEnvelope,
+  routeEnvelopeDiagnostics,
+  summarizeRegistrySnapshot,
+} from "./route-envelope.js";
 
 export type { MssrRouteInput } from "./host-adapter-contract.js";
 import { resolveMssrHostSkillSelection, type MssrRouteInput } from "./host-adapter-contract.js";
@@ -62,6 +74,17 @@ export type MssrAdapterOptions = {
   telemetrySink?: MssrTelemetrySink | null;
   noticeDelivery?: MssrNoticeHostBoundary<unknown> | null;
   defaultSelectionMode?: "auto" | "host-gated";
+  /**
+   * Stable per-process identity for stale-build notices (defaults to
+   * `<tracePrefix>:pid=<pid>`). Override only in tests.
+   */
+  instanceId?: string;
+  /**
+   * Build-identity seams. `loaded` pins the identity captured at startup
+   * (defaults to a read at construction); `distDir` overrides where the
+   * available build is read from (defaults to the running `dist/`).
+   */
+  build?: { loaded?: MssrServerBuildId; distDir?: string };
 };
 
 type LoadedMssrSkill = {
@@ -87,9 +110,15 @@ export class MssrAdapter implements MssrProjectControlAdapter {
   private initialized = false;
   private readonly traces = new Map<string, MssrTraceLifecycleState>();
   private readonly workingMemory = new Map<string, MssrTraceWorkingMemory>();
-  private readonly options: Required<Omit<MssrAdapterOptions, "telemetrySink" | "noticeDelivery">> & {
+  private readonly instanceId: string;
+  private readonly buildDistDir: string;
+  private readonly loadedBuild: MssrServerBuildId;
+  private readonly noticeTracker: MssrNoticeDeliveryTracker;
+  private readonly options: Required<Omit<MssrAdapterOptions, "telemetrySink" | "noticeDelivery" | "instanceId" | "build">> & {
     telemetrySink: MssrTelemetrySink | null;
     noticeDelivery: MssrNoticeHostBoundary<unknown> | null;
+    instanceId?: string;
+    build?: { loaded?: MssrServerBuildId; distDir?: string };
   };
 
   constructor(
@@ -107,6 +136,12 @@ export class MssrAdapter implements MssrProjectControlAdapter {
       noticeDelivery: options.noticeDelivery ?? null,
       defaultSelectionMode: options.defaultSelectionMode ?? "host-gated",
     };
+    this.instanceId = options.instanceId ?? `${this.options.tracePrefix}:pid=${process.pid}`;
+    this.buildDistDir = options.build?.distDir ?? resolveMssrServerDistDir();
+    // Identity captured once at startup: later source edits never change it,
+    // only a finished compiler run producing new dist bytes does.
+    this.loadedBuild = options.build?.loaded ?? readMssrServerBuildId(this.buildDistDir);
+    this.noticeTracker = new MssrNoticeDeliveryTracker(this.options.noticeDelivery);
   }
 
   async initialize(): Promise<void> {
@@ -187,6 +222,70 @@ export class MssrAdapter implements MssrProjectControlAdapter {
     return { accepted: true, traceId, workingMemory };
   }
 
+  /**
+   * Self-observation for stale persistent processes. Compares the build
+   * identity captured at startup against the currently available compiled
+   * build and tracks one deduped operational notice per instance/build pair.
+   * Detection only: MSSR never restarts or reconnects its own process.
+   * Observability failures here never fail the route call.
+   */
+  describeServerBuild() {
+    const available = readMssrServerBuildId(this.buildDistDir);
+    const loadedId = this.loadedBuild.status === "known" ? this.loadedBuild.id : null;
+    const availableId = available.status === "known" ? available.id : null;
+    const projection = evaluateMssrServerBuildOperationalAttention({
+      loadedBuildId: loadedId,
+      availableBuildId: availableId,
+      availableKnown: available.status === "known",
+    });
+    return {
+      instanceId: this.instanceId,
+      loaded: this.loadedBuild,
+      available,
+      status: projection.level === "ok" ? "current" as const : projection.level === "watch" ? "unknown" as const : "stale" as const,
+      projection,
+      pendingDedupeKeys: this.noticeTracker.pendingDedupeKeys(),
+    };
+  }
+
+  /**
+   * Export notice-delivery memory so a reconnecting host may carry it over
+   * and observe a `resolved` transition instead of starting blind. No
+   * persistence inside MSSR; the host owns the snapshot bytes.
+   */
+  snapshotNoticeMemory(): MssrNoticeTrackerSnapshot {
+    return this.noticeTracker.snapshot();
+  }
+
+  /** Restore memory previously exported by `snapshotNoticeMemory()`. */
+  restoreNoticeMemory(snapshot: unknown): void {
+    this.noticeTracker.restore(snapshot);
+  }
+
+  private async trackServerBuildNotice() {
+    try {
+      const described = this.describeServerBuild();
+      const loadedLabel = described.loaded.status === "known" ? described.loaded.id : "unknown build";
+      const availableLabel = described.available.status === "known" ? described.available.id : "unknown build";
+      const track = await this.noticeTracker.observe({
+        subject: described.instanceId,
+        source: this.options.source,
+        code: "mssr-server-build-stale",
+        resolutionCode: "mssr-server-build-current",
+        currentLevel: described.projection.level,
+        currentFingerprint: described.projection.fingerprint,
+        message: described.status === "stale"
+          ? `Server ${described.instanceId} loaded ${loadedLabel} but ${availableLabel} is available. Responses may follow older behavior until the host reconnects or respawns this server.`
+          : `Server ${described.instanceId} build state is ${described.status}: loaded ${loadedLabel}, available ${availableLabel}.`,
+        resolutionMessage: `Server ${described.instanceId} now serves ${availableLabel}; the stale-build condition cleared.`,
+        recommendation: "Reconnect or respawn this MCP server through its host so calls run the available build. MSSR never restarts its own process.",
+      });
+      return { described, track };
+    } catch {
+      return { described: null, track: null };
+    }
+  }
+
   private async plan(input: MssrRouteInput, action: "plan" | "bootstrap") {
     await this.initialize();
     const intent = structuredSkillIntentSchema.parse(input.intent);
@@ -255,7 +354,36 @@ export class MssrAdapter implements MssrProjectControlAdapter {
         route: routeTelemetrySummary(observedPlan as unknown as Record<string, unknown>),
       },
     });
-    return { ...observedPlan, traceId, lifecycle, telemetry, registry: this.registry.getSnapshot() };
+    return {
+      ...observedPlan,
+      traceId,
+      lifecycle,
+      telemetry,
+      // Normal responses carry a bounded registry summary, never the full
+      // capability snapshot: the catalog stays internal to routing and remains
+      // inspectable on demand through mssr_registry_status /
+      // mssr_capability_search / mssr_capability_inspect. The small routing
+      // summary produced by planSkillRoute keeps the `registry` key.
+      registrySummary: summarizeRegistrySnapshot(this.registry.getSnapshot()),
+      diagnostics: routeEnvelopeDiagnostics(),
+      ...(await this.serverBuildEnvelope()),
+    };
+  }
+
+  /**
+   * Compact build-identity envelope plus at most one deduped stale-build
+   * notice. Quiet (empty `notices`) on current builds and stable repeats.
+   */
+  private async serverBuildEnvelope() {
+    const { described, track } = await this.trackServerBuildNotice();
+    if (!described) return {};
+    const serverBuild = {
+      loaded: described.loaded.status === "known" ? described.loaded.id : null,
+      available: described.available.status === "known" ? described.available.id : null,
+      status: described.status,
+    };
+    if (!track?.notice) return { serverBuild, notices: [] as const };
+    return { serverBuild, notices: [track.notice] };
   }
 
   async route(input: MssrRouteInput) {
@@ -344,7 +472,10 @@ export class MssrAdapter implements MssrProjectControlAdapter {
       ...route,
       lifecycle,
       loaded,
-      contextAssembly: contextPlan,
+      // `loaded` is the canonical carrier of selected skill content. The page
+      // keeps budgets, cursors and remaining/blocked units but omits the
+      // repeated per-skill content strings.
+      contextAssembly: projectContextPageForEnvelope(contextPlan),
       selection: {
         ...loadSelection,
         decisions,

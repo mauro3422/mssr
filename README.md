@@ -126,8 +126,10 @@ capabilities and belong in the registry.
 
 ## Status
 
-Version `0.1.0` established the independent repository and contract; the current
-release is `0.2.6` (see [CHANGELOG.md](CHANGELOG.md)). It now ships the portable
+Version `0.1.0` established the independent repository and contract. See
+[CHANGELOG.md](CHANGELOG.md) for the current release and
+[project state](.mssr/PROJECT_STATE.md) for unreleased corrections and host
+adoption. The package ships the portable
 core, the standalone `mssr-mcp`, `mssr-codex-mcp`, and `mssr-opencode-mcp`
 servers, and an optional OpenCode host plugin. Bridge remains a consumer adapter
 rather than the owner of the routing contract.

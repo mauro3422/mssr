@@ -99,4 +99,5 @@ assert.equal(packageJson.scripts.postinstall, undefined, "first-party skill inst
 const fixtureSchema = JSON.parse(await fs.readFile(path.join(root, "config", "skill-routing", "skill-routing-fixtures.schema.json"), "utf8"));
 assert.equal(fixtureSchema.properties.cases.items.properties.sources.items.enum.includes("mssr-first-party"), true, "routing fixture schema must accept first-party provenance");
 
+await import("./test-first-party-context-economy.mjs");
 console.log("first-party skill package conformance tests passed");

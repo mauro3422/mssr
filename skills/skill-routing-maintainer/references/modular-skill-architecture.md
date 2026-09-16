@@ -114,6 +114,12 @@ Contract:
 - A source uses exactly one of `path` or `sections`.
 - `path` stays inside the skill directory; `sections` must name unique exact Markdown headings in `SKILL.md`.
 - A non-required module needs at least one selector. Every selector dimension it declares must match the structured intent.
+- Test assembled context as well as root length. A short core can still select
+  an oversized reference pack. Pair specialized recovery or promotion with a
+  nearby negative: generic review/friction must not require a restart experiment
+  or proposal generation. When vocabulary cannot distinguish the detailed task,
+  deliver a compact decision guide and explicit read condition, not a full
+  procedure selected solely by broad tags.
 - `required=true` means required inside the already-routed parent skill; it does not independently activate that skill or grant authority, and it cannot be combined with `exclusiveGroup`.
 - Use `exclusiveGroup` only for true alternatives. One unique highest score wins; a tie loads none and returns candidates instead of injecting both.
 - Modules are indivisible under the budget. Omit and report `budget-exceeded`; never truncate a recovery rule silently. If an optional skill core cannot fit the remaining global budget, omit the whole optional context; only required skill context may overflow with explicit evidence.

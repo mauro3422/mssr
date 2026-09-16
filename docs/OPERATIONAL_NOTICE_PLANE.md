@@ -99,6 +99,60 @@ Gate E2 (0.2.31) freezes the semantic/delivery boundary as an executable contrac
 
 Gate E4's immediate delivery helper does not add queueing, persistence, retry, scheduling, UI, actions or permission semantics. An unconfigured adapter fails closed rather than inventing transport; a host delivery exception is surfaced to the caller exactly as a host failure and MSSR does not retry or reinterpret it. Gate E5 remains the final migration/invariant integration gate. Bridge 0.6.106 remains on packaged MSSR 0.2.31 until a later explicit host adoption; the 0.2.32 source release does not silently upgrade Bridge.
 
+### Stale server builds: detection, delivery, presentation, recovery
+
+Persistent MCP hosts (notably Codex stdio children) outlive the `dist/` build
+they started from. No MSSR watcher supervises OS processes — process lifetime
+belongs to the owning host client — so each stateful adapter observes itself:
+
+- **Detection** (portable): `readMssrServerBuildId()` hashes the compiled
+  `dist/*.js` bytes captured once at startup (`loaded`) and re-reads the
+  available build per call. Source edits never move the identity; only a
+  finished compiler run does. `evaluateMssrServerBuildOperationalAttention()`
+  projects loaded-vs-available into ok/review (unknown reads are `watch`,
+  never proof of staleness).
+- **Delivery** (host): `MssrNoticeDeliveryTracker` keeps per-subject
+  previous-level/fingerprint memory with zero timers, persistence or queue:
+  first attention delivers once per instance/build `dedupeKey`, stable repeats
+  stay quiet, a new pair re-notifies as `changed`, and leaving the threshold
+  resolves. A transport-closed boundary failure parks the notice as `pending`
+  (re-attempted silently on the next observation, never dropped, never
+  re-presented). Codex/OpenCode stdio servers configure a real stderr JSON-line
+  boundary; its receipt stays opaque.
+- **Presentation** (host): the agent-visible path is one bounded piggybacked
+  `notices[]` entry on route/bootstrap responses, plus a tiny `serverBuild`
+  identity block on every response. Host UI projection remains host-owned.
+- **Recovery** (host): MSSR only recommends reconnect/respawn and never
+restarts its own process; automatic reconnection is not declared without
+verified client support. A reconnecting host may carry
+`snapshotNoticeMemory()` across instances to observe `resolved`; otherwise
+the old lifecycle simply ends and the fresh instance observes quiet-ok.
+
+### Stale-build channel guarantees
+
+No channel confirms agent reception. Each one guarantees only this:
+
+- **Build identity**: the `.build-receipt.json` marker written atomically by
+  the build script is authoritative only when the recomputed content hash
+  equals it; failed compilations never rewrite the receipt, and any mismatch
+  — torn writes, same-size edits, aged failures — stays `unknown` at any age
+  instead of being promoted into an identity. Without a matching receipt,
+  freshly written output reads as `unknown` (settling). Source edits never
+  move the identity.
+- **Boundary handoff** (`delivered`): the host boundary accepted the notice
+  (e.g. bytes reached host log capture). It does **not** mean an agent read
+  it; stderr writes are host logs, not agent reception.
+- **Piggyback**: at-most-once attach per instance/build pair. Arrival is
+  unconfirmed: a response lost after prepare is invisible unless the host
+  reports it via `markResponseLost`, which re-arms exactly one
+  re-presentation while the condition is unchanged.
+- **Pending**: a transport-closed delivery is conserved in tracker memory
+  (including across `snapshot`/`restore`) and silently re-attempted on later
+  observations until delivered, superseded by a new fingerprint, or resolved.
+  Memory is in-process only: no timers, no persistence, no queue.
+- **Quiet** claims `none`, never `delivered`: absence of pending is not
+  proof of delivery.
+
 ### Producer owns
 
 A producer owns only the evidence it can legitimately observe. It must not silently turn a notice into a mutation. For example, Project Context Health can say that a manifest is under structural pressure; it cannot rewrite `.mssr/project-context.json` from the scheduler.

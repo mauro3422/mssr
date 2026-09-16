@@ -2,8 +2,15 @@
 
 Versioned release notes are the canonical project change-history surface. Hosts may load this index selectively for debugging, recovery, maintenance, or release verification.
 
+## Corrections incorporated by 0.2.61
+
+- [0.2.60](0.2.60.md) - proportional lifecycle and publication activation; packages the 0.2.58 and 0.2.59 source corrections for local adoption.
+- [0.2.59](0.2.59.md) - first-party skill-context correction: proportional maintenance review, specific recovery selectors, explicit close checkpoints and deterministic context-economy fixtures.
+- [0.2.58](0.2.58.md) - routing correction: visual evidence requires both `visual-qa` and human approval, preventing non-visual functional code audits from inheriting required visual workflow obligations.
+
 ## Current releases
 
+- [0.2.61](0.2.61.md) - compact route/bootstrap envelope without the full capability snapshot, plus narrower visual-reference-integrity activation with nearby fixtures.
 - [0.2.57](0.2.57.md) - Skill-context cursors preserve selection integrity while allowing each continuation page to use the host envelope space actually available.
 - [0.2.56](0.2.56.md) - Context-message budgets use measured serialized bytes as a floor, preventing optimistic hints from overflowing host envelopes.
 - [0.2.55](0.2.55.md) - Selective maintenance-friction modules prevent a generic warning from materializing one indivisible 20 KB context unit.

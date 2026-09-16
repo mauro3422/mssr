@@ -2,6 +2,14 @@
 
 This file records confirmed routing failures and the regression that prevents each one from returning. It contains only observable inputs, outputs, causes, changes, and test evidence. It must not contain hidden chain-of-thought.
 
+## MSSR-043 — First-party context proportionality and close guidance
+
+- Evidence: `AUDIT_CONTEXT_VALUE_2026-09-05.md`; nominal close assembled 12,688 procedural characters; generic repeated-friction selected a stateless recovery recipe; an outcome retry required an explicit maintenance phase checkpoint.
+- Cause: conditional references and insufficiently explicit lifecycle guidance, not a demonstrated model-capability failure. Web envelope/root-selection debt remains separate and unresolved.
+- Correction: compact maintenance decisions/ownership, specific recovery selectors, isolated recovery experiments, explicit phase_completed before outcome, and cohort-aware aggregate interpretation.
+- Regression: seven cases in `config/skill-routing/first-party-context-fixtures.json`, executed by `test:first-party-skills`; nominal close now 6,935 characters within 7,000. Proposal-generator safeguards remain covered by eight self-tests.
+- Follow-up: independently evaluate task quality/cost; review Bridge envelope/dashboard labels and external history-skill migration debt. This source-only correction does not imply Bridge package adoption.
+
 ## MSSR-001 — Roblox project migration opened gameplay branches
 
 **Date:** 2026-07-21
@@ -1376,3 +1384,43 @@ Context Message selection now uses `max(estimatedChars, serialized structured ch
 ### Regression
 
 An explicitly underestimated 500-character message is rejected from a budget one character below its serialized form, and repository/producer selection suites verify the measured accounting path.
+
+## MSSR-041 - Functional “Smoke Lab” code audit activated a required visual-evidence lifecycle
+
+**Date:** 2026-08-27
+
+### Trigger
+
+A structured pre-release code audit declared `coding`, `git`, and `filesystem`; code/repository/document artifacts; unit tests, integrity, version-control, and human approval. “Smoke Lab” named a functional test section, with no images, visual artifact, or `visual-qa` need. At `start`, `verify`, and `persist`, the route nevertheless required `visual-evidence-audit`; later phases also required cataloging and pruning.
+
+### Root cause
+
+`visual-evidence-lifecycle` treated any matching review action, broad document artifact, and `human-approval` as enough evidence for a visual conservation workflow. The direct audit metadata had the same broad approval-only gate. Host-gated skips could not remove the result because it was a workflow requirement, which is correct host-gating behavior but exposed the overbroad workflow boundary.
+
+### Correction
+
+Added the strict `allNeeds` routing condition/metadata gate. The visual lifecycle and direct audit now require both `visual-qa` and `human-approval`; a document or functional test label cannot stand in for real pixels. Existing visual lifecycle fixtures retain both needs, and the ordinary per-dimension intersection behavior is unchanged.
+
+### Regression
+
+`visual-evidence-lifecycle-negative-smoke-lab-code-pre-release` proves no visual audit, cataloging, or pruning candidate is active, deferred, or eligible in host-gated mode. The positive crowded visual-audit, verify, pruning, and persist fixtures remain green.
+
+## MSSR-042 - Workshop changelog maintenance crowded out its domain owner
+
+**Date:** 2026-09-02
+
+### Trigger
+
+A structured task combined Steam Workshop history audit with skill maintenance, official-document research, Git/filesystem inspection and repeated-friction signals. Under `maxSkills=8`, the maintenance workflow and generic recovery/debug candidates consumed the available roots while `steam-workshop-publication` was omitted from the applied route.
+
+### Root cause
+
+The domain skill description and routing metadata emphasized publication/update work but did not declare `official-docs`/`history-recovery` or the anomaly signals produced by a duplicate/blank changenote audit. Its negative wording also treated any non-publishing Steam explanation too broadly, even when a concrete public item history was being inspected.
+
+### Correction
+
+The existing skill remains the owner and now explicitly covers public history audit, append-only capability research and prevention maintenance. Routing metadata adds the corresponding needs and signals while retaining the narrower domain actions, and the negative boundary is narrowed to conceptual explanations or local-only changelog edits with no Steam item/history/publication intent.
+
+### Regression
+
+`steam-workshop-publication-changelog-audit-under-maintenance` proves the domain skill survives the original crowded budget. `steam-workshop-publication-negative-local-changelog-edit` proves an ordinary repository Markdown changelog edit still excludes it.

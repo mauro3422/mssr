@@ -26,6 +26,7 @@
         "actions": { "type": "array", "items": { "type": "string" } },
         "artifacts": { "type": "array", "items": { "type": "string" } },
         "needs": { "type": "array", "items": { "type": "string" } },
+        "allNeeds": { "type": "array", "items": { "type": "string" } },
         "signals": { "type": "array", "items": { "type": "string" } },
         "risks": { "type": "array", "items": { "enum": ["read-only", "write", "destructive", "external-side-effect"] } },
         "stages": { "type": "array", "items": { "enum": ["start", "implement", "verify", "persist", "close", "resume"] } }
@@ -41,6 +42,7 @@
         "actions": { "type": "array", "items": { "type": "string" } },
         "artifacts": { "type": "array", "items": { "type": "string" } },
         "needs": { "type": "array", "items": { "type": "string" } },
+        "allNeeds": { "type": "array", "items": { "type": "string" } },
         "signals": { "type": "array", "items": { "type": "string" } },
         "requires": { "type": "array", "items": { "type": "string" } },
         "complements": { "type": "array", "items": { "type": "string" } },

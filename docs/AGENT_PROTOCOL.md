@@ -73,6 +73,12 @@ inputs, and changing them does not grant capabilities or permissions.
 
 ## Routing evidence checkpoint and notices
 
+Persistence inference requires an explicit save/recover/version/publish action,
+backup, or mutation with integrity/version-control needs. Read-only history,
+integrity and Git-status inspection do not imply a write. Closing alone does
+not create maintenance work; explicit workflows and maintenance signals still
+do. Required obligations already established by real work remain in the trace.
+
 The host's first observable action after deliberating about substantial specialized work is a compact Routing Evidence Checkpoint. It contains operational conclusions suitable for MSSR—not private reasoning. This boundary is sometimes described as the second tick: the model interprets the request, emits structured routing metadata, receives the route, and then reasons again with the selected capabilities.
 
 Runtime or project evidence may arrive later through bounded notices attached to tool results or a drainable inbox. Errors, active agents, owned files, pending captures/reviews, stale project context, missing routing, required skills not loaded, and unusual metrics can trigger a context request or replan. Notices never authorize mutations.

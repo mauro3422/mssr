@@ -79,6 +79,7 @@
   every response inside the 32,000-character envelope and zero selected units
   left pending. Broader cross-host lifecycle parity remains in the runtime
   conformance gates below.
+- [ ] Event-driven trigger contract: define a portable, I/O-free event envelope + dedupe/trigger evaluator so authorized hosts can react to native provider/webhook/runtime events without periodic polling. Transport/auth/secrets remain host-owned; sources without native events use an explicit bounded `poll-fallback`. Design handoff: `docs/HANDOFF_EVENT_TRIGGER_WEBHOOKS.md`.
 
 ## v0.4 — activation observability and durable learning
 

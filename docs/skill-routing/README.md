@@ -2,7 +2,7 @@
 
 Nombre corto: **MSSR**.
 
-MSSR es la capa de routing de skills de MauroPrime. No es un daemon separado ni una combinación informal de prompts: es un módulo TypeScript del Bridge, un contrato JSON versionado, fixtures de comportamiento, tools MCP y skills de mantenimiento.
+MSSR es un paquete TypeScript portable de routing de skills: posee un contrato JSON versionado, fixtures de comportamiento, adaptadores MCP y skills de mantenimiento. MauroPrime Bridge es uno de sus consumidores; el contrato permanece independiente del host.
 
 ## Objetivo
 
@@ -36,6 +36,8 @@ La clasificación puede reutilizarse como capa de control para seleccionar skill
 `signals` siempre contiene al menos un valor. Usa `nominal` sólo cuando no hay anomalías; si existe evidencia relevante, omite `nominal` y declara `error-observed`, `warning-observed`, `degraded-capability`, `uncertainty`, `conflicting-evidence`, `repeated-friction`, `manual-workaround`, `missing-capability`, `recovery-needed`, `skill-gap` o `reusable-pattern`. Las señales de incidente fuerzan verificación; las de fricción o patrón requieren considerar mantenimiento al cerrar.
 
 `needs` expresa capacidades o garantías requeridas aunque la tarea sea nominal. `component-reuse` significa que un ensamblaje 3D debe auditar componentes validados existentes y decidir `instance | derive | create`; no debe sustituirse por `reusable-pattern`, porque esa señal significa que apareció una lección/fricción digna de mantenimiento del sistema.
+
+Las condiciones de routing usan intersección por cada lista declarada. Cuando una garantía exige varias necesidades simultáneas, `allNeeds` requiere que estén todas presentes; úsalo para gates estrechos, como evidencia visual real (`visual-qa`) más decisión humana (`human-approval`), en lugar de convertir un artefacto amplio como `document` en prueba visual.
 
 ## Componentes canónicos
 

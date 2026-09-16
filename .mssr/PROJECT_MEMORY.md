@@ -1,5 +1,19 @@
 # MSSR project memory
 
+## First-party context proportionality decision
+
+Read-only history/integrity/Git inspection does not imply persistence; close
+alone does not imply maintenance. Preserve explicit persistence actions, backup,
+mutation evidence and required workflow obligations. Publication routing needs
+a persistence action rather than a general status-review match.
+
+Evaluate the assembled core/reference pack, not root length alone. Generic
+review/friction should deliver a compact decision rather than implying proposal
+generation or coordinator-loss experiments. Preserve required phase checkpoints
+and learning gates while testing nearby negative and recovery cases. Context
+cost improvements do not establish causal agent-quality gains; separate fixture
+traces, incomplete outcomes and host/model cohorts when evaluating utility.
+
 ## Context-plane ownership decision
 
 MSSR is the portable transport contract for bounded contextual guidance in addition to skill routing. It selects and accounts for messages by intent and stage, carries explicit evidence provenance/freshness and continuation receipts, and keeps persistence proposals review-only. Repository documents remain authoritative; Bridge and other hosts may piggyback or queue delivery but do not own project meaning. Unknown, stale, conflicting, or unavailable evidence triggers verification, context loading, or replanning rather than silent inference.
@@ -55,3 +69,7 @@ C2c diagnosis and recommendation policy are separate owners. C2d `evidence-first
 ## Situation Model decision
 
 Project knowledge and operational evidence share one bounded Situation Model before C2c/C2d: current repository owners, delivered Context Plane receipts, runtime/test facts and explicit semantic claims retain separate authority/evidence-class metadata. `observed > declared > inferred > learned` is a reliability prior only; inferred/learned evidence cannot be canonical and no confidence score overrides ownership. The first reliable memory/context rule is revision-first: if an agent was delivered PROJECT_CONTEXT/MEMORY/STATE/changelog/ADR revision X and the current canonical owner is revision Y, MSSR may flag stale operating context and recommend revalidation without parsing or rewriting free-form prose. C2e-D extends this only through explicit structured claim producers: `release-version`, `state-value`, `ownership`, and `decision-revision` use closed source kinds plus bounded scalar/revision payloads; source determines role/category/observed-vs-declared classification, while authority remains explicit. C2e-E consumes only already-active C2c/C2d mismatch keys and ready context actions, resolves each canonical Situation `sourceRef` against the project-context manifest, and returns an exact bounded module only when the mapping is proven unique (including an explicit `#section` selector when needed). Shared-file ambiguity, unindexed sources, or missing canonical identity abstain to authority-only/unresolved guidance; feedback never auto-loads context or changes host budgets/permissions. Arbitrary Markdown, logs, prompts, transcripts, and model-extracted prose remain outside canonical producer/feedback inputs. A durable delivery receipt must represent the most recent evidence actually delivered: re-selecting the same message refreshes `sources` and continuation metadata, and current/newer evidence supersedes older receipts for Situation evaluation. Dynamic guidance belongs in the existing Notice Plane; AGENTS remains for stable repository rules.
+
+## Conjunctive visual-evidence gate decision
+
+The visual-evidence lifecycle is required only when the intent proves both actual visual inspection (`visual-qa`) and a human conservation/approval decision (`human-approval`). A code/repository review may contain documents, tests, approval, and functional names such as “Smoke Lab” without becoming a visual-evidence obligation. `allNeeds` is the narrow conjunctive routing primitive; host-gated skips never erase a workflow-required root, so the workflow itself must express this boundary.

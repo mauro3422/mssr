@@ -6,6 +6,8 @@ export * from "./provider-config.js";
 export * from "./mcp-server.js";
 export * from "./host-adapter-contract.js";
 export * from "./mssr-adapter.js";
+export * from "./route-envelope.js";
+export * from "./server-build.js";
 export * from "./mssr-notice-delivery.js";
 export * from "./codex-adapter.js";
 export * from "./codex-mcp-server.js";

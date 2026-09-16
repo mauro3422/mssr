@@ -1861,6 +1861,117 @@
       }
     },
     {
+      "name": "drawing-tutorial-sheet-positive",
+      "task": "Quiero dibujar una hoja de tomate; haceme una imagen tipo lámina que me enseñe paso a paso, mostrando cómo pasa de la forma básica al borde dentado, líneas, volumen, luz, sombras y detalles sin saltos.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Crear una lámina visual didáctica para aprender a dibujar una hoja sin saltos entre construcción y forma final",
+        "domains": [
+          "artifacts"
+        ],
+        "actions": [
+          "design",
+          "create"
+        ],
+        "artifacts": [
+          "diagram",
+          "document"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "drawing-tutorial-sheet"
+        ],
+        "activeExcludes": [
+          "visual-reference-authoring"
+        ]
+      }
+    },
+    {
+      "name": "drawing-tutorial-sheet-continuation",
+      "task": "Dale, ahora haceme lo mismo con una taza.",
+      "context": "El usuario aprobó una plantilla de enseñanza visual para dibujo: sujeto principal anotado, pasos de construcción sin saltos, transición explícita de formas, líneas, volumen, luz y sombra, microestudios, escala tonal y consejos accionables. Ahora quiere repetir exactamente esa lógica pedagógica con una taza.",
+      "stage": "resume",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar una guía visual de dibujo aprobada y adaptarla a otro objeto",
+        "domains": [
+          "artifacts"
+        ],
+        "actions": [
+          "design",
+          "create"
+        ],
+        "artifacts": [
+          "diagram",
+          "document"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "drawing-tutorial-sheet"
+        ]
+      }
+    },
+    {
+      "name": "drawing-tutorial-sheet-negative-finished-art-only",
+      "task": "Generame una ilustración final de una hoja de tomate sobre fondo crema; no quiero pasos, guía, anotaciones ni texto.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Crear una ilustración final sin material educativo ni tutorial",
+        "domains": [
+          "artifacts"
+        ],
+        "actions": [
+          "create"
+        ],
+        "artifacts": [
+          "asset"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "drawing-tutorial-sheet"
+        ]
+      }
+    },
+    {
       "name": "visual-reference-authoring-positive",
       "task": "Generá una referencia maestra en alta calidad para modelar este puerto-hongo en Roblox: hero tres cuartos, front, side, top y detalle; guardá el prompt exacto, hashes, crítica, incertidumbres y roles para el dashboard",
       "stage": "implement",
@@ -4541,6 +4652,64 @@
       }
     },
     {
+      "name": "visual-evidence-lifecycle-negative-smoke-lab-code-pre-release",
+      "task": "Auditá el código pre-release del mod. Revisá el Smoke Lab final y los gates; no hay imágenes, assets ni visual QA.",
+      "stage": "verify",
+      "completedPhases": [
+        "discovery"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Auditar código pre-release con Smoke Lab funcional, sin evidencia visual.",
+        "domains": [
+          "coding",
+          "git",
+          "filesystem"
+        ],
+        "actions": [
+          "verify",
+          "test",
+          "review"
+        ],
+        "artifacts": [
+          "code",
+          "repository",
+          "document"
+        ],
+        "needs": [
+          "unit-tests",
+          "integrity-verification",
+          "version-control",
+          "human-approval"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "visual-evidence-audit",
+          "visual-evidence-cataloging",
+          "visual-evidence-pruning"
+        ],
+        "deferredExcludes": [
+          "visual-evidence-audit",
+          "visual-evidence-cataloging",
+          "visual-evidence-pruning"
+        ],
+        "hostGatedEligibleExcludes": [
+          "visual-evidence-audit",
+          "visual-evidence-cataloging",
+          "visual-evidence-pruning"
+        ]
+      }
+    },
+    {
       "name": "visual-evidence-lifecycle-audit-required-under-crowded-budget",
       "task": "Abrí y compará todas las fotos reales del carrier, el micelio y la flor; decidí por píxeles cuál representa el estado actual antes de borrar nada.",
       "stage": "start",
@@ -4998,6 +5167,7 @@
           "document"
         ],
         "needs": [
+          "visual-qa",
           "human-approval",
           "integrity-verification",
           "version-control",
@@ -6689,6 +6859,142 @@
       }
     },
     {
+      "name": "steam-workshop-publication-changelog-audit-under-maintenance",
+      "task": "Investiga todo el historial de changelogs del item de Steam Workshop, detecta fixes repetidos y entradas vacias, determina si SteamCMD puede editarlas y corrige el skill para que no vuelva a publicar notas acumulativas.",
+      "stage": "start",
+      "maxSkills": 8,
+      "sources": [
+        "codex-local",
+        "codex-system"
+      ],
+      "intent": {
+        "summary": "Auditar historial publico Workshop y mantener el skill tras repeticion de changenotes",
+        "domains": [
+          "other",
+          "skill-system",
+          "filesystem",
+          "git"
+        ],
+        "actions": [
+          "discover",
+          "review",
+          "analyze",
+          "maintain",
+          "edit",
+          "verify",
+          "document"
+        ],
+        "artifacts": [
+          "document",
+          "skill",
+          "repository"
+        ],
+        "needs": [
+          "official-docs",
+          "history-recovery",
+          "integrity-verification",
+          "unit-tests",
+          "version-control"
+        ],
+        "signals": [
+          "repeated-friction",
+          "skill-gap",
+          "capability-discovery-needed",
+          "reusable-pattern"
+        ],
+        "risk": "write",
+        "ambiguity": "medium"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "steam-workshop-publication"
+        ]
+      }
+    },
+    {
+      "name": "steam-workshop-publication-owner-web-historical-note-edit",
+      "task": "Verifica y edita una entrada histórica concreta de Change Notes desde la página web autenticada del propietario de Steam Workshop, sin subir de nuevo el payload.",
+      "stage": "start",
+      "maxSkills": 8,
+      "sources": [
+        "codex-local",
+        "codex-system",
+        "codex-plugin"
+      ],
+      "intent": {
+        "summary": "Editar texto de una nota histórica usando el control web por entrada del propietario",
+        "domains": [
+          "browser",
+          "other"
+        ],
+        "actions": [
+          "review",
+          "edit",
+          "verify"
+        ],
+        "artifacts": [
+          "ui",
+          "document"
+        ],
+        "needs": [
+          "safe-editing",
+          "human-approval",
+          "integrity-verification"
+        ],
+        "signals": [
+          "conflicting-evidence"
+        ],
+        "risk": "external-side-effect",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "steam-workshop-publication"
+        ]
+      }
+    },
+    {
+      "name": "steam-workshop-publication-negative-local-changelog-edit",
+      "task": "Mejora la legibilidad del archivo Markdown changelogs/0.2.13.md del repositorio local.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Editar solamente un changelog Markdown local del proyecto",
+        "domains": [
+          "filesystem",
+          "coding"
+        ],
+        "actions": [
+          "optimize"
+        ],
+        "artifacts": [
+          "document",
+          "project"
+        ],
+        "needs": [
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "steam-workshop-publication"
+        ],
+        "deferredExcludes": [
+          "steam-workshop-publication"
+        ]
+      }
+    },
+    {
       "name": "steam-workshop-publication-update",
       "task": "Publica este mod en Steam Workshop con SteamCMD, conserva la descripcion permanente y verifica que el item actualizado quede descargable.",
       "stage": "persist",
@@ -6910,6 +7216,61 @@
       }
     },
     {
+      "name": "workshop-media-editing-positive-iterative-gif",
+      "task": "Tengo un video de gameplay; crea GIFs promocionales por feature, recorta y usa cortes o zooms rapidos, pero mira cada preview y corrigelo antes de pasar al siguiente.",
+      "stage": "implement",
+      "sources": ["codex-local"],
+      "intent": {
+        "summary": "Editar una grabacion en piezas promocionales iterativas con ritmo y revision visual",
+        "domains": ["artifacts", "filesystem"],
+        "actions": ["design", "edit", "review", "optimize"],
+        "artifacts": ["animation", "asset"],
+        "needs": ["visual-qa", "scene-analysis"],
+        "signals": ["reusable-pattern"],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {"classificationMode": "structured-semantic", "activeIncludes": ["workshop-media-editing"]}
+    },
+    {
+      "name": "workshop-media-editing-continuation-fix-zoom",
+      "task": "El zoom sigue lento; acortalo y mira ese fragmento otra vez antes de seguir con los otros GIFs.",
+      "stage": "verify",
+      "sources": ["codex-local"],
+      "intent": {
+        "summary": "Corregir timing de una pieza promocional ya editada y rever el preview",
+        "domains": ["artifacts"],
+        "actions": ["edit", "review", "verify"],
+        "artifacts": ["animation"],
+        "needs": ["visual-qa", "scene-analysis"],
+        "signals": ["repeated-friction", "replan-needed"],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {"classificationMode": "structured-semantic", "activeIncludes": ["workshop-media-editing"]}
+    },
+    {
+      "name": "workshop-media-editing-negative-static-image",
+      "task": "Optimiza este PNG para que pese menos; no hay video, timeline, GIF animado ni transiciones.",
+      "stage": "implement",
+      "sources": ["codex-local"],
+      "intent": {
+        "summary": "Optimizar un asset de imagen estatica sin edicion temporal",
+        "domains": ["filesystem", "artifacts"],
+        "actions": ["optimize"],
+        "artifacts": ["asset"],
+        "needs": ["visual-qa"],
+        "signals": ["nominal"],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": ["workshop-media-editing"],
+        "deferredExcludes": ["workshop-media-editing"]
+      }
+    },
+    {
       "name": "steam-workshop-publication-negative-git-push",
       "task": "Publica estos commits en GitHub con push normal y verifica el hash remoto; no hay ningun item de Steam Workshop.",
       "stage": "persist",
@@ -6953,6 +7314,249 @@
         ],
         "deferredExcludes": [
           "steam-workshop-publication"
+        ]
+      }
+    },
+    {
+      "name": "visual-artistic-capture-comparison-positive",
+      "task": "Comparar una captura de una hoja con una referencia y opinar sobre las guías",
+      "stage": "start",
+      "maxSkills": 4,
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Comparación artística de una captura contra su referencia sin sospecha de integridad",
+        "domains": [
+          "blender",
+          "skill-system"
+        ],
+        "actions": [
+          "review",
+          "analyze"
+        ],
+        "artifacts": [
+          "model-3d",
+          "skill"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "uncertainty"
+        ],
+        "risk": "read-only",
+        "ambiguity": "medium"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "mssr-agent-routing",
+          "shared-skill-governance",
+          "systematic-debugging",
+          "visual-reference-replication"
+        ]
+      }
+    },
+    {
+      "name": "visual-reference-integrity-suspected-preview-positive",
+      "task": "Esta referencia descargada se ve borrosa y el manifest dice 2048px pero el archivo pesa poco; verificá bytes, dimensiones y hash antes de modelar",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Sospecha real de preview de baja resolución con hash y dimensiones por verificar",
+        "domains": [
+          "blender",
+          "filesystem"
+        ],
+        "actions": [
+          "review",
+          "verify"
+        ],
+        "artifacts": [
+          "model-3d"
+        ],
+        "needs": [
+          "integrity-verification",
+          "visual-qa"
+        ],
+        "signals": [
+          "conflicting-evidence"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "visual-reference-integrity"
+        ]
+      }
+    },
+    {
+      "name": "skill-metadata-review-without-visual-work-negative",
+      "task": "Revisá la metadata de routing de esta skill, actualizá sus fixtures y verificá que no haya ciclos de dependencias",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Revisión de metadata de routing sin trabajo visual",
+        "domains": [
+          "skill-system"
+        ],
+        "actions": [
+          "review",
+          "maintain"
+        ],
+        "artifacts": [
+          "skill"
+        ],
+        "needs": [
+          "cross-agent"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "visual-reference-integrity",
+          "visual-reference-replication"
+        ],
+        "deferredExcludes": [
+          "visual-reference-integrity",
+          "visual-reference-replication"
+        ]
+      }
+    },
+    {
+      "name": "blender-model-edit-with-reference-positive",
+      "task": "Modelá esta hoja en Blender siguiendo la referencia, capturá el resultado y compará la captura contra el master",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Edición real de un modelo Blender con referencia y comparación de captura",
+        "domains": [
+          "blender"
+        ],
+        "actions": [
+          "create",
+          "edit",
+          "review"
+        ],
+        "artifacts": [
+          "model-3d"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "visual-reference-replication"
+        ]
+      }
+    },
+    {
+      "name": "dashboard-image-review-without-blender-negative",
+      "task": "Revisá estas imágenes del dashboard y opiná sobre la composición; no hay sesión Blender ni modelo por delante",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Revisión de imágenes sin acceso a una sesión Blender",
+        "domains": [
+          "artifacts"
+        ],
+        "actions": [
+          "review",
+          "analyze"
+        ],
+        "artifacts": [
+          "asset"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "visual-reference-integrity",
+          "visual-reference-replication",
+          "blender-visual-review"
+        ],
+        "deferredExcludes": [
+          "visual-reference-integrity",
+          "visual-reference-replication",
+          "blender-visual-review"
+        ]
+      }
+    },
+    {
+      "name": "visual-artistic-comparison-close-deferred-continuation",
+      "task": "Dale, cerrá la comparación de la captura contra la referencia",
+      "context": "Comparación artística de una captura contra su referencia ya revisada en verificación; sólo falta el cierre.",
+      "stage": "close",
+      "completedPhases": [
+        "discovery",
+        "safety",
+        "implementation",
+        "verification"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Cierre de una comparación artística ya verificada",
+        "domains": [
+          "blender"
+        ],
+        "actions": [
+          "review",
+          "analyze"
+        ],
+        "artifacts": [
+          "model-3d"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeExcludes": [
+          "visual-reference-integrity",
+          "visual-reference-replication"
+        ],
+        "deferredIncludes": [
+          "visual-reference-replication"
         ]
       }
     }

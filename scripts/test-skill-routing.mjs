@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import "./test-routing-proportionality.mjs";
 import fs from "node:fs";
 import {
   CapabilityRegistry,
@@ -61,6 +62,9 @@ for (const testCase of expandedCases) {
   rejectMembers(testCase.name, "active", route.loadOrder, expected.activeExcludes);
   requireMembers(testCase.name, "deferred", route.deferredLoadOrder, expected.deferredIncludes);
   rejectMembers(testCase.name, "deferred", route.deferredLoadOrder, expected.deferredExcludes);
+  const hostGated = resolveSkillLoadSelection(route, "host-gated", []);
+  requireMembers(testCase.name, "host-gated eligible", hostGated.eligibleLoadOrder, expected.hostGatedEligibleIncludes);
+  rejectMembers(testCase.name, "host-gated eligible", hostGated.eligibleLoadOrder, expected.hostGatedEligibleExcludes);
   for (const key of ["missingRequiredPhases", "agentFallbackPhases"]) {
     if (!Array.isArray(expected[key])) continue;
     const actual = [...(route.coverage?.[key] ?? [])].sort();

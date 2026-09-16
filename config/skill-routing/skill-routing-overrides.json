@@ -1340,6 +1340,44 @@
       "activation": "on-demand",
       "requireSignalMatch": true
     },
+    "drawing-tutorial-sheet": {
+      "phase": "implementation",
+      "coversPhases": [
+        "verification"
+      ],
+      "domains": [
+        "artifacts",
+        "other"
+      ],
+      "actions": [
+        "design",
+        "create",
+        "review",
+        "analyze"
+      ],
+      "artifacts": [
+        "diagram",
+        "document"
+      ],
+      "needs": [
+        "visual-qa"
+      ],
+      "requires": [],
+      "complements": [],
+      "excludes": [],
+      "negativeIntents": [
+        "finished artwork only",
+        "image generation only",
+        "edit existing image",
+        "text-only art theory",
+        "3d modeling reference package"
+      ],
+      "priority": 95,
+      "activation": "on-demand",
+      "requireNeedMatch": true,
+      "requireActionMatch": true,
+      "requireArtifactMatch": true
+    },
     "visual-reference-authoring": {
       "phase": "implementation",
       "coversPhases": [
@@ -1965,6 +2003,7 @@
         "persistence"
       ],
       "domains": [
+        "browser",
         "filesystem",
         "coding",
         "other"
@@ -1985,12 +2024,15 @@
         "project",
         "asset",
         "code",
-        "document"
+        "document",
+        "ui"
       ],
       "needs": [
         "safe-editing",
         "integrity-verification",
-        "human-approval"
+        "human-approval",
+        "official-docs",
+        "history-recovery"
       ],
       "signals": [
         "nominal",
@@ -1999,7 +2041,10 @@
         "uncertainty",
         "conflicting-evidence",
         "recovery-needed",
-        "reusable-pattern"
+        "reusable-pattern",
+        "repeated-friction",
+        "skill-gap",
+        "capability-discovery-needed"
       ],
       "requires": [],
       "complements": [
@@ -2009,7 +2054,8 @@
       ],
       "excludes": [],
       "negativeIntents": [
-        "explain Steam Workshop without publishing",
+        "explain Steam Workshop conceptually without inspecting an item, its history, or publishing",
+        "edit a local project changelog with no Steam item, public history, or publication intent",
         "install or subscribe to a Workshop item as an end user",
         "publish Git commits or push a repository",
         "upload files to generic cloud storage"
@@ -2018,6 +2064,29 @@
       "requireActionMatch": true,
       "requireSignalMatch": false,
       "priority": 94,
+      "activation": "on-demand"
+    },
+    "workshop-media-editing": {
+      "phase": "implementation",
+      "coversPhases": ["discovery", "verification", "persistence"],
+      "domains": ["artifacts", "filesystem", "other"],
+      "actions": ["discover", "design", "edit", "review", "verify", "optimize", "save", "analyze"],
+      "artifacts": ["animation"],
+      "needs": ["visual-qa", "scene-analysis", "integrity-verification"],
+      "signals": ["nominal", "uncertainty", "repeated-friction", "reusable-pattern", "replan-needed"],
+      "requires": [],
+      "complements": ["visual-evidence-audit", "steam-workshop-publication", "systematic-debugging"],
+      "excludes": [],
+      "negativeIntents": [
+        "publish already-approved media to Steam Workshop",
+        "compress or resize one static image with no timeline editing",
+        "convert media format without editorial decisions",
+        "long-form narrative video editing"
+      ],
+      "requireActionMatch": true,
+      "requireArtifactMatch": true,
+      "requireSignalMatch": false,
+      "priority": 92,
       "activation": "on-demand"
     },
     "mauroprime-bridge-tool-authoring": {
@@ -2111,6 +2180,9 @@
       ],
       "needs": [
         "human-approval"
+      ],
+      "allNeeds": [
+        "visual-qa"
       ],
       "requires": [],
       "complements": [
@@ -2320,6 +2392,9 @@
       "needs": [
         "integrity-verification",
         "visual-qa"
+      ],
+      "allNeeds": [
+        "integrity-verification"
       ],
       "requires": [],
       "complements": [
@@ -2727,6 +2802,7 @@
     {
       "name": "git-change-publication",
       "match": {
+        "actions": ["save", "version", "publish", "recover"],
         "domains": [
           "git",
           "github"
@@ -2877,7 +2953,8 @@
           "website",
           "game"
         ],
-        "needs": [
+        "allNeeds": [
+          "visual-qa",
           "human-approval"
         ]
       },

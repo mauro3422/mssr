@@ -35,6 +35,15 @@ uses `npm pack --dry-run`; it does not publish or create a tarball. The
 installer test is sandboxed in a temporary directory and proves refusal,
 backup, junction replacement, and preservation of unrelated runtime skills.
 
+It also runs the deterministic selected-context matrix in
+`config/skill-routing/first-party-context-fixtures.json`. Run
+`npm run test:context-economy` for focused checks, or
+`node scripts/test-first-party-context-economy.mjs --measure` for bounded JSON
+measurements. `--skill-root=<snapshot>/skills` compares an existing snapshot
+without modifying runtime sources. These fixtures test context cost, nearby
+negative selection and real recovery coverage; they do not benchmark agent
+quality or emit synthetic traces into production telemetry.
+
 For the complete local v1 gate (including routing/context and no external
 publication), run:
 

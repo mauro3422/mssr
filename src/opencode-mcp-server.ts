@@ -5,6 +5,7 @@ import { OpenCodeMssrAdapter } from "./opencode-adapter.js";
 import { createMssrRegistryFromEnvironment } from "./provider-config.js";
 import { mssrHostRouteInputSchema } from "./host-adapter-contract.js";
 import { createMssrTelemetrySinkFromEnvironment, mssrHostCheckpointSchema } from "./telemetry.js";
+import { createStderrMssrNoticeBoundary } from "./mssr-notice-delivery.js";
 import { registerMssrProjectControlTools } from "./project-control-contract.js";
 import { registerMssrConsistencyTools } from "./consistency-contract.js";
 import { registerMssrOperationalNoticeTools } from "./operational-notice-contract.js";
@@ -77,6 +78,7 @@ export async function startOpenCodeMssrServer(): Promise<void> {
   const registry = await createMssrRegistryFromEnvironment();
   const adapter = new OpenCodeMssrAdapter(registry, {
     telemetrySink: createMssrTelemetrySinkFromEnvironment(),
+    noticeDelivery: createStderrMssrNoticeBoundary("mssr-opencode"),
     model: process.env.MSSR_HOST_MODEL || "unknown",
     reasoningEffort: (process.env.MSSR_HOST_REASONING_EFFORT as "low" | "medium" | "high" | "xhigh" | "max" | "ultra" | "unknown" | undefined) ?? "unknown",
   });

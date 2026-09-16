@@ -689,3 +689,54 @@ export function evaluateMssrToolFrictionOperationalAttention(
       || left.signature.localeCompare(right.signature))
     .slice(0, maxGroups);
 }
+
+export type MssrServerBuildOperationalObservation = Readonly<{
+  loadedBuildId: string | null;
+  availableBuildId: string | null;
+  availableKnown: boolean;
+}>;
+
+export type MssrServerBuildOperationalProjection = MssrOperationalProjection & Readonly<{
+  loadedBuildId: string | null;
+  availableBuildId: string | null;
+  reasonCodes: readonly string[];
+  notifyOnWatch: boolean;
+}>;
+
+/**
+ * Project loaded-vs-available server build evidence into attention levels.
+ * A persistent host process serving an older compiled build than the one on
+ * disk is REVIEW: responses may follow older routing/envelope behavior until
+ * the host reconnects or respawns the server. An unreadable build is WATCH,
+ * never proof of staleness. MSSR detects and advises; only the owning host
+ * may restart or reconnect its process.
+ */
+export function evaluateMssrServerBuildOperationalAttention(
+  observation: MssrServerBuildOperationalObservation,
+): MssrServerBuildOperationalProjection {
+  const loaded = observation.loadedBuildId?.trim() || null;
+  const available = observation.availableKnown ? (observation.availableBuildId?.trim() || null) : null;
+  const reasonCodes: string[] = [];
+  let level: MssrOperationalNoticeLevel;
+  if (!observation.availableKnown || !loaded || !available) {
+    level = "watch";
+    reasonCodes.push("build-unknown");
+  } else if (loaded !== available) {
+    level = "review";
+    reasonCodes.push("build-stale");
+  } else {
+    level = "ok";
+  }
+  return {
+    level,
+    fingerprint: buildMssrOperationalFingerprint([
+      `loaded:${loaded ?? "unknown"}`,
+      `available:${observation.availableKnown ? (available ?? "unknown") : "unknown"}`,
+    ]),
+    loadedBuildId: loaded,
+    availableBuildId: available,
+    reasonCodes,
+    notifyOnWatch: false,
+    advisoryOnly: true,
+  };
+}

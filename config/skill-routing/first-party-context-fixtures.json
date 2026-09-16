@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "description": "Selected first-party procedural context, independent of root routing and model performance.",
+  "cases": [
+    {
+      "id": "nominal-repository-review-close",
+      "names": [
+        "shared-skill-governance",
+        "skill-maintenance-loop"
+      ],
+      "stage": "close",
+      "actions": [
+        "analyze",
+        "review"
+      ],
+      "artifacts": [
+        "repository"
+      ],
+      "signals": [
+        "nominal"
+      ],
+      "maxChars": 7000
+    },
+    {
+      "id": "warning-review-close",
+      "names": [
+        "skill-maintenance-loop"
+      ],
+      "stage": "close",
+      "actions": [
+        "analyze"
+      ],
+      "artifacts": [
+        "skill"
+      ],
+      "signals": [
+        "warning-observed"
+      ],
+      "maxChars": 6500
+    },
+    {
+      "id": "observability-audit-no-recovery",
+      "names": [
+        "mssr-observability-maintenance"
+      ],
+      "stage": "start",
+      "actions": [
+        "analyze",
+        "review"
+      ],
+      "artifacts": [
+        "repository"
+      ],
+      "signals": [
+        "repeated-friction"
+      ],
+      "excludes": [
+        "stateless-recovery"
+      ],
+      "includes": [
+        "trace-identity-and-reproduction"
+      ]
+    },
+    {
+      "id": "debug-friction-no-restart",
+      "names": [
+        "mssr-observability-maintenance"
+      ],
+      "stage": "start",
+      "actions": [
+        "debug"
+      ],
+      "artifacts": [
+        "mcp"
+      ],
+      "signals": [
+        "repeated-friction"
+      ],
+      "excludes": [
+        "stateless-recovery"
+      ]
+    },
+    {
+      "id": "recover-after-coordinator-loss",
+      "names": [
+        "mssr-observability-maintenance"
+      ],
+      "stage": "resume",
+      "actions": [
+        "recover",
+        "verify"
+      ],
+      "artifacts": [
+        "mcp"
+      ],
+      "signals": [
+        "recovery-needed"
+      ],
+      "includes": [
+        "stateless-recovery"
+      ]
+    },
+    {
+      "id": "debug-conflicting-trace-identity",
+      "names": [
+        "mssr-observability-maintenance"
+      ],
+      "stage": "start",
+      "actions": [
+        "debug"
+      ],
+      "artifacts": [
+        "mcp"
+      ],
+      "signals": [
+        "conflicting-evidence"
+      ],
+      "includes": [
+        "stateless-recovery"
+      ]
+    },
+    {
+      "id": "learning-candidate-review",
+      "names": [
+        "skill-maintenance-loop"
+      ],
+      "stage": "close",
+      "actions": [
+        "review",
+        "maintain"
+      ],
+      "artifacts": [
+        "skill"
+      ],
+      "signals": [
+        "reusable-pattern"
+      ],
+      "includes": [
+        "learning-review-promotion"
+      ]
+    }
+  ]
+}

@@ -23,9 +23,16 @@ prompts, transcripts, secrets, or private reasoning. Learning remains
 dataset, replay/holdout, calibration, shadow, feature-flag, and rollback gates
 produce a human-review proposal.
 
+Scale the review to the finding. With no reusable change, record a bounded
+`reviewed-none` decision and complete the applicable maintenance checkpoint.
+An audit does not require a proposal file, publication, restart, or a new skill.
+If a candidate exists, load only its owner's procedure and verify that change.
+
 ## Reference map
 
-Use the indexed references for the active owner only: audit, routing, provider,
+Start with [learning review](references/learning-review-promotion.md) to decide
+whether any proposal is warranted, or [ownership](references/system-map.md)
+when the owner is unresolved. Use the indexed references for that owner only: audit, routing, provider,
 fixtures, publication, incident, handoff, system map, friction patterns, memory
 modules, evolution, learning promotion, architecture consistency, operational
 automation, and project-context modularization. Every reference is linked in

@@ -131,7 +131,7 @@ La detección se puede ejecutar automáticamente en CI o al cerrar una tarea. La
 
 ## Workflows transversales y presupuesto
 
-Una skill crítica que debe cumplirse como garantía de proceso no debe competir indefinidamente como optional. Cuando el comportamiento forme un lifecycle reusable —por ejemplo `visual-evidence-audit → visual-evidence-pruning`— decláralo como workflow requerido con condiciones semánticas estrechas y fixtures de presupuesto concurrido. Usa la señal semántica que distingue la garantía real (`human-approval` para decidir qué evidencia conservar), no una capacidad genérica como `visual-qa` que también aparece en descripción de una imagen o captura Photo Rig. No aumentes `maxSkills` globalmente para ocultar una relación contractual faltante.
+Una skill crítica que debe cumplirse como garantía de proceso no debe competir indefinidamente como optional. Cuando el comportamiento forme un lifecycle reusable —por ejemplo `visual-evidence-audit → visual-evidence-pruning`— decláralo como workflow requerido con condiciones semánticas estrechas y fixtures de presupuesto concurrido. Para una decisión sobre evidencia visual real, exige conjuntamente `visual-qa` y `human-approval` mediante `allNeeds`; el primero prueba que hay píxeles que juzgar y el segundo que existe una decisión de conservación. Una coincidencia amplia de `document` o de tests/código no sustituye ninguno. No aumentes `maxSkills` globalmente para ocultar una relación contractual faltante.
 
 ## Lifecycle visual: identidad, duplicados y continuidad de fase
 

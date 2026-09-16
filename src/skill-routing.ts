@@ -66,6 +66,7 @@ const routeMetadataSchema = z.object({
   actions: z.array(z.string()).default([]),
   artifacts: z.array(z.string()).default([]),
   needs: z.array(z.string()).default([]),
+  allNeeds: z.array(z.string()).default([]),
   signals: z.array(z.string()).default([]),
   requires: z.array(z.string()).default([]),
   complements: z.array(z.string()).default([]),
@@ -85,6 +86,7 @@ const conditionSchema = z.object({
   actions: z.array(z.string()).optional(),
   artifacts: z.array(z.string()).optional(),
   needs: z.array(z.string()).optional(),
+  allNeeds: z.array(z.string()).optional(),
   signals: z.array(z.string()).optional(),
   risks: z.array(z.string()).optional(),
   stages: z.array(z.enum(SKILL_STAGES)).optional(),
@@ -229,6 +231,7 @@ function conditionMatches(condition: Condition | undefined, intent: StructuredSk
   if (condition.actions?.length && !intersects(condition.actions, intent.actions)) return false;
   if (condition.artifacts?.length && !intersects(condition.artifacts, intent.artifacts)) return false;
   if (condition.needs?.length && !intersects(condition.needs, intent.needs)) return false;
+  if (condition.allNeeds?.length && !condition.allNeeds.every((need) => tokenSet(intent.needs).has(normalize(need)))) return false;
   if (condition.signals?.length && !intersects(condition.signals, intent.signals)) return false;
   if (condition.risks?.length && !condition.risks.includes(intent.risk)) return false;
   if (condition.stages?.length && !condition.stages.includes(stage)) return false;
@@ -399,6 +402,7 @@ function inferredMetadata(skill: SkillEntry): RouteMetadata {
     actions: actions.length ? actions : ["create"],
     artifacts: [],
     needs: [],
+    allNeeds: [],
     signals: [],
     requires: [],
     complements: [],
@@ -424,6 +428,7 @@ function mergeMetadata(base: RouteMetadata, override: RouteMetadata | undefined)
     actions: override.actions.length ? override.actions : base.actions,
     artifacts: override.artifacts.length ? override.artifacts : base.artifacts,
     needs: override.needs.length ? override.needs : base.needs,
+    allNeeds: override.allNeeds.length ? override.allNeeds : base.allNeeds,
     signals: override.signals.length ? override.signals : base.signals,
     requires: override.requires,
     complements: override.complements,
@@ -959,6 +964,7 @@ function scoreEntry(
   const specificArtifactMatched = skillSpecificArtifacts.some((artifact) => intentSpecificArtifacts.includes(artifact as StructuredSkillIntent["artifacts"][number]));
   const specificNeedMatched = skillSpecificNeeds.some((need) => intentSpecificNeeds.includes(need as StructuredSkillIntent["needs"][number]));
   const anyNeedMatched = skill.needs.some((need) => intent.needs.includes(need as StructuredSkillIntent["needs"][number]));
+  const allNeedsMatched = skill.allNeeds.every((need) => intent.needs.includes(need as StructuredSkillIntent["needs"][number]));
   const anyActionMatched = skill.actions.some((action) => intent.actions.includes(action as StructuredSkillIntent["actions"][number]));
   const anyArtifactMatched = skill.artifacts.some((artifact) => intent.artifacts.includes(artifact as StructuredSkillIntent["artifacts"][number]));
   const anySignalMatched = skill.signals.some((signal) => intent.signals.includes(signal as StructuredSkillIntent["signals"][number]));
@@ -967,6 +973,9 @@ function scoreEntry(
   if (!matched || (intentHasAnchors && !anchorMatched)) return { score: 0, reasons, excluded: false };
   if (skill.requireNeedMatch && !anyNeedMatched && !explicitNameOverridesSemantics) {
     return { score: 0, reasons: [...reasons, "explicit need gate failed"], excluded: false };
+  }
+  if (!allNeedsMatched && !explicitNameOverridesSemantics) {
+    return { score: 0, reasons: [...reasons, "conjunctive need gate failed"], excluded: false };
   }
   if (skill.requireActionMatch && !anyActionMatched && !explicitNameOverridesSemantics) {
     return { score: 0, reasons: [...reasons, "explicit action gate failed"], excluded: false };
@@ -992,11 +1001,13 @@ function inferredRequiredPhases(intent: StructuredSkillIntent, stage: SkillStage
   if (intent.risk !== "read-only") phases.add("safety");
   if (intent.actions.some((action) => ["design", "create", "edit", "move", "version"].includes(action))) phases.add("implementation");
   if (intent.risk !== "read-only" || intent.actions.some((action) => ["review", "verify", "test", "debug", "optimize", "analyze"].includes(action))) phases.add("verification");
-  if (intent.actions.some((action) => ["save", "recover", "version", "publish"].includes(action)) || intent.needs.some((need) => ["backup", "integrity-verification", "version-control", "history-recovery"].includes(need))) phases.add("persistence");
+  const persistenceAction = intent.actions.some((action) => ["save", "recover", "version", "publish"].includes(action));
+  const mutation = intent.risk !== "read-only" || intent.actions.some((action) => ["create", "edit", "move"].includes(action));
+  if (persistenceAction || intent.needs.includes("backup") || (mutation && intent.needs.some((need) => ["integrity-verification", "version-control"].includes(need)))) phases.add("persistence");
   if (intent.domains.includes("roblox") && intent.risk !== "read-only") phases.add("persistence");
   if (intent.signals.some((signal) => ["error-observed", "degraded-capability", "conflicting-evidence", "recovery-needed"].includes(signal))) phases.add("verification");
   if (intent.signals.some((signal) => ["repeated-friction", "manual-workaround", "skill-gap", "reusable-pattern"].includes(signal))) phases.add("maintenance");
-  if (stage === "close") phases.add("maintenance");
+  // Closing is a lifecycle boundary, not evidence of maintenance work.
   return [...phases].sort((a, b) => (phaseOrder.get(a) ?? 0) - (phaseOrder.get(b) ?? 0));
 }
 

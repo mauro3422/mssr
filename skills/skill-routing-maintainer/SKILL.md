@@ -26,6 +26,10 @@ phase workflow, direct `Read when` map, composition, and verification remain in
 the root. Move situational procedures to references with selectors. Do not split
 solely by length or alter activation semantics for an organizational refactor.
 
+For context changes, measure the full selected core/module pack on a positive,
+nearby negative and continuation case. Keep detailed procedures conditional;
+root length alone does not prove that the delivered guidance is proportionate.
+
 ## Reference map
 
 - Read [modular skill architecture](references/modular-skill-architecture.md)
