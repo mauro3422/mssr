@@ -2,7 +2,7 @@
 
 ## Current release
 
-MSSR `0.2.61` is the current source/package release line. It incorporates the `0.2.58` visual-evidence conjunction correction, the `0.2.59` first-party context proportionality work, the `0.2.60` lifecycle/publication activation correction, and the `0.2.61` compact route/bootstrap envelope plus narrower visual-reference-integrity activation. Bridge `0.6.124` is published and live on the exact vendored/installed `@mauroprime/mssr 0.2.61` package (`688161` bytes, SHA-256 `9bc3a9f3ceeaa4cb204d0f52e104a98a038a1240ec56aeef4effdc4e8ada27e0`). This state file does not by itself claim MSSR Git-remote or public-registry publication; those side effects require separate remote/readback evidence.
+MSSR `0.2.61` is the current published source/package release line at Git commit `0c3d9c58c073aea746394387532496bdca474fe4`. Its canonical release artifact is `mauroprime-mssr-0.2.61.tgz` (`688166` bytes, SHA-256 `946ba46fbcbb9f7faf712dd0421a0ccffdf85f3c611fa133bd55f3ee3c03ca8a`). Bridge `0.6.125` is published at commit `cee7b735483b40184906682c87373e539789d584` and is live on that exact vendored/installed artifact; controlled HTTP restart ack `8718ff71-e018-4016-b5b7-cf467d44e6a1` adopted PID `20104`, boot `9ceced40-a835-4248-a793-3b3b35c5cd2a`, with 162 tools and the Secure MCP tunnel `live/ready`. No public npm-registry publication is claimed.
 
 ## Learning dataset state
 
