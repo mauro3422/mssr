@@ -19,3 +19,7 @@ Project knowledge has explicit owners under the portable `.mssr/` project-contro
 Architecture decisions live under `docs/decisions/`. A Context Message may reference an ADR, incident, changelog, context/state authority, Git revision, provider observation, or trace receipt, but its summary never replaces the referenced owner.
 
 Routing conditions use ordinary any-match dimensions and may use `allNeeds` only when several capabilities are jointly necessary. A broad artifact such as `document` or an approval request is never proof of an unrelated capability.
+
+## Repository checkout authority
+
+The canonical MSSR source checkout is `D:\Dev\mssr`. `C:\Dev\mssr` is a Windows junction to that same checkout and is not an independent clone, branch authority, or second source tree. Temporary Codex worktrees may exist for bounded tasks, but they never become canonical merely by containing local edits; before removing an old worktree or branch, verify active-writer state, Git containment, and whether any substantive material is absent from current `main`.
