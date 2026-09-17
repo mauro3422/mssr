@@ -398,8 +398,7 @@
       ],
       "priority": 85,
       "maxChars": 3000
-    }
-,
+    },
     {
       "id": "mssr-trace-lifecycle-integrity",
       "kind": "memory",

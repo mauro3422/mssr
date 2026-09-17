@@ -3,12 +3,14 @@ import path from "node:path";
 
 import {
   type ProjectContextCore,
-  type ProjectContextManifest,
-  type ProjectContextModule,
+  type ResolvedProjectContextManifest,
+  type ResolvedProjectContextModule,
 } from "./project-context.js";
 import {
   MAX_PROJECT_CONTEXT_CHARS,
+  MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES,
   extractProjectContextSections,
+  inspectProjectContextSegments,
   loadProjectContextModuleManifest,
 } from "./project-context-loader.js";
 
@@ -32,11 +34,25 @@ export type ProjectContextBudgetEvaluation = Readonly<{
   recommendedSkills: readonly string[];
 }>;
 
+export type ProjectContextPhysicalSourceEvaluation = Readonly<{
+  entryId: string;
+  sourcePath: string;
+  currentBytes: number;
+  nextBytes: number;
+  budgetBytes: number;
+  hardLimitBytes: number;
+  utilization: number;
+  level: ProjectContextBudgetLevel;
+  exceededBudget: boolean;
+  exceededHardLimit: boolean;
+}>;
+
 export type ProjectContextWritePreflight = Readonly<{
   projectRoot: string;
   targetRef: string;
   manifestStatus: "loaded" | "missing";
   affectedEntries: readonly ProjectContextBudgetEvaluation[];
+  physicalSources: readonly ProjectContextPhysicalSourceEvaluation[];
   level: ProjectContextBudgetLevel;
   contractValid: boolean;
   replanBeforeWrite: boolean;
@@ -95,14 +111,21 @@ export function evaluateProjectContextEntryBudget(args: {
   };
 }
 
-function materializeSelectedBytes(nextText: string, entry: ProjectContextCore | ProjectContextModule): number {
+function materializeSelectedBytes(nextText: string, entry: ProjectContextCore | ResolvedProjectContextModule): number {
+  if ("segments" in entry && entry.segments?.length) {
+    const inspected = inspectProjectContextSegments(nextText, entry.segments);
+    const baseline = inspected.find((segment) => segment.baseline);
+    if (!baseline) throw new Error(`Segmented project-context module ${entry.id} has no baseline payload.`);
+    const largestOptionalBytes = inspected.filter((segment) => !segment.baseline).reduce((max, segment) => Math.max(max, segment.bytes), 0);
+    return baseline.bytes + largestOptionalBytes;
+  }
   const selected = entry.source.sections?.length
     ? extractProjectContextSections(nextText, entry.source.sections)
     : nextText.trim();
   return Buffer.byteLength(selected, "utf8");
 }
 
-function targetEntries(manifest: ProjectContextManifest, targetRef: string): Array<{ entry: ProjectContextCore | ProjectContextModule; core: boolean }> {
+function targetEntries(manifest: ResolvedProjectContextManifest, targetRef: string): Array<{ entry: ProjectContextCore | ResolvedProjectContextModule; core: boolean }> {
   const normalized = normalizeRef(targetRef);
   return [
     ...manifest.core.map((entry) => ({ entry, core: true })),
@@ -141,6 +164,7 @@ export async function preflightMssrProjectContextWrite(args: {
       targetRef,
       manifestStatus: "missing",
       affectedEntries: [],
+      physicalSources: [],
       level: "ok",
       contractValid: true,
       replanBeforeWrite: false,
@@ -157,7 +181,8 @@ export async function preflightMssrProjectContextWrite(args: {
     throw error;
   });
   const evaluations: ProjectContextBudgetEvaluation[] = [];
-  const growthBlockedEntries: string[] = [];
+  const physicalSources: ProjectContextPhysicalSourceEvaluation[] = [];
+  const growthBlockedEntries = new Set<string>();
   for (const { entry, core } of targetEntries(loaded.manifest, targetRef)) {
     let selectedBytes: number;
     try {
@@ -178,24 +203,58 @@ export async function preflightMssrProjectContextWrite(args: {
       maxChars: entry.maxChars,
     });
     evaluations.push(evaluation);
-    if (evaluation.level === "review" && selectedBytes > currentSelectedBytes) growthBlockedEntries.push(entry.id);
+    if (evaluation.level === "review" && selectedBytes > currentSelectedBytes) growthBlockedEntries.add(entry.id);
+
+    if (!core && "segments" in entry && entry.segments?.length) {
+      const currentBytes = currentText === null ? 0 : Buffer.byteLength(currentText, "utf8");
+      const nextBytes = Buffer.byteLength(args.nextText, "utf8");
+      const physicalBudget = evaluateProjectContextEntryBudget({
+        entryId: entry.id,
+        core: false,
+        sourcePath: entry.source.path,
+        selectedBytes: nextBytes,
+        maxChars: MAX_PROJECT_CONTEXT_CHARS,
+      });
+      const exceededHardLimit = nextBytes > MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES;
+      const physicalLevel: ProjectContextBudgetLevel = exceededHardLimit ? "review" : physicalBudget.level;
+      physicalSources.push({
+        entryId: entry.id,
+        sourcePath: entry.source.path.replace(/\\/g, "/"),
+        currentBytes,
+        nextBytes,
+        budgetBytes: MAX_PROJECT_CONTEXT_CHARS,
+        hardLimitBytes: MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES,
+        utilization: nextBytes / MAX_PROJECT_CONTEXT_CHARS,
+        level: physicalLevel,
+        exceededBudget: nextBytes > MAX_PROJECT_CONTEXT_CHARS,
+        exceededHardLimit,
+      });
+      if (exceededHardLimit || (physicalLevel === "review" && nextBytes > currentBytes)) growthBlockedEntries.add(entry.id);
+    }
   }
 
   let level: ProjectContextBudgetLevel = "ok";
   for (const evaluation of evaluations) level = maxLevel(level, evaluation.level);
-  const maintenanceRequiredBeforeWrite = growthBlockedEntries.length > 0;
-  const contractValid = evaluations.every((evaluation) => !evaluation.exceeded) && !maintenanceRequiredBeforeWrite;
-  const replanBeforeWrite = maintenanceRequiredBeforeWrite || evaluations.some((evaluation) => evaluation.level === "review");
+  for (const source of physicalSources) level = maxLevel(level, source.level);
+  const blockedEntries = [...growthBlockedEntries];
+  const maintenanceRequiredBeforeWrite = blockedEntries.length > 0;
+  const contractValid = evaluations.every((evaluation) => !evaluation.exceeded)
+    && physicalSources.every((source) => !source.exceededHardLimit)
+    && !maintenanceRequiredBeforeWrite;
+  const replanBeforeWrite = maintenanceRequiredBeforeWrite
+    || evaluations.some((evaluation) => evaluation.level === "review")
+    || physicalSources.some((source) => source.level === "review");
   return {
     projectRoot,
     targetRef,
     manifestStatus: "loaded",
     affectedEntries: evaluations,
+    physicalSources,
     level,
     contractValid,
     replanBeforeWrite,
     maintenanceRequiredBeforeWrite,
-    growthBlockedEntries,
+    growthBlockedEntries: blockedEntries,
     recommendedAction: maintenanceRequiredBeforeWrite
       ? "mssr_project_maintain"
       : level === "ok" ? "none" : "project_context_modularization_plan",

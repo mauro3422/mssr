@@ -54,6 +54,12 @@ async function writeManifest(repo, modules) {
   return manifestPath;
 }
 
+async function writeSegmentSidecar(repo, modules) {
+  const sidecarPath = path.join(repo, ".mssr", "project-context-segments.json");
+  await fs.writeFile(sidecarPath, `${JSON.stringify({ schemaVersion: 1, modules }, null, 2)}\n`, "utf8");
+  return sidecarPath;
+}
+
 const root = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-context-maintenance-"));
 try {
   // Safe exact-section relocation preserves logical selection and clears root-memory fanout.
@@ -161,6 +167,45 @@ try {
   assert.equal(pressured.blockers.some((item) => item.entryId === "history" && item.reason === "whole-file-module-requires-semantic-segmentation"), true);
   assert.equal(await fs.readFile(pressuredPath, "utf8"), pressuredBefore);
   assert.equal(await fs.readFile(pressuredManifestPath, "utf8"), pressuredManifestBefore);
+
+  // A module that is already semantically segmented may still grow under pressure.
+  // MSSR must surface a semantic re-segmentation review blocker rather than inventing
+  // new terms/headings or falling back to the legacy whole-file blocker.
+  const segmentedPressureRepo = await makeRepo(root, "segmented-pressure");
+  const segmentedPressurePath = path.join(segmentedPressureRepo, ".mssr", "knowledge", "decision", "segmented-history.md");
+  await fs.writeFile(path.join(segmentedPressureRepo, ".mssr", "PROJECT_MEMORY.md"), "# Project Memory\n", "utf8");
+  await fs.writeFile(segmentedPressurePath, `# History\n\n## Baseline\n${"b".repeat(300)}\n\n## Deep A\n${"a".repeat(1800)}\n\n## Deep B\n${"c".repeat(400)}\n`, "utf8");
+  const segmentedPressureManifestPath = await writeManifest(segmentedPressureRepo, [{
+    id: "segmented-history",
+    kind: "memory",
+    topic: "reference",
+    area: "history",
+    description: "Already segmented history under single-target budget pressure.",
+    source: { path: ".mssr/knowledge/decision/segmented-history.md" },
+    actions: ["maintain"],
+    artifacts: ["project"],
+    priority: 10,
+    maxChars: 2200,
+  }]);
+  const segmentedPressureSidecarPath = await writeSegmentSidecar(segmentedPressureRepo, [{
+    moduleId: "segmented-history",
+    segments: [
+      { id: "baseline", sections: ["## Baseline"], baseline: true },
+      { id: "deep-a", sections: ["## Deep A"], terms: ["deep a"] },
+      { id: "deep-b", sections: ["## Deep B"], terms: ["deep b"] },
+    ],
+  }]);
+  const segmentedPressureBefore = await fs.readFile(segmentedPressurePath, "utf8");
+  const segmentedPressureManifestBefore = await fs.readFile(segmentedPressureManifestPath, "utf8");
+  const segmentedPressureSidecarBefore = await fs.readFile(segmentedPressureSidecarPath, "utf8");
+  const segmentedPressure = await maintainMssrProjectContext({ projectRoot: segmentedPressureRepo });
+  assert.equal(segmentedPressure.status, "review-required");
+  assert.equal(segmentedPressure.applied.length, 0);
+  assert.equal(segmentedPressure.blockers.some((item) => item.entryId === "segmented-history" && item.reason === "semantic-segment-budget-pressure-requires-review"), true);
+  assert.equal(segmentedPressure.blockers.some((item) => item.reason === "whole-file-module-requires-semantic-segmentation"), false);
+  assert.equal(await fs.readFile(segmentedPressurePath, "utf8"), segmentedPressureBefore);
+  assert.equal(await fs.readFile(segmentedPressureManifestPath, "utf8"), segmentedPressureManifestBefore);
+  assert.equal(await fs.readFile(segmentedPressureSidecarPath, "utf8"), segmentedPressureSidecarBefore);
 } finally {
   await fs.rm(root, { recursive: true, force: true });
 }

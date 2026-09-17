@@ -28,7 +28,6 @@ const receipt = {
   version: typeof pkg?.version === "string" ? pkg.version : "unknown",
   files: names.length,
   bytes,
-  builtAt: new Date().toISOString(),
 };
 const temporary = path.join(distDir, `.${process.pid}.${Date.now()}.tmp`);
 await fs.writeFile(temporary, `${JSON.stringify(receipt, null, 2)}\n`, "utf8");

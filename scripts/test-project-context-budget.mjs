@@ -8,6 +8,7 @@ import {
   preflightMssrProjectContextWrite,
 } from "../dist/project-context-budget.js";
 import { auditMssrProjectContextHealth } from "../dist/project-context-health.js";
+import { MAX_PROJECT_CONTEXT_CHARS, MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES } from "../dist/project-context-loader.js";
 import { planMssrProjectContextModularization } from "../dist/project-context-modularization.js";
 
 const root = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-context-budget-"));
@@ -97,6 +98,75 @@ try {
   const before = await fs.readFile(modulePath, "utf8");
   await preflightMssrProjectContextWrite({ projectRoot: root, targetPath: modulePath, nextText: projectedOverflowText });
   assert.equal(await fs.readFile(modulePath, "utf8"), before, "preflight must never mutate the proposed target");
+
+  // Segmented history is budgeted by the worst payload MSSR can deliver in one selection:
+  // baseline + largest optional segment, not by the entire backing history file.
+  const segmentedRepo = path.join(root, "segmented-repo");
+  const segmentedPath = path.join(segmentedRepo, ".mssr", "knowledge", "history.md");
+  await fs.mkdir(path.dirname(segmentedPath), { recursive: true });
+  const segmentedText = `# History\n\n## Baseline\n${"b".repeat(100)}\n\n## Alpha\n${"a".repeat(500)}\n\n## Beta\n${"c".repeat(400)}\n`;
+  await fs.writeFile(segmentedPath, segmentedText, "utf8");
+  await fs.writeFile(path.join(segmentedRepo, ".mssr", "project-context.json"), `${JSON.stringify({
+    schemaVersion: 1,
+    core: [],
+    modules: [{
+      id: "segmented-history",
+      kind: "memory",
+      description: "On-demand segmented history.",
+      source: { path: ".mssr/knowledge/history.md" },
+      maxChars: 1000,
+    }],
+  }, null, 2)}\n`, "utf8");
+  await fs.writeFile(path.join(segmentedRepo, ".mssr", "project-context-segments.json"), `${JSON.stringify({
+    schemaVersion: 1,
+    modules: [{
+      moduleId: "segmented-history",
+      segments: [
+        { id: "baseline", sections: ["## Baseline"], baseline: true },
+        { id: "alpha", sections: ["## Alpha"], terms: ["alpha"] },
+        { id: "beta", sections: ["## Beta"], terms: ["beta"] },
+      ],
+    }],
+  }, null, 2)}\n`, "utf8");
+  const segmentedHealth = await auditMssrProjectContextHealth(segmentedRepo);
+  assert.equal(segmentedHealth.findings.some((finding) => finding.target === "segmented-history" && finding.code === "module-entry-budget-pressure"), false);
+  assert.equal(segmentedHealth.findings.some((finding) => finding.target === "segmented-history" && finding.code === "whole-file-module"), false);
+
+  const grownSegmentedText = `# History\n\n## Baseline\n${"b".repeat(100)}\n\n## Alpha\n${"a".repeat(850)}\n\n## Beta\n${"c".repeat(400)}\n`;
+  const segmentedPreflight = await preflightMssrProjectContextWrite({ projectRoot: segmentedRepo, targetPath: segmentedPath, nextText: grownSegmentedText });
+  assert.equal(segmentedPreflight.level, "review");
+  assert.equal(segmentedPreflight.contractValid, false);
+  assert.deepEqual(segmentedPreflight.growthBlockedEntries, ["segmented-history"]);
+
+  // Selected-payload and physical-source pressure are separate contracts. A large
+  // unselected archive must not inflate the semantic payload, but growth into the
+  // physical REVIEW band is blocked before persistence so the source never hits a
+  // surprise loader cliff.
+  const physicalReviewText = `# History\n\n## Baseline\n${"b".repeat(100)}\n\n## Alpha\n${"a".repeat(500)}\n\n## Beta\n${"c".repeat(400)}\n\n## Archive\n${"p".repeat(Math.ceil(MAX_PROJECT_CONTEXT_CHARS * 0.91))}\n`;
+  const physicalReviewPreflight = await preflightMssrProjectContextWrite({ projectRoot: segmentedRepo, targetPath: segmentedPath, nextText: physicalReviewText });
+  assert.equal(physicalReviewPreflight.affectedEntries[0]?.level, "ok", "semantic payload should remain below its own maxChars");
+  assert.equal(physicalReviewPreflight.physicalSources[0]?.level, "review");
+  assert.equal(physicalReviewPreflight.physicalSources[0]?.exceededBudget, false);
+  assert.equal(physicalReviewPreflight.contractValid, false, "physical growth into REVIEW must be blocked before persistence");
+  assert.deepEqual(physicalReviewPreflight.growthBlockedEntries, ["segmented-history"]);
+
+  const recoverableOversizeText = `# History\n\n## Baseline\n${"b".repeat(100)}\n\n## Alpha\n${"a".repeat(500)}\n\n## Beta\n${"c".repeat(400)}\n\n## Archive\n${"o".repeat(MAX_PROJECT_CONTEXT_CHARS + 1_024)}\n`;
+  assert.ok(Buffer.byteLength(recoverableOversizeText, "utf8") < MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES);
+  await fs.writeFile(segmentedPath, recoverableOversizeText, "utf8");
+  const recoverableHealth = await auditMssrProjectContextHealth(segmentedRepo);
+  assert.equal(recoverableHealth.findings.some((finding) => finding.target === "segmented-history" && finding.code === "segmented-source-budget-exceeded"), true);
+  assert.equal(recoverableHealth.findings.some((finding) => finding.code === "invalid-segment-contract"), false, "recoverable physical pressure must remain diagnosable rather than appearing corrupt");
+
+  const physicalShrinkText = `# History\n\n## Baseline\n${"b".repeat(100)}\n\n## Alpha\n${"a".repeat(500)}\n\n## Beta\n${"c".repeat(400)}\n\n## Archive\n${"s".repeat(20_000)}\n`;
+  const physicalShrink = await preflightMssrProjectContextWrite({ projectRoot: segmentedRepo, targetPath: segmentedPath, nextText: physicalShrinkText });
+  assert.equal(physicalShrink.contractValid, true, "shrinking a physically pressured segmented source must remain allowed");
+  assert.equal(physicalShrink.maintenanceRequiredBeforeWrite, false);
+
+  const hardLimitText = `# History\n\n## Baseline\n${"b".repeat(100)}\n\n## Alpha\n${"a".repeat(500)}\n\n## Beta\n${"c".repeat(400)}\n\n## Archive\n${"h".repeat(MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES + 1)}\n`;
+  const hardLimitPreflight = await preflightMssrProjectContextWrite({ projectRoot: segmentedRepo, targetPath: segmentedPath, nextText: hardLimitText });
+  assert.equal(hardLimitPreflight.physicalSources[0]?.exceededHardLimit, true);
+  assert.equal(hardLimitPreflight.contractValid, false);
+  assert.deepEqual(hardLimitPreflight.growthBlockedEntries, ["segmented-history"]);
 } finally {
   await fs.rm(root, { recursive: true, force: true });
 }

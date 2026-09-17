@@ -1,8 +1,15 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { projectContextManifestSchema, type ProjectContextManifest } from "./project-context.js";
+import { type ProjectContextCore, type ResolvedProjectContextManifest, type ResolvedProjectContextModule } from "./project-context.js";
 import { evaluateProjectContextEntryBudget } from "./project-context-budget.js";
-import { extractProjectContextSections } from "./project-context-loader.js";
+import {
+  MAX_PROJECT_CONTEXT_CHARS,
+  MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES,
+  extractProjectContextSections,
+  inspectProjectContextSegments,
+  loadProjectContextModuleManifest,
+  readBoundedMarkdown,
+} from "./project-context-loader.js";
 import { MSSR_PROJECT_AUTHORITY_FILES, MSSR_PROJECT_CONTROL_FILES, MSSR_PROJECT_HOME_DIR } from "./project-home.js";
 
 export const PROJECT_CONTEXT_HEALTH_LEVELS = ["ok", "watch", "review"] as const;
@@ -51,11 +58,51 @@ async function listMarkdown(root: string): Promise<string[]> {
   return out.sort();
 }
 
-async function selectedChars(projectRoot: string, source: { path: string; sections?: string[] }): Promise<number | null> {
+type ProjectContextEntryMeasurement = {
+  bytes: number | null;
+  physicalBytes: number;
+  segmented: boolean;
+  sourceHardLimitExceeded: boolean;
+  baselineBytes: number | null;
+  largestOptionalBytes: number | null;
+};
+
+async function selectedMeasurement(
+  projectRoot: string,
+  entry: ProjectContextCore | ResolvedProjectContextModule,
+): Promise<ProjectContextEntryMeasurement | null> {
   try {
-    const text = await fs.readFile(path.resolve(projectRoot, source.path), "utf8");
-    const selected = source.sections?.length ? extractProjectContextSections(text, source.sections) : text.trim();
-    return Buffer.byteLength(selected, "utf8");
+    const absolute = path.resolve(projectRoot, entry.source.path);
+    const segmented = "segments" in entry && Boolean(entry.segments?.length);
+    const physicalBytes = (await fs.stat(absolute)).size;
+    const sourceHardLimit = segmented ? MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES : MAX_PROJECT_CONTEXT_CHARS;
+    if (physicalBytes > sourceHardLimit) {
+      return { bytes: null, physicalBytes, segmented, sourceHardLimitExceeded: true, baselineBytes: null, largestOptionalBytes: null };
+    }
+    const text = (await readBoundedMarkdown(absolute, sourceHardLimit)).content;
+    if (segmented && "segments" in entry && entry.segments?.length) {
+      const inspected = inspectProjectContextSegments(text, entry.segments);
+      const baseline = inspected.find((segment) => segment.baseline);
+      if (!baseline) return null;
+      const largestOptionalBytes = inspected.filter((segment) => !segment.baseline).reduce((max, segment) => Math.max(max, segment.bytes), 0);
+      return {
+        bytes: baseline.bytes + largestOptionalBytes,
+        physicalBytes,
+        segmented: true,
+        sourceHardLimitExceeded: false,
+        baselineBytes: baseline.bytes,
+        largestOptionalBytes,
+      };
+    }
+    const selected = entry.source.sections?.length ? extractProjectContextSections(text, entry.source.sections) : text.trim();
+    return {
+      bytes: Buffer.byteLength(selected, "utf8"),
+      physicalBytes,
+      segmented: false,
+      sourceHardLimitExceeded: false,
+      baselineBytes: null,
+      largestOptionalBytes: null,
+    };
   } catch { return null; }
 }
 
@@ -64,16 +111,18 @@ export async function auditMssrProjectContextHealth(projectRootInput: string) {
   const home = path.join(projectRoot, MSSR_PROJECT_HOME_DIR);
   const manifestPath = path.join(home, MSSR_PROJECT_CONTROL_FILES.projectContextManifest);
   const findings: ProjectContextHealthFinding[] = [];
-  let manifest: ProjectContextManifest | null = null;
+  let manifest: ResolvedProjectContextManifest | null = null;
   let manifestStatus: "missing" | "valid" | "invalid" = "missing";
 
   if (await exists(manifestPath)) {
     try {
-      manifest = projectContextManifestSchema.parse(JSON.parse(await fs.readFile(manifestPath, "utf8")));
+      const loaded = await loadProjectContextModuleManifest(projectRoot);
+      if (!loaded.found) throw new Error("Project-context manifest disappeared during health inspection.");
+      manifest = loaded.manifest;
       manifestStatus = "valid";
     } catch (error) {
       manifestStatus = "invalid";
-      findings.push({ code: "invalid-manifest", level: "review", target: ".mssr/project-context.json", message: error instanceof Error ? error.message : String(error), recommendation: "REPAIR_PROJECT_CONTEXT_MANIFEST" });
+      findings.push({ code: "invalid-manifest", level: "review", target: ".mssr/project-context.json or project-context-segments.json", message: error instanceof Error ? error.message : String(error), recommendation: "REPAIR_PROJECT_CONTEXT_MANIFEST" });
     }
   } else {
     findings.push({ code: "missing-manifest", level: "review", target: ".mssr/project-context.json", message: "The repository is not initialized under the MSSR project-context contract.", recommendation: "INITIALIZE_PROJECT_CONTEXT" });
@@ -97,7 +146,8 @@ export async function auditMssrProjectContextHealth(projectRootInput: string) {
     else if (manifest.modules.length > 24) findings.push({ code: "many-modules", level: "watch", target: ".mssr/project-context.json", message: `${manifest.modules.length} modules warrant an organization review.`, recommendation: "REVIEW_AREA_GROUPING" });
 
     for (const entry of manifest.core) {
-      const chars = await selectedChars(projectRoot, entry.source);
+      const measurement = await selectedMeasurement(projectRoot, entry);
+      const chars = measurement?.bytes ?? null;
       if (chars === null) {
         findings.push({ code: "missing-core-source", level: "review", target: entry.source.path, message: `Core module ${entry.id} cannot be materialized.`, recommendation: "REPAIR_MODULE_SOURCE" });
       } else if (entry.maxChars !== undefined) {
@@ -114,22 +164,52 @@ export async function auditMssrProjectContextHealth(projectRootInput: string) {
       else if (chars > 5_000) findings.push({ code: "growing-core-module", level: "watch", target: entry.id, message: `Core module ${entry.id} loads ${chars} bytes.`, recommendation: "NARROW_CORE" });
     }
     for (const entry of manifest.modules) {
-      const chars = await selectedChars(projectRoot, entry.source);
+      const measurement = await selectedMeasurement(projectRoot, entry);
+      const chars = measurement?.bytes ?? null;
+      if (measurement?.segmented) {
+        const physicalBudget = evaluateProjectContextEntryBudget({
+          entryId: entry.id,
+          core: false,
+          sourcePath: entry.source.path,
+          selectedBytes: measurement.physicalBytes,
+          maxChars: MAX_PROJECT_CONTEXT_CHARS,
+        });
+        if (measurement.sourceHardLimitExceeded) {
+          findings.push({
+            code: "segmented-source-hard-limit-exceeded",
+            level: "review",
+            target: entry.id,
+            message: `Segmented module ${entry.id} backing source is ${measurement.physicalBytes} bytes and exceeds the ${MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES}-byte recovery hard limit.`,
+            recommendation: "REVIEW_SEGMENTED_SOURCE_STORAGE",
+          });
+        } else if (physicalBudget.level !== "ok") {
+          findings.push({
+            code: physicalBudget.exceeded ? "segmented-source-budget-exceeded" : "segmented-source-budget-pressure",
+            level: physicalBudget.level,
+            target: entry.id,
+            message: `Segmented module ${entry.id} backing source is ${measurement.physicalBytes}/${MAX_PROJECT_CONTEXT_CHARS} bytes (${Math.round(physicalBudget.utilization * 100)}% of the normal physical maintenance budget); selected payload budgeting remains separate.`,
+            recommendation: physicalBudget.level === "review" ? "REVIEW_SEGMENTED_SOURCE_STORAGE" : "PLAN_SEGMENTED_SOURCE_STORAGE_REVIEW",
+            budget: { selectedBytes: physicalBudget.selectedBytes, budgetBytes: physicalBudget.budgetBytes, remainingBytes: physicalBudget.remainingBytes, utilization: physicalBudget.utilization },
+          });
+        }
+      }
       if (chars === null) {
-        findings.push({ code: "missing-module-source", level: "review", target: entry.source.path, message: `Module ${entry.id} cannot be materialized.`, recommendation: "REPAIR_MODULE_SOURCE" });
+        if (!measurement?.sourceHardLimitExceeded) findings.push({ code: entry.segments?.length ? "invalid-segment-contract" : "missing-module-source", level: "review", target: entry.source.path, message: `Module ${entry.id} cannot be materialized${entry.segments?.length ? " under its segment contract" : ""}.`, recommendation: entry.segments?.length ? "REVIEW_MODULE_SEGMENTS" : "REPAIR_MODULE_SOURCE" });
       } else if (entry.maxChars !== undefined) {
         const budget = evaluateProjectContextEntryBudget({ entryId: entry.id, core: false, sourcePath: entry.source.path, selectedBytes: chars, maxChars: entry.maxChars });
         if (budget.level !== "ok") findings.push({
           code: budget.exceeded ? "module-entry-budget-exceeded" : "module-entry-budget-pressure",
           level: budget.level,
           target: entry.id,
-          message: `Module ${entry.id} loads ${chars}/${budget.budgetBytes} bytes (${Math.round(budget.utilization * 100)}%).`,
+          message: measurement?.segmented
+            ? `Segmented module ${entry.id} has a worst single-target payload of ${chars}/${budget.budgetBytes} bytes (${Math.round(budget.utilization * 100)}%; baseline ${measurement.baselineBytes} + largest optional ${measurement.largestOptionalBytes}).`
+            : `Module ${entry.id} loads ${chars}/${budget.budgetBytes} bytes (${Math.round(budget.utilization * 100)}%).`,
           recommendation: budget.level === "review" ? "SPLIT_MODULE" : "REVIEW_MODULE_SPLIT",
           budget: { selectedBytes: budget.selectedBytes, budgetBytes: budget.budgetBytes, remainingBytes: budget.remainingBytes, utilization: budget.utilization },
         });
       } else if (chars > 14_000) findings.push({ code: "oversized-module", level: "review", target: entry.id, message: `Module ${entry.id} loads ${chars} bytes.`, recommendation: "SPLIT_MODULE" });
       else if (chars > 7_000) findings.push({ code: "growing-module", level: "watch", target: entry.id, message: `Module ${entry.id} loads ${chars} bytes.`, recommendation: "REVIEW_MODULE_SPLIT" });
-      if (!entry.source.sections?.length && chars !== null && chars > 24_000) findings.push({ code: "whole-file-module", level: chars > 48_000 ? "review" : "watch", target: entry.id, message: `Module ${entry.id} loads an entire ${chars}-byte file.`, recommendation: "SELECT_STABLE_SECTION" });
+      if (!entry.segments?.length && !entry.source.sections?.length && chars !== null && chars > 24_000) findings.push({ code: "whole-file-module", level: chars > 48_000 ? "review" : "watch", target: entry.id, message: `Module ${entry.id} loads an entire ${chars}-byte file.`, recommendation: "SELECT_STABLE_SECTION" });
     }
 
     const projectMemoryPath = `.mssr/${MSSR_PROJECT_AUTHORITY_FILES.memory}`.toLowerCase();

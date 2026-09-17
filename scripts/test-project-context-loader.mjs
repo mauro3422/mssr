@@ -5,6 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import {
   MAX_PROJECT_CONTEXT_CHARS,
+  MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES,
   loadProjectContextModuleManifest,
   loadProjectContextModules,
   readBoundedMarkdown,
@@ -231,6 +232,103 @@ try {
     () => loadProjectContextModules({ projectRoot: rootSectionMax, intent: intentEdit, stage: "start" }),
     /selection exceeds 200 bytes/,
   );
+
+  // One logical project-context module may expose a compact unconditional baseline plus
+  // one deep semantic segment. Parent routing/ref identity stays stable; segment choice is
+  // deterministic and observable rather than creating independently-budgeted child modules.
+  const segmentedRoot = path.join(base, "c-semantic-segments");
+  await fs.rm(segmentedRoot, { recursive: true, force: true });
+  await fs.mkdir(path.join(segmentedRoot, ".mssr"), { recursive: true });
+  await fs.writeFile(
+    path.join(segmentedRoot, "history.md"),
+    "# History\n\n## Baseline\nCurrent invariant.\n\n## Alpha\nAlpha historical detail.\n\n## Beta\nBeta historical detail.\n",
+    "utf8",
+  );
+  const segmentedManifest = {
+    schemaVersion: 1,
+    core: [],
+    modules: [{
+      id: "semantic-history",
+      kind: "memory",
+      description: "Segmented history fixture.",
+      source: { path: "history.md" },
+      domains: ["coding"],
+      actions: ["recover"],
+      artifacts: [],
+      needs: ["history-recovery"],
+      signals: [],
+      required: false,
+      priority: 10,
+      maxChars: 500,
+    }],
+  };
+  const segmentedSidecar = {
+    schemaVersion: 1,
+    modules: [{
+      moduleId: "semantic-history",
+      segments: [
+        { id: "baseline", sections: ["## Baseline"], baseline: true },
+        { id: "alpha", sections: ["## Alpha"], terms: ["alpha subsystem"], priority: 10 },
+        { id: "beta", sections: ["## Beta"], terms: ["beta subsystem"], priority: 10 },
+      ],
+    }],
+  };
+  await fs.writeFile(path.join(segmentedRoot, ".mssr", "project-context.json"), JSON.stringify(segmentedManifest), "utf8");
+  await fs.writeFile(path.join(segmentedRoot, ".mssr", "project-context-segments.json"), JSON.stringify(segmentedSidecar), "utf8");
+  const segmentedIntent = (summary) => intent({ summary, domains: ["coding"], actions: ["recover"], needs: ["history-recovery"], risk: "read-only" });
+  const alphaSegment = await loadProjectContextModules({ projectRoot: segmentedRoot, intent: segmentedIntent("Recover alpha subsystem history"), stage: "implement", includeCore: false });
+  assert.deepEqual(alphaSegment.selected.map((record) => record.ref), ["semantic-history"]);
+  assert.match(alphaSegment.selected[0].content, /Current invariant/);
+  assert.match(alphaSegment.selected[0].content, /Alpha historical detail/);
+  assert.doesNotMatch(alphaSegment.selected[0].content, /Beta historical detail/);
+  assert.deepEqual(alphaSegment.ambiguousSegments, []);
+  assert.equal(alphaSegment.selected[0].segmentDecisions.find((item) => item.id === "baseline").reason, "baseline");
+  assert.equal(alphaSegment.selected[0].segmentDecisions.find((item) => item.id === "alpha").selected, true);
+
+  const genericSegment = await loadProjectContextModules({ projectRoot: segmentedRoot, intent: segmentedIntent("Recover project history"), stage: "implement", includeCore: false });
+  assert.match(genericSegment.selected[0].content, /Current invariant/);
+  assert.doesNotMatch(genericSegment.selected[0].content, /historical detail/);
+  assert.deepEqual(genericSegment.ambiguousSegments, []);
+
+  const ambiguousSegment = await loadProjectContextModules({ projectRoot: segmentedRoot, intent: segmentedIntent("Recover alpha subsystem and beta subsystem history"), stage: "implement", includeCore: false });
+  assert.match(ambiguousSegment.selected[0].content, /Current invariant/);
+  assert.doesNotMatch(ambiguousSegment.selected[0].content, /historical detail/);
+  assert.deepEqual(ambiguousSegment.ambiguousSegments, [{ moduleId: "semantic-history", candidates: ["alpha", "beta"], score: 26 }]);
+  assert.equal(ambiguousSegment.selected[0].segmentDecisions.find((item) => item.id === "alpha").reason, "ambiguous-candidate");
+  assert.equal(ambiguousSegment.selected[0].segmentDecisions.find((item) => item.id === "beta").reason, "ambiguous-candidate");
+
+  // A segmented backing file may temporarily exceed the normal 64 KiB maintenance budget
+  // without making MSSR blind. The selected payload stays bounded and the larger recovery
+  // hard limit exists so health/maintenance can still inspect and repair the source.
+  const recoverableLargeHistory = `# History\n\n## Baseline\nCurrent invariant.\n\n## Alpha\nAlpha historical detail.\n\n## Beta\nBeta historical detail.\n\n## Archive\n${"z".repeat(MAX_PROJECT_CONTEXT_CHARS + 1_024)}\n`;
+  assert.ok(Buffer.byteLength(recoverableLargeHistory, "utf8") > MAX_PROJECT_CONTEXT_CHARS);
+  assert.ok(Buffer.byteLength(recoverableLargeHistory, "utf8") < MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES);
+  await fs.writeFile(path.join(segmentedRoot, "history.md"), recoverableLargeHistory, "utf8");
+  const recoverableLargeSelection = await loadProjectContextModules({ projectRoot: segmentedRoot, intent: segmentedIntent("Recover alpha subsystem history"), stage: "implement", includeCore: false });
+  assert.match(recoverableLargeSelection.selected[0].content, /Current invariant/);
+  assert.match(recoverableLargeSelection.selected[0].content, /Alpha historical detail/);
+  assert.doesNotMatch(recoverableLargeSelection.selected[0].content, /## Archive/);
+
+  const overlapSidecar = structuredClone(segmentedSidecar);
+  overlapSidecar.modules[0].segments[0].sections = ["# History"];
+  await fs.writeFile(path.join(segmentedRoot, ".mssr", "project-context-segments.json"), JSON.stringify(overlapSidecar), "utf8");
+  await assert.rejects(
+    () => loadProjectContextModules({ projectRoot: segmentedRoot, intent: segmentedIntent("Recover alpha subsystem history"), stage: "implement", includeCore: false }),
+    /segment sections overlap/,
+  );
+  await fs.writeFile(path.join(segmentedRoot, ".mssr", "project-context-segments.json"), JSON.stringify(segmentedSidecar), "utf8");
+
+  const unknownSidecar = structuredClone(segmentedSidecar);
+  unknownSidecar.modules[0].moduleId = "missing-history";
+  await fs.writeFile(path.join(segmentedRoot, ".mssr", "project-context-segments.json"), JSON.stringify(unknownSidecar), "utf8");
+  await assert.rejects(() => loadProjectContextModuleManifest(segmentedRoot), /references unknown module/);
+  await fs.writeFile(path.join(segmentedRoot, ".mssr", "project-context-segments.json"), JSON.stringify(segmentedSidecar), "utf8");
+
+  const parentSectionManifest = structuredClone(segmentedManifest);
+  parentSectionManifest.modules[0].source.sections = ["## Baseline"];
+  await fs.writeFile(path.join(segmentedRoot, ".mssr", "project-context.json"), JSON.stringify(parentSectionManifest), "utf8");
+  await assert.rejects(() => loadProjectContextModuleManifest(segmentedRoot), /cannot also declare parent source.sections/);
+  await fs.writeFile(path.join(segmentedRoot, ".mssr", "project-context.json"), JSON.stringify(segmentedManifest), "utf8");
 
   const filesC2 = { "core-safe.md": "safe", "evil.md": "evil" };
   const rootC2 = await writeFixture("c-traverse", {

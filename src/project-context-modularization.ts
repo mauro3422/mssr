@@ -4,13 +4,12 @@ import path from "node:path";
 import { z } from "zod";
 import {
   PROJECT_CONTEXT_TOPICS,
-  projectContextManifestSchema,
   type ProjectContextCore,
-  type ProjectContextManifest,
   type ProjectContextModule,
   type ProjectContextTopic,
+  type ResolvedProjectContextManifest,
 } from "./project-context.js";
-import { extractProjectContextSections } from "./project-context-loader.js";
+import { extractProjectContextSections, loadProjectContextModuleManifest } from "./project-context-loader.js";
 import { MSSR_PROJECT_CONTROL_FILES, MSSR_PROJECT_HOME_DIR } from "./project-home.js";
 import { auditMssrProjectContextHealth } from "./project-context-health.js";
 
@@ -99,9 +98,10 @@ function enumerateSections(markdown: string, level = 2): MarkdownSection[] {
   return out.sort((a, b) => b.chars - a.chars || a.heading.localeCompare(b.heading));
 }
 
-async function readManifest(projectRoot: string): Promise<ProjectContextManifest> {
-  const manifestPath = path.join(projectRoot, MSSR_PROJECT_HOME_DIR, MSSR_PROJECT_CONTROL_FILES.projectContextManifest);
-  return projectContextManifestSchema.parse(JSON.parse(await fs.readFile(manifestPath, "utf8")));
+async function readManifest(projectRoot: string): Promise<ResolvedProjectContextManifest> {
+  const loaded = await loadProjectContextModuleManifest(projectRoot);
+  if (!loaded.found) throw new Error("Project-context manifest is missing.");
+  return loaded.manifest;
 }
 
 async function selectedSectionBytes(projectRoot: string, sourcePath: string, heading: string): Promise<{ chars: number; sha256: string }> {
@@ -159,7 +159,9 @@ export async function planMssrProjectContextModularization(projectRootInput: str
   );
   const budgetPressuredWholeFileSources = new Set(
     entries
-      .filter(({ entry }) => pressuredIds.has(entry.id) && !(entry.source.sections?.length))
+      .filter(({ entry }) => pressuredIds.has(entry.id)
+        && !(entry.source.sections?.length)
+        && !("segments" in entry && entry.segments?.length))
       .map(({ entry }) => entry.source.path.replace(/\\/g, "/").toLowerCase()),
   );
 

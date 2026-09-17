@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import {
   projectContextManifestSchema,
+  projectContextSegmentsManifestSchema,
   selectProjectContextModules,
   structuredSkillIntentSchema,
   upsertMarkdownSection,
@@ -148,6 +149,64 @@ const invalidConditionalExclusive = projectContextManifestSchema.safeParse({
   }],
 });
 assert.equal(invalidConditionalExclusive.success, false);
+
+const segmentedBaseManifest = projectContextManifestSchema.safeParse({
+  schemaVersion: 1,
+  modules: [{
+    id: "segmented-history",
+    kind: "memory",
+    description: "One logical history with internal semantic disclosure.",
+    source: { path: "history.md" },
+    actions: ["recover"],
+  }],
+});
+assert.equal(segmentedBaseManifest.success, true);
+assert.equal(projectContextManifestSchema.safeParse({
+  schemaVersion: 1,
+  modules: [{
+    id: "inline-segments-rejected",
+    kind: "memory",
+    description: "Legacy hosts must not see new sidecar fields inline.",
+    source: { path: "history.md" },
+    segments: [
+      { id: "baseline", sections: ["## Current"], baseline: true },
+      { id: "legacy", sections: ["## Legacy"], terms: ["legacy path"] },
+    ],
+  }],
+}).success, false);
+
+const segmentedSidecar = projectContextSegmentsManifestSchema.safeParse({
+  schemaVersion: 1,
+  modules: [{
+    moduleId: "segmented-history",
+    segments: [
+      { id: "baseline", sections: ["## Current"], baseline: true },
+      { id: "legacy", sections: ["## Legacy"], terms: ["legacy path"] },
+    ],
+  }],
+});
+assert.equal(segmentedSidecar.success, true);
+
+for (const invalidSegments of [
+  [
+    { id: "a", sections: ["## A"], terms: ["a term"] },
+    { id: "b", sections: ["## B"], terms: ["b term"] },
+  ],
+  [
+    { id: "a", sections: ["## A"], baseline: true },
+    { id: "b", sections: ["## B"], baseline: true },
+  ],
+  [
+    { id: "baseline", sections: ["## A"], baseline: true },
+    { id: "always-on-by-accident", sections: ["## B"] },
+  ],
+]) {
+  const parsed = projectContextSegmentsManifestSchema.safeParse({
+    schemaVersion: 1,
+    modules: [{ moduleId: "bad-segments", segments: invalidSegments }],
+  });
+  assert.equal(parsed.success, false);
+}
 
 const duplicate = projectContextManifestSchema.safeParse({
   schemaVersion: 1,

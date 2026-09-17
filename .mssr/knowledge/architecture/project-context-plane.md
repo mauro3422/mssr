@@ -8,7 +8,7 @@ Initialization establishes this contract. Project Context Health detects invalid
 
 ## Maintenance and write preflight
 
-A proposed write is measured by the selected bytes it would produce. Overflow is invalid. Growth into REVIEW is blocked before persistence and returns `mssr_project_maintain`; shrinking an already-pressured entry remains valid.
+A proposed write is measured by selected bytes. Overflow is invalid. For segmented parents, the selected budget is `baseline + largest optional segment`; physical growth is separate. Backing files use the normal 65,536-byte maintenance budget (WATCH 75%, REVIEW 90%) plus a 262,144-byte recovery hard limit so pressured history remains readable for repair. Growth into either REVIEW is blocked and returns `mssr_project_maintain`; hard-limit overflow is invalid, while shrinking pressured sources remains valid.
 
 MSSR may automatically perform only a semantics-preserving structural move: relocate one exact already-indexed non-core Markdown section into `.mssr/knowledge/` while preserving module id, kind, selectors and bytes. Source/manifest hashes, destination collisions, atomic writes, rollback and readback are checked. MSSR abstains when another selector overlaps those bytes, a whole-file consumer exists, the destination conflicts or source identity changed.
 

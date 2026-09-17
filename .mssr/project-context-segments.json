@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "modules": [
+    {
+      "moduleId": "mssr-architecture-impact-history",
+      "segments": [
+        {
+          "id": "current-cross-host",
+          "sections": [
+            "## Current cross-host coordinator (0.2.54)"
+          ],
+          "baseline": true
+        },
+        {
+          "id": "coarse-structural-refinement",
+          "sections": [
+            "## Coarse and structural refinement (0.2.33-0.2.39)"
+          ],
+          "terms": [
+            "situation model c2f",
+            "c2f-a",
+            "c2f-b",
+            "c2f-c",
+            "structural refinement",
+            "structural",
+            "symbol analysis",
+            "typescript",
+            "typescript analyzer",
+            "typescript/javascript reference analyzer",
+            "landmark",
+            "0.2.33",
+            "0.2.34",
+            "0.2.35",
+            "0.2.36",
+            "0.2.37",
+            "0.2.38",
+            "0.2.39"
+          ],
+          "priority": 20
+        },
+        {
+          "id": "derived-feedback-receipts",
+          "sections": [
+            "## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)"
+          ],
+          "terms": [
+            "c2f-c.5-d",
+            "c2f-d",
+            "c2f-e",
+            "derived graph",
+            "architecture invariant",
+            "architecture-invariants",
+            "context feedback",
+            "reviewed-current",
+            "reviewed current",
+            "receipt",
+            "0.2.41",
+            "0.2.42",
+            "0.2.43"
+          ],
+          "priority": 20
+        }
+      ]
+    },
+    {
+      "moduleId": "mssr-context-plane-history",
+      "segments": [
+        {
+          "id": "current-persistence-review",
+          "sections": [
+            "## Current persistence review boundary (0.2.54)"
+          ],
+          "baseline": true
+        },
+        {
+          "id": "messages-foundation",
+          "sections": [
+            "## Context Messages foundation (v1, 0.2.10)",
+            "## Inbox tombstone semantics (0.2.12)"
+          ],
+          "terms": [
+            "context messages",
+            "phase 2",
+            "inbox",
+            "tombstone",
+            "receipt retention",
+            "0.2.10",
+            "0.2.12"
+          ],
+          "priority": 20
+        },
+        {
+          "id": "host-delivery-cutover",
+          "sections": [
+            "## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)"
+          ],
+          "terms": [
+            "host delivery",
+            "project-context",
+            "project context manifest",
+            "canonical cutover",
+            ".bridge retrieval",
+            ".mssr/project-context.json",
+            "0.2.11",
+            "0.2.18",
+            "maxchars",
+            "contextincludecore",
+            "package version",
+            "restart/readback"
+          ],
+          "priority": 20
+        }
+      ]
+    }
+  ]
+}

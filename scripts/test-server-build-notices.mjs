@@ -20,6 +20,13 @@ function json(result) {
   return JSON.parse(item.text);
 }
 
+const emittedBuildReceipt = JSON.parse(await fs.readFile(path.resolve("dist/.build-receipt.json"), "utf8"));
+assert.equal(
+  Object.prototype.hasOwnProperty.call(emittedBuildReceipt, "builtAt"),
+  false,
+  "packaged build receipt must not contain wall-clock data that makes npm pack nondeterministic",
+);
+
 const root = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-server-build-"));
 try {
   const distOld = path.join(root, "dist-old");

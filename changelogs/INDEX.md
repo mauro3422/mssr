@@ -10,6 +10,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.63](0.2.63.md) - parent-internal semantic Project Context segmentation with deterministic baseline+one disclosure, ambiguity abstention and selectable-payload budget accounting.
 - [0.2.62](0.2.62.md) - MSSR-owned safe Project Context structural maintenance plus preventive write-pressure gating; semantic segmentation remains review-only.
 - [0.2.61](0.2.61.md) - compact route/bootstrap envelope without the full capability snapshot, plus narrower visual-reference-integrity activation with nearby fixtures.
 - [0.2.57](0.2.57.md) - Skill-context cursors preserve selection integrity while allowing each continuation page to use the host envelope space actually available.

@@ -5,7 +5,7 @@ import { z } from "zod";
 
 import { projectContextManifestSchema, projectContextModuleSchema, type ProjectContextManifest } from "./project-context.js";
 import { auditMssrProjectContextHealth } from "./project-context-health.js";
-import { extractProjectContextSections } from "./project-context-loader.js";
+import { extractProjectContextSections, loadProjectContextModuleManifest } from "./project-context-loader.js";
 import { planMssrProjectContextModularization, type ModularizationCandidate } from "./project-context-modularization.js";
 import { MSSR_PROJECT_CONTROL_FILES, MSSR_PROJECT_HOME_DIR } from "./project-home.js";
 
@@ -291,6 +291,9 @@ export async function maintainMssrProjectContext(input: MssrProjectContextMainte
       throw new Error(`Project-context manifest changed before maintenance; expected ${parsed.expectedManifestSha256.toLowerCase()}, observed ${initialManifest.sha256}.`);
     }
     const beforeHealth = await auditMssrProjectContextHealth(projectRoot);
+    const resolvedManifestRead = await loadProjectContextModuleManifest(projectRoot);
+    if (!resolvedManifestRead.found) throw new Error("Project-context manifest disappeared during maintenance.");
+    const resolvedManifest = resolvedManifestRead.manifest;
     const plan = await planMssrProjectContextModularization(projectRoot);
     if (plan.status === "blocked") {
       return { projectRoot, status: "blocked" as const, beforeHealth, afterHealth: beforeHealth, applied: [], blockers: [{ entryId: null, reason: plan.reason }], semanticRewrite: false, automaticScope: "exact-indexed-section-only" as const };
@@ -315,9 +318,18 @@ export async function maintainMssrProjectContext(input: MssrProjectContextMainte
       "module-entry-budget-exceeded",
     ]);
     for (const finding of plan.health.findings.filter((item) => pressureCodes.has(item.code))) {
-      const entry = [...initialManifest.manifest.core, ...initialManifest.manifest.modules].find((item) => item.id === finding.target);
-      if (!entry || entry.source.sections?.length) continue;
+      const entry = [...resolvedManifest.core, ...resolvedManifest.modules].find((item) => item.id === finding.target);
+      if (!entry) continue;
       if (blockers.some((item) => item.entryId === entry.id)) continue;
+      if ("segments" in entry && entry.segments?.length) {
+        blockers.push({
+          entryId: entry.id,
+          reason: "semantic-segment-budget-pressure-requires-review",
+          sourcePath: entry.source.path,
+        });
+        continue;
+      }
+      if (entry.source.sections?.length) continue;
       const core = initialManifest.manifest.core.some((item) => item.id === entry.id);
       blockers.push({
         entryId: entry.id,

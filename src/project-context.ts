@@ -50,6 +50,30 @@ const semanticFields = {
   area: areaSchema.optional(),
 };
 
+export const projectContextSegmentSchema = z.object({
+  id: areaSchema,
+  sections: z.array(z.string().min(1).max(160)).min(1).max(12),
+  baseline: z.boolean().default(false),
+  terms: z.array(z.string().min(2).max(80)).max(24).default([]),
+  ...selectorFields,
+  priority: z.number().int().min(-100).max(100).default(0),
+}).strict().superRefine((value, ctx) => {
+  const selectorCount = value.stages.length + value.domains.length + value.actions.length
+    + value.artifacts.length + value.needs.length + value.signals.length;
+  if (value.baseline && (selectorCount > 0 || value.terms.length > 0)) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "A project-context baseline segment must be unconditional inside its selected parent module.",
+    });
+  }
+  if (!value.baseline && selectorCount === 0 && value.terms.length === 0) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "A non-baseline project-context segment needs declared selectors or summary terms.",
+    });
+  }
+});
+
 export const PROJECT_CONTEXT_MUTATION_ACTIONS = [
   "create",
   "edit",
@@ -91,8 +115,46 @@ export const projectContextModuleSchema = z.object({
   priority: z.number().int().min(-100).max(100).default(0),
   maxChars: z.number().int().min(200).max(80_000).optional(),
   exclusiveGroup: z.string().regex(/^[a-z0-9][a-z0-9._-]{1,79}$/).optional(),
-}).strict().refine((value) => !((value.required || value.requiredWhen) && value.exclusiveGroup), {
-  message: "Required or conditionally required project-context modules cannot belong to an exclusive group.",
+}).strict().superRefine((value, ctx) => {
+  if ((value.required || value.requiredWhen) && value.exclusiveGroup) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "Required or conditionally required project-context modules cannot belong to an exclusive group.",
+      path: ["exclusiveGroup"],
+    });
+  }
+});
+
+const projectContextSegmentBindingSchema = z.object({
+  moduleId: z.string().regex(/^[a-z0-9][a-z0-9._-]{1,79}$/),
+  segments: z.array(projectContextSegmentSchema).min(2).max(24),
+}).strict().superRefine((value, ctx) => {
+  const baselines = value.segments.filter((segment) => segment.baseline);
+  if (baselines.length !== 1) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, message: `Segmented project-context modules require exactly one baseline segment; found ${baselines.length}.`, path: ["segments"] });
+  }
+  const ids = new Set<string>();
+  const headings = new Set<string>();
+  for (const [index, segment] of value.segments.entries()) {
+    if (ids.has(segment.id)) ctx.addIssue({ code: z.ZodIssueCode.custom, message: `Duplicate project-context segment id: ${segment.id}`, path: ["segments", index, "id"] });
+    ids.add(segment.id);
+    for (const heading of segment.sections) {
+      const normalized = heading.trim();
+      if (headings.has(normalized)) ctx.addIssue({ code: z.ZodIssueCode.custom, message: `Project-context segment heading is declared more than once: ${normalized}`, path: ["segments", index, "sections"] });
+      headings.add(normalized);
+    }
+  }
+});
+
+export const projectContextSegmentsManifestSchema = z.object({
+  schemaVersion: z.literal(1),
+  modules: z.array(projectContextSegmentBindingSchema).max(96).default([]),
+}).strict().superRefine((value, ctx) => {
+  const ids = new Set<string>();
+  for (const [index, binding] of value.modules.entries()) {
+    if (ids.has(binding.moduleId)) ctx.addIssue({ code: z.ZodIssueCode.custom, message: `Duplicate project-context segment module id: ${binding.moduleId}`, path: ["modules", index, "moduleId"] });
+    ids.add(binding.moduleId);
+  }
 });
 
 export const projectContextManifestSchema = z.object({
@@ -114,11 +176,15 @@ export const projectContextManifestSchema = z.object({
 });
 
 export type ProjectContextSource = z.infer<typeof projectContextSourceSchema>;
+export type ProjectContextSegment = z.infer<typeof projectContextSegmentSchema>;
+export type ProjectContextSegmentsManifest = z.infer<typeof projectContextSegmentsManifestSchema>;
 export type ProjectContextCore = z.infer<typeof projectContextCoreSchema>;
 export type ProjectContextRequiredWhen = z.infer<typeof projectContextRequiredWhenSchema>;
 export type ProjectContextModule = z.infer<typeof projectContextModuleSchema>;
+export type ResolvedProjectContextModule = ProjectContextModule & { segments?: ProjectContextSegment[] };
 export type ProjectContextManifest = z.infer<typeof projectContextManifestSchema>;
-export type MaterializedProjectContextModule = ProjectContextModule & { chars: number };
+export type ResolvedProjectContextManifest = Omit<ProjectContextManifest, "modules"> & { modules: ResolvedProjectContextModule[] };
+export type MaterializedProjectContextModule = ResolvedProjectContextModule & { chars: number };
 export type ProjectContextModuleDecision = ContextModuleDecision & { required: boolean; requiredBy: string[] };
 
 export function defaultKindForProjectContextTopic(topic: ProjectContextTopic): "context" | "memory" | "state" {
