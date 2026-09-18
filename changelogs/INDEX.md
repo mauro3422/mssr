@@ -10,6 +10,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.65](0.2.65.md) - turns the Workshop media zoom-correction regression into explicit bounded continuation coverage with context-consumption assertion.
 - [0.2.64](0.2.64.md) - evidence-gated Context Message owner migration reconciliation prevents duplicate historical/current path identities without basename heuristics.
 - [0.2.63](0.2.63.md) - parent-internal semantic Project Context segmentation with deterministic baseline+one disclosure, ambiguity abstention and selectable-payload budget accounting.
 - [0.2.62](0.2.62.md) - MSSR-owned safe Project Context structural maintenance plus preventive write-pressure gating; semantic segmentation remains review-only.

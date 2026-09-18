@@ -7235,7 +7235,9 @@
     {
       "name": "workshop-media-editing-continuation-fix-zoom",
       "task": "El zoom sigue lento; acortalo y mira ese fragmento otra vez antes de seguir con los otros GIFs.",
+      "context": "Ya se editó un video de gameplay en varios GIFs promocionales y el fragmento actual pasó por una primera revisión visual. El preview todavía muestra un zoom demasiado lento; hay que corregir ese timing, volver a revisar exactamente ese fragmento y no avanzar a los otros GIFs hasta validarlo.",
       "stage": "verify",
+      "completedPhases": ["discovery"],
       "sources": ["codex-local"],
       "intent": {
         "summary": "Corregir timing de una pieza promocional ya editada y rever el preview",
@@ -7247,7 +7249,7 @@
         "risk": "write",
         "ambiguity": "low"
       },
-      "expect": {"classificationMode": "structured-semantic", "activeIncludes": ["workshop-media-editing"]}
+      "expect": {"classificationMode": "structured-semantic", "contextUsed": true, "activeIncludes": ["workshop-media-editing"]}
     },
     {
       "name": "workshop-media-editing-negative-static-image",
