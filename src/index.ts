@@ -67,3 +67,4 @@ export * from "./telemetry-analysis.js";
 export * from "./learning.js";
 export * from "./learning-evaluation.js";
 export * from "./change-history.js";
+export * from "./document-freshness.js";

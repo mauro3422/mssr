@@ -1,15 +1,16 @@
 # Roadmap de MSSR
 
-## Límite de release 0.2.8 y paquete first-party
+> **Vigencia:** este documento conserva decisiones y próximos pasos específicos del subsistema de routing. Los números de release/runtime incluidos en secciones históricas son evidencia de esa época, no estado vivo. Para estado actual use `../../ROADMAP.md`, `../../.mssr/PROJECT_STATE.md`, `../../changelogs/INDEX.md` y readback del host.
+
+## Snapshot histórico — release 0.2.8 y paquete first-party
 
 `0.2.7` entregó el evaluador portable de cierre: un outcome `success` se
-rechaza cuando queda pendiente una obligación aplicable. `0.2.8` mantiene esa
-semántica y además entrega cinco skills first-party bundled, manifest de nombres
+rechaza cuando queda pendiente una obligación aplicable. `0.2.8` mantuvo esa
+semántica y entregó cinco skills first-party bundled, manifest de nombres
 reservados, precedencia de provider, discovery nativo/Codex/OpenCode, instalador
-Codex opt-in y conformance de fuente. Bridge `0.6.88` está integrado en source
-pero sigue pendiente de restart controlado y readback de catálogo/versión vivo.
+Codex opt-in y conformance de fuente.
 
-La admisión first-party está completada para `mssr-agent-routing`,
+La admisión first-party quedó completada para `mssr-agent-routing`,
 `shared-skill-governance`, `skill-routing-maintainer`,
 `skill-maintenance-loop` y `mssr-observability-maintenance`: fuente canónica
 bundled, manifest/provenance, metadata/fixtures, inclusión en el paquete y
@@ -17,11 +18,10 @@ verificación de fuente. Un mount que resuelve al mismo realpath es alias; una
 fuente externa divergente con nombre reservado bloquea audit. Eso no convierte a
 todas en requeridas para cada tarea.
 
-La instalación Codex es opt-in y limitada a nombres del manifest. Discovery de
-fuente para native/Codex/OpenCode y guards del catálogo custom están cubiertos.
-Siguen pendientes Bridge/ChatGPT Web live tras restart, y la matriz amplia de
-paridad de lifecycle, digest, replay y rollback; no se infiere de conformance
-de package/discovery.
+El antiguo pendiente de Bridge `0.6.88` (restart/readback) fue cerrado en releases
+posteriores. Bridge/ChatGPT Web live discovery y las capas de lifecycle/contexto
+han tenido adopciones posteriores; la matriz amplia que todavía sea futura se
+mantiene sólo en el roadmap raíz para no duplicar estado cambiante aquí.
 
 ## Estado actual
 

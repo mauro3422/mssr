@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "documents": [
+    {
+      "documentId": "mssr-roadmap-current",
+      "documentRef": "ROADMAP.md",
+      "kind": "roadmap",
+      "impactRefs": [
+        "package.json",
+        ".mssr/PROJECT_STATE.md",
+        "changelogs/INDEX.md"
+      ]
+    },
+    {
+      "documentId": "mssr-skill-routing-roadmap-current",
+      "documentRef": "docs/skill-routing/ROADMAP.md",
+      "kind": "roadmap",
+      "impactRefs": [
+        "ROADMAP.md",
+        "src/skill-routing.ts",
+        "src/host-conformance-contract.ts",
+        "src/learning-evaluation.ts"
+      ]
+    }
+  ]
+}

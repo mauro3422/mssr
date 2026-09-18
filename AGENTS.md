@@ -35,10 +35,13 @@ MauroPrime Bridge and any one host agent.
   situational recipes selected by `context-modules.json`.
 - Drift detectors are evidence producers, not writers. `project_change_consistency`
   checks release/project-authority diffs, Context Plane freshness checks source
-  revisions, and skill audit/Skill Health checks routing or structural skill debt.
-  A visible maintenance task applies an accepted change to the canonical owner;
-  telemetry, receipts, and heuristics never auto-rewrite AGENTS, PROJECT_*, skills,
-  references, or routing.
+  revisions, Document Freshness checks only explicitly declared current-state docs
+  against exact host-observed ref revisions, and skill audit/Skill Health checks
+  routing or structural skill debt. A newer ref means review-due, never proof that
+  prose is semantically wrong. Historical docs should remain undeclared. A visible
+  maintenance task applies an accepted change to the canonical owner; telemetry,
+  receipts, freshness evidence, and heuristics never auto-rewrite AGENTS,
+  PROJECT_*, skills, references, roadmaps, or routing.
 - Preserve provenance, health, timestamps, and degradation state. An empty or
   stale provider catalog is evidence, not proof that no capability exists.
 - Plans must permit re-plan and capability chaining. An agent may discover,
