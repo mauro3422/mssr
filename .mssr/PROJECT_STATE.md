@@ -2,15 +2,15 @@
 
 ## Current release
 
-MSSR `0.2.63` is the verified source release for parent-internal semantic Project Context segmentation over the safe maintenance/preflight foundation from `0.2.62`. `npm run verify` and `release:gate` pass. Exact package bytes, digest and integrity are recorded by the runtime release receipt rather than copied into packaged durable state, avoiding a self-referential artifact hash. Bridge adoption is unchanged and is never inferred from this sibling repository.
+MSSR `0.2.64` is the verified source release for evidence-gated Context Message canonical-owner migration reconciliation over the Project Context segmentation foundation from `0.2.63`. `npm run verify` and `release:gate` pass. Exact package bytes, digest and integrity are recorded by the runtime release receipt rather than copied into packaged durable state, avoiding a self-referential artifact hash. Bridge adoption is a separate packaged deployment step and is never inferred from this sibling repository.
 
 ## Learning dataset state
 
-Strict `learning-digest-v1` collection remains observe-only with `routingInfluence=false`. MSSR `0.2.63` does not change learning influence: dataset-quality audit, replay/calibration and shadow evaluation remain separate, and no learned score is consumed by routing or context selection.
+Strict `learning-digest-v1` collection remains observe-only with `routingInfluence=false`. MSSR `0.2.64` does not change learning influence: dataset-quality audit, replay/calibration and shadow evaluation remain separate, and no learned score is consumed by routing or context selection.
 
 ## Core skill package state
 
-The five first-party skill packages remain unchanged. MSSR `0.2.63` changes the portable Project Context schema/loader, health and maintenance boundary, not skill routing metadata. Bridge's packaged MSSR adoption remains a separate deployment step and is not inferred from this repository working tree.
+The five first-party skill packages remain unchanged. MSSR `0.2.64` changes Context Plane inbox reconciliation/observability, not skill routing metadata. Bridge's packaged MSSR adoption remains a separate deployment step and is not inferred from this repository working tree.
 
 ## Context-economy follow-up
 

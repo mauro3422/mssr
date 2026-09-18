@@ -76,7 +76,8 @@
           "id": "messages-foundation",
           "sections": [
             "## Context Messages foundation (v1, 0.2.10)",
-            "## Inbox tombstone semantics (0.2.12)"
+            "## Inbox tombstone semantics (0.2.12)",
+            "## Canonical-owner migration reconciliation (0.2.64)"
           ],
           "terms": [
             "context messages",
@@ -84,8 +85,12 @@
             "inbox",
             "tombstone",
             "receipt retention",
+            "canonical owner",
+            "owner migration",
+            "path migration",
             "0.2.10",
-            "0.2.12"
+            "0.2.12",
+            "0.2.64"
           ],
           "priority": 20
         },

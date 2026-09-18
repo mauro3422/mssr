@@ -11,6 +11,7 @@ import {
   enqueueMssrContextMessages,
   loadMssrContextInboxStateFromFile,
   pruneMssrContextInbox,
+  reconcileMssrContextInboxRepositoryOwners,
   saveMssrContextInboxStateToFile,
   selectMssrContextInboxMessages,
   type MssrContextDeliveryReceipt,
@@ -68,6 +69,7 @@ export type ProjectContextHostResult = {
     loaded: boolean;
     prunedMessageIds: string[];
     prunedReceiptIds: string[];
+    reconciledOwners: Array<{ messageId: string; previousOwners: string[]; currentOwners: string[] }>;
     enqueued: string[];
     deduplicated: string[];
     overflow: string[];
@@ -110,7 +112,8 @@ export async function loadProjectContextHost(input: ProjectContextHostInput, clo
   const existing = await fileExists(filePath);
   const loadedState = existing ? await loadMssrContextInboxStateFromFile(filePath) : createEmptyMssrContextInboxState();
   const pruned = pruneMssrContextInbox(loadedState, now, inlineConfig);
-  let state = pruned.state;
+  const ownerReconciliation = reconcileMssrContextInboxRepositoryOwners(pruned.state, repository.messages);
+  let state = ownerReconciliation.state;
   const enqueuedRepository = enqueueMssrContextMessages(state, repository.messages, now, inlineConfig);
   state = enqueuedRepository.state;
   const enqueuedCaller = parsed.contextMessages ? enqueueMssrContextMessages(state, parsed.contextMessages, now, inlineConfig) : null;
@@ -154,6 +157,7 @@ export async function loadProjectContextHost(input: ProjectContextHostInput, clo
       loaded: existing,
       prunedMessageIds: pruned.prunedMessageIds,
       prunedReceiptIds: pruned.prunedReceiptIds,
+      reconciledOwners: ownerReconciliation.reconciled,
       enqueued: [...enqueuedRepository.enqueued, ...(enqueuedCaller?.enqueued ?? [])],
       deduplicated: [...enqueuedRepository.deduplicated, ...(enqueuedCaller?.deduplicated ?? [])],
       overflow: [...enqueuedRepository.overflow, ...(enqueuedCaller?.overflow ?? [])],

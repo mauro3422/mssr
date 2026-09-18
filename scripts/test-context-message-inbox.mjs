@@ -13,6 +13,7 @@ import {
   mssrContextInboxStateSchema,
   mssrContextMessageSchema,
   pruneMssrContextInbox,
+  reconcileMssrContextInboxRepositoryOwners,
   reduceMssrContextInbox,
   saveMssrContextInboxStateToFile,
   selectMssrContextInboxMessages,
@@ -135,6 +136,75 @@ const pendingRevisionIdentical = enqueueMssrContextMessages(pendingRevision2.sta
 assert.deepEqual(pendingRevisionIdentical.enqueued, []);
 assert.deepEqual(pendingRevisionIdentical.deduplicated, ["project-state"]);
 assert.equal(pendingRevisionIdentical.state.pending[0]?.enqueuedAt, "2026-08-13T12:00:01.000Z");
+// --- Repository-owner migration reconciles only proven current subjects ---
+
+const movedOld = message({
+  id: "moved-adr",
+  dedupeKey: "architecture-decision:c:-dev-mssr:docs-decisions-0001.md",
+  evidence: [{
+    kind: "architecture-decision",
+    ref: "docs/decisions/0001.md",
+    summary: "Old path evidence.",
+    canonicalOwner: "C:/Dev/mssr",
+    provenance: "project",
+    freshness: "fresh",
+    revision: "old-rev",
+  }],
+});
+const unrelatedOld = message({
+  id: "other-adr",
+  dedupeKey: "architecture-decision:c:-other-mssr:docs-decisions-0001.md",
+  evidence: [{
+    kind: "architecture-decision",
+    ref: "docs/decisions/0001.md",
+    summary: "Different project subject.",
+    canonicalOwner: "C:/Other/mssr",
+    provenance: "project",
+    freshness: "fresh",
+    revision: "other-rev",
+  }],
+});
+const movedState = enqueueMssrContextMessages(empty, [movedOld, unrelatedOld], now).state;
+const movedCurrent = message({
+  id: "moved-adr",
+  dedupeKey: "architecture-decision:d:-dev-mssr:docs-decisions-0001.md",
+  evidence: [{
+    kind: "architecture-decision",
+    ref: "docs/decisions/0001.md",
+    summary: "Current path evidence.",
+    canonicalOwner: "D:/Dev/mssr",
+    provenance: "project",
+    freshness: "fresh",
+    revision: "new-rev",
+  }],
+});
+const reconciledMove = reconcileMssrContextInboxRepositoryOwners(movedState, [movedCurrent]);
+assert.deepEqual(reconciledMove.reconciled, [{
+  messageId: "moved-adr",
+  previousOwners: ["C:/Dev/mssr"],
+  currentOwners: ["D:/Dev/mssr"],
+}]);
+assert.deepEqual(reconciledMove.state.pending.map((entry) => entry.message.id), ["other-adr"]);
+const afterMoveEnqueue = enqueueMssrContextMessages(reconciledMove.state, [movedCurrent], "2026-08-13T12:00:03.000Z");
+assert.deepEqual(afterMoveEnqueue.state.pending.map((entry) => entry.message.id).sort(), ["moved-adr", "other-adr"]);
+assert.equal(afterMoveEnqueue.state.pending.find((entry) => entry.message.id === "moved-adr")?.message.evidence[0]?.canonicalOwner, "D:/Dev/mssr");
+
+const noFalseAlias = reconcileMssrContextInboxRepositoryOwners(movedState, [message({
+  id: "moved-adr",
+  dedupeKey: "architecture-decision:d:-dev-mssr:docs-decisions-0002.md",
+  evidence: [{
+    kind: "architecture-decision",
+    ref: "docs/decisions/0002.md",
+    summary: "Different evidence ref.",
+    canonicalOwner: "D:/Dev/mssr",
+    provenance: "project",
+    freshness: "fresh",
+    revision: "different-ref",
+  }],
+})]);
+assert.equal(noFalseAlias.reconciled.length, 0);
+assert.equal(noFalseAlias.state.pending.length, 2);
+
 
 // --- Enqueue is bounded at 32 pending with deterministic arrival order ---
 

@@ -173,6 +173,80 @@ function acknowledgedTombstones(deliveries: readonly MssrContextDeliveryReceipt[
   );
 }
 
+function repositoryMessageSubjectKey(message: MssrContextMessage): string | null {
+  if (message.evidence.length === 0 || message.evidence.some((item) => item.provenance !== "project")) return null;
+  const sources = message.evidence
+    .map((item) => `${item.kind}\0${item.ref}\0${item.provenance}`)
+    .sort();
+  return `${message.id}\0${message.kind}\0${sources.join("\u0001")}`;
+}
+
+function canonicalOwnersOf(message: MssrContextMessage): string[] {
+  return [...new Set(message.evidence.map((item) => item.canonicalOwner))].sort();
+}
+
+/**
+ * Reconciles path-based canonical-owner drift after a repository has moved.
+ *
+ * The current repository provider is the proof boundary: an older pending item
+ * is removed only when it has the same message id/kind and the same exact
+ * project evidence kind/ref/provenance identity as one current repository
+ * message, while the canonical owner differs. Repository basename/path
+ * similarity alone is never considered evidence of identity.
+ */
+export function reconcileMssrContextInboxRepositoryOwners(
+  state: MssrContextInboxState,
+  currentRepositoryMessages: readonly MssrContextMessage[],
+): {
+  state: MssrContextInboxState;
+  reconciled: Array<{
+    messageId: string;
+    previousOwners: string[];
+    currentOwners: string[];
+  }>;
+} {
+  const validated = validateState(state);
+  const current = z.array(mssrContextMessageSchema).max(32).parse(currentRepositoryMessages);
+  const currentBySubject = new Map<string, MssrContextMessage | null>();
+
+  for (const message of current) {
+    const key = repositoryMessageSubjectKey(message);
+    if (!key) continue;
+    if (currentBySubject.has(key)) {
+      currentBySubject.set(key, null);
+    } else {
+      currentBySubject.set(key, message);
+    }
+  }
+
+  const reconciled: Array<{ messageId: string; previousOwners: string[]; currentOwners: string[] }> = [];
+  const pending = validated.pending.filter((entry) => {
+    const key = repositoryMessageSubjectKey(entry.message);
+    if (!key) return true;
+    const authoritative = currentBySubject.get(key);
+    if (!authoritative) return true;
+
+    const previousOwners = canonicalOwnersOf(entry.message);
+    const currentOwners = canonicalOwnersOf(authoritative);
+    if (previousOwners.length === 0 || currentOwners.length === 0) return true;
+    if (previousOwners.length === currentOwners.length && previousOwners.every((owner, index) => owner === currentOwners[index])) {
+      return true;
+    }
+
+    reconciled.push({
+      messageId: entry.message.id,
+      previousOwners,
+      currentOwners,
+    });
+    return false;
+  });
+
+  return {
+    state: validateState({ ...validated, pending }),
+    reconciled,
+  };
+}
+
 function resolveConfig(config?: MssrContextInboxConfig): MssrContextInboxConfig {
   return mssrContextInboxConfigSchema.parse(config ?? {});
 }
