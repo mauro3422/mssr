@@ -1,5 +1,7 @@
 # Trace lifecycle integrity decision
 
-`canCloseSuccess` is a prospective pre-outcome gate, not a historical completion flag. While a compatible trace is still open, the outcome obligation becomes `ready` only after every required precondition is complete. Once an accepted outcome checkpoint closes the lifecycle, that same obligation must project as `complete`, `canCloseSuccess` returns false, and `nextRequiredAction` is `none`; a closed trace must never visually regress its persisted outcome to `pending`.
+`canCloseSuccess` is prospective. An open compatible trace reports outcome `ready` only after all required preconditions complete. After an accepted outcome closes the trace, outcome projects `complete`, `canCloseSuccess=false`, and `nextRequiredAction=none`; persisted success must never regress to pending.
 
-Project/workflow ownership is part of logical trace identity. Portable MSSR owns lifecycle semantics, while host adapters own session/project attribution and recovery. A host must not merge unrelated project/workflow activity into one logical trace or learning digest merely because it shares a session or recent activity; cross-project work requires an explicit new owner trace or bounded related-evidence handoff.
+Project/workflow ownership is logical trace identity. Hosts observe and canonicalize owner evidence; portable MSSR decides compatibility. Unknown fields may bind once, but known owner values never migrate or get erased. A known project/workflow mismatch is incompatible even for an explicit `traceId` and must fail before trace adoption or unrelated Project Context selection. Explicit `traceId` means continuation, not owner authority.
+
+Legitimate cross-project work uses a separately owned/delegated trace or bounded related-project/evidence relation; the relationship never mutates either owner. Canonical path/name equivalence remains host-observed evidence while MSSR keeps the compatibility rule pure.

@@ -10,6 +10,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.68](0.2.68.md) - R1 Trace Identity Integrity begins with immutable portable project/workflow owner compatibility, shared-adapter fail-closed enforcement before project-context loading, and focused identity regressions; Bridge live adoption remains a separate gate.
 - [0.2.67](0.2.67.md) - deterministic semantic/document consistency architecture plus integration-audit truth reconciliation and exact routing semantic-owner path classification, preventing documentation-only `skill-routing` paths from creating false maintenance debt.
 - [0.2.66](0.2.66.md) - opt-in Document Freshness contract makes explicitly current-state documents review-due from bounded exact-ref revision evidence without prose inference or auto-rewrite; stale roadmap claims are reconciled.
 - [0.2.65](0.2.65.md) - turns the Workshop media zoom-correction regression into explicit bounded continuation coverage with context-consumption assertion.

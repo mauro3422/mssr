@@ -62,6 +62,7 @@ export * from "./situation-claims.js";
 export * from "./situation-context-feedback.js";
 export * from "./intent-normalizer.js";
 export * from "./trace-contract.js";
+export * from "./trace-identity.js";
 export * from "./telemetry.js";
 export * from "./telemetry-analysis.js";
 export * from "./learning.js";

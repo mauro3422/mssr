@@ -1,4 +1,6 @@
 import { randomUUID } from "node:crypto";
+import fs from "node:fs/promises";
+import path from "node:path";
 import { CapabilityRegistry, FilesystemSkillProvider, MssrFirstPartySkillProvider } from "./registry.js";
 import {
   planSkillRoute,
@@ -19,6 +21,7 @@ import {
   type MssrTraceLifecycleState,
   type MssrTraceWorkingMemory,
 } from "./trace-contract.js";
+import { evaluateMssrTraceOwnerCompatibility, type MssrTraceOwnerIdentity } from "./trace-identity.js";
 import {
   createMssrTelemetryEnvelope,
   hashMssrTelemetryTask,
@@ -110,6 +113,7 @@ export class MssrAdapter implements MssrProjectControlAdapter {
   readonly registry: CapabilityRegistry;
   private initialized = false;
   private readonly traces = new Map<string, MssrTraceLifecycleState>();
+  private readonly traceOwners = new Map<string, Required<MssrTraceOwnerIdentity>>();
   private readonly workingMemory = new Map<string, MssrTraceWorkingMemory>();
   private readonly instanceId: string;
   private readonly buildDistDir: string;
@@ -159,6 +163,33 @@ export class MssrAdapter implements MssrProjectControlAdapter {
 
   private newTraceId(): string {
     return `${this.options.tracePrefix}-${randomUUID()}`;
+  }
+
+  private async canonicalProjectOwner(projectRoot: string | undefined): Promise<string | null> {
+    if (!projectRoot) return null;
+    const absolute = path.resolve(projectRoot);
+    let resolved = absolute;
+    try {
+      resolved = await fs.realpath(absolute);
+    } catch {
+      // A missing/unavailable root is still a stable host-observed owner candidate.
+      // Project loading will report the filesystem problem separately.
+    }
+    return process.platform === "win32" ? resolved.toLocaleLowerCase() : resolved;
+  }
+
+  private async bindTraceOwner(traceId: string, input: MssrRouteInput) {
+    const requested = {
+      project: await this.canonicalProjectOwner(input.projectRoot),
+      workflowKey: input.workflowKey?.trim() || null,
+    };
+    const compatibility = evaluateMssrTraceOwnerCompatibility(this.traceOwners.get(traceId), requested);
+    if (!compatibility.compatible) {
+      const fields = compatibility.mismatchFields.join(",");
+      throw new Error(`mssr-trace-owner-mismatch: trace ${traceId} is already bound to another ${fields} owner; create or delegate to a separately owned trace instead of migrating this trace.`);
+    }
+    this.traceOwners.set(traceId, compatibility.bound);
+    return compatibility;
   }
 
   private profile(input: MssrRouteInput) {
@@ -214,6 +245,7 @@ export class MssrAdapter implements MssrProjectControlAdapter {
     const state = this.getTrace(traceId);
     return {
       state,
+      owner: this.traceOwners.get(traceId) ?? null,
       closure: state ? getMssrTraceClosureState(state) : null,
       workingMemory: this.workingMemory.get(traceId) ?? null,
     };
@@ -296,6 +328,7 @@ export class MssrAdapter implements MssrProjectControlAdapter {
     const intent = structuredSkillIntentSchema.parse(input.intent);
     const stage = input.stage ?? "start";
     const traceId = input.traceId ?? this.newTraceId();
+    await this.bindTraceOwner(traceId, input);
     const plan = await planSkillRoute({
       task: input.task,
       context: input.context,
