@@ -10,6 +10,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.67](0.2.67.md) - deterministic semantic/document consistency architecture plus integration-audit truth reconciliation and exact routing semantic-owner path classification, preventing documentation-only `skill-routing` paths from creating false maintenance debt.
 - [0.2.66](0.2.66.md) - opt-in Document Freshness contract makes explicitly current-state documents review-due from bounded exact-ref revision evidence without prose inference or auto-rewrite; stale roadmap claims are reconciled.
 - [0.2.65](0.2.65.md) - turns the Workshop media zoom-correction regression into explicit bounded continuation coverage with context-consumption assertion.
 - [0.2.64](0.2.64.md) - evidence-gated Context Message owner migration reconciliation prevents duplicate historical/current path identities without basename heuristics.

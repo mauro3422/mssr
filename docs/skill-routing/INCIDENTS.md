@@ -1424,3 +1424,146 @@ The existing skill remains the owner and now explicitly covers public history au
 ### Regression
 
 `steam-workshop-publication-changelog-audit-under-maintenance` proves the domain skill survives the original crowded budget. `steam-workshop-publication-negative-local-changelog-edit` proves an ordinary repository Markdown changelog edit still excludes it.
+
+
+## MSSR-044 — Context Message kinds existed without a first-party production path
+
+**Date:** 2026-09-18
+
+### Trigger and observed gap
+
+A repository audit followed the existing `roadmap-contradiction` Context Message kind before adding a parallel mechanism. The same audit checked every current `MSSR_CONTEXT_MESSAGE_KINDS` literal against `src/` and test fixtures.
+
+### Evidence
+
+- `continuation`, `stale-context`, `roadmap-contradiction`, and `unresolved-reference` occur in `src/context-messages.ts` as contract values but have no literal first-party producer elsewhere in `src/`.
+- `continuation`, `stale-context`, and `roadmap-contradiction` are manually constructed by tests/fixtures, proving the transport/selection contract exists without proving an automatic producer exists.
+- `unresolved-reference` has no script fixture usage in the current repository audit.
+- Other kinds such as `related-incident`, `architecture-decision`, `recent-changelog`, `provider-degraded`, `publication-receipt-stale`, `context-request`, and `persistence-proposal` do have source-side use beyond the enum declaration.
+
+### Classification
+
+This is an integration-gap class, not proof that every reserved kind must immediately become automatic. Each kind needs an explicit lifecycle classification: `implemented producer`, `host-supplied only`, `reserved future contract`, or `dead/obsolete`. A schema reservation without that classification can look implemented while remaining disconnected.
+
+### Follow-up
+
+Add a contract-level coverage audit that maps each Context Message kind to producer(s), consumer/selector coverage, fixtures, and intended ownership. Do not auto-create semantic messages merely to satisfy coverage; missing producers should remain observable until the intended owner is explicit.
+
+## MSSR-045 — Document Freshness covered roadmaps but not the durable module that contradicted them
+
+**Date:** 2026-09-18
+
+### Trigger and observed gap
+
+The new opt-in Document Freshness contract correctly reconciled the current roadmaps, but a selected durable Architecture Impact knowledge module still described closure only through host adoption B and said C/D/E remained future gates while the current roadmap records those later gates as closed.
+
+### Evidence
+
+- `.mssr/document-freshness.json` currently declares only `ROADMAP.md` and `docs/skill-routing/ROADMAP.md`.
+- `.mssr/knowledge/architecture/architecture-impact-review-decision.md` still contains the older statement ending at Bridge 0.6.110 / MSSR 0.2.45 and calls C/D/E future runtime-wiring gates.
+- The current roadmap and current release state have advanced beyond that point.
+- Document Freshness did not report this because the durable module was not declared in its registry; this is a coverage limitation, not a false negative inside the declared comparison algorithm.
+
+### Classification
+
+Freshness-by-explicit-ref detects temporal drift only for declared current-state documents. It cannot detect contradiction between undeclared durable authorities or infer semantic equivalence/conflict from prose.
+
+### Follow-up
+
+Extend the future consistency layer from a flat document list toward an explicit authority/dependency graph: current-state documents and durable modules should declare the facts/refs they summarize or depend on. Use exact revision evidence first, semantic heuristics only to prioritize review, and never auto-rewrite canonical prose.
+
+## MSSR-046 — Integration audit required disproportionate routing/context ceremony
+
+**Date:** 2026-09-18
+
+### Trigger and observed friction
+
+A read-only MSSR integration-gap audit required a two-page bootstrap before ordinary repository inspection, and later a documentation-only persistence replan still emitted a large response envelope with unrelated optional candidates.
+
+### Evidence
+
+- Initial audit `context_assembly` recorded `responseChars=31,273`, `requiredOverflowChars=13,273`, and issued a continuation.
+- The continuation recorded another `responseChars=19,510` before the required context chain completed.
+- The route exposed unrelated optional candidates including `steam-workshop-publication` and `conversation-history-review` for an MSSR integration audit.
+- A later explicitly pinned documentation-only MSSR bootstrap still returned `responseChars=26,452` while delivering only 3,672 procedural characters.
+- Direct lifecycle misuse during the same audit also generated orphan/routing-compliance notices, making procedural order itself a source of attention noise.
+
+### Classification
+
+The paging contract is functioning as designed, but selection/envelope proportionality and lifecycle ceremony remain a usability/context-economy defect for small maintenance operations. This is not solved by raising budgets.
+
+### Follow-up
+
+Measure `useful delivered chars / serialized response chars`, optional-candidate precision, number of lifecycle control calls per material change, and repeated host metadata. Introduce a compact maintenance path only if it preserves owner isolation, required gates, provenance and observability. Treat these metrics as optimization evidence, not authority to skip correctness gates.
+
+
+## MSSR-047 — C2e-D semantic claim contract was source-complete but had no production host producer
+
+**Date:** 2026-09-18
+
+### Trigger and observed gap
+
+The integration-gap audit followed the existing Situation Model before designing another contradiction engine. Revision-based Situation evidence is live in Bridge, but the later C2e-D semantic claim producer path is not consumed by the current production host.
+
+### Evidence
+
+- `src/situation-claims.ts` defines and exports strict bounded `release-version`, `state-value`, `ownership`, and `decision-revision` claim producers.
+- `scripts/test-situation-claims.mjs` exercises `buildMssrSemanticClaimSituation(...)` and proves public-package exposure plus mismatch behavior.
+- `changelogs/0.2.27.md` describes C2e-D as complete at the portable contract/source level.
+- Within MSSR production source, `situation-claims.ts` is exported by `src/index.ts` but no production composition calls `buildMssrSemanticClaimSituation(...)`.
+- Current Bridge `src/project-situation.ts` does consume `buildMssrKnowledgeRevisionSituation(...)` + `evaluateMssrSituationModel(...)`, so revision drift is live, but Bridge has no reference to `buildMssrSemanticClaimSituation` / `situation-claims`.
+
+### Classification
+
+The portable semantic-claim contract is implemented and tested; the missing piece is producer/adoption wiring in a real host. Source completion and consuming-host activation are separate gates and must not be conflated.
+
+### Follow-up
+
+Define explicit host producer ownership for bounded semantic claims and prove one end-to-end path where structured repository/runtime facts enter the existing Situation Model/C2c/C2d stack. Do not parse arbitrary prose or create a second contradiction engine; ambiguous text extraction remains a separate future problem.
+
+## MSSR-048 — Document Freshness 0.2.66 had no runtime or host-conformance consumption path
+
+**Date:** 2026-09-18
+
+### Trigger and observed gap
+
+The 0.2.66 Document Freshness evaluator and self-host manifest existed and passed tests, but the audit found no production composition that evaluates the registry automatically.
+
+### Evidence
+
+- `src/document-freshness.ts` is exported from `src/index.ts` and covered by `scripts/test-document-freshness.mjs`.
+- Searching the MSSR source for `evaluateDocumentFreshness` finds the evaluator/export contract but no adapter/runtime consumer.
+- `src/mssr-adapter.ts` and `src/host-conformance-contract.ts` do not wire Document Freshness into route/bootstrap or a host observation boundary.
+- Bridge 0.6.134 contains no `document-freshness` / `evaluateDocumentFreshness` reference and currently vendors MSSR 0.2.65, so 0.2.66 cannot be live there yet.
+- `.mssr/document-freshness.json` proves repository declaration/self-host configuration; it does not by itself prove automatic runtime evaluation.
+
+### Classification
+
+This is a lifecycle/adoption gap, separate from MSSR-045's registry-coverage limitation. A pure exported evaluator can be intentionally host-neutral, but documentation must distinguish `implemented API`, `self-host fixture/config`, and `live consuming host`.
+
+### Follow-up
+
+Add a host-neutral plan/evaluate boundary or reuse an existing project-maintenance observation hook, then add explicit host-conformance coverage. Bridge adoption must be separately versioned and verified against the exact 0.2.66+ package; no sibling-source inference.
+
+## MSSR-049 — Path substring matching classified incident documentation as routing semantics
+
+**Date:** 2026-09-18
+
+### Trigger and observed failure
+
+Appending integration-gap entries to `docs/skill-routing/INCIDENTS.md` caused project-knowledge maintenance to report routing-contract / routing-semantics change even though no routing contract, fixture, skill metadata, or router implementation changed.
+
+### Evidence
+
+- `src/project-knowledge-maintenance.ts` currently treats `file.startsWith("config/skill-routing/") || file.includes("skill-routing")` as `routing-contract-changed`.
+- Therefore ordinary documentation under `docs/skill-routing/` is indistinguishable from the canonical `config/skill-routing/` contract by this heuristic.
+- Bridge mirrors the broad classification in `src/mssr-trace-context.ts` (`value.includes("skill-routing")`) and in `src/tools/project-context-tools.ts`, amplifying the same false positive into `routingChanged` metadata.
+- The observed maintenance notice after editing the incident log contained `routing-contract-changed` / `routing-semantics-changed` despite the write being documentation-only.
+
+### Cause
+
+The heuristic uses a lexical path substring as a semantic ownership classifier. Directory vocabulary is being treated as proof of contract identity.
+
+### Follow-up
+
+Replace broad substring classification with exact typed path ownership: canonical routing config, router implementation, skill activation metadata, tests/fixtures, and documentation must be distinct categories. A future semantic-consistency layer may use lexical/vector similarity to discover candidate relationships, but only declared/type-safe ownership should trigger deterministic routing-semantic maintenance.

@@ -10,3 +10,4 @@ contract.
 - [ADR 0003 — Evidence-first consistency recommendations](0003-evidence-first-consistency-recommendations.md)
 - [ADR 0004 — Situation Model for project knowledge](0004-situation-model-project-knowledge.md)
 - [ADR 0005 — Architecture Impact / Drift Links](0005-architecture-impact-drift-links.md)
+- [ADR 0006 — Deterministic semantic consistency over the Situation Model](0006-deterministic-semantic-consistency.md)

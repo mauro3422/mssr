@@ -72,6 +72,12 @@ function normalizedPath(value: string): string {
   return value.replace(/\\/g, "/").replace(/^\.\//, "").toLowerCase();
 }
 
+function isRoutingSemanticOwnerPath(file: string): boolean {
+  return file.startsWith("config/skill-routing/")
+    || file === "src/skill-routing.ts"
+    || file === "src/intent-normalizer.ts";
+}
+
 function levelFor(score: number, forcedRequired: boolean): Exclude<MssrProjectKnowledgeLevel, "none"> | null {
   if (forcedRequired) return "required";
   if (score >= 4) return "review";
@@ -131,7 +137,7 @@ export function evaluateMssrProjectKnowledgeMaintenance(
     if (file === "templates/agents.mssr.md" || file.includes("host-adapter-contract")) {
       add("agents", 4, "transversal-agent-contract-changed");
     }
-    if (file.startsWith("config/skill-routing/") || file.includes("skill-routing")) add("skill", 3, "routing-contract-changed");
+    if (isRoutingSemanticOwnerPath(file)) add("skill", 3, "routing-contract-changed");
     if (/(?:^|\/)skills\/[^/]+\/skill\.md$/.test(file)) add("skill", 2, "skill-capability-changed");
     if (/(?:^|\/)skills\/[^/]+\/references\//.test(file)) add("reference", 2, "skill-recipe-changed");
     if (file.endsWith("context-modules.json")) {

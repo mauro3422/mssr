@@ -58,6 +58,18 @@ const skillChange = evaluateMssrProjectKnowledgeMaintenance({
 assert.equal(skillChange.due, true);
 assert.equal(skillChange.recommendedSkills.includes("skill-routing-maintainer"), true);
 
+const routingDocsOnly = evaluateMssrProjectKnowledgeMaintenance({
+  changedPaths: ["docs/skill-routing/INCIDENTS.md"],
+  materialWrites: 1,
+});
+assert.equal(routingDocsOnly.targets.some((target) => target.target === "skill"), false);
+
+const routingSource = evaluateMssrProjectKnowledgeMaintenance({
+  changedPaths: ["src/skill-routing.ts"],
+  materialWrites: 1,
+});
+assert.equal(routingSource.targets.some((target) => target.target === "skill" && target.reasons.includes("routing-contract-changed")), true);
+
 const notInitialized = evaluateMssrProjectKnowledgeMaintenance({
   projectInitialized: false,
   projectContextHealth: "review",
