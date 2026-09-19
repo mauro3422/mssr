@@ -10,7 +10,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
-- [0.2.69](0.2.69.md) - R2 Automatic Lifecycle Coverage adds a portable pre-operation lightweight/managed/review policy from bounded host effect/scale plus trace/route evidence; C2b remains fallback recovery and Bridge live adoption is separate.
+- [0.2.69](0.2.69.md) - R2 Automatic Lifecycle Coverage adds a portable pre-operation lightweight/managed/review policy from bounded host effect/scale plus trace/route evidence; C2b remains fallback recovery. Bridge live adoption remained separate from the package release and is now recorded as a verified post-release closure on Bridge `0.6.136`.
 - [0.2.68](0.2.68.md) - R1 Trace Identity Integrity begins with immutable portable project/workflow owner compatibility, shared-adapter fail-closed enforcement before project-context loading, and focused identity regressions; Bridge live adoption remains a separate gate.
 - [0.2.67](0.2.67.md) - deterministic semantic/document consistency architecture plus integration-audit truth reconciliation and exact routing semantic-owner path classification, preventing documentation-only `skill-routing` paths from creating false maintenance debt.
 - [0.2.66](0.2.66.md) - opt-in Document Freshness contract makes explicitly current-state documents review-due from bounded exact-ref revision evidence without prose inference or auto-rewrite; stale roadmap claims are reconciled.
