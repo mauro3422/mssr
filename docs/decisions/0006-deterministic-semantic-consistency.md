@@ -1,6 +1,6 @@
 # ADR 0006 — Deterministic semantic consistency over the Situation Model
 
-Status: accepted direction; implementation is active. MSSR `0.2.71` ships Gate A plus the first bounded Gate B-D vertical slice; later relationship/extractor/producer/host-adoption gates remain open.
+Status: accepted direction; implementation is active. MSSR `0.2.72` completes the portable deterministic baseline through Gates A-F and native/Codex/OpenCode source/runtime-contract parity. Gate G remains open for separate Bridge packaged/live adoption plus representative longitudinal QA. Gate H has only the safe shadow-evidence boundary; no NLI/cross-encoder quality or promotion claim is made.
 
 ## Context
 
@@ -208,35 +208,35 @@ This matrix directly addresses the class represented by C2e-D semantic claims an
 
 ### Gate A — integration coverage inventory
 
-**Status: complete in portable source.** The read-only inventory classifies selected portable capabilities and Context Message edges as `implemented`, `host-supplied`, `reserved`, `pending-adoption`, or `unresolved`. It distinguishes source-complete/test-only/export-only contracts without labeling every missing edge a bug, and specifically records `roadmap-contradiction` / `unresolved-reference` as reserved producer gaps until real wiring exists.
+**Status: complete in portable source.** The read-only inventory classifies selected portable capabilities and Context Message edges as `implemented`, `host-supplied`, `reserved`, `pending-adoption`, or `unresolved`. It distinguishes source-complete/test-only/export-only contracts without labeling every missing edge a bug. As of `0.2.72`, `roadmap-contradiction` / `unresolved-reference` have real portable producers; their Bridge edge remains independently `pending-adoption` until the packaged/live host upgrade occurs.
 
 ### Gate B — typed relationship/claim registry
 
-**Status: partial.** The first slice extends existing C2e-D claims with explicit scope, temporal validity, observation time, and extractor provenance while preserving the existing semantic key for the default project scope. A reusable typed relation/edge registry is still open; do not introduce a duplicate global manifest merely to complete this gate.
+**Status: complete in the portable deterministic baseline (`0.2.72`).** Existing C2e-D claims keep explicit scope, temporal validity, observation time, and extractor provenance while preserving the default project semantic-key contract. Reusable typed directional relation edges now cover the ADR relation vocabulary with stable owner/source provenance, declared-vs-derived class, temporal validity and required lifecycle semantics. The relation schema is reusable from existing owning manifests/callers; no duplicate universal metadata file was introduced.
 
 ### Gate C — deterministic extractors
 
-**Status: partial.** Narrow deterministic extractors exist for the repository's explicit `R<n>` ROADMAP checklist state and machine-readable `mssr-state` markers. They abstain from surrounding prose and fail closed on ambiguous duplicate declarations. Broader version/owner/gate/decision extractors remain open.
+**Status: complete for the initial bounded extractor set (`0.2.72`).** Narrow deterministic extractors cover explicit `R<n>` ROADMAP checklist state, `mssr-state`, `mssr-version`, `mssr-owner`, `mssr-decision`, and already-parsed `packageJson.version`. They emit provenance, ignore surrounding prose, and fail closed on ambiguous duplicate declarations. New extractor forms require their own explicit grammar/structured field contract; there is still no generic prose extractor.
 
 ### Gate D — pair evaluator
 
-**Status: partial.** The first evaluator resolves explicit temporal validity before the current-truth comparison: `historical` and `superseded` claims retain provenance but do not create repeated current mismatch noise; distinct scopes remain isolated; current comparable claims feed the existing Situation Model/C2c path. Exact current value/revision and canonical conflicts can be `PROVEN`; unavailable/incomplete current evidence remains review evidence. Broader relation-aware pair rules remain open.
+**Status: complete for the initial deterministic rule set (`0.2.72`).** The evaluator resolves temporal validity before current-truth comparison: `historical` and `superseded` retain provenance, `unknown` abstains, and scopes stay isolated. Same-subject claims continue through Situation/C2c; current declared `mirrors`/`summarizes` edges may compare differently named subjects of the same claim kind. Canonical disagreements, current scalar/revision conflicts and required lifecycle unresolved targets are typed deterministically. Derived relations, lexical candidates and shadow-model evidence cannot enter `PROVEN` truth.
 
 ### Gate E — candidate retrieval
 
-Add lexical/structural candidate retrieval only after exact relationships/subjects. Benchmark BM25/TF-IDF first. Optional embeddings are secondary retrieval evidence, never contradiction authority.
+**Status: complete for the deterministic retrieval baseline (`0.2.72`).** Candidate ranking uses declared relations first, then same-subject/exact-ref structure, then bounded TF-IDF cosine over typed claim identity fields. Every lexical/derived result is explicitly `CANDIDATE` with `truthAuthority=false`; retrieval never enters the deterministic pair evaluator by itself. A frozen seeded micro-benchmark records precision@1=1 and recall@1=1 for its single known relevant pair solely as a ranking regression. Optional embeddings remain secondary retrieval evidence and require separate benchmarking before introduction.
 
 ### Gate F — Context Message producers
 
-Connect proven evidence to existing message kinds, starting with `roadmap-contradiction` and `unresolved-reference`, with transition/dedupe/noise tests.
+**Status: complete in portable source (`0.2.72`).** `roadmap-contradiction` is produced only from PROVEN deterministic current roadmap findings; `unresolved-reference` is produced only from explicit current declared relations whose target subject/ref cannot be resolved. Stable dedupe identity, repeated-observation stability, resolution-to-silence, unrelated-finding suppression, and advisory/no-auto-write behavior are covered by regression tests.
 
 ### Gate G — host adoption and longitudinal QA
 
-Wire native/Codex/OpenCode/Bridge deliberately and separately. Track precision, recall over seeded/real incidents, abstention rate, noise per material change, context cost and host parity.
+**Status: partial / host-adoption phase.** Native, Codex and OpenCode register the same I/O-free semantic evaluation, candidate retrieval, Context Message production and shadow-evidence contracts; cross-host tests require identical outputs for the same structured inputs. Bridge is deliberately separate: live `0.6.139` still consumes MSSR `0.2.71` until the `0.2.72` package is adopted and restarted/verified. The seeded retrieval fixture measures only ranking regression; representative longitudinal precision/recall, abstention/noise/context-cost evidence must accumulate from real incidents instead of being inferred from source tests.
 
 ### Gate H — optional semantic-model shadow experiment
 
-Only after deterministic baseline data exists, compare a bounded local NLI/cross-encoder path on the candidate set. Keep `routingInfluence=false`, `canonicalRewriteAllowed=false`, and no direct notice authority until independently justified.
+**Status: safe shadow boundary implemented; experiment intentionally not claimed.** MSSR `0.2.72` accepts a host-supplied bounded model observation only as `derived` / `candidate` evidence and hard-pins `routingInfluence=false`, `truthAuthority=false`, `directNoticeAuthority=false`, and `canonicalRewriteAllowed=false`. No local NLI/cross-encoder quality result exists yet. Running/promoting such a model still requires a frozen representative benchmark, false-positive/false-negative measurement, calibration/abstention, versioned identity and instant disable/rollback evidence.
 
 ## Consequences
 

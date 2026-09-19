@@ -10,6 +10,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.72](0.2.72.md) - R4 Semantic Consistency completes the portable deterministic B-F baseline with typed relations, structured extractors, bounded candidate-only retrieval, production contradiction/unresolved Context Messages, cross-host native/Codex/OpenCode parity, and a hard non-authoritative shadow-model boundary; Bridge package/runtime adoption remains separate.
 - [0.2.71](0.2.71.md) - R4 Semantic Consistency begins with a machine-auditable wiring inventory plus explicit scope/temporal-validity/provenance claims, narrow structured state extractors, and deterministic current-truth contradictions over the existing Situation/C2c/C2d stack; `roadmap-contradiction` remains reserved until production wiring.
 - [0.2.70](0.2.70.md) - R3 Context Economy v2 adds exact host-attested retained procedural obligations with id+content fingerprints, zero-byte compatible replan reuse, safe re-delivery after compaction/restart/handoff, and Architecture Core slimming without budget inflation; consuming-host adoption remains separate.
 - [0.2.69](0.2.69.md) - R2 Automatic Lifecycle Coverage adds a portable pre-operation lightweight/managed/review policy from bounded host effect/scale plus trace/route evidence; C2b remains fallback recovery. Bridge live adoption remained separate from the package release and is now recorded as a verified post-release closure on Bridge `0.6.136`.

@@ -168,14 +168,15 @@ const actualRoadmapClaims = extractMssrRoadmapGateClaims({
 }).filter((claim) => actualCurrentSubjects.has(claim.subject));
 assert.deepEqual(
   actualProjectStateClaims.map((claim) => claim.subject).sort(),
-  ["roadmap.r1", "roadmap.r2", "roadmap.r3"],
-  "self-host PROJECT_STATE must expose the reconciled R1-R3 machine-readable current claims",
+  ["roadmap.r1", "roadmap.r2", "roadmap.r3", "roadmap.r4"],
+  "self-host PROJECT_STATE must expose the reconciled R1-R4 machine-readable current claims",
 );
+assert.equal(actualProjectStateClaims.find((claim) => claim.subject === "roadmap.r4")?.value, "pending", "active R4 work remains an incomplete/pending roadmap gate until Gate G/H close");
 const actualSelfHost = evaluateMssrSemanticConsistency({
   boundary: "context-load",
   claims: [...actualProjectStateClaims, ...actualRoadmapClaims],
 });
-assert.equal(actualSelfHost.findings.length, 0, "the reconciled current ROADMAP/PROJECT_STATE R1-R3 claims must agree");
+assert.equal(actualSelfHost.findings.length, 0, "the reconciled current ROADMAP/PROJECT_STATE R1-R4 claims must agree");
 assert.equal(actualSelfHost.situation?.decision.level, "ok");
 
 const publicApi = await import("../dist/index.js");

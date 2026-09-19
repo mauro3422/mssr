@@ -481,6 +481,47 @@
       "maxChars": 3200
     },
     {
+      "id": "mssr-semantic-relations-retrieval-decision",
+      "kind": "memory",
+      "topic": "decision",
+      "area": "semantic-consistency",
+      "description": "R4 declared/derived relations, bounded retrieval, Context Message production and shadow-model authority boundaries.",
+      "source": {
+        "path": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md"
+      },
+      "domains": [
+        "skill-system",
+        "agent-orchestration",
+        "coding",
+        "filesystem"
+      ],
+      "actions": [
+        "analyze",
+        "review",
+        "verify",
+        "maintain",
+        "debug",
+        "design"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document",
+        "code"
+      ],
+      "needs": [
+        "integrity-verification",
+        "version-control"
+      ],
+      "signals": [
+        "conflicting-evidence",
+        "warning-observed",
+        "replan-needed"
+      ],
+      "priority": 93,
+      "maxChars": 2200
+    },
+    {
       "id": "mssr-trace-lifecycle-integrity",
       "kind": "memory",
       "topic": "decision",

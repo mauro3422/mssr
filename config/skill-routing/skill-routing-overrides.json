@@ -2567,6 +2567,42 @@
       "requireActionMatch": true,
       "priority": 97,
       "activation": "on-demand"
+    },
+    "typesafe-ai": {
+      "phase": "implementation",
+      "coversPhases": [
+        "discovery",
+        "implementation",
+        "verification"
+      ],
+      "domains": [
+        "coding",
+        "agent-orchestration"
+      ],
+      "actions": [
+        "design",
+        "create"
+      ],
+      "artifacts": [
+        "code",
+        "project"
+      ],
+      "needs": [
+        "official-docs",
+        "unit-tests"
+      ],
+      "requires": [],
+      "complements": [],
+      "excludes": [],
+      "negativeIntents": [
+        "generic AI discussion without building a TypeSafe or Jev integration",
+        "OpenAI API or model integration with no TypeSafe or Jev requirement",
+        "pure deterministic application code with no semantic judgment component"
+      ],
+      "requireActionMatch": true,
+      "requireArtifactMatch": true,
+      "priority": 72,
+      "activation": "on-demand"
     }
   },
   "workflows": [

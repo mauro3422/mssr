@@ -14,17 +14,20 @@ const inventory = getMssrR4GateACoverageInventory();
 assert.equal(inventory.schemaVersion, 1);
 assert.equal(inventory.advisoryOnly, true);
 assert.equal(inventory.canonicalRewriteAllowed, false);
-assert.equal(inventory.entries.length, 4);
+assert.equal(inventory.entries.length, 7);
 assert.equal(inventory.entries.find((entry) => entry.id === "semantic-claims-c2e-d")?.coverageClass, "source-complete");
 assert.equal(inventory.entries.find((entry) => entry.id === "document-freshness")?.coverageClass, "source-complete");
-assert.equal(inventory.entries.find((entry) => entry.id === "context-message:roadmap-contradiction")?.coverageClass, "reserved-contract");
-assert.equal(inventory.entries.find((entry) => entry.id === "context-message:unresolved-reference")?.coverageClass, "reserved-contract");
-assert.ok(inventory.summary.edgeCounts.reserved >= 4);
+assert.equal(inventory.entries.find((entry) => entry.id === "context-message:roadmap-contradiction")?.coverageClass, "pending-host-adoption");
+assert.equal(inventory.entries.find((entry) => entry.id === "context-message:unresolved-reference")?.coverageClass, "pending-host-adoption");
+assert.equal(inventory.entries.find((entry) => entry.id === "semantic-relations-r4")?.coverageClass, "pending-host-adoption");
+assert.equal(inventory.entries.find((entry) => entry.id === "semantic-candidate-retrieval-r4")?.coverageClass, "pending-host-adoption");
+assert.equal(inventory.entries.find((entry) => entry.id === "semantic-shadow-r4")?.coverageClass, "pending-host-adoption");
+assert.equal(inventory.summary.edgeCounts.reserved, 0);
 assert.deepEqual(Object.keys(inventory.summary.edgeCounts).sort(), [...MSSR_SEMANTIC_COVERAGE_STATUSES].sort());
 
 const filtered = getMssrR4GateACoverageInventory(["context-message:roadmap-contradiction"]);
 assert.equal(filtered.entries.length, 1);
-assert.equal(filtered.entries[0]?.coverageClass, "reserved-contract");
+assert.equal(filtered.entries[0]?.coverageClass, "pending-host-adoption");
 
 const synthetic = buildMssrSemanticConsistencyCoverageInventory([
   {

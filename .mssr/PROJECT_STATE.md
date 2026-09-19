@@ -2,25 +2,31 @@
 
 ## Current release
 
-MSSR `0.2.71` is the current source/package release and begins portable R4 Deterministic Semantic Consistency on top of the verified R1/R2/R3 foundation. Gate A now inventories semantic-consistency wiring explicitly, and the first Gate B-D slice adds claim scope, temporal validity and extractor provenance plus narrow structured ROADMAP/current-state comparison through the existing Situation Model/C2c/C2d stack. Historical/superseded claims remain provenance instead of competing current truth, unknown validity abstains, and arbitrary prose is not promoted into canonical facts. R3 remains closed end-to-end: live Bridge `0.6.138` consumes exact MSSR `0.2.70`, and the post-adoption continuity/lifecycle hotfix preserved strict R1 owner isolation plus R2 automatic lifecycle coverage. R4 host adoption is intentionally still separate; Bridge does not yet consume `0.2.71` or claim production `roadmap-contradiction` wiring.
+MSSR `0.2.72` is the current source release candidate for the second portable R4 Deterministic Semantic Consistency slice on top of the verified R1/R2/R3 foundation. Gates B-F now add typed declared/derived relations, structured state/version/owner/decision/package-version extractors, temporal/scope-aware relation comparison, bounded declared/exact/TF-IDF candidate retrieval, and real `roadmap-contradiction` / `unresolved-reference` Context Message producers. Native/Codex/OpenCode expose the same I/O-free semantic evaluation/retrieval/message/shadow contracts. Candidate similarity and optional model output remain non-authoritative; only deterministic structured evidence can become PROVEN current-truth evidence. Live Bridge `0.6.139` already consumes exact MSSR `0.2.71`; adoption of `0.2.72` remains a separate host gate and is not inferred from source parity.
 
 ## Active execution priority — 2026-09-19
 
-The near-term reliability program is explicit in `ROADMAP.md` and ordered R1 -> R4. **R1 Trace Identity Integrity, R2 Automatic Lifecycle Coverage, and R3 Context Economy v2 are complete end-to-end.** Exact retained obligation receipts can reduce compatible repeated procedural delivery to zero new characters while changed or unknown retention fails open to normal re-delivery. R4 ADR 0006 deterministic semantic consistency is now active: Gate A coverage inventory is implemented locally, and the first typed current-state slice adds explicit scope/validity/extractor provenance plus deterministic ROADMAP/project-state comparison without arbitrary prose inference. Detailed C2c/C2d/current-truth policy is selectively indexed as `mssr-semantic-consistency-decision`; `PROJECT_MEMORY` remains below monolithic-growth pressure and Project Context Health is `ok` without any budget increase. The parallel Architecture Core slimming item remains complete: detailed subsystem contracts remain selectively indexed rather than always loaded.
+The near-term reliability program remains explicit in `ROADMAP.md`. **R1 Trace Identity Integrity, R2 Automatic Lifecycle Coverage, and R3 Context Economy v2 are complete end-to-end.** R4 ADR 0006 is now in its host-adoption/measurement phase: portable Gates A-F are implemented; native/Codex/OpenCode parity is covered; Gate G still requires the separate Bridge `0.2.72` adoption plus longitudinal real-incident measurement. Gate H has only the safe shadow-evidence contract: no NLI/cross-encoder has been promoted, validated, or granted routing/notice/write authority. Detailed current-truth policy is indexed as `mssr-semantic-consistency-decision`; relation/retrieval/message/shadow policy is indexed separately as `mssr-semantic-relations-retrieval-decision`. Project Context Health is `ok` within existing budgets.
 
 ## Machine-readable current-state claims
 
 <!-- mssr-state:roadmap.r1=completed -->
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
+<!-- mssr-state:roadmap.r4=pending -->
+<!-- mssr-version:mssr.source=0.2.72 -->
+<!-- mssr-version:bridge.live=0.6.139 -->
+<!-- mssr-version:bridge.mssr=0.2.71 -->
+<!-- mssr-owner:semantic.consistency=mssr -->
+<!-- mssr-decision:adr.0006=r4-bf-portable -->
 
 ## Learning dataset state
 
-Strict `learning-digest-v1` collection remains observe-only with `routingInfluence=false`. MSSR `0.2.71` does not change learning influence: dataset-quality audit, replay/calibration and shadow evaluation remain separate, and no learned score is consumed by routing, lifecycle activation, context selection, or semantic-consistency truth.
+Strict `learning-digest-v1` collection remains observe-only with `routingInfluence=false`. MSSR `0.2.72` does not change learning influence: dataset-quality audit, replay/calibration and shadow evaluation remain separate, and no learned score or R4 model-shadow observation is consumed by routing, lifecycle activation, context selection, semantic-consistency truth, or direct notice authority.
 
 ## Core skill package state
 
-The five first-party skill package roots and routing metadata remain unchanged in `0.2.71`; this release changes portable semantic-consistency contracts/tests, not skill activation metadata. Learned activation influence and permission semantics remain unchanged. Live Bridge `0.6.138` still consumes exact MSSR `0.2.70`; portable R4 `0.2.71` is released independently and does not imply Bridge host adoption.
+The five first-party skill package roots and routing metadata remain unchanged in `0.2.72`; this release changes portable semantic-consistency contracts/tests, not skill activation metadata. Learned activation influence and permission semantics remain unchanged. Live Bridge `0.6.139` consumes exact MSSR `0.2.71`; portable R4 `0.2.72` is released independently and does not imply Bridge host adoption until the separate Bridge gate passes.
 
 ## Context-economy follow-up
 

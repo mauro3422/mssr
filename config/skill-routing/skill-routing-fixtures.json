@@ -7561,6 +7561,93 @@
           "visual-reference-replication"
         ]
       }
+    },
+    {
+      "name": "typesafe-ai-positive-jev-integration",
+      "task": "Integrá TypeSafe Jev en esta app para clasificar tickets con una Choice tipada, leer la documentación actual y agregar tests",
+      "stage": "implement",
+      "completedPhases": [
+        "discovery",
+        "safety"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Diseñar e implementar una integración TypeSafe Jev con salida tipada y pruebas",
+        "domains": [
+          "coding",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "design",
+          "create",
+          "edit",
+          "analyze"
+        ],
+        "artifacts": [
+          "code",
+          "project"
+        ],
+        "needs": [
+          "official-docs",
+          "unit-tests"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "typesafe-ai"
+        ]
+      }
+    },
+    {
+      "name": "typesafe-ai-negative-generic-openai-integration",
+      "task": "Actualizá este cliente para usar OpenAI Responses API y corregí los tests sin agregar TypeSafe ni Jev",
+      "stage": "implement",
+      "completedPhases": [
+        "discovery",
+        "safety"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Actualizar una integración OpenAI existente sin TypeSafe ni Jev",
+        "domains": [
+          "openai-development",
+          "coding"
+        ],
+        "actions": [
+          "edit",
+          "test",
+          "verify"
+        ],
+        "artifacts": [
+          "code",
+          "project"
+        ],
+        "needs": [
+          "official-docs",
+          "unit-tests"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "typesafe-ai"
+        ]
+      }
     }
   ]
 }

@@ -12,4 +12,4 @@ Diagnosis and recovery recommendation remain separate owners. C2d `evidence-firs
 
 R4 separates authority from temporal validity. A statement can be authoritative evidence of an earlier state without competing as current truth. Explicit `historical` and `superseded` claims remain provenance but are filtered before the R4 current-truth C2c comparison; `unknown` also abstains. Only explicit `current` claims enter the scope-isolated R4 comparison. This wrapper does not change generic C2c semantics for callers that intentionally submit historical-authority observations.
 
-R4 claim producers stay narrow: declared machine/checklist structures may produce claims; arbitrary surrounding prose, prompts, transcripts, logs, or model-extracted summaries do not become canonical facts.
+R4 claim producers stay narrow: declared machine/checklist structures and explicit structured fields may produce claims; arbitrary surrounding prose, prompts, transcripts, logs, or model-extracted summaries do not become canonical facts.
