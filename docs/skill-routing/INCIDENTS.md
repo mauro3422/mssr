@@ -1472,6 +1472,10 @@ Freshness-by-explicit-ref detects temporal drift only for declared current-state
 
 Extend the future consistency layer from a flat document list toward an explicit authority/dependency graph: current-state documents and durable modules should declare the facts/refs they summarize or depend on. Use exact revision evidence first, semantic heuristics only to prioritize review, and never auto-rewrite canonical prose.
 
+### Reconciliation — 2026-09-19
+
+The specific stale Architecture Impact durable module was reconciled after Bridge 0.6.135 adoption: it now records host adoption C/D/E as closed and keeps source/package/runtime proof separate. The broader coverage limitation remains valid: Document Freshness intentionally covers only explicitly declared current-state documents, so undeclared durable-authority contradictions still require the deterministic consistency work described by ADR 0006 rather than widening freshness into prose inference.
+
 ## MSSR-046 — Integration audit required disproportionate routing/context ceremony
 
 **Date:** 2026-09-18
@@ -1521,6 +1525,10 @@ The portable semantic-claim contract is implemented and tested; the missing piec
 
 Define explicit host producer ownership for bounded semantic claims and prove one end-to-end path where structured repository/runtime facts enter the existing Situation Model/C2c/C2d stack. Do not parse arbitrary prose or create a second contradiction engine; ambiguous text extraction remains a separate future problem.
 
+### Resolution — 2026-09-19
+
+Closed for the Bridge/ChatGPT Web host path by Bridge 0.6.135 with exact MSSR 0.2.67. Bridge reuses its bounded release-consistency observations and maps package/source/generated/installed/runtime facts through `buildMssrSemanticClaimSituation(...)`; `project-situation` composes those claims with receipt-derived observations but does not require an active Context Plane receipt. C2c/C2d remain the semantic owners, and arbitrary prose is still outside this producer contract.
+
 ## MSSR-048 — Document Freshness 0.2.66 had no runtime or host-conformance consumption path
 
 **Date:** 2026-09-18
@@ -1545,6 +1553,10 @@ This is a lifecycle/adoption gap, separate from MSSR-045's registry-coverage lim
 
 Add a host-neutral plan/evaluate boundary or reuse an existing project-maintenance observation hook, then add explicit host-conformance coverage. Bridge adoption must be separately versioned and verified against the exact 0.2.66+ package; no sibling-source inference.
 
+### Resolution — 2026-09-19
+
+Closed for Bridge/ChatGPT Web by Bridge 0.6.135 with exact MSSR 0.2.67. `src/document-freshness-host.ts` supplies exact-path availability and conservative Git/worktree revision ordering to MSSR's evaluator, and the result is composed into the existing Project Health/notice lifecycle. Focused host tests cover aligned, worktree-newer, committed-newer, reviewed-document, dirty-document/unknown-ordering and invalid-manifest cases; final post-restart Bridge verification passed from a clean tree. No parallel watcher, queue or semantic owner was added.
+
 ## MSSR-049 — Path substring matching classified incident documentation as routing semantics
 
 **Date:** 2026-09-18
@@ -1567,3 +1579,7 @@ The heuristic uses a lexical path substring as a semantic ownership classifier. 
 ### Follow-up
 
 Replace broad substring classification with exact typed path ownership: canonical routing config, router implementation, skill activation metadata, tests/fixtures, and documentation must be distinct categories. A future semantic-consistency layer may use lexical/vector similarity to discover candidate relationships, but only declared/type-safe ownership should trigger deterministic routing-semantic maintenance.
+
+### Resolution — 2026-09-19
+
+Closed in MSSR 0.2.67 plus Bridge 0.6.135 host adoption. Portable MSSR now classifies routing changes only from canonical semantic-owner paths, and Bridge mirrors that owner-based classification instead of `includes("skill-routing")`. Documentation such as `docs/skill-routing/INCIDENTS.md` no longer creates routing/skill-maintenance debt merely because its path contains routing vocabulary, while actual routing owners still trigger the expected maintenance target.

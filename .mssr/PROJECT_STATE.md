@@ -2,7 +2,7 @@
 
 ## Current release
 
-MSSR `0.2.67` is the current source release for deterministic semantic-consistency direction plus project-knowledge routing-path precision. ADR 0006 defines a single Situation Model/C2c/C2d consistency stack: deterministic typed claims and scope/authority rules may prove bounded contradictions, while similarity/vector/NLI evidence remains candidate/review-only and cannot grant truth or write authority. Project-knowledge maintenance now treats only canonical routing semantic-owner paths as routing changes, so documentation such as `docs/skill-routing/**` no longer creates false skill-maintenance debt. The audit also reopens explicit trace-owner isolation and records that C2e-D semantic-claim production and Document Freshness still require real host wiring. Full verification and immutable package integrity are owned by `npm run release:gate`; Bridge adoption remains a separate exact-artifact deployment and is not implied by this source release.
+MSSR `0.2.67` is the current source release for deterministic semantic-consistency direction plus project-knowledge routing-path precision. ADR 0006 defines a single Situation Model/C2c/C2d consistency stack: deterministic typed claims and scope/authority rules may prove bounded contradictions, while similarity/vector/NLI evidence remains candidate/review-only and cannot grant truth or write authority. Project-knowledge maintenance now treats only canonical routing semantic-owner paths as routing changes, so documentation such as `docs/skill-routing/**` no longer creates false skill-maintenance debt. The source release audit correctly identified C2e-D semantic-claim production and Document Freshness as host-adoption gaps at release time; both are now closed for Bridge/ChatGPT Web by live Bridge `0.6.135`, which consumes the exact MSSR `0.2.67` artifact and composes Document Freshness through Project Health plus explicit release/install/runtime semantic claims through Project Situation. Full verification and immutable package integrity remain owned by `npm run release:gate`; host adoption is still a separate exact-artifact deployment and must be proven independently rather than inferred from this source repository.
 
 ## Learning dataset state
 
@@ -10,7 +10,7 @@ Strict `learning-digest-v1` collection remains observe-only with `routingInfluen
 
 ## Core skill package state
 
-The five first-party skill packages remain unchanged in `0.2.67`. This release changes project-knowledge maintenance classification and durable semantic-consistency/project-state documentation; it does not change skill routing metadata or runtime activation semantics. Bridge's packaged MSSR adoption remains a separate deployment step and is not inferred from this repository working tree.
+The five first-party skill packages remain unchanged in `0.2.67`. This release changes project-knowledge maintenance classification and durable semantic-consistency/project-state documentation; it does not change skill routing metadata or runtime activation semantics. Bridge's packaged MSSR adoption remains a separate deployment step and is never inferred from this repository working tree; for this release that separate step is now independently proven by live Bridge `0.6.135` consuming exact MSSR `0.2.67`.
 
 ## Context-economy follow-up
 
