@@ -58,13 +58,9 @@ Gate E3 is live in Bridge `0.6.106` on packaged MSSR `0.2.31`: genuine MSSR sema
 
 Hosts may observe bounded operational failures, but portable MSSR owns deterministic clustering and maintenance priority. Repeated failures are identified by a stable sanitized `toolName + signature` identity and ranked using recurrence, cross-workflow breadth, recency, and severity; raw prompts, argument payloads, stack traces, secrets, or full error text are not portable evidence. Repeated clusters become advisory `repeated-friction` attention owned by `skill-maintenance-loop`; isolated failures stay lower priority. This operational maintenance signal is intentionally separate from routing-quality benchmarks and never authorizes automatic tool/skill mutation.
 
-## Consistency projection decision
+## Semantic consistency decision
 
-Freshness and current semantic consistency are independent properties. C2c compares only bounded structured claims under a semantic `key`; each observation declares its `role`, `authority` (`canonical`, `replica`, or `historical`), state, optional value/revision, and whether it is required at a lifecycle boundary. Historical receipts/memories may remain valid evidence of what was believed or observed then while projecting REVIEW when used against a newer canonical fact. Canonical disagreement or release-critical required replica drift can project ERROR. C2c does not parse whole free-form memory for truth, does not infer that every version-like string shares the same semantic key, and never rewrites an authority or executes recovery automatically.
-
-## Consistency recommendation decision
-
-C2c diagnosis and recommendation policy are separate owners. C2d `evidence-first-v1` consumes only the bounded C2c projection plus the same bounded observations and ranks advisory next actions using explicit source-of-truth/dependency gates before a transparent multicriteria score. High-information/low-risk inspection is preferred when repair evidence is unresolved; known upstream generated drift blocks downstream runtime verification until the generated layer changes; canonical conflict blocks repair on the affected semantic key; empty evidence may abstain. Recommendation metadata includes confidence, information gain, risk, reversibility, cost, blast radius and score breakdown so future calibration can be audited. Learned weights or success priors remain observe/shadow-only until the existing replay/holdout, calibration, feature-flag and rollback gates are satisfied; no score can grant execution authority or override a hard invariant.
+C2c projection, C2d evidence-first recommendation policy, and R4 current-truth temporal validity are one bounded semantic-consistency decision family. Freshness remains separate; arbitrary prose is never promoted to canonical claim input; recommendation/evaluation never grants write authority. Detailed current semantics live in the selective module `.mssr/knowledge/decision/semantic-consistency-current-truth.md` and ADR 0006.
 
 ## Situation Model decision
 

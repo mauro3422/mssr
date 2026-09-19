@@ -440,6 +440,47 @@
       "maxChars": 3200
     },
     {
+      "id": "mssr-semantic-consistency-decision",
+      "kind": "memory",
+      "topic": "decision",
+      "area": "semantic-consistency",
+      "description": "C2c/C2d semantic consistency boundaries plus R4 authority-versus-temporal-validity current-truth policy.",
+      "source": {
+        "path": ".mssr/knowledge/decision/semantic-consistency-current-truth.md"
+      },
+      "domains": [
+        "skill-system",
+        "agent-orchestration",
+        "coding",
+        "filesystem"
+      ],
+      "actions": [
+        "analyze",
+        "review",
+        "verify",
+        "maintain",
+        "debug",
+        "design"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document",
+        "code"
+      ],
+      "needs": [
+        "integrity-verification",
+        "version-control"
+      ],
+      "signals": [
+        "conflicting-evidence",
+        "warning-observed",
+        "replan-needed"
+      ],
+      "priority": 94,
+      "maxChars": 3200
+    },
+    {
       "id": "mssr-trace-lifecycle-integrity",
       "kind": "memory",
       "topic": "decision",

@@ -1,6 +1,6 @@
 # ADR 0006 — Deterministic semantic consistency over the Situation Model
 
-Status: proposed direction; implementation and host-adoption gates remain open.
+Status: accepted direction; implementation is active. MSSR `0.2.71` ships Gate A plus the first bounded Gate B-D vertical slice; later relationship/extractor/producer/host-adoption gates remain open.
 
 ## Context
 
@@ -208,19 +208,19 @@ This matrix directly addresses the class represented by C2e-D semantic claims an
 
 ### Gate A — integration coverage inventory
 
-Build a read-only inventory over selected portable capabilities and Context Message kinds. Classify each edge as `implemented`, `host-supplied`, `reserved`, `pending-adoption`, or `unresolved`. Detect source-complete/test-only/export-only contracts without claiming they are bugs automatically.
+**Status: complete in portable source.** The read-only inventory classifies selected portable capabilities and Context Message edges as `implemented`, `host-supplied`, `reserved`, `pending-adoption`, or `unresolved`. It distinguishes source-complete/test-only/export-only contracts without labeling every missing edge a bug, and specifically records `roadmap-contradiction` / `unresolved-reference` as reserved producer gaps until real wiring exists.
 
 ### Gate B — typed relationship/claim registry
 
-Define the smallest reusable schema for subject identity, typed relations and claim provenance. Reuse existing project/architecture manifests and C2e-D types where possible; avoid a duplicate global manifest.
+**Status: partial.** The first slice extends existing C2e-D claims with explicit scope, temporal validity, observation time, and extractor provenance while preserving the existing semantic key for the default project scope. A reusable typed relation/edge registry is still open; do not introduce a duplicate global manifest merely to complete this gate.
 
 ### Gate C — deterministic extractors
 
-Implement structured version/state/owner/gate/decision extractors for the existing MSSR repository and regression fixtures from real incidents.
+**Status: partial.** Narrow deterministic extractors exist for the repository's explicit `R<n>` ROADMAP checklist state and machine-readable `mssr-state` markers. They abstain from surrounding prose and fail closed on ambiguous duplicate declarations. Broader version/owner/gate/decision extractors remain open.
 
 ### Gate D — pair evaluator
 
-Add temporal/scope-aware deterministic contradiction rules and evidence tiers. Feed PROVEN/STRONG evidence into the existing Situation Model/C2c path.
+**Status: partial.** The first evaluator resolves explicit temporal validity before the current-truth comparison: `historical` and `superseded` claims retain provenance but do not create repeated current mismatch noise; distinct scopes remain isolated; current comparable claims feed the existing Situation Model/C2c path. Exact current value/revision and canonical conflicts can be `PROVEN`; unavailable/incomplete current evidence remains review evidence. Broader relation-aware pair rules remain open.
 
 ### Gate E — candidate retrieval
 

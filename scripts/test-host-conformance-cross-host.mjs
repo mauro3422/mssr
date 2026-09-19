@@ -53,6 +53,15 @@ for (const result of planResults) assert.deepEqual(result, planResults[0]);
 assert.equal(planResults[0].plans[0].semanticOwner, "mssr");
 assert.equal(planResults[0].canonicalRewriteAllowed, false);
 
+
+const coverageResults = await Promise.all(clients.map((client) => client.callTool({
+  name: "mssr_semantic_consistency_coverage",
+  arguments: {},
+}).then(json)));
+for (const result of coverageResults) assert.deepEqual(result, coverageResults[0]);
+assert.equal(coverageResults[0].advisoryOnly, true);
+assert.equal(coverageResults[0].canonicalRewriteAllowed, false);
+assert.equal(coverageResults[0].entries.find((entry) => entry.id === "context-message:roadmap-contradiction")?.coverageClass, "reserved-contract");
 const initial = {
   schemaVersion: 1,
   architectureId: "portable-plane",

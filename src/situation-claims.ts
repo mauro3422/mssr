@@ -44,6 +44,9 @@ export const MSSR_SITUATION_CLAIM_SOURCES = [
 ] as const;
 export type MssrSituationClaimSource = typeof MSSR_SITUATION_CLAIM_SOURCES[number];
 
+export const MSSR_SITUATION_CLAIM_VALIDITIES = ["current", "historical", "superseded", "unknown"] as const;
+export type MssrSituationClaimValidity = typeof MSSR_SITUATION_CLAIM_VALIDITIES[number];
+
 const boundedScalarSchema = z.string().min(1).max(160).refine(
   (value) => !/[\r\n]/.test(value),
   "Semantic claim values must be bounded single-line scalars, not prose blocks.",
@@ -59,6 +62,10 @@ export const mssrSituationSemanticClaimSchema = z.object({
   ),
   authority: z.enum(MSSR_CONSISTENCY_AUTHORITIES),
   state: z.enum(MSSR_CONSISTENCY_OBSERVATION_STATES).default("observed"),
+  scope: z.string().regex(/^[a-z0-9][a-z0-9._:-]{0,79}$/).default("project"),
+  validity: z.enum(MSSR_SITUATION_CLAIM_VALIDITIES).default("current"),
+  observedAt: z.string().datetime({ offset: true }).optional(),
+  extractor: z.string().regex(/^[a-z0-9][a-z0-9._:-]{0,79}$/).default("declared"),
   value: boundedScalarSchema.optional(),
   revision: boundedScalarSchema.optional(),
   required: z.boolean().default(false),
@@ -92,7 +99,8 @@ export const mssrSituationSemanticClaimSchema = z.object({
 });
 
 export const mssrSituationSemanticClaimBatchSchema = z.array(mssrSituationSemanticClaimSchema).max(128);
-export type MssrSituationSemanticClaim = z.infer<typeof mssrSituationSemanticClaimSchema>;
+export type MssrSituationSemanticClaimInput = z.input<typeof mssrSituationSemanticClaimSchema>;
+export type MssrSituationSemanticClaim = z.output<typeof mssrSituationSemanticClaimSchema>;
 
 const SOURCE_RULES: Record<MssrSituationClaimSource, {
   role: MssrConsistencyRole;
@@ -123,11 +131,12 @@ function categoryForClaim(kind: MssrSituationClaimKind, source: MssrSituationCla
   return "other";
 }
 
-/** Stable cross-host semantic key. The subject is an explicit identifier, not extracted prose. */
+/** Stable cross-host semantic key. The subject/scope are explicit identifiers, not extracted prose. */
 export function mssrSituationSemanticClaimKey(
-  claim: Pick<MssrSituationSemanticClaim, "kind" | "subject">,
+  claim: Pick<MssrSituationSemanticClaim, "kind" | "subject"> & { scope?: string },
 ): string {
-  return `semantic.${claim.kind}:${claim.subject}`;
+  const scope = claim.scope && claim.scope !== "project" ? `@${claim.scope}` : "";
+  return `semantic.${claim.kind}:${claim.subject}${scope}`;
 }
 
 /**
@@ -136,7 +145,7 @@ export function mssrSituationSemanticClaimKey(
  * recommendation owner.
  */
 export function buildMssrSemanticClaimSituation(
-  claims: readonly MssrSituationSemanticClaim[],
+  claims: readonly MssrSituationSemanticClaimInput[],
 ): MssrSituationObservation[] {
   const parsed = mssrSituationSemanticClaimBatchSchema.parse(claims);
 

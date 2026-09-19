@@ -8,11 +8,13 @@ import {
   planArchitectureHostAdoption,
 } from "./architecture-host-adoption.js";
 import { planMssrContextPersistenceReviews } from "./context-persistence-review.js";
+import { getMssrR4GateACoverageInventory } from "./semantic-consistency-coverage.js";
 
 export const MSSR_HOST_CONFORMANCE_TOOL_NAMES = [
   "mssr_architecture_impact_plan",
   "mssr_architecture_impact_evaluate",
   "mssr_context_proposal_review",
+  "mssr_semantic_consistency_coverage",
 ] as const;
 
 function response(value: unknown) {
@@ -59,4 +61,9 @@ export function registerMssrHostConformanceTools(server: McpServer) {
     advisoryOnly: true,
     autoWriteAllowed: false,
   }));
+
+  server.registerTool(MSSR_HOST_CONFORMANCE_TOOL_NAMES[3], {
+    description: "Return the read-only R4 semantic-consistency integration coverage inventory. This reports declared implementation/adoption status only; it does not prove semantic truth or authorize writes.",
+    inputSchema: { capabilityIds: z.array(z.string().min(1).max(120)).max(32).optional() },
+  }, async ({ capabilityIds }) => response(getMssrR4GateACoverageInventory(capabilityIds)));
 }
