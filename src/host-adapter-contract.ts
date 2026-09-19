@@ -19,6 +19,10 @@ export const MSSR_SELECTION_MODES = ["auto", "host-gated"] as const;
 export const MSSR_SKILL_CONTEXT_MODES = ["selective", "full"] as const;
 export const MSSR_REFERENCE_MODES = ["auto", "none"] as const;
 export const MSSR_REASONING_EFFORTS = ["low", "medium", "high", "xhigh", "max", "ultra", "unknown"] as const;
+export const mssrRetainedContextObligationSchema = z.object({
+  id: z.string().trim().min(1).max(240),
+  fingerprint: z.string().regex(/^[A-Za-z0-9_-]{43}$/),
+}).strict();
 
 /**
  * Shared route/bootstrap contract for every stateful MSSR host adapter.
@@ -37,6 +41,8 @@ export const mssrHostRouteInputSchema = z.object({
   contentMode: z.enum(MSSR_SKILL_CONTEXT_MODES).optional(),
   includeReferences: z.enum(MSSR_REFERENCE_MODES).optional(),
   maxContextChars: z.number().int().min(4000).max(100000).optional(),
+  /** Host-attested procedural units still present in the current uncompacted context. */
+  retainedContextObligations: z.array(mssrRetainedContextObligationSchema).max(128).optional(),
   /** Opaque portable cursor returned by a partial skill-context page. */
   contextCursor: z.string().min(16).max(2048).optional(),
   traceId: z.string().min(6).max(128).optional(),

@@ -30,7 +30,12 @@ unresolved blocker explicit. Retries replace the effective outcome rather than
 creating another task. A trace heartbeat proves activity, not user-visible
 completion.
 
-Reuse guidance still present in the same uncompacted phase. Reload only changed
-or missing units after compaction, restart or handoff. Report visible progress
-at meaningful boundaries as required by the host; no duplicate progress ritual
-is needed for a telemetry checkpoint.
+Reuse procedural guidance only when the host can attest it is still present in
+the current uncompacted context. When the host exposes R3 retention receipts,
+carry the exact stable unit `id` plus content `fingerprint`; never infer retention
+from a prior trace load or delivery receipt. Omit those receipts after compaction,
+restart, handoff, or any boundary where current retention is unknown so MSSR
+re-delivers changed/missing obligations. Do not change retention assumptions in
+the middle of an opaque continuation-cursor chain. Report visible progress at
+meaningful boundaries as required by the host; no duplicate progress ritual is
+needed for a telemetry checkpoint.

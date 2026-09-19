@@ -1,6 +1,6 @@
 # ADR 0007 — Automatic Lifecycle Coverage
 
-Status: accepted for portable MSSR implementation; host adoption pending.
+Status: accepted; portable MSSR implementation is live and Bridge `0.6.136` host adoption is verified.
 
 Date: 2026-09-18
 
@@ -46,7 +46,7 @@ The evaluator is advisory and I/O-free. It can recommend lifecycle control, but 
 - **R1 Trace Identity Integrity** remains prior: owner compatibility is evaluated before lifecycle adoption.
 - **C2b routing compliance** remains the after-the-fact recovery/observability layer. A `substantial-tool-without-route` finding is now evidence that the host failed to apply R2, not the primary activation mechanism.
 - **Skill routing** remains the owner of semantic skill selection and required lifecycle phases after a route exists. R2 decides whether to enter/replan that control plane; it does not duplicate `inferredRequiredPhases(...)`.
-- **R3 Context Economy v2** will later reduce the context cost of managed lifecycle by activating only unmet obligations. R2 must not raise context budgets to hide ceremony.
+- **R3 Context Economy v2** is defined by ADR 0008 and MSSR `0.2.70`: managed replans may suppress only exact host-attested retained procedural obligations, while unknown/changed retention re-delivers normally. R2/R3 never raise context budgets to hide ceremony.
 - **Bridge and other hosts** retain execution, registry metadata, trace persistence, transport and I/O ownership.
 
 ## Consequences

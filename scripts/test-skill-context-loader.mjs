@@ -72,6 +72,7 @@ try {
   assert.ok(firstPage.cursor);
   assert.ok(firstPage.deliveredChars <= 18_000);
   assert.ok(firstPage.remaining.required.length > 0);
+  await assert.rejects(() => continueSkillContextPage({ skills: pagingSkills, intent, stage: "implement", mode: "selective", references: "auto", maxContextChars: 10_000, retainedContextObligations: firstPage.units.slice(0, 1).map(({ id, fingerprint }) => ({ id, fingerprint })), cursor: firstPage.cursor }), /Stale skill context cursor/, "retention attestations must not change mid-cursor-chain");
   const secondPage = await continueSkillContextPage({ skills: pagingSkills, intent, stage: "implement", mode: "selective", references: "auto", maxContextChars: 10_000, cursor: firstPage.cursor });
   assert.equal(secondPage.status, "complete");
   assert.equal(secondPage.mustContinue, false);
@@ -107,6 +108,32 @@ try {
   assert.ok(deduped.duplicateCharsAvoided > 0);
   assert.equal(deduped.skills[0].content.match(/Repeated procedure\./g)?.length, 1);
   assert.equal(deduped.skills[0].contextAssembly.moduleDecisions.find((item) => item.id === "repeated-procedure")?.reason, "already-covered-by-loaded-context");
+
+  // R3: exact host-attested unit receipts suppress only guidance that is still
+  // retained with the same content fingerprint. Historical delivery alone is
+  // never enough: omission or changed bytes must re-deliver the obligation.
+  const retainedSeed = await planSkillContextPage({ skills: [{ skill: selective, obligation: "required", routeIndex: 0, routeScore: 1 }], intent, stage: "implement", mode: "selective", references: "auto", maxContextChars: 10_000 });
+  const receipts = retainedSeed.units.map(({ id, fingerprint }) => ({ id, fingerprint }));
+  assert.ok(receipts.length >= 2, "fixture must expose core plus selected module receipts");
+  const retainedPlan = await planSkillContextPage({ skills: [{ skill: selective, obligation: "required", routeIndex: 0, routeScore: 1 }], intent, stage: "implement", mode: "selective", references: "auto", maxContextChars: 10_000, retainedContextObligations: receipts });
+  assert.equal(retainedPlan.status, "complete");
+  assert.equal(retainedPlan.deliveredChars, 0, "fully retained guidance must not be re-delivered");
+  assert.equal(retainedPlan.retainedContextCharsSaved, retainedSeed.deliveredChars);
+  assert.deepEqual(retainedPlan.retained.map(({ id }) => id).sort(), retainedSeed.units.map(({ id }) => id).sort());
+  assert.equal(retainedPlan.skills[0].loaded, true, "retained required guidance remains lifecycle-satisfied");
+  assert.equal(retainedPlan.skills[0].content, "");
+  assert.equal(retainedPlan.skills[0].contextAssembly.contextSatisfied, true);
+  assert.equal(retainedPlan.requiredCoreReservedChars, 0, "retained core must not reserve the next page budget");
+
+  await fs.writeFile(selective.path, "# Skill\n\n## Core\n\nCore.\n\n## Edit\n\nChosen twice.\n", "utf8");
+  const changedPlan = await planSkillContextPage({ skills: [{ skill: selective, obligation: "required", routeIndex: 0, routeScore: 1 }], intent, stage: "implement", mode: "selective", references: "auto", maxContextChars: 10_000, retainedContextObligations: receipts });
+  assert.deepEqual(changedPlan.units.map(({ id }) => id), ["selective:module:edit"], "changed module fingerprint must make only that obligation unmet");
+  assert.deepEqual(changedPlan.retained.map(({ id }) => id), ["selective:core"]);
+  assert.ok(changedPlan.skills[0].content.includes("Chosen twice."));
+
+  const afterCompaction = await planSkillContextPage({ skills: [{ skill: selective, obligation: "required", routeIndex: 0, routeScore: 1 }], intent, stage: "implement", mode: "selective", references: "auto", maxContextChars: 10_000 });
+  assert.deepEqual(afterCompaction.units.map(({ id }) => id).sort(), ["selective:core", "selective:module:edit"].sort(), "omitting receipts must re-deliver guidance after compaction/restart/handoff");
+  await assert.rejects(() => planSkillContextPage({ skills: [{ skill: selective, obligation: "required", routeIndex: 0, routeScore: 1 }], intent, stage: "implement", mode: "selective", references: "auto", maxContextChars: 10_000, retainedContextObligations: [receipts[0], { id: receipts[0].id, fingerprint: receipts[0].fingerprint === "A".repeat(43) ? "B".repeat(43) : "A".repeat(43) }] }), /Conflicting retained context fingerprints/);
 
   const unsafe = await fixture("unsafe", "# Unsafe\n\n## Core\n\nCore.\n", [{ id: "escape", description: "Escape", source: { path: "../secret.md" }, actions: ["edit"], signals: ["skill-gap"] }]);
   await assert.rejects(() => assembleCodexSkillContext({ skill: unsafe, intent, stage: "implement", mode: "selective", references: "auto", remainingChars: 10_000 }), /escapes its skill directory/);

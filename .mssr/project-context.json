@@ -400,6 +400,46 @@
       "maxChars": 3000
     },
     {
+      "id": "mssr-context-economy-v2",
+      "kind": "context",
+      "topic": "architecture",
+      "area": "context-economy",
+      "description": "R3 retained procedural obligation identity, exact fingerprint reuse, paging integrity and context-savings contract.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/context-economy-v2.md"
+      },
+      "domains": [
+        "skill-system",
+        "agent-orchestration",
+        "coding"
+      ],
+      "actions": [
+        "design",
+        "optimize",
+        "analyze",
+        "debug",
+        "verify",
+        "maintain"
+      ],
+      "artifacts": [
+        "skill",
+        "code",
+        "project",
+        "repository",
+        "mcp"
+      ],
+      "needs": [
+        "performance",
+        "integrity-verification"
+      ],
+      "signals": [
+        "reusable-pattern",
+        "repeated-friction"
+      ],
+      "priority": 90,
+      "maxChars": 3200
+    },
+    {
       "id": "mssr-trace-lifecycle-integrity",
       "kind": "memory",
       "topic": "decision",

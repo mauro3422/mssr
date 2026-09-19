@@ -17,6 +17,7 @@ export type SkillContextMode = "selective" | "full";
 export type SkillReferenceMode = "auto" | "none";
 export type SkillContextPlanningMode = "global-required-core-first";
 export type SkillContextObligation = "required" | "accepted";
+export type SkillContextRetentionReceipt = Readonly<{ id: string; fingerprint: string }>;
 type ManifestStatus = "loaded" | "missing" | "invalid" | "disabled";
 type AllocationTier = "required-core" | "required-module" | "required-skill-module" | "accepted-skill-core" | "accepted-skill-module";
 type AmbiguousGroup = { group: string; candidates: string[]; score: number };
@@ -30,7 +31,8 @@ export type SkillContextAssemblyInfo = {
   budgetExceeded: boolean; requiredBudgetExceeded: boolean; optionalContextOmitted: boolean;
   contextDeferred: boolean;
   planningMode: SkillContextPlanningMode; allocationTiers: AllocationTier[];
-  duplicateCharsAvoided: number; skipped?: boolean; skippedReason?: string;
+  duplicateCharsAvoided: number; retainedContextCharsSaved: number; contextSatisfied: boolean;
+  retainedUnits: SkillContextUnitMetadata[]; skipped?: boolean; skippedReason?: string;
   candidateChars?: number; warning?: string;
 };
 export type SkillContextAssembly = { skill: SkillEntry; obligation: SkillContextObligation; loaded: true; activationInstruction: string; content: string; contextAssembly: SkillContextAssemblyInfo };
@@ -40,10 +42,10 @@ export type PlannedSkillContext = SkillContextAssembly | SkippedSkillContextAsse
 type Module = { id: string; content: string; assembled: string; chars: number; score: number; priority: number; required: boolean; matched: string[] };
 type Prepared = { skill: SkillEntry; obligation: SkillContextObligation; routeIndex: number; routeScore: number; mode: SkillContextMode; manifestStatus: ManifestStatus; fallbackFull: boolean; full: string; core: string; modules: Module[]; decisions: ModuleDecision[]; ambiguousGroups: AmbiguousGroup[]; deduplicatedModules: Map<string, AllocationTier>; duplicateCharsAvoided: number; warning?: string };
 type UnitKind = "core" | "module";
-type DeliveryUnit = { id: string; skill: string; kind: UnitKind; module?: string; obligation: SkillContextObligation; tier: AllocationTier; chars: number; content: string; state: Prepared };
+type DeliveryUnit = { id: string; skill: string; kind: UnitKind; module?: string; obligation: SkillContextObligation; tier: AllocationTier; chars: number; content: string; fingerprint: string; state: Prepared };
 type CursorEnvelope = { v: number; plan: string; next: number; page: number; integrity: string };
 
-export type SkillContextUnitMetadata = Readonly<{ id: string; skill: string; kind: UnitKind; module?: string; obligation: SkillContextObligation; chars: number }>;
+export type SkillContextUnitMetadata = Readonly<{ id: string; skill: string; kind: UnitKind; module?: string; obligation: SkillContextObligation; chars: number; fingerprint: string }>;
 export type SkillContextPageNext = Readonly<{ page: number; cursor: string; maxContextChars: number; remainingRequiredUnits: number; remainingAcceptedUnits: number }>;
 export type SkillContextPage = Readonly<{
   planningMode: SkillContextPlanningMode;
@@ -57,7 +59,9 @@ export type SkillContextPage = Readonly<{
   deliveredChars: number;
   remaining: { required: SkillContextUnitMetadata[]; accepted: SkillContextUnitMetadata[] };
   units: SkillContextUnitMetadata[];
+  retained: SkillContextUnitMetadata[];
   blocked: SkillContextUnitMetadata[];
+  retainedContextCharsSaved: number;
   requiredCoreReservedChars: number;
   requiredModuleReservedChars: number;
   optionalModuleCharsLoaded: number;
@@ -82,6 +86,8 @@ export type SkillContextPageInput = {
   mode: SkillContextMode;
   references: SkillReferenceMode;
   maxContextChars: number;
+  /** Host-attested procedural guidance still present in the current uncompacted context. */
+  retainedContextObligations?: readonly SkillContextRetentionReceipt[];
   cursor?: string;
 };
 
@@ -128,7 +134,7 @@ function parseCursor(cursor: string, plan: string, unitCount: number): CursorEnv
   if (envelope.next < 0 || envelope.next >= unitCount || envelope.page < 1) throw new Error("Invalid skill context cursor position.");
   return envelope;
 }
-function unitMetadata(unit: DeliveryUnit): SkillContextUnitMetadata { return { id: unit.id, skill: unit.skill, kind: unit.kind, ...(unit.module ? { module: unit.module } : {}), obligation: unit.obligation, chars: unit.chars }; }
+function unitMetadata(unit: DeliveryUnit): SkillContextUnitMetadata { return { id: unit.id, skill: unit.skill, kind: unit.kind, ...(unit.module ? { module: unit.module } : {}), obligation: unit.obligation, chars: unit.chars, fingerprint: unit.fingerprint }; }
 async function prepare(args: { skill: SkillEntry; obligation: SkillContextObligation; routeIndex: number; routeScore: number; intent: StructuredSkillIntent; stage: SkillStage; mode: SkillContextMode; references: SkillReferenceMode }): Promise<Prepared> {
   if (!args.skill.path) throw new Error(`Codex skill has no readable path: ${args.skill.name}`);
   const full = await readText(args.skill.path, MAX_SKILL_FILE_CHARS);
@@ -149,7 +155,7 @@ async function prepare(args: { skill: SkillEntry; obligation: SkillContextObliga
 function buildUnits(states: Prepared[]): DeliveryUnit[] {
   const required = states.filter((state) => state.obligation === "required").sort((a, b) => a.routeIndex - b.routeIndex);
   const accepted = states.filter((state) => state.obligation === "accepted").sort((a, b) => b.routeScore - a.routeScore || a.routeIndex - b.routeIndex || a.skill.name.localeCompare(b.skill.name));
-  const core = (state: Prepared, tier: AllocationTier): DeliveryUnit => ({ id: `${state.skill.name}:core`, skill: state.skill.name, kind: "core", obligation: state.obligation, tier, chars: state.core.length, content: state.core, state });
+  const core = (state: Prepared, tier: AllocationTier): DeliveryUnit => ({ id: `${state.skill.name}:core`, skill: state.skill.name, kind: "core", obligation: state.obligation, tier, chars: state.core.length, content: state.core, fingerprint: sha256(state.core), state });
   const covered = new Map(states.map((state) => [state, state.core]));
   const module = (state: Prepared, item: Module, tier: AllocationTier): DeliveryUnit | null => {
     const prior = covered.get(state) ?? "";
@@ -159,7 +165,7 @@ function buildUnits(states: Prepared[]): DeliveryUnit[] {
       return null;
     }
     covered.set(state, `${prior}\n\n${item.content}`);
-    return { id: `${state.skill.name}:module:${item.id}`, skill: state.skill.name, kind: "module", module: item.id, obligation: state.obligation, tier, chars: item.chars, content: item.assembled, state };
+    return { id: `${state.skill.name}:module:${item.id}`, skill: state.skill.name, kind: "module", module: item.id, obligation: state.obligation, tier, chars: item.chars, content: item.assembled, fingerprint: sha256(item.assembled), state };
   };
   const ordered = (items: Prepared[], requiredOnly: boolean, tier: AllocationTier) => items.flatMap((state) => state.modules.filter((item) => item.required === requiredOnly).map((item) => ({ state, module: item }))).sort(compare).flatMap(({ state, module: item }) => {
     const unit = module(state, item, tier);
@@ -176,13 +182,19 @@ function planFingerprint(args: SkillContextPageInput, units: DeliveryUnit[]): st
   // fingerprint binds it to reconstructed bytes, order and obligation. The
   // page budget is deliberately excluded so a host can resize later pages to
   // the space left by its own envelope metadata without invalidating the chain.
-  return sha256(JSON.stringify({ v: CURSOR_VERSION, stage: args.stage, mode: args.mode, references: args.references, skills: args.skills.map((item) => ({ name: item.skill.name, obligation: item.obligation, routeIndex: item.routeIndex, routeScore: item.routeScore })), units: units.map((item) => ({ id: item.id, obligation: item.obligation, chars: item.chars, contentFingerprint: sha256(item.content) })) }));
+  const retained = [...(args.retainedContextObligations ?? [])]
+    .map((item) => ({ id: item.id, fingerprint: item.fingerprint }))
+    .sort((a, b) => a.id.localeCompare(b.id) || a.fingerprint.localeCompare(b.fingerprint));
+  return sha256(JSON.stringify({ v: CURSOR_VERSION, stage: args.stage, mode: args.mode, references: args.references, skills: args.skills.map((item) => ({ name: item.skill.name, obligation: item.obligation, routeIndex: item.routeIndex, routeScore: item.routeScore })), retained, units: units.map((item) => ({ id: item.id, obligation: item.obligation, chars: item.chars, fingerprint: item.fingerprint })) }));
 }
-function skillResult(state: Prepared, delivered: DeliveryUnit[], all: DeliveryUnit[], deferred: Set<string>, blocked: Set<string>, limit: number): PlannedSkillContext {
+function skillResult(state: Prepared, delivered: DeliveryUnit[], all: DeliveryUnit[], priorDelivered: Set<string>, retained: Set<string>, deferred: Set<string>, blocked: Set<string>, limit: number): PlannedSkillContext {
   const own = delivered.filter((unit) => unit.state === state);
   const ownAll = all.filter((unit) => unit.state === state);
+  const ownRetained = ownAll.filter((unit) => retained.has(unit.id));
   const ownDeferred = ownAll.filter((unit) => deferred.has(unit.id));
   const ownBlocked = ownAll.filter((unit) => blocked.has(unit.id));
+  const covered = new Set([...own.map((unit) => unit.id), ...ownRetained.map((unit) => unit.id), ...ownAll.filter((unit) => priorDelivered.has(unit.id)).map((unit) => unit.id)]);
+  const contextSatisfied = ownAll.length > 0 && ownAll.every((unit) => covered.has(unit.id));
   const coreLoaded = own.some((unit) => unit.kind === "core");
   const modules = own.filter((unit) => unit.kind === "module");
   const content = state.mode === "full" && own.length === 1 && own[0]?.kind === "core"
@@ -194,12 +206,20 @@ function skillResult(state: Prepared, delivered: DeliveryUnit[], all: DeliveryUn
     const id = `${state.skill.name}:module:${decision.id}`;
     const unit = ownAll.find((candidate) => candidate.id === id);
     if (!unit) return decision;
+    if (retained.has(id)) return { ...decision, selected: false, chars: 0, reason: "retained-obligation-satisfied", allocationTier: unit.tier };
     if (own.some((candidate) => candidate.id === id)) return { ...decision, selected: true, reason: "selected", allocationTier: unit.tier };
+    if (priorDelivered.has(id)) return { ...decision, selected: false, chars: 0, reason: "delivered-on-prior-page", allocationTier: unit.tier };
     if (blocked.has(id)) return { ...decision, selected: false, reason: "indivisible-unit-exceeds-budget", allocationTier: unit.tier };
     return { ...decision, selected: false, reason: "deferred-to-next-page", allocationTier: unit.tier };
   });
-  const info: SkillContextAssemblyInfo = { mode: state.mode, manifestStatus: state.manifestStatus, fallbackFull: state.fallbackFull, coreCharsLoaded: coreLoaded ? state.core.length : 0, moduleCharsLoaded: modules.reduce((sum, unit) => sum + unit.chars, 0), totalCharsLoaded: content.length, fullSkillChars: state.full.length, estimatedCharsSaved: Math.max(0, state.full.length - content.length), selectedModules: modules.map((unit) => unit.module!).filter(Boolean), moduleDecisions, ambiguousGroups: state.ambiguousGroups, budgetExceeded: ownBlocked.length > 0, requiredBudgetExceeded: ownBlocked.some((unit) => unit.obligation === "required"), optionalContextOmitted: false, contextDeferred: ownDeferred.length > 0, planningMode: "global-required-core-first", allocationTiers: [...new Set(own.map((unit) => unit.tier))], duplicateCharsAvoided: state.duplicateCharsAvoided, ...(state.warning ? { warning: state.warning } : {}) };
-  if (own.length) return { skill: state.skill, obligation: state.obligation, loaded: true, activationInstruction: coreLoaded ? "Treat this page's core and modules as active guidance for the current task phase. Continue with the returned cursor before relying on deferred selected context." : "Continuation page: apply these selected modules together with the compatible core delivered on a prior page.", content, contextAssembly: info };
+  const retainedContextCharsSaved = ownRetained.reduce((sum, unit) => sum + unit.chars, 0);
+  const info: SkillContextAssemblyInfo = { mode: state.mode, manifestStatus: state.manifestStatus, fallbackFull: state.fallbackFull, coreCharsLoaded: coreLoaded ? state.core.length : 0, moduleCharsLoaded: modules.reduce((sum, unit) => sum + unit.chars, 0), totalCharsLoaded: content.length, fullSkillChars: state.full.length, estimatedCharsSaved: Math.max(0, state.full.length - content.length), selectedModules: modules.map((unit) => unit.module!).filter(Boolean), moduleDecisions, ambiguousGroups: state.ambiguousGroups, budgetExceeded: ownBlocked.length > 0, requiredBudgetExceeded: ownBlocked.some((unit) => unit.obligation === "required"), optionalContextOmitted: false, contextDeferred: ownDeferred.length > 0, planningMode: "global-required-core-first", allocationTiers: [...new Set(own.map((unit) => unit.tier))], duplicateCharsAvoided: state.duplicateCharsAvoided, retainedContextCharsSaved, contextSatisfied, retainedUnits: ownRetained.map(unitMetadata), ...(state.warning ? { warning: state.warning } : {}) };
+  if (own.length || contextSatisfied) {
+    const activationInstruction = own.length
+      ? (coreLoaded ? "Treat this page's core and modules as active guidance for the current task phase. Continue with the returned cursor before relying on deferred selected context." : "Continuation/replan page: apply newly delivered modules together with compatible guidance already present in this context chain.")
+      : "All selected procedural context obligations for this skill were already retained with matching fingerprints; no guidance bytes were re-delivered.";
+    return { skill: state.skill, obligation: state.obligation, loaded: true, activationInstruction, content, contextAssembly: info };
+  }
   const reason = ownBlocked.length ? `Selected ${state.obligation} context cannot fit the ${limit}-character page budget as an indivisible unit.` : ownDeferred.length ? `Selected ${state.obligation} context is deferred to the next compatible page.` : "No selected context was materialized for this skill.";
   return { skill: state.skill, obligation: state.obligation, loaded: false, warning: reason, contextAssembly: { ...info, skipped: true, skippedReason: ownBlocked.length ? "indivisible-unit-exceeds-budget" : ownDeferred.length ? "deferred-to-next-page" : "not-selected", candidateChars: state.core.length + state.modules.reduce((sum, item) => sum + item.chars, 0) } };
 }
@@ -209,35 +229,46 @@ export async function planSkillContextPage(args: SkillContextPageInput): Promise
   const maxContextChars = Math.max(0, Math.floor(args.maxContextChars));
   const states = await Promise.all(args.skills.map((item) => prepare({ ...item, intent: args.intent, stage: args.stage, mode: args.mode, references: args.references })));
   const units = buildUnits(states);
+  const retainedById = new Map<string, string>();
+  for (const receipt of args.retainedContextObligations ?? []) {
+    const previous = retainedById.get(receipt.id);
+    if (previous && previous !== receipt.fingerprint) throw new Error(`Conflicting retained context fingerprints for obligation '${receipt.id}'.`);
+    retainedById.set(receipt.id, receipt.fingerprint);
+  }
+  const retainedUnits = units.filter((unit) => retainedById.get(unit.id) === unit.fingerprint);
+  const retainedIds = new Set(retainedUnits.map((unit) => unit.id));
+  const unmetUnits = units.filter((unit) => !retainedIds.has(unit.id));
   const fingerprint = planFingerprint({ ...args, maxContextChars }, units);
-  const position = args.cursor ? parseCursor(args.cursor, fingerprint, units.length) : { next: 0, page: 1 };
+  const position = args.cursor ? parseCursor(args.cursor, fingerprint, unmetUnits.length) : { next: 0, page: 1 };
+  const priorDelivered = new Set(unmetUnits.slice(0, position.next).map((unit) => unit.id));
   const delivered: DeliveryUnit[] = [];
   const blocked: DeliveryUnit[] = [];
   let index = position.next;
   let used = 0;
-  while (index < units.length) {
-    const unit = units[index];
+  while (index < unmetUnits.length) {
+    const unit = unmetUnits[index];
     if (unit.chars > maxContextChars) { blocked.push(unit); break; }
     if (used + unit.chars > maxContextChars) break;
     delivered.push(unit); used += unit.chars; index += 1;
   }
-  const remainingUnits = units.slice(index);
+  const remainingUnits = unmetUnits.slice(index);
   const blockedIds = new Set(blocked.map((unit) => unit.id));
   const deferred = new Set(remainingUnits.filter((unit) => !blockedIds.has(unit.id)).map((unit) => unit.id));
   const remaining = { required: remainingUnits.filter((unit) => unit.obligation === "required").map(unitMetadata), accepted: remainingUnits.filter((unit) => unit.obligation === "accepted").map(unitMetadata) };
-  const requiredCoreReservedChars = units.filter((unit) => unit.tier === "required-core").reduce((sum, unit) => sum + unit.chars, 0);
-  const requiredModuleReservedChars = units.filter((unit) => unit.tier === "required-module").reduce((sum, unit) => sum + unit.chars, 0);
+  const requiredCoreReservedChars = unmetUnits.filter((unit) => unit.tier === "required-core").reduce((sum, unit) => sum + unit.chars, 0);
+  const requiredModuleReservedChars = unmetUnits.filter((unit) => unit.tier === "required-module").reduce((sum, unit) => sum + unit.chars, 0);
   const optionalModuleCharsLoaded = delivered.filter((unit) => unit.tier === "required-skill-module" || unit.tier === "accepted-skill-module").reduce((sum, unit) => sum + unit.chars, 0);
   const optionalSkillCoreCharsLoaded = delivered.filter((unit) => unit.tier === "accepted-skill-core").reduce((sum, unit) => sum + unit.chars, 0);
+  const retainedContextCharsSaved = retainedUnits.reduce((sum, unit) => sum + unit.chars, 0);
   const status = remainingUnits.length || blocked.length ? "partial" as const : "complete" as const;
   const cursor = !blocked.length && remainingUnits.length ? makeCursor(fingerprint, index, position.page + 1) : undefined;
-  const skills = states.sort((a, b) => a.routeIndex - b.routeIndex).map((state) => skillResult(state, delivered, units, deferred, blockedIds, maxContextChars));
-  return { planningMode: "global-required-core-first", status, mustContinue: status === "partial", ...(cursor ? { cursor } : {}), ...(cursor ? { nextPage: { page: position.page + 1, cursor, maxContextChars, remainingRequiredUnits: remaining.required.length, remainingAcceptedUnits: remaining.accepted.length } } : {}), planFingerprint: fingerprint, page: position.page, maxContextChars, deliveredChars: used, remaining, units: delivered.map(unitMetadata), blocked: blocked.map(unitMetadata), requiredCoreReservedChars, requiredModuleReservedChars, optionalModuleCharsLoaded, optionalSkillCoreCharsLoaded, requiredOverflowChars: blocked.filter((unit) => unit.obligation === "required").reduce((sum, unit) => sum + unit.chars - maxContextChars, 0), duplicateCharsAvoided: states.reduce((sum, state) => sum + state.duplicateCharsAvoided, 0), totalContextCharsLoaded: used, totalFullSkillChars: states.reduce((sum, state) => sum + state.full.length, 0), estimatedCharsSaved: skills.reduce((sum, item) => sum + item.contextAssembly.estimatedCharsSaved, 0), remainingContextChars: Math.max(0, maxContextChars - used), budgetExceeded: blocked.length > 0, requiredBudgetExceeded: blocked.some((unit) => unit.obligation === "required"), optionalContextOmitted: false, globallySelectedModules: delivered.filter((unit) => unit.kind === "module").map((unit) => ({ skill: unit.skill, module: unit.module!, tier: unit.tier, score: unit.state.modules.find((item) => item.id === unit.module)?.score ?? 0, chars: unit.chars })), skills };
+  const skills = states.sort((a, b) => a.routeIndex - b.routeIndex).map((state) => skillResult(state, delivered, units, priorDelivered, retainedIds, deferred, blockedIds, maxContextChars));
+  return { planningMode: "global-required-core-first", status, mustContinue: status === "partial", ...(cursor ? { cursor } : {}), ...(cursor ? { nextPage: { page: position.page + 1, cursor, maxContextChars, remainingRequiredUnits: remaining.required.length, remainingAcceptedUnits: remaining.accepted.length } } : {}), planFingerprint: fingerprint, page: position.page, maxContextChars, deliveredChars: used, remaining, units: delivered.map(unitMetadata), retained: retainedUnits.map(unitMetadata), blocked: blocked.map(unitMetadata), retainedContextCharsSaved, requiredCoreReservedChars, requiredModuleReservedChars, optionalModuleCharsLoaded, optionalSkillCoreCharsLoaded, requiredOverflowChars: blocked.filter((unit) => unit.obligation === "required").reduce((sum, unit) => sum + unit.chars - maxContextChars, 0), duplicateCharsAvoided: states.reduce((sum, state) => sum + state.duplicateCharsAvoided, 0), totalContextCharsLoaded: used, totalFullSkillChars: states.reduce((sum, state) => sum + state.full.length, 0), estimatedCharsSaved: skills.reduce((sum, item) => sum + item.contextAssembly.estimatedCharsSaved, 0), remainingContextChars: Math.max(0, maxContextChars - used), budgetExceeded: blocked.length > 0, requiredBudgetExceeded: blocked.some((unit) => unit.obligation === "required"), optionalContextOmitted: false, globallySelectedModules: delivered.filter((unit) => unit.kind === "module").map((unit) => ({ skill: unit.skill, module: unit.module!, tier: unit.tier, score: unit.state.modules.find((item) => item.id === unit.module)?.score ?? 0, chars: unit.chars })), skills };
 }
 /** Continue exactly the selection bound to a compatible opaque cursor. */
 export async function continueSkillContextPage(args: Omit<SkillContextPageInput, "cursor"> & { cursor: string }): Promise<SkillContextPage> { return planSkillContextPage(args); }
 /** Legacy name retained for hosts that still use the original one-page API. */
-export async function planCodexSkillContexts(args: { skills: Array<{ skill: SkillEntry; required?: boolean; obligation?: SkillContextObligation; routeIndex: number; routeScore: number }>; intent: StructuredSkillIntent; stage: SkillStage; mode: SkillContextMode; references: SkillReferenceMode; maxContextChars: number; cursor?: string }): Promise<GlobalSkillContextPlan> { return planSkillContextPage({ ...args, skills: args.skills.map((item) => ({ ...item, obligation: item.obligation ?? (item.required === false ? "accepted" : "required") })) }); }
+export async function planCodexSkillContexts(args: { skills: Array<{ skill: SkillEntry; required?: boolean; obligation?: SkillContextObligation; routeIndex: number; routeScore: number }>; intent: StructuredSkillIntent; stage: SkillStage; mode: SkillContextMode; references: SkillReferenceMode; maxContextChars: number; retainedContextObligations?: readonly SkillContextRetentionReceipt[]; cursor?: string }): Promise<GlobalSkillContextPlan> { return planSkillContextPage({ ...args, skills: args.skills.map((item) => ({ ...item, obligation: item.obligation ?? (item.required === false ? "accepted" : "required") })) }); }
 export async function assembleCodexSkillContext(args: { skill: SkillEntry; intent: StructuredSkillIntent; stage: SkillStage; mode: SkillContextMode; references: SkillReferenceMode; remainingChars: number }): Promise<SkillContextAssembly> {
   const plan = await planSkillContextPage({ skills: [{ skill: args.skill, obligation: "required", routeIndex: 0, routeScore: 0 }], intent: args.intent, stage: args.stage, mode: args.mode, references: args.references, maxContextChars: Math.max(0, Math.floor(args.remainingChars)) });
   const item = plan.skills[0];

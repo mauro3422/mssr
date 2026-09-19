@@ -464,6 +464,7 @@ export class MssrAdapter implements MssrProjectControlAdapter {
       mode: input.contentMode ?? "selective",
       references: input.includeReferences ?? "auto",
       maxContextChars: Math.min(100_000, Math.max(4_000, Math.floor(input.maxContextChars ?? 24_000))),
+      ...(input.retainedContextObligations ? { retainedContextObligations: input.retainedContextObligations } : {}),
       ...(input.contextCursor ? { cursor: input.contextCursor } : {}),
     });
     const contextByName = new Map(contextPlan.skills.map((item) => [item.skill.name, item]));

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { canonicalizeSkillEntries, planSkillRoute, selectSkillContextModules, skillContextManifestSchema, structuredSkillIntentSchema } from "../dist/index.js";
+import { canonicalizeSkillEntries, mssrHostRouteInputSchema, planSkillRoute, selectSkillContextModules, skillContextManifestSchema, structuredSkillIntentSchema } from "../dist/index.js";
 
 const entries = canonicalizeSkillEntries([
   { name: "alpha", description: "Create code", source: "codex-local" },
@@ -69,6 +69,13 @@ const roomySelection = selectSkillContextModules({
   maxModuleChars: 900,
 });
 assert.deepEqual(roomySelection.selected.map((module) => module.id), ["required-contract", "routing-recovery"]);
+
+const retainedRoute = mssrHostRouteInputSchema.parse({
+  task: "Reuse exact retained guidance.", intent: contextIntent,
+  retainedContextObligations: [{ id: "alpha:core", fingerprint: "A".repeat(43) }],
+});
+assert.equal(retainedRoute.retainedContextObligations?.[0]?.id, "alpha:core");
+assert.throws(() => mssrHostRouteInputSchema.parse({ task: "Reject weak receipt.", intent: contextIntent, retainedContextObligations: [{ id: "alpha:core", fingerprint: "id-only" }] }), /fingerprint|Invalid/i);
 
 const bootstrapTemplate = fs.readFileSync(new URL("../templates/AGENTS.mssr.md", import.meta.url), "utf8");
 assert.match(bootstrapTemplate, /user-visible host responsive/);

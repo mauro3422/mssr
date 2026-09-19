@@ -6,7 +6,9 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
 import {
   CapabilityRegistry,
+  CodexMssrAdapter,
   OpenCodeMssrAdapter,
+  createCodexMssrMcpServer,
   createOpenCodeMssrMcpServer,
 } from "../dist/index.js";
 
@@ -98,6 +100,39 @@ try {
   assert.ok(fullContent.includes("TOME_CORE_MARKER_aa11") && fullContent.includes("TOME_ALPHA_MARKER_bb22") && fullContent.includes("TOME_BETA_MARKER_cc33"));
 
   const traceId = full.parsed.traceId;
+
+  // R3 transport proof: the host may attest only the exact procedural units it
+  // still retains. The adapter must keep the skill lifecycle-satisfied while
+  // sending zero duplicate guidance bytes.
+  const retainedContextObligations = full.parsed.contextAssembly.units.map(({ id, fingerprint }) => ({ id, fingerprint }));
+  const retained = json(await client.callTool({ name: "mssr_skill_bootstrap", arguments: { ...base, traceId, maxContextChars: 100000, retainedContextObligations } }));
+  assert.equal(retained.parsed.contextAssembly.status, "complete");
+  assert.equal(retained.parsed.contextAssembly.deliveredChars, 0);
+  assert.equal(retained.parsed.contextAssembly.retainedContextCharsSaved, full.parsed.contextAssembly.deliveredChars);
+  const retainedSkill = retained.parsed.loaded.find((l) => l.skill.name === "envelope-tome");
+  assert.equal(retainedSkill?.loaded, true, "retained guidance must keep the routed skill lifecycle-satisfied");
+  assert.equal(retainedSkill?.content, "", "retained guidance must not be re-serialized into loaded content");
+  assert.equal(retainedSkill?.contextAssembly?.contextSatisfied, true);
+
+  // Shared-adapter parity: Codex must reconstruct the same unit identities and
+  // honor the same exact-retention contract as OpenCode.
+  const codexAdapter = new CodexMssrAdapter(registry);
+  const { server: codexServer } = createCodexMssrMcpServer(codexAdapter);
+  const [codexClientTransport, codexServerTransport] = InMemoryTransport.createLinkedPair();
+  await codexServer.connect(codexServerTransport);
+  const codexClient = new Client({ name: "continuation-codex-fixture", version: "1.0.0" });
+  await codexClient.connect(codexClientTransport);
+  const codexFull = json(await codexClient.callTool({ name: "skill_bootstrap", arguments: { ...base, maxContextChars: 100000 } }));
+  assert.deepEqual(codexFull.parsed.contextAssembly.units.map(({ id, fingerprint }) => ({ id, fingerprint })), full.parsed.contextAssembly.units.map(({ id, fingerprint }) => ({ id, fingerprint })), "Codex/OpenCode must expose identical procedural obligation identity");
+  const codexReceipts = codexFull.parsed.contextAssembly.units.map(({ id, fingerprint }) => ({ id, fingerprint }));
+  const codexRetained = json(await codexClient.callTool({ name: "skill_bootstrap", arguments: { ...base, traceId: codexFull.parsed.traceId, maxContextChars: 100000, retainedContextObligations: codexReceipts } }));
+  assert.equal(codexRetained.parsed.contextAssembly.deliveredChars, 0);
+  assert.equal(codexRetained.parsed.loaded.find((l) => l.skill.name === "envelope-tome")?.contextAssembly?.contextSatisfied, true);
+  await codexClient.close();
+  await codexServer.close();
+
+  // Omit receipts to model compaction/restart/handoff: guidance must become
+  // unmet again instead of being suppressed from historical trace state.
   const p1 = json(await client.callTool({ name: "mssr_skill_bootstrap", arguments: { ...base, traceId, maxContextChars: 4000 } }));
   assert.equal(p1.parsed.contextAssembly.status, "partial", "over-budget page must be explicit partial, never silent truncation");
   assert.equal(p1.parsed.contextAssembly.mustContinue, true, "partial page must require continuation");
