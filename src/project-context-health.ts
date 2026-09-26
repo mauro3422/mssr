@@ -1,3 +1,4 @@
+import type { Dirent } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { type ProjectContextCore, type ResolvedProjectContextManifest, type ResolvedProjectContextModule } from "./project-context.js";
@@ -29,6 +30,23 @@ export type ProjectContextHealthFinding = {
   };
 };
 
+export type ProjectDocumentReferenceCandidate = {
+  path: string;
+  reviewPriority: "high" | "medium" | "low";
+  reasons: string[];
+};
+
+export type ProjectDocumentReferenceAudit = {
+  scannedMarkdown: number;
+  candidateCount: number;
+  highPriorityCount: number;
+  mediumPriorityCount: number;
+  lowPriorityCount: number;
+  connectedCount: number;
+  truncated: boolean;
+  candidates: ProjectDocumentReferenceCandidate[];
+};
+
 const LEGACY_MSSR_FILES = [
   "PROJECT_CONTEXT.md", "PROJECT_MEMORY.md", "PROJECT_STATE.md", "project-context.json",
   "project-context-modules.json", "context-messages.json", "mssr-context-inbox.json",
@@ -56,6 +74,132 @@ async function listMarkdown(root: string): Promise<string[]> {
   }
   await walk(root);
   return out.sort();
+}
+
+const PROJECT_DOC_SCAN_ROOTS = ["docs", "documentation", "design"] as const;
+const PROJECT_DOC_SCAN_SKIP_DIRS = new Set([
+  ".git", ".mssr", "node_modules", "dist", "build", "target", "vendor", "coverage",
+  "changelog", "changelogs", "archive", "archives", "history",
+]);
+const MAX_PROJECT_DOC_SCAN_FILES = 512;
+const MAX_PROJECT_DOC_REFERENCE_CANDIDATES = 24;
+
+function normalizeProjectRelative(value: string): string {
+  return value.replace(/\\/g, "/").replace(/^\.\//, "").toLowerCase();
+}
+
+function classifyProjectDocumentCandidate(relativePath: string): ProjectDocumentReferenceCandidate | null {
+  const normalized = normalizeProjectRelative(relativePath);
+  if (normalized.startsWith("docs/decisions/") || normalized.startsWith("docs/adr/") || normalized.startsWith("adr/")) return null;
+
+  const base = path.posix.basename(normalized);
+  const reasons: string[] = [];
+  const datedOrHistorical = /(?:^|[-_])(19|20)\d{2}(?:[-_]\d{2}){0,2}(?:[-_.]|$)/.test(base)
+    || /(?:^|[-_])(history|historical|archive|incident|audit|report)(?:[-_.]|$)/.test(base);
+
+  if (/^(architecture|roadmap|contracts?|design|decisions?)\.md$/.test(base)) {
+    reasons.push(`canonical-name:${base.replace(/\.md$/, "")}`);
+    const pathDepth = normalized.split("/").length;
+    const topLevelAuthority = pathDepth === 1 || (pathDepth === 2 && normalized.startsWith("docs/"));
+    return { path: relativePath, reviewPriority: datedOrHistorical ? "medium" : topLevelAuthority ? "high" : "medium", reasons };
+  }
+  if (/^(handoff|context|memory|state)\.md$/.test(base)) {
+    reasons.push(`continuity-name:${base.replace(/\.md$/, "")}`);
+    return { path: relativePath, reviewPriority: datedOrHistorical ? "low" : "medium", reasons };
+  }
+  if (/^(readme|index)\.md$/.test(base)) {
+    reasons.push(`navigation-name:${base.replace(/\.md$/, "")}`);
+    return { path: relativePath, reviewPriority: "low", reasons };
+  }
+  if (/(architecture|roadmap|contract|design|context|memory|evidence|routing|handoff)/.test(base)) {
+    reasons.push("semantic-filename");
+    return { path: relativePath, reviewPriority: datedOrHistorical ? "low" : "medium", reasons };
+  }
+  return null;
+}
+
+async function listProjectDocumentCandidates(projectRoot: string): Promise<{ scannedMarkdown: number; truncated: boolean; candidates: ProjectDocumentReferenceCandidate[] }> {
+  const files: string[] = [];
+  let truncated = false;
+
+  async function addMarkdownFiles(dir: string, depth: number) {
+    if (truncated || depth < 0) return;
+    let entries;
+    try { entries = await fs.readdir(dir, { withFileTypes: true }); } catch { return; }
+    for (const entry of entries) {
+      if (files.length >= MAX_PROJECT_DOC_SCAN_FILES) { truncated = true; return; }
+      const abs = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        if (PROJECT_DOC_SCAN_SKIP_DIRS.has(entry.name.toLowerCase())) continue;
+        if (depth > 0) await addMarkdownFiles(abs, depth - 1);
+      } else if (entry.isFile() && entry.name.toLowerCase().endsWith(".md")) {
+        files.push(path.relative(projectRoot, abs).replace(/\\/g, "/"));
+      }
+    }
+  }
+
+  let rootEntries: Dirent[] = [];
+  try { rootEntries = await fs.readdir(projectRoot, { withFileTypes: true }); } catch { /* keep empty */ }
+  for (const entry of rootEntries) {
+    if (files.length >= MAX_PROJECT_DOC_SCAN_FILES) { truncated = true; break; }
+    if (entry.isFile() && entry.name.toLowerCase().endsWith(".md")) files.push(entry.name);
+  }
+  for (const rootName of PROJECT_DOC_SCAN_ROOTS) {
+    await addMarkdownFiles(path.join(projectRoot, rootName), 4);
+  }
+
+  const unique = [...new Set(files)].sort();
+  return {
+    scannedMarkdown: unique.length,
+    truncated,
+    candidates: unique.map(classifyProjectDocumentCandidate).filter((candidate): candidate is ProjectDocumentReferenceCandidate => candidate !== null),
+  };
+}
+
+async function materializeExplicitProjectDocReferences(projectRoot: string, manifest: ResolvedProjectContextManifest): Promise<{ indexed: Set<string>; carrierText: string }> {
+  const entries = [...manifest.core, ...manifest.modules];
+  const indexed = new Set(entries.map((entry) => normalizeProjectRelative(entry.source.path)));
+  const carrierSources = [...new Set(entries.map((entry) => entry.source.path).filter((sourcePath) => normalizeProjectRelative(sourcePath).startsWith(".mssr/")))];
+  const chunks: string[] = [];
+  for (const sourcePath of carrierSources) {
+    try {
+      const absolute = path.resolve(projectRoot, sourcePath);
+      const stat = await fs.stat(absolute);
+      if (!stat.isFile() || stat.size > MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES) continue;
+      chunks.push((await fs.readFile(absolute, "utf8")).replace(/\\/g, "/").toLowerCase());
+    } catch {
+      // Missing/invalid declared sources are already reported by normal project-context health.
+    }
+  }
+  return { indexed, carrierText: chunks.join("\n") };
+}
+
+async function auditProjectDocumentReferences(projectRoot: string, manifest: ResolvedProjectContextManifest): Promise<ProjectDocumentReferenceAudit> {
+  const discovered = await listProjectDocumentCandidates(projectRoot);
+  const explicit = await materializeExplicitProjectDocReferences(projectRoot, manifest);
+  let connectedCount = 0;
+  const disconnected: ProjectDocumentReferenceCandidate[] = [];
+
+  for (const candidate of discovered.candidates) {
+    const normalized = normalizeProjectRelative(candidate.path);
+    if (explicit.indexed.has(normalized) || explicit.carrierText.includes(normalized)) connectedCount += 1;
+    else disconnected.push(candidate);
+  }
+
+  const ordered = disconnected.sort((left, right) => {
+    const rank = { high: 0, medium: 1, low: 2 } as const;
+    return rank[left.reviewPriority] - rank[right.reviewPriority] || left.path.localeCompare(right.path);
+  });
+  return {
+    scannedMarkdown: discovered.scannedMarkdown,
+    candidateCount: disconnected.length,
+    highPriorityCount: disconnected.filter((item) => item.reviewPriority === "high").length,
+    mediumPriorityCount: disconnected.filter((item) => item.reviewPriority === "medium").length,
+    lowPriorityCount: disconnected.filter((item) => item.reviewPriority === "low").length,
+    connectedCount,
+    truncated: discovered.truncated || ordered.length > MAX_PROJECT_DOC_REFERENCE_CANDIDATES,
+    candidates: ordered.slice(0, MAX_PROJECT_DOC_REFERENCE_CANDIDATES),
+  };
 }
 
 type ProjectContextEntryMeasurement = {
@@ -113,6 +257,7 @@ export async function auditMssrProjectContextHealth(projectRootInput: string) {
   const findings: ProjectContextHealthFinding[] = [];
   let manifest: ResolvedProjectContextManifest | null = null;
   let manifestStatus: "missing" | "valid" | "invalid" = "missing";
+  let referenceAudit: ProjectDocumentReferenceAudit | null = null;
 
   if (await exists(manifestPath)) {
     try {
@@ -234,6 +379,18 @@ export async function auditMssrProjectContextHealth(projectRootInput: string) {
       const projectRel = `.mssr/knowledge/${rel}`.toLowerCase();
       if (!indexed.has(projectRel)) findings.push({ code: "unindexed-knowledge", level: "watch", target: `.mssr/knowledge/${rel}`, message: "Knowledge file exists but cannot be selected by MSSR.", recommendation: "INDEX_KNOWLEDGE_FILE" });
     }
+
+    referenceAudit = await auditProjectDocumentReferences(projectRoot, manifest);
+    if (referenceAudit.highPriorityCount > 0) {
+      const examples = referenceAudit.candidates.filter((item) => item.reviewPriority === "high").slice(0, 4).map((item) => item.path);
+      findings.push({
+        code: "unreviewed-project-doc-references",
+        level: "watch",
+        target: "project-documentation",
+        message: `${referenceAudit.highPriorityCount} high-priority project documentation candidate(s) are not explicitly connected to selectable MSSR context${examples.length ? `: ${examples.join(", ")}` : ""}. Candidate discovery is advisory and does not prove canonical ownership.`,
+        recommendation: "REVIEW_PROJECT_DOC_REFERENCES",
+      });
+    }
   }
 
   let level: ProjectContextHealthLevel = "ok";
@@ -244,6 +401,7 @@ export async function auditMssrProjectContextHealth(projectRootInput: string) {
     manifestStatus,
     moduleCount: manifest?.modules.length ?? 0,
     coreCount: manifest?.core.length ?? 0,
+    referenceAudit,
     findings,
     recommendations: [...new Set(findings.map((finding) => finding.recommendation))],
     advisoryOnly: true,

@@ -14,6 +14,18 @@ try {
   assert.equal(healthy.manifestStatus, "valid");
   assert.equal(healthy.findings.some((item) => item.code === "missing-manifest"), false);
 
+  // Generic navigation docs and nested area roadmaps remain visible candidates but do not create
+  // project-wide attention by themselves.
+  await fs.writeFile(path.join(repo, "README.md"), "# Repo\n", "utf8");
+  await fs.mkdir(path.join(repo, "docs", "feature"), { recursive: true });
+  await fs.writeFile(path.join(repo, "docs", "feature", "ROADMAP.md"), "# Feature roadmap\n", "utf8");
+  const lowNoise = await auditMssrProjectContextHealth(repo);
+  assert.ok(lowNoise.referenceAudit);
+  assert.equal(lowNoise.referenceAudit.highPriorityCount, 0);
+  assert.equal(lowNoise.referenceAudit.candidates.some((item) => item.path === "README.md" && item.reviewPriority === "low"), true);
+  assert.equal(lowNoise.referenceAudit.candidates.some((item) => item.path === "docs/feature/ROADMAP.md" && item.reviewPriority === "medium"), true);
+  assert.equal(lowNoise.findings.some((item) => item.code === "unreviewed-project-doc-references"), false);
+
   const manifestPath = path.join(repo, ".mssr", "project-context.json");
   const manifest = JSON.parse(await fs.readFile(manifestPath, "utf8"));
   const initializedMemoryPath = path.join(repo, ".mssr", "PROJECT_MEMORY.md");
@@ -56,6 +68,56 @@ try {
   const unindexed = await auditMssrProjectContextHealth(repo);
   assert.equal(unindexed.level, "watch");
   assert.equal(unindexed.findings.some((item) => item.code === "unindexed-knowledge"), true);
+
+  // Retroactive document discoverability is candidate-only: a strong project doc is surfaced,
+  // but health never invents a module or canonical owner for it.
+  await fs.mkdir(path.join(repo, "docs"), { recursive: true });
+  await fs.writeFile(path.join(repo, "docs", "ARCHITECTURE.md"), "# Architecture\n\nCurrent architecture.\n", "utf8");
+  const architectureCandidate = await auditMssrProjectContextHealth(repo);
+  assert.ok(architectureCandidate.referenceAudit);
+  assert.equal(architectureCandidate.referenceAudit.highPriorityCount, 1);
+  assert.equal(architectureCandidate.referenceAudit.candidates.some((item) => item.path === "docs/ARCHITECTURE.md" && item.reviewPriority === "high"), true);
+  assert.equal(architectureCandidate.findings.some((item) => item.code === "unreviewed-project-doc-references"), true);
+  const manifestAfterCandidate = JSON.parse(await fs.readFile(manifestPath, "utf8"));
+  assert.equal(manifestAfterCandidate.modules.some((item) => item.source?.path === "docs/ARCHITECTURE.md"), false);
+
+  // An explicit pointer from already-selectable .mssr context is enough to make a large canonical
+  // doc discoverable without injecting the whole document into every context assembly.
+  const projectContextPath = path.join(repo, ".mssr", "PROJECT_CONTEXT.md");
+  const projectContext = await fs.readFile(projectContextPath, "utf8");
+  await fs.writeFile(projectContextPath, `${projectContext.trimEnd()}\n\n## Architecture references\n\n- Canonical detail: \`docs/ARCHITECTURE.md\`.\n`, "utf8");
+  const architectureConnected = await auditMssrProjectContextHealth(repo);
+  assert.ok(architectureConnected.referenceAudit);
+  assert.equal(architectureConnected.referenceAudit.candidates.some((item) => item.path === "docs/ARCHITECTURE.md"), false);
+  assert.equal(architectureConnected.referenceAudit.connectedCount >= 1, true);
+
+  // Direct manifest ownership remains exact. A rename yields both a missing declared source and a
+  // new review candidate; deleting the renamed file removes the candidate but not the stale owner.
+  await fs.writeFile(path.join(repo, "docs", "ROADMAP.md"), "# Roadmap\n\nCurrent roadmap.\n", "utf8");
+  const manifestWithRoadmap = JSON.parse(await fs.readFile(manifestPath, "utf8"));
+  manifestWithRoadmap.modules.push({
+    id: "project-roadmap",
+    kind: "context",
+    topic: "reference",
+    description: "Current project roadmap.",
+    source: { path: "docs/ROADMAP.md" },
+    actions: ["review", "maintain"],
+    maxChars: 2000,
+  });
+  await fs.writeFile(manifestPath, `${JSON.stringify(manifestWithRoadmap, null, 2)}\n`, "utf8");
+  const roadmapConnected = await auditMssrProjectContextHealth(repo);
+  assert.equal(roadmapConnected.referenceAudit.candidates.some((item) => item.path === "docs/ROADMAP.md"), false);
+
+  await fs.mkdir(path.join(repo, "docs", "v2"), { recursive: true });
+  await fs.rename(path.join(repo, "docs", "ROADMAP.md"), path.join(repo, "docs", "v2", "ROADMAP.md"));
+  const renamedRoadmap = await auditMssrProjectContextHealth(repo);
+  assert.equal(renamedRoadmap.findings.some((item) => item.code === "missing-module-source" && item.target === "docs/ROADMAP.md"), true);
+  assert.equal(renamedRoadmap.referenceAudit.candidates.some((item) => item.path === "docs/v2/ROADMAP.md" && item.reviewPriority === "medium"), true);
+
+  await fs.rm(path.join(repo, "docs", "v2", "ROADMAP.md"), { force: true });
+  const deletedRoadmap = await auditMssrProjectContextHealth(repo);
+  assert.equal(deletedRoadmap.findings.some((item) => item.code === "missing-module-source" && item.target === "docs/ROADMAP.md"), true);
+  assert.equal(deletedRoadmap.referenceAudit.candidates.some((item) => item.path === "docs/v2/ROADMAP.md"), false);
 
   await fs.mkdir(path.join(repo, ".bridge"), { recursive: true });
   await fs.writeFile(path.join(repo, ".bridge", "PROJECT_STATE.md"), "legacy", "utf8");

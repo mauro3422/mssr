@@ -46,6 +46,7 @@ export * from "./project-context-update.js";
 export * from "./project-context-capture.js";
 export * from "./project-initialization.js";
 export * from "./project-context-health.js";
+export * from "./project-document-references.js";
 export * from "./project-context-budget.js";
 export * from "./project-context-modularization.js";
 export * from "./project-context-maintenance.js";

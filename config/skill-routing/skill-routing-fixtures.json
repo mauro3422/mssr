@@ -7219,57 +7219,366 @@
       "name": "workshop-media-editing-positive-iterative-gif",
       "task": "Tengo un video de gameplay; crea GIFs promocionales por feature, recorta y usa cortes o zooms rapidos, pero mira cada preview y corrigelo antes de pasar al siguiente.",
       "stage": "implement",
-      "sources": ["codex-local"],
+      "sources": [
+        "codex-local"
+      ],
       "intent": {
         "summary": "Editar una grabacion en piezas promocionales iterativas con ritmo y revision visual",
-        "domains": ["artifacts", "filesystem"],
-        "actions": ["design", "edit", "review", "optimize"],
-        "artifacts": ["animation", "asset"],
-        "needs": ["visual-qa", "scene-analysis"],
-        "signals": ["reusable-pattern"],
+        "domains": [
+          "artifacts",
+          "filesystem"
+        ],
+        "actions": [
+          "design",
+          "edit",
+          "review",
+          "optimize"
+        ],
+        "artifacts": [
+          "animation",
+          "asset"
+        ],
+        "needs": [
+          "visual-qa",
+          "scene-analysis"
+        ],
+        "signals": [
+          "reusable-pattern"
+        ],
         "risk": "write",
         "ambiguity": "low"
       },
-      "expect": {"classificationMode": "structured-semantic", "activeIncludes": ["workshop-media-editing"]}
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "workshop-media-editing"
+        ]
+      }
     },
     {
       "name": "workshop-media-editing-continuation-fix-zoom",
       "task": "El zoom sigue lento; acortalo y mira ese fragmento otra vez antes de seguir con los otros GIFs.",
       "context": "Ya se editó un video de gameplay en varios GIFs promocionales y el fragmento actual pasó por una primera revisión visual. El preview todavía muestra un zoom demasiado lento; hay que corregir ese timing, volver a revisar exactamente ese fragmento y no avanzar a los otros GIFs hasta validarlo.",
       "stage": "verify",
-      "completedPhases": ["discovery"],
-      "sources": ["codex-local"],
+      "completedPhases": [
+        "discovery"
+      ],
+      "sources": [
+        "codex-local"
+      ],
       "intent": {
         "summary": "Corregir timing de una pieza promocional ya editada y rever el preview",
-        "domains": ["artifacts"],
-        "actions": ["edit", "review", "verify"],
-        "artifacts": ["animation"],
-        "needs": ["visual-qa", "scene-analysis"],
-        "signals": ["repeated-friction", "replan-needed"],
+        "domains": [
+          "artifacts"
+        ],
+        "actions": [
+          "edit",
+          "review",
+          "verify"
+        ],
+        "artifacts": [
+          "animation"
+        ],
+        "needs": [
+          "visual-qa",
+          "scene-analysis"
+        ],
+        "signals": [
+          "repeated-friction",
+          "replan-needed"
+        ],
         "risk": "write",
         "ambiguity": "low"
       },
-      "expect": {"classificationMode": "structured-semantic", "contextUsed": true, "activeIncludes": ["workshop-media-editing"]}
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "workshop-media-editing"
+        ]
+      }
     },
     {
       "name": "workshop-media-editing-negative-static-image",
       "task": "Optimiza este PNG para que pese menos; no hay video, timeline, GIF animado ni transiciones.",
       "stage": "implement",
-      "sources": ["codex-local"],
+      "sources": [
+        "codex-local"
+      ],
       "intent": {
         "summary": "Optimizar un asset de imagen estatica sin edicion temporal",
-        "domains": ["filesystem", "artifacts"],
-        "actions": ["optimize"],
-        "artifacts": ["asset"],
-        "needs": ["visual-qa"],
+        "domains": [
+          "filesystem",
+          "artifacts"
+        ],
+        "actions": [
+          "optimize"
+        ],
+        "artifacts": [
+          "asset"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "workshop-media-editing"
+        ],
+        "deferredExcludes": [
+          "workshop-media-editing"
+        ]
+      }
+    },
+    {
+      "name": "motion-reference-pack-positive-gif-frame-review",
+      "task": "Te doy un GIF de una pelea: extrae todos sus cuadros, arma hojas de contacto ordenadas y dejame señalar las poses del gesto de agua.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Extraer y analizar un GIF local como referencia temporal de movimiento",
+        "domains": [
+          "artifacts",
+          "filesystem"
+        ],
+        "actions": [
+          "create",
+          "analyze",
+          "review"
+        ],
+        "artifacts": [
+          "animation"
+        ],
+        "needs": [
+          "scene-analysis",
+          "visual-qa"
+        ],
+        "signals": [
+          "reusable-pattern"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "motion-reference-pack"
+        ]
+      }
+    },
+    {
+      "name": "motion-reference-pack-continuation-dense-gesture",
+      "task": "Ahora el levantamiento esta entre 6 y 8 segundos; mira todos esos cuadros y guarda los keyframes.",
+      "context": "Ya se creó un paquete de referencia visual a partir de un GIF local de movimiento. El usuario localizó el levantamiento principal entre los segundos 6 y 8 del GIF; toca extraer ese intervalo a densidad total, revisar cada hoja y preservar poses elegidas.",
+      "stage": "verify",
+      "completedPhases": [
+        "discovery"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Completar revisión densa de un gesto en GIF local previamente indexado",
+        "domains": [
+          "artifacts",
+          "filesystem"
+        ],
+        "actions": [
+          "analyze",
+          "review",
+          "verify"
+        ],
+        "artifacts": [
+          "animation"
+        ],
+        "needs": [
+          "scene-analysis",
+          "visual-qa"
+        ],
+        "signals": [
+          "reusable-pattern"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "motion-reference-pack"
+        ]
+      }
+    },
+    {
+      "name": "motion-reference-pack-negative-static-image",
+      "task": "Mira esta unica imagen PNG y comenta el estilo de ropa; no hay secuencia temporal ni GIF.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Analizar una imagen estatica sin movimiento temporal",
+        "domains": [
+          "artifacts",
+          "filesystem"
+        ],
+        "actions": [
+          "analyze",
+          "review"
+        ],
+        "artifacts": [
+          "asset"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "motion-reference-pack"
+        ],
+        "deferredExcludes": [
+          "motion-reference-pack"
+        ]
+      }
+    },
+    {
+      "name": "motion-reference-pack-negative-promo-edit",
+      "task": "Edita este gameplay en un GIF promocional con cortes y zoom para Steam.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Editar y producir un GIF promocional para publicacion",
+        "domains": [
+          "artifacts",
+          "filesystem"
+        ],
+        "actions": [
+          "design",
+          "edit",
+          "optimize"
+        ],
+        "artifacts": [
+          "animation"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "motion-reference-pack"
+        ],
+        "deferredExcludes": [
+          "motion-reference-pack"
+        ]
+      }
+    },
+    {
+      "name": "game-animation-retarget-positive-free-walk-run-asset",
+      "task": "Find a free walk clip with reuse rights, retarget it to this character's rig in Blender, import it into Godot, and verify it in the game.",
+      "stage": "implement",
+      "sources": ["codex-local"],
+      "intent": {
+        "summary": "Adapt a licensed external locomotion animation to an existing game rig",
+        "domains": ["blender", "godot", "filesystem"],
+        "actions": ["discover", "create", "edit", "verify"],
+        "artifacts": ["animation", "asset", "game"],
+        "needs": ["integrity-verification", "visual-qa", "scene-analysis"],
+        "signals": ["nominal", "reusable-pattern"],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": ["game-animation-retarget"]
+      }
+    },
+    {
+      "name": "game-animation-retarget-continuation-engine-check",
+      "task": "The retargeted walk passed Blender review. Continue by checking the imported clip and locomotion transition in Godot.",
+      "context": "A licensed walk clip was retargeted to the existing character rig as a separate candidate. Side and three-quarter review passed; now validate engine import and controller behavior.",
+      "stage": "verify",
+      "completedPhases": ["discovery", "safety", "implementation"],
+      "sources": ["codex-local"],
+      "intent": {
+        "summary": "Continue a licensed animation retarget by validating the imported clip in the game engine",
+        "domains": ["godot", "blender", "filesystem"],
+        "actions": ["verify", "test"],
+        "artifacts": ["animation", "game"],
+        "needs": ["integrity-verification", "visual-qa"],
         "signals": ["nominal"],
         "risk": "write",
         "ambiguity": "low"
       },
       "expect": {
         "classificationMode": "structured-semantic",
-        "activeExcludes": ["workshop-media-editing"],
-        "deferredExcludes": ["workshop-media-editing"]
+        "contextUsed": true,
+        "activeIncludes": ["game-animation-retarget"]
+      }
+    },
+    {
+      "name": "game-animation-retarget-positive-handmade-pose-guide",
+      "task": "We already have our water-lift animation made by hand. Use the selected load, opening, rise, orbit, control, and redirection poses to refine that animation while keeping our rig and style.",
+      "stage": "implement",
+      "sources": ["codex-local"],
+      "intent": {
+        "summary": "Refine an existing handmade game animation using selected external pose references",
+        "domains": ["blender", "godot", "filesystem"],
+        "actions": ["design", "edit", "verify"],
+        "artifacts": ["animation", "game"],
+        "needs": ["integrity-verification", "visual-qa", "scene-analysis"],
+        "signals": ["nominal", "reusable-pattern"],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": ["game-animation-retarget"]
+      }
+    },
+    {
+      "name": "game-animation-retarget-negative-video-reference-only",
+      "task": "Extract every frame from this user GIF, label the selected poses, and save the reference pack. Do not modify an animation in the game.",
+      "stage": "implement",
+      "sources": ["codex-local"],
+      "intent": {
+        "summary": "Extract and inspect poses from a user GIF without using an external animation asset",
+        "domains": ["artifacts", "filesystem"],
+        "actions": ["analyze", "review", "create"],
+        "artifacts": ["animation"],
+        "needs": ["scene-analysis", "visual-qa"],
+        "signals": ["nominal"],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": ["game-animation-retarget"],
+        "deferredExcludes": ["game-animation-retarget"],
+        "activeIncludes": ["motion-reference-pack"]
       }
     },
     {
@@ -7563,6 +7872,360 @@
       }
     },
     {
+      "name": "jev-decision-systems-positive-computer-use",
+      "task": "Diseñá un loop con Jev para que el runtime de escritorio traduzca UI Automation y regiones visuales a acciones acotadas, mida confidence y no robe foco mientras hacemos QA",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Diseñar un sistema Jev de computer-use acotado con observación semántica, visual fallback y no-disturb",
+        "domains": [
+          "browser",
+          "coding",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "design",
+          "test",
+          "analyze"
+        ],
+        "artifacts": [
+          "ui",
+          "mcp",
+          "project"
+        ],
+        "needs": [
+          "visual-qa",
+          "performance",
+          "integrity-verification"
+        ],
+        "signals": [
+          "tool-chain-needed"
+        ],
+        "risk": "write",
+        "ambiguity": "medium"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "jev-decision-systems"
+        ]
+      }
+    },
+    {
+      "name": "jev-decision-systems-positive-benchmark-feedback",
+      "task": "Armemos benchmarks para el loop Jev separando candidate recall, selección, calibration, abstention, latencia, focus steals y outcome verificado; quiero replay y feedback estructurado por decisión",
+      "stage": "implement",
+      "completedPhases": [
+        "discovery"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Instrumentar y benchmarkear un sistema de decisiones Jev con outcomes verificables",
+        "domains": [
+          "coding",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "test",
+          "debug",
+          "optimize",
+          "analyze"
+        ],
+        "artifacts": [
+          "code",
+          "project"
+        ],
+        "needs": [
+          "performance",
+          "integrity-verification",
+          "unit-tests"
+        ],
+        "signals": [
+          "tool-chain-needed"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "jev-decision-systems"
+        ]
+      }
+    },
+    {
+      "name": "jev-decision-systems-positive-evidence-provenance-integration",
+      "task": "Integra Jev como juez semantico acotado sobre candidatos de capacidades extraidos del repositorio; cada decision debe conservar evidence refs y provenance, abstenerse fuera del candidate set y degradar sin romper el analisis determinista",
+      "stage": "implement",
+      "completedPhases": [
+        "discovery"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Integrar Jev como juez semantico acotado sobre candidatos y evidencia con provenance verificable",
+        "domains": [
+          "coding",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "design",
+          "create",
+          "test",
+          "analyze"
+        ],
+        "artifacts": [
+          "code",
+          "project"
+        ],
+        "needs": [
+          "integrity-verification",
+          "performance"
+        ],
+        "signals": [
+          "tool-chain-needed"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "jev-decision-systems"
+        ]
+      }
+    },
+    {
+      "name": "jev-decision-systems-positive-bulk-parallel-semantic-judgments",
+      "task": "Tengo 500 candidatos independientes ya recuperados y quiero que Jev los clasifique por responsabilidad y riesgo con el menor tiempo posible, usando cache, dedupe y paralelismo acotado con límites de concurrencia, costo y fallos",
+      "stage": "implement",
+      "completedPhases": [
+        "discovery"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Ejecutar un workload Jev masivo de juicios semánticos independientes con paralelismo, cache, budgets y circuit breaker",
+        "domains": [
+          "coding",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "design",
+          "optimize",
+          "analyze",
+          "test"
+        ],
+        "artifacts": [
+          "code",
+          "project"
+        ],
+        "needs": [
+          "performance",
+          "integrity-verification"
+        ],
+        "signals": [
+          "tool-chain-needed"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "jev-decision-systems"
+        ]
+      }
+    },
+    {
+      "name": "jev-decision-systems-negative-generic-parallel-processing",
+      "task": "Optimiza este procesamiento de 500 objetos JSON con Promise.all y un pool de concurrencia; no hay IA, Jev ni decisiones semánticas",
+      "stage": "implement",
+      "completedPhases": [
+        "discovery"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Optimizar procesamiento paralelo determinista de objetos JSON",
+        "domains": [
+          "coding"
+        ],
+        "actions": [
+          "optimize",
+          "test"
+        ],
+        "artifacts": [
+          "code",
+          "project"
+        ],
+        "needs": [
+          "performance"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "jev-decision-systems"
+        ],
+        "deferredExcludes": [
+          "jev-decision-systems"
+        ]
+      }
+    },
+    {
+      "name": "jev-decision-systems-negative-generic-typesafe-api",
+      "task": "Integrá TypeSafe Jev para clasificar tickets con Choice, siguiendo la documentación del SDK y agregando un test sencillo; no necesitamos un loop de acciones, visual QA ni benchmarks",
+      "stage": "implement",
+      "completedPhases": [
+        "discovery"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Implementar una integración TypeSafe Jev básica con Choice y SDK oficial",
+        "domains": [
+          "coding"
+        ],
+        "actions": [
+          "design",
+          "create",
+          "test"
+        ],
+        "artifacts": [
+          "code",
+          "project"
+        ],
+        "needs": [
+          "official-docs",
+          "unit-tests"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "typesafe-ai"
+        ],
+        "activeExcludes": [
+          "jev-decision-systems"
+        ],
+        "deferredExcludes": [
+          "jev-decision-systems"
+        ]
+      }
+    },
+    {
+      "name": "jev-decision-systems-negative-exact-lsp-fact",
+      "task": "Decime qué referencias exactas tiene este símbolo usando LSP y verificá si está muerto; no uses Jev para decidir un hecho que el lenguaje puede probar",
+      "stage": "verify",
+      "completedPhases": [
+        "discovery",
+        "implementation"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Verificar referencias exactas y dead code con evidencia LSP determinista",
+        "domains": [
+          "coding"
+        ],
+        "actions": [
+          "analyze",
+          "verify"
+        ],
+        "artifacts": [
+          "code",
+          "project"
+        ],
+        "needs": [
+          "integrity-verification",
+          "unit-tests"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "jev-decision-systems"
+        ],
+        "deferredExcludes": [
+          "jev-decision-systems"
+        ]
+      }
+    },
+    {
+      "name": "jev-decision-systems-continuation-benchmark",
+      "task": "Dale, continuá con el siguiente benchmark y agregá los hard negatives",
+      "taskVariants": [
+        "Seguí con el replay de decisiones Jev",
+        "Continuá midiendo el siguiente estrato del loop"
+      ],
+      "context": "Estamos construyendo un loop Jev acotado para computer-use. Ya definimos observación semántica, candidate/action space, BLOCKED/NO_MATCH, freshness, executor y verifier. El siguiente gate es ampliar el benchmark con hard negatives y registrar candidate recall, distribución, margin, disturbancia y outcome independiente.",
+      "stage": "resume",
+      "completedPhases": [
+        "discovery"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar los benchmarks y hard negatives de un sistema Jev acotado",
+        "domains": [
+          "coding",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "test",
+          "analyze",
+          "optimize"
+        ],
+        "artifacts": [
+          "ui",
+          "project",
+          "code"
+        ],
+        "needs": [
+          "performance",
+          "integrity-verification"
+        ],
+        "signals": [
+          "tool-chain-needed"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "jev-decision-systems"
+        ]
+      }
+    },
+    {
       "name": "typesafe-ai-positive-jev-integration",
       "task": "Integrá TypeSafe Jev en esta app para clasificar tickets con una Choice tipada, leer la documentación actual y agregar tests",
       "stage": "implement",
@@ -7646,6 +8309,137 @@
         "classificationMode": "structured-semantic",
         "activeExcludes": [
           "typesafe-ai"
+        ]
+      }
+    },
+    {
+      "name": "blender-pose-authoring-positive-stylized-stance",
+      "task": "Tomá el frame 24 de esta Action del maniquí en Blender, creá una candidata aparte y hacé una postura más femenina con cadera, torso, manos relajadas y un pie un poco adelante. No toques la Action fuente y revisala desde varios ángulos.",
+      "stage": "implement",
+      "completedPhases": [
+        "discovery",
+        "safety"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Crear una variante de pose estilizada no destructiva sobre un rig Blender y verificarla visualmente",
+        "domains": [
+          "blender"
+        ],
+        "actions": [
+          "create",
+          "edit",
+          "review"
+        ],
+        "artifacts": [
+          "animation",
+          "model-3d"
+        ],
+        "needs": [
+          "safe-editing",
+          "visual-qa",
+          "scene-analysis"
+        ],
+        "signals": [
+          "reusable-pattern"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "blender-session-coordination",
+          "blender-pose-authoring"
+        ]
+      }
+    },
+    {
+      "name": "blender-pose-authoring-negative-mesh-modeling-only",
+      "task": "Modelá una taza low-poly en Blender, ajustá la malla y materiales y sacá una captura. No hay armature, Action ni pose de personaje.",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Editar una malla Blender y sus materiales sin rig ni pose",
+        "domains": [
+          "blender"
+        ],
+        "actions": [
+          "create",
+          "edit",
+          "review"
+        ],
+        "artifacts": [
+          "model-3d",
+          "asset"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "blender-pose-authoring"
+        ],
+        "deferredExcludes": [
+          "blender-pose-authoring"
+        ]
+      }
+    },
+    {
+      "name": "blender-pose-authoring-continuation-final-review",
+      "task": "Seguí con la pose: revisá el pie contra el piso, compará contra la fuente y guardá el snapshot final sin sobrescribir el blend sucio.",
+      "context": "La candidate Action ya existe sobre el mismo rig Blender y la fuente quedó intacta. Ya se aplicaron deltas de pelvis/torso, manos semánticas e IK de pierna; falta el gate final multiángulo, comparación y persistencia segura.",
+      "stage": "verify",
+      "completedPhases": [
+        "discovery",
+        "safety",
+        "implementation"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar la verificación y persistencia segura de una pose candidata Blender ya creada",
+        "domains": [
+          "blender"
+        ],
+        "actions": [
+          "review",
+          "verify",
+          "save"
+        ],
+        "artifacts": [
+          "animation",
+          "model-3d"
+        ],
+        "needs": [
+          "visual-qa",
+          "integrity-verification",
+          "safe-editing"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "blender-pose-authoring",
+          "blender-visual-review"
         ]
       }
     }

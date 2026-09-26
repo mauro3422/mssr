@@ -251,6 +251,50 @@
       "priority": 86,
       "activation": "on-demand"
     },
+    "blender-pose-authoring": {
+      "phase": "implementation",
+      "coversPhases": [
+        "verification",
+        "persistence"
+      ],
+      "domains": [
+        "blender"
+      ],
+      "actions": [
+        "create",
+        "edit",
+        "review",
+        "verify",
+        "save"
+      ],
+      "artifacts": [
+        "animation"
+      ],
+      "needs": [
+        "safe-editing",
+        "visual-qa",
+        "scene-analysis",
+        "integrity-verification"
+      ],
+      "requires": [
+        "blender-session-coordination"
+      ],
+      "complements": [
+        "blender-visual-review",
+        "blender-object-iteration"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "mesh material or lighting work with no rig pose or Action authoring",
+        "reference-only visual review with no pose mutation",
+        "retarget an external animation clip without pose-authoring intent"
+      ],
+      "requireActionMatch": true,
+      "requireArtifactMatch": true,
+      "requireNeedMatch": true,
+      "priority": 94,
+      "activation": "on-demand"
+    },
     "blender-reference-pipeline": {
       "phase": "implementation",
       "coversPhases": [
@@ -2089,6 +2133,50 @@
       "priority": 92,
       "activation": "on-demand"
     },
+    "motion-reference-pack": {
+      "phase": "implementation",
+      "coversPhases": ["discovery", "verification", "persistence"],
+      "domains": ["artifacts", "filesystem"],
+      "actions": ["analyze", "review", "verify", "document", "create"],
+      "artifacts": ["animation"],
+      "needs": ["scene-analysis"],
+      "signals": ["nominal", "uncertainty", "reusable-pattern", "manual-workaround"],
+      "requires": [],
+      "complements": ["visual-evidence-audit", "visual-evidence-cataloging"],
+      "excludes": [],
+      "negativeIntents": [
+        "edit a promotional video or GIF for publication",
+        "review a single static image without temporal frames",
+        "author a new character animation without a source clip"
+      ],
+      "requireNeedMatch": true,
+      "requireActionMatch": true,
+      "requireArtifactMatch": true,
+      "priority": 91,
+      "activation": "on-demand"
+    },
+    "game-animation-retarget": {
+      "phase": "implementation",
+      "coversPhases": ["discovery", "verification", "persistence"],
+      "domains": ["blender", "godot", "filesystem"],
+      "actions": ["discover", "design", "edit", "verify", "document"],
+      "artifacts": ["animation"],
+      "needs": ["integrity-verification", "visual-qa", "scene-analysis"],
+      "signals": ["nominal", "uncertainty", "reusable-pattern", "manual-workaround"],
+      "requires": [],
+      "complements": ["motion-reference-pack", "blender-visual-review", "godot-visual-review"],
+      "excludes": [],
+      "negativeIntents": [
+        "analyze a user video or GIF as pose reference without importing its animation data",
+        "edit a promotional video or GIF",
+        "author a new animation entirely by hand with no external clip to adapt"
+      ],
+      "requireActionMatch": true,
+      "requireArtifactMatch": true,
+      "requireNeedMatch": true,
+      "priority": 93,
+      "activation": "on-demand"
+    },
     "mauroprime-bridge-tool-authoring": {
       "phase": "implementation",
       "coversPhases": [
@@ -2566,6 +2654,68 @@
       "requireArtifactMatch": true,
       "requireActionMatch": true,
       "priority": 97,
+      "activation": "on-demand"
+    },
+    "jev-decision-systems": {
+      "phase": "discovery",
+      "coversPhases": [
+        "discovery",
+        "implementation",
+        "verification"
+      ],
+      "domains": [
+        "coding",
+        "browser",
+        "godot",
+        "agent-orchestration"
+      ],
+      "actions": [
+        "discover",
+        "design",
+        "create",
+        "review",
+        "verify",
+        "test",
+        "debug",
+        "optimize",
+        "analyze"
+      ],
+      "artifacts": [
+        "code",
+        "game",
+        "project",
+        "ui",
+        "mcp"
+      ],
+      "needs": [
+        "visual-qa",
+        "performance",
+        "integrity-verification",
+        "playtest",
+        "component-reuse"
+      ],
+      "signals": [
+        "capability-discovery-needed",
+        "tool-chain-needed"
+      ],
+      "requires": [],
+      "complements": [
+        "typesafe-ai",
+        "systematic-debugging",
+        "complex-system-design"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "generic TypeSafe API or SDK usage without an applied Jev decision system",
+        "generic AI discussion without a bounded Jev action or candidate loop",
+        "exact facts already owned by code LSP runtime policy or a deterministic database",
+        "open-ended generation task with no bounded candidate or action space"
+      ],
+      "requireNeedMatch": true,
+      "requireActionMatch": true,
+      "requireArtifactMatch": true,
+      "requireSignalMatch": true,
+      "priority": 88,
       "activation": "on-demand"
     },
     "typesafe-ai": {

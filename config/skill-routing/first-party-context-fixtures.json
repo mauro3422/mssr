@@ -39,6 +39,26 @@
       "maxChars": 6500
     },
     {
+      "id": "deferred-technical-debt-close",
+      "names": [
+        "skill-maintenance-loop"
+      ],
+      "stage": "close",
+      "actions": [
+        "document"
+      ],
+      "artifacts": [
+        "repository"
+      ],
+      "signals": [
+        "warning-observed"
+      ],
+      "includes": [
+        "deferred-technical-debt"
+      ],
+      "maxChars": 12000
+    },
+    {
       "id": "observability-audit-no-recovery",
       "names": [
         "mssr-observability-maintenance"

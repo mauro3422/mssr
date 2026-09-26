@@ -362,6 +362,72 @@
       "maxChars": 4000
     },
     {
+      "id": "mssr-project-document-reference-lifecycle",
+      "kind": "context",
+      "topic": "reference",
+      "area": "project-context",
+      "description": "Project-document discovery, reference-on-miss, explicit forward registration, and freshness boundaries.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md"
+      },
+      "domains": [
+        "skill-system",
+        "agent-orchestration",
+        "filesystem"
+      ],
+      "actions": [
+        "discover",
+        "review",
+        "document",
+        "maintain",
+        "recover"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document"
+      ],
+      "needs": [
+        "integrity-verification",
+        "cross-agent",
+        "history-recovery"
+      ],
+      "priority": 82,
+      "maxChars": 4600
+    },
+    {
+      "id": "mssr-project-document-index",
+      "kind": "context",
+      "topic": "reference",
+      "area": "project-context",
+      "description": "Reviewed pointers to durable project documents that remain external to bounded MSSR context payloads.",
+      "source": {
+        "path": ".mssr/knowledge/reference/project-document-index.md"
+      },
+      "domains": [
+        "skill-system",
+        "agent-orchestration",
+        "filesystem"
+      ],
+      "actions": [
+        "discover",
+        "review",
+        "analyze",
+        "recover"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document"
+      ],
+      "needs": [
+        "history-recovery",
+        "cross-agent"
+      ],
+      "priority": 68,
+      "maxChars": 1200
+    },
+    {
       "id": "mssr-canonical-project-context-cutover",
       "kind": "memory",
       "topic": "decision",
@@ -559,6 +625,45 @@
       ],
       "priority": 92,
       "maxChars": 1800
+    },
+    {
+      "id": "mssr-human-task-identity",
+      "kind": "memory",
+      "topic": "decision",
+      "area": "observability",
+      "description": "Explicit stable human-task identity and trace-lineage correlation boundary above trace lifecycle.",
+      "source": {
+        "path": ".mssr/knowledge/decision/human-task-identity.md"
+      },
+      "domains": [
+        "agent-orchestration",
+        "skill-system",
+        "coding"
+      ],
+      "actions": [
+        "coordinate",
+        "recover",
+        "verify",
+        "maintain"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "mcp",
+        "code"
+      ],
+      "needs": [
+        "history-recovery",
+        "cross-agent",
+        "integrity-verification"
+      ],
+      "signals": [
+        "recovery-needed",
+        "reusable-pattern",
+        "replan-needed"
+      ],
+      "priority": 92,
+      "maxChars": 1400
     }
   ]
 }

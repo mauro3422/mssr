@@ -257,6 +257,36 @@ const reselectReceipt = reselect.state.deliveries.find((item) => item.messageId 
 assert.equal(reselectReceipt?.selectedCount, 2);
 assert.equal(reselectReceipt?.lastSelectedAt, now);
 assert.equal(reselect.state.pending.length, 3);
+
+// --- Re-selection count remains valid beyond the old 255 ceiling and saturates safely ---
+
+const count255State = mssrContextInboxStateSchema.parse({
+  ...selected.state,
+  deliveries: selected.state.deliveries.map((item) => item.messageId === "sel-a"
+    ? { ...item, selectedCount: 255 }
+    : item),
+});
+const count256Selection = selectMssrContextInboxMessages(count255State, {
+  now: "2026-08-13T12:00:00.500Z",
+  intent,
+  stage: "implement",
+});
+assert.equal(count256Selection.state.deliveries.find((item) => item.messageId === "sel-a")?.selectedCount, 256);
+assert.equal(mssrContextInboxStateSchema.safeParse(count256Selection.state).success, true);
+
+const maxSafeCountState = mssrContextInboxStateSchema.parse({
+  ...selected.state,
+  deliveries: selected.state.deliveries.map((item) => item.messageId === "sel-a"
+    ? { ...item, selectedCount: Number.MAX_SAFE_INTEGER }
+    : item),
+});
+const saturatedCountSelection = selectMssrContextInboxMessages(maxSafeCountState, {
+  now: "2026-08-13T12:00:00.750Z",
+  intent,
+  stage: "implement",
+});
+assert.equal(saturatedCountSelection.state.deliveries.find((item) => item.messageId === "sel-a")?.selectedCount, Number.MAX_SAFE_INTEGER);
+assert.equal(mssrContextInboxStateSchema.safeParse(saturatedCountSelection.state).success, true);
 const updatedSelA = message({
   id: "sel-a",
   dedupeKey: "sel-a-key",

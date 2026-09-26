@@ -1,12 +1,11 @@
 # MSSR project state
 
 ## Current release
-
-MSSR `0.2.72` is the current source release candidate for the second portable R4 Deterministic Semantic Consistency slice on top of the verified R1/R2/R3 foundation. Gates B-F now add typed declared/derived relations, structured state/version/owner/decision/package-version extractors, temporal/scope-aware relation comparison, bounded declared/exact/TF-IDF candidate retrieval, and real `roadmap-contradiction` / `unresolved-reference` Context Message producers. Native/Codex/OpenCode expose the same I/O-free semantic evaluation/retrieval/message/shadow contracts. Candidate similarity and optional model output remain non-authoritative; only deterministic structured evidence can become PROVEN current-truth evidence. Live Bridge `0.6.139` already consumes exact MSSR `0.2.71`; adoption of `0.2.72` remains a separate host gate and is not inferred from source parity.
+MSSR `0.2.77` is the current verified local source release candidate. It preserves the verified R1/R2/R3 and portable R4 baseline, the 0.2.74 project-document reference lifecycle, the 0.2.75 delivery-receipt ceiling fix, and the 0.2.76 `blender-pose-authoring` routing release while adding explicit stable human-task identity above traces. Hosts may supply `taskKey` plus optional `parentTraceId` / `supersedesTraceId`; portable MSSR keeps those fields additive and immutable per trace, exposes them through route/status/telemetry, and does not infer them from prose, workflow similarity, recency, or inactivity. Trace lineage is correlation evidence only and never closes/cancels another trace or invents task completion. The final `npm run release:gate` passes after preserving a plain structural MCP schema for `tools/list` and applying relational task-lineage refinement at handler parse time. Release receipt `.mssr/runtime/releases/0.2.77.json` identifies `mauroprime-mssr-0.2.77.tgz` as `pkg:0.2.77#32f2fd9d` (788977 bytes, SHA-256 `32f2fd9d86db8a9479efe4fad89eb7a812d13ac76ebf238834c1eff8df191317`). Bridge `0.6.141` has now completed the separate packaged-host adoption gate for MSSR `0.2.77`: the live Human Cockpit consumes explicit task identity/lineage and preserves raw trace provenance. Future MSSR source releases still require their own package-byte parity and live host readback before being treated as adopted.
 
 ## Active execution priority — 2026-09-19
 
-The near-term reliability program remains explicit in `ROADMAP.md`. **R1 Trace Identity Integrity, R2 Automatic Lifecycle Coverage, and R3 Context Economy v2 are complete end-to-end.** R4 ADR 0006 is now in its host-adoption/measurement phase: portable Gates A-F are implemented; native/Codex/OpenCode parity is covered; Gate G still requires the separate Bridge `0.2.72` adoption plus longitudinal real-incident measurement. Gate H has only the safe shadow-evidence contract: no NLI/cross-encoder has been promoted, validated, or granted routing/notice/write authority. Detailed current-truth policy is indexed as `mssr-semantic-consistency-decision`; relation/retrieval/message/shadow policy is indexed separately as `mssr-semantic-relations-retrieval-decision`. Project Context Health is `ok` within existing budgets.
+The near-term reliability program remains explicit in `ROADMAP.md`. **R1 Trace Identity Integrity, R2 Automatic Lifecycle Coverage, and R3 Context Economy v2 are complete end-to-end.** R4 ADR 0006 remains in its longitudinal measurement phase: portable Gates A-F and Bridge packaged adoption of the 0.2.72 baseline are complete, while representative precision/recall, abstention/noise and context-cost evidence must still accumulate. `0.2.73` does not broaden R4 semantic authority; it is a routing precision release for the applied Jev decision-system skill. Gate H remains shadow-only: no NLI/cross-encoder has been promoted, validated, or granted routing/notice/write authority. Detailed current-truth policy is indexed as `mssr-semantic-consistency-decision`; relation/retrieval/message/shadow policy is indexed separately as `mssr-semantic-relations-retrieval-decision`. Project Context Health is `ok` within existing budgets.
 
 ## Machine-readable current-state claims
 
@@ -14,19 +13,19 @@ The near-term reliability program remains explicit in `ROADMAP.md`. **R1 Trace I
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.72 -->
-<!-- mssr-version:bridge.live=0.6.139 -->
-<!-- mssr-version:bridge.mssr=0.2.71 -->
+<!-- mssr-version:mssr.source=0.2.77 -->
+<!-- mssr-version:bridge.live=0.6.141 -->
+<!-- mssr-version:bridge.mssr=0.2.77 -->
 <!-- mssr-owner:semantic.consistency=mssr -->
 <!-- mssr-decision:adr.0006=r4-bf-portable -->
 
 ## Learning dataset state
 
-Strict `learning-digest-v1` collection remains observe-only with `routingInfluence=false`. MSSR `0.2.72` does not change learning influence: dataset-quality audit, replay/calibration and shadow evaluation remain separate, and no learned score or R4 model-shadow observation is consumed by routing, lifecycle activation, context selection, semantic-consistency truth, or direct notice authority.
+Strict `learning-digest-v1` collection remains observe-only with `routingInfluence=false`. MSSR `0.2.73` does not change learning influence: dataset-quality audit, replay/calibration and shadow evaluation remain separate, and no learned score or R4 model-shadow observation is consumed by routing, lifecycle activation, context selection, semantic-consistency truth, or direct notice authority.
 
 ## Core skill package state
 
-The five first-party skill package roots and routing metadata remain unchanged in `0.2.72`; this release changes portable semantic-consistency contracts/tests, not skill activation metadata. Learned activation influence and permission semantics remain unchanged. Live Bridge `0.6.139` consumes exact MSSR `0.2.71`; portable R4 `0.2.72` is released independently and does not imply Bridge host adoption until the separate Bridge gate passes.
+The five first-party MSSR skill package roots remain unchanged in `0.2.77`. Routing metadata from `0.2.76` remains intact, including `jev-decision-systems` and `blender-pose-authoring`; `0.2.77` changes the portable trace-correlation contract instead of skill activation. Explicit `taskKey`/lineage metadata is observable only and does not change learned activation influence, permissions, or lifecycle completion semantics. Live Bridge `0.6.141` remains a separate consuming-host adoption gate; source `0.2.77` must not be treated as live until package bytes and route/bootstrap readback prove it.
 
 ## Context-economy follow-up
 

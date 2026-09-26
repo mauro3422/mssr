@@ -21,7 +21,12 @@ import {
   type MssrTraceLifecycleState,
   type MssrTraceWorkingMemory,
 } from "./trace-contract.js";
-import { evaluateMssrTraceOwnerCompatibility, type MssrTraceOwnerIdentity } from "./trace-identity.js";
+import {
+  evaluateMssrTraceOwnerCompatibility,
+  evaluateMssrTraceTaskCompatibility,
+  type MssrTraceOwnerIdentity,
+  type MssrTraceTaskIdentity,
+} from "./trace-identity.js";
 import {
   createMssrTelemetryEnvelope,
   hashMssrTelemetryTask,
@@ -114,6 +119,7 @@ export class MssrAdapter implements MssrProjectControlAdapter {
   private initialized = false;
   private readonly traces = new Map<string, MssrTraceLifecycleState>();
   private readonly traceOwners = new Map<string, Required<MssrTraceOwnerIdentity>>();
+  private readonly traceTasks = new Map<string, Required<MssrTraceTaskIdentity>>();
   private readonly workingMemory = new Map<string, MssrTraceWorkingMemory>();
   private readonly instanceId: string;
   private readonly buildDistDir: string;
@@ -192,6 +198,22 @@ export class MssrAdapter implements MssrProjectControlAdapter {
     return compatibility;
   }
 
+
+  private bindTraceTask(traceId: string, input: MssrRouteInput) {
+    const requested = {
+      taskKey: input.taskKey?.trim() || null,
+      parentTraceId: input.parentTraceId?.trim() || null,
+      supersedesTraceId: input.supersedesTraceId?.trim() || null,
+    };
+    const compatibility = evaluateMssrTraceTaskCompatibility(this.traceTasks.get(traceId), requested);
+    if (!compatibility.compatible) {
+      const fields = compatibility.mismatchFields.join(",");
+      throw new Error(`mssr-trace-task-mismatch: trace ${traceId} is already bound to another ${fields}; create a new trace or preserve the original task relation instead of migrating it.`);
+    }
+    this.traceTasks.set(traceId, compatibility.bound);
+    return compatibility;
+  }
+
   private profile(input: MssrRouteInput) {
     return {
       model: input.model ?? this.options.model,
@@ -246,6 +268,7 @@ export class MssrAdapter implements MssrProjectControlAdapter {
     return {
       state,
       owner: this.traceOwners.get(traceId) ?? null,
+      taskIdentity: this.traceTasks.get(traceId) ?? null,
       closure: state ? getMssrTraceClosureState(state) : null,
       workingMemory: this.workingMemory.get(traceId) ?? null,
     };
@@ -329,6 +352,7 @@ export class MssrAdapter implements MssrProjectControlAdapter {
     const stage = input.stage ?? "start";
     const traceId = input.traceId ?? this.newTraceId();
     await this.bindTraceOwner(traceId, input);
+    this.bindTraceTask(traceId, input);
     const plan = await planSkillRoute({
       task: input.task,
       context: input.context,
@@ -361,6 +385,9 @@ export class MssrAdapter implements MssrProjectControlAdapter {
     const observedPlan = {
       ...plan,
       workflowKey: input.workflowKey,
+      taskKey: input.taskKey,
+      parentTraceId: input.parentTraceId,
+      supersedesTraceId: input.supersedesTraceId,
       agentProfile: this.profile(input),
       ...(host
         ? {

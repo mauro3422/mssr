@@ -67,7 +67,14 @@ minimal contract transversal and route the larger skill only for telemetry diagn
 
 Repeated friction, manual workarounds, missed required loads, user corrections,
 and failed phase gates are bounded evidence, not permission for silent rewriting.
-Promote confirmed patterns through a visible maintenance task with snapshot, diff,
+When concrete technical debt is discovered but intentionally deferred, do not
+opportunistically widen the current task just to fix it. Before the applicable
+persistence/maintenance close, record it in the project's canonical debt/backlog
+surface with observable evidence, affected surface, impact, defer reason, next
+gate/trigger, and closure condition. Keep unproven suspicions labeled
+`review-needed`; an ephemeral chat/trace note is not durable debt capture, and a
+blocking correctness/safety issue must not be hidden as future debt. Promote
+confirmed patterns through a visible maintenance task with snapshot, diff,
 tests, and review: project regression first, owning skill when cross-project
 procedure changes, and MSSR metadata/fixtures when activation semantics change.
 

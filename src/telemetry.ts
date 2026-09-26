@@ -87,6 +87,9 @@ const routeTelemetrySchema = z.object({
     stage: z.enum(SKILL_STAGES),
     classificationMode: z.string().max(80),
     workflowKey: z.string().max(160).nullable().optional(),
+    taskKey: z.string().max(160).nullable().optional(),
+    parentTraceId: z.string().max(128).nullable().optional(),
+    supersedesTraceId: z.string().max(128).nullable().optional(),
     agentProfile: z.object({
       model: z.string().max(80),
       reasoningEffort: reasoningEffortSchema,
@@ -276,6 +279,9 @@ export function routeTelemetrySummary(route: Record<string, unknown>) {
     stage: route.stage,
     classificationMode: route.classificationMode,
     workflowKey: typeof route.workflowKey === "string" ? route.workflowKey : null,
+    taskKey: typeof route.taskKey === "string" ? route.taskKey : null,
+    parentTraceId: typeof route.parentTraceId === "string" ? route.parentTraceId : null,
+    supersedesTraceId: typeof route.supersedesTraceId === "string" ? route.supersedesTraceId : null,
     agentProfile: {
       model: typeof profile.model === "string" ? profile.model : "unknown",
       reasoningEffort: typeof profile.reasoningEffort === "string" ? profile.reasoningEffort : "unknown",

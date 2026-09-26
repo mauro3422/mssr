@@ -1,7 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
-import { mssrHostRouteInputSchema } from "./host-adapter-contract.js";
+import { mssrHostRouteInputObjectSchema, mssrHostRouteInputSchema } from "./host-adapter-contract.js";
 import { CodexMssrAdapter } from "./codex-adapter.js";
 import { createMssrRegistryFromEnvironment } from "./provider-config.js";
 import { createMssrTelemetrySinkFromEnvironment, mssrHostCheckpointSchema } from "./telemetry.js";
@@ -18,7 +18,7 @@ function response(value: unknown) {
   };
 }
 
-const routeInput = mssrHostRouteInputSchema;
+const routeInput = mssrHostRouteInputObjectSchema;
 
 const contextAckInputSchema = z.object({
   projectRoot: z.string().min(1).max(4096),
@@ -37,12 +37,12 @@ export function createCodexMssrMcpServer(adapter = new CodexMssrAdapter()) {
   server.registerTool("skill_route_plan", {
     description: "Plan an MSSR route for Codex-local without MauroPrime Bridge.",
     inputSchema: routeInput,
-  }, async (args) => response(await adapter.route(args)));
+  }, async (args) => response(await adapter.route(mssrHostRouteInputSchema.parse(args))));
 
   server.registerTool("skill_bootstrap", {
     description: "Plan an MSSR route and load active local Codex skills without MauroPrime Bridge.",
     inputSchema: routeInput,
-  }, async (args) => response(await adapter.bootstrap(args)));
+  }, async (args) => response(await adapter.bootstrap(mssrHostRouteInputSchema.parse(args))));
 
   server.registerTool("mssr_trace_record", {
     description: "Record one Codex-local MSSR lifecycle checkpoint in adapter-local trace state.",

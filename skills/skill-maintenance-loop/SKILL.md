@@ -10,33 +10,31 @@ skill to one project, conversation, or artifact.
 
 ## Core loop
 
-Freeze observable evidence; identify the canonical owner; reproduce the smallest
-case and a nearby nominal case; choose the smallest durable correction; verify
-source, runtime, experience, persistence, and transport separately; then read
-back. Classify the result as project-local, skill improvement, routing/fixture,
-script/tool/guide, context/handoff, new-skill candidate, or insufficient
-evidence.
+Freeze evidence; identify the canonical owner; reproduce the smallest case and
+a nearby nominal; choose the smallest durable correction; verify source,
+runtime, experience, persistence, and transport separately, then read back.
+Classify as project-local, skill, routing/fixture, script/tool/guide,
+context/handoff, new-skill candidate, or insufficient evidence.
 
-Metrics and telemetry are evidence, never mutation authority. Do not retain raw
-prompts, transcripts, secrets, or private reasoning. Learning remains
-`observe-only` with `routingInfluence=false` until the independently evidenced
-dataset, replay/holdout, calibration, shadow, feature-flag, and rollback gates
-produce a human-review proposal.
+Metrics/telemetry are evidence, never mutation authority; retain no raw prompts,
+transcripts, secrets, or private reasoning. Learning stays `observe-only` with
+`routingInfluence=false` until dataset, replay/holdout, calibration, shadow,
+feature-flag, and rollback gates are independently evidenced for human review.
 
-Scale the review to the finding. With no reusable change, record a bounded
-`reviewed-none` decision and complete the applicable maintenance checkpoint.
-An audit does not require a proposal file, publication, restart, or a new skill.
-If a candidate exists, load only its owner's procedure and verify that change.
+Scale review to the finding. With no reusable change, record `reviewed-none`
+and complete maintenance. Deferred concrete debt goes in the project debt/backlog
+with evidence, impact, reason, next gate, and closure condition; suspicion stays
+`review-needed`. Do not derail the task. Audits need no proposal, publication,
+restart, or new skill; load and verify only the candidate owner's procedure.
 
 ## Reference map
 
 Start with [learning review](references/learning-review-promotion.md) to decide
 whether any proposal is warranted, or [ownership](references/system-map.md)
-when the owner is unresolved. Use the indexed references for that owner only: audit, routing, provider,
-fixtures, publication, incident, handoff, system map, friction patterns, memory
-modules, evolution, learning promotion, architecture consistency, operational
-automation, and project-context modularization. Every reference is linked in
-`context-modules.json`; native/manual callers use its direct paths.
+when the owner is unresolved. Then load only the indexed owner reference: audit,
+routing, provider, fixtures, publication, incidents/handoff, friction, memory,
+evolution, learning, architecture, deferred debt, automation, or context
+modularization. `context-modules.json` owns every direct path.
 
 ## Boundaries and exit
 

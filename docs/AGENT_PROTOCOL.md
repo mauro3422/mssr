@@ -64,6 +64,14 @@ inbox, and it enqueues nothing new on its own. Bridge adapter delivery is still
 pending and must consume a packaged artifact before it can expose this plane.
 
 At `verify`, `persist`, `close`, `resume`, a material failure, or a newly discovered capability need, re-plan the active trace and re-select both project modules and skill modules. Already loaded core context need not be duplicated when the host can prove it is still present. A `trace-contract-v1` adapter may keep local session continuity and recover a trace across stateless calls only when one compatible candidate exists. Ambiguity, restart, cross-process resume, and deliberate selection require an explicit ID. MSSR cannot activate itself in a host that never calls it.
+
+### Stable human-task identity above traces
+
+A host may attach an explicit `taskKey` to route/bootstrap input when it already has a stable human-work identity. Optional `parentTraceId` and `supersedesTraceId` describe trace lineage inside that task. MSSR never derives these fields from task prose, workflow names, timestamps, similarity, or inactivity, and lineage does not close, cancel, or supersede another trace by itself.
+
+Task identity is additive and immutable per trace: an unknown field may bind later, but an observed `taskKey`, `parentTraceId`, or `supersedesTraceId` cannot migrate to a different value. Relation fields require `taskKey`; a trace cannot be its own parent or supersede itself; parent and superseded trace ids must be distinct. Cross-process/history references do not require the referenced trace to exist in the current adapter because the owner may live in persisted host evidence.
+
+Hosts may use these fields to group retries, delegated child traces, parallel agents and resumed conversations while keeping every raw trace id/provenance visible. Completion remains owned by normal MSSR lifecycle/outcome evidence. `taskStatus` is intentionally not inferred by this contract; any future explicit status must come from an authorized owner rather than dashboard heuristics.
 When the host can prove them, it should also attach its observable model
 identifier and reasoning effort to every route checkpoint (for example
 `gpt-5.6-terra` with `high`). If either value is not exposed by the product,
@@ -217,7 +225,9 @@ Promotion follows an evidence ladder:
    positive, negative, and continuation fixtures;
 5. only an independently reusable objective justifies a new skill.
 
-Frequency alone must not change routing. Historical evidence proposes maintenance;
+Frequency alone must not change routing. A concrete technical-debt finding may be intentionally deferred when repairing it would widen scope, disturb a frozen evaluation, conflict with concurrent work, or require a separately reviewed migration. Deferral does not erase the finding: before the applicable persistence/maintenance close, the host records it in the project-owned debt/backlog authority with evidence, affected surface, impact, defer reason, next gate, and closure condition. Unproven suspicions remain `review-needed`, transient external failures are not promoted to project debt without supporting evidence, and blocking correctness/safety issues remain current blockers rather than future backlog.
+
+Historical evidence proposes maintenance;
 a visible task with snapshot, diff, tests, and review applies the change.
 
 ## Outcome attribution

@@ -6,6 +6,8 @@ import {
   CapabilityRegistry,
   MssrAdapter,
   evaluateMssrTraceOwnerCompatibility,
+  evaluateMssrTraceTaskCompatibility,
+  mssrHostRouteInputSchema,
 } from "../dist/index.js";
 
 const unbound = evaluateMssrTraceOwnerCompatibility(null, { project: "project-a", workflowKey: "workflow-a" });
@@ -53,6 +55,70 @@ const bothMismatch = evaluateMssrTraceOwnerCompatibility(
 );
 assert.equal(bothMismatch.compatible, false);
 assert.equal(bothMismatch.status, "project-and-workflow-mismatch");
+const taskUnbound = evaluateMssrTraceTaskCompatibility(null, {
+  taskKey: "task.context-layer",
+  parentTraceId: "trace-parent-001",
+});
+assert.equal(taskUnbound.compatible, true);
+assert.equal(taskUnbound.status, "unbound");
+assert.deepEqual(taskUnbound.bound, {
+  taskKey: "task.context-layer",
+  parentTraceId: "trace-parent-001",
+  supersedesTraceId: null,
+});
+assert.deepEqual(taskUnbound.newlyBoundFields, ["taskKey", "parentTraceId"]);
+
+const taskProgressive = evaluateMssrTraceTaskCompatibility(taskUnbound.bound, {
+  taskKey: "task.context-layer",
+  supersedesTraceId: "trace-old-001",
+});
+assert.equal(taskProgressive.compatible, true);
+assert.deepEqual(taskProgressive.bound, {
+  taskKey: "task.context-layer",
+  parentTraceId: "trace-parent-001",
+  supersedesTraceId: "trace-old-001",
+});
+assert.deepEqual(taskProgressive.newlyBoundFields, ["supersedesTraceId"]);
+
+const taskMismatch = evaluateMssrTraceTaskCompatibility(taskProgressive.bound, {
+  taskKey: "task.other",
+});
+assert.equal(taskMismatch.compatible, false);
+assert.equal(taskMismatch.status, "task-identity-mismatch");
+assert.deepEqual(taskMismatch.mismatchFields, ["taskKey"]);
+
+assert.throws(() => mssrHostRouteInputSchema.parse({
+  task: "Invalid relation fixture.",
+  intent: {
+    summary: "Invalid relation fixture.",
+    domains: ["agent-orchestration"],
+    actions: ["verify"],
+    artifacts: ["repository"],
+    needs: ["integrity-verification"],
+    signals: ["nominal"],
+    risk: "read-only",
+    ambiguity: "low",
+  },
+  traceId: "trace-self-001",
+  taskKey: "task.self",
+  parentTraceId: "trace-self-001",
+}), /cannot be its own parent/);
+
+assert.throws(() => mssrHostRouteInputSchema.parse({
+  task: "Missing task key fixture.",
+  intent: {
+    summary: "Missing task key fixture.",
+    domains: ["agent-orchestration"],
+    actions: ["verify"],
+    artifacts: ["repository"],
+    needs: ["integrity-verification"],
+    signals: ["nominal"],
+    risk: "read-only",
+    ambiguity: "low",
+  },
+  parentTraceId: "trace-parent-002",
+}), /taskKey is required/);
+
 assert.deepEqual(bothMismatch.mismatchFields, ["project", "workflowKey"]);
 
 const fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-trace-owner-"));
@@ -69,9 +135,10 @@ try {
     );
   }
 
+  const telemetryEvents = [];
   const adapter = new MssrAdapter(new CapabilityRegistry([]), {
     caller: "other",
-    telemetrySink: null,
+    telemetrySink: { async emit(event) { telemetryEvents.push(event); } },
     tracePrefix: "trace-owner-test",
   });
   const traceId = "trace-owner-test-fixed";
@@ -90,6 +157,8 @@ try {
     stage: "start",
     traceId,
     workflowKey: "workflow-a",
+    taskKey: "task.owner-integrity",
+    parentTraceId: "trace-parent-owner-test",
     projectRoot: projectA,
   };
 
@@ -99,6 +168,18 @@ try {
   const canonicalA = await fs.realpath(projectA);
   const expectedA = process.platform === "win32" ? canonicalA.toLocaleLowerCase() : canonicalA;
   assert.deepEqual(firstStatus.owner, { project: expectedA, workflowKey: "workflow-a" });
+  assert.equal(first.taskKey, "task.owner-integrity");
+  assert.equal(first.parentTraceId, "trace-parent-owner-test");
+  assert.equal(first.supersedesTraceId, undefined);
+  assert.deepEqual(firstStatus.taskIdentity, {
+    taskKey: "task.owner-integrity",
+    parentTraceId: "trace-parent-owner-test",
+    supersedesTraceId: null,
+  });
+  const routeTelemetry = telemetryEvents.find((event) => event.event?.kind === "route");
+  assert.equal(routeTelemetry?.event?.route?.taskKey, "task.owner-integrity");
+  assert.equal(routeTelemetry?.event?.route?.parentTraceId, "trace-parent-owner-test");
+  assert.equal(routeTelemetry?.event?.route?.supersedesTraceId, null);
 
   // Equivalent path spellings resolve to the same canonical project owner.
   const resumed = await adapter.route({ ...input, projectRoot: path.join(projectA, ".") });
@@ -116,6 +197,12 @@ try {
     /mssr-trace-owner-mismatch:.*workflowKey owner/,
   );
   assert.deepEqual(adapter.getTraceStatus(traceId).owner, { project: expectedA, workflowKey: "workflow-a" });
+
+  await assert.rejects(
+    () => adapter.route({ ...input, taskKey: "task.other" }),
+    /mssr-trace-task-mismatch:.*taskKey/,
+  );
+  assert.equal(adapter.getTraceStatus(traceId).taskIdentity.taskKey, "task.owner-integrity");
 } finally {
   await fs.rm(fixtureRoot, { recursive: true, force: true });
 }

@@ -3,6 +3,7 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
 import {
   CapabilityRegistry,
+  MssrAdapter,
   CodexMssrAdapter,
   OpenCodeMssrAdapter,
   createArchitectureImpactReviewedBaseline,
@@ -35,6 +36,40 @@ const clients = await Promise.all([
   connect(createCodexMssrMcpServer(new CodexMssrAdapter(emptyRegistry("codex"))), "codex"),
   connect(createOpenCodeMssrMcpServer(new OpenCodeMssrAdapter(emptyRegistry("opencode"))), "opencode"),
 ]);
+
+const taskIdentityInput = {
+  task: "Verify portable human-task identity parity across MSSR hosts.",
+  context: "Explicit task identity is correlation metadata only; it must not change lifecycle authority.",
+  intent: {
+    summary: "Verify portable task identity parity.",
+    domains: ["agent-orchestration"],
+    actions: ["verify"],
+    artifacts: ["repository"],
+    needs: ["integrity-verification", "cross-agent"],
+    signals: ["nominal"],
+    risk: "read-only",
+    ambiguity: "low",
+  },
+  stage: "start",
+  traceId: "trace-cross-host-task-identity",
+  workflowKey: "cross-host-task-identity",
+  taskKey: "task.context-layer.p2",
+  parentTraceId: "trace-parent-context-layer",
+  supersedesTraceId: "trace-retry-context-layer",
+};
+const taskIdentityAdapters = [
+  new MssrAdapter(emptyRegistry("native-task-identity"), { caller: "other" }),
+  new CodexMssrAdapter(emptyRegistry("codex-task-identity")),
+  new OpenCodeMssrAdapter(emptyRegistry("opencode-task-identity")),
+];
+const taskIdentityRoutes = await Promise.all(taskIdentityAdapters.map((adapter) => adapter.route(taskIdentityInput)));
+for (const [index, route] of taskIdentityRoutes.entries()) {
+  assert.equal(route.taskKey, taskIdentityInput.taskKey);
+  assert.equal(route.parentTraceId, taskIdentityInput.parentTraceId);
+  assert.equal(route.supersedesTraceId, taskIdentityInput.supersedesTraceId);
+  assert.equal(route.traceId, taskIdentityInput.traceId);
+  assert.equal(taskIdentityAdapters[index].getTraceStatus(taskIdentityInput.traceId).taskIdentity.taskKey, taskIdentityInput.taskKey);
+}
 
 const architectureManifest = {
   schemaVersion: 1,

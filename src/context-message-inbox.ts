@@ -45,7 +45,7 @@ export type MssrContextInboxEntry = z.infer<typeof mssrContextInboxEntrySchema>;
 export const mssrContextDeliveryReceiptSchema = z.object({
   messageId: boundedId,
   messageKind: z.enum(MSSR_CONTEXT_MESSAGE_KINDS),
-  selectedCount: z.number().int().min(1).max(255),
+  selectedCount: z.number().int().min(1).max(Number.MAX_SAFE_INTEGER),
   firstSelectedAt: timestamp,
   lastSelectedAt: timestamp,
   expiresAt: timestamp.optional(),
@@ -386,7 +386,7 @@ export function selectMssrContextInboxMessages(
       byId.set(message.id, {
         ...existing,
         lastSelectedAt: args.now,
-        selectedCount: existing.selectedCount + 1,
+        selectedCount: Math.min(Number.MAX_SAFE_INTEGER, existing.selectedCount + 1),
         fingerprint: fingerprintMssrContextMessage(message),
         expiresAt,
         acknowledgedAt: undefined,

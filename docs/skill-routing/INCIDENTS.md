@@ -1583,3 +1583,17 @@ Replace broad substring classification with exact typed path ownership: canonica
 ### Resolution — 2026-09-19
 
 Closed in MSSR 0.2.67 plus Bridge 0.6.135 host adoption. Portable MSSR now classifies routing changes only from canonical semantic-owner paths, and Bridge mirrors that owner-based classification instead of `includes("skill-routing")`. Documentation such as `docs/skill-routing/INCIDENTS.md` no longer creates routing/skill-maintenance debt merely because its path contains routing vocabulary, while actual routing owners still trigger the expected maintenance target.
+
+## MSSR-050 — New custom skills are visible locally but absent from the Bridge vendor snapshot
+
+**Date/status:** 2026-09-24 · Open pending the next normal MSSR package/Bridge adoption.
+
+**Layer/owner:** MSSR routing distribution, not the `maestro-agua` gameplay project.
+
+**Symptom and evidence:** After adding `motion-reference-pack`, and now `game-animation-retarget`, their Codex junctions and canonical routing metadata are present. `npm run verify` in `D:\Dev\mssr` passes, including the positive handmade-pose adaptation route, engine-validation continuation, GIF-analysis negative route, and skill audit. Bridge `skill_route_audit` still reports `game-animation-retarget` as unconfigured and without fixtures because it reads `D:\Dev\bridge-mcp\node_modules\@mauroprime\mssr\config\skill-routing\skill-routing-overrides.json` from the previously vendored package. `verify-skills.ps1` and `test-codex-discovery.ps1` both recognize the new Codex junction.
+
+**Cause:** Bridge uses a packaged MSSR snapshot. Source routing edits do not update that installed package automatically.
+
+**Correction/regression:** Canonical metadata plus positive, continuation and nearby negative fixtures were added to the MSSR source for both skills; source verification and Codex discovery pass. No installed package copy was edited.
+
+**Follow-up:** Include the updated contract in the next normal MSSR package and Bridge adoption, then rerun Bridge `skill_route_audit`. Do not patch `node_modules` as a second routing authority.

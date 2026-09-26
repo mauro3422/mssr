@@ -129,6 +129,16 @@ After normal parent selection, portable MSSR materializes the baseline and at mo
 
 Health and write preflight account for the maximum payload MSSR can deliver for one target (`baseline + largest optional segment`), rather than charging every historical byte that is never co-delivered. That selected-payload budget is separate from physical backing-file growth: segmented sources keep the normal 65,536-byte physical maintenance budget with WATCH/REVIEW pressure at the existing ratios, plus a 262,144-byte recovery hard limit so an already-pressured history remains readable long enough to diagnose and shrink it. Growth into either selected-payload REVIEW or physical REVIEW remains blocked before persistence; crossing the recovery hard limit is invalid. The structural maintenance executor still cannot invent, split, summarize or reclassify semantic segments; a pressured segmented module returns explicit review debt. Hosts continue to provide authorized I/O/transport only, while MSSR owns validation, deterministic selection, ambiguity and budget semantics.
 
+## 0.2.74 project-document reference lifecycle amendment
+
+Project Context distinguishes **discoverability** from **authority**. A bounded retroactive audit may surface current-looking project Markdown that is neither a manifest source nor explicitly named by already-selectable `.mssr` context. Those files are review candidates only: path/name evidence can raise WATCH but cannot establish canonical ownership, mutate `.mssr/project-context.json`, or influence routing as durable project truth.
+
+When normal selected context is insufficient, a read-only `reference-on-miss` path may recover one bounded disconnected candidate. It must abstain on no-match or unresolved ambiguity and label returned evidence `candidate-only`, advisory, non-routing, and non-authoritative. Reading a candidate never promotes it.
+
+The forward path is explicit. When a workflow deliberately creates or recognizes a durable project authority, MSSR may plan its exact manifest registration immediately rather than waiting for retroactive discovery. Planning validates source/module identity and current source/manifest hashes without mutation. Applying the registration is a separate reviewed persistence operation requiring exact source-path confirmation plus those hashes, followed by manifest readback and health verification. A source or manifest change invalidates the plan.
+
+Rename/delete semantics remain conservative: a missing declared source is exact health debt; a renamed document may independently become a new candidate, but MSSR never infers replacement identity. Dashboards may project this lifecycle for humans but remain non-authoritative views over canonical evidence.
+
 ## Staged adoption gates
 
 1. [x] Publish portable message and continuation-receipt fixtures with

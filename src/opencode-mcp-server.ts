@@ -3,7 +3,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import { OpenCodeMssrAdapter } from "./opencode-adapter.js";
 import { createMssrRegistryFromEnvironment } from "./provider-config.js";
-import { mssrHostRouteInputSchema } from "./host-adapter-contract.js";
+import { mssrHostRouteInputObjectSchema, mssrHostRouteInputSchema } from "./host-adapter-contract.js";
 import { createMssrTelemetrySinkFromEnvironment, mssrHostCheckpointSchema } from "./telemetry.js";
 import { createStderrMssrNoticeBoundary } from "./mssr-notice-delivery.js";
 import { registerMssrProjectControlTools } from "./project-control-contract.js";
@@ -15,7 +15,7 @@ function response(value: unknown) {
   return { content: [{ type: "text" as const, text: JSON.stringify(value, null, 2) }] };
 }
 
-const routeInput = mssrHostRouteInputSchema;
+const routeInput = mssrHostRouteInputObjectSchema;
 
 const contextAckInputSchema = z.object({
   projectRoot: z.string().min(1).max(4096),
@@ -34,12 +34,12 @@ export function createOpenCodeMssrMcpServer(adapter: OpenCodeMssrAdapter) {
   server.registerTool("mssr_route_plan", {
     description: "Plan an advisory MSSR route for OpenCode-local and return a persistent traceId.",
     inputSchema: routeInput,
-  }, async (args) => response(await adapter.route(args)));
+  }, async (args) => response(await adapter.route(mssrHostRouteInputSchema.parse(args))));
 
   server.registerTool("mssr_skill_bootstrap", {
     description: "Plan an OpenCode-local route and load its active local skills on the same observable trace.",
     inputSchema: routeInput,
-  }, async (args) => response(await adapter.bootstrap(args)));
+  }, async (args) => response(await adapter.bootstrap(mssrHostRouteInputSchema.parse(args))));
 
   server.registerTool("mssr_trace_record", {
     description: "Record one explicit OpenCode-local lifecycle checkpoint. Never records success automatically.",

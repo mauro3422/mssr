@@ -71,3 +71,8 @@ Project knowledge and operational evidence share one bounded Situation Model bef
 The visual-evidence lifecycle is required only when the intent proves both actual visual inspection (`visual-qa`) and a human conservation/approval decision (`human-approval`). A code/repository review may contain documents, tests, approval, and functional names such as “Smoke Lab” without becoming a visual-evidence obligation. `allNeeds` is the narrow conjunctive routing primitive; host-gated skips never erase a workflow-required root, so the workflow itself must express this boundary.
 
 Repository cleanup is evidence-gated: preserve active or unique owner-repository work.
+
+
+## Human-task identity boundary
+
+Stable human-task correlation is explicit host evidence above trace lifecycle; portable details and invariants are indexed in `mssr-human-task-identity`. Task grouping never infers completion or replaces raw trace provenance.

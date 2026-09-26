@@ -29,7 +29,7 @@ export const mssrRetainedContextObligationSchema = z.object({
  * Hosts may add transport-only fields outside this schema, but must not fork
  * portable routing, gating, context-selection or trace semantics.
  */
-export const mssrHostRouteInputSchema = z.object({
+export const mssrHostRouteInputObjectSchema = z.object({
   task: z.string().min(1),
   context: z.string().max(4000).optional(),
   intent: structuredSkillIntentSchema,
@@ -47,6 +47,11 @@ export const mssrHostRouteInputSchema = z.object({
   contextCursor: z.string().min(16).max(2048).optional(),
   traceId: z.string().min(6).max(128).optional(),
   workflowKey: z.string().min(1).max(160).optional(),
+  /** Explicit stable human-task identity supplied by the host. MSSR never infers this from task prose. */
+  taskKey: z.string().trim().min(2).max(160).regex(/^[A-Za-z0-9][A-Za-z0-9._:-]*$/).optional(),
+  /** Optional trace lineage inside one explicit task. These are evidence links, not lifecycle authority. */
+  parentTraceId: z.string().trim().min(6).max(128).optional(),
+  supersedesTraceId: z.string().trim().min(6).max(128).optional(),
   model: z.string().min(1).max(80).optional(),
   reasoningEffort: z.enum(MSSR_REASONING_EFFORTS).optional(),
   contextMessages: mssrContextMessageBatchSchema.optional(),
@@ -61,6 +66,30 @@ export const mssrHostRouteInputSchema = z.object({
   contextMessageMaxChars: z.number().int().min(0).max(MAX_HOST_CONTEXT_MESSAGE_CHARS).optional(),
   contextMessageMaxMessages: z.number().int().min(0).max(32).optional(),
 }).strict();
+
+export const mssrHostRouteInputSchema = mssrHostRouteInputObjectSchema.superRefine((value, ctx) => {
+  const relationFieldsPresent = Boolean(value.parentTraceId || value.supersedesTraceId);
+  if (relationFieldsPresent && !value.taskKey) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["taskKey"],
+      message: "taskKey is required when parentTraceId or supersedesTraceId is supplied.",
+    });
+  }
+  if (value.traceId && value.parentTraceId === value.traceId) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["parentTraceId"], message: "A trace cannot be its own parent." });
+  }
+  if (value.traceId && value.supersedesTraceId === value.traceId) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["supersedesTraceId"], message: "A trace cannot supersede itself." });
+  }
+  if (value.parentTraceId && value.supersedesTraceId && value.parentTraceId === value.supersedesTraceId) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["supersedesTraceId"],
+      message: "parentTraceId and supersedesTraceId must identify different relations.",
+    });
+  }
+});
 
 export type MssrRouteInput = z.infer<typeof mssrHostRouteInputSchema>;
 

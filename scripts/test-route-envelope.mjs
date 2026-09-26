@@ -102,6 +102,8 @@ try {
       artifacts: ["code"], needs: ["unit-tests"], signals: ["nominal"], risk: "read-only", ambiguity: "low",
     },
     stage: "start",
+    taskKey: "task.route-envelope",
+    parentTraceId: "trace-parent-envelope",
   };
 
   // Adapter 1: small catalog (skills only). Adapter 2: skills + 100 irrelevant tools with schemas.
@@ -168,6 +170,8 @@ try {
   const route = json(await client.callTool({ name: "mssr_route_plan", arguments: input }));
   assert.ok(route.text.length < 60_000, `MCP route text must stay compact (got ${route.text.length} chars)`);
   assert.ok(!route.text.includes("irrelevant_tool_"), "MCP route text must not embed catalog tools");
+  assert.equal(route.parsed.taskKey, "task.route-envelope", "route must preserve explicit task identity");
+  assert.equal(route.parsed.parentTraceId, "trace-parent-envelope", "route must preserve parent trace lineage");
   const guard = route.parsed.activeSkills.find((skill) => skill.name === "envelope-guard");
   assert.ok(guard?.required, "workflow-required root must stay required");
 
