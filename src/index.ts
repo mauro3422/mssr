@@ -17,6 +17,8 @@ export * from "./opencode-plugin.js";
 export * from "./skill-context.js";
 export * from "./skill-context-loader.js";
 export * from "./context-selection.js";
+export * from "./context-delivery-policy.js";
+export * from "./document-context.js";
 export * from "./context-messages.js";
 export * from "./context-message-freshness.js";
 export * from "./context-message-producers.js";

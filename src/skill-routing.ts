@@ -814,6 +814,7 @@ function fallbackIntent(task: string): StructuredSkillIntent {
   if (/\bgit\b|repositorio|repository|\brepo\b|commit|\btag\b/.test(text)) domains.push("git");
   if (/filesystem|sistema de archivos|carpeta|folder|ruta|\bpath\b|archivo|\bfile\b|mover|move|migrar|relocate/.test(text)) domains.push("filesystem");
   if (/google drive|google docs|google sheets|google slides/.test(text)) domains.push("google-workspace");
+  if (/steam workshop|steamcmd|workshop_build_item|previewfile/.test(text)) domains.push("other");
   if (/openai|chatgpt app|agents sdk/.test(text)) domains.push("openai-development");
   if (/opencode/.test(text)) domains.push("opencode");
   if (/skill|skills|router|plugin/.test(text)) domains.push("skill-system");
@@ -951,8 +952,9 @@ function scoreEntry(
     if (count) {
       matched = true;
       if (isAnchor) anchorMatched = true;
-      score += count * weight;
-      reasons.push(`${count} ${label} match(es)`);
+      const effectiveCount = label === "domain" ? 1 : count;
+      score += effectiveCount * weight;
+      reasons.push(`${count} ${label} match(es)${label === "domain" && count > 1 ? " (capped for breadth)" : ""}`);
     }
   }
   const broadArtifacts = new Set(["code", "game", "asset", "document", "spreadsheet", "presentation", "skill", "mcp"]);
@@ -1006,7 +1008,7 @@ function inferredRequiredPhases(intent: StructuredSkillIntent, stage: SkillStage
   if (persistenceAction || intent.needs.includes("backup") || (mutation && intent.needs.some((need) => ["integrity-verification", "version-control"].includes(need)))) phases.add("persistence");
   if (intent.domains.includes("roblox") && intent.risk !== "read-only") phases.add("persistence");
   if (intent.signals.some((signal) => ["error-observed", "degraded-capability", "conflicting-evidence", "recovery-needed"].includes(signal))) phases.add("verification");
-  if (intent.signals.some((signal) => ["repeated-friction", "manual-workaround", "skill-gap", "reusable-pattern"].includes(signal))) phases.add("maintenance");
+  if ((intent.risk !== "read-only" || intent.actions.includes("maintain")) && intent.signals.some((signal) => ["repeated-friction", "manual-workaround", "skill-gap", "reusable-pattern"].includes(signal))) phases.add("maintenance");
   // Closing is a lifecycle boundary, not evidence of maintenance work.
   return [...phases].sort((a, b) => (phaseOrder.get(a) ?? 0) - (phaseOrder.get(b) ?? 0));
 }
@@ -1236,7 +1238,7 @@ export async function planSkillRoute(args: {
       values: intent.signals,
       nominal: intent.signals.length === 1 && intent.signals[0] === "nominal",
       verificationRecommended: intent.signals.some((signal) => ["error-observed", "degraded-capability", "conflicting-evidence", "recovery-needed"].includes(signal)),
-      maintenanceRecommended: intent.signals.some((signal) => ["repeated-friction", "manual-workaround", "skill-gap", "reusable-pattern"].includes(signal)),
+      maintenanceRecommended: (intent.risk !== "read-only" || intent.actions.includes("maintain")) && intent.signals.some((signal) => ["repeated-friction", "manual-workaround", "skill-gap", "reusable-pattern"].includes(signal)),
       capabilityDiscoveryRecommended: intent.signals.some((signal) => ["missing-capability", "capability-discovery-needed", "additional-capability-needed", "provider-refresh-needed"].includes(signal)),
       toolChainRecommended: intent.signals.includes("tool-chain-needed"),
       replanRecommended: intent.signals.some((signal) => ["replan-needed", "provider-refresh-needed", "additional-capability-needed", "tool-chain-needed"].includes(signal)),

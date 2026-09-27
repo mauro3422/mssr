@@ -7747,6 +7747,129 @@
       }
     },
     {
+      "name": "godot-water-vfx-review-led-iteration-positive",
+      "task": "En Godot, corregí el VFX del agua contra estos fotogramas; un implementador tocará solo la malla y yo inspeccionaré los píxeles comparables para darle la crítica con marcas de tiempo",
+      "stage": "implement",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Iteración de VFX en Godot con crítica visual directa del supervisor",
+        "domains": [
+          "godot",
+          "coding",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "edit",
+          "review",
+          "verify"
+        ],
+        "artifacts": [
+          "game",
+          "code",
+          "asset"
+        ],
+        "needs": [
+          "visual-qa",
+          "cross-agent"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "visual-reference-replication"
+        ]
+      }
+    },
+    {
+      "name": "godot-code-debug-without-visual-reference-negative",
+      "task": "Encontrá el error de tipos en este script Godot, no estoy ajustando arte ni comparando capturas",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Depuración textual de GDScript sin objetivo visual",
+        "domains": [
+          "godot",
+          "coding"
+        ],
+        "actions": [
+          "debug",
+          "edit"
+        ],
+        "artifacts": [
+          "code",
+          "project"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "visual-reference-replication"
+        ]
+      }
+    },
+    {
+      "name": "godot-water-vfx-review-close-deferred-continuation",
+      "task": "Cerrá la revisión visual del chorro",
+      "context": "El supervisor ya inspeccionó los fotogramas comparables y verificó la implementación y sus pruebas; solo falta informar la crítica restante y cerrar.",
+      "stage": "close",
+      "completedPhases": [
+        "discovery",
+        "safety",
+        "implementation",
+        "verification"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Cierre de iteración visual Godot después de crítica y verificación",
+        "domains": [
+          "godot",
+          "coding"
+        ],
+        "actions": [
+          "review",
+          "analyze"
+        ],
+        "artifacts": [
+          "game",
+          "asset"
+        ],
+        "needs": [
+          "visual-qa"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeExcludes": [
+          "visual-reference-replication"
+        ],
+        "deferredIncludes": [
+          "visual-reference-replication"
+        ]
+      }
+    },
+    {
       "name": "blender-model-edit-with-reference-positive",
       "task": "Modelá esta hoja en Blender siguiendo la referencia, capturá el resultado y compará la captura contra el master",
       "stage": "implement",
@@ -8440,6 +8563,61 @@
         "activeIncludes": [
           "blender-pose-authoring",
           "blender-visual-review"
+        ]
+      }
+    },
+    {
+      "name": "mssr-readonly-audit-friction-does-not-require-maintenance",
+      "task": "Audita MSSR y Bridge en modo read-only: revisa routing, contexto, lifecycle y evidencia de fricción sin corregir ni persistir nada todavía.",
+      "caller": "chatgpt-web",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Auditar MSSR/Bridge sin mutaciones aunque existan señales de fricción repetida",
+        "domains": [
+          "agent-orchestration",
+          "skill-system",
+          "coding"
+        ],
+        "actions": [
+          "analyze",
+          "review",
+          "verify"
+        ],
+        "artifacts": [
+          "code",
+          "project",
+          "repository",
+          "skill",
+          "mcp"
+        ],
+        "needs": [
+          "integrity-verification",
+          "cross-agent"
+        ],
+        "signals": [
+          "repeated-friction",
+          "conflicting-evidence"
+        ],
+        "risk": "read-only",
+        "ambiguity": "medium"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "steam-workshop-publication"
+        ],
+        "deferredExcludes": [
+          "steam-workshop-publication"
+        ],
+        "requiredPhasesIncludes": [
+          "verification"
+        ],
+        "requiredPhasesExcludes": [
+          "maintenance",
+          "persistence"
         ]
       }
     }

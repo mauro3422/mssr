@@ -10,7 +10,8 @@ const cases = [
   { name:'edit', actions:['edit','verify'], needs:['integrity-verification'], risk:'write', signals:['nominal'], present:['persistence'] },
   { name:'verify', actions:['verify'], needs:['integrity-verification'], risk:'read-only', signals:['nominal'], absent:['persistence','maintenance'] },
   { name:'release', actions:['version','publish'], needs:['version-control'], risk:'external-side-effect', signals:['nominal'], present:['persistence'], publication:true },
-  { name:'debug', actions:['debug'], needs:['history-recovery'], risk:'read-only', signals:['repeated-friction'], present:['maintenance'], absent:['persistence'] },
+  { name:'debug', actions:['debug'], needs:['history-recovery'], risk:'read-only', signals:['repeated-friction'], absent:['persistence','maintenance'] },
+  { name:'maintenance-review', actions:['review','maintain'], needs:['history-recovery'], risk:'write', signals:['repeated-friction'], present:['maintenance'], absent:['persistence'] },
 ];
 const results=[];
 for (const c of cases) {

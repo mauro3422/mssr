@@ -44,8 +44,32 @@ try {
   const constrained = await planCodexSkillContexts({ skills: [{ skill: first, required: true, routeIndex: 0, routeScore: 50 }, { skill: second, required: true, routeIndex: 1, routeScore: 1 }], intent, stage: "implement", mode: "selective", references: "auto", maxContextChars: requiredCores + highChars + 4 });
   assert.deepEqual(constrained.skills.find((item) => item.skill.name === "second").contextAssembly.selectedModules, ["high"]);
   assert.deepEqual(constrained.skills.find((item) => item.skill.name === "first").contextAssembly.selectedModules, []);
-  assert.equal(constrained.optionalContextOmitted, false, "selected context must be deferred explicitly instead of silently omitted");
+  assert.equal(constrained.optionalContextOmitted, true, "optional selected context may be omitted explicitly once required authority fits the page");
 
+  // Container authority must not promote every selected child reference into a
+  // required paging obligation. A required skill with a small core and an
+  // oversized optional module should complete in one page and expose omission.
+  const inheritedAuthority = await fixture(
+    "inherited-authority",
+    `# Inherited authority\n\n## Core\n\nRequired invariant.\n\n## Deep\n\n${"deep ".repeat(2_000)}`,
+    [{ id: "deep-procedure", description: "Large optional procedure.", source: { sections: ["## Deep"] }, actions: ["edit"], signals: ["skill-gap"], priority: 50 }],
+  );
+  const inheritedAuthorityPlan = await planSkillContextPage({
+    skills: [{ skill: inheritedAuthority, obligation: "required", routeIndex: 0, routeScore: 10 }],
+    intent,
+    stage: "implement",
+    mode: "selective",
+    references: "auto",
+    maxContextChars: 4_000,
+  });
+  assert.equal(inheritedAuthorityPlan.status, "complete");
+  assert.equal(inheritedAuthorityPlan.mustContinue, false);
+  assert.deepEqual(inheritedAuthorityPlan.units.map((unit) => unit.id), ["inherited-authority:core"]);
+  assert.deepEqual(inheritedAuthorityPlan.omitted.map((unit) => unit.id), ["inherited-authority:module:deep-procedure"]);
+  assert.equal(inheritedAuthorityPlan.omitted[0].obligation, "accepted");
+  assert.equal(inheritedAuthorityPlan.optionalContextOmitted, true);
+  assert.equal(inheritedAuthorityPlan.skills[0].contextAssembly.contextSatisfied, true);
+  assert.equal(inheritedAuthorityPlan.skills[0].contextAssembly.moduleDecisions.find((item) => item.id === "deep-procedure")?.reason, "optional-budget-omitted");
   // Regression: 23,310 selected required-core characters must page under an
   // 18,000-character delivery budget, with every unit delivered exactly once.
   const pagingA = await fixture("paging-a", "# A\n\n## Core\n\n", []);

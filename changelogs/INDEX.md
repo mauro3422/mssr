@@ -10,6 +10,8 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.79](0.2.79.md) - Reconcile the two byte-distinct provisional 0.2.78 lines into one canonical package: portable proportional document/context delivery plus routing/lifecycle proportionality and Godot visual-routing fixtures.
+- [0.2.78](0.2.78.md) - Separate parent authority from child context depth, allowing bounded optional omission while adding portable `<document>.context.json` authority/relevant/deep assembly for authoritative Markdown.
 - [0.2.77](0.2.77.md) - Add explicit stable human-task identity (`taskKey` plus parent/supersedes trace lineage) above traces, with immutable correlation semantics, telemetry, and cross-host parity while lifecycle completion remains trace/outcome-owned.
 - [0.2.76](0.2.76.md) - Add explicit deterministic routing for `blender-pose-authoring`, with Blender Action/animation scope plus positive, negative, and continuation fixtures.
 - [0.2.75](0.2.75.md) - Remove the accidental 255-selection ceiling from Context Message delivery receipts so long-lived evidence cannot break routing/bootstrap at selection 256.

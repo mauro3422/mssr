@@ -1,7 +1,7 @@
 # MSSR project state
 
 ## Current release
-MSSR `0.2.77` is the current verified local source release candidate. It preserves the verified R1/R2/R3 and portable R4 baseline, the 0.2.74 project-document reference lifecycle, the 0.2.75 delivery-receipt ceiling fix, and the 0.2.76 `blender-pose-authoring` routing release while adding explicit stable human-task identity above traces. Hosts may supply `taskKey` plus optional `parentTraceId` / `supersedesTraceId`; portable MSSR keeps those fields additive and immutable per trace, exposes them through route/status/telemetry, and does not infer them from prose, workflow similarity, recency, or inactivity. Trace lineage is correlation evidence only and never closes/cancels another trace or invents task completion. The final `npm run release:gate` passes after preserving a plain structural MCP schema for `tools/list` and applying relational task-lineage refinement at handler parse time. Release receipt `.mssr/runtime/releases/0.2.77.json` identifies `mauroprime-mssr-0.2.77.tgz` as `pkg:0.2.77#32f2fd9d` (788977 bytes, SHA-256 `32f2fd9d86db8a9479efe4fad89eb7a812d13ac76ebf238834c1eff8df191317`). Bridge `0.6.141` has now completed the separate packaged-host adoption gate for MSSR `0.2.77`: the live Human Cockpit consumes explicit task identity/lineage and preserves raw trace provenance. Future MSSR source releases still require their own package-byte parity and live host readback before being treated as adopted.
+MSSR `0.2.79` is the active local reconciliation candidate. It combines the portable P7 context-delivery policy from the isolated `pkg:0.2.78#d69d3f5d` line with the routing-proportionality changes present in the canonical dirty checkout and the distinct Bridge-adopted `pkg:0.2.78#3431c74d` line. Required parent authority no longer promotes optional descendants into paging obligations; arbitrary authoritative Markdown may use adjacent `<document>.context.json` manifests; broad domain breadth is capped; and read-only friction/review does not imply maintenance or persistence. The final 0.2.79 package identity remains pending `npm run verify` + `npm run release:gate`. Bridge `0.6.141` currently runs the provisional byte-distinct MSSR `0.2.78` package `pkg:0.2.78#3431c74d`; it must not be treated as equivalent to the isolated P7 0.2.78 package. Bridge adoption of 0.2.79 remains a separate exact-byte rebuild/restart/readback gate.
 
 ## Active execution priority — 2026-09-19
 
@@ -13,9 +13,9 @@ The near-term reliability program remains explicit in `ROADMAP.md`. **R1 Trace I
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.77 -->
+<!-- mssr-version:mssr.source=0.2.79 -->
 <!-- mssr-version:bridge.live=0.6.141 -->
-<!-- mssr-version:bridge.mssr=0.2.77 -->
+<!-- mssr-version:bridge.mssr=0.2.78 -->
 <!-- mssr-owner:semantic.consistency=mssr -->
 <!-- mssr-decision:adr.0006=r4-bf-portable -->
 
@@ -25,11 +25,11 @@ Strict `learning-digest-v1` collection remains observe-only with `routingInfluen
 
 ## Core skill package state
 
-The five first-party MSSR skill package roots remain unchanged in `0.2.77`. Routing metadata from `0.2.76` remains intact, including `jev-decision-systems` and `blender-pose-authoring`; `0.2.77` changes the portable trace-correlation contract instead of skill activation. Explicit `taskKey`/lineage metadata is observable only and does not change learned activation influence, permissions, or lifecycle completion semantics. Live Bridge `0.6.141` remains a separate consuming-host adoption gate; source `0.2.77` must not be treated as live until package bytes and route/bootstrap readback prove it.
+The five first-party MSSR skill package roots remain unchanged in `0.2.79`. Routing metadata from `0.2.76` and human-task identity from `0.2.77` remain intact; `0.2.79` combines the P7 context-delivery contract with routing-proportionality corrections rather than adding a new skill package. Required roots still establish authority, optional child modules remain accepted unless explicitly required, broad domain breadth no longer multiplies routing score without bound, and read-only friction/review no longer implies maintenance. Live Bridge `0.6.141` currently consumes the provisional byte-distinct MSSR `0.2.78` package and remains a separate adoption gate for the final 0.2.79 bytes.
 
 ## Context-economy follow-up
 
-The earlier Project Context segmentation work remains intact: parent-internal baseline+optional segments keep history pressure bounded without changing logical identity or raising selected-payload budgets. R3 `0.2.70` now applies the same economy principle to procedural skill guidance across replans through exact host-attested retained unit ids plus content fingerprints. Historical delivery is never retention evidence; omitted or stale receipts re-enable normal delivery. Architecture Core slimming also moved subsystem detail into selective modules while preserving universal invariants and the existing 5,000-character core budget.
+The earlier Project Context segmentation work remains intact: parent-internal baseline+optional segments keep history pressure bounded without changing logical identity or raising selected-payload budgets. R3 `0.2.70` applies the same economy principle to procedural skill guidance across replans through exact host-attested retained unit ids plus content fingerprints. `0.2.79` extends the principle to inheritance and arbitrary Markdown while reconciling routing proportionality: parent authority no longer promotes optional descendants into required paging, adjacent document manifests expose compact authority cores plus proportional relevant/deep modules, broad domain breadth is capped, and read-only friction does not create maintenance by itself. Historical delivery is never retention evidence; omitted or stale receipts re-enable normal delivery. Architecture Core slimming still preserves universal invariants and the existing 5,000-character core budget.
 
 ## Future event-trigger capability handoff
 

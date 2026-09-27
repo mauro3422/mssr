@@ -73,6 +73,8 @@ for (const testCase of expandedCases) {
       failures.push(`${testCase.name}: expected ${key}=${wanted.join(", ") || "none"}, got ${actual.join(", ") || "none"}`);
     }
   }
+  requireMembers(testCase.name, "required phases", route.coverage?.requiredPhases ?? [], expected.requiredPhasesIncludes);
+  rejectMembers(testCase.name, "required phases", route.coverage?.requiredPhases ?? [], expected.requiredPhasesExcludes);
   if (Number.isInteger(expected.rootSelectedAtMost)
       && route.selectionBudget.selectedRootSkills > expected.rootSelectedAtMost) {
     failures.push(`${testCase.name}: expected at most ${expected.rootSelectedAtMost} root skills, got ${route.selectionBudget.selectedRootSkills}`);

@@ -39,8 +39,8 @@ try {
     schemaVersion: 1,
     core: { sections: ["## Core"] },
     modules: [
-      { id: "alpha", description: "Alpha recipe", source: { sections: ["## Alpha"] }, actions: ["document"] },
-      { id: "beta", description: "Beta recipe", source: { sections: ["## Beta"] }, actions: ["document"] },
+      { id: "alpha", description: "Alpha recipe", source: { sections: ["## Alpha"] }, actions: ["document"], required: true },
+      { id: "beta", description: "Beta recipe", source: { sections: ["## Beta"] }, actions: ["document"], required: true },
     ],
   }), "utf8");
 
@@ -56,7 +56,11 @@ try {
         requireNeedMatch: true, requireActionMatch: true, requireArtifactMatch: true,
       },
     },
-    workflows: [],
+    workflows: [{
+      name: "required-continuation-fixture",
+      match: { domains: ["coding"], actions: ["document"] },
+      phases: [{ phase: "implementation", skills: ["envelope-tome"], required: true }],
+    }],
   }), "utf8");
   process.env.MSSR_SKILL_ROUTING_PATH = routingPath;
 
@@ -89,7 +93,6 @@ try {
       risk: "read-only", ambiguity: "low",
     },
     stage: "implement",
-    skillDecisions: [{ skillName: "envelope-tome", decision: "accepted", reasonCode: "useful", stage: "implement" }],
   };
 
   const full = json(await client.callTool({ name: "mssr_skill_bootstrap", arguments: { ...base, maxContextChars: 100000 } }));
@@ -138,7 +141,7 @@ try {
   assert.equal(p1.parsed.contextAssembly.mustContinue, true, "partial page must require continuation");
   assert.ok(typeof p1.parsed.contextAssembly.cursor === "string" && p1.parsed.contextAssembly.cursor.length >= 16, "partial page must carry an opaque cursor");
   assert.ok(p1.parsed.contextAssembly.units.some((u) => u.kind === "core"), "required core ships on the first page");
-  assert.equal(p1.parsed.loaded.find((l) => l.skill.name === "envelope-tome")?.obligation, "accepted", "accepted roots stay accepted, never relabelled required");
+  assert.equal(p1.parsed.loaded.find((l) => l.skill.name === "envelope-tome")?.obligation, "required", "workflow-required roots stay required across continuation pages");
 
   const pages = [p1];
   let cursor = p1.parsed.contextAssembly.cursor;

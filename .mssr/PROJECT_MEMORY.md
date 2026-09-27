@@ -40,9 +40,17 @@ The `0.2.52` page contract replaces one-shot overflow/whole-skill omission for a
 
 The `0.2.53` correction restores the pre-existing deduplication invariant inside the paged planner: when a selected module's material is already present in the same skill core or in earlier selected material, the module is not turned into a second page unit. Its decision remains observable as `already-covered-by-loaded-context` and its assembled character count increases per-skill and global `duplicateCharsAvoided`. This is a representation/budget correction only; it does not weaken cursor validation, relabel accepted roots, or suppress genuinely deferred/blocked material.
 
+## Context-delivery inheritance decision
+
+Container authority and child depth are separate dimensions. A required skill/document guarantees its compact authority core; a child becomes a paging obligation only when the child itself is explicitly required. Optional child material remains accepted evidence, may be omitted when the bounded compact budget is exhausted, and must surface omission rather than manufacturing `mustContinue`. The portable document contract mirrors this rule for instruction/project-memory/state/guide/handoff/documentation sources through adjacent `<document>.context.json` manifests: core-only before canonical intent, relevant modules under semantic selection, deep modules on semantic match or explicit debug, and complete-document fallback when a host cannot prove a valid manifest. This rule is reusable across hosts; Bridge may implement filesystem discovery/transport but must not redefine the policy.
+
 ## Bridge delivery boundary
 
 Bridge must consume MSSR through a versioned packaged artifact rather than an in-place junction across workspace authority boundaries. A sibling MSSR source edit is never live Bridge behavior by implication: adoption requires deliberately packaging/installing that MSSR version, rebuilding Bridge, performing the controlled host restart, and reading back the live Bridge/package/catalog state.
+## Release byte-identity decision
+
+A semantic version is not sufficient evidence that two package artifacts are equivalent. Host adoption must bind the version to the exact package SHA/receipt. If two artifacts share a version but differ in bytes, preserve both identities as conflicting evidence, do not overwrite either artifact, and issue a new reconciled version before further adoption. This prevents source/host divergence from being hidden behind an equal semver string.
+
 
 ## Operational notice transition decision
 

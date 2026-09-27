@@ -1488,6 +1488,7 @@
         "verification"
       ],
       "domains": [
+        "godot",
         "roblox",
         "blender",
         "coding",
@@ -1503,6 +1504,7 @@
         "analyze"
       ],
       "artifacts": [
+        "game",
         "asset",
         "model-3d",
         "ui",
@@ -1516,6 +1518,7 @@
         "visual-reference-integrity"
       ],
       "complements": [
+        "godot-visual-review",
         "roblox-visual-asset-forge",
         "roblox-photo-rig-capture",
         "roblox-model-turnaround-review",
@@ -2049,7 +2052,6 @@
       "domains": [
         "browser",
         "filesystem",
-        "coding",
         "other"
       ],
       "actions": [
