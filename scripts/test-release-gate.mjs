@@ -1,14 +1,19 @@
 import assert from "node:assert/strict";
+import { execFile as execFileCallback } from "node:child_process";
 import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import { promisify } from "node:util";
 import Ajv2020 from "ajv/dist/2020.js";
-import { runReleaseGate } from "./release-gate.mjs";
+import { defaultReleaseGateCommand, materializeCanonicalPackageFiles, runReleaseGate } from "./release-gate.mjs";
+
+const execFile = promisify(execFileCallback);
 
 async function makeFixture({ impactState = "updated", rootCurrent = true, indexCurrent = true } = {}) {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-release-gate-"));
   const version = "1.2.3";
+  await execFile("git", ["init", "-q"], { cwd: root, windowsHide: true });
   await fs.mkdir(path.join(root, "changelogs"), { recursive: true });
   await fs.mkdir(path.join(root, ".mssr"), { recursive: true });
   await fs.writeFile(path.join(root, "package.json"), JSON.stringify({ name: "@fixture/pkg", version }, null, 2));
@@ -30,14 +35,26 @@ async function makeFixture({ impactState = "updated", rootCurrent = true, indexC
 
 function fakeRunner(root, calls, options = {}) {
   return async (_command, args, meta) => {
-    calls.push({ args: [...args], phase: meta.phase });
+    calls.push({ args: [...args], phase: meta.phase, cwd: meta.cwd });
     if (meta.phase === "verify") {
       return { exitCode: options.verifyExitCode ?? 0, stdout: "verify ok", stderr: "" };
     }
-    if (meta.phase !== "pack") throw new Error(`unexpected phase ${meta.phase}`);
     const filename = options.filename ?? "fixture-pkg-1.2.3.tgz";
+    if (meta.phase === "pack-list") {
+      return {
+        exitCode: options.previewExitCode ?? 0,
+        stdout: JSON.stringify([{
+          name: options.previewName ?? "@fixture/pkg",
+          version: options.previewVersion ?? "1.2.3",
+          filename,
+          files: [{ path: "package.json" }],
+        }]),
+        stderr: "",
+      };
+    }
+    if (meta.phase !== "pack") throw new Error(`unexpected phase ${meta.phase}`);
     const payload = Buffer.from(options.payload ?? "fixture package bytes\n", "utf8");
-    await fs.writeFile(path.join(root, filename), payload);
+    await fs.writeFile(path.join(meta.cwd ?? root, filename), payload);
     return {
       exitCode: options.packExitCode ?? 0,
       stdout: JSON.stringify([{
@@ -62,7 +79,7 @@ const validateReceipt = ajv.compile(schema);
   const calls = [];
   const now = () => new Date("2026-08-18T22:00:00.000Z");
   const result = await runReleaseGate({ projectRoot: root, runCommand: fakeRunner(root, calls), now });
-  assert.deepEqual(calls.map((call) => call.phase), ["verify", "pack"], "release:gate must run exactly one verify then one pack");
+  assert.deepEqual(calls.map((call) => call.phase), ["verify", "pack-list", "pack"], "release:gate must run verify, one package preview, then one canonical pack");
   assert.equal(result.receipt.package.version, version);
   assert.equal(result.receipt.alias.startsWith("pkg:1.2.3#"), true);
   assert.equal(result.receipt.alias.length, "pkg:1.2.3#".length + 8);
@@ -116,7 +133,7 @@ const validateReceipt = ajv.compile(schema);
     runReleaseGate({ projectRoot: root, runCommand: fakeRunner(root, calls, { packVersion: "1.2.4" }) }),
     /npm pack identity mismatch/,
   );
-  assert.deepEqual(calls.map((call) => call.phase), ["verify", "pack"]);
+  assert.deepEqual(calls.map((call) => call.phase), ["verify", "pack-list", "pack"]);
 }
 
 {
@@ -136,6 +153,50 @@ const validateReceipt = ajv.compile(schema);
     runReleaseGate({ projectRoot: root, runCommand: fakeRunner(root, calls, { filename: "../unsafe.tgz" }) }),
     /unsafe or missing artifact filename/,
   );
+}
+
+{
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-release-eol-repro-"));
+  try {
+    await execFile("git", ["init", "-q"], { cwd: root, windowsHide: true });
+    await fs.writeFile(path.join(root, ".gitattributes"), "* text=auto eol=lf\n*.ps1 text eol=crlf\n", "utf8");
+    await fs.writeFile(path.join(root, "package.json"), `${JSON.stringify({
+      name: "eol-repro-fixture",
+      version: "1.0.0",
+      files: ["note.txt", "script.ps1"],
+    }, null, 2)}\n`, "utf8");
+    const packedFiles = [{ path: "package.json" }, { path: "note.txt" }, { path: "script.ps1" }];
+
+    async function packVariant(noteText, scriptText) {
+      await fs.writeFile(path.join(root, "note.txt"), noteText, "utf8");
+      await fs.writeFile(path.join(root, "script.ps1"), scriptText, "utf8");
+      const canonical = await materializeCanonicalPackageFiles(root, packedFiles);
+      try {
+        const canonicalNote = await fs.readFile(path.join(canonical.stagingRoot, "note.txt"), "utf8");
+        const canonicalScript = await fs.readFile(path.join(canonical.stagingRoot, "script.ps1"), "utf8");
+        const result = await defaultReleaseGateCommand("npm", ["pack", "--json"], { cwd: canonical.stagingRoot });
+        const packed = JSON.parse(result.stdout)[0];
+        const artifact = await fs.readFile(path.join(canonical.stagingRoot, packed.filename));
+        return {
+          sha256: createHash("sha256").update(artifact).digest("hex"),
+          canonicalNote,
+          canonicalScript,
+        };
+      } finally {
+        await canonical.cleanup();
+      }
+    }
+
+    const crlfCheckout = await packVariant("alpha\r\nbeta\r\n", "Write-Output alpha\nWrite-Output beta\n");
+    const lfCheckout = await packVariant("alpha\nbeta\n", "Write-Output alpha\r\nWrite-Output beta\r\n");
+    assert.equal(crlfCheckout.canonicalNote, "alpha\nbeta\n", "text files must materialize as canonical LF bytes");
+    assert.equal(crlfCheckout.canonicalScript, "Write-Output alpha\r\nWrite-Output beta\r\n", "PowerShell files must preserve the declared CRLF contract");
+    assert.equal(lfCheckout.canonicalNote, crlfCheckout.canonicalNote);
+    assert.equal(lfCheckout.canonicalScript, crlfCheckout.canonicalScript);
+    assert.equal(lfCheckout.sha256, crlfCheckout.sha256, "same logical package content must produce the same tgz SHA-256 across physical EOL variants");
+  } finally {
+    await fs.rm(root, { recursive: true, force: true });
+  }
 }
 
 console.log("MSSR release:gate deterministic automation tests PASS");

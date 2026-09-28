@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { execFile as execFileCallback } from "node:child_process";
 import fs from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
@@ -83,6 +84,116 @@ async function writeJsonAtomic(filePath, value) {
   }
 }
 
+function normalizePackedFilePaths(packedFiles) {
+  if (!Array.isArray(packedFiles) || packedFiles.length === 0) {
+    throw new Error("npm pack preview returned no package files.");
+  }
+  const normalized = [];
+  const seen = new Set();
+  for (const entry of packedFiles) {
+    if (!entry || typeof entry.path !== "string" || entry.path.length === 0) {
+      throw new Error("npm pack preview returned an invalid package file entry.");
+    }
+    const packagePath = path.posix.normalize(entry.path.replaceAll("\\", "/"));
+    if (
+      packagePath === "." ||
+      packagePath.startsWith("../") ||
+      packagePath.includes("/../") ||
+      path.posix.isAbsolute(packagePath) ||
+      path.win32.isAbsolute(packagePath)
+    ) {
+      throw new Error(`npm pack preview returned an unsafe package path: ${entry.path}`);
+    }
+    if (!seen.has(packagePath)) {
+      seen.add(packagePath);
+      normalized.push(packagePath);
+    }
+  }
+  return normalized;
+}
+
+async function execGit(projectRoot, args, env = process.env) {
+  return execFile("git", args, {
+    cwd: projectRoot,
+    encoding: "utf8",
+    windowsHide: true,
+    maxBuffer: 32 * 1024 * 1024,
+    env,
+  });
+}
+
+export async function materializeCanonicalPackageFiles(projectRoot, packedFiles, options = {}) {
+  const packagePaths = normalizePackedFilePaths(packedFiles);
+  const supportPaths = [];
+  for (const supportPath of options.supportPaths ?? []) {
+    const [normalized] = normalizePackedFilePaths([{ path: supportPath }]);
+    try {
+      await fs.access(path.join(projectRoot, ...normalized.split("/")));
+      supportPaths.push(normalized);
+    } catch {
+      // Focused fixtures may not need the repository build inputs. A real release
+      // reaches this helper only after verify, where declared build inputs exist.
+    }
+  }
+  const materializedPaths = [...new Set([...packagePaths, ...supportPaths])];
+  const tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-canonical-pack-"));
+  const stagingRoot = path.join(tempRoot, "package");
+  const objectRoot = path.join(tempRoot, "objects");
+  const indexPath = path.join(tempRoot, "index");
+  const pathspecPath = path.join(tempRoot, "package-paths.nul");
+
+  try {
+    await fs.mkdir(stagingRoot, { recursive: true });
+    await fs.mkdir(objectRoot, { recursive: true });
+    const gitObjects = (await execGit(projectRoot, ["rev-parse", "--git-path", "objects"])).stdout.trim();
+    if (!gitObjects) throw new Error("Git did not report an object directory for canonical packaging.");
+    const gitEnv = {
+      ...process.env,
+      GIT_INDEX_FILE: indexPath,
+      GIT_OBJECT_DIRECTORY: objectRoot,
+      GIT_ALTERNATE_OBJECT_DIRECTORIES: path.resolve(projectRoot, gitObjects),
+    };
+    await execGit(projectRoot, ["read-tree", "--empty"], gitEnv);
+    const pathspec = Buffer.concat(materializedPaths.flatMap((packagePath) => [Buffer.from(packagePath, "utf8"), Buffer.from([0])]));
+    await fs.writeFile(pathspecPath, pathspec);
+    await execGit(projectRoot, [
+      "add",
+      "-f",
+      `--pathspec-from-file=${pathspecPath.replaceAll("\\", "/")}`,
+      "--pathspec-file-nul",
+    ], gitEnv);
+    const checkoutPrefix = `${stagingRoot.replaceAll("\\", "/").replace(/\/+$/, "")}/`;
+    await execGit(projectRoot, ["checkout-index", "--all", `--prefix=${checkoutPrefix}`], gitEnv);
+    for (const packagePath of packagePaths) {
+      await fs.access(path.join(stagingRoot, ...packagePath.split("/")));
+    }
+    if (options.linkNodeModules) {
+      const projectNodeModules = path.join(projectRoot, "node_modules");
+      try {
+        await fs.access(projectNodeModules);
+        await fs.symlink(
+          projectNodeModules,
+          path.join(stagingRoot, "node_modules"),
+          process.platform === "win32" ? "junction" : "dir",
+        );
+      } catch (error) {
+        if (supportPaths.length > 0) {
+          throw new Error(`Canonical package staging could not link verified node_modules: ${error instanceof Error ? error.message : String(error)}`);
+        }
+      }
+    }
+    return {
+      stagingRoot,
+      packagePaths,
+      supportPaths,
+      cleanup: async () => fs.rm(tempRoot, { recursive: true, force: true }),
+    };
+  } catch (error) {
+    await fs.rm(tempRoot, { recursive: true, force: true });
+    throw error;
+  }
+}
+
 export async function defaultReleaseGateCommand(command, args, options = {}) {
   let executable = command;
   let executableArgs = args;
@@ -90,9 +201,11 @@ export async function defaultReleaseGateCommand(command, args, options = {}) {
     const commandKey = [command, ...args].join(" ");
     const fixedCommand = commandKey === "npm run verify"
       ? "npm run verify"
-      : commandKey === "npm pack --json"
-        ? "npm pack --json"
-        : null;
+      : commandKey === "npm pack --dry-run --json"
+        ? "npm pack --dry-run --json"
+        : commandKey === "npm pack --json"
+          ? "npm pack --json"
+          : null;
     if (!fixedCommand) {
       throw new Error(`Windows release:gate runner only supports fixed internal npm commands; received '${commandKey}'.`);
     }
@@ -111,6 +224,7 @@ export async function defaultReleaseGateCommand(command, args, options = {}) {
 export async function runReleaseGate(options = {}) {
   const projectRoot = path.resolve(options.projectRoot ?? process.cwd());
   const runCommand = options.runCommand ?? defaultReleaseGateCommand;
+  const materializePackage = options.materializePackage ?? materializeCanonicalPackageFiles;
   const observedAt = (options.now ?? (() => new Date()))().toISOString();
 
   const packagePath = path.join(projectRoot, "package.json");
@@ -137,17 +251,39 @@ export async function runReleaseGate(options = {}) {
   const verifyResult = await runCommand(npmCommand, ["run", "verify"], { cwd: projectRoot, phase: "verify" });
   const verify = boundedCommandEvidence(verifyResult, "npm run verify");
 
-  const packResult = await runCommand(npmCommand, ["pack", "--json"], { cwd: projectRoot, phase: "pack" });
-  boundedCommandEvidence(packResult, "npm pack --json");
-  const packed = parsePackStdout(packResult.stdout ?? "");
-  if (packed.name !== packageName || packed.version !== version) {
-    throw new Error(`npm pack identity mismatch: expected ${packageName}@${version}, received ${packed.name}@${packed.version}.`);
-  }
-  if (typeof packed.filename !== "string" || packed.filename.length === 0 || path.basename(packed.filename) !== packed.filename) {
-    throw new Error("npm pack returned an unsafe or missing artifact filename.");
+  const packPreviewResult = await runCommand(npmCommand, ["pack", "--dry-run", "--json"], { cwd: projectRoot, phase: "pack-list" });
+  boundedCommandEvidence(packPreviewResult, "npm pack --dry-run --json");
+  const preview = parsePackStdout(packPreviewResult.stdout ?? "");
+  if (preview.name !== packageName || preview.version !== version) {
+    throw new Error(`npm pack preview identity mismatch: expected ${packageName}@${version}, received ${preview.name}@${preview.version}.`);
   }
 
-  const artifactPath = path.join(projectRoot, packed.filename);
+  const canonicalPackage = await materializePackage(projectRoot, preview.files, {
+    supportPaths: ["src", "tsconfig.json"],
+    linkNodeModules: true,
+  });
+  let packed;
+  let artifactPath;
+  try {
+    const packResult = await runCommand(npmCommand, ["pack", "--json"], { cwd: canonicalPackage.stagingRoot, phase: "pack" });
+    boundedCommandEvidence(packResult, "npm pack --json");
+    packed = parsePackStdout(packResult.stdout ?? "");
+    if (packed.name !== packageName || packed.version !== version) {
+      throw new Error(`npm pack identity mismatch: expected ${packageName}@${version}, received ${packed.name}@${packed.version}.`);
+    }
+    if (typeof packed.filename !== "string" || packed.filename.length === 0 || path.basename(packed.filename) !== packed.filename) {
+      throw new Error("npm pack returned an unsafe or missing artifact filename.");
+    }
+
+    const stagedArtifactPath = path.join(canonicalPackage.stagingRoot, packed.filename);
+    artifactPath = path.join(projectRoot, packed.filename);
+    if (path.resolve(stagedArtifactPath) !== path.resolve(artifactPath)) {
+      await fs.copyFile(stagedArtifactPath, artifactPath);
+    }
+  } finally {
+    if (canonicalPackage && typeof canonicalPackage.cleanup === "function") await canonicalPackage.cleanup();
+  }
+
   const artifact = await sha256File(artifactPath);
   if (Number.isFinite(packed.size) && Number(packed.size) !== artifact.bytes) {
     throw new Error(`npm pack size/readback mismatch: metadata ${packed.size}, file ${artifact.bytes}.`);

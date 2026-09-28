@@ -10,6 +10,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.80](0.2.80.md) - Make release packaging byte-reproducible across checkout EOL differences by materializing the npm file set through a temporary Git index before the final pack.
 - [0.2.79](0.2.79.md) - Reconcile the two byte-distinct provisional 0.2.78 lines into one canonical package: portable proportional document/context delivery plus routing/lifecycle proportionality and Godot visual-routing fixtures.
 - [0.2.78](0.2.78.md) - Separate parent authority from child context depth, allowing bounded optional omission while adding portable `<document>.context.json` authority/relevant/deep assembly for authoritative Markdown.
 - [0.2.77](0.2.77.md) - Add explicit stable human-task identity (`taskKey` plus parent/supersedes trace lineage) above traces, with immutable correlation semantics, telemetry, and cross-host parity while lifecycle completion remains trace/outcome-owned.

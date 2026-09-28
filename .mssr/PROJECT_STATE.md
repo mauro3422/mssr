@@ -1,7 +1,7 @@
 # MSSR project state
 
 ## Current release
-MSSR `0.2.79` is the active local reconciliation candidate. It combines the portable P7 context-delivery policy from the isolated `pkg:0.2.78#d69d3f5d` line with the routing-proportionality changes present in the canonical dirty checkout and the distinct Bridge-adopted `pkg:0.2.78#3431c74d` line. Required parent authority no longer promotes optional descendants into paging obligations; arbitrary authoritative Markdown may use adjacent `<document>.context.json` manifests; broad domain breadth is capped; and read-only friction/review does not imply maintenance or persistence. The final 0.2.79 package identity remains pending `npm run verify` + `npm run release:gate`. Bridge `0.6.141` currently runs the provisional byte-distinct MSSR `0.2.78` package `pkg:0.2.78#3431c74d`; it must not be treated as equivalent to the isolated P7 0.2.78 package. Bridge adoption of 0.2.79 remains a separate exact-byte rebuild/restart/readback gate.
+MSSR `0.2.80` is the verified local release for deterministic package-byte reproduction. The canonical `0.2.79` artifact remains immutable evidence and was not rewritten. `release:gate` previews npm's bounded package file set, materializes that set through an isolated temporary Git index so `.gitattributes` produces canonical bytes without touching the developer index/worktree, and provides canonical build inputs plus the already-verified dependency tree for npm's `prepare` lifecycle before the final pack. A real regression proves opposite physical LF/CRLF worktrees produce the same `.tgz` SHA-256 while preserving the declared PowerShell CRLF contract. Final `0.2.80` identity is `pkg:0.2.80#2ed92e4a`: `mauroprime-mssr-0.2.80.tgz`, 801928 bytes, SHA-256 `2ed92e4a7093d290f6ee37371d7b613e0174c9c9dc88b676f6868aaedffa7394`, npm shasum `9deced66705dd4e373e5a862723be41043e95b40`; `npm run verify` and `npm run release:gate` both passed. Bridge `0.6.141` currently runs the provisional byte-distinct MSSR `0.2.78` package `pkg:0.2.78#3431c74d`; Bridge adoption of `0.2.80` remains a separate exact-byte rebuild/restart/readback gate.
 
 ## Active execution priority — 2026-09-19
 
@@ -13,7 +13,7 @@ The near-term reliability program remains explicit in `ROADMAP.md`. **R1 Trace I
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.79 -->
+<!-- mssr-version:mssr.source=0.2.80 -->
 <!-- mssr-version:bridge.live=0.6.141 -->
 <!-- mssr-version:bridge.mssr=0.2.78 -->
 <!-- mssr-owner:semantic.consistency=mssr -->
@@ -25,7 +25,7 @@ Strict `learning-digest-v1` collection remains observe-only with `routingInfluen
 
 ## Core skill package state
 
-The five first-party MSSR skill package roots remain unchanged in `0.2.79`. Routing metadata from `0.2.76` and human-task identity from `0.2.77` remain intact; `0.2.79` combines the P7 context-delivery contract with routing-proportionality corrections rather than adding a new skill package. Required roots still establish authority, optional child modules remain accepted unless explicitly required, broad domain breadth no longer multiplies routing score without bound, and read-only friction/review no longer implies maintenance. Live Bridge `0.6.141` currently consumes the provisional byte-distinct MSSR `0.2.78` package and remains a separate adoption gate for the final 0.2.79 bytes.
+The five first-party MSSR skill package roots remain unchanged in `0.2.80`. Routing metadata from `0.2.76`, human-task identity from `0.2.77`, and the proportional context/routing semantics reconciled in `0.2.79` remain intact; `0.2.80` changes release-package construction only. The release gate now canonicalizes the bounded npm file set through Git attributes before packing so package identity is independent of physical checkout EOL state. Live Bridge `0.6.141` currently consumes the provisional byte-distinct MSSR `0.2.78` package and remains a separate adoption gate for the final `0.2.80` bytes.
 
 ## Context-economy follow-up
 
