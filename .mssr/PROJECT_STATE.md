@@ -9,6 +9,14 @@ The rubric-matched live section run is exploratory: 48/51 action decisions for E
 
 The canonical working tree is physically at D:\Dev\mssr; Git, .codex/config.toml, and project context identify D: as source. C:\Dev\mssr is a junction and remains the path stored by the Codex local-project registry. Keep the junction until that registry is migrated; deleting it now would leave the saved project path dangling. Previous inventory counts of 193 untracked and 43 modified files described the pre-integration state; those changes and experiment records are preserved in commits and D:\Dev\mssr-snapshots\pre-integration-20260930-01. The current main checkout is clean at dfb295653b2e3f0f2a6f0d25bb2bc5cbe9634962; a separate P7 reconciliation worktree still has its handoff file under .mssr/sessions/.
 
+### Deferred path debt — Codex project registration
+
+- **Status:** confirmed-debt, 2026-09-30. Codex `list_projects` reports the saved local-project path as `C:\Dev\mssr`; filesystem inspection confirms that path is a junction to the physical Git root `D:\Dev\mssr`. Repository config and project context already name D: as canonical.
+- **Impact:** a Codex-launched task can start through the compatibility alias and reintroduce path/authority confusion. The junction currently resolves, so deleting it before updating the app's saved path would break the registered project.
+- **Deferred because:** the available Codex project tools can inspect but cannot edit the saved local path. Do not mutate private app registry state or delete the working junction as a workaround.
+- **Next gate:** use a supported Codex project-management flow to register/open `D:\Dev\mssr`, then read back the saved path and verify the selected checkout's physical path and Git root both resolve to D:.
+- **Closure:** Codex's saved project record resolves to `D:\Dev\mssr`; no active task depends on `C:\Dev\mssr`; then remove the compatibility junction only if it is still desired and verify its absence plus the D: Git root.
+
 ## R5 foundation — 2026-09-29
 
 ## 0.2.92 implementation close review — 2026-09-30
