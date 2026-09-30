@@ -19,6 +19,30 @@ The launcher completed an isolated stdio MCP handshake and one live Jev relation
 
 Operational incident and correction: the first PowerShell stdio relay stalled at MCP initialize; the precise internal stream failure is unresolved. Replacing the outer relay with Node inherited stdio, while keeping PowerShell limited to Credential Manager retrieval, passed MCP handshake, tool discovery and the live request. The first pair was also rejected before inference because the exact fetched source ranges plus request wrapper exceeded the 24,000-character limit; a bounded 36,000-character retry passed. The post-restart active MCP call and build readback close the integration follow-up. No general skill or routing change is justified by this project-local friction.
 
+### Current bounded live MSSR data smoke — 2026-09-30
+
+Run report and immutable inputs/records:
+`experiments/jev-mssr-live/runs/mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1/`.
+On commit `7fd0f7414e636d17cfac385cbffea9b55f83e78c`, the Librarian found
+the expected section in top 5 for 4/4 queries, but top 1 for 0/4 (ranks
+3/2/5/2); exact block fetch passed 8/8. Four real Jev `jev-1.13.0` relation
+requests matched 3/4 author-created labels (6,906 input / 278 output tokens,
+337 ms mean latency). The unknown-scope/time case was labeled unresolved but
+Jev chose `supports` at 0.45; MSSR evaluation and preview flagged missing
+scope/validity and kept it review-only. Both previews had
+`applyAllowed=false`. These labels were not independently adjudicated; no
+true contradiction case, holdout or calibration was included. This confirms
+live use through the explicit MSSR MCP path; it does not activate automatic
+search reranking or project writes. The 153-request historical ablation and
+its values remain unchanged.
+
+**Next gate:** independently adjudicate a larger, document-grouped real corpus
+including true contradictions, supersession, duplicates, support, unrelated
+and unresolved cases; measure Librarian top-k and fetch separately from Jev
+relation quality, then test Jev-assisted selection and citation-faithful
+synthesis. Keep all proposals shadow/review-only until a separate held-out
+policy supports any activation decision.
+
 ### Jev Project Context budget review — 2026-09-30
 
 - **Status:** the two Jev module budget exceedances are addressed with exact heading selectors; original Markdown and historical result bytes are unchanged.

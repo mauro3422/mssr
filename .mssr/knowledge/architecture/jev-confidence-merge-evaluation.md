@@ -120,6 +120,22 @@ and verifier records are caller assertions, not authenticated receipts; the
 host must re-read and compare current source revisions before consuming a
 candidate. `applyAllowed` and canonical rewrite remain false.
 
+### Current exploratory live MSSR smoke — 2026-09-30
+
+The live run at
+`experiments/jev-mssr-live/runs/mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1/`
+used four current MSSR documents, four retrieval queries, eight exact fetched
+blocks and four Jev relation requests. Librarian recall@5 was 4/4 but top-1
+was 0/4 (expected ranks 3, 2, 5 and 2). Jev matched 3/4 author-created
+relation labels. For the case with unknown scope/time, Jev chose
+`supports` at 0.45 confidence; deterministic evaluation and synthesis preview
+kept both atoms in review because scope and temporal comparability were
+unknown. Both previews had `applyAllowed=false`. The run has no independently
+adjudicated labels or true contradiction positives, so it does not establish
+general accuracy, contradiction recall or confidence calibration. It confirms
+the explicit MSSR MCP path can call live Jev over exact current source blocks;
+it does not make Jev an automatic Librarian reranker or authorize writes.
+
 ## Composed capability boundary
 
 Jev itself supplies finite typed decisions, not grep, search, paragraph
