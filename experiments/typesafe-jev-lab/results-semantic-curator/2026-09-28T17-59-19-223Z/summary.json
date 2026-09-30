@@ -1,0 +1,14 @@
+{
+  "id": "2026-09-28T17-59-19-223Z",
+  "requests": 2,
+  "totalHeads": 76,
+  "correct": 45,
+  "total": 56,
+  "accuracy": 0.8035714285714286,
+  "inputTokens": 10880,
+  "outputTokens": 3534,
+  "elapsedMs": [
+    522.9195,
+    411.67150000000004
+  ]
+}

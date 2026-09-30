@@ -1,0 +1,143 @@
+{
+  "contexto-ausente": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "mssr-agent-routing",
+      "steam-workshop-publication",
+      "agents"
+    ]
+  },
+  "tests-pendientes": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "mssr-agent-routing",
+      "shared-skill-governance"
+    ]
+  },
+  "listo-para-editar": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "steam-workshop-publication",
+      "mssr-agent-routing"
+    ]
+  },
+  "objetivo-ambiguo": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "mssr-agent-routing"
+    ]
+  },
+  "secreto-prohibido": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "mssr-agent-routing",
+      "capability-gap-recovery",
+      "systematic-debugging",
+      "steam-workshop-publication"
+    ]
+  },
+  "hash-no-coincide": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "steam-workshop-publication",
+      "mssr-agent-routing",
+      "mauroprime-bridge-collaboration"
+    ]
+  },
+  "api-caida": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "mssr-agent-routing"
+    ]
+  },
+  "debug-reproducible": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "mssr-agent-routing"
+    ]
+  },
+  "benchmark-jev": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "steam-workshop-publication",
+      "mssr-agent-routing"
+    ]
+  },
+  "comparar-claims": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "mssr-agent-routing",
+      "systematic-debugging"
+    ]
+  },
+  "memoria-historica": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "mssr-agent-routing",
+      "capability-gap-recovery",
+      "systematic-debugging"
+    ]
+  },
+  "guardar-no-probado": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "steam-workshop-publication",
+      "mssr-agent-routing",
+      "mauroprime-bridge-collaboration"
+    ]
+  },
+  "preferencia-visual": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "steam-workshop-publication",
+      "mssr-agent-routing"
+    ]
+  },
+  "inyeccion-documento": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "steam-workshop-publication",
+      "mssr-agent-routing"
+    ]
+  },
+  "evidencia-incompleta": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "mssr-agent-routing"
+    ]
+  },
+  "prueba-focalizada": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "mssr-agent-routing",
+      "systematic-debugging"
+    ]
+  },
+  "sin-publicacion": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "steam-workshop-publication",
+      "mssr-agent-routing"
+    ]
+  },
+  "publicacion-steam": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "mssr-agent-routing"
+    ]
+  },
+  "publicacion-git": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "mauroprime-bridge-collaboration",
+      "mssr-agent-routing"
+    ]
+  },
+  "destruccion-ajena": {
+    "mode": "lexical-fallback",
+    "selected": [
+      "mauroprime-bridge-collaboration",
+      "mssr-agent-routing"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "experiment": "semantic-curator-batch-v1",
+  "model": "jev-1.13.0",
+  "requestCount": 2,
+  "headsPerRequest": [
+    38,
+    38
+  ],
+  "policy": "One document per request; many independent heads. Jev proposes semantic structure only. Original block text is never rewritten. Protected metadata is preserved deterministically.",
+  "casesFingerprint": "bd7df435dfe3654055279824650ee15dffebb2df54669a80b5fb58d4cefa3664"
+}

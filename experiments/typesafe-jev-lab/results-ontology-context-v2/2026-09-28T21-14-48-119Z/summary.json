@@ -1,0 +1,742 @@
+{
+  "runId": "2026-09-28T21-14-48-119Z",
+  "model": "jev-1.13.0",
+  "variants": {
+    "text": {
+      "semanticType": {
+        "correct": 17,
+        "total": 22,
+        "accuracy": 0.7727272727272727,
+        "safeCorrect": 17,
+        "safeAccuracy": 0.7727272727272727,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": [],
+        "confusion": {
+          "architecture_contract": {
+            "architecture_contract": 4
+          },
+          "operational_state": {
+            "operational_state": 3
+          },
+          "durable_decision": {
+            "durable_decision": 3,
+            "architecture_contract": 4,
+            "procedure_contract": 1
+          },
+          "procedure_contract": {
+            "procedure_contract": 3
+          },
+          "historical_evidence": {
+            "historical_evidence": 3
+          },
+          "reference_index": {
+            "reference_index": 1
+          }
+        },
+        "meanConfidence": 0.6668181818181818
+      },
+      "lifecycle": {
+        "correct": 15,
+        "total": 22,
+        "accuracy": 0.6818181818181818,
+        "safeCorrect": 21,
+        "safeAccuracy": 0.9545454545454546,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": [],
+        "confusion": {
+          "current": {
+            "current": 13,
+            "unknown": 6
+          },
+          "historical": {
+            "historical": 2,
+            "current": 1
+          }
+        },
+        "meanConfidence": 0.4781818181818183
+      },
+      "authorityKind": {
+        "correct": 13,
+        "total": 22,
+        "accuracy": 0.5909090909090909,
+        "safeCorrect": 13,
+        "safeAccuracy": 0.5909090909090909,
+        "highConfidenceWrong": 6,
+        "wrongHighConfidence": [
+          {
+            "moduleId": "mssr-change-history-contract",
+            "truth": "memory",
+            "pred": "context",
+            "confidence": 0.95
+          },
+          {
+            "moduleId": "mssr-first-party-skill-direction",
+            "truth": "memory",
+            "pred": "context",
+            "confidence": 0.86
+          },
+          {
+            "moduleId": "mssr-semantic-consistency-decision",
+            "truth": "memory",
+            "pred": "context",
+            "confidence": 0.88
+          },
+          {
+            "moduleId": "mssr-semantic-relations-retrieval-decision",
+            "truth": "memory",
+            "pred": "context",
+            "confidence": 0.88
+          },
+          {
+            "moduleId": "mssr-trace-lifecycle-integrity",
+            "truth": "memory",
+            "pred": "context",
+            "confidence": 0.93
+          },
+          {
+            "moduleId": "mssr-human-task-identity",
+            "truth": "memory",
+            "pred": "context",
+            "confidence": 0.99
+          }
+        ],
+        "confusion": {
+          "context": {
+            "context": 6
+          },
+          "state": {
+            "state": 3
+          },
+          "memory": {
+            "state": 1,
+            "context": 8,
+            "memory": 4
+          }
+        },
+        "meanConfidence": 0.7745454545454546
+      },
+      "placement": {
+        "correct": 13,
+        "total": 22,
+        "accuracy": 0.5909090909090909,
+        "safeCorrect": 13,
+        "safeAccuracy": 0.5909090909090909,
+        "highConfidenceWrong": 1,
+        "wrongHighConfidence": [
+          {
+            "moduleId": "mssr-project-document-index",
+            "truth": "selective_knowledge",
+            "pred": "external_reference",
+            "confidence": 0.89
+          }
+        ],
+        "confusion": {
+          "root_control": {
+            "selective_knowledge": 1,
+            "external_reference": 1,
+            "archive": 1,
+            "root_control": 1
+          },
+          "selective_knowledge": {
+            "archive": 1,
+            "root_control": 2,
+            "selective_knowledge": 12,
+            "external_reference": 3
+          }
+        },
+        "meanConfidence": 0.44590909090909087
+      },
+      "topic": {
+        "correct": 12,
+        "total": 22,
+        "accuracy": 0.5454545454545454,
+        "safeCorrect": 12,
+        "safeAccuracy": 0.5454545454545454,
+        "highConfidenceWrong": 2,
+        "wrongHighConfidence": [
+          {
+            "moduleId": "mssr-first-party-skill-direction",
+            "truth": "decision",
+            "pred": "architecture",
+            "confidence": 0.99
+          },
+          {
+            "moduleId": "mssr-project-document-reference-lifecycle",
+            "truth": "reference",
+            "pred": "architecture",
+            "confidence": 0.91
+          }
+        ],
+        "confusion": {
+          "architecture": {
+            "architecture": 4
+          },
+          "state": {
+            "state": 3
+          },
+          "decision": {
+            "decision": 3,
+            "architecture": 5
+          },
+          "pattern": {
+            "pattern": 1
+          },
+          "operations": {
+            "architecture": 1
+          },
+          "reference": {
+            "architecture": 4,
+            "reference": 1
+          }
+        },
+        "meanConfidence": 0.7363636363636364
+      },
+      "protected": {
+        "correct": 18,
+        "total": 22,
+        "accuracy": 0.8181818181818182,
+        "brier": 0.15719090909090908,
+        "highConfidenceWrong": 2,
+        "wrongHighConfidence": [
+          {
+            "moduleId": "mssr-architecture-impact-history",
+            "truth": false,
+            "p": 0.95,
+            "certainty": 0.8999999999999999
+          },
+          {
+            "moduleId": "mssr-context-plane-history",
+            "truth": false,
+            "p": 0.93,
+            "certainty": 0.8600000000000001
+          }
+        ]
+      },
+      "relation": {
+        "correct": 7,
+        "total": 8,
+        "accuracy": 0.875,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": []
+      },
+      "inputTokens": 57665,
+      "outputTokens": 8302,
+      "p50Ms": 328.52049999999963
+    },
+    "metadata": {
+      "semanticType": {
+        "correct": 21,
+        "total": 22,
+        "accuracy": 0.9545454545454546,
+        "safeCorrect": 21,
+        "safeAccuracy": 0.9545454545454546,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": [],
+        "confusion": {
+          "architecture_contract": {
+            "architecture_contract": 4
+          },
+          "operational_state": {
+            "operational_state": 3
+          },
+          "durable_decision": {
+            "durable_decision": 7,
+            "procedure_contract": 1
+          },
+          "procedure_contract": {
+            "procedure_contract": 3
+          },
+          "historical_evidence": {
+            "historical_evidence": 3
+          },
+          "reference_index": {
+            "reference_index": 1
+          }
+        },
+        "meanConfidence": 0.8281818181818182
+      },
+      "lifecycle": {
+        "correct": 17,
+        "total": 22,
+        "accuracy": 0.7727272727272727,
+        "safeCorrect": 22,
+        "safeAccuracy": 1,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": [],
+        "confusion": {
+          "current": {
+            "current": 14,
+            "unknown": 5
+          },
+          "historical": {
+            "historical": 3
+          }
+        },
+        "meanConfidence": 0.5672727272727273
+      },
+      "authorityKind": {
+        "correct": 17,
+        "total": 22,
+        "accuracy": 0.7727272727272727,
+        "safeCorrect": 17,
+        "safeAccuracy": 0.7727272727272727,
+        "highConfidenceWrong": 4,
+        "wrongHighConfidence": [
+          {
+            "moduleId": "mssr-change-history-contract",
+            "truth": "memory",
+            "pred": "context",
+            "confidence": 0.97
+          },
+          {
+            "moduleId": "mssr-semantic-relations-retrieval-decision",
+            "truth": "memory",
+            "pred": "context",
+            "confidence": 0.85
+          },
+          {
+            "moduleId": "mssr-trace-lifecycle-integrity",
+            "truth": "memory",
+            "pred": "context",
+            "confidence": 0.87
+          },
+          {
+            "moduleId": "mssr-human-task-identity",
+            "truth": "memory",
+            "pred": "context",
+            "confidence": 0.97
+          }
+        ],
+        "confusion": {
+          "context": {
+            "context": 6
+          },
+          "state": {
+            "state": 3
+          },
+          "memory": {
+            "memory": 8,
+            "context": 5
+          }
+        },
+        "meanConfidence": 0.8386363636363637
+      },
+      "placement": {
+        "correct": 12,
+        "total": 22,
+        "accuracy": 0.5454545454545454,
+        "safeCorrect": 12,
+        "safeAccuracy": 0.5454545454545454,
+        "highConfidenceWrong": 1,
+        "wrongHighConfidence": [
+          {
+            "moduleId": "mssr-project-document-index",
+            "truth": "selective_knowledge",
+            "pred": "external_reference",
+            "confidence": 0.94
+          }
+        ],
+        "confusion": {
+          "root_control": {
+            "root_control": 1,
+            "external_reference": 1,
+            "selective_knowledge": 2
+          },
+          "selective_knowledge": {
+            "selective_knowledge": 11,
+            "root_control": 3,
+            "archive": 3,
+            "external_reference": 1
+          }
+        },
+        "meanConfidence": 0.4854545454545454
+      },
+      "topic": {
+        "correct": 19,
+        "total": 22,
+        "accuracy": 0.8636363636363636,
+        "safeCorrect": 19,
+        "safeAccuracy": 0.8636363636363636,
+        "highConfidenceWrong": 1,
+        "wrongHighConfidence": [
+          {
+            "moduleId": "mssr-project-document-reference-lifecycle",
+            "truth": "reference",
+            "pred": "architecture",
+            "confidence": 0.83
+          }
+        ],
+        "confusion": {
+          "architecture": {
+            "architecture": 4
+          },
+          "state": {
+            "state": 3
+          },
+          "decision": {
+            "decision": 7,
+            "architecture": 1
+          },
+          "pattern": {
+            "pattern": 1
+          },
+          "operations": {
+            "decision": 1
+          },
+          "reference": {
+            "reference": 4,
+            "architecture": 1
+          }
+        },
+        "meanConfidence": 0.8136363636363636
+      },
+      "protected": {
+        "correct": 18,
+        "total": 22,
+        "accuracy": 0.8181818181818182,
+        "brier": 0.147,
+        "highConfidenceWrong": 1,
+        "wrongHighConfidence": [
+          {
+            "moduleId": "mssr-architecture-impact-history",
+            "truth": false,
+            "p": 0.94,
+            "certainty": 0.8799999999999999
+          }
+        ]
+      },
+      "relation": {
+        "correct": 7,
+        "total": 8,
+        "accuracy": 0.875,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": []
+      },
+      "inputTokens": 62584,
+      "outputTokens": 8315,
+      "p50Ms": 324.6424999999999
+    },
+    "contract": {
+      "semanticType": {
+        "correct": 21,
+        "total": 22,
+        "accuracy": 0.9545454545454546,
+        "safeCorrect": 21,
+        "safeAccuracy": 0.9545454545454546,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": [],
+        "confusion": {
+          "architecture_contract": {
+            "architecture_contract": 4
+          },
+          "operational_state": {
+            "operational_state": 3
+          },
+          "durable_decision": {
+            "durable_decision": 7,
+            "procedure_contract": 1
+          },
+          "procedure_contract": {
+            "procedure_contract": 3
+          },
+          "historical_evidence": {
+            "historical_evidence": 3
+          },
+          "reference_index": {
+            "reference_index": 1
+          }
+        },
+        "meanConfidence": 0.8309090909090908
+      },
+      "lifecycle": {
+        "correct": 15,
+        "total": 22,
+        "accuracy": 0.6818181818181818,
+        "safeCorrect": 22,
+        "safeAccuracy": 1,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": [],
+        "confusion": {
+          "current": {
+            "current": 12,
+            "unknown": 7
+          },
+          "historical": {
+            "historical": 3
+          }
+        },
+        "meanConfidence": 0.5454545454545454
+      },
+      "authorityKind": {
+        "correct": 18,
+        "total": 22,
+        "accuracy": 0.8181818181818182,
+        "safeCorrect": 18,
+        "safeAccuracy": 0.8181818181818182,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": [],
+        "confusion": {
+          "context": {
+            "context": 6
+          },
+          "state": {
+            "state": 3
+          },
+          "memory": {
+            "memory": 9,
+            "context": 4
+          }
+        },
+        "meanConfidence": 0.8059090909090909
+      },
+      "placement": {
+        "correct": 7,
+        "total": 22,
+        "accuracy": 0.3181818181818182,
+        "safeCorrect": 7,
+        "safeAccuracy": 0.3181818181818182,
+        "highConfidenceWrong": 1,
+        "wrongHighConfidence": [
+          {
+            "moduleId": "mssr-project-knowledge-drift-review",
+            "truth": "selective_knowledge",
+            "pred": "root_control",
+            "confidence": 0.82
+          }
+        ],
+        "confusion": {
+          "root_control": {
+            "root_control": 3,
+            "selective_knowledge": 1
+          },
+          "selective_knowledge": {
+            "root_control": 13,
+            "selective_knowledge": 4,
+            "external_reference": 1
+          }
+        },
+        "meanConfidence": 0.52
+      },
+      "topic": {
+        "correct": 19,
+        "total": 22,
+        "accuracy": 0.8636363636363636,
+        "safeCorrect": 19,
+        "safeAccuracy": 0.8636363636363636,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": [],
+        "confusion": {
+          "architecture": {
+            "architecture": 4
+          },
+          "state": {
+            "state": 3
+          },
+          "decision": {
+            "decision": 7,
+            "architecture": 1
+          },
+          "pattern": {
+            "pattern": 1
+          },
+          "operations": {
+            "decision": 1
+          },
+          "reference": {
+            "reference": 4,
+            "architecture": 1
+          }
+        },
+        "meanConfidence": 0.7990909090909092
+      },
+      "protected": {
+        "correct": 18,
+        "total": 22,
+        "accuracy": 0.8181818181818182,
+        "brier": 0.1393727272727273,
+        "highConfidenceWrong": 1,
+        "wrongHighConfidence": [
+          {
+            "moduleId": "mssr-architecture-impact-history",
+            "truth": false,
+            "p": 0.93,
+            "certainty": 0.8600000000000001
+          }
+        ]
+      },
+      "relation": {
+        "correct": 7,
+        "total": 8,
+        "accuracy": 0.875,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": []
+      },
+      "inputTokens": 69904,
+      "outputTokens": 8278,
+      "p50Ms": 331.8122999999996
+    },
+    "provenance": {
+      "semanticType": {
+        "correct": 21,
+        "total": 22,
+        "accuracy": 0.9545454545454546,
+        "safeCorrect": 21,
+        "safeAccuracy": 0.9545454545454546,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": [],
+        "confusion": {
+          "architecture_contract": {
+            "architecture_contract": 4
+          },
+          "operational_state": {
+            "operational_state": 3
+          },
+          "durable_decision": {
+            "durable_decision": 8
+          },
+          "procedure_contract": {
+            "procedure_contract": 2,
+            "durable_decision": 1
+          },
+          "historical_evidence": {
+            "historical_evidence": 3
+          },
+          "reference_index": {
+            "reference_index": 1
+          }
+        },
+        "meanConfidence": 0.8736363636363635
+      },
+      "lifecycle": {
+        "correct": 8,
+        "total": 22,
+        "accuracy": 0.36363636363636365,
+        "safeCorrect": 20,
+        "safeAccuracy": 0.9090909090909091,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": [],
+        "confusion": {
+          "current": {
+            "unknown": 14,
+            "current": 5
+          },
+          "historical": {
+            "historical": 3
+          }
+        },
+        "meanConfidence": 0.5922727272727273
+      },
+      "authorityKind": {
+        "correct": 19,
+        "total": 22,
+        "accuracy": 0.8636363636363636,
+        "safeCorrect": 19,
+        "safeAccuracy": 0.8636363636363636,
+        "highConfidenceWrong": 1,
+        "wrongHighConfidence": [
+          {
+            "moduleId": "mssr-change-history-contract",
+            "truth": "memory",
+            "pred": "context",
+            "confidence": 0.82
+          }
+        ],
+        "confusion": {
+          "context": {
+            "context": 6
+          },
+          "state": {
+            "state": 3
+          },
+          "memory": {
+            "memory": 10,
+            "context": 3
+          }
+        },
+        "meanConfidence": 0.8327272727272728
+      },
+      "placement": {
+        "correct": 13,
+        "total": 22,
+        "accuracy": 0.5909090909090909,
+        "safeCorrect": 13,
+        "safeAccuracy": 0.5909090909090909,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": [],
+        "confusion": {
+          "root_control": {
+            "root_control": 4
+          },
+          "selective_knowledge": {
+            "root_control": 9,
+            "selective_knowledge": 9
+          }
+        },
+        "meanConfidence": 0.5186363636363636
+      },
+      "topic": {
+        "correct": 20,
+        "total": 22,
+        "accuracy": 0.9090909090909091,
+        "safeCorrect": 20,
+        "safeAccuracy": 0.9090909090909091,
+        "highConfidenceWrong": 1,
+        "wrongHighConfidence": [
+          {
+            "moduleId": "mssr-project-document-reference-lifecycle",
+            "truth": "reference",
+            "pred": "architecture",
+            "confidence": 0.89
+          }
+        ],
+        "confusion": {
+          "architecture": {
+            "architecture": 4
+          },
+          "state": {
+            "state": 3
+          },
+          "decision": {
+            "decision": 8
+          },
+          "pattern": {
+            "pattern": 1
+          },
+          "operations": {
+            "decision": 1
+          },
+          "reference": {
+            "reference": 4,
+            "architecture": 1
+          }
+        },
+        "meanConfidence": 0.9136363636363637
+      },
+      "protected": {
+        "correct": 18,
+        "total": 22,
+        "accuracy": 0.8181818181818182,
+        "brier": 0.1389227272727273,
+        "highConfidenceWrong": 1,
+        "wrongHighConfidence": [
+          {
+            "moduleId": "mssr-architecture-impact-history",
+            "truth": false,
+            "p": 0.91,
+            "certainty": 0.8200000000000001
+          }
+        ]
+      },
+      "relation": {
+        "correct": 7,
+        "total": 8,
+        "accuracy": 0.875,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": []
+      },
+      "inputTokens": 72837,
+      "outputTokens": 8304,
+      "p50Ms": 328.78009999999995
+    }
+  }
+}

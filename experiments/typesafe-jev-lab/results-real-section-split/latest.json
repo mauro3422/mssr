@@ -1,0 +1,856 @@
+{
+  "manifest": {
+    "schemaVersion": 1,
+    "experiment": "mssr-real-section-safe-split-v1",
+    "model": "jev-1.13.0",
+    "repetitions": 3,
+    "variants": [
+      "text",
+      "parent",
+      "neighborhood",
+      "contract"
+    ],
+    "caseCount": 17,
+    "requestCount": 204,
+    "casesFingerprint": "ec239d5a5a6b99137dd5b1a444697f50bd8b220edde8c0f777e80d538ee83374",
+    "highConfidenceThreshold": 0.82,
+    "labelPolicy": "Actions frozen manually from current MSSR authority semantics before inference: current contract/boundary sections stay baseline; clearly versioned history inside dedicated history modules moves verbatim; no expected labels enter state.",
+    "statePolicy": "One section per independent Jev state. Parent and sibling metadata are compact; sibling text is not included. No unrelated document corpus is injected."
+  },
+  "summary": {
+    "runId": "2026-09-28T21-19-51-552Z",
+    "model": "jev-1.13.0",
+    "cases": 17,
+    "repetitions": 3,
+    "variants": {
+      "text": {
+        "aggregate": {
+          "correct": 33,
+          "total": 51,
+          "accuracy": 0.6470588235294118,
+          "autoMove": {
+            "tp": 3,
+            "fp": 3,
+            "fn": 15,
+            "tn": 30,
+            "precision": 0.5,
+            "recall": 0.16666666666666666,
+            "dangerousFalseMoves": 3,
+            "highConfidenceFalseMoves": 0,
+            "falseMoves": [
+              {
+                "id": "mssr-project-document-reference-lifecycle:## Reference-on-miss",
+                "confidence": 0.27,
+                "pred": "move_reference",
+                "truth": "keep_baseline"
+              },
+              {
+                "id": "mssr-project-document-reference-lifecycle:## Reference-on-miss",
+                "confidence": 0.33,
+                "pred": "move_reference",
+                "truth": "keep_baseline"
+              },
+              {
+                "id": "mssr-project-document-reference-lifecycle:## Reference-on-miss",
+                "confidence": 0.24,
+                "pred": "move_reference",
+                "truth": "keep_baseline"
+              }
+            ],
+            "missedMoves": [
+              {
+                "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                "pred": "keep_baseline",
+                "confidence": 0.52
+              },
+              {
+                "id": "mssr-context-plane-history:## Context Messages foundation (v1, 0.2.10)",
+                "pred": "keep_baseline",
+                "confidence": 0.35
+              },
+              {
+                "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                "pred": "keep_baseline",
+                "confidence": 0.38
+              },
+              {
+                "id": "mssr-context-plane-history:## Inbox tombstone semantics (0.2.12)",
+                "pred": "keep_baseline",
+                "confidence": 0.32
+              },
+              {
+                "id": "mssr-context-plane-history:## Canonical-owner migration reconciliation (0.2.64)",
+                "pred": "keep_baseline",
+                "confidence": 0.44
+              },
+              {
+                "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                "pred": "keep_baseline",
+                "confidence": 0.51
+              },
+              {
+                "id": "mssr-context-plane-history:## Context Messages foundation (v1, 0.2.10)",
+                "pred": "keep_baseline",
+                "confidence": 0.4
+              },
+              {
+                "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                "pred": "keep_baseline",
+                "confidence": 0.35
+              },
+              {
+                "id": "mssr-context-plane-history:## Inbox tombstone semantics (0.2.12)",
+                "pred": "keep_baseline",
+                "confidence": 0.29
+              },
+              {
+                "id": "mssr-context-plane-history:## Canonical-owner migration reconciliation (0.2.64)",
+                "pred": "keep_baseline",
+                "confidence": 0.48
+              },
+              {
+                "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                "pred": "keep_baseline",
+                "confidence": 0.55
+              },
+              {
+                "id": "mssr-context-plane-history:## Context Messages foundation (v1, 0.2.10)",
+                "pred": "keep_baseline",
+                "confidence": 0.37
+              },
+              {
+                "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                "pred": "keep_baseline",
+                "confidence": 0.34
+              },
+              {
+                "id": "mssr-context-plane-history:## Inbox tombstone semantics (0.2.12)",
+                "pred": "keep_baseline",
+                "confidence": 0.28
+              },
+              {
+                "id": "mssr-context-plane-history:## Canonical-owner migration reconciliation (0.2.64)",
+                "pred": "keep_baseline",
+                "confidence": 0.45
+              }
+            ]
+          },
+          "reviewRate": 0,
+          "lifecycleAccuracy": 0.7058823529411765,
+          "brierBaseline": 0.35116862745098026,
+          "brierReferenceValue": 0.3066058823529412
+        },
+        "perRep": [
+          {
+            "rep": 1,
+            "correct": 11,
+            "total": 17,
+            "accuracy": 0.6470588235294118,
+            "autoMove": {
+              "tp": 1,
+              "fp": 1,
+              "fn": 5,
+              "tn": 10,
+              "precision": 0.5,
+              "recall": 0.16666666666666666,
+              "dangerousFalseMoves": 1,
+              "highConfidenceFalseMoves": 0,
+              "falseMoves": [
+                {
+                  "id": "mssr-project-document-reference-lifecycle:## Reference-on-miss",
+                  "confidence": 0.27,
+                  "pred": "move_reference",
+                  "truth": "keep_baseline"
+                }
+              ],
+              "missedMoves": [
+                {
+                  "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.52
+                },
+                {
+                  "id": "mssr-context-plane-history:## Context Messages foundation (v1, 0.2.10)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.35
+                },
+                {
+                  "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.38
+                },
+                {
+                  "id": "mssr-context-plane-history:## Inbox tombstone semantics (0.2.12)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.32
+                },
+                {
+                  "id": "mssr-context-plane-history:## Canonical-owner migration reconciliation (0.2.64)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.44
+                }
+              ]
+            },
+            "reviewRate": 0,
+            "lifecycleAccuracy": 0.7058823529411765,
+            "brierBaseline": 0.3475235294117647,
+            "brierReferenceValue": 0.3059705882352941
+          },
+          {
+            "rep": 2,
+            "correct": 11,
+            "total": 17,
+            "accuracy": 0.6470588235294118,
+            "autoMove": {
+              "tp": 1,
+              "fp": 1,
+              "fn": 5,
+              "tn": 10,
+              "precision": 0.5,
+              "recall": 0.16666666666666666,
+              "dangerousFalseMoves": 1,
+              "highConfidenceFalseMoves": 0,
+              "falseMoves": [
+                {
+                  "id": "mssr-project-document-reference-lifecycle:## Reference-on-miss",
+                  "confidence": 0.33,
+                  "pred": "move_reference",
+                  "truth": "keep_baseline"
+                }
+              ],
+              "missedMoves": [
+                {
+                  "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.51
+                },
+                {
+                  "id": "mssr-context-plane-history:## Context Messages foundation (v1, 0.2.10)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.4
+                },
+                {
+                  "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.35
+                },
+                {
+                  "id": "mssr-context-plane-history:## Inbox tombstone semantics (0.2.12)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.29
+                },
+                {
+                  "id": "mssr-context-plane-history:## Canonical-owner migration reconciliation (0.2.64)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.48
+                }
+              ]
+            },
+            "reviewRate": 0,
+            "lifecycleAccuracy": 0.7058823529411765,
+            "brierBaseline": 0.3544529411764706,
+            "brierReferenceValue": 0.30516470588235295
+          },
+          {
+            "rep": 3,
+            "correct": 11,
+            "total": 17,
+            "accuracy": 0.6470588235294118,
+            "autoMove": {
+              "tp": 1,
+              "fp": 1,
+              "fn": 5,
+              "tn": 10,
+              "precision": 0.5,
+              "recall": 0.16666666666666666,
+              "dangerousFalseMoves": 1,
+              "highConfidenceFalseMoves": 0,
+              "falseMoves": [
+                {
+                  "id": "mssr-project-document-reference-lifecycle:## Reference-on-miss",
+                  "confidence": 0.24,
+                  "pred": "move_reference",
+                  "truth": "keep_baseline"
+                }
+              ],
+              "missedMoves": [
+                {
+                  "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.55
+                },
+                {
+                  "id": "mssr-context-plane-history:## Context Messages foundation (v1, 0.2.10)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.37
+                },
+                {
+                  "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.34
+                },
+                {
+                  "id": "mssr-context-plane-history:## Inbox tombstone semantics (0.2.12)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.28
+                },
+                {
+                  "id": "mssr-context-plane-history:## Canonical-owner migration reconciliation (0.2.64)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.45
+                }
+              ]
+            },
+            "reviewRate": 0,
+            "lifecycleAccuracy": 0.7058823529411765,
+            "brierBaseline": 0.35152941176470587,
+            "brierReferenceValue": 0.30868235294117646
+          }
+        ],
+        "inputTokens": 53094,
+        "outputTokens": 9696
+      },
+      "parent": {
+        "aggregate": {
+          "correct": 46,
+          "total": 51,
+          "accuracy": 0.9019607843137255,
+          "autoMove": {
+            "tp": 13,
+            "fp": 0,
+            "fn": 5,
+            "tn": 33,
+            "precision": 1,
+            "recall": 0.7222222222222222,
+            "dangerousFalseMoves": 0,
+            "highConfidenceFalseMoves": 0,
+            "falseMoves": [],
+            "missedMoves": [
+              {
+                "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                "pred": "keep_baseline",
+                "confidence": 0.25
+              },
+              {
+                "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                "pred": "keep_baseline",
+                "confidence": 0.26
+              },
+              {
+                "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                "pred": "keep_baseline",
+                "confidence": 0.26
+              },
+              {
+                "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                "pred": "keep_baseline",
+                "confidence": 0.25
+              },
+              {
+                "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                "pred": "keep_baseline",
+                "confidence": 0.3
+              }
+            ]
+          },
+          "reviewRate": 0,
+          "lifecycleAccuracy": 1,
+          "brierBaseline": 0.301772549019608,
+          "brierReferenceValue": 0.3436235294117646
+        },
+        "perRep": [
+          {
+            "rep": 1,
+            "correct": 16,
+            "total": 17,
+            "accuracy": 0.9411764705882353,
+            "autoMove": {
+              "tp": 5,
+              "fp": 0,
+              "fn": 1,
+              "tn": 11,
+              "precision": 1,
+              "recall": 0.8333333333333334,
+              "dangerousFalseMoves": 0,
+              "highConfidenceFalseMoves": 0,
+              "falseMoves": [],
+              "missedMoves": [
+                {
+                  "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.25
+                }
+              ]
+            },
+            "reviewRate": 0,
+            "lifecycleAccuracy": 1,
+            "brierBaseline": 0.29737058823529416,
+            "brierReferenceValue": 0.3438529411764706
+          },
+          {
+            "rep": 2,
+            "correct": 15,
+            "total": 17,
+            "accuracy": 0.8823529411764706,
+            "autoMove": {
+              "tp": 4,
+              "fp": 0,
+              "fn": 2,
+              "tn": 11,
+              "precision": 1,
+              "recall": 0.6666666666666666,
+              "dangerousFalseMoves": 0,
+              "highConfidenceFalseMoves": 0,
+              "falseMoves": [],
+              "missedMoves": [
+                {
+                  "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.26
+                },
+                {
+                  "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.26
+                }
+              ]
+            },
+            "reviewRate": 0,
+            "lifecycleAccuracy": 1,
+            "brierBaseline": 0.3074235294117647,
+            "brierReferenceValue": 0.34368235294117644
+          },
+          {
+            "rep": 3,
+            "correct": 15,
+            "total": 17,
+            "accuracy": 0.8823529411764706,
+            "autoMove": {
+              "tp": 4,
+              "fp": 0,
+              "fn": 2,
+              "tn": 11,
+              "precision": 1,
+              "recall": 0.6666666666666666,
+              "dangerousFalseMoves": 0,
+              "highConfidenceFalseMoves": 0,
+              "falseMoves": [],
+              "missedMoves": [
+                {
+                  "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.25
+                },
+                {
+                  "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.3
+                }
+              ]
+            },
+            "reviewRate": 0,
+            "lifecycleAccuracy": 1,
+            "brierBaseline": 0.30052352941176474,
+            "brierReferenceValue": 0.34333529411764707
+          }
+        ],
+        "inputTokens": 63405,
+        "outputTokens": 9748
+      },
+      "neighborhood": {
+        "aggregate": {
+          "correct": 43,
+          "total": 51,
+          "accuracy": 0.8431372549019608,
+          "autoMove": {
+            "tp": 10,
+            "fp": 0,
+            "fn": 8,
+            "tn": 33,
+            "precision": 1,
+            "recall": 0.5555555555555556,
+            "dangerousFalseMoves": 0,
+            "highConfidenceFalseMoves": 0,
+            "falseMoves": [],
+            "missedMoves": [
+              {
+                "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                "pred": "keep_baseline",
+                "confidence": 0.39
+              },
+              {
+                "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                "pred": "keep_baseline",
+                "confidence": 0.33
+              },
+              {
+                "id": "mssr-context-plane-history:## Canonical-owner migration reconciliation (0.2.64)",
+                "pred": "keep_baseline",
+                "confidence": 0.25
+              },
+              {
+                "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                "pred": "keep_baseline",
+                "confidence": 0.36
+              },
+              {
+                "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                "pred": "keep_baseline",
+                "confidence": 0.3
+              },
+              {
+                "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                "pred": "keep_baseline",
+                "confidence": 0.36
+              },
+              {
+                "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                "pred": "keep_baseline",
+                "confidence": 0.31
+              },
+              {
+                "id": "mssr-context-plane-history:## Canonical-owner migration reconciliation (0.2.64)",
+                "pred": "keep_baseline",
+                "confidence": 0.26
+              }
+            ]
+          },
+          "reviewRate": 0,
+          "lifecycleAccuracy": 0.9803921568627451,
+          "brierBaseline": 0.3011627450980392,
+          "brierReferenceValue": 0.3563823529411765
+        },
+        "perRep": [
+          {
+            "rep": 1,
+            "correct": 14,
+            "total": 17,
+            "accuracy": 0.8235294117647058,
+            "autoMove": {
+              "tp": 3,
+              "fp": 0,
+              "fn": 3,
+              "tn": 11,
+              "precision": 1,
+              "recall": 0.5,
+              "dangerousFalseMoves": 0,
+              "highConfidenceFalseMoves": 0,
+              "falseMoves": [],
+              "missedMoves": [
+                {
+                  "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.39
+                },
+                {
+                  "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.33
+                },
+                {
+                  "id": "mssr-context-plane-history:## Canonical-owner migration reconciliation (0.2.64)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.25
+                }
+              ]
+            },
+            "reviewRate": 0,
+            "lifecycleAccuracy": 1,
+            "brierBaseline": 0.30912941176470593,
+            "brierReferenceValue": 0.35287647058823535
+          },
+          {
+            "rep": 2,
+            "correct": 15,
+            "total": 17,
+            "accuracy": 0.8823529411764706,
+            "autoMove": {
+              "tp": 4,
+              "fp": 0,
+              "fn": 2,
+              "tn": 11,
+              "precision": 1,
+              "recall": 0.6666666666666666,
+              "dangerousFalseMoves": 0,
+              "highConfidenceFalseMoves": 0,
+              "falseMoves": [],
+              "missedMoves": [
+                {
+                  "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.36
+                },
+                {
+                  "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.3
+                }
+              ]
+            },
+            "reviewRate": 0,
+            "lifecycleAccuracy": 0.9411764705882353,
+            "brierBaseline": 0.2933235294117647,
+            "brierReferenceValue": 0.35612941176470586
+          },
+          {
+            "rep": 3,
+            "correct": 14,
+            "total": 17,
+            "accuracy": 0.8235294117647058,
+            "autoMove": {
+              "tp": 3,
+              "fp": 0,
+              "fn": 3,
+              "tn": 11,
+              "precision": 1,
+              "recall": 0.5,
+              "dangerousFalseMoves": 0,
+              "highConfidenceFalseMoves": 0,
+              "falseMoves": [],
+              "missedMoves": [
+                {
+                  "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.36
+                },
+                {
+                  "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.31
+                },
+                {
+                  "id": "mssr-context-plane-history:## Canonical-owner migration reconciliation (0.2.64)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.26
+                }
+              ]
+            },
+            "reviewRate": 0,
+            "lifecycleAccuracy": 1,
+            "brierBaseline": 0.30103529411764707,
+            "brierReferenceValue": 0.36014117647058824
+          }
+        ],
+        "inputTokens": 70224,
+        "outputTokens": 9752
+      },
+      "contract": {
+        "aggregate": {
+          "correct": 39,
+          "total": 51,
+          "accuracy": 0.7647058823529411,
+          "autoMove": {
+            "tp": 6,
+            "fp": 0,
+            "fn": 12,
+            "tn": 33,
+            "precision": 1,
+            "recall": 0.3333333333333333,
+            "dangerousFalseMoves": 0,
+            "highConfidenceFalseMoves": 0,
+            "falseMoves": [],
+            "missedMoves": [
+              {
+                "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                "pred": "keep_baseline",
+                "confidence": 0.62
+              },
+              {
+                "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                "pred": "keep_baseline",
+                "confidence": 0.65
+              },
+              {
+                "id": "mssr-context-plane-history:## Inbox tombstone semantics (0.2.12)",
+                "pred": "keep_baseline",
+                "confidence": 0.38
+              },
+              {
+                "id": "mssr-context-plane-history:## Canonical-owner migration reconciliation (0.2.64)",
+                "pred": "keep_baseline",
+                "confidence": 0.57
+              },
+              {
+                "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                "pred": "keep_baseline",
+                "confidence": 0.68
+              },
+              {
+                "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                "pred": "keep_baseline",
+                "confidence": 0.61
+              },
+              {
+                "id": "mssr-context-plane-history:## Inbox tombstone semantics (0.2.12)",
+                "pred": "keep_baseline",
+                "confidence": 0.41
+              },
+              {
+                "id": "mssr-context-plane-history:## Canonical-owner migration reconciliation (0.2.64)",
+                "pred": "keep_baseline",
+                "confidence": 0.65
+              },
+              {
+                "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                "pred": "keep_baseline",
+                "confidence": 0.59
+              },
+              {
+                "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                "pred": "keep_baseline",
+                "confidence": 0.63
+              },
+              {
+                "id": "mssr-context-plane-history:## Inbox tombstone semantics (0.2.12)",
+                "pred": "keep_baseline",
+                "confidence": 0.35
+              },
+              {
+                "id": "mssr-context-plane-history:## Canonical-owner migration reconciliation (0.2.64)",
+                "pred": "keep_baseline",
+                "confidence": 0.62
+              }
+            ]
+          },
+          "reviewRate": 0,
+          "lifecycleAccuracy": 0.9411764705882353,
+          "brierBaseline": 0.31688235294117645,
+          "brierReferenceValue": 0.22011764705882356
+        },
+        "perRep": [
+          {
+            "rep": 1,
+            "correct": 13,
+            "total": 17,
+            "accuracy": 0.7647058823529411,
+            "autoMove": {
+              "tp": 2,
+              "fp": 0,
+              "fn": 4,
+              "tn": 11,
+              "precision": 1,
+              "recall": 0.3333333333333333,
+              "dangerousFalseMoves": 0,
+              "highConfidenceFalseMoves": 0,
+              "falseMoves": [],
+              "missedMoves": [
+                {
+                  "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.62
+                },
+                {
+                  "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.65
+                },
+                {
+                  "id": "mssr-context-plane-history:## Inbox tombstone semantics (0.2.12)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.38
+                },
+                {
+                  "id": "mssr-context-plane-history:## Canonical-owner migration reconciliation (0.2.64)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.57
+                }
+              ]
+            },
+            "reviewRate": 0,
+            "lifecycleAccuracy": 0.9411764705882353,
+            "brierBaseline": 0.3184588235294118,
+            "brierReferenceValue": 0.21880588235294116
+          },
+          {
+            "rep": 2,
+            "correct": 13,
+            "total": 17,
+            "accuracy": 0.7647058823529411,
+            "autoMove": {
+              "tp": 2,
+              "fp": 0,
+              "fn": 4,
+              "tn": 11,
+              "precision": 1,
+              "recall": 0.3333333333333333,
+              "dangerousFalseMoves": 0,
+              "highConfidenceFalseMoves": 0,
+              "falseMoves": [],
+              "missedMoves": [
+                {
+                  "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.68
+                },
+                {
+                  "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.61
+                },
+                {
+                  "id": "mssr-context-plane-history:## Inbox tombstone semantics (0.2.12)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.41
+                },
+                {
+                  "id": "mssr-context-plane-history:## Canonical-owner migration reconciliation (0.2.64)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.65
+                }
+              ]
+            },
+            "reviewRate": 0,
+            "lifecycleAccuracy": 0.9411764705882353,
+            "brierBaseline": 0.31195882352941184,
+            "brierReferenceValue": 0.2171588235294118
+          },
+          {
+            "rep": 3,
+            "correct": 13,
+            "total": 17,
+            "accuracy": 0.7647058823529411,
+            "autoMove": {
+              "tp": 2,
+              "fp": 0,
+              "fn": 4,
+              "tn": 11,
+              "precision": 1,
+              "recall": 0.3333333333333333,
+              "dangerousFalseMoves": 0,
+              "highConfidenceFalseMoves": 0,
+              "falseMoves": [],
+              "missedMoves": [
+                {
+                  "id": "mssr-architecture-impact-history:## Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.59
+                },
+                {
+                  "id": "mssr-context-plane-history:## Host delivery and canonical project-context cutover (0.2.11, 0.2.18)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.63
+                },
+                {
+                  "id": "mssr-context-plane-history:## Inbox tombstone semantics (0.2.12)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.35
+                },
+                {
+                  "id": "mssr-context-plane-history:## Canonical-owner migration reconciliation (0.2.64)",
+                  "pred": "keep_baseline",
+                  "confidence": 0.62
+                }
+              ]
+            },
+            "reviewRate": 0,
+            "lifecycleAccuracy": 0.9411764705882353,
+            "brierBaseline": 0.3202294117647058,
+            "brierReferenceValue": 0.22438823529411764
+          }
+        ],
+        "inputTokens": 79098,
+        "outputTokens": 9756
+      }
+    }
+  }
+}

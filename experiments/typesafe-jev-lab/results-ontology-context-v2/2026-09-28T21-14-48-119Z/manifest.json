@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "experiment": "mssr-jev-ontology-context-ablation-v2-rubric-precedence",
+  "model": "jev-1.13.0",
+  "variants": [
+    "text",
+    "metadata",
+    "contract",
+    "provenance"
+  ],
+  "labelPolicy": "authorityKind/topic from reviewed MSSR manifest; placement from canonical source class; semanticType/lifecycle/protected frozen in ontology-context-cases.mjs before inference",
+  "expectedLeakPolicy": "Expected labels are not sent. text has text only; metadata adds description/heading/area/selectors; contract adds compact ownership semantics; provenance adds module id/path/section refs with explicit warning that current path is not placement authority.",
+  "statePolicy": "One independent target per System-One state. Relation tests use only their pair. Requests run concurrently; unrelated targets never share state.",
+  "highConfidenceThreshold": 0.82,
+  "casesFingerprint": "2cdeb151de61fb054cdf422d694f270f699ac640ad7b6ca82af6a341d397bafb",
+  "requests": 120
+}

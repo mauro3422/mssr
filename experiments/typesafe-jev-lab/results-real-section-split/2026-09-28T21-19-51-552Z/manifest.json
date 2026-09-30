@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "experiment": "mssr-real-section-safe-split-v1",
+  "model": "jev-1.13.0",
+  "repetitions": 3,
+  "variants": [
+    "text",
+    "parent",
+    "neighborhood",
+    "contract"
+  ],
+  "caseCount": 17,
+  "requestCount": 204,
+  "casesFingerprint": "ec239d5a5a6b99137dd5b1a444697f50bd8b220edde8c0f777e80d538ee83374",
+  "highConfidenceThreshold": 0.82,
+  "labelPolicy": "Actions frozen manually from current MSSR authority semantics before inference: current contract/boundary sections stay baseline; clearly versioned history inside dedicated history modules moves verbatim; no expected labels enter state.",
+  "statePolicy": "One section per independent Jev state. Parent and sibling metadata are compact; sibling text is not included. No unrelated document corpus is injected."
+}

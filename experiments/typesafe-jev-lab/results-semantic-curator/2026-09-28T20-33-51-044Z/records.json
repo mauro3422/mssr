@@ -1,0 +1,827 @@
+[
+  {
+    "caseId": "project-context-overflow",
+    "elapsedMs": 560.0281,
+    "stateChars": 1161,
+    "heads": 38,
+    "usage": {
+      "input_tokens": 5487,
+      "output_tokens": 1775
+    },
+    "scoring": {
+      "total": 28,
+      "correct": 21,
+      "accuracy": 0.75
+    },
+    "answers": {
+      "role_b1": {
+        "type": "choice",
+        "choice": "architecture",
+        "confidence": 0.6,
+        "probabilities": {
+          "history": 0,
+          "noise": 0,
+          "current_state": 0.17,
+          "procedure": 0.01,
+          "architecture": 0.67,
+          "durable_decision": 0.15
+        }
+      },
+      "destination_b1": {
+        "type": "choice",
+        "choice": "context",
+        "confidence": 0.37,
+        "probabilities": {
+          "state": 0.16,
+          "knowledge_ref": 0.01,
+          "context": 0.49,
+          "drop": 0,
+          "memory": 0.34
+        }
+      },
+      "protected_b1": {
+        "type": "noul",
+        "noul": 0.96
+      },
+      "topic_b1": {
+        "type": "choice",
+        "choice": "context-economy",
+        "confidence": 1,
+        "probabilities": {
+          "routing": 0,
+          "ui": 0,
+          "release-history": 0,
+          "context-economy": 1,
+          "verification": 0
+        }
+      },
+      "role_b2": {
+        "type": "choice",
+        "choice": "history",
+        "confidence": 0.99,
+        "probabilities": {
+          "history": 1,
+          "noise": 0,
+          "durable_decision": 0,
+          "procedure": 0,
+          "architecture": 0,
+          "current_state": 0
+        }
+      },
+      "destination_b2": {
+        "type": "choice",
+        "choice": "knowledge_ref",
+        "confidence": 0.76,
+        "probabilities": {
+          "state": 0.02,
+          "knowledge_ref": 0.81,
+          "context": 0,
+          "drop": 0.06,
+          "memory": 0.11
+        }
+      },
+      "protected_b2": {
+        "type": "noul",
+        "noul": 0.42
+      },
+      "topic_b2": {
+        "type": "choice",
+        "choice": "context-economy",
+        "confidence": 0.99,
+        "probabilities": {
+          "routing": 0,
+          "ui": 0,
+          "release-history": 0,
+          "context-economy": 1,
+          "verification": 0
+        }
+      },
+      "role_b3": {
+        "type": "choice",
+        "choice": "history",
+        "confidence": 1,
+        "probabilities": {
+          "history": 1,
+          "current_state": 0,
+          "noise": 0,
+          "procedure": 0,
+          "architecture": 0,
+          "durable_decision": 0
+        }
+      },
+      "destination_b3": {
+        "type": "choice",
+        "choice": "knowledge_ref",
+        "confidence": 0.95,
+        "probabilities": {
+          "state": 0,
+          "knowledge_ref": 0.97,
+          "context": 0,
+          "drop": 0.02,
+          "memory": 0.01
+        }
+      },
+      "protected_b3": {
+        "type": "noul",
+        "noul": 0.48
+      },
+      "topic_b3": {
+        "type": "choice",
+        "choice": "release-history",
+        "confidence": 0.99,
+        "probabilities": {
+          "routing": 0,
+          "ui": 0,
+          "release-history": 1,
+          "verification": 0,
+          "context-economy": 0
+        }
+      },
+      "role_b4": {
+        "type": "choice",
+        "choice": "procedure",
+        "confidence": 0.85,
+        "probabilities": {
+          "history": 0,
+          "noise": 0,
+          "current_state": 0.02,
+          "procedure": 0.88,
+          "architecture": 0.01,
+          "durable_decision": 0.09
+        }
+      },
+      "destination_b4": {
+        "type": "choice",
+        "choice": "memory",
+        "confidence": 0.65,
+        "probabilities": {
+          "knowledge_ref": 0.1,
+          "drop": 0.01,
+          "context": 0.01,
+          "state": 0.16,
+          "memory": 0.72
+        }
+      },
+      "protected_b4": {
+        "type": "noul",
+        "noul": 0.84
+      },
+      "topic_b4": {
+        "type": "choice",
+        "choice": "context-economy",
+        "confidence": 0.76,
+        "probabilities": {
+          "routing": 0.01,
+          "ui": 0,
+          "release-history": 0.01,
+          "context-economy": 0.81,
+          "verification": 0.16
+        }
+      },
+      "role_b5": {
+        "type": "choice",
+        "choice": "noise",
+        "confidence": 0.91,
+        "probabilities": {
+          "noise": 0.92,
+          "current_state": 0,
+          "history": 0.08,
+          "procedure": 0,
+          "architecture": 0,
+          "durable_decision": 0
+        }
+      },
+      "destination_b5": {
+        "type": "choice",
+        "choice": "drop",
+        "confidence": 0.79,
+        "probabilities": {
+          "state": 0,
+          "knowledge_ref": 0.16,
+          "context": 0,
+          "drop": 0.84,
+          "memory": 0
+        }
+      },
+      "protected_b5": {
+        "type": "noul",
+        "noul": 0.1
+      },
+      "topic_b5": {
+        "type": "choice",
+        "choice": "ui",
+        "confidence": 1,
+        "probabilities": {
+          "routing": 0,
+          "ui": 1,
+          "release-history": 0,
+          "verification": 0,
+          "context-economy": 0
+        }
+      },
+      "role_b6": {
+        "type": "choice",
+        "choice": "durable_decision",
+        "confidence": 0.89,
+        "probabilities": {
+          "history": 0,
+          "noise": 0,
+          "durable_decision": 0.91,
+          "procedure": 0.09,
+          "architecture": 0,
+          "current_state": 0
+        }
+      },
+      "destination_b6": {
+        "type": "choice",
+        "choice": "memory",
+        "confidence": 0.91,
+        "probabilities": {
+          "state": 0.01,
+          "knowledge_ref": 0.01,
+          "context": 0.05,
+          "drop": 0,
+          "memory": 0.93
+        }
+      },
+      "protected_b6": {
+        "type": "noul",
+        "noul": 0.96
+      },
+      "topic_b6": {
+        "type": "choice",
+        "choice": "verification",
+        "confidence": 0.4,
+        "probabilities": {
+          "routing": 0,
+          "ui": 0,
+          "release-history": 0,
+          "context-economy": 0.47,
+          "verification": 0.53
+        }
+      },
+      "relation_b1_b2": {
+        "type": "choice",
+        "choice": "supersedes",
+        "confidence": 0.47,
+        "probabilities": {
+          "unrelated": 0,
+          "contradicts": 0,
+          "duplicate": 0,
+          "supersedes": 0.58,
+          "supports": 0.42
+        }
+      },
+      "relation_b3_b4": {
+        "type": "choice",
+        "choice": "supports",
+        "confidence": 0.88,
+        "probabilities": {
+          "unrelated": 0.08,
+          "contradicts": 0,
+          "duplicate": 0,
+          "supersedes": 0.01,
+          "supports": 0.91
+        }
+      },
+      "relation_b1_b6": {
+        "type": "choice",
+        "choice": "supports",
+        "confidence": 0.85,
+        "probabilities": {
+          "unrelated": 0.12,
+          "contradicts": 0,
+          "duplicate": 0,
+          "supersedes": 0,
+          "supports": 0.88
+        }
+      },
+      "relation_b4_b6": {
+        "type": "choice",
+        "choice": "supports",
+        "confidence": 0.95,
+        "probabilities": {
+          "unrelated": 0.04,
+          "contradicts": 0,
+          "duplicate": 0,
+          "supersedes": 0,
+          "supports": 0.96
+        }
+      },
+      "continue_b1_b2": {
+        "type": "noul",
+        "noul": 0.74
+      },
+      "connector_b1_b2": {
+        "type": "choice",
+        "choice": "however",
+        "confidence": 0.41,
+        "probabilities": {
+          "none": 0.13,
+          "moreover": 0.01,
+          "however": 0.53,
+          "therefore": 0.16,
+          "specifically": 0.17
+        }
+      },
+      "continue_b2_b3": {
+        "type": "noul",
+        "noul": 0.16
+      },
+      "connector_b2_b3": {
+        "type": "choice",
+        "choice": "none",
+        "confidence": 0.65,
+        "probabilities": {
+          "none": 0.73,
+          "moreover": 0.14,
+          "however": 0.09,
+          "therefore": 0.01,
+          "specifically": 0.03
+        }
+      },
+      "continue_b3_b4": {
+        "type": "noul",
+        "noul": 0.39
+      },
+      "connector_b3_b4": {
+        "type": "choice",
+        "choice": "none",
+        "confidence": 0.51,
+        "probabilities": {
+          "none": 0.6,
+          "moreover": 0.19,
+          "however": 0.1,
+          "therefore": 0.02,
+          "specifically": 0.09
+        }
+      },
+      "continue_b4_b5": {
+        "type": "noul",
+        "noul": 0.06
+      },
+      "connector_b4_b5": {
+        "type": "choice",
+        "choice": "none",
+        "confidence": 0.85,
+        "probabilities": {
+          "none": 0.88,
+          "moreover": 0.06,
+          "however": 0.06,
+          "therefore": 0,
+          "specifically": 0
+        }
+      },
+      "continue_b5_b6": {
+        "type": "noul",
+        "noul": 0.04
+      },
+      "connector_b5_b6": {
+        "type": "choice",
+        "choice": "none",
+        "confidence": 0.86,
+        "probabilities": {
+          "none": 0.89,
+          "moreover": 0.03,
+          "however": 0.08,
+          "therefore": 0,
+          "specifically": 0
+        }
+      }
+    },
+    "proposal": {
+      "state": [],
+      "memory": [
+        "Current maintenance rule: exact indexed sections may move automatically, but whole-file semantic segmentation requires reviewed selectors.",
+        "Decision: preserve provenance, protected constraints and original text when semantic curation proposes keep/drop, merge or ref extraction."
+      ],
+      "context": [
+        "Current invariant: optional Project Context modules that exceed their entry budget must be omitted with visible evidence instead of aborting the whole bootstrap."
+      ],
+      "refs": {
+        "context-economy": "# context-economy\n\nThe loader previously materialized every eligible module before final budget selection, so one oversized optional module could throw before omission was possible.\n",
+        "release-history": "# release-history\n\nHistorical note: release 0.2.63 introduced semantic segments with a baseline plus at most one matching optional segment.\n"
+      },
+      "dropped": [
+        "b5"
+      ],
+      "protected": [
+        "b1",
+        "b4",
+        "b6"
+      ]
+    }
+  },
+  {
+    "caseId": "duplicate-and-supersession",
+    "elapsedMs": 318.8820999999999,
+    "stateChars": 722,
+    "heads": 38,
+    "usage": {
+      "input_tokens": 5393,
+      "output_tokens": 1756
+    },
+    "scoring": {
+      "total": 28,
+      "correct": 23,
+      "accuracy": 0.8214285714285714
+    },
+    "answers": {
+      "role_b1": {
+        "type": "choice",
+        "choice": "current_state",
+        "confidence": 1,
+        "probabilities": {
+          "durable_decision": 0,
+          "noise": 0,
+          "architecture": 0,
+          "current_state": 1,
+          "procedure": 0,
+          "history": 0
+        }
+      },
+      "destination_b1": {
+        "type": "choice",
+        "choice": "state",
+        "confidence": 0.87,
+        "probabilities": {
+          "drop": 0.02,
+          "knowledge_ref": 0.08,
+          "state": 0.89,
+          "context": 0,
+          "memory": 0.01
+        }
+      },
+      "protected_b1": {
+        "type": "noul",
+        "noul": 0.43
+      },
+      "topic_b1": {
+        "type": "choice",
+        "choice": "provider",
+        "confidence": 1,
+        "probabilities": {
+          "provider": 1,
+          "release-history": 0,
+          "routing": 0,
+          "ui": 0,
+          "verification": 0
+        }
+      },
+      "role_b2": {
+        "type": "choice",
+        "choice": "current_state",
+        "confidence": 0.99,
+        "probabilities": {
+          "durable_decision": 0,
+          "noise": 0.01,
+          "architecture": 0,
+          "current_state": 0.99,
+          "procedure": 0,
+          "history": 0
+        }
+      },
+      "destination_b2": {
+        "type": "choice",
+        "choice": "state",
+        "confidence": 0.75,
+        "probabilities": {
+          "drop": 0.12,
+          "knowledge_ref": 0.06,
+          "state": 0.81,
+          "context": 0,
+          "memory": 0.01
+        }
+      },
+      "protected_b2": {
+        "type": "noul",
+        "noul": 0.27
+      },
+      "topic_b2": {
+        "type": "choice",
+        "choice": "provider",
+        "confidence": 1,
+        "probabilities": {
+          "provider": 1,
+          "release-history": 0,
+          "routing": 0,
+          "ui": 0,
+          "verification": 0
+        }
+      },
+      "role_b3": {
+        "type": "choice",
+        "choice": "history",
+        "confidence": 0.99,
+        "probabilities": {
+          "durable_decision": 0,
+          "noise": 0.01,
+          "architecture": 0,
+          "current_state": 0,
+          "procedure": 0,
+          "history": 0.99
+        }
+      },
+      "destination_b3": {
+        "type": "choice",
+        "choice": "drop",
+        "confidence": 0.78,
+        "probabilities": {
+          "drop": 0.83,
+          "knowledge_ref": 0.15,
+          "state": 0.01,
+          "context": 0,
+          "memory": 0.01
+        }
+      },
+      "protected_b3": {
+        "type": "noul",
+        "noul": 0.13
+      },
+      "topic_b3": {
+        "type": "choice",
+        "choice": "release-history",
+        "confidence": 0.59,
+        "probabilities": {
+          "provider": 0.33,
+          "release-history": 0.67,
+          "routing": 0,
+          "ui": 0,
+          "verification": 0
+        }
+      },
+      "role_b4": {
+        "type": "choice",
+        "choice": "durable_decision",
+        "confidence": 0.84,
+        "probabilities": {
+          "durable_decision": 0.87,
+          "noise": 0,
+          "architecture": 0,
+          "current_state": 0.08,
+          "procedure": 0.05,
+          "history": 0
+        }
+      },
+      "destination_b4": {
+        "type": "choice",
+        "choice": "memory",
+        "confidence": 0.74,
+        "probabilities": {
+          "drop": 0,
+          "knowledge_ref": 0.01,
+          "state": 0.13,
+          "context": 0.07,
+          "memory": 0.79
+        }
+      },
+      "protected_b4": {
+        "type": "noul",
+        "noul": 0.97
+      },
+      "topic_b4": {
+        "type": "choice",
+        "choice": "verification",
+        "confidence": 0.68,
+        "probabilities": {
+          "provider": 0.03,
+          "release-history": 0,
+          "routing": 0.22,
+          "ui": 0,
+          "verification": 0.75
+        }
+      },
+      "role_b5": {
+        "type": "choice",
+        "choice": "history",
+        "confidence": 0.96,
+        "probabilities": {
+          "durable_decision": 0,
+          "noise": 0.01,
+          "architecture": 0,
+          "current_state": 0.02,
+          "procedure": 0,
+          "history": 0.97
+        }
+      },
+      "destination_b5": {
+        "type": "choice",
+        "choice": "knowledge_ref",
+        "confidence": 0.35,
+        "probabilities": {
+          "drop": 0.27,
+          "knowledge_ref": 0.49,
+          "state": 0.03,
+          "context": 0.02,
+          "memory": 0.19
+        }
+      },
+      "protected_b5": {
+        "type": "noul",
+        "noul": 0.6
+      },
+      "topic_b5": {
+        "type": "choice",
+        "choice": "verification",
+        "confidence": 0.79,
+        "probabilities": {
+          "provider": 0.03,
+          "release-history": 0.01,
+          "routing": 0.12,
+          "ui": 0,
+          "verification": 0.84
+        }
+      },
+      "role_b6": {
+        "type": "choice",
+        "choice": "current_state",
+        "confidence": 0.68,
+        "probabilities": {
+          "durable_decision": 0,
+          "noise": 0.26,
+          "architecture": 0,
+          "current_state": 0.74,
+          "procedure": 0,
+          "history": 0
+        }
+      },
+      "destination_b6": {
+        "type": "choice",
+        "choice": "knowledge_ref",
+        "confidence": 0.52,
+        "probabilities": {
+          "drop": 0.09,
+          "knowledge_ref": 0.62,
+          "state": 0.22,
+          "context": 0.05,
+          "memory": 0.02
+        }
+      },
+      "protected_b6": {
+        "type": "noul",
+        "noul": 0.27
+      },
+      "topic_b6": {
+        "type": "choice",
+        "choice": "ui",
+        "confidence": 1,
+        "probabilities": {
+          "provider": 0,
+          "release-history": 0,
+          "routing": 0,
+          "ui": 1,
+          "verification": 0
+        }
+      },
+      "relation_b1_b2": {
+        "type": "choice",
+        "choice": "duplicate",
+        "confidence": 0.99,
+        "probabilities": {
+          "supersedes": 0,
+          "supports": 0.01,
+          "contradicts": 0,
+          "duplicate": 0.99,
+          "unrelated": 0
+        }
+      },
+      "relation_b1_b3": {
+        "type": "choice",
+        "choice": "supersedes",
+        "confidence": 0.97,
+        "probabilities": {
+          "supersedes": 0.98,
+          "supports": 0,
+          "contradicts": 0.02,
+          "duplicate": 0,
+          "unrelated": 0
+        }
+      },
+      "relation_b4_b5": {
+        "type": "choice",
+        "choice": "supports",
+        "confidence": 0.99,
+        "probabilities": {
+          "supersedes": 0.01,
+          "supports": 0.99,
+          "contradicts": 0,
+          "duplicate": 0,
+          "unrelated": 0
+        }
+      },
+      "relation_b2_b6": {
+        "type": "choice",
+        "choice": "unrelated",
+        "confidence": 0.99,
+        "probabilities": {
+          "supersedes": 0,
+          "supports": 0.01,
+          "contradicts": 0,
+          "duplicate": 0,
+          "unrelated": 0.99
+        }
+      },
+      "continue_b1_b2": {
+        "type": "noul",
+        "noul": 0.93
+      },
+      "connector_b1_b2": {
+        "type": "choice",
+        "choice": "none",
+        "confidence": 0.41,
+        "probabilities": {
+          "specifically": 0.45,
+          "moreover": 0.02,
+          "therefore": 0,
+          "none": 0.53,
+          "however": 0
+        }
+      },
+      "continue_b2_b3": {
+        "type": "noul",
+        "noul": 0.23
+      },
+      "connector_b2_b3": {
+        "type": "choice",
+        "choice": "none",
+        "confidence": 0.34,
+        "probabilities": {
+          "moreover": 0.01,
+          "therefore": 0,
+          "specifically": 0.07,
+          "none": 0.47,
+          "however": 0.45
+        }
+      },
+      "continue_b3_b4": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "connector_b3_b4": {
+        "type": "choice",
+        "choice": "none",
+        "confidence": 0.76,
+        "probabilities": {
+          "therefore": 0,
+          "specifically": 0,
+          "moreover": 0.06,
+          "none": 0.8200000000000001,
+          "however": 0.12
+        }
+      },
+      "continue_b4_b5": {
+        "type": "noul",
+        "noul": 0.67
+      },
+      "connector_b4_b5": {
+        "type": "choice",
+        "choice": "specifically",
+        "confidence": 0.27,
+        "probabilities": {
+          "therefore": 0.26,
+          "specifically": 0.43,
+          "moreover": 0.05,
+          "none": 0.25,
+          "however": 0.01
+        }
+      },
+      "continue_b5_b6": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "connector_b5_b6": {
+        "type": "choice",
+        "choice": "none",
+        "confidence": 0.77,
+        "probabilities": {
+          "therefore": 0,
+          "specifically": 0,
+          "moreover": 0.13,
+          "none": 0.83,
+          "however": 0.04
+        }
+      }
+    },
+    "proposal": {
+      "state": [
+        "Current provider timeout is 20 seconds.",
+        "Provider timeout=20s is the active configuration."
+      ],
+      "memory": [
+        "Do not retry POST /charge unless an idempotency key is present."
+      ],
+      "context": [],
+      "refs": {
+        "verification": "# verification\n\nA duplicate charge was observed when POST /charge was retried without an idempotency key.\n",
+        "ui": "# ui\n\nThe settings panel icon is circular.\n"
+      },
+      "dropped": [
+        "b3"
+      ],
+      "protected": [
+        "b4",
+        "b5"
+      ]
+    }
+  }
+]

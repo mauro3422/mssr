@@ -1,0 +1,2340 @@
+[
+  {
+    "index": 0,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 474.20529999999997,
+    "stateChars": 4947,
+    "requestFingerprint": "be52ddc295b89af4eabbc39e58f76e668396ea4464f68e78e0d878b05767a43a",
+    "usage": {
+      "input_tokens": 3031,
+      "output_tokens": 357
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "architecture_contract",
+        "confidence": 0.97,
+        "probabilities": {
+          "operational_state": 0,
+          "architecture_contract": 0.97,
+          "procedure_contract": 0,
+          "other": 0,
+          "durable_decision": 0.03,
+          "historical_evidence": 0,
+          "reference_index": 0
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.62,
+        "probabilities": {
+          "historical": 0,
+          "superseded": 0,
+          "current": 0.28,
+          "unknown": 0.72
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "context",
+        "confidence": 0.98,
+        "probabilities": {
+          "state": 0,
+          "directive": 0,
+          "context": 0.99,
+          "memory": 0.01,
+          "unknown": 0
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.72,
+        "probabilities": {
+          "archive": 0.01,
+          "selective_knowledge": 0.76,
+          "unknown": 0.01,
+          "root_control": 0.21,
+          "external_reference": 0.01
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "architecture",
+        "confidence": 1,
+        "probabilities": {
+          "operations": 0,
+          "decision": 0,
+          "reference": 0,
+          "phase": 0,
+          "architecture": 1,
+          "other": 0,
+          "state": 0,
+          "pattern": 0,
+          "vocabulary": 0,
+          "law": 0,
+          "design": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.91
+      }
+    },
+    "moduleId": "mssr-architecture-core",
+    "expected": {
+      "semanticType": "architecture_contract",
+      "lifecycle": "current",
+      "protected": true,
+      "authorityKind": "context",
+      "placement": "root_control",
+      "topic": "architecture"
+    }
+  },
+  {
+    "index": 1,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 447.18610000000007,
+    "stateChars": 3386,
+    "requestFingerprint": "af3449f126e76f943df63227d4049c740ac1638f9a195567c5ba6884e48afa11",
+    "usage": {
+      "input_tokens": 2832,
+      "output_tokens": 359
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "operational_state",
+        "confidence": 1,
+        "probabilities": {
+          "operational_state": 1,
+          "durable_decision": 0,
+          "procedure_contract": 0,
+          "reference_index": 0,
+          "other": 0,
+          "architecture_contract": 0,
+          "historical_evidence": 0
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "current",
+        "confidence": 0.41,
+        "probabilities": {
+          "superseded": 0.09,
+          "historical": 0.07,
+          "current": 0.55,
+          "unknown": 0.28
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "state",
+        "confidence": 0.99,
+        "probabilities": {
+          "state": 0.99,
+          "directive": 0,
+          "unknown": 0,
+          "context": 0,
+          "memory": 0.01
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.52,
+        "probabilities": {
+          "external_reference": 0.01,
+          "archive": 0.16,
+          "root_control": 0.15,
+          "unknown": 0.05,
+          "selective_knowledge": 0.63
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "state",
+        "confidence": 1,
+        "probabilities": {
+          "state": 1,
+          "law": 0,
+          "operations": 0,
+          "architecture": 0,
+          "other": 0,
+          "phase": 0,
+          "pattern": 0,
+          "reference": 0,
+          "vocabulary": 0,
+          "decision": 0,
+          "design": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.89
+      }
+    },
+    "moduleId": "mssr-current-release",
+    "expected": {
+      "semanticType": "operational_state",
+      "lifecycle": "current",
+      "protected": true,
+      "authorityKind": "state",
+      "placement": "root_control",
+      "topic": "state"
+    }
+  },
+  {
+    "index": 2,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 451.5404,
+    "stateChars": 2704,
+    "requestFingerprint": "7a376e93fff8737410fd1026f5d37df33db5011be00cb16c03ed1bfe9010316b",
+    "usage": {
+      "input_tokens": 2599,
+      "output_tokens": 360
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "durable_decision",
+        "confidence": 0.97,
+        "probabilities": {
+          "operational_state": 0.02,
+          "durable_decision": 0.98,
+          "other": 0,
+          "historical_evidence": 0,
+          "reference_index": 0,
+          "procedure_contract": 0,
+          "architecture_contract": 0
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "current",
+        "confidence": 0.59,
+        "probabilities": {
+          "superseded": 0,
+          "current": 0.7,
+          "historical": 0.07,
+          "unknown": 0.23
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "memory",
+        "confidence": 0.86,
+        "probabilities": {
+          "memory": 0.9,
+          "context": 0,
+          "unknown": 0,
+          "state": 0.1,
+          "directive": 0
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.94,
+        "probabilities": {
+          "archive": 0.04,
+          "external_reference": 0,
+          "unknown": 0,
+          "root_control": 0.01,
+          "selective_knowledge": 0.95
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "decision",
+        "confidence": 0.99,
+        "probabilities": {
+          "reference": 0,
+          "decision": 0.99,
+          "law": 0,
+          "vocabulary": 0,
+          "design": 0,
+          "state": 0.01,
+          "pattern": 0,
+          "other": 0,
+          "phase": 0,
+          "architecture": 0,
+          "operations": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.92
+      }
+    },
+    "moduleId": "mssr-learning-activation-decision",
+    "expected": {
+      "semanticType": "durable_decision",
+      "lifecycle": "current",
+      "protected": true,
+      "authorityKind": "memory",
+      "placement": "selective_knowledge",
+      "topic": "decision"
+    }
+  },
+  {
+    "index": 3,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 480.94040000000007,
+    "stateChars": 2433,
+    "requestFingerprint": "04ac844b1d5b88e63fb8cc4c8505c6fff160751670cb29c7a0ce9a5613798f30",
+    "usage": {
+      "input_tokens": 2546,
+      "output_tokens": 357
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "procedure_contract",
+        "confidence": 0.81,
+        "probabilities": {
+          "operational_state": 0,
+          "procedure_contract": 0.84,
+          "durable_decision": 0.11,
+          "reference_index": 0,
+          "other": 0,
+          "architecture_contract": 0.05,
+          "historical_evidence": 0
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.75,
+        "probabilities": {
+          "superseded": 0,
+          "historical": 0.01,
+          "unknown": 0.81,
+          "current": 0.18
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "context",
+        "confidence": 0.81,
+        "probabilities": {
+          "state": 0,
+          "unknown": 0,
+          "context": 0.85,
+          "memory": 0.15,
+          "directive": 0
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.99,
+        "probabilities": {
+          "external_reference": 0,
+          "unknown": 0,
+          "archive": 0,
+          "selective_knowledge": 1,
+          "root_control": 0
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "pattern",
+        "confidence": 0.78,
+        "probabilities": {
+          "other": 0,
+          "state": 0,
+          "design": 0,
+          "operations": 0.03,
+          "reference": 0,
+          "phase": 0,
+          "law": 0.12,
+          "decision": 0.01,
+          "vocabulary": 0,
+          "pattern": 0.81,
+          "architecture": 0.03
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.86
+      }
+    },
+    "moduleId": "mssr-change-history-contract",
+    "expected": {
+      "semanticType": "procedure_contract",
+      "lifecycle": "current",
+      "protected": true,
+      "authorityKind": "memory",
+      "placement": "selective_knowledge",
+      "topic": "pattern"
+    }
+  },
+  {
+    "index": 4,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 316.6335,
+    "stateChars": 5012,
+    "requestFingerprint": "64247b219dfa03dda40cfa5af677f4e6ae3fd2a76b24fef1c37a23d5526f10ac",
+    "usage": {
+      "input_tokens": 3074,
+      "output_tokens": 357
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "procedure_contract",
+        "confidence": 0.45,
+        "probabilities": {
+          "operational_state": 0,
+          "reference_index": 0,
+          "procedure_contract": 0.53,
+          "durable_decision": 0.43,
+          "other": 0,
+          "historical_evidence": 0,
+          "architecture_contract": 0.04
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.59,
+        "probabilities": {
+          "superseded": 0,
+          "historical": 0.01,
+          "current": 0.29,
+          "unknown": 0.7
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "memory",
+        "confidence": 0.54,
+        "probabilities": {
+          "state": 0,
+          "memory": 0.64,
+          "directive": 0,
+          "context": 0.36,
+          "unknown": 0
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.99,
+        "probabilities": {
+          "root_control": 0,
+          "external_reference": 0,
+          "archive": 0,
+          "selective_knowledge": 1,
+          "unknown": 0
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "decision",
+        "confidence": 0.71,
+        "probabilities": {
+          "state": 0,
+          "architecture": 0.22,
+          "pattern": 0,
+          "phase": 0,
+          "other": 0,
+          "operations": 0.04,
+          "design": 0,
+          "decision": 0.74,
+          "law": 0,
+          "reference": 0,
+          "vocabulary": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.92
+      }
+    },
+    "moduleId": "mssr-project-knowledge-drift-review",
+    "expected": {
+      "semanticType": "procedure_contract",
+      "lifecycle": "current",
+      "protected": true,
+      "authorityKind": "memory",
+      "placement": "selective_knowledge",
+      "topic": "operations"
+    }
+  },
+  {
+    "index": 5,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 347.0164000000001,
+    "stateChars": 4229,
+    "requestFingerprint": "703a741a0b6d801f2815ec850d59267d6e015852870fe24fd87aec11e79886e9",
+    "usage": {
+      "input_tokens": 2929,
+      "output_tokens": 360
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "durable_decision",
+        "confidence": 0.91,
+        "probabilities": {
+          "reference_index": 0,
+          "architecture_contract": 0.02,
+          "procedure_contract": 0.06,
+          "operational_state": 0,
+          "historical_evidence": 0,
+          "durable_decision": 0.92,
+          "other": 0
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "current",
+        "confidence": 0.58,
+        "probabilities": {
+          "unknown": 0.27,
+          "historical": 0.04,
+          "superseded": 0,
+          "current": 0.68
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "memory",
+        "confidence": 0.86,
+        "probabilities": {
+          "directive": 0,
+          "context": 0.11,
+          "unknown": 0,
+          "state": 0,
+          "memory": 0.89
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.92,
+        "probabilities": {
+          "selective_knowledge": 0.95,
+          "external_reference": 0,
+          "unknown": 0,
+          "archive": 0.05,
+          "root_control": 0
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "decision",
+        "confidence": 0.97,
+        "probabilities": {
+          "design": 0,
+          "decision": 0.98,
+          "phase": 0,
+          "other": 0,
+          "vocabulary": 0,
+          "pattern": 0,
+          "operations": 0,
+          "architecture": 0.02,
+          "reference": 0,
+          "state": 0,
+          "law": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.93
+      }
+    },
+    "moduleId": "mssr-architecture-impact-decision",
+    "expected": {
+      "semanticType": "durable_decision",
+      "lifecycle": "current",
+      "protected": true,
+      "authorityKind": "memory",
+      "placement": "selective_knowledge",
+      "topic": "decision"
+    }
+  },
+  {
+    "index": 6,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 304.7872,
+    "stateChars": 6205,
+    "requestFingerprint": "336d7084f38b822b58fcfa94d514679ba2d1e806608608e37b01f5b9ce1e1bc2",
+    "usage": {
+      "input_tokens": 3457,
+      "output_tokens": 363
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "historical_evidence",
+        "confidence": 0.98,
+        "probabilities": {
+          "procedure_contract": 0,
+          "operational_state": 0,
+          "reference_index": 0,
+          "durable_decision": 0.02,
+          "other": 0,
+          "architecture_contract": 0,
+          "historical_evidence": 0.98
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "historical",
+        "confidence": 0.98,
+        "probabilities": {
+          "current": 0.01,
+          "superseded": 0,
+          "historical": 0.99,
+          "unknown": 0
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "memory",
+        "confidence": 1,
+        "probabilities": {
+          "context": 0,
+          "directive": 0,
+          "memory": 1,
+          "state": 0,
+          "unknown": 0
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.68,
+        "probabilities": {
+          "external_reference": 0,
+          "selective_knowledge": 0.75,
+          "archive": 0.25,
+          "root_control": 0,
+          "unknown": 0
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "reference",
+        "confidence": 0.77,
+        "probabilities": {
+          "phase": 0,
+          "pattern": 0,
+          "decision": 0.21,
+          "operations": 0,
+          "architecture": 0,
+          "state": 0,
+          "vocabulary": 0,
+          "design": 0,
+          "law": 0,
+          "reference": 0.79,
+          "other": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.89
+      }
+    },
+    "moduleId": "mssr-architecture-impact-history",
+    "expected": {
+      "semanticType": "historical_evidence",
+      "lifecycle": "historical",
+      "protected": false,
+      "authorityKind": "memory",
+      "placement": "selective_knowledge",
+      "topic": "reference"
+    }
+  },
+  {
+    "index": 7,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 341.33090000000004,
+    "stateChars": 3124,
+    "requestFingerprint": "a1155bd71e0af028a95a586ba8743220d84cddcf393aa659fc8a68eb0efd9c8f",
+    "usage": {
+      "input_tokens": 2673,
+      "output_tokens": 360
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "durable_decision",
+        "confidence": 0.93,
+        "probabilities": {
+          "durable_decision": 0.94,
+          "reference_index": 0,
+          "operational_state": 0,
+          "procedure_contract": 0,
+          "historical_evidence": 0,
+          "other": 0,
+          "architecture_contract": 0.06
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.3,
+        "probabilities": {
+          "current": 0.36,
+          "superseded": 0.01,
+          "historical": 0.16,
+          "unknown": 0.47
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "memory",
+        "confidence": 0.73,
+        "probabilities": {
+          "unknown": 0,
+          "context": 0.21,
+          "directive": 0,
+          "state": 0,
+          "memory": 0.79
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.98,
+        "probabilities": {
+          "archive": 0.01,
+          "external_reference": 0,
+          "selective_knowledge": 0.99,
+          "unknown": 0,
+          "root_control": 0
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "decision",
+        "confidence": 0.86,
+        "probabilities": {
+          "design": 0,
+          "reference": 0,
+          "architecture": 0.12,
+          "other": 0,
+          "law": 0,
+          "phase": 0,
+          "pattern": 0,
+          "operations": 0,
+          "decision": 0.88,
+          "vocabulary": 0,
+          "state": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.87
+      }
+    },
+    "moduleId": "mssr-first-party-skill-direction",
+    "expected": {
+      "semanticType": "durable_decision",
+      "lifecycle": "current",
+      "protected": true,
+      "authorityKind": "memory",
+      "placement": "selective_knowledge",
+      "topic": "decision"
+    }
+  },
+  {
+    "index": 8,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 323.0748000000001,
+    "stateChars": 2372,
+    "requestFingerprint": "2c7dfc34f626044a2587267724328972fb9ff6d6f0c82d2303d92c7b97b8cb62",
+    "usage": {
+      "input_tokens": 2523,
+      "output_tokens": 359
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "operational_state",
+        "confidence": 0.95,
+        "probabilities": {
+          "procedure_contract": 0,
+          "durable_decision": 0.04,
+          "historical_evidence": 0,
+          "operational_state": 0.95,
+          "architecture_contract": 0.01,
+          "other": 0,
+          "reference_index": 0
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.38,
+        "probabilities": {
+          "unknown": 0.54,
+          "current": 0.45,
+          "superseded": 0,
+          "historical": 0.01
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "state",
+        "confidence": 0.93,
+        "probabilities": {
+          "unknown": 0,
+          "context": 0.02,
+          "directive": 0,
+          "memory": 0.03,
+          "state": 0.95
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.93,
+        "probabilities": {
+          "unknown": 0.01,
+          "root_control": 0,
+          "archive": 0.04,
+          "selective_knowledge": 0.95,
+          "external_reference": 0
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "state",
+        "confidence": 0.99,
+        "probabilities": {
+          "pattern": 0,
+          "design": 0,
+          "other": 0,
+          "vocabulary": 0,
+          "state": 0.99,
+          "architecture": 0,
+          "reference": 0,
+          "phase": 0,
+          "operations": 0,
+          "law": 0,
+          "decision": 0.01
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.85
+      }
+    },
+    "moduleId": "mssr-learning-dataset-state",
+    "expected": {
+      "semanticType": "operational_state",
+      "lifecycle": "current",
+      "protected": true,
+      "authorityKind": "state",
+      "placement": "root_control",
+      "topic": "state"
+    }
+  },
+  {
+    "index": 9,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 314.8045000000001,
+    "stateChars": 2448,
+    "requestFingerprint": "a0b84d99e425dfef820080a44a37e63d35d47b8223ed57edcf8a69c18997ba75",
+    "usage": {
+      "input_tokens": 2557,
+      "output_tokens": 359
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "operational_state",
+        "confidence": 1,
+        "probabilities": {
+          "reference_index": 0,
+          "procedure_contract": 0,
+          "architecture_contract": 0,
+          "historical_evidence": 0,
+          "other": 0,
+          "operational_state": 1,
+          "durable_decision": 0
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "current",
+        "confidence": 0.3,
+        "probabilities": {
+          "superseded": 0,
+          "unknown": 0.47,
+          "current": 0.48,
+          "historical": 0.05
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "state",
+        "confidence": 0.98,
+        "probabilities": {
+          "directive": 0,
+          "unknown": 0,
+          "context": 0.01,
+          "state": 0.99,
+          "memory": 0
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.92,
+        "probabilities": {
+          "archive": 0.04,
+          "unknown": 0.02,
+          "external_reference": 0.01,
+          "root_control": 0.01,
+          "selective_knowledge": 0.92
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "state",
+        "confidence": 1,
+        "probabilities": {
+          "operations": 0,
+          "design": 0,
+          "decision": 0,
+          "phase": 0,
+          "other": 0,
+          "law": 0,
+          "pattern": 0,
+          "architecture": 0,
+          "reference": 0,
+          "state": 1,
+          "vocabulary": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.81
+      }
+    },
+    "moduleId": "mssr-core-skill-package-state",
+    "expected": {
+      "semanticType": "operational_state",
+      "lifecycle": "current",
+      "protected": true,
+      "authorityKind": "state",
+      "placement": "root_control",
+      "topic": "state"
+    }
+  },
+  {
+    "index": 10,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 317.3219,
+    "stateChars": 3847,
+    "requestFingerprint": "91b51bc14c477c7b40215258cfb9fdd52a8ce9b27263c77829382b3311ff2bac",
+    "usage": {
+      "input_tokens": 2887,
+      "output_tokens": 357
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "architecture_contract",
+        "confidence": 0.89,
+        "probabilities": {
+          "durable_decision": 0.09,
+          "historical_evidence": 0,
+          "reference_index": 0,
+          "other": 0,
+          "operational_state": 0,
+          "procedure_contract": 0,
+          "architecture_contract": 0.91
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.53,
+        "probabilities": {
+          "current": 0.35,
+          "superseded": 0,
+          "unknown": 0.65,
+          "historical": 0
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "context",
+        "confidence": 0.98,
+        "probabilities": {
+          "directive": 0,
+          "context": 0.99,
+          "state": 0,
+          "unknown": 0,
+          "memory": 0.01
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.99,
+        "probabilities": {
+          "root_control": 0.01,
+          "archive": 0,
+          "external_reference": 0,
+          "unknown": 0,
+          "selective_knowledge": 0.99
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "architecture",
+        "confidence": 1,
+        "probabilities": {
+          "phase": 0,
+          "vocabulary": 0,
+          "design": 0,
+          "other": 0,
+          "operations": 0,
+          "architecture": 1,
+          "pattern": 0,
+          "law": 0,
+          "decision": 0,
+          "state": 0,
+          "reference": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.9
+      }
+    },
+    "moduleId": "mssr-canonical-ownership",
+    "expected": {
+      "semanticType": "architecture_contract",
+      "lifecycle": "current",
+      "protected": true,
+      "authorityKind": "context",
+      "placement": "selective_knowledge",
+      "topic": "architecture"
+    }
+  },
+  {
+    "index": 11,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 373.9205999999999,
+    "stateChars": 5569,
+    "requestFingerprint": "e9f0fb1012a09d55f2e7e74c74607845d1b0c1d7625881e91561946e8ba5393a",
+    "usage": {
+      "input_tokens": 3229,
+      "output_tokens": 363
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "historical_evidence",
+        "confidence": 1,
+        "probabilities": {
+          "historical_evidence": 1,
+          "architecture_contract": 0,
+          "other": 0,
+          "reference_index": 0,
+          "procedure_contract": 0,
+          "operational_state": 0,
+          "durable_decision": 0
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "historical",
+        "confidence": 0.94,
+        "probabilities": {
+          "historical": 0.96,
+          "superseded": 0,
+          "unknown": 0.01,
+          "current": 0.03
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "memory",
+        "confidence": 0.92,
+        "probabilities": {
+          "context": 0.06,
+          "memory": 0.94,
+          "state": 0,
+          "unknown": 0,
+          "directive": 0
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.71,
+        "probabilities": {
+          "external_reference": 0,
+          "archive": 0.22,
+          "root_control": 0.01,
+          "unknown": 0,
+          "selective_knowledge": 0.77
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "reference",
+        "confidence": 0.96,
+        "probabilities": {
+          "reference": 0.97,
+          "design": 0,
+          "phase": 0,
+          "other": 0,
+          "state": 0,
+          "vocabulary": 0,
+          "operations": 0,
+          "decision": 0,
+          "architecture": 0.03,
+          "law": 0,
+          "pattern": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.87
+      }
+    },
+    "moduleId": "mssr-context-plane-history",
+    "expected": {
+      "semanticType": "historical_evidence",
+      "lifecycle": "historical",
+      "protected": false,
+      "authorityKind": "memory",
+      "placement": "selective_knowledge",
+      "topic": "reference"
+    }
+  },
+  {
+    "index": 12,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 321.2271999999998,
+    "stateChars": 3052,
+    "requestFingerprint": "85bff7d50c9a5b10291cc980fc387b37e0c31918cf56b25712dc8b29cdfd218e",
+    "usage": {
+      "input_tokens": 2705,
+      "output_tokens": 363
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "historical_evidence",
+        "confidence": 1,
+        "probabilities": {
+          "historical_evidence": 1,
+          "other": 0,
+          "architecture_contract": 0,
+          "procedure_contract": 0,
+          "operational_state": 0,
+          "reference_index": 0,
+          "durable_decision": 0
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "historical",
+        "confidence": 0.98,
+        "probabilities": {
+          "superseded": 0,
+          "historical": 0.98,
+          "unknown": 0.01,
+          "current": 0.01
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "memory",
+        "confidence": 0.99,
+        "probabilities": {
+          "context": 0.01,
+          "state": 0,
+          "directive": 0,
+          "memory": 0.99,
+          "unknown": 0
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.68,
+        "probabilities": {
+          "archive": 0.25,
+          "external_reference": 0,
+          "unknown": 0,
+          "root_control": 0,
+          "selective_knowledge": 0.75
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "reference",
+        "confidence": 0.96,
+        "probabilities": {
+          "state": 0,
+          "other": 0,
+          "vocabulary": 0,
+          "phase": 0,
+          "architecture": 0.03,
+          "pattern": 0,
+          "reference": 0.96,
+          "design": 0,
+          "decision": 0.01,
+          "operations": 0,
+          "law": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.79
+      }
+    },
+    "moduleId": "mssr-operational-notice-plane-history",
+    "expected": {
+      "semanticType": "historical_evidence",
+      "lifecycle": "historical",
+      "protected": false,
+      "authorityKind": "memory",
+      "placement": "selective_knowledge",
+      "topic": "reference"
+    }
+  },
+  {
+    "index": 13,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 314.7184,
+    "stateChars": 5531,
+    "requestFingerprint": "5bc4c54d690c92aeb7016943cb55e4d079cc4d482d161727b23e6006b7e17665",
+    "usage": {
+      "input_tokens": 3198,
+      "output_tokens": 357
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "architecture_contract",
+        "confidence": 0.98,
+        "probabilities": {
+          "other": 0,
+          "operational_state": 0,
+          "historical_evidence": 0,
+          "durable_decision": 0.01,
+          "architecture_contract": 0.98,
+          "procedure_contract": 0.01,
+          "reference_index": 0
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.72,
+        "probabilities": {
+          "current": 0.21,
+          "historical": 0,
+          "unknown": 0.79,
+          "superseded": 0
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "context",
+        "confidence": 1,
+        "probabilities": {
+          "context": 1,
+          "state": 0,
+          "memory": 0,
+          "unknown": 0,
+          "directive": 0
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.97,
+        "probabilities": {
+          "selective_knowledge": 0.98,
+          "archive": 0,
+          "unknown": 0,
+          "root_control": 0.02,
+          "external_reference": 0
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "architecture",
+        "confidence": 1,
+        "probabilities": {
+          "other": 0,
+          "pattern": 0,
+          "vocabulary": 0,
+          "architecture": 1,
+          "reference": 0,
+          "state": 0,
+          "phase": 0,
+          "operations": 0,
+          "design": 0,
+          "decision": 0,
+          "law": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.93
+      }
+    },
+    "moduleId": "mssr-project-context-plane-architecture",
+    "expected": {
+      "semanticType": "architecture_contract",
+      "lifecycle": "current",
+      "protected": true,
+      "authorityKind": "context",
+      "placement": "selective_knowledge",
+      "topic": "architecture"
+    }
+  },
+  {
+    "index": 14,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 305.3122000000001,
+    "stateChars": 5570,
+    "requestFingerprint": "692e4e871bccd4ed60ca29ae98176af3610dacc1375756270ea8cc158bc6fdb9",
+    "usage": {
+      "input_tokens": 3155,
+      "output_tokens": 357
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "procedure_contract",
+        "confidence": 0.55,
+        "probabilities": {
+          "durable_decision": 0.05,
+          "reference_index": 0,
+          "architecture_contract": 0.33,
+          "operational_state": 0,
+          "historical_evidence": 0,
+          "other": 0,
+          "procedure_contract": 0.62
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.45,
+        "probabilities": {
+          "unknown": 0.59,
+          "current": 0.41,
+          "historical": 0,
+          "superseded": 0
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "context",
+        "confidence": 0.99,
+        "probabilities": {
+          "memory": 0.01,
+          "context": 0.99,
+          "directive": 0,
+          "unknown": 0,
+          "state": 0
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 1,
+        "probabilities": {
+          "external_reference": 0,
+          "unknown": 0,
+          "selective_knowledge": 1,
+          "root_control": 0,
+          "archive": 0
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "architecture",
+        "confidence": 0.89,
+        "probabilities": {
+          "pattern": 0.03,
+          "law": 0,
+          "phase": 0,
+          "design": 0,
+          "reference": 0.04,
+          "other": 0,
+          "vocabulary": 0,
+          "operations": 0.02,
+          "architecture": 0.91,
+          "decision": 0,
+          "state": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.91
+      }
+    },
+    "moduleId": "mssr-project-document-reference-lifecycle",
+    "expected": {
+      "semanticType": "procedure_contract",
+      "lifecycle": "current",
+      "protected": true,
+      "authorityKind": "context",
+      "placement": "selective_knowledge",
+      "topic": "reference"
+    }
+  },
+  {
+    "index": 15,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 342.3262,
+    "stateChars": 2762,
+    "requestFingerprint": "3939e9d8cbcfa61dfced37a83bdf08abff9a4a4e360123fb5723c2f36c3ef338",
+    "usage": {
+      "input_tokens": 2616,
+      "output_tokens": 357
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "reference_index",
+        "confidence": 1,
+        "probabilities": {
+          "other": 0,
+          "reference_index": 1,
+          "operational_state": 0,
+          "historical_evidence": 0,
+          "durable_decision": 0,
+          "procedure_contract": 0,
+          "architecture_contract": 0
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.69,
+        "probabilities": {
+          "unknown": 0.77,
+          "current": 0.22,
+          "historical": 0.01,
+          "superseded": 0
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "context",
+        "confidence": 0.7,
+        "probabilities": {
+          "directive": 0.01,
+          "unknown": 0,
+          "state": 0,
+          "memory": 0.23,
+          "context": 0.76
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.93,
+        "probabilities": {
+          "unknown": 0,
+          "root_control": 0,
+          "archive": 0.02,
+          "external_reference": 0.04,
+          "selective_knowledge": 0.94
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "reference",
+        "confidence": 0.98,
+        "probabilities": {
+          "state": 0,
+          "operations": 0,
+          "design": 0,
+          "pattern": 0,
+          "reference": 0.98,
+          "decision": 0,
+          "architecture": 0.02,
+          "vocabulary": 0,
+          "other": 0,
+          "law": 0,
+          "phase": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.71
+      }
+    },
+    "moduleId": "mssr-project-document-index",
+    "expected": {
+      "semanticType": "reference_index",
+      "lifecycle": "current",
+      "protected": false,
+      "authorityKind": "context",
+      "placement": "selective_knowledge",
+      "topic": "reference"
+    }
+  },
+  {
+    "index": 16,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 303.24980000000005,
+    "stateChars": 3111,
+    "requestFingerprint": "7cfacebc3c325f7a4f8171f9ce0138bb335b0d014a709082c22a2c3049455a79",
+    "usage": {
+      "input_tokens": 2718,
+      "output_tokens": 360
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "durable_decision",
+        "confidence": 1,
+        "probabilities": {
+          "reference_index": 0,
+          "procedure_contract": 0,
+          "historical_evidence": 0,
+          "architecture_contract": 0,
+          "other": 0,
+          "operational_state": 0,
+          "durable_decision": 1
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "current",
+        "confidence": 0.54,
+        "probabilities": {
+          "current": 0.66,
+          "superseded": 0.01,
+          "unknown": 0.11,
+          "historical": 0.22
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "memory",
+        "confidence": 0.97,
+        "probabilities": {
+          "context": 0.03,
+          "memory": 0.97,
+          "directive": 0,
+          "state": 0,
+          "unknown": 0
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.9,
+        "probabilities": {
+          "root_control": 0,
+          "external_reference": 0,
+          "archive": 0.07,
+          "unknown": 0,
+          "selective_knowledge": 0.93
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "decision",
+        "confidence": 0.99,
+        "probabilities": {
+          "decision": 1,
+          "operations": 0,
+          "phase": 0,
+          "design": 0,
+          "reference": 0,
+          "architecture": 0,
+          "vocabulary": 0,
+          "other": 0,
+          "state": 0,
+          "law": 0,
+          "pattern": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.92
+      }
+    },
+    "moduleId": "mssr-canonical-project-context-cutover",
+    "expected": {
+      "semanticType": "durable_decision",
+      "lifecycle": "current",
+      "protected": true,
+      "authorityKind": "memory",
+      "placement": "selective_knowledge",
+      "topic": "decision"
+    }
+  },
+  {
+    "index": 17,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 328.34799999999996,
+    "stateChars": 4586,
+    "requestFingerprint": "478f603d2d212d296df4cde1de096eca2f390887adb992f580ac8253d7b7b869",
+    "usage": {
+      "input_tokens": 3034,
+      "output_tokens": 357
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "architecture_contract",
+        "confidence": 0.79,
+        "probabilities": {
+          "reference_index": 0,
+          "durable_decision": 0.03,
+          "architecture_contract": 0.82,
+          "operational_state": 0,
+          "historical_evidence": 0,
+          "other": 0,
+          "procedure_contract": 0.15
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.62,
+        "probabilities": {
+          "unknown": 0.71,
+          "current": 0.28,
+          "historical": 0.01,
+          "superseded": 0
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "context",
+        "confidence": 0.98,
+        "probabilities": {
+          "state": 0,
+          "unknown": 0,
+          "context": 0.99,
+          "directive": 0,
+          "memory": 0.01
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 1,
+        "probabilities": {
+          "external_reference": 0,
+          "selective_knowledge": 1,
+          "unknown": 0,
+          "root_control": 0,
+          "archive": 0
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "architecture",
+        "confidence": 0.98,
+        "probabilities": {
+          "law": 0,
+          "pattern": 0.01,
+          "phase": 0,
+          "design": 0,
+          "reference": 0,
+          "other": 0,
+          "decision": 0,
+          "operations": 0,
+          "architecture": 0.99,
+          "vocabulary": 0,
+          "state": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.86
+      }
+    },
+    "moduleId": "mssr-context-economy-v2",
+    "expected": {
+      "semanticType": "architecture_contract",
+      "lifecycle": "current",
+      "protected": true,
+      "authorityKind": "context",
+      "placement": "selective_knowledge",
+      "topic": "architecture"
+    }
+  },
+  {
+    "index": 18,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 322.6935000000001,
+    "stateChars": 4250,
+    "requestFingerprint": "bc6f67d8a5e40472e1682c09e3a1aa7425eba7404a55a16896f10c040ac98b2a",
+    "usage": {
+      "input_tokens": 2946,
+      "output_tokens": 360
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "durable_decision",
+        "confidence": 0.97,
+        "probabilities": {
+          "operational_state": 0,
+          "architecture_contract": 0.02,
+          "reference_index": 0,
+          "durable_decision": 0.97,
+          "procedure_contract": 0.01,
+          "historical_evidence": 0,
+          "other": 0
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.6,
+        "probabilities": {
+          "unknown": 0.7,
+          "historical": 0.01,
+          "current": 0.29,
+          "superseded": 0
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "memory",
+        "confidence": 0.8,
+        "probabilities": {
+          "directive": 0,
+          "unknown": 0,
+          "memory": 0.84,
+          "state": 0,
+          "context": 0.16
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.99,
+        "probabilities": {
+          "root_control": 0,
+          "unknown": 0,
+          "archive": 0,
+          "selective_knowledge": 1,
+          "external_reference": 0
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "decision",
+        "confidence": 0.91,
+        "probabilities": {
+          "reference": 0,
+          "vocabulary": 0,
+          "other": 0,
+          "architecture": 0.05,
+          "pattern": 0,
+          "decision": 0.92,
+          "law": 0.03,
+          "phase": 0,
+          "operations": 0,
+          "state": 0,
+          "design": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.89
+      }
+    },
+    "moduleId": "mssr-semantic-consistency-decision",
+    "expected": {
+      "semanticType": "durable_decision",
+      "lifecycle": "current",
+      "protected": true,
+      "authorityKind": "memory",
+      "placement": "selective_knowledge",
+      "topic": "decision"
+    }
+  },
+  {
+    "index": 19,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 330.62279999999987,
+    "stateChars": 3627,
+    "requestFingerprint": "c58055fd1f5c70171c543b6cac957aec4c8843d60b493daf745967cd2fcc014d",
+    "usage": {
+      "input_tokens": 2852,
+      "output_tokens": 360
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "durable_decision",
+        "confidence": 0.47,
+        "probabilities": {
+          "durable_decision": 0.55,
+          "architecture_contract": 0.02,
+          "reference_index": 0,
+          "historical_evidence": 0,
+          "procedure_contract": 0.43,
+          "operational_state": 0,
+          "other": 0
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.8,
+        "probabilities": {
+          "unknown": 0.85,
+          "current": 0.15,
+          "superseded": 0,
+          "historical": 0
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "memory",
+        "confidence": 0.46,
+        "probabilities": {
+          "memory": 0.57,
+          "context": 0.42,
+          "unknown": 0,
+          "directive": 0.01,
+          "state": 0
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 1,
+        "probabilities": {
+          "external_reference": 0,
+          "archive": 0,
+          "selective_knowledge": 1,
+          "unknown": 0,
+          "root_control": 0
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "decision",
+        "confidence": 0.77,
+        "probabilities": {
+          "operations": 0,
+          "state": 0,
+          "architecture": 0.08,
+          "decision": 0.8,
+          "reference": 0,
+          "other": 0,
+          "vocabulary": 0,
+          "pattern": 0.02,
+          "design": 0,
+          "law": 0.1,
+          "phase": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.92
+      }
+    },
+    "moduleId": "mssr-semantic-relations-retrieval-decision",
+    "expected": {
+      "semanticType": "durable_decision",
+      "lifecycle": "current",
+      "protected": true,
+      "authorityKind": "memory",
+      "placement": "selective_knowledge",
+      "topic": "decision"
+    }
+  },
+  {
+    "index": 20,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 314.8116,
+    "stateChars": 3302,
+    "requestFingerprint": "9c585ab69c276b8e287538cca79f76eae6e61840fa29a0fcd5b9a4d86498480c",
+    "usage": {
+      "input_tokens": 2774,
+      "output_tokens": 360
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "durable_decision",
+        "confidence": 0.88,
+        "probabilities": {
+          "durable_decision": 0.9,
+          "operational_state": 0,
+          "historical_evidence": 0,
+          "other": 0,
+          "architecture_contract": 0.09,
+          "reference_index": 0,
+          "procedure_contract": 0.01
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.59,
+        "probabilities": {
+          "current": 0.31,
+          "unknown": 0.69,
+          "historical": 0,
+          "superseded": 0
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "context",
+        "confidence": 0.4,
+        "probabilities": {
+          "memory": 0.47,
+          "unknown": 0,
+          "state": 0,
+          "context": 0.53,
+          "directive": 0
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.99,
+        "probabilities": {
+          "unknown": 0,
+          "external_reference": 0,
+          "root_control": 0,
+          "archive": 0,
+          "selective_knowledge": 1
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "decision",
+        "confidence": 0.81,
+        "probabilities": {
+          "operations": 0,
+          "vocabulary": 0,
+          "pattern": 0,
+          "architecture": 0.14,
+          "law": 0.03,
+          "decision": 0.83,
+          "state": 0,
+          "phase": 0,
+          "other": 0,
+          "reference": 0,
+          "design": 0
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.92
+      }
+    },
+    "moduleId": "mssr-trace-lifecycle-integrity",
+    "expected": {
+      "semanticType": "durable_decision",
+      "lifecycle": "current",
+      "protected": true,
+      "authorityKind": "memory",
+      "placement": "selective_knowledge",
+      "topic": "decision"
+    }
+  },
+  {
+    "index": 21,
+    "kind": "target",
+    "variant": "provenance",
+    "elapsedMs": 348.9360999999999,
+    "stateChars": 3230,
+    "requestFingerprint": "0c1ae8c94547ce4058b2432000fad6a7b880a54cff63dfbdc323a7cd5545659d",
+    "usage": {
+      "input_tokens": 2758,
+      "output_tokens": 360
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "semanticType": {
+        "type": "choice",
+        "choice": "durable_decision",
+        "confidence": 0.74,
+        "probabilities": {
+          "architecture_contract": 0.22,
+          "procedure_contract": 0,
+          "operational_state": 0,
+          "other": 0,
+          "durable_decision": 0.78,
+          "reference_index": 0,
+          "historical_evidence": 0
+        }
+      },
+      "lifecycle": {
+        "type": "choice",
+        "choice": "unknown",
+        "confidence": 0.7,
+        "probabilities": {
+          "superseded": 0,
+          "historical": 0,
+          "unknown": 0.78,
+          "current": 0.22
+        }
+      },
+      "authorityKind": {
+        "type": "choice",
+        "choice": "context",
+        "confidence": 0.61,
+        "probabilities": {
+          "state": 0,
+          "context": 0.69,
+          "directive": 0,
+          "unknown": 0,
+          "memory": 0.31
+        }
+      },
+      "placement": {
+        "type": "choice",
+        "choice": "selective_knowledge",
+        "confidence": 0.99,
+        "probabilities": {
+          "root_control": 0,
+          "external_reference": 0,
+          "selective_knowledge": 1,
+          "unknown": 0,
+          "archive": 0
+        }
+      },
+      "topic": {
+        "type": "choice",
+        "choice": "decision",
+        "confidence": 0.79,
+        "probabilities": {
+          "reference": 0,
+          "vocabulary": 0,
+          "operations": 0,
+          "other": 0,
+          "pattern": 0,
+          "state": 0,
+          "design": 0,
+          "decision": 0.8200000000000001,
+          "law": 0,
+          "phase": 0,
+          "architecture": 0.18
+        }
+      },
+      "protected": {
+        "type": "noul",
+        "noul": 0.92
+      }
+    },
+    "moduleId": "mssr-human-task-identity",
+    "expected": {
+      "semanticType": "durable_decision",
+      "lifecycle": "current",
+      "protected": true,
+      "authorityKind": "memory",
+      "placement": "selective_knowledge",
+      "topic": "decision"
+    }
+  },
+  {
+    "index": 22,
+    "kind": "relation",
+    "variant": "provenance",
+    "elapsedMs": 293.9390000000001,
+    "stateChars": 7277,
+    "requestFingerprint": "7b174e152af90d4b5f01681bf8242e245e61d6da57201042a10c3e55390e3c3d",
+    "usage": {
+      "input_tokens": 2211,
+      "output_tokens": 58
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "relation": {
+        "type": "choice",
+        "choice": "supports",
+        "confidence": 0.98,
+        "probabilities": {
+          "supersedes": 0,
+          "supports": 0.99,
+          "duplicate": 0,
+          "unrelated": 0.01,
+          "contradicts": 0
+        }
+      }
+    },
+    "pair": "mssr-canonical-ownership:mssr-project-context-plane-architecture",
+    "expected": {
+      "relation": "supports"
+    }
+  },
+  {
+    "index": 23,
+    "kind": "relation",
+    "variant": "provenance",
+    "elapsedMs": 392.1008999999999,
+    "stateChars": 8333,
+    "requestFingerprint": "730e9520a7280b65b7d6ac1ba9f45836e435f505295b50379f06eb31df6ec0da",
+    "usage": {
+      "input_tokens": 2512,
+      "output_tokens": 58
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "relation": {
+        "type": "choice",
+        "choice": "supports",
+        "confidence": 0.96,
+        "probabilities": {
+          "supports": 0.96,
+          "contradicts": 0,
+          "supersedes": 0.03,
+          "unrelated": 0,
+          "duplicate": 0.01
+        }
+      }
+    },
+    "pair": "mssr-architecture-impact-decision:mssr-architecture-impact-history",
+    "expected": {
+      "relation": "supports"
+    }
+  },
+  {
+    "index": 24,
+    "kind": "relation",
+    "variant": "provenance",
+    "elapsedMs": 325.4031,
+    "stateChars": 6231,
+    "requestFingerprint": "a5bbaab45d675453d3f62a45eb3651f96b3b3eca8e31f73fc7c62e71e718bb88",
+    "usage": {
+      "input_tokens": 1897,
+      "output_tokens": 58
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "relation": {
+        "type": "choice",
+        "choice": "supports",
+        "confidence": 0.99,
+        "probabilities": {
+          "unrelated": 0,
+          "contradicts": 0,
+          "duplicate": 0,
+          "supports": 1,
+          "supersedes": 0
+        }
+      }
+    },
+    "pair": "mssr-project-document-reference-lifecycle:mssr-project-document-index",
+    "expected": {
+      "relation": "supports"
+    }
+  },
+  {
+    "index": 25,
+    "kind": "relation",
+    "variant": "provenance",
+    "elapsedMs": 297.83770000000004,
+    "stateChars": 5756,
+    "requestFingerprint": "81a90a7aa2fa3b451d85bc09d4fb7573988c03b9f7cb3c97f99261dc1020b1fc",
+    "usage": {
+      "input_tokens": 1916,
+      "output_tokens": 58
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "relation": {
+        "type": "choice",
+        "choice": "supports",
+        "confidence": 0.98,
+        "probabilities": {
+          "contradicts": 0,
+          "supports": 0.99,
+          "unrelated": 0.01,
+          "supersedes": 0,
+          "duplicate": 0
+        }
+      }
+    },
+    "pair": "mssr-semantic-consistency-decision:mssr-semantic-relations-retrieval-decision",
+    "expected": {
+      "relation": "supports"
+    }
+  },
+  {
+    "index": 26,
+    "kind": "relation",
+    "variant": "provenance",
+    "elapsedMs": 311.7082999999998,
+    "stateChars": 4411,
+    "requestFingerprint": "966a24c382ba42e143794c9f8d36edf2a0dba68c8f03a3143d0c4311fb901951",
+    "usage": {
+      "input_tokens": 1650,
+      "output_tokens": 58
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "relation": {
+        "type": "choice",
+        "choice": "supports",
+        "confidence": 0.99,
+        "probabilities": {
+          "supersedes": 0,
+          "contradicts": 0,
+          "supports": 0.99,
+          "duplicate": 0,
+          "unrelated": 0.01
+        }
+      }
+    },
+    "pair": "mssr-trace-lifecycle-integrity:mssr-human-task-identity",
+    "expected": {
+      "relation": "supports"
+    }
+  },
+  {
+    "index": 27,
+    "kind": "relation",
+    "variant": "provenance",
+    "elapsedMs": 328.6355999999996,
+    "stateChars": 3017,
+    "requestFingerprint": "e1d014ea1bda06b5451221d85721404dea4d77f1839506c632e10a147df34172",
+    "usage": {
+      "input_tokens": 1270,
+      "output_tokens": 58
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "relation": {
+        "type": "choice",
+        "choice": "supports",
+        "confidence": 0.94,
+        "probabilities": {
+          "duplicate": 0.04,
+          "supersedes": 0.01,
+          "supports": 0.95,
+          "unrelated": 0,
+          "contradicts": 0
+        }
+      }
+    },
+    "pair": "mssr-learning-activation-decision:mssr-learning-dataset-state",
+    "expected": {
+      "relation": "supports"
+    }
+  },
+  {
+    "index": 28,
+    "kind": "relation",
+    "variant": "provenance",
+    "elapsedMs": 319.75999999999976,
+    "stateChars": 3489,
+    "requestFingerprint": "5db0c637788a3610efaa7bd920ee0d2e6a0a23f85202b31351a516fbd4471e9f",
+    "usage": {
+      "input_tokens": 1366,
+      "output_tokens": 58
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "relation": {
+        "type": "choice",
+        "choice": "supports",
+        "confidence": 0.97,
+        "probabilities": {
+          "supports": 0.98,
+          "supersedes": 0.02,
+          "unrelated": 0,
+          "contradicts": 0,
+          "duplicate": 0
+        }
+      }
+    },
+    "pair": "mssr-first-party-skill-direction:mssr-core-skill-package-state",
+    "expected": {
+      "relation": "supports"
+    }
+  },
+  {
+    "index": 29,
+    "kind": "relation",
+    "variant": "provenance",
+    "elapsedMs": 298.07360000000017,
+    "stateChars": 4088,
+    "requestFingerprint": "a6ed2e1baf3521c375c7679119240c13b8b59eb62162f481a0eb55515c45809b",
+    "usage": {
+      "input_tokens": 1593,
+      "output_tokens": 58
+    },
+    "model": "jev-1.13.0",
+    "answers": {
+      "relation": {
+        "type": "choice",
+        "choice": "supports",
+        "confidence": 0.46,
+        "probabilities": {
+          "unrelated": 0.43,
+          "contradicts": 0,
+          "supports": 0.57,
+          "duplicate": 0,
+          "supersedes": 0
+        }
+      }
+    },
+    "pair": "mssr-current-release:mssr-project-document-index",
+    "expected": {
+      "relation": "unrelated"
+    }
+  }
+]

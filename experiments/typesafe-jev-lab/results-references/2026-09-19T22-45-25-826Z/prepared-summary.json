@@ -1,0 +1,36 @@
+{
+  "summary": {
+    "status": "prepared-not-sent",
+    "fingerprint": "5dc4458c3d8bde1edca21fb87b07d11dd2c8a0642e79171c3569d508c35fbdb5",
+    "calls": 0,
+    "errors": 0,
+    "inputTokens": 0,
+    "outputTokens": 0,
+    "groups": [],
+    "estimatedUSD": 0
+  },
+  "baseline": [
+    {
+      "size": 8,
+      "primary": 6,
+      "cases": 6,
+      "meanReferences": 1.8333333333333333,
+      "meanSelectedChars": 3604.3333333333335
+    },
+    {
+      "size": 20,
+      "primary": 6,
+      "cases": 6,
+      "meanReferences": 3.8333333333333335,
+      "meanSelectedChars": 7532.666666666667
+    },
+    {
+      "size": 35,
+      "primary": 6,
+      "cases": 6,
+      "meanReferences": 6.333333333333333,
+      "meanSelectedChars": 13345
+    }
+  ],
+  "results": []
+}

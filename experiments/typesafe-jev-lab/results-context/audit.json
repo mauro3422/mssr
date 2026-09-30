@@ -1,0 +1,66 @@
+[
+  {
+    "experiment": "initial-v2",
+    "id": "2026-09-19T21-33-46-075Z",
+    "manifestVerified": true,
+    "requests": 96,
+    "latency": {
+      "short": {
+        "p50Ms": 311.22169999999824,
+        "p95Ms": 388.08910000000014,
+        "maxMs": 867.905,
+        "inputTokens": 44288
+      },
+      "distractors": {
+        "p50Ms": 341.15010000000075,
+        "p95Ms": 441.4879000000001,
+        "maxMs": 1471.2198000000008,
+        "inputTokens": 497408
+      }
+    },
+    "protectedItems": 8,
+    "protectedOmittedRaw": 4,
+    "compaction": {
+      "rawProbeRecall": 0.875,
+      "guardedProbeRecall": 1,
+      "rawCharsSaved": 0.7678719042232952,
+      "guardedCharsSaved": 0.05079681274900398,
+      "keepLastTwoProbeRecall": 0.5,
+      "keepLastTwoCharsSaved": 0.16313853226603178,
+      "keepAllProbeRecall": 1,
+      "keepAllCharsSaved": 0
+    }
+  },
+  {
+    "experiment": "scope-diagnostic-after-v2",
+    "id": "2026-09-19T21-35-36-560Z",
+    "manifestVerified": true,
+    "requests": 32,
+    "latency": {
+      "short": {
+        "p50Ms": 312.0068000000001,
+        "p95Ms": 813.8513999999998,
+        "maxMs": 813.8513999999998,
+        "inputTokens": 19694
+      },
+      "distractors": {
+        "p50Ms": 362.0027,
+        "p95Ms": 575.3789,
+        "maxMs": 575.3789,
+        "inputTokens": 170734
+      }
+    },
+    "protectedItems": 8,
+    "protectedOmittedRaw": 4,
+    "compaction": {
+      "rawProbeRecall": 0.8333333333333334,
+      "guardedProbeRecall": 0.9166666666666666,
+      "rawCharsSaved": 0.7723064940237386,
+      "guardedCharsSaved": 0.76785583278264,
+      "keepLastTwoProbeRecall": 0.5,
+      "keepLastTwoCharsSaved": 0.16313853226603178,
+      "keepAllProbeRecall": 1,
+      "keepAllCharsSaved": 0
+    }
+  }
+]

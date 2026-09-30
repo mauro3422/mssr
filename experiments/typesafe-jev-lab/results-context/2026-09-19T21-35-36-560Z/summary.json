@@ -1,0 +1,983 @@
+{
+  "id": "2026-09-19T21-35-36-560Z",
+  "fingerprint": "38b8d9041a6faa4bcfbcdd31c5161f0dd80a043c5c113e4d9ed3de4f9c7c8b3a",
+  "requests": 32,
+  "success": 32,
+  "errors": 0,
+  "models": [
+    "jev-1.13.0"
+  ],
+  "groups": [
+    {
+      "family": "skills",
+      "variant": "short",
+      "success": 8,
+      "p50Ms": 303.6800000000003,
+      "p95Ms": 813.8513999999998,
+      "tp": 4,
+      "fp": 0,
+      "tn": 26,
+      "fn": 2,
+      "precision": 1,
+      "recall": 0.6666666666666666,
+      "brier": 0.044509375,
+      "sufficiencyAgreement": 1,
+      "guardedRequiredRecall": 0.875,
+      "guardedCharsSaved": 0.5878640105139379,
+      "guardedProbeRecall": null,
+      "rawProbeRecall": null
+    },
+    {
+      "family": "skills",
+      "variant": "distractors",
+      "success": 8,
+      "p50Ms": 344.9300999999996,
+      "p95Ms": 575.3789,
+      "tp": 4,
+      "fp": 0,
+      "tn": 26,
+      "fn": 2,
+      "precision": 1,
+      "recall": 0.6666666666666666,
+      "brier": 0.041853125,
+      "sufficiencyAgreement": 1,
+      "guardedRequiredRecall": 0.875,
+      "guardedCharsSaved": 0.5878640105139379,
+      "guardedProbeRecall": null,
+      "rawProbeRecall": null
+    },
+    {
+      "family": "compactacion",
+      "variant": "short",
+      "success": 8,
+      "p50Ms": 318.5497999999998,
+      "p95Ms": 384.878999999999,
+      "tp": 18,
+      "fp": 0,
+      "tn": 8,
+      "fn": 6,
+      "precision": 1,
+      "recall": 0.75,
+      "brier": 0.10988124999999997,
+      "sufficiencyAgreement": 1,
+      "guardedRequiredRecall": 0.8333333333333334,
+      "guardedCharsSaved": 0.7678558327826401,
+      "guardedProbeRecall": 0.9166666666666666,
+      "rawProbeRecall": 0.8333333333333334
+    },
+    {
+      "family": "compactacion",
+      "variant": "distractors",
+      "success": 8,
+      "p50Ms": 362.0027,
+      "p95Ms": 470.59329999999954,
+      "tp": 18,
+      "fp": 0,
+      "tn": 8,
+      "fn": 6,
+      "precision": 1,
+      "recall": 0.75,
+      "brier": 0.09610312499999997,
+      "sufficiencyAgreement": 1,
+      "guardedRequiredRecall": 0.8333333333333334,
+      "guardedCharsSaved": 0.7678558327826401,
+      "guardedProbeRecall": 0.9166666666666666,
+      "rawProbeRecall": 0.8333333333333334
+    }
+  ],
+  "disagreements": [
+    {
+      "caseId": "skills-multilabel",
+      "variant": "short",
+      "repetition": 1,
+      "expected": {
+        "keep": [
+          "a",
+          "b"
+        ],
+        "sufficient": true
+      },
+      "answers": {
+        "sufficient": {
+          "type": "choice",
+          "choice": "yes",
+          "confidence": 0.98,
+          "probabilities": {
+            "no": 0.01,
+            "yes": 0.99
+          }
+        },
+        "keep_a": {
+          "type": "noul",
+          "noul": 0.25
+        },
+        "keep_b": {
+          "type": "noul",
+          "noul": 0.86
+        },
+        "keep_c": {
+          "type": "noul",
+          "noul": 0.08
+        },
+        "keep_d": {
+          "type": "noul",
+          "noul": 0.05
+        }
+      },
+      "classification": "model_or_rubric_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "skills-multilabel",
+      "variant": "distractors",
+      "repetition": 1,
+      "expected": {
+        "keep": [
+          "a",
+          "b"
+        ],
+        "sufficient": true
+      },
+      "answers": {
+        "sufficient": {
+          "type": "choice",
+          "choice": "yes",
+          "confidence": 0.97,
+          "probabilities": {
+            "yes": 0.98,
+            "no": 0.02
+          }
+        },
+        "keep_a": {
+          "type": "noul",
+          "noul": 0.25
+        },
+        "keep_b": {
+          "type": "noul",
+          "noul": 0.84
+        },
+        "keep_c": {
+          "type": "noul",
+          "noul": 0.07
+        },
+        "keep_d": {
+          "type": "noul",
+          "noul": 0.06
+        }
+      },
+      "classification": "model_or_rubric_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "compactar-restriccion",
+      "variant": "short",
+      "repetition": 1,
+      "expected": {
+        "keep": [
+          "a",
+          "b",
+          "c"
+        ],
+        "sufficient": true
+      },
+      "answers": {
+        "sufficient": {
+          "type": "choice",
+          "choice": "yes",
+          "confidence": 0.98,
+          "probabilities": {
+            "yes": 0.99,
+            "no": 0.01
+          }
+        },
+        "keep_a": {
+          "type": "noul",
+          "noul": 0.23
+        },
+        "keep_b": {
+          "type": "noul",
+          "noul": 0.77
+        },
+        "keep_c": {
+          "type": "noul",
+          "noul": 0.73
+        },
+        "keep_d": {
+          "type": "noul",
+          "noul": 0.07
+        }
+      },
+      "classification": "model_or_rubric_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "compactar-restriccion",
+      "variant": "distractors",
+      "repetition": 1,
+      "expected": {
+        "keep": [
+          "a",
+          "b",
+          "c"
+        ],
+        "sufficient": true
+      },
+      "answers": {
+        "sufficient": {
+          "type": "choice",
+          "choice": "yes",
+          "confidence": 0.96,
+          "probabilities": {
+            "yes": 0.98,
+            "no": 0.02
+          }
+        },
+        "keep_a": {
+          "type": "noul",
+          "noul": 0.27
+        },
+        "keep_b": {
+          "type": "noul",
+          "noul": 0.82
+        },
+        "keep_c": {
+          "type": "noul",
+          "noul": 0.78
+        },
+        "keep_d": {
+          "type": "noul",
+          "noul": 0.06
+        }
+      },
+      "classification": "model_or_rubric_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "compactar-excepcion",
+      "variant": "short",
+      "repetition": 1,
+      "expected": {
+        "keep": [
+          "a",
+          "b",
+          "c"
+        ],
+        "sufficient": true
+      },
+      "answers": {
+        "sufficient": {
+          "type": "choice",
+          "choice": "yes",
+          "confidence": 0.95,
+          "probabilities": {
+            "yes": 0.98,
+            "no": 0.02
+          }
+        },
+        "keep_a": {
+          "type": "noul",
+          "noul": 0.65
+        },
+        "keep_b": {
+          "type": "noul",
+          "noul": 0.82
+        },
+        "keep_c": {
+          "type": "noul",
+          "noul": 0.42
+        },
+        "keep_d": {
+          "type": "noul",
+          "noul": 0.02
+        }
+      },
+      "classification": "model_or_rubric_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "compactar-excepcion",
+      "variant": "distractors",
+      "repetition": 1,
+      "expected": {
+        "keep": [
+          "a",
+          "b",
+          "c"
+        ],
+        "sufficient": true
+      },
+      "answers": {
+        "sufficient": {
+          "type": "choice",
+          "choice": "yes",
+          "confidence": 0.96,
+          "probabilities": {
+            "no": 0.02,
+            "yes": 0.98
+          }
+        },
+        "keep_a": {
+          "type": "noul",
+          "noul": 0.69
+        },
+        "keep_b": {
+          "type": "noul",
+          "noul": 0.86
+        },
+        "keep_c": {
+          "type": "noul",
+          "noul": 0.49
+        },
+        "keep_d": {
+          "type": "noul",
+          "noul": 0.02
+        }
+      },
+      "classification": "model_or_rubric_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "compactar-no-repetible",
+      "variant": "short",
+      "repetition": 1,
+      "expected": {
+        "keep": [
+          "a",
+          "b",
+          "c"
+        ],
+        "sufficient": true
+      },
+      "answers": {
+        "sufficient": {
+          "type": "choice",
+          "choice": "yes",
+          "confidence": 1,
+          "probabilities": {
+            "no": 0,
+            "yes": 1
+          }
+        },
+        "keep_a": {
+          "type": "noul",
+          "noul": 0.88
+        },
+        "keep_b": {
+          "type": "noul",
+          "noul": 0.37
+        },
+        "keep_c": {
+          "type": "noul",
+          "noul": 0.72
+        },
+        "keep_d": {
+          "type": "noul",
+          "noul": 0.04
+        }
+      },
+      "classification": "model_or_rubric_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "compactar-no-repetible",
+      "variant": "distractors",
+      "repetition": 1,
+      "expected": {
+        "keep": [
+          "a",
+          "b",
+          "c"
+        ],
+        "sufficient": true
+      },
+      "answers": {
+        "sufficient": {
+          "type": "choice",
+          "choice": "yes",
+          "confidence": 1,
+          "probabilities": {
+            "yes": 1,
+            "no": 0
+          }
+        },
+        "keep_a": {
+          "type": "noul",
+          "noul": 0.87
+        },
+        "keep_b": {
+          "type": "noul",
+          "noul": 0.41
+        },
+        "keep_c": {
+          "type": "noul",
+          "noul": 0.73
+        },
+        "keep_d": {
+          "type": "noul",
+          "noul": 0.04
+        }
+      },
+      "classification": "model_or_rubric_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "compactar-restriccion",
+      "variant": "distractors",
+      "repetition": 2,
+      "expected": {
+        "keep": [
+          "a",
+          "b",
+          "c"
+        ],
+        "sufficient": true
+      },
+      "answers": {
+        "sufficient": {
+          "type": "choice",
+          "choice": "yes",
+          "confidence": 0.97,
+          "probabilities": {
+            "yes": 0.98,
+            "no": 0.02
+          }
+        },
+        "keep_a": {
+          "type": "noul",
+          "noul": 0.28
+        },
+        "keep_b": {
+          "type": "noul",
+          "noul": 0.8
+        },
+        "keep_c": {
+          "type": "noul",
+          "noul": 0.76
+        },
+        "keep_d": {
+          "type": "noul",
+          "noul": 0.06
+        }
+      },
+      "classification": "model_or_rubric_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "compactar-restriccion",
+      "variant": "short",
+      "repetition": 2,
+      "expected": {
+        "keep": [
+          "a",
+          "b",
+          "c"
+        ],
+        "sufficient": true
+      },
+      "answers": {
+        "sufficient": {
+          "type": "choice",
+          "choice": "yes",
+          "confidence": 0.97,
+          "probabilities": {
+            "yes": 0.99,
+            "no": 0.01
+          }
+        },
+        "keep_a": {
+          "type": "noul",
+          "noul": 0.24
+        },
+        "keep_b": {
+          "type": "noul",
+          "noul": 0.77
+        },
+        "keep_c": {
+          "type": "noul",
+          "noul": 0.72
+        },
+        "keep_d": {
+          "type": "noul",
+          "noul": 0.06
+        }
+      },
+      "classification": "model_or_rubric_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "compactar-excepcion",
+      "variant": "distractors",
+      "repetition": 2,
+      "expected": {
+        "keep": [
+          "a",
+          "b",
+          "c"
+        ],
+        "sufficient": true
+      },
+      "answers": {
+        "sufficient": {
+          "type": "choice",
+          "choice": "yes",
+          "confidence": 0.97,
+          "probabilities": {
+            "no": 0.02,
+            "yes": 0.98
+          }
+        },
+        "keep_a": {
+          "type": "noul",
+          "noul": 0.7
+        },
+        "keep_b": {
+          "type": "noul",
+          "noul": 0.87
+        },
+        "keep_c": {
+          "type": "noul",
+          "noul": 0.47
+        },
+        "keep_d": {
+          "type": "noul",
+          "noul": 0.02
+        }
+      },
+      "classification": "model_or_rubric_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "compactar-excepcion",
+      "variant": "short",
+      "repetition": 2,
+      "expected": {
+        "keep": [
+          "a",
+          "b",
+          "c"
+        ],
+        "sufficient": true
+      },
+      "answers": {
+        "sufficient": {
+          "type": "choice",
+          "choice": "yes",
+          "confidence": 0.97,
+          "probabilities": {
+            "yes": 0.98,
+            "no": 0.02
+          }
+        },
+        "keep_a": {
+          "type": "noul",
+          "noul": 0.63
+        },
+        "keep_b": {
+          "type": "noul",
+          "noul": 0.83
+        },
+        "keep_c": {
+          "type": "noul",
+          "noul": 0.46
+        },
+        "keep_d": {
+          "type": "noul",
+          "noul": 0.02
+        }
+      },
+      "classification": "model_or_rubric_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "compactar-no-repetible",
+      "variant": "distractors",
+      "repetition": 2,
+      "expected": {
+        "keep": [
+          "a",
+          "b",
+          "c"
+        ],
+        "sufficient": true
+      },
+      "answers": {
+        "sufficient": {
+          "type": "choice",
+          "choice": "yes",
+          "confidence": 1,
+          "probabilities": {
+            "no": 0,
+            "yes": 1
+          }
+        },
+        "keep_a": {
+          "type": "noul",
+          "noul": 0.88
+        },
+        "keep_b": {
+          "type": "noul",
+          "noul": 0.39
+        },
+        "keep_c": {
+          "type": "noul",
+          "noul": 0.76
+        },
+        "keep_d": {
+          "type": "noul",
+          "noul": 0.04
+        }
+      },
+      "classification": "model_or_rubric_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "compactar-no-repetible",
+      "variant": "short",
+      "repetition": 2,
+      "expected": {
+        "keep": [
+          "a",
+          "b",
+          "c"
+        ],
+        "sufficient": true
+      },
+      "answers": {
+        "sufficient": {
+          "type": "choice",
+          "choice": "yes",
+          "confidence": 1,
+          "probabilities": {
+            "no": 0,
+            "yes": 1
+          }
+        },
+        "keep_a": {
+          "type": "noul",
+          "noul": 0.87
+        },
+        "keep_b": {
+          "type": "noul",
+          "noul": 0.4
+        },
+        "keep_c": {
+          "type": "noul",
+          "noul": 0.74
+        },
+        "keep_d": {
+          "type": "noul",
+          "noul": 0.04
+        }
+      },
+      "classification": "model_or_rubric_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "skills-multilabel",
+      "variant": "distractors",
+      "repetition": 2,
+      "expected": {
+        "keep": [
+          "a",
+          "b"
+        ],
+        "sufficient": true
+      },
+      "answers": {
+        "sufficient": {
+          "type": "choice",
+          "choice": "yes",
+          "confidence": 0.96,
+          "probabilities": {
+            "no": 0.02,
+            "yes": 0.98
+          }
+        },
+        "keep_a": {
+          "type": "noul",
+          "noul": 0.31
+        },
+        "keep_b": {
+          "type": "noul",
+          "noul": 0.84
+        },
+        "keep_c": {
+          "type": "noul",
+          "noul": 0.07
+        },
+        "keep_d": {
+          "type": "noul",
+          "noul": 0.06
+        }
+      },
+      "classification": "model_or_rubric_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "skills-multilabel",
+      "variant": "short",
+      "repetition": 2,
+      "expected": {
+        "keep": [
+          "a",
+          "b"
+        ],
+        "sufficient": true
+      },
+      "answers": {
+        "sufficient": {
+          "type": "choice",
+          "choice": "yes",
+          "confidence": 0.97,
+          "probabilities": {
+            "no": 0.01,
+            "yes": 0.99
+          }
+        },
+        "keep_a": {
+          "type": "noul",
+          "noul": 0.26
+        },
+        "keep_b": {
+          "type": "noul",
+          "noul": 0.86
+        },
+        "keep_c": {
+          "type": "noul",
+          "noul": 0.07
+        },
+        "keep_d": {
+          "type": "noul",
+          "noul": 0.06
+        }
+      },
+      "classification": "model_or_rubric_or_provisional_label_disagreement"
+    }
+  ],
+  "inputTokens": 190428,
+  "outputTokens": 3296,
+  "estimatedUSD": 0.007997976,
+  "pairedChanges": [
+    {
+      "caseId": "contexto-parafrasis",
+      "short": [],
+      "distractors": []
+    },
+    {
+      "caseId": "contexto-versiones",
+      "short": [],
+      "distractors": []
+    },
+    {
+      "caseId": "contexto-ausente",
+      "short": [],
+      "distractors": []
+    },
+    {
+      "caseId": "contexto-inyeccion",
+      "short": [],
+      "distractors": []
+    },
+    {
+      "caseId": "memoria-decision",
+      "short": [],
+      "distractors": []
+    },
+    {
+      "caseId": "memoria-actual",
+      "short": [],
+      "distractors": []
+    },
+    {
+      "caseId": "memoria-conflicto",
+      "short": [],
+      "distractors": []
+    },
+    {
+      "caseId": "memoria-futuro",
+      "short": [],
+      "distractors": []
+    },
+    {
+      "caseId": "skills-multilabel",
+      "short": [
+        [
+          "b"
+        ],
+        [
+          "b"
+        ]
+      ],
+      "distractors": [
+        [
+          "b"
+        ],
+        [
+          "b"
+        ]
+      ]
+    },
+    {
+      "caseId": "skills-negativo-cercano",
+      "short": [
+        [],
+        []
+      ],
+      "distractors": [
+        [],
+        []
+      ]
+    },
+    {
+      "caseId": "skills-fase",
+      "short": [
+        [
+          "a"
+        ],
+        [
+          "a"
+        ]
+      ],
+      "distractors": [
+        [
+          "a"
+        ],
+        [
+          "a"
+        ]
+      ]
+    },
+    {
+      "caseId": "skills-sin-descripcion",
+      "short": [
+        [],
+        []
+      ],
+      "distractors": [
+        [],
+        []
+      ]
+    },
+    {
+      "caseId": "docs-cambio-real",
+      "short": [],
+      "distractors": []
+    },
+    {
+      "caseId": "docs-refactor",
+      "short": [],
+      "distractors": []
+    },
+    {
+      "caseId": "docs-historico",
+      "short": [],
+      "distractors": []
+    },
+    {
+      "caseId": "docs-evidencia-ausente",
+      "short": [],
+      "distractors": []
+    },
+    {
+      "caseId": "arquitectura-cruce",
+      "short": [],
+      "distractors": []
+    },
+    {
+      "caseId": "arquitectura-host",
+      "short": [],
+      "distractors": []
+    },
+    {
+      "caseId": "arquitectura-nombre",
+      "short": [],
+      "distractors": []
+    },
+    {
+      "caseId": "arquitectura-desconocida",
+      "short": [],
+      "distractors": []
+    },
+    {
+      "caseId": "compactar-restriccion",
+      "short": [
+        [
+          "b",
+          "c"
+        ],
+        [
+          "b",
+          "c"
+        ]
+      ],
+      "distractors": [
+        [
+          "b",
+          "c"
+        ],
+        [
+          "b",
+          "c"
+        ]
+      ]
+    },
+    {
+      "caseId": "compactar-excepcion",
+      "short": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "distractors": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "a",
+          "b"
+        ]
+      ]
+    },
+    {
+      "caseId": "compactar-no-repetible",
+      "short": [
+        [
+          "a",
+          "c"
+        ],
+        [
+          "a",
+          "c"
+        ]
+      ],
+      "distractors": [
+        [
+          "a",
+          "c"
+        ],
+        [
+          "a",
+          "c"
+        ]
+      ]
+    },
+    {
+      "caseId": "compactar-vigencia",
+      "short": [
+        [
+          "b",
+          "c",
+          "d"
+        ],
+        [
+          "b",
+          "c",
+          "d"
+        ]
+      ],
+      "distractors": [
+        [
+          "b",
+          "c",
+          "d"
+        ],
+        [
+          "b",
+          "c",
+          "d"
+        ]
+      ]
+    }
+  ]
+}

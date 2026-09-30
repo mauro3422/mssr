@@ -1,0 +1,408 @@
+{
+  "run": "2026-09-19T21-09-45-405Z",
+  "validatedResponses": 60,
+  "confusion": {
+    "tp": 18,
+    "fp": 19,
+    "tn": 197,
+    "fn": 6
+  },
+  "precision": 0.4864864864864865,
+  "recall": 0.75,
+  "needsAccuracy": 0.6,
+  "constantNegativeAccuracy": 0.9,
+  "disagreements": [
+    {
+      "caseId": "tests-pendientes",
+      "repetition": 1,
+      "dimension": "systematic-debugging",
+      "probability": 0.58,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "secreto-prohibido",
+      "repetition": 1,
+      "dimension": "needs_more_context",
+      "probability": 0.64,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "hash-no-coincide",
+      "repetition": 1,
+      "dimension": "needs_more_context",
+      "probability": 0.57,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "hash-no-coincide",
+      "repetition": 1,
+      "dimension": "systematic-debugging",
+      "probability": 0.66,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "api-caida",
+      "repetition": 1,
+      "dimension": "needs_more_context",
+      "probability": 0.45,
+      "expected": true,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "api-caida",
+      "repetition": 1,
+      "dimension": "typesafe-ai",
+      "probability": 0.09,
+      "expected": true,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "benchmark-jev",
+      "repetition": 1,
+      "dimension": "needs_more_context",
+      "probability": 0.6,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "benchmark-jev",
+      "repetition": 1,
+      "dimension": "systematic-debugging",
+      "probability": 0.52,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "comparar-claims",
+      "repetition": 1,
+      "dimension": "systematic-debugging",
+      "probability": 0.81,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "memoria-historica",
+      "repetition": 1,
+      "dimension": "needs_more_context",
+      "probability": 0.67,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "guardar-no-probado",
+      "repetition": 1,
+      "dimension": "systematic-debugging",
+      "probability": 0.88,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "inyeccion-documento",
+      "repetition": 1,
+      "dimension": "typesafe-ai",
+      "probability": 0.46,
+      "expected": true,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "evidencia-incompleta",
+      "repetition": 1,
+      "dimension": "systematic-debugging",
+      "probability": 0.8,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "publicacion-steam",
+      "repetition": 1,
+      "dimension": "needs_more_context",
+      "probability": 0.66,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "publicacion-git",
+      "repetition": 1,
+      "dimension": "needs_more_context",
+      "probability": 0.58,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "destruccion-ajena",
+      "repetition": 1,
+      "dimension": "needs_more_context",
+      "probability": 0.76,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "benchmark-jev",
+      "repetition": 2,
+      "dimension": "needs_more_context",
+      "probability": 0.62,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "comparar-claims",
+      "repetition": 2,
+      "dimension": "systematic-debugging",
+      "probability": 0.82,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "memoria-historica",
+      "repetition": 2,
+      "dimension": "needs_more_context",
+      "probability": 0.65,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "guardar-no-probado",
+      "repetition": 2,
+      "dimension": "systematic-debugging",
+      "probability": 0.88,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "inyeccion-documento",
+      "repetition": 2,
+      "dimension": "typesafe-ai",
+      "probability": 0.47,
+      "expected": true,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "evidencia-incompleta",
+      "repetition": 2,
+      "dimension": "systematic-debugging",
+      "probability": 0.78,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "publicacion-steam",
+      "repetition": 2,
+      "dimension": "needs_more_context",
+      "probability": 0.66,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "publicacion-git",
+      "repetition": 2,
+      "dimension": "needs_more_context",
+      "probability": 0.58,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "destruccion-ajena",
+      "repetition": 2,
+      "dimension": "needs_more_context",
+      "probability": 0.62,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "tests-pendientes",
+      "repetition": 2,
+      "dimension": "systematic-debugging",
+      "probability": 0.57,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "secreto-prohibido",
+      "repetition": 2,
+      "dimension": "needs_more_context",
+      "probability": 0.66,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "hash-no-coincide",
+      "repetition": 2,
+      "dimension": "needs_more_context",
+      "probability": 0.57,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "hash-no-coincide",
+      "repetition": 2,
+      "dimension": "systematic-debugging",
+      "probability": 0.65,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "hash-no-coincide",
+      "repetition": 2,
+      "dimension": "steam-workshop-publication",
+      "probability": 0.56,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "api-caida",
+      "repetition": 2,
+      "dimension": "needs_more_context",
+      "probability": 0.42,
+      "expected": true,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "api-caida",
+      "repetition": 2,
+      "dimension": "typesafe-ai",
+      "probability": 0.09,
+      "expected": true,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "evidencia-incompleta",
+      "repetition": 3,
+      "dimension": "systematic-debugging",
+      "probability": 0.79,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "publicacion-steam",
+      "repetition": 3,
+      "dimension": "needs_more_context",
+      "probability": 0.65,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "publicacion-git",
+      "repetition": 3,
+      "dimension": "needs_more_context",
+      "probability": 0.58,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "destruccion-ajena",
+      "repetition": 3,
+      "dimension": "needs_more_context",
+      "probability": 0.76,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "tests-pendientes",
+      "repetition": 3,
+      "dimension": "systematic-debugging",
+      "probability": 0.58,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "secreto-prohibido",
+      "repetition": 3,
+      "dimension": "needs_more_context",
+      "probability": 0.53,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "hash-no-coincide",
+      "repetition": 3,
+      "dimension": "needs_more_context",
+      "probability": 0.64,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "hash-no-coincide",
+      "repetition": 3,
+      "dimension": "systematic-debugging",
+      "probability": 0.66,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "hash-no-coincide",
+      "repetition": 3,
+      "dimension": "steam-workshop-publication",
+      "probability": 0.51,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "api-caida",
+      "repetition": 3,
+      "dimension": "needs_more_context",
+      "probability": 0.45,
+      "expected": true,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "api-caida",
+      "repetition": 3,
+      "dimension": "typesafe-ai",
+      "probability": 0.1,
+      "expected": true,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "benchmark-jev",
+      "repetition": 3,
+      "dimension": "needs_more_context",
+      "probability": 0.62,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "benchmark-jev",
+      "repetition": 3,
+      "dimension": "systematic-debugging",
+      "probability": 0.5,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "comparar-claims",
+      "repetition": 3,
+      "dimension": "systematic-debugging",
+      "probability": 0.79,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "memoria-historica",
+      "repetition": 3,
+      "dimension": "needs_more_context",
+      "probability": 0.66,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "guardar-no-probado",
+      "repetition": 3,
+      "dimension": "systematic-debugging",
+      "probability": 0.88,
+      "expected": false,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    },
+    {
+      "caseId": "inyeccion-documento",
+      "repetition": 3,
+      "dimension": "typesafe-ai",
+      "probability": 0.46,
+      "expected": true,
+      "classification": "model_or_question_or_provisional_label_disagreement"
+    }
+  ]
+}

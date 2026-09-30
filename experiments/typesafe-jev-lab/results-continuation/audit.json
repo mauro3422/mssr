@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "fingerprint": "b35c92c14c8cd8be0963554695a62d2dc6e69db8fd2086d72d58a93ddb949118",
+  "records": 151,
+  "checked": "Instrument snapshots, manifest/request hashes, raw JSONL, unique count, exact retained text, deterministic policies, recovery triggers, response shapes"
+}

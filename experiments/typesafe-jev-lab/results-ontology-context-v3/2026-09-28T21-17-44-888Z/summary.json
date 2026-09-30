@@ -1,0 +1,166 @@
+{
+  "runId": "2026-09-28T21-17-44-888Z",
+  "model": "jev-1.13.0",
+  "variants": {
+    "provenance": {
+      "semanticType": {
+        "correct": 22,
+        "total": 22,
+        "accuracy": 1,
+        "safeCorrect": 22,
+        "safeAccuracy": 1,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": [],
+        "confusion": {
+          "architecture_contract": {
+            "architecture_contract": 4
+          },
+          "operational_state": {
+            "operational_state": 3
+          },
+          "durable_decision": {
+            "durable_decision": 8
+          },
+          "procedure_contract": {
+            "procedure_contract": 3
+          },
+          "historical_evidence": {
+            "historical_evidence": 3
+          },
+          "reference_index": {
+            "reference_index": 1
+          }
+        },
+        "meanConfidence": 0.8745454545454543
+      },
+      "lifecycle": {
+        "correct": 8,
+        "total": 22,
+        "accuracy": 0.36363636363636365,
+        "safeCorrect": 21,
+        "safeAccuracy": 0.9545454545454546,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": [],
+        "confusion": {
+          "current": {
+            "unknown": 14,
+            "current": 5
+          },
+          "historical": {
+            "historical": 3
+          }
+        },
+        "meanConfidence": 0.6209090909090907
+      },
+      "authorityKind": {
+        "correct": 19,
+        "total": 22,
+        "accuracy": 0.8636363636363636,
+        "safeCorrect": 19,
+        "safeAccuracy": 0.8636363636363636,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": [],
+        "confusion": {
+          "context": {
+            "context": 6
+          },
+          "state": {
+            "state": 3
+          },
+          "memory": {
+            "memory": 10,
+            "context": 3
+          }
+        },
+        "meanConfidence": 0.84
+      },
+      "placement": {
+        "correct": 18,
+        "total": 22,
+        "accuracy": 0.8181818181818182,
+        "safeCorrect": 18,
+        "safeAccuracy": 0.8181818181818182,
+        "highConfidenceWrong": 2,
+        "wrongHighConfidence": [
+          {
+            "moduleId": "mssr-learning-dataset-state",
+            "truth": "root_control",
+            "pred": "selective_knowledge",
+            "confidence": 0.93
+          },
+          {
+            "moduleId": "mssr-core-skill-package-state",
+            "truth": "root_control",
+            "pred": "selective_knowledge",
+            "confidence": 0.92
+          }
+        ],
+        "confusion": {
+          "root_control": {
+            "selective_knowledge": 4
+          },
+          "selective_knowledge": {
+            "selective_knowledge": 18
+          }
+        },
+        "meanConfidence": 0.897272727272727
+      },
+      "topic": {
+        "correct": 20,
+        "total": 22,
+        "accuracy": 0.9090909090909091,
+        "safeCorrect": 20,
+        "safeAccuracy": 0.9090909090909091,
+        "highConfidenceWrong": 1,
+        "wrongHighConfidence": [
+          {
+            "moduleId": "mssr-project-document-reference-lifecycle",
+            "truth": "reference",
+            "pred": "architecture",
+            "confidence": 0.89
+          }
+        ],
+        "confusion": {
+          "architecture": {
+            "architecture": 4
+          },
+          "state": {
+            "state": 3
+          },
+          "decision": {
+            "decision": 8
+          },
+          "pattern": {
+            "pattern": 1
+          },
+          "operations": {
+            "decision": 1
+          },
+          "reference": {
+            "reference": 4,
+            "architecture": 1
+          }
+        },
+        "meanConfidence": 0.9140909090909091
+      },
+      "protected": {
+        "correct": 18,
+        "total": 22,
+        "accuracy": 0.8181818181818182,
+        "brier": 0.1313863636363637,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": []
+      },
+      "relation": {
+        "correct": 7,
+        "total": 8,
+        "accuracy": 0.875,
+        "highConfidenceWrong": 0,
+        "wrongHighConfidence": []
+      },
+      "inputTokens": 77508,
+      "outputTokens": 8366,
+      "p50Ms": 323.0748000000001
+    }
+  }
+}

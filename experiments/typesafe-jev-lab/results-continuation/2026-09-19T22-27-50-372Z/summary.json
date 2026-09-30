@@ -1,0 +1,2974 @@
+{
+  "fingerprint": "b35c92c14c8cd8be0963554695a62d2dc6e69db8fd2086d72d58a93ddb949118",
+  "cases": 12,
+  "repetitions": 2,
+  "calls": 151,
+  "errors": 0,
+  "inputTokens": 101219,
+  "outputTokens": 7370,
+  "arms": {
+    "full": {
+      "correct": 22,
+      "total": 24,
+      "agreement": 0.9166666666666666,
+      "requiredPresent": 1,
+      "meanCharsSaved": 0,
+      "meanTotalInput": 662.75,
+      "p50TotalMs": 308.1736000000001,
+      "p95TotalMs": 367.4253000000026,
+      "regressionsVsFull": [],
+      "wrongWithoutRecovery": []
+    },
+    "raw": {
+      "correct": 23,
+      "total": 24,
+      "agreement": 0.9583333333333334,
+      "requiredPresent": 0.9166666666666666,
+      "meanCharsSaved": 0.45294937839393784,
+      "meanTotalInput": 1724.25,
+      "p50TotalMs": 603.2466000000022,
+      "p95TotalMs": 775.4583000000057,
+      "regressionsVsFull": [],
+      "wrongWithoutRecovery": []
+    },
+    "guarded": {
+      "correct": 24,
+      "total": 24,
+      "agreement": 1,
+      "requiredPresent": 0.9166666666666666,
+      "meanCharsSaved": 0.45294937839393784,
+      "meanTotalInput": 1724.25,
+      "p50TotalMs": 597.714600000003,
+      "p95TotalMs": 705.7953999999991,
+      "regressionsVsFull": [],
+      "wrongWithoutRecovery": []
+    },
+    "last2": {
+      "correct": 14,
+      "total": 24,
+      "agreement": 0.5833333333333334,
+      "requiredPresent": 0.16666666666666666,
+      "meanCharsSaved": 0.6922516302689593,
+      "meanTotalInput": 532.1666666666666,
+      "p50TotalMs": 283.049500000001,
+      "p95TotalMs": 364.680699999999,
+      "regressionsVsFull": [
+        {
+          "caseId": "adopcion-separada",
+          "repetition": 1,
+          "answer": "unknown",
+          "confidence": 0.75
+        },
+        {
+          "caseId": "adopcion-separada",
+          "repetition": 2,
+          "answer": "unknown",
+          "confidence": 0.75
+        },
+        {
+          "caseId": "restriccion-aplicable",
+          "repetition": 1,
+          "answer": "unknown",
+          "confidence": 0.42
+        },
+        {
+          "caseId": "restriccion-aplicable",
+          "repetition": 2,
+          "answer": "unknown",
+          "confidence": 0.44
+        },
+        {
+          "caseId": "dependencia-indirecta",
+          "repetition": 1,
+          "answer": "unknown",
+          "confidence": 0.69
+        },
+        {
+          "caseId": "dependencia-indirecta",
+          "repetition": 2,
+          "answer": "unknown",
+          "confidence": 0.7
+        },
+        {
+          "caseId": "memoria-propuesta",
+          "repetition": 1,
+          "answer": "unknown",
+          "confidence": 1
+        },
+        {
+          "caseId": "memoria-propuesta",
+          "repetition": 2,
+          "answer": "unknown",
+          "confidence": 1
+        },
+        {
+          "caseId": "ambitos-distintos",
+          "repetition": 1,
+          "answer": "unknown",
+          "confidence": 0.43
+        },
+        {
+          "caseId": "ambitos-distintos",
+          "repetition": 2,
+          "answer": "unknown",
+          "confidence": 0.42
+        }
+      ],
+      "wrongWithoutRecovery": []
+    },
+    "lexical2": {
+      "correct": 14,
+      "total": 24,
+      "agreement": 0.5833333333333334,
+      "requiredPresent": 0.4166666666666667,
+      "meanCharsSaved": 0.6327653781290935,
+      "meanTotalInput": 539.5,
+      "p50TotalMs": 297.22490000000107,
+      "p95TotalMs": 396.74269999999524,
+      "regressionsVsFull": [
+        {
+          "caseId": "contrato-excepcion",
+          "repetition": 1,
+          "answer": "unknown",
+          "confidence": 0.92
+        },
+        {
+          "caseId": "contrato-excepcion",
+          "repetition": 2,
+          "answer": "unknown",
+          "confidence": 0.93
+        },
+        {
+          "caseId": "conflicto-sin-dueno",
+          "repetition": 1,
+          "answer": "yes",
+          "confidence": 0.92
+        },
+        {
+          "caseId": "conflicto-sin-dueno",
+          "repetition": 2,
+          "answer": "yes",
+          "confidence": 0.9
+        },
+        {
+          "caseId": "ambitos-distintos",
+          "repetition": 1,
+          "answer": "unknown",
+          "confidence": 0.95
+        },
+        {
+          "caseId": "ambitos-distintos",
+          "repetition": 2,
+          "answer": "unknown",
+          "confidence": 0.95
+        },
+        {
+          "caseId": "contenido-incrustado",
+          "repetition": 1,
+          "answer": "unknown",
+          "confidence": 0.97
+        },
+        {
+          "caseId": "contenido-incrustado",
+          "repetition": 2,
+          "answer": "unknown",
+          "confidence": 0.97
+        },
+        {
+          "caseId": "solicitud-fuera-catalogo",
+          "repetition": 1,
+          "answer": "unknown",
+          "confidence": 0.93
+        },
+        {
+          "caseId": "solicitud-fuera-catalogo",
+          "repetition": 2,
+          "answer": "unknown",
+          "confidence": 0.91
+        }
+      ],
+      "wrongWithoutRecovery": [
+        {
+          "caseId": "conflicto-sin-dueno",
+          "repetition": 1,
+          "answer": "yes",
+          "confidence": 0.92
+        },
+        {
+          "caseId": "conflicto-sin-dueno",
+          "repetition": 2,
+          "answer": "yes",
+          "confidence": 0.9
+        }
+      ]
+    },
+    "recover": {
+      "correct": 22,
+      "total": 24,
+      "agreement": 0.9166666666666666,
+      "requiredPresent": 0.9166666666666666,
+      "meanCharsSaved": 0.33380178544419886,
+      "meanTotalInput": 1915.5416666666667,
+      "p50TotalMs": 628.2788999999975,
+      "p95TotalMs": 949.1639000000014,
+      "regressionsVsFull": [],
+      "wrongWithoutRecovery": []
+    }
+  },
+  "rows": [
+    {
+      "caseId": "adopcion-separada",
+      "repetition": 1,
+      "expected": "no",
+      "selectorMs": 1514.9048,
+      "selectorInput": 1166,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.94,
+          "selected": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 672,
+          "totalInput": 672,
+          "totalMs": 414.4477999999999,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.95,
+          "selected": [
+            "a",
+            "b",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.47314578005115093,
+          "readerInput": 580,
+          "totalInput": 1746,
+          "totalMs": 1806.9744,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.95,
+          "selected": [
+            "a",
+            "b",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.47314578005115093,
+          "readerInput": 580,
+          "totalInput": 1746,
+          "totalMs": 1896.9282,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "unknown",
+          "correct": false,
+          "confidence": 0.75,
+          "selected": [
+            "e",
+            "f"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.710997442455243,
+          "readerInput": 529,
+          "totalInput": 529,
+          "totalMs": 282.31330000000025,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.98,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.659846547314578,
+          "readerInput": 545,
+          "totalInput": 545,
+          "totalMs": 299.24400000000014,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.95,
+          "selected": [
+            "a",
+            "b",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.47314578005115093,
+          "readerInput": 580,
+          "totalInput": 1746,
+          "totalMs": 1896.9282,
+          "rehydrated": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "adopcion-separada",
+      "repetition": 2,
+      "expected": "no",
+      "selectorMs": 368.74299999999494,
+      "selectorInput": 1166,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.95,
+          "selected": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 672,
+          "totalInput": 672,
+          "totalMs": 258.7616000000053,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.95,
+          "selected": [
+            "a",
+            "b",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.47314578005115093,
+          "readerInput": 580,
+          "totalInput": 1746,
+          "totalMs": 647.0551999999952,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.96,
+          "selected": [
+            "a",
+            "b",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.47314578005115093,
+          "readerInput": 580,
+          "totalInput": 1746,
+          "totalMs": 694.2109999999957,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "unknown",
+          "correct": false,
+          "confidence": 0.75,
+          "selected": [
+            "e",
+            "f"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.710997442455243,
+          "readerInput": 529,
+          "totalInput": 529,
+          "totalMs": 275.1880999999994,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.97,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.659846547314578,
+          "readerInput": 545,
+          "totalInput": 545,
+          "totalMs": 304.41969999999856,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.96,
+          "selected": [
+            "a",
+            "b",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.47314578005115093,
+          "readerInput": 580,
+          "totalInput": 1746,
+          "totalMs": 694.2109999999957,
+          "rehydrated": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "contrato-excepcion",
+      "repetition": 1,
+      "expected": "no",
+      "selectorMs": 301.2916,
+      "selectorInput": 1165,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.95,
+          "selected": [
+            "c",
+            "d",
+            "e",
+            "f",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 671,
+          "totalInput": 671,
+          "totalMs": 273.3726999999999,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.49734042553191493,
+          "readerInput": 551,
+          "totalInput": 1716,
+          "totalMs": 597.7615000000001,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.49734042553191493,
+          "readerInput": 551,
+          "totalInput": 1716,
+          "totalMs": 560.7234000000003,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.49734042553191493,
+          "readerInput": 551,
+          "totalInput": 551,
+          "totalMs": 286.85350000000017,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "unknown",
+          "correct": false,
+          "confidence": 0.92,
+          "selected": [
+            "c",
+            "a"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.601063829787234,
+          "readerInput": 541,
+          "totalInput": 541,
+          "totalMs": 302.9438,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.49734042553191493,
+          "readerInput": 551,
+          "totalInput": 1716,
+          "totalMs": 560.7234000000003,
+          "rehydrated": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "contrato-excepcion",
+      "repetition": 2,
+      "expected": "no",
+      "selectorMs": 261.2459999999992,
+      "selectorInput": 1165,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.94,
+          "selected": [
+            "c",
+            "d",
+            "e",
+            "f",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 671,
+          "totalInput": 671,
+          "totalMs": 292.95849999999336,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.36,
+          "selected": [
+            "d",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.34308510638297873,
+          "readerInput": 581,
+          "totalInput": 1746,
+          "totalMs": 550.3943999999974,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.58,
+          "selected": [
+            "d",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.34308510638297873,
+          "readerInput": 581,
+          "totalInput": 1746,
+          "totalMs": 519.679200000006,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.49734042553191493,
+          "readerInput": 551,
+          "totalInput": 551,
+          "totalMs": 303.6276999999973,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "unknown",
+          "correct": false,
+          "confidence": 0.93,
+          "selected": [
+            "c",
+            "a"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.601063829787234,
+          "readerInput": 541,
+          "totalInput": 541,
+          "totalMs": 304.9233999999997,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.97,
+          "selected": [
+            "c",
+            "d",
+            "e",
+            "f",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 671,
+          "totalInput": 2417,
+          "totalMs": 831.8422000000064,
+          "rehydrated": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "restriccion-aplicable",
+      "repetition": 1,
+      "expected": "no",
+      "selectorMs": 284.6882000000005,
+      "selectorInput": 1145,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.97,
+          "selected": [
+            "e",
+            "f",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 651,
+          "totalInput": 651,
+          "totalMs": 334.2049999999999,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.89,
+          "selected": [
+            "a",
+            "b",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.4147727272727273,
+          "readerInput": 566,
+          "totalInput": 1711,
+          "totalMs": 575.9818000000005,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.87,
+          "selected": [
+            "a",
+            "b",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.4147727272727273,
+          "readerInput": 566,
+          "totalInput": 1711,
+          "totalMs": 574.9033,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "unknown",
+          "correct": false,
+          "confidence": 0.42,
+          "selected": [
+            "c",
+            "d"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.71875,
+          "readerInput": 523,
+          "totalInput": 523,
+          "totalMs": 326.4493000000002,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 1,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.5852272727272727,
+          "readerInput": 539,
+          "totalInput": 539,
+          "totalMs": 284.6167999999998,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.87,
+          "selected": [
+            "a",
+            "b",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.4147727272727273,
+          "readerInput": 566,
+          "totalInput": 1711,
+          "totalMs": 574.9033,
+          "rehydrated": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "restriccion-aplicable",
+      "repetition": 2,
+      "expected": "no",
+      "selectorMs": 277.46740000000136,
+      "selectorInput": 1145,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.97,
+          "selected": [
+            "e",
+            "f",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 651,
+          "totalInput": 651,
+          "totalMs": 320.6898999999976,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.86,
+          "selected": [
+            "a",
+            "b",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.4147727272727273,
+          "readerInput": 566,
+          "totalInput": 1711,
+          "totalMs": 583.5656000000017,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.87,
+          "selected": [
+            "a",
+            "b",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.4147727272727273,
+          "readerInput": 566,
+          "totalInput": 1711,
+          "totalMs": 551.4746000000014,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "unknown",
+          "correct": false,
+          "confidence": 0.44,
+          "selected": [
+            "c",
+            "d"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.71875,
+          "readerInput": 523,
+          "totalInput": 523,
+          "totalMs": 320.0243999999948,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 1,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.5852272727272727,
+          "readerInput": 539,
+          "totalInput": 539,
+          "totalMs": 396.74269999999524,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.87,
+          "selected": [
+            "a",
+            "b",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.4147727272727273,
+          "readerInput": 566,
+          "totalInput": 1711,
+          "totalMs": 551.4746000000014,
+          "rehydrated": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "dependencia-indirecta",
+      "repetition": 1,
+      "expected": "yes",
+      "selectorMs": 277.1337000000003,
+      "selectorInput": 1153,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 659,
+          "totalInput": 659,
+          "totalMs": 324.59009999999944,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b",
+            "c"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.3979591836734694,
+          "readerInput": 575,
+          "totalInput": 1728,
+          "totalMs": 586.6379000000006,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b",
+            "c"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.3979591836734694,
+          "readerInput": 575,
+          "totalInput": 1728,
+          "totalMs": 552.5084000000015,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "unknown",
+          "correct": false,
+          "confidence": 0.69,
+          "selected": [
+            "e",
+            "f"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.7321428571428572,
+          "readerInput": 530,
+          "totalInput": 530,
+          "totalMs": 267.4458000000013,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.79,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.6454081632653061,
+          "readerInput": 540,
+          "totalInput": 540,
+          "totalMs": 274.90589999999975,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b",
+            "c"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.3979591836734694,
+          "readerInput": 575,
+          "totalInput": 1728,
+          "totalMs": 552.5084000000015,
+          "rehydrated": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "dependencia-indirecta",
+      "repetition": 2,
+      "expected": "yes",
+      "selectorMs": 375.4095000000016,
+      "selectorInput": 1153,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 659,
+          "totalInput": 659,
+          "totalMs": 285.15320000000065,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b",
+            "c"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.3979591836734694,
+          "readerInput": 575,
+          "totalInput": 1728,
+          "totalMs": 775.4583000000057,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b",
+            "c"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.3979591836734694,
+          "readerInput": 575,
+          "totalInput": 1728,
+          "totalMs": 682.1620000000039,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "unknown",
+          "correct": false,
+          "confidence": 0.7,
+          "selected": [
+            "e",
+            "f"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.7321428571428572,
+          "readerInput": 530,
+          "totalInput": 530,
+          "totalMs": 299.2450000000026,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.74,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.6454081632653061,
+          "readerInput": 540,
+          "totalInput": 540,
+          "totalMs": 307.2670999999973,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b",
+            "c"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.3979591836734694,
+          "readerInput": 575,
+          "totalInput": 1728,
+          "totalMs": 682.1620000000039,
+          "rehydrated": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "nombre-enganoso",
+      "repetition": 1,
+      "expected": "no",
+      "selectorMs": 286.9467000000004,
+      "selectorInput": 1160,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.98,
+          "selected": [
+            "c",
+            "d",
+            "e",
+            "f",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 666,
+          "totalInput": 666,
+          "totalMs": 308.1736000000001,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.98,
+          "selected": [
+            "c",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.3747016706443914,
+          "readerInput": 582,
+          "totalInput": 1742,
+          "totalMs": 584.2129000000004,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.98,
+          "selected": [
+            "c",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.3747016706443914,
+          "readerInput": 582,
+          "totalInput": 1742,
+          "totalMs": 548.826500000001,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.95,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.5656324582338902,
+          "readerInput": 549,
+          "totalInput": 549,
+          "totalMs": 364.680699999999,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.71,
+          "selected": [
+            "c",
+            "d"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.730310262529833,
+          "readerInput": 524,
+          "totalInput": 524,
+          "totalMs": 392.6412,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.98,
+          "selected": [
+            "c",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.3747016706443914,
+          "readerInput": 582,
+          "totalInput": 1742,
+          "totalMs": 548.826500000001,
+          "rehydrated": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "nombre-enganoso",
+      "repetition": 2,
+      "expected": "no",
+      "selectorMs": 279.6949999999997,
+      "selectorInput": 1160,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.98,
+          "selected": [
+            "c",
+            "d",
+            "e",
+            "f",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 666,
+          "totalInput": 666,
+          "totalMs": 290.62199999999575,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.98,
+          "selected": [
+            "c",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.3747016706443914,
+          "readerInput": 582,
+          "totalInput": 1742,
+          "totalMs": 613.0625999999975,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.98,
+          "selected": [
+            "c",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.3747016706443914,
+          "readerInput": 582,
+          "totalInput": 1742,
+          "totalMs": 628.2788999999975,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.94,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.5656324582338902,
+          "readerInput": 549,
+          "totalInput": 549,
+          "totalMs": 313.741200000004,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.74,
+          "selected": [
+            "c",
+            "d"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.730310262529833,
+          "readerInput": 524,
+          "totalInput": 524,
+          "totalMs": 297.22490000000107,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.98,
+          "selected": [
+            "c",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.3747016706443914,
+          "readerInput": 582,
+          "totalInput": 1742,
+          "totalMs": 628.2788999999975,
+          "rehydrated": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "evidencia-ausente",
+      "repetition": 1,
+      "expected": "unknown",
+      "selectorMs": 284.65689999999995,
+      "selectorInput": 1141,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.97,
+          "selected": [
+            "e",
+            "f",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 647,
+          "totalInput": 647,
+          "totalMs": 252.60020000000077,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 1,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.5041551246537397,
+          "readerInput": 542,
+          "totalInput": 1683,
+          "totalMs": 575.0981000000011,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 1,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.5041551246537397,
+          "readerInput": 542,
+          "totalInput": 1683,
+          "totalMs": 595.9225999999999,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "c",
+            "d"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.7340720221606648,
+          "readerInput": 526,
+          "totalInput": 526,
+          "totalMs": 281.6339000000007,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 1,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.5041551246537397,
+          "readerInput": 542,
+          "totalInput": 542,
+          "totalMs": 260.5671999999995,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.96,
+          "selected": [
+            "e",
+            "f",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 647,
+          "totalInput": 2330,
+          "totalMs": 865.5555000000004,
+          "rehydrated": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "evidencia-ausente",
+      "repetition": 2,
+      "expected": "unknown",
+      "selectorMs": 307.71979999999894,
+      "selectorInput": 1141,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.97,
+          "selected": [
+            "e",
+            "f",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 647,
+          "totalInput": 647,
+          "totalMs": 319.91159999999945,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 1,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.5041551246537397,
+          "readerInput": 542,
+          "totalInput": 1683,
+          "totalMs": 615.874399999997,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 1,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.5041551246537397,
+          "readerInput": 542,
+          "totalInput": 1683,
+          "totalMs": 618.6513999999988,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "c",
+            "d"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.7340720221606648,
+          "readerInput": 526,
+          "totalInput": 526,
+          "totalMs": 267.5835999999981,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 1,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.5041551246537397,
+          "readerInput": 542,
+          "totalInput": 542,
+          "totalMs": 273.9868999999999,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.98,
+          "selected": [
+            "e",
+            "f",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 647,
+          "totalInput": 2330,
+          "totalMs": 926.3150999999998,
+          "rehydrated": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "memoria-propuesta",
+      "repetition": 1,
+      "expected": "no",
+      "selectorMs": 285.5167999999994,
+      "selectorInput": 1156,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 662,
+          "totalInput": 662,
+          "totalMs": 324.5656999999992,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 1,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.6356589147286822,
+          "readerInput": 542,
+          "totalInput": 1698,
+          "totalMs": 540.4143999999997,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 1,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.6356589147286822,
+          "readerInput": 542,
+          "totalInput": 1698,
+          "totalMs": 610.7991999999995,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "unknown",
+          "correct": false,
+          "confidence": 1,
+          "selected": [
+            "e",
+            "f"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.8113695090439277,
+          "readerInput": 519,
+          "totalInput": 519,
+          "totalMs": 334.7494000000006,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 1,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.6356589147286822,
+          "readerInput": 542,
+          "totalInput": 542,
+          "totalMs": 284.70750000000044,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 1,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.6356589147286822,
+          "readerInput": 542,
+          "totalInput": 1698,
+          "totalMs": 610.7991999999995,
+          "rehydrated": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "memoria-propuesta",
+      "repetition": 2,
+      "expected": "no",
+      "selectorMs": 276.3722999999991,
+      "selectorInput": 1156,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 662,
+          "totalInput": 662,
+          "totalMs": 292.52670000000217,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 1,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.6356589147286822,
+          "readerInput": 542,
+          "totalInput": 1698,
+          "totalMs": 558.1261000000013,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 1,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.6356589147286822,
+          "readerInput": 542,
+          "totalInput": 1698,
+          "totalMs": 602.1699999999983,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "unknown",
+          "correct": false,
+          "confidence": 1,
+          "selected": [
+            "e",
+            "f"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.8113695090439277,
+          "readerInput": 519,
+          "totalInput": 519,
+          "totalMs": 267.51970000000074,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 1,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.6356589147286822,
+          "readerInput": 542,
+          "totalInput": 542,
+          "totalMs": 313.8096000000005,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 1,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.6356589147286822,
+          "readerInput": 542,
+          "totalInput": 1698,
+          "totalMs": 602.1699999999983,
+          "rehydrated": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "conflicto-sin-dueno",
+      "repetition": 1,
+      "expected": "unknown",
+      "selectorMs": 331.9398000000001,
+      "selectorInput": 1149,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "c",
+            "d",
+            "e",
+            "f",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 655,
+          "totalInput": 655,
+          "totalMs": 265.7505000000001,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "c",
+            "d",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.26582278481012656,
+          "readerInput": 601,
+          "totalInput": 1750,
+          "totalMs": 625.6531000000014,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "c",
+            "d",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.26582278481012656,
+          "readerInput": 601,
+          "totalInput": 1750,
+          "totalMs": 657.7494999999999,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.93,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.7164556962025317,
+          "readerInput": 529,
+          "totalInput": 529,
+          "totalMs": 299.5149000000001,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "yes",
+          "correct": false,
+          "confidence": 0.92,
+          "selected": [
+            "e",
+            "a"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.7569620253164557,
+          "readerInput": 526,
+          "totalInput": 526,
+          "totalMs": 733.7158999999992,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "c",
+            "d",
+            "e",
+            "f",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 655,
+          "totalInput": 2405,
+          "totalMs": 949.1639000000014,
+          "rehydrated": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "conflicto-sin-dueno",
+      "repetition": 2,
+      "expected": "unknown",
+      "selectorMs": 339.13980000000083,
+      "selectorInput": 1149,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "c",
+            "d",
+            "e",
+            "f",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 655,
+          "totalInput": 655,
+          "totalMs": 320.27890000000116,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "c",
+            "d",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.26582278481012656,
+          "readerInput": 601,
+          "totalInput": 1750,
+          "totalMs": 632.4213000000018,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "c",
+            "d",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.26582278481012656,
+          "readerInput": 601,
+          "totalInput": 1750,
+          "totalMs": 637.4321000000018,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.94,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.7164556962025317,
+          "readerInput": 529,
+          "totalInput": 529,
+          "totalMs": 281.8202999999994,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "yes",
+          "correct": false,
+          "confidence": 0.9,
+          "selected": [
+            "e",
+            "a"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.7569620253164557,
+          "readerInput": 526,
+          "totalInput": 526,
+          "totalMs": 277.40750000000116,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "c",
+            "d",
+            "e",
+            "f",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 655,
+          "totalInput": 2405,
+          "totalMs": 904.2615000000042,
+          "rehydrated": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "ambitos-distintos",
+      "repetition": 1,
+      "expected": "no",
+      "selectorMs": 258.70260000000053,
+      "selectorInput": 1157,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.95,
+          "selected": [
+            "e",
+            "f",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 663,
+          "totalInput": 663,
+          "totalMs": 268.9150000000009,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.98,
+          "selected": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.26558265582655827,
+          "readerInput": 606,
+          "totalInput": 1763,
+          "totalMs": 579.4544999999998,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.98,
+          "selected": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.26558265582655827,
+          "readerInput": 606,
+          "totalInput": 1763,
+          "totalMs": 573.7495000000017,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "unknown",
+          "correct": false,
+          "confidence": 0.43,
+          "selected": [
+            "c",
+            "d"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.6585365853658536,
+          "readerInput": 535,
+          "totalInput": 535,
+          "totalMs": 270.4830000000002,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "unknown",
+          "correct": false,
+          "confidence": 0.95,
+          "selected": [
+            "e",
+            "d"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.7452574525745257,
+          "readerInput": 530,
+          "totalInput": 530,
+          "totalMs": 268.0031999999992,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.98,
+          "selected": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.26558265582655827,
+          "readerInput": 606,
+          "totalInput": 1763,
+          "totalMs": 573.7495000000017,
+          "rehydrated": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "ambitos-distintos",
+      "repetition": 2,
+      "expected": "no",
+      "selectorMs": 273.3077000000012,
+      "selectorInput": 1157,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.97,
+          "selected": [
+            "e",
+            "f",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 663,
+          "totalInput": 663,
+          "totalMs": 271.6239999999998,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.98,
+          "selected": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.26558265582655827,
+          "readerInput": 606,
+          "totalInput": 1763,
+          "totalMs": 603.2466000000022,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.98,
+          "selected": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.26558265582655827,
+          "readerInput": 606,
+          "totalInput": 1763,
+          "totalMs": 574.9481000000014,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "unknown",
+          "correct": false,
+          "confidence": 0.42,
+          "selected": [
+            "c",
+            "d"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.6585365853658536,
+          "readerInput": 535,
+          "totalInput": 535,
+          "totalMs": 269.0747999999985,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "unknown",
+          "correct": false,
+          "confidence": 0.95,
+          "selected": [
+            "e",
+            "d"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.7452574525745257,
+          "readerInput": 530,
+          "totalInput": 530,
+          "totalMs": 304.02670000000217,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.98,
+          "selected": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.26558265582655827,
+          "readerInput": 606,
+          "totalInput": 1763,
+          "totalMs": 574.9481000000014,
+          "rehydrated": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "prueba-no-observacion",
+      "repetition": 1,
+      "expected": "unknown",
+      "selectorMs": 327.60039999999935,
+      "selectorInput": 1152,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "no",
+          "correct": false,
+          "confidence": 0.33,
+          "selected": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 658,
+          "totalInput": 658,
+          "totalMs": 284.6984999999986,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.26,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.48825065274151436,
+          "readerInput": 553,
+          "totalInput": 1705,
+          "totalMs": 646.7058999999972,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.26,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.48825065274151436,
+          "readerInput": 553,
+          "totalInput": 1705,
+          "totalMs": 608.5325999999986,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.85,
+          "selected": [
+            "e",
+            "f"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.7441253263707572,
+          "readerInput": 522,
+          "totalInput": 522,
+          "totalMs": 271.22939999999653,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.38,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.48825065274151436,
+          "readerInput": 553,
+          "totalInput": 553,
+          "totalMs": 361.14580000000205,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "no",
+          "correct": false,
+          "confidence": 0.35,
+          "selected": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 658,
+          "totalInput": 2363,
+          "totalMs": 880.7387999999955,
+          "rehydrated": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "prueba-no-observacion",
+      "repetition": 2,
+      "expected": "unknown",
+      "selectorMs": 301.65970000000016,
+      "selectorInput": 1152,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "no",
+          "correct": false,
+          "confidence": 0.47,
+          "selected": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 658,
+          "totalInput": 658,
+          "totalMs": 367.4253000000026,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "no",
+          "correct": false,
+          "confidence": 0.31,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.48825065274151436,
+          "readerInput": 553,
+          "totalInput": 1705,
+          "totalMs": 640.7711000000018,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.33,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.48825065274151436,
+          "readerInput": 553,
+          "totalInput": 1705,
+          "totalMs": 597.714600000003,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.86,
+          "selected": [
+            "e",
+            "f"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.7441253263707572,
+          "readerInput": 522,
+          "totalInput": 522,
+          "totalMs": 283.049500000001,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "unknown",
+          "correct": true,
+          "confidence": 0.29,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.48825065274151436,
+          "readerInput": 553,
+          "totalInput": 553,
+          "totalMs": 287.86239999999816,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "no",
+          "correct": false,
+          "confidence": 0.33,
+          "selected": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 658,
+          "totalInput": 2363,
+          "totalMs": 889.9315000000024,
+          "rehydrated": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "contenido-incrustado",
+      "repetition": 1,
+      "expected": "yes",
+      "selectorMs": 266.31830000000264,
+      "selectorInput": 1166,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.92,
+          "selected": [
+            "c",
+            "d",
+            "e",
+            "f",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 672,
+          "totalInput": 672,
+          "totalMs": 348.47699999999895,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 1,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.6356589147286822,
+          "readerInput": 544,
+          "totalInput": 1710,
+          "totalMs": 564.8026000000027,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.6356589147286822,
+          "readerInput": 544,
+          "totalInput": 1710,
+          "totalMs": 556.5666000000019,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.6356589147286822,
+          "readerInput": 544,
+          "totalInput": 544,
+          "totalMs": 749.9231,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "unknown",
+          "correct": false,
+          "confidence": 0.97,
+          "selected": [
+            "c",
+            "a"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.5736434108527132,
+          "readerInput": 551,
+          "totalInput": 551,
+          "totalMs": 272.9881000000023,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.6356589147286822,
+          "readerInput": 544,
+          "totalInput": 1710,
+          "totalMs": 556.5666000000019,
+          "rehydrated": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "contenido-incrustado",
+      "repetition": 2,
+      "expected": "yes",
+      "selectorMs": 333.06060000000434,
+      "selectorInput": 1166,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.89,
+          "selected": [
+            "c",
+            "d",
+            "e",
+            "f",
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 672,
+          "totalInput": 672,
+          "totalMs": 321.78310000000056,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.6356589147286822,
+          "readerInput": 544,
+          "totalInput": 1710,
+          "totalMs": 645.5652000000046,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.6356589147286822,
+          "readerInput": 544,
+          "totalInput": 1710,
+          "totalMs": 596.8920999999973,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.6356589147286822,
+          "readerInput": 544,
+          "totalInput": 544,
+          "totalMs": 261.95850000000064,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "unknown",
+          "correct": false,
+          "confidence": 0.97,
+          "selected": [
+            "c",
+            "a"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.5736434108527132,
+          "readerInput": 551,
+          "totalInput": 551,
+          "totalMs": 300.0725999999995,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "yes",
+          "correct": true,
+          "confidence": 0.99,
+          "selected": [
+            "a",
+            "b"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0.6356589147286822,
+          "readerInput": 544,
+          "totalInput": 1710,
+          "totalMs": 596.8920999999973,
+          "rehydrated": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "solicitud-fuera-catalogo",
+      "repetition": 1,
+      "expected": "no",
+      "selectorMs": 405.4487999999983,
+      "selectorInput": 1171,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.97,
+          "selected": [
+            "e",
+            "f",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 677,
+          "totalInput": 677,
+          "totalMs": 345.58799999999974,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.95,
+          "selected": [
+            "e",
+            "a"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.5594713656387665,
+          "readerInput": 553,
+          "totalInput": 1724,
+          "totalMs": 699.9781999999977,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.95,
+          "selected": [
+            "e",
+            "a"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.5594713656387665,
+          "readerInput": 553,
+          "totalInput": 1724,
+          "totalMs": 705.7953999999991,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.53,
+          "selected": [
+            "c",
+            "d"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.7819383259911894,
+          "readerInput": 529,
+          "totalInput": 529,
+          "totalMs": 339.2417000000023,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "unknown",
+          "correct": false,
+          "confidence": 0.93,
+          "selected": [
+            "f",
+            "b"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.6674008810572687,
+          "readerInput": 541,
+          "totalInput": 541,
+          "totalMs": 279.3081999999995,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.95,
+          "selected": [
+            "e",
+            "a"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.5594713656387665,
+          "readerInput": 553,
+          "totalInput": 1724,
+          "totalMs": 705.7953999999991,
+          "rehydrated": false,
+          "error": null
+        }
+      }
+    },
+    {
+      "caseId": "solicitud-fuera-catalogo",
+      "repetition": 2,
+      "expected": "no",
+      "selectorMs": 334.7141999999949,
+      "selectorInput": 1171,
+      "selectorError": null,
+      "arms": {
+        "full": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.97,
+          "selected": [
+            "e",
+            "f",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "requiredPresent": true,
+          "charsSaved": 0,
+          "readerInput": 677,
+          "totalInput": 677,
+          "totalMs": 336.537900000003,
+          "rehydrated": false,
+          "error": null
+        },
+        "raw": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.94,
+          "selected": [
+            "e",
+            "a"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.5594713656387665,
+          "readerInput": 553,
+          "totalInput": 1724,
+          "totalMs": 656.2800999999963,
+          "rehydrated": false,
+          "error": null
+        },
+        "guarded": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.95,
+          "selected": [
+            "e",
+            "a"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.5594713656387665,
+          "readerInput": 553,
+          "totalInput": 1724,
+          "totalMs": 648.5301999999938,
+          "rehydrated": false,
+          "error": null
+        },
+        "last2": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.49,
+          "selected": [
+            "c",
+            "d"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.7819383259911894,
+          "readerInput": 529,
+          "totalInput": 529,
+          "totalMs": 315.4747999999963,
+          "rehydrated": false,
+          "error": null
+        },
+        "lexical2": {
+          "answer": "unknown",
+          "correct": false,
+          "confidence": 0.91,
+          "selected": [
+            "f",
+            "b"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.6674008810572687,
+          "readerInput": 541,
+          "totalInput": 541,
+          "totalMs": 282.5169999999998,
+          "rehydrated": false,
+          "error": null
+        },
+        "recover": {
+          "answer": "no",
+          "correct": true,
+          "confidence": 0.95,
+          "selected": [
+            "e",
+            "a"
+          ],
+          "requiredPresent": false,
+          "charsSaved": 0.5594713656387665,
+          "readerInput": 553,
+          "totalInput": 1724,
+          "totalMs": 648.5301999999938,
+          "rehydrated": false,
+          "error": null
+        }
+      }
+    }
+  ],
+  "estimatedUSD": 0.004251198,
+  "selector": {
+    "p50Ms": 286.9467000000004,
+    "p95Ms": 405.4487999999983,
+    "meanInput": 1156.75
+  },
+  "rehydrations": 7,
+  "rubricReview": {
+    "caseId": "prueba-no-observacion",
+    "status": "post-run unresolved instrument ambiguity",
+    "reason": "¿La evidencia demuestra que resolvió? admite no (no demuestra) o unknown (no sabemos si resolvió). La etiqueta unknown permanece congelada; no contar no como error del modelo sin adjudicación.",
+    "rawGuardedIdenticalInputs": 24
+  },
+  "sensitivityExcludingAmbiguousCase": {
+    "full": {
+      "correct": 22,
+      "total": 22
+    },
+    "raw": {
+      "correct": 22,
+      "total": 22
+    },
+    "guarded": {
+      "correct": 22,
+      "total": 22
+    },
+    "last2": {
+      "correct": 12,
+      "total": 22
+    },
+    "lexical2": {
+      "correct": 12,
+      "total": 22
+    },
+    "recover": {
+      "correct": 22,
+      "total": 22
+    }
+  },
+  "theoreticalBreakEvenReaders": 13
+}

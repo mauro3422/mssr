@@ -1,0 +1,49 @@
+{
+  "storePath": "C:\\Users\\mauro\\AppData\\Local\\MauroPrime\\MSSR\\semantic-experience\\observations-v1.json",
+  "schemaVersion": 1,
+  "mode": "leave-one-project-out",
+  "evaluatedAt": "2026-09-29T02:48:06.901Z",
+  "projects": 1,
+  "observations": 4,
+  "verifiedTruth": 0,
+  "rejected": 0,
+  "shadow": 4,
+  "fallback": {
+    "decided": 0,
+    "correct": 0,
+    "wrong": 0,
+    "abstained": 0,
+    "precision": null,
+    "coverage": 0
+  },
+  "provider": {
+    "comparable": 0,
+    "correct": 0,
+    "wrong": 0,
+    "accuracy": null
+  },
+  "byDecisionKind": {},
+  "promotion": {
+    "status": "blocked",
+    "eligible": false,
+    "reasons": [
+      "verified-holdout:0<24",
+      "distinct-projects:1<4",
+      "fallback-no-decisions",
+      "fallback-coverage:0.0000<0.2500"
+    ],
+    "policy": {
+      "minVerifiedHoldout": 24,
+      "minDistinctProjects": 4,
+      "minFallbackPrecision": 0.95,
+      "minFallbackCoverage": 0.25,
+      "maxWrongDecisions": 0
+    },
+    "hostMayPreferFallback": false,
+    "advisoryOnly": true,
+    "authorityInfluence": false,
+    "routingInfluence": false,
+    "canonicalRewriteAllowed": false,
+    "autoApplyAllowed": false
+  }
+}
