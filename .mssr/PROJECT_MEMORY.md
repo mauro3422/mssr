@@ -1,5 +1,20 @@
 # MSSR project memory
 
+## Jev composition, confidence and reversible synthesis — 0.2.93
+
+Jev supplies typed finite decisions inside composed workflows; it does not by
+itself implement text search, compaction, open paragraph generation, tool
+execution or verification. The host can combine grep/retrieval, bounded
+selection, a generator or deterministic assembler, policy, execution and an
+independent verifier around Jev. Keep each component's evidence and ownership
+separate. Raw confidence is a routing signal, not a calibrated probability or
+truth guarantee. Contradiction, unknown scope/time/freshness, or missing
+independent verification must preserve the source and route to review. Exact
+text synthesis remains an immutable, reversible preview with no canonical
+write authority. Freshness and verifier evidence remain caller assertions until
+a host re-reads current source revisions and verifies through its own trusted
+boundary; owner/privacy/catalog labels are not authentication.
+
 ## Librarian coverage scope decision — 0.2.92
 
 Coverage completeness belongs to an explicit evaluated scope. A producer-filtered
@@ -120,4 +135,4 @@ A shared source revision is not enough to prove two evidence records duplicate: 
 
 ## Evidence provenance and Jev host boundary decision
 
-EvidenceAtom v2 requires source class and canonical owner; `fresh` requires a host observation matching the exact normalized source ref, revision and owner with timestamp. Unknown remains safe. Sensitive-excluded atoms and free-form atom attributes are rejected. Semantic Curation may receive an injected normalized Jev decision provider so hosts own credentials/transport/retries; the legacy TypeSafe configuration is deprecated compatibility. This seam is separate from Librarian, which still does not submit relation candidates to Jev. Benchmark runs must preserve historical raw outputs, source/corpus hashes, label provenance and holdout boundaries; future run protocol defaults offline.
+EvidenceAtom v2 requires source class and canonical owner; `fresh` requires a host observation matching the exact normalized source ref, revision and owner with timestamp. Unknown remains safe. Sensitive-excluded atoms and free-form atom attributes are rejected. Semantic Curation may receive an injected normalized Jev decision provider so hosts own credentials/transport/retries; the legacy TypeSafe configuration is deprecated compatibility. As of 0.2.93, a bounded MCP flow supplies caller-owned exact source text to Jev relation review and emits unverified, atom-bound judgments; this adds no owner authentication, global index or write authority. Benchmark runs must preserve historical raw outputs, source/corpus hashes, label provenance and holdout boundaries; future run protocol defaults offline.

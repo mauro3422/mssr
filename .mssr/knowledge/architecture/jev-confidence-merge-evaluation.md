@@ -1,7 +1,7 @@
 # Jev confidence, contradiction and merge evaluation
 
-Status: research-backed design proposal, reviewed 2026-09-30. This note does
-not change runtime behavior or authorize automatic project edits.
+Status: research-backed architecture with an incremental portable implementation, reviewed 2026-09-30. This note does
+not authorize automatic project edits, provider calls, or host I/O.
 
 ## What the MSSR runs establish
 
@@ -53,22 +53,33 @@ similarity alone.
 
 ## Librarian retrieval and evidence acquisition
 
-The Librarian should be the bounded retrieval surface between Jev and the
-project's documents/atoms. A future search operation can combine lexical text
-matching with metadata filters such as project, subject, owner, source
-revision, scope, valid time, relation, lifecycle and privacy class. Return
-ranked candidate handles with exact source refs, revisions, fingerprints and
-bounded matching spans; fetch exact text only through the owning source and
-only after the caller requests it.
+The portable `searchMssrLibrarianEvidence` primitive now performs bounded
+lexical search over Markdown supplied by the owning host, indexed by exact
+Document Surface sections/blocks. It filters by declared owner/source,
+namespace/kind and a caller-projected safe metadata map; returns ranked
+candidate handles bound to source ref, revision, line/offset range, privacy
+label and fingerprint; and fetches exact text only when the host supplies the
+current source again. It has global character, line, record, range, candidate
+and result caps. Raw catalog metadata is not copied into the result. The
+searchable metadata projection, owner, privacy classification and catalog
+provenance are still host assertions: this is not an authorization boundary
+or a global filesystem/index provider. MCP now exposes search/fetch plus a Jev
+relation-review tool that batches compatible pairs within one explicit
+project/corpus scope and emits atom-bound judgments. Those judgments remain
+unverified until an independent verifier is supplied; a separate MCP tool
+builds exact-source previews and never writes canonical files. Pairs with no
+shared atoms are isolated into separate Jev requests; pairs in one connected
+atom component may share a request within the state/question limits.
 
-Jev can then ask for related atoms, an exact section, neighboring evidence or
-a revision comparison using those handles. The host validates each request
-against owner, revision, privacy and explicit budgets. Compatible requests for
-one subject/state may be batched; unrelated subjects remain separate jobs.
-Record requested versus returned evidence and later utility when known. Grep,
-similarity and metadata matching find candidates; none proves truth, resolves
-authority, or grants a merge. Measure retrieval candidate recall separately
-from Jev relation precision/recall.
+Jev can then classify related atoms from exact text returned through those
+handles. The host supplies/authorizes source reads; the tool rechecks the
+caller-supplied owner, revision, privacy and explicit budgets. Only connected
+pairs for one project/corpus can share one provider request; the tool never
+mixes scopes or disconnected evidence components. Record requested versus
+returned evidence and later utility when known. Grep, similarity and metadata
+matching find candidates; none proves truth, resolves authority, or grants a
+merge. Measure retrieval candidate recall separately from Jev relation
+precision/recall.
 
 ## Confidence and merge policy
 
@@ -87,7 +98,7 @@ Proposed stages:
    over those explicit candidates.
 3. Missing temporal/scope data, low confidence, or a contradiction sends the
    proposal to review/abstain.
-4. A confidence threshold may admit a derived synthesis preview, never a
+4. A raw confidence threshold may admit a derived synthesis preview, never a
    destructive source merge or canonical write.
 5. Independent verification and normal owner approval remain required before
    any persisted project change.
@@ -98,7 +109,28 @@ short evidence-cited reason for each inclusion, omission or separation; the
 output hash; confidence/calibration version; and reviewer/verification state.
 Keep original atoms and source bytes intact. A contradiction blocks automatic
 consolidation; represent supersession as a temporal relation rather than
-silently overwriting older evidence.
+silently overwriting older evidence. The current preview builder accepts only
+exact fingerprint-bound source snapshots and comparable `supports` or
+`duplicate` relations. It retains exact source snapshots and output hashes;
+contradiction, unresolved, low-confidence, non-comparable or unverified cases
+remain separate/review-only. The default 0.75 raw relation threshold is an
+exploratory gate, not a calibrated probability or production confidence
+guarantee. Unknown/non-fresh source status blocks candidate status. Freshness
+and verifier records are caller assertions, not authenticated receipts; the
+host must re-read and compare current source revisions before consuming a
+candidate. `applyAllowed` and canonical rewrite remain false.
+
+## Composed capability boundary
+
+Jev itself supplies finite typed decisions, not grep, search, paragraph
+writing, compaction or tool execution. A complete text workflow composes
+owner-authorized retrieval and exact source fetches, deterministic filtering
+and batching, Jev candidate judgments, policy/host execution, a separate
+verifier and (when writing prose) an explicit generator or human editor.
+MSSR already has deterministic exact-source paragraph/reference assembly in
+Semantic Curation; this preserves and arranges source blocks and is not open
+ended Jev generation. The new synthesis preview is relation-aware and
+reversible, but no automatic project write occurs.
 
 ## Next MSSR evaluation
 
@@ -162,3 +194,9 @@ validation:
 No public benchmark found in this review measures Jev on MSSR's real
 documents, skill references, contradiction layer, EvidenceAtom provenance,
 Librarian evidence retrieval, or reversible semantic merges.
+
+See [Jev decision-model use cases](../research/jev-decision-model-use-cases.md)
+for 100 explicitly unvalidated application hypotheses, public source limits,
+the OpenAI Decisions API announcement status and the QuietDesk evidence
+boundary. QuietDesk demonstrates a separate live visual/action/verification
+chain; it is not an MSSR retrieval or synthesis benchmark.

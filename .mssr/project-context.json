@@ -444,6 +444,44 @@
       "maxChars": 10000
     },
     {
+      "id": "mssr-jev-decision-model-use-cases",
+      "kind": "context",
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "description": "Research on Jev and finite-decision workflows, OpenAI Decisions API announcement, public benchmarks, QuietDesk evidence and unvalidated use cases.",
+      "source": {
+        "path": ".mssr/knowledge/research/jev-decision-model-use-cases.md"
+      },
+      "domains": [
+        "coding",
+        "agent-orchestration",
+        "skill-system"
+      ],
+      "actions": [
+        "analyze",
+        "review",
+        "design",
+        "discover",
+        "document"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document",
+        "skill"
+      ],
+      "needs": [
+        "integrity-verification",
+        "cross-agent"
+      ],
+      "signals": [
+        "capability-discovery-needed",
+        "reusable-pattern"
+      ],
+      "priority": 58,
+      "maxChars": 12000
+    },
+    {
       "id": "mssr-project-document-reference-lifecycle",
       "kind": "context",
       "topic": "reference",

@@ -762,7 +762,7 @@ export async function executeMssrJevSemanticCurationJobs(args: {
       projectKey: job.projectKey,
       corpusKey: job.corpusKey,
       providerResult: providerResults[jobIndex],
-      evaluation: evaluateMssrSemanticCuration({ blocks: job.blocks, result: providerResults[jobIndex] }),
+      evaluation: evaluateMssrSemanticCuration({ blocks: job.blocks, result: providerResults[jobIndex], pairCandidates: job.pairCandidates }),
       batchId,
       usage: response.usage,
       elapsedMs,

@@ -442,6 +442,7 @@ export async function planMssrProjectContextReferenceSplit(args: {
       const evaluation = evaluateMssrSemanticCuration({
         blocks: group.blocks,
         result: group.result,
+        pairCandidates: [],
         roleConfidence: AUTO_ROLE_CONFIDENCE,
         destinationConfidence: AUTO_DESTINATION_CONFIDENCE,
         topicConfidence: AUTO_TOPIC_CONFIDENCE,

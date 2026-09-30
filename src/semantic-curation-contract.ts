@@ -32,6 +32,8 @@ import {
 import { MSSR_SEMANTIC_CURATION_RELATIONS } from "./semantic-curation.js";
 import { mssrLearningDigestSchema } from "./learning.js";
 import { registerMssrSemanticExperienceTools } from "./semantic-experience-contract.js";
+import { MSSR_SEMANTIC_EVIDENCE_TOOL_NAMES, registerMssrSemanticEvidenceTools } from "./semantic-evidence-mcp.js";
+import type { MssrSemanticEvidenceToolOptions } from "./semantic-evidence-mcp.js";
 
 export const MSSR_SEMANTIC_CURATION_TOOL_NAMES = [
   "mssr_semantic_curation_status",
@@ -45,6 +47,7 @@ export const MSSR_SEMANTIC_CURATION_TOOL_NAMES = [
   "mssr_semantic_curation_learning_feedback",
   "mssr_semantic_curation_fallback_review",
   "mssr_semantic_curation_learning_trace_link",
+  ...MSSR_SEMANTIC_EVIDENCE_TOOL_NAMES,
 ] as const;
 
 const projectRootSchema = z.string().min(1).max(4096);
@@ -244,7 +247,7 @@ function isJevUnavailableError(error: unknown): boolean {
 }
 
 /** Register the same semantic-curation surface on native, Codex and OpenCode MSSR MCP hosts. */
-export function registerMssrSemanticCurationTools(server: McpServer): void {
+export function registerMssrSemanticCurationTools(server: McpServer, options: MssrSemanticEvidenceToolOptions = {}): void {
   server.registerTool(MSSR_SEMANTIC_CURATION_TOOL_NAMES[0], {
     description: "Inspect the global MSSR semantic-curation queue. Returns bounded source refs, reasons and retry state only; it never loads Jev or changes project knowledge.",
     inputSchema: mssrSemanticCurationStatusInputSchema,
@@ -403,4 +406,5 @@ export function registerMssrSemanticCurationTools(server: McpServer): void {
   });
 
   registerMssrSemanticExperienceTools(server);
+  registerMssrSemanticEvidenceTools(server, options);
 }

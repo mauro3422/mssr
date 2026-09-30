@@ -66,7 +66,14 @@ const result = {
   ],
 };
 
-const evaluation = evaluateMssrSemanticCuration({ blocks, result });
+const evaluation = evaluateMssrSemanticCuration({
+  blocks,
+  result,
+  pairCandidates: [
+    { leftId: "b1", rightId: "b3" },
+    { leftId: "b2", rightId: "b3" },
+  ],
+});
 const b1 = evaluation.blocks.find((item) => item.blockId === "b1");
 const b2 = evaluation.blocks.find((item) => item.blockId === "b2");
 const b3 = evaluation.blocks.find((item) => item.blockId === "b3");
@@ -81,6 +88,9 @@ assert.equal(evaluation.pairs.find((item) => item.leftId === "b1" && item.rightI
 assert.equal(evaluation.pairs.find((item) => item.leftId === "b2" && item.rightId === "b3").accepted, false);
 assert.equal(evaluation.reviewRequired, true);
 assert.equal(evaluation.canonicalRewriteAllowed, false);
+
+const unofferedPair = evaluateMssrSemanticCuration({ blocks, result });
+assert.equal(unofferedPair.pairs.every((item) => !item.accepted && item.reviewReasons.includes("pair-not-offered")), true);
 
 const refs = assembleMssrSemanticReferenceProposals({ blocks, evaluation });
 assert.deepEqual(refs.map((ref) => ref.topic), ["context-economy"]);
