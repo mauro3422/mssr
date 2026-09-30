@@ -17,6 +17,8 @@ Codex's user-level `config.toml` now points the MSSR stdio server at `C:\Users\m
 
 The launcher completed an isolated stdio MCP handshake and one live Jev relation request: `typesafe-jev` / `jev-1.13.0`, `supports`, raw confidence `0.90`, 5,786 input / 69 output tokens, about 613 ms. The one judgment has `verification=unverified` and remains advisory-only; no result was persisted. `codex mcp list` parses the new command and reports MSSR enabled. However, a direct request through this conversation's already-running MSSR MCP still returns `No API key was provided`, so that process has not adopted the changed user config. Restart/respawn the Codex MCP process, then verify the live tool call and loaded build before claiming active-host adoption. This request is a smoke check only; it is not benchmark evidence or confidence calibration.
 
+Operational incident and correction: the first PowerShell stdio relay stalled at MCP initialize; the precise internal stream failure is unresolved. Replacing the outer relay with Node inherited stdio, while keeping PowerShell limited to Credential Manager retrieval, passed MCP handshake, tool discovery and the live request. The first pair was also rejected before inference because the exact fetched source ranges plus request wrapper exceeded the 24,000-character limit; a bounded 36,000-character retry passed. The active-host restart remains the follow-up. No general skill or routing change is justified by this project-local friction.
+
 ### Deferred Project Context budget review — 2026-09-30
 
 - **Status:** confirmed budget pressure; no semantic source defect established by this review.
