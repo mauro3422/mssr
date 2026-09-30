@@ -78,6 +78,11 @@ const records = [
   ...librarianRecordsFromDocumentSurface({ surface: surfaceB }),
 ];
 const surfaceAudit = auditMssrLibrarianCatalog(records);
+assert.equal(
+  surfaceAudit.audit.sourceRevisionDuplicateGroups,
+  0,
+  "distinct sections from one document revision are not duplicates merely because they share a source",
+);
 const samePayload = surfaceAudit.audit.duplicateGroups.filter((group) => group.classification === "same-payload");
 assert.ok(samePayload.length >= 1, "exact duplicate section payloads across documents should be found without Jev");
 assert.ok(samePayload.some((group) => group.sourceRefs.includes("docs/a.md") && group.sourceRefs.includes("docs/b.md")));

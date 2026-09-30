@@ -208,13 +208,15 @@ export function auditMssrLibrarianCatalog(inputs: readonly MssrLibrarianIngressR
     ));
   }
 
-  for (const [key, group] of grouped(records, (record) => record.revision ? `${record.normalizedSourceRef}@${record.revision}` : null)) {
+  for (const [key, group] of grouped(records, (record) => record.revision && record.payloadFingerprint
+    ? `${record.namespace}:${record.kind}:${record.normalizedSourceRef}@${record.revision}:${record.payloadFingerprint}`
+    : null)) {
     if (group.length < 2 || distinctContractCount(group) < 2) continue;
     duplicateGroups.push(duplicateGroup(
       "same-source-revision",
       key,
       group,
-      "Different contract identities point at the same source revision; this is a deterministic alias/duplication signal.",
+      "Different contract identities with the same namespace, kind, source revision, and payload fingerprint are deterministic aliases at the same evidence granularity.",
     ));
   }
 

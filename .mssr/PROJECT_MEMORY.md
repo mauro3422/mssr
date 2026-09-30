@@ -103,3 +103,7 @@ Repository cleanup is evidence-gated: preserve active or unique owner-repository
 ## Human-task identity boundary
 
 Stable human-task correlation is explicit host evidence above trace lifecycle; portable details and invariants are indexed in `mssr-human-task-identity`. Task grouping never infers completion or replaces raw trace provenance.
+
+## Librarian duplicate granularity decision
+
+A shared source revision is not enough to prove two evidence records duplicate: Markdown sections are distinct units within one document revision. Classify same-source-revision only when namespace, kind, source revision, and payload fingerprint all match. Preserve same-payload and exact-record checks as their own independent structural signals; semantic equivalence stays outside the deterministic reducer.
