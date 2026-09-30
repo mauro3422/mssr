@@ -167,6 +167,68 @@ try {
   assert.equal(hardLimitPreflight.physicalSources[0]?.exceededHardLimit, true);
   assert.equal(hardLimitPreflight.contractValid, false);
   assert.deepEqual(hardLimitPreflight.growthBlockedEntries, ["segmented-history"]);
+  // External reference files are first-class budget carriers: the parent stays compact, while
+  // preflight reconstructs baseline + largest ref before allowing a write to any referenced file.
+  const referencedRepo = path.join(root, "referenced-repo");
+  const referencedKnowledge = path.join(referencedRepo, ".mssr", "knowledge", "history");
+  const referencedParent = path.join(referencedRepo, ".mssr", "knowledge", "history-current.md");
+  const referencedAlpha = path.join(referencedKnowledge, "alpha.md");
+  await fs.mkdir(referencedKnowledge, { recursive: true });
+  await fs.writeFile(referencedParent, `# Current\n\n${"b".repeat(100)}\n`, "utf8");
+  await fs.writeFile(referencedAlpha, `# Alpha\n\n${"a".repeat(500)}\n`, "utf8");
+  await fs.writeFile(path.join(referencedRepo, ".mssr", "project-context.json"), `${JSON.stringify({
+    schemaVersion: 1,
+    core: [],
+    modules: [{
+      id: "referenced-history",
+      kind: "memory",
+      description: "Compact history baseline with physical refs.",
+      source: { path: ".mssr/knowledge/history-current.md" },
+      maxChars: 1000,
+    }],
+  }, null, 2)}\n`, "utf8");
+  await fs.writeFile(path.join(referencedRepo, ".mssr", "project-context-refs.json"), `${JSON.stringify({
+    schemaVersion: 1,
+    modules: [{
+      moduleId: "referenced-history",
+      references: [{ id: "alpha", source: { path: ".mssr/knowledge/history/alpha.md" }, terms: ["alpha"] }],
+    }],
+  }, null, 2)}\n`, "utf8");
+
+  const referencedHealthy = await auditMssrProjectContextHealth(referencedRepo);
+  assert.equal(referencedHealthy.findings.some((finding) => finding.code === "unindexed-knowledge" && finding.target.endsWith("alpha.md")), false, "declared external refs must count as indexed knowledge");
+  assert.equal(referencedHealthy.findings.some((finding) => finding.target === "referenced-history" && finding.code === "module-entry-budget-pressure"), false);
+
+  const referencedGrowthText = `# Alpha\n\n${"g".repeat(850)}\n`;
+  const referencedGrowth = await preflightMssrProjectContextWrite({ projectRoot: referencedRepo, targetPath: referencedAlpha, nextText: referencedGrowthText });
+  assert.equal(referencedGrowth.affectedEntries[0]?.entryId, "referenced-history");
+  assert.equal(referencedGrowth.affectedEntries[0]?.level, "review");
+  assert.equal(referencedGrowth.contractValid, false, "external-ref growth that pushes parent payload into REVIEW must be blocked");
+  assert.deepEqual(referencedGrowth.growthBlockedEntries, ["referenced-history"]);
+  assert.equal(referencedGrowth.physicalSources[0]?.entryId, "referenced-history:alpha");
+  assert.equal(referencedGrowth.physicalSources[0]?.sourcePath, ".mssr/knowledge/history/alpha.md");
+
+  const referencedShrinkText = `# Alpha\n\n${"s".repeat(250)}\n`;
+  const referencedShrink = await preflightMssrProjectContextWrite({ projectRoot: referencedRepo, targetPath: referencedAlpha, nextText: referencedShrinkText });
+  assert.equal(referencedShrink.contractValid, true, "shrinking an external ref must remain allowed");
+  assert.equal(referencedShrink.maintenanceRequiredBeforeWrite, false);
+
+  await fs.writeFile(referencedAlpha, referencedGrowthText, "utf8");
+  const referencedPressure = await auditMssrProjectContextHealth(referencedRepo);
+  const referencedPressureFinding = referencedPressure.findings.find((finding) => finding.target === "referenced-history" && finding.code === "module-entry-budget-pressure");
+  assert.ok(referencedPressureFinding, "health must measure baseline + largest external ref");
+  assert.match(referencedPressureFinding.message, /Referenced module/);
+  await fs.writeFile(referencedAlpha, `# Alpha\n\n${"a".repeat(500)}\n`, "utf8");
+
+  const externalHardLimitText = `# Alpha\n\n${"h".repeat(MAX_PROJECT_CONTEXT_CHARS + 1)}\n`;
+  const externalHardLimit = await preflightMssrProjectContextWrite({ projectRoot: referencedRepo, targetPath: referencedAlpha, nextText: externalHardLimitText });
+  assert.equal(externalHardLimit.physicalSources[0]?.hardLimitBytes, MAX_PROJECT_CONTEXT_CHARS);
+  assert.equal(externalHardLimit.physicalSources[0]?.exceededHardLimit, true);
+  assert.equal(externalHardLimit.contractValid, false);
+
+  await fs.rename(referencedAlpha, `${referencedAlpha}.missing`);
+  const missingExternalRef = await auditMssrProjectContextHealth(referencedRepo);
+  assert.equal(missingExternalRef.findings.some((finding) => finding.code === "external-reference-unreadable" && finding.target === ".mssr/knowledge/history/alpha.md"), true);
 } finally {
   await fs.rm(root, { recursive: true, force: true });
 }

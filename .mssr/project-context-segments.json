@@ -116,6 +116,87 @@
           "priority": 20
         }
       ]
+    },
+    {
+      "moduleId": "mssr-semantic-evidence-plane",
+      "segments": [
+        {
+          "id": "evidence-librarian-baseline",
+          "sections": [
+            "## Evidence atom and source boundary",
+            "## Document Surface and Librarian contract"
+          ],
+          "baseline": true
+        },
+        {
+          "id": "progressive-retrieval-acquisition",
+          "sections": [
+            "## Progressive section retrieval",
+            "## Progressive evidence acquisition"
+          ],
+          "terms": [
+            "retrieval",
+            "section retrieval",
+            "progressive evidence",
+            "evidence acquisition",
+            "heading index",
+            "read section",
+            "exact range",
+            "needs more evidence"
+          ],
+          "priority": 20
+        },
+        {
+          "id": "reduction-semantic-triage",
+          "sections": [
+            "## Reduction, batching and semantic triage"
+          ],
+          "terms": [
+            "semantic triage",
+            "reduction",
+            "batching",
+            "classifier",
+            "jev",
+            "dedupe",
+            "circuit breaking"
+          ],
+          "priority": 20
+        },
+        {
+          "id": "destinations-learning",
+          "sections": [
+            "## Destinations, unused evidence and learning"
+          ],
+          "terms": [
+            "semantic experience",
+            "shadow learning",
+            "unused evidence",
+            "counterfactual",
+            "promotion",
+            "rollback",
+            "destination",
+            "learning"
+          ],
+          "priority": 20
+        },
+        {
+          "id": "query-coverage",
+          "sections": [
+            "## Query and coverage target"
+          ],
+          "terms": [
+            "coverage",
+            "coverage gaps",
+            "producer inventory",
+            "librarian coverage",
+            "query surface",
+            "project manifests",
+            "verifier evidence",
+            "explicit corrections"
+          ],
+          "priority": 30
+        }
+      ]
     }
   ]
 }

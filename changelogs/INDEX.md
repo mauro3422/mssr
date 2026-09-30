@@ -10,6 +10,15 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.89](0.2.89.md) - Turn repeated optional-skill feedback into bounded maintenance candidates and establish the first R5 Semantic Evidence Plane foundations: revision-bound Document Surface, deterministic Librarian dedupe, and explicit producer-coverage gaps that block unsafe global negative claims.
+- [0.2.88](0.2.88.md) - Add deterministic bounded near-match diagnostics for structured routing so likely skills blocked by missing intent gates remain observable without bypassing gates or adding model authority.
+- [0.2.87](0.2.87.md) - Feed Semantic Experience automatically from privacy-safe learning digests, record fallback abstentions, and gate any fallback preference on leave-one-project-out verified evidence; the current real dataset remains blocked from promotion.
+- [0.2.86](0.2.86.md) - Generalize verified-shadow Shef/Jev learning into a bounded Semantic Experience Layer for context selection, document role, placement, drift, maintenance and abstention decisions, with independently verified deterministic fallback and no authority/auto-apply grant.
+- [0.2.85](0.2.85.md) - Add verified-shadow Jev semantic distillation, independently verified deterministic relation fallback, trace-metadata projections, and bounded-by-default semantic-review responses without routing or canonical-write authority.
+- [0.2.84](0.2.84.md) - Add a bounded cross-document evidence graph with exact provenance, source quotas/long-document sampling, TF-IDF + factual-anchor candidate retrieval, and advisory Jev relation review across project authorities/docs/evidence without canonical rewrites.
+- [0.2.83](0.2.83.md) - Separate Jev logical authority from physical ref placement, add orthogonal exact-section split evidence plus same-parent baseline verification, and preserve exact-byte/hash safety with no new rewrite authority.
+- [0.2.82](0.2.82.md) - Add native hybrid Jev semantic curation, corpus-isolated queueing, external Project Context refs and deterministic exact-section plan/apply with health/preflight governance across native/Codex/OpenCode.
+- [0.2.81](0.2.81.md) - Route MauroPrime↔ChatGPT image/binary handoff through `mauroprime-bridge-collaboration`, preferring direct MCP resources/authorized file transport and keeping Base64 as a bounded fallback.
 - [0.2.80](0.2.80.md) - Make release packaging byte-reproducible across checkout EOL differences by materializing the npm file set through a temporary Git index before the final pack.
 - [0.2.79](0.2.79.md) - Reconcile the two byte-distinct provisional 0.2.78 lines into one canonical package: portable proportional document/context delivery plus routing/lifecycle proportionality and Godot visual-routing fixtures.
 - [0.2.78](0.2.78.md) - Separate parent authority from child context depth, allowing bounded optional omission while adding portable `<document>.context.json` authority/relevant/deep assembly for authoritative Markdown.

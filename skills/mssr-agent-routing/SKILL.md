@@ -23,7 +23,11 @@ Plan the current phase, load only its eligible skills, use the authoritative
 execution host, and re-plan at `verify`, `persist`, `close`, `resume`, a
 material failure, provider/schema change, new capability, or repeated friction.
 The initial route is advisory, not an allowlist. Do not route mechanically
-between adjacent successful calls.
+between adjacent successful calls. When structured routing returns bounded
+`nearMatches`, treat them as repair diagnostics only: verify the reported missing
+gate against the actual task, then perform at most one corrected structured
+re-plan when the evidence is real. Never copy suggested values mechanically,
+bypass a gate, or activate a near-match directly.
 
 Selected context is bounded advisory evidence: verify canonical owner,
 provenance, and freshness before relying on it. Stale, unknown, conflicting, or

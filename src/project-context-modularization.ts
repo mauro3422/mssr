@@ -161,7 +161,8 @@ export async function planMssrProjectContextModularization(projectRootInput: str
     entries
       .filter(({ entry }) => pressuredIds.has(entry.id)
         && !(entry.source.sections?.length)
-        && !("segments" in entry && entry.segments?.length))
+        && !("segments" in entry && entry.segments?.length)
+        && !("references" in entry && entry.references?.length))
       .map(({ entry }) => entry.source.path.replace(/\\/g, "/").toLowerCase()),
   );
 

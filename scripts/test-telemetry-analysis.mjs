@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 
 import {
   analyzeMssrTelemetry,
+  mssrSkillDecisionSchema,
   mssrTelemetryEnvelopeSchema,
   routeTelemetrySummary,
 } from "../dist/index.js";
@@ -157,6 +158,105 @@ assert.deepEqual(analysis.maintenanceCandidates.map(({ kind, signal, skillName, 
 ]);
 
 assert.equal(analyzeMssrTelemetry(events, { minDistinctTraces: 4 }).maintenanceCandidates.length, 0);
+
+const validRelated = mssrSkillDecisionSchema.safeParse({
+  skillName: "skill-overlap-a",
+  decision: "skipped",
+  reasonCode: "redundant",
+  relatedSkillName: "skill-overlap-b",
+  stage: "start",
+});
+assert.equal(validRelated.success, true);
+assert.equal(mssrSkillDecisionSchema.safeParse({
+  skillName: "skill-overlap-a",
+  decision: "accepted",
+  reasonCode: "useful",
+  relatedSkillName: "skill-overlap-b",
+  stage: "start",
+}).success, false, "relatedSkillName must not become free-form relation metadata");
+assert.equal(mssrSkillDecisionSchema.safeParse({
+  skillName: "skill-overlap-a",
+  decision: "skipped",
+  reasonCode: "redundant",
+  relatedSkillName: "skill-overlap-a",
+  stage: "start",
+}).success, false, "a skill cannot be redundant with itself");
+
+const maintenanceEvidenceEvents = [];
+for (let index = 0; index < 3; index += 1) {
+  const explicitTrace = `overlap-explicit-${index + 1}`;
+  const legacyTrace = `overlap-legacy-${index + 1}`;
+  const domainTrace = `domain-gap-${index + 1}`;
+  const explicitRoute = {
+    ...baseRoute,
+    intent: { ...summarized.intent, domains: ["coding", "skill-system"] },
+    activeSkills: [{ name: "skill-overlap-a", required: false }, { name: "skill-overlap-b", required: false }],
+    loadOrder: ["skill-overlap-a", "skill-overlap-b"],
+    requiredPhases: [],
+    missingRequiredPhases: [],
+  };
+  const domainRoute = {
+    ...baseRoute,
+    intent: { ...summarized.intent, domains: ["godot"] },
+    activeSkills: [{ name: "steam-workshop-publication", required: false }],
+    loadOrder: ["steam-workshop-publication"],
+    requiredPhases: [],
+    missingRequiredPhases: [],
+  };
+  maintenanceEvidenceEvents.push(
+    routeEvent(`overlap-route-${index}`, explicitTrace, 10 + index, explicitRoute),
+    decisionEvent(`overlap-decision-${index}`, explicitTrace, 10 + index, {
+      skillName: "skill-overlap-a",
+      decision: "skipped",
+      reasonCode: "redundant",
+      relatedSkillName: "skill-overlap-b",
+      stage: "start",
+    }),
+    routeEvent(`legacy-route-${index}`, legacyTrace, 13 + index, explicitRoute),
+    decisionEvent(`legacy-peer-${index}`, legacyTrace, 13 + index, {
+      skillName: "skill-overlap-b",
+      decision: "accepted",
+      reasonCode: "useful",
+      stage: "start",
+    }),
+    decisionEvent(`legacy-decision-${index}`, legacyTrace, 13 + index, {
+      skillName: "skill-legacy-overlap",
+      decision: "skipped",
+      reasonCode: "redundant",
+      stage: "start",
+    }),
+    routeEvent(`domain-route-${index}`, domainTrace, 16 + index, domainRoute),
+    decisionEvent(`domain-decision-${index}`, domainTrace, 16 + index, {
+      skillName: "steam-workshop-publication",
+      decision: "skipped",
+      reasonCode: "irrelevant-domain",
+      stage: "start",
+    }),
+  );
+}
+const maintenanceEvidence = analyzeMssrTelemetry(maintenanceEvidenceEvents, { minDistinctTraces: 3 });
+const explicitOverlap = maintenanceEvidence.maintenanceCandidates.find((item) => item.kind === "skill-overlap"
+  && item.skillName === "skill-overlap-a" && item.relatedSkillName === "skill-overlap-b");
+assert.ok(explicitOverlap);
+assert.equal(explicitOverlap.evidenceMode, "explicit-related-skill");
+assert.equal(explicitOverlap.reviewOnly, true);
+assert.equal(explicitOverlap.distinctTraceCount, 3);
+assert.equal(explicitOverlap.recommendation, "inspect-overlap");
+const legacyOverlap = maintenanceEvidence.maintenanceCandidates.find((item) => item.kind === "skill-overlap"
+  && item.skillName === "skill-legacy-overlap");
+assert.ok(legacyOverlap);
+assert.equal(legacyOverlap.relatedSkillName, undefined, "legacy redundancy must remain ambiguous rather than inventing an exact relation");
+assert.deepEqual(legacyOverlap.candidateSkills, ["skill-overlap-b"]);
+assert.equal(legacyOverlap.evidenceMode, "aggregate-legacy");
+const domainMismatch = maintenanceEvidence.maintenanceCandidates.find((item) => item.kind === "skill-domain-mismatch"
+  && item.skillName === "steam-workshop-publication");
+assert.ok(domainMismatch);
+assert.deepEqual(domainMismatch.domains, ["godot"]);
+assert.equal(domainMismatch.reasonCode, "irrelevant-domain");
+assert.equal(domainMismatch.recommendation, "tighten-routing-domain");
+assert.equal(analyzeMssrTelemetry(maintenanceEvidenceEvents.slice(0, 14), { minDistinctTraces: 3 }).maintenanceCandidates
+  .some((item) => item.kind === "skill-overlap" && item.relatedSkillName === "skill-overlap-b"), false,
+"fewer than three distinct explicit traces must not trigger overlap maintenance");
 
 const learningSignature = "stage=verify|d=coding,skill-system|a=analyze,verify|r=code|n=integrity-verification|s=repeated-friction";
 const learningEvents = Array.from({ length: 5 }, (_, index) => learningDigestEvent(

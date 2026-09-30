@@ -18,6 +18,12 @@ import {
   type MssrContextDeliveryMode,
   type MssrContextSourceClass,
 } from "./context-delivery-policy.js";
+import {
+  buildMssrMarkdownDocumentSurface,
+  findMssrDocumentSurfaceHeadingBySelector,
+  materializeMssrDocumentSurfaceSection,
+  type MssrDocumentSurface,
+} from "./document-surface.js";
 
 const selectorFields = {
   stages: z.array(z.enum(SKILL_STAGES)).max(6).default([]),
@@ -87,27 +93,29 @@ export type DocumentContextAssembly = {
   remainingChars: number;
 };
 
-function headingLevel(line: string): number | null {
-  const hit = /^(#{1,6})\s+\S/.exec(line.trim());
-  return hit ? hit[1].length : null;
+function extractDocumentContextSectionsFromSurface(args: {
+  markdown: string;
+  surface: MssrDocumentSurface;
+  headings: readonly string[];
+}): string {
+  return args.headings.map((heading) => {
+    const section = findMssrDocumentSurfaceHeadingBySelector(args.surface, heading);
+    if (!section) throw new Error(`Document context section not found: ${heading}`);
+    return materializeMssrDocumentSurfaceSection({
+      markdown: args.markdown,
+      surface: args.surface,
+      sectionId: section.id,
+    }).text.trim();
+  }).join("\n\n");
 }
 
-/** Extract exact Markdown heading blocks, including their headings. */
+/** Extract exact Markdown heading blocks through the shared revision-bound Document Surface. */
 export function extractDocumentContextSections(markdown: string, headings: readonly string[]): string {
-  const lines = markdown.replace(/\r\n/g, "\n").split("\n");
-  return headings.map((heading) => {
-    const target = heading.trim();
-    const start = lines.findIndex((line) => line.trim() === target);
-    if (start < 0) throw new Error(`Document context section not found: ${heading}`);
-    const level = headingLevel(lines[start]);
-    if (!level) throw new Error(`Document context selector is not a Markdown heading: ${heading}`);
-    let end = lines.length;
-    for (let index = start + 1; index < lines.length; index += 1) {
-      const next = headingLevel(lines[index]);
-      if (next !== null && next <= level) { end = index; break; }
-    }
-    return lines.slice(start, end).join("\n").trim();
-  }).join("\n\n");
+  const surface = buildMssrMarkdownDocumentSurface({
+    sourceRef: "document-context:inline",
+    markdown,
+  });
+  return extractDocumentContextSectionsFromSurface({ markdown, surface, headings });
 }
 
 /**
@@ -132,7 +140,11 @@ export function assembleDocumentContext(args: {
     compactItems: 6,
   });
   const fullChars = args.markdown.length;
-  const core = extractDocumentContextSections(args.markdown, manifest.core.sections);
+  const surface = buildMssrMarkdownDocumentSurface({
+    sourceRef: "document-context:assembly",
+    markdown: args.markdown,
+  });
+  const core = extractDocumentContextSectionsFromSurface({ markdown: args.markdown, surface, headings: manifest.core.sections });
   const coreLimit = Math.min(manifest.core.maxChars ?? 80_000, 80_000);
   if (core.length > coreLimit) throw new Error(`Document context core exceeds ${coreLimit} characters.`);
 
@@ -171,7 +183,7 @@ export function assembleDocumentContext(args: {
   const materialized = manifest.modules
     .filter((module) => eligibleIds.has(module.id))
     .map((module) => {
-      const content = extractDocumentContextSections(args.markdown, module.sections);
+      const content = extractDocumentContextSectionsFromSurface({ markdown: args.markdown, surface, headings: module.sections });
       const maxChars = Math.min(module.maxChars ?? 80_000, 80_000);
       if (content.length > maxChars) throw new Error(`Document context module '${module.id}' exceeds ${maxChars} characters.`);
       return { ...module, content, chars: content.length + 2 };

@@ -20,6 +20,7 @@ import {
   mssrSkillDecisionSchema,
 } from "./trace-contract.js";
 import { mssrLearningDigestSchema } from "./learning.js";
+import { MSSR_CONTEXT_MODULE_DECISION_REASONS } from "./context-selection.js";
 
 export const MSSR_TELEMETRY_PROTOCOL_VERSION = "mssr-telemetry-v1" as const;
 export const MSSR_HOST_CALL_PROTOCOL_VERSION = "mssr-host-call-v1" as const;
@@ -128,6 +129,37 @@ const skillDecisionTelemetrySchema = z.object({
   decision: mssrSkillDecisionSchema,
 }).strict();
 
+const contextAssemblyTelemetrySchema = z.object({
+  kind: z.literal("context_assembly"),
+  stage: z.enum(SKILL_STAGES),
+  mode: z.enum(["selective", "full"]),
+  page: z.number().int().min(1).max(10_000),
+  requestedContextChars: z.number().int().min(0).max(10_000_000),
+  deliveredContextChars: z.number().int().min(0).max(10_000_000),
+  estimatedCharsSaved: z.number().int().min(0).max(100_000_000),
+  retainedContextCharsSaved: z.number().int().min(0).max(100_000_000),
+  requiredOverflowChars: z.number().int().min(0).max(100_000_000),
+  acceptedOverflowChars: z.number().int().min(0).max(100_000_000),
+  remainingRequiredUnits: z.number().int().min(0).max(10_000),
+  remainingAcceptedUnits: z.number().int().min(0).max(10_000),
+  requiredBudgetExceeded: z.boolean(),
+  optionalContextOmitted: z.boolean(),
+  continuationIssued: z.boolean(),
+  continuationConsumed: z.boolean(),
+  chainCompleted: z.boolean(),
+}).strict();
+
+const projectContextSelectionTelemetrySchema = z.object({
+  kind: z.literal("project_context_selection"),
+  stage: z.enum(SKILL_STAGES),
+  projectName: z.string().trim().min(1).max(160),
+  decisions: z.array(z.object({
+    id: boundedName,
+    selected: z.boolean(),
+    reason: z.enum(MSSR_CONTEXT_MODULE_DECISION_REASONS),
+  }).strict()).max(96),
+}).strict();
+
 const checkpointTelemetrySchema = z.object({
   kind: z.literal("checkpoint"),
   checkpoint: mssrHostCheckpointSchema,
@@ -145,7 +177,7 @@ export const mssrTelemetryEnvelopeSchema = z.object({
   source: z.string().trim().min(1).max(80),
   traceId: traceIdSchema,
   caller: z.enum(SKILL_CALLERS),
-  event: z.discriminatedUnion("kind", [routeTelemetrySchema, skillLoadTelemetrySchema, skillDecisionTelemetrySchema, checkpointTelemetrySchema, learningDigestTelemetrySchema]),
+  event: z.discriminatedUnion("kind", [routeTelemetrySchema, skillLoadTelemetrySchema, skillDecisionTelemetrySchema, contextAssemblyTelemetrySchema, projectContextSelectionTelemetrySchema, checkpointTelemetrySchema, learningDigestTelemetrySchema]),
 }).strict();
 
 export type MssrTelemetryEnvelope = z.infer<typeof mssrTelemetryEnvelopeSchema>;

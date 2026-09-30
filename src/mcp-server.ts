@@ -21,6 +21,8 @@ import { MSSR_PROJECT_CONTROL_TOOL_NAMES, registerMssrProjectControlTools } from
 import { MSSR_CONSISTENCY_TOOL_NAMES, registerMssrConsistencyTools } from "./consistency-contract.js";
 import { MSSR_OPERATIONAL_NOTICE_TOOL_NAMES, registerMssrOperationalNoticeTools } from "./operational-notice-contract.js";
 import { MSSR_HOST_CONFORMANCE_TOOL_NAMES, registerMssrHostConformanceTools } from "./host-conformance-contract.js";
+import { MSSR_SEMANTIC_CURATION_TOOL_NAMES, registerMssrSemanticCurationTools } from "./semantic-curation-contract.js";
+import { MSSR_SEMANTIC_EXPERIENCE_TOOL_NAMES } from "./semantic-experience-contract.js";
 import { CapabilityRegistry, FilesystemSkillProvider, MssrFirstPartySkillProvider } from "./registry.js";
 import { createMssrRegistryFromEnvironment } from "./provider-config.js";
 import {
@@ -63,6 +65,8 @@ export const MSSR_TOOL_NAMES = [
   ...MSSR_OPERATIONAL_NOTICE_TOOL_NAMES,
   ...MSSR_PROJECT_CONTROL_TOOL_NAMES,
   ...MSSR_HOST_CONFORMANCE_TOOL_NAMES,
+  ...MSSR_SEMANTIC_CURATION_TOOL_NAMES,
+  ...MSSR_SEMANTIC_EXPERIENCE_TOOL_NAMES,
 ] as const;
 
 function response(value: unknown) {
@@ -115,6 +119,7 @@ export function createMssrMcpServer(registry = new CapabilityRegistry([new MssrF
   registerMssrConsistencyTools(server);
   registerMssrOperationalNoticeTools(server);
   registerMssrHostConformanceTools(server);
+  registerMssrSemanticCurationTools(server);
 
   server.registerTool(MSSR_TOOL_NAMES[0], {
     description: "Show the immutable MSSR capability snapshot and provider health. Optionally refresh providers first.",

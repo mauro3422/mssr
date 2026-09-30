@@ -20,6 +20,8 @@ export const MSSR_PROJECT_AUTHORITY_FILES = {
 
 export const MSSR_PROJECT_CONTROL_FILES = {
   projectContextManifest: "project-context.json",
+  projectContextSegmentsManifest: "project-context-segments.json",
+  projectContextReferencesManifest: "project-context-refs.json",
   architectureImpactManifest: "architecture-impact.json",
   architectureStructureManifest: "architecture-structure.json",
   architectureInvariantManifest: "architecture-invariants.json",

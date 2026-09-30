@@ -12,3 +12,5 @@ contract.
 - [ADR 0005 — Architecture Impact / Drift Links](0005-architecture-impact-drift-links.md)
 - [ADR 0006 — Deterministic semantic consistency over the Situation Model](0006-deterministic-semantic-consistency.md)
 - [ADR 0007 — Automatic Lifecycle Coverage](0007-automatic-lifecycle-coverage.md)
+- [ADR 0008 — Context Economy v2](0008-context-economy-v2.md)
+- [ADR 0009 — Semantic Evidence Plane and portable semantic triage](0009-semantic-evidence-plane.md)

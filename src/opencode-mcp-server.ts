@@ -10,6 +10,7 @@ import { registerMssrProjectControlTools } from "./project-control-contract.js";
 import { registerMssrConsistencyTools } from "./consistency-contract.js";
 import { registerMssrOperationalNoticeTools } from "./operational-notice-contract.js";
 import { registerMssrHostConformanceTools } from "./host-conformance-contract.js";
+import { registerMssrSemanticCurationTools } from "./semantic-curation-contract.js";
 
 function response(value: unknown) {
   return { content: [{ type: "text" as const, text: JSON.stringify(value, null, 2) }] };
@@ -30,6 +31,7 @@ export function createOpenCodeMssrMcpServer(adapter: OpenCodeMssrAdapter) {
   registerMssrConsistencyTools(server);
   registerMssrOperationalNoticeTools(server);
   registerMssrHostConformanceTools(server);
+  registerMssrSemanticCurationTools(server);
 
   server.registerTool("mssr_route_plan", {
     description: "Plan an advisory MSSR route for OpenCode-local and return a persistent traceId.",

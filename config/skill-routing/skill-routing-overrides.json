@@ -373,7 +373,8 @@
         "roblox",
         "github",
         "git",
-        "filesystem"
+        "filesystem",
+        "openai-development"
       ],
       "actions": [
         "coordinate",
@@ -382,7 +383,8 @@
         "verify",
         "version",
         "publish",
-        "document"
+        "document",
+        "save"
       ],
       "artifacts": [
         "mcp",
@@ -392,7 +394,8 @@
         "repository",
         "place-file",
         "backup",
-        "document"
+        "document",
+        "asset"
       ],
       "needs": [
         "cross-agent",
@@ -407,6 +410,7 @@
       ],
       "excludes": [],
       "negativeIntents": [],
+      "requireNeedMatch": true,
       "requireActionMatch": true,
       "priority": 78,
       "activation": "on-demand",

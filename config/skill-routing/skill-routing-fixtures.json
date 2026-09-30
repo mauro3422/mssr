@@ -8620,6 +8620,168 @@
           "persistence"
         ]
       }
+    },
+    {
+      "name": "bridge-cross-host-pc-to-chatgpt-resource-positive",
+      "task": "Tomá esta imagen que ya existe en mi PC y materializala dentro del sandbox de ChatGPT para procesarla con Python, conservando exactamente los bytes y el SHA-256 sin copiar Base64 manualmente.",
+      "caller": "chatgpt-web",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Transferir evidencia binaria local desde MauroPrime hacia el sandbox de ChatGPT mediante un recurso MCP verificable.",
+        "domains": [
+          "filesystem",
+          "openai-development",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "coordinate",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "mcp"
+        ],
+        "needs": [
+          "cross-agent",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "mauroprime-bridge-collaboration"
+        ]
+      }
+    },
+    {
+      "name": "bridge-cross-host-chatgpt-to-pc-authorized-image-positive",
+      "task": "Guardá en el proyecto local esta imagen ya generada y autorizada por ChatGPT usando el archivo original del host, verificá el resultado y no la conviertas a Base64 para pasarla al Bridge.",
+      "caller": "chatgpt-web",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Persistir una imagen autorizada por ChatGPT en MauroPrime mediante transporte directo de archivo y verificación de integridad.",
+        "domains": [
+          "filesystem",
+          "openai-development",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "save",
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "mcp"
+        ],
+        "needs": [
+          "cross-agent",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "mauroprime-bridge-collaboration"
+        ]
+      }
+    },
+    {
+      "name": "bridge-cross-host-base64-nearby-negative",
+      "task": "Convertí una imagen que ya está cargada en este proceso a Base64 para incluirla en un campo JSON de una API; no hay handoff entre ChatGPT y MauroPrime ni acceso al Bridge.",
+      "caller": "chatgpt-web",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Codificar una imagen en Base64 dentro de un proceso local para un payload JSON, sin coordinación entre hosts.",
+        "domains": [
+          "coding",
+          "openai-development"
+        ],
+        "actions": [
+          "edit"
+        ],
+        "artifacts": [
+          "code",
+          "asset"
+        ],
+        "needs": [],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeExcludes": [
+          "mauroprime-bridge-collaboration"
+        ]
+      }
+    },
+    {
+      "name": "bridge-cross-host-resource-continuation",
+      "task": "Ya llegó por el recurso directo; verificá ahora que el archivo materializado en el sandbox tenga exactamente el mismo tamaño y SHA-256 que el original.",
+      "context": "La fase anterior transfirió un archivo local desde MauroPrime hacia ChatGPT mediante el recurso MCP directo. El objetivo sigue siendo conservar el payload exacto sin volver al workaround manual de Base64.",
+      "caller": "chatgpt-web",
+      "stage": "verify",
+      "completedPhases": [
+        "discovery",
+        "safety",
+        "implementation"
+      ],
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar la verificación de integridad de un handoff binario MauroPrime a ChatGPT ya materializado.",
+        "domains": [
+          "filesystem",
+          "openai-development",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "verify"
+        ],
+        "artifacts": [
+          "asset",
+          "mcp"
+        ],
+        "needs": [
+          "cross-agent",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "read-only",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "mauroprime-bridge-collaboration"
+        ],
+        "missingRequiredPhases": []
+      }
     }
   ]
 }

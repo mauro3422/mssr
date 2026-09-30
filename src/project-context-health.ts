@@ -158,8 +158,15 @@ async function listProjectDocumentCandidates(projectRoot: string): Promise<{ sca
 
 async function materializeExplicitProjectDocReferences(projectRoot: string, manifest: ResolvedProjectContextManifest): Promise<{ indexed: Set<string>; carrierText: string }> {
   const entries = [...manifest.core, ...manifest.modules];
-  const indexed = new Set(entries.map((entry) => normalizeProjectRelative(entry.source.path)));
-  const carrierSources = [...new Set(entries.map((entry) => entry.source.path).filter((sourcePath) => normalizeProjectRelative(sourcePath).startsWith(".mssr/")))];
+  const externalReferencePaths = manifest.modules.flatMap((entry) => entry.references?.map((reference) => reference.source.path) ?? []);
+  const indexed = new Set([
+    ...entries.map((entry) => normalizeProjectRelative(entry.source.path)),
+    ...externalReferencePaths.map(normalizeProjectRelative),
+  ]);
+  const carrierSources = [...new Set([
+    ...entries.map((entry) => entry.source.path),
+    ...externalReferencePaths,
+  ].filter((sourcePath) => normalizeProjectRelative(sourcePath).startsWith(".mssr/")))];
   const chunks: string[] = [];
   for (const sourcePath of carrierSources) {
     try {
@@ -202,13 +209,24 @@ async function auditProjectDocumentReferences(projectRoot: string, manifest: Res
   };
 }
 
+type ProjectContextReferenceMeasurement = {
+  id: string;
+  sourcePath: string;
+  selectedBytes: number | null;
+  physicalBytes: number | null;
+  sourceHardLimitExceeded: boolean;
+  error?: string;
+};
+
 type ProjectContextEntryMeasurement = {
   bytes: number | null;
   physicalBytes: number;
   segmented: boolean;
+  referenced: boolean;
   sourceHardLimitExceeded: boolean;
   baselineBytes: number | null;
   largestOptionalBytes: number | null;
+  referenceSources: ProjectContextReferenceMeasurement[];
 };
 
 async function selectedMeasurement(
@@ -218,10 +236,11 @@ async function selectedMeasurement(
   try {
     const absolute = path.resolve(projectRoot, entry.source.path);
     const segmented = "segments" in entry && Boolean(entry.segments?.length);
+    const referenced = "references" in entry && Boolean(entry.references?.length);
     const physicalBytes = (await fs.stat(absolute)).size;
     const sourceHardLimit = segmented ? MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES : MAX_PROJECT_CONTEXT_CHARS;
     if (physicalBytes > sourceHardLimit) {
-      return { bytes: null, physicalBytes, segmented, sourceHardLimitExceeded: true, baselineBytes: null, largestOptionalBytes: null };
+      return { bytes: null, physicalBytes, segmented, referenced, sourceHardLimitExceeded: true, baselineBytes: null, largestOptionalBytes: null, referenceSources: [] };
     }
     const text = (await readBoundedMarkdown(absolute, sourceHardLimit)).content;
     if (segmented && "segments" in entry && entry.segments?.length) {
@@ -233,19 +252,60 @@ async function selectedMeasurement(
         bytes: baseline.bytes + largestOptionalBytes,
         physicalBytes,
         segmented: true,
+        referenced: false,
         sourceHardLimitExceeded: false,
         baselineBytes: baseline.bytes,
         largestOptionalBytes,
+        referenceSources: [],
       };
     }
     const selected = entry.source.sections?.length ? extractProjectContextSections(text, entry.source.sections) : text.trim();
+    const baselineBytes = Buffer.byteLength(selected, "utf8");
+    if (referenced && "references" in entry && entry.references?.length) {
+      const referenceSources: ProjectContextReferenceMeasurement[] = [];
+      let largestOptionalBytes = 0;
+      let largestOptionalContent = "";
+      for (const reference of entry.references) {
+        try {
+          const referenceAbsolute = path.resolve(projectRoot, reference.source.path);
+          const referencePhysicalBytes = (await fs.stat(referenceAbsolute)).size;
+          if (referencePhysicalBytes > MAX_PROJECT_CONTEXT_CHARS) {
+            referenceSources.push({ id: reference.id, sourcePath: reference.source.path, selectedBytes: null, physicalBytes: referencePhysicalBytes, sourceHardLimitExceeded: true });
+            continue;
+          }
+          const referenceText = (await readBoundedMarkdown(referenceAbsolute, MAX_PROJECT_CONTEXT_CHARS)).content;
+          const referenceSelected = reference.source.sections?.length ? extractProjectContextSections(referenceText, reference.source.sections) : referenceText.trim();
+          const referenceBytes = Buffer.byteLength(referenceSelected, "utf8");
+          referenceSources.push({ id: reference.id, sourcePath: reference.source.path, selectedBytes: referenceBytes, physicalBytes: referencePhysicalBytes, sourceHardLimitExceeded: false });
+          if (referenceBytes > largestOptionalBytes) {
+            largestOptionalBytes = referenceBytes;
+            largestOptionalContent = referenceSelected;
+          }
+        } catch (error) {
+          referenceSources.push({ id: reference.id, sourcePath: reference.source.path, selectedBytes: null, physicalBytes: null, sourceHardLimitExceeded: false, error: error instanceof Error ? error.message : String(error) });
+        }
+      }
+      const worstPayload = [selected.trim(), largestOptionalContent].filter(Boolean).join("\n\n");
+      return {
+        bytes: Buffer.byteLength(worstPayload, "utf8"),
+        physicalBytes,
+        segmented: false,
+        referenced: true,
+        sourceHardLimitExceeded: false,
+        baselineBytes,
+        largestOptionalBytes,
+        referenceSources,
+      };
+    }
     return {
-      bytes: Buffer.byteLength(selected, "utf8"),
+      bytes: baselineBytes,
       physicalBytes,
       segmented: false,
+      referenced: false,
       sourceHardLimitExceeded: false,
       baselineBytes: null,
       largestOptionalBytes: null,
+      referenceSources: [],
     };
   } catch { return null; }
 }
@@ -267,7 +327,7 @@ export async function auditMssrProjectContextHealth(projectRootInput: string) {
       manifestStatus = "valid";
     } catch (error) {
       manifestStatus = "invalid";
-      findings.push({ code: "invalid-manifest", level: "review", target: ".mssr/project-context.json or project-context-segments.json", message: error instanceof Error ? error.message : String(error), recommendation: "REPAIR_PROJECT_CONTEXT_MANIFEST" });
+      findings.push({ code: "invalid-manifest", level: "review", target: ".mssr/project-context.json, project-context-segments.json or project-context-refs.json", message: error instanceof Error ? error.message : String(error), recommendation: "REPAIR_PROJECT_CONTEXT_MANIFEST" });
     }
   } else {
     findings.push({ code: "missing-manifest", level: "review", target: ".mssr/project-context.json", message: "The repository is not initialized under the MSSR project-context contract.", recommendation: "INITIALIZE_PROJECT_CONTEXT" });
@@ -338,6 +398,47 @@ export async function auditMssrProjectContextHealth(projectRootInput: string) {
           });
         }
       }
+      if (measurement?.referenced) {
+        for (const reference of measurement.referenceSources) {
+          if (reference.error) {
+            findings.push({
+              code: "external-reference-unreadable",
+              level: "review",
+              target: reference.sourcePath,
+              message: `External reference ${entry.id}/${reference.id} cannot be materialized: ${reference.error}`,
+              recommendation: "REPAIR_EXTERNAL_REFERENCE_SOURCE",
+            });
+            continue;
+          }
+          if (reference.sourceHardLimitExceeded) {
+            findings.push({
+              code: "external-reference-hard-limit-exceeded",
+              level: "review",
+              target: reference.sourcePath,
+              message: `External reference ${entry.id}/${reference.id} is ${reference.physicalBytes} bytes and exceeds the ${MAX_PROJECT_CONTEXT_CHARS}-byte per-reference hard limit.`,
+              recommendation: "SPLIT_EXTERNAL_REFERENCE",
+            });
+            continue;
+          }
+          if (reference.physicalBytes !== null) {
+            const referenceBudget = evaluateProjectContextEntryBudget({
+              entryId: `${entry.id}:${reference.id}`,
+              core: false,
+              sourcePath: reference.sourcePath,
+              selectedBytes: reference.physicalBytes,
+              maxChars: MAX_PROJECT_CONTEXT_CHARS,
+            });
+            if (referenceBudget.level !== "ok") findings.push({
+              code: referenceBudget.exceeded ? "external-reference-source-budget-exceeded" : "external-reference-source-budget-pressure",
+              level: referenceBudget.level,
+              target: reference.sourcePath,
+              message: `External reference ${entry.id}/${reference.id} backing source is ${reference.physicalBytes}/${MAX_PROJECT_CONTEXT_CHARS} bytes (${Math.round(referenceBudget.utilization * 100)}%).`,
+              recommendation: referenceBudget.level === "review" ? "SPLIT_EXTERNAL_REFERENCE" : "REVIEW_EXTERNAL_REFERENCE_SPLIT",
+              budget: { selectedBytes: referenceBudget.selectedBytes, budgetBytes: referenceBudget.budgetBytes, remainingBytes: referenceBudget.remainingBytes, utilization: referenceBudget.utilization },
+            });
+          }
+        }
+      }
       if (chars === null) {
         if (!measurement?.sourceHardLimitExceeded) findings.push({ code: entry.segments?.length ? "invalid-segment-contract" : "missing-module-source", level: "review", target: entry.source.path, message: `Module ${entry.id} cannot be materialized${entry.segments?.length ? " under its segment contract" : ""}.`, recommendation: entry.segments?.length ? "REVIEW_MODULE_SEGMENTS" : "REPAIR_MODULE_SOURCE" });
       } else if (entry.maxChars !== undefined) {
@@ -348,13 +449,15 @@ export async function auditMssrProjectContextHealth(projectRootInput: string) {
           target: entry.id,
           message: measurement?.segmented
             ? `Segmented module ${entry.id} has a worst single-target payload of ${chars}/${budget.budgetBytes} bytes (${Math.round(budget.utilization * 100)}%; baseline ${measurement.baselineBytes} + largest optional ${measurement.largestOptionalBytes}).`
-            : `Module ${entry.id} loads ${chars}/${budget.budgetBytes} bytes (${Math.round(budget.utilization * 100)}%).`,
+            : measurement?.referenced
+              ? `Referenced module ${entry.id} has a worst single-target payload of ${chars}/${budget.budgetBytes} bytes (${Math.round(budget.utilization * 100)}%; baseline ${measurement.baselineBytes} + largest external ref ${measurement.largestOptionalBytes}).`
+              : `Module ${entry.id} loads ${chars}/${budget.budgetBytes} bytes (${Math.round(budget.utilization * 100)}%).`,
           recommendation: budget.level === "review" ? "SPLIT_MODULE" : "REVIEW_MODULE_SPLIT",
           budget: { selectedBytes: budget.selectedBytes, budgetBytes: budget.budgetBytes, remainingBytes: budget.remainingBytes, utilization: budget.utilization },
         });
       } else if (chars > 14_000) findings.push({ code: "oversized-module", level: "review", target: entry.id, message: `Module ${entry.id} loads ${chars} bytes.`, recommendation: "SPLIT_MODULE" });
       else if (chars > 7_000) findings.push({ code: "growing-module", level: "watch", target: entry.id, message: `Module ${entry.id} loads ${chars} bytes.`, recommendation: "REVIEW_MODULE_SPLIT" });
-      if (!entry.segments?.length && !entry.source.sections?.length && chars !== null && chars > 24_000) findings.push({ code: "whole-file-module", level: chars > 48_000 ? "review" : "watch", target: entry.id, message: `Module ${entry.id} loads an entire ${chars}-byte file.`, recommendation: "SELECT_STABLE_SECTION" });
+      if (!entry.segments?.length && !entry.references?.length && !entry.source.sections?.length && chars !== null && chars > 24_000) findings.push({ code: "whole-file-module", level: chars > 48_000 ? "review" : "watch", target: entry.id, message: `Module ${entry.id} loads an entire ${chars}-byte file.`, recommendation: "SELECT_STABLE_SECTION" });
     }
 
     const projectMemoryPath = `.mssr/${MSSR_PROJECT_AUTHORITY_FILES.memory}`.toLowerCase();
@@ -373,7 +476,10 @@ export async function auditMssrProjectContextHealth(projectRootInput: string) {
       });
     }
 
-    const indexed = new Set([...manifest.core, ...manifest.modules].map((entry) => entry.source.path.replace(/\\/g, "/").toLowerCase()));
+    const indexed = new Set([
+      ...[...manifest.core, ...manifest.modules].map((entry) => entry.source.path.replace(/\\/g, "/").toLowerCase()),
+      ...manifest.modules.flatMap((entry) => entry.references?.map((reference) => reference.source.path.replace(/\\/g, "/").toLowerCase()) ?? []),
+    ]);
     const knowledgeRoot = path.join(home, "knowledge");
     for (const rel of await listMarkdown(knowledgeRoot)) {
       const projectRel = `.mssr/knowledge/${rel}`.toLowerCase();

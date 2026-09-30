@@ -362,6 +362,50 @@
       "maxChars": 4000
     },
     {
+      "id": "mssr-semantic-evidence-plane",
+      "kind": "context",
+      "topic": "architecture",
+      "area": "semantic-evidence",
+      "description": "Semantic Evidence Plane: evidence atoms, section-level retrieval, batching, portable Jev triage, progressive evidence acquisition, coverage and shadow learning boundaries.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/semantic-evidence-plane.md"
+      },
+      "domains": [
+        "skill-system",
+        "agent-orchestration",
+        "coding",
+        "filesystem"
+      ],
+      "actions": [
+        "design",
+        "review",
+        "analyze",
+        "maintain",
+        "document",
+        "discover",
+        "recover"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document",
+        "skill",
+        "mcp"
+      ],
+      "needs": [
+        "integrity-verification",
+        "cross-agent",
+        "history-recovery"
+      ],
+      "signals": [
+        "reusable-pattern",
+        "capability-discovery-needed",
+        "tool-chain-needed"
+      ],
+      "priority": 86,
+      "maxChars": 10000
+    },
+    {
       "id": "mssr-project-document-reference-lifecycle",
       "kind": "context",
       "topic": "reference",

@@ -142,35 +142,39 @@ export type MssrContextPersistenceProposal = z.infer<typeof mssrContextPersisten
 export type MssrContextMessage = z.infer<typeof mssrContextMessageSchema>;
 export const mssrContextMessageBatchSchema = z.array(mssrContextMessageSchema).max(32);
 
-export type MssrContextMessageDecisionReason =
-  | "selected"
-  | "stage-mismatch"
-  | "intent-mismatch"
-  | "deduplicated"
-  | "budget-exceeded"
-  | "max-messages-exceeded"
-  | "required-message-overflow";
+export const MSSR_CONTEXT_MESSAGE_DECISION_REASONS = [
+  "selected",
+  "stage-mismatch",
+  "intent-mismatch",
+  "deduplicated",
+  "budget-exceeded",
+  "max-messages-exceeded",
+  "required-message-overflow",
+] as const;
+export type MssrContextMessageDecisionReason = typeof MSSR_CONTEXT_MESSAGE_DECISION_REASONS[number];
 
-export type MssrContextMessageDecision = {
-  id: string;
-  selected: boolean;
-  score: number;
-  estimatedChars: number;
-  reason: MssrContextMessageDecisionReason;
-  matched: string[];
-};
+export const mssrContextMessageDecisionSchema = z.object({
+  id: boundedId,
+  selected: z.boolean(),
+  score: z.number().finite(),
+  estimatedChars: z.number().int().min(0).max(20_000),
+  reason: z.enum(MSSR_CONTEXT_MESSAGE_DECISION_REASONS),
+  matched: z.array(z.string().min(1).max(160)).max(32),
+}).strict();
+export type MssrContextMessageDecision = z.infer<typeof mssrContextMessageDecisionSchema>;
 
-export type MssrContextMessageSelection = {
-  selected: MssrContextMessage[];
-  decisions: MssrContextMessageDecision[];
-  continuationReceipts: MssrContinuationReceipt[];
-  selectedChars: number;
-  remainingChars: number;
-  remainingMessages: number;
-  requiredBudgetExceeded: boolean;
-  requiredMessageOverflow: string[];
-  advisoryOnly: true;
-};
+export const mssrContextMessageSelectionSchema = z.object({
+  selected: z.array(mssrContextMessageSchema).max(32),
+  decisions: z.array(mssrContextMessageDecisionSchema).max(32),
+  continuationReceipts: z.array(mssrContinuationReceiptSchema).max(32),
+  selectedChars: z.number().int().min(0).max(20_000),
+  remainingChars: z.number().int().min(0).max(20_000),
+  remainingMessages: z.number().int().min(0).max(32),
+  requiredBudgetExceeded: z.boolean(),
+  requiredMessageOverflow: z.array(boundedId).max(32),
+  advisoryOnly: z.literal(true),
+}).strict();
+export type MssrContextMessageSelection = z.infer<typeof mssrContextMessageSelectionSchema>;
 
 function overlap(left: readonly string[], right: readonly string[]): string[] {
   const wanted = new Set(right);

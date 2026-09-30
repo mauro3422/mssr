@@ -18,10 +18,17 @@ export type MssrTelemetryRate = Readonly<{
 }>;
 
 export type MssrMaintenanceCandidate = Readonly<{
-  kind: "recurring-signal" | "required-load-gap";
+  kind: "recurring-signal" | "required-load-gap" | "skill-overlap" | "skill-domain-mismatch";
   reviewOnly: true;
   signal?: string;
   skillName?: string;
+  relatedSkillName?: string;
+  reasonCode?: "redundant" | "irrelevant-domain";
+  evidenceMode?: "explicit-related-skill" | "aggregate-legacy" | "aggregate-domain";
+  recommendation?: "inspect-overlap" | "tighten-routing-domain";
+  candidateSkills?: readonly string[];
+  semanticSignatures?: readonly string[];
+  domains?: readonly string[];
   distinctTraceCount: number;
   traceIds: readonly string[];
 }>;
@@ -189,7 +196,7 @@ function priorRecommendation(args: {
 }
 
 function boundedCandidate(
-  kind: MssrMaintenanceCandidate["kind"],
+  kind: "recurring-signal" | "required-load-gap",
   key: string,
   traceIds: Set<string>,
 ): MssrMaintenanceCandidate {
@@ -198,6 +205,33 @@ function boundedCandidate(
     kind,
     reviewOnly: true,
     ...(kind === "recurring-signal" ? { signal: key } : { skillName: key }),
+    distinctTraceCount: ids.length,
+    traceIds: ids.slice(0, 20),
+  };
+}
+
+function boundedSkillEvidenceCandidate(args: {
+  kind: "skill-overlap" | "skill-domain-mismatch";
+  skillName: string;
+  traceIds: Set<string>;
+  relatedSkillName?: string;
+  evidenceMode: "explicit-related-skill" | "aggregate-legacy" | "aggregate-domain";
+  candidateSkills?: Set<string>;
+  semanticSignatures?: Set<string>;
+  domains?: Set<string>;
+}): MssrMaintenanceCandidate {
+  const ids = [...args.traceIds].sort();
+  return {
+    kind: args.kind,
+    reviewOnly: true,
+    skillName: args.skillName,
+    ...(args.relatedSkillName ? { relatedSkillName: args.relatedSkillName } : {}),
+    reasonCode: args.kind === "skill-overlap" ? "redundant" : "irrelevant-domain",
+    evidenceMode: args.evidenceMode,
+    recommendation: args.kind === "skill-overlap" ? "inspect-overlap" : "tighten-routing-domain",
+    ...(args.candidateSkills?.size ? { candidateSkills: [...args.candidateSkills].sort().slice(0, 12) } : {}),
+    ...(args.semanticSignatures?.size ? { semanticSignatures: [...args.semanticSignatures].sort().slice(0, 12) } : {}),
+    ...(args.domains?.size ? { domains: [...args.domains].sort().slice(0, 8) } : {}),
     distinctTraceCount: ids.length,
     traceIds: ids.slice(0, 20),
   };
@@ -275,6 +309,14 @@ export function analyzeMssrTelemetry(
   };
   const signalTraces = new Map<string, Set<string>>();
   const missingSkillTraces = new Map<string, Set<string>>();
+  const domainMismatchTraces = new Map<string, Set<string>>();
+  const domainMismatchSignatures = new Map<string, Set<string>>();
+  const domainMismatchDomains = new Map<string, Set<string>>();
+  const explicitOverlapTraces = new Map<string, Set<string>>();
+  const explicitOverlapSignatures = new Map<string, Set<string>>();
+  const legacyOverlapTraces = new Map<string, Set<string>>();
+  const legacyOverlapSignatures = new Map<string, Set<string>>();
+  const legacyOverlapPeers = new Map<string, Set<string>>();
   const decisionStats = new Map<string, {
     accepted: number;
     skipped: number;
@@ -303,6 +345,10 @@ export function analyzeMssrTelemetry(
       missingSkillTraces.set(skillName, ids);
     }
 
+    const acceptedDecisionSkills = new Set(trace.decisions
+      .filter((item) => item.event.decision.decision === "accepted")
+      .map((item) => item.event.decision.skillName));
+
     for (const decisionEnvelope of trace.decisions) {
       const decision = decisionEnvelope.event.decision;
       const stats = decisionStats.get(decision.skillName) ?? {
@@ -322,6 +368,42 @@ export function analyzeMssrTelemetry(
       else signatureStats.skipped += 1;
       stats.signatures.set(signature, signatureStats);
       decisionStats.set(decision.skillName, stats);
+
+      if (decision.decision === "skipped" && decision.reasonCode === "irrelevant-domain") {
+        const ids = domainMismatchTraces.get(decision.skillName) ?? new Set<string>();
+        ids.add(traceId);
+        domainMismatchTraces.set(decision.skillName, ids);
+        const signatures = domainMismatchSignatures.get(decision.skillName) ?? new Set<string>();
+        signatures.add(signature);
+        domainMismatchSignatures.set(decision.skillName, signatures);
+        const domains = domainMismatchDomains.get(decision.skillName) ?? new Set<string>();
+        for (const domain of decisionRoute.event.route.intent?.domains ?? []) domains.add(domain);
+        domainMismatchDomains.set(decision.skillName, domains);
+      }
+
+      if (decision.decision === "skipped" && decision.reasonCode === "redundant") {
+        if (decision.relatedSkillName) {
+          const key = `${decision.skillName}\u0000${decision.relatedSkillName}`;
+          const ids = explicitOverlapTraces.get(key) ?? new Set<string>();
+          ids.add(traceId);
+          explicitOverlapTraces.set(key, ids);
+          const signatures = explicitOverlapSignatures.get(key) ?? new Set<string>();
+          signatures.add(signature);
+          explicitOverlapSignatures.set(key, signatures);
+        } else {
+          const ids = legacyOverlapTraces.get(decision.skillName) ?? new Set<string>();
+          ids.add(traceId);
+          legacyOverlapTraces.set(decision.skillName, ids);
+          const signatures = legacyOverlapSignatures.get(decision.skillName) ?? new Set<string>();
+          signatures.add(signature);
+          legacyOverlapSignatures.set(decision.skillName, signatures);
+          const peers = legacyOverlapPeers.get(decision.skillName) ?? new Set<string>();
+          for (const peer of acceptedDecisionSkills) {
+            if (peer !== decision.skillName) peers.add(peer);
+          }
+          legacyOverlapPeers.set(decision.skillName, peers);
+        }
+      }
     }
 
     const checkpoints = trace.checkpoints.map((event) => event.event.checkpoint);
@@ -505,8 +587,42 @@ export function analyzeMssrTelemetry(
     ...[...missingSkillTraces.entries()]
       .filter(([, ids]) => ids.size >= minDistinctTraces)
       .map(([skillName, ids]) => boundedCandidate("required-load-gap", skillName, ids)),
+    ...[...domainMismatchTraces.entries()]
+      .filter(([, ids]) => ids.size >= minDistinctTraces)
+      .map(([skillName, ids]) => boundedSkillEvidenceCandidate({
+        kind: "skill-domain-mismatch",
+        skillName,
+        traceIds: ids,
+        evidenceMode: "aggregate-domain",
+        semanticSignatures: domainMismatchSignatures.get(skillName),
+        domains: domainMismatchDomains.get(skillName),
+      })),
+    ...[...explicitOverlapTraces.entries()]
+      .filter(([, ids]) => ids.size >= minDistinctTraces)
+      .map(([key, ids]) => {
+        const [skillName, relatedSkillName] = key.split("\u0000");
+        return boundedSkillEvidenceCandidate({
+          kind: "skill-overlap",
+          skillName,
+          relatedSkillName,
+          traceIds: ids,
+          evidenceMode: "explicit-related-skill",
+          semanticSignatures: explicitOverlapSignatures.get(key),
+        });
+      }),
+    ...[...legacyOverlapTraces.entries()]
+      .filter(([, ids]) => ids.size >= minDistinctTraces)
+      .map(([skillName, ids]) => boundedSkillEvidenceCandidate({
+        kind: "skill-overlap",
+        skillName,
+        traceIds: ids,
+        evidenceMode: "aggregate-legacy",
+        candidateSkills: legacyOverlapPeers.get(skillName),
+        semanticSignatures: legacyOverlapSignatures.get(skillName),
+      })),
   ].sort((left, right) => left.kind.localeCompare(right.kind)
-    || (left.signal ?? left.skillName ?? "").localeCompare(right.signal ?? right.skillName ?? ""));
+    || (left.signal ?? left.skillName ?? "").localeCompare(right.signal ?? right.skillName ?? "")
+    || (left.relatedSkillName ?? "").localeCompare(right.relatedSkillName ?? ""));
 
   return {
     counters: {

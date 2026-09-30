@@ -38,6 +38,7 @@ async function writeFixture(name, { modules = [], core = [], files = {}, withMan
       signals: module.signals ?? [],
       priority: module.priority ?? 0,
       required: module.required ?? false,
+      ...(module.maxChars !== undefined ? { maxChars: module.maxChars } : {}),
       ...(module.requiredWhen ? { requiredWhen: module.requiredWhen } : {}),
       ...(module.exclusiveGroup ? { exclusiveGroup: module.exclusiveGroup } : {}),
     });
@@ -125,6 +126,34 @@ try {
   assert.deepEqual(resB.requiredBudgetExceeded.sort(), ["opt-req"]);
   assert.equal(resB.decisions.find((d) => d.id === "opt-free").reason, "budget-exceeded");
   assert.equal(resB.decisions.find((d) => d.id === "opt-free").selected, false);
+
+  // An eligible optional module that exceeds its own entry budget must degrade to an
+  // observable omission rather than aborting the whole project-context bootstrap.
+  const rootB0 = await writeFixture("b0-optional-entry-overflow", {
+    modules: [
+      mod("opt-over-entry", { domains: ["coding"], actions: ["edit"], priority: 90, maxChars: 200 }),
+      mod("opt-ok-entry", { domains: ["coding"], actions: ["edit"], priority: 80, maxChars: 400 }),
+    ],
+    files: {
+      "opt-over-entry.md": `# Oversized optional\n${"x".repeat(500)}\n`,
+      "opt-ok-entry.md": "# Healthy optional\nStill loadable.\n",
+    },
+  });
+  const resB0 = await loadProjectContextModules({ projectRoot: rootB0, intent: intentEdit, stage: "implement" });
+  assert.deepEqual(resB0.selected.map((record) => record.ref), ["opt-ok-entry"]);
+  assert.equal(resB0.decisions.find((decision) => decision.id === "opt-over-entry").selected, false);
+  assert.equal(resB0.decisions.find((decision) => decision.id === "opt-over-entry").reason, "budget-exceeded");
+  assert.equal(resB0.decisions.find((decision) => decision.id === "opt-over-entry").chars > 200, true);
+
+  // The same per-entry overflow remains fail-visible when the module is required.
+  const rootB0Required = await writeFixture("b0-required-entry-overflow", {
+    modules: [mod("req-over-entry", { domains: ["coding"], actions: ["edit"], required: true, maxChars: 200 })],
+    files: { "req-over-entry.md": `# Oversized required\n${"r".repeat(500)}\n` },
+  });
+  await assert.rejects(
+    () => loadProjectContextModules({ projectRoot: rootB0Required, intent: intentEdit, stage: "implement" }),
+    /selection exceeds 200 bytes/,
+  );
 
   // Cross-cutting mutation contracts are materialized before semantic ranking. This
   // reproduces the failure mode where a UTF-8/runtime rule exists durably but the
@@ -329,6 +358,98 @@ try {
   await fs.writeFile(path.join(segmentedRoot, ".mssr", "project-context.json"), JSON.stringify(parentSectionManifest), "utf8");
   await assert.rejects(() => loadProjectContextModuleManifest(segmentedRoot), /cannot also declare parent source.sections/);
   await fs.writeFile(path.join(segmentedRoot, ".mssr", "project-context.json"), JSON.stringify(segmentedManifest), "utf8");
+
+  // External references keep the parent module baseline physically compact while routing at most
+  // one deep Markdown ref from a separate file. Old hosts can still read the compact parent source.
+  const referencedRoot = path.join(base, "c-external-refs");
+  await fs.rm(referencedRoot, { recursive: true, force: true });
+  await fs.mkdir(path.join(referencedRoot, ".mssr", "knowledge", "history"), { recursive: true });
+  await fs.writeFile(path.join(referencedRoot, "history-current.md"), "# Current History\n\nCurrent invariant.\n", "utf8");
+  await fs.writeFile(path.join(referencedRoot, ".mssr", "knowledge", "history", "alpha.md"), "# Alpha History\n\nAlpha external detail.\n", "utf8");
+  await fs.writeFile(path.join(referencedRoot, ".mssr", "knowledge", "history", "beta.md"), "# Beta History\n\nBeta external detail.\n", "utf8");
+  const referencedManifest = {
+    schemaVersion: 1,
+    core: [],
+    modules: [{
+      id: "referenced-history",
+      kind: "memory",
+      description: "Compact history baseline with selective external refs.",
+      source: { path: "history-current.md" },
+      domains: ["coding"],
+      actions: ["recover"],
+      artifacts: [],
+      needs: ["history-recovery"],
+      signals: [],
+      required: false,
+      priority: 10,
+      maxChars: 500,
+    }],
+  };
+  const referencedSidecar = {
+    schemaVersion: 1,
+    modules: [{
+      moduleId: "referenced-history",
+      references: [
+        { id: "alpha", source: { path: ".mssr/knowledge/history/alpha.md" }, terms: ["alpha subsystem"], priority: 10 },
+        { id: "beta", source: { path: ".mssr/knowledge/history/beta.md" }, terms: ["beta subsystem"], priority: 10 },
+      ],
+    }],
+  };
+  await fs.writeFile(path.join(referencedRoot, ".mssr", "project-context.json"), JSON.stringify(referencedManifest), "utf8");
+  await fs.writeFile(path.join(referencedRoot, ".mssr", "project-context-refs.json"), JSON.stringify(referencedSidecar), "utf8");
+  const referencedIntent = (summary) => intent({ summary, domains: ["coding"], actions: ["recover"], needs: ["history-recovery"], risk: "read-only" });
+
+  const alphaReference = await loadProjectContextModules({ projectRoot: referencedRoot, intent: referencedIntent("Recover alpha subsystem history"), stage: "implement", includeCore: false });
+  assert.deepEqual(alphaReference.selected.map((record) => record.ref), ["referenced-history"]);
+  assert.match(alphaReference.selected[0].content, /Current invariant/);
+  assert.match(alphaReference.selected[0].content, /Alpha external detail/);
+  assert.doesNotMatch(alphaReference.selected[0].content, /Beta external detail/);
+  assert.deepEqual(alphaReference.ambiguousReferences, []);
+  assert.equal(alphaReference.selected[0].referenceDecisions.find((item) => item.id === "alpha").selected, true);
+
+  const genericReference = await loadProjectContextModules({ projectRoot: referencedRoot, intent: referencedIntent("Recover project history"), stage: "implement", includeCore: false });
+  assert.match(genericReference.selected[0].content, /Current invariant/);
+  assert.doesNotMatch(genericReference.selected[0].content, /external detail/);
+  assert.deepEqual(genericReference.ambiguousReferences, []);
+
+  const ambiguousReference = await loadProjectContextModules({ projectRoot: referencedRoot, intent: referencedIntent("Recover alpha subsystem and beta subsystem history"), stage: "implement", includeCore: false });
+  assert.match(ambiguousReference.selected[0].content, /Current invariant/);
+  assert.doesNotMatch(ambiguousReference.selected[0].content, /external detail/);
+  assert.deepEqual(ambiguousReference.ambiguousReferences, [{ moduleId: "referenced-history", candidates: ["alpha", "beta"], score: 26 }]);
+  assert.equal(ambiguousReference.selected[0].referenceDecisions.find((item) => item.id === "alpha").reason, "ambiguous-candidate");
+
+  const referencedLoad = await loadProjectContextModuleManifest(referencedRoot);
+  assert.equal(referencedLoad.found, true);
+  assert.equal(referencedLoad.referencesStatus, "loaded");
+  assert.equal(referencedLoad.manifest.modules[0].references.length, 2);
+
+  const unknownReferenceSidecar = structuredClone(referencedSidecar);
+  unknownReferenceSidecar.modules[0].moduleId = "missing-history";
+  await fs.writeFile(path.join(referencedRoot, ".mssr", "project-context-refs.json"), JSON.stringify(unknownReferenceSidecar), "utf8");
+  await assert.rejects(() => loadProjectContextModuleManifest(referencedRoot), /reference sidecar references unknown module/);
+  await fs.writeFile(path.join(referencedRoot, ".mssr", "project-context-refs.json"), JSON.stringify(referencedSidecar), "utf8");
+
+  const traversalReferenceSidecar = structuredClone(referencedSidecar);
+  traversalReferenceSidecar.modules[0].references[0].source.path = "../outside.md";
+  await fs.writeFile(path.join(referencedRoot, ".mssr", "project-context-refs.json"), JSON.stringify(traversalReferenceSidecar), "utf8");
+  await assert.rejects(() => loadProjectContextModuleManifest(referencedRoot), /must not traverse|escapes project root/);
+  await fs.writeFile(path.join(referencedRoot, ".mssr", "project-context-refs.json"), JSON.stringify(referencedSidecar), "utf8");
+
+  const mixedSegmentSidecar = { schemaVersion: 1, modules: [{ moduleId: "referenced-history", segments: [
+    { id: "baseline", sections: ["# Current History"], baseline: true },
+    { id: "deep", sections: ["## Deep"], terms: ["deep"] },
+  ] }] };
+  await fs.writeFile(path.join(referencedRoot, ".mssr", "project-context-segments.json"), JSON.stringify(mixedSegmentSidecar), "utf8");
+  await assert.rejects(() => loadProjectContextModuleManifest(referencedRoot), /cannot mix internal segments and external references/);
+  await fs.rm(path.join(referencedRoot, ".mssr", "project-context-segments.json"), { force: true });
+
+  const constrainedManifest = structuredClone(referencedManifest);
+  constrainedManifest.modules[0].maxChars = 200;
+  await fs.writeFile(path.join(referencedRoot, ".mssr", "project-context.json"), JSON.stringify(constrainedManifest), "utf8");
+  await fs.writeFile(path.join(referencedRoot, ".mssr", "knowledge", "history", "alpha.md"), `# Alpha History\n\n${"x".repeat(300)}\n`, "utf8");
+  const oversizedReference = await loadProjectContextModules({ projectRoot: referencedRoot, intent: referencedIntent("Recover alpha subsystem history"), stage: "implement", includeCore: false });
+  assert.deepEqual(oversizedReference.selected, []);
+  assert.equal(oversizedReference.decisions.find((item) => item.id === "referenced-history").reason, "budget-exceeded");
 
   const filesC2 = { "core-safe.md": "safe", "evil.md": "evil" };
   const rootC2 = await writeFixture("c-traverse", {

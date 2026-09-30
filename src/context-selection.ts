@@ -1,12 +1,15 @@
 import type { SkillStage, StructuredSkillIntent } from "./skill-routing.js";
 
-export type ContextModuleDecisionReason =
-  | "selected"
-  | "stage-mismatch"
-  | "intent-mismatch"
-  | "budget-exceeded"
-  | "ambiguous-candidate"
-  | "exclusive-not-selected";
+export const MSSR_CONTEXT_MODULE_DECISION_REASONS = [
+  "selected",
+  "stage-mismatch",
+  "intent-mismatch",
+  "budget-exceeded",
+  "ambiguous-candidate",
+  "exclusive-not-selected",
+] as const;
+
+export type ContextModuleDecisionReason = typeof MSSR_CONTEXT_MODULE_DECISION_REASONS[number];
 
 export type SelectableContextModule = {
   id: string;

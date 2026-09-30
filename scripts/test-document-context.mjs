@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import {
   assembleDocumentContext,
+  extractDocumentContextSections,
   documentContextManifestPath,
   documentContextManifestSchema,
   structuredSkillIntentSchema,
@@ -29,6 +30,51 @@ const markdown = [
   "",
   "Deep manual payload. ".repeat(600),
 ].join("\n");
+
+assert.equal(
+  extractDocumentContextSections(markdown, ["## Implementation"]),
+  "## Implementation\n\nUse bounded edits and verify observable writes.",
+  "document-context extraction should preserve the existing exact heading block contract",
+);
+
+const duplicateHeadingMarkdown = [
+  "# Root",
+  "",
+  "## Duplicate",
+  "",
+  "first occurrence",
+  "",
+  "## Duplicate",
+  "",
+  "second occurrence",
+].join("\n");
+assert.equal(
+  extractDocumentContextSections(duplicateHeadingMarkdown, ["## Duplicate"]),
+  "## Duplicate\n\nfirst occurrence",
+  "duplicate selectors should keep the historical first-occurrence behavior",
+);
+
+const fencedHeadingMarkdown = [
+  "# Root",
+  "",
+  "```md",
+  "## Fake",
+  "not a real heading",
+  "```",
+  "",
+  "## Real",
+  "",
+  "real section",
+].join("\n");
+assert.throws(
+  () => extractDocumentContextSections(fencedHeadingMarkdown, ["## Fake"]),
+  /Document context section not found/,
+  "fenced heading-like text must not be indexed as a Markdown section",
+);
+assert.equal(
+  extractDocumentContextSections(fencedHeadingMarkdown, ["## Real"]),
+  "## Real\n\nreal section",
+);
 
 const manifest = documentContextManifestSchema.parse({
   schemaVersion: 1,

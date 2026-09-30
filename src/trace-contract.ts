@@ -114,8 +114,28 @@ export const mssrSkillDecisionSchema = z.object({
   decision: z.enum(MSSR_SKILL_DECISIONS),
   reasonCode: z.enum(MSSR_SKILL_DECISION_REASONS),
   reasonSummary: z.string().trim().min(1).max(240).optional(),
+  /** Structured peer identity for a host-observed redundancy decision. This is
+   * evidence for later maintenance review, never authority to merge/delete or
+   * rewrite routing. Legacy `redundant` decisions may omit it. */
+  relatedSkillName: z.string().trim().min(1).max(160).optional(),
   stage: z.enum(SKILL_STAGES).optional(),
-}).strict();
+}).strict().superRefine((value, ctx) => {
+  if (value.relatedSkillName === undefined) return;
+  if (value.decision !== "skipped" || value.reasonCode !== "redundant") {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["relatedSkillName"],
+      message: "relatedSkillName is only valid for skipped decisions with reasonCode=redundant",
+    });
+  }
+  if (value.relatedSkillName === value.skillName) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["relatedSkillName"],
+      message: "relatedSkillName must identify a different skill",
+    });
+  }
+});
 
 export type MssrSkillDecisionRecord = z.infer<typeof mssrSkillDecisionSchema>;
 

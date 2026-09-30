@@ -11,6 +11,7 @@ import { registerMssrProjectControlTools } from "./project-control-contract.js";
 import { registerMssrConsistencyTools } from "./consistency-contract.js";
 import { registerMssrOperationalNoticeTools } from "./operational-notice-contract.js";
 import { registerMssrHostConformanceTools } from "./host-conformance-contract.js";
+import { registerMssrSemanticCurationTools } from "./semantic-curation-contract.js";
 
 function response(value: unknown) {
   return {
@@ -33,6 +34,7 @@ export function createCodexMssrMcpServer(adapter = new CodexMssrAdapter()) {
   registerMssrConsistencyTools(server);
   registerMssrOperationalNoticeTools(server);
   registerMssrHostConformanceTools(server);
+  registerMssrSemanticCurationTools(server);
 
   server.registerTool("skill_route_plan", {
     description: "Plan an MSSR route for Codex-local without MauroPrime Bridge.",

@@ -4,6 +4,7 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { promisify } from "node:util";
+import { defaultMssrStateRoot } from "./state-root.js";
 import {
   HttpMssrTelemetrySink,
   MSSR_HOST_CALL_PROTOCOL_VERSION,
@@ -81,10 +82,7 @@ export function defaultStateRoot(
   localAppData: string | null | undefined = process.env.LOCALAPPDATA,
   xdgStateHome: string | null | undefined = process.env.XDG_STATE_HOME,
 ): string {
-  if (platform === "win32" && localAppData) return path.join(localAppData, "MauroPrime", "MSSR");
-  if (platform === "darwin") return path.join(home, "Library", "Application Support", "MauroPrime", "MSSR");
-  if (platform !== "win32" && xdgStateHome) return path.join(xdgStateHome, "mssr");
-  return path.join(home, ".local", "state", "mssr");
+  return defaultMssrStateRoot(platform, home, localAppData, xdgStateHome);
 }
 
 function defaultQueuePath(): string {

@@ -73,6 +73,23 @@ export const projectContextSegmentSchema = z.object({
     });
   }
 });
+export const projectContextReferenceSchema = z.object({
+  id: areaSchema,
+  source: projectContextSourceSchema,
+  terms: z.array(z.string().min(2).max(80)).max(24).default([]),
+  ...selectorFields,
+  priority: z.number().int().min(-100).max(100).default(0),
+}).strict().superRefine((value, ctx) => {
+  const selectorCount = value.stages.length + value.domains.length + value.actions.length
+    + value.artifacts.length + value.needs.length + value.signals.length;
+  if (selectorCount === 0 && value.terms.length === 0) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "A project-context external reference needs declared selectors or summary terms.",
+    });
+  }
+});
+
 
 export const PROJECT_CONTEXT_MUTATION_ACTIONS = [
   "create",
@@ -157,6 +174,28 @@ export const projectContextSegmentsManifestSchema = z.object({
   }
 });
 
+const projectContextReferenceBindingSchema = z.object({
+  moduleId: z.string().regex(/^[a-z0-9][a-z0-9._-]{1,79}$/),
+  references: z.array(projectContextReferenceSchema).min(1).max(24),
+}).strict().superRefine((value, ctx) => {
+  const ids = new Set<string>();
+  for (const [index, reference] of value.references.entries()) {
+    if (ids.has(reference.id)) ctx.addIssue({ code: z.ZodIssueCode.custom, message: `Duplicate project-context reference id: ${reference.id}`, path: ["references", index, "id"] });
+    ids.add(reference.id);
+  }
+});
+
+export const projectContextReferencesManifestSchema = z.object({
+  schemaVersion: z.literal(1),
+  modules: z.array(projectContextReferenceBindingSchema).max(96).default([]),
+}).strict().superRefine((value, ctx) => {
+  const ids = new Set<string>();
+  for (const [index, binding] of value.modules.entries()) {
+    if (ids.has(binding.moduleId)) ctx.addIssue({ code: z.ZodIssueCode.custom, message: `Duplicate project-context reference module id: ${binding.moduleId}`, path: ["modules", index, "moduleId"] });
+    ids.add(binding.moduleId);
+  }
+});
+
 export const projectContextManifestSchema = z.object({
   schemaVersion: z.literal(1),
   core: z.array(projectContextCoreSchema).max(16).default([]),
@@ -177,11 +216,13 @@ export const projectContextManifestSchema = z.object({
 
 export type ProjectContextSource = z.infer<typeof projectContextSourceSchema>;
 export type ProjectContextSegment = z.infer<typeof projectContextSegmentSchema>;
+export type ProjectContextReference = z.infer<typeof projectContextReferenceSchema>;
 export type ProjectContextSegmentsManifest = z.infer<typeof projectContextSegmentsManifestSchema>;
+export type ProjectContextReferencesManifest = z.infer<typeof projectContextReferencesManifestSchema>;
 export type ProjectContextCore = z.infer<typeof projectContextCoreSchema>;
 export type ProjectContextRequiredWhen = z.infer<typeof projectContextRequiredWhenSchema>;
 export type ProjectContextModule = z.infer<typeof projectContextModuleSchema>;
-export type ResolvedProjectContextModule = ProjectContextModule & { segments?: ProjectContextSegment[] };
+export type ResolvedProjectContextModule = ProjectContextModule & { segments?: ProjectContextSegment[]; references?: ProjectContextReference[] };
 export type ProjectContextManifest = z.infer<typeof projectContextManifestSchema>;
 export type ResolvedProjectContextManifest = Omit<ProjectContextManifest, "modules"> & { modules: ResolvedProjectContextModule[] };
 export type MaterializedProjectContextModule = ResolvedProjectContextModule & { chars: number };

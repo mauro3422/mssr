@@ -80,6 +80,54 @@ for (const testCase of expandedCases) {
     failures.push(`${testCase.name}: expected at most ${expected.rootSelectedAtMost} root skills, got ${route.selectionBudget.selectedRootSkills}`);
   }
 }
+
+const jevNearMatchIntent = {
+  summary: "Evaluar un workload Jev masivo con paralelismo y presupuesto, omitiendo adrede la señal de tool-chain para probar diagnóstico",
+  domains: ["coding", "agent-orchestration"],
+  actions: ["design", "optimize", "analyze", "test"],
+  artifacts: ["code", "project"],
+  needs: ["performance", "integrity-verification"],
+  signals: ["nominal"],
+  risk: "read-only",
+  ambiguity: "low",
+};
+const jevNearMatchRoute = await planSkillRoute({
+  task: "Tengo 500 candidatos independientes ya recuperados y quiero que Jev los clasifique por responsabilidad y riesgo con cache, dedupe y paralelismo acotado.",
+  intent: jevNearMatchIntent,
+  caller: "chatgpt-web",
+  stage: "start",
+  maxSkills: 8,
+  skills,
+});
+if (jevNearMatchRoute.loadOrder.includes("jev-decision-systems")) {
+  failures.push("near-match regression: Jev must not auto-activate while its required signal gate is missing");
+}
+const jevNearMatch = jevNearMatchRoute.nearMatches.find((candidate) => candidate.name === "jev-decision-systems");
+if (!jevNearMatch) {
+  failures.push("near-match regression: expected jev-decision-systems to be surfaced as an advisory near match");
+} else {
+  const signalGate = jevNearMatch.missingGates.find((gate) => gate.dimension === "signal");
+  if (!signalGate) failures.push("near-match regression: expected missing signal gate for jev-decision-systems");
+  if (!signalGate?.missingValues.includes("tool-chain-needed")) {
+    failures.push(`near-match regression: expected tool-chain-needed in missing signal values (actual: ${signalGate?.missingValues.join(", ") ?? "none"})`);
+  }
+  if (jevNearMatch.explicitNameMatched) failures.push("near-match regression: Jev diagnostic should not depend on the canonical skill name being present in task prose");
+}
+if (jevNearMatchRoute.routingDiagnostics.advisoryOnly !== true) {
+  failures.push("near-match regression: routing diagnostics must remain advisory-only");
+}
+const jevRecoveredRoute = await planSkillRoute({
+  task: "Tengo 500 candidatos independientes ya recuperados y quiero que Jev los clasifique por responsabilidad y riesgo con cache, dedupe y paralelismo acotado.",
+  intent: { ...jevNearMatchIntent, signals: ["tool-chain-needed"] },
+  caller: "chatgpt-web",
+  stage: "start",
+  maxSkills: 8,
+  skills,
+});
+if (!jevRecoveredRoute.loadOrder.includes("jev-decision-systems")) {
+  failures.push("near-match regression: Jev should route normally after the host truthfully supplies the missing signal");
+}
+
 const optionalDependencyRoute = await planSkillRoute({
   task: "Verify live host-gated optional skill selection after Bridge restart on the Atlas graph editor.",
   intent: {

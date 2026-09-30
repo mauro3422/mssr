@@ -123,6 +123,34 @@ export type RoutedSkill = RoutingRegistrySkill & {
   requiredBy: string[];
   selectedAsRoot: boolean;
 };
+
+export type SkillRouteGateDimension =
+  | "semantic-match"
+  | "anchor"
+  | "need"
+  | "all-needs"
+  | "action"
+  | "artifact"
+  | "signal"
+  | "domain"
+  | "specific-artifact-or-need";
+
+export type SkillRouteGateFailure = Readonly<{
+  dimension: SkillRouteGateDimension;
+  reason: string;
+  acceptedValues: readonly string[];
+  missingValues: readonly string[];
+}>;
+
+export type SkillRouteNearMatch = Readonly<{
+  name: string;
+  source: SkillSource;
+  candidateScore: number;
+  explicitNameMatched: boolean;
+  matchedDimensions: readonly string[];
+  missingGates: readonly SkillRouteGateFailure[];
+  advisoryOnly: true;
+}>;
 export type SkillLoadDecisionLike = Readonly<{
   skillName: string;
   decision: "accepted" | "skipped";
@@ -918,11 +946,29 @@ function scoreEntry(
   intent: StructuredSkillIntent,
   task: string,
   classificationMode: "structured-semantic" | "lexical-fallback",
-): { score: number; reasons: string[]; excluded: boolean } {
+): {
+  score: number;
+  reasons: string[];
+  excluded: boolean;
+  diagnosticScore: number;
+  matchedDimensions: string[];
+  explicitNameMatched: boolean;
+  gateFailures: SkillRouteGateFailure[];
+} {
   const reasons: string[] = [];
+  const matchedDimensions: string[] = [];
+  const gateFailures: SkillRouteGateFailure[] = [];
   const tags = intentTags(intent);
   if (skill.negativeIntents.some((item) => tokenSet(tags).has(normalize(item)))) {
-    return { score: -1000, reasons: ["negative intent matched"], excluded: true };
+    return {
+      score: -1000,
+      reasons: ["negative intent matched"],
+      excluded: true,
+      diagnosticScore: -1000,
+      matchedDimensions,
+      explicitNameMatched: false,
+      gateFailures,
+    };
   }
 
   let score = 0;
@@ -951,6 +997,7 @@ function scoreEntry(
     const count = left.filter((item) => rightTokens.has(normalize(item))).length;
     if (count) {
       matched = true;
+      matchedDimensions.push(label);
       if (isAnchor) anchorMatched = true;
       const effectiveCount = label === "domain" ? 1 : count;
       score += effectiveCount * weight;
@@ -972,29 +1019,81 @@ function scoreEntry(
   const anySignalMatched = skill.signals.some((signal) => intent.signals.includes(signal as StructuredSkillIntent["signals"][number]));
   const domainMatched = skill.domains.some((domain) => intent.domains.includes(domain as StructuredSkillIntent["domains"][number]));
   const intentHasAnchors = intent.artifacts.length > 0 || intent.needs.length > 0;
-  if (!matched || (intentHasAnchors && !anchorMatched)) return { score: 0, reasons, excluded: false };
+  const addGateFailure = (
+    dimension: SkillRouteGateDimension,
+    reason: string,
+    acceptedValues: readonly string[],
+    currentValues: readonly string[],
+  ) => {
+    const accepted = [...new Set(acceptedValues)];
+    gateFailures.push({
+      dimension,
+      reason,
+      acceptedValues: accepted,
+      missingValues: accepted.filter((value) => !currentValues.includes(value)),
+    });
+  };
+
+  if (!matched && !explicitNameMatched) {
+    return {
+      score: 0,
+      reasons,
+      excluded: false,
+      diagnosticScore: score,
+      matchedDimensions,
+      explicitNameMatched,
+      gateFailures,
+    };
+  }
+  if (!matched && explicitNameMatched && !explicitNameOverridesSemantics) {
+    addGateFailure("semantic-match", "no structured semantic dimension matched", [...skill.domains, ...skill.actions, ...skill.artifacts, ...skill.needs, ...skill.signals], tags);
+  }
+  if (intentHasAnchors && !anchorMatched && !explicitNameOverridesSemantics) {
+    addGateFailure("anchor", "structured artifact/need anchor did not match", [...skill.artifacts, ...skill.needs], [...intent.artifacts, ...intent.needs]);
+  }
   if (skill.requireNeedMatch && !anyNeedMatched && !explicitNameOverridesSemantics) {
-    return { score: 0, reasons: [...reasons, "explicit need gate failed"], excluded: false };
+    addGateFailure("need", "explicit need gate failed", skill.needs, intent.needs);
   }
   if (!allNeedsMatched && !explicitNameOverridesSemantics) {
-    return { score: 0, reasons: [...reasons, "conjunctive need gate failed"], excluded: false };
+    addGateFailure("all-needs", "conjunctive need gate failed", skill.allNeeds, intent.needs);
   }
   if (skill.requireActionMatch && !anyActionMatched && !explicitNameOverridesSemantics) {
-    return { score: 0, reasons: [...reasons, "explicit action gate failed"], excluded: false };
+    addGateFailure("action", "explicit action gate failed", skill.actions, intent.actions);
   }
   if (skill.requireArtifactMatch && !anyArtifactMatched && !explicitNameOverridesSemantics) {
-    return { score: 0, reasons: [...reasons, "explicit artifact gate failed"], excluded: false };
+    addGateFailure("artifact", "explicit artifact gate failed", skill.artifacts, intent.artifacts);
   }
   if (skill.requireSignalMatch && !anySignalMatched && !explicitNameOverridesSemantics) {
-    return { score: 0, reasons: [...reasons, "explicit signal gate failed"], excluded: false };
+    addGateFailure("signal", "explicit signal gate failed", skill.signals, intent.signals);
   }
-  if (skill.domains.length > 0 && !domainMatched) return { score: 0, reasons: [...reasons, "domain gate failed"], excluded: false };
+  if (skill.domains.length > 0 && !domainMatched) {
+    addGateFailure("domain", "domain gate failed", skill.domains, intent.domains);
+  }
   if (intentSpecificArtifacts.length > 0 && !specificArtifactMatched && !specificNeedMatched) {
-    return { score: 0, reasons: [...reasons, "specific artifact/need gate failed"], excluded: false };
+    addGateFailure(
+      "specific-artifact-or-need",
+      "specific artifact/need gate failed",
+      [...skillSpecificArtifacts, ...skillSpecificNeeds],
+      [...intentSpecificArtifacts, ...intentSpecificNeeds],
+    );
   }
-  score += Math.round(skill.priority / 5);
+
+  const diagnosticScore = score + Math.round(skill.priority / 5);
+  if (gateFailures.length > 0) {
+    return {
+      score: 0,
+      reasons: [...reasons, ...gateFailures.map((failure) => failure.reason)],
+      excluded: false,
+      diagnosticScore,
+      matchedDimensions,
+      explicitNameMatched,
+      gateFailures,
+    };
+  }
+
+  score = diagnosticScore;
   reasons.push(`priority ${skill.priority}`);
-  return { score, reasons, excluded: false };
+  return { score, reasons, excluded: false, diagnosticScore, matchedDimensions, explicitNameMatched, gateFailures };
 }
 
 function inferredRequiredPhases(intent: StructuredSkillIntent, stage: SkillStage): SkillPhase[] {
@@ -1102,6 +1201,7 @@ export async function planSkillRoute(args: {
   }
 
   const scored: RoutedSkill[] = [];
+  const nearMatches: SkillRouteNearMatch[] = [];
   for (const skill of registry.entries) {
     // Only the current task can explicitly name a skill. Bounded continuation
     // context may describe previously loaded/rejected skills and must not turn
@@ -1109,10 +1209,34 @@ export async function planSkillRoute(args: {
     const result = scoreEntry(skill, intent, args.task, classificationMode);
     if (result.excluded) continue;
     const requiredReasons = requiredBy.get(skill.name) ?? [];
-    if (result.score <= 0 && !requiredReasons.length && skill.activation !== "always") continue;
+    if (result.score <= 0 && !requiredReasons.length && skill.activation !== "always") {
+      const blockingGateFailures = result.gateFailures.filter((failure) => !["semantic-match", "anchor"].includes(failure.dimension));
+      const strongPartialMatch = result.diagnosticScore >= 50
+        && result.matchedDimensions.length >= 2
+        && blockingGateFailures.length > 0
+        && blockingGateFailures.length <= 2;
+      const eligibleForDiagnostic = classificationMode === "structured-semantic"
+        && result.gateFailures.length > 0
+        && (result.explicitNameMatched || strongPartialMatch)
+        && (skill.activation !== "closing" || stage === "close");
+      if (eligibleForDiagnostic) {
+        nearMatches.push({
+          name: skill.name,
+          source: skill.source,
+          candidateScore: result.diagnosticScore,
+          explicitNameMatched: result.explicitNameMatched,
+          matchedDimensions: result.matchedDimensions,
+          missingGates: result.gateFailures,
+          advisoryOnly: true,
+        });
+      }
+      continue;
+    }
     if (skill.activation === "closing" && stage !== "close") continue;
     scored.push({ ...skill, score: result.score, reasons: result.reasons, required: requiredReasons.length > 0, requiredBy: requiredReasons, selectedAsRoot: false });
   }
+  nearMatches.sort((a, b) => Number(b.explicitNameMatched) - Number(a.explicitNameMatched) || b.candidateScore - a.candidateScore || a.name.localeCompare(b.name));
+  const boundedNearMatches = nearMatches.slice(0, Math.min(8, maxSkills));
 
   const byName = new Map(scored.map((skill) => [skill.name, skill]));
   for (const [name, reasons] of requiredBy) {
@@ -1275,6 +1399,13 @@ export async function planSkillRoute(args: {
       requiredOrDependencyOverflow: Math.max(0, ordered.order.length - maxSkills),
     },
     workflows: matchedWorkflows.map((workflow) => workflow.name),
+    nearMatches: boundedNearMatches,
+    routingDiagnostics: {
+      nearMatchCount: nearMatches.length,
+      returnedNearMatchCount: boundedNearMatches.length,
+      advisoryOnly: true,
+      replanPolicy: "Validate missing gate evidence against the task, then perform at most one structured replan. Never copy suggested values mechanically or bypass routing gates.",
+    },
     phasePlan,
     activeSkills,
     deferredSkills,

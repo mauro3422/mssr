@@ -3,11 +3,13 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import {
   projectContextManifestSchema,
+  projectContextReferencesManifestSchema,
   projectContextSegmentsManifestSchema,
   selectProjectContextModules,
   type MaterializedProjectContextModule,
   type ProjectContextCore,
   type ProjectContextModuleDecision,
+  type ProjectContextReference,
   type ProjectContextSegment,
   type ResolvedProjectContextManifest,
   type ResolvedProjectContextModule,
@@ -205,21 +207,110 @@ function selectProjectContextSegmentPayload(args: {
   }));
   return { content, decisions, ambiguity };
 }
+export type ProjectContextReferenceDecisionReason = "selected" | "stage-mismatch" | "intent-mismatch" | "ambiguous-candidate";
+export type ProjectContextReferenceDecision = {
+  id: string;
+  sourcePath: string;
+  selected: boolean;
+  reason: ProjectContextReferenceDecisionReason;
+  score: number;
+  bytes: number;
+  matched: string[];
+};
+
+function evaluateProjectContextReference(reference: ProjectContextReference, intent: StructuredSkillIntent, stage: SkillStage, index: number) {
+  if (reference.stages.length > 0 && !reference.stages.includes(stage)) {
+    return { reference, index, eligible: false, score: -1, matched: [] as string[], reason: "stage-mismatch" as const };
+  }
+  const dimensions = [
+    ["domain", "domains", 8], ["action", "actions", 10], ["artifact", "artifacts", 10],
+    ["need", "needs", 12], ["signal", "signals", 14],
+  ] as const;
+  let score = reference.priority;
+  let allSpecifiedMatch = true;
+  const matched: string[] = [];
+  for (const [label, key, weight] of dimensions) {
+    const expected = reference[key];
+    if (expected.length === 0) continue;
+    const hits = overlap(intent[key], expected);
+    if (hits.length === 0) allSpecifiedMatch = false;
+    for (const hit of hits) matched.push(`${label}:${hit}`);
+    score += hits.length * weight;
+  }
+  const summary = normalizedSemanticText(intent.summary ?? "");
+  if (reference.terms.length > 0) {
+    const termHits = reference.terms.filter((term) => summary.includes(normalizedSemanticText(term)));
+    if (termHits.length === 0) allSpecifiedMatch = false;
+    for (const term of termHits) matched.push(`term:${term}`);
+    score += termHits.length * 16;
+  }
+  return { reference, index, eligible: allSpecifiedMatch, score, matched, reason: allSpecifiedMatch ? "selected" as const : "intent-mismatch" as const };
+}
+
+async function selectProjectContextReferencePayload(args: {
+  projectRoot: string;
+  entry: ResolvedProjectContextModule;
+  baseline: string;
+  intent: StructuredSkillIntent;
+  stage: SkillStage;
+}): Promise<{ content: string; decisions: ProjectContextReferenceDecision[]; ambiguity: { candidates: string[]; score: number } | null }> {
+  const references = args.entry.references ?? [];
+  if (references.length === 0) return { content: args.baseline, decisions: [], ambiguity: null };
+  const evaluated = references.map((reference, index) => evaluateProjectContextReference(reference, args.intent, args.stage, index));
+  const candidates = evaluated.filter((item) => item.eligible)
+    .sort((a, b) => b.score - a.score || b.reference.priority - a.reference.priority || a.index - b.index);
+  const topScore = candidates[0]?.score;
+  const tied = topScore === undefined ? [] : candidates.filter((item) => item.score === topScore);
+  const chosen = tied.length === 1 ? tied[0] : null;
+  let chosenContent = "";
+  let chosenBytes = 0;
+  if (chosen) {
+    const absolute = safeMarkdownPath(args.projectRoot, chosen.reference.source.path);
+    const raw = await readBoundedMarkdown(absolute, MAX_PROJECT_CONTEXT_CHARS);
+    chosenContent = chosen.reference.source.sections?.length
+      ? extractProjectContextSections(raw.content, chosen.reference.source.sections)
+      : raw.content.trim();
+    chosenBytes = Buffer.byteLength(chosenContent, "utf8");
+  }
+  const content = [args.baseline.trim(), chosenContent].filter(Boolean).join("\n\n");
+  const effectiveMax = Math.min(args.entry.maxChars ?? MAX_PROJECT_CONTEXT_CHARS, MAX_PROJECT_CONTEXT_CHARS);
+  const bytes = Buffer.byteLength(content, "utf8");
+  if (bytes > effectiveMax) throw new ProjectContextEntryBudgetError(args.entry.source.path, bytes, effectiveMax);
+  const ambiguity = tied.length > 1 ? { candidates: tied.map((item) => item.reference.id), score: topScore! } : null;
+  const decisions = evaluated.map((item): ProjectContextReferenceDecision => ({
+    id: item.reference.id,
+    sourcePath: item.reference.source.path,
+    selected: chosen?.reference.id === item.reference.id,
+    reason: ambiguity?.candidates.includes(item.reference.id)
+      ? "ambiguous-candidate"
+      : chosen?.reference.id === item.reference.id
+        ? "selected"
+        : item.reason,
+    score: item.score,
+    bytes: chosen?.reference.id === item.reference.id ? chosenBytes : 0,
+    matched: item.matched,
+  }));
+  return { content, decisions, ambiguity };
+}
+
 
 export type ProjectContextManifestLoadResult =
-  | { found: false; path: string; segmentsPath: string; segmentsStatus: "missing" }
-  | { found: true; manifest: ResolvedProjectContextManifest; path: string; segmentsPath: string; segmentsStatus: "loaded" | "missing" };
+  | { found: false; path: string; segmentsPath: string; segmentsStatus: "missing"; referencesPath: string; referencesStatus: "missing" }
+  | { found: true; manifest: ResolvedProjectContextManifest; path: string; segmentsPath: string; segmentsStatus: "loaded" | "missing"; referencesPath: string; referencesStatus: "loaded" | "missing" };
 
 export async function loadProjectContextModuleManifest(projectRoot: string, manifestPath?: string): Promise<ProjectContextManifestLoadResult> {
   const resolved = manifestPath
     ? (path.isAbsolute(manifestPath) ? manifestPath : path.resolve(projectRoot, manifestPath))
     : (await resolveMssrProjectFile(projectRoot, MSSR_PROJECT_CONTROL_FILES.projectContextManifest)).absolutePath;
-  const segmentsPath = path.join(path.dirname(resolved), "project-context-segments.json");
+  const segmentsPath = path.join(path.dirname(resolved), MSSR_PROJECT_CONTROL_FILES.projectContextSegmentsManifest);
+  const referencesPath = path.join(path.dirname(resolved), MSSR_PROJECT_CONTROL_FILES.projectContextReferencesManifest);
   try {
     const rawText = await fs.readFile(resolved, "utf8");
     const manifest = projectContextManifestSchema.parse(JSON.parse(rawText));
     let segmentBindings: ReturnType<typeof projectContextSegmentsManifestSchema.parse>["modules"] = [];
+    let referenceBindings: ReturnType<typeof projectContextReferencesManifestSchema.parse>["modules"] = [];
     let segmentsStatus: "loaded" | "missing" = "missing";
+    let referencesStatus: "loaded" | "missing" = "missing";
     try {
       const segmentText = await fs.readFile(segmentsPath, "utf8");
       segmentBindings = projectContextSegmentsManifestSchema.parse(JSON.parse(segmentText)).modules;
@@ -227,22 +318,40 @@ export async function loadProjectContextModuleManifest(projectRoot: string, mani
     } catch (error) {
       if (!(error && typeof error === "object" && "code" in error && error.code === "ENOENT")) throw error;
     }
-    const bindingById = new Map(segmentBindings.map((binding) => [binding.moduleId, binding.segments]));
+    try {
+      const referenceText = await fs.readFile(referencesPath, "utf8");
+      referenceBindings = projectContextReferencesManifestSchema.parse(JSON.parse(referenceText)).modules;
+      referencesStatus = "loaded";
+    } catch (error) {
+      if (!(error && typeof error === "object" && "code" in error && error.code === "ENOENT")) throw error;
+    }
+    const segmentsById = new Map(segmentBindings.map((binding) => [binding.moduleId, binding.segments]));
+    const referencesById = new Map(referenceBindings.map((binding) => [binding.moduleId, binding.references]));
     for (const binding of segmentBindings) {
       const module = manifest.modules.find((candidate) => candidate.id === binding.moduleId);
       if (!module) throw new Error(`Project-context segment sidecar references unknown module: ${binding.moduleId}`);
       if (module.source.sections?.length) throw new Error(`Segmented project-context module cannot also declare parent source.sections: ${binding.moduleId}`);
+      if (referencesById.has(binding.moduleId)) throw new Error(`Project-context module cannot mix internal segments and external references: ${binding.moduleId}`);
+    }
+    for (const binding of referenceBindings) {
+      const module = manifest.modules.find((candidate) => candidate.id === binding.moduleId);
+      if (!module) throw new Error(`Project-context reference sidecar references unknown module: ${binding.moduleId}`);
+      if (segmentsById.has(binding.moduleId)) throw new Error(`Project-context module cannot mix internal segments and external references: ${binding.moduleId}`);
+      for (const reference of binding.references) safeMarkdownPath(projectRoot, reference.source.path);
     }
     const resolvedManifest: ResolvedProjectContextManifest = {
       ...manifest,
       modules: manifest.modules.map((module) => {
-        const segments = bindingById.get(module.id);
-        return segments ? { ...module, segments } : module;
+        const segments = segmentsById.get(module.id);
+        const references = referencesById.get(module.id);
+        return segments ? { ...module, segments } : references ? { ...module, references } : module;
       }),
     };
-    return { found: true, manifest: resolvedManifest, path: resolved, segmentsPath, segmentsStatus };
+    return { found: true, manifest: resolvedManifest, path: resolved, segmentsPath, segmentsStatus, referencesPath, referencesStatus };
   } catch (error) {
-    if (error && typeof error === "object" && "code" in error && error.code === "ENOENT") return { found: false, path: resolved, segmentsPath, segmentsStatus: "missing" };
+    if (error && typeof error === "object" && "code" in error && error.code === "ENOENT") {
+      return { found: false, path: resolved, segmentsPath, segmentsStatus: "missing", referencesPath, referencesStatus: "missing" };
+    }
     throw error;
   }
 }
@@ -257,6 +366,7 @@ export type ProjectContextContentRecord = {
   topic?: ProjectContextTopic;
   area?: string;
   segmentDecisions?: ProjectContextSegmentDecision[];
+  referenceDecisions?: ProjectContextReferenceDecision[];
 };
 
 export type LoadProjectContextModulesArgs = {
@@ -277,6 +387,7 @@ export type LoadProjectContextModulesResult = {
   decisions: ProjectContextModuleDecision[];
   ambiguousExclusiveGroups: Array<{ group: string; candidates: string[]; score: number }>;
   ambiguousSegments: Array<{ moduleId: string; candidates: string[]; score: number }>;
+  ambiguousReferences: Array<{ moduleId: string; candidates: string[]; score: number }>;
   requiredBudgetExceeded: string[];
   requiredOverflow: string[];
   remainingChars: number;
@@ -285,6 +396,20 @@ export type LoadProjectContextModulesResult = {
 
 const HARD_MAX_CHARS = 20_000;
 const HARD_MAX_MODULES = 32;
+
+class ProjectContextEntryBudgetError extends Error {
+  readonly bytes: number;
+  readonly maxChars: number;
+  readonly sourcePath: string;
+
+  constructor(sourcePath: string, bytes: number, maxChars: number) {
+    super(`Project-context selection exceeds ${maxChars} bytes: ${sourcePath}`);
+    this.name = "ProjectContextEntryBudgetError";
+    this.bytes = bytes;
+    this.maxChars = maxChars;
+    this.sourcePath = sourcePath;
+  }
+}
 
 async function loadSource(
   projectRoot: string,
@@ -304,7 +429,7 @@ async function loadSource(
   const selected = source.sections?.length ? extractProjectContextSections(raw.content, source.sections) : raw.content.trim();
   const bytes = Buffer.byteLength(selected, "utf8");
   const effectiveMax = Math.min(maxChars ?? MAX_PROJECT_CONTEXT_CHARS, MAX_PROJECT_CONTEXT_CHARS);
-  if (bytes > effectiveMax) throw new Error(`Project-context selection exceeds ${effectiveMax} bytes: ${source.path}`);
+  if (bytes > effectiveMax) throw new ProjectContextEntryBudgetError(source.path, bytes, effectiveMax);
   return {
     ref,
     content: selected,
@@ -320,15 +445,30 @@ async function loadSource(
 async function loadCore(projectRoot: string, entry: ProjectContextCore): Promise<ProjectContextContentRecord> {
   return await loadSource(projectRoot, entry.id, entry.source, entry.kind, entry.maxChars, entry.topic, entry.area);
 }
-
 async function loadModule(
   projectRoot: string,
   entry: ResolvedProjectContextModule,
   intent: StructuredSkillIntent,
   stage: SkillStage,
-): Promise<{ record: ProjectContextContentRecord; ambiguity: { candidates: string[]; score: number } | null }> {
+): Promise<{ record: ProjectContextContentRecord; ambiguity: { candidates: string[]; score: number } | null; ambiguityKind: "segment" | "reference" | null }> {
+  if (entry.references?.length) {
+    const baselineRecord = await loadSource(projectRoot, entry.id, entry.source, entry.kind, MAX_PROJECT_CONTEXT_CHARS, entry.topic, entry.area);
+    const referenced = await selectProjectContextReferencePayload({ projectRoot, entry, baseline: baselineRecord.content, intent, stage });
+    const bytes = Buffer.byteLength(referenced.content, "utf8");
+    return {
+      record: {
+        ...baselineRecord,
+        content: referenced.content,
+        sha256: createHash("sha256").update(referenced.content, "utf8").digest("hex"),
+        bytes,
+        referenceDecisions: referenced.decisions,
+      },
+      ambiguity: referenced.ambiguity,
+      ambiguityKind: referenced.ambiguity ? "reference" : null,
+    };
+  }
   if (!entry.segments?.length) {
-    return { record: await loadSource(projectRoot, entry.id, entry.source, entry.kind, entry.maxChars, entry.topic, entry.area), ambiguity: null };
+    return { record: await loadSource(projectRoot, entry.id, entry.source, entry.kind, entry.maxChars, entry.topic, entry.area), ambiguity: null, ambiguityKind: null };
   }
   const absolute = safeMarkdownPath(projectRoot, entry.source.path);
   const raw = await readBoundedMarkdown(absolute, MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES);
@@ -347,6 +487,7 @@ async function loadModule(
       segmentDecisions: segmented.decisions,
     },
     ambiguity: segmented.ambiguity,
+    ambiguityKind: segmented.ambiguity ? "segment" : null,
   };
 }
 
@@ -358,7 +499,7 @@ export async function loadProjectContextModules(args: LoadProjectContextModulesA
     return {
       manifestStatus: "missing",
       manifestPath: manifestResult.path,
-      core: [], selected: [], decisions: [], ambiguousExclusiveGroups: [], ambiguousSegments: [], requiredBudgetExceeded: [], requiredOverflow: [],
+      core: [], selected: [], decisions: [], ambiguousExclusiveGroups: [], ambiguousSegments: [], ambiguousReferences: [], requiredBudgetExceeded: [], requiredOverflow: [],
       remainingChars: budgetChars, advisoryOnly: true,
     };
   }
@@ -384,14 +525,26 @@ export async function loadProjectContextModules(args: LoadProjectContextModulesA
   const effectiveRequiredIds = new Set(eligibility.requiredIds);
   const materialized: MaterializedProjectContextModule[] = [];
   const records = new Map<string, ProjectContextContentRecord>();
+  const optionalEntryBudgetExceeded = new Map<string, ProjectContextEntryBudgetError>();
   const ambiguousSegments: Array<{ moduleId: string; candidates: string[]; score: number }> = [];
+  const ambiguousReferences: Array<{ moduleId: string; candidates: string[]; score: number }> = [];
   for (const module of manifest.modules) {
     if (!eligibleIds.has(module.id)) continue;
-    const loaded = await loadModule(args.projectRoot, module, args.intent, args.stage);
+    let loaded: Awaited<ReturnType<typeof loadModule>>;
+    try {
+      loaded = await loadModule(args.projectRoot, module, args.intent, args.stage);
+    } catch (error) {
+      if (error instanceof ProjectContextEntryBudgetError && !effectiveRequiredIds.has(module.id)) {
+        optionalEntryBudgetExceeded.set(module.id, error);
+        continue;
+      }
+      throw error;
+    }
     const record = loaded.record;
     records.set(module.id, record);
     materialized.push({ ...module, chars: record.bytes });
-    if (loaded.ambiguity) ambiguousSegments.push({ moduleId: module.id, ...loaded.ambiguity });
+    if (loaded.ambiguity && loaded.ambiguityKind === "segment") ambiguousSegments.push({ moduleId: module.id, ...loaded.ambiguity });
+    if (loaded.ambiguity && loaded.ambiguityKind === "reference") ambiguousReferences.push({ moduleId: module.id, ...loaded.ambiguity });
     if (effectiveRequiredIds.has(module.id) && record.bytes > HARD_MAX_CHARS) requiredOverflow.add(module.id);
   }
 
@@ -411,15 +564,31 @@ export async function loadProjectContextModules(args: LoadProjectContextModulesA
 
   const eligibilityById = new Map(eligibility.decisions.map((decision) => [decision.id, decision]));
   const finalById = new Map(finalSelection.decisions.map((decision) => [decision.id, decision]));
-  const decisions = manifest.modules.map((module) => finalById.get(module.id) ?? eligibilityById.get(module.id) ?? {
-    id: module.id,
-    selected: false,
-    score: 0,
-    chars: 0,
-    reason: "intent-mismatch" as const,
-    matched: [],
-    required: false,
-    requiredBy: [],
+  const decisions = manifest.modules.map((module) => {
+    const optionalOverflow = optionalEntryBudgetExceeded.get(module.id);
+    if (optionalOverflow) {
+      const base = eligibilityById.get(module.id);
+      return {
+        id: module.id,
+        selected: false,
+        score: base?.score ?? 0,
+        chars: optionalOverflow.bytes,
+        reason: "budget-exceeded" as const,
+        matched: base?.matched ?? [],
+        required: false,
+        requiredBy: [],
+      };
+    }
+    return finalById.get(module.id) ?? eligibilityById.get(module.id) ?? {
+      id: module.id,
+      selected: false,
+      score: 0,
+      chars: 0,
+      reason: "intent-mismatch" as const,
+      matched: [],
+      required: false,
+      requiredBy: [],
+    };
   }).map((decision) => selectedIds.has(decision.id) ? { ...decision, selected: true, reason: "selected" as const } : decision);
 
   return {
@@ -430,6 +599,7 @@ export async function loadProjectContextModules(args: LoadProjectContextModulesA
     decisions,
     ambiguousExclusiveGroups: [...eligibility.ambiguousGroups, ...finalSelection.ambiguousGroups.filter((group) => !eligibility.ambiguousGroups.some((existing) => existing.group === group.group))],
     ambiguousSegments,
+    ambiguousReferences,
     requiredBudgetExceeded,
     requiredOverflow: [...requiredOverflow],
     remainingChars: Math.max(0, budgetChars - coreBytes - selected.reduce((sum, record) => sum + record.bytes, 0)),

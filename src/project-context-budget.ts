@@ -125,12 +125,90 @@ function materializeSelectedBytes(nextText: string, entry: ProjectContextCore | 
   return Buffer.byteLength(selected, "utf8");
 }
 
-function targetEntries(manifest: ResolvedProjectContextManifest, targetRef: string): Array<{ entry: ProjectContextCore | ResolvedProjectContextModule; core: boolean }> {
+type ProjectContextWriteTarget = {
+  entry: ProjectContextCore | ResolvedProjectContextModule;
+  core: boolean;
+  targetKind: "source" | "reference";
+  referenceId?: string;
+};
+
+function targetEntries(manifest: ResolvedProjectContextManifest, targetRef: string): ProjectContextWriteTarget[] {
   const normalized = normalizeRef(targetRef);
-  return [
-    ...manifest.core.map((entry) => ({ entry, core: true })),
-    ...manifest.modules.map((entry) => ({ entry, core: false })),
-  ].filter(({ entry }) => normalizeRef(entry.source.path) === normalized);
+  const out: ProjectContextWriteTarget[] = [];
+  for (const entry of manifest.core) {
+    if (normalizeRef(entry.source.path) === normalized) out.push({ entry, core: true, targetKind: "source" });
+  }
+  for (const entry of manifest.modules) {
+    if (normalizeRef(entry.source.path) === normalized) out.push({ entry, core: false, targetKind: "source" });
+    for (const reference of entry.references ?? []) {
+      if (normalizeRef(reference.source.path) === normalized) out.push({ entry, core: false, targetKind: "reference", referenceId: reference.id });
+    }
+  }
+  return out;
+}
+
+async function textForProjectContextSource(args: {
+  projectRoot: string;
+  sourcePath: string;
+  targetRef: string;
+  nextText?: string;
+}): Promise<string> {
+  if (normalizeRef(args.sourcePath) === normalizeRef(args.targetRef) && args.nextText !== undefined) return args.nextText;
+  return await fs.readFile(path.resolve(args.projectRoot, args.sourcePath), "utf8");
+}
+
+async function materializeReferencedWorstBytes(args: {
+  projectRoot: string;
+  entry: ResolvedProjectContextModule;
+  targetRef: string;
+  nextText?: string;
+}): Promise<number> {
+  const parentText = await textForProjectContextSource({
+    projectRoot: args.projectRoot,
+    sourcePath: args.entry.source.path,
+    targetRef: args.targetRef,
+    nextText: args.nextText,
+  });
+  const baseline = args.entry.source.sections?.length
+    ? extractProjectContextSections(parentText, args.entry.source.sections)
+    : parentText.trim();
+  let largestOptional = "";
+  let largestOptionalBytes = 0;
+  for (const reference of args.entry.references ?? []) {
+    const referenceText = await textForProjectContextSource({
+      projectRoot: args.projectRoot,
+      sourcePath: reference.source.path,
+      targetRef: args.targetRef,
+      nextText: args.nextText,
+    });
+    const selected = reference.source.sections?.length
+      ? extractProjectContextSections(referenceText, reference.source.sections)
+      : referenceText.trim();
+    const bytes = Buffer.byteLength(selected, "utf8");
+    if (bytes > largestOptionalBytes) {
+      largestOptionalBytes = bytes;
+      largestOptional = selected;
+    }
+  }
+  return Buffer.byteLength([baseline.trim(), largestOptional].filter(Boolean).join("\n\n"), "utf8");
+}
+
+async function materializeEntryWorstBytes(args: {
+  projectRoot: string;
+  entry: ProjectContextCore | ResolvedProjectContextModule;
+  targetRef: string;
+  nextText?: string;
+}): Promise<number> {
+  if ("references" in args.entry && args.entry.references?.length) {
+    return await materializeReferencedWorstBytes({ projectRoot: args.projectRoot, entry: args.entry, targetRef: args.targetRef, nextText: args.nextText });
+  }
+  const sourceText = await textForProjectContextSource({
+    projectRoot: args.projectRoot,
+    sourcePath: args.entry.source.path,
+    targetRef: args.targetRef,
+    nextText: args.nextText,
+  });
+  return materializeSelectedBytes(sourceText, args.entry);
 }
 
 /**
@@ -183,18 +261,18 @@ export async function preflightMssrProjectContextWrite(args: {
   const evaluations: ProjectContextBudgetEvaluation[] = [];
   const physicalSources: ProjectContextPhysicalSourceEvaluation[] = [];
   const growthBlockedEntries = new Set<string>();
-  for (const { entry, core } of targetEntries(loaded.manifest, targetRef)) {
+  for (const { entry, core, targetKind, referenceId } of targetEntries(loaded.manifest, targetRef)) {
     let selectedBytes: number;
+    let currentSelectedBytes = 0;
     try {
-      selectedBytes = materializeSelectedBytes(args.nextText, entry);
+      selectedBytes = await materializeEntryWorstBytes({ projectRoot, entry, targetRef, nextText: args.nextText });
     } catch (error) {
       throw new Error(`Project-context preflight cannot materialize '${entry.id}' from proposed ${targetRef}: ${error instanceof Error ? error.message : String(error)}`);
     }
-    let currentSelectedBytes = 0;
-    if (currentText !== null) {
-      try { currentSelectedBytes = materializeSelectedBytes(currentText, entry); }
-      catch { currentSelectedBytes = 0; }
-    }
+    try {
+      currentSelectedBytes = await materializeEntryWorstBytes({ projectRoot, entry, targetRef });
+    } catch { currentSelectedBytes = 0; }
+
     const evaluation = evaluateProjectContextEntryBudget({
       entryId: entry.id,
       core,
@@ -205,25 +283,30 @@ export async function preflightMssrProjectContextWrite(args: {
     evaluations.push(evaluation);
     if (evaluation.level === "review" && selectedBytes > currentSelectedBytes) growthBlockedEntries.add(entry.id);
 
-    if (!core && "segments" in entry && entry.segments?.length) {
+    const segmentedSource = !core && targetKind === "source" && "segments" in entry && Boolean(entry.segments?.length);
+    const referencedSource = !core && "references" in entry && Boolean(entry.references?.length);
+    if (segmentedSource || referencedSource) {
       const currentBytes = currentText === null ? 0 : Buffer.byteLength(currentText, "utf8");
       const nextBytes = Buffer.byteLength(args.nextText, "utf8");
+      const hardLimitBytes = segmentedSource ? MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES : MAX_PROJECT_CONTEXT_CHARS;
+      const sourcePath = targetKind === "reference" ? targetRef : entry.source.path.replace(/\\/g, "/");
+      const physicalEntryId = targetKind === "reference" && referenceId ? `${entry.id}:${referenceId}` : entry.id;
       const physicalBudget = evaluateProjectContextEntryBudget({
-        entryId: entry.id,
+        entryId: physicalEntryId,
         core: false,
-        sourcePath: entry.source.path,
+        sourcePath,
         selectedBytes: nextBytes,
         maxChars: MAX_PROJECT_CONTEXT_CHARS,
       });
-      const exceededHardLimit = nextBytes > MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES;
+      const exceededHardLimit = nextBytes > hardLimitBytes;
       const physicalLevel: ProjectContextBudgetLevel = exceededHardLimit ? "review" : physicalBudget.level;
       physicalSources.push({
-        entryId: entry.id,
-        sourcePath: entry.source.path.replace(/\\/g, "/"),
+        entryId: physicalEntryId,
+        sourcePath,
         currentBytes,
         nextBytes,
         budgetBytes: MAX_PROJECT_CONTEXT_CHARS,
-        hardLimitBytes: MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES,
+        hardLimitBytes,
         utilization: nextBytes / MAX_PROJECT_CONTEXT_CHARS,
         level: physicalLevel,
         exceededBudget: nextBytes > MAX_PROJECT_CONTEXT_CHARS,

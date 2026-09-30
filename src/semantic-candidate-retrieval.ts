@@ -81,6 +81,50 @@ function pairKey(left: number, right: number): string {
   return left < right ? `${left}:${right}` : `${right}:${left}`;
 }
 
+export const mssrLexicalTextCandidateSchema = z.object({
+  leftIndex: z.number().int().min(0).max(4095),
+  rightIndex: z.number().int().min(0).max(4095),
+  score: z.number().min(0).max(1),
+  evidenceTier: z.literal("candidate"),
+  truthAuthority: z.literal(false),
+}).strict();
+export type MssrLexicalTextCandidate = z.infer<typeof mssrLexicalTextCandidateSchema>;
+
+/**
+ * Generic bounded TF-IDF retrieval for exact-provenance text blocks. This is
+ * deliberately only a candidate finder: similarity is never truth, freshness,
+ * ownership, routing or write authority.
+ */
+export function retrieveMssrLexicalTextCandidates(args: {
+  items: readonly { text: string; sourceRef?: string }[];
+  maxCandidates?: number;
+  minTfidfScore?: number;
+  crossSourceOnly?: boolean;
+}): { candidates: MssrLexicalTextCandidate[]; advisoryOnly: true; lexicalTruthAuthority: false } {
+  const items = [...args.items];
+  const maxCandidates = Math.max(0, Math.min(256, Math.floor(args.maxCandidates ?? 48)));
+  const minTfidfScore = Math.max(0, Math.min(1, args.minTfidfScore ?? 0.28));
+  const crossSourceOnly = args.crossSourceOnly ?? false;
+  const vectors = tfidfVectors(items.map((item) => item.text.toLowerCase()));
+  const candidates: MssrLexicalTextCandidate[] = [];
+  for (let leftIndex = 0; leftIndex < items.length; leftIndex += 1) {
+    for (let rightIndex = leftIndex + 1; rightIndex < items.length; rightIndex += 1) {
+      if (crossSourceOnly && items[leftIndex].sourceRef === items[rightIndex].sourceRef) continue;
+      const score = cosine(vectors[leftIndex], vectors[rightIndex]);
+      if (score < minTfidfScore) continue;
+      candidates.push(mssrLexicalTextCandidateSchema.parse({
+        leftIndex,
+        rightIndex,
+        score: Number(score.toFixed(6)),
+        evidenceTier: "candidate",
+        truthAuthority: false,
+      }));
+    }
+  }
+  candidates.sort((left, right) => right.score - left.score || left.leftIndex - right.leftIndex || left.rightIndex - right.rightIndex);
+  return { candidates: candidates.slice(0, maxCandidates), advisoryOnly: true, lexicalTruthAuthority: false };
+}
+
 /**
  * Retrieve bounded semantic comparison candidates. Exact declared structure is
  * ranked first; lexical TF-IDF is only a candidate generator and never truth.
