@@ -38,10 +38,46 @@ its values remain unchanged.
 
 **Next gate:** independently adjudicate a larger, document-grouped real corpus
 including true contradictions, supersession, duplicates, support, unrelated
-and unresolved cases; measure Librarian top-k and fetch separately from Jev
-relation quality, then test Jev-assisted selection and citation-faithful
-synthesis. Keep all proposals shadow/review-only until a separate held-out
-policy supports any activation decision.
+and unresolved cases; keep Librarian recall/fetch, Jev relation quality,
+candidate selection, and citation-faithful synthesis as separate measurements.
+Keep all proposals shadow/review-only until a separate held-out policy supports
+any activation decision.
+
+### Bilingual retrieval and live Jev candidate selection — 2026-09-30
+
+The frozen 21-document MSSR corpus was queried with 26 paired English/Spanish
+questions. The current deterministic Librarian returned the expected exact
+section in top 100 for 18/26 English queries and 4/26 Spanish queries; exact
+target rank-1 recall was 0/26 in both. An isolated harness then passed those
+same top-100 lists to real TypeSafe Jev `jev-1.13.0` for one closed-choice
+selection per query. Jev selected the expected exact section for 12/26 English
+queries and 3/26 Spanish queries (12/18 and 3/4 when the expected section was
+offered). All 52 calls succeeded (501,232 input / 53,347 output tokens; 375.5
+ms mean observed latency). A follow-up one-choice call over all 200 heading
+sections plus `none` selected the expected exact section for 18/26 English and
+16/26 Spanish queries (829,804 input / 105,392 output tokens; 409 ms mean).
+On the same 52 queries it added 22 exact selections relative to the shortlist
+run, while the shortlist alone added 3; the full-catalog choice therefore had
+19 more exact expected-section selections overall. The full catalog resolves
+the candidate-absence issue on this small corpus, at higher token use. Exact
+fetch validation passed 48/48 full-catalog selections; the shortlist passed
+32/33 selected ranges, with one size-limit rejection and zero revision/range/
+fingerprint integrity failures in either path.
+
+Run artifacts: `experiments/jev-mssr-live/runs/mssr-librarian-bilingual-retrieval-20260930-v1/`,
+`experiments/jev-mssr-live/runs/mssr-librarian-jev-candidate-selection-20260930-v1/`,
+and `experiments/jev-mssr-live/runs/mssr-librarian-jev-full-heading-choice-20260930-v1/`.
+The target labels were double-reviewed by Luna agents, not approved by the
+human document owner; exact-section scores are exploratory and confidence is
+not calibrated. The grouped query holdout still uses the same corpus. This
+demonstrates a bounded Jev selection call in an isolated harness, not an
+automatic production MCP integration. Current Librarian search remains
+deterministic; synthesis, contradiction quality, citation faithfulness and
+write authority were not tested. Full-catalog results cover only 200 headings;
+larger corpora may exceed Jev's 255-choice limit and require an evaluated
+hierarchical selector or a higher-recall shortlist. Next, obtain independently
+adjudicated multi-answer section labels and evaluate exact fetch plus
+citation-faithful synthesis before an end-to-end shadow integration decision.
 
 ### Jev Project Context budget review — 2026-09-30
 
@@ -82,9 +118,9 @@ The near-term reliability program remains explicit in `ROADMAP.md`. **R1 Trace I
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.93 -->
-<!-- mssr-version:bridge.live=0.6.141 -->
-<!-- mssr-version:bridge.mssr=0.2.89 -->
+<!-- mssr-version:mssr.source=0.2.94 -->
+<!-- mssr-version:bridge.live=0.6.142 -->
+<!-- mssr-version:bridge.mssr=0.2.93 -->
 <!-- mssr-owner:semantic.consistency=mssr -->
 <!-- mssr-decision:adr.0006=r4-bf-portable -->
 
