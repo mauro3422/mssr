@@ -61,9 +61,18 @@ See [architecture](docs/ARCHITECTURE.md), the
 
 ## Install and develop
 
+For a reproducible full verification baseline, use the committed lockfile and run
+the complete project gate:
+
 ```powershell
 cd D:\Dev\mssr
-npm install
+npm ci
+npm run verify
+```
+
+For a faster local edit loop, run the compiler and the focused routing tests:
+
+```powershell
 npm run check
 npm run test:skill-routing
 ```
