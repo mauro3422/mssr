@@ -9,7 +9,7 @@ The rubric-matched live section run is exploratory: 48/51 action decisions for E
 
 ### Live Jev provider check — 2026-09-30
 
-One bounded live attempt used `mssr_semantic_curation_project_review` with `mode=jev`, `persist=false`, at most two blocks and one pair. The connected TypeSafe path stopped at client configuration because `TYPESAFE_API_KEY` was absent; no Jev decision or usage result was returned. This is not a benchmark result. Next gate: configure the credential in the authorized MCP runtime, then repeat one isolated pair before any confidence calibration or benchmark claim.
+The initial bounded live attempt through `mssr_semantic_curation_project_review` (`mode=jev`, `persist=false`, at most two blocks and one pair) stopped at TypeSafe client configuration because `TYPESAFE_API_KEY` was absent from that MCP process. The credential was then resolved from the existing Windows Credential Manager entry and used only in an ephemeral local process; it was not printed or persisted. A separate real MSSR request completed with TypeSafe Jev `jev-1.13.0`: one question and one evidence pair, candidate relation `supports`, selected-option confidence `0.85`, usage 2,154 input / 69 output tokens, 410 ms. The judgment remains `verified=false` and advisory-only; raw provider output was not persisted. This is a smoke test, not a benchmark, independent adjudication, or confidence calibration. Next gate: decide whether the authorized MSSR host should resolve/inject the Windows Credential Manager credential for its provider process, then run a held-out, independently adjudicated evaluation before making quality claims.
 
 ### Deferred Project Context budget review — 2026-09-30
 
