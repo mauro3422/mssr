@@ -406,6 +406,44 @@
       "maxChars": 10000
     },
     {
+      "id": "mssr-jev-confidence-merge-evaluation",
+      "kind": "context",
+      "topic": "architecture",
+      "area": "semantic-evidence",
+      "description": "Jev confidence, contradiction-aware decisions, Librarian evidence retrieval, merge proposals and benchmark evidence/limitations.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md"
+      },
+      "domains": [
+        "coding",
+        "skill-system",
+        "agent-orchestration"
+      ],
+      "actions": [
+        "analyze",
+        "design",
+        "review",
+        "maintain",
+        "document"
+      ],
+      "artifacts": [
+        "repository",
+        "code",
+        "document"
+      ],
+      "needs": [
+        "integrity-verification",
+        "cross-agent"
+      ],
+      "signals": [
+        "conflicting-evidence",
+        "reusable-pattern",
+        "capability-discovery-needed"
+      ],
+      "priority": 92,
+      "maxChars": 10000
+    },
+    {
       "id": "mssr-project-document-reference-lifecycle",
       "kind": "context",
       "topic": "reference",

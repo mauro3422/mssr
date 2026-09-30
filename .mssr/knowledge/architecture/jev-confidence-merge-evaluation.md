@@ -1,0 +1,164 @@
+# Jev confidence, contradiction and merge evaluation
+
+Status: research-backed design proposal, reviewed 2026-09-30. This note does
+not change runtime behavior or authorize automatic project edits.
+
+## What the MSSR runs establish
+
+The live rubric-matched section run used 17 real sections from four MSSR
+modules, three repeated requests per section, and Jev 1.13.0. EvidenceAtom
+scored 48/51 action decisions (94.1%) versus 45/51 (88.2%) for parent metadata.
+Move precision was 100% in both; move recall was 83.3% versus 66.7%. Lifecycle
+classification moved the other way: 88.2% for EvidenceAtom versus 100% for
+parent metadata. The prior English-rubric run is preserved but excluded from
+direct comparison. Run artifacts are outside the repository at
+D:\Dev\mssr-snapshots\benchmark-real-evidence-atom-20260930-rubricmatch-8f2c3a17.
+
+This is promising task accuracy, not a 94.1% per-decision confidence guarantee.
+The 51 calls are repeated observations over 17 labeled sections, not 51
+independent cases; the labels were author-created and not independently
+adjudicated. Under experiments/CONTROLLED_RUN_PROTOCOL.md, fewer than 30
+independent labeled units is exploratory. Do not turn this point estimate into
+a system-wide score, promotion claim, or production threshold.
+
+The archived ontology run covers 22 real Project Context units and eight
+provided relation pairs. Its labels were not independently adjudicated, and
+the same corpus was reused across versions. The references run covers real
+references but synthetic tasks. Neither suite tests EvidenceAtom merge.
+Semantic Experience currently has 1,895 real shadow observations but no
+verified truth labels; they cannot score Jev semantic accuracy.
+
+## Keep source evidence separate from Jev judgment
+
+EvidenceAtom remains the immutable, revision-bound source record. Its
+freshness means whether the host supplied an exact source observation; it is
+not whether the claim is currently true, historical, or superseded. The
+observed lifecycle regression may reflect that distinction being unclear in
+the model-facing projection. This is a hypothesis, not a proven cause.
+
+Keep Jev's result in a separate judgment/proposal linked to exact atoms and
+source revisions. The judgment should carry decision family, candidate value,
+per-head raw confidence, calibrated confidence only when an MSSR holdout
+supports it, model/prompt/schema identity, evidence coverage, claim validity,
+scope and valid time, relation candidates, abstention/review reasons, and
+verification status. A changed source revision invalidates the judgment for
+automatic reuse.
+
+Use contradiction evidence as typed, cited links between claims—supports,
+contradicts, supersedes, duplicate, or unrelated—with exact source references
+and subject/scope/time checks. Deterministic contradictions or unresolved
+opposite claims force review. Jev may rank or explain candidates; it cannot
+establish source authority or settle truth. Never infer a contradiction from
+similarity alone.
+
+## Librarian retrieval and evidence acquisition
+
+The Librarian should be the bounded retrieval surface between Jev and the
+project's documents/atoms. A future search operation can combine lexical text
+matching with metadata filters such as project, subject, owner, source
+revision, scope, valid time, relation, lifecycle and privacy class. Return
+ranked candidate handles with exact source refs, revisions, fingerprints and
+bounded matching spans; fetch exact text only through the owning source and
+only after the caller requests it.
+
+Jev can then ask for related atoms, an exact section, neighboring evidence or
+a revision comparison using those handles. The host validates each request
+against owner, revision, privacy and explicit budgets. Compatible requests for
+one subject/state may be batched; unrelated subjects remain separate jobs.
+Record requested versus returned evidence and later utility when known. Grep,
+similarity and metadata matching find candidates; none proves truth, resolves
+authority, or grants a merge. Measure retrieval candidate recall separately
+from Jev relation precision/recall.
+
+## Confidence and merge policy
+
+Treat confidence as a decision-family-specific routing signal, not a universal
+quality percentage. Choose thresholds against the cost of a false action and
+report risk-versus-coverage at several cutoffs. Until the score is calibrated
+on independently reviewed, project-grouped holdout cases, label it
+uncalibrated; do not call a raw threshold “90% trusted.” Evaluate calibration
+with reliability bins and Brier/log loss or ECE alongside accuracy, precision,
+recall, abstention and high-confidence errors.
+
+Proposed stages:
+
+1. Deterministic identity, owner, revision, privacy and exact-evidence guards.
+2. Librarian returns bounded evidence handles; Jev proposes typed judgments
+   over those explicit candidates.
+3. Missing temporal/scope data, low confidence, or a contradiction sends the
+   proposal to review/abstain.
+4. A confidence threshold may admit a derived synthesis preview, never a
+   destructive source merge or canonical write.
+5. Independent verification and normal owner approval remain required before
+   any persisted project change.
+
+A merge/synthesis proposal should retain input atom IDs, refs, revisions and
+fingerprints; candidate relations and conflicts; decision alternatives and a
+short evidence-cited reason for each inclusion, omission or separation; the
+output hash; confidence/calibration version; and reviewer/verification state.
+Keep original atoms and source bytes intact. A contradiction blocks automatic
+consolidation; represent supersession as a temporal relation rather than
+silently overwriting older evidence.
+
+## Next MSSR evaluation
+
+Keep the axes separate: retrieval recall, source freshness,
+claim validity/lifecycle, placement, move safety, contradiction detection,
+relation classification, synthesis faithfulness, provenance retention,
+reference/skill selection, and downstream task outcome. For the lifecycle
+regression, freeze one Spanish rubric and compare: parent metadata; atom
+provenance without exposing source freshness to Jev; explicit sourceFreshness
+versus claimValidity; and those orthogonal fields plus
+contradiction/supersession context. Use the same cases and independent
+adjudication across variants.
+
+For retrieval and merge, score search candidate recall separately from
+pair-classifier precision/recall; then score citation support,
+retained/rejected evidence, conflict handling, authority preservation,
+reversibility, and harmful false-merge rate. Group holdouts by project/source
+module. Repetitions measure stability, not sample size. Keep labels out of
+requests and preserve the manifest, exact inputs, runner/build hashes, raw
+responses and separate adjudication.
+
+## Public evidence reviewed
+
+Public Jev results are useful prior evidence, not substitutes for MSSR
+validation:
+
+- [TypeSafe's Jev introduction and workflow evaluations](https://typesafe.ai/blog/introducing-system-one-models-and-jev)
+  compares four code workflows against a reference averaged from GPT-6 Astra
+  and Claude Fable 5.1. TypeSafe notes the workflows were created by its own
+  capability team; treat the headline as vendor evidence, not independent
+  ground truth.
+- The [Jev in Medicine preprint](https://arxiv.org/abs/2609.34024) evaluates
+  8,469 requests across four medical benchmarks and reports accuracy and
+  calibration varying by dataset. For example, a high-confidence subset did
+  well on MetaMedQA, while confidence discriminated less well on
+  DiagnosisArena-MCQ. This argues for task-specific calibration; it does not
+  validate knowledge curation.
+- [JevAdvBench](https://arxiv.org/abs/2609.31142) is an adversarial robustness
+  preprint with 812 typed questions and 9,744 single-edit variants. It finds
+  that unverified opinions added to state can flip decisions. Its clean-run
+  comparison is a robustness measure, not truth labels or a merge evaluation.
+- Independent community posts report mixed task-specific results. One
+  [Reddit benchmark](https://www.reddit.com/r/AI_India/comments/1wmvyqz/i_benchmarked_typesafes_jev_against_llms_bert_and/)
+  reports 500 held-out examples each across SST-2, AG News and Banking77, with
+  accuracy and calibration changing across datasets. Another
+  [agent-routing report](https://www.reddit.com/r/LLMDevs/comments/1wo000s/we_benchmarked_typesafes_new_jev_a_decisiononly/)
+  reports high accuracy above a confidence cutoff on its hand-labeled routing
+  set. These are author-reported, task-specific results, not peer-reviewed
+  validation of MSSR.
+- [FEVER](https://aclanthology.org/N18-1074/) and
+  [SciFact](https://aclanthology.org/2020.emnlp-main.609/) are adjacent
+  verification datasets, not Jev benchmarks. Their supported/refuted/
+  insufficient-evidence labels and cited evidence rationales are useful
+  precedents for MSSR contradiction cases.
+- The reported Pokémon Red success is an anecdotal systems example: public
+  coverage says a separate LLM, the developer and viewers adjusted the
+  decision options and harness during play. It demonstrates a composed agent
+  loop, not Jev acting alone or a controlled benchmark
+  ([coverage](https://www.tomshardware.com/tech-industry/artificial-intelligence/developer-says-jev-decision-model-beat-pokemon-red-in-under-a-week-non-llm-engine-succeeds-where-traditional-chatbots-stalled-for-months-but-claude-opus-5-coached-the-model-through-its-dead-ends)).
+
+No public benchmark found in this review measures Jev on MSSR's real
+documents, skill references, contradiction layer, EvidenceAtom provenance,
+Librarian evidence retrieval, or reversible semantic merges.
