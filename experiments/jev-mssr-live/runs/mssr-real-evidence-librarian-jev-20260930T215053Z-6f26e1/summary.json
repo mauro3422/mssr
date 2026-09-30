@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1",
+  "status": "complete",
+  "completedAt": "2026-09-30T22:10:55Z",
+  "source": {
+    "gitCommit": "7fd0f7414e636d17cfac385cbffea9b55f83e78c",
+    "buildId": "mssr-build:sha256:cfaaa9b0f9ad1977",
+    "corpusDocuments": 4,
+    "corpusSha256": "8a1af4393bed687a4fff19bb75d69b970ef568b75f8dcba6532e8c318ea23c1c"
+  },
+  "provider": {
+    "name": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "live": true,
+    "attemptedRequests": 4,
+    "successfulRequests": 4,
+    "failedRequests": 0,
+    "inputTokens": 6906,
+    "outputTokens": 278,
+    "totalLatencyMs": 1347.22,
+    "meanLatencyMs": 336.8
+  },
+  "retrieval": {
+    "queries": 4,
+    "top1Correct": 0,
+    "recallAt5": 4,
+    "meanReciprocalRank": 0.3833,
+    "cases": [
+      {
+        "caseId": "retrieval-q1",
+        "expectedRef": ".mssr/PROJECT_CONTEXT.md",
+        "expectedHeading": "Architecture",
+        "top1Correct": false,
+        "foundTop5": true,
+        "rank": 3
+      },
+      {
+        "caseId": "retrieval-q2",
+        "expectedRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+        "expectedHeading": "Confidence and merge policy",
+        "top1Correct": false,
+        "foundTop5": true,
+        "rank": 2
+      },
+      {
+        "caseId": "retrieval-q3",
+        "expectedRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "expectedHeading": "Document Surface and Librarian contract",
+        "top1Correct": false,
+        "foundTop5": true,
+        "rank": 5
+      },
+      {
+        "caseId": "retrieval-q4",
+        "expectedRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+        "expectedHeading": "Composed capability boundary",
+        "top1Correct": false,
+        "foundTop5": true,
+        "rank": 2
+      }
+    ]
+  },
+  "exactFetch": {
+    "attempted": 8,
+    "successes": 8
+  },
+  "relation": {
+    "pairs": 4,
+    "authorLabelCorrect": 3,
+    "authorLabelAgreement": 0.75,
+    "cases": [
+      {
+        "pairId": "relation-r1",
+        "expected": "supports",
+        "predicted": "supports",
+        "confidence": 0.97,
+        "exactMatch": true,
+        "downstreamDisposition": "review",
+        "downstreamReasons": [
+          "independent-verification-unavailable"
+        ]
+      },
+      {
+        "pairId": "relation-r2",
+        "expected": "supports",
+        "predicted": "supports",
+        "confidence": 1,
+        "exactMatch": true,
+        "downstreamDisposition": "review",
+        "downstreamReasons": [
+          "independent-verification-unavailable"
+        ]
+      },
+      {
+        "pairId": "relation-r3",
+        "expected": "unrelated",
+        "predicted": "unrelated",
+        "confidence": 0.84,
+        "exactMatch": true,
+        "downstreamDisposition": "review",
+        "downstreamReasons": [
+          "independent-verification-unavailable",
+          "relation-scope-conflict"
+        ]
+      },
+      {
+        "pairId": "relation-r4",
+        "expected": "unresolved",
+        "predicted": "supports",
+        "confidence": 0.45,
+        "exactMatch": false,
+        "downstreamDisposition": "review",
+        "downstreamReasons": [
+          "independent-verification-unavailable",
+          "missing-claim-scope",
+          "missing-claim-validity",
+          "relation-scope-unknown",
+          "relation-temporal-comparability-unknown"
+        ]
+      }
+    ],
+    "knownContradictionCases": 0,
+    "predictedContradictions": 0,
+    "confidenceCalibration": "not measured"
+  },
+  "synthesisPreview": {
+    "previews": 2,
+    "reviewOnly": 2,
+    "applyAllowed": 0,
+    "reversible": true
+  },
+  "dataCaveats": [
+    "Labels author-authored, not independently adjudicated.",
+    "Support: four retrieval queries and four relation pairs; exploratory only.",
+    "No true contradiction case; contradiction recall undefined.",
+    "No holdout or confidence calibration.",
+    "MSSR MCP exposed normalized Jev decisions, not the raw vendor HTTP body, request id or request start timestamp."
+  ],
+  "historyBoundary": "Separate from the historical 153-request EvidenceAtom ablation; that run and its values are unchanged."
+}

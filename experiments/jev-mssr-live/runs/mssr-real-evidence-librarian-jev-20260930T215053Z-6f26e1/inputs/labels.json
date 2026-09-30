@@ -1,0 +1,51 @@
+{
+  "source": "author",
+  "frozenAt": "2026-09-30T21:50:53Z",
+  "adjudication": "none",
+  "exposedToRequests": false,
+  "rationale": "Labels are pre-run analyst judgments from exact current source sections. The unresolved case is labeled by missing asserted scope/time. No known true contradiction pair was available in this bounded corpus.",
+  "retrieval": [
+    {
+      "id": "retrieval-q1",
+      "expectedRef": ".mssr/PROJECT_CONTEXT.md",
+      "expectedHeading": "Architecture"
+    },
+    {
+      "id": "retrieval-q2",
+      "expectedRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "expectedHeading": "Confidence and merge policy"
+    },
+    {
+      "id": "retrieval-q3",
+      "expectedRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "expectedHeading": "Document Surface and Librarian contract"
+    },
+    {
+      "id": "retrieval-q4",
+      "expectedRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "expectedHeading": "Composed capability boundary"
+    }
+  ],
+  "relations": [
+    {
+      "id": "relation-r1",
+      "expected": "supports",
+      "rationale": "The two current sections describe the same evidence/source versus decision boundary from complementary angles."
+    },
+    {
+      "id": "relation-r2",
+      "expected": "supports",
+      "rationale": "The two current sections specify the same Librarian retrieval and exact-source fetch contract."
+    },
+    {
+      "id": "relation-r3",
+      "expected": "unrelated",
+      "rationale": "Project authority governance and public benchmark summaries have no direct relation for the stated curation goal."
+    },
+    {
+      "id": "relation-r4",
+      "expected": "unresolved",
+      "rationale": "Scope and valid-time metadata are intentionally absent, so a defensible merge/relation decision must remain unresolved."
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "suite": "mssr-real-librarian-jev-smoke-v1",
+  "runId": "mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1",
+  "createdAt": "2026-09-30T21:50:53Z",
+  "status": "complete",
+  "parentRunId": null,
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "7fd0f7414e636d17cfac385cbffea9b55f83e78c",
+    "workingTreeClean": false,
+    "codeSnapshotCleanAtRunStart": true,
+    "changedPaths": [
+      "experiments\\jev-mssr-live\\runs\\mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1/inputs/corpus.json",
+      "experiments\\jev-mssr-live\\runs\\mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1/inputs/cases.json",
+      "experiments\\jev-mssr-live\\runs\\mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1/inputs/labels.json",
+      "experiments\\jev-mssr-live\\runs\\mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1/inputs/fetched-evidence.json",
+      "experiments\\jev-mssr-live\\runs\\mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1/inputs/jev-request.json",
+      "experiments\\jev-mssr-live\\runs\\mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1/runner.mjs",
+      "experiments\\jev-mssr-live\\runs\\mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1/SHA256SUMS",
+      "experiments\\jev-mssr-live\\runs\\mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1/manifest.json"
+    ],
+    "buildId": "mssr-build:sha256:cfaaa9b0f9ad1977",
+    "buildArtifacts": [
+      {
+        "path": "dist/index.js",
+        "sha256": "b9ba9fd35424c02be74d8715c1b6a489b883dd4599150ff64dff7a04618469e1"
+      },
+      {
+        "path": "dist/semantic-evidence-review.js",
+        "sha256": "b152b179c716a7591b41f1d88a1491046164d1b792fadabfb50f7c54bfdd1bc3"
+      },
+      {
+        "path": "dist/librarian-retrieval.js",
+        "sha256": "5785c871f517fe21805106a54602092ddec09f94dad0347ce2308ffbab0f7965"
+      }
+    ],
+    "projectManifestSha256": "9627c30109439e988d3e6b7245062351fcb524cb543e5fc3c5afe25fb894d831"
+  },
+  "instrument": {
+    "runnerPath": "runner.mjs",
+    "runnerSha256": "4129ce7c8776f56d5055b455aca33a61c89f45c74419d8c0049b13c995ce1562",
+    "casesPath": "inputs/cases.json",
+    "casesSha256": "ae489ffdf3fe8b263c40ef78a6209ca1293df397b39a85fb047f546984f19c37",
+    "lockfileSha256": "89c3bd48f01186c44f5c8632b2a27a30c863dc632151c3d563b0f1acbfc21b22",
+    "runtime": "v24.16.0",
+    "toolIds": [
+      "mssr_librarian_search",
+      "mssr_librarian_fetch",
+      "mssr_semantic_evidence_relation_review"
+    ],
+    "fetchedEvidencePath": "inputs/fetched-evidence.json",
+    "fetchedEvidenceSha256": "5335b1411d71760b21fe50732e8b7ce7c00728f88c4cbffee8bf755c5594d6ed",
+    "requestPath": "inputs/jev-request.json",
+    "requestFingerprint": "600cf0a0370bd9e37f0a0d4cafb00ef0e4371904d01b391086a83467e653f1b7",
+    "requestSchemaVersion": 1,
+    "searchCalls": 12,
+    "exactFetchCalls": 8,
+    "jevToolCalls": 1,
+    "synthesisPreviewCalls": 2
+  },
+  "corpus": {
+    "snapshotPath": "inputs/corpus.json",
+    "sha256": "02cb76c7615c2c8664dc21d7bc4a339e81c808cd24f25d03afd308ceebe63c40",
+    "items": 4,
+    "sourceRevision": "7fd0f7414e636d17cfac385cbffea9b55f83e78c",
+    "redaction": "four current project Markdown sources; sensitive-pattern scan no-match"
+  },
+  "provider": {
+    "mode": "live",
+    "provider": "TypeSafe AI Jev via MSSR MCP",
+    "endpointIdentity": "api.typesafe.ai/v1/systemone",
+    "requestedModel": "jev-1.13.0",
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "timeoutMs": 30000,
+    "maxRetries": 1,
+    "concurrency": 1,
+    "networkOptIn": true,
+    "optInBasis": "User previously explicitly authorized live Jev tests on real MSSR data.",
+    "returnedModel": "jev-1.13.0",
+    "rawVendorHttpBodyAvailable": false,
+    "providerRequestIdsAvailable": false
+  },
+  "labels": {
+    "source": "author",
+    "frozenAt": "2026-09-30T21:50:53Z",
+    "adjudication": "none",
+    "labelFile": "inputs/labels.json",
+    "labelFileSha256": "f10d1e7c1167b66a00212d05f3939cfe0a48b8b3c624cdf5b57ea3d2153d4cf0",
+    "exposedToRequests": false
+  },
+  "split": {
+    "method": "none-exploratory-smoke",
+    "trainIdsSha256": null,
+    "validationIdsSha256": null,
+    "holdoutIdsSha256": null,
+    "holdoutOpenedAt": null,
+    "holdoutUsedForTuning": false
+  },
+  "plan": {
+    "primaryMetric": "Librarian expected-section retrieval at 1 and 5; Jev author-label relation exact match",
+    "secondaryMetrics": [
+      "exact-fetch fingerprint validation",
+      "unresolved/abstention rate",
+      "contradiction outputs",
+      "latency",
+      "token usage",
+      "provider failures"
+    ],
+    "thresholds": {},
+    "independentUnit": "query for retrieval; source-document pair for relation review",
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30
+    },
+    "uncertaintyMethod": "raw counts only; no confidence intervals or calibrated-confidence claim at this exploratory support size",
+    "expectedRetrievalCases": 4,
+    "contradictionGroundTruthCases": 0,
+    "relationPairs": 4,
+    "expectedRelationPairs": 4
+  },
+  "startedAt": null,
+  "completedAt": "2026-09-30T22:10:55Z",
+  "actualRequestCount": 4,
+  "successfulRequestCount": 4,
+  "failedRequestCount": 0,
+  "outputArtifacts": {
+    "recordsSha256": "ffa467361141f6394d0d1221a0112070ab9c14d78cfffe6fe7f4114f9f0c26f3",
+    "summarySha256": "2fee6d86fabc5d5c0e694f0ce84ffe48bb0aebce48eebf9a89db4a99e93cc298",
+    "reportSha256": "37bee618aeb66cea3dd8a1f2832f5daa46209a2bb3f04395013ecde559a9fd56"
+  }
+}
