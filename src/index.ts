@@ -96,6 +96,7 @@ export * from "./semantic-curation-distillation-store.js";
 export * from "./semantic-curation-queue-store.js";
 export * from "./semantic-curation-enqueue.js";
 export * from "./semantic-curation-jev.js";
+export * from "./semantic-curation-jev-contract.js";
 export * from "./semantic-curation-contract.js";
 export * from "./semantic-experience.js";
 export * from "./semantic-experience-store.js";

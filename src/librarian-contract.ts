@@ -77,6 +77,7 @@ type JsonValue = null | boolean | number | string | JsonValue[] | { [key: string
 const MAX_METADATA_DEPTH = 8;
 const MAX_METADATA_KEYS = 512;
 const MAX_METADATA_SERIALIZED_CHARS = 32_000;
+const EXCLUDED_METADATA_KEY = /^(?:prompt|prompts|transcript|transcripts|raw|rawtext|rawbody|body|content|text|instructions|summary|description|apikey|accesskey|token|accesstoken|secret|credential|credentials|private|reasoning|toolarguments|arguments)$/i;
 
 function sha256(value: string): string {
   return createHash("sha256").update(value, "utf8").digest("hex");
@@ -89,7 +90,11 @@ function normalizedSourceRef(value: string): string {
 function normalizeMetadataValue(value: unknown, depth: number, counter: { keys: number }): JsonValue {
   if (depth > MAX_METADATA_DEPTH) throw new Error(`Librarian metadata exceeds max depth ${MAX_METADATA_DEPTH}.`);
   if (value === null) return null;
-  if (typeof value === "boolean" || typeof value === "string") return value;
+  if (typeof value === "boolean") return value;
+  if (typeof value === "string") {
+    if (value.length > 240) throw new Error("Librarian metadata strings are limited to 240 characters.");
+    return value;
+  }
   if (typeof value === "number") {
     if (!Number.isFinite(value)) throw new Error("Librarian metadata numbers must be finite.");
     return Object.is(value, -0) ? 0 : value;
@@ -103,6 +108,9 @@ function normalizeMetadataValue(value: unknown, depth: number, counter: { keys: 
       if (counter.keys > MAX_METADATA_KEYS) throw new Error(`Librarian metadata exceeds max key count ${MAX_METADATA_KEYS}.`);
       const item = object[key];
       if (item === undefined) continue;
+      if (EXCLUDED_METADATA_KEY.test(key.replace(/[^a-z0-9]/gi, ""))) {
+        throw new Error(`Librarian metadata key '${key}' is excluded because it may carry free-form or sensitive content.`);
+      }
       out[key] = normalizeMetadataValue(item, depth + 1, counter);
     }
     return out;

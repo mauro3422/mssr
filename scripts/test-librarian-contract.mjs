@@ -95,7 +95,7 @@ const semanticallySimilarButDifferent = auditMssrLibrarianCatalog([
     sourceRef: "a.md",
     revision: "1",
     payloadFingerprint: "hash-a",
-    metadata: { summary: "Use strict verification before release." },
+    metadata: { label: "strict-verification-before-release" },
     provenance: { producer: "document-surface" },
   },
   {
@@ -105,7 +105,7 @@ const semanticallySimilarButDifferent = auditMssrLibrarianCatalog([
     sourceRef: "b.md",
     revision: "1",
     payloadFingerprint: "hash-b",
-    metadata: { summary: "A release must pass strict verification first." },
+    metadata: { label: "release-verification-first" },
     provenance: { producer: "document-surface" },
   },
 ]);
@@ -115,5 +115,8 @@ assert.throws(
   () => canonicalizeMssrLibrarianMetadata({ bad: Number.NaN }),
   /finite/,
 );
+assert.throws(() => canonicalizeMssrLibrarianMetadata({ prompt: "private prompt" }), /excluded/);
+assert.throws(() => canonicalizeMssrLibrarianMetadata({ source: { raw_body: "private source text" } }), /excluded/);
+assert.throws(() => canonicalizeMssrLibrarianMetadata({ tag: "x".repeat(241) }), /240 characters/);
 
 console.log("librarian contract tests passed");

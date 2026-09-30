@@ -107,3 +107,7 @@ Stable human-task correlation is explicit host evidence above trace lifecycle; p
 ## Librarian duplicate granularity decision
 
 A shared source revision is not enough to prove two evidence records duplicate: Markdown sections are distinct units within one document revision. Classify same-source-revision only when namespace, kind, source revision, and payload fingerprint all match. Preserve same-payload and exact-record checks as their own independent structural signals; semantic equivalence stays outside the deterministic reducer.
+
+## Evidence provenance and Jev host boundary decision
+
+EvidenceAtom v2 requires source class and canonical owner; `fresh` requires a host observation matching the exact normalized source ref, revision and owner with timestamp. Unknown remains safe. Sensitive-excluded atoms and free-form atom attributes are rejected. Semantic Curation may receive an injected normalized Jev decision provider so hosts own credentials/transport/retries; the legacy TypeSafe configuration is deprecated compatibility. This seam is separate from Librarian, which still does not submit relation candidates to Jev. Benchmark runs must preserve historical raw outputs, source/corpus hashes, label provenance and holdout boundaries; future run protocol defaults offline.

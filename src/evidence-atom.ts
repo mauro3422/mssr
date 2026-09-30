@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { z } from "zod";
 import type { MssrLibrarianCatalogRecord } from "./librarian-contract.js";
 
-export const MSSR_EVIDENCE_ATOM_SCHEMA_VERSION = 1 as const;
+export const MSSR_EVIDENCE_ATOM_SCHEMA_VERSION = 2 as const;
 
 export const MSSR_EVIDENCE_FRESHNESS = [
   "unknown",
@@ -45,13 +45,7 @@ const boundedToken = z.string().trim().min(1).max(120).regex(/^[a-z0-9][a-z0-9._
 const boundedText = (max: number) => z.string().trim().min(1).max(max).refine((value) => !/[\r\n]/.test(value));
 const hex64 = z.string().regex(/^[0-9a-f]{64}$/);
 const atomId = z.string().regex(/^evidence-atom:[0-9a-f]{24}$/);
-
-const primitiveValueSchema = z.union([
-  z.string().max(240),
-  z.number().finite(),
-  z.boolean(),
-  z.null(),
-]);
+const safeAttributeText = z.string().max(120).regex(/^[A-Za-z0-9][A-Za-z0-9._:/#@+-]*$/);
 
 export const mssrEvidenceAtomSourceRangeSchema = z.object({
   startLine: z.number().int().min(1),
@@ -84,13 +78,27 @@ export const mssrEvidenceAtomSchema = z.object({
     freshness: z.enum(MSSR_EVIDENCE_FRESHNESS),
     headingPath: z.array(boundedText(240)).max(12).optional(),
     range: mssrEvidenceAtomSourceRangeSchema.optional(),
+    freshnessEvidence: z.object({
+      canonicalOwner: boundedText(240),
+      ref: boundedText(1_000),
+      revision: boundedText(256),
+      observedAt: z.string().datetime({ offset: true }),
+    }).strict().optional(),
   }).strict().superRefine((value, ctx) => {
     if ((value.headingPath || value.range) && !value.revision) {
       ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["revision"], message: "Revision is required for exact heading/range evidence." });
     }
+    if (value.freshness === "fresh" && !value.freshnessEvidence) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["freshnessEvidence"], message: "Fresh evidence requires an exact host observation." });
+    }
+    if (value.freshnessEvidence && (value.freshnessEvidence.ref !== value.ref || value.freshnessEvidence.revision !== value.revision)) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["freshnessEvidence"], message: "Freshness observation must match the exact source ref and revision." });
+    }
   }),
   provenance: z.object({
     producer: boundedToken,
+    sourceClass: z.enum(["canonical", "observed", "inferred", "learned", "mixed"]),
+    canonicalOwner: boundedText(240),
     host: boundedText(120).optional(),
     traceId: boundedText(200).optional(),
     projectKey: boundedText(320).optional(),
@@ -119,14 +127,21 @@ export const mssrEvidenceAtomSchema = z.object({
       ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["consumed"], message: "Skipped evidence cannot be marked consumed." });
     }
   }),
-  attributes: z.record(z.string().min(1).max(80), primitiveValueSchema).superRefine((value, ctx) => {
+  attributes: z.record(z.string().min(1).max(80).regex(/^[a-zA-Z][a-zA-Z0-9_.-]*$/), z.union([safeAttributeText, z.number().finite(), z.boolean(), z.null()])).superRefine((value, ctx) => {
     if (Object.keys(value).length > 32) {
       ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Evidence atom attributes are limited to 32 entries." });
     }
   }).default({}),
   advisoryOnly: z.literal(true),
   canonicalRewriteAllowed: z.literal(false),
-}).strict();
+}).strict().superRefine((value, ctx) => {
+  if (value.privacyClass === "sensitive-excluded") {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["privacyClass"], message: "Sensitive-excluded evidence cannot be persisted as an atom." });
+  }
+  if (value.source.freshnessEvidence && value.source.freshnessEvidence.canonicalOwner !== value.provenance.canonicalOwner) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["source", "freshnessEvidence", "canonicalOwner"], message: "Freshness observation owner must match the canonical owner." });
+  }
+});
 
 export type MssrEvidenceAtom = z.infer<typeof mssrEvidenceAtomSchema>;
 
@@ -162,6 +177,10 @@ function normalizedInput(input: BuildMssrEvidenceAtomInput): BuildMssrEvidenceAt
     source: {
       ...input.source,
       ref: input.source.ref.trim().replace(/\\/g, "/").replace(/\/{2,}/g, "/"),
+      ...(input.source.freshnessEvidence ? { freshnessEvidence: {
+        ...input.source.freshnessEvidence,
+        ref: input.source.freshnessEvidence.ref.trim().replace(/\\/g, "/").replace(/\/{2,}/g, "/"),
+      } } : {}),
       ...(input.source.headingPath ? { headingPath: input.source.headingPath.map((item) => item.trim()) } : {}),
     },
     reasonCodes: uniqueSorted(input.reasonCodes),
@@ -203,9 +222,12 @@ export function buildMssrEvidenceAtom(input: BuildMssrEvidenceAtomInput): MssrEv
  */
 export function evidenceAtomFromLibrarianCatalogRecord(args: {
   record: MssrLibrarianCatalogRecord;
+  sourceClass: MssrEvidenceAtom["provenance"]["sourceClass"];
+  canonicalOwner: string;
   authorityClass: MssrEvidenceAtom["authorityClass"];
   privacyClass: MssrEvidenceAtom["privacyClass"];
   freshness?: MssrEvidenceAtom["source"]["freshness"];
+  freshnessEvidence?: MssrEvidenceAtom["source"]["freshnessEvidence"];
   headingPath?: string[];
   range?: MssrEvidenceAtom["source"]["range"];
   reasonCodes?: string[];
@@ -225,11 +247,14 @@ export function evidenceAtomFromLibrarianCatalogRecord(args: {
       ref: record.normalizedSourceRef,
       ...(record.revision ? { revision: record.revision } : {}),
       freshness: args.freshness ?? "unknown",
+      ...(args.freshnessEvidence ? { freshnessEvidence: args.freshnessEvidence } : {}),
       ...(args.headingPath ? { headingPath: args.headingPath } : {}),
       ...(args.range ? { range: args.range } : {}),
     },
     provenance: {
       producer: record.provenance.producer,
+      sourceClass: args.sourceClass,
+      canonicalOwner: args.canonicalOwner,
       ...(record.provenance.host ? { host: record.provenance.host } : {}),
       ...(record.provenance.traceId ? { traceId: record.provenance.traceId } : {}),
       ...(args.projectKey ? { projectKey: args.projectKey } : {}),

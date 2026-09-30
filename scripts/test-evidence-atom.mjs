@@ -12,11 +12,14 @@ const base = {
     ref: "docs\\a.md",
     revision: "rev-001",
     freshness: "fresh",
+    freshnessEvidence: { canonicalOwner: "docs", ref: "docs\\a.md", revision: "rev-001", observedAt: "2026-09-29T12:00:00Z" },
     headingPath: ["Architecture", "Routing"],
     range: { startLine: 10, endLine: 18, startOffset: 120, endOffset: 420 },
   },
   provenance: {
     producer: "document-surface",
+    sourceClass: "canonical",
+    canonicalOwner: "docs",
     host: "bridge",
     traceId: "mssr-atom-trace-001",
     projectKey: "mssr",
@@ -49,7 +52,7 @@ const base = {
 };
 
 const atom = buildMssrEvidenceAtom(base);
-assert.equal(atom.schemaVersion, 1);
+assert.equal(atom.schemaVersion, 2);
 assert.match(atom.id, /^evidence-atom:[0-9a-f]{24}$/);
 assert.equal(atom.source.ref, "docs/a.md");
 assert.deepEqual(atom.reasonCodes, ["exact-section", "route-selected"]);
@@ -67,7 +70,7 @@ assert.equal(same.id, atom.id, "ordering of non-identity metadata must not chang
 
 const changedRevision = buildMssrEvidenceAtom({
   ...base,
-  source: { ...base.source, revision: "rev-002" },
+  source: { ...base.source, revision: "rev-002", freshnessEvidence: { ...base.source.freshnessEvidence, revision: "rev-002" } },
 });
 assert.notEqual(changedRevision.id, atom.id, "revision changes create a distinct evidence atom");
 
@@ -76,6 +79,10 @@ assert.equal(mssrEvidenceAtomSchema.safeParse({
   ...atom,
   source: { ref: "docs/a.md", freshness: "fresh", range: { startLine: 1, endLine: 2 } },
 }).success, false, "exact range refs require a source revision");
+assert.equal(mssrEvidenceAtomSchema.safeParse({ ...atom, source: { ...atom.source, freshnessEvidence: undefined } }).success, false, "freshness cannot be asserted without an exact observation");
+assert.equal(mssrEvidenceAtomSchema.safeParse({ ...atom, source: { ...atom.source, freshnessEvidence: { ...atom.source.freshnessEvidence, revision: "other" } } }).success, false, "freshness evidence must match the exact revision");
+assert.equal(mssrEvidenceAtomSchema.safeParse({ ...atom, attributes: { internalSummary: "private free form text" } }).success, false, "free-form strings cannot enter atom attributes");
+assert.equal(mssrEvidenceAtomSchema.safeParse({ ...atom, privacyClass: "sensitive-excluded" }).success, false, "sensitive-excluded inputs cannot be persisted as atoms");
 assert.equal(mssrEvidenceAtomSchema.safeParse({
   ...atom,
   usage: { ...atom.usage, selection: "skipped", consumed: true },
@@ -106,9 +113,12 @@ const catalog = catalogMssrLibrarianRecord({
 
 const projected = evidenceAtomFromLibrarianCatalogRecord({
   record: catalog,
+  sourceClass: "canonical",
+  canonicalOwner: "docs",
   authorityClass: "observed",
   privacyClass: "project-metadata",
   freshness: "fresh",
+  freshnessEvidence: { canonicalOwner: "docs", ref: "docs/a.md", revision: "rev-001", observedAt: "2026-09-29T12:00:00Z" },
   headingPath: ["Architecture", "Routing"],
   range: { startLine: 10, endLine: 18 },
   reasonCodes: ["librarian-ingress"],
@@ -125,9 +135,12 @@ assert.equal(Object.hasOwn(projected, "metadata"), false);
 
 const projectedAgain = evidenceAtomFromLibrarianCatalogRecord({
   record: catalog,
+  sourceClass: "canonical",
+  canonicalOwner: "docs",
   authorityClass: "observed",
   privacyClass: "project-metadata",
   freshness: "fresh",
+  freshnessEvidence: { canonicalOwner: "docs", ref: "docs/a.md", revision: "rev-001", observedAt: "2026-09-29T12:00:00Z" },
   headingPath: ["Architecture", "Routing"],
   range: { startLine: 10, endLine: 18 },
   reasonCodes: ["different-non-identity-reason"],

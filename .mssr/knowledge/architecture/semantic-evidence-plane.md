@@ -4,7 +4,7 @@ MSSR owns the portable semantic contract for turning bounded observable work evi
 
 ## Evidence atom and source boundary
 
-The common unit is a bounded `EvidenceAtom`: identity (`kind`, `subject`, project/trace/workflow/task when known), source/provenance (`sourceRef`, canonical owner, observed time, freshness, revision/hash, optional heading path and exact span), bounded semantic labels/reason codes, relation/evidence refs, classifier identity when applicable, lifecycle state (`selected`, `skipped`, `delivered`, `consumed`, later verification/outcome) and explicit authority/privacy class. Atoms point to source bytes instead of copying whole documents. Raw prompts, transcripts, secrets and private reasoning are excluded.
+The common unit is a bounded `EvidenceAtom`: identity (`kind`, `subject`, project/trace/workflow/task when known), source/provenance (`sourceRef`, source class, canonical owner, observed time, freshness, revision/hash, optional heading path and exact span), bounded semantic labels/reason codes, relation/evidence refs, classifier identity when applicable, lifecycle state (`selected`, `skipped`, `delivered`, `consumed`, later verification/outcome) and explicit authority/privacy class. EvidenceAtom v2 requires source class and canonical owner; `fresh` requires an observation with matching owner, normalized ref and revision plus timestamp. Unknown is the safe default. Atoms point to source bytes instead of copying whole documents. Raw prompts, transcripts, secrets and private reasoning are excluded.
 
 Human-authored `.md` stays the readable/versioned authority. High-volume atoms and indexes are reconstructable structured runtime data under host storage such as `.mssr/runtime`/SQLite/JSONL; storage format is not semantic authority. A workspace-level `D:\Dev\.mssr\runtime` projection may aggregate projects for discovery/maintenance only while preserving each original owner.
 
@@ -18,7 +18,7 @@ Eligible Markdown/skill sources may expose a revision-bound heading tree (`H1..H
 
 `Document Surface` is the portable technical primitive for revision-bound Markdown inspection. It derives metadata rather than copying source bodies: normalized revision, line/character/byte counts, H1-H6 hierarchy, parent/path identity, exact ranges, bounded hints/terms and section/block fingerprints. A later exact read must prove the same revision before materializing a range.
 
-`Librarian` is the transversal advisory catalog/ingress role over evidence producers. Each adapted producer crosses one common contract with namespace/kind, stable identity, source ref, optional revision/payload fingerprint, bounded normalized metadata and provenance. This layer does not replace the original canonical owner.
+`Librarian` is the transversal advisory catalog/ingress role over evidence producers. Each adapted producer crosses one common contract with namespace/kind, stable identity, source ref, optional revision/payload fingerprint, bounded normalized metadata and provenance. Common free-form/private-content keys are rejected at ingress, and every owning adapter must still provide a typed privacy-safe projection. This layer does not replace the original canonical owner.
 
 Structural duplication is deterministic and runs before Jev: `exact-record`, `same-source-revision`, `same-payload`, `same-metadata` and `identity-collision`. These classes require no semantic classifier. Different normalized fingerprints may still become semantic relation candidates, but only then may Jev or another semantic classifier review equivalence/overlap/support/contradiction/supersession. An uninstrumented producer is a coverage gap, not evidence that no duplicate exists.
 
@@ -30,7 +30,7 @@ Current producer adoption is incremental rather than a mass refactor. `document-
 
 ## Reduction, batching and semantic triage
 
-The intended pipeline is `observe -> normalize/Librarian ingress -> deterministic reduction -> dedupe/freshness -> group by subject/state -> optional semantic triage -> destination -> later feedback`. Cheap deterministic filtering runs first. Every drop/defer preserves a reason so later analysis can distinguish unseen, filtered, skipped, delivered and actually-used evidence.
+The intended pipeline is `observe -> normalize/Librarian ingress -> deterministic reduction -> dedupe/freshness -> group by subject/state -> optional semantic triage -> destination -> later feedback`. Cheap deterministic filtering runs first. Every drop/defer preserves a reason so later analysis can distinguish unseen, filtered, skipped, delivered and actually-used evidence. The Jev decision-provider contract is injectable in Semantic Curation and makes transport/credentials host-owned when selected; it is not yet wired to Librarian relation candidates.
 
 Independent subjects are independent semantic jobs with bounded concurrency, cache, budgets, timeout/failure policy and circuit breaking. Multiple questions about the exact same subject/state may share one call; unrelated targets are not packed into one state just to reduce requests.
 

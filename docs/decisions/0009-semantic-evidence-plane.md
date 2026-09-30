@@ -27,7 +27,7 @@ Define the **Semantic Evidence Plane** as an additive portable MSSR contract abo
 
 ### 1. Common evidence atom
 
-The portable unit is an `EvidenceAtom`. `EvidenceAtom v1` is now implemented as a strict bounded schema and preserves at least the following classes of fields when observable:
+The portable unit is an `EvidenceAtom`. `EvidenceAtom v2` is implemented as a strict bounded schema and preserves at least the following classes of fields when observable:
 
 ```text
 identity
@@ -59,7 +59,7 @@ boundaries
 
 An atom is normally a pointer plus bounded metadata, not a copy of the source body. A trace is not project truth; a heading index is not canonical authority; a model label is not verification.
 
-`EvidenceAtom v1` derives a stable content-addressed id from subject + normalized source/revision + provenance + fingerprints + dedupe identity. Semantic reason codes, usage state and small attributes are deliberately non-identity metadata so later selection/outcome observations do not rewrite the atom's stable identity. Exact heading/range refs require a source revision. Projection from a Librarian catalog record carries only compact refs/fingerprints plus explicitly selected primitive attributes; it never copies the full Librarian metadata payload.
+`EvidenceAtom v2` derives a stable content-addressed id from subject + normalized source/revision + provenance + fingerprints + dedupe identity. Semantic reason codes, usage state and small attributes are deliberately non-identity metadata so later selection/outcome observations do not rewrite the atom's stable identity. Exact heading/range refs require a source revision. A `fresh` label additionally requires an exact host observation matching canonical owner, normalized ref and revision with an observation timestamp; absent or mismatched proof is rejected. Sensitive-excluded atoms and free-form attribute strings are rejected. Projection from a Librarian catalog record carries only compact refs/fingerprints plus explicitly selected primitive attributes; it never copies the full Librarian metadata payload.
 
 ### 2. Human-readable authority remains Markdown; high-volume evidence is structured
 
@@ -254,6 +254,10 @@ The first inventory should cover, without requiring one storage format:
 - explicit user/host corrections and later verification evidence.
 
 Every producer class must declare what it can prove, what it cannot prove, retention/privacy rules and whether the source is canonical, observed, inferred or learned.
+
+## Implementation status update — 2026-09-30
+
+EvidenceAtom v2 and the injectable Jev decision-provider contract now exist in portable source. The Jev seam applies to semantic curation, batching, Project Context ref split and baseline verification; TypeSafe remains a deprecated compatibility fallback. This does not mean Librarian semantic relation candidates are connected to Jev, nor that R5 is complete. The Librarian ingress rejects common free-form/private-content keys and oversized strings, while every adapter remains responsible for its own typed privacy projection. Controlled historical benchmark results remain immutable; future-run rules are in `experiments/CONTROLLED_RUN_PROTOCOL.md`.
 
 ## Consequences
 
