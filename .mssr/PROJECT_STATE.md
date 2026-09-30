@@ -7,7 +7,20 @@ MSSR `0.2.93` adds bounded host-supplied Librarian search/fetch, typed content-a
 
 The rubric-matched live section run is exploratory: 48/51 action decisions for EvidenceAtom versus 45/51 for parent metadata, while lifecycle accuracy fell from 100% to 88.2%. The 51 requests repeat 17 sections; labels were not independently adjudicated. This does not establish a confidence cutoff. A separate evaluation note is indexed as mssr-jev-confidence-merge-evaluation and records public Jev benchmarks, the freshness/lifecycle hypothesis, a contradiction-aware confidence design, Librarian evidence retrieval, and a reversible synthesis/merge evaluation plan. MSSR 0.2.93 now exposes the bounded search/fetch, relation-review and synthesis-preview slice through MCP; it still has no global index, live provider benchmark, authenticated verifier boundary, or Bridge tool adoption.
 
-The canonical working tree is physically at D:\Dev\mssr; Git, .codex/config.toml, and project context identify D: as source. C:\Dev\mssr is a junction and remains the path stored by the Codex local-project registry. Keep the junction until that registry is migrated; deleting it now would leave the saved project path dangling. Previous inventory counts of 193 untracked and 43 modified files described the pre-integration state; those changes and experiment records are preserved in commits and D:\Dev\mssr-snapshots\pre-integration-20260930-01. The current main checkout is clean at dfb295653b2e3f0f2a6f0d25bb2bc5cbe9634962; a separate P7 reconciliation worktree still has its handoff file under .mssr/sessions/.
+### Live Jev provider check — 2026-09-30
+
+One bounded live attempt used `mssr_semantic_curation_project_review` with `mode=jev`, `persist=false`, at most two blocks and one pair. The connected TypeSafe path stopped at client configuration because `TYPESAFE_API_KEY` was absent; no Jev decision or usage result was returned. This is not a benchmark result. Next gate: configure the credential in the authorized MCP runtime, then repeat one isolated pair before any confidence calibration or benchmark claim.
+
+### Deferred Project Context budget review — 2026-09-30
+
+- **Status:** confirmed budget pressure; no semantic source defect established by this review.
+- **Evidence:** Project Context Health reported `mssr-architecture-core` at 4,811/5,000 bytes, `mssr-jev-confidence-merge-evaluation` at 12,297/10,000, and `mssr-jev-decision-model-use-cases` at 25,431/12,000.
+- **Impact:** the project remains in context-health `review`; selective Jev knowledge needs a deliberate budget/splitting review.
+- **Deferred because:** this task verified MCP/tool/provider boundaries, but size findings alone do not prove safe semantic split points.
+- **Next gate:** obtain the exact hash-addressed `mssr_project_modularization_plan`, review each proposed boundary against its canonical source, and preserve exact content and parent authority.
+- **Closure:** the resulting Project Context Health report has no `module-entry-budget-exceeded` finding for these entries and the project-context tests confirm the manifest still resolves the intended complete knowledge.
+
+The canonical working tree is physically at D:\Dev\mssr; Git, .codex/config.toml, and project context identify D: as source. C:\Dev\mssr is a junction and remains the path stored by the Codex local-project registry. Keep the junction until that registry is migrated; deleting it now would leave the saved project path dangling. Previous inventory counts of 193 untracked and 43 modified files described the pre-integration state; those changes and experiment records are preserved in commits and D:\Dev\mssr-snapshots\pre-integration-20260930-01. The earlier mainline reconciliation at dfb295653b2e3f0f2a6f0d25bb2bc5cbe9634962 and separate P7 reconciliation handoff under .mssr/sessions remain historical recovery evidence; the 0.2.93 feature and this follow-up are on branch codex/jev-confidence-merge-evaluation. Read Git status for its current tip and worktree state.
 
 ### Deferred path debt — Codex project registration
 
