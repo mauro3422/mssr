@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const MSSR_LIBRARIAN_COVERAGE_VERSION = 1 as const;
+export const MSSR_LIBRARIAN_COVERAGE_VERSION = 2 as const;
 
 export const MSSR_LIBRARIAN_PRODUCER_STATUSES = [
   "instrumented",
@@ -172,6 +172,7 @@ function gapMessage(entry: MssrLibrarianProducerCoverage): string {
 
 export function buildMssrLibrarianCoverageInventory(
   producers: readonly MssrLibrarianProducerCoverage[],
+  scopeKind: "complete-inventory" | "selected-producers" = "complete-inventory",
 ) {
   const entries = mssrLibrarianProducerCoverageBatchSchema.parse(producers)
     .slice()
@@ -223,12 +224,19 @@ export function buildMssrLibrarianCoverageInventory(
       optionalGaps: optionalGaps.length,
       uncoveredProducers: globallyUncovered.length,
       requiredCoverageComplete: requiredGaps.length === 0,
-      globalCoverageComplete: globallyUncovered.length === 0,
+      scopeCoverageComplete: globallyUncovered.length === 0,
+      globalCoverageComplete: scopeKind === "complete-inventory" && globallyUncovered.length === 0,
+    },
+    coverageScope: {
+      kind: scopeKind,
+      producerCount: entries.length,
+      complete: globallyUncovered.length === 0,
     },
     negativeClaimPolicy: {
       missingInstrumentationIsEvidenceOfAbsence: false as const,
       requiredScopeNegativeClaimAllowed: requiredGaps.length === 0,
-      globalNegativeClaimAllowed: globallyUncovered.length === 0,
+      scopeNegativeClaimAllowed: globallyUncovered.length === 0,
+      globalNegativeClaimAllowed: scopeKind === "complete-inventory" && globallyUncovered.length === 0,
       rule: "A no-match/no-duplicate result is scoped only to instrumented producers; missing or partial producer coverage must remain visible." as const,
     },
   };
@@ -482,7 +490,13 @@ export const MSSR_LIBRARIAN_PRODUCER_COVERAGE = mssrLibrarianProducerCoverageBat
 export function getMssrLibrarianCoverageInventory(ids?: readonly string[]) {
   if (!ids || ids.length === 0) return buildMssrLibrarianCoverageInventory(MSSR_LIBRARIAN_PRODUCER_COVERAGE);
   const requested = new Set(ids);
-  return buildMssrLibrarianCoverageInventory(MSSR_LIBRARIAN_PRODUCER_COVERAGE.filter((entry) => requested.has(entry.id)));
+  const known = new Set(MSSR_LIBRARIAN_PRODUCER_COVERAGE.map((entry) => entry.id));
+  const unknown = [...requested].filter((id) => !known.has(id));
+  if (unknown.length > 0) throw new Error(`Unknown Librarian producer id(s): ${unknown.sort().join(", ")}.`);
+  return buildMssrLibrarianCoverageInventory(
+    MSSR_LIBRARIAN_PRODUCER_COVERAGE.filter((entry) => requested.has(entry.id)),
+    "selected-producers",
+  );
 }
 
 export function getMssrLibrarianCoverageInventoryForHost(args: {
@@ -510,6 +524,11 @@ export function getMssrLibrarianCoverageInventoryForHost(args: {
   }
 
   const requested = args.ids && args.ids.length > 0 ? new Set(args.ids) : null;
+  if (requested) {
+    const known = new Set(MSSR_LIBRARIAN_PRODUCER_COVERAGE.map((entry) => entry.id));
+    const unknown = [...requested].filter((id) => !known.has(id));
+    if (unknown.length > 0) throw new Error(`Unknown Librarian producer id(s): ${unknown.sort().join(", ")}.`);
+  }
   const selectedBase = requested
     ? MSSR_LIBRARIAN_PRODUCER_COVERAGE.filter((entry) => requested.has(entry.id))
     : MSSR_LIBRARIAN_PRODUCER_COVERAGE;
@@ -523,7 +542,7 @@ export function getMssrLibrarianCoverageInventoryForHost(args: {
       note: `Host-scoped coverage for '${host}'. Portable/global coverage remains unchanged.`,
     };
   });
-  const inventory = buildMssrLibrarianCoverageInventory(effectiveEntries);
+  const inventory = buildMssrLibrarianCoverageInventory(effectiveEntries, requested ? "selected-producers" : "complete-inventory");
 
   return {
     ...inventory,

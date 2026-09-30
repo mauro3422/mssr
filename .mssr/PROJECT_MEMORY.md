@@ -1,5 +1,15 @@
 # MSSR project memory
 
+## Librarian coverage scope decision — 0.2.92
+
+Coverage completeness belongs to an explicit evaluated scope. A producer-filtered
+inventory may support a negative claim only within that selected scope; it must
+not claim global completeness. Unknown producer identifiers fail closed rather
+than silently shrinking the requested inventory. Host declarations and portable
+adapter tests establish contract coverage, not proof of observations from every
+live execution. This distinction should remain explicit in future atom benchmarks
+and host adoption reviews.
+
 ## First-party context proportionality decision
 
 Read-only history/integrity/Git inspection does not imply persistence; close

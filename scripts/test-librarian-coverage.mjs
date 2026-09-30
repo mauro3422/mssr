@@ -11,7 +11,7 @@ import {
 } from "../dist/index.js";
 
 const inventory = getMssrLibrarianCoverageInventory();
-assert.equal(inventory.schemaVersion, 1);
+assert.equal(inventory.schemaVersion, 2);
 assert.equal(inventory.advisoryOnly, true);
 assert.equal(inventory.canonicalRewriteAllowed, false);
 assert.equal(inventory.jevRequired, false);
@@ -181,7 +181,12 @@ const filtered = getMssrLibrarianCoverageInventory(["document-surface", "route-r
 assert.deepEqual(filtered.entries.map((entry) => entry.id), ["document-surface", "route-replan"]);
 assert.equal(filtered.summary.requiredGaps, 0);
 assert.equal(filtered.negativeClaimPolicy.requiredScopeNegativeClaimAllowed, true);
-assert.equal(filtered.negativeClaimPolicy.globalNegativeClaimAllowed, true);
+assert.equal(filtered.summary.scopeCoverageComplete, true);
+assert.equal(filtered.summary.globalCoverageComplete, false, "filtered producer coverage must not be labeled global");
+assert.equal(filtered.coverageScope.kind, "selected-producers");
+assert.equal(filtered.negativeClaimPolicy.scopeNegativeClaimAllowed, true);
+assert.equal(filtered.negativeClaimPolicy.globalNegativeClaimAllowed, false);
+assert.throws(() => getMssrLibrarianCoverageInventory(["unknown-producer"]), /Unknown Librarian producer/i);
 
 const bridgeHostDeclaration = {
   schemaVersion: 1,
@@ -210,7 +215,9 @@ const bridgeScopedHostCoverage = getMssrLibrarianCoverageInventoryForHost({
 assert.equal(bridgeScopedHostCoverage.entries[0].status, "instrumented");
 assert.equal(bridgeScopedHostCoverage.entries[0].adapterRef, "src/librarian-host-runtime-adapter.ts");
 assert.equal(bridgeScopedHostCoverage.summary.conditionalGaps, 0);
-assert.equal(bridgeScopedHostCoverage.summary.globalCoverageComplete, true);
+assert.equal(bridgeScopedHostCoverage.summary.scopeCoverageComplete, true);
+assert.equal(bridgeScopedHostCoverage.summary.globalCoverageComplete, false, "one host producer does not establish global host coverage");
+assert.equal(bridgeScopedHostCoverage.negativeClaimPolicy.globalNegativeClaimAllowed, false);
 assert.equal(bridgeScopedHostCoverage.hostScope.host, "bridge-mcp");
 assert.equal(bridgeScopedHostCoverage.hostScope.portableInventoryUnchanged, true);
 assert.equal(bridgeScopedHostCoverage.hostScope.canonicalRewriteAllowed, false);
@@ -238,6 +245,7 @@ const bridgeScopedFullCoverage = getMssrLibrarianCoverageInventoryForHost({
 });
 assert.equal(bridgeScopedFullCoverage.summary.requiredGaps, 0);
 assert.equal(bridgeScopedFullCoverage.summary.conditionalGaps, 1, "only git/filesystem partial coverage should remain in this host scope");
+assert.equal(bridgeScopedFullCoverage.summary.globalCoverageComplete, false);
 assert.deepEqual(bridgeScopedFullCoverage.gaps.map((gap) => gap.producerId), ["git-filesystem-revisions"]);
 
 assert.equal(mssrLibrarianHostCoverageDeclarationSchema.safeParse({
@@ -255,6 +263,11 @@ assert.throws(() => getMssrLibrarianCoverageInventoryForHost({
 assert.throws(() => getMssrLibrarianCoverageInventoryForHost({
   host: "bridge-mcp",
   declarations: [{ ...bridgeHostDeclaration, producerId: "unknown-producer" }],
+}), /Unknown Librarian producer/i);
+assert.throws(() => getMssrLibrarianCoverageInventoryForHost({
+  host: "bridge-mcp",
+  declarations: [],
+  ids: ["unknown-producer"],
 }), /Unknown Librarian producer/i);
 assert.throws(() => getMssrLibrarianCoverageInventoryForHost({
   host: "bridge-mcp",

@@ -164,6 +164,7 @@ assert.equal(portableCoverage.entries[0].adapterRef, "src/librarian-host-runtime
 assert.equal(portableCoverage.summary.conditionalGaps, 1);
 assert.equal(portableCoverage.gaps[0].code, "conditional-producer-partial");
 assert.equal(portableCoverage.negativeClaimPolicy.globalNegativeClaimAllowed, false);
+assert.equal(portableCoverage.negativeClaimPolicy.scopeNegativeClaimAllowed, false);
 
 const bridgeCoverage = getMssrLibrarianCoverageInventoryForHost({
   host: "bridge-mcp",
@@ -185,6 +186,8 @@ const bridgeCoverage = getMssrLibrarianCoverageInventoryForHost({
 });
 assert.equal(bridgeCoverage.entries[0].status, "instrumented");
 assert.equal(bridgeCoverage.summary.conditionalGaps, 0);
-assert.equal(bridgeCoverage.negativeClaimPolicy.globalNegativeClaimAllowed, true);
+assert.equal(bridgeCoverage.summary.scopeCoverageComplete, true);
+assert.equal(bridgeCoverage.negativeClaimPolicy.scopeNegativeClaimAllowed, true);
+assert.equal(bridgeCoverage.negativeClaimPolicy.globalNegativeClaimAllowed, false);
 
 console.log("librarian host runtime adapter tests passed");

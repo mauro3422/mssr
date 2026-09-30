@@ -1,9 +1,13 @@
 # MSSR project state
 
 ## Current release
-MSSR `0.2.91` is locally packaged and passed full `npm run verify` on build `mssr-build:sha256:4aa3c3c9a9258b34`. Its changes add EvidenceAtom v2 provenance/freshness checks, an injectable Jev host-provider boundary, and controlled benchmark-run rules. Librarian semantic relation triage remains unimplemented. Local tarball `mauroprime-mssr-0.2.91.tgz` is 1,007,278 bytes with SHA-256 `3f39da2448fc8dea7cd375b0054f7991b9d16bc718e6cc41cf2cb71778fdc28c` and integrity `sha512-paOAF2qI3bFJAb40+dfz9pL6eRhpJCb6sF9MhlrElfP6PnE2+tgVyrTzzWJCj0kfC4VDrjyUnOMgp6HPW1GjJA==`; its manifest is at `D:\Dev\mssr-snapshots\release-0.2.91-20260930\MANIFEST.json`. No npm publication or 0.2.91 host adoption is claimed. The `0.2.89` artifact `pkg:0.2.89#b362ba6f` remains the latest locally adopted Bridge artifact. Bridge `0.6.141` has adopted the exact 0.2.89 artifact on live boot `7f47d4d5-f21a-49b8-8a3b-7a40120553e8`; health/readiness and its 180-tool catalog are green, and the post-adoption HTTP smoke passes. MSSR `0.2.89` adds structured optional-skill redundancy evidence (`relatedSkillName`) plus bounded review-only `skill-overlap` and `skill-domain-mismatch` maintenance candidates after repeated distinct-trace feedback; legacy redundancy without an exact peer remains ambiguous. These candidates never change scores, `loadOrder`, routing relations, skill files or catalog state automatically. Semantic Experience remains observe/shadow-only and its fallback promotion gate is unchanged: at least 24 independently verified held-out decisions across 4 projects, precision >= 0.95, coverage >= 0.25 and zero wrong fallback decisions. Independently verified evidence is still insufficient, so fallback promotion remains blocked. No npm registry publication is claimed.
+MSSR `0.2.92` is locally packaged and passed full `npm run verify` on build `mssr-build:sha256:1f537b23769e1e6e` (117 files / 1,288,002 bytes): typecheck, full test suite, cross-host conformance, and read-only skill audit with no warnings/blockers. Local tarball `mauroprime-mssr-0.2.92.tgz` is 1,008,360 bytes, SHA-256 `d07b9233d609cce3952498dbfd60804906705c9f5e342895174e15a1388e1479`, integrity `sha512-yhkjXFD3idkf3DPVrVAe7envkzgLwqfK0RsEk9h8ST445RoS06jUccSQavLWKqMIyDLdDEyzk7dqtFxB8A+NAw==`; manifest: `D:\Dev\mssr-snapshots\release-0.2.92-20260930\MANIFEST.json`. It corrects Librarian Coverage v2 scope reporting: filtered producer inventories can support only selected-scope completeness, global completeness is reserved for the entire evaluated inventory, and unknown producer ids fail explicitly. It also clarifies that EvidenceAtom freshness is caller-asserted structural evidence and adapter tests/declarations do not prove live host emissions. The configured npm registry returned 404 for `@mauroprime/mssr`; no registry publication or Bridge adoption of 0.2.92 is claimed. The preceding 0.2.91 package and manifest remain recoverable at `D:\Dev\mssr-snapshots\release-0.2.91-20260930\MANIFEST.json`; its full verify passed on build `mssr-build:sha256:4aa3c3c9a9258b34`. Bridge `0.6.141` remains on adopted MSSR `0.2.89` artifact `pkg:0.2.89#b362ba6f` (boot `7f47d4d5-f21a-49b8-8a3b-7a40120553e8`). Semantic Experience remains observe/shadow-only and its promotion gate remains blocked pending independently verified held-out evidence.
 
 ## R5 foundation — 2026-09-29
+
+## 0.2.92 implementation close review — 2026-09-30
+
+Coverage-map review found that a filtered producer inventory could inherit `globalCoverageComplete=true`; it also found architecture prose stale relative to the 14-family registry and overbroad implications around freshness/privacy. Coverage v2 now labels full versus selected scope, prevents global negative claims from subsets, and rejects unknown ids. The map records the current adapter counts and the distinction between portable tested declarations and live host observations. Full `npm run verify` passed on build `mssr-build:sha256:1f537b23769e1e6e`. The recovered `({id` default stream is empty, but its `v.producerId` NTFS alternate stream contains 69,385 bytes of source references; the stream and a hashed text recovery copy are retained in the external quarantine manifest pending a separate deletion decision.
 
 ## 0.2.91 implementation close review — 2026-09-30
 
@@ -21,7 +25,7 @@ The near-term reliability program remains explicit in `ROADMAP.md`. **R1 Trace I
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.91 -->
+<!-- mssr-version:mssr.source=0.2.92 -->
 <!-- mssr-version:bridge.live=0.6.141 -->
 <!-- mssr-version:bridge.mssr=0.2.89 -->
 <!-- mssr-owner:semantic.consistency=mssr -->

@@ -10,6 +10,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.92](0.2.92.md) - scope Librarian coverage claims correctly for filtered inventories, reject unknown producer selections, and clarify EvidenceAtom/host-adapter evidence limits.
 - [0.2.91](0.2.91.md) - require provenance and exact observation for fresh EvidenceAtoms, harden metadata ingress, and add an injectable host-owned Jev transport contract; define controlled benchmark runs.
 - [0.2.90](0.2.90.md) - Scope same-source-revision duplicate detection to matching evidence granularity and payload, so distinct sections in one document are not false duplicates.
 - [0.2.89](0.2.89.md) - Turn repeated optional-skill feedback into bounded maintenance candidates and establish the first R5 Semantic Evidence Plane foundations: revision-bound Document Surface, deterministic Librarian dedupe, and explicit producer-coverage gaps that block unsafe global negative claims.
