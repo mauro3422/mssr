@@ -1,11 +1,11 @@
 # MSSR project state
 
 ## Current release
-MSSR `0.2.94` is a project-context, dependency-maintenance, and test-readiness release over `0.2.93`; it changes no portable decision logic. Exact Jev document sections are selectively indexed while their source documents and historical evidence stay intact. Full `npm run verify` passed locally on Node 24.16.0 / npm 10.9.9. The build receipt is `mssr-build:sha256:cfaaa9b0f9ad1977` (122 files / 1,365,461 bytes); `npm pack --dry-run --json` passed for 566 entries. The lockfile now resolves `fast-uri` 3.1.8, `hono` 4.13.12, `ip-address` 10.7.2, and `qs` 6.16.0; `npm audit` reports 0 vulnerabilities. OpenCode tests emitted the known best-effort Windows ACL warning; all verification gates passed. The local post-restart check confirmed Bridge `0.6.142` consuming MSSR `0.2.93`; this local host adoption is distinct from npm registry publication, which remains unclaimed after the configured registry returned 404. MSSR `0.2.93` added bounded host-supplied Librarian search/fetch, typed content-addressed semantic judgments, component-isolated Jev relation batches, and exact-source reversible synthesis previews. Its original full verification passed with the same build hash (122 files / 1,365,461 bytes), and `npm pack --dry-run --json` passed for 565 files (1,046,628 compressed / 6,127,189 unpacked bytes). The `0.2.92` package remains recoverable at `D:\Dev\mssr-snapshots\release-0.2.92-20260930\MANIFEST.json` (build `mssr-build:sha256:1f537b23769e1e6e`, full verify passed). Semantic Experience remains observe/shadow-only and its promotion gate remains blocked pending independently verified held-out evidence.
+MSSR `0.2.95` adds an explicit bounded Jev heading selector to the Librarian MCP surface while leaving deterministic search unchanged. On Node 24.16.0 / npm 10.9.9, `npm run verify` and `npm run release:gate` pass; the full suite includes the Jev selector MCP regression, cross-host conformance and read-only skill audit. OpenCode emitted its known best-effort Windows ACL warning; no gate failed. Build receipt: `mssr-build:sha256:600d0d72f5186a58` (123 files / 1,377,442 bytes). The release gate produced `mauroprime-mssr-0.2.95.tgz` (1,053,564 bytes; SHA-256 `53a563851fb503169c4a4db7057141d0ff55e8089790a1c2273be6d7092a7eb5`, alias `pkg:0.2.95#53a56385`) and wrote its local receipt under ignored `.mssr/runtime/releases/0.2.95.json`; this is a local package artifact, not npm publication. The local post-restart check still confirms Bridge `0.6.142` consuming MSSR `0.2.93`; this source release does not claim Bridge 0.2.95 adoption. MSSR `0.2.94` passed full verification and patched four compatible transitive dependency advisories; its historical receipt is `mssr-build:sha256:cfaaa9b0f9ad1977`. The `0.2.93` package added bounded host-supplied Librarian search/fetch, typed content-addressed semantic judgments, component-isolated Jev relation batches, and exact-source reversible synthesis previews. Public npm publication remains unclaimed after the configured registry returned 404. The `0.2.92` package remains recoverable at `D:\Dev\mssr-snapshots\release-0.2.92-20260930\MANIFEST.json` (build `mssr-build:sha256:1f537b23769e1e6e`, full verify passed). Semantic Experience remains observe/shadow-only and its promotion gate remains blocked pending independently verified held-out evidence.
 
 ## Jev evaluation and path alignment — 2026-09-30
 
-The rubric-matched live section run remains historical and exploratory: 48/51 action decisions for EvidenceAtom versus 45/51 for parent metadata, while lifecycle accuracy fell from 100% to 88.2%. The 51 requests repeat 17 sections; labels were not independently adjudicated. This does not establish a confidence cutoff, and these archived values are not being changed or used to drive runtime behavior. The current architecture and historical evaluation evidence now load through separate entries, `mssr-jev-confidence-merge-evaluation` and `mssr-jev-confidence-benchmark-history`. MSSR 0.2.93 exposes bounded search/fetch, relation review, and synthesis preview through MCP. A local Bridge 0.6.142 post-restart smoke adopted 0.2.93; it is not a live benchmark, confidence calibration, or public npm publication. MSSR still has no global index or authenticated verifier boundary.
+The rubric-matched live section run remains historical and exploratory: 48/51 action decisions for EvidenceAtom versus 45/51 for parent metadata, while lifecycle accuracy fell from 100% to 88.2%. The 51 requests repeat 17 sections; labels were not independently adjudicated. This does not establish a confidence cutoff, and these archived values are not being changed or used to drive runtime behavior. The current architecture and historical evaluation evidence now load through separate entries, `mssr-jev-confidence-merge-evaluation` and `mssr-jev-confidence-benchmark-history`. MSSR 0.2.93 exposes bounded search/fetch, relation review, and synthesis preview through MCP; 0.2.95 adds an explicitly invoked heading-choice tool. The local Bridge 0.6.142 post-restart smoke adopted only 0.2.93; it is not evidence of 0.2.95 adoption, a confidence calibration, or public npm publication. MSSR still has no global index or authenticated verifier boundary.
 
 ### Live Jev provider check — 2026-09-30
 
@@ -78,6 +78,23 @@ larger corpora may exceed Jev's 255-choice limit and require an evaluated
 hierarchical selector or a higher-recall shortlist. Next, obtain independently
 adjudicated multi-answer section labels and evaluate exact fetch plus
 citation-faithful synthesis before an end-to-end shadow integration decision.
+
+### Live MCP Jev selection smoke — 2026-09-30
+
+The compiled MSSR 0.2.95 MCP handler was connected to an in-memory MCP client
+and the real TypeSafe Jev provider. One Spanish question was sent with the
+frozen 21-document corpus and all 200 heading sections plus `none`. Jev
+selected the expected heading `Evidence atom and source boundary` in
+`.mssr/knowledge/architecture/semantic-evidence-plane.md`. A second MCP call
+used the returned handle to exact-fetch the frozen source; the fingerprint
+matched. The one selection reported 18,192 input / 2,027 output tokens,
+confidence 0.79 (uncalibrated), and 5,670.1 ms latency. The expected target
+label was double-reviewed by Lunas, not approved by the human document owner.
+This verifies MCP/provider/fetch wiring for one case only; it is not a quality
+estimate, compaction/paragraph-synthesis test, production Bridge adoption, or
+authority to rerank search. The search tool remains deterministic. The run's
+manifest, score, report and SHA256SUMS are under
+`experiments/jev-mssr-live/runs/mssr-librarian-jev-mcp-selector-smoke-20260930-v1/`.
 
 ### Jev Project Context budget review — 2026-09-30
 

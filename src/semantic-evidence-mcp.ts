@@ -18,12 +18,18 @@ import {
   buildMssrSemanticSynthesisProposal,
   mssrSemanticSynthesisSourceEvidenceSchema,
 } from "./semantic-synthesis-proposal.js";
+import {
+  MSSR_LIBRARIAN_JEV_SELECTION_LIMITS,
+  mssrLibrarianJevSelectInputSchema,
+  selectMssrLibrarianEvidenceWithJev,
+} from "./librarian-jev-selection.js";
 
 export const MSSR_SEMANTIC_EVIDENCE_TOOL_NAMES = [
   "mssr_librarian_search",
   "mssr_librarian_fetch",
   "mssr_semantic_evidence_relation_review",
   "mssr_semantic_evidence_synthesis_preview",
+  "mssr_librarian_jev_select",
 ] as const;
 
 export const mssrLibrarianSearchToolInputSchema = z.object({
@@ -84,4 +90,12 @@ export function registerMssrSemanticEvidenceTools(server: McpServer, options: Ms
     description: "Build an immutable exact-text preview from caller-supplied snapshots. MSSR validates internal hashes/bindings but cannot authenticate verifier evidence or prove that source revisions are still current; both are explicitly marked caller-asserted, and the host must re-read sources before consuming a candidate. Contradictions, unknown comparability, non-fresh sources and unverified judgments stay review-only. Never writes or applies canonical changes.",
     inputSchema: mssrSemanticEvidenceSynthesisPreviewToolInputSchema,
   }, async (args) => response(buildMssrSemanticSynthesisProposal(args)));
+
+  server.registerTool(MSSR_SEMANTIC_EVIDENCE_TOOL_NAMES[4], {
+    description: `Explicitly select one heading from caller-supplied Markdown with a live Jev Choice call. Offers at most ${MSSR_LIBRARIAN_JEV_SELECTION_LIMITS.maxHeadingCandidates} exact heading candidates plus a none option and returns an advisory revision-bound handle. The caller must re-read it with mssr_librarian_fetch and independently apply source authorization, privacy and verification policy. It does not search the filesystem, return full section text, establish truth, generate prose or write canonical sources.`,
+    inputSchema: mssrLibrarianJevSelectInputSchema,
+  }, async (args) => {
+    const provider = options.decisionProvider ?? new MssrJevSemanticCuratorProvider(args.model ? { model: args.model } : {}).decisionProvider;
+    return response(await selectMssrLibrarianEvidenceWithJev(args, provider));
+  });
 }
