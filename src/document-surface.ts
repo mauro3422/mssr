@@ -255,7 +255,8 @@ function boundedHint(text: string, kind: MssrDocumentSurfaceBlockKind, maxChars:
 
 function termsFor(text: string): string[] {
   const counts = new Map<string, number>();
-  for (const token of text.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").match(/[a-z0-9][a-z0-9_-]{2,}/g) ?? []) {
+  const normalized = Array.from(text.toLowerCase().normalize("NFC"), (point) => point === "ñ" ? point : point.normalize("NFKD").replace(/[\u0300-\u036f]/g, "")).join("");
+  for (const token of normalized.match(/[\p{L}\p{N}][\p{L}\p{N}_-]{2,}/gu) ?? []) {
     if (STOP_WORDS.has(token) || /^\d+$/.test(token)) continue;
     counts.set(token, (counts.get(token) ?? 0) + 1);
   }

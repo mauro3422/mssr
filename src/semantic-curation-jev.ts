@@ -404,8 +404,13 @@ function createTypeSafeDecisionProvider(options: MssrJevSemanticCuratorOptions, 
           ...(request.model ? { model: request.model } : {}),
         });
         const answers = Object.fromEntries(Object.entries(response.answers).map(([key, answer]) => {
-          const value = answer as { type?: string; choice?: string; confidence?: number; noul?: number };
-          if (value.type === "choice") return [key, { type: "choice", choice: value.choice, confidence: value.confidence }];
+          const value = answer as { type?: string; choice?: string; confidence?: number; probabilities?: Record<string, number>; noul?: number };
+          if (value.type === "choice") return [key, {
+            type: "choice",
+            choice: value.choice,
+            confidence: value.confidence,
+            ...(value.probabilities ? { probabilities: value.probabilities } : {}),
+          }];
           if (value.type === "noul") return [key, { type: "noul", noul: value.noul }];
           throw new Error(`TypeSafe Jev returned an unsupported answer for '${key}'.`);
         }));

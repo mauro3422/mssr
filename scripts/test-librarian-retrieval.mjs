@@ -73,4 +73,24 @@ assert.equal(found.results[0].catalogProvenanceIsCallerAsserted, true, "catalog 
 assert.throws(() => searchMssrLibrarianEvidence({ documents: [{ ...doc, searchableMetadata: { note: "private summary" } }], query: { query: "routing" } }), /sensitive content/i);
 assert.throws(() => searchMssrLibrarianEvidence({ documents: [{ ...doc, markdown: "line\n".repeat(50_001) }], query: { query: "line" } }), /lines/i);
 
+const spanishLanguageDoc = {
+  owner,
+  sourceRef: "docs/spanish-language.md",
+  markdown: "# Año y señal\n\n## Señal del año\n\nLa señal conserva el año y el café.\n",
+  privacyClass: "project-metadata",
+};
+const spanishMatches = searchMssrLibrarianEvidence({ documents: [spanishLanguageDoc], query: { query: "señal año cafe" } });
+assert.ok(spanishMatches.results.some((item) => item.title === "Señal del año"), "Spanish ñ, accented vowels, and ASCII query variants are tokenized consistently");
+assert.equal(searchMssrLibrarianEvidence({ documents: [spanishLanguageDoc], query: { query: "ano" } }).results.length, 0, "ñ must remain distinct from n so año cannot falsely match ano");
+
+const decomposedSpanishDoc = {
+  owner,
+  sourceRef: "docs/decomposed-spanish.md",
+  markdown: `# Información\n\n## Año fiscal\n\n${"Contexto general sin el término buscado. ".repeat(18)}La verificación del an\u0303o fiscal requiere contrastar la evidencia original.`,
+  privacyClass: "project-metadata",
+};
+const decomposedSpanishMatch = searchMssrLibrarianEvidence({ documents: [decomposedSpanishDoc], query: { query: "verificación del año fiscal", maxSnippetChars: 100 } }).results.find((item) => item.handle.rangeKind === "block");
+assert.ok(decomposedSpanishMatch, "composed query ñ should match an n plus combining tilde in source text");
+assert.ok(decomposedSpanishMatch.snippet.includes("an\u0303o fiscal"), "the source-offset map should center snippets on a decomposed ñ without rewriting source text");
+
 console.log("librarian retrieval tests passed");

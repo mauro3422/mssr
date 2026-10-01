@@ -10,6 +10,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.97](0.2.97.md) - preserve and validate Jev Choice distributions for hierarchical top-two shortlists; normalize composed/decomposed Unicode for retrieval and query-centered excerpts; keep confidence uncalibrated and host authorization unchanged.
 - [0.2.96](0.2.96.md) - let Jev selection consume exact search handles with revision/privacy/fingerprint checks and bounded query-centered excerpts; retain heading-mode compatibility and uncalibrated advisory confidence.
 - [0.2.95](0.2.95.md) - add a separate bounded Jev Choice tool for selecting exact Librarian sections; keep deterministic search unchanged and confidence uncalibrated.
 - [0.2.94](0.2.94.md) - split Jev knowledge into section-scoped context modules, correct superseded adoption/handoff status, and document the reproducible full verification gate without changing historical benchmark evidence.

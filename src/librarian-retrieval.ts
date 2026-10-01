@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { z } from "zod";
 import { buildMssrMarkdownDocumentSurface, type MssrDocumentSurface, type MssrDocumentSurfaceBlock, type MssrDocumentSurfaceHeading } from "./document-surface.js";
 import { catalogMssrLibrarianRecord, mssrLibrarianIngressRecordSchema, type MssrLibrarianCatalogRecord, type MssrLibrarianIngressRecord } from "./librarian-contract.js";
+import { foldMssrLibrarianSearchText, foldMssrLibrarianSearchTextWithSourceOffsets } from "./librarian-text-normalization.js";
 
 export const MSSR_LIBRARIAN_RETRIEVAL_LIMITS = {
   queryChars: 500,
@@ -74,27 +75,11 @@ export type MssrLibrarianRetrievalResult = {
 
 function sha256(value: string): string { return createHash("sha256").update(value, "utf8").digest("hex"); }
 function normalizeRef(value: string): string { return value.trim().replace(/\\/g, "/").replace(/\/{2,}/g, "/"); }
-function normalizedText(value: string): string { return value.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, ""); }
-function tokens(value: string): string[] { return [...new Set(normalizedText(value).match(/[a-z0-9][a-z0-9_-]{1,}/g) ?? [])]; }
-function normalizedWithSourceOffsets(text: string): { normalized: string; starts: number[]; ends: number[] } {
-  let normalized = "";
-  const starts: number[] = [];
-  const ends: number[] = [];
-  let sourceOffset = 0;
-  for (const point of text) {
-    const folded = point.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
-    normalized += folded;
-    for (let index = 0; index < folded.length; index += 1) {
-      starts.push(sourceOffset);
-      ends.push(sourceOffset + point.length);
-    }
-    sourceOffset += point.length;
-  }
-  return { normalized, starts, ends };
-}
+function foldSearchText(value: string): string { return foldMssrLibrarianSearchText(value); }
+function tokens(value: string): string[] { return [...new Set(foldSearchText(value).match(/[\p{L}\p{N}][\p{L}\p{N}_-]{1,}/gu) ?? [])]; }
 function boundedSnippet(text: string, terms: readonly string[], maxChars: number): string {
   const flat = text.replace(/\s+/g, " ").trim();
-  const folded = normalizedWithSourceOffsets(flat);
+  const folded = foldMssrLibrarianSearchTextWithSourceOffsets(flat);
   const first = terms.map((term) => folded.normalized.indexOf(term)).filter((at) => at >= 0).sort((a, b) => a - b)[0];
   const sourceHit = first === undefined ? 0 : folded.starts[first] ?? 0;
   const points = Array.from(flat);
