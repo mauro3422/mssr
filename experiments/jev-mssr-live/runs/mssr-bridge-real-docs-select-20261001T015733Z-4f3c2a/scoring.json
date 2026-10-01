@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-bridge-real-docs-select-20261001T015733Z-4f3c2a",
+  "cases": [
+    {
+      "caseId": "exact-read-revision-check",
+      "expectedStatus": "selected",
+      "expectedSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "expectedTitle": "Document Surface and Librarian contract",
+      "observedStatus": "selected",
+      "observedSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "observedTitle": "Document Surface and Librarian contract",
+      "exactTargetMatch": true,
+      "exactFetchPassed": true
+    },
+    {
+      "caseId": "raw-confidence-calibration-policy",
+      "expectedStatus": "selected",
+      "expectedSourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "expectedTitle": "Confidence and merge policy",
+      "observedStatus": "selected",
+      "observedSourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "observedTitle": "Confidence and merge policy",
+      "exactTargetMatch": true,
+      "exactFetchPassed": true
+    },
+    {
+      "caseId": "unrelated-blender-question",
+      "expectedStatus": "abstained",
+      "expectedSourceRef": null,
+      "expectedTitle": null,
+      "observedStatus": "abstained",
+      "observedSourceRef": null,
+      "observedTitle": null,
+      "exactTargetMatch": true,
+      "exactFetchPassed": null
+    }
+  ]
+}
