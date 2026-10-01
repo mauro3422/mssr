@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "snapshotId": "mssr-semantic-evidence-docs-20261001",
+  "sources": [
+    {
+      "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "snapshotPath": "inputs/corpus/semantic-evidence-plane.md",
+      "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+      "sha256": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+      "bytes": 13354,
+      "privacyClass": "project-metadata"
+    },
+    {
+      "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+      "snapshotPath": "inputs/corpus/0009-semantic-evidence-plane.md",
+      "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+      "sha256": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+      "bytes": 24777,
+      "privacyClass": "project-metadata"
+    }
+  ]
+}

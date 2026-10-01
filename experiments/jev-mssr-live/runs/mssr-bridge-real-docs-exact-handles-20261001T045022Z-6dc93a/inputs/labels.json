@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "source": "author",
+  "adjudication": "none",
+  "exposedToRequests": false,
+  "labels": [
+    {
+      "caseId": "selector_validation",
+      "expectedHandleId": "47bd02a66e9e56c3228f05622dd481d29c768d73723bad3ea9424085c47fe4f2",
+      "basis": "ADR 0009 block-26 lines 105: owner, source, revision, privacy, exact range and fingerprint are validated."
+    },
+    {
+      "caseId": "negative_coverage",
+      "expectedHandleId": "ea1f4869e065b8f0992b1562278daca3cd6d3395a324275fcbbff76e9721c512",
+      "basis": "ADR 0009 block-32 lines 119-127: negative result is valid only with complete evaluated-scope coverage."
+    },
+    {
+      "caseId": "contradiction_preview",
+      "expectedHandleId": "5be6e561a5e7c93c8e19260f41c700f7b888f7217d6b24d35d47a9bd77bdafab",
+      "basis": "Semantic Evidence Plane block-12 line 33: contradictory, unresolved, non-comparable, non-fresh or unverified evidence cannot enter a consolidation preview."
+    }
+  ]
+}
