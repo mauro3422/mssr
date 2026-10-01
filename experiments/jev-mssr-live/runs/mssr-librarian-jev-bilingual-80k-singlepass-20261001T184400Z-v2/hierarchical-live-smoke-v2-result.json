@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-jev-hierarchical-live-smoke-80k-20261001T184400Z-v2",
+  "status": "pass",
+  "failureClass": null,
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "syntheticOnly": true,
+  "sourceLabelFileRead": false,
+  "corpusDocuments": 1,
+  "catalogHeadings": 261,
+  "queries": 2,
+  "providerCalls": 6,
+  "records": [
+    {
+      "language": "en",
+      "status": "selected",
+      "selectionMode": "hierarchical",
+      "candidateCount": 261,
+      "finalistCount": 4,
+      "providerCalls": 3,
+      "retainedFinalistCounts": [
+        2,
+        2
+      ],
+      "localBatchCount": 2,
+      "selectedTitle": "Exact source fingerprint protects deep evidence retrieval",
+      "selectedSourceRef": "experiments/fixtures/jev-bilingual-hierarchical-smoke.md",
+      "selectedRangeId": "heading-261",
+      "selectedExactTarget": true,
+      "choiceConfidence": 1,
+      "evidenceSufficiency": 0.92,
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "exactFetch": "passed",
+      "requestFingerprint": "7cc5b0c182cd4ded88fc2aef9fa0568a8197c3ca1c8ae1a2c919b937581bc4fd",
+      "usage": {
+        "input_tokens": 38140,
+        "output_tokens": 2777
+      },
+      "elapsedMs": 1321.1
+    },
+    {
+      "language": "es",
+      "status": "selected",
+      "selectionMode": "hierarchical",
+      "candidateCount": 261,
+      "finalistCount": 4,
+      "providerCalls": 3,
+      "retainedFinalistCounts": [
+        2,
+        2
+      ],
+      "localBatchCount": 2,
+      "selectedTitle": "Exact source fingerprint protects deep evidence retrieval",
+      "selectedSourceRef": "experiments/fixtures/jev-bilingual-hierarchical-smoke.md",
+      "selectedRangeId": "heading-261",
+      "selectedExactTarget": true,
+      "choiceConfidence": 1,
+      "evidenceSufficiency": 0.89,
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "exactFetch": "passed",
+      "requestFingerprint": "4b6d3e408e67d584097a65f03773e561f2fcec58217868919aa50b6479cb7f64",
+      "usage": {
+        "input_tokens": 38179,
+        "output_tokens": 2777
+      },
+      "elapsedMs": 1246.8
+    }
+  ],
+  "launcherMissingCredentialNotice": false,
+  "rawVendorHttpBodiesPersisted": false,
+  "credentialValuePersisted": false,
+  "sourceSha256": "7abb2945b14c91d9a10bfebdfa5149b79dbf74e8b26cbf17bec354967ab691cc",
+  "distSha256": "0b0de2a0c65e26f4e674c93e897f5f3a71645c57f819e1c2dbfe9d8faebe3a6d"
+}

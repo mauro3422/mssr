@@ -1,0 +1,546 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-jev-bilingual-hierarchical-64k-20261001T181350Z-v1",
+  "status": "complete-exploratory-score",
+  "candidateMode": "bounded-hierarchical-choice-with-top-two-per-shard",
+  "cases": 26,
+  "corpusDocuments": 21,
+  "catalogHeadingCandidates": 200,
+  "expectedExactHeadings": 26,
+  "humanOwnerAdjudication": false,
+  "inputHashes": {
+    "cases.json": "70E4C30FA2473A73FD9C2626A92ECFC58ADDB548DA132E2EE639614B94E384F4",
+    "corpus.json": "40A4D6B1F936D71EEA56E4FEAC4105A68B6DB995D1B6B96E03D8570413FA5A4D",
+    "labels.json": "C3F2C8DB87F4086747D346596EACBF66038A4712C1210D1FFBF1BF6DCF731B99",
+    "target-index.json": "770E14ACFAF74716DD3667CB8311E5E56A7222E5895DC725BCC44571E5F8A58A"
+  },
+  "baselineComparisons": {
+    "baselineDeterministicTop100Recall": {
+      "en": "18/26",
+      "es": "4/26"
+    },
+    "priorTop100JevExact": {
+      "en": "12/26",
+      "es": "3/26"
+    },
+    "priorFullHeadingSingleChoiceExact": {
+      "en": "18/26",
+      "es": "16/26"
+    },
+    "pairedSameInputSinglePass": {
+      "en": {
+        "bothHierarchicalAndSinglePassCorrect": 13,
+        "hierarchicalOnlyCorrect": 1,
+        "singlePassOnlyCorrect": 5,
+        "neitherStrictTarget": 7
+      },
+      "es": {
+        "bothHierarchicalAndSinglePassCorrect": 14,
+        "hierarchicalOnlyCorrect": 3,
+        "singlePassOnlyCorrect": 3,
+        "neitherStrictTarget": 6
+      }
+    }
+  },
+  "bySplit": {
+    "development": {
+      "en": {
+        "queries": 20,
+        "exactTargetSelections": 10
+      },
+      "es": {
+        "queries": 20,
+        "exactTargetSelections": 14
+      }
+    },
+    "grouped-holdout": {
+      "en": {
+        "queries": 6,
+        "exactTargetSelections": 4
+      },
+      "es": {
+        "queries": 6,
+        "exactTargetSelections": 3
+      }
+    }
+  },
+  "metrics": {
+    "en": {
+      "queries": 26,
+      "exactTargetSelections": 14,
+      "strictExactTargetRate": 0.5385,
+      "selected": 24,
+      "abstentions": 2,
+      "failed": 0,
+      "exactFetchChecks": 24,
+      "exactFetchFailures": 0,
+      "finalistCountMean": 4,
+      "providerCalls": 78,
+      "latencyMeanMs": 1187.2077,
+      "inputTokens": 773205,
+      "outputTokens": 56336,
+      "choiceConfidenceMeanAllCallsDescriptive": 0.6612,
+      "choiceConfidenceMeanSelectedDescriptive": 0.6825,
+      "evidenceSufficiencyMeanDescriptive": 0.6408,
+      "previousFullHeadingExactTargets": 18,
+      "previousTop100JevExactTargets": 12,
+      "previousTop100TargetPresent": 18,
+      "pairedOutcomes": {
+        "bothHierarchicalAndSinglePassCorrect": 13,
+        "hierarchicalOnlyCorrect": 1,
+        "singlePassOnlyCorrect": 5,
+        "neitherStrictTarget": 7
+      },
+      "confidenceBandsAmongSelectionsDescriptiveOnly": [
+        {
+          "band": "<0.50",
+          "selected": 7,
+          "exactTargets": 1
+        },
+        {
+          "band": "0.50-0.69",
+          "selected": 4,
+          "exactTargets": 3
+        },
+        {
+          "band": "0.70-0.84",
+          "selected": 5,
+          "exactTargets": 3
+        },
+        {
+          "band": "0.85-1.00",
+          "selected": 8,
+          "exactTargets": 7
+        }
+      ],
+      "strictMisses": [
+        {
+          "caseId": "03",
+          "status": "selected",
+          "targetSourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+          "targetHeadingPath": [
+            "Project document reference lifecycle",
+            "Retroactive discovery"
+          ],
+          "selectedSourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+          "selectedHeadingPath": [
+            "Project document reference lifecycle",
+            "States"
+          ],
+          "pairedSinglePassExactTarget": false,
+          "confidence": 0.28,
+          "sufficiency": 0.51
+        },
+        {
+          "caseId": "04",
+          "status": "selected",
+          "targetSourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+          "targetHeadingPath": [
+            "Project document reference lifecycle",
+            "Reference-on-miss"
+          ],
+          "selectedSourceRef": "docs/REGISTRY.md",
+          "selectedHeadingPath": [
+            "Registry and autoregistry",
+            "Degradation"
+          ],
+          "pairedSinglePassExactTarget": true,
+          "confidence": 0.36,
+          "sufficiency": 0.47
+        },
+        {
+          "caseId": "06",
+          "status": "abstained",
+          "targetSourceRef": ".mssr/knowledge/architecture/project-context-plane.md",
+          "targetHeadingPath": [
+            "Project Context Plane architecture",
+            "Maintenance and write preflight"
+          ],
+          "selectedSourceRef": null,
+          "selectedHeadingPath": null,
+          "pairedSinglePassExactTarget": false,
+          "confidence": 0.52,
+          "sufficiency": 0.23
+        },
+        {
+          "caseId": "08",
+          "status": "selected",
+          "targetSourceRef": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+          "targetHeadingPath": [
+            "Architecture Impact decision history"
+          ],
+          "selectedSourceRef": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+          "selectedHeadingPath": [
+            "Architecture Impact decision history",
+            "Coarse and structural refinement (0.2.33-0.2.39)"
+          ],
+          "pairedSinglePassExactTarget": false,
+          "confidence": 0.82,
+          "sufficiency": 0.62
+        },
+        {
+          "caseId": "13",
+          "status": "selected",
+          "targetSourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "targetHeadingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "selectedSourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+          "selectedHeadingPath": [
+            "ADR 0003 — Evidence-first consistency recommendations",
+            "Evidence-first rules"
+          ],
+          "pairedSinglePassExactTarget": false,
+          "confidence": 0.59,
+          "sufficiency": 0.63
+        },
+        {
+          "caseId": "16",
+          "status": "selected",
+          "targetSourceRef": "docs/AGENT_PROTOCOL.md",
+          "targetHeadingPath": [
+            "Agent protocol",
+            "User-visible progress contract",
+            "Ephemeral trace working memory"
+          ],
+          "selectedSourceRef": "docs/decisions/0001-context-plane-v1.md",
+          "selectedHeadingPath": [
+            "ADR 0001 — MSSR Context Plane v1",
+            "Decision",
+            "Privacy"
+          ],
+          "pairedSinglePassExactTarget": true,
+          "confidence": 0.3,
+          "sufficiency": 0.87
+        },
+        {
+          "caseId": "17",
+          "status": "selected",
+          "targetSourceRef": "docs/REPOSITORY_STRUCTURE.md",
+          "targetHeadingPath": [
+            "MSSR repository structure",
+            "Canonical layout"
+          ],
+          "selectedSourceRef": "docs/REPOSITORY_STRUCTURE.md",
+          "selectedHeadingPath": [
+            "MSSR repository structure",
+            "Generated and runtime outputs"
+          ],
+          "pairedSinglePassExactTarget": false,
+          "confidence": 0.38,
+          "sufficiency": 0.86
+        },
+        {
+          "caseId": "21",
+          "status": "abstained",
+          "targetSourceRef": "docs/skill-routing/README.md",
+          "targetHeadingPath": [
+            "MSSR — Modular Semantic Skill Router",
+            "Skills requeridas, opcionales y diferidas"
+          ],
+          "selectedSourceRef": null,
+          "selectedHeadingPath": null,
+          "pairedSinglePassExactTarget": true,
+          "confidence": 0.29,
+          "sufficiency": 0.3
+        },
+        {
+          "caseId": "22",
+          "status": "selected",
+          "targetSourceRef": "docs/skill-routing/README.md",
+          "targetHeadingPath": [
+            "MSSR — Modular Semantic Skill Router",
+            "Ensamblado selectivo de contexto"
+          ],
+          "selectedSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "selectedHeadingPath": [
+            "Semantic Evidence Plane architecture",
+            "Progressive section retrieval"
+          ],
+          "pairedSinglePassExactTarget": false,
+          "confidence": 0.74,
+          "sufficiency": 0.77
+        },
+        {
+          "caseId": "23",
+          "status": "selected",
+          "targetSourceRef": "docs/skill-routing/TESTING.md",
+          "targetHeadingPath": [
+            "Pruebas de MSSR",
+            "Comandos"
+          ],
+          "selectedSourceRef": "docs/skill-routing/TESTING.md",
+          "selectedHeadingPath": [
+            "Pruebas de MSSR",
+            "Capas",
+            "4. Suite integral"
+          ],
+          "pairedSinglePassExactTarget": true,
+          "confidence": 0.49,
+          "sufficiency": 0.6
+        },
+        {
+          "caseId": "25",
+          "status": "selected",
+          "targetSourceRef": "docs/skill-routing/MAINTENANCE.md",
+          "targetHeadingPath": [
+            "Mantenimiento de MSSR",
+            "Al modificar una skill"
+          ],
+          "selectedSourceRef": "docs/AGENT_PROTOCOL.md",
+          "selectedHeadingPath": [
+            "Agent protocol",
+            "When skills change"
+          ],
+          "pairedSinglePassExactTarget": false,
+          "confidence": 0.89,
+          "sufficiency": 0.6
+        },
+        {
+          "caseId": "26",
+          "status": "selected",
+          "targetSourceRef": "docs/OPERATIONAL_NOTICE_PLANE.md",
+          "targetHeadingPath": [
+            "MauroPrime Operational Notice Plane",
+            "Four distinct concepts"
+          ],
+          "selectedSourceRef": "docs/OPERATIONAL_NOTICE_PLANE.md",
+          "selectedHeadingPath": [
+            "MauroPrime Operational Notice Plane",
+            "Four distinct concepts",
+            "Operational Notice"
+          ],
+          "pairedSinglePassExactTarget": true,
+          "confidence": 0.24,
+          "sufficiency": 0.6
+        }
+      ]
+    },
+    "es": {
+      "queries": 26,
+      "exactTargetSelections": 17,
+      "strictExactTargetRate": 0.6538,
+      "selected": 25,
+      "abstentions": 1,
+      "failed": 0,
+      "exactFetchChecks": 25,
+      "exactFetchFailures": 0,
+      "finalistCountMean": 4,
+      "providerCalls": 78,
+      "latencyMeanMs": 1206.2115,
+      "inputTokens": 773430,
+      "outputTokens": 56339,
+      "choiceConfidenceMeanAllCallsDescriptive": 0.6608,
+      "choiceConfidenceMeanSelectedDescriptive": 0.6556,
+      "evidenceSufficiencyMeanDescriptive": 0.6262,
+      "previousFullHeadingExactTargets": 16,
+      "previousTop100JevExactTargets": 3,
+      "previousTop100TargetPresent": 4,
+      "pairedOutcomes": {
+        "bothHierarchicalAndSinglePassCorrect": 14,
+        "hierarchicalOnlyCorrect": 3,
+        "singlePassOnlyCorrect": 3,
+        "neitherStrictTarget": 6
+      },
+      "confidenceBandsAmongSelectionsDescriptiveOnly": [
+        {
+          "band": "<0.50",
+          "selected": 9,
+          "exactTargets": 4
+        },
+        {
+          "band": "0.50-0.69",
+          "selected": 3,
+          "exactTargets": 1
+        },
+        {
+          "band": "0.70-0.84",
+          "selected": 5,
+          "exactTargets": 4
+        },
+        {
+          "band": "0.85-1.00",
+          "selected": 8,
+          "exactTargets": 8
+        }
+      ],
+      "strictMisses": [
+        {
+          "caseId": "02",
+          "status": "selected",
+          "targetSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "targetHeadingPath": [
+            "Semantic Evidence Plane architecture",
+            "Destinations, unused evidence and learning"
+          ],
+          "selectedSourceRef": "docs/skill-routing/ROADMAP.md",
+          "selectedHeadingPath": [
+            "Roadmap de MSSR",
+            "Próximo nivel útil",
+            "3. Observabilidad de decisiones"
+          ],
+          "pairedSinglePassExactTarget": false,
+          "confidence": 0.16,
+          "sufficiency": 0.52
+        },
+        {
+          "caseId": "03",
+          "status": "selected",
+          "targetSourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+          "targetHeadingPath": [
+            "Project document reference lifecycle",
+            "Retroactive discovery"
+          ],
+          "selectedSourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+          "selectedHeadingPath": [
+            "Project document reference lifecycle",
+            "States"
+          ],
+          "pairedSinglePassExactTarget": false,
+          "confidence": 0.42,
+          "sufficiency": 0.47
+        },
+        {
+          "caseId": "12",
+          "status": "selected",
+          "targetSourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+          "targetHeadingPath": [
+            "Change-history contract"
+          ],
+          "selectedSourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "selectedHeadingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "pairedSinglePassExactTarget": true,
+          "confidence": 0.39,
+          "sufficiency": 0.54
+        },
+        {
+          "caseId": "13",
+          "status": "selected",
+          "targetSourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "targetHeadingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "selectedSourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+          "selectedHeadingPath": [
+            "ADR 0003 — Evidence-first consistency recommendations",
+            "Evidence-first rules"
+          ],
+          "pairedSinglePassExactTarget": false,
+          "confidence": 0.83,
+          "sufficiency": 0.59
+        },
+        {
+          "caseId": "21",
+          "status": "abstained",
+          "targetSourceRef": "docs/skill-routing/README.md",
+          "targetHeadingPath": [
+            "MSSR — Modular Semantic Skill Router",
+            "Skills requeridas, opcionales y diferidas"
+          ],
+          "selectedSourceRef": null,
+          "selectedHeadingPath": null,
+          "pairedSinglePassExactTarget": false,
+          "confidence": 0.79,
+          "sufficiency": 0.15
+        },
+        {
+          "caseId": "23",
+          "status": "selected",
+          "targetSourceRef": "docs/skill-routing/TESTING.md",
+          "targetHeadingPath": [
+            "Pruebas de MSSR",
+            "Comandos"
+          ],
+          "selectedSourceRef": "docs/skill-routing/TESTING.md",
+          "selectedHeadingPath": [
+            "Pruebas de MSSR",
+            "Capas",
+            "3. Regresión aislada"
+          ],
+          "pairedSinglePassExactTarget": true,
+          "confidence": 0.41,
+          "sufficiency": 0.55
+        },
+        {
+          "caseId": "26",
+          "status": "selected",
+          "targetSourceRef": "docs/OPERATIONAL_NOTICE_PLANE.md",
+          "targetHeadingPath": [
+            "MauroPrime Operational Notice Plane",
+            "Four distinct concepts"
+          ],
+          "selectedSourceRef": "docs/OPERATIONAL_NOTICE_PLANE.md",
+          "selectedHeadingPath": [
+            "MauroPrime Operational Notice Plane",
+            "Four distinct concepts",
+            "Operational Notice"
+          ],
+          "pairedSinglePassExactTarget": true,
+          "confidence": 0.29,
+          "sufficiency": 0.7
+        },
+        {
+          "caseId": "27",
+          "status": "selected",
+          "targetSourceRef": "docs/decisions/0001-context-plane-v1.md",
+          "targetHeadingPath": [
+            "ADR 0001 — MSSR Context Plane v1",
+            "Decision",
+            "Continuation and persistence"
+          ],
+          "selectedSourceRef": "docs/decisions/0001-context-plane-v1.md",
+          "selectedHeadingPath": [
+            "ADR 0001 — MSSR Context Plane v1",
+            "Decision",
+            "Message contract"
+          ],
+          "pairedSinglePassExactTarget": false,
+          "confidence": 0.57,
+          "sufficiency": 0.7
+        },
+        {
+          "caseId": "30",
+          "status": "selected",
+          "targetSourceRef": "docs/decisions/0005-architecture-impact-drift-links.md",
+          "targetHeadingPath": [
+            "ADR 0005 — Architecture Impact / Drift Links",
+            "Decision",
+            "Exact-only v1"
+          ],
+          "selectedSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "selectedHeadingPath": [
+            "Semantic Evidence Plane architecture",
+            "Evidence atom and source boundary"
+          ],
+          "pairedSinglePassExactTarget": false,
+          "confidence": 0.55,
+          "sufficiency": 0.61
+        }
+      ]
+    },
+    "combined": {
+      "queries": 52,
+      "exactTargetSelections": 31,
+      "selected": 49,
+      "abstentions": 3,
+      "failed": 0,
+      "exactFetchChecks": 49,
+      "providerCalls": 156,
+      "inputTokens": 1546635,
+      "outputTokens": 112675,
+      "latencyMeanMs": 1196.7096,
+      "finalistCountMean": 4
+    }
+  },
+  "limitations": [
+    "The live runner did not read labels or target mappings; the scorer opened them only after the run completed.",
+    "Exact-target scores use Luna-reviewed single-heading labels, not human-owner adjudication; an alternate section may contain valid evidence.",
+    "There are no independent labels for abstention quality or sufficient answer evidence; Noul and Choice values remain descriptive and uncalibrated.",
+    "Hierarchical final Noul sees retained finalists while single-pass Noul sees the full offered candidate set; cross-mode sufficiency values are not comparable.",
+    "The grouped query holdout retains the same 21 source documents, so it is not unseen-document generalization.",
+    "This paired 64,000-character run exercises the hierarchical path on the 200-heading corpus; the separate 80,000-character run retains a direct full-catalog Choice, and neither establishes behavior across unseen-document catalogs.",
+    "This evaluates evidence range selection and exact fetch, not automatic iterative grep, contradiction truth, free-form synthesis, citation faithfulness, permissions or production activation."
+  ]
+}

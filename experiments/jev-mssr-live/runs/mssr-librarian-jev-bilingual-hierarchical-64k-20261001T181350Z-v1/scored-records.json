@@ -1,0 +1,1879 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "caseId": "01",
+      "language": "en",
+      "split": "development",
+      "query": "What does each evidence record preserve so we can trace who observed it and return to the source fragment?",
+      "targetSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "targetHeadingPath": [
+        "Semantic Evidence Plane architecture",
+        "Evidence atom and source boundary"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "selectedHeadingPath": [
+        "Semantic Evidence Plane architecture",
+        "Evidence atom and source boundary"
+      ],
+      "selectedRangeId": "heading-2",
+      "exactFetch": "passed",
+      "providerConfidence": 0.99,
+      "evidenceSufficiency": 0.75,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1461.8,
+      "usage": {
+        "input_tokens": 29752,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": true,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "01",
+      "language": "es",
+      "split": "development",
+      "query": "¿Qué conserva cada registro de evidencia para rastrear quién lo observó y volver al fragmento de origen?",
+      "targetSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "targetHeadingPath": [
+        "Semantic Evidence Plane architecture",
+        "Evidence atom and source boundary"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "selectedHeadingPath": [
+        "Semantic Evidence Plane architecture",
+        "Evidence atom and source boundary"
+      ],
+      "selectedRangeId": "heading-2",
+      "exactFetch": "passed",
+      "providerConfidence": 0.92,
+      "evidenceSufficiency": 0.61,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1452,
+      "usage": {
+        "input_tokens": 29806,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "02",
+      "language": "en",
+      "split": "development",
+      "query": "How can we later detect that evidence we discarded would have helped a task?",
+      "targetSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "targetHeadingPath": [
+        "Semantic Evidence Plane architecture",
+        "Destinations, unused evidence and learning"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "selectedHeadingPath": [
+        "Semantic Evidence Plane architecture",
+        "Destinations, unused evidence and learning"
+      ],
+      "selectedRangeId": "heading-7",
+      "exactFetch": "passed",
+      "providerConfidence": 0.98,
+      "evidenceSufficiency": 0.73,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1156.7,
+      "usage": {
+        "input_tokens": 29772,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": true,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "02",
+      "language": "es",
+      "split": "development",
+      "query": "¿Cómo podemos detectar más adelante si una evidencia descartada habría servido para una tarea?",
+      "targetSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "targetHeadingPath": [
+        "Semantic Evidence Plane architecture",
+        "Destinations, unused evidence and learning"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": false,
+      "selectedSourceRef": "docs/skill-routing/ROADMAP.md",
+      "selectedHeadingPath": [
+        "Roadmap de MSSR",
+        "Próximo nivel útil",
+        "3. Observabilidad de decisiones"
+      ],
+      "selectedRangeId": "heading-7",
+      "exactFetch": "passed",
+      "providerConfidence": 0.16,
+      "evidenceSufficiency": 0.52,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1153,
+      "usage": {
+        "input_tokens": 29715,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": false,
+      "priorFullHeadingExactTarget": false,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "03",
+      "language": "en",
+      "split": "grouped-holdout",
+      "query": "What happens when a valid guide appears that was not registered in the project?",
+      "targetSourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "targetHeadingPath": [
+        "Project document reference lifecycle",
+        "Retroactive discovery"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": false,
+      "selectedSourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "selectedHeadingPath": [
+        "Project document reference lifecycle",
+        "States"
+      ],
+      "selectedRangeId": "heading-2",
+      "exactFetch": "passed",
+      "providerConfidence": 0.28,
+      "evidenceSufficiency": 0.51,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1183.4,
+      "usage": {
+        "input_tokens": 29740,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": false,
+      "priorFullHeadingExactTarget": false,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "03",
+      "language": "es",
+      "split": "grouped-holdout",
+      "query": "¿Qué pasa cuando aparece una guía válida que no se había registrado en el proyecto?",
+      "targetSourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "targetHeadingPath": [
+        "Project document reference lifecycle",
+        "Retroactive discovery"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": false,
+      "selectedSourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "selectedHeadingPath": [
+        "Project document reference lifecycle",
+        "States"
+      ],
+      "selectedRangeId": "heading-2",
+      "exactFetch": "passed",
+      "providerConfidence": 0.42,
+      "evidenceSufficiency": 0.47,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1236.7,
+      "usage": {
+        "input_tokens": 29703,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": false,
+      "priorFullHeadingExactTarget": false,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "04",
+      "language": "en",
+      "split": "grouped-holdout",
+      "query": "If the agent requests a reference missing from the registry, what procedure follows?",
+      "targetSourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "targetHeadingPath": [
+        "Project document reference lifecycle",
+        "Reference-on-miss"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": false,
+      "selectedSourceRef": "docs/REGISTRY.md",
+      "selectedHeadingPath": [
+        "Registry and autoregistry",
+        "Degradation"
+      ],
+      "selectedRangeId": "heading-5",
+      "exactFetch": "passed",
+      "providerConfidence": 0.36,
+      "evidenceSufficiency": 0.47,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1136.8,
+      "usage": {
+        "input_tokens": 29717,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": true,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "04",
+      "language": "es",
+      "split": "grouped-holdout",
+      "query": "Si el agente pide una referencia que no está en el registro, ¿qué procedimiento sigue?",
+      "targetSourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "targetHeadingPath": [
+        "Project document reference lifecycle",
+        "Reference-on-miss"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "selectedHeadingPath": [
+        "Project document reference lifecycle",
+        "Reference-on-miss"
+      ],
+      "selectedRangeId": "heading-4",
+      "exactFetch": "passed",
+      "providerConfidence": 0.83,
+      "evidenceSufficiency": 0.49,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1235.6,
+      "usage": {
+        "input_tokens": 29729,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "06",
+      "language": "en",
+      "split": "development",
+      "query": "What prevents saving a reorganization when its resulting content exceeds the context limit?",
+      "targetSourceRef": ".mssr/knowledge/architecture/project-context-plane.md",
+      "targetHeadingPath": [
+        "Project Context Plane architecture",
+        "Maintenance and write preflight"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "abstained",
+      "exactTarget": false,
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedRangeId": null,
+      "exactFetch": "not-selected",
+      "providerConfidence": 0.52,
+      "evidenceSufficiency": 0.23,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1065.7,
+      "usage": {
+        "input_tokens": 29700,
+        "output_tokens": 2164
+      },
+      "pairedSinglePassExactTarget": false,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "06",
+      "language": "es",
+      "split": "development",
+      "query": "¿Qué impide guardar una reorganización cuando el contenido resultante supera el límite de contexto?",
+      "targetSourceRef": ".mssr/knowledge/architecture/project-context-plane.md",
+      "targetHeadingPath": [
+        "Project Context Plane architecture",
+        "Maintenance and write preflight"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": ".mssr/knowledge/architecture/project-context-plane.md",
+      "selectedHeadingPath": [
+        "Project Context Plane architecture",
+        "Maintenance and write preflight"
+      ],
+      "selectedRangeId": "heading-2",
+      "exactFetch": "passed",
+      "providerConfidence": 0.99,
+      "evidenceSufficiency": 0.76,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1102.3,
+      "usage": {
+        "input_tokens": 29752,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "08",
+      "language": "en",
+      "split": "development",
+      "query": "Where are earlier decisions about how architecture impact review evolved?",
+      "targetSourceRef": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+      "targetHeadingPath": [
+        "Architecture Impact decision history"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": false,
+      "selectedSourceRef": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+      "selectedHeadingPath": [
+        "Architecture Impact decision history",
+        "Coarse and structural refinement (0.2.33-0.2.39)"
+      ],
+      "selectedRangeId": "heading-3",
+      "exactFetch": "passed",
+      "providerConfidence": 0.82,
+      "evidenceSufficiency": 0.62,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1196.5,
+      "usage": {
+        "input_tokens": 29843,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": false,
+      "priorFullHeadingExactTarget": false,
+      "priorTop100JevExactTarget": true,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "08",
+      "language": "es",
+      "split": "development",
+      "query": "¿Dónde se encuentran las decisiones anteriores sobre cómo fue cambiando la revisión del impacto en la arquitectura?",
+      "targetSourceRef": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+      "targetHeadingPath": [
+        "Architecture Impact decision history"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+      "selectedHeadingPath": [
+        "Architecture Impact decision history"
+      ],
+      "selectedRangeId": "heading-1",
+      "exactFetch": "passed",
+      "providerConfidence": 0.57,
+      "evidenceSufficiency": 0.58,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1058.1,
+      "usage": {
+        "input_tokens": 29728,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": false,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "09",
+      "language": "en",
+      "split": "development",
+      "query": "How do we distinguish a declared relationship that permits comparing two subjects from an inferred relationship used to investigate?",
+      "targetSourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+      "targetHeadingPath": [
+        "Semantic consistency relations and retrieval decision"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+      "selectedHeadingPath": [
+        "Semantic consistency relations and retrieval decision"
+      ],
+      "selectedRangeId": "heading-1",
+      "exactFetch": "passed",
+      "providerConfidence": 0.98,
+      "evidenceSufficiency": 0.74,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1145.3,
+      "usage": {
+        "input_tokens": 29777,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": true,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "09",
+      "language": "es",
+      "split": "development",
+      "query": "¿Cómo distinguimos una relación declarada que permite comparar dos temas de otra inferida que solo sirve para investigar?",
+      "targetSourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+      "targetHeadingPath": [
+        "Semantic consistency relations and retrieval decision"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+      "selectedHeadingPath": [
+        "Semantic consistency relations and retrieval decision"
+      ],
+      "selectedRangeId": "heading-1",
+      "exactFetch": "passed",
+      "providerConfidence": 0.99,
+      "evidenceSufficiency": 0.7,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1129.2,
+      "usage": {
+        "input_tokens": 29776,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "10",
+      "language": "en",
+      "split": "development",
+      "query": "When does an old claim stop describing current truth while remaining historical evidence?",
+      "targetSourceRef": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
+      "targetHeadingPath": [
+        "Semantic consistency current-truth decision",
+        "R4 temporal validity"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
+      "selectedHeadingPath": [
+        "Semantic consistency current-truth decision",
+        "R4 temporal validity"
+      ],
+      "selectedRangeId": "heading-4",
+      "exactFetch": "passed",
+      "providerConfidence": 1,
+      "evidenceSufficiency": 0.72,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1094.6,
+      "usage": {
+        "input_tokens": 29786,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": true,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "10",
+      "language": "es",
+      "split": "development",
+      "query": "¿Cuándo deja una afirmación antigua de describir la situación actual, aunque siga siendo evidencia histórica?",
+      "targetSourceRef": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
+      "targetHeadingPath": [
+        "Semantic consistency current-truth decision",
+        "R4 temporal validity"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
+      "selectedHeadingPath": [
+        "Semantic consistency current-truth decision",
+        "R4 temporal validity"
+      ],
+      "selectedRangeId": "heading-4",
+      "exactFetch": "passed",
+      "providerConfidence": 0.94,
+      "evidenceSufficiency": 0.76,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1320.1,
+      "usage": {
+        "input_tokens": 29773,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "12",
+      "language": "en",
+      "split": "grouped-holdout",
+      "query": "What rules make change history agree with project authorities when publishing a version?",
+      "targetSourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+      "targetHeadingPath": [
+        "Change-history contract"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+      "selectedHeadingPath": [
+        "Change-history contract"
+      ],
+      "selectedRangeId": "heading-1",
+      "exactFetch": "passed",
+      "providerConfidence": 0.62,
+      "evidenceSufficiency": 0.53,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1164.5,
+      "usage": {
+        "input_tokens": 29690,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": true,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "12",
+      "language": "es",
+      "split": "grouped-holdout",
+      "query": "¿Qué reglas hacen que el historial de cambios coincida con las autoridades del proyecto al publicar una versión?",
+      "targetSourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+      "targetHeadingPath": [
+        "Change-history contract"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": false,
+      "selectedSourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+      "selectedHeadingPath": [
+        "Project knowledge drift review decision"
+      ],
+      "selectedRangeId": "heading-1",
+      "exactFetch": "passed",
+      "providerConfidence": 0.39,
+      "evidenceSufficiency": 0.54,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1140.1,
+      "usage": {
+        "input_tokens": 29770,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "13",
+      "language": "en",
+      "split": "development",
+      "query": "What should we review when drift evidence appears to conflict with the file the project declares as authoritative?",
+      "targetSourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+      "targetHeadingPath": [
+        "Project knowledge drift review decision"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": false,
+      "selectedSourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      "selectedHeadingPath": [
+        "ADR 0003 — Evidence-first consistency recommendations",
+        "Evidence-first rules"
+      ],
+      "selectedRangeId": "heading-4",
+      "exactFetch": "passed",
+      "providerConfidence": 0.59,
+      "evidenceSufficiency": 0.63,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1106,
+      "usage": {
+        "input_tokens": 29728,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": false,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "13",
+      "language": "es",
+      "split": "development",
+      "query": "¿Qué conviene revisar cuando la evidencia de deriva contradice el archivo que el proyecto reconoce como fuente autorizada?",
+      "targetSourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+      "targetHeadingPath": [
+        "Project knowledge drift review decision"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": false,
+      "selectedSourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      "selectedHeadingPath": [
+        "ADR 0003 — Evidence-first consistency recommendations",
+        "Evidence-first rules"
+      ],
+      "selectedRangeId": "heading-4",
+      "exactFetch": "passed",
+      "providerConfidence": 0.83,
+      "evidenceSufficiency": 0.59,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1241.3,
+      "usage": {
+        "input_tokens": 29810,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": false,
+      "priorFullHeadingExactTarget": false,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "15",
+      "language": "en",
+      "split": "development",
+      "query": "How should a request express its domain, expected result and signals that something went wrong?",
+      "targetSourceRef": "docs/AGENT_PROTOCOL.md",
+      "targetHeadingPath": [
+        "Agent protocol",
+        "Intent envelope"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/AGENT_PROTOCOL.md",
+      "selectedHeadingPath": [
+        "Agent protocol",
+        "Intent envelope"
+      ],
+      "selectedRangeId": "heading-2",
+      "exactFetch": "passed",
+      "providerConfidence": 0.39,
+      "evidenceSufficiency": 0.64,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1266.4,
+      "usage": {
+        "input_tokens": 29745,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "15",
+      "language": "es",
+      "split": "development",
+      "query": "¿Cómo debería expresar una solicitud su dominio, el resultado esperado y las señales de que algo salió mal?",
+      "targetSourceRef": "docs/AGENT_PROTOCOL.md",
+      "targetHeadingPath": [
+        "Agent protocol",
+        "Intent envelope"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/AGENT_PROTOCOL.md",
+      "selectedHeadingPath": [
+        "Agent protocol",
+        "Intent envelope"
+      ],
+      "selectedRangeId": "heading-2",
+      "exactFetch": "passed",
+      "providerConfidence": 0.35,
+      "evidenceSufficiency": 0.54,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1243.6,
+      "usage": {
+        "input_tokens": 29786,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "16",
+      "language": "en",
+      "split": "development",
+      "query": "What information may be kept temporarily to resume work without storing a private transcript?",
+      "targetSourceRef": "docs/AGENT_PROTOCOL.md",
+      "targetHeadingPath": [
+        "Agent protocol",
+        "User-visible progress contract",
+        "Ephemeral trace working memory"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": false,
+      "selectedSourceRef": "docs/decisions/0001-context-plane-v1.md",
+      "selectedHeadingPath": [
+        "ADR 0001 — MSSR Context Plane v1",
+        "Decision",
+        "Privacy"
+      ],
+      "selectedRangeId": "heading-7",
+      "exactFetch": "passed",
+      "providerConfidence": 0.3,
+      "evidenceSufficiency": 0.87,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1063.9,
+      "usage": {
+        "input_tokens": 29626,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": true,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "16",
+      "language": "es",
+      "split": "development",
+      "query": "¿Qué información se puede conservar temporalmente para retomar el trabajo sin guardar una transcripción privada?",
+      "targetSourceRef": "docs/AGENT_PROTOCOL.md",
+      "targetHeadingPath": [
+        "Agent protocol",
+        "User-visible progress contract",
+        "Ephemeral trace working memory"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/AGENT_PROTOCOL.md",
+      "selectedHeadingPath": [
+        "Agent protocol",
+        "User-visible progress contract",
+        "Ephemeral trace working memory"
+      ],
+      "selectedRangeId": "heading-8",
+      "exactFetch": "passed",
+      "providerConfidence": 0.7,
+      "evidenceSufficiency": 0.8,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1165.2,
+      "usage": {
+        "input_tokens": 29754,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "17",
+      "language": "en",
+      "split": "development",
+      "query": "Where does the repository explain which folders are canonical source and which are generated output?",
+      "targetSourceRef": "docs/REPOSITORY_STRUCTURE.md",
+      "targetHeadingPath": [
+        "MSSR repository structure",
+        "Canonical layout"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": false,
+      "selectedSourceRef": "docs/REPOSITORY_STRUCTURE.md",
+      "selectedHeadingPath": [
+        "MSSR repository structure",
+        "Generated and runtime outputs"
+      ],
+      "selectedRangeId": "heading-5",
+      "exactFetch": "passed",
+      "providerConfidence": 0.38,
+      "evidenceSufficiency": 0.86,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1208.7,
+      "usage": {
+        "input_tokens": 29687,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": false,
+      "priorFullHeadingExactTarget": false,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "17",
+      "language": "es",
+      "split": "development",
+      "query": "¿Dónde explica el repositorio qué carpetas son fuentes canónicas y cuáles contienen resultados generados?",
+      "targetSourceRef": "docs/REPOSITORY_STRUCTURE.md",
+      "targetHeadingPath": [
+        "MSSR repository structure",
+        "Canonical layout"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/REPOSITORY_STRUCTURE.md",
+      "selectedHeadingPath": [
+        "MSSR repository structure",
+        "Canonical layout"
+      ],
+      "selectedRangeId": "heading-3",
+      "exactFetch": "passed",
+      "providerConfidence": 0.26,
+      "evidenceSufficiency": 0.81,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1149.1,
+      "usage": {
+        "input_tokens": 29718,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": false,
+      "priorFullHeadingExactTarget": false,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "18",
+      "language": "en",
+      "split": "development",
+      "query": "Which tool-produced files can be reconstructed and must not be treated as sources of truth?",
+      "targetSourceRef": "docs/REPOSITORY_STRUCTURE.md",
+      "targetHeadingPath": [
+        "MSSR repository structure",
+        "Generated and runtime outputs"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/REPOSITORY_STRUCTURE.md",
+      "selectedHeadingPath": [
+        "MSSR repository structure",
+        "Generated and runtime outputs"
+      ],
+      "selectedRangeId": "heading-5",
+      "exactFetch": "passed",
+      "providerConfidence": 0.82,
+      "evidenceSufficiency": 0.5,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1150.4,
+      "usage": {
+        "input_tokens": 29705,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "18",
+      "language": "es",
+      "split": "development",
+      "query": "¿Qué archivos generados por herramientas se pueden reconstruir y no deben considerarse fuentes de verdad?",
+      "targetSourceRef": "docs/REPOSITORY_STRUCTURE.md",
+      "targetHeadingPath": [
+        "MSSR repository structure",
+        "Generated and runtime outputs"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/REPOSITORY_STRUCTURE.md",
+      "selectedHeadingPath": [
+        "MSSR repository structure",
+        "Generated and runtime outputs"
+      ],
+      "selectedRangeId": "heading-5",
+      "exactFetch": "passed",
+      "providerConfidence": 0.8,
+      "evidenceSufficiency": 0.46,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1308.2,
+      "usage": {
+        "input_tokens": 29709,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "19",
+      "language": "en",
+      "split": "grouped-holdout",
+      "query": "What distinguishes a routine provider-catalog refresh from a change requiring Git review?",
+      "targetSourceRef": "docs/REGISTRY.md",
+      "targetHeadingPath": [
+        "Registry and autoregistry",
+        "What requires a tracked change"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/REGISTRY.md",
+      "selectedHeadingPath": [
+        "Registry and autoregistry",
+        "What requires a tracked change"
+      ],
+      "selectedRangeId": "heading-4",
+      "exactFetch": "passed",
+      "providerConfidence": 0.93,
+      "evidenceSufficiency": 0.88,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1098.7,
+      "usage": {
+        "input_tokens": 29644,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": true,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "19",
+      "language": "es",
+      "split": "grouped-holdout",
+      "query": "¿Qué diferencia una actualización rutinaria del catálogo de proveedores de un cambio que requiere revisión en Git?",
+      "targetSourceRef": "docs/REGISTRY.md",
+      "targetHeadingPath": [
+        "Registry and autoregistry",
+        "What requires a tracked change"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/REGISTRY.md",
+      "selectedHeadingPath": [
+        "Registry and autoregistry",
+        "What requires a tracked change"
+      ],
+      "selectedRangeId": "heading-4",
+      "exactFetch": "passed",
+      "providerConfidence": 0.9,
+      "evidenceSufficiency": 0.86,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1219.4,
+      "usage": {
+        "input_tokens": 29680,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "20",
+      "language": "en",
+      "split": "development",
+      "query": "What steps should be reviewed before moving shared skills into the project distribution format?",
+      "targetSourceRef": "docs/FIRST_PARTY_SKILLS_V1.md",
+      "targetHeadingPath": [
+        "First-party skills v1: distribution, migration, and evaluation",
+        "Package preflight"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/FIRST_PARTY_SKILLS_V1.md",
+      "selectedHeadingPath": [
+        "First-party skills v1: distribution, migration, and evaluation",
+        "Package preflight"
+      ],
+      "selectedRangeId": "heading-3",
+      "exactFetch": "passed",
+      "providerConfidence": 0.93,
+      "evidenceSufficiency": 0.58,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1084.7,
+      "usage": {
+        "input_tokens": 29805,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": false,
+      "priorTop100JevExactTarget": true,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "20",
+      "language": "es",
+      "split": "development",
+      "query": "¿Qué pasos conviene revisar antes de migrar habilidades compartidas al formato de distribución del proyecto?",
+      "targetSourceRef": "docs/FIRST_PARTY_SKILLS_V1.md",
+      "targetHeadingPath": [
+        "First-party skills v1: distribution, migration, and evaluation",
+        "Package preflight"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/FIRST_PARTY_SKILLS_V1.md",
+      "selectedHeadingPath": [
+        "First-party skills v1: distribution, migration, and evaluation",
+        "Package preflight"
+      ],
+      "selectedRangeId": "heading-3",
+      "exactFetch": "passed",
+      "providerConfidence": 0.95,
+      "evidenceSufficiency": 0.59,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1154.6,
+      "usage": {
+        "input_tokens": 29738,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": false,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "21",
+      "language": "en",
+      "split": "development",
+      "query": "What does the router do with an optional capability if the host has not confirmed loading it?",
+      "targetSourceRef": "docs/skill-routing/README.md",
+      "targetHeadingPath": [
+        "MSSR — Modular Semantic Skill Router",
+        "Skills requeridas, opcionales y diferidas"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "abstained",
+      "exactTarget": false,
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedRangeId": null,
+      "exactFetch": "not-selected",
+      "providerConfidence": 0.29,
+      "evidenceSufficiency": 0.3,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1222.5,
+      "usage": {
+        "input_tokens": 29732,
+        "output_tokens": 2164
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": false,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "21",
+      "language": "es",
+      "split": "development",
+      "query": "Si el host todavía no confirmó la carga de una capacidad opcional, ¿qué hace el router?",
+      "targetSourceRef": "docs/skill-routing/README.md",
+      "targetHeadingPath": [
+        "MSSR — Modular Semantic Skill Router",
+        "Skills requeridas, opcionales y diferidas"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "abstained",
+      "exactTarget": false,
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedRangeId": null,
+      "exactFetch": "not-selected",
+      "providerConfidence": 0.79,
+      "evidenceSufficiency": 0.15,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1387.2,
+      "usage": {
+        "input_tokens": 29729,
+        "output_tokens": 2164
+      },
+      "pairedSinglePassExactTarget": false,
+      "priorFullHeadingExactTarget": false,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "22",
+      "language": "en",
+      "split": "development",
+      "query": "How does only the relevant portion of a long skill reach the model?",
+      "targetSourceRef": "docs/skill-routing/README.md",
+      "targetHeadingPath": [
+        "MSSR — Modular Semantic Skill Router",
+        "Ensamblado selectivo de contexto"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": false,
+      "selectedSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "selectedHeadingPath": [
+        "Semantic Evidence Plane architecture",
+        "Progressive section retrieval"
+      ],
+      "selectedRangeId": "heading-3",
+      "exactFetch": "passed",
+      "providerConfidence": 0.74,
+      "evidenceSufficiency": 0.77,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1162.2,
+      "usage": {
+        "input_tokens": 29780,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": false,
+      "priorFullHeadingExactTarget": false,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "22",
+      "language": "es",
+      "split": "development",
+      "query": "¿Cómo llega al modelo solo la parte pertinente de una habilidad extensa?",
+      "targetSourceRef": "docs/skill-routing/README.md",
+      "targetHeadingPath": [
+        "MSSR — Modular Semantic Skill Router",
+        "Ensamblado selectivo de contexto"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/skill-routing/README.md",
+      "selectedHeadingPath": [
+        "MSSR — Modular Semantic Skill Router",
+        "Ensamblado selectivo de contexto"
+      ],
+      "selectedRangeId": "heading-7",
+      "exactFetch": "passed",
+      "providerConfidence": 0.45,
+      "evidenceSufficiency": 0.8,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1167.6,
+      "usage": {
+        "input_tokens": 29707,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": false,
+      "priorFullHeadingExactTarget": false,
+      "priorTop100JevExactTarget": true,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "23",
+      "language": "en",
+      "split": "development",
+      "query": "What should I run to distinguish fixture tests from a full repository suite?",
+      "targetSourceRef": "docs/skill-routing/TESTING.md",
+      "targetHeadingPath": [
+        "Pruebas de MSSR",
+        "Comandos"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": false,
+      "selectedSourceRef": "docs/skill-routing/TESTING.md",
+      "selectedHeadingPath": [
+        "Pruebas de MSSR",
+        "Capas",
+        "4. Suite integral"
+      ],
+      "selectedRangeId": "heading-8",
+      "exactFetch": "passed",
+      "providerConfidence": 0.49,
+      "evidenceSufficiency": 0.6,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1183.6,
+      "usage": {
+        "input_tokens": 29550,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "23",
+      "language": "es",
+      "split": "development",
+      "query": "¿Qué debería ejecutar para distinguir las pruebas de fixtures de la suite completa del repositorio?",
+      "targetSourceRef": "docs/skill-routing/TESTING.md",
+      "targetHeadingPath": [
+        "Pruebas de MSSR",
+        "Comandos"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": false,
+      "selectedSourceRef": "docs/skill-routing/TESTING.md",
+      "selectedHeadingPath": [
+        "Pruebas de MSSR",
+        "Capas",
+        "3. Regresión aislada"
+      ],
+      "selectedRangeId": "heading-7",
+      "exactFetch": "passed",
+      "providerConfidence": 0.41,
+      "evidenceSufficiency": 0.55,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1138.1,
+      "usage": {
+        "input_tokens": 29667,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": false,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "24",
+      "language": "en",
+      "split": "development",
+      "query": "Which roadmap objective requires extending canonical project knowledge to more hosts?",
+      "targetSourceRef": "docs/skill-routing/ROADMAP.md",
+      "targetHeadingPath": [
+        "Roadmap de MSSR",
+        "Próximo nivel útil",
+        "2. Extender autoridad de contexto de proyecto a todos los hosts"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/skill-routing/ROADMAP.md",
+      "selectedHeadingPath": [
+        "Roadmap de MSSR",
+        "Próximo nivel útil",
+        "2. Extender autoridad de contexto de proyecto a todos los hosts"
+      ],
+      "selectedRangeId": "heading-6",
+      "exactFetch": "passed",
+      "providerConfidence": 0.99,
+      "evidenceSufficiency": 0.87,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1263.3,
+      "usage": {
+        "input_tokens": 29704,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "24",
+      "language": "es",
+      "split": "development",
+      "query": "¿Qué objetivo del roadmap plantea extender a más hosts la autoridad canónica del conocimiento del proyecto?",
+      "targetSourceRef": "docs/skill-routing/ROADMAP.md",
+      "targetHeadingPath": [
+        "Roadmap de MSSR",
+        "Próximo nivel útil",
+        "2. Extender autoridad de contexto de proyecto a todos los hosts"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/skill-routing/ROADMAP.md",
+      "selectedHeadingPath": [
+        "Roadmap de MSSR",
+        "Próximo nivel útil",
+        "2. Extender autoridad de contexto de proyecto a todos los hosts"
+      ],
+      "selectedRangeId": "heading-6",
+      "exactFetch": "passed",
+      "providerConfidence": 1,
+      "evidenceSufficiency": 0.93,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1166.2,
+      "usage": {
+        "input_tokens": 29761,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": true,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "25",
+      "language": "en",
+      "split": "development",
+      "query": "What procedure follows a skill edit so the local capability catalog does not become outdated?",
+      "targetSourceRef": "docs/skill-routing/MAINTENANCE.md",
+      "targetHeadingPath": [
+        "Mantenimiento de MSSR",
+        "Al modificar una skill"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": false,
+      "selectedSourceRef": "docs/AGENT_PROTOCOL.md",
+      "selectedHeadingPath": [
+        "Agent protocol",
+        "When skills change"
+      ],
+      "selectedRangeId": "heading-16",
+      "exactFetch": "passed",
+      "providerConfidence": 0.89,
+      "evidenceSufficiency": 0.6,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1186.2,
+      "usage": {
+        "input_tokens": 29784,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": false,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "25",
+      "language": "es",
+      "split": "development",
+      "query": "¿Qué procedimiento sigue a una edición de una habilidad para evitar que el catálogo local de capacidades quede desactualizado?",
+      "targetSourceRef": "docs/skill-routing/MAINTENANCE.md",
+      "targetHeadingPath": [
+        "Mantenimiento de MSSR",
+        "Al modificar una skill"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/skill-routing/MAINTENANCE.md",
+      "selectedHeadingPath": [
+        "Mantenimiento de MSSR",
+        "Al modificar una skill"
+      ],
+      "selectedRangeId": "heading-4",
+      "exactFetch": "passed",
+      "providerConfidence": 0.36,
+      "evidenceSufficiency": 0.53,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1316.8,
+      "usage": {
+        "input_tokens": 29750,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": false,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": true,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "26",
+      "language": "en",
+      "split": "development",
+      "query": "How does the design distinguish an operational notice from a task result and delivered context?",
+      "targetSourceRef": "docs/OPERATIONAL_NOTICE_PLANE.md",
+      "targetHeadingPath": [
+        "MauroPrime Operational Notice Plane",
+        "Four distinct concepts"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": false,
+      "selectedSourceRef": "docs/OPERATIONAL_NOTICE_PLANE.md",
+      "selectedHeadingPath": [
+        "MauroPrime Operational Notice Plane",
+        "Four distinct concepts",
+        "Operational Notice"
+      ],
+      "selectedRangeId": "heading-8",
+      "exactFetch": "passed",
+      "providerConfidence": 0.24,
+      "evidenceSufficiency": 0.6,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1173.7,
+      "usage": {
+        "input_tokens": 29728,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": false,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "26",
+      "language": "es",
+      "split": "development",
+      "query": "¿Cómo distingue el diseño un aviso operativo del resultado de una tarea y del contexto entregado?",
+      "targetSourceRef": "docs/OPERATIONAL_NOTICE_PLANE.md",
+      "targetHeadingPath": [
+        "MauroPrime Operational Notice Plane",
+        "Four distinct concepts"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": false,
+      "selectedSourceRef": "docs/OPERATIONAL_NOTICE_PLANE.md",
+      "selectedHeadingPath": [
+        "MauroPrime Operational Notice Plane",
+        "Four distinct concepts",
+        "Operational Notice"
+      ],
+      "selectedRangeId": "heading-8",
+      "exactFetch": "passed",
+      "providerConfidence": 0.29,
+      "evidenceSufficiency": 0.7,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1215.5,
+      "usage": {
+        "input_tokens": 29749,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": false,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "27",
+      "language": "en",
+      "split": "development",
+      "query": "What fields should a context message carry so it can be resumed and its persistence recorded?",
+      "targetSourceRef": "docs/decisions/0001-context-plane-v1.md",
+      "targetHeadingPath": [
+        "ADR 0001 — MSSR Context Plane v1",
+        "Decision",
+        "Continuation and persistence"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/decisions/0001-context-plane-v1.md",
+      "selectedHeadingPath": [
+        "ADR 0001 — MSSR Context Plane v1",
+        "Decision",
+        "Continuation and persistence"
+      ],
+      "selectedRangeId": "heading-6",
+      "exactFetch": "passed",
+      "providerConfidence": 0.81,
+      "evidenceSufficiency": 0.73,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1562.9,
+      "usage": {
+        "input_tokens": 29818,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": true,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "27",
+      "language": "es",
+      "split": "development",
+      "query": "¿Qué campos debería incluir un mensaje de contexto para poder retomarlo y dejar constancia de su persistencia?",
+      "targetSourceRef": "docs/decisions/0001-context-plane-v1.md",
+      "targetHeadingPath": [
+        "ADR 0001 — MSSR Context Plane v1",
+        "Decision",
+        "Continuation and persistence"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": false,
+      "selectedSourceRef": "docs/decisions/0001-context-plane-v1.md",
+      "selectedHeadingPath": [
+        "ADR 0001 — MSSR Context Plane v1",
+        "Decision",
+        "Message contract"
+      ],
+      "selectedRangeId": "heading-5",
+      "exactFetch": "passed",
+      "providerConfidence": 0.57,
+      "evidenceSufficiency": 0.7,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1201.9,
+      "usage": {
+        "input_tokens": 29787,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": false,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "28",
+      "language": "en",
+      "split": "grouped-holdout",
+      "query": "What standard requires consistency recommendations to rely on concrete evidence instead of model intuition?",
+      "targetSourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      "targetHeadingPath": [
+        "ADR 0003 — Evidence-first consistency recommendations",
+        "Evidence-first rules"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      "selectedHeadingPath": [
+        "ADR 0003 — Evidence-first consistency recommendations",
+        "Evidence-first rules"
+      ],
+      "selectedRangeId": "heading-4",
+      "exactFetch": "passed",
+      "providerConfidence": 0.52,
+      "evidenceSufficiency": 0.73,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1073,
+      "usage": {
+        "input_tokens": 29814,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": false,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "28",
+      "language": "es",
+      "split": "grouped-holdout",
+      "query": "¿Qué criterio exige que las recomendaciones de consistencia se apoyen en evidencia concreta y no en la intuición del modelo?",
+      "targetSourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      "targetHeadingPath": [
+        "ADR 0003 — Evidence-first consistency recommendations",
+        "Evidence-first rules"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      "selectedHeadingPath": [
+        "ADR 0003 — Evidence-first consistency recommendations",
+        "Evidence-first rules"
+      ],
+      "selectedRangeId": "heading-4",
+      "exactFetch": "passed",
+      "providerConfidence": 0.99,
+      "evidenceSufficiency": 0.83,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1114.2,
+      "usage": {
+        "input_tokens": 29751,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "29",
+      "language": "en",
+      "split": "development",
+      "query": "How does the design separate observed, inferred and notifiable information?",
+      "targetSourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+      "targetHeadingPath": [
+        "ADR 0004 — Situation Model for project knowledge",
+        "Decision",
+        "Evidence classes"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+      "selectedHeadingPath": [
+        "ADR 0004 — Situation Model for project knowledge",
+        "Decision",
+        "Evidence classes"
+      ],
+      "selectedRangeId": "heading-4",
+      "exactFetch": "passed",
+      "providerConfidence": 0.71,
+      "evidenceSufficiency": 0.49,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1151.7,
+      "usage": {
+        "input_tokens": 29766,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": true,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "29",
+      "language": "es",
+      "split": "development",
+      "query": "¿Cómo separa el diseño la información observada, la inferida y la que debe notificarse?",
+      "targetSourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+      "targetHeadingPath": [
+        "ADR 0004 — Situation Model for project knowledge",
+        "Decision",
+        "Evidence classes"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+      "selectedHeadingPath": [
+        "ADR 0004 — Situation Model for project knowledge",
+        "Decision",
+        "Evidence classes"
+      ],
+      "selectedRangeId": "heading-4",
+      "exactFetch": "passed",
+      "providerConfidence": 0.77,
+      "evidenceSufficiency": 0.4,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1200.3,
+      "usage": {
+        "input_tokens": 29760,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": true,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    },
+    {
+      "caseId": "30",
+      "language": "en",
+      "split": "grouped-holdout",
+      "query": "What exact data from a file may be linked to an architecture declaration for later impact review?",
+      "targetSourceRef": "docs/decisions/0005-architecture-impact-drift-links.md",
+      "targetHeadingPath": [
+        "ADR 0005 — Architecture Impact / Drift Links",
+        "Decision",
+        "Exact-only v1"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": true,
+      "selectedSourceRef": "docs/decisions/0005-architecture-impact-drift-links.md",
+      "selectedHeadingPath": [
+        "ADR 0005 — Architecture Impact / Drift Links",
+        "Decision",
+        "Exact-only v1"
+      ],
+      "selectedRangeId": "heading-4",
+      "exactFetch": "passed",
+      "providerConfidence": 0.62,
+      "evidenceSufficiency": 0.71,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1304.2,
+      "usage": {
+        "input_tokens": 29812,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": false,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": true
+    },
+    {
+      "caseId": "30",
+      "language": "es",
+      "split": "grouped-holdout",
+      "query": "¿Qué datos exactos de un archivo se pueden vincular con una declaración de arquitectura para revisar después su impacto?",
+      "targetSourceRef": "docs/decisions/0005-architecture-impact-drift-links.md",
+      "targetHeadingPath": [
+        "ADR 0005 — Architecture Impact / Drift Links",
+        "Decision",
+        "Exact-only v1"
+      ],
+      "expectedSectionPresentInFullCatalog": true,
+      "status": "selected",
+      "exactTarget": false,
+      "selectedSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "selectedHeadingPath": [
+        "Semantic Evidence Plane architecture",
+        "Evidence atom and source boundary"
+      ],
+      "selectedRangeId": "heading-2",
+      "exactFetch": "passed",
+      "providerConfidence": 0.55,
+      "evidenceSufficiency": 0.61,
+      "candidateCount": 200,
+      "finalistCount": 4,
+      "selectionMode": "hierarchical",
+      "providerCalls": 3,
+      "elapsedMs": 1145.2,
+      "usage": {
+        "input_tokens": 29822,
+        "output_tokens": 2167
+      },
+      "pairedSinglePassExactTarget": false,
+      "priorFullHeadingExactTarget": true,
+      "priorTop100JevExactTarget": false,
+      "priorTop100TargetPresent": false
+    }
+  ]
+}

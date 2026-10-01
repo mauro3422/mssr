@@ -1,0 +1,1972 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-jev-bilingual-hierarchical-20261001T174949Z-v1",
+  "status": "complete",
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "sourceLabelFileRead": false,
+  "rawVendorHttpBodiesPersisted": false,
+  "credentialValuePersisted": false,
+  "records": [
+    {
+      "caseId": "01",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.94,
+      "evidenceSufficiency": 0.73,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28189,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "c5e52210348366a660ecb68d71aa0199d467e81691ca97be6df91485279e9457",
+      "elapsedMs": 764.7,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Evidence atom and source boundary",
+        "headingPath": [
+          "Semantic Evidence Plane architecture",
+          "Evidence atom and source boundary"
+        ],
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "handleId": "01a2263cfb73d01194424486dbb1b66b0cb0a06c53896939d658ca2324edaa7a"
+      }
+    },
+    {
+      "caseId": "01",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.94,
+      "evidenceSufficiency": 0.75,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28198,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "bb0cc3a9d7acd7f4d3be286551fa61cde90e773506fe5b20a8e65331b294fb83",
+      "elapsedMs": 634.4,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Evidence atom and source boundary",
+        "headingPath": [
+          "Semantic Evidence Plane architecture",
+          "Evidence atom and source boundary"
+        ],
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "handleId": "01a2263cfb73d01194424486dbb1b66b0cb0a06c53896939d658ca2324edaa7a"
+      }
+    },
+    {
+      "caseId": "02",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.96,
+      "evidenceSufficiency": 0.7,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28201,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "db92629108c1de17e303a723c762a3e1f04fb1951e9cf410a7a408bdb1253143",
+      "elapsedMs": 762.9,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Destinations, unused evidence and learning",
+        "headingPath": [
+          "Semantic Evidence Plane architecture",
+          "Destinations, unused evidence and learning"
+        ],
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "rangeId": "heading-7",
+        "rangeKind": "section",
+        "handleId": "3e2fc30262097bc7de602d02d489f4583d9ad392bb75d80b8927c88ff1d729a5"
+      }
+    },
+    {
+      "caseId": "02",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.51,
+      "evidenceSufficiency": 0.55,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28142,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "83bbb45a1449088ffb77decae29c04b5d0d32431863942e0e3a84b2da89543a8",
+      "elapsedMs": 585.6,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Reference-on-miss",
+        "headingPath": [
+          "Project document reference lifecycle",
+          "Reference-on-miss"
+        ],
+        "sourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "handleId": "85818b07967c87311a3156583bed77f32f128f56d1751383fbe0d593fc62bc7a"
+      }
+    },
+    {
+      "caseId": "03",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.31,
+      "evidenceSufficiency": 0.66,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28208,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "d51ba518fc91ab3d4dfc6ba0541563740dfcc07bccc3dd8575e1017dbe4f3a6d",
+      "elapsedMs": 604.7,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "States",
+        "headingPath": [
+          "Project document reference lifecycle",
+          "States"
+        ],
+        "sourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "handleId": "807a4837dab25d3e676de60d7939526e4c098f58dd9705a8149c299a964b7c38"
+      }
+    },
+    {
+      "caseId": "03",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.26,
+      "evidenceSufficiency": 0.71,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28139,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "488a0776ecf3ad4e4135116bb175289e635abdebfa3d5bf770c87d585884c999",
+      "elapsedMs": 644.1,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Forward registration",
+        "headingPath": [
+          "Project document reference lifecycle",
+          "Forward registration"
+        ],
+        "sourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "handleId": "62ade84e0d02eeea04fc164406c2ab405905492fec1e5201d33d1523f3abf868"
+      }
+    },
+    {
+      "caseId": "04",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.59,
+      "evidenceSufficiency": 0.65,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28186,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "9d4bcc5724463650366325965e1fa23e2525ee8dfd65d8367f24e59aa067462f",
+      "elapsedMs": 656.4,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Reference-on-miss",
+        "headingPath": [
+          "Project document reference lifecycle",
+          "Reference-on-miss"
+        ],
+        "sourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "handleId": "85818b07967c87311a3156583bed77f32f128f56d1751383fbe0d593fc62bc7a"
+      }
+    },
+    {
+      "caseId": "04",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.97,
+      "evidenceSufficiency": 0.6,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28164,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "98e96c928d58e24de1aab435e5801aa66bf5a44c8e19996a7940aadf47d8de96",
+      "elapsedMs": 624.8,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Reference-on-miss",
+        "headingPath": [
+          "Project document reference lifecycle",
+          "Reference-on-miss"
+        ],
+        "sourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "handleId": "85818b07967c87311a3156583bed77f32f128f56d1751383fbe0d593fc62bc7a"
+      }
+    },
+    {
+      "caseId": "06",
+      "language": "en",
+      "status": "abstained",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.69,
+      "evidenceSufficiency": 0.24,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28166,
+        "output_tokens": 2044
+      },
+      "requestFingerprint": "9dde184452d6889b305c7f764fdaa6e5968d0bceacd6c9c81915932fab901719",
+      "elapsedMs": 614.7,
+      "exactFetch": "not-selected",
+      "selected": null
+    },
+    {
+      "caseId": "06",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.97,
+      "evidenceSufficiency": 0.76,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28191,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "993647cfceb4ee855dae910b3a68835b3412ab49ede6fa3094e715f16a2cf6a8",
+      "elapsedMs": 718.3,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Maintenance and write preflight",
+        "headingPath": [
+          "Project Context Plane architecture",
+          "Maintenance and write preflight"
+        ],
+        "sourceRef": ".mssr/knowledge/architecture/project-context-plane.md",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "handleId": "27650bbb8e0ad2d128d73eca788d07d7d98f56297064a6f42e0e7a4c3a16d246"
+      }
+    },
+    {
+      "caseId": "08",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.33,
+      "evidenceSufficiency": 0.68,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28228,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "603ed4c7bca745255ea7ec6572d85a8efeebff4c2a25e966bb9d2323d9cd3dd7",
+      "elapsedMs": 669.9,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Coarse and structural refinement (0.2.33-0.2.39)",
+        "headingPath": [
+          "Architecture Impact decision history",
+          "Coarse and structural refinement (0.2.33-0.2.39)"
+        ],
+        "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "handleId": "ef9cce1b00984d306fe867a72524ba4fc3fc3a4953845c4e2e381c41c404382f"
+      }
+    },
+    {
+      "caseId": "08",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.59,
+      "evidenceSufficiency": 0.71,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28151,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "1000d60b5cb298f88a9c80f64c1926007858ed2c8d07fdfa2d2dc0b03805e240",
+      "elapsedMs": 628.9,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Architecture Impact decision history",
+        "headingPath": [
+          "Architecture Impact decision history"
+        ],
+        "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "handleId": "85d1884aee0cf4f823e298637d355f7622b33f7b8d1ded10bf68e3ba1056979c"
+      }
+    },
+    {
+      "caseId": "09",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.91,
+      "evidenceSufficiency": 0.82,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28190,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "1cbf3eaacd65ae90c3bfed0dc90d18e97340c7d3c24c754c54c597cdfcf6f2fe",
+      "elapsedMs": 730.9,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Semantic consistency relations and retrieval decision",
+        "headingPath": [
+          "Semantic consistency relations and retrieval decision"
+        ],
+        "sourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "handleId": "50f02e9e6aa5422772d6389e2f4e6e7e2d2ea82cd5e4d6a58b510790e12b038c"
+      }
+    },
+    {
+      "caseId": "09",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.79,
+      "evidenceSufficiency": 0.82,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28159,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "a713af7d3e41699017c6ee6bac8d16b6c1bd414866938b2067fdaac9fca59389",
+      "elapsedMs": 583.3,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Semantic consistency relations and retrieval decision",
+        "headingPath": [
+          "Semantic consistency relations and retrieval decision"
+        ],
+        "sourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "handleId": "50f02e9e6aa5422772d6389e2f4e6e7e2d2ea82cd5e4d6a58b510790e12b038c"
+      }
+    },
+    {
+      "caseId": "10",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.99,
+      "evidenceSufficiency": 0.76,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28203,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "ce0d97084b54c4d0f7fc74e0e86924d90a8d2ae7956bf3427fee01fb147cb752",
+      "elapsedMs": 621.7,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "R4 temporal validity",
+        "headingPath": [
+          "Semantic consistency current-truth decision",
+          "R4 temporal validity"
+        ],
+        "sourceRef": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "handleId": "8bb21b45cc29ed34bb7134fc40ff8d22b328333af59e2d5c9a2cdc40a665069e"
+      }
+    },
+    {
+      "caseId": "10",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.97,
+      "evidenceSufficiency": 0.76,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28196,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "c3f44c5dec244aa770f7be8e55f5dad9510ce628809b8799c41c95acfd4f739f",
+      "elapsedMs": 646.4,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "R4 temporal validity",
+        "headingPath": [
+          "Semantic consistency current-truth decision",
+          "R4 temporal validity"
+        ],
+        "sourceRef": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "handleId": "8bb21b45cc29ed34bb7134fc40ff8d22b328333af59e2d5c9a2cdc40a665069e"
+      }
+    },
+    {
+      "caseId": "12",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.57,
+      "evidenceSufficiency": 0.61,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28136,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "f38d934542e09642a321d07f98e34779b5a6daaba7d996a0e05dbb4e7b38f5a2",
+      "elapsedMs": 733.3,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Change-history contract",
+        "headingPath": [
+          "Change-history contract"
+        ],
+        "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "handleId": "0f5b5673d7003be67eae173ffa47b5951738686e62193ae79fd574e1d0a4d00e"
+      }
+    },
+    {
+      "caseId": "12",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.59,
+      "evidenceSufficiency": 0.55,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28196,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "3087a503fb032453cff355833e316b634f57a989ec195ce2cbc8e7814476367b",
+      "elapsedMs": 597.1,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Change-history contract",
+        "headingPath": [
+          "Change-history contract"
+        ],
+        "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "handleId": "0f5b5673d7003be67eae173ffa47b5951738686e62193ae79fd574e1d0a4d00e"
+      }
+    },
+    {
+      "caseId": "13",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.5,
+      "evidenceSufficiency": 0.78,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28181,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "ab612a36b55548331440f9abd69e6174fc299ca4944fcac72d8cb4689a05bc03",
+      "elapsedMs": 560.8,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Evidence-first rules",
+        "headingPath": [
+          "ADR 0003 — Evidence-first consistency recommendations",
+          "Evidence-first rules"
+        ],
+        "sourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "handleId": "f809a5966fc297ac0456b69345c69d51e144fcbaa4ed13c89ae17f82478fb38d"
+      }
+    },
+    {
+      "caseId": "13",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.29,
+      "evidenceSufficiency": 0.76,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28202,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "6fa1d026f43c7db957fddda70976fb195ae6274efa8e998e58d5dd6b4ab9be06",
+      "elapsedMs": 602.4,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Evidence-first rules",
+        "headingPath": [
+          "ADR 0003 — Evidence-first consistency recommendations",
+          "Evidence-first rules"
+        ],
+        "sourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "handleId": "f809a5966fc297ac0456b69345c69d51e144fcbaa4ed13c89ae17f82478fb38d"
+      }
+    },
+    {
+      "caseId": "15",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.94,
+      "evidenceSufficiency": 0.84,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28150,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "6da7c55c5682ac3dff4b66192f5d01116c3afc8ed72f8c9a6d494d85fd170e76",
+      "elapsedMs": 587,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Intent envelope",
+        "headingPath": [
+          "Agent protocol",
+          "Intent envelope"
+        ],
+        "sourceRef": "docs/AGENT_PROTOCOL.md",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "handleId": "21e02d5732b65468bdfd88679d69f6c736a4d1b572e101b873142b2dd7d56cf5"
+      }
+    },
+    {
+      "caseId": "15",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.47,
+      "evidenceSufficiency": 0.6,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28206,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "06b83dba6351debf3a229c0a394992fcc462285e4590641f8a73191c59004a3e",
+      "elapsedMs": 763.6,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Intent envelope",
+        "headingPath": [
+          "Agent protocol",
+          "Intent envelope"
+        ],
+        "sourceRef": "docs/AGENT_PROTOCOL.md",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "handleId": "21e02d5732b65468bdfd88679d69f6c736a4d1b572e101b873142b2dd7d56cf5"
+      }
+    },
+    {
+      "caseId": "16",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.87,
+      "evidenceSufficiency": 0.88,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28070,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "4226482a01b77ab1d99e7db2d8bd55a43f9148bbaba27406c234656a2178e09f",
+      "elapsedMs": 605.4,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Ephemeral trace working memory",
+        "headingPath": [
+          "Agent protocol",
+          "User-visible progress contract",
+          "Ephemeral trace working memory"
+        ],
+        "sourceRef": "docs/AGENT_PROTOCOL.md",
+        "rangeId": "heading-8",
+        "rangeKind": "section",
+        "handleId": "e5d1abfa74290c84fb4e8deef9ade7585174d924414605e92ee4e938fc8fb7b1"
+      }
+    },
+    {
+      "caseId": "16",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.89,
+      "evidenceSufficiency": 0.87,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28179,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "c21a702e229c1806fcf9e892ef9ab305c8bc050b1b19792ee67bc5d5567a195f",
+      "elapsedMs": 705,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Ephemeral trace working memory",
+        "headingPath": [
+          "Agent protocol",
+          "User-visible progress contract",
+          "Ephemeral trace working memory"
+        ],
+        "sourceRef": "docs/AGENT_PROTOCOL.md",
+        "rangeId": "heading-8",
+        "rangeKind": "section",
+        "handleId": "e5d1abfa74290c84fb4e8deef9ade7585174d924414605e92ee4e938fc8fb7b1"
+      }
+    },
+    {
+      "caseId": "17",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.8,
+      "evidenceSufficiency": 0.87,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28151,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "48375be416306a8971514fa79179d4a99f5653e81b14b64f16666f1b7435c913",
+      "elapsedMs": 715.1,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Generated and runtime outputs",
+        "headingPath": [
+          "MSSR repository structure",
+          "Generated and runtime outputs"
+        ],
+        "sourceRef": "docs/REPOSITORY_STRUCTURE.md",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "handleId": "6285d1f9c08a52f87fcc04df256e9fab174ce66befddfcd29253cf1599d4f69e"
+      }
+    },
+    {
+      "caseId": "17",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.89,
+      "evidenceSufficiency": 0.81,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28158,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "61ed008bf7ea2d4085d92cef163eda3ad80fbbc15d2d8cf962b7396e4eaf0e8c",
+      "elapsedMs": 592.6,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Generated and runtime outputs",
+        "headingPath": [
+          "MSSR repository structure",
+          "Generated and runtime outputs"
+        ],
+        "sourceRef": "docs/REPOSITORY_STRUCTURE.md",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "handleId": "6285d1f9c08a52f87fcc04df256e9fab174ce66befddfcd29253cf1599d4f69e"
+      }
+    },
+    {
+      "caseId": "18",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.72,
+      "evidenceSufficiency": 0.66,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28181,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "364fb2d95687a3c545ad93ccec2936dac97228ec3a9258446cce0111492fb047",
+      "elapsedMs": 665,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Generated and runtime outputs",
+        "headingPath": [
+          "MSSR repository structure",
+          "Generated and runtime outputs"
+        ],
+        "sourceRef": "docs/REPOSITORY_STRUCTURE.md",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "handleId": "6285d1f9c08a52f87fcc04df256e9fab174ce66befddfcd29253cf1599d4f69e"
+      }
+    },
+    {
+      "caseId": "18",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.71,
+      "evidenceSufficiency": 0.63,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28168,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "39fa5315c23926b0b9d77bad193c793769d7f4d11ba51dae61fb3079cd30cc12",
+      "elapsedMs": 642.1,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Generated and runtime outputs",
+        "headingPath": [
+          "MSSR repository structure",
+          "Generated and runtime outputs"
+        ],
+        "sourceRef": "docs/REPOSITORY_STRUCTURE.md",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "handleId": "6285d1f9c08a52f87fcc04df256e9fab174ce66befddfcd29253cf1599d4f69e"
+      }
+    },
+    {
+      "caseId": "19",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.89,
+      "evidenceSufficiency": 0.82,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28146,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "2d24c36b49d2b18adc26a531336851904b86d877e2e41d1ac23f33820a343491",
+      "elapsedMs": 638,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "What requires a tracked change",
+        "headingPath": [
+          "Registry and autoregistry",
+          "What requires a tracked change"
+        ],
+        "sourceRef": "docs/REGISTRY.md",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "handleId": "66314d541e9ed3d6f60ef8ed0a5753bda34799e92c535df90da03fe1e2ef4b6b"
+      }
+    },
+    {
+      "caseId": "19",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.9,
+      "evidenceSufficiency": 0.7,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28164,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "35e1afa234f28a32895f69fae67e8e11754abe136ec3959fa15bef63a56b47c0",
+      "elapsedMs": 646.5,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "What requires a tracked change",
+        "headingPath": [
+          "Registry and autoregistry",
+          "What requires a tracked change"
+        ],
+        "sourceRef": "docs/REGISTRY.md",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "handleId": "66314d541e9ed3d6f60ef8ed0a5753bda34799e92c535df90da03fe1e2ef4b6b"
+      }
+    },
+    {
+      "caseId": "20",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.58,
+      "evidenceSufficiency": 0.65,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28233,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "84b4c4bf608175970fc3fd25d72e49bf9f3617e381a36a2062c7070cfefbe6ff",
+      "elapsedMs": 646.7,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Package preflight",
+        "headingPath": [
+          "First-party skills v1: distribution, migration, and evaluation",
+          "Package preflight"
+        ],
+        "sourceRef": "docs/FIRST_PARTY_SKILLS_V1.md",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "handleId": "dadf572ce2127f1d96d190b703d6b648c089659e7f4ac8dfc5af88867c684398"
+      }
+    },
+    {
+      "caseId": "20",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.39,
+      "evidenceSufficiency": 0.67,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28157,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "9e4303244ea813522a11ed3ab729e9d1cb93c71f9ab2b7b8b4b40b35515174bf",
+      "elapsedMs": 582.8,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Package preflight",
+        "headingPath": [
+          "First-party skills v1: distribution, migration, and evaluation",
+          "Package preflight"
+        ],
+        "sourceRef": "docs/FIRST_PARTY_SKILLS_V1.md",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "handleId": "dadf572ce2127f1d96d190b703d6b648c089659e7f4ac8dfc5af88867c684398"
+      }
+    },
+    {
+      "caseId": "21",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.35,
+      "evidenceSufficiency": 0.58,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28195,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "af6dbefc41a75361a6d4fe1b5adc34107bc8531413d4de3b3f031e5e7692d5fd",
+      "elapsedMs": 587.2,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Skills requeridas, opcionales y diferidas",
+        "headingPath": [
+          "MSSR — Modular Semantic Skill Router",
+          "Skills requeridas, opcionales y diferidas"
+        ],
+        "sourceRef": "docs/skill-routing/README.md",
+        "rangeId": "heading-6",
+        "rangeKind": "section",
+        "handleId": "0b8beafa7d616eb2a669d6b62315adf55b4f8d3c6efb9c7c327f04643c84b785"
+      }
+    },
+    {
+      "caseId": "21",
+      "language": "es",
+      "status": "abstained",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.45,
+      "evidenceSufficiency": 0.29,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28183,
+        "output_tokens": 2044
+      },
+      "requestFingerprint": "c13455343f4343984d703d61585eb57977bee126b99ec82efe78cf44285d060b",
+      "elapsedMs": 611.2,
+      "exactFetch": "not-selected",
+      "selected": null
+    },
+    {
+      "caseId": "22",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.85,
+      "evidenceSufficiency": 0.83,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28226,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "e87f968d28276da25e8dab6180eca62c60590ed0608b853762803c2c3e1ee80a",
+      "elapsedMs": 605.2,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Progressive section retrieval",
+        "headingPath": [
+          "Semantic Evidence Plane architecture",
+          "Progressive section retrieval"
+        ],
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "handleId": "07ef3ae2710268136987aa063ea949c498c9fa634508b9c3f314d0da405dddaf"
+      }
+    },
+    {
+      "caseId": "22",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.84,
+      "evidenceSufficiency": 0.8,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28153,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "2f597a9055602d5437387ce2e282af5e03703b6d4011ba884b838307a60a4035",
+      "elapsedMs": 756,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Selective procedural context",
+        "headingPath": [
+          "Agent protocol",
+          "Project context and context budget",
+          "Selective procedural context"
+        ],
+        "sourceRef": "docs/AGENT_PROTOCOL.md",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "handleId": "4fddd742d7c73ca6fbd680cdbe206f9cdee18f7315aefd95a7b450c84a091f36"
+      }
+    },
+    {
+      "caseId": "23",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.81,
+      "evidenceSufficiency": 0.85,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28087,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "f26ff58c0a9fa42d701f34941101df930e549fe3c4903e891e7ba3939378780a",
+      "elapsedMs": 622.9,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Comandos",
+        "headingPath": [
+          "Pruebas de MSSR",
+          "Comandos"
+        ],
+        "sourceRef": "docs/skill-routing/TESTING.md",
+        "rangeId": "heading-9",
+        "rangeKind": "section",
+        "handleId": "ccbd4ae541e4b609c6c04c77b0487bc910db0c2dc54f56d8306ac7ee6ebf553b"
+      }
+    },
+    {
+      "caseId": "23",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.66,
+      "evidenceSufficiency": 0.84,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28172,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "b8b976dd1ab1898ed5d623a1534a6dd1f115ceb76b90cd4082f3b1583f32e1d6",
+      "elapsedMs": 627.6,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Comandos",
+        "headingPath": [
+          "Pruebas de MSSR",
+          "Comandos"
+        ],
+        "sourceRef": "docs/skill-routing/TESTING.md",
+        "rangeId": "heading-9",
+        "rangeKind": "section",
+        "handleId": "ccbd4ae541e4b609c6c04c77b0487bc910db0c2dc54f56d8306ac7ee6ebf553b"
+      }
+    },
+    {
+      "caseId": "24",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 1,
+      "evidenceSufficiency": 0.91,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28136,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "b242aa1e4ff21a0e3271b408e8f95a85cb1ebaa1db968d3560c62e55d099179a",
+      "elapsedMs": 634.1,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "2. Extender autoridad de contexto de proyecto a todos los hosts",
+        "headingPath": [
+          "Roadmap de MSSR",
+          "Próximo nivel útil",
+          "2. Extender autoridad de contexto de proyecto a todos los hosts"
+        ],
+        "sourceRef": "docs/skill-routing/ROADMAP.md",
+        "rangeId": "heading-6",
+        "rangeKind": "section",
+        "handleId": "83a5ade172a04204fb9ab3ff881d74fa7cc485d36483bceea42d63dc68a8716b"
+      }
+    },
+    {
+      "caseId": "24",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.99,
+      "evidenceSufficiency": 0.9,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28167,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "d0f66b09df0de3f9d94dadaf7753d950816708a870e24804aa63430894050e5c",
+      "elapsedMs": 721,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "2. Extender autoridad de contexto de proyecto a todos los hosts",
+        "headingPath": [
+          "Roadmap de MSSR",
+          "Próximo nivel útil",
+          "2. Extender autoridad de contexto de proyecto a todos los hosts"
+        ],
+        "sourceRef": "docs/skill-routing/ROADMAP.md",
+        "rangeId": "heading-6",
+        "rangeKind": "section",
+        "handleId": "83a5ade172a04204fb9ab3ff881d74fa7cc485d36483bceea42d63dc68a8716b"
+      }
+    },
+    {
+      "caseId": "25",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.64,
+      "evidenceSufficiency": 0.68,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28240,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "d4811a19a2878218af5245a326e2e9b8dfe7ee12ff7540591b24e436241aa0c0",
+      "elapsedMs": 607.2,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "When skills change",
+        "headingPath": [
+          "Agent protocol",
+          "When skills change"
+        ],
+        "sourceRef": "docs/AGENT_PROTOCOL.md",
+        "rangeId": "heading-16",
+        "rangeKind": "section",
+        "handleId": "1a4194f1dd40567be0a849c8719fb23d236c2059576b7a7503def96d2883acd5"
+      }
+    },
+    {
+      "caseId": "25",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.5,
+      "evidenceSufficiency": 0.66,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28185,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "2666675303bb7c6c08da798a5f96901fd619f92e89be63ad9922e4038afb437b",
+      "elapsedMs": 667.7,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "When skills change",
+        "headingPath": [
+          "Agent protocol",
+          "When skills change"
+        ],
+        "sourceRef": "docs/AGENT_PROTOCOL.md",
+        "rangeId": "heading-16",
+        "rangeKind": "section",
+        "handleId": "1a4194f1dd40567be0a849c8719fb23d236c2059576b7a7503def96d2883acd5"
+      }
+    },
+    {
+      "caseId": "26",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.95,
+      "evidenceSufficiency": 0.86,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28185,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "2fba30691e5b072d3093a98ed70084694ba5202a547c774ef056b79d49617e55",
+      "elapsedMs": 626.8,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Four distinct concepts",
+        "headingPath": [
+          "MauroPrime Operational Notice Plane",
+          "Four distinct concepts"
+        ],
+        "sourceRef": "docs/OPERATIONAL_NOTICE_PLANE.md",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "handleId": "15a1a4012eec96b74cc7a8a85a8ed49b4f8fec8f69c50f22da8ce64a1200a3d3"
+      }
+    },
+    {
+      "caseId": "26",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.98,
+      "evidenceSufficiency": 0.84,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28190,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "b4d8e52642165fa9e13372c1d6d63b95e67a6093811f3f6c9ceb9a935e8555d0",
+      "elapsedMs": 650.8,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Four distinct concepts",
+        "headingPath": [
+          "MauroPrime Operational Notice Plane",
+          "Four distinct concepts"
+        ],
+        "sourceRef": "docs/OPERATIONAL_NOTICE_PLANE.md",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "handleId": "15a1a4012eec96b74cc7a8a85a8ed49b4f8fec8f69c50f22da8ce64a1200a3d3"
+      }
+    },
+    {
+      "caseId": "27",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.76,
+      "evidenceSufficiency": 0.79,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28233,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "2a8faeeb977f65810f8ecf8c7f8de9d3b3969c9c73bc35f36f5a233dc6d18568",
+      "elapsedMs": 623.1,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Continuation and persistence",
+        "headingPath": [
+          "ADR 0001 — MSSR Context Plane v1",
+          "Decision",
+          "Continuation and persistence"
+        ],
+        "sourceRef": "docs/decisions/0001-context-plane-v1.md",
+        "rangeId": "heading-6",
+        "rangeKind": "section",
+        "handleId": "e41f16cb2f22d11fa1f40fed35f821c9c37643efa0bbbe71279fad0b667c3fd8"
+      }
+    },
+    {
+      "caseId": "27",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.61,
+      "evidenceSufficiency": 0.81,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28185,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "451d9a3fd59b760626e5f285c66f61257f4e1a47f37bd97521f62b7f2b3a88aa",
+      "elapsedMs": 707.3,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Message contract",
+        "headingPath": [
+          "ADR 0001 — MSSR Context Plane v1",
+          "Decision",
+          "Message contract"
+        ],
+        "sourceRef": "docs/decisions/0001-context-plane-v1.md",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "handleId": "458b70831363f3dff120c9e270e5cfbd0e414028c1660821a4e78caebe8a24fb"
+      }
+    },
+    {
+      "caseId": "28",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.46,
+      "evidenceSufficiency": 0.9,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28259,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "8bc062761f7806440b483427cbf702cc6db41879fd6b5aac593420abc39fc4e5",
+      "elapsedMs": 688.7,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Evidence-first rules",
+        "headingPath": [
+          "ADR 0003 — Evidence-first consistency recommendations",
+          "Evidence-first rules"
+        ],
+        "sourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "handleId": "f809a5966fc297ac0456b69345c69d51e144fcbaa4ed13c89ae17f82478fb38d"
+      }
+    },
+    {
+      "caseId": "28",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.74,
+      "evidenceSufficiency": 0.84,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28161,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "32aef1c7499af9167880959af4b39726aa16b4ccb6ae02104ceacd46b602a42d",
+      "elapsedMs": 730.9,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Evidence-first rules",
+        "headingPath": [
+          "ADR 0003 — Evidence-first consistency recommendations",
+          "Evidence-first rules"
+        ],
+        "sourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "handleId": "f809a5966fc297ac0456b69345c69d51e144fcbaa4ed13c89ae17f82478fb38d"
+      }
+    },
+    {
+      "caseId": "29",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.7,
+      "evidenceSufficiency": 0.8,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28169,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "f34a8b634371fff76253bea255539de15ce829f350bf7fbc8ec7588f53d0a3fb",
+      "elapsedMs": 621.7,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Evidence classes",
+        "headingPath": [
+          "ADR 0004 — Situation Model for project knowledge",
+          "Decision",
+          "Evidence classes"
+        ],
+        "sourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "handleId": "b632a380843de9f3e172da2572fbb4537719428c190631f385526ac93c8dabe0"
+      }
+    },
+    {
+      "caseId": "29",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.59,
+      "evidenceSufficiency": 0.79,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28117,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "10f3e99103967691b6f885aa871248c801cfc0d10bbb5065b0b60eef53efa2ee",
+      "elapsedMs": 684.4,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Evidence classes",
+        "headingPath": [
+          "ADR 0004 — Situation Model for project knowledge",
+          "Decision",
+          "Evidence classes"
+        ],
+        "sourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "handleId": "b632a380843de9f3e172da2572fbb4537719428c190631f385526ac93c8dabe0"
+      }
+    },
+    {
+      "caseId": "30",
+      "language": "en",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.58,
+      "evidenceSufficiency": 0.81,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28200,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "828e1a037ce6965551742500c23daa66f0f8fc3f4025f72af4f4364541db444b",
+      "elapsedMs": 724,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Decision",
+        "headingPath": [
+          "ADR 0005 — Architecture Impact / Drift Links",
+          "Decision"
+        ],
+        "sourceRef": "docs/decisions/0005-architecture-impact-drift-links.md",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "handleId": "48fa2782d28385f8bca6bfd3d39613d2442a2efb228f16466455a54b7442d367"
+      }
+    },
+    {
+      "caseId": "30",
+      "language": "es",
+      "status": "selected",
+      "reason": null,
+      "candidateCount": 200,
+      "finalistCount": 200,
+      "selectionMode": "single-pass",
+      "providerCalls": 1,
+      "providerConfidence": 0.66,
+      "evidenceSufficiency": 0.74,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 28195,
+        "output_tokens": 2047
+      },
+      "requestFingerprint": "a78574871476fb2ab95c5582c3c247690819c714b21fc46cd8a07c2960671f39",
+      "elapsedMs": 650.5,
+      "exactFetch": "passed",
+      "selected": {
+        "title": "Decision",
+        "headingPath": [
+          "ADR 0005 — Architecture Impact / Drift Links",
+          "Decision"
+        ],
+        "sourceRef": "docs/decisions/0005-architecture-impact-drift-links.md",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "handleId": "48fa2782d28385f8bca6bfd3d39613d2442a2efb228f16466455a54b7442d367"
+      }
+    }
+  ]
+}

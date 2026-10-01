@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "experiment": "mssr-librarian-jev-selection",
+  "runId": "mssr-librarian-jev-bilingual-80k-singlepass-20261001T184400Z-v2",
+  "runFolder": "mssr-librarian-jev-bilingual-80k-singlepass-20261001T184400Z-v2",
+  "capturedAt": "2026-10-01T18:54:11.686Z",
+  "classification": "Final repeated 80k direct run on 0.2.97 build; runner/scorer accept explicit credential-launcher path override.",
+  "execution": {
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "mode": "single-pass",
+    "selectionModesObserved": {
+      "single-pass": 52
+    },
+    "aggregateCandidateEvidenceCharLimit": 80000,
+    "queries": 52,
+    "corpusDocuments": 21,
+    "headings": 200,
+    "providerCalls": 52,
+    "successfulCalls": 52,
+    "failedCalls": 0,
+    "abstentions": 2,
+    "exactFetchPassed": 50,
+    "inputTokens": 1465227,
+    "outputTokens": 106438,
+    "meanLatencyMs": 646.2,
+    "sourceLabelFileReadByRunner": false,
+    "scorerOpenedFrozenLabelsAfterCompleteResponses": true,
+    "rawVendorHttpBodiesPersisted": false,
+    "credentialValuePersisted": false
+  },
+  "repository": {
+    "branchAtManifest": "codex/jev-confidence-merge-evaluation",
+    "headAtManifest": "5163dce31f3912aca4500cbd2fb58453d6ee7203",
+    "workingTreeDirtyAtManifest": true,
+    "headAtRunKnown": "5163dce31f3912aca4500cbd2fb58453d6ee7203",
+    "runWasMadeFromUncommittedCandidate": true,
+    "runTimeSourceFingerprintCaptured": true,
+    "packageVersionAtRun": "0.2.97",
+    "buildReceiptAtRun": {
+      "schema": "mssr-build-receipt-v1",
+      "id": "mssr-build:sha256:bc288853f02be406",
+      "version": "0.2.97",
+      "files": 124,
+      "bytes": 1394009
+    },
+    "sourceFileHashesAtManifest": {
+      "src/librarian-jev-selection.ts": {
+        "bytes": 23349,
+        "sha256": "7ca2deee4b85d4e31186ce0f6b78ab4622cd0e97a135c9f30e7ab2f7a059d493"
+      },
+      "src/librarian-retrieval.ts": {
+        "bytes": 19737,
+        "sha256": "0582aef8d5cc21a7493c19acdbd2924e223c5bac31681b791c69954a4ded95b5"
+      },
+      "src/librarian-text-normalization.ts": {
+        "bytes": 1404,
+        "sha256": "59902533b8703960a1bc34b27e938a8fb058d5839014295087a2e9dd188544ba"
+      },
+      "src/semantic-curation-jev-contract.ts": {
+        "bytes": 5255,
+        "sha256": "0c61321354b014f84798ad8423801faf4ef0418f33c12f0e4153d63b578293da"
+      },
+      "src/semantic-curation-jev.ts": {
+        "bytes": 42964,
+        "sha256": "f14ebd0e890b6fd242ed0585e7868fc347d231ba506105432714c0c82b2c7395"
+      },
+      "src/semantic-evidence-mcp.ts": {
+        "bytes": 7303,
+        "sha256": "4d834fd79ba6cb6ddada3c4ab6599d53b9e3e6edccbd00537f62bcbe268f2fd5"
+      }
+    }
+  },
+  "times": {
+    "startedAt": "2026-10-01T18:44:58.354Z",
+    "completedAt": "2026-10-01T18:45:33.193Z"
+  },
+  "inputs": {
+    "cases.json": {
+      "sha256": "70e4c30fa2473a73fd9c2626a92ecfc58addb548da132e2ee639614b94e384f4",
+      "bytes": 6406
+    },
+    "corpus.json": {
+      "sha256": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d",
+      "bytes": 198584
+    },
+    "labels.json": {
+      "sha256": "c3f2c8db87f4086747d346596eacbf66038a4712c1210d1ffbf1bf6dcf731b99",
+      "bytes": 3823
+    },
+    "target-index.json": {
+      "sha256": "770e14acfaf74716dd3667cb8311e5e56a7222e5895dc725bcc44571e5f8a58a",
+      "bytes": 10214
+    }
+  },
+  "frozenInputsByteIdenticalAcrossRuns": [
+    "mssr-librarian-jev-bilingual-hierarchical-20261001T174949Z-v1",
+    "mssr-librarian-jev-bilingual-hierarchical-64k-20261001T181350Z-v1",
+    "mssr-librarian-jev-bilingual-80k-singlepass-20261001T182504Z-v1",
+    "mssr-librarian-jev-bilingual-80k-singlepass-20261001T184400Z-v2"
+  ],
+  "scores": {
+    "status": "complete-exploratory-score",
+    "metricScope": "strict single-heading target match; Luna-reviewed labels only",
+    "combined": {
+      "queries": 52,
+      "exactTargetSelections": 34,
+      "selected": 50,
+      "abstentions": 2,
+      "failed": 0,
+      "exactFetchChecks": 50,
+      "providerCalls": 52,
+      "inputTokens": 1465227,
+      "outputTokens": 106438,
+      "latencyMeanMs": 646.1846,
+      "finalistCountMean": 200
+    },
+    "byLanguage": {
+      "en": {
+        "queries": 26,
+        "exactTargetSelections": 17,
+        "rate": 0.6538
+      },
+      "es": {
+        "queries": 26,
+        "exactTargetSelections": 17,
+        "rate": 0.6538
+      }
+    },
+    "confidenceCalibration": "not established",
+    "limitations": [
+      "The live runner did not read labels or target mappings; the scorer opened them only after the run completed.",
+      "Exact-target scores use Luna-reviewed single-heading labels, not human-owner adjudication; an alternate section may contain valid evidence.",
+      "There are no independent labels for abstention quality or sufficient answer evidence; Noul and Choice values remain descriptive and uncalibrated.",
+      "Hierarchical final Noul sees retained finalists while single-pass Noul sees the full offered candidate set; cross-mode sufficiency values are not comparable.",
+      "The grouped query holdout retains the same 21 source documents, so it is not unseen-document generalization.",
+      "This 80,000-character run keeps a direct full-catalog Choice for the 200-heading corpus; the paired 64,000-character run exercises hierarchy, and neither establishes behavior across unseen-document catalogs.",
+      "This evaluates evidence range selection and exact fetch, not automatic iterative grep, contradiction truth, free-form synthesis, citation faithfulness, permissions or production activation."
+    ]
+  },
+  "files": [
+    {
+      "path": "hierarchical-live-smoke-80k.mjs",
+      "bytes": 7314,
+      "sha256": "97c9dbb391ec9d99d1a627bb7c3bec6cbccddd51186a47763ca214c50d1db46e"
+    },
+    {
+      "path": "hierarchical-live-smoke-v2-result.json",
+      "bytes": 2512,
+      "sha256": "26ecbe67fb61e5cecc02bc91dae03403ee9547f3ddef1efe9c3e6797b2098640"
+    },
+    {
+      "path": "inputs/cases.json",
+      "bytes": 6406,
+      "sha256": "70e4c30fa2473a73fd9c2626a92ecfc58addb548da132e2ee639614b94e384f4"
+    },
+    {
+      "path": "inputs/corpus.json",
+      "bytes": 198584,
+      "sha256": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d"
+    },
+    {
+      "path": "inputs/labels.json",
+      "bytes": 3823,
+      "sha256": "c3f2c8db87f4086747d346596eacbf66038a4712c1210d1ffbf1bf6dcf731b99"
+    },
+    {
+      "path": "inputs/target-index.json",
+      "bytes": 10214,
+      "sha256": "770e14acfaf74716dd3667cb8311e5e56a7222e5895dc725bcc44571e5f8a58a"
+    },
+    {
+      "path": "probability-distribution-live-smoke-80k.mjs",
+      "bytes": 6378,
+      "sha256": "c8d9bdd5b5432416bc21cee45e2dba2665adbbe3c6e4f66b6f9c6e729c175862"
+    },
+    {
+      "path": "probability-distribution-live-smoke-v2-result.json",
+      "bytes": 841,
+      "sha256": "ddcbbc616cb11eda33cf1f02ec5573f6274dfeb5c16e4da03b4c63527b6a0a59"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 2035,
+      "sha256": "9fbac6aa2bb36f7f8be9bd94aa59648d9ac656b30247c01998b02148ac80d8fc"
+    },
+    {
+      "path": "responses.json",
+      "bytes": 59834,
+      "sha256": "8f7bee648b40c49f480a2eca045b823beeb322cada44d12fd648df1acead956a"
+    },
+    {
+      "path": "runner.mjs",
+      "bytes": 10081,
+      "sha256": "40bb95b69cc1c9be6daa243edcf33ff3a13e08dfa3faf710c518acfbb1ac366c"
+    },
+    {
+      "path": "score-summary.json",
+      "bytes": 17783,
+      "sha256": "08d0eeb81e91d5ba9f31b67720ee21a19d4550d1caf7898c9e754f58ffd66d13"
+    },
+    {
+      "path": "score.mjs",
+      "bytes": 13727,
+      "sha256": "30df515d85e5875b16cb482c3438ffe883f8e35ccf9ee615b46cf97e46b50579"
+    },
+    {
+      "path": "scored-records.json",
+      "bytes": 67091,
+      "sha256": "82d809856fb702bb12d96676b27ec89378a8803a713cdb2db79b273897ede226"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 794,
+      "sha256": "d3f658944a6c7d9a8a795826052ef8b49fc67b92a15069b67bc72033dd9aafca"
+    }
+  ]
+}
