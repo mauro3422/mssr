@@ -1,21 +1,9 @@
 # MSSR project memory
 
 ## Explicit Jev selection for the Librarian — 0.2.95
+The bilingual full-heading experiment supports offering a separate Jev Choice over caller-supplied sections when the deterministic lexical shortlist misses useful evidence. The original 0.2.95 contract offers at most 254 exact heading candidates plus `none`, returns only a revision-bound handle, and requires the caller to exact-fetch the selected section. It makes no filesystem scan, compaction, paragraph generation, verification or canonical write. Option limits fail closed to `not-run` instead of silently dropping candidates; raw provider confidence is descriptive and uncalibrated. Titles, paths and excerpts are untrusted input to the model, so the host must review the exact fetched source. The first live MCP smoke used the frozen 21-document MSSR corpus and selected one expected section with an integrity-passing exact fetch; its label was Luna-reviewed, not approved by the human document owner, and is a wiring check rather than quality validation.
 
-The bilingual full-heading experiment supports offering a separate Jev Choice
-over caller-supplied sections when the deterministic lexical shortlist misses
-useful evidence. It does not justify auto-reranking search or calibrated
-confidence. `mssr_librarian_jev_select` offers at most 254 exact heading
-candidates plus `none`, returns only a revision-bound handle, and requires the
-caller to exact-fetch the selected section. It makes no filesystem scan,
-compaction, paragraph generation, verification or canonical write. Option
-limits fail closed to `not-run` instead of silently dropping candidates; raw
-provider confidence is descriptive and uncalibrated. Titles, paths and excerpts
-are untrusted input to the model, so the host must review the exact fetched
-source. The first live MCP smoke used the frozen 21-document MSSR corpus and
-selected one expected section with an integrity-passing exact fetch; its label
-was Luna-reviewed, not approved by the human document owner, and is a wiring
-check rather than quality validation.
+The 0.2.96 selector extension lets a host pass up to 100 exact handles returned by deterministic Librarian search. MSSR revalidates owner, explicit source, privacy classification, revision, range and fingerprint before producing a bounded query-centered excerpt for Jev. It returns the existing exact handle, which the host must still fetch; stale or out-of-scope candidates fail before provider use. Calls that omit handles retain heading enumeration. This repairs the missing bridge between lexical discovery and semantic choice without adding a tool, making search authoritative, calibrating confidence, or granting synthesis/write authority.
 
 ## Jev composition, confidence and reversible synthesis — 0.2.93
 
