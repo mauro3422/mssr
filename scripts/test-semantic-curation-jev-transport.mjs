@@ -102,5 +102,17 @@ assert.throws(() => validateMssrJevDecisionResponse(validRequest, {
 assert.throws(() => validateMssrJevDecisionResponse(validRequest, {
   provider: "fixture", model: "fixture", answers: { q0: { type: "choice", choice: "a", confidence: 1.1 } }, usage: { input_tokens: 0, output_tokens: 0 },
 }), /confidence/);
+assert.equal(validateMssrJevDecisionResponse(validRequest, {
+  provider: "fixture", model: "fixture", answers: { q0: { type: "choice", choice: "a", confidence: 0.8, probabilities: { a: 0.8, b: 0.2 } } }, usage: { input_tokens: 0, output_tokens: 0 },
+}).answers.q0.probabilities.a, 0.8, "Choice may preserve an exact provider distribution for bounded candidate ranking");
+assert.throws(() => validateMssrJevDecisionResponse(validRequest, {
+  provider: "fixture", model: "fixture", answers: { q0: { type: "choice", choice: "a", confidence: 0.8, probabilities: { a: 0.8, outside: 0.2 } } }, usage: { input_tokens: 0, output_tokens: 0 },
+}), /exactly match the offered choices/);
+assert.throws(() => validateMssrJevDecisionResponse(validRequest, {
+  provider: "fixture", model: "fixture", answers: { q0: { type: "choice", choice: "a", confidence: 0.8, probabilities: { a: 0.8, b: 0.1 } } }, usage: { input_tokens: 0, output_tokens: 0 },
+}), /sum to approximately 1/);
+assert.throws(() => validateMssrJevDecisionResponse(validRequest, {
+  provider: "fixture", model: "fixture", answers: { q0: { type: "choice", choice: "a", confidence: 0.8, probabilities: { a: 0.2, b: 0.8 } } }, usage: { input_tokens: 0, output_tokens: 0 },
+}), /highest reported probability/);
 
 console.log("semantic curation Jev transport tests passed");

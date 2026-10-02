@@ -1,3 +1,6 @@
 * text=auto eol=lf
 *.ps1 text eol=crlf
 
+# Live experiment runs carry byte-level SHA-256 manifests. Keep their evidence
+# bytes intact instead of applying repository-wide text line-ending conversion.
+experiments/jev-mssr-live/runs/** -text whitespace=cr-at-eol

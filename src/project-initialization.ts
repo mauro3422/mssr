@@ -15,6 +15,7 @@ const LEGACY_MSSR_FILES = [
   "PROJECT_STATE.md",
   "project-context.json",
   "project-context-modules.json",
+  "project-context-librarian.json",
   "context-messages.json",
   "mssr-context-inbox.json",
 ] as const;

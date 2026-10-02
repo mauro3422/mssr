@@ -22,6 +22,7 @@ export const MSSR_PROJECT_CONTROL_FILES = {
   projectContextManifest: "project-context.json",
   projectContextSegmentsManifest: "project-context-segments.json",
   projectContextReferencesManifest: "project-context-refs.json",
+  projectContextLibrarianManifest: "project-context-librarian.json",
   architectureImpactManifest: "architecture-impact.json",
   architectureStructureManifest: "architecture-structure.json",
   architectureInvariantManifest: "architecture-invariants.json",

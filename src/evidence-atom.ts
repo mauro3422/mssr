@@ -20,6 +20,14 @@ export const MSSR_EVIDENCE_AUTHORITY_CLASSES = [
   "mixed",
 ] as const;
 
+export const MSSR_EVIDENCE_SOURCE_CLASSES = [
+  "canonical",
+  "observed",
+  "inferred",
+  "learned",
+  "mixed",
+] as const;
+
 export const MSSR_EVIDENCE_PRIVACY_CLASSES = [
   "project-metadata",
   "operational-metadata",
@@ -97,7 +105,7 @@ export const mssrEvidenceAtomSchema = z.object({
   }),
   provenance: z.object({
     producer: boundedToken,
-    sourceClass: z.enum(["canonical", "observed", "inferred", "learned", "mixed"]),
+    sourceClass: z.enum(MSSR_EVIDENCE_SOURCE_CLASSES),
     canonicalOwner: boundedText(240),
     host: boundedText(120).optional(),
     traceId: boundedText(200).optional(),

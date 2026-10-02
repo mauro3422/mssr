@@ -9,11 +9,13 @@ import { documentFreshnessManifestSchema } from "./document-freshness.js";
 import { documentContextManifestSchema } from "./document-context.js";
 import { mssrContextMessagesManifestSchema } from "./context-message-repository-provider.js";
 import { skillContextManifestSchema } from "./skill-context.js";
+import { projectContextLibrarianManifestSchema } from "./project-context-librarian.js";
 
 export const MSSR_LIBRARIAN_PROJECT_MANIFEST_KINDS = [
   "project-context",
   "project-context-segments",
   "project-context-references",
+  "project-context-librarian",
   "architecture-impact",
   "architecture-structure",
   "architecture-invariants",
@@ -81,6 +83,7 @@ function parseManifest(kind: MssrLibrarianProjectManifestKind, input: unknown): 
     case "project-context": return projectContextManifestSchema.parse(input);
     case "project-context-segments": return projectContextSegmentsManifestSchema.parse(input);
     case "project-context-references": return projectContextReferencesManifestSchema.parse(input);
+    case "project-context-librarian": return projectContextLibrarianManifestSchema.parse(input);
     case "architecture-impact": return architectureImpactManifestSchema.parse(input);
     case "architecture-structure": return architectureStructureManifestSchema.parse(input);
     case "architecture-invariants": return architectureInvariantManifestSchema.parse(input);
@@ -105,6 +108,11 @@ function entriesFor(kind: MssrLibrarianProjectManifestKind, parsed: any): Manife
         id: `${binding.moduleId}:${reference.id}`,
         value: { moduleId: binding.moduleId, ...reference },
       })));
+    case "project-context-librarian":
+      return parsed.entries.map((entry: any) => ({
+        id: `${entry.entryId}:${entry.headingPath.join(" > ")}`,
+        value: entry,
+      }));
     case "architecture-impact":
     case "architecture-structure":
       return parsed.architectures.map((entry: any) => ({ id: entry.architectureId, value: entry }));
