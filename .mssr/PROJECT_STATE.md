@@ -1,7 +1,11 @@
 # MSSR project state
 
 ## Current release
-MSSR `0.2.99` fixes bounded Jev excerpt selection: oversized exact ranges use a deterministic window with maximum distinct-query-term coverage, so an early generic match does not displace a later dense binding phrase. The 260-codepoint cap, Unicode-aware source offsets, revision-bound handle, advisory decision, and exact-fetch requirement remain. The regression failed before the fix and now passes. Full `npm run verify` and `npm run release:gate` pass; build `mssr-build:sha256:86070e2a0e734090` (124 files / 1,405,687 bytes). Final release receipt `.mssr/runtime/releases/0.2.99.json` records local package `mauroprime-mssr-0.2.99.tgz`, 1,076,623 bytes, SHA-256 `0601f6633ad435200770ac386b2d9620a1eb5096f3b8e146be7952eef346f44a` (`pkg:0.2.99#0601f663`); it has not been published to npm. The MSSR MCP readback reports loaded=available at this build, status `current`. Exploratory live smoke `experiments/jev-mssr-live/runs/mssr-librarian-jev-excerpt-window-smoke-20261002T180139Z-86070e-v1/` offered six exact candidates; Jev selected deterministic-search rank 2, raw confidence 0.88/Noul 0.72, and exact fetch matched the fingerprint. One query, no labels or atom inputs: this is integration evidence, not quality/calibration data.
+MSSR 0.2.100 passes `npm run verify` and `npm run release:gate`; build `mssr-build:sha256:18cdfce16f5c4f1f` (125 files / 1,407,903 bytes). Local artifact `mauroprime-mssr-0.2.100.tgz` is 1,080,327 bytes, SHA-256 `849b067d5f1578b3c32c73fc4e2bafcedaa8a5e01231ac1108fa92313a103d32` (`pkg:0.2.100#849b067d`); not published to npm. The release closes an exact-fetch boundary: search labels range size/fetchability; Jev selection omits >20,000 UTF-16-unit candidates, reports counts on all pre-provider exits, and makes no provider call when none are fetchable. Exact fetch remains whole-range and fail-closed.
+
+Bridge candidate 0.6.145 on `codex/bridge-mssr-0.2.100-adoption-20261002` consumes the exact artifact. Clean install/hash parity, check/build, focused semantic-evidence/R4 tests, `docs:tools:check` (185 tools), and full isolated regressions pass. Real Jev candidate smoke: 12 offered, 1 oversized omitted, Jev selected from 11 fetchable candidates, exact fetch returned 16,447 code units with matching fingerprint; confidence remains uncalibrated and no truth/write authority is granted. Live Bridge is still 0.6.144 / boot `b39f841c`; no live restart, deployment, PR or main merge. Original dirty Bridge checkout `D:\Dev\bridge-mcp` remains untouched.
+
+The MSSR-owned search remains caller-supplied: Bridge has no canonical producer/store feeding source-derived EvidenceAtoms. Next gates: commit and push the verified MSSR and Bridge topic branches without force/merge; then review a host-owned exact-source metadata owner before wiring atoms, followed by an independently adjudicated, document-grouped evaluation. Keep historical 48/51 measurements exploratory and do not calibrate from them.
 
 ## 0.2.98 package release receipt — historical
 
@@ -149,14 +153,13 @@ The `0.2.91` candidate builds on the first Semantic Evidence Plane implementatio
 The near-term reliability program remains explicit in `ROADMAP.md`. **R1 Trace Identity Integrity, R2 Automatic Lifecycle Coverage, and R3 Context Economy v2 are complete end-to-end.** R4 ADR 0006 remains in its longitudinal measurement phase: representative precision/recall, abstention/noise and context-cost evidence must still accumulate; no classifier has been promoted to routing, notice or write authority. Detailed current-truth policy and relation/retrieval boundaries remain in their indexed modules. Project Context Health on 2026-10-02 reports a valid 26-module manifest and level `review`: the worst Semantic Evidence Plane payload is 9,898/10,000 bytes; PROJECT_MEMORY and PROJECT_STATE remain size-watch items. This review found no stale core fact or stable architecture change to apply, so PROJECT_CONTEXT and PROJECT_MEMORY are `reviewed-none`; PROJECT_STATE is updated here. Next context-maintenance gate: inspect an exact modularization/ref-split plan for the 99% module before changing selectors or moving prose. No authority is rewritten from telemetry or heuristics.
 
 ## Machine-readable current-state claims
-
 <!-- mssr-state:roadmap.r1=completed -->
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.98 -->
-<!-- mssr-version:bridge.live=0.6.142 -->
-<!-- mssr-version:bridge.mssr=0.2.93 -->
+<!-- mssr-version:mssr.source=0.2.100 -->
+<!-- mssr-version:bridge.live=0.6.144 -->
+<!-- mssr-version:bridge.mssr=0.2.96 -->
 <!-- mssr-owner:semantic.consistency=mssr -->
 <!-- mssr-decision:adr.0006=r4-bf-portable -->
 

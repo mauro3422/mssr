@@ -3,6 +3,7 @@ import { buildMssrMarkdownDocumentSurface } from "../dist/document-surface.js";
 import { evidenceAtomFromLibrarianCatalogRecord } from "../dist/evidence-atom.js";
 import { catalogMssrLibrarianRecord } from "../dist/librarian-contract.js";
 import {
+  MSSR_LIBRARIAN_RETRIEVAL_LIMITS,
   fetchMssrLibrarianEvidence,
   searchMssrLibrarianEvidence,
 } from "../dist/librarian-retrieval.js";
@@ -201,5 +202,53 @@ const decomposedSpanishDoc = {
 const decomposedSpanishMatch = searchMssrLibrarianEvidence({ documents: [decomposedSpanishDoc], query: { query: "verificación del año fiscal", maxSnippetChars: 100 } }).results.find((item) => item.handle.rangeKind === "block");
 assert.ok(decomposedSpanishMatch, "composed query ñ should match an n plus combining tilde in source text");
 assert.ok(decomposedSpanishMatch.snippet.includes("an\u0303o fiscal"), "the source-offset map should center snippets on a decomposed ñ without rewriting source text");
+
+const fetchLimit = MSSR_LIBRARIAN_RETRIEVAL_LIMITS.fetchChars;
+const exactBoundaryDocument = {
+  owner,
+  sourceRef: "docs/exact-fetch-boundary.md",
+  markdown: `# Boundary\n\n${"x".repeat(fetchLimit - "# Boundary\n\n".length)}`,
+  privacyClass: "project-metadata",
+};
+const exactBoundaryResult = searchMssrLibrarianEvidence({ documents: [exactBoundaryDocument], query: { query: "boundary" } }).results.find((item) => item.handle.rangeKind === "section");
+assert.ok(exactBoundaryResult, "the exact fetch boundary document should be searchable");
+assert.equal(exactBoundaryResult.rangeCodeUnits, fetchLimit);
+assert.equal(exactBoundaryResult.exactFetchable, true, "an exact range at the fetch cap remains fetchable");
+const exactBoundaryFetch = fetchMssrLibrarianEvidence({
+  handle: exactBoundaryResult.handle,
+  owner,
+  sourceRef: exactBoundaryDocument.sourceRef,
+  markdown: exactBoundaryDocument.markdown,
+  privacyClass: "project-metadata",
+});
+assert.equal(exactBoundaryFetch.text.length, fetchLimit, "fetch returns the entire exact boundary range");
+
+const overBoundaryDocument = {
+  ...exactBoundaryDocument,
+  sourceRef: "docs/exact-fetch-over-boundary.md",
+  markdown: `${exactBoundaryDocument.markdown}y`,
+};
+const overBoundaryResult = searchMssrLibrarianEvidence({ documents: [overBoundaryDocument], query: { query: "boundary" } }).results.find((item) => item.handle.rangeKind === "section");
+assert.ok(overBoundaryResult, "the over-boundary exact range should remain discoverable as a search candidate");
+assert.equal(overBoundaryResult.rangeCodeUnits, fetchLimit + 1);
+assert.equal(overBoundaryResult.exactFetchable, false, "search explicitly marks an oversized exact range as un-fetchable");
+assert.throws(() => fetchMssrLibrarianEvidence({
+  handle: overBoundaryResult.handle,
+  owner,
+  sourceRef: overBoundaryDocument.sourceRef,
+  markdown: overBoundaryDocument.markdown,
+  privacyClass: "project-metadata",
+}), /Exact evidence range exceeds fetch size limit/);
+
+const unicodeBoundaryDocument = {
+  owner,
+  sourceRef: "docs/unicode-fetch-boundary.md",
+  markdown: `# Unicode\n\n${"😀".repeat(Math.floor((fetchLimit - "# Unicode\n\n".length) / 2))}${"x".repeat((fetchLimit - "# Unicode\n\n".length) % 2)}`,
+  privacyClass: "project-metadata",
+};
+const unicodeBoundaryResult = searchMssrLibrarianEvidence({ documents: [unicodeBoundaryDocument], query: { query: "unicode" } }).results.find((item) => item.handle.rangeKind === "section");
+assert.ok(unicodeBoundaryResult);
+assert.equal(unicodeBoundaryResult.rangeCodeUnits, fetchLimit, "the limit and offsets are consistently measured in JavaScript UTF-16 code units for astral Unicode text");
+assert.equal(unicodeBoundaryResult.exactFetchable, true);
 
 console.log("librarian retrieval tests passed");

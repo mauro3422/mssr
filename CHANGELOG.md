@@ -2,7 +2,7 @@
 
 The canonical MSSR release history now lives under [`changelogs/`](changelogs/INDEX.md).
 
-- Current release: [0.2.99](changelogs/0.2.99.md)
+- Current release: [0.2.100](changelogs/0.2.100.md)
 - Version index: [changelogs/INDEX.md](changelogs/INDEX.md)
 - Historical monolithic archive: [changelogs/LEGACY.md](changelogs/LEGACY.md)
 

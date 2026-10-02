@@ -86,7 +86,14 @@ caller or grant authority.
 
 Search returns advisory handles bound to source ref, revision, exact range,
 privacy label and fingerprint; fetch materializes text only when the host
-supplies the current source again. MCP exposes search/fetch plus Jev relation
+supplies the current source again. Search reports each exact range's UTF-16
+code-unit length and whether it fits fetch's 20,000-unit cap. Jev selection
+validates supplied handles, then offers only whole ranges that exact fetch can
+return; it never truncates a handle or invents a smaller subrange. It reports
+offered, eligible and oversized counts, and returns `not-run` without calling
+Jev when every candidate exceeds the cap. This is a fetchability boundary, not
+model abstention; an explicit later fetch of an oversized search result still
+fails closed. MCP exposes search/fetch plus Jev relation
 review, which batches compatible pairs within one explicit project/corpus scope
 and emits atom-bound judgments. Those judgments remain unverified until an
 independent verifier is supplied; a separate MCP tool builds exact-source

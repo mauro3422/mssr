@@ -67,6 +67,13 @@ assert.equal(selected.status, "selected");
 assert.equal(selected.selected.handle.rangeKind, "block");
 assert.deepEqual(selected.selected.handle, searchedRange.handle, "selection must return the exact supplied, revalidated handle");
 assert.equal(selected.candidateCount, 1);
+assert.deepEqual(selected.candidateRangeDiagnostics, {
+  offered: 1,
+  eligible: 1,
+  oversizedOmitted: 0,
+  maxFetchChars: 20_000,
+  lengthUnit: "utf16-code-units",
+});
 assert.equal(selected.evidenceSufficiency, 0.91, "selection reports Noul's separate answer-sufficiency estimate");
 assert.equal(selected.confidenceCalibration, "uncalibrated-provider-score");
 const sent = providerCalls[0];
@@ -171,7 +178,14 @@ const beforeHierarchicalCalls = providerCalls.length;
 const hierarchical = await selectMssrLibrarianEvidenceWithJev({ documents: [largeDocument], query: "Find the target needle evidence in the large catalog." }, provider);
 assert.equal(hierarchical.status, "selected");
 assert.equal(hierarchical.selectionMode, "hierarchical");
-assert.equal(hierarchical.candidateCount, 261, "the catalog includes its root heading plus 260 evidence headings");
+assert.equal(hierarchical.candidateCount, 260, "the oversized root range is omitted while 260 exact child ranges remain eligible");
+assert.deepEqual(hierarchical.candidateRangeDiagnostics, {
+  offered: 261,
+  eligible: 260,
+  oversizedOmitted: 1,
+  maxFetchChars: 20_000,
+  lengthUnit: "utf16-code-units",
+});
 assert.equal(hierarchical.providerCalls, 3, "260 headings require two bounded local choices and one global choice");
 assert.equal(providerCalls.length - beforeHierarchicalCalls, hierarchical.providerCalls);
 assert.equal(hierarchical.finalistCount, 4, "the selector retains the two highest-probability candidates from each shard");
@@ -189,6 +203,75 @@ for (const request of providerCalls.slice(beforeHierarchicalCalls)) {
 }
 const selectedExact = fetchMssrLibrarianEvidence({ handle: hierarchical.selected.handle, owner, sourceRef: largeDocument.sourceRef, markdown: largeDocument.markdown, privacyClass: "project-metadata" });
 assert.match(selectedExact.text, /UNIQUE_TARGET_EVIDENCE/);
+
+const fetchLimit = 20_000;
+const oversizedSectionDocument = {
+  owner,
+  sourceRef: "docs/oversized-section.md",
+  markdown: `# Oversized source\n\n## Target Needle\n\n${"Oversized context that cannot be re-fetched as one exact range. ".repeat(400)}UNIQUE_OVERSIZED_TAIL`,
+  privacyClass: "project-metadata",
+};
+const oversizedSearch = searchMssrLibrarianEvidence({
+  documents: [oversizedSectionDocument],
+  query: { query: "UNIQUE_OVERSIZED_TAIL", maxResults: 10 },
+});
+const oversizedCandidate = oversizedSearch.results.find((result) => result.handle.rangeKind === "section");
+assert.ok(oversizedCandidate);
+assert.ok(oversizedCandidate.rangeCodeUnits > fetchLimit);
+assert.equal(oversizedCandidate.exactFetchable, false);
+const oversizedCallStart = providerCalls.length;
+const mixedCandidateSelection = await selectMssrLibrarianEvidenceWithJev({
+  documents: [oversizedSectionDocument, ...documents],
+  query: "select the exact source range for the unique tail evidence",
+  candidateHandles: [oversizedCandidate.handle, searchedRange.handle],
+}, provider);
+assert.equal(mixedCandidateSelection.status, "selected", "a valid fetchable candidate remains selectable when another supplied candidate is oversized");
+assert.deepEqual(mixedCandidateSelection.selected.handle, searchedRange.handle);
+assert.deepEqual(mixedCandidateSelection.candidateRangeDiagnostics, {
+  offered: 2,
+  eligible: 1,
+  oversizedOmitted: 1,
+  maxFetchChars: fetchLimit,
+  lengthUnit: "utf16-code-units",
+});
+assert.equal(JSON.stringify(providerCalls[oversizedCallStart]).includes("UNIQUE_OVERSIZED_TAIL"), false, "an oversized exact source range is never sent to Jev");
+
+const allOversizedProviderCalls = providerCalls.length;
+const allOversizedSelection = await selectMssrLibrarianEvidenceWithJev({
+  documents: [oversizedSectionDocument],
+  query: "select the oversized tail",
+  candidateHandles: [oversizedCandidate.handle],
+}, provider);
+assert.equal(allOversizedSelection.status, "not-run");
+assert.equal(allOversizedSelection.reason, "no-fetchable-candidates");
+assert.equal(allOversizedSelection.selected, null);
+assert.equal(allOversizedSelection.jevCallMade, false);
+assert.equal(allOversizedSelection.candidateRangeDiagnostics.offered, 1);
+assert.equal(allOversizedSelection.candidateRangeDiagnostics.eligible, 0);
+assert.equal(allOversizedSelection.candidateRangeDiagnostics.oversizedOmitted, 1);
+assert.equal(providerCalls.length, allOversizedProviderCalls, "all-oversized exact handles abstain before contacting Jev");
+
+const oversizedHeadingDocument = {
+  owner,
+  sourceRef: "docs/oversized-heading.md",
+  markdown: `# Oversized heading\n\n${"Root material too large to return through the exact fetch cap. ".repeat(400)}\n\n## Fetchable Needle\n\nThe child section remains small, exact, and retrievable.`,
+  privacyClass: "project-metadata",
+};
+const headingCallStart = providerCalls.length;
+const headingSelection = await selectMssrLibrarianEvidenceWithJev({
+  documents: [oversizedHeadingDocument],
+  query: "select the fetchable child section",
+}, provider);
+assert.equal(headingSelection.status, "selected", "heading mode omits only oversized ranges while retaining fetchable child sections");
+assert.deepEqual(headingSelection.candidateRangeDiagnostics, {
+  offered: 2,
+  eligible: 1,
+  oversizedOmitted: 1,
+  maxFetchChars: fetchLimit,
+  lengthUnit: "utf16-code-units",
+});
+assert.equal(headingSelection.selected.title, "Fetchable Needle");
+assert.equal(JSON.stringify(providerCalls[headingCallStart]).includes("Root material too large"), false, "oversized heading text is never sent to Jev through its candidate range");
 
 const noDistributionCalls = [];
 const providerWithoutDistribution = {
@@ -230,6 +313,9 @@ const limitResult = await selectMssrLibrarianEvidenceWithJev({ documents: oversi
 });
 assert.equal(limitResult.status, "not-run");
 assert.equal(limitResult.reason, "provider-call-limit");
+assert.equal(limitResult.candidateRangeDiagnostics.offered, 2_048);
+assert.equal(limitResult.candidateRangeDiagnostics.eligible, 2_044);
+assert.equal(limitResult.candidateRangeDiagnostics.oversizedOmitted, 4);
 assert.equal(limitProviderCalls, 0, "a catalog exceeding the provider-call budget must fail closed before Jev use");
 
 console.log("librarian Jev selection tests passed");

@@ -11,6 +11,7 @@ import {
 } from "./evidence-atom.js";
 import { catalogMssrLibrarianRecord, mssrLibrarianIngressRecordSchema, type MssrLibrarianCatalogRecord, type MssrLibrarianIngressRecord } from "./librarian-contract.js";
 import { foldMssrLibrarianSearchText, foldMssrLibrarianSearchTextWithSourceOffsets } from "./librarian-text-normalization.js";
+import { MssrLibrarianRangeSizeLimitError } from "./librarian-errors.js";
 import { SKILL_ACTIONS, SKILL_ARTIFACTS, SKILL_DOMAINS, SKILL_NEEDS, SKILL_RISKS, SKILL_SIGNALS } from "./skill-routing.js";
 
 export const MSSR_LIBRARIAN_RETRIEVAL_LIMITS = {
@@ -89,6 +90,10 @@ export type MssrLibrarianEvidenceHandle = z.infer<typeof mssrLibrarianEvidenceHa
 
 export type MssrLibrarianRetrievalResult = {
   handle: MssrLibrarianEvidenceHandle;
+  /** JavaScript UTF-16 code-unit length of the exact range, matching the source offsets and fetch cap. */
+  rangeCodeUnits: number;
+  /** Whether mssr_librarian_fetch can return this entire exact range under the current fetch cap. */
+  exactFetchable: boolean;
   score: number;
   title: string;
   headingPath: string[];
@@ -431,8 +436,9 @@ export function searchMssrLibrarianEvidence(args: { documents: readonly MssrLibr
       });
       const handleFields = { version: 1 as const, owner: doc.owner, sourceRef, revision, rangeId: range.id, rangeKind: range.kind, startLine: range.metadata.startLine as number, endLine: range.metadata.endLine as number, startOffset: range.startOffset, endOffset: range.endOffset, fingerprint: range.fingerprint, privacyClass: doc.privacyClass as MssrLibrarianEvidenceHandle["privacyClass"] };
       const handle = mssrLibrarianEvidenceHandleSchema.parse({ ...handleFields, id: mssrLibrarianEvidenceHandleId(handleFields) });
+      const rangeCodeUnits = range.endOffset - range.startOffset;
       if (candidates.length >= MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxCandidates) throw new Error(`Librarian retrieval exceeds ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxCandidates} matching candidates.`);
-      candidates.push({ handle, score, title: range.title.slice(0, 240), headingPath: range.path.slice(0, 12), snippet: boundedSnippet(body, queryTerms, query.maxSnippetChars), metadata, ...(metadataProjectionMatches.length > 0 ? { metadataProjectionMatches } : {}), evidenceTier: "candidate", advisoryOnly: true, truthAuthority: false, ownerAndPrivacyAreCallerAsserted: true, catalogProvenanceIsCallerAsserted: true });
+      candidates.push({ handle, rangeCodeUnits, exactFetchable: rangeCodeUnits <= MSSR_LIBRARIAN_RETRIEVAL_LIMITS.fetchChars, score, title: range.title.slice(0, 240), headingPath: range.path.slice(0, 12), snippet: boundedSnippet(body, queryTerms, query.maxSnippetChars), metadata, ...(metadataProjectionMatches.length > 0 ? { metadataProjectionMatches } : {}), evidenceTier: "candidate", advisoryOnly: true, truthAuthority: false, ownerAndPrivacyAreCallerAsserted: true, catalogProvenanceIsCallerAsserted: true });
     }
   }
   candidates.sort((a, b) => b.score - a.score || a.handle.owner.localeCompare(b.handle.owner) || a.handle.sourceRef.localeCompare(b.handle.sourceRef) || a.handle.startOffset - b.handle.startOffset || a.handle.id.localeCompare(b.handle.id));
@@ -456,6 +462,6 @@ export function fetchMssrLibrarianEvidence(args: { handle: MssrLibrarianEvidence
     || range.metadata.startLine !== handle.startLine || range.metadata.endLine !== handle.endLine
     || range.fingerprint !== handle.fingerprint) throw new Error("Evidence handle range or fingerprint mismatch.");
   const text = canonicalMarkdown.slice(range.startOffset, range.endOffset).slice(0, MSSR_LIBRARIAN_RETRIEVAL_LIMITS.fetchChars);
-  if (text.length !== range.endOffset - range.startOffset) throw new Error("Exact evidence range exceeds fetch size limit.");
+  if (text.length !== range.endOffset - range.startOffset) throw new MssrLibrarianRangeSizeLimitError();
   return { handle, text, fingerprint: range.fingerprint, advisoryOnly: true, truthAuthority: false };
 }

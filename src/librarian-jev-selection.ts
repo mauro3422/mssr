@@ -8,6 +8,7 @@ import {
   mssrLibrarianRetrievalDocumentSchema,
   type MssrLibrarianEvidenceHandle,
 } from "./librarian-retrieval.js";
+import { MssrLibrarianRangeSizeLimitError } from "./librarian-errors.js";
 import { buildMssrMarkdownDocumentSurface } from "./document-surface.js";
 import { foldMssrLibrarianSearchText, foldMssrLibrarianSearchTextWithSourceOffsets } from "./librarian-text-normalization.js";
 import {
@@ -226,7 +227,10 @@ export async function selectMssrLibrarianEvidenceWithJev(
 ) {
   const input = mssrLibrarianJevSelectInputSchema.parse(args);
   const candidates: SelectionCandidate[] = [];
+  let offeredCandidateCount = 0;
+  let oversizedCandidateCount = 0;
   if (input.candidateHandles) {
+    offeredCandidateCount = input.candidateHandles.length;
     const documentsBySource = new Map<string, (typeof input.documents)[number]>();
     for (const document of input.documents) {
       const sourceKey = `${document.owner}\u0000${document.sourceRef.trim().replace(/\\/g, "/").replace(/\/{2,}/g, "/")}`;
@@ -243,13 +247,22 @@ export async function selectMssrLibrarianEvidenceWithJev(
       const document = documentsBySource.get(sourceKey);
       if (!document) throw new Error("Jev selection candidate handle must reference an explicitly supplied document owned by the same caller.");
       if (document.privacyClass === "sensitive-excluded") throw new Error("Jev selection candidate handle is excluded by the document privacy classification.");
-      const fetched = fetchMssrLibrarianEvidence({
-        handle,
-        owner: document.owner,
-        sourceRef: normalizedSourceRef,
-        markdown: document.markdown,
-        privacyClass: document.privacyClass,
-      });
+      let fetched: ReturnType<typeof fetchMssrLibrarianEvidence>;
+      try {
+        fetched = fetchMssrLibrarianEvidence({
+          handle,
+          owner: document.owner,
+          sourceRef: normalizedSourceRef,
+          markdown: document.markdown,
+          privacyClass: document.privacyClass,
+        });
+      } catch (error) {
+        if (error instanceof MssrLibrarianRangeSizeLimitError) {
+          oversizedCandidateCount += 1;
+          continue;
+        }
+        throw error;
+      }
       let surface = surfacesBySource.get(sourceKey);
       if (!surface) {
         surface = buildMssrMarkdownDocumentSurface({ sourceRef: normalizedSourceRef, markdown: document.markdown });
@@ -297,7 +310,12 @@ export async function selectMssrLibrarianEvidenceWithJev(
       throw new Error(`Jev selection input exceeds ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxTotalHeadings} total potential headings.`);
     }
     const surface = buildMssrMarkdownDocumentSurface({ sourceRef: normalizedSourceRef, markdown: document.markdown });
+    offeredCandidateCount += surface.headings.length;
     for (const heading of surface.headings) {
+      if (heading.endOffset - heading.startOffset > MSSR_LIBRARIAN_RETRIEVAL_LIMITS.fetchChars) {
+        oversizedCandidateCount += 1;
+        continue;
+      }
       const leadStart = document.markdown.indexOf("\n", heading.startOffset);
       const sectionText = document.markdown.slice(leadStart < 0 ? heading.startOffset : leadStart + 1, heading.endOffset);
       const excerpt = queryCenteredExcerpt(sectionText, input.query);
@@ -322,12 +340,22 @@ export async function selectMssrLibrarianEvidenceWithJev(
   }
   }
 
+  const candidateRangeDiagnostics = {
+    offered: offeredCandidateCount,
+    eligible: candidates.length,
+    oversizedOmitted: oversizedCandidateCount,
+    maxFetchChars: MSSR_LIBRARIAN_RETRIEVAL_LIMITS.fetchChars,
+    lengthUnit: "utf16-code-units" as const,
+  };
+
   if (candidates.length === 0) {
     return {
       ...responseBase("not-run", 0),
-      reason: "no-eligible-headings",
+      reason: oversizedCandidateCount > 0 ? "no-fetchable-candidates" : "no-eligible-headings",
+      selected: null,
       jevCallMade: false,
       fallbackTool: "mssr_librarian_search",
+      candidateRangeDiagnostics,
     };
   }
   let batches: SelectionCandidate[][];
@@ -340,6 +368,7 @@ export async function selectMssrLibrarianEvidenceWithJev(
       detail: String(error instanceof Error ? error.message : error).slice(0, 240),
       jevCallMade: false,
       fallbackTool: "mssr_librarian_search",
+      candidateRangeDiagnostics,
     };
   }
   const hierarchical = batches.length > 1;
@@ -352,6 +381,7 @@ export async function selectMssrLibrarianEvidenceWithJev(
       maxProviderCalls: MSSR_LIBRARIAN_JEV_SELECTION_LIMITS.maxProviderCalls,
       jevCallMade: false,
       fallbackTool: "mssr_librarian_search",
+      candidateRangeDiagnostics,
     };
   }
 
@@ -480,6 +510,7 @@ export async function selectMssrLibrarianEvidenceWithJev(
   const modelsUsed = [...new Set(allCalls.map((item) => item.model))];
   const commonResult = {
     candidateCount: candidates.length,
+    candidateRangeDiagnostics,
     finalistCount,
     selectionMode: hierarchical ? "hierarchical" as const : "single-pass" as const,
     selectionPasses: hierarchical ? 2 : 1,
