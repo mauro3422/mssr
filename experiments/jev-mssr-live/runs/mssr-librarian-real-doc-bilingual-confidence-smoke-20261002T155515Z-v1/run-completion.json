@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-real-doc-bilingual-confidence-smoke-20261002T155515Z-v1",
+  "status": "complete",
+  "manifestSha256": "badafa1bda82c37584443749666846ce618db2593acc18fd16bedc4a8e09bb1b",
+  "completedAt": "2026-10-02T15:55:15Z",
+  "evaluationClass": "exploratory-live-selection-consistency-no-labels",
+  "attemptedToolCalls": 5,
+  "successfulProviderCalls": 3,
+  "failedProviderCalls": 0,
+  "exactFetchesAttempted": 2,
+  "exactFetchesPassed": 1,
+  "staleFetchResponses": 1,
+  "labelsExposed": false,
+  "sourceTextPersisted": false,
+  "rawVendorResponsesPersisted": false,
+  "outcome": "three live choices converged on one range; the one same-snapshot exact fetch passed; no accuracy or calibration claim"
+}

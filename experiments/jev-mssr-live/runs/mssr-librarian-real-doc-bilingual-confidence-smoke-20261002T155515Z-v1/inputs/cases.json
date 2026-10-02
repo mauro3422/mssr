@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "runPurpose": "live-bilingual-selection-consistency-and-exact-fetch-smoke",
+  "exposure": "Exploratory MSSR documents and concept; no holdout and no adjudicated labels.",
+  "labels": {
+    "present": false,
+    "expectedAnswersIncluded": false,
+    "accuracyScoring": false
+  },
+  "cases": [
+    {
+      "caseId": "confidence-boundary-es",
+      "language": "es",
+      "query": "¿Qué evidencia y qué límites sostienen la confianza de Jev antes de aceptar una síntesis o fusión?",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md"
+      ]
+    },
+    {
+      "caseId": "confidence-boundary-en",
+      "language": "en",
+      "query": "What exact evidence gate prevents treating Jev confidence as calibrated production confidence?",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md"
+      ]
+    },
+    {
+      "caseId": "confidence-boundary-es-single-source-repeat",
+      "language": "es",
+      "query": "¿Qué evidencia y qué límites sostienen la confianza de Jev antes de aceptar una síntesis o fusión?",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md"
+      ],
+      "note": "Same Spanish wording, narrower candidate corpus; not an identical repeat."
+    }
+  ]
+}
