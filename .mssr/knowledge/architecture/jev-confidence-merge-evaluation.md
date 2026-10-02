@@ -28,6 +28,19 @@ references but synthetic tasks. Neither suite tests EvidenceAtom merge.
 Semantic Experience currently has 1,895 real shadow observations but no
 verified truth labels; they cannot score Jev semantic accuracy.
 
+The October 2 lexical bilingual rewrite was an offline deterministic-search
+experiment, not a Jev run. Spanish recall@100 rose from 4/26 to 9/26 overall
+(4/20 to 9/20 on development), but it found 0/6 in the previously opened
+Spanish holdout. English recall@100 fell from 18/26 to 14/26 overall
+(13/20 to 11/20 on development; 5/6 to 3/6 on the opened holdout); merging
+baseline and rewrite did not rescue the Spanish holdout. Do not ship the frozen lexicon. A separate live
+repeatability smoke offered 66 Spanish and 99 English exact search handles to
+TypeSafe Jev jev-1.13.0; both paired queries repeated the same block-26
+selection and both exact fetches matched the source fingerprint. This is one
+already-exposed query concept, not bilingual accuracy or calibration evidence.
+The immutable run is
+experiments/jev-mssr-live/runs/mssr-librarian-jev-shortlist-repeatability-20261002T143234Z-v1/.
+
 ## Keep source evidence separate from Jev judgment
 
 EvidenceAtom remains the immutable, revision-bound source record. Its

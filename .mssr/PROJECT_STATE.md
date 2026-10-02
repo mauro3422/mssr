@@ -48,42 +48,43 @@ candidate selection, and citation-faithful synthesis as separate measurements.
 Keep all proposals shadow/review-only until a separate held-out policy supports
 any activation decision.
 
-### Bilingual retrieval and live Jev candidate selection — 2026-09-30
+### Bilingual retrieval and Jev selection — updated 2026-10-02
 
-The frozen 21-document MSSR corpus was queried with 26 paired English/Spanish
-questions. The current deterministic Librarian returned the expected exact
-section in top 100 for 18/26 English queries and 4/26 Spanish queries; exact
-target rank-1 recall was 0/26 in both. An isolated harness then passed those
-same top-100 lists to real TypeSafe Jev `jev-1.13.0` for one closed-choice
-selection per query. Jev selected the expected exact section for 12/26 English
-queries and 3/26 Spanish queries (12/18 and 3/4 when the expected section was
-offered). All 52 calls succeeded (501,232 input / 53,347 output tokens; 375.5
-ms mean observed latency). A follow-up one-choice call over all 200 heading
-sections plus `none` selected the expected exact section for 18/26 English and
-16/26 Spanish queries (829,804 input / 105,392 output tokens; 409 ms mean).
-On the same 52 queries it added 22 exact selections relative to the shortlist
-run, while the shortlist alone added 3; the full-catalog choice therefore had
-19 more exact expected-section selections overall. The full catalog resolves
-the candidate-absence issue on this small corpus, at higher token use. Exact
-fetch validation passed 48/48 full-catalog selections; the shortlist passed
-32/33 selected ranges, with one size-limit rejection and zero revision/range/
-fingerprint integrity failures in either path.
+The 21-document / 26-pair history remains exploratory. Deterministic search
+returned the expected section in top 100 for 18/26 English and 4/26 Spanish
+queries. Real Jev selection from those shortlists reached 12/26 English and
+3/26 Spanish; full-heading selection reached 18/26 and 16/26. The repeated
+0.2.97 direct Choice runs scored 35/52 and 34/52; the 64k hierarchy scored
+31/52. These labels were Luna-reviewed, not approved by the document owner;
+the same corpus and opened queries were reused, so they do not establish
+unseen-document quality or a confidence threshold. Exact fetches passed
+48/48 for full headings and 32/33 for the original shortlist (one oversized
+range rejection; no integrity failures). Details remain in the immutable
+runs experiments/jev-mssr-live/runs/mssr-librarian-bilingual-retrieval-20260930-v1/,
+experiments/jev-mssr-live/runs/mssr-librarian-jev-candidate-selection-20260930-v1/,
+and experiments/jev-mssr-live/runs/mssr-librarian-jev-full-heading-choice-20260930-v1/;
+the 0.2.97 comparison is summarized in experiments/jev-mssr-live/runs/MSSR-LIBRARIAN-JEV-COMPARISON-20261001.md.
 
-Run artifacts: `experiments/jev-mssr-live/runs/mssr-librarian-bilingual-retrieval-20260930-v1/`,
-`experiments/jev-mssr-live/runs/mssr-librarian-jev-candidate-selection-20260930-v1/`,
-and `experiments/jev-mssr-live/runs/mssr-librarian-jev-full-heading-choice-20260930-v1/`.
-The target labels were double-reviewed by Luna agents, not approved by the
-human document owner; exact-section scores are exploratory and confidence is
-not calibrated. The grouped query holdout still uses the same corpus. This
-demonstrates a bounded Jev selection call in an isolated harness, not an
-automatic production MCP integration. Current Librarian search remains
-deterministic; synthesis, contradiction quality, citation faithfulness and
-write authority were not tested. Full-catalog results cover only 200 headings;
-larger corpora may exceed Jev's 255-choice limit and require an evaluated
-hierarchical selector or a higher-recall shortlist. Next, obtain independently
-adjudicated multi-answer section labels and evaluate exact fetch plus
-citation-faithful synthesis before an end-to-end shadow integration decision.
+The October 2 lexical rewrite was offline and made zero Jev calls: Spanish
+recall@100 rose from 4/26 to 9/26 overall and from 4/20 to 9/20 on development,
+but remained 0/6 on the previously opened holdout. English fell from 18/26 to
+14/26 overall (13/20 to 11/20 on development; 5/6 to 3/6 on the opened
+holdout). Full offline evidence remains in
+experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T133846Z-v1/
+and experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T135011Z-v2/.
+Do not adopt the frozen dictionary. A new
+live repeatability run selected the same exact block-26 for both paired
+queries and passed both exact fetches (2/2); it is a one-concept smoke, not a
+quality score. See
+experiments/jev-mssr-live/runs/mssr-librarian-jev-shortlist-repeatability-20261002T143234Z-v1/.
 
+Current decision: keep deterministic search and explicit Jev choice as
+separate calls; use exact fetch before citing or composing. Full-heading Jev
+is a useful candidate-absence fallback while the option budget allows it;
+larger catalogs need a measured high-recall hierarchy. Do not enable automatic
+reranking or a raw-confidence cutoff. The next gate is a fresh,
+document-grouped corpus with owner-adjudicated acceptable ranges, followed
+by separate fetch and citation-faithful composition checks.
 ### Live MCP Jev selection smoke — 2026-09-30
 
 The compiled MSSR 0.2.95 MCP handler was connected to an in-memory MCP client
@@ -131,7 +132,7 @@ Transient compile/test failures during implementation were limited to in-progres
 The `0.2.91` candidate builds on the first Semantic Evidence Plane implementation slices without claiming R5 completion: `EvidenceAtom v2` (exact-observation freshness), `Document Surface v1`, deterministic `Librarian Contract v1`, explicit `Librarian Coverage v1`, and privacy-bounded adapters for every required producer family. R5.C has its first production migration through `document-context`; Project Context and skill loaders remain separate compatibility slices. The 14-family coverage inventory now reports 11 fully instrumented required producers, 2 partial conditional producers (`host-tool-runtime-metrics`, `git-filesystem-revisions`) and 1 missing conditional producer (`visual-qa-evidence`): required coverage is complete, while global coverage remains incomplete with exactly 3 conditional gaps. The portable host-runtime adapter validates bounded `tool-call`, `runtime-generation`, `runtime-health` and `metric` observations while rejecting raw arguments/results, free-form error text, prompts/transcripts and host storage paths; this moves portable runtime coverage from missing to partial. Bridge `0.6.141` now provides explicit host-scoped adoption evidence for that adapter through exact package `pkg:0.2.89#b362ba6f`; the host also maps `context_assembly` and `project_context_selection` telemetry while preserving event ids. Explicit verification still requires independent verifier/proposal provenance before feedback can count as truth, and Semantic Experience promotion thresholds remain unchanged. Focused regressions and full `npm run verify` pass on `mssr-build:sha256:67a0cda845b8baa1` (116 files / 1,278,957 bytes), including the host-runtime adapter, all Librarian/EvidenceAtom coverage, cross-host conformance and read-only skill audit with no blocking warnings. The 0.2.89 package is built and its local consuming-host adoption is verified; public publication remains separate. The 0.2.90 correction narrows same-source-revision grouping to matching namespace, kind, source revision and payload fingerprint; full `npm run verify` passes on `mssr-build:sha256:9f2a5f71a4121802` (116 files / 1,279,113 bytes). The 0.2.91 release candidate adds EvidenceAtom v2 proof-bound freshness, injectable Jev transport, and bounded Librarian metadata; full `npm run verify` and host conformance pass on `mssr-build:sha256:4aa3c3c9a9258b34` (117 files / 1,286,924 bytes).
 
 ## Active execution priority — 2026-09-19
-The near-term reliability program remains explicit in `ROADMAP.md`. **R1 Trace Identity Integrity, R2 Automatic Lifecycle Coverage, and R3 Context Economy v2 are complete end-to-end.** R4 ADR 0006 remains in its longitudinal measurement phase: representative precision/recall, abstention/noise and context-cost evidence must still accumulate; no classifier has been promoted to routing, notice or write authority. Detailed current-truth policy and relation/retrieval boundaries remain in their indexed modules. Project Context Health after the 2026-10-01 architecture-core review is `watch`, not `review`: the architecture core is no longer at its 4,969/5,000-byte budget, while PROJECT_MEMORY, PROJECT_STATE and the 26-module manifest remain reviewable watch items. No project authority is being rewritten from telemetry or heuristics.
+The near-term reliability program remains explicit in `ROADMAP.md`. **R1 Trace Identity Integrity, R2 Automatic Lifecycle Coverage, and R3 Context Economy v2 are complete end-to-end.** R4 ADR 0006 remains in its longitudinal measurement phase: representative precision/recall, abstention/noise and context-cost evidence must still accumulate; no classifier has been promoted to routing, notice or write authority. Detailed current-truth policy and relation/retrieval boundaries remain in their indexed modules. Project Context Health on 2026-10-02 reports a valid 26-module manifest and level `review`: the worst Semantic Evidence Plane payload is 9,898/10,000 bytes; PROJECT_MEMORY and PROJECT_STATE remain size-watch items. This review found no stale core fact or stable architecture change to apply, so PROJECT_CONTEXT and PROJECT_MEMORY are `reviewed-none`; PROJECT_STATE is updated here. Next context-maintenance gate: inspect an exact modularization/ref-split plan for the 99% module before changing selectors or moving prose. No authority is rewritten from telemetry or heuristics.
 
 ## Machine-readable current-state claims
 
