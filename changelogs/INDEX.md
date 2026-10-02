@@ -10,6 +10,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.101](0.2.101.md) - add exact-heading Project Context Librarian metadata with bounded, advisory EvidenceAtom projection and health validation; preserve lexical retrieval, module routing, source truth and permissions.
 - [0.2.100](0.2.100.md) - expose exact-range fetchability and omit oversized Jev candidates before provider calls; report candidate counts and abstain without Jev when no exact range is fetchable.
 - [0.2.99](0.2.99.md) - select bounded Jev excerpts by the window's coverage of distinct query terms so early generic matches do not hide later binding evidence; preserve exact source fetch and uncalibrated advisory selection.
 - [0.2.98](0.2.98.md) - add exact EvidenceAtom-backed typed metadata search/filter projections with exact source/range/catalog binding and indexed bounded matching; clarify decision-driven lossless structure recovery and preserve the bilingual real-doc live Jev smoke separately from quality benchmarks.

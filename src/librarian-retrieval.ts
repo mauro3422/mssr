@@ -196,9 +196,9 @@ function atomSubjectKey(namespace: string, kind: string, identity: string): stri
   return JSON.stringify([namespace, kind, identity]);
 }
 
-function closedAttributeValue(atom: MssrEvidenceAtom, field: MssrLibrarianSearchProjectionField): string | undefined {
+function closedAttributeValues(atom: MssrEvidenceAtom, field: MssrLibrarianSearchProjectionField): string[] {
   const value = atom.attributes[field];
-  if (typeof value !== "string") return undefined;
+  if (typeof value !== "string") return [];
   const vocabularies: Partial<Record<MssrLibrarianSearchProjectionField, readonly string[]>> = {
     authorityClass: MSSR_EVIDENCE_AUTHORITY_CLASSES,
     artifact: SKILL_ARTIFACTS,
@@ -212,7 +212,11 @@ function closedAttributeValue(atom: MssrEvidenceAtom, field: MssrLibrarianSearch
     sourceClass: MSSR_EVIDENCE_SOURCE_CLASSES,
     action: SKILL_ACTIONS,
   };
-  return vocabularies[field]?.includes(value) ? value : undefined;
+  const vocabulary = vocabularies[field];
+  if (!vocabulary) return [];
+  const values = value.split("+");
+  if (values.length > 12 || new Set(values).size !== values.length || values.some((item) => !vocabulary.includes(item))) return [];
+  return values.sort();
 }
 
 function projectedAtomMetadata(args: {
@@ -256,8 +260,7 @@ function projectedAtomMetadata(args: {
     ...mssrLibrarianSearchProjectionFields
       .filter((field) => !["authorityClass", "freshness", "privacyClass", "rangeKind", "sourceClass"].includes(field))
       .flatMap((field) => {
-        const value = closedAttributeValue(atom, field);
-        return value === undefined ? [] : [{ field, value }];
+        return closedAttributeValues(atom, field).map((value) => ({ field, value }));
       }),
     { field: "rangeKind", value: range.kind },
   ];

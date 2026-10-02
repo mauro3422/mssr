@@ -62,6 +62,7 @@ export * from "./architecture-reviewed-current.js";
 export * from "./architecture-host-adoption.js";
 export * from "./project-home.js";
 export * from "./project-context-loader.js";
+export * from "./project-context-librarian.js";
 export * from "./project-context-update.js";
 export * from "./project-context-capture.js";
 export * from "./project-initialization.js";

@@ -914,6 +914,94 @@
       ],
       "priority": 92,
       "maxChars": 1400
+    },
+    {
+      "id": "mssr-project-context-librarian-metadata",
+      "kind": "context",
+      "topic": "architecture",
+      "area": "project-context",
+      "description": "Per-heading Librarian metadata, exact source binding, limits, and stale-sidecar behavior.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/project-context-librarian-metadata.md"
+      },
+      "domains": [
+        "skill-system",
+        "coding",
+        "agent-orchestration"
+      ],
+      "actions": [
+        "design",
+        "review",
+        "analyze",
+        "verify",
+        "maintain"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document",
+        "mcp"
+      ],
+      "needs": [
+        "integrity-verification",
+        "version-control"
+      ],
+      "signals": [
+        "reusable-pattern",
+        "uncertainty"
+      ],
+      "required": false,
+      "priority": 94,
+      "maxChars": 2800
+    },
+    {
+      "id": "mssr-jev-librarian-integration-handoff",
+      "kind": "state",
+      "topic": "operations",
+      "area": "semantic-evidence",
+      "description": "Current Librarian integration status, branch preservation, benchmark boundaries, and next host gates.",
+      "source": {
+        "path": ".mssr/knowledge/operations/jev-librarian-integration-handoff.md",
+        "sections": [
+          "## Repository snapshot and preservation",
+          "## MSSR contract work",
+          "## Evaluation gates",
+          "## Next gates"
+        ]
+      },
+      "domains": [
+        "coding",
+        "skill-system",
+        "agent-orchestration",
+        "filesystem"
+      ],
+      "actions": [
+        "review",
+        "verify",
+        "maintain",
+        "recover",
+        "version",
+        "publish"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document",
+        "mcp"
+      ],
+      "needs": [
+        "version-control",
+        "integrity-verification",
+        "history-recovery"
+      ],
+      "signals": [
+        "conflicting-evidence",
+        "uncertainty",
+        "recovery-needed"
+      ],
+      "required": false,
+      "priority": 96,
+      "maxChars": 5000
     }
   ]
 }

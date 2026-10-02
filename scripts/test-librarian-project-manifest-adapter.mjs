@@ -96,6 +96,13 @@ assert.equal(JSON.stringify(changedDescription[1]).includes("changed canonical d
 const minimalByKind = new Map([
   ["project-context-segments", { schemaVersion: 1, modules: [] }],
   ["project-context-references", { schemaVersion: 1, modules: [] }],
+  ["project-context-librarian", { schemaVersion: 1, entries: [{
+    entryId: "semantic-evidence",
+    sourcePath: ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+    headingPath: ["Semantic Evidence Plane", "Metadata"],
+    expectedFingerprint: "a".repeat(64),
+    selectors: { domains: ["coding"] },
+  }] }],
   ["architecture-impact", { schemaVersion: 1, architectures: [] }],
   ["architecture-structure", { schemaVersion: 1, architectures: [] }],
   ["architecture-invariants", { schemaVersion: 1, invariants: [] }],
@@ -118,6 +125,12 @@ for (const kind of MSSR_LIBRARIAN_PROJECT_MANIFEST_KINDS) {
   assert.equal(adapted[0].kind, kind);
   assert.equal(adapted[0].payloadFingerprint.length, 64);
   assert.equal(adapted[0].metadata.manifestKind, kind);
+  if (kind === "project-context-librarian") {
+    assert.equal(adapted.length, 2, "the sidecar adapter should expose the root and its exact per-heading declaration");
+    assert.equal(adapted[1].identity, "fixture:.mssr/project-context-librarian.json#semantic-evidence:Semantic Evidence Plane > Metadata");
+    assert.equal(adapted[1].metadata.entryId, "semantic-evidence:Semantic Evidence Plane > Metadata");
+    assert.equal(adapted[1].metadata.structure.entryId, "semantic-evidence");
+  }
 }
 
 assert.throws(
