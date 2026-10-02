@@ -79,6 +79,39 @@ assert.equal(sent.questions.sufficiency.kind, "noul");
 assert.ok(Object.values(sent.questions.selection.options).every((value) => value.startsWith("Evidence candidate") || value === "No supplied range directly answers the information need."));
 assert.equal(JSON.stringify(sent).includes("TAIL-ONLY-MUST-NOT-BE-SENT"), false, "bounded Jev input must not include the unrelated section tail");
 
+const excerptWindowQuery = "Which exact search request should match the payload fingerprint offsets source revision and privacy class before a result is accepted?";
+const excerptWindowDocument = {
+  owner,
+  sourceRef: "docs/excerpt-window.md",
+  markdown: [
+    "# Retrieval note",
+    "",
+    "## Binding rule",
+    "",
+    "Exact search should inspect each document section and source before deciding what to retrieve.",
+    ...Array.from({ length: 8 }, () => "Routine background details describe the surrounding system but do not state the binding contract."),
+    "The record must match payload fingerprint offsets source revision and privacy class before the metadata is eligible for search.",
+    "",
+  ].join("\n"),
+  privacyClass: "project-metadata",
+};
+const excerptWindowHandle = searchMssrLibrarianEvidence({
+  documents: [excerptWindowDocument],
+  query: { query: "exact search document section", maxResults: 10 },
+}).results.find((result) => result.handle.rangeKind === "section")?.handle;
+assert.ok(excerptWindowHandle, "search should expose the exact section used by the query-window regression");
+const excerptWindowCallStart = providerCalls.length;
+const excerptWindowSelection = await selectMssrLibrarianEvidenceWithJev({
+  documents: [excerptWindowDocument],
+  candidateHandles: [excerptWindowHandle],
+  query: excerptWindowQuery,
+}, provider);
+assert.equal(excerptWindowSelection.status, "selected");
+const excerptWindowEvidence = JSON.parse(providerCalls[excerptWindowCallStart].state.evidence[0].text);
+assert.ok(excerptWindowEvidence[3].includes("payload fingerprint offsets"), "the bounded excerpt should center on the dense binding terms instead of an earlier generic search match");
+assert.ok(excerptWindowEvidence[3].includes("source revision and privacy class"), "the excerpt should preserve nearby binding evidence needed to distinguish the candidate");
+assert.ok(Array.from(excerptWindowEvidence[3]).length <= 260, "the improved centering must retain the existing excerpt budget");
+
 const decomposedSpanishDocument = {
   owner,
   sourceRef: "docs/decomposed-spanish.md",

@@ -94,18 +94,53 @@ function queryCenteredExcerpt(text: string, query: string): string {
   const flat = sourcePoints.join("");
   if (sourcePoints.length <= MSSR_LIBRARIAN_JEV_SELECTION_LIMITS.maxExcerptChars) return flat;
   const folded = foldMssrLibrarianSearchTextWithSourceOffsets(flat);
-  const terms = foldMssrLibrarianSearchText(query).match(/[\p{L}\p{N}][\p{L}\p{N}_-]{1,}/gu) ?? [];
-  const hit = terms.map((term) => folded.normalized.indexOf(term)).filter((index) => index >= 0).sort((left, right) => left - right)[0];
-  const hitOffset = hit === undefined ? 0 : folded.starts[hit] ?? 0;
-  let hitPoint = 0;
-  let sourceOffset = 0;
-  while (hitPoint < sourcePoints.length && sourceOffset < hitOffset) sourceOffset += sourcePoints[hitPoint++].length;
+  const terms = [...new Set(foldMssrLibrarianSearchText(query).match(/[\p{L}\p{N}][\p{L}\p{N}_-]{1,}/gu) ?? [])];
+  const sourcePointOffsets: number[] = [0];
+  for (const point of sourcePoints) sourcePointOffsets.push(sourcePointOffsets.at(-1)! + point.length);
+  const sourcePointForOffset = (offset: number): number => {
+    let low = 0;
+    let high = sourcePointOffsets.length;
+    while (low < high) {
+      const middle = Math.floor((low + high) / 2);
+      if (sourcePointOffsets[middle]! < offset) low = middle + 1;
+      else high = middle;
+    }
+    return Math.min(low, sourcePoints.length - 1);
+  };
+  const termMatchPoints = terms.map((term) => {
+    const first = folded.normalized.indexOf(term);
+    if (first < 0) return [];
+    const last = folded.normalized.lastIndexOf(term);
+    return [...new Set([first, last])].map((index) => sourcePointForOffset(folded.starts[index] ?? 0));
+  });
   const limit = MSSR_LIBRARIAN_JEV_SELECTION_LIMITS.maxExcerptChars;
-  const start = Math.max(0, Math.min(hitPoint - Math.floor(limit / 4), sourcePoints.length - limit));
-  const prefix = start > 0 ? "…" : "";
-  const budget = limit - prefix.length;
-  const end = Math.min(sourcePoints.length, start + budget - (start + budget < sourcePoints.length ? 1 : 0));
-  return `${prefix}${sourcePoints.slice(start, end).join("")}${end < sourcePoints.length ? "…" : ""}`;
+  const maxStart = sourcePoints.length - limit;
+  const candidateStarts = new Set<number>([0]);
+  for (const matchPoints of termMatchPoints) {
+    for (const matchPoint of matchPoints) {
+      candidateStarts.add(Math.max(0, Math.min(matchPoint - Math.floor(limit / 4), maxStart)));
+    }
+  }
+  const render = (start: number) => {
+    const prefix = start > 0 ? "…" : "";
+    const budget = limit - prefix.length;
+    const end = Math.min(sourcePoints.length, start + budget - (start + budget < sourcePoints.length ? 1 : 0));
+    return {
+      text: `${prefix}${sourcePoints.slice(start, end).join("")}${end < sourcePoints.length ? "…" : ""}`,
+      end,
+    };
+  };
+  let bestStart = 0;
+  let bestCoverage = -1;
+  for (const start of [...candidateStarts].sort((left, right) => left - right)) {
+    const excerpt = render(start);
+    const coverage = termMatchPoints.reduce((count, positions) => count + Number(positions.some((point) => point >= start && point < excerpt.end)), 0);
+    if (coverage > bestCoverage) {
+      bestStart = start;
+      bestCoverage = coverage;
+    }
+  }
+  return render(bestStart).text;
 }
 
 function responseBase(status: string, candidateCount: number) {

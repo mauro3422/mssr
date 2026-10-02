@@ -10,6 +10,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.99](0.2.99.md) - select bounded Jev excerpts by the window's coverage of distinct query terms so early generic matches do not hide later binding evidence; preserve exact source fetch and uncalibrated advisory selection.
 - [0.2.98](0.2.98.md) - add exact EvidenceAtom-backed typed metadata search/filter projections with exact source/range/catalog binding and indexed bounded matching; clarify decision-driven lossless structure recovery and preserve the bilingual real-doc live Jev smoke separately from quality benchmarks.
 - [0.2.97](0.2.97.md) - preserve and validate Jev Choice distributions for hierarchical top-two shortlists; normalize composed/decomposed Unicode for retrieval and query-centered excerpts; keep confidence uncalibrated and host authorization unchanged.
 - [0.2.96](0.2.96.md) - let Jev selection consume exact search handles with revision/privacy/fingerprint checks and bounded query-centered excerpts; retain heading-mode compatibility and uncalibrated advisory confidence.
