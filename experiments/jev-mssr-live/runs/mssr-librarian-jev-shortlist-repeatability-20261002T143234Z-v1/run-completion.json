@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-jev-shortlist-repeatability-20261002T143234Z-v1",
+  "manifestSha256": "9bf6be365ebe2cd6439df2f07dc5cb9a46a1064c209f15e78ccbff8e2f237879",
+  "completedAt": "2026-10-02T14:36:31.662Z",
+  "status": "complete",
+  "evaluationClass": "exploratory-repeatability-smoke-same-query-and-source-already-exposed",
+  "attemptedToolCalls": 4,
+  "successfulProviderCalls": 2,
+  "failedProviderCalls": 0,
+  "exactFetchesAttempted": 2,
+  "exactFetchesPassed": 2,
+  "exactFetchIntegrityFailures": 0,
+  "labelsExposed": false,
+  "sourceTextPersisted": false,
+  "rawVendorResponsesPersisted": false,
+  "outcome": "repeatability-and-integrity smoke completed; no quality/calibration claim"
+}
