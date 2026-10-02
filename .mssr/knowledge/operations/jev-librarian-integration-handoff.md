@@ -23,8 +23,9 @@ part of the product integration. A clean main-rooted integration branch now
 exists and contains the reviewed cumulative product source/docs/tests without
 run payloads. Preserve the benchmark runs on their original snapshot branch
 with exact paths/hashes and manifests. Clean installation, full verification,
-release gating, and the real-document smoke pass; a product commit and remote
-readback remain.
+release gating, artifact readback, and the commit-bound real-document smoke
+pass. The product commit is pushed on the clean feature branch, and a direct
+remote readback matched the full commit SHA.
 
 ## Product lineage audit
 
@@ -72,13 +73,14 @@ receipt. The tarball contains `dist/project-context-librarian.js`, its
 declaration file, and the dedicated smoke/test scripts. It has not been
 published. A clean `npm ci`, full `npm run verify`, and `npm run release:gate`
 all passed in the integration worktree; independent tarball readback matched
-the same SHA-256. The integration tree has 65 changed paths and zero benchmark
-run payloads. A pre-commit real-document smoke passed 4/4 declared projections,
-4/4 metadata searches, and 4/4 exact fetches. Its receipt was generated before
-the final PROJECT_STATE summary update, so rerun after the final Git commit and
-save the commit-bound result to ignored
-`.mssr/runtime/project-context-librarian-real-doc-smoke-latest.json`.
-Only the product commit and remote readback remain.
+the same SHA-256. Product commit
+`cd7c834df2f91d581b8f84db9d89a9d425dd1c6f` has 65 product/docs/test paths and
+zero benchmark run payloads. The commit-bound real-document smoke passed 4/4
+declared projections, 4/4 metadata searches, and 4/4 exact fetches. Its ignored
+receipt is `.mssr/runtime/project-context-librarian-real-doc-smoke-latest.json`.
+The branch was pushed with `git push --set-upstream`; direct
+`git ls-remote` returned the same full commit SHA. No npm publication or Bridge
+restart/adoption occurred.
 
 The 0.2.100 package receipt remains
 `pkg:0.2.100#849b067d5f1578b3c32c73fc4e2bafcedaa8a5e01231ac1108fa92313a103d32`.
@@ -181,14 +183,15 @@ plumbing evidence, not quality evidence.
 
 ## Next gates
 
-- **Complete:** clean installation, full verification, release gate, artifact
-  readback, and 4/4 real-document projection/search/fetch smoke passed in the
-  product worktree. Retain the exact package hash above and ignored release
-  receipt; keep the evaluation snapshot intact.
-- **In progress:** commit the reviewed cumulative product/docs/tests as one
-  coherent integration on the clean main-rooted feature branch, confirm the
-  commit contains zero run payloads, rerun the smoke against that commit, and
-  push with direct remote readback. Keep all 206
+- **Complete:** commit `cd7c834df2f91d581b8f84db9d89a9d425dd1c6f` contains only
+  the 65 reviewed product/docs/test paths, with zero benchmark run payloads.
+  Clean install, full verification, release gate, artifact readback,
+  commit-bound smoke, branch push, and direct remote readback all passed.
+  Keep the evaluation snapshot intact; do not merge the experimental runs.
+- **Next:** create the separate Bridge adoption change from the clean 0.6.146
+  candidate, add an opt-in sidecar mode while preserving existing lookup, run
+  Bridge release checks, and leave live Bridge unchanged until adoption is
+  independently verified. Keep all 206
   `experiments/jev-mssr-live/runs/` files and large prediction outputs on the
   original evaluation branch; do not cherry-pick mixed commits blindly.
 - After the exact 0.2.101 package is verified, create a separate Bridge
