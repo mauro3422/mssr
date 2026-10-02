@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { buildMssrMarkdownDocumentSurface } from "../dist/document-surface.js";
+import { evidenceAtomFromLibrarianCatalogRecord } from "../dist/evidence-atom.js";
 import { catalogMssrLibrarianRecord } from "../dist/librarian-contract.js";
 import {
   fetchMssrLibrarianEvidence,
@@ -39,6 +40,114 @@ const filtered = searchMssrLibrarianEvidence({ documents: [doc], query: { query:
 assert.ok(filtered.results.some((item) => item.handle.rangeId === routing.id));
 assert.equal("records" in filtered.results[0].metadata, false, "catalog metadata is not copied into the retrieval result");
 assert.equal(searchMssrLibrarianEvidence({ documents: [doc], query: { query: "routing", namespace: "unknown" } }).results.length, 0);
+
+const routingAtom = evidenceAtomFromLibrarianCatalogRecord({
+  record,
+  sourceClass: "observed",
+  canonicalOwner: owner,
+  authorityClass: "observed",
+  privacyClass: "project-metadata",
+  headingPath: routing.headingPath,
+  range: {
+    startLine: routing.startLine,
+    endLine: routing.endLine,
+    startOffset: routing.startOffset,
+    endOffset: routing.endOffset,
+  },
+  attributes: { domain: "skill-system", signal: "reusable-pattern", description: "not-searchable-as-free-form-metadata" },
+});
+const atomDoc = { ...doc, searchableMetadata: undefined, evidenceAtoms: [routingAtom] };
+const metadataOnly = searchMssrLibrarianEvidence({ documents: [atomDoc], query: { query: "skill-system" } });
+assert.equal(metadataOnly.results.length, 1, "typed metadata can make the exact atom-backed section discoverable even when the source body omits the query");
+assert.equal(metadataOnly.results[0].handle.rangeId, routing.id, "metadata from one atom must not bleed into adjacent ranges");
+assert.deepEqual(metadataOnly.results[0].metadataProjectionMatches?.[0]?.matches, [
+  { field: "domain", value: "skill-system", queryTerms: ["skill-system"] },
+]);
+assert.match(metadataOnly.results[0].metadataProjectionMatches?.[0]?.projectionFingerprint ?? "", /^[0-9a-f]{64}$/);
+assert.equal(metadataOnly.results[0].metadataProjectionMatches?.[0]?.provenanceIsCallerAsserted, true, "typed metadata fields remain caller-asserted even when their structure is validated");
+assert.equal("evidenceAtoms" in metadataOnly.results[0].metadata, false, "full atoms are never copied into retrieval metadata");
+const metadataFiltered = searchMssrLibrarianEvidence({
+  documents: [atomDoc],
+  query: { query: "routing", metadata: { domain: "skill-system" } },
+});
+assert.ok(metadataFiltered.results.some((item) => item.handle.rangeId === routing.id), "metadata filters can inspect the same exact typed atom projection as text search");
+assert.equal(searchMssrLibrarianEvidence({
+  documents: [atomDoc],
+  query: { query: "routing", metadata: { domain: "filesystem" } },
+}).results.length, 0, "metadata filters reject ranges without an exact matching projected value");
+const staleRoutingAtom = { ...routingAtom, source: { ...routingAtom.source, freshness: "stale" } };
+const staleSearch = searchMssrLibrarianEvidence({
+  documents: [{ ...atomDoc, evidenceAtoms: [staleRoutingAtom] }],
+  query: { query: "stale" },
+});
+assert.equal(staleSearch.results[0]?.handle.rangeId, routing.id, "stale EvidenceAtom freshness remains discoverable for explicit review");
+assert.ok(staleSearch.results[0]?.metadataProjectionMatches?.[0]?.matches.some((match) => match.field === "freshness" && match.value === "stale"));
+const staleFiltered = searchMssrLibrarianEvidence({
+  documents: [{ ...atomDoc, evidenceAtoms: [staleRoutingAtom] }],
+  query: { query: "routing", metadata: { freshness: "stale" } },
+});
+assert.equal(staleFiltered.results[0]?.handle.rangeId, routing.id, "an exact freshness filter can find stale ranges");
+assert.deepEqual(staleFiltered.results[0]?.metadataProjectionMatches?.[0]?.filterMatches, [
+  { field: "freshness", value: "stale" },
+], "results identify the caller-asserted freshness field that satisfied metadata filtering");
+const signalOnly = searchMssrLibrarianEvidence({ documents: [atomDoc], query: { query: "reusable-pattern" } });
+assert.equal(signalOnly.results[0]?.metadataProjectionMatches?.[0]?.matches[0]?.field, "signal");
+const changedProjectionAtom = evidenceAtomFromLibrarianCatalogRecord({
+  record,
+  sourceClass: "observed",
+  canonicalOwner: owner,
+  authorityClass: "observed",
+  privacyClass: "project-metadata",
+  headingPath: routing.headingPath,
+  range: { startLine: routing.startLine, endLine: routing.endLine, startOffset: routing.startOffset, endOffset: routing.endOffset },
+  attributes: { domain: "coding", signal: "reusable-pattern" },
+});
+assert.equal(changedProjectionAtom.id, routingAtom.id, "EvidenceAtom identity remains stable when non-identity attributes change");
+const changedProjection = searchMssrLibrarianEvidence({ documents: [{ ...atomDoc, evidenceAtoms: [changedProjectionAtom] }], query: { query: "coding" } });
+assert.notEqual(changedProjection.results[0]?.metadataProjectionMatches?.[0]?.projectionFingerprint, metadataOnly.results[0]?.metadataProjectionMatches?.[0]?.projectionFingerprint, "the search projection fingerprint changes independently from the atom id");
+
+const bodyOnlyWithoutAtoms = searchMssrLibrarianEvidence({ documents: [{ ...doc, searchableMetadata: undefined }], query: { query: "routing declared capabilities" } }).results;
+const bodyOnlyWithAtoms = searchMssrLibrarianEvidence({ documents: [{ ...doc, searchableMetadata: undefined, evidenceAtoms: [routingAtom] }], query: { query: "routing declared capabilities" } }).results;
+assert.deepEqual(
+  bodyOnlyWithAtoms.map(({ handle, score, title, snippet }) => ({ handle, score, title, snippet })),
+  bodyOnlyWithoutAtoms.map(({ handle, score, title, snippet }) => ({ handle, score, title, snippet })),
+  "absence of a matching projection must preserve existing retrieval behavior",
+);
+
+const mismatchedAtoms = [
+  { ...routingAtom, provenance: { ...routingAtom.provenance, canonicalOwner: "project:other" } },
+  { ...routingAtom, source: { ...routingAtom.source, ref: "docs/other.md" } },
+  { ...routingAtom, source: { ...routingAtom.source, revision: "0".repeat(64) } },
+  { ...routingAtom, subject: { ...routingAtom.subject, identity: `${sourceRef}#${surface.headings.find((item) => item.title === "Storage").id}` } },
+  { ...routingAtom, subject: { ...routingAtom.subject, kind: "document" } },
+  { ...routingAtom, fingerprints: { ...routingAtom.fingerprints, record: "0".repeat(64) } },
+  { ...routingAtom, fingerprints: { ...routingAtom.fingerprints, payload: "0".repeat(64) } },
+  { ...routingAtom, provenance: { ...routingAtom.provenance, producer: "other-producer" } },
+  { ...routingAtom, source: { ...routingAtom.source, range: { ...routingAtom.source.range, startOffset: routingAtom.source.range.startOffset + 1 } } },
+  { ...routingAtom, source: { ...routingAtom.source, range: undefined } },
+  { ...routingAtom, privacyClass: "operational-metadata" },
+];
+for (const mismatchedAtom of mismatchedAtoms) {
+  const result = searchMssrLibrarianEvidence({ documents: [{ ...atomDoc, evidenceAtoms: [mismatchedAtom] }], query: { query: "skill-system" } });
+  assert.equal(result.results.length, 0, "atom projections with any owner/ref/revision/identity/kind/payload/range/privacy mismatch must not match");
+}
+
+const invalidDomainAtom = { ...routingAtom, attributes: { ...routingAtom.attributes, domain: "not-a-domain" } };
+assert.equal(searchMssrLibrarianEvidence({ documents: [{ ...atomDoc, evidenceAtoms: [invalidDomainAtom] }], query: { query: "not-a-domain" } }).results.length, 0, "attribute keys outside the allowlist and values outside the closed vocabulary do not become search text");
+
+const surfaceOnlyRecord = catalogMssrLibrarianRecord({
+  namespace: "document", kind: "surface", identity: `${sourceRef}#surface`, sourceRef,
+  revision: surface.revision, payloadFingerprint: surface.revision,
+  metadata: { area: "whole-document" }, provenance: { producer: "document-surface" },
+});
+assert.equal(searchMssrLibrarianEvidence({ documents: [{ ...doc, records: [surfaceOnlyRecord], searchableMetadata: undefined }], query: { query: "routing", namespace: "document" } }).results.length, 0, "a surface record does not become an implicit record for every range");
+
+const genericMetadataRecord = catalogMssrLibrarianRecord({
+  namespace: "document", kind: "section", identity: `${sourceRef}#${routing.id}`, sourceRef,
+  revision: surface.revision, payloadFingerprint: routing.fingerprint,
+  metadata: { internalTopic: "phantommetadata" }, provenance: { producer: "document-surface" },
+});
+assert.equal(searchMssrLibrarianEvidence({ documents: [{ ...doc, records: [genericMetadataRecord], searchableMetadata: undefined }], query: { query: "phantommetadata" } }).results.length, 0, "generic catalog metadata is not searchable by itself");
 
 const capped = searchMssrLibrarianEvidence({ documents: [doc], query: { query: "routing storage evidence", maxResults: 1 } });
 assert.equal(capped.results.length, 1);

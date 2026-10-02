@@ -1,8 +1,17 @@
 import { createHash } from "node:crypto";
 import { z } from "zod";
 import { buildMssrMarkdownDocumentSurface, type MssrDocumentSurface, type MssrDocumentSurfaceBlock, type MssrDocumentSurfaceHeading } from "./document-surface.js";
+import {
+  MSSR_EVIDENCE_AUTHORITY_CLASSES,
+  MSSR_EVIDENCE_FRESHNESS,
+  MSSR_EVIDENCE_PRIVACY_CLASSES,
+  MSSR_EVIDENCE_SOURCE_CLASSES,
+  mssrEvidenceAtomSchema,
+  type MssrEvidenceAtom,
+} from "./evidence-atom.js";
 import { catalogMssrLibrarianRecord, mssrLibrarianIngressRecordSchema, type MssrLibrarianCatalogRecord, type MssrLibrarianIngressRecord } from "./librarian-contract.js";
 import { foldMssrLibrarianSearchText, foldMssrLibrarianSearchTextWithSourceOffsets } from "./librarian-text-normalization.js";
+import { SKILL_ACTIONS, SKILL_ARTIFACTS, SKILL_DOMAINS, SKILL_NEEDS, SKILL_RISKS, SKILL_SIGNALS } from "./skill-routing.js";
 
 export const MSSR_LIBRARIAN_RETRIEVAL_LIMITS = {
   queryChars: 500,
@@ -14,6 +23,8 @@ export const MSSR_LIBRARIAN_RETRIEVAL_LIMITS = {
   maxTotalHeadings: 2_048,
   maxRecordsPerDocument: 512,
   maxTotalRecords: 2_048,
+  maxEvidenceAtomsPerDocument: 512,
+  maxTotalEvidenceAtoms: 2_048,
   maxRanges: 16_000,
   maxCandidates: 10_000,
   maxResults: 100,
@@ -32,6 +43,7 @@ export const mssrLibrarianRetrievalDocumentSchema = z.object({
   markdown: z.string().max(2_000_000),
   surface: z.unknown().optional(),
   records: z.array(z.unknown()).max(MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxRecordsPerDocument).optional(),
+  evidenceAtoms: z.array(mssrEvidenceAtomSchema).max(MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxEvidenceAtomsPerDocument).optional(),
   searchableMetadata: searchableMetadataSchema,
   privacyClass: z.enum(["project-metadata", "operational-metadata", "public-metadata", "sensitive-excluded"]).default("project-metadata"),
 }).strict();
@@ -48,6 +60,22 @@ export const mssrLibrarianRetrievalQuerySchema = z.object({
   maxSnippetChars: z.number().int().min(40).max(MSSR_LIBRARIAN_RETRIEVAL_LIMITS.snippetChars).default(160),
 }).strict();
 export type MssrLibrarianRetrievalQuery = z.input<typeof mssrLibrarianRetrievalQuerySchema>;
+
+export const MSSR_LIBRARIAN_SEARCH_PROJECTION_SCHEMA_VERSION = 1 as const;
+const mssrLibrarianSearchProjectionFields = [
+  "authorityClass", "artifact", "domain", "freshness", "need", "privacyClass", "rangeKind", "risk", "signal", "sourceClass", "action",
+] as const;
+export type MssrLibrarianSearchProjectionField = typeof mssrLibrarianSearchProjectionFields[number];
+export type MssrLibrarianSearchProjectionMatch = {
+  schemaVersion: typeof MSSR_LIBRARIAN_SEARCH_PROJECTION_SCHEMA_VERSION;
+  projectionFingerprint: string;
+  atomId: MssrEvidenceAtom["id"];
+  recordFingerprint: string;
+  producer: string;
+  provenanceIsCallerAsserted: true;
+  matches: Array<{ field: MssrLibrarianSearchProjectionField; value: string; queryTerms: string[] }>;
+  filterMatches?: Array<{ field: MssrLibrarianSearchProjectionField; value: string }>;
+};
 
 export const mssrLibrarianEvidenceHandleSchema = z.object({
   version: z.literal(1), id: z.string().regex(/^[0-9a-f]{64}$/), owner: z.string().min(1).max(240), sourceRef: z.string().min(1).max(1_000),
@@ -71,6 +99,7 @@ export type MssrLibrarianRetrievalResult = {
   truthAuthority: false;
   ownerAndPrivacyAreCallerAsserted: true;
   catalogProvenanceIsCallerAsserted: true;
+  metadataProjectionMatches?: MssrLibrarianSearchProjectionMatch[];
 };
 
 function sha256(value: string): string { return createHash("sha256").update(value, "utf8").digest("hex"); }
@@ -132,6 +161,126 @@ function sectionRanges(surface: MssrDocumentSurface): Array<{ id: string; kind: 
   return [...headingRows, ...blockRows];
 }
 
+type ProjectedAtomMetadata = {
+  atom: MssrEvidenceAtom;
+  projectionFingerprint: string;
+  terms: Array<{ field: MssrLibrarianSearchProjectionField; value: string; tokens: string[] }>;
+};
+
+type MssrLibrarianRecordBinding = Pick<MssrLibrarianCatalogRecord,
+  "namespace" | "kind" | "identity" | "normalizedSourceRef" | "revision" | "payloadFingerprint" | "provenance" | "recordFingerprint">;
+
+function catalogRecordBindingKey(record: MssrLibrarianRecordBinding): string {
+  return JSON.stringify([
+    record.namespace,
+    record.kind,
+    record.identity,
+    record.normalizedSourceRef,
+    record.revision ?? null,
+    record.payloadFingerprint ?? null,
+    record.provenance.producer,
+    record.recordFingerprint,
+  ]);
+}
+
+function recordRangeKey(kind: string, identity: string, revision: string, payloadFingerprint: string): string {
+  return JSON.stringify([kind, identity, revision, payloadFingerprint]);
+}
+
+function atomSubjectKey(namespace: string, kind: string, identity: string): string {
+  return JSON.stringify([namespace, kind, identity]);
+}
+
+function closedAttributeValue(atom: MssrEvidenceAtom, field: MssrLibrarianSearchProjectionField): string | undefined {
+  const value = atom.attributes[field];
+  if (typeof value !== "string") return undefined;
+  const vocabularies: Partial<Record<MssrLibrarianSearchProjectionField, readonly string[]>> = {
+    authorityClass: MSSR_EVIDENCE_AUTHORITY_CLASSES,
+    artifact: SKILL_ARTIFACTS,
+    domain: SKILL_DOMAINS,
+    freshness: MSSR_EVIDENCE_FRESHNESS,
+    need: SKILL_NEEDS,
+    privacyClass: MSSR_EVIDENCE_PRIVACY_CLASSES.filter((candidate) => candidate !== "sensitive-excluded"),
+    rangeKind: ["section", "block"],
+    risk: SKILL_RISKS,
+    signal: SKILL_SIGNALS,
+    sourceClass: MSSR_EVIDENCE_SOURCE_CLASSES,
+    action: SKILL_ACTIONS,
+  };
+  return vocabularies[field]?.includes(value) ? value : undefined;
+}
+
+function projectedAtomMetadata(args: {
+  atom: MssrEvidenceAtom;
+  owner: string;
+  sourceRef: string;
+  revision: string;
+  privacyClass: "project-metadata" | "operational-metadata" | "public-metadata" | "sensitive-excluded";
+  range: ReturnType<typeof sectionRanges>[number];
+  recordBindings: ReadonlySet<string>;
+}): ProjectedAtomMetadata | null {
+  const { atom, range, recordBindings } = args;
+  const startLine = range.metadata.startLine;
+  const endLine = range.metadata.endLine;
+  if (typeof startLine !== "number" || typeof endLine !== "number") return null;
+  const sourceRange = atom.source.range;
+  if (!sourceRange || sourceRange.startOffset === undefined || sourceRange.endOffset === undefined) return null;
+  if (atom.provenance.canonicalOwner !== args.owner || atom.privacyClass === "sensitive-excluded" || atom.privacyClass !== args.privacyClass) return null;
+  if (atom.privacyClass !== "project-metadata" && atom.privacyClass !== "operational-metadata" && atom.privacyClass !== "public-metadata") return null;
+  if (atom.source.ref !== args.sourceRef || atom.source.revision !== args.revision) return null;
+  if (atom.subject.kind !== range.kind) return null;
+  if (atom.fingerprints.payload !== range.fingerprint) return null;
+  if (sourceRange.startLine !== startLine || sourceRange.endLine !== endLine || sourceRange.startOffset !== range.startOffset || sourceRange.endOffset !== range.endOffset) return null;
+
+  if (!recordBindings.has(catalogRecordBindingKey({
+    namespace: atom.subject.namespace,
+    kind: atom.subject.kind,
+    identity: atom.subject.identity,
+    normalizedSourceRef: args.sourceRef,
+    revision: args.revision,
+    payloadFingerprint: range.fingerprint,
+    provenance: { producer: atom.provenance.producer },
+    recordFingerprint: atom.fingerprints.record,
+  }))) return null;
+
+  const fields: Array<{ field: MssrLibrarianSearchProjectionField; value: string }> = [
+    { field: "authorityClass", value: atom.authorityClass },
+    { field: "freshness", value: atom.source.freshness },
+    { field: "privacyClass", value: atom.privacyClass },
+    { field: "sourceClass", value: atom.provenance.sourceClass },
+    ...mssrLibrarianSearchProjectionFields
+      .filter((field) => !["authorityClass", "freshness", "privacyClass", "rangeKind", "sourceClass"].includes(field))
+      .flatMap((field) => {
+        const value = closedAttributeValue(atom, field);
+        return value === undefined ? [] : [{ field, value }];
+      }),
+    { field: "rangeKind", value: range.kind },
+  ];
+  const uniqueFields = [...new Map(fields.map((entry) => [`${entry.field}:${entry.value}`, entry])).values()]
+    .sort((left, right) => left.field.localeCompare(right.field) || left.value.localeCompare(right.value));
+  const identity = {
+    schemaVersion: MSSR_LIBRARIAN_SEARCH_PROJECTION_SCHEMA_VERSION,
+    owner: args.owner,
+    sourceRef: args.sourceRef,
+    revision: args.revision,
+    rangeId: range.id,
+    rangeKind: range.kind,
+    startOffset: range.startOffset,
+    endOffset: range.endOffset,
+    payloadFingerprint: range.fingerprint,
+    privacyClass: args.privacyClass,
+    atomId: atom.id,
+    recordFingerprint: atom.fingerprints.record,
+    producer: atom.provenance.producer,
+    fields: uniqueFields,
+  };
+  return {
+    atom,
+    projectionFingerprint: sha256(JSON.stringify(identity)),
+    terms: uniqueFields.map((entry) => ({ field: entry.field, value: entry.value, tokens: tokens(entry.value) })),
+  };
+}
+
 function prepareMarkdown(markdown: string): { canonicalMarkdown: string; lineCount: number; potentialHeadingCount: number } {
   if (typeof markdown !== "string" || markdown.length > 2_000_000) throw new Error("Librarian retrieval source must be Markdown text up to 2,000,000 characters.");
   const canonicalMarkdown = markdown.replace(/\r\n?/g, "\n");
@@ -155,8 +304,9 @@ export function searchMssrLibrarianEvidence(args: { documents: readonly MssrLibr
   if (args.documents.length > MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxDocuments) throw new Error(`Librarian retrieval accepts at most ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxDocuments} documents.`);
   let suppliedChars = 0;
   let suppliedRecords = 0;
+  let suppliedEvidenceAtoms = 0;
   for (const input of args.documents) {
-    const value = input as unknown as { markdown?: unknown; records?: unknown };
+    const value = input as unknown as { markdown?: unknown; records?: unknown; evidenceAtoms?: unknown };
     if (typeof value?.markdown === "string") {
       if (value.markdown.length > 2_000_000) throw new Error("Librarian retrieval source exceeds 2,000,000 characters.");
       suppliedChars += value.markdown.length;
@@ -166,6 +316,11 @@ export function searchMssrLibrarianEvidence(args: { documents: readonly MssrLibr
       if (value.records.length > MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxRecordsPerDocument) throw new Error(`Librarian retrieval accepts at most ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxRecordsPerDocument} records per document.`);
       suppliedRecords += value.records.length;
       if (suppliedRecords > MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxTotalRecords) throw new Error(`Librarian retrieval input exceeds ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxTotalRecords} total records.`);
+    }
+    if (Array.isArray(value?.evidenceAtoms)) {
+      if (value.evidenceAtoms.length > MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxEvidenceAtomsPerDocument) throw new Error(`Librarian retrieval accepts at most ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxEvidenceAtomsPerDocument} evidence atoms per document.`);
+      suppliedEvidenceAtoms += value.evidenceAtoms.length;
+      if (suppliedEvidenceAtoms > MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxTotalEvidenceAtoms) throw new Error(`Librarian retrieval input exceeds ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxTotalEvidenceAtoms} total evidence atoms.`);
     }
   }
   const documents = args.documents.map((input) => mssrLibrarianRetrievalDocumentSchema.parse(input));
@@ -200,32 +355,84 @@ export function searchMssrLibrarianEvidence(args: { documents: readonly MssrLibr
     const revision = surface.revision;
     if (doc.privacyClass === "sensitive-excluded") continue;
     const records = recordMetadata(doc.records, sourceRef, revision);
+    const evidenceAtoms = doc.evidenceAtoms ?? [];
+    const recordsByRange = new Map<string, Map<string, MssrLibrarianCatalogRecord>>();
+    for (const record of records) {
+      if (record.kind === "surface" || record.revision !== revision || !record.payloadFingerprint) continue;
+      const key = recordRangeKey(record.kind, record.identity, revision, record.payloadFingerprint);
+      const group = recordsByRange.get(key) ?? new Map<string, MssrLibrarianCatalogRecord>();
+      group.set(catalogRecordBindingKey(record), record);
+      recordsByRange.set(key, group);
+    }
+    const atomsBySubject = new Map<string, MssrEvidenceAtom[]>();
+    for (const atom of evidenceAtoms) {
+      const key = atomSubjectKey(atom.subject.namespace, atom.subject.kind, atom.subject.identity);
+      const group = atomsBySubject.get(key) ?? [];
+      group.push(atom);
+      atomsBySubject.set(key, group);
+    }
     const sections = sectionRanges(surface);
     totalRanges += sections.length;
     if (sections.length > MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxRanges || totalRanges > MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxRanges) {
       throw new Error(`Librarian retrieval exceeds ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxRanges} indexed ranges.`);
     }
     for (const range of sections) {
-      const attached = records.filter((record) => {
-        if (record.kind === "surface") return record.payloadFingerprint === revision;
-        if (record.kind !== range.kind || record.payloadFingerprint !== range.fingerprint) return false;
-        const expectedIdentity = `${sourceRef}#${range.id}`;
-        return record.identity === expectedIdentity || record.identity === `${doc.sourceRef}#${range.id}`;
-      });
+      // Exact range keys avoid rescanning every record for every indexed range.
+      const attachedByBinding = new Map<string, MssrLibrarianCatalogRecord>();
+      for (const identity of new Set([`${sourceRef}#${range.id}`, `${doc.sourceRef}#${range.id}`])) {
+        const key = recordRangeKey(range.kind, identity, revision, range.fingerprint);
+        for (const [binding, record] of recordsByRange.get(key) ?? []) attachedByBinding.set(binding, record);
+      }
+      const attached = [...attachedByBinding.values()];
+      const recordBindings = new Set(attachedByBinding.keys());
+      const projectedByFingerprint = new Map<string, ProjectedAtomMetadata>();
+      const projectedSubjects = new Set(attached.map((record) => atomSubjectKey(record.namespace, record.kind, record.identity)));
+      for (const subject of projectedSubjects) {
+        for (const atom of atomsBySubject.get(subject) ?? []) {
+          const projected = projectedAtomMetadata({ atom, owner: doc.owner, sourceRef, revision, privacyClass: doc.privacyClass, range, recordBindings });
+          if (projected) projectedByFingerprint.set(projected.projectionFingerprint, projected);
+        }
+      }
+      const projectedAtoms = [...projectedByFingerprint.values()];
+      const projectedTerms = projectedAtoms.flatMap((projected) => projected.terms);
       const metadata: Record<string, unknown> = { sourceRef, revision, headingPath: range.path, ...range.metadata };
       if (query.namespace && !attached.some((record) => record.namespace === query.namespace)) continue;
       if (query.kind && !attached.some((record) => record.kind === query.kind)) continue;
-      if (query.metadata && !Object.entries(query.metadata).every(([key, value]) => metadata[key] === value || doc.searchableMetadata?.[key] === value)) continue;
+      if (query.metadata && !Object.entries(query.metadata).every(([key, value]) => metadata[key] === value
+        || doc.searchableMetadata?.[key] === value
+        || projectedAtoms.some((projected) => projected.terms.some((term) => term.field === key && term.value === value)))) continue;
       const body = canonicalMarkdown.slice(range.startOffset, range.endOffset);
-      const searchText = [range.title, range.path.join(" "), range.terms.join(" "), range.hint, body, JSON.stringify(metadata), JSON.stringify(doc.searchableMetadata ?? {})].join(" ");
+      const searchText = [range.title, range.path.join(" "), range.terms.join(" "), range.hint, body, JSON.stringify(metadata), JSON.stringify(doc.searchableMetadata ?? {}), projectedTerms.flatMap((term) => [term.value, ...term.tokens]).join(" ")].join(" ");
       const searchTerms = new Set(tokens(searchText));
       const matched = queryTerms.filter((term) => searchTerms.has(term));
       if (matched.length === 0) continue;
       const score = Number((matched.length / queryTerms.length).toFixed(6));
+      const metadataProjectionMatches = projectedAtoms.flatMap((projected) => {
+        const matches = projected.terms.flatMap((term) => {
+          const queryMatches = queryTerms.filter((queryTerm) => term.tokens.includes(queryTerm));
+          return queryMatches.length > 0 ? [{ field: term.field, value: term.value, queryTerms: queryMatches }] : [];
+        });
+        const filterMatches = Object.entries(query.metadata ?? {}).flatMap(([field, value]) =>
+          typeof value === "string" && projected.terms.some((term) => term.field === field && term.value === value)
+            ? [{ field: field as MssrLibrarianSearchProjectionField, value }]
+            : [],
+        );
+        if (matches.length === 0 && filterMatches.length === 0) return [];
+        return [{
+          schemaVersion: MSSR_LIBRARIAN_SEARCH_PROJECTION_SCHEMA_VERSION,
+          projectionFingerprint: projected.projectionFingerprint,
+          atomId: projected.atom.id,
+          recordFingerprint: projected.atom.fingerprints.record,
+          producer: projected.atom.provenance.producer,
+          provenanceIsCallerAsserted: true as const,
+          matches,
+          ...(filterMatches.length > 0 ? { filterMatches } : {}),
+        }];
+      });
       const handleFields = { version: 1 as const, owner: doc.owner, sourceRef, revision, rangeId: range.id, rangeKind: range.kind, startLine: range.metadata.startLine as number, endLine: range.metadata.endLine as number, startOffset: range.startOffset, endOffset: range.endOffset, fingerprint: range.fingerprint, privacyClass: doc.privacyClass as MssrLibrarianEvidenceHandle["privacyClass"] };
       const handle = mssrLibrarianEvidenceHandleSchema.parse({ ...handleFields, id: mssrLibrarianEvidenceHandleId(handleFields) });
       if (candidates.length >= MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxCandidates) throw new Error(`Librarian retrieval exceeds ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxCandidates} matching candidates.`);
-      candidates.push({ handle, score, title: range.title.slice(0, 240), headingPath: range.path.slice(0, 12), snippet: boundedSnippet(body, queryTerms, query.maxSnippetChars), metadata, evidenceTier: "candidate", advisoryOnly: true, truthAuthority: false, ownerAndPrivacyAreCallerAsserted: true, catalogProvenanceIsCallerAsserted: true });
+      candidates.push({ handle, score, title: range.title.slice(0, 240), headingPath: range.path.slice(0, 12), snippet: boundedSnippet(body, queryTerms, query.maxSnippetChars), metadata, ...(metadataProjectionMatches.length > 0 ? { metadataProjectionMatches } : {}), evidenceTier: "candidate", advisoryOnly: true, truthAuthority: false, ownerAndPrivacyAreCallerAsserted: true, catalogProvenanceIsCallerAsserted: true });
     }
   }
   candidates.sort((a, b) => b.score - a.score || a.handle.owner.localeCompare(b.handle.owner) || a.handle.sourceRef.localeCompare(b.handle.sourceRef) || a.handle.startOffset - b.handle.startOffset || a.handle.id.localeCompare(b.handle.id));

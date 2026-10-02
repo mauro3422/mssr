@@ -66,23 +66,33 @@ similarity alone.
 
 ## Librarian retrieval and evidence acquisition
 
-The portable `searchMssrLibrarianEvidence` primitive now performs bounded
-lexical search over Markdown supplied by the owning host, indexed by exact
-Document Surface sections/blocks. It filters by declared owner/source,
-namespace/kind and a caller-projected safe metadata map; returns ranked
-candidate handles bound to source ref, revision, line/offset range, privacy
-label and fingerprint; and fetches exact text only when the host supplies the
-current source again. It has global character, line, record, range, candidate
-and result caps. Raw catalog metadata is not copied into the result. The
-searchable metadata projection, owner, privacy classification and catalog
-provenance are still host assertions: this is not an authorization boundary
-or a global filesystem/index provider. MCP now exposes search/fetch plus a Jev
-relation-review tool that batches compatible pairs within one explicit
-project/corpus scope and emits atom-bound judgments. Those judgments remain
-unverified until an independent verifier is supplied; a separate MCP tool
-builds exact-source previews and never writes canonical files. Pairs with no
-shared atoms are isolated into separate Jev requests; pairs in one connected
-atom component may share a request within the state/question limits.
+The portable `searchMssrLibrarianEvidence` primitive performs bounded lexical
+search over Markdown supplied by the owning host, indexed by exact Document
+Surface sections/blocks. It can also accept EvidenceAtoms, but projects only
+closed-vocabulary fields when the atom and catalog record match the exact owner,
+privacy class, source/revision, range identity, offsets and payload fingerprint
+re-derived from that Markdown. Search terms and `query.metadata` filters use the
+same range-bound projection. Results expose only the matching field/value,
+projection fingerprint and caller-asserted provenance flag; atom-backed filter
+matches are identified separately so a caller can see which typed field
+satisfied a filter. Declared freshness values such as stale, historical, or
+superseded remain discoverable for review and do not affect ranking or establish
+currentness. Full atoms and generic catalog metadata are never copied. Legacy
+`searchableMetadata` remains document-scoped. Input caps and range/subject
+indexes keep the new path bounded without scanning every atom and record for
+each range. These inputs are not automatically supplied by Bridge or existing
+adapters yet, and none of the owner/privacy/provenance labels authenticate the
+caller or grant authority.
+
+Search returns advisory handles bound to source ref, revision, exact range,
+privacy label and fingerprint; fetch materializes text only when the host
+supplies the current source again. MCP exposes search/fetch plus Jev relation
+review, which batches compatible pairs within one explicit project/corpus scope
+and emits atom-bound judgments. Those judgments remain unverified until an
+independent verifier is supplied; a separate MCP tool builds exact-source
+previews and never writes canonical files. Pairs with no shared atoms are
+isolated into separate Jev requests; pairs in one connected atom component may
+share a request within the state/question limits.
 
 Jev can then classify related atoms from exact text returned through those
 handles. The host supplies/authorizes source reads; the tool rechecks the
@@ -151,15 +161,30 @@ it does not make Jev an automatic Librarian reranker or authorize writes.
 
 ## Composed capability boundary
 
-Jev itself supplies finite typed decisions, not grep, search, paragraph
-writing, compaction or tool execution. A complete text workflow composes
-owner-authorized retrieval and exact source fetches, deterministic filtering
-and batching, Jev candidate judgments, policy/host execution, a separate
-verifier and (when writing prose) an explicit generator or human editor.
-MSSR already has deterministic exact-source paragraph/reference assembly in
-Semantic Curation; this preserves and arranges source blocks and is not open
-ended Jev generation. The new synthesis preview is relation-aware and
-reversible, but no automatic project write occurs.
+Jev supplies finite typed decisions; an application can use those decisions to
+drive substantial text work without asking Jev to generate prose. TypeSafe's
+Structure recovery cookbook demonstrates two passes: Jev judges whether
+adjacent lines continue a sentence, deterministic code joins the original
+lines, Jev classifies the resulting blocks, and a renderer assembles Markdown
+paragraphs/lists/headings from the source words. Its Re-ranking cookbook puts
+Jev after BM25 and reports top-1 moving 5% to 18% and top-10 38% to 62% over 40
+CLERC queries; these are provider-published examples, not independent MSSR
+results. This supports the user's observed intelligent grep, selection,
+lossless compaction and paragraph-assembly workflow as a composed capability.
+Semantic rewriting still needs a generator or a human.
+
+For MSSR, the host can compose owner-authorized search and exact fetch, typed
+atom metadata, Jev selection/relation judgments, contradiction policy,
+iterative evidence acquisition, deterministic assembly or a separate prose
+generator, citation verification and reversible preview. Current portable APIs
+provide those pieces but do not run the whole loop, generate open prose, or
+automatically receive Bridge atoms; that host wiring and an end-to-end benchmark
+remain future gates. Each stage must retain source ranges and decisions. The
+preview is relation-aware and reversible; no automatic project write occurs.
+See TypeSafe's [Structure recovery](https://docs.typesafe.ai/cookbooks/autoformat),
+[Re-ranking](https://docs.typesafe.ai/cookbooks/rerank_typesafe),
+[question primitives](https://docs.typesafe.ai/primitives), and
+[confidence-gated routing](https://docs.typesafe.ai/patterns/confidence-routing).
 
 ## Next MSSR evaluation
 

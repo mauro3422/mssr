@@ -38,8 +38,10 @@ export const mssrLibrarianSearchToolInputSchema = z.object({
 }).strict().superRefine((value, ctx) => {
   const chars = value.documents.reduce((sum, document) => sum + document.markdown.length, 0);
   const records = value.documents.reduce((sum, document) => sum + (document.records?.length ?? 0), 0);
+  const evidenceAtoms = value.documents.reduce((sum, document) => sum + (document.evidenceAtoms?.length ?? 0), 0);
   if (chars > 4_000_000) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["documents"], message: "MCP Librarian search is capped at 4,000,000 total Markdown characters." });
   if (records > 2_048) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["documents"], message: "MCP Librarian search is capped at 2,048 total catalog records." });
+  if (evidenceAtoms > 2_048) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["documents"], message: "MCP Librarian search is capped at 2,048 total EvidenceAtoms." });
 });
 
 export const mssrLibrarianFetchToolInputSchema = z.object({
@@ -69,7 +71,7 @@ export type MssrSemanticEvidenceToolOptions = {
 /** Register advisory evidence search/review tools for each MSSR MCP host. */
 export function registerMssrSemanticEvidenceTools(server: McpServer, options: MssrSemanticEvidenceToolOptions = {}): void {
   server.registerTool(MSSR_SEMANTIC_EVIDENCE_TOOL_NAMES[0], {
-    description: "Search only caller-supplied Markdown and bounded catalog records. Returns advisory exact-source candidate handles. It does not scan the filesystem, authenticate owner/privacy/catalog provenance, decide truth, or grant read/write authority.",
+    description: "Search only caller-supplied Markdown, bounded catalog records, and optional exact-range EvidenceAtoms. A narrow closed-vocabulary projection may contribute to candidate matching only when its atom, catalog record, source owner/ref/revision, range, payload fingerprint, and privacy class all match the freshly derived Document Surface. Results identify projection matches and fingerprints without copying full atoms or generic record metadata. All provenance remains caller-asserted. Returns advisory exact-source candidate handles; it does not scan files, decide truth, or grant authority.",
     inputSchema: mssrLibrarianSearchToolInputSchema,
   }, async (args) => response(searchMssrLibrarianEvidence(args)));
 

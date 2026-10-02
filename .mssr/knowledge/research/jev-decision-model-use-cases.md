@@ -60,7 +60,7 @@ El caso de Pokémon Red que cubrió Tom’s Hardware atribuye al proyecto del de
 
 El recap oficial de DevDay, publicado **29-sep-2026**, anunció **Decisions API**: “real-time decision-making” al enfocar Luna en preguntas definidas por el usuario y respuestas finitas predefinidas; el desarrollador da contexto por texto o imágenes y recibe respuestas para clasificación, routing o próxima acción de agente. El estado publicado era **limited preview today**, con release amplio previsto “in the coming days”. [OpenAI DevDay 2026 Recap](https://openai.com/index/devday-2026-recap/)
 
-La descripción es parecida al patrón de Jev (estado + preguntas/alternativas + decisión consumible por software) y añade explícitamente imagen como entrada. A 30-sep-2026 no se encontró ni verificó un esquema público de endpoint/request/response, límites, tipos de distribución/confianza, calibración, pricing, latencia o garantías. Por ello no atribuirle características técnicas de Jev ni prometer equivalencia. La lectura preliminar es que OpenAI puede integrar decisiones finitas con Luna dentro de una API que recibe texto/imágenes; validar contra docs y evaluación cuando haya especificación disponible.
+La descripción se parece al patrón de Jev (estado + preguntas/alternativas + decisión consumible por software) y añade explícitamente imagen como entrada. En la revisión del 2-oct-2026, el anuncio oficial aún describía limited preview; la búsqueda en documentación pública oficial no localizó un esquema verificable de endpoint/request/response, límites, distribución/confianza, calibración, pricing, latencia o garantías. No atribuirle características técnicas de Jev ni prometer equivalencia. Revalidar cuando OpenAI publique documentación técnica.
 
 ## Composición: cómo cubrir grep, selección, compacción y párrafos
 
@@ -68,22 +68,19 @@ Una aplicación completa puede juntar piezas diferentes, sin adjudicar a Jev el 
 
 1. **Búsqueda:** Jev puede escoger entre búsquedas candidatas, clasificar intención de consulta o puntuar relevancia de resultados. El host ejecuta `grep`, índice textual/vectorial u otras herramientas y recoge líneas/rutas con procedencia.
 2. **Selección de evidencia:** código filtra duplicados, permisos, rutas y revisiones. Jev podría clasificar qué fragmentos parecen pertinentes o qué rama requiere lectura; la autoridad/proveniencia se comprueba por reglas del sistema.
-3. **Compacción:** Jev puede seleccionar `keep`, `truncate` o `drop` para resultados obsoletos si se representan candidatos y criterios acotados. Código aplica la política y conserva refs/fingerprints. La síntesis semántica del contexto, cuando se requiere, la realiza un resumidor/LLM u operador, no Jev.
-4. **Armado de párrafos:** un LLM generativo u otra rutina redacta. Jev puede ayudar a seleccionar una estructura o evaluar si cada afirmación está soportada por evidencia enumerada, si falta una cita o si se requiere revisión. No puede redactar el párrafo ni inventar la explicación de un resultado.
+3. **Compacción sin pérdida:** la receta oficial de Structure recovery usa Jev para juzgar pares de líneas y clasificar bloques; código une líneas que continúan una oración y renderiza el formato con las palabras originales. Es compacción estructural guiada por Jev, distinta de resumir o reescribir semánticamente.
+4. **Armado de párrafos:** no hace falta un generador si el objetivo es reconstruir estructura: decisiones Jev + ensamblador determinístico pueden producir párrafos, listas y encabezados conservando el texto. Un generador o persona sí hace falta para redactar frases nuevas. Jev puede además evaluar citas/soporte y seleccionar una estructura entre alternativas.
 5. **Acción y verificación:** código limita acciones permitidas; Jev puede elegir una acción candidata o señalar incertidumbre. El host aplica permisos, frescura, umbrales y confirmación humana según riesgo. Un verificador independiente comprueba el efecto observable; no se acepta la confianza de Jev como prueba.
 
-El patrón más útil es `herramienta determinista para obtener candidatos → decisión estrecha → política/ejecución del host → verificación independiente → fallback a LLM/humano cuando corresponda`. Para MSSR, los primeros puntos de entrada ya implementados son búsqueda/fetch con el Bibliotecario, revisión relacional Jev por lotes y un preview de síntesis exacto/reversible. Otros candidatos son clasificación de intención, selección entre módulos/ref evidenciales, relevancia y señal de revisión; toda autoridad sigue siendo advisory y no debe convertirse en permisos ni escritura automática.
+El patrón más útil es `herramienta determinista para obtener candidatos → decisión estrecha → política/ejecución del host → verificación independiente → fallback a LLM/humano cuando corresponda`. TypeSafe publica también un ejemplo de reranking con BM25 y Jev: 30 pasajes candidatos por consulta, 40 consultas CLERC, top-1 5%→18% y top-10 38%→62%; son cifras del cookbook/proveedor que MSSR no ha replicado. Para MSSR, ya existen búsqueda/fetch, selección Jev, revisión relacional y preview reversible; esta entrega añade una proyección de metadata tipada ligada a rangos exactos. Ninguna de estas piezas activa por sí sola el loop completo ni la integración Bridge.
 
-Esto no reduce el valor de lo observado por Mauro en flujos reales: grep
-inteligente, selección, compacción y armado de párrafos pueden formar una sola
-experiencia de agente y producir resultados fuertes cuando las herramientas,
-los criterios y el contexto están bien conectados. La atribución técnica debe
-seguir la cadena completa: Jev puede decidir entre consultas/resultados,
-fragmentos o estructuras candidatas; el host ejecuta búsqueda y política; un
-generador o ensamblador redacta; y otra verificación comprueba citas y efecto.
-La observación del usuario informa los casos que vale la pena evaluar, pero no
-se presenta como benchmark independiente ni como capacidad que Jev realice por
-sí solo.
+La observación de Mauro —grep inteligente, selección, compacción y armado de
+párrafos en una sola experiencia— encaja con la cadena documentada por
+TypeSafe: el modelo decide; el host recupera; código conserva/une/renderiza el
+texto o un generador redacta; la verificación comprueba citas y efecto. La
+estructura de párrafos puede resultar del ensamblador determinístico, no
+necesariamente de prosa generada. Esa observación informa casos a probar, no es
+por sí misma un benchmark independiente ni prueba que Jev aislado haga todo.
 
 ## 100 hipótesis de uso
 
@@ -234,3 +231,4 @@ Para cada propuesta: fijar opciones y rúbricas sin solapamiento; conservar ejem
 7. Reddit r/LLMDevs, benchmark Entagl (autorreporte), 23-sep-2026: https://www.reddit.com/r/LLMDevs/comments/1wo000s/we_benchmarked_typesafes_new_jev_a_decisiononly/
 8. Reddit r/AI_India, Jev vs. clasificador afinado (autorreporte), 22-sep-2026: https://www.reddit.com/r/AI_India/comments/1wmvyqz/i_benchmarked_typesafes_jev_against_llms_bert_and/
 9. Tang & Zheng, “Typed Decision Models: An Early Evidence Audit and Evaluation Checklist”, arXiv:2609.32160, 26-sep-2026 (preprint temprano): https://arxiv.org/abs/2609.32160
+10. TypeSafe AI, [Primitives](https://docs.typesafe.ai/primitives), [Re-ranking cookbook](https://docs.typesafe.ai/cookbooks/rerank_typesafe), [Structure recovery cookbook](https://docs.typesafe.ai/cookbooks/autoformat), and [Confidence-gated routing](https://docs.typesafe.ai/patterns/confidence-routing), reviewed 2-oct-2026. Cookbook measurements are provider-published examples and are not MSSR replications.

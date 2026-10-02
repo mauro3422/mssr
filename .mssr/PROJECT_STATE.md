@@ -1,7 +1,19 @@
 # MSSR project state
 
 ## Current release
-MSSR `0.2.97` preserves and validates TypeSafe Jev Choice probability maps, retains up to two candidates per hierarchical shard when a valid map is available, rejects plans over 16 provider calls before inference, and handles composed/decomposed Unicode consistently in retrieval and excerpt centering. Exact owner/source/privacy/revision/range/fingerprint validation and fetch remain required. Search remains deterministic and caller-supplied; confidence remains uncalibrated. Full `npm run verify` passed on 2026-10-01. Build receipt: `mssr-build:sha256:bc288853f02be406` (124 files / 1,394,009 bytes). This is local MSSR source/package verification only; this change does not claim public publication or MauroPrime Bridge adoption.
+MSSR `0.2.98` adds an opt-in exact-range EvidenceAtom metadata projection to caller-supplied Librarian search, with a closed field vocabulary, source/range/catalog fingerprint binding, matching metadata filters, and bounded range/subject indexes. Stale/historical/superseded values remain discoverable for review without affecting rank, and atom-backed filter matches are visible in results. Legacy `searchableMetadata` remains document-scoped. MCP accepts the optional atom inputs, but Bridge/adapters do not yet supply them automatically. Search and all provenance remain caller asserted; Jev confidence remains uncalibrated. Final build receipt and `npm run verify` result are recorded after release verification below. This is local MSSR source/package work only; it does not claim Bridge adoption or public publication.
+
+Release verification completed: full `npm run verify` passed, and `npm run release:gate` wrote `.mssr/runtime/releases/0.2.98.json`. The canonical local package is `mauroprime-mssr-0.2.98.tgz`, 1,075,096 bytes, SHA-256 `156eef3c564027232578c139eb4f35c8dd2ea6b30fb743bc7ce74cda164b246e` (`pkg:0.2.98#156eef3c`). It has not been published. The last host observation showed Codex MCP pid 27232 still loading `mssr-build:sha256:bc288853f02be406` while 0.2.98 is available; reconnect the server after this source change before claiming host adoption.
+
+## 0.2.98 live Jev smoke and comparison follow-up — 2026-10-02
+
+### Context-loader budget friction — resolved
+
+A close-stage route initially rejected `.mssr/PROJECT_STATE.md` because the selected core section exceeded its declared 2,500-byte budget; the section measured 3,268 characters before this correction, versus 1,933 characters at the checked-in baseline. Release, smoke, and comparison history had accumulated under `## Current release`. Moving that material below this separate heading reduced the current-release slice to 1,391 bytes. `npm run test:project-context`, `npm run test:project-context-health`, and a structured close route with core loading now pass. No reusable routing change is indicated.
+
+### Live real-document Jev selection smoke
+
+Run `experiments/jev-mssr-live/runs/mssr-librarian-real-doc-bilingual-confidence-smoke-20261002T155515Z-v1/`: three live choices over two real MSSR architecture documents (Spanish/English) and a narrower Spanish rerun all selected the same exact section. Raw confidence varied from 0.49 to 0.79; no labels, equal option set, or holdout were used. A separately supplied fetch returned stale; re-selection and exact fetch with one snapshot passed. This is exploratory selection/fetch consistency evidence, not accuracy, calibration, or a threshold, and did not exercise the new atom projection because no EvidenceAtoms/records were supplied.
 
 Controlled bilingual run evidence and the next evaluation gate: `experiments/jev-mssr-live/runs/MSSR-LIBRARIAN-JEV-COMPARISON-20261001.md`. Repeated 80k direct scores were 35/52 and 34/52; the paired 64k hierarchy scored 31/52. Labels are Luna-reviewed, alternate valid ranges and abstention quality are unlabeled, and confidence remains uncalibrated. The runs do not justify an automatic threshold or host activation.
 ### Live exact-search-handle Jev smoke — 2026-10-01
@@ -140,7 +152,7 @@ The near-term reliability program remains explicit in `ROADMAP.md`. **R1 Trace I
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.94 -->
+<!-- mssr-version:mssr.source=0.2.98 -->
 <!-- mssr-version:bridge.live=0.6.142 -->
 <!-- mssr-version:bridge.mssr=0.2.93 -->
 <!-- mssr-owner:semantic.consistency=mssr -->

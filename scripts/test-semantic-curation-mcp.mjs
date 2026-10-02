@@ -6,7 +6,8 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
 import { CapabilityRegistry, createMssrMcpServer } from "../dist/index.js";
 import { buildMssrMarkdownDocumentSurface } from "../dist/document-surface.js";
-import { buildMssrEvidenceAtom } from "../dist/evidence-atom.js";
+import { buildMssrEvidenceAtom, evidenceAtomFromLibrarianCatalogRecord } from "../dist/evidence-atom.js";
+import { catalogMssrLibrarianRecord } from "../dist/librarian-contract.js";
 
 function json(result) {
   const item = result.content?.find((entry) => entry.type === "text");
@@ -132,6 +133,63 @@ try {
   }));
   assert.match(fetched.text, /selected paragraph retains the source revision/);
   assert.equal(fetched.truthAuthority, false);
+
+  const projectionMarkdown = "# Library\n\n## Unlabeled source\n\nThis body contains no catalog taxonomy.\n";
+  const projectionSourceRef = "docs/projection-fixture.md";
+  const projectionSurface = buildMssrMarkdownDocumentSurface({ sourceRef: projectionSourceRef, markdown: projectionMarkdown });
+  const projectionHeading = projectionSurface.headings.find((item) => item.title === "Unlabeled source");
+  assert.ok(projectionHeading);
+  const projectionRecord = catalogMssrLibrarianRecord({
+    namespace: "document",
+    kind: "section",
+    identity: `${projectionSourceRef}#${projectionHeading.id}`,
+    sourceRef: projectionSourceRef,
+    revision: projectionSurface.revision,
+    payloadFingerprint: projectionHeading.fingerprint,
+    metadata: { area: "library" },
+    provenance: { producer: "mcp-projection-fixture" },
+  });
+  const projectionAtom = evidenceAtomFromLibrarianCatalogRecord({
+    record: projectionRecord,
+    sourceClass: "observed",
+    canonicalOwner: projectRoot,
+    authorityClass: "canonical",
+    privacyClass: "project-metadata",
+    freshness: "fresh",
+    freshnessEvidence: {
+      canonicalOwner: projectRoot,
+      ref: projectionSourceRef,
+      revision: projectionSurface.revision,
+      observedAt: "2026-09-30T12:00:00Z",
+    },
+    headingPath: projectionHeading.headingPath,
+    range: {
+      startLine: projectionHeading.startLine,
+      endLine: projectionHeading.endLine,
+      startOffset: projectionHeading.startOffset,
+      endOffset: projectionHeading.endOffset,
+    },
+    attributes: { domain: "skill-system" },
+  });
+  const atomProjected = json(await client.callTool({
+    name: "mssr_librarian_search",
+    arguments: {
+      documents: [{
+        owner: projectRoot,
+        sourceRef: projectionSourceRef,
+        markdown: projectionMarkdown,
+        records: [projectionRecord],
+        evidenceAtoms: [projectionAtom],
+        privacyClass: "project-metadata",
+      }],
+      query: { query: "skill-system", metadata: { domain: "skill-system" } },
+    },
+  }));
+  assert.equal(atomProjected.results.length, 1, "MCP search accepts exact atom-backed typed metadata");
+  assert.equal(atomProjected.results[0].handle.rangeId, projectionHeading.id);
+  assert.equal(atomProjected.results[0].metadataProjectionMatches[0].atomId, projectionAtom.id);
+  assert.equal(atomProjected.results[0].metadataProjectionMatches[0].matches[0].field, "domain");
+  assert.equal(atomProjected.results[0].metadataProjectionMatches[0].provenanceIsCallerAsserted, true);
 
   // Exercise the production MCP handlers end to end with a host-owned fake
   // Jev transport: explicit source search -> exact fetch -> typed atom review

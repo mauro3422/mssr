@@ -1,5 +1,29 @@
 # MSSR project memory
 
+## Exact-range EvidenceAtom metadata projection — 0.2.98
+
+Librarian retrieval may accept exact EvidenceAtoms alongside caller-supplied
+Markdown and catalog records. Only allowlisted enum fields can contribute to
+search terms or metadata filters after the atom and catalog record bind to the
+same owner, privacy class, source/ref/revision, exact section/block identity,
+range offsets and payload fingerprint freshly derived from Document Surface.
+The result explains which field matched, carries a separate projection
+fingerprint, and labels provenance caller-asserted; full atoms and arbitrary
+metadata remain out of results. Existing `searchableMetadata` stays
+document-scoped. Stale, historical, and superseded freshness values remain
+searchable for review, do not affect ranking, and remain caller assertions;
+results identify atom fields that satisfied metadata filters. Indexed range and
+subject maps keep work bounded. The portable contract does not make
+Bridge/adapters send atoms automatically and confers no authentication or write
+authority.
+
+TypeSafe's official Structure recovery example confirms the useful composed
+capability Mauro observed: Jev classifies line joins and text blocks; a
+deterministic assembler preserves source words while rebuilding paragraphs and
+Markdown. Jev itself does not generate open prose. Keep retrieval, decision,
+exact fetch, deterministic rendering/generation, citation checks and host
+approval as separately measured stages.
+
 ## Explicit Jev selection for the Librarian — 0.2.95
 The bilingual full-heading experiment supports offering a separate Jev Choice over caller-supplied sections when the deterministic lexical shortlist misses useful evidence. The original 0.2.95 contract offers at most 254 exact heading candidates plus `none`, returns only a revision-bound handle, and requires the caller to exact-fetch the selected section. It makes no filesystem scan, compaction, paragraph generation, verification or canonical write. Option limits fail closed to `not-run` instead of silently dropping candidates; raw provider confidence is descriptive and uncalibrated. Titles, paths and excerpts are untrusted input to the model, so the host must review the exact fetched source. The first live MCP smoke used the frozen 21-document MSSR corpus and selected one expected section with an integrity-passing exact fetch; its label was Luna-reviewed, not approved by the human document owner, and is a wiring check rather than quality validation.
 
