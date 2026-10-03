@@ -79,31 +79,45 @@ zero benchmark run payloads. The commit-bound real-document smoke passed 4/4
 declared projections, 4/4 metadata searches, and 4/4 exact fetches. Its ignored
 receipt is `.mssr/runtime/project-context-librarian-real-doc-smoke-latest.json`.
 The branch was pushed with `git push --set-upstream`; direct
-`git ls-remote` returned the same full commit SHA. No npm publication or Bridge
-restart/adoption occurred.
+`git ls-remote` returned the same full commit SHA. No npm publication or live
+Bridge restart occurred; candidate adoption is documented below.
 
 The 0.2.100 package receipt remains
 `pkg:0.2.100#849b067d5f1578b3c32c73fc4e2bafcedaa8a5e01231ac1108fa92313a103d32`.
-The new work has not been published to npm. The verified 0.2.101 artifact is
-ready for isolated Bridge candidate adoption; preserve one-section-per-call
-exact-handle/fetch semantics, add a separate sidecar mode, run the new
-real-document smoke, and verify its exact package hash. Live Bridge remains
-unchanged until a separate restart/adoption decision.
+The 0.2.101 package has not been published to npm. Its isolated Bridge
+candidate adoption is recorded below; live Bridge remains unchanged pending
+transport verification and a separate adoption decision.
 
 ## Bridge candidate
 
-Bridge branch `codex/bridge-mssr-0.2.100-adoption-20261002` is clean and remote
-synced at `2298b558598e427cdc6058983616315e08078a30`; it is 31 commits ahead of
-`origin/main` and zero behind. Feature commit
-`0497ce3f36363d383a78f695d8a569f1b3d3b72c` adds opt-in 0.6.146 per-single-section
-metadata. A real Jev smoke covered two eligible Bridge state sections and
-proved exact-fetch plumbing only. The read-only adoption review confirmed this
-candidate reads only `.mssr/project-context.json`: it does not consume
-`.mssr/project-context-librarian.json` or produce the sidecar's per-heading
-EvidenceAtoms. Adoption requires a new explicit mode and the exact verified
-MSSR 0.2.101 package; preserve 0.6.146 and keep the existing mode compatible.
-Live Bridge is still 0.6.144; no merge, PR, deployment, or restart was
-performed. Bridge's earlier dirty primary checkout remains untouched.
+Bridge 0.6.147 is preserved and remote-synced on
+`codex/bridge-mssr-0.2.101-librarian-sidecar-20261002` at
+`0570bd27c4d9f4d9db68c6978a09dcb075920517`, based on clean candidate
+`2298b558598e427cdc6058983616315e08078a30`. It vendors exact MSSR 0.2.101
+artifact bytes (SHA-256
+`868c5180783776a7f6dc55bab736a6f38fd84fe647cdb26b0b8b34892ebc5499`) and adds
+opt-in `project-context-librarian-sidecar` metadata to the existing
+`mssr_librarian_search`; lexical default and the 0.6.146 metadata mode remain.
+The bridge reads only canonical bounded `.mssr/` manifests and caller-selected
+Markdown refs, projects exact heading/fingerprint-bound metadata, and leaves
+Jev as a separately invoked exact-handle selector/fetch path. No duplicate MCP
+tool is added.
+
+Candidate checks passed: install, typecheck, build, semantic-evidence
+regression, skill routing (271 effective cases), generated docs and one
+real-project/real-Jev exact-fetch integration smoke. Jev selected an exact
+783-character source range and its fingerprint matched; provider verification
+is unverified and confidence uncalibrated. Release readiness is blocked:
+`test:mcp-dual-era` fails parsing the first legacy SSE initialize response
+(`Invalid character in chunk size`, with `event: message` interpreted as a
+chunk header), and `test:regressions` closes during its first initialize. The
+cause is unresolved; stripped headers, forced close and JSON response
+experiments did not fix it and were discarded. `verify:all` was not run because
+it targets the active Bridge endpoint on port 3001, unavailable in this
+session. See Bridge `docs/INCIDENTS.md` on the candidate branch. Live Bridge
+remains 0.6.144; no restart, deployment, PR or main merge occurred. The dirty
+primary Bridge checkout, clean base worktree, MSSR feature branch and benchmark
+runs remain untouched.
 
 ## 0.2.101 candidate receipts
 
@@ -183,27 +197,24 @@ plumbing evidence, not quality evidence.
 
 ## Next gates
 
-- **Complete:** commit `cd7c834df2f91d581b8f84db9d89a9d425dd1c6f` contains only
-  the 65 reviewed product/docs/test paths, with zero benchmark run payloads.
-  Clean install, full verification, release gate, artifact readback,
-  commit-bound smoke, branch push, and direct remote readback all passed.
-  Keep the evaluation snapshot intact; do not merge the experimental runs.
-- **Next:** create the separate Bridge adoption change from the clean 0.6.146
-  candidate, add an opt-in sidecar mode while preserving existing lookup, run
-  Bridge release checks, and leave live Bridge unchanged until adoption is
-  independently verified. Keep all 206
-  `experiments/jev-mssr-live/runs/` files and large prediction outputs on the
-  original evaluation branch; do not cherry-pick mixed commits blindly.
-- After the exact 0.2.101 package is verified, create a separate Bridge
-  adoption branch from the clean 0.6.146 candidate. Add a new opt-in
-  `project-context-librarian-sidecar` mode; read only explicitly supplied
-  `sourceRefs`, validate sidecar/optional segment/ref presence and byte/path
-  bounds, and preserve current single-section behavior. Add adversarial and
-  exact-fetch regressions, then run the Bridge release checks. Keep live Bridge
-  unchanged until its host is available and adoption is verified.
-- Only after the product branches pass their gates, publish normal feature
-  branch refs and verify local `HEAD`, tracking refs and direct remote refs.
-  No main merge, npm publication, or live restart is part of the current work.
-- Freeze owner-adjudicated acceptable ranges and an untouched document-level
-  holdout before quality comparisons. Existing historical scores and current
-  plumbing smokes remain exploratory; confidence stays uncalibrated.
+- **Complete:** MSSR 0.2.101 product commit `cd7c834df2f91d581b8f84db9d89a9d425dd1c6f`
+  and Bridge candidate commit `0570bd27c4d9f4d9db68c6978a09dcb075920517` are
+  on separate pushed feature branches with remote readback verified. MSSR's
+  release gate passed; its package is not published. Bridge's candidate is
+  preserved, but its HTTP release gates fail as described above.
+- **Next:** diagnose the isolated MCP SSE/chunk-framing failure in Bridge and
+  compare against a functioning clean baseline with the same extended startup
+  readiness. Re-run dual-era and regression HTTP checks, then the complete safe
+  candidate gate; do not merge or adopt live until these pass. Keep the live
+  Bridge at 0.6.144 and the original dirty primary checkout untouched.
+- Keep all 206 `experiments/jev-mssr-live/runs/` paths, manifests, outputs,
+  labels/reviews and hashes on their original evaluation branch. Do not
+  cherry-pick the mixed evaluation snapshot or rewrite benchmark evidence.
+- After Bridge integration passes, freeze bytes, sidecar/source revisions,
+  query set, candidate limits, owner-adjudicated acceptable ranges, and an
+  untouched document-level holdout. Compare lexical and metadata search with
+  identical source/limit sets; then evaluate Jev exact selection, abstention,
+  contradictions, fetch integrity, utility and citation fidelity separately.
+  Existing scores remain exploratory; do not set a confidence cutoff.
+- No main merge, npm publication, live Bridge restart, or deployment is part of
+  the current handoff.
