@@ -135,6 +135,47 @@ restart, deployment, PR or main merge occurred. The dirty primary Bridge
 checkout, clean base worktree, MSSR feature branch and benchmark runs remain
 untouched.
 
+## Primary Bridge checkout preservation audit — 2026-10-03
+
+The primary checkout `D:\Dev\bridge-mcp` remains unchanged at
+`3b2f63cf56771be486db1575958096a3950d9fc9` on local branch
+`codex/jev-bridge-adoption-20260930`. That branch has no upstream and no direct
+remote ref. Its two commits beyond local `main` are already ancestors of the
+published Librarian candidate: the merge-base is exactly `3b2f63c`, and the
+candidate adds 14 commits through `7b6fcd39e5d7d9c7513c231fcf98ceed76954c6b`.
+Remote `main` is `dcd33a8`; local `main` is `06b9c30` (18 commits ahead).
+Therefore there is no need to merge the old two-commit branch into the
+candidate again. Mainline release integration remains a separate review gate.
+
+The primary worktree snapshot records 31 staged paths, 16 unstaged paths, and
+30 untracked files (6,313,536 bytes). Eight paths contain both staged and
+unstaged content changes. Porcelain reported 19 `MM` paths, but clean-blob
+readback found 11 of those worktree files identical to their index blobs; do
+not treat every status marker as a distinct content edit. Comparing current
+worktree bytes with candidate blobs found 43 exact matches, 15 differences,
+and 11 paths absent from the candidate. Snapshot directory:
+`D:\Dev\mssr-snapshots\bridge-primary-worktree-3b2f63c-1791001298123-8391da6b`.
+It contains the exact index, staged and unstaged binary patches, copies of all
+untracked files, and a SHA-256 manifest. Manifest SHA-256 is
+`479b0fcb793ab2b933e17579877311f1f3162f9b5e6411a66f653390702117a8`; payload
+readback passed. Ignored telemetry/runtime data was not copied or changed.
+
+Luna's read-only audit found these integration cohorts: Dashboard Human UX
+code, browser/contract tests, harness and UX documents; MCP resource registry
+with binary attachment tools; image-preview preparation with image tools and
+tests; project-reference resolver with project tools and its test;
+skill-maintenance index worker with Observatory; and the
+Librarian/Jev package, tests and docs already advanced in the published
+candidate. The project-knowledge architecture module must travel with the
+manifest that declares it. The untracked Librarian host runtime adapter and
+its test are not connected to Bridge dispatch, so hold them for a separate
+design decision. Keep watchdog deletion in its own operational review. Treat
+session handoffs as historical references, `.86`–`.89` vendor tarballs and
+the zero-byte `x[1])` as unresolved provenance, and `.95`/`.96` tarballs as
+candidate-identical artifacts rather than copying them over newer content.
+No changes were made to the primary checkout, and no benchmark result was
+modified.
+
 ## 0.2.101 candidate receipts
 
 The real-document smoke used the built 0.2.101 projection over four exact
