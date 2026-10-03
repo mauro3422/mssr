@@ -92,7 +92,8 @@ transport verification and a separate adoption decision.
 
 Bridge 0.6.147 is preserved and remote-synced on
 `codex/bridge-mssr-0.2.101-librarian-sidecar-20261002` at
-`0570bd27c4d9f4d9db68c6978a09dcb075920517`, based on clean candidate
+`052b06dad6cfd499ee0d4cf5a97ddebce47e5ab3`; sidecar implementation commit is
+`0570bd27c4d9f4d9db68c6978a09dcb075920517`. It is based on clean candidate
 `2298b558598e427cdc6058983616315e08078a30`. It vendors exact MSSR 0.2.101
 artifact bytes (SHA-256
 `868c5180783776a7f6dc55bab736a6f38fd84fe647cdb26b0b8b34892ebc5499`) and adds
@@ -107,17 +108,30 @@ Candidate checks passed: install, typecheck, build, semantic-evidence
 regression, skill routing (271 effective cases), generated docs and one
 real-project/real-Jev exact-fetch integration smoke. Jev selected an exact
 783-character source range and its fingerprint matched; provider verification
-is unverified and confidence uncalibrated. Release readiness is blocked:
-`test:mcp-dual-era` fails parsing the first legacy SSE initialize response
-(`Invalid character in chunk size`, with `event: message` interpreted as a
-chunk header), and `test:regressions` closes during its first initialize. The
-cause is unresolved; stripped headers, forced close and JSON response
-experiments did not fix it and were discarded. `verify:all` was not run because
-it targets the active Bridge endpoint on port 3001, unavailable in this
-session. See Bridge `docs/INCIDENTS.md` on the candidate branch. Live Bridge
-remains 0.6.144; no restart, deployment, PR or main merge occurred. The dirty
-primary Bridge checkout, clean base worktree, MSSR feature branch and benchmark
-runs remain untouched.
+is unverified and confidence uncalibrated. Release readiness is blocked on
+sessionful MCP Streamable HTTP (`POST /mcp`, protocol `2025-06-18`) initialize.
+`test:mcp-dual-era` receives HTTP headers announcing `Transfer-Encoding:
+chunked`, but the raw response body begins with `event: message` and has no
+chunk-size line; Undici reports `Invalid character in chunk size`. The same
+bytes were captured from candidate 0.6.147, clean baseline 0.6.146 and a
+minimal `McpServer` + `StreamableHTTPServerTransport` using SDK 1.30.0 and
+Hono node-server 2.0.11 on Node 24.19.0. The raw request omitted `Connection`
+(HTTP/1.1 persistent default); adding `Connection: close` did not change the
+response. This places the defect below Bridge application logic, while the
+exact SDK/adaptor writer remains unresolved. The PowerShell regression harness
+incorrectly sent `2024-11-05` to `/mcp`; it now negotiates `2025-06-18` and sends
+`Mcp-Protocol-Version` on DELETE, then reaches the same initialize failure.
+Official SDK issue [#1619](https://github.com/modelcontextprotocol/typescript-sdk/issues/1619)
+is related Hono SSE buffering over HTTP/2, not this malformed HTTP/1.1 body;
+open issue [#2730](https://github.com/modelcontextprotocol/typescript-sdk/issues/2730)
+covers a separate notification failure when `Connection: close` is present.
+Neither provides a verified fix here. Header removal, forced close and JSON
+response experiments did not fix it and were discarded. `verify:all` was not
+run because it targets the active Bridge endpoint on port 3001, unavailable in
+this session. See Bridge `docs/INCIDENTS.md` on the candidate branch. Live
+Bridge remains 0.6.144; no restart, deployment, PR or main merge occurred. The
+dirty primary Bridge checkout, clean base worktree, MSSR feature branch and
+benchmark runs remain untouched.
 
 ## 0.2.101 candidate receipts
 
@@ -198,15 +212,18 @@ plumbing evidence, not quality evidence.
 ## Next gates
 
 - **Complete:** MSSR 0.2.101 product commit `cd7c834df2f91d581b8f84db9d89a9d425dd1c6f`
-  and Bridge candidate commit `0570bd27c4d9f4d9db68c6978a09dcb075920517` are
-  on separate pushed feature branches with remote readback verified. MSSR's
+  and Bridge candidate commit `052b06dad6cfd499ee0d4cf5a97ddebce47e5ab3` are
+  on separate pushed feature branches with remote readback verified. The
+  Bridge branch preserves implementation `0570bd27` plus the protocol-test and
+  incident update. MSSR's
   release gate passed; its package is not published. Bridge's candidate is
   preserved, but its HTTP release gates fail as described above.
-- **Next:** diagnose the isolated MCP SSE/chunk-framing failure in Bridge and
-  compare against a functioning clean baseline with the same extended startup
-  readiness. Re-run dual-era and regression HTTP checks, then the complete safe
-  candidate gate; do not merge or adopt live until these pass. Keep the live
-  Bridge at 0.6.144 and the original dirty primary checkout untouched.
+- **Next:** produce a small repeatable SDK/Hono raw-TCP repro, then isolate a
+  dependency/adaptor change that restores valid HTTP/1.1 response framing.
+  Verify that change against baseline and candidate before rerunning dual-era,
+  PowerShell regression, and the full safe candidate gate. Do not merge or
+  adopt live until those pass. Keep the live Bridge at 0.6.144 and the original
+  dirty primary checkout untouched.
 - Keep all 206 `experiments/jev-mssr-live/runs/` paths, manifests, outputs,
   labels/reviews and hashes on their original evaluation branch. Do not
   cherry-pick the mixed evaluation snapshot or rewrite benchmark evidence.
