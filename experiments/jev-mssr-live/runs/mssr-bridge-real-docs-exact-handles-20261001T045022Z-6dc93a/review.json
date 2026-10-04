@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent-blind-adjudication",
+  "reviewer": "benchmark_run_audit (Luna subagent)",
+  "constraints": ["Did not read labels.json or provider records", "Did not call Jev/provider", "Made no repository mutations"],
+  "cases": [
+    {"caseId":"selector_validation","bestDirectRange":{"sourceRef":"docs/decisions/0009-semantic-evidence-plane.md","rangeId":"block-26","lines":"105"},"equivalentRanges":[{"sourceRef":".mssr/knowledge/architecture/semantic-evidence-plane.md","rangeId":"block-11","lines":"29","offered":true},{"sourceRef":".mssr/knowledge/architecture/semantic-evidence-plane.md","rangeId":"heading-4","lines":"17-30"},{"sourceRef":"docs/decisions/0009-semantic-evidence-plane.md","rangeId":"heading-4","lines":"94-105","inSearchTop20":true,"offered":false}],"assessment":"The selected block is the strongest direct answer. Multiple overlapping ranges are equivalent; strict single-handle scoring is too narrow."},
+    {"caseId":"negative_coverage","bestDirectRange":{"sourceRef":"docs/decisions/0009-semantic-evidence-plane.md","rangeId":"block-32","lines":"119-127"},"equivalentRanges":[{"sourceRef":".mssr/knowledge/architecture/semantic-evidence-plane.md","rangeId":"block-10","lines":"27","offered":true},{"sourceRef":"docs/decisions/0009-semantic-evidence-plane.md","rangeId":"heading-8","lines":"111-132","offered":true}],"assessment":"The selected block is the narrowest direct answer; two offered overlapping ranges are also valid."},
+    {"caseId":"contradiction_preview","bestDirectRange":{"sourceRef":".mssr/knowledge/architecture/semantic-evidence-plane.md","rangeId":"block-12","lines":"33"},"equivalentRanges":[{"sourceRef":".mssr/knowledge/architecture/semantic-evidence-plane.md","rangeId":"heading-5","lines":"31-35"}],"partialRanges":[{"sourceRef":"docs/decisions/0009-semantic-evidence-plane.md","rangeId":"block-64","lines":"262","offered":true,"reason":"Mentions contradiction, freshness/scope, fingerprint and review-only status, but not unresolved status explicitly."}],"assessment":"The selected block directly answers; the section overlap is also valid. The ADR block is partial."}
+  ],
+  "implication": "Freeze acceptable evidence-range sets before inference; report exact-handle match separately from evidence adjudication. N=3 supports no confidence calibration or activation cutoff."
+}

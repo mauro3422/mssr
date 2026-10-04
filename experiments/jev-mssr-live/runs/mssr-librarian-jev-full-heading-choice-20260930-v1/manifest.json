@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "suite": "mssr-librarian-jev-full-heading-choice-v1",
+  "runId": "mssr-librarian-jev-full-heading-choice-20260930-v1",
+  "parentRunId": "mssr-librarian-jev-candidate-selection-20260930-v1",
+  "createdAt": "2026-09-30T23:34:11.397Z",
+  "status": "complete",
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "c4c93fb20faeb4bba81fc771718cd2f26c9c3c2a",
+    "inputSourceCommit": "c4c93fb20faeb4bba81fc771718cd2f26c9c3c2a",
+    "workingTreeClean": false,
+    "documentSurfaceAndProviderSourceFilesUnmodified": true,
+    "buildArtifacts": [
+      {
+        "path": "dist/document-surface.js",
+        "sha256": "5304701921f8d07ff83503cc1e5fa8dbd58631646bdf40aeda6facfc7ec18172"
+      },
+      {
+        "path": "dist/librarian-retrieval.js",
+        "sha256": "5785c871f517fe21805106a54602092ddec09f94dad0347ce2308ffbab0f7965"
+      },
+      {
+        "path": "dist/semantic-curation-jev.js",
+        "sha256": "9793bb891503c90f05e97e4af5abde97337058fad927a09186d036177642759e"
+      }
+    ]
+  },
+  "runtime": "v24.16.0",
+  "provider": "TypeSafe Jev via exported MSSR MssrJevSemanticCuratorProvider decisionProvider",
+  "model": "jev-1.13.0",
+  "credentialValuePersisted": false,
+  "rawVendorHttpBodiesPersisted": false,
+  "inputs": {
+    "corpusDocuments": 21,
+    "corpusSha256": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d",
+    "caseCount": 26,
+    "casesSha256": "70e4c30fa2473a73fd9c2626a92ecfc58addb548da132e2ee639614b94e384f4",
+    "labelsSha256": "c3f2c8db87f4086747d346596eacbf66038a4712c1210d1ffbf1bf6dcf731b99",
+    "targetIndexSha256": "770e14acfaf74716dd3667cb8311e5e56a7222e5895dc725bcc44571e5f8a58a"
+  },
+  "execution": {
+    "retrievalCalls": 0,
+    "surfaceCatalogHeadings": 200,
+    "expectedTargetHeadingsPresentPreflight": 26,
+    "jevCalls": 52,
+    "successfulJevCalls": 52,
+    "failedJevCalls": 0,
+    "choicesPerCall": 201,
+    "inputTokens": 829804,
+    "outputTokens": 105392
+  },
+  "fetchAudit": {
+    "fullCatalog": {
+      "checks": 48,
+      "passes": 48,
+      "sizeLimitRejections": 0,
+      "integrityFailures": 0
+    },
+    "top100Shortlist": {
+      "checks": 33,
+      "passes": 32,
+      "sizeLimitRejections": 1,
+      "integrityFailures": 0
+    }
+  },
+  "files": {
+    "inputs/cases.json": "70e4c30fa2473a73fd9c2626a92ecfc58addb548da132e2ee639614b94e384f4",
+    "inputs/labels.json": "c3f2c8db87f4086747d346596eacbf66038a4712c1210d1ffbf1bf6dcf731b99",
+    "inputs/corpus.json": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d",
+    "inputs/target-index.json": "770e14acfaf74716dd3667cb8311e5e56a7222e5895dc725bcc44571e5f8a58a",
+    "runner.mjs": "0f048baf7fcde7817b673bd6cf8f144d453d7cb2a80965cf74999a821f473d1d",
+    "score.mjs": "ea6e82fcd3821a8774861728ad5bdab9278001d86024b5e634aa6fba6d07cd30",
+    "finalize.mjs": "35ea249a8f91a717047f5814627dec2c1597a41cfa0723289db21716e75668bd",
+    "requests.json": "6246a41cb3853980fc065af14893c6f17bb2d406a237d11539c8cbaaf4216499",
+    "responses.json": "23f1685fda84fcc6232b6f4eee951c4ec40e386d89b10c7534030dc3c40ba240",
+    "scored-records.json": "4e1627ccc39f9e7b450ff6cf062565216679b8ba78f5f6b0b848390a05e6be72",
+    "summary.json": "85cb951b7aff3da1e2bdb141857ec74b3f0048ff25ae3149506b19e1f622f33c",
+    "REPORT.md": "dc7d4edd307ff33e288f8352f2c02dd2b1904bb3dd07a132ab75cd705b512f2b"
+  }
+}

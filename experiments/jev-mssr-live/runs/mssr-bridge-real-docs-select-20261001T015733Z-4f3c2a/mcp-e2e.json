@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-bridge-real-docs-select-20261001T015733Z-4f3c2a",
+  "verificationId": "post-restart-mcp-roundtrip-20261001",
+  "status": "pass",
+  "scored": false,
+  "caseId": "exact-read-revision-check",
+  "reasonExcludedFromScoring": "Repeat of an already scored query to verify the full live MCP transport; not an independent example.",
+  "runtime": {
+    "bridgeVersion": "0.6.143",
+    "mssrVersion": "0.2.95",
+    "runtimeBootId": "fef12ad4-e879-4c78-bfb2-54b3d4cdfcba",
+    "catalogToolCount": 185,
+    "selectorToolPresent": true,
+    "httpReady": true,
+    "tunnelReady": true,
+    "restartRequestId": "97ca3592-d184-43e8-9f40-bbbd74b697e0",
+    "restartAcknowledgedAt": "2026-10-01T02:18:53.4970652Z"
+  },
+  "corpus": {
+    "sourceRefs": [
+      ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md"
+    ],
+    "frozenCorpusSha256": "5e65ea95afdc5679df7ccd8c1e196cbf76e7e15c48bd39949f62ae1421e5a394"
+  },
+  "selection": {
+    "tool": "mssr_librarian_jev_select",
+    "status": "selected",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "optionId": "h004",
+    "title": "Document Surface and Librarian contract",
+    "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+    "revision": "8195560b6c5c1d57f2a9710124c216cdf4a2d83cc7f9a65d51e7e5d64d3ea6bc",
+    "rangeId": "heading-4",
+    "rangeLines": [17, 30],
+    "handleFingerprint": "c86abc84908588ad357888685a555aaa93bf025f39da3eafc58602fdba18c416",
+    "providerConfidence": 0.87,
+    "confidenceCalibration": "uncalibrated-provider-score",
+    "candidateCount": 17,
+    "usage": {
+      "inputTokens": 2292,
+      "outputTokens": 197
+    },
+    "elapsedMs": 1017.2,
+    "requestFingerprint": "6b376f481fa4b163edd4ed7174ba81a0b0f2d2c250f0fab903e9ff5f907dbc1c",
+    "jevCallMade": true
+  },
+  "exactFetch": {
+    "tool": "mssr_librarian_fetch",
+    "status": "pass",
+    "handleFingerprintMatches": true,
+    "sourceRevisionMatchesFrozenCorpus": true,
+    "returnedProjectMarkdownText": true,
+    "advisoryOnly": true,
+    "truthAuthority": false
+  },
+  "attempts": {
+    "preflightOwnerMismatch": "One earlier wrapper attempt was rejected before provider invocation because a trace belonged to a different project owner; it made no Jev call. The request was rerouted to the MSSR-owned trace and then passed.",
+    "successfulProviderRequests": 1
+  },
+  "interpretation": "This proves a live post-restart Bridge MCP select/fetch roundtrip for one repeated real-document query. It does not expand the scored sample, calibrate Jev confidence, or establish representative retrieval quality."
+}

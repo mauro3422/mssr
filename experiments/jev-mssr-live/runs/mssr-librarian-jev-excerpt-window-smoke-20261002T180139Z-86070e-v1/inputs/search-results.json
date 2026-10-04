@@ -1,0 +1,185 @@
+{
+  "document": {
+    "owner": "project:mssr",
+    "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+    "privacyClass": "project-metadata"
+  },
+  "query": "Which source range requires exact source revision, range offsets, payload fingerprint and privacy checks before Jev may treat a search result as evidence?",
+  "candidateHandles": [
+    {
+      "version": 1,
+      "id": "805170664f90d5cdc5d8c4809ab4a7d7f40bbceec829e89d61dea31fab76e081",
+      "owner": "project:mssr",
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "revision": "6dd36b8e39079b8ec5ba4f2cafd15afe44b1a29f311f19e48a3ddfe4af8e22fb",
+      "rangeId": "heading-1",
+      "rangeKind": "section",
+      "startLine": 1,
+      "endLine": 257,
+      "startOffset": 0,
+      "endOffset": 15925,
+      "fingerprint": "3c4db64a241a09774075215e29c954e18c0bec4da3bf7dd18221d1ac6c8bbaf5",
+      "privacyClass": "project-metadata"
+    },
+    {
+      "version": 1,
+      "id": "7322762b43b38f550b150c34569c12f9ca5892f4a397ed90a34773524677e322",
+      "owner": "project:mssr",
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "revision": "6dd36b8e39079b8ec5ba4f2cafd15afe44b1a29f311f19e48a3ddfe4af8e22fb",
+      "rangeId": "heading-4",
+      "rangeKind": "section",
+      "startLine": 67,
+      "endLine": 106,
+      "startOffset": 3941,
+      "endOffset": 6544,
+      "fingerprint": "a2569e6a6fd9ad7a46a6f1a4b7633cd8d0c9501d0ca04ba527ee0be2404ff611",
+      "privacyClass": "project-metadata"
+    },
+    {
+      "version": 1,
+      "id": "5a090a1a6e2b41044fbb8c9667ff27a13a3456347cd82da02a5f1bc2991b8f92",
+      "owner": "project:mssr",
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "revision": "6dd36b8e39079b8ec5ba4f2cafd15afe44b1a29f311f19e48a3ddfe4af8e22fb",
+      "rangeId": "block-9",
+      "rangeKind": "block",
+      "startLine": 69,
+      "endLine": 85,
+      "startOffset": 3990,
+      "endOffset": 5259,
+      "fingerprint": "8ba4d6c8f7dd19c752df84637f88d3f5a045afa53dc2de7936309273234a71dc",
+      "privacyClass": "project-metadata"
+    },
+    {
+      "version": 1,
+      "id": "9b00659c1f331ff9dd9be022cbbbf7930b9e8d0a7d38b7c3ec997cb5794b4e6d",
+      "owner": "project:mssr",
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "revision": "6dd36b8e39079b8ec5ba4f2cafd15afe44b1a29f311f19e48a3ddfe4af8e22fb",
+      "rangeId": "block-10",
+      "rangeKind": "block",
+      "startLine": 87,
+      "endLine": 95,
+      "startOffset": 5261,
+      "endOffset": 5920,
+      "fingerprint": "6d7bad03e9a9da9e8572b4034722a73812e25eb69575fc706e5bb9f7493745a4",
+      "privacyClass": "project-metadata"
+    },
+    {
+      "version": 1,
+      "id": "f2f910b568c7163827fe9b2fd8d2a6ace4792a5cc4dbe917ed42f5d6da798698",
+      "owner": "project:mssr",
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "revision": "6dd36b8e39079b8ec5ba4f2cafd15afe44b1a29f311f19e48a3ddfe4af8e22fb",
+      "rangeId": "heading-5",
+      "rangeKind": "section",
+      "startLine": 107,
+      "endLine": 161,
+      "startOffset": 6544,
+      "endOffset": 9821,
+      "fingerprint": "5d85091022f92ece940f53a5adceb6d021de3de898482cc4f909ab80bd4e0711",
+      "privacyClass": "project-metadata"
+    },
+    {
+      "version": 1,
+      "id": "b47b517a704e19779651c7a51763cc88641122ee115ed69570b10086e9a6506f",
+      "owner": "project:mssr",
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "revision": "6dd36b8e39079b8ec5ba4f2cafd15afe44b1a29f311f19e48a3ddfe4af8e22fb",
+      "rangeId": "heading-3",
+      "rangeKind": "section",
+      "startLine": 44,
+      "endLine": 66,
+      "startOffset": 2651,
+      "endOffset": 3941,
+      "fingerprint": "5ffafb0d7c9bdf9bea5187f6151113ab606dd466dd074ee582fe7212c6d7723a",
+      "privacyClass": "project-metadata"
+    }
+  ],
+  "rankedCandidates": [
+    {
+      "score": 0.95,
+      "title": "Jev confidence, contradiction and merge evaluation",
+      "headingPath": [
+        "Jev confidence, contradiction and merge evaluation"
+      ],
+      "rangeKind": "section",
+      "rangeId": "heading-1",
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "revision": "6dd36b8e39079b8ec5ba4f2cafd15afe44b1a29f311f19e48a3ddfe4af8e22fb",
+      "fingerprint": "3c4db64a241a09774075215e29c954e18c0bec4da3bf7dd18221d1ac6c8bbaf5",
+      "snippet": "# Jev confidence, contradiction and merge evaluation Status: research-backed architecture with an incremental portable implementation, reviewed 2026-09-30. Thi…"
+    },
+    {
+      "score": 0.75,
+      "title": "Librarian retrieval and evidence acquisition",
+      "headingPath": [
+        "Jev confidence, contradiction and merge evaluation",
+        "Librarian retrieval and evidence acquisition"
+      ],
+      "rangeKind": "section",
+      "rangeId": "heading-4",
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "revision": "6dd36b8e39079b8ec5ba4f2cafd15afe44b1a29f311f19e48a3ddfe4af8e22fb",
+      "fingerprint": "a2569e6a6fd9ad7a46a6f1a4b7633cd8d0c9501d0ca04ba527ee0be2404ff611",
+      "snippet": "## Librarian retrieval and evidence acquisition The portable `searchMssrLibrarianEvidence` primitive performs bounded lexical search over Markdown supplied by …"
+    },
+    {
+      "score": 0.7,
+      "title": "Librarian retrieval and evidence acquisition",
+      "headingPath": [
+        "Jev confidence, contradiction and merge evaluation",
+        "Librarian retrieval and evidence acquisition"
+      ],
+      "rangeKind": "block",
+      "rangeId": "block-9",
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "revision": "6dd36b8e39079b8ec5ba4f2cafd15afe44b1a29f311f19e48a3ddfe4af8e22fb",
+      "fingerprint": "8ba4d6c8f7dd19c752df84637f88d3f5a045afa53dc2de7936309273234a71dc",
+      "snippet": "The portable `searchMssrLibrarianEvidence` primitive performs bounded lexical search over Markdown supplied by the owning host, indexed by exact Document Surfa…"
+    },
+    {
+      "score": 0.6,
+      "title": "Librarian retrieval and evidence acquisition",
+      "headingPath": [
+        "Jev confidence, contradiction and merge evaluation",
+        "Librarian retrieval and evidence acquisition"
+      ],
+      "rangeKind": "block",
+      "rangeId": "block-10",
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "revision": "6dd36b8e39079b8ec5ba4f2cafd15afe44b1a29f311f19e48a3ddfe4af8e22fb",
+      "fingerprint": "6d7bad03e9a9da9e8572b4034722a73812e25eb69575fc706e5bb9f7493745a4",
+      "snippet": "Search returns advisory handles bound to source ref, revision, exact range, privacy label and fingerprint; fetch materializes text only when the host supplies …"
+    },
+    {
+      "score": 0.55,
+      "title": "Confidence and merge policy",
+      "headingPath": [
+        "Jev confidence, contradiction and merge evaluation",
+        "Confidence and merge policy"
+      ],
+      "rangeKind": "section",
+      "rangeId": "heading-5",
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "revision": "6dd36b8e39079b8ec5ba4f2cafd15afe44b1a29f311f19e48a3ddfe4af8e22fb",
+      "fingerprint": "5d85091022f92ece940f53a5adceb6d021de3de898482cc4f909ab80bd4e0711",
+      "snippet": "## Confidence and merge policy Treat confidence as a decision-family-specific routing signal, not a universal quality percentage. Choose thresholds against the…"
+    },
+    {
+      "score": 0.5,
+      "title": "Keep source evidence separate from Jev judgment",
+      "headingPath": [
+        "Jev confidence, contradiction and merge evaluation",
+        "Keep source evidence separate from Jev judgment"
+      ],
+      "rangeKind": "section",
+      "rangeId": "heading-3",
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "revision": "6dd36b8e39079b8ec5ba4f2cafd15afe44b1a29f311f19e48a3ddfe4af8e22fb",
+      "fingerprint": "5ffafb0d7c9bdf9bea5187f6151113ab606dd466dd074ee582fe7212c6d7723a",
+      "snippet": "## Keep source evidence separate from Jev judgment EvidenceAtom remains the immutable, revision-bound source record. Its freshness means whether the host suppl…"
+    }
+  ]
+}

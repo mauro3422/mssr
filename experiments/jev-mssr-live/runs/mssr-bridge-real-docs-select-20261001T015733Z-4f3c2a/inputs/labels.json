@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "labeling": {
+    "source": "author",
+    "adjudication": "none",
+    "frozenBeforeProviderCall": true,
+    "exposedToRequests": false
+  },
+  "cases": [
+    {
+      "caseId": "exact-read-revision-check",
+      "expectedStatus": "selected",
+      "expectedSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "expectedTitle": "Document Surface and Librarian contract",
+      "rationale": "This section describes revision-bound ranges, derived metadata and exact reread validation before materializing source text."
+    },
+    {
+      "caseId": "raw-confidence-calibration-policy",
+      "expectedStatus": "selected",
+      "expectedSourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "expectedTitle": "Confidence and merge policy",
+      "rationale": "This section says raw confidence is uncalibrated until independently reviewed, grouped holdout evidence supports calibration."
+    },
+    {
+      "caseId": "unrelated-blender-question",
+      "expectedStatus": "abstained",
+      "rationale": "The two frozen MSSR semantic documents contain no Blender tool schema."
+    }
+  ]
+}

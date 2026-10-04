@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-jev-shortlist-repeatability-20261002T143234Z-v1",
+  "status": "complete",
+  "evaluationClass": "exploratory-repeatability-smoke-same-query-and-source-already-exposed",
+  "manifestSha256": "9bf6be365ebe2cd6439df2f07dc5cb9a46a1064c209f15e78ccbff8e2f237879",
+  "counts": {
+    "plannedToolCalls": 4,
+    "attemptedToolCalls": 4,
+    "attemptedProviderCalls": 2,
+    "successfulProviderCalls": 2,
+    "failedProviderCalls": 0,
+    "repeatedHandlesMatched": 2,
+    "exactFetchesAttempted": 2,
+    "exactFetchesPassed": 2,
+    "exactFetchIntegrityFailures": 0
+  },
+  "perLanguage": [
+    {
+      "caseId": "paired-concept-es",
+      "language": "es",
+      "selectedHandleId": "47bd02a66e9e56c3228f05622dd481d29c768d73723bad3ea9424085c47fe4f2",
+      "rangeId": "block-26",
+      "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+      "sameAsPrevious": true,
+      "providerConfidence": 0.81,
+      "inputTokens": 7160,
+      "outputTokens": 687,
+      "latencyMs": 915.8
+    },
+    {
+      "caseId": "paired-concept-en",
+      "language": "en",
+      "selectedHandleId": "47bd02a66e9e56c3228f05622dd481d29c768d73723bad3ea9424085c47fe4f2",
+      "rangeId": "block-26",
+      "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+      "sameAsPrevious": true,
+      "providerConfidence": 0.63,
+      "inputTokens": 11115,
+      "outputTokens": 1017,
+      "latencyMs": 729.3
+    }
+  ],
+  "usage": {
+    "inputTokens": 18275,
+    "outputTokens": 1704,
+    "providerReportedMeanLatencyMs": 822.55
+  },
+  "interpretation": "No accuracy, bilingual generalization, superiority, confidence calibration, or automatic production-routing claim."
+}

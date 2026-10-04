@@ -1,0 +1,585 @@
+{
+  "schemaVersion": 1,
+  "selectionPolicy": "Three exact handles were manually curated per query from frozen deterministic top-20 results. This is conditional candidate selection, not a retrieval recall test.",
+  "searches": [
+    {
+      "caseId": "selector_validation",
+      "query": "What exact checks are applied to Librarian candidate handles before Jev sees a bounded excerpt?",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "docs/decisions/0009-semantic-evidence-plane.md"
+      ],
+      "tool": "mssr_librarian_search",
+      "maxResults": 20,
+      "maxSnippetChars": 240,
+      "results": [
+        {
+          "rank": 1,
+          "handleId": "b2228f8ad703aa234380d1121bcf5dc77d8119b3d5c639d96de3f7aa15578245",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "score": 0.857143
+        },
+        {
+          "rank": 2,
+          "handleId": "3d8155cf83d4d3ac8b44488d12d745a7b58bca52501c92d936449fa1d2737fce",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-3",
+          "rangeKind": "section",
+          "score": 0.857143
+        },
+        {
+          "rank": 3,
+          "handleId": "2fa151e03a4a5c8aab6ca5a5e24cb6af65a79fe8e399dd86bea4715f5c2ddbf9",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "score": 0.785714
+        },
+        {
+          "rank": 4,
+          "handleId": "f5232717c1f3a39837cd854d605a8c332049e75d66fc1cd178e9319c3e963f89",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "heading-4",
+          "rangeKind": "section",
+          "score": 0.714286
+        },
+        {
+          "rank": 5,
+          "handleId": "e36267aeca536dbba9667ba7066f56f22986f958e975796a3012211a8ffe92ea",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "block-11",
+          "rangeKind": "block",
+          "score": 0.714286
+        },
+        {
+          "rank": 6,
+          "handleId": "e739a4831a1d94489861630e24c132437f46cc0890f945e95da7d36ca5bbe365",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-7",
+          "rangeKind": "section",
+          "score": 0.642857
+        },
+        {
+          "rank": 7,
+          "handleId": "09a9340b3cec82ad18af12c3588b0e8889dc77c99e0d4ffd4c7d0a67cbb752f3",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "heading-5",
+          "rangeKind": "section",
+          "score": 0.571429
+        },
+        {
+          "rank": 8,
+          "handleId": "47bd02a66e9e56c3228f05622dd481d29c768d73723bad3ea9424085c47fe4f2",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "block-26",
+          "rangeKind": "block",
+          "score": 0.571429
+        },
+        {
+          "rank": 9,
+          "handleId": "abf5f33acf72a53e5e652177682f92f8493feabefb53ba1cc30ebfcd9896d9a9",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-17",
+          "rangeKind": "section",
+          "score": 0.571429
+        },
+        {
+          "rank": 10,
+          "handleId": "5be6e561a5e7c93c8e19260f41c700f7b888f7217d6b24d35d47a9bd77bdafab",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "block-12",
+          "rangeKind": "block",
+          "score": 0.5
+        },
+        {
+          "rank": 11,
+          "handleId": "c6ab237624732ca8fbc5b5311132d7aa2a29dcbd19ff72b9d4232497f3db3c5f",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "score": 0.5
+        },
+        {
+          "rank": 12,
+          "handleId": "d5376f37b6a1424d414997b11df5a1f123a0930972fafe4166ff24aee1c29e6b",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-8",
+          "rangeKind": "section",
+          "score": 0.5
+        },
+        {
+          "rank": 13,
+          "handleId": "e52dfcd303410f381af31bc8ef3157bebf5759f91cb558061a652ec6df408a2e",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "block-64",
+          "rangeKind": "block",
+          "score": 0.5
+        },
+        {
+          "rank": 14,
+          "handleId": "faf72d9becb7dc7754fe0a2e209b96eb8beb240f4295111a304e80555e8147f1",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "heading-6",
+          "rangeKind": "section",
+          "score": 0.428571
+        },
+        {
+          "rank": 15,
+          "handleId": "48a984de6ac2eaf90213c8f7de9ad6b215d74d04ad145bb0e62a7749f39e161b",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-4",
+          "rangeKind": "section",
+          "score": 0.428571
+        },
+        {
+          "rank": 16,
+          "handleId": "66e728cadf8dc57b031672f8c135971240e958514d9afb96c9b981e8b1838cbe",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-9",
+          "rangeKind": "section",
+          "score": 0.428571
+        },
+        {
+          "rank": 17,
+          "handleId": "8ee623d5767aacafc9a9b9595602d4e06203b34216b07202d923d0cc2187818d",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-11",
+          "rangeKind": "section",
+          "score": 0.428571
+        },
+        {
+          "rank": 18,
+          "handleId": "1341626e67c37e5553aad58ed5aa274cb31ee705a363f676d5ea2d84390a9ef2",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-6",
+          "rangeKind": "section",
+          "score": 0.357143
+        },
+        {
+          "rank": 19,
+          "handleId": "381c42e36c0444e1760a197f6b22567d049b99fdb5bc020d1d3f45f8752b64bb",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "score": 0.285714
+        },
+        {
+          "rank": 20,
+          "handleId": "a3c6234e3f595dea19cfb36b0f8f45787c3696efd3eb4a27fc40952b9c4930fe",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "score": 0.285714
+        }
+      ]
+    },
+    {
+      "caseId": "negative_coverage",
+      "query": "When is a negative catalog result valid, and what does incomplete producer coverage mean?",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "docs/decisions/0009-semantic-evidence-plane.md"
+      ],
+      "tool": "mssr_librarian_search",
+      "maxResults": 20,
+      "maxSnippetChars": 240,
+      "results": [
+        {
+          "rank": 1,
+          "handleId": "b2228f8ad703aa234380d1121bcf5dc77d8119b3d5c639d96de3f7aa15578245",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "score": 0.923077
+        },
+        {
+          "rank": 2,
+          "handleId": "3d8155cf83d4d3ac8b44488d12d745a7b58bca52501c92d936449fa1d2737fce",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-3",
+          "rangeKind": "section",
+          "score": 0.923077
+        },
+        {
+          "rank": 3,
+          "handleId": "2fa151e03a4a5c8aab6ca5a5e24cb6af65a79fe8e399dd86bea4715f5c2ddbf9",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "score": 0.846154
+        },
+        {
+          "rank": 4,
+          "handleId": "d5376f37b6a1424d414997b11df5a1f123a0930972fafe4166ff24aee1c29e6b",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-8",
+          "rangeKind": "section",
+          "score": 0.846154
+        },
+        {
+          "rank": 5,
+          "handleId": "f5232717c1f3a39837cd854d605a8c332049e75d66fc1cd178e9319c3e963f89",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "heading-4",
+          "rangeKind": "section",
+          "score": 0.692308
+        },
+        {
+          "rank": 6,
+          "handleId": "c8ed1cfc3a21c9b9aba76a5255bb7c3174ac4f3d1c4b09d83f8aef3439043615",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "block-10",
+          "rangeKind": "block",
+          "score": 0.692308
+        },
+        {
+          "rank": 7,
+          "handleId": "e739a4831a1d94489861630e24c132437f46cc0890f945e95da7d36ca5bbe365",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-7",
+          "rangeKind": "section",
+          "score": 0.538462
+        },
+        {
+          "rank": 8,
+          "handleId": "ea1f4869e065b8f0992b1562278daca3cd6d3395a324275fcbbff76e9721c512",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "block-32",
+          "rangeKind": "block",
+          "score": 0.538462
+        },
+        {
+          "rank": 9,
+          "handleId": "48a984de6ac2eaf90213c8f7de9ad6b215d74d04ad145bb0e62a7749f39e161b",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-4",
+          "rangeKind": "section",
+          "score": 0.461538
+        },
+        {
+          "rank": 10,
+          "handleId": "d95c1ba6a3312cc61a3feb5b7d092af1ab301bbe9c9c537313f99cf3aaeb8c89",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "block-34",
+          "rangeKind": "block",
+          "score": 0.461538
+        },
+        {
+          "rank": 11,
+          "handleId": "abf5f33acf72a53e5e652177682f92f8493feabefb53ba1cc30ebfcd9896d9a9",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-17",
+          "rangeKind": "section",
+          "score": 0.461538
+        },
+        {
+          "rank": 12,
+          "handleId": "02f6edf55c72593581bdac66cef5607713ac2994167b2b9c46bc62cc9ebde490",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "block-7",
+          "rangeKind": "block",
+          "score": 0.384615
+        },
+        {
+          "rank": 13,
+          "handleId": "e36267aeca536dbba9667ba7066f56f22986f958e975796a3012211a8ffe92ea",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "block-11",
+          "rangeKind": "block",
+          "score": 0.384615
+        },
+        {
+          "rank": 14,
+          "handleId": "09a9340b3cec82ad18af12c3588b0e8889dc77c99e0d4ffd4c7d0a67cbb752f3",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "heading-5",
+          "rangeKind": "section",
+          "score": 0.384615
+        },
+        {
+          "rank": 15,
+          "handleId": "5be6e561a5e7c93c8e19260f41c700f7b888f7217d6b24d35d47a9bd77bdafab",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "block-12",
+          "rangeKind": "block",
+          "score": 0.384615
+        },
+        {
+          "rank": 16,
+          "handleId": "be87a6424e9aa005c45ef4ec3a504b2c56439817e23ae1894e5233926ff2692e",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "heading-8",
+          "rangeKind": "section",
+          "score": 0.384615
+        },
+        {
+          "rank": 17,
+          "handleId": "d9a100673b9818f5a063a822e64149f8debf1d5845e8c28e9e64543b252d7be2",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "block-23",
+          "rangeKind": "block",
+          "score": 0.384615
+        },
+        {
+          "rank": 18,
+          "handleId": "94b6d52a60ae465da43209d164f0876b98f5ba832ea1750e5865ffd9bf1acc31",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "block-24",
+          "rangeKind": "block",
+          "score": 0.384615
+        },
+        {
+          "rank": 19,
+          "handleId": "4cfbd5b65d743d6879d298cf384467090a75d08b95962bf43f7803871b038573",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "block-28",
+          "rangeKind": "block",
+          "score": 0.384615
+        },
+        {
+          "rank": 20,
+          "handleId": "befa8ceb339eb520ba5ba596fd2fa431926863c7c39a5509759ad323e0072199",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "block-29",
+          "rangeKind": "block",
+          "score": 0.384615
+        }
+      ]
+    },
+    {
+      "caseId": "contradiction_preview",
+      "query": "Which evidence must be excluded from a consolidation preview when contradictions or unresolved status remain?",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "docs/decisions/0009-semantic-evidence-plane.md"
+      ],
+      "tool": "mssr_librarian_search",
+      "maxResults": 20,
+      "maxSnippetChars": 240,
+      "results": [
+        {
+          "rank": 1,
+          "handleId": "2fa151e03a4a5c8aab6ca5a5e24cb6af65a79fe8e399dd86bea4715f5c2ddbf9",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "score": 0.785714
+        },
+        {
+          "rank": 2,
+          "handleId": "b2228f8ad703aa234380d1121bcf5dc77d8119b3d5c639d96de3f7aa15578245",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "score": 0.785714
+        },
+        {
+          "rank": 3,
+          "handleId": "3d8155cf83d4d3ac8b44488d12d745a7b58bca52501c92d936449fa1d2737fce",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-3",
+          "rangeKind": "section",
+          "score": 0.642857
+        },
+        {
+          "rank": 4,
+          "handleId": "09a9340b3cec82ad18af12c3588b0e8889dc77c99e0d4ffd4c7d0a67cbb752f3",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "heading-5",
+          "rangeKind": "section",
+          "score": 0.571429
+        },
+        {
+          "rank": 5,
+          "handleId": "5be6e561a5e7c93c8e19260f41c700f7b888f7217d6b24d35d47a9bd77bdafab",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "block-12",
+          "rangeKind": "block",
+          "score": 0.571429
+        },
+        {
+          "rank": 6,
+          "handleId": "e739a4831a1d94489861630e24c132437f46cc0890f945e95da7d36ca5bbe365",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-7",
+          "rangeKind": "section",
+          "score": 0.5
+        },
+        {
+          "rank": 7,
+          "handleId": "abf5f33acf72a53e5e652177682f92f8493feabefb53ba1cc30ebfcd9896d9a9",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-17",
+          "rangeKind": "section",
+          "score": 0.5
+        },
+        {
+          "rank": 8,
+          "handleId": "f5232717c1f3a39837cd854d605a8c332049e75d66fc1cd178e9319c3e963f89",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "heading-4",
+          "rangeKind": "section",
+          "score": 0.428571
+        },
+        {
+          "rank": 9,
+          "handleId": "1341626e67c37e5553aad58ed5aa274cb31ee705a363f676d5ea2d84390a9ef2",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-6",
+          "rangeKind": "section",
+          "score": 0.428571
+        },
+        {
+          "rank": 10,
+          "handleId": "d5376f37b6a1424d414997b11df5a1f123a0930972fafe4166ff24aee1c29e6b",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-8",
+          "rangeKind": "section",
+          "score": 0.428571
+        },
+        {
+          "rank": 11,
+          "handleId": "e52dfcd303410f381af31bc8ef3157bebf5759f91cb558061a652ec6df408a2e",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "block-64",
+          "rangeKind": "block",
+          "score": 0.428571
+        },
+        {
+          "rank": 12,
+          "handleId": "381c42e36c0444e1760a197f6b22567d049b99fdb5bc020d1d3f45f8752b64bb",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "score": 0.357143
+        },
+        {
+          "rank": 13,
+          "handleId": "a3c6234e3f595dea19cfb36b0f8f45787c3696efd3eb4a27fc40952b9c4930fe",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "score": 0.357143
+        },
+        {
+          "rank": 14,
+          "handleId": "d554b0d090bb3e79bc4b901dd01bdcf5ec9d9e568794e037e8b06aa8b182c7b7",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-10",
+          "rangeKind": "section",
+          "score": 0.357143
+        },
+        {
+          "rank": 15,
+          "handleId": "cc51cc32fd30c37f046f2233946def0ea86a99ab60170ca966dda3e0e92dcce5",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-15",
+          "rangeKind": "section",
+          "score": 0.357143
+        },
+        {
+          "rank": 16,
+          "handleId": "7000bd478e14f2c09aa5d0e83f5db9edc1f23dd2ec124337db2f649edcfa6c35",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-18",
+          "rangeKind": "section",
+          "score": 0.357143
+        },
+        {
+          "rank": 17,
+          "handleId": "c368d2471de319edb31747faf5f695e62e3b89fa6c047951816038483a1de143",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "block-66",
+          "rangeKind": "block",
+          "score": 0.357143
+        },
+        {
+          "rank": 18,
+          "handleId": "e36267aeca536dbba9667ba7066f56f22986f958e975796a3012211a8ffe92ea",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "block-11",
+          "rangeKind": "block",
+          "score": 0.285714
+        },
+        {
+          "rank": 19,
+          "handleId": "588613b70d533a24ccfa31c37a7ca38d3b4b6d8e617eeb03d573882b24bbf096",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "heading-7",
+          "rangeKind": "section",
+          "score": 0.285714
+        },
+        {
+          "rank": 20,
+          "handleId": "c6ab237624732ca8fbc5b5311132d7aa2a29dcbd19ff72b9d4232497f3db3c5f",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "score": 0.285714
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-jev-bilingual-hierarchical-20261001T174949Z-v1",
+  "status": "complete",
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "startedAt": "2026-10-01T17:57:48.715Z",
+  "completedAt": "2026-10-01T17:58:23.862Z",
+  "mcpToolAvailable": true,
+  "sourceLabelFileRead": false,
+  "corpusDocuments": 21,
+  "catalogHeadingCandidates": 200,
+  "queries": 52,
+  "successfulCalls": 52,
+  "failedCalls": 0,
+  "abstentions": 2,
+  "exactFetchChecks": 50,
+  "exactFetchPassed": 50,
+  "providerCalls": 52,
+  "usage": {
+    "input_tokens": 1465227,
+    "output_tokens": 106438
+  },
+  "meanElapsedMs": 652.4,
+  "failureClasses": {},
+  "launcherMissingCredentialNotice": false,
+  "rawVendorHttpBodiesPersisted": false,
+  "credentialValuePersisted": false
+}

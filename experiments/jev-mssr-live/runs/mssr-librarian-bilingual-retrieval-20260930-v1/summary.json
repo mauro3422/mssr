@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-bilingual-retrieval-20260930-v1",
+  "status": "complete",
+  "implementation": "MSSR dist/librarian-retrieval.js (same searchMssrLibrarianEvidence function wired by semantic-evidence-mcp.ts; no Jev retrieval call)",
+  "packageVersion": "0.2.94",
+  "gitCommit": "c4c93fb20faeb4bba81fc771718cd2f26c9c3c2a",
+  "sourceCommit": "c4c93fb20faeb4bba81fc771718cd2f26c9c3c2a",
+  "sourceDocs": 21,
+  "queryCases": 26,
+  "queryRuns": 52,
+  "relevantUnit": "expected Markdown section; queries grouped by target sourceRef",
+  "groupedHoldout": {
+    "method": "sort unique sourceRefs by SHA-256 and reserve ceil(20%) before scoring; no tuning performed",
+    "sourceRefs": [
+      ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "docs/REGISTRY.md",
+      "docs/decisions/0005-architecture-impact-drift-links.md",
+      "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      ".mssr/knowledge/pattern/mssr-change-history-contract.md"
+    ]
+  },
+  "metrics": {
+    "en": {
+      "all": {
+        "queries": 26,
+        "expectedSectionRecallAt1": 0,
+        "expectedSectionRecallAt5": 0.038462,
+        "expectedSectionMrrAt100": 0.032559,
+        "targetNotReturnedInTop100": 8,
+        "truncatedQueries": 26,
+        "topFiveExactFetchChecks": 130,
+        "topFiveExactFetchPasses": 89,
+        "topFiveFetchRejectedBySizeLimit": 41,
+        "topFiveFetchIntegrityFailures": 0
+      },
+      "development": {
+        "queries": 20,
+        "expectedSectionRecallAt1": 0,
+        "expectedSectionRecallAt5": 0.05,
+        "expectedSectionMrrAt100": 0.037003,
+        "targetNotReturnedInTop100": 7,
+        "truncatedQueries": 20,
+        "topFiveExactFetchChecks": 100,
+        "topFiveExactFetchPasses": 68,
+        "topFiveFetchRejectedBySizeLimit": 32,
+        "topFiveFetchIntegrityFailures": 0
+      },
+      "groupedHoldout": {
+        "queries": 6,
+        "expectedSectionRecallAt1": 0,
+        "expectedSectionRecallAt5": 0,
+        "expectedSectionMrrAt100": 0.017746,
+        "targetNotReturnedInTop100": 1,
+        "truncatedQueries": 6,
+        "topFiveExactFetchChecks": 30,
+        "topFiveExactFetchPasses": 21,
+        "topFiveFetchRejectedBySizeLimit": 9,
+        "topFiveFetchIntegrityFailures": 0
+      }
+    },
+    "es": {
+      "all": {
+        "queries": 26,
+        "expectedSectionRecallAt1": 0,
+        "expectedSectionRecallAt5": 0.076923,
+        "expectedSectionMrrAt100": 0.025711,
+        "targetNotReturnedInTop100": 22,
+        "truncatedQueries": 26,
+        "topFiveExactFetchChecks": 130,
+        "topFiveExactFetchPasses": 104,
+        "topFiveFetchRejectedBySizeLimit": 26,
+        "topFiveFetchIntegrityFailures": 0
+      },
+      "development": {
+        "queries": 20,
+        "expectedSectionRecallAt1": 0,
+        "expectedSectionRecallAt5": 0.1,
+        "expectedSectionMrrAt100": 0.033425,
+        "targetNotReturnedInTop100": 16,
+        "truncatedQueries": 20,
+        "topFiveExactFetchChecks": 100,
+        "topFiveExactFetchPasses": 80,
+        "topFiveFetchRejectedBySizeLimit": 20,
+        "topFiveFetchIntegrityFailures": 0
+      },
+      "groupedHoldout": {
+        "queries": 6,
+        "expectedSectionRecallAt1": 0,
+        "expectedSectionRecallAt5": 0,
+        "expectedSectionMrrAt100": 0,
+        "targetNotReturnedInTop100": 6,
+        "truncatedQueries": 6,
+        "topFiveExactFetchChecks": 30,
+        "topFiveExactFetchPasses": 24,
+        "topFiveFetchRejectedBySizeLimit": 6,
+        "topFiveFetchIntegrityFailures": 0
+      }
+    }
+  },
+  "limitations": [
+    "This is a deterministic lexical Librarian baseline; Jev was not part of retrieval or reranking.",
+    "Labels were created/reviewed by two Luna agents and were not approved by a human corpus owner.",
+    "Metrics characterize only these 26 English and 26 Spanish queries over the 21 frozen MSSR documents.",
+    "MRR is bounded by the tool's maxResults=100; a target absent from top 100 is counted as zero.",
+    "Exact-fetch checks validate handle/fingerprint/range integrity for returned top-five candidates; they do not prove answer completeness or semantic correctness."
+  ]
+}

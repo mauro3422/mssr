@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-bilingual-expansion-20261002T135011Z-v2",
+  "manifestSha256": "e4bcc1b90e6d3a3b833e6297ea50338554eb30862e2c16c7a9a3e66710ceed4b",
+  "completedAt": "2026-10-02T13:56:03.585Z",
+  "status": "complete",
+  "expectedSearchCalls": 156,
+  "attemptedSearchCalls": 156,
+  "successfulSearchCalls": 156,
+  "failedSearchCalls": 0,
+  "providerRequests": 0,
+  "jevRequests": 0,
+  "labelsExposedToRequests": false,
+  "evaluationLabelReadAfterPredictions": true,
+  "files": [
+    "manifest.json",
+    "runner.mjs",
+    "score.mjs",
+    "REPORT.md",
+    "evaluation.json",
+    "predictions.json",
+    "inputs/cases.json",
+    "inputs/labels.json",
+    "inputs/corpus.json",
+    "inputs/target-index.json",
+    "inputs/expansion-lexicon.json",
+    ".gitattributes"
+  ]
+}

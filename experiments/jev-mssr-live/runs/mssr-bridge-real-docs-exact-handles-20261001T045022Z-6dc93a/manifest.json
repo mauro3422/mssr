@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "suite": "mssr-bridge-exact-candidate-handle-selection",
+  "runId": "mssr-bridge-real-docs-exact-handles-20261001T045022Z-6dc93a",
+  "createdAt": "2026-10-01T04:50:22.9607226Z",
+  "preparedAt": "2026-10-01T04:53:20.0898178Z",
+  "status": "prepared",
+  "parentRunId": null,
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "b0821bb02505bc1303aea9a386884448e803963a",
+    "branch": "codex/jev-confidence-merge-evaluation",
+    "workingTreeClean": false,
+    "dirtyPathCount": 1,
+    "changedPaths": [
+      "experiments/jev-mssr-live/runs/mssr-bridge-real-docs-exact-handles-20261001T045022Z-6dc93a/inputs/cases.json",
+      "experiments/jev-mssr-live/runs/mssr-bridge-real-docs-exact-handles-20261001T045022Z-6dc93a/inputs/labels.json",
+      "experiments/jev-mssr-live/runs/mssr-bridge-real-docs-exact-handles-20261001T045022Z-6dc93a/inputs/retrieval-results.json",
+      "experiments/jev-mssr-live/runs/mssr-bridge-real-docs-exact-handles-20261001T045022Z-6dc93a/inputs/corpus-manifest.json"
+    ],
+    "buildId": "mssr-build:sha256:0979760c668284e6",
+    "buildArtifacts": [
+      {
+        "path": "mauroprime-mssr-0.2.96.tgz",
+        "sha256": "e9d3af566d3a1a334f0b66ec87a2cdaeccac3e1af45a90b6ba51c19f4b3c78a5",
+        "bytes": 1056867
+      }
+    ],
+    "bridge": {
+      "repository": "Bridge",
+      "gitCommit": "3b2f63cf56771be486db1575958096a3950d9fc9",
+      "branch": "codex/jev-bridge-adoption-20260930",
+      "workingTreeClean": false,
+      "dirtyPathCount": 62,
+      "releaseCandidate": "0.6.144",
+      "evaluatedRuntimeVersion": "0.6.144",
+      "runtimeBootId": "b39f841c-6d96-4df1-a05e-98879004df61",
+      "runtimeTools": {
+        "count": 185,
+        "catalogHash": "e95e552b11643944"
+      },
+      "toolSchemas": {
+        "mssr_librarian_search": "9f2d067fb67ef65c",
+        "mssr_librarian_jev_select": "b71de2b1917d821d",
+        "mssr_librarian_fetch": "992cf19973405356"
+      },
+      "evaluatedArtifacts": [
+        {
+          "path": "src/tools/mssr-semantic-evidence-tools.ts",
+          "sha256": "bd546ea2d7972e561ba2dffa84538830154f9cc6644c38bb65f2bd99c1f02181",
+          "bytes": 28597
+        },
+        {
+          "path": "src/config.ts",
+          "sha256": "a801ab3cf5dc5ea057c62819ef794f1f4993587e2783f434b8a1b17fc64c4c2a",
+          "bytes": 2452
+        },
+        {
+          "path": "src/tool-registry.ts",
+          "sha256": "9b4d3e7abaaaeccd60547b689f486d6135bd5a8eb28876e2f6042384c55a9473",
+          "bytes": 44385
+        },
+        {
+          "path": "package-lock.json",
+          "sha256": "079c61eee2c61e8e148a706f7f0e173ec665301a7d2ccc12052bc7782dbd7e4d",
+          "bytes": 67328
+        },
+        {
+          "path": "vendor/mauroprime-mssr-0.2.96.tgz",
+          "sha256": "e9d3af566d3a1a334f0b66ec87a2cdaeccac3e1af45a90b6ba51c19f4b3c78a5",
+          "bytes": 1056867
+        }
+      ],
+      "note": "Runtime catalog includes four additional tools from the mixed dirty worktree; this run evaluates only mssr_librarian_jev_select."
+    }
+  },
+  "instrument": {
+    "runnerPath": "manual live call through MauroPrime Bridge MCP bridge_tool_action; no CLI benchmark runner",
+    "runnerSha256": null,
+    "casesPath": "inputs/cases.json",
+    "casesSha256": "6ab3937c700d392d31f96bf073f29d173812f8dd4bf0a76587c017296ef1f61b",
+    "lockfileSha256": "079c61eee2c61e8e148a706f7f0e173ec665301a7d2ccc12052bc7782dbd7e4d",
+    "runtime": "Node v24.16.0; Bridge 0.6.144",
+    "requestSchemaVersion": 1,
+    "orchestration": "sequential, one MCP request per case",
+    "exactSelector": "mssr_librarian_jev_select",
+    "codeArtifactSha256": "bd546ea2d7972e561ba2dffa84538830154f9cc6644c38bb65f2bd99c1f02181"
+  },
+  "corpus": {
+    "snapshotPath": "inputs/corpus-manifest.json",
+    "sha256": "227768ffadf16f6d61b95753de51a702caa7db6613beac5334ec7e70e01c1d4d",
+    "items": 2,
+    "sourceRevision": "semantic-evidence-plane.md@ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46; ADR-0009@8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+    "redaction": "not-applicable",
+    "projectControlSnapshots": [
+      {
+        "path": "inputs/project-control/project-context.json",
+        "sha256": "9627c30109439e988d3e6b7245062351fcb524cb543e5fc3c5afe25fb894d831",
+        "bytes": 22970
+      },
+      {
+        "path": "inputs/project-control/PROJECT_CONTEXT.md",
+        "sha256": "0fd06df7bd70b42d3bd9bff3a79440f507e6fe15b43a4e5509385ea8ae1d27d4",
+        "bytes": 8471
+      }
+    ]
+  },
+  "provider": {
+    "mode": "live",
+    "provider": "TypeSafe Jev through Bridge MSSR adapter",
+    "endpointIdentity": "host-managed TypeSafe provider; endpoint URL not exposed",
+    "requestedModel": null,
+    "sdk": null,
+    "timeoutMs": null,
+    "maxRetries": null,
+    "concurrency": 1,
+    "networkOptIn": true,
+    "networkOptInMethod": "explicit user authorization for real Jev tests in this conversation; manual Bridge MCP action"
+  },
+  "labels": {
+    "source": "author",
+    "frozenAt": "2026-10-01T04:50:22.9607226Z",
+    "adjudication": "none",
+    "labelFile": "inputs/labels.json",
+    "labelFileSha256": "fcfc9f7bae9db822ff35982a91c847dbdd077a995866c9404346ff4d1f2ad028",
+    "exposedToRequests": false
+  },
+  "split": {
+    "method": "none",
+    "trainIdsSha256": null,
+    "validationIdsSha256": null,
+    "holdoutIdsSha256": null,
+    "holdoutOpenedAt": null,
+    "holdoutUsedForTuning": false
+  },
+  "plan": {
+    "primaryMetric": "exact-target-selection accuracy conditional on the three exact handles manually offered for each query",
+    "secondaryMetrics": [
+      "abstention count",
+      "selected-handle exact-fetch validity",
+      "revision/fingerprint match",
+      "provider latency and token usage"
+    ],
+    "thresholds": {
+      "promotion": "none; exploratory only",
+      "confidence": "uncalibrated"
+    },
+    "independentUnit": "query (3) from one MSSR project and two source documents",
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30
+    },
+    "uncertaintyMethod": "descriptive counts only; no interval or calibration claim at n=3",
+    "expectedAttempts": 3,
+    "candidateCountPerCase": 3,
+    "noneOptionAvailable": true,
+    "retrievalRecallMeasured": false
+  },
+  "frozenInputs": [
+    {
+      "path": "inputs/cases.json",
+      "sha256": "6ab3937c700d392d31f96bf073f29d173812f8dd4bf0a76587c017296ef1f61b",
+      "bytes": 6951
+    },
+    {
+      "path": "inputs/labels.json",
+      "sha256": "fcfc9f7bae9db822ff35982a91c847dbdd077a995866c9404346ff4d1f2ad028",
+      "bytes": 975
+    },
+    {
+      "path": "inputs/retrieval-results.json",
+      "sha256": "1024778ecccf4c216e9354a7174595fb2fed9b005fae294684dbb1593928a5d2",
+      "bytes": 25193
+    },
+    {
+      "path": "inputs/corpus-manifest.json",
+      "sha256": "227768ffadf16f6d61b95753de51a702caa7db6613beac5334ec7e70e01c1d4d",
+      "bytes": 876
+    },
+    {
+      "path": "inputs/corpus/semantic-evidence-plane.md",
+      "sha256": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+      "bytes": 13354
+    },
+    {
+      "path": "inputs/corpus/0009-semantic-evidence-plane.md",
+      "sha256": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+      "bytes": 24777
+    },
+    {
+      "path": "inputs/project-control/project-context.json",
+      "sha256": "9627c30109439e988d3e6b7245062351fcb524cb543e5fc3c5afe25fb894d831",
+      "bytes": 22970
+    },
+    {
+      "path": "inputs/project-control/PROJECT_CONTEXT.md",
+      "sha256": "0fd06df7bd70b42d3bd9bff3a79440f507e6fe15b43a4e5509385ea8ae1d27d4",
+      "bytes": 8471
+    }
+  ]
+}

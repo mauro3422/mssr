@@ -1,0 +1,10 @@
+{
+  "caseId": "real-mssr-exact-range-smoke",
+  "owner": "project:mssr",
+  "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+  "privacyClass": "project-metadata",
+  "searchQuery": "Which source range requires exact source revision, range offsets, payload fingerprint and privacy checks before Jev may treat a search result as evidence?",
+  "jevQuery": "Which source range requires exact source revision, range offsets, payload fingerprint and privacy checks before Jev may treat a search result as evidence?",
+  "expectedAnswer": null,
+  "labelSource": "none"
+}

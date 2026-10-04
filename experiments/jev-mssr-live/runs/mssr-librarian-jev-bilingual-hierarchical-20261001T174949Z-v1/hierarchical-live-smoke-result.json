@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-jev-hierarchical-live-smoke-20261001T180000Z-v1",
+  "status": "review",
+  "failureClass": "other-mcp-error",
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "syntheticOnly": true,
+  "sourceLabelFileRead": false,
+  "corpusDocuments": 1,
+  "catalogHeadings": 261,
+  "queries": 0,
+  "providerCalls": 0,
+  "records": [],
+  "launcherMissingCredentialNotice": false,
+  "rawVendorHttpBodiesPersisted": false,
+  "credentialValuePersisted": false,
+  "sourceSha256": "7abb2945b14c91d9a10bfebdfa5149b79dbf74e8b26cbf17bec354967ab691cc",
+  "distSha256": "931cf6e2ae18fc64b60d2340ede289d04aa0d8870ba84940da49c366b26dd4b4"
+}

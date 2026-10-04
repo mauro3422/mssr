@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "exact-read-revision-check",
+      "language": "es",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md"
+      ],
+      "query": "¿Qué sección describe qué metadatos deriva Document Surface y cómo se debe validar una relectura exacta antes de materializar el texto?"
+    },
+    {
+      "id": "raw-confidence-calibration-policy",
+      "language": "es",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md"
+      ],
+      "query": "¿Qué política aplica al score bruto de confianza de Jev y qué evidencia hace falta antes de llamarlo confianza calibrada?"
+    },
+    {
+      "id": "unrelated-blender-question",
+      "language": "es",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md"
+      ],
+      "query": "¿Qué herramienta de Blender captura la vista del viewport y qué parámetros exactos necesita?"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "runId": "mssr-librarian-jev-bilingual-80k-singlepass-20261001T184400Z-v2",
+  "status": "complete",
+  "sourceLabelFileRead": false,
+  "corpusDocuments": 21,
+  "offeredCandidates": 200,
+  "queryLanguage": "es",
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "selectionMode": "single-pass",
+  "providerCalls": 1,
+  "choiceConfidence": 0.95,
+  "evidenceSufficiency": 0.69,
+  "confidenceCalibration": "uncalibrated-provider-score",
+  "exactFetch": "passed",
+  "requestFingerprint": "bb0cc3a9d7acd7f4d3be286551fa61cde90e773506fe5b20a8e65331b294fb83",
+  "usage": {
+    "input_tokens": 28198,
+    "output_tokens": 2047
+  },
+  "elapsedMs": 804.9,
+  "rawVendorHttpBodiesPersisted": false,
+  "credentialValuePersisted": false,
+  "distSha256": "0b0de2a0c65e26f4e674c93e897f5f3a71645c57f819e1c2dbfe9d8faebe3a6d"
+}

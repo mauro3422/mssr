@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "caseId": "selector_validation",
+      "query": "What exact checks are applied to Librarian candidate handles before Jev sees a bounded excerpt?",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "docs/decisions/0009-semantic-evidence-plane.md"
+      ],
+      "candidateHandles": [
+        {
+          "version": 1,
+          "id": "e36267aeca536dbba9667ba7066f56f22986f958e975796a3012211a8ffe92ea",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "block-11",
+          "rangeKind": "block",
+          "startLine": 29,
+          "endLine": 29,
+          "startOffset": 5236,
+          "endOffset": 7637,
+          "fingerprint": "54e3192d9c6b817c7464dfcedd1a0ad95472fb4643cdf312a16eacb4caf2f4c5",
+          "privacyClass": "project-metadata"
+        },
+        {
+          "version": 1,
+          "id": "47bd02a66e9e56c3228f05622dd481d29c768d73723bad3ea9424085c47fe4f2",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "block-26",
+          "rangeKind": "block",
+          "startLine": 105,
+          "endLine": 105,
+          "startOffset": 8474,
+          "endOffset": 9138,
+          "fingerprint": "b6a2b7a2626af011fef8c6da4e3426a70624ed3d1777ea11103e985597ef4426",
+          "privacyClass": "project-metadata"
+        },
+        {
+          "version": 1,
+          "id": "f5232717c1f3a39837cd854d605a8c332049e75d66fc1cd178e9319c3e963f89",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "heading-4",
+          "rangeKind": "section",
+          "startLine": 17,
+          "endLine": 30,
+          "startOffset": 2771,
+          "endOffset": 7639,
+          "fingerprint": "d75172dab063219048089cacb8c53b9a09ead6f7c60822f79199313f673c76d8",
+          "privacyClass": "project-metadata"
+        }
+      ]
+    },
+    {
+      "caseId": "negative_coverage",
+      "query": "When is a negative catalog result valid, and what does incomplete producer coverage mean?",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "docs/decisions/0009-semantic-evidence-plane.md"
+      ],
+      "candidateHandles": [
+        {
+          "version": 1,
+          "id": "d5376f37b6a1424d414997b11df5a1f123a0930972fafe4166ff24aee1c29e6b",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "heading-8",
+          "rangeKind": "section",
+          "startLine": 111,
+          "endLine": 132,
+          "startOffset": 9878,
+          "endOffset": 13111,
+          "fingerprint": "1bb2cf8357a1f4e4356e2970dc837221316cb64a902cd8a08ccac2bf3c18042d",
+          "privacyClass": "project-metadata"
+        },
+        {
+          "version": 1,
+          "id": "c8ed1cfc3a21c9b9aba76a5255bb7c3174ac4f3d1c4b09d83f8aef3439043615",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "block-10",
+          "rangeKind": "block",
+          "startLine": 27,
+          "endLine": 27,
+          "startOffset": 4425,
+          "endOffset": 5234,
+          "fingerprint": "2c82774c3f08e802225af6c17630c95a85f8d109f8085d1bf1f60b4ff9b9c876",
+          "privacyClass": "project-metadata"
+        },
+        {
+          "version": 1,
+          "id": "ea1f4869e065b8f0992b1562278daca3cd6d3395a324275fcbbff76e9721c512",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "block-32",
+          "rangeKind": "block",
+          "startLine": 119,
+          "endLine": 127,
+          "startOffset": 10643,
+          "endOffset": 10915,
+          "fingerprint": "267a5a230894a7fef9b4f46d43808b05e2952d3ddedae75ebf5b84d3b6687d5c",
+          "privacyClass": "project-metadata"
+        }
+      ]
+    },
+    {
+      "caseId": "contradiction_preview",
+      "query": "Which evidence must be excluded from a consolidation preview when contradictions or unresolved status remain?",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "docs/decisions/0009-semantic-evidence-plane.md"
+      ],
+      "candidateHandles": [
+        {
+          "version": 1,
+          "id": "5be6e561a5e7c93c8e19260f41c700f7b888f7217d6b24d35d47a9bd77bdafab",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "block-12",
+          "rangeKind": "block",
+          "startLine": 33,
+          "endLine": 33,
+          "startOffset": 7683,
+          "endOffset": 9007,
+          "fingerprint": "428e04d6b84b05989a0c6e2eacfdfbf712f21b9ec6958a95e28516cb7f9b3857",
+          "privacyClass": "project-metadata"
+        },
+        {
+          "version": 1,
+          "id": "e36267aeca536dbba9667ba7066f56f22986f958e975796a3012211a8ffe92ea",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "ea2846d650920e14424f2a1ab7593451f64dc5ae1d217ed63d39591f3db52c46",
+          "rangeId": "block-11",
+          "rangeKind": "block",
+          "startLine": 29,
+          "endLine": 29,
+          "startOffset": 5236,
+          "endOffset": 7637,
+          "fingerprint": "54e3192d9c6b817c7464dfcedd1a0ad95472fb4643cdf312a16eacb4caf2f4c5",
+          "privacyClass": "project-metadata"
+        },
+        {
+          "version": 1,
+          "id": "e52dfcd303410f381af31bc8ef3157bebf5759f91cb558061a652ec6df408a2e",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+          "rangeId": "block-64",
+          "rangeKind": "block",
+          "startLine": 262,
+          "endLine": 262,
+          "startOffset": 21425,
+          "endOffset": 22735,
+          "fingerprint": "f1ceba1f266e59f9df1790ed85d6b97f40830b1761a91c1b0e35b4d0c6526ba7",
+          "privacyClass": "project-metadata"
+        }
+      ]
+    }
+  ]
+}

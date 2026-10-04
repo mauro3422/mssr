@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "suite": "mssr-librarian-bilingual-retrieval-v1",
+  "runId": "mssr-librarian-bilingual-retrieval-20260930-v1",
+  "createdAt": "2026-09-30T22:59:43.384Z",
+  "status": "complete",
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "c4c93fb20faeb4bba81fc771718cd2f26c9c3c2a",
+    "sourceCommit": "c4c93fb20faeb4bba81fc771718cd2f26c9c3c2a",
+    "workingTreeClean": false,
+    "retrievalAndSourceCodeClean": true,
+    "buildArtifacts": [
+      {
+        "path": "dist/librarian-retrieval.js",
+        "sha256": "5785c871f517fe21805106a54602092ddec09f94dad0347ce2308ffbab0f7965"
+      },
+      {
+        "path": "dist/document-surface.js",
+        "sha256": "5304701921f8d07ff83503cc1e5fa8dbd58631646bdf40aeda6facfc7ec18172"
+      }
+    ]
+  },
+  "runtime": "v24.16.0",
+  "inputs": {
+    "corpusDocuments": 21,
+    "corpusSha256": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d",
+    "caseCount": 26,
+    "casesSha256": "70e4c30fa2473a73fd9c2626a92ecfc58addb548da132e2ee639614b94e384f4",
+    "labelsSha256": "c3f2c8db87f4086747d346596eacbf66038a4712c1210d1ffbf1bf6dcf731b99",
+    "targetIndexSha256": "770e14acfaf74716dd3667cb8311e5e56a7222e5895dc725bcc44571e5f8a58a"
+  },
+  "execution": {
+    "searchCalls": 52,
+    "exactFetchChecks": 260,
+    "exactFetchPassed": 193,
+    "exactFetchSizeLimitRejections": 67,
+    "exactFetchIntegrityFailures": 0,
+    "jevCalls": 0,
+    "maxResults": 100
+  },
+  "split": {
+    "method": "sort unique sourceRefs by SHA-256 and reserve ceil(20%) before scoring; no tuning performed",
+    "sourceRefs": [
+      ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "docs/REGISTRY.md",
+      "docs/decisions/0005-architecture-impact-drift-links.md",
+      "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      ".mssr/knowledge/pattern/mssr-change-history-contract.md"
+    ]
+  },
+  "files": {
+    "inputs/cases.json": "70e4c30fa2473a73fd9c2626a92ecfc58addb548da132e2ee639614b94e384f4",
+    "inputs/labels.json": "c3f2c8db87f4086747d346596eacbf66038a4712c1210d1ffbf1bf6dcf731b99",
+    "inputs/corpus.json": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d",
+    "inputs/target-index.json": "770e14acfaf74716dd3667cb8311e5e56a7222e5895dc725bcc44571e5f8a58a",
+    "runner.mjs": "84770c0c61cd0ef1593b0302e806a78880c6c4c644c28640b08da6ce4730b90b",
+    "records.json": "8beff51d284a8068bb42b96144c74e3134d7e6930ab2e7487d6997e960fb6c2a",
+    "summary.json": "5f09ff29dff12773ffe201c410a9f68ad0cf164253bb643df9202734d9f5796c"
+  },
+  "summarySha256": "5f09ff29dff12773ffe201c410a9f68ad0cf164253bb643df9202734d9f5796c",
+  "recordsSha256": "8beff51d284a8068bb42b96144c74e3134d7e6930ab2e7487d6997e960fb6c2a"
+}
