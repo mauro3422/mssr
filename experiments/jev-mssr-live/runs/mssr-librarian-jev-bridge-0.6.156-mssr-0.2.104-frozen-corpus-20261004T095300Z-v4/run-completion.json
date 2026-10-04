@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T095300Z-v4",
+  "status": "provider-phase-not-started",
+  "reason": "explicit START_JEV input was not received",
+  "providerCalls": 0,
+  "finishedAt": "2026-10-04T09:55:09.358Z"
+}

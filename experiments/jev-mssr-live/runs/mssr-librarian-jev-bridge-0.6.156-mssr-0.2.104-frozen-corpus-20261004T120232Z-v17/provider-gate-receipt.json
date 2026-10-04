@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T120232Z-v17",
+  "status": "paused-awaiting-exact-START_JEV",
+  "gateMode": "live-paused",
+  "providerCalls": 0,
+  "jevPhaseStarted": false,
+  "confirmationRequired": "START_JEV",
+  "confirmationInputPersisted": false,
+  "candidateVersion": "0.6.156",
+  "mssrVersion": "0.2.104",
+  "mssrArtifactSha256": "714e9d0997e4bc92c2981e1aeb3e5b8a98beef91efc04f82e92d001748a7e4ca",
+  "bootstrapReceiptSha256": "aed8d2da8882b8af60341c1c63f94a42b20cc86e1472dbe35702a41ecf9922f1",
+  "pausedAt": "2026-10-04T12:03:34.577Z"
+}

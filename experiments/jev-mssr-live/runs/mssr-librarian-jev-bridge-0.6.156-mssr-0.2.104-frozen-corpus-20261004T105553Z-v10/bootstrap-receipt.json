@@ -1,0 +1,1210 @@
+{
+  "traceId": "mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T105553Z-v10",
+  "routePlan": {
+    "traceId": "mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T105553Z-v10",
+    "status": "route-planned",
+    "statusObserved": null,
+    "mcpIsError": false,
+    "stage": "verify",
+    "intent": {
+      "summary": "Analyze, review, and verify an exploratory paired Jev Librarian retrieval benchmark. Resolve project core plus merge-evaluation and benchmark-history modules, and load the Jev benchmark procedure. No calibration claim or provider call in this phase.",
+      "domains": [
+        "coding",
+        "skill-system",
+        "agent-orchestration"
+      ],
+      "actions": [
+        "analyze",
+        "review",
+        "verify"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document",
+        "mcp"
+      ],
+      "needs": [
+        "integrity-verification",
+        "cross-agent"
+      ],
+      "signals": [
+        "uncertainty",
+        "conflicting-evidence"
+      ],
+      "risk": "external-side-effect"
+    },
+    "activeSkills": [
+      {
+        "name": "mssr-agent-routing",
+        "required": true,
+        "selectedAsRoot": true,
+        "phase": "discovery",
+        "reason": null
+      },
+      {
+        "name": "systematic-debugging",
+        "required": false,
+        "selectedAsRoot": true,
+        "phase": "discovery",
+        "reason": null
+      },
+      {
+        "name": "capability-gap-recovery",
+        "required": false,
+        "selectedAsRoot": true,
+        "phase": "discovery",
+        "reason": null
+      },
+      {
+        "name": "mssr-observability-maintenance",
+        "required": false,
+        "selectedAsRoot": true,
+        "phase": "discovery",
+        "reason": null
+      },
+      {
+        "name": "conversation-history-review",
+        "required": false,
+        "selectedAsRoot": true,
+        "phase": "discovery",
+        "reason": null
+      },
+      {
+        "name": "mauroprime-bridge-collaboration",
+        "required": false,
+        "selectedAsRoot": true,
+        "phase": "discovery",
+        "reason": null
+      }
+    ],
+    "requiredRootCount": 1,
+    "optionalRootCount": 5,
+    "candidateCount": 6,
+    "matches": [],
+    "deferredSkills": [
+      {
+        "name": "shared-skill-governance",
+        "required": true,
+        "selectedAsRoot": true,
+        "phase": "discovery",
+        "reason": null
+      }
+    ],
+    "nearMatches": [
+      {
+        "name": "git-change-publication",
+        "reason": null
+      },
+      {
+        "name": "blender-session-coordination",
+        "reason": null
+      },
+      {
+        "name": "roblox-mcp-incident-recovery",
+        "reason": null
+      },
+      {
+        "name": "complex-system-design",
+        "reason": null
+      },
+      {
+        "name": "steam-workshop-publication",
+        "reason": null
+      },
+      {
+        "name": "jev-decision-systems",
+        "reason": null
+      },
+      {
+        "name": "skill-routing-maintainer",
+        "reason": null
+      },
+      {
+        "name": "godot-graph-ux-audit",
+        "reason": null
+      }
+    ],
+    "optionalDecisionsAccepted": [],
+    "selectionPolicy": {
+      "required": "Apply workflow-required skills and transitive dependencies unless a higher-priority safety rule or unavailable capability makes them impossible; report any skip explicitly.",
+      "optional": "The agent may skip an optional active skill when it is clearly irrelevant or impractical for the current phase; keep the reason concise and continue with the smallest sufficient set.",
+      "deferred": "Do not load deferred skills until their workflow phase becomes active."
+    },
+    "nextActionTool": "skill_bootstrap",
+    "projectContext": {
+      "stage": null,
+      "mode": null,
+      "manifestStatus": "loaded",
+      "coreIncluded": true,
+      "coreCharsLoaded": 6453,
+      "moduleCharsLoaded": null,
+      "totalCharsLoaded": null,
+      "remainingContextChars": null,
+      "requiredBudgetExceeded": false,
+      "optionalContextOmitted": false,
+      "selectionSummary": null,
+      "documents": [],
+      "directives": [],
+      "core": [
+        {
+          "id": "mssr-architecture-core",
+          "sourcePath": ".mssr/PROJECT_CONTEXT.md",
+          "kind": "context",
+          "bytes": 4811,
+          "sha256": "6518bd71517e9a3c5105603326b3ca11b77352a832a8e4d7a7cb94500c3f7275"
+        },
+        {
+          "id": "mssr-current-release",
+          "sourcePath": ".mssr/PROJECT_STATE.md",
+          "kind": "state",
+          "bytes": 1642,
+          "sha256": "df4284ca974f1aa1855fd79fa6666ce625614f90f4e18b08cfa0b4a64dcf7318"
+        }
+      ],
+      "selected": [
+        {
+          "id": "mssr-semantic-consistency-decision",
+          "sourcePath": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
+          "kind": "memory",
+          "bytes": 1922,
+          "sha256": "79661c8f5621932e9b3a5996ade87660a42d63e476578e5d40446181e91e1d99"
+        },
+        {
+          "id": "mssr-semantic-relations-retrieval-decision",
+          "sourcePath": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+          "kind": "memory",
+          "bytes": 1272,
+          "sha256": "a375397a4ed4ec0a63dcb84a6f4092b2650d351c223a35f32f3ca9d91ac31574"
+        },
+        {
+          "id": "mssr-architecture-impact-decision",
+          "sourcePath": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+          "kind": "memory",
+          "bytes": 1954,
+          "sha256": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5"
+        },
+        {
+          "id": "mssr-jev-confidence-merge-evaluation",
+          "sourcePath": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+          "kind": "context",
+          "bytes": 7193,
+          "sha256": "32d56753b60cc6fc444ce52e6473425848b436ca8559133b5629bdc6794bc5b6"
+        },
+        {
+          "id": "mssr-trace-lifecycle-integrity",
+          "sourcePath": ".mssr/knowledge/decision/trace-lifecycle-integrity.md",
+          "kind": "memory",
+          "bytes": 1055,
+          "sha256": "25b688929a042436e2127fff2d80cbe6d7a8fed824fc092fc14943c8c04819bd"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "mssr-learning-activation-decision",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "chars": 710,
+          "score": 96,
+          "matched": [
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:analyze",
+            "action:review"
+          ]
+        },
+        {
+          "id": "mssr-change-history-contract",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "chars": 430,
+          "score": 92,
+          "matched": [
+            "action:verify",
+            "need:integrity-verification"
+          ]
+        },
+        {
+          "id": "mssr-project-knowledge-drift-review",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "chars": 2791,
+          "score": 137,
+          "matched": [
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:review",
+            "action:verify",
+            "need:integrity-verification",
+            "signal:conflicting-evidence"
+          ]
+        },
+        {
+          "id": "mssr-architecture-impact-decision",
+          "selected": true,
+          "reason": "selected",
+          "chars": 1954,
+          "score": 198,
+          "matched": [
+            "domain:coding",
+            "domain:agent-orchestration",
+            "action:analyze",
+            "action:review",
+            "action:verify",
+            "artifact:project",
+            "artifact:repository",
+            "artifact:document",
+            "artifact:mcp",
+            "need:integrity-verification",
+            "need:cross-agent"
+          ]
+        },
+        {
+          "id": "mssr-architecture-impact-history",
+          "selected": false,
+          "reason": "intent-mismatch",
+          "chars": 0,
+          "score": 121,
+          "matched": [
+            "domain:coding",
+            "domain:agent-orchestration",
+            "action:analyze",
+            "action:review",
+            "artifact:project",
+            "artifact:repository",
+            "artifact:document"
+          ]
+        },
+        {
+          "id": "mssr-first-party-skill-direction",
+          "selected": false,
+          "reason": "intent-mismatch",
+          "chars": 0,
+          "score": 71,
+          "matched": [
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "artifact:project"
+          ]
+        },
+        {
+          "id": "mssr-learning-dataset-state",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "chars": 889,
+          "score": 71,
+          "matched": [
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:analyze",
+            "action:review"
+          ]
+        },
+        {
+          "id": "mssr-core-skill-package-state",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "chars": 533,
+          "score": 66,
+          "matched": [
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:review",
+            "artifact:project"
+          ]
+        },
+        {
+          "id": "mssr-canonical-ownership",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "chars": 1686,
+          "score": 185,
+          "matched": [
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:analyze",
+            "action:review",
+            "artifact:project",
+            "artifact:repository",
+            "artifact:document",
+            "artifact:mcp",
+            "need:integrity-verification",
+            "need:cross-agent"
+          ]
+        },
+        {
+          "id": "mssr-context-plane-history",
+          "selected": false,
+          "reason": "intent-mismatch",
+          "chars": 0,
+          "score": 55,
+          "matched": []
+        },
+        {
+          "id": "mssr-operational-notice-plane-history",
+          "selected": false,
+          "reason": "intent-mismatch",
+          "chars": 0,
+          "score": 50,
+          "matched": []
+        },
+        {
+          "id": "mssr-project-context-plane-architecture",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "chars": 3117,
+          "score": 180,
+          "matched": [
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:analyze",
+            "action:review",
+            "artifact:project",
+            "artifact:repository",
+            "artifact:document",
+            "artifact:mcp",
+            "need:integrity-verification",
+            "need:cross-agent"
+          ]
+        },
+        {
+          "id": "mssr-semantic-evidence-plane",
+          "selected": false,
+          "reason": "intent-mismatch",
+          "chars": 0,
+          "score": 194,
+          "matched": [
+            "domain:coding",
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:analyze",
+            "action:review",
+            "artifact:project",
+            "artifact:repository",
+            "artifact:document",
+            "artifact:mcp",
+            "need:integrity-verification",
+            "need:cross-agent"
+          ]
+        },
+        {
+          "id": "mssr-jev-confidence-merge-evaluation",
+          "selected": true,
+          "reason": "selected",
+          "chars": 7193,
+          "score": 194,
+          "matched": [
+            "domain:coding",
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:analyze",
+            "action:review",
+            "artifact:repository",
+            "artifact:document",
+            "need:integrity-verification",
+            "need:cross-agent",
+            "signal:conflicting-evidence"
+          ]
+        },
+        {
+          "id": "mssr-jev-confidence-benchmark-history",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "chars": 5851,
+          "score": 188,
+          "matched": [
+            "domain:coding",
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:analyze",
+            "action:review",
+            "action:verify",
+            "artifact:project",
+            "artifact:repository",
+            "artifact:document",
+            "need:integrity-verification",
+            "need:cross-agent",
+            "signal:uncertainty",
+            "signal:conflicting-evidence"
+          ]
+        },
+        {
+          "id": "mssr-jev-decision-model-use-cases",
+          "selected": false,
+          "reason": "intent-mismatch",
+          "chars": 0,
+          "score": 156,
+          "matched": [
+            "domain:coding",
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:analyze",
+            "action:review",
+            "artifact:project",
+            "artifact:repository",
+            "artifact:document",
+            "need:integrity-verification",
+            "need:cross-agent"
+          ]
+        },
+        {
+          "id": "mssr-jev-public-research-evidence",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "chars": 9227,
+          "score": 146,
+          "matched": [
+            "domain:coding",
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:analyze",
+            "action:review",
+            "artifact:project",
+            "artifact:repository",
+            "artifact:document",
+            "need:integrity-verification",
+            "signal:uncertainty"
+          ]
+        },
+        {
+          "id": "mssr-jev-use-case-hypotheses",
+          "selected": false,
+          "reason": "intent-mismatch",
+          "chars": 0,
+          "score": 94,
+          "matched": [
+            "domain:coding",
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "artifact:project",
+            "artifact:repository",
+            "need:integrity-verification"
+          ]
+        },
+        {
+          "id": "mssr-project-document-reference-lifecycle",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "chars": 3310,
+          "score": 162,
+          "matched": [
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:review",
+            "artifact:project",
+            "artifact:repository",
+            "artifact:document",
+            "need:integrity-verification",
+            "need:cross-agent"
+          ]
+        },
+        {
+          "id": "mssr-project-document-index",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "chars": 615,
+          "score": 146,
+          "matched": [
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:analyze",
+            "action:review",
+            "artifact:project",
+            "artifact:repository",
+            "artifact:document",
+            "need:cross-agent"
+          ]
+        },
+        {
+          "id": "mssr-canonical-project-context-cutover",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "chars": 843,
+          "score": 179,
+          "matched": [
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:review",
+            "artifact:project",
+            "artifact:repository",
+            "artifact:mcp",
+            "need:integrity-verification",
+            "need:cross-agent",
+            "signal:conflicting-evidence"
+          ]
+        },
+        {
+          "id": "mssr-context-economy-v2",
+          "selected": false,
+          "reason": "intent-mismatch",
+          "chars": 0,
+          "score": 176,
+          "matched": [
+            "domain:coding",
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:analyze",
+            "action:verify",
+            "artifact:project",
+            "artifact:repository",
+            "artifact:mcp",
+            "need:integrity-verification"
+          ]
+        },
+        {
+          "id": "mssr-semantic-consistency-decision",
+          "selected": true,
+          "reason": "selected",
+          "chars": 1922,
+          "score": 204,
+          "matched": [
+            "domain:coding",
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:analyze",
+            "action:review",
+            "action:verify",
+            "artifact:project",
+            "artifact:repository",
+            "artifact:document",
+            "need:integrity-verification",
+            "signal:conflicting-evidence"
+          ]
+        },
+        {
+          "id": "mssr-semantic-relations-retrieval-decision",
+          "selected": true,
+          "reason": "selected",
+          "chars": 1272,
+          "score": 203,
+          "matched": [
+            "domain:coding",
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:analyze",
+            "action:review",
+            "action:verify",
+            "artifact:project",
+            "artifact:repository",
+            "artifact:document",
+            "need:integrity-verification",
+            "signal:conflicting-evidence"
+          ]
+        },
+        {
+          "id": "mssr-trace-lifecycle-integrity",
+          "selected": true,
+          "reason": "selected",
+          "chars": 1055,
+          "score": 194,
+          "matched": [
+            "domain:coding",
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:verify",
+            "artifact:project",
+            "artifact:repository",
+            "artifact:mcp",
+            "need:integrity-verification",
+            "need:cross-agent",
+            "signal:conflicting-evidence"
+          ]
+        },
+        {
+          "id": "mssr-human-task-identity",
+          "selected": false,
+          "reason": "intent-mismatch",
+          "chars": 0,
+          "score": 180,
+          "matched": [
+            "domain:coding",
+            "domain:skill-system",
+            "domain:agent-orchestration",
+            "action:verify",
+            "artifact:project",
+            "artifact:repository",
+            "artifact:mcp",
+            "need:integrity-verification",
+            "need:cross-agent"
+          ]
+        }
+      ]
+    },
+    "responseShape": {
+      "routeKeys": [
+        "activationInstruction",
+        "activeSkills",
+        "advisoryOnly",
+        "agentProfile",
+        "bridgeMeta",
+        "bridgeNotices",
+        "bridgeTiming",
+        "caller",
+        "canReplan",
+        "classificationMode",
+        "classifier",
+        "connectorExecution",
+        "contextCharacters",
+        "contextMessages",
+        "contextPlane",
+        "contextPolicy",
+        "contextSummary",
+        "contextUsed",
+        "coverage",
+        "deferredLoadOrder",
+        "deferredSkills",
+        "executionGuidance",
+        "intent",
+        "intentResolution",
+        "loadOrder",
+        "nearMatches",
+        "nextAction",
+        "permissionInvariant",
+        "phasePlan",
+        "registry",
+        "replanTriggers",
+        "responseMode",
+        "routingDiagnostics",
+        "selectionBudget",
+        "selectionPolicy",
+        "semanticSignals",
+        "sourceHealth",
+        "stage",
+        "task",
+        "traceId",
+        "warnings",
+        "workflowGuide",
+        "workflowGuideRecommendation",
+        "workflowKey",
+        "workflows"
+      ],
+      "contextPlaneKeys": [
+        "advisoryOnly",
+        "contextMessages",
+        "inbox",
+        "projectContext",
+        "repository"
+      ],
+      "contextPlaneProjectContextKeys": [
+        "advisoryOnly",
+        "ambiguousExclusiveGroups",
+        "ambiguousReferences",
+        "ambiguousSegments",
+        "core",
+        "decisions",
+        "manifestPath",
+        "manifestStatus",
+        "receipts",
+        "remainingChars",
+        "requiredBudgetExceeded",
+        "requiredOverflow",
+        "selected"
+      ]
+    }
+  },
+  "status": "complete",
+  "pages": 1,
+  "stage": "verify",
+  "hostSelection": {
+    "mode": "host-gated",
+    "requiredRootNames": [
+      "mssr-agent-routing"
+    ],
+    "acceptedOptionalRootNames": [],
+    "decisions": [],
+    "skippedCandidates": [],
+    "pendingCandidates": [],
+    "loadedOrder": [
+      "mssr-agent-routing"
+    ],
+    "selectionFieldNames": [
+      "acceptedOptionalRootNames",
+      "decisions",
+      "eligibleLoadOrder",
+      "mode",
+      "pendingCandidates",
+      "requiredRootNames",
+      "skippedCandidates"
+    ],
+    "policy": null
+  },
+  "bootstrapPlan": {
+    "loadedOrder": [
+      "mssr-agent-routing"
+    ],
+    "policy": null,
+    "pendingCandidates": [],
+    "selectionFieldNames": [
+      "acceptedOptionalRootNames",
+      "decisions",
+      "eligibleLoadOrder",
+      "mode",
+      "pendingCandidates",
+      "requiredRootNames",
+      "skippedCandidates"
+    ],
+    "skippedCandidates": []
+  },
+  "loadedSkills": [
+    "mssr-agent-routing"
+  ],
+  "loadedSkillModules": [
+    "context-and-lifecycle"
+  ],
+  "loadedEntries": [
+    {
+      "name": "mssr-agent-routing",
+      "obligation": "required",
+      "loaded": true,
+      "skippedReason": null,
+      "coreCharsLoaded": 2008,
+      "moduleCharsLoaded": 2385,
+      "contextSatisfied": true,
+      "skipped": false,
+      "acceptedOverflowChars": null,
+      "blocked": [],
+      "selectedModules": [
+        "context-and-lifecycle"
+      ],
+      "moduleDecisions": [],
+      "skillName": "mssr-agent-routing"
+    }
+  ],
+  "contextAssemblyPages": [
+    {
+      "page": 1,
+      "planningMode": "global-required-core-first",
+      "status": null,
+      "maxContextChars": 32000,
+      "deliveredChars": 4393,
+      "remainingContextChars": null,
+      "requiredOverflowChars": 0,
+      "acceptedOverflowChars": 0,
+      "acceptedOverflowCharsSupported": true,
+      "budgetExceeded": false,
+      "requiredBudgetExceeded": false,
+      "optionalContextOmitted": false,
+      "optionalModuleCharsLoaded": null,
+      "optionalSkillCoreCharsLoaded": null,
+      "units": [
+        {
+          "id": "mssr-agent-routing:core",
+          "skill": "mssr-agent-routing",
+          "kind": "core",
+          "module": null,
+          "obligation": "required",
+          "chars": 2008
+        },
+        {
+          "id": "mssr-agent-routing:module:context-and-lifecycle",
+          "skill": "mssr-agent-routing",
+          "kind": "module",
+          "module": "context-and-lifecycle",
+          "obligation": "accepted",
+          "chars": 2385
+        }
+      ],
+      "retained": [],
+      "omitted": [],
+      "blocked": [],
+      "remaining": {
+        "required": [],
+        "accepted": []
+      },
+      "skills": [
+        {
+          "name": "mssr-agent-routing",
+          "obligation": "required",
+          "loaded": true,
+          "skippedReason": null,
+          "coreCharsLoaded": 2008,
+          "moduleCharsLoaded": 2385,
+          "contextSatisfied": true,
+          "skipped": false,
+          "acceptedOverflowChars": null,
+          "blocked": [],
+          "selectedModules": [],
+          "moduleDecisions": []
+        }
+      ],
+      "globallySelectedModules": {
+        "count": 1,
+        "chars": 2385
+      }
+    }
+  ],
+  "projectContextPages": [
+    {
+      "manifestStatus": "loaded",
+      "coreIncluded": false,
+      "coreCharsLoaded": 0,
+      "moduleCharsLoaded": 19862,
+      "totalCharsLoaded": 19862,
+      "selectionSummary": {
+        "total": 26,
+        "selected": 7,
+        "reasons": {
+          "budget-exceeded": 10,
+          "selected": 7,
+          "intent-mismatch": 9
+        }
+      },
+      "documents": [
+        {
+          "id": "mssr-semantic-consistency-decision",
+          "sourcePath": "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project\\.mssr\\knowledge\\decision\\semantic-consistency-current-truth.md",
+          "kind": "memory",
+          "bytes": null
+        },
+        {
+          "id": "mssr-semantic-relations-retrieval-decision",
+          "sourcePath": "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project\\.mssr\\knowledge\\decision\\semantic-consistency-relations-retrieval.md",
+          "kind": "memory",
+          "bytes": null
+        },
+        {
+          "id": "mssr-architecture-impact-decision",
+          "sourcePath": "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project\\.mssr\\knowledge\\architecture\\architecture-impact-review-decision.md",
+          "kind": "memory",
+          "bytes": null
+        },
+        {
+          "id": "mssr-jev-confidence-merge-evaluation",
+          "sourcePath": "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project\\.mssr\\knowledge\\architecture\\jev-confidence-merge-evaluation.md",
+          "kind": "context",
+          "bytes": null
+        },
+        {
+          "id": "mssr-trace-lifecycle-integrity",
+          "sourcePath": "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project\\.mssr\\knowledge\\decision\\trace-lifecycle-integrity.md",
+          "kind": "memory",
+          "bytes": null
+        },
+        {
+          "id": "mssr-jev-confidence-benchmark-history",
+          "sourcePath": "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project\\.mssr\\knowledge\\architecture\\jev-confidence-merge-evaluation.md",
+          "kind": "context",
+          "bytes": null
+        },
+        {
+          "id": "mssr-project-document-index",
+          "sourcePath": "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project\\.mssr\\knowledge\\reference\\project-document-index.md",
+          "kind": "context",
+          "bytes": null
+        }
+      ],
+      "directives": [],
+      "core": [],
+      "selected": [],
+      "decisions": [],
+      "requiredBudgetExceeded": [],
+      "requiredOverflow": [],
+      "remainingChars": null
+    }
+  ],
+  "projectContextSelections": [
+    {
+      "stage": "verify",
+      "decisions": [
+        {
+          "id": "mssr-learning-activation-decision",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-change-history-contract",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-project-knowledge-drift-review",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-architecture-impact-decision",
+          "selected": true,
+          "reason": "selected",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-architecture-impact-history",
+          "selected": false,
+          "reason": "intent-mismatch",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-first-party-skill-direction",
+          "selected": false,
+          "reason": "intent-mismatch",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-learning-dataset-state",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-core-skill-package-state",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-canonical-ownership",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-context-plane-history",
+          "selected": false,
+          "reason": "intent-mismatch",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-operational-notice-plane-history",
+          "selected": false,
+          "reason": "intent-mismatch",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-project-context-plane-architecture",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-semantic-evidence-plane",
+          "selected": false,
+          "reason": "intent-mismatch",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-jev-confidence-merge-evaluation",
+          "selected": true,
+          "reason": "selected",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-jev-confidence-benchmark-history",
+          "selected": true,
+          "reason": "selected",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-jev-decision-model-use-cases",
+          "selected": false,
+          "reason": "intent-mismatch",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-jev-public-research-evidence",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-jev-use-case-hypotheses",
+          "selected": false,
+          "reason": "intent-mismatch",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-project-document-reference-lifecycle",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-project-document-index",
+          "selected": true,
+          "reason": "selected",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-canonical-project-context-cutover",
+          "selected": false,
+          "reason": "budget-exceeded",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-context-economy-v2",
+          "selected": false,
+          "reason": "intent-mismatch",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-semantic-consistency-decision",
+          "selected": true,
+          "reason": "selected",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-semantic-relations-retrieval-decision",
+          "selected": true,
+          "reason": "selected",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-trace-lifecycle-integrity",
+          "selected": true,
+          "reason": "selected",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        },
+        {
+          "id": "mssr-human-task-identity",
+          "selected": false,
+          "reason": "intent-mismatch",
+          "score": null,
+          "chars": null,
+          "matched": [],
+          "required": false,
+          "requiredBy": []
+        }
+      ]
+    }
+  ],
+  "projectContextTelemetry": {
+    "status": "captured",
+    "eventCount": 1,
+    "logSha256": "990e65290217f5e219a2c93c986f9bd3925e286da063e04ecdc379cbcb722e22"
+  },
+  "routeProjectContextCoreGate": {
+    "coreIncluded": true,
+    "coreCharsLoaded": 6453,
+    "passed": true
+  },
+  "bridgeRouteProjectContextCoreGate": {
+    "coreIncluded": true,
+    "coreCharsLoaded": 6453,
+    "passed": true
+  },
+  "selectedProjectRefs": [
+    "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project\\.mssr\\knowledge\\decision\\semantic-consistency-current-truth.md",
+    "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project\\.mssr\\knowledge\\decision\\semantic-consistency-relations-retrieval.md",
+    "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project\\.mssr\\knowledge\\architecture\\architecture-impact-review-decision.md",
+    "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project\\.mssr\\knowledge\\architecture\\jev-confidence-merge-evaluation.md",
+    "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project\\.mssr\\knowledge\\decision\\trace-lifecycle-integrity.md",
+    "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project\\.mssr\\knowledge\\reference\\project-document-index.md",
+    "mssr-agent-routing:core",
+    "mssr-agent-routing:module:context-and-lifecycle"
+  ],
+  "projectContextStatus": "loaded",
+  "projectContextLoadedChars": 19862,
+  "jevSkillSelected": false,
+  "feedbackLearningBenchmarksSelected": false,
+  "mssrJevBenchmarkHistorySelected": true,
+  "mssrJevConfidenceMergeEvaluationSelected": true,
+  "postContextAction": null,
+  "postContextActionExecuted": false,
+  "lifecycleGate": {
+    "contextChain": "complete",
+    "originalNextRequiredAction": "execute-active-phase-then-record-phase-and-replan",
+    "nextRequiredAction": "execute-active-phase-then-record-phase-and-replan"
+  }
+}

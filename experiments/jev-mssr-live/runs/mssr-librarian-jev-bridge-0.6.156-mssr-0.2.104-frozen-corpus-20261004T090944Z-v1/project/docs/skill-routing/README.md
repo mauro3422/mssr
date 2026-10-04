@@ -1,0 +1,240 @@
+# MSSR — Modular Semantic Skill Router
+
+Nombre corto: **MSSR**.
+
+MSSR es un paquete TypeScript portable de routing de skills: posee un contrato JSON versionado, fixtures de comportamiento, adaptadores MCP y skills de mantenimiento. MauroPrime Bridge es uno de sus consumidores; el contrato permanece independiente del host.
+
+## Objetivo
+
+Traducir una petición natural, incluso incompleta, a una selección pequeña y verificable de procedimientos reutilizables.
+
+```text
+mensaje actual + contexto resuelto opcional
+  -> intención estructurada del agente
+  -> routing determinista
+  -> skills de la fase actual
+  -> ejecución
+  -> verify / persist / close
+```
+
+La intención estructurada contiene únicamente el resultado de clasificación (`domains`, `actions`, `artifacts`, `needs`, `signals`, `risk`, `ambiguity`). No contiene razonamiento privado.
+
+## Quién genera la intención
+
+La intención la produce el mismo agente que recibió el mensaje, como parte de su turno normal. No existe un modelo clasificador oculto dentro de MSSR. El Bridge recibe el objeto ya resuelto y desde ese punto ejecuta TypeScript determinista. Cuando el caller no envía `intent`, el router usa `lexical-fallback`, basado en expresiones regulares, y lo marca explícitamente en la respuesta.
+
+```text
+mensaje del usuario
+  -> agente actual: clasificación semántica compacta
+  -> MSSR: scoring, gates, dependencias, exclusiones y fases
+  -> carga de procedimientos
+  -> acción mediante tools con sus permisos normales
+```
+
+La clasificación puede reutilizarse como capa de control para seleccionar skills, tools, pruebas, permisos o pipelines. No debe ejecutar por sí sola mutaciones destructivas o efectos externos: los tags recomiendan o enrutan; la autorización y las barreras de cada tool siguen gobernando la acción.
+
+`signals` siempre contiene al menos un valor. Usa `nominal` sólo cuando no hay anomalías; si existe evidencia relevante, omite `nominal` y declara `error-observed`, `warning-observed`, `degraded-capability`, `uncertainty`, `conflicting-evidence`, `repeated-friction`, `manual-workaround`, `missing-capability`, `recovery-needed`, `skill-gap` o `reusable-pattern`. Las señales de incidente fuerzan verificación; las de fricción o patrón requieren considerar mantenimiento al cerrar.
+
+`needs` expresa capacidades o garantías requeridas aunque la tarea sea nominal. `component-reuse` significa que un ensamblaje 3D debe auditar componentes validados existentes y decidir `instance | derive | create`; no debe sustituirse por `reusable-pattern`, porque esa señal significa que apareció una lección/fricción digna de mantenimiento del sistema.
+
+Las condiciones de routing usan intersección por cada lista declarada. Cuando una garantía exige varias necesidades simultáneas, `allNeeds` requiere que estén todas presentes; úsalo para gates estrechos, como evidencia visual real (`visual-qa`) más decisión humana (`human-approval`), en lugar de convertir un artefacto amplio como `document` en prueba visual.
+
+## Componentes canónicos
+
+| Componente | Ruta |
+|---|---|
+| Motor y auditoría | `src/skill-routing.ts` |
+| Contrato y selector portable de contexto | `src/skill-context.ts` |
+| Schema y fixtures de módulos | `config/skill-context/` |
+| Adaptador ChatGPT/Bridge de routing y carga | `D:\Dev\bridge-mcp\src\tools\skill-catalog-tools.ts` |
+| Assembler filesystem de contexto | `D:\Dev\bridge-mcp\src\skill-context-assembler.ts` |
+| Observatorio de activación/resultado | `D:\Dev\bridge-mcp\src\mssr-observatory.ts` |
+| Registro de tools/riesgo del Bridge | `D:\Dev\bridge-mcp\src\tool-registry.ts` |
+| Contrato de activación | `config/skill-routing/skill-routing-overrides.json` |
+| Schema del contrato | `config/skill-routing/skill-routing.schema.json` |
+| Casos de comportamiento | `config/skill-routing/skill-routing-fixtures.json` |
+| Schema de fixtures | `config/skill-routing/skill-routing-fixtures.schema.json` |
+| Pruebas dedicadas | `scripts/test-skill-routing.mjs`, `scripts/test-skill-context.mjs` |
+| Auditoría visual | `scripts/audit-skills.py` |
+| Fuente Git de skills propias | `D:\Dev\mauroprime-skills\skills` |
+| Montaje runtime de Codex | `~/.codex/skills/<name>` como junction |
+| Skill mantenedora | `D:\Dev\mssr\skills\skill-routing-maintainer\SKILL.md` |
+| Incidentes y regresiones confirmadas | `docs/skill-routing/INCIDENTS.md` |
+
+`D:\Dev\mssr` versiona el motor y el contrato de routing. `D:\Dev\mauroprime-skills` versiona los procedimientos propios y `D:\Dev\bridge-mcp` consume MSSR mediante un adaptador. Los alias de compatibilidad bajo `C:\Dev` son junctions, no fuentes canónicas. La carpeta `~/.codex/skills/_dashboard` contiene salidas generadas para inspección; no es una fuente editable.
+
+## Tools públicas
+
+- `skill_catalog`: inventario vivo.
+- `skill_recommend`: entrada compatible que delega al router MSSR; usa intención estructurada cuando el caller la envía y marca explícitamente el fallback léxico cuando falta.
+- `skill_route_audit`: drift, referencias, ciclos, tamaño y metadata inferida.
+- `skill_route_plan`: plan de fases sin cargar contenido.
+- `skill_bootstrap`: carga sólo las skills activas de la fase y, por defecto, ensambla para cada skill propia un núcleo compacto más los módulos declarados que coinciden con `intent` y `stage` dentro de un presupuesto global. `contentMode=full` conserva la carga completa explícita; skills sin manifiesto usan fallback completo observable.
+- `skill_load`: carga explícita de una skill; el adapter Bridge propaga dentro de la sesión y puede recuperar entre llamadas stateless sólo una traza candidata inequívoca, registrando la activación.
+- `mssr_observatory_query`: estado, benchmark, eventos recientes o una traza concreta, por época activa o historia completa, sin guardar prompts crudos.
+- `mssr_trace_record`: checkpoint acotado de contexto, fase, verificación, persistencia, resultado, fricción o replanificación; recibe automáticamente la traza activa cuando el host implementa `trace-contract-v1`.
+
+## Skills requeridas, opcionales y diferidas
+
+El plan distingue entre skills requeridas por un workflow o dependencia, skills opcionales seleccionadas por relevancia y skills diferidas para fases posteriores. El agente puede descartar una skill opcional si resulta claramente irrelevante o impráctica para la fase actual, usando el conjunto mínimo suficiente. Una skill requerida sólo debe omitirse cuando una regla superior de seguridad o una capacidad realmente ausente lo impida, y el motivo debe reportarse. Las diferidas no se cargan antes de tiempo.
+
+`phase` indica la fase principal de carga. `coversPhases` permite que un único procedimiento coherente cubra varias fases sin crear skills artificiales. Cuando `coversPhases` no se declara, la cobertura es únicamente la `phase` explícita; la fase inferida por descripción nunca debe reemplazar una fase explícita.
+
+## Ensamblado selectivo de contexto
+
+MSSR sigue enrutando capacidades por `SKILL.md`; los módulos internos no se convierten en nodos independientes. Una skill propia puede declarar `context-modules.json` junto a su `SKILL.md`:
+
+- `core` selecciona secciones exactas del `SKILL.md` o un archivo interno que siempre debe entrar cuando la skill está activa;
+- cada módulo declara una fuente y filtros opcionales por `stage`, `domains`, `actions`, `artifacts`, `needs` y `signals`;
+- todos los filtros declarados por un módulo deben tener al menos una coincidencia; un módulo sin filtros sólo puede entrar con `required=true`;
+- `exclusiveGroup` declara alternativas internas: una ganadora única entra, pero un empate superior no carga ninguna y devuelve candidatos ambiguos;
+- MSSR puntúa y filtra módulos elegibles; el host materializa todos los candidatos activos antes de presupuestar;
+- el planner global reserva primero todos los cores de skills requeridas, luego módulos requeridos, ordena globalmente módulos opcionales de skills requeridas, admite skills opcionales sólo como paquetes mínimos completos y finalmente ordena sus módulos opcionales;
+- ningún módulo se trunca silenciosamente; una skill opcional se omite completa si no cabe y sólo contexto requerido puede desbordar con evidencia explícita;
+- una sección ya contenida en contexto cargado no se inyecta otra vez y se registra como duplicación evitada;
+- las rutas relativas deben permanecer dentro de la carpeta de la skill y las secciones Markdown deben existir exactamente una vez.
+
+El selector y schema viven en MSSR. El Bridge materializa archivos y secciones, ejecuta `global-required-core-first` y devuelve telemetría acotada: caracteres de núcleo/módulos/full, ahorro, módulos seleccionados, tiers de asignación, grupos ambiguos, fallback, skip, overflow y duplicación evitada. El observatorio agrega presión por traza y skill para guiar migraciones sin guardar texto procedural.
+
+Compatibilidad:
+
+- `contentMode=selective` es el default de `skill_bootstrap`;
+- `includeReferences=none` ensambla sólo el núcleo declarado;
+- `contentMode=full` devuelve el `SKILL.md` exacto para diagnóstico o rollback;
+- una skill sin manifiesto o con manifiesto inválido cae a carga completa y lo reporta como fallback, sin dejar de funcionar;
+- `skill_load` continúa siendo la lectura completa explícita de una skill individual.
+
+
+## Contexto conversacional
+
+El Bridge no puede leer por sí solo todo el historial de ChatGPT. El agente que ve la conversación debe enviar:
+
+- `task`: el mensaje actual;
+- `context`: resumen resuelto y acotado de la conversación relevante en cualquier tarea especializada multi-turno;
+- `intent`: clasificación estructurada cuando sea posible.
+
+La política recomendada es enviar normalmente entre 500 y 2000 caracteres de contexto, con un máximo de 4000. Debe cubrir el objetivo aceptado, restricciones relevantes, trabajo ya realizado o fase actual y referencias todavía abiertas. Se aplica tanto a “dale”, “sí”, “mandale”, “seguí”, “de una” o “hacé eso” como a mensajes más completos que dependen de decisiones anteriores. Sólo se omite en un primer turno realmente independiente.
+
+`context` no debe ser una transcripción completa, conversación irrelevante ni cadena de pensamiento. Es evidencia adicional: el mensaje actual, las instrucciones superiores y la intención explícita conservan prioridad.
+
+### Contexto de proyecto vs. skills reutilizables
+
+MSSR no debe crear una skill distinta por cada repositorio. El sistema separa:
+
+- **hechos del proyecto:** arquitectura, vocabulario, rutas, decisiones, estado actual, blockers e incidentes locales; viven en `AGENTS.md`, `.mssr/` y documentación versionada del proyecto;
+- **procedimiento reutilizable:** pasos y criterios que aplican en varios proyectos; viven en una skill global;
+- **estado de ejecución:** fase, resultados, verificaciones y referencias a commits/snapshots; se conserva como checkpoint acotado cuando el workflow debe reanudarse.
+
+El host recupera primero el contexto mínimo del proyecto y después solicita a MSSR sólo las skills de la fase activa. Así el catálogo puede crecer sin inyectar todas las instrucciones en cada turno.
+
+### Garantía de activación
+
+MSSR no puede activarse solo desde fuera del host. La garantía depende de un hook explícito en las instrucciones del agente o cliente:
+
+```text
+tarea especializada sustancial
+  -> cargar contexto durable del proyecto
+  -> producir intent estructurado
+  -> skill_route_plan o skill_bootstrap
+  -> cargar sólo la fase activa
+  -> ejecutar y observar
+  -> replanificar ante cambio de fase, fallo o capacidad nueva
+```
+
+Para ChatGPT web, ese hook debe llamar al adaptador del Bridge. Para Codex local, debe estar en el bootstrap `AGENTS.md` y la skill transversal. Una tarea que omite la llamada no queda protegida por MSSR aunque el router y las skills existan.
+
+
+### Routing Evidence Checkpoint y notices
+
+El “segundo tick” no es acceso a pensamientos privados. Es la frontera observable donde el agente, después de interpretar la consulta, emite la intención estructurada y llama MSSR. El resultado vuelve al agente para una segunda inferencia con skills/capacidades candidatas.
+
+El Bridge puede sumar notices acotados a respuestas o a una bandeja: errores, agentes activos, archivos con ownership, capturas pendientes, contexto obsoleto, required skills omitidas o métricas anómalas. Esos notices son evidencia para contexto o replanning; no son permisos.
+
+`mssr-agent-routing` es la skill transversal que gobierna este contrato. En conversaciones sobre routing, expresiones como “tags”, “metadata del pensamiento”, “activadores”, “segundo tick”, “helper MSSR” o “inyección de contexto” remiten a esta arquitectura.
+
+### Outcomes y métricas por skill
+
+Cada tarea sustancial cierra un único outcome efectivo por trace. Una `primarySkill` recibe responsabilidad; `supportingSkills` conservan contribución sin duplicar éxitos. Reintentos y revisión final reutilizan el trace y el observatorio cuenta el último outcome.
+
+Las métricas se separan en activación/routing, cumplimiento de cargas, verificación/persistencia y calidad del outcome. El dashboard del Bridge muestra routing semántico, required-load compliance, éxito, aceptación, score y resultados por skill primaria. El contrato completo está en `../ROUTING_EVIDENCE_OBSERVATORY.md`.
+
+## Perfil del caller
+
+### Límites de replanificación y trazas
+
+MSSR no debe ejecutarse entre cada llamada de herramienta. El caller planifica antes de una cadena especializada y vuelve a planificar cuando cambia la fase, aparece un fallo material, cambia la salud/schema de un provider, se descubre una capability nueva o aparece fricción reusable. Lecturas y comandos adyacentes exitosos dentro de la misma fase comparten la ruta vigente.
+
+`skill_recommend`, `skill_route_plan` y `skill_bootstrap` devuelven un `traceId`. En hosts con `trace-contract-v1`, el adapter mantiene continuidad local y una lease acotada por proceso para llamadas stateless. Propaga a `skill_load`, wrappers de dispatch, domain tools compatibles y checkpoints sólo cuando existe una candidata inequívoca; ante concurrencia emite `mssr-trace-ambiguous`. Reinicios, reanudación entre procesos o selección deliberada requieren un ID explícito. El observatorio diferencia `recommended`, `loaded`, `verified`, `persisted` y `outcome`; cargar una skill no demuestra por sí solo efectividad.
+
+La telemetría guarda fingerprints SHA-256 de tareas y metadata estructurada acotada. No guarda prompts completos, transcripciones ni cadena de pensamiento. `personal_context`, contexto de proyecto, Git y revisión histórica son fuentes de evidencia separadas; su uso depende de si aportan información material, no de una cuota obligatoria.
+
+`skill_route_plan` y `skill_bootstrap` aceptan `caller`:
+
+- `codex-local`: prioriza filesystem, shell y MCPs directos; usa el Bridge cuando agrega snapshots, recuperación, routing compartido, terminales persistentes, guardado verificado de Roblox o coordinación.
+- `chatgpt-web`: el acceso aprobado a MauroPrime normalmente ocurre mediante el Bridge y el túnel seguro.
+- `other`: el agente debe inspeccionar las capacidades disponibles y elegir la ruta autoritativa más corta.
+
+El router devuelve `executionGuidance` y también declara en `classifier` si la clasificación provino del agente o del fallback. `skill_route_plan` es la opción compacta sin contenido; `skill_bootstrap` agrega contexto procedural de la fase. En modo selectivo carga núcleos y módulos coincidentes dentro del presupuesto; sólo `contentMode=full` o el fallback de una skill no modularizada devuelve el `SKILL.md` completo.
+
+## Vocabulario estructurado
+
+El vocabulario debe describir tanto cambios dentro de una aplicación como trabajo administrativo alrededor del proyecto. Además de gameplay y código, MSSR reconoce dominios `git` y `filesystem`; acciones `move`, `verify` y `version`; artefactos `project`, `repository`, `place-file` y `backup`; y necesidades `integrity-verification` y `version-control`.
+
+Usa estos conceptos para migraciones de carpeta, bootstrap de repositorios, comparación de hashes, actualización de rutas absolutas y versionado. No clasifiques automáticamente una operación de archivos como edición de gameplay sólo porque contiene un `.rbxl` o la palabra Roblox.
+
+La documentación local (`README`, roadmap, changelog, notas) es el artefacto `document`. `official-docs` se reserva para documentación oficial o referencias de API explícitas.
+
+## Descubrimiento de skills nuevas
+
+Cada llamada reescanea `~/.codex/skills` y el catálogo vivo de Roblox. Una skill nueva aparece inmediatamente y recibe metadata inferida por nombre y descripción. Eso permite descubrimiento sin reiniciar, pero las skills propias deben recibir una entrada explícita y fixtures antes de considerarse estables.
+
+También se reescanea `~/.codex/plugins/cache`. Ese árbol administrado se permite únicamente como entrada de descubrimiento en modo lectura y sólo mientras cada ruta resuelta permanezca dentro de la raíz exacta del caché; no amplía los permisos generales del filesystem del Bridge. Las copias y versiones repetidas se canonicalizan por precedencia. Una raíz completa inaccesible produce un warning observable.
+
+`skill_route_audit` marca esta situación como mantenimiento pendiente y devuelve una propuesta inicial de metadata.
+
+### Salud de la fuente Roblox
+
+Una conexión de proceso a `StudioMCP.exe` no prueba que el catálogo dinámico esté disponible. El Bridge clasifica por separado:
+
+- `healthy`: `tools/list` devolvió tools vivas;
+- `degraded`: el catálogo vivo falló o volvió vacío, pero existe un último catálogo sano persistido;
+- `unavailable`: no existen tools vivas ni un catálogo anterior utilizable.
+
+Ante una lista vacía, el Bridge reinicia únicamente su conexión hija a StudioMCP y reintenta una vez. No cierra Roblox Studio ni modifica el DataModel. Cada catálogo sano se guarda bajo `data/`, fuera de Git, para conservar nombres, schemas y annotations durante una interrupción posterior. Los schemas de caché siempre se marcan como `usingCachedTools`; una llamada remota todavía puede fallar si Roblox retiró o cambió la tool.
+
+`roblox_mcp_status` y `roblox_mcp_tool_list` aceptan `refresh=true` para ignorar el caché corto de salud y repetir el probe acotado. `skill_catalog`, routing y auditoría devuelven `sourceHealth`; una fuente Roblox solicitada y degradada produce warning y mantenimiento pendiente.
+
+### Concurrencia, ownership y múltiples Studios
+
+El Bridge mantiene una sola conexión hija a `StudioMCP.exe` para todas sus sesiones HTTP. Codex y ChatGPT web pueden abrir sesiones MCP independientes, pero las operaciones que atraviesan esa conexión se serializan. El probe de catálogo usa single-flight: varias sesiones que detectan una caída comparten la misma recuperación y no generan una tormenta de procesos ni se cierran mutuamente la conexión.
+
+`roblox_mcp_status` expone el PID del Bridge, el PID exacto de su hijo, generación de conexión, reconexiones, cola y último motivo de reset. Otros procesos `StudioMCP.exe` pueden pertenecer al MCP directo de Codex u otros clientes; el Bridge sólo cierra su propio transporte y lo libera durante shutdown limpio.
+
+Cuando existen varias ventanas de Roblox Studio:
+
+- `roblox_mcp_studio_list` devuelve ids, nombres y target activo;
+- `roblox_mcp_query` acepta `studioId` y fija selección + llamada dentro de una operación atómica;
+- `roblox_mcp_action` exige `studioId` si hay más de una instancia;
+- los proxies rechazan `set_active_studio` directo;
+- schemas cacheados sirven para descubrimiento degradado, pero nunca autorizan ni ejecutan una query, acción o carga de skill viva.
+
+Cerrar una sesión HTTP no cierra StudioMCP mientras otras sesiones siguen activas; cerrar o reiniciar el servidor libera el hijo administrado.
+
+## Fases
+
+1. `discovery`
+2. `safety`
+3. `implementation`
+4. `verification`
+5. `persistence`
+6. `maintenance`
+
+No se cargan todas a la vez. El caller vuelve a planificar con `stage=verify`, `persist` o `close` y pasa `completedPhases`.
+
+`missingRequiredPhases` conserva compatibilidad y señala fases obligatorias sin una skill seleccionada. `agentFallbackPhases` hace explícito que esas fases siguen siendo responsabilidad del agente usando sus procedimientos generales; una lista vacía de skills no autoriza a omitir análisis, pruebas o persistencia requeridos.
+
+## Principio de seguridad
+
+`oversizeReviewed=true` reconoce que el tamaño de una skill propia fue inspeccionado y aceptado temporalmente. La skill sigue apareciendo en `oversizedSkills`, pero no obliga mantenimiento en cada auditoría. El flag no reemplaza una revisión real ni debe aplicarse automáticamente.
+
+La detección puede ser automática. La autoedición silenciosa no. Cualquier cambio de skill, contrato o fixture debe ocurrir en una tarea visible con snapshot, diff, pruebas y verificación integral.

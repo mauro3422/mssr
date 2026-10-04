@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T095618Z-v5",
+  "status": "bootstrap-capability-gate-blocked",
+  "missingContextObligations": [
+    "jev-decision-systems core not confirmed in loaded[]",
+    "feedback-learning-benchmarks module not confirmed in loaded[]",
+    "MSSR Jev benchmark history module not selected from project context"
+  ],
+  "providerCalls": 0,
+  "finishedAt": "2026-10-04T10:07:09.794Z"
+}

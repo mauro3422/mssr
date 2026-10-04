@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T113314Z-v14",
+  "status": "bootstrap-diagnostic-complete-provider-phase-not-started",
+  "providerCalls": 0,
+  "jevPhaseStarted": false,
+  "runnerConfiguredCredentialLookupTarget": false,
+  "finishedAt": "2026-10-04T11:35:46.586Z"
+}

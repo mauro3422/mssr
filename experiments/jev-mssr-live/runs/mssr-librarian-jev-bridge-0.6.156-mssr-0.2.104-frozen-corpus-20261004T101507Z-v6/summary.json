@@ -1,0 +1,285 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T101507Z-v6",
+  "status": "bootstrap-diagnostic-complete-provider-phase-not-started",
+  "providerCalls": 0,
+  "labelsRead": false,
+  "targetIndexRead": false,
+  "scoringPerformed": false,
+  "bootstrapReceipt": {
+    "traceId": "mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T101507Z-v6",
+    "routePlan": {
+      "traceId": "mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T101507Z-v6",
+      "status": "route-planned",
+      "statusObserved": null,
+      "mcpIsError": false,
+      "stage": "verify",
+      "intent": {
+        "summary": "Select only the project-owned Jev confidence and benchmark-history modules for a paired semantic-evidence benchmark context bootstrap, plus Jev's benchmark procedure; this diagnostic phase performs no provider calls.",
+        "domains": [
+          "coding",
+          "agent-orchestration",
+          "skill-system"
+        ],
+        "actions": [
+          "analyze",
+          "review",
+          "verify",
+          "optimize"
+        ],
+        "artifacts": [
+          "project",
+          "repository",
+          "document"
+        ],
+        "needs": [
+          "integrity-verification",
+          "cross-agent"
+        ],
+        "signals": [
+          "uncertainty",
+          "conflicting-evidence"
+        ],
+        "risk": "external-side-effect"
+      },
+      "activeSkills": [
+        {
+          "name": "mssr-agent-routing",
+          "required": true,
+          "selectedAsRoot": true,
+          "phase": "discovery",
+          "reason": null
+        },
+        {
+          "name": "systematic-debugging",
+          "required": false,
+          "selectedAsRoot": true,
+          "phase": "discovery",
+          "reason": null
+        },
+        {
+          "name": "capability-gap-recovery",
+          "required": false,
+          "selectedAsRoot": true,
+          "phase": "discovery",
+          "reason": null
+        },
+        {
+          "name": "mssr-observability-maintenance",
+          "required": false,
+          "selectedAsRoot": true,
+          "phase": "discovery",
+          "reason": null
+        },
+        {
+          "name": "conversation-history-review",
+          "required": false,
+          "selectedAsRoot": true,
+          "phase": "discovery",
+          "reason": null
+        },
+        {
+          "name": "mauroprime-bridge-collaboration",
+          "required": false,
+          "selectedAsRoot": true,
+          "phase": "discovery",
+          "reason": null
+        }
+      ],
+      "requiredRootCount": 1,
+      "optionalRootCount": 5,
+      "candidateCount": 6,
+      "matches": [],
+      "deferredSkills": [
+        {
+          "name": "shared-skill-governance",
+          "required": true,
+          "selectedAsRoot": true,
+          "phase": "discovery",
+          "reason": null
+        }
+      ],
+      "nearMatches": [
+        {
+          "name": "git-change-publication",
+          "reason": null
+        },
+        {
+          "name": "steam-workshop-publication",
+          "reason": null
+        },
+        {
+          "name": "blender-session-coordination",
+          "reason": null
+        },
+        {
+          "name": "roblox-mcp-incident-recovery",
+          "reason": null
+        },
+        {
+          "name": "complex-system-design",
+          "reason": null
+        },
+        {
+          "name": "jev-decision-systems",
+          "reason": null
+        },
+        {
+          "name": "workshop-media-editing",
+          "reason": null
+        },
+        {
+          "name": "skill-routing-maintainer",
+          "reason": null
+        }
+      ],
+      "optionalDecisionsAccepted": [],
+      "selectionPolicy": {
+        "required": "Apply workflow-required skills and transitive dependencies unless a higher-priority safety rule or unavailable capability makes them impossible; report any skip explicitly.",
+        "optional": "The agent may skip an optional active skill when it is clearly irrelevant or impractical for the current phase; keep the reason concise and continue with the smallest sufficient set.",
+        "deferred": "Do not load deferred skills until their workflow phase becomes active."
+      },
+      "nextActionTool": "skill_bootstrap"
+    },
+    "status": "complete",
+    "pages": 1,
+    "stage": "verify",
+    "hostSelection": {
+      "mode": "host-gated",
+      "requiredRootNames": [
+        "mssr-agent-routing"
+      ],
+      "acceptedOptionalRootNames": [],
+      "decisions": [],
+      "skippedCandidates": [],
+      "pendingCandidates": [],
+      "loadedOrder": [],
+      "policy": null
+    },
+    "bootstrapPlan": {
+      "loadedOrder": [],
+      "policy": null,
+      "pendingCandidates": [],
+      "skippedCandidates": []
+    },
+    "loadedSkills": [
+      "mssr-agent-routing"
+    ],
+    "loadedSkillModules": [
+      "context-and-lifecycle"
+    ],
+    "loadedEntries": [
+      {
+        "name": "mssr-agent-routing",
+        "obligation": "required",
+        "loaded": true,
+        "skippedReason": null,
+        "coreCharsLoaded": 2008,
+        "moduleCharsLoaded": 2385,
+        "contextSatisfied": true,
+        "skipped": false,
+        "acceptedOverflowChars": null,
+        "blocked": [],
+        "selectedModules": [
+          "context-and-lifecycle"
+        ],
+        "moduleDecisions": [],
+        "skillName": "mssr-agent-routing"
+      }
+    ],
+    "contextAssemblyPages": [
+      {
+        "page": 1,
+        "planningMode": "global-required-core-first",
+        "status": null,
+        "maxContextChars": 24000,
+        "deliveredChars": 4393,
+        "remainingContextChars": null,
+        "requiredOverflowChars": 0,
+        "acceptedOverflowChars": 0,
+        "acceptedOverflowCharsSupported": true,
+        "budgetExceeded": false,
+        "requiredBudgetExceeded": false,
+        "optionalContextOmitted": false,
+        "optionalModuleCharsLoaded": null,
+        "optionalSkillCoreCharsLoaded": null,
+        "units": [
+          {
+            "id": "mssr-agent-routing:core",
+            "skill": "mssr-agent-routing",
+            "kind": "core",
+            "module": null,
+            "obligation": "required",
+            "chars": 2008
+          },
+          {
+            "id": "mssr-agent-routing:module:context-and-lifecycle",
+            "skill": "mssr-agent-routing",
+            "kind": "module",
+            "module": "context-and-lifecycle",
+            "obligation": "accepted",
+            "chars": 2385
+          }
+        ],
+        "retained": [],
+        "omitted": [],
+        "blocked": [],
+        "remaining": {
+          "required": [],
+          "accepted": []
+        },
+        "skills": [
+          {
+            "name": "mssr-agent-routing",
+            "obligation": "required",
+            "loaded": true,
+            "skippedReason": null,
+            "coreCharsLoaded": null,
+            "moduleCharsLoaded": null,
+            "contextSatisfied": null,
+            "skipped": false,
+            "acceptedOverflowChars": null,
+            "blocked": [],
+            "selectedModules": [],
+            "moduleDecisions": []
+          }
+        ],
+        "globallySelectedModules": []
+      }
+    ],
+    "projectContextSelections": [
+      {
+        "manifestStatus": "loaded",
+        "core": [],
+        "selected": [],
+        "decisions": [],
+        "requiredBudgetExceeded": [],
+        "requiredOverflow": [],
+        "remainingChars": null
+      }
+    ],
+    "selectedProjectRefs": [
+      "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project\\.mssr\\knowledge\\decision\\semantic-consistency-current-truth.md",
+      "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project\\.mssr\\knowledge\\decision\\semantic-consistency-relations-retrieval.md",
+      "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project\\.mssr\\knowledge\\architecture\\architecture-impact-review-decision.md",
+      "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project\\.mssr\\knowledge\\decision\\trace-lifecycle-integrity.md",
+      "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project\\.mssr\\knowledge\\reference\\project-document-index.md",
+      "mssr-agent-routing:core",
+      "mssr-agent-routing:module:context-and-lifecycle"
+    ],
+    "projectContextStatus": "loaded",
+    "projectContextLoadedChars": 6818,
+    "jevSkillSelected": false,
+    "feedbackLearningBenchmarksSelected": false,
+    "mssrJevBenchmarkHistorySelected": false,
+    "postContextAction": null,
+    "postContextActionExecuted": false,
+    "lifecycleGate": {
+      "contextChain": "complete",
+      "originalNextRequiredAction": "execute-active-phase-then-record-phase-and-replan",
+      "nextRequiredAction": "execute-active-phase-then-record-phase-and-replan"
+    }
+  },
+  "credentialLookupConfigured": false,
+  "finishedAt": "2026-10-04T10:18:56.082Z"
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "status": "bootstrap-failed",
+  "failureClass": "provider-or-tool-error",
+  "failureCode": "bootstrap-error",
+  "failureMessage": "MSSR bootstrap did not complete; Jev phase was not started.",
+  "reasonCodes": [],
+  "providerCallsMade": false,
+  "labelsRead": false,
+  "targetIndexRead": false,
+  "scoringPerformed": false,
+  "serverInfo": {
+    "name": "bridge-mcp",
+    "version": "0.6.156"
+  },
+  "failedAt": "2026-10-04T09:45:20.670Z"
+}

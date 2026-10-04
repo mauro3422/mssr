@@ -1,0 +1,504 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T095618Z-v5",
+  "status": "preflight-passed-provider-gate-closed",
+  "providerCallsMade": false,
+  "labelsRead": false,
+  "scoringPerformed": false,
+  "evaluationClass": "exploratory-build-regression-paired-comparison",
+  "independentConceptCount": 26,
+  "pairedLanguageRequestCount": 52,
+  "languages": [
+    "en",
+    "es"
+  ],
+  "sourceCommit": "c4c93fb20faeb4bba81fc771718cd2f26c9c3c2a",
+  "corpusDocumentCount": 21,
+  "corpusDocuments": [
+    {
+      "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+      "bytes": 4052,
+      "sha256": "e1f817f4de9d44505708e95d75f552376fe0da6413ec30ce2c5ad39ee0baf514",
+      "gitBlobSha256": "e1f817f4de9d44505708e95d75f552376fe0da6413ec30ce2c5ad39ee0baf514",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/architecture/project-context-plane.md",
+      "bytes": 3118,
+      "sha256": "436da00e7f93de2891040c5177d6ccf0b02272fabfe63b5fef2d7c8fcc143ed7",
+      "gitBlobSha256": "436da00e7f93de2891040c5177d6ccf0b02272fabfe63b5fef2d7c8fcc143ed7",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "bytes": 3311,
+      "sha256": "7909dfc3a2c16ac628491f779b4dcb949b8d77483fe9ad47df7e7ecb368295c0",
+      "gitBlobSha256": "7909dfc3a2c16ac628491f779b4dcb949b8d77483fe9ad47df7e7ecb368295c0",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "bytes": 12449,
+      "sha256": "9ef9520262aea6b1e3b74af5712f6d37ee9217ed11555ae632ce606e4ad96b3e",
+      "gitBlobSha256": "9ef9520262aea6b1e3b74af5712f6d37ee9217ed11555ae632ce606e4ad96b3e",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
+      "bytes": 1922,
+      "sha256": "79661c8f5621932e9b3a5996ade87660a42d63e476578e5d40446181e91e1d99",
+      "gitBlobSha256": "79661c8f5621932e9b3a5996ade87660a42d63e476578e5d40446181e91e1d99",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+      "bytes": 1273,
+      "sha256": "b92e1c7d22e2a26a2e6b8b1f238ea0452ed140790379f458f4d4b5ccaf66c212",
+      "gitBlobSha256": "b92e1c7d22e2a26a2e6b8b1f238ea0452ed140790379f458f4d4b5ccaf66c212",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+      "bytes": 2792,
+      "sha256": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+      "gitBlobSha256": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+      "bytes": 431,
+      "sha256": "ef4dec93e8718d6291ea3f03b83ef1c2b8aed3a54ffc1c904202ef7e3006a13a",
+      "gitBlobSha256": "ef4dec93e8718d6291ea3f03b83ef1c2b8aed3a54ffc1c904202ef7e3006a13a",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": "docs/AGENT_PROTOCOL.md",
+      "bytes": 27121,
+      "sha256": "30e9f8da6103c4904559009533fa946ac53c3e5bf04ac5898e6088f919a458ca",
+      "gitBlobSha256": "30e9f8da6103c4904559009533fa946ac53c3e5bf04ac5898e6088f919a458ca",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": "docs/FIRST_PARTY_SKILLS_V1.md",
+      "bytes": 4956,
+      "sha256": "cc312b8c50c10c2909bceb63472bc611a6516bd02f9f0073947ecfa1a12c3b4d",
+      "gitBlobSha256": "cc312b8c50c10c2909bceb63472bc611a6516bd02f9f0073947ecfa1a12c3b4d",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": "docs/OPERATIONAL_NOTICE_PLANE.md",
+      "bytes": 21163,
+      "sha256": "e3d9ba01dab38f17f334e52c8e6f535355878e4da6ed1cdcf4b77ff23cc61e11",
+      "gitBlobSha256": "e3d9ba01dab38f17f334e52c8e6f535355878e4da6ed1cdcf4b77ff23cc61e11",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": "docs/REGISTRY.md",
+      "bytes": 4333,
+      "sha256": "63497279ee1b4c78351efe42b24eb5b51198379d814056aa033d89b8ad320740",
+      "gitBlobSha256": "63497279ee1b4c78351efe42b24eb5b51198379d814056aa033d89b8ad320740",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": "docs/REPOSITORY_STRUCTURE.md",
+      "bytes": 7278,
+      "sha256": "6e5c5f4c1e9940596ca806cc7f378da899000ace157560c95dc5d3b23d9e41a1",
+      "gitBlobSha256": "6e5c5f4c1e9940596ca806cc7f378da899000ace157560c95dc5d3b23d9e41a1",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": "docs/decisions/0001-context-plane-v1.md",
+      "bytes": 14193,
+      "sha256": "96b7f4d707915a73feeb1e6b3f538b5882eaae11b8d9a4a85303a493b87bee0d",
+      "gitBlobSha256": "96b7f4d707915a73feeb1e6b3f538b5882eaae11b8d9a4a85303a493b87bee0d",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      "bytes": 3675,
+      "sha256": "9d8e552c6797bce396de5ca821eecbf3c0e72506cc0093a493fe9bd847425b29",
+      "gitBlobSha256": "9d8e552c6797bce396de5ca821eecbf3c0e72506cc0093a493fe9bd847425b29",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+      "bytes": 10251,
+      "sha256": "bb9072f74d6201ce650ec0c01f469dc940f434b64d929f824e31e5c2c0daf7a1",
+      "gitBlobSha256": "bb9072f74d6201ce650ec0c01f469dc940f434b64d929f824e31e5c2c0daf7a1",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": "docs/decisions/0005-architecture-impact-drift-links.md",
+      "bytes": 16173,
+      "sha256": "b2b98c50c799a62f3c9aaf21762433c24780f26bf24ae82d346b359cc5f47872",
+      "gitBlobSha256": "b2b98c50c799a62f3c9aaf21762433c24780f26bf24ae82d346b359cc5f47872",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": "docs/skill-routing/MAINTENANCE.md",
+      "bytes": 12497,
+      "sha256": "05b327f9179317332c361de14273876ce90e5504ec50c812111cc40aa68fe2fa",
+      "gitBlobSha256": "05b327f9179317332c361de14273876ce90e5504ec50c812111cc40aa68fe2fa",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": "docs/skill-routing/README.md",
+      "bytes": 21103,
+      "sha256": "ecff3ebb90ee75092ae9e4e11cc0fdcac5645907380c02027b0f48ddc5930f78",
+      "gitBlobSha256": "ecff3ebb90ee75092ae9e4e11cc0fdcac5645907380c02027b0f48ddc5930f78",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": "docs/skill-routing/ROADMAP.md",
+      "bytes": 10721,
+      "sha256": "8133122d6fe5bfc88fd83ced58d649dd02f68cedfbaaef781ac43115729a9c46",
+      "gitBlobSha256": "8133122d6fe5bfc88fd83ced58d649dd02f68cedfbaaef781ac43115729a9c46",
+      "matchesGitCommit": true
+    },
+    {
+      "sourceRef": "docs/skill-routing/TESTING.md",
+      "bytes": 5844,
+      "sha256": "0ce399dcdf13797a09d52ac35b2e96dbd521d42456ade41872465397725564b4",
+      "gitBlobSha256": "0ce399dcdf13797a09d52ac35b2e96dbd521d42456ade41872465397725564b4",
+      "matchesGitCommit": true
+    }
+  ],
+  "controlSupportDocuments": [
+    {
+      "sourceRef": ".mssr/.gitignore",
+      "bytes": 41,
+      "sha256": "c112dca15bf24605719adf9d39e5bf61d85e6faedbc3e5f358f071823b53d9c2",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+      "bytes": 1955,
+      "sha256": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/architecture/canonical-ownership.md",
+      "bytes": 1687,
+      "sha256": "dabe0cc19d56c8205280f20fd025bbd856d37e9ba9fb86bb01c97492767d7479",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/architecture/context-economy-v2.md",
+      "bytes": 2333,
+      "sha256": "fa09f1ffa12379968e41481e4b1755f4ba1b618c4eabafefd52364c1d802d4ab",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/architecture/context-plane-history.md",
+      "bytes": 3576,
+      "sha256": "e58610d13b3ed35537e30c0f5b16d03b7aa3033c868d4ed000cc183a71305fc7",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "bytes": 13288,
+      "sha256": "72a3fc39152a0ffdd1b45e4e6c2e15c1c800b24cb1951157233314707b99dbb8",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/architecture/operational-notice-plane-history.md",
+      "bytes": 1050,
+      "sha256": "647d9816032ff17817169e215ff6d7eb8f53630cd54091354050441aad10b6ea",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+      "bytes": 844,
+      "sha256": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+      "bytes": 986,
+      "sha256": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+      "bytes": 1099,
+      "sha256": "a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+      "bytes": 711,
+      "sha256": "fe4b24a72e3a5da3b2bc24f11c3d575ec81fa7aa86aaf00b81716fd1573cf935",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/decision/trace-lifecycle-integrity.md",
+      "bytes": 1056,
+      "sha256": "b989e41e9d3cb16831ad261fd27a95b9b1c805983f25b70bceee73420b828242",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/reference/project-document-index.md",
+      "bytes": 616,
+      "sha256": "23cd52c06ad2c3e1073da3170d65a467b65d99b0657315045dc62ba017cb2fb9",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+      "bytes": 25432,
+      "sha256": "28325da2f9ee1f2dcd69e4052d071d69d6367840dfd55784dfbc466587d5dce6",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": ".mssr/PROJECT_CONTEXT.md",
+      "bytes": 11361,
+      "sha256": "66a4bad7ab8f6b1f95482ab0bef5f9a54ab593e1203c32ec6b6819d0b3ffe428",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": ".mssr/PROJECT_MEMORY.md",
+      "bytes": 23610,
+      "sha256": "cb9903ade500eef990a25c1492ae3b0a250248c7815ee630680979529366fefa",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": ".mssr/PROJECT_STATE.md",
+      "bytes": 19563,
+      "sha256": "b8f135946dff970ad71917fb01f578c00a746159d444d036b51a14f7f9895d3f",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": ".mssr/project-context-segments.json",
+      "bytes": 5311,
+      "sha256": "bd678369e89d9cd25b9841290eeadd1ad586204aa099fab3df290bd52e2757d6",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": ".mssr/project-context.json",
+      "bytes": 22970,
+      "sha256": "9627c30109439e988d3e6b7245062351fcb524cb543e5fc3c5afe25fb894d831",
+      "matchesSourceCommit": true
+    },
+    {
+      "sourceRef": "AGENTS.md",
+      "bytes": 4064,
+      "sha256": "cb2d567bf085e68ed2e97ec5650de5a152d2a41f4293fe124917ebd3a3f346d2",
+      "matchesSourceCommit": true
+    }
+  ],
+  "controlSupportInventorySha256": "70a77379189c4a35b304a7aa92f2610bb5c7c4a6287b8e1f639482f2884ad4b4",
+  "inputHashes": {
+    "cases.json": "70e4c30fa2473a73fd9c2626a92ecfc58addb548da132e2ee639614b94e384f4",
+    "corpus.json": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d"
+  },
+  "runnerSha256": "987699bc51dd9261f7ee34a241a72c4b9bb9a09de29a33a483cc354c92f895d2",
+  "stagedProject": {
+    "schemaVersion": 1,
+    "sourceCommit": "c4c93fb20faeb4bba81fc771718cd2f26c9c3c2a",
+    "stagedSnapshotCommit": "c0eec7497482dcdc8f04f52599cba11b3b89d9d9",
+    "cleanWorkingTree": true,
+    "externalProjectRoot": "D:\\Dev\\mssr-benchmark-stage\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project",
+    "externalGitDir": "D:\\Dev\\mssr-benchmark-git-support\\mssr-librarian-jev-bridge-0.6.156-mssr-0.2.104-frozen-corpus-20261004T092626Z-v2\\project.git",
+    "documents": 21,
+    "queryCorpusSourceRefs": [
+      ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+      ".mssr/knowledge/architecture/project-context-plane.md",
+      ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
+      ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+      ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+      ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+      "docs/AGENT_PROTOCOL.md",
+      "docs/FIRST_PARTY_SKILLS_V1.md",
+      "docs/OPERATIONAL_NOTICE_PLANE.md",
+      "docs/REGISTRY.md",
+      "docs/REPOSITORY_STRUCTURE.md",
+      "docs/decisions/0001-context-plane-v1.md",
+      "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      "docs/decisions/0004-situation-model-project-knowledge.md",
+      "docs/decisions/0005-architecture-impact-drift-links.md",
+      "docs/skill-routing/MAINTENANCE.md",
+      "docs/skill-routing/README.md",
+      "docs/skill-routing/ROADMAP.md",
+      "docs/skill-routing/TESTING.md"
+    ],
+    "controlSupportFiles": 20,
+    "controlSupportInventorySha256": "70a77379189c4a35b304a7aa92f2610bb5c7c4a6287b8e1f639482f2884ad4b4",
+    "projectContextManifestSha256": "9627c30109439e988d3e6b7245062351fcb524cb543e5fc3c5afe25fb894d831"
+  },
+  "controlSupport": {
+    "schemaVersion": 1,
+    "sourceCommit": "c4c93fb20faeb4bba81fc771718cd2f26c9c3c2a",
+    "scope": "versioned AGENTS authority, .mssr PROJECT_* core, project-context manifest/segments, and manifest-declared project modules only; excluded from the 21-sourceRef query corpus",
+    "files": [
+      {
+        "sourceRef": ".mssr/.gitignore",
+        "bytes": 41,
+        "sha256": "c112dca15bf24605719adf9d39e5bf61d85e6faedbc3e5f358f071823b53d9c2",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+        "bytes": 1955,
+        "sha256": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": ".mssr/knowledge/architecture/canonical-ownership.md",
+        "bytes": 1687,
+        "sha256": "dabe0cc19d56c8205280f20fd025bbd856d37e9ba9fb86bb01c97492767d7479",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": ".mssr/knowledge/architecture/context-economy-v2.md",
+        "bytes": 2333,
+        "sha256": "fa09f1ffa12379968e41481e4b1755f4ba1b618c4eabafefd52364c1d802d4ab",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": ".mssr/knowledge/architecture/context-plane-history.md",
+        "bytes": 3576,
+        "sha256": "e58610d13b3ed35537e30c0f5b16d03b7aa3033c868d4ed000cc183a71305fc7",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+        "bytes": 13288,
+        "sha256": "72a3fc39152a0ffdd1b45e4e6c2e15c1c800b24cb1951157233314707b99dbb8",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": ".mssr/knowledge/architecture/operational-notice-plane-history.md",
+        "bytes": 1050,
+        "sha256": "647d9816032ff17817169e215ff6d7eb8f53630cd54091354050441aad10b6ea",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+        "bytes": 844,
+        "sha256": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+        "bytes": 986,
+        "sha256": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+        "bytes": 1099,
+        "sha256": "a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+        "bytes": 711,
+        "sha256": "fe4b24a72e3a5da3b2bc24f11c3d575ec81fa7aa86aaf00b81716fd1573cf935",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": ".mssr/knowledge/decision/trace-lifecycle-integrity.md",
+        "bytes": 1056,
+        "sha256": "b989e41e9d3cb16831ad261fd27a95b9b1c805983f25b70bceee73420b828242",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": ".mssr/knowledge/reference/project-document-index.md",
+        "bytes": 616,
+        "sha256": "23cd52c06ad2c3e1073da3170d65a467b65d99b0657315045dc62ba017cb2fb9",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+        "bytes": 25432,
+        "sha256": "28325da2f9ee1f2dcd69e4052d071d69d6367840dfd55784dfbc466587d5dce6",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": ".mssr/PROJECT_CONTEXT.md",
+        "bytes": 11361,
+        "sha256": "66a4bad7ab8f6b1f95482ab0bef5f9a54ab593e1203c32ec6b6819d0b3ffe428",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": ".mssr/PROJECT_MEMORY.md",
+        "bytes": 23610,
+        "sha256": "cb9903ade500eef990a25c1492ae3b0a250248c7815ee630680979529366fefa",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": ".mssr/PROJECT_STATE.md",
+        "bytes": 19563,
+        "sha256": "b8f135946dff970ad71917fb01f578c00a746159d444d036b51a14f7f9895d3f",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": ".mssr/project-context-segments.json",
+        "bytes": 5311,
+        "sha256": "bd678369e89d9cd25b9841290eeadd1ad586204aa099fab3df290bd52e2757d6",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": ".mssr/project-context.json",
+        "bytes": 22970,
+        "sha256": "9627c30109439e988d3e6b7245062351fcb524cb543e5fc3c5afe25fb894d831",
+        "matchesSourceCommit": true
+      },
+      {
+        "sourceRef": "AGENTS.md",
+        "bytes": 4064,
+        "sha256": "cb2d567bf085e68ed2e97ec5650de5a152d2a41f4293fe124917ebd3a3f346d2",
+        "matchesSourceCommit": true
+      }
+    ]
+  },
+  "candidate": {
+    "candidateRoot": "D:\\Dev\\bridge-mcp-jev-mssr-0.2.103",
+    "bridgeVersion": "0.6.156",
+    "mssrVersion": "0.2.104",
+    "mssrArtifact": "vendor/mauroprime-mssr-0.2.104.tgz",
+    "mssrArtifactSha256": "714e9d0997e4bc92c2981e1aeb3e5b8a98beef91efc04f82e92d001748a7e4ca",
+    "typeSafeSdkVersion": "0.6.0",
+    "nodeVersion": "v24.16.0",
+    "hashes": {
+      "bridgeConfig": "11e27cbc9f4bc087f6c33967fe5f361f6104a9548bd52eb491b091841e5571c8",
+      "bridgePackage": "bf81b4722788919c1e2948cce32aedf38c84a24f9e5f3a278752f0559685d4c0",
+      "bridgePackageLock": "baf46d62a0fd79c6afe7f29f0de8b145bbd3191aae967a4083f262de79e2a21f",
+      "bridgeStdioEntrypoint": "7c12c59102ce7e8eef2e6f79e1690fe698d65575418d29461e2240bf92194f71",
+      "bridgeCompiledConfig": "d1efdb5d4e9e3039b36296b5892dadc20dc1c4abcfd13825f16b10c44ff64209",
+      "bridgeSemanticEvidenceAdapter": "d22953e7858f2c0849cb5cca7e163c39d689232e4d049605a23a8378d96389d8",
+      "mssrTraceRecordTool": "b6ea90d02920b56e80d75bcae903efe7a2c9ac90bcac9fcc323288b8cb6926b8",
+      "mssrSelector": "400fa149115650fa277f02e5d2ca4c9545849bdb70687651fed5edb30c86faa4",
+      "mssrSelectorTypes": "5d13814fac18a4c485484fbab1253a9b115008bebf5dd478b09daa1fc6459e86"
+    },
+    "probabilityContract": {
+      "bridgeAdapterPreservesChoiceProbabilities": true,
+      "mssrExposesChoiceCalls": true,
+      "mssrChoiceCallProbabilitiesMayBeNull": true
+    }
+  },
+  "model": "jev-1.13.0",
+  "toolProtocol": {
+    "searchTool": "mssr_librarian_search",
+    "selectorTool": "mssr_librarian_jev_select",
+    "fetchTool": "mssr_librarian_fetch",
+    "traceRecordTool": "mssr_trace_record",
+    "maxSearchResults": 100,
+    "fetchCharacterLimit": 20000,
+    "selectionInputs": "search-returned revision-bound candidate handles",
+    "liveTransport": "candidate dist/index.js over local MCP stdio",
+    "labelsAndTargetsLoaded": false
+  },
+  "checkedAt": "2026-10-04T10:06:59.079Z",
+  "lifecycleFailureClassificationContract": {
+    "verified": true,
+    "failureClass": "lifecycle-preflight",
+    "bridgeStatus": "mssr-lifecycle-preflight-required",
+    "reasonCodes": [
+      "managed-trace-missing",
+      "substantial-operation"
+    ],
+    "sanitizedMessage": "Bridge did not execute the requested tool; reasons=managed-trace-missing,substantial-operation"
+  }
+}
