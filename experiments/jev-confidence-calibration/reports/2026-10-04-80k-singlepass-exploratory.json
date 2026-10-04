@@ -1,0 +1,1771 @@
+{
+  "schemaVersion": 1,
+  "reports": [
+    {
+      "schemaVersion": 1,
+      "runId": "mssr-librarian-jev-bilingual-80k-singlepass-20261001T182504Z-v1",
+      "runDirectory": "mssr-librarian-jev-bilingual-80k-singlepass-20261001T182504Z-v1",
+      "sourceHashes": {
+        "cases.json": "70e4c30fa2473a73fd9c2626a92ecfc58addb548da132e2ee639614b94e384f4",
+        "corpus.json": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d",
+        "labels.json": "c3f2c8db87f4086747d346596eacbf66038a4712c1210d1ffbf1bf6dcf731b99",
+        "target-index.json": "770e14acfaf74716dd3667cb8311e5e56a7222e5895dc725bcc44571e5f8a58a"
+      },
+      "runInventoryHashes": {
+        "scored-records.json": "0884d1cfe5d26d1a7afd1731259d0cc0d7703798cc73bb73af2701b35ae681f7",
+        "hierarchical-live-smoke-80k-result.json": "2421c6cb488a6cbfa9084d768d81977c8c50662e6b662dac8c662b3585574792",
+        "runner.mjs": "2a053f015ad9335047c834858a83ae4162d8a25d41f4bb902f56f64c5c201090",
+        "inputs/corpus.json": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d",
+        "summary.json": "422495d823f575b4597e47799460659ca9cb6e1f9da95971884da9f13c132e89",
+        "REPORT.md": "56b850f22761c1c0661668f43a9314073d470252a56c15a7f83941ea354ecc7b",
+        "inputs/cases.json": "70e4c30fa2473a73fd9c2626a92ecfc58addb548da132e2ee639614b94e384f4",
+        "probability-distribution-live-smoke-80k.mjs": "748a8af30d9887aec37e56f38981c7335109094ecf0fccc2c2bd95ad81019f87",
+        "inputs/target-index.json": "770e14acfaf74716dd3667cb8311e5e56a7222e5895dc725bcc44571e5f8a58a",
+        "hierarchical-live-smoke-80k.mjs": "84cc33ddea3c49257698811332b298c0ebf03d3cfcc77432fbf1e9db28f7bb38",
+        "probability-distribution-live-smoke-80k-result.json": "b9feda51d6e54649854e2799938c4e9a2c91388a1e94a1de3ab211ae18e14b50",
+        "inputs/labels.json": "c3f2c8db87f4086747d346596eacbf66038a4712c1210d1ffbf1bf6dcf731b99",
+        "score.mjs": "d59fee281a43068e65d4dc3267ee493aee5c4a2afd507fd3645d580cdc59ea7c",
+        "score-summary.json": "dffd0f4e07e421b296cf4b290f2d3f70694dcdd7c81a2dff2b8b8c764776af3b",
+        "responses.json": "e6f903e2aae9c7bc43c6c913719cf722a1068ae96fdebf66017686fd8a748f0e",
+        "manifest.json": "f5c0c3e0749d6332f0977189149d7b07105b8b7d997d8b5de0ec60b0de01c8ac"
+      },
+      "sourceProvenance": {
+        "packageVersion": "0.2.96",
+        "headAtRunKnown": "5163dce31f3912aca4500cbd2fb58453d6ee7203",
+        "workingTreeDirtyAtManifest": true,
+        "buildId": null,
+        "branchAtManifest": "codex/jev-confidence-merge-evaluation"
+      },
+      "evaluationClass": "exploratory-top-label-confidence-diagnostic",
+      "choiceProbability": {
+        "status": "reconstructed-from-verified-final-choice-count",
+        "transformId": "typesafe-choice-normalized-pmax-v1",
+        "formula": "pmax = 1/n + confidence * (1 - 1/n)",
+        "source": "https://docs.typesafe.ai/confidence",
+        "optionCountField": "responses.records[].finalistCount",
+        "verifiedOptionCount": 200,
+        "caveat": "Reconstructed top-option mass for the final Choice; not an estimate that the selected evidence is correct."
+      },
+      "counts": {
+        "decisions": 52,
+        "selected": 50,
+        "abstentions": 2,
+        "strictExactTargetCorrect": 35,
+        "strictExactTargetIncorrect": 15,
+        "scoredSelectedDecisions": 50,
+        "independentUnits": 21,
+        "documentsInFrozenCorpus": 21,
+        "languagesPerCase": 2
+      },
+      "topLabelMetrics": {
+        "interpretation": "Exploratory proper scores for reconstructed top-choice mass against a strict single-heading target label; not calibrated correctness probability.",
+        "binaryBrier": 0.184383,
+        "binaryLogLoss": 0.534465
+      },
+      "byLanguage": {
+        "en": {
+          "decisions": 26,
+          "selected": 25,
+          "abstentions": 1,
+          "strictExactTargetCorrect": 18,
+          "binaryBrier": 0.183435,
+          "binaryLogLoss": 0.534856,
+          "reliabilityBins": [
+            {
+              "interval": "[0, 0.5)",
+              "support": 5,
+              "meanTopChoiceProbability": 0.39106,
+              "exactTargetRateAmongSelected": 0.6,
+              "correct": 3
+            },
+            {
+              "interval": "[0.5, 0.7)",
+              "support": 6,
+              "meanTopChoiceProbability": 0.606975,
+              "exactTargetRateAmongSelected": 0.5,
+              "correct": 3
+            },
+            {
+              "interval": "[0.7, 0.85)",
+              "support": 4,
+              "meanTopChoiceProbability": 0.768663,
+              "exactTargetRateAmongSelected": 1,
+              "correct": 4
+            },
+            {
+              "interval": "[0.85, 1]",
+              "support": 10,
+              "meanTopChoiceProbability": 0.93035,
+              "exactTargetRateAmongSelected": 0.8,
+              "correct": 8
+            }
+          ]
+        },
+        "es": {
+          "decisions": 26,
+          "selected": 25,
+          "abstentions": 1,
+          "strictExactTargetCorrect": 17,
+          "binaryBrier": 0.18533,
+          "binaryLogLoss": 0.534074,
+          "reliabilityBins": [
+            {
+              "interval": "[0, 0.5)",
+              "support": 4,
+              "meanTopChoiceProbability": 0.328375,
+              "exactTargetRateAmongSelected": 0.25,
+              "correct": 1
+            },
+            {
+              "interval": "[0.5, 0.7)",
+              "support": 6,
+              "meanTopChoiceProbability": 0.5622,
+              "exactTargetRateAmongSelected": 0.666667,
+              "correct": 4
+            },
+            {
+              "interval": "[0.7, 0.85)",
+              "support": 6,
+              "meanTopChoiceProbability": 0.756225,
+              "exactTargetRateAmongSelected": 0.666667,
+              "correct": 4
+            },
+            {
+              "interval": "[0.85, 1]",
+              "support": 9,
+              "meanTopChoiceProbability": 0.9403,
+              "exactTargetRateAmongSelected": 0.888889,
+              "correct": 8
+            }
+          ]
+        }
+      },
+      "reliabilityBins": [
+        {
+          "interval": "[0, 0.5)",
+          "support": 9,
+          "meanTopChoiceProbability": 0.3632,
+          "exactTargetRateAmongSelected": 0.444444,
+          "correct": 4
+        },
+        {
+          "interval": "[0.5, 0.7)",
+          "support": 12,
+          "meanTopChoiceProbability": 0.584588,
+          "exactTargetRateAmongSelected": 0.583333,
+          "correct": 7
+        },
+        {
+          "interval": "[0.7, 0.85)",
+          "support": 10,
+          "meanTopChoiceProbability": 0.7612,
+          "exactTargetRateAmongSelected": 0.8,
+          "correct": 8
+        },
+        {
+          "interval": "[0.85, 1]",
+          "support": 19,
+          "meanTopChoiceProbability": 0.935063,
+          "exactTargetRateAmongSelected": 0.842105,
+          "correct": 16
+        }
+      ],
+      "riskCoverage": {
+        "status": "exploratory-only",
+        "denominator": "all 52 decisions; abstentions are not accepted at any threshold",
+        "thresholds": [
+          {
+            "threshold": 0,
+            "accepted": 50,
+            "eligibleDecisions": 52,
+            "coverage": 0.961538,
+            "errors": 15,
+            "selectiveRisk": 0.3
+          },
+          {
+            "threshold": 0.05,
+            "accepted": 50,
+            "eligibleDecisions": 52,
+            "coverage": 0.961538,
+            "errors": 15,
+            "selectiveRisk": 0.3
+          },
+          {
+            "threshold": 0.1,
+            "accepted": 50,
+            "eligibleDecisions": 52,
+            "coverage": 0.961538,
+            "errors": 15,
+            "selectiveRisk": 0.3
+          },
+          {
+            "threshold": 0.15,
+            "accepted": 50,
+            "eligibleDecisions": 52,
+            "coverage": 0.961538,
+            "errors": 15,
+            "selectiveRisk": 0.3
+          },
+          {
+            "threshold": 0.2,
+            "accepted": 50,
+            "eligibleDecisions": 52,
+            "coverage": 0.961538,
+            "errors": 15,
+            "selectiveRisk": 0.3
+          },
+          {
+            "threshold": 0.25,
+            "accepted": 50,
+            "eligibleDecisions": 52,
+            "coverage": 0.961538,
+            "errors": 15,
+            "selectiveRisk": 0.3
+          },
+          {
+            "threshold": 0.3,
+            "accepted": 49,
+            "eligibleDecisions": 52,
+            "coverage": 0.942308,
+            "errors": 14,
+            "selectiveRisk": 0.285714
+          },
+          {
+            "threshold": 0.35,
+            "accepted": 46,
+            "eligibleDecisions": 52,
+            "coverage": 0.884615,
+            "errors": 12,
+            "selectiveRisk": 0.26087
+          },
+          {
+            "threshold": 0.4,
+            "accepted": 44,
+            "eligibleDecisions": 52,
+            "coverage": 0.846154,
+            "errors": 11,
+            "selectiveRisk": 0.25
+          },
+          {
+            "threshold": 0.45,
+            "accepted": 42,
+            "eligibleDecisions": 52,
+            "coverage": 0.807692,
+            "errors": 10,
+            "selectiveRisk": 0.238095
+          },
+          {
+            "threshold": 0.5,
+            "accepted": 41,
+            "eligibleDecisions": 52,
+            "coverage": 0.788462,
+            "errors": 10,
+            "selectiveRisk": 0.243902
+          },
+          {
+            "threshold": 0.55,
+            "accepted": 38,
+            "eligibleDecisions": 52,
+            "coverage": 0.730769,
+            "errors": 9,
+            "selectiveRisk": 0.236842
+          },
+          {
+            "threshold": 0.6,
+            "accepted": 33,
+            "eligibleDecisions": 52,
+            "coverage": 0.634615,
+            "errors": 7,
+            "selectiveRisk": 0.212121
+          },
+          {
+            "threshold": 0.65,
+            "accepted": 31,
+            "eligibleDecisions": 52,
+            "coverage": 0.596154,
+            "errors": 6,
+            "selectiveRisk": 0.193548
+          },
+          {
+            "threshold": 0.7,
+            "accepted": 29,
+            "eligibleDecisions": 52,
+            "coverage": 0.557692,
+            "errors": 5,
+            "selectiveRisk": 0.172414
+          },
+          {
+            "threshold": 0.75,
+            "accepted": 25,
+            "eligibleDecisions": 52,
+            "coverage": 0.480769,
+            "errors": 4,
+            "selectiveRisk": 0.16
+          },
+          {
+            "threshold": 0.8,
+            "accepted": 22,
+            "eligibleDecisions": 52,
+            "coverage": 0.423077,
+            "errors": 4,
+            "selectiveRisk": 0.181818
+          },
+          {
+            "threshold": 0.85,
+            "accepted": 19,
+            "eligibleDecisions": 52,
+            "coverage": 0.365385,
+            "errors": 3,
+            "selectiveRisk": 0.157895
+          },
+          {
+            "threshold": 0.9,
+            "accepted": 14,
+            "eligibleDecisions": 52,
+            "coverage": 0.269231,
+            "errors": 0,
+            "selectiveRisk": 0
+          },
+          {
+            "threshold": 0.95,
+            "accepted": 9,
+            "eligibleDecisions": 52,
+            "coverage": 0.173077,
+            "errors": 0,
+            "selectiveRisk": 0
+          },
+          {
+            "threshold": 1,
+            "accepted": 0,
+            "eligibleDecisions": 52,
+            "coverage": 0,
+            "errors": 0,
+            "selectiveRisk": null
+          }
+        ],
+        "noThresholdRecommendation": true
+      },
+      "multiclass": {
+        "status": "unavailable",
+        "completeDistributions": 0,
+        "requiredDistributions": 52,
+        "reason": "The frozen responses do not persist choiceDistribution for every decision; complete per-option probability vectors are required."
+      },
+      "limitations": [
+        "Labels are Luna-reviewed and were not exposed during inference, but they were not adjudicated by the document owner and are not independent human ground truth.",
+        "The run was captured from a dirty source tree (package 0.2.96, build not recorded); consult the manifest's source hashes before replay or comparison.",
+        "The single expected heading per query is strict; multiple semantically acceptable evidence ranges have not been independently adjudicated.",
+        "The query-level split reuses the same 21 source documents; this does not test generalization to unseen documents or projects.",
+        "Each language pair shares a concept and source document; 52 decisions are not 52 independent units.",
+        "The TypeSafe confidence transform is used only after validating the final Choice count and the single-pass mode; its reconstructed pmax is not correctness probability.",
+        "Abstention quality has no independent labels; abstentions are reported and excluded from top-label proper scores.",
+        "This report does not select a production threshold or authorize any production behavior change."
+      ],
+      "records": [
+        {
+          "caseId": "01",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "status": "selected",
+          "confidence": 0.96,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.9602
+        },
+        {
+          "caseId": "01",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "status": "selected",
+          "confidence": 0.93,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.93035
+        },
+        {
+          "caseId": "02",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "status": "selected",
+          "confidence": 0.96,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.9602
+        },
+        {
+          "caseId": "02",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "status": "selected",
+          "confidence": 0.4,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.403
+        },
+        {
+          "caseId": "03",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+          "status": "selected",
+          "confidence": 0.33,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.33335
+        },
+        {
+          "caseId": "03",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+          "status": "selected",
+          "confidence": 0.27,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.27365
+        },
+        {
+          "caseId": "04",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+          "status": "selected",
+          "confidence": 0.58,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.5821
+        },
+        {
+          "caseId": "04",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+          "status": "selected",
+          "confidence": 0.97,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.97015
+        },
+        {
+          "caseId": "06",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/architecture/project-context-plane.md",
+          "status": "abstained",
+          "confidence": 0.65,
+          "finalChoiceOptionCount": 200,
+          "correct": null,
+          "reconstructedTopChoiceMass": null
+        },
+        {
+          "caseId": "06",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/architecture/project-context-plane.md",
+          "status": "selected",
+          "confidence": 0.98,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.9801
+        },
+        {
+          "caseId": "08",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+          "status": "selected",
+          "confidence": 0.36,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.3632
+        },
+        {
+          "caseId": "08",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+          "status": "selected",
+          "confidence": 0.56,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.5622
+        },
+        {
+          "caseId": "09",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+          "status": "selected",
+          "confidence": 0.93,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.93035
+        },
+        {
+          "caseId": "09",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+          "status": "selected",
+          "confidence": 0.8,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.801
+        },
+        {
+          "caseId": "10",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
+          "status": "selected",
+          "confidence": 0.99,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.99005
+        },
+        {
+          "caseId": "10",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
+          "status": "selected",
+          "confidence": 0.97,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.97015
+        },
+        {
+          "caseId": "12",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+          "status": "selected",
+          "confidence": 0.58,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.5821
+        },
+        {
+          "caseId": "12",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+          "status": "selected",
+          "confidence": 0.6,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.602
+        },
+        {
+          "caseId": "13",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "status": "selected",
+          "confidence": 0.53,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.53235
+        },
+        {
+          "caseId": "13",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "status": "selected",
+          "confidence": 0.31,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.31345
+        },
+        {
+          "caseId": "15",
+          "language": "en",
+          "sourceDocument": "docs/AGENT_PROTOCOL.md",
+          "status": "selected",
+          "confidence": 0.92,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.9204
+        },
+        {
+          "caseId": "15",
+          "language": "es",
+          "sourceDocument": "docs/AGENT_PROTOCOL.md",
+          "status": "selected",
+          "confidence": 0.5,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.5025
+        },
+        {
+          "caseId": "16",
+          "language": "en",
+          "sourceDocument": "docs/AGENT_PROTOCOL.md",
+          "status": "selected",
+          "confidence": 0.82,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.8209
+        },
+        {
+          "caseId": "16",
+          "language": "es",
+          "sourceDocument": "docs/AGENT_PROTOCOL.md",
+          "status": "selected",
+          "confidence": 0.91,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.91045
+        },
+        {
+          "caseId": "17",
+          "language": "en",
+          "sourceDocument": "docs/REPOSITORY_STRUCTURE.md",
+          "status": "selected",
+          "confidence": 0.86,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.8607
+        },
+        {
+          "caseId": "17",
+          "language": "es",
+          "sourceDocument": "docs/REPOSITORY_STRUCTURE.md",
+          "status": "selected",
+          "confidence": 0.86,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.8607
+        },
+        {
+          "caseId": "18",
+          "language": "en",
+          "sourceDocument": "docs/REPOSITORY_STRUCTURE.md",
+          "status": "selected",
+          "confidence": 0.67,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.67165
+        },
+        {
+          "caseId": "18",
+          "language": "es",
+          "sourceDocument": "docs/REPOSITORY_STRUCTURE.md",
+          "status": "selected",
+          "confidence": 0.76,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.7612
+        },
+        {
+          "caseId": "19",
+          "language": "en",
+          "sourceDocument": "docs/REGISTRY.md",
+          "status": "selected",
+          "confidence": 0.89,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.89055
+        },
+        {
+          "caseId": "19",
+          "language": "es",
+          "sourceDocument": "docs/REGISTRY.md",
+          "status": "selected",
+          "confidence": 0.88,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.8806
+        },
+        {
+          "caseId": "20",
+          "language": "en",
+          "sourceDocument": "docs/FIRST_PARTY_SKILLS_V1.md",
+          "status": "selected",
+          "confidence": 0.47,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.47265
+        },
+        {
+          "caseId": "20",
+          "language": "es",
+          "sourceDocument": "docs/FIRST_PARTY_SKILLS_V1.md",
+          "status": "selected",
+          "confidence": 0.32,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.3234
+        },
+        {
+          "caseId": "21",
+          "language": "en",
+          "sourceDocument": "docs/skill-routing/README.md",
+          "status": "selected",
+          "confidence": 0.36,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.3632
+        },
+        {
+          "caseId": "21",
+          "language": "es",
+          "sourceDocument": "docs/skill-routing/README.md",
+          "status": "abstained",
+          "confidence": 0.42,
+          "finalChoiceOptionCount": 200,
+          "correct": null,
+          "reconstructedTopChoiceMass": null
+        },
+        {
+          "caseId": "22",
+          "language": "en",
+          "sourceDocument": "docs/skill-routing/README.md",
+          "status": "selected",
+          "confidence": 0.88,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.8806
+        },
+        {
+          "caseId": "22",
+          "language": "es",
+          "sourceDocument": "docs/skill-routing/README.md",
+          "status": "selected",
+          "confidence": 0.84,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.8408
+        },
+        {
+          "caseId": "23",
+          "language": "en",
+          "sourceDocument": "docs/skill-routing/TESTING.md",
+          "status": "selected",
+          "confidence": 0.77,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.77115
+        },
+        {
+          "caseId": "23",
+          "language": "es",
+          "sourceDocument": "docs/skill-routing/TESTING.md",
+          "status": "selected",
+          "confidence": 0.7,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.7015
+        },
+        {
+          "caseId": "24",
+          "language": "en",
+          "sourceDocument": "docs/skill-routing/ROADMAP.md",
+          "status": "selected",
+          "confidence": 0.99,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.99005
+        },
+        {
+          "caseId": "24",
+          "language": "es",
+          "sourceDocument": "docs/skill-routing/ROADMAP.md",
+          "status": "selected",
+          "confidence": 0.99,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.99005
+        },
+        {
+          "caseId": "25",
+          "language": "en",
+          "sourceDocument": "docs/skill-routing/MAINTENANCE.md",
+          "status": "selected",
+          "confidence": 0.68,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.6816
+        },
+        {
+          "caseId": "25",
+          "language": "es",
+          "sourceDocument": "docs/skill-routing/MAINTENANCE.md",
+          "status": "selected",
+          "confidence": 0.55,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.55225
+        },
+        {
+          "caseId": "26",
+          "language": "en",
+          "sourceDocument": "docs/OPERATIONAL_NOTICE_PLANE.md",
+          "status": "selected",
+          "confidence": 0.92,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.9204
+        },
+        {
+          "caseId": "26",
+          "language": "es",
+          "sourceDocument": "docs/OPERATIONAL_NOTICE_PLANE.md",
+          "status": "selected",
+          "confidence": 0.97,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.97015
+        },
+        {
+          "caseId": "27",
+          "language": "en",
+          "sourceDocument": "docs/decisions/0001-context-plane-v1.md",
+          "status": "selected",
+          "confidence": 0.78,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.7811
+        },
+        {
+          "caseId": "27",
+          "language": "es",
+          "sourceDocument": "docs/decisions/0001-context-plane-v1.md",
+          "status": "selected",
+          "confidence": 0.73,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.73135
+        },
+        {
+          "caseId": "28",
+          "language": "en",
+          "sourceDocument": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+          "status": "selected",
+          "confidence": 0.42,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.4229
+        },
+        {
+          "caseId": "28",
+          "language": "es",
+          "sourceDocument": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+          "status": "selected",
+          "confidence": 0.7,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.7015
+        },
+        {
+          "caseId": "29",
+          "language": "en",
+          "sourceDocument": "docs/decisions/0004-situation-model-project-knowledge.md",
+          "status": "selected",
+          "confidence": 0.7,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.7015
+        },
+        {
+          "caseId": "29",
+          "language": "es",
+          "sourceDocument": "docs/decisions/0004-situation-model-project-knowledge.md",
+          "status": "selected",
+          "confidence": 0.51,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.51245
+        },
+        {
+          "caseId": "30",
+          "language": "en",
+          "sourceDocument": "docs/decisions/0005-architecture-impact-drift-links.md",
+          "status": "selected",
+          "confidence": 0.59,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.59205
+        },
+        {
+          "caseId": "30",
+          "language": "es",
+          "sourceDocument": "docs/decisions/0005-architecture-impact-drift-links.md",
+          "status": "selected",
+          "confidence": 0.64,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.6418
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "runId": "mssr-librarian-jev-bilingual-80k-singlepass-20261001T184400Z-v2",
+      "runDirectory": "mssr-librarian-jev-bilingual-80k-singlepass-20261001T184400Z-v2",
+      "sourceHashes": {
+        "cases.json": "70e4c30fa2473a73fd9c2626a92ecfc58addb548da132e2ee639614b94e384f4",
+        "corpus.json": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d",
+        "labels.json": "c3f2c8db87f4086747d346596eacbf66038a4712c1210d1ffbf1bf6dcf731b99",
+        "target-index.json": "770e14acfaf74716dd3667cb8311e5e56a7222e5895dc725bcc44571e5f8a58a"
+      },
+      "runInventoryHashes": {
+        "score-summary.json": "08d0eeb81e91d5ba9f31b67720ee21a19d4550d1caf7898c9e754f58ffd66d13",
+        "hierarchical-live-smoke-v2-result.json": "26ecbe67fb61e5cecc02bc91dae03403ee9547f3ddef1efe9c3e6797b2098640",
+        "score.mjs": "30df515d85e5875b16cb482c3438ffe883f8e35ccf9ee615b46cf97e46b50579",
+        "inputs/corpus.json": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d",
+        "runner.mjs": "40bb95b69cc1c9be6daa243edcf33ff3a13e08dfa3faf710c518acfbb1ac366c",
+        "inputs/cases.json": "70e4c30fa2473a73fd9c2626a92ecfc58addb548da132e2ee639614b94e384f4",
+        "inputs/target-index.json": "770e14acfaf74716dd3667cb8311e5e56a7222e5895dc725bcc44571e5f8a58a",
+        "scored-records.json": "82d809856fb702bb12d96676b27ec89378a8803a713cdb2db79b273897ede226",
+        "responses.json": "8f7bee648b40c49f480a2eca045b823beeb322cada44d12fd648df1acead956a",
+        "hierarchical-live-smoke-80k.mjs": "97c9dbb391ec9d99d1a627bb7c3bec6cbccddd51186a47763ca214c50d1db46e",
+        "REPORT.md": "9fbac6aa2bb36f7f8be9bd94aa59648d9ac656b30247c01998b02148ac80d8fc",
+        "inputs/labels.json": "c3f2c8db87f4086747d346596eacbf66038a4712c1210d1ffbf1bf6dcf731b99",
+        "probability-distribution-live-smoke-80k.mjs": "c8d9bdd5b5432416bc21cee45e2dba2665adbbe3c6e4f66b6f9c6e729c175862",
+        "summary.json": "d3f658944a6c7d9a8a795826052ef8b49fc67b92a15069b67bc72033dd9aafca",
+        "probability-distribution-live-smoke-v2-result.json": "ddcbbc616cb11eda33cf1f02ec5573f6274dfeb5c16e4da03b4c63527b6a0a59",
+        "manifest.json": "e0c4878fd7d23ce9bb65fc5e88d936a3f26a557134094a8d047da27c46579940"
+      },
+      "sourceProvenance": {
+        "packageVersion": "0.2.97",
+        "headAtRunKnown": "5163dce31f3912aca4500cbd2fb58453d6ee7203",
+        "workingTreeDirtyAtManifest": true,
+        "buildId": "mssr-build:sha256:bc288853f02be406",
+        "branchAtManifest": "codex/jev-confidence-merge-evaluation"
+      },
+      "evaluationClass": "exploratory-top-label-confidence-diagnostic",
+      "choiceProbability": {
+        "status": "reconstructed-from-verified-final-choice-count",
+        "transformId": "typesafe-choice-normalized-pmax-v1",
+        "formula": "pmax = 1/n + confidence * (1 - 1/n)",
+        "source": "https://docs.typesafe.ai/confidence",
+        "optionCountField": "responses.records[].finalistCount",
+        "verifiedOptionCount": 200,
+        "caveat": "Reconstructed top-option mass for the final Choice; not an estimate that the selected evidence is correct."
+      },
+      "counts": {
+        "decisions": 52,
+        "selected": 50,
+        "abstentions": 2,
+        "strictExactTargetCorrect": 34,
+        "strictExactTargetIncorrect": 16,
+        "scoredSelectedDecisions": 50,
+        "independentUnits": 21,
+        "documentsInFrozenCorpus": 21,
+        "languagesPerCase": 2
+      },
+      "topLabelMetrics": {
+        "interpretation": "Exploratory proper scores for reconstructed top-choice mass against a strict single-heading target label; not calibrated correctness probability.",
+        "binaryBrier": 0.178172,
+        "binaryLogLoss": 0.515081
+      },
+      "byLanguage": {
+        "en": {
+          "decisions": 26,
+          "selected": 25,
+          "abstentions": 1,
+          "strictExactTargetCorrect": 17,
+          "binaryBrier": 0.169699,
+          "binaryLogLoss": 0.494576,
+          "reliabilityBins": [
+            {
+              "interval": "[0, 0.5)",
+              "support": 4,
+              "meanTopChoiceProbability": 0.365687,
+              "exactTargetRateAmongSelected": 0.25,
+              "correct": 1
+            },
+            {
+              "interval": "[0.5, 0.7)",
+              "support": 8,
+              "meanTopChoiceProbability": 0.600756,
+              "exactTargetRateAmongSelected": 0.625,
+              "correct": 5
+            },
+            {
+              "interval": "[0.7, 0.85)",
+              "support": 3,
+              "meanTopChoiceProbability": 0.794367,
+              "exactTargetRateAmongSelected": 0.666667,
+              "correct": 2
+            },
+            {
+              "interval": "[0.85, 1]",
+              "support": 10,
+              "meanTopChoiceProbability": 0.92637,
+              "exactTargetRateAmongSelected": 0.9,
+              "correct": 9
+            }
+          ]
+        },
+        "es": {
+          "decisions": 26,
+          "selected": 25,
+          "abstentions": 1,
+          "strictExactTargetCorrect": 17,
+          "binaryBrier": 0.186645,
+          "binaryLogLoss": 0.535587,
+          "reliabilityBins": [
+            {
+              "interval": "[0, 0.5)",
+              "support": 5,
+              "meanTopChoiceProbability": 0.37315,
+              "exactTargetRateAmongSelected": 0.4,
+              "correct": 2
+            },
+            {
+              "interval": "[0.5, 0.7)",
+              "support": 4,
+              "meanTopChoiceProbability": 0.587075,
+              "exactTargetRateAmongSelected": 0.75,
+              "correct": 3
+            },
+            {
+              "interval": "[0.7, 0.85)",
+              "support": 7,
+              "meanTopChoiceProbability": 0.766886,
+              "exactTargetRateAmongSelected": 0.571429,
+              "correct": 4
+            },
+            {
+              "interval": "[0.85, 1]",
+              "support": 9,
+              "meanTopChoiceProbability": 0.944722,
+              "exactTargetRateAmongSelected": 0.888889,
+              "correct": 8
+            }
+          ]
+        }
+      },
+      "reliabilityBins": [
+        {
+          "interval": "[0, 0.5)",
+          "support": 9,
+          "meanTopChoiceProbability": 0.369833,
+          "exactTargetRateAmongSelected": 0.333333,
+          "correct": 3
+        },
+        {
+          "interval": "[0.5, 0.7)",
+          "support": 12,
+          "meanTopChoiceProbability": 0.596196,
+          "exactTargetRateAmongSelected": 0.666667,
+          "correct": 8
+        },
+        {
+          "interval": "[0.7, 0.85)",
+          "support": 10,
+          "meanTopChoiceProbability": 0.77513,
+          "exactTargetRateAmongSelected": 0.6,
+          "correct": 6
+        },
+        {
+          "interval": "[0.85, 1]",
+          "support": 19,
+          "meanTopChoiceProbability": 0.935063,
+          "exactTargetRateAmongSelected": 0.894737,
+          "correct": 17
+        }
+      ],
+      "riskCoverage": {
+        "status": "exploratory-only",
+        "denominator": "all 52 decisions; abstentions are not accepted at any threshold",
+        "thresholds": [
+          {
+            "threshold": 0,
+            "accepted": 50,
+            "eligibleDecisions": 52,
+            "coverage": 0.961538,
+            "errors": 16,
+            "selectiveRisk": 0.32
+          },
+          {
+            "threshold": 0.05,
+            "accepted": 50,
+            "eligibleDecisions": 52,
+            "coverage": 0.961538,
+            "errors": 16,
+            "selectiveRisk": 0.32
+          },
+          {
+            "threshold": 0.1,
+            "accepted": 50,
+            "eligibleDecisions": 52,
+            "coverage": 0.961538,
+            "errors": 16,
+            "selectiveRisk": 0.32
+          },
+          {
+            "threshold": 0.15,
+            "accepted": 50,
+            "eligibleDecisions": 52,
+            "coverage": 0.961538,
+            "errors": 16,
+            "selectiveRisk": 0.32
+          },
+          {
+            "threshold": 0.2,
+            "accepted": 50,
+            "eligibleDecisions": 52,
+            "coverage": 0.961538,
+            "errors": 16,
+            "selectiveRisk": 0.32
+          },
+          {
+            "threshold": 0.25,
+            "accepted": 50,
+            "eligibleDecisions": 52,
+            "coverage": 0.961538,
+            "errors": 16,
+            "selectiveRisk": 0.32
+          },
+          {
+            "threshold": 0.3,
+            "accepted": 48,
+            "eligibleDecisions": 52,
+            "coverage": 0.923077,
+            "errors": 14,
+            "selectiveRisk": 0.291667
+          },
+          {
+            "threshold": 0.35,
+            "accepted": 45,
+            "eligibleDecisions": 52,
+            "coverage": 0.865385,
+            "errors": 12,
+            "selectiveRisk": 0.266667
+          },
+          {
+            "threshold": 0.4,
+            "accepted": 44,
+            "eligibleDecisions": 52,
+            "coverage": 0.846154,
+            "errors": 12,
+            "selectiveRisk": 0.272727
+          },
+          {
+            "threshold": 0.45,
+            "accepted": 43,
+            "eligibleDecisions": 52,
+            "coverage": 0.826923,
+            "errors": 12,
+            "selectiveRisk": 0.27907
+          },
+          {
+            "threshold": 0.5,
+            "accepted": 41,
+            "eligibleDecisions": 52,
+            "coverage": 0.788462,
+            "errors": 10,
+            "selectiveRisk": 0.243902
+          },
+          {
+            "threshold": 0.55,
+            "accepted": 39,
+            "eligibleDecisions": 52,
+            "coverage": 0.75,
+            "errors": 9,
+            "selectiveRisk": 0.230769
+          },
+          {
+            "threshold": 0.6,
+            "accepted": 36,
+            "eligibleDecisions": 52,
+            "coverage": 0.692308,
+            "errors": 9,
+            "selectiveRisk": 0.25
+          },
+          {
+            "threshold": 0.65,
+            "accepted": 32,
+            "eligibleDecisions": 52,
+            "coverage": 0.615385,
+            "errors": 7,
+            "selectiveRisk": 0.21875
+          },
+          {
+            "threshold": 0.7,
+            "accepted": 29,
+            "eligibleDecisions": 52,
+            "coverage": 0.557692,
+            "errors": 6,
+            "selectiveRisk": 0.206897
+          },
+          {
+            "threshold": 0.75,
+            "accepted": 26,
+            "eligibleDecisions": 52,
+            "coverage": 0.5,
+            "errors": 4,
+            "selectiveRisk": 0.153846
+          },
+          {
+            "threshold": 0.8,
+            "accepted": 22,
+            "eligibleDecisions": 52,
+            "coverage": 0.423077,
+            "errors": 3,
+            "selectiveRisk": 0.136364
+          },
+          {
+            "threshold": 0.85,
+            "accepted": 19,
+            "eligibleDecisions": 52,
+            "coverage": 0.365385,
+            "errors": 2,
+            "selectiveRisk": 0.105263
+          },
+          {
+            "threshold": 0.9,
+            "accepted": 15,
+            "eligibleDecisions": 52,
+            "coverage": 0.288462,
+            "errors": 0,
+            "selectiveRisk": 0
+          },
+          {
+            "threshold": 0.95,
+            "accepted": 9,
+            "eligibleDecisions": 52,
+            "coverage": 0.173077,
+            "errors": 0,
+            "selectiveRisk": 0
+          },
+          {
+            "threshold": 1,
+            "accepted": 0,
+            "eligibleDecisions": 52,
+            "coverage": 0,
+            "errors": 0,
+            "selectiveRisk": null
+          }
+        ],
+        "noThresholdRecommendation": true
+      },
+      "multiclass": {
+        "status": "unavailable",
+        "completeDistributions": 0,
+        "requiredDistributions": 52,
+        "reason": "The frozen responses do not persist choiceDistribution for every decision; complete per-option probability vectors are required."
+      },
+      "limitations": [
+        "Labels are Luna-reviewed and were not exposed during inference, but they were not adjudicated by the document owner and are not independent human ground truth.",
+        "The run was captured from a dirty source tree (package 0.2.97, build mssr-build:sha256:bc288853f02be406); consult the manifest's source hashes before replay or comparison.",
+        "The single expected heading per query is strict; multiple semantically acceptable evidence ranges have not been independently adjudicated.",
+        "The query-level split reuses the same 21 source documents; this does not test generalization to unseen documents or projects.",
+        "Each language pair shares a concept and source document; 52 decisions are not 52 independent units.",
+        "The TypeSafe confidence transform is used only after validating the final Choice count and the single-pass mode; its reconstructed pmax is not correctness probability.",
+        "Abstention quality has no independent labels; abstentions are reported and excluded from top-label proper scores.",
+        "This report does not select a production threshold or authorize any production behavior change."
+      ],
+      "records": [
+        {
+          "caseId": "01",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "status": "selected",
+          "confidence": 0.95,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.95025
+        },
+        {
+          "caseId": "01",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "status": "selected",
+          "confidence": 0.93,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.93035
+        },
+        {
+          "caseId": "02",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "status": "selected",
+          "confidence": 0.96,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.9602
+        },
+        {
+          "caseId": "02",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "status": "selected",
+          "confidence": 0.46,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.4627
+        },
+        {
+          "caseId": "03",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+          "status": "selected",
+          "confidence": 0.32,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.3234
+        },
+        {
+          "caseId": "03",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+          "status": "selected",
+          "confidence": 0.28,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.2836
+        },
+        {
+          "caseId": "04",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+          "status": "selected",
+          "confidence": 0.62,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.6219
+        },
+        {
+          "caseId": "04",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+          "status": "selected",
+          "confidence": 0.97,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.97015
+        },
+        {
+          "caseId": "06",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/architecture/project-context-plane.md",
+          "status": "abstained",
+          "confidence": 0.69,
+          "finalChoiceOptionCount": 200,
+          "correct": null,
+          "reconstructedTopChoiceMass": null
+        },
+        {
+          "caseId": "06",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/architecture/project-context-plane.md",
+          "status": "selected",
+          "confidence": 0.98,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.9801
+        },
+        {
+          "caseId": "08",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+          "status": "selected",
+          "confidence": 0.32,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.3234
+        },
+        {
+          "caseId": "08",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+          "status": "selected",
+          "confidence": 0.6,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.602
+        },
+        {
+          "caseId": "09",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+          "status": "selected",
+          "confidence": 0.9,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.9005
+        },
+        {
+          "caseId": "09",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+          "status": "selected",
+          "confidence": 0.83,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.83085
+        },
+        {
+          "caseId": "10",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
+          "status": "selected",
+          "confidence": 0.99,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.99005
+        },
+        {
+          "caseId": "10",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
+          "status": "selected",
+          "confidence": 0.97,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.97015
+        },
+        {
+          "caseId": "12",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+          "status": "selected",
+          "confidence": 0.56,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.5622
+        },
+        {
+          "caseId": "12",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+          "status": "selected",
+          "confidence": 0.58,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.5821
+        },
+        {
+          "caseId": "13",
+          "language": "en",
+          "sourceDocument": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "status": "selected",
+          "confidence": 0.51,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.51245
+        },
+        {
+          "caseId": "13",
+          "language": "es",
+          "sourceDocument": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "status": "selected",
+          "confidence": 0.28,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.2836
+        },
+        {
+          "caseId": "15",
+          "language": "en",
+          "sourceDocument": "docs/AGENT_PROTOCOL.md",
+          "status": "selected",
+          "confidence": 0.91,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.91045
+        },
+        {
+          "caseId": "15",
+          "language": "es",
+          "sourceDocument": "docs/AGENT_PROTOCOL.md",
+          "status": "selected",
+          "confidence": 0.44,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.4428
+        },
+        {
+          "caseId": "16",
+          "language": "en",
+          "sourceDocument": "docs/AGENT_PROTOCOL.md",
+          "status": "selected",
+          "confidence": 0.87,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.87065
+        },
+        {
+          "caseId": "16",
+          "language": "es",
+          "sourceDocument": "docs/AGENT_PROTOCOL.md",
+          "status": "selected",
+          "confidence": 0.92,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.9204
+        },
+        {
+          "caseId": "17",
+          "language": "en",
+          "sourceDocument": "docs/REPOSITORY_STRUCTURE.md",
+          "status": "selected",
+          "confidence": 0.85,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.85075
+        },
+        {
+          "caseId": "17",
+          "language": "es",
+          "sourceDocument": "docs/REPOSITORY_STRUCTURE.md",
+          "status": "selected",
+          "confidence": 0.82,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.8209
+        },
+        {
+          "caseId": "18",
+          "language": "en",
+          "sourceDocument": "docs/REPOSITORY_STRUCTURE.md",
+          "status": "selected",
+          "confidence": 0.65,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.65175
+        },
+        {
+          "caseId": "18",
+          "language": "es",
+          "sourceDocument": "docs/REPOSITORY_STRUCTURE.md",
+          "status": "selected",
+          "confidence": 0.78,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.7811
+        },
+        {
+          "caseId": "19",
+          "language": "en",
+          "sourceDocument": "docs/REGISTRY.md",
+          "status": "selected",
+          "confidence": 0.9,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.9005
+        },
+        {
+          "caseId": "19",
+          "language": "es",
+          "sourceDocument": "docs/REGISTRY.md",
+          "status": "selected",
+          "confidence": 0.89,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.89055
+        },
+        {
+          "caseId": "20",
+          "language": "en",
+          "sourceDocument": "docs/FIRST_PARTY_SKILLS_V1.md",
+          "status": "selected",
+          "confidence": 0.53,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.53235
+        },
+        {
+          "caseId": "20",
+          "language": "es",
+          "sourceDocument": "docs/FIRST_PARTY_SKILLS_V1.md",
+          "status": "selected",
+          "confidence": 0.39,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.39305
+        },
+        {
+          "caseId": "21",
+          "language": "en",
+          "sourceDocument": "docs/skill-routing/README.md",
+          "status": "selected",
+          "confidence": 0.33,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.33335
+        },
+        {
+          "caseId": "21",
+          "language": "es",
+          "sourceDocument": "docs/skill-routing/README.md",
+          "status": "abstained",
+          "confidence": 0.39,
+          "finalChoiceOptionCount": 200,
+          "correct": null,
+          "reconstructedTopChoiceMass": null
+        },
+        {
+          "caseId": "22",
+          "language": "en",
+          "sourceDocument": "docs/skill-routing/README.md",
+          "status": "selected",
+          "confidence": 0.79,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.79105
+        },
+        {
+          "caseId": "22",
+          "language": "es",
+          "sourceDocument": "docs/skill-routing/README.md",
+          "status": "selected",
+          "confidence": 0.88,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.8806
+        },
+        {
+          "caseId": "23",
+          "language": "en",
+          "sourceDocument": "docs/skill-routing/TESTING.md",
+          "status": "selected",
+          "confidence": 0.79,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.79105
+        },
+        {
+          "caseId": "23",
+          "language": "es",
+          "sourceDocument": "docs/skill-routing/TESTING.md",
+          "status": "selected",
+          "confidence": 0.72,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.7214
+        },
+        {
+          "caseId": "24",
+          "language": "en",
+          "sourceDocument": "docs/skill-routing/ROADMAP.md",
+          "status": "selected",
+          "confidence": 0.99,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.99005
+        },
+        {
+          "caseId": "24",
+          "language": "es",
+          "sourceDocument": "docs/skill-routing/ROADMAP.md",
+          "status": "selected",
+          "confidence": 0.99,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.99005
+        },
+        {
+          "caseId": "25",
+          "language": "en",
+          "sourceDocument": "docs/skill-routing/MAINTENANCE.md",
+          "status": "selected",
+          "confidence": 0.66,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.6617
+        },
+        {
+          "caseId": "25",
+          "language": "es",
+          "sourceDocument": "docs/skill-routing/MAINTENANCE.md",
+          "status": "selected",
+          "confidence": 0.61,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.61195
+        },
+        {
+          "caseId": "26",
+          "language": "en",
+          "sourceDocument": "docs/OPERATIONAL_NOTICE_PLANE.md",
+          "status": "selected",
+          "confidence": 0.94,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.9403
+        },
+        {
+          "caseId": "26",
+          "language": "es",
+          "sourceDocument": "docs/OPERATIONAL_NOTICE_PLANE.md",
+          "status": "selected",
+          "confidence": 0.97,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.97015
+        },
+        {
+          "caseId": "27",
+          "language": "en",
+          "sourceDocument": "docs/decisions/0001-context-plane-v1.md",
+          "status": "selected",
+          "confidence": 0.8,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.801
+        },
+        {
+          "caseId": "27",
+          "language": "es",
+          "sourceDocument": "docs/decisions/0001-context-plane-v1.md",
+          "status": "selected",
+          "confidence": 0.71,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.71145
+        },
+        {
+          "caseId": "28",
+          "language": "en",
+          "sourceDocument": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+          "status": "selected",
+          "confidence": 0.48,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.4826
+        },
+        {
+          "caseId": "28",
+          "language": "es",
+          "sourceDocument": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+          "status": "selected",
+          "confidence": 0.78,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.7811
+        },
+        {
+          "caseId": "29",
+          "language": "en",
+          "sourceDocument": "docs/decisions/0004-situation-model-project-knowledge.md",
+          "status": "selected",
+          "confidence": 0.65,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.65175
+        },
+        {
+          "caseId": "29",
+          "language": "es",
+          "sourceDocument": "docs/decisions/0004-situation-model-project-knowledge.md",
+          "status": "selected",
+          "confidence": 0.55,
+          "finalChoiceOptionCount": 200,
+          "correct": 1,
+          "reconstructedTopChoiceMass": 0.55225
+        },
+        {
+          "caseId": "30",
+          "language": "en",
+          "sourceDocument": "docs/decisions/0005-architecture-impact-drift-links.md",
+          "status": "selected",
+          "confidence": 0.61,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.61195
+        },
+        {
+          "caseId": "30",
+          "language": "es",
+          "sourceDocument": "docs/decisions/0005-architecture-impact-drift-links.md",
+          "status": "selected",
+          "confidence": 0.72,
+          "finalChoiceOptionCount": 200,
+          "correct": 0,
+          "reconstructedTopChoiceMass": 0.7214
+        }
+      ]
+    }
+  ]
+}
