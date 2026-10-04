@@ -123,7 +123,7 @@ export function compareRankings(baseline, withAtoms) {
       handleId: id,
       sourceRef: (after ?? before).item.handle.sourceRef,
       rangeId: (after ?? before).item.handle.rangeId,
-      headingPath: (after ?? before).item.handle.headingPath,
+      headingPath: (after ?? before).item.headingPath,
       baselineRank: before?.rank ?? null,
       atomRank: after?.rank ?? null,
       baselineScore: before?.item.score ?? null,
@@ -194,7 +194,7 @@ function resultPreview(result, limit = 10) {
     handleId: item.handle.id,
     sourceRef: item.handle.sourceRef,
     rangeId: item.handle.rangeId,
-    headingPath: item.handle.headingPath,
+    headingPath: item.headingPath,
     score: item.score,
     rangeCodeUnits: item.rangeCodeUnits,
     exactFetchable: item.exactFetchable,
@@ -329,7 +329,7 @@ async function runDiagnostic(candidateRootInput, runRootInput) {
       const delta = compareRankings(baseline, withAtoms);
       const anchor = (result) => {
         const hit = result.results.find((item) => item.handle.sourceRef === candidateCase.sourcePath
-          && item.handle.headingPath.at(-1) === candidateCase.anchorHeading);
+          && item.headingPath.at(-1) === candidateCase.anchorHeading);
         return hit ? result.results.indexOf(hit) + 1 : null;
       };
       const fetchEvaluation = (result) => evaluateExactFetchability(result, {

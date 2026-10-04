@@ -28,7 +28,7 @@ const targetClassification = classifyCaseSidecarTargets(cases, projectedItems);
 assert.deepEqual(targetClassification.filter((item) => item.sidecarTargetDeclared).map((item) => item.caseId).sort(), pins.expectedSidecarCaseIds.slice().sort());
 assert.deepEqual(targetClassification.filter((item) => !item.sidecarTargetDeclared).map((item) => item.caseId).sort(), pins.expectedUntaggedCaseIds.slice().sort());
 
-const range = (id, sourceRef, rangeId) => ({ handle: { id, sourceRef, rangeId, headingPath: [rangeId] }, score: 0.5 });
+const range = (id, sourceRef, rangeId) => ({ handle: { id, sourceRef, rangeId }, headingPath: [rangeId], score: 0.5 });
 const baseline = { results: [range("a", "doc-a.md", "r1"), range("b", "doc-b.md", "r2")] };
 const atoms = { results: [range("b", "doc-b.md", "r2"), range("c", "doc-c.md", "r3")] };
 const delta = compareRankings(baseline, atoms);
@@ -42,6 +42,7 @@ assert.deepEqual({
 assert.ok(delta.changedRanks.some((item) => item.handleId === "b" && item.change === "rank-changed"));
 assert.ok(delta.changedRanks.some((item) => item.handleId === "a" && item.change === "removed-with-atoms"));
 assert.ok(delta.changedRanks.some((item) => item.handleId === "c" && item.change === "added-with-atoms"));
+assert.deepEqual(delta.changedRanks.find((item) => item.handleId === "c").headingPath, ["r3"]);
 
 const fetchItem = (id, rangeCodeUnits, exactFetchable) => ({
   handle: { id, rangeId: id, fingerprint: "fingerprint-" + id }, rangeCodeUnits, exactFetchable,

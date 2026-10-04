@@ -195,8 +195,14 @@ candidate anchors remain unadjudicated and are never counted as gold hits.
 
 After committing the diagnostic harness, run it in a new external directory:
 
+The first two attempts are retained as incomplete snapshots under
+`D:\MSSR-benchmark-artifacts\jev-natural-query-diagnostic-20261004-v1` and
+`...-v2`. Neither has a completed receipt or is treated as benchmark output;
+the first exposed the product's exact-fetch size boundary, and the second a
+runner field-path mismatch.
+
 ```powershell
-node .\experiments\jev-metadata-integration\natural-query-diagnostic.mjs --diagnostic --candidate-root 'C:\Users\mauro\.codex\worktrees\jev-evidence-pack-integration\mssr' --run-root 'D:\MSSR-benchmark-artifacts\jev-natural-query-diagnostic-20261004-v2'
+node .\experiments\jev-metadata-integration\natural-query-diagnostic.mjs --diagnostic --candidate-root 'C:\Users\mauro\.codex\worktrees\jev-evidence-pack-integration\mssr' --run-root 'D:\MSSR-benchmark-artifacts\jev-natural-query-diagnostic-20261004-v3'
 ```
 
 This is an offline retrieval experiment: it makes no Jev/provider/MCP/network
