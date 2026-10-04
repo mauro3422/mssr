@@ -6,6 +6,7 @@ import {
   NaturalQueryDiagnosticError,
   classifyCaseSidecarTargets,
   compareRankings,
+  evaluateExactFetchability,
   parseCandidateBank,
 } from "../experiments/jev-metadata-integration/natural-query-diagnostic.mjs";
 
@@ -41,6 +42,28 @@ assert.deepEqual({
 assert.ok(delta.changedRanks.some((item) => item.handleId === "b" && item.change === "rank-changed"));
 assert.ok(delta.changedRanks.some((item) => item.handleId === "a" && item.change === "removed-with-atoms"));
 assert.ok(delta.changedRanks.some((item) => item.handleId === "c" && item.change === "added-with-atoms"));
+
+const fetchItem = (id, rangeCodeUnits, exactFetchable) => ({
+  handle: { id, rangeId: id, fingerprint: "fingerprint-" + id }, rangeCodeUnits, exactFetchable,
+});
+let fetchedCandidate = null;
+const fetchEvaluation = evaluateExactFetchability({ results: [
+  fetchItem("oversize-top", 20_001, false), fetchItem("fetchable-next", 20_000, true),
+] }, {
+  fetchLimitChars: 20_000,
+  fetchEvidence: (item) => { fetchedCandidate = item.handle.id; return { fingerprint: item.handle.fingerprint }; },
+});
+assert.equal(fetchEvaluation.topResult.exactFetchable, false);
+assert.equal(fetchEvaluation.highestRankedFetchable.rank, 2);
+assert.equal(fetchedCandidate, "fetchable-next");
+const noFetchable = evaluateExactFetchability({ results: [fetchItem("oversize-only", 20_001, false)] }, {
+  fetchLimitChars: 20_000,
+  fetchEvidence: () => { throw new Error("Unfetchable result must not be fetched."); },
+});
+assert.equal(noFetchable.highestRankedFetchable, null);
+assert.throws(() => evaluateExactFetchability({ results: [fetchItem("inconsistent", 20_001, true)] }, {
+  fetchLimitChars: 20_000, fetchEvidence: () => ({ fingerprint: "unreachable" }),
+}), (error) => error instanceof NaturalQueryDiagnosticError && error.code === "fetchability-contract-mismatch");
 
 assert.throws(
   () => parseCandidateBank("| C01 | `../outside.md#Heading` | Pregunta | Question | Dimension |", ["C01"]),

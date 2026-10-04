@@ -80,6 +80,37 @@ export function classifyCaseSidecarTargets(cases, projectedItems) {
   });
 }
 
+export function evaluateExactFetchability(searchResult, { fetchEvidence, fetchLimitChars }) {
+  const ranked = searchResult.results.map((item, index) => ({ ...item, rank: index + 1 }));
+  for (const item of ranked) {
+    if (!Number.isSafeInteger(item.rangeCodeUnits) || item.rangeCodeUnits < 0 || typeof item.exactFetchable !== "boolean") {
+      throw new NaturalQueryDiagnosticError("fetchability-contract-missing", "Search result lacks exact-range size/fetchability metadata.");
+    }
+    if (item.exactFetchable !== (item.rangeCodeUnits <= fetchLimitChars)) {
+      throw new NaturalQueryDiagnosticError("fetchability-contract-mismatch", "Search result fetchability disagrees with the pinned product limit.");
+    }
+  }
+  const top = ranked[0];
+  const candidate = ranked.find((item) => item.exactFetchable);
+  const result = {
+    topResult: top ? { rank: top.rank, rangeId: top.handle.rangeId, rangeCodeUnits: top.rangeCodeUnits, exactFetchable: top.exactFetchable } : null,
+    highestRankedFetchable: null,
+  };
+  if (!candidate) return result;
+  const fetched = fetchEvidence(candidate);
+  if (fetched.fingerprint !== candidate.handle.fingerprint) {
+    throw new NaturalQueryDiagnosticError("fetch-fingerprint-mismatch", "Highest-ranked fetchable result fingerprint differs.");
+  }
+  result.highestRankedFetchable = {
+    rank: candidate.rank,
+    rangeId: candidate.handle.rangeId,
+    rangeCodeUnits: candidate.rangeCodeUnits,
+    fingerprint: fetched.fingerprint,
+    passed: true,
+  };
+  return result;
+}
+
 export function compareRankings(baseline, withAtoms) {
   const toMap = (items) => new Map(items.map((item, index) => [item.handle.id, { rank: index + 1, item }]));
   const base = toMap(baseline.results);
@@ -165,6 +196,8 @@ function resultPreview(result, limit = 10) {
     rangeId: item.handle.rangeId,
     headingPath: item.handle.headingPath,
     score: item.score,
+    rangeCodeUnits: item.rangeCodeUnits,
+    exactFetchable: item.exactFetchable,
     projectedFieldsMatched: (item.metadataProjectionMatches ?? []).flatMap((projection) => projection.matches ?? [])
       .map(({ field, value }) => ({ field, value })),
   }));
@@ -266,7 +299,7 @@ async function runDiagnostic(candidateRootInput, runRootInput) {
   const projectorUrl = pathToFileURL(path.join(candidateRoot, "dist", "project-context-librarian.js")).href;
   const retrievalUrl = pathToFileURL(path.join(candidateRoot, "dist", "librarian-retrieval.js")).href;
   const { projectMssrProjectContextLibrarianMetadata } = await import(projectorUrl);
-  const { fetchMssrLibrarianEvidence, searchMssrLibrarianEvidence } = await import(retrievalUrl);
+  const { MSSR_LIBRARIAN_RETRIEVAL_LIMITS, fetchMssrLibrarianEvidence, searchMssrLibrarianEvidence } = await import(retrievalUrl);
   const projection = projectMssrProjectContextLibrarianMetadata(common);
   assert.equal(projection.projected, library.entries.length);
   assert.equal(projection.omitted, 0);
@@ -299,16 +332,16 @@ async function runDiagnostic(candidateRootInput, runRootInput) {
           && item.handle.headingPath.at(-1) === candidateCase.anchorHeading);
         return hit ? result.results.indexOf(hit) + 1 : null;
       };
-      const fetchTop = (result) => {
-        const first = result.results[0];
-        if (!first) return { passed: false, reason: "no-result" };
-        const source = snapshotDocs.find((doc) => doc.sourceRef === first.handle.sourceRef);
-        const fetched = fetchMssrLibrarianEvidence({
-          handle: first.handle, owner, sourceRef: source.sourceRef, markdown: source.markdown, privacyClass: "project-metadata",
-        });
-        if (fetched.fingerprint !== first.handle.fingerprint) throw new NaturalQueryDiagnosticError("fetch-fingerprint-mismatch", "Top result exact fetch fingerprint differs.");
-        return { passed: true, rangeId: first.handle.rangeId, fingerprint: fetched.fingerprint };
-      };
+      const fetchEvaluation = (result) => evaluateExactFetchability(result, {
+        fetchLimitChars: MSSR_LIBRARIAN_RETRIEVAL_LIMITS.fetchChars,
+        fetchEvidence: (candidate) => {
+          const source = snapshotDocs.find((doc) => doc.sourceRef === candidate.handle.sourceRef);
+          if (!source) throw new NaturalQueryDiagnosticError("fetch-source-missing", "Fetchable result source is absent from the frozen corpus.");
+          return fetchMssrLibrarianEvidence({
+            handle: candidate.handle, owner, sourceRef: source.sourceRef, markdown: source.markdown, privacyClass: "project-metadata",
+          });
+        },
+      });
       const caseSidecarTarget = caseSidecarTargets.find((item) => item.caseId === candidateCase.id);
       selectedResults.push({
         caseId: candidateCase.id, language, queryText,
@@ -317,8 +350,8 @@ async function runDiagnostic(candidateRootInput, runRootInput) {
         sidecarTargetDeclared: caseSidecarTarget.sidecarTargetDeclared,
         sidecarEntryId: caseSidecarTarget.sidecarEntryId,
         queryMetadataFilter: null,
-        baseline: { resultCount: baseline.results.length, top: resultPreview(baseline), firstFetch: fetchTop(baseline), unadjudicatedAnchorRank: anchor(baseline) },
-        withAtoms: { resultCount: withAtoms.results.length, top: resultPreview(withAtoms), firstFetch: fetchTop(withAtoms), unadjudicatedAnchorRank: anchor(withAtoms) },
+        baseline: { resultCount: baseline.results.length, top: resultPreview(baseline), fetchEvaluation: fetchEvaluation(baseline), unadjudicatedAnchorRank: anchor(baseline) },
+        withAtoms: { resultCount: withAtoms.results.length, top: resultPreview(withAtoms), fetchEvaluation: fetchEvaluation(withAtoms), unadjudicatedAnchorRank: anchor(withAtoms) },
         rankingDelta: delta,
       });
     }
@@ -339,7 +372,8 @@ async function runDiagnostic(candidateRootInput, runRootInput) {
     },
     runtime: { node: process.version, platform: process.platform, architecture: process.arch },
     corpus: { candidateBankSourceFiles: sourcePaths.length, documentsSearched: snapshotDocs.length, sidecarSourceFiles: sidecarSourcePaths.length,
-      declaredEntries: projection.declared, projectedEntries: projection.projected, omittedEntries: projection.omitted, topK: pins.topK },
+      declaredEntries: projection.declared, projectedEntries: projection.projected, omittedEntries: projection.omitted, topK: pins.topK,
+      exactFetchLimitChars: MSSR_LIBRARIAN_RETRIEVAL_LIMITS.fetchChars },
     design: {
       cases: pins.caseIds, concepts: cases.length, queryVariants: selectedResults.length,
       sidecarTargetCaseIds: sidecarCaseIds, untaggedCaseIds,

@@ -185,16 +185,18 @@ candidate-bank source files with and without the pinned `.104` EvidenceAtoms.
 It uses C01, C02, C04 and the untagged behavior control C24 in Spanish and
 English (eight variants, four source clusters), fixed top-20, and no metadata
 filters. The runner pins and asserts that C01/C02/C04 match projected sidecar
-targets and C24 remains untagged. C03 is excluded because its question
+targets and C24 remains untagged. It records the exact-fetch size cap and
+fetchability of ranked candidates, then re-fetches the highest-ranked candidate
+within that cap and checks its fingerprint. C03 is excluded because its question
 presupposes a warning that may not be present in its target section; that
 alignment needs owner adjudication.
-The report is limited to result-set/rank deltas and exact-fetch integrity. The
+The report is limited to result-set/rank deltas, fetchability, and exact-fetch integrity. The
 candidate anchors remain unadjudicated and are never counted as gold hits.
 
 After committing the diagnostic harness, run it in a new external directory:
 
 ```powershell
-node .\experiments\jev-metadata-integration\natural-query-diagnostic.mjs --diagnostic --candidate-root 'C:\Users\mauro\.codex\worktrees\jev-evidence-pack-integration\mssr' --run-root 'D:\MSSR-benchmark-artifacts\jev-natural-query-diagnostic-20261004-v1'
+node .\experiments\jev-metadata-integration\natural-query-diagnostic.mjs --diagnostic --candidate-root 'C:\Users\mauro\.codex\worktrees\jev-evidence-pack-integration\mssr' --run-root 'D:\MSSR-benchmark-artifacts\jev-natural-query-diagnostic-20261004-v2'
 ```
 
 This is an offline retrieval experiment: it makes no Jev/provider/MCP/network
