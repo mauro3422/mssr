@@ -85,6 +85,32 @@ the bytes loaded by the 0.6.153 runtime. Do not deploy the 0.6.156 branch until
 runtime source/dependency identity is mapped and candidate-only verification
 passes in an isolated checkout.
 
+## MSSR 0.2.104 Codex-local metadata smoke — 2026-10-04
+
+A direct in-process smoke against the clean product candidate
+`codex/jev-citation-evidence-pack-clean` at
+`e3e03912d63231ebf646fdaec9353ee1e28fe403` used MSSR 0.2.104
+(`mssr-build:sha256:1508c8a279dc911c`). The sidecar projected 4/4 declared
+entries, omitted none, returned all four metadata-filtered exact ranges, and
+passed all four fetch fingerprints across three source files (10,779 fetched
+code units).
+
+The four queries echoed their declared selector values. No Jev, provider, or MCP
+call was made; an optional Jev request was only constructed in memory. This
+demonstrates local projection/search/fetch plumbing, not natural-query relevance,
+ranking quality, Jev selection, Noul sufficiency, calibration, or Bridge runtime
+adoption. The ignored original receipt SHA-256 is
+`6cf526d3ba45334679219aabbd98f031229bd4305c6da44b9eafa309c8f7c58f`. The
+portable, path-scrubbed summary preserves per-entry source and fingerprint
+evidence: [project-context-librarian-smoke-20261004.json]
+(evidence/project-context-librarian-smoke-20261004.json).
+
+The separate v18-based frozen preflight (21 documents, 26 concepts, 52 eligible
+requests) did not include `.mssr/project-context-librarian.json`; its
+provider-gate success therefore does not cover the 0.2.104 metadata path. Create
+a new immutable sidecar-aware snapshot before measuring natural queries or
+comparing retrieval.
+
 ## Unadjudicated query inventory
 
 [`candidate-bank.md`](candidate-bank.md) contains 32 bilingual candidate

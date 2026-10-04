@@ -28,6 +28,32 @@ The following uses the old strict target and chooses rows after seeing the outco
 
 The apparent 15/15 strict-match result at 0.90 uses the same small, correlated, already-scored dataset and covers less than one-third of requests. It is post-hoc and cannot support a production rule. The separate three-case exact-handle smoke had one answer independently judged direct-answerable at confidence 0.42; that sample also supports no cutoff in either direction.
 
+## Case-level audit of the historical labels — 2026-10-04
+
+A read-only Luna audit of the bilingual records found attribution limits that the
+aggregate strict-heading score hides:
+
+- The direct run offered 200 headings. A miss against its single preferred
+  heading is a selection/label disagreement, not evidence that retrieval omitted
+  the target.
+- The hierarchical run logged 200 initial candidates and four final candidates,
+  with three calls per request, but did not retain each stage's finalist set. Its
+  misses cannot be assigned to early pruning versus final selection.
+- Exact fetch success verifies handle integrity only. It does not establish
+  relevance, answerability, sufficiency, or citation coverage.
+- Cases 08, 16, 17, 22, 25, 27, 28, and 30 may be strict-target false negatives:
+  a parent, child, sibling, or alternate range could answer the question. Case 23
+  looks like a stronger semantic-miss candidate, still pending owner review.
+- English/Spanish disagreement appears in cases 06, 21, and 27. Strict misses
+  with high raw confidence include direct cases 17 and 22, and hierarchical cases
+  13 and 25; some remain label-ambiguous.
+
+These are audit leads, not corrected labels. The owner worksheet remains blank.
+Do not relabel records from this review, infer calibration from these rows, or tune
+a threshold before acceptable-range, sufficiency, and abstention labels are
+adjudicated. The 0.2.104 selector-echo smoke is documented separately in the
+suite README and its evidence receipt; it does not resolve the historical labels.
+
 ## What is still missing for genuine calibration
 
 - Accepted evidence is not a single preferred heading. An owner must label every acceptable exact range, answerability, whole-query sufficiency, expected abstention, and contradiction/temporal/scope class. The separate owner worksheet has 32 bilingual concept pairs, 38 proposed citations across 28 unique source paths, and 32 blank owner-label blocks. Its 30-file source manifest includes two files not cited by a proposed range. No labels are gold yet.

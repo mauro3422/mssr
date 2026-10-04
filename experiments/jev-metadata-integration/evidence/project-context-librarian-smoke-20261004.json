@@ -1,0 +1,109 @@
+{
+  "schema": "mssr-project-context-librarian-smoke-summary-v1",
+  "observedAt": "2026-10-04T16:24:33.949Z",
+  "classification": "offline real-document integration smoke; not a quality benchmark",
+  "candidate": {
+    "branch": "codex/jev-citation-evidence-pack-clean",
+    "commit": "e3e03912d63231ebf646fdaec9353ee1e28fe403",
+    "packageVersion": "0.2.104",
+    "buildId": "mssr-build:sha256:1508c8a279dc911c",
+    "buildFiles": 127,
+    "buildBytes": 1437913
+  },
+  "inputs": {
+    "projectContextManifestSha256": "45d2d9fe2594c1e24c22f74cca5ccf015e971162309591cb6faf4efab0c58eb6",
+    "librarianManifestSha256": "38441320b1941b32a0801d9a22bdb2cb30efc750d1c31a966e3a37ca2f15191a",
+    "segmentsManifestPresent": true,
+    "referencesManifestPresent": false,
+    "sourceFiles": {
+      ".mssr/knowledge/architecture/architecture-impact-review-decision.md": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+      ".mssr/PROJECT_STATE.md": "93d05a9aefc4e00db5cfe2dccd8229c13d8027aff1cbf4175eed04bcf7e5ef49",
+      ".mssr/knowledge/research/jev-decision-model-use-cases.md": "4462bffb86c7e1c80ae33f06b7fc04be90fdc9133da8cf135420388e68fa7dfb"
+    }
+  },
+  "originalReceipt": {
+    "fileName": "project-context-librarian-real-doc-smoke-20261004T162433Z.json",
+    "sha256": "6cf526d3ba45334679219aabbd98f031229bd4305c6da44b9eafa309c8f7c58f",
+    "source": "ignored candidate .mssr/runtime receipt; local absolute path intentionally omitted"
+  },
+  "result": {
+    "declared": 4,
+    "projected": 4,
+    "omitted": 0,
+    "metadataSearches": 4,
+    "exactFetchesPassed": 4,
+    "totalExactFetchCodeUnits": 10779,
+    "selectorQueriesEchoDeclaredValues": true,
+    "providerCallsMade": false,
+    "jevCallsMade": false,
+    "mcpCallsMade": false,
+    "jevRequestConstructedInMemory": true,
+    "records": [
+      {
+        "entryId": "mssr-architecture-impact-decision",
+        "selector": {
+          "field": "domains",
+          "value": "coding"
+        },
+        "sourcePath": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+        "sourceSha256": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+        "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+        "rangeId": "heading-1",
+        "handleId": "780094bc53b49b5fabc58d14c85faaeed15322fb27c8499807bba062088c3a3a",
+        "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+        "exactFetchCodeUnits": 1955,
+        "metadataMatched": true,
+        "exactFetchPassed": true
+      },
+      {
+        "entryId": "mssr-learning-dataset-state",
+        "selector": {
+          "field": "domains",
+          "value": "agent-orchestration"
+        },
+        "sourcePath": ".mssr/PROJECT_STATE.md",
+        "sourceSha256": "93d05a9aefc4e00db5cfe2dccd8229c13d8027aff1cbf4175eed04bcf7e5ef49",
+        "revision": "93d05a9aefc4e00db5cfe2dccd8229c13d8027aff1cbf4175eed04bcf7e5ef49",
+        "rangeId": "heading-4",
+        "handleId": "a97fb9de3487eae52d03c3698fc8198531e69189cc17b38d5e9838d4019a6950",
+        "fingerprint": "6de94fd7fb8fa1d50bacf803296763e762892e349c9be1adf709ee356f2b7f4e",
+        "exactFetchCodeUnits": 655,
+        "metadataMatched": true,
+        "exactFetchPassed": true
+      },
+      {
+        "entryId": "mssr-core-skill-package-state",
+        "selector": {
+          "field": "domains",
+          "value": "skill-system"
+        },
+        "sourcePath": ".mssr/PROJECT_STATE.md",
+        "sourceSha256": "93d05a9aefc4e00db5cfe2dccd8229c13d8027aff1cbf4175eed04bcf7e5ef49",
+        "revision": "93d05a9aefc4e00db5cfe2dccd8229c13d8027aff1cbf4175eed04bcf7e5ef49",
+        "rangeId": "heading-5",
+        "handleId": "defbdabdee0f71f1a84280f49c57c589fb96742ef53ffe9cfa0454f8dd28b387",
+        "fingerprint": "5d8f7e6caafff50b06ae6b6d14e863d569e7a1c01e1e3bddd51d7a1965c22b69",
+        "exactFetchCodeUnits": 441,
+        "metadataMatched": true,
+        "exactFetchPassed": true
+      },
+      {
+        "entryId": "mssr-jev-use-case-hypotheses",
+        "selector": {
+          "field": "domains",
+          "value": "agent-orchestration"
+        },
+        "sourcePath": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+        "sourceSha256": "4462bffb86c7e1c80ae33f06b7fc04be90fdc9133da8cf135420388e68fa7dfb",
+        "revision": "4462bffb86c7e1c80ae33f06b7fc04be90fdc9133da8cf135420388e68fa7dfb",
+        "rangeId": "heading-10",
+        "handleId": "4afebcb31b01bdfa986dcd5ae74f23a780d9f1f0ed85702937e9f5407b5c5083",
+        "fingerprint": "9197101e89eee91feea5862c14ac1ec29c4a0036eb0fbf9d1e744a0e2306a1d5",
+        "exactFetchCodeUnits": 7728,
+        "metadataMatched": true,
+        "exactFetchPassed": true
+      }
+    ]
+  },
+  "interpretation": "Confirms projection, metadata-to-exact-range lookup and fetch fingerprint integrity for four declared entries. It does not measure natural-query relevance, ranking quality, Jev decisions, Noul sufficiency, confidence calibration or Bridge runtime adoption."
+}
