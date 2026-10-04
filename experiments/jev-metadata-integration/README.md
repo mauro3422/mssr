@@ -320,3 +320,21 @@ quality result. Hashes and bounded details are in
 Next, adjudicate acceptable ranges and hard negatives, then freeze grouped
 calibration/holdout data before tuning. The live Jev run remains a separately
 gated step and needs its own immutable request/evidence receipt.
+
+## Live Jev smoke preflight harness
+
+`jev-live-preflight-0.2.105.mjs` verifies the frozen `.105` retrieval artifact,
+projects its four sidecar entries, and emits the exact corpus/atom input for
+read-only MSSR search plus local candidate inventories. It does not call Jev or
+the provider. Run it with a new external output root:
+
+```powershell
+node .\experiments\jev-metadata-integration\jev-live-preflight-0.2.105.mjs `
+  --artifact-root 'D:\MSSR-benchmark-artifacts\jev-natural-query-diagnostic-20261004-0.2.105-v1' `
+  --runtime-root 'D:\Dev\mssr' `
+  --run-root 'D:\MSSR-benchmark-artifacts\jev-live-smoke-20261004-0.2.105-v1'
+```
+
+The first live slice is C01 Spanish/English. Its candidate-bank anchor stays
+out of request state and remains unadjudicated; the two Jev responses are
+exploratory observations, not a quality score or calibration sample.
