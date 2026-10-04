@@ -87,8 +87,20 @@ passes in an isolated checkout.
 
 ## Unadjudicated query inventory
 
-[`candidate-bank.md`](candidate-bank.md) contains 18 bilingual candidate
-query pairs anchored to 15 MSSR source files. They are not labels or evaluation
-results. The present corpus still needs independent source/concept clusters and
+[`candidate-bank.md`](candidate-bank.md) contains 32 bilingual candidate
+query pairs anchored to 27 MSSR source files. They are not labels or evaluation
+results. The independent source/concept cluster count is unadjudicated; the
+bank does not yet pass its 30-independent-unit reporting gate and still needs
 two-reviewer accepted-range labels before Jev selection or probability
 calibration.
+
+Two blind AI reviewers assessed answer sufficiency against MSSR source commit
+`ad9a46ad2c0d95dc012fe1e07049bfd45cc3c330` without receiving the candidate
+anchors or Jev outputs. Their unadjudicated proposal is preserved at
+[`review-proposals/2026-10-04-blind-ai-review.md`](review-proposals/2026-10-04-blind-ai-review.md):
+they agree on 16 sufficient and 2 partial cases (C02/C03). This is an
+AI-generated review aid, not independent human adjudication, gold data, or a
+benchmark result. Do not use it to calibrate thresholds or claim quality.
+The 14 candidate additions C19–C32 came from two read-only Luna seed scans;
+their provenance and exclusions are recorded at
+[`review-proposals/2026-10-04-candidate-seed-scan.md`](review-proposals/2026-10-04-candidate-seed-scan.md).
