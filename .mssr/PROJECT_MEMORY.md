@@ -1,5 +1,15 @@
 # MSSR project memory
 
+## Librarian query stopwords — 0.2.104
+
+Deterministic search formerly allowed one shared token to emit a candidate, so
+common English/Spanish function words could create low-score false positives.
+The query now drops a small bilingual function-word set while indexed source
+text retains every term. An all-function-word query returns no candidates.
+Scores remain lexical overlap indicators, not relevance probabilities or Jev
+confidence; translation, stemming, confidence thresholds and label-based
+calibration remain out of scope.
+
 ## Read-only cited evidence pack — 0.2.102
 
 The Librarian composition boundary now accepts bounded current Markdown plus

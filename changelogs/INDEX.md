@@ -10,6 +10,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.104](0.2.104.md) - filter common English/Spanish function words from Librarian query terms to prevent incidental-only candidate matches.
 - [0.2.103](0.2.103.md) - split Librarian metadata into exact-heading Project Context modules and restore projection/stale-data guidance for implementation and debugging intents.
 - [0.2.102](0.2.102.md) - add bounded read-only Librarian evidence packs that revalidate Jev-selected exact ranges and preserve verbatim text with per-range citations.
 - [0.2.101](0.2.101.md) - add exact-heading Project Context Librarian metadata with bounded, advisory EvidenceAtom projection and health validation; preserve lexical retrieval, module routing, source truth and permissions.

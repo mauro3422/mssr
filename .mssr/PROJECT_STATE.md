@@ -1,13 +1,15 @@
 # MSSR project state
 
 ## Current release
-MSSR 0.2.103 is the latest local release-gated package: `mauroprime-mssr-0.2.103.tgz`, 1,106,892 bytes, SHA-256 `064b4403eaef534bf6f6611f036a89f31421f51b4a7630d8fd33302be21959dd` (`pkg:0.2.103#064b4403`); it is unpublished. Full `npm run verify` and `npm run release:gate` passed on 2026-10-04. Exact artifact and npm integrity are recorded in `.mssr/runtime/releases/0.2.103.json`.
+MSSR 0.2.104 is the latest local release-gated package: `mauroprime-mssr-0.2.104.tgz`, 1,108,092 bytes, SHA-256 `e5101fd39d1ec545c52d9d1dfbd054a5d144c68b571b8502e0c4fb87e095399e` (`pkg:0.2.104#e5101fd3`); it is unpublished. Full `npm run verify` and `npm run release:gate` passed on 2026-10-04. Receipt: `.mssr/runtime/releases/0.2.104.json`.
 
-`codex/jev-citation-evidence-pack` adds `mssr_librarian_evidence_pack`; an earlier live Jev smoke's Choice 0.27/Noul 0.65 remain uncalibrated. On 2026-10-04, Bridge and Codex-local .104 sidecar smokes plus a frozen preflight each passed 4/4 projection/search/fetch plumbing checks. Queries echoed declared selectors; no Jev/provider/MCP calls or quality labels were used in the local/preflight runs. The preflight found zero exact target hits without atoms and fetched 10,779 code units; its snapshot is `D:\MSSR-benchmark-artifacts\jev-sidecar-preflight-20261004-v1`, summarized in archive commit `2452933`. V18 had no Librarian sidecar.
+An earlier Jev smoke's Choice 0.27/Noul 0.65 remain uncalibrated. In this task, a direct MCP route projected two current sidecar entries and completed real Spanish/English search → exact fetch → verbatim evidence-pack checks; the post-fix local run preserved a 7,728-character range and removed the reproduced English stopword-only false match. These are connectivity/integrity checks, not quality labels. Existing preflight evidence remains at `D:\MSSR-benchmark-artifacts\jev-sidecar-preflight-20261004-v1` (archive commit `2452933`); v18 lacked a Librarian sidecar.
+
+After building 0.2.104, a fresh negative query against the active Codex MCP (`How many planets fit inside an underwater house?`) still returned three candidates from unrelated text sharing only `an`; the local 0.2.104 regression returns zero. Positive real-document search/fetch/evidence-pack checks pass, but the negative probe proves the active MCP has not demonstrated adoption of this retrieval fix. Its loaded package/build identity is unknown; do not treat the gated local package as deployed.
 
 Offline natural-query v3 (8 bilingual seeds/27 docs): top-20 overlap 159/160 and 16/16 exact fingerprints; ES top-1 ranges exceeded the 20K fetch cap while rank 2 remained fetchable. Ranking/fetchability only, not quality or calibration. Archive commit `ac56327` preserves v3 plus the corrected 38-range worksheet, provisional cluster map, and six unadjudicated seed proposals; all 38 file/range hashes, bounds, and headings now verify. Owner labels remain blank and no grouped split or confidence threshold is accepted. Summary: `experiments/jev-metadata-integration/evidence/natural-query-diagnostic-20261004.json`; full run: `D:\MSSR-benchmark-artifacts\jev-natural-query-diagnostic-20261004-v3`.
 
-Host adoption remains unverified: Codex MCP advertises stale build `ecf594115342fa3c` versus available `24589ca94bee83fd`. Active Bridge is `0.6.153`/185 tools; its loaded MSSR package identity is unknown (reported checkout is `0.6.144` with MSSR `0.2.96` and local changes). Isolated Bridge `0.6.156` is not deployed. See the indexed Jev Librarian handoff for runtime provenance and adoption gates.
+Registry refresh at 2026-10-04 19:30 UTC reports the Bridge provider healthy with 185 uncached capabilities and unknown freshness. Its catalog has Librarian search/fetch/Jev selection/relation/preview, but no `mssr_librarian_evidence_pack`; active package identity remains unknown. The `D:\Dev\bridge-mcp` checkout is `codex/jev-bridge-adoption-20260930`, version 0.6.144/vendor MSSR 0.2.96, with extensive tracked and untracked changes; it was left untouched. Bridge adoption of source 0.2.104 and isolated candidate 0.6.156 remain unverified/not deployed.
 
 ## 0.2.98 package release receipt — historical
 
@@ -165,7 +167,7 @@ The owner worksheet has 32 bilingual concept pairs; its 38 proposed citations sp
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.103 -->
+<!-- mssr-version:mssr.source=0.2.104 -->
 <!-- mssr-version:bridge.live=0.6.153 -->
 
 <!-- mssr-owner:semantic.consistency=mssr -->

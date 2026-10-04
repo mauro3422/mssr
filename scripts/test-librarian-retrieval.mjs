@@ -192,6 +192,18 @@ const spanishLanguageDoc = {
 const spanishMatches = searchMssrLibrarianEvidence({ documents: [spanishLanguageDoc], query: { query: "señal año cafe" } });
 assert.ok(spanishMatches.results.some((item) => item.title === "Señal del año"), "Spanish ñ, accented vowels, and ASCII query variants are tokenized consistently");
 assert.equal(searchMssrLibrarianEvidence({ documents: [spanishLanguageDoc], query: { query: "ano" } }).results.length, 0, "ñ must remain distinct from n so año cannot falsely match ano");
+assert.equal(searchMssrLibrarianEvidence({
+  documents: [{ ...spanishLanguageDoc, markdown: "# Calibration\n\n## Notes\n\nAn earlier live test was exploratory and uncalibrated.\n" }],
+  query: { query: "How many planets fit inside an underwater house?" },
+}).results.length, 0, "an incidental English article must not make an unrelated natural-language query return a candidate");
+assert.equal(searchMssrLibrarianEvidence({
+  documents: [spanishLanguageDoc],
+  query: { query: "¿Qué hay de la casa bajo el agua?" },
+}).results.length, 0, "incidental Spanish function words must not make an unrelated natural-language query return a candidate");
+assert.equal(searchMssrLibrarianEvidence({
+  documents: [spanishLanguageDoc],
+  query: { query: "the and as for from to" },
+}).results.length, 0, "a query made only of English function words has no searchable content terms");
 
 const decomposedSpanishDoc = {
   owner,

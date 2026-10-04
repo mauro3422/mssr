@@ -111,6 +111,17 @@ function sha256(value: string): string { return createHash("sha256").update(valu
 function normalizeRef(value: string): string { return value.trim().replace(/\\/g, "/").replace(/\/{2,}/g, "/"); }
 function foldSearchText(value: string): string { return foldMssrLibrarianSearchText(value); }
 function tokens(value: string): string[] { return [...new Set(foldSearchText(value).match(/[\p{L}\p{N}][\p{L}\p{N}_-]{1,}/gu) ?? [])]; }
+const LIBRARIAN_QUERY_STOPWORDS = new Set([
+  "about", "after", "all", "an", "and", "are", "as", "at", "be", "because", "before", "been", "being", "but", "by",
+  "did", "do", "does", "for", "from", "had", "has", "have", "how", "if", "in", "into", "is", "many", "of", "on", "or",
+  "the", "that", "then", "there", "these", "this", "those", "to", "was", "were", "what", "when", "where", "which", "who", "why", "with",
+  "al", "como", "con", "cual", "de", "del", "donde", "el", "en", "es", "esta", "este", "hay", "la", "las", "lo", "los",
+  "mas", "o", "para", "pero", "por", "porque", "que", "se", "sin", "sobre", "su", "sus", "un", "una", "unas", "unos", "y",
+]);
+function queryTokens(value: string): string[] {
+  // Keep every source term searchable; discard only common ES/EN query glue.
+  return tokens(value).filter((term) => !LIBRARIAN_QUERY_STOPWORDS.has(term));
+}
 function boundedSnippet(text: string, terms: readonly string[], maxChars: number): string {
   const flat = text.replace(/\s+/g, " ").trim();
   const folded = foldMssrLibrarianSearchTextWithSourceOffsets(flat);
@@ -349,7 +360,7 @@ export function searchMssrLibrarianEvidence(args: { documents: readonly MssrLibr
     if (totalRecords > MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxTotalRecords) throw new Error(`Librarian retrieval input exceeds ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxTotalRecords} total records.`);
     preparedDocuments.push({ ...doc, canonicalMarkdown: prepared.canonicalMarkdown });
   }
-  const queryTerms = tokens(query.query);
+  const queryTerms = queryTokens(query.query);
   if (queryTerms.length === 0) return { results: [], advisoryOnly: true, truthAuthority: false, truncated: false };
   const candidates: MssrLibrarianRetrievalResult[] = [];
   let totalRanges = 0;
