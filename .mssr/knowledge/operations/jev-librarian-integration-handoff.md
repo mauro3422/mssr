@@ -2,78 +2,19 @@
 
 ## Repository snapshot and preservation
 
-Read-only audit on 2026-10-02 found the MSSR snapshot branch
-`codex/jev-confidence-merge-evaluation` at
-`ad25a9a158c289e0a1dae5674a1e77df42be752d`, equal to its origin tracking ref and
-clean (no modified, staged, or untracked files). It descends from
-`main`/`origin/main` `dfb295653b2e3f0f2a6f0d25bb2bc5cbe9634962` with 29 commits
-ahead and none behind. Its 255-path diff contains 1,183,808 insertions and 56
-deletions. The 206 versioned paths under
-`experiments/jev-mssr-live/runs/` total 53,079,986 bytes; two
-`predictions.json` files are 21,106,890 bytes each. They are immutable run
-evidence, not untracked debris. The separate `codex/benchmark-archive` branch at
-`05ccb68` does not include these Jev runs (`git ls-tree -r codex/benchmark-archive
--- experiments/jev-mssr-live/runs` returned no paths). Preserve the full snapshot
-and every run id, manifest, output, label/review and hash without rewriting or
-pruning.
+The detailed pre-integration handoff is preserved at docs/history/jev-librarian-integration-handoff-pre-0.2.104.md; its branch and gate statements are historical. This indexed handoff is the compact current view.
 
-Do not merge the 29-commit evaluation branch wholesale into `main`: that would
-couple product code/releases to all 206 run paths and make benchmark evidence
-part of the product integration. For eventual publication, create a clean
-main-rooted integration branch and extract reviewed product source/tests/docs
-with explicit paths and reconciled release history. Preserve benchmark runs on
-an independent archive branch with exact paths/hashes and manifests. Audit
-commit dependencies before selecting changes; do not cherry-pick the proposed
-product cluster mechanically because several commits mix code, docs, changelogs
-and project state. Neither integration step has been executed.
+The 2026-10-02 audit found `codex/jev-confidence-merge-evaluation` at `ad25a9a`, clean and 29 commits ahead of main. Its 255-path diff included 206 frozen Jev run files (53,079,986 bytes). At that time `codex/benchmark-archive` at `05ccb68` did not yet contain them; that statement is historical. On 2026-10-04 the separate archive branch contains frozen v1-v18 at `b4af87c`. Never merge the evaluation branch wholesale into product or rewrite/prune run manifests, outputs, labels, reviews or hashes.
 
 ## Product lineage audit
 
-The Luna review confirmed `origin/main` (`dfb2956`) is the merge-base/ancestor
-of candidate `ad25a9a`, which is 29 commits ahead and zero behind. The
-sidecar's release cannot be extracted by itself: MSSR `main` has the reusable
-Zod, Document Surface, EvidenceAtom and project-context foundations, but it
-does not yet have `src/librarian-retrieval.ts`, the Jev selector, or exact
-search-handle plumbing required by the sidecar's projected records. The
-product dependency chain includes semantic-evidence foundation `1420e88`,
-Jev selection `4c1cd24`, handle selection `b0821bb`, bounded/normalized
-selection `b080317`, EvidenceAtom projection `6dfe603`, dense excerpt handling
-`7a8027f`, oversized-fetch handling `bec66ad`, and the 0.2.101 sidecar.
+The 2026-10-02 review established `origin/main` (`dfb2956`) as the base and identified the dependency chain from semantic evidence through exact-handle retrieval and the 0.2.101 sidecar. The planned clean integration has since been completed: `codex/jev-citation-evidence-pack-clean` at `e3e0391` contains the reviewed product integration as MSSR 0.2.104, passes full verification/release gates, and excludes frozen run payloads. Keep the source/evaluation snapshot and benchmark archive separate; do not merge the 29-commit research branch wholesale.
 
-The clean product branch therefore needs a source-level transplant of the
-reviewed cumulative product diff onto `origin/main`, not a sidecar-only
-cherry-pick. Preserve `codex/jev-confidence-merge-evaluation` as-is and exclude
-all 206 `experiments/jev-mssr-live/runs/**` paths and large predictions from the
-product branch. Keep research protocol/comparison artifacts with the evidence
-line unless explicitly reviewed for inclusion. Before transplant, freeze the
-current candidate in a local commit and preserve a recovery ref; then build a
-separate worktree from `origin/main`, apply an explicit allowlist, inspect
-added/excluded paths, and run full verify/release gates there. No branch has
-been extracted or pushed yet.
+The isolated Bridge 0.6.156/MSSR 0.2.104 candidate is pushed at `5a1dbf0` with candidate gates passing. Active Bridge remains 0.6.153/MSSR 0.2.101 and has not been replaced or restarted. Neither clean integration branch has been merged to main or published to npm.
 
 ## MSSR contract work
 
-The original branch is preserved as the rollback snapshot. The 0.2.101 sidecar
-candidate is preserved on `codex/project-context-librarian-sidecar-0.2.101`,
-forked from the exact `ad25a9a` snapshot. Its sidecar binds project-declared
-selectors to one direct manifest-owned heading and its current fingerprint; it
-does not inherit module selectors, reuse delivery segments, or rewrite old
-benchmark runs. The adapter, health/init integration, focused tests and
-real-document smoke are local candidate work. Full `npm run verify` and
-`npm run release:gate` both passed on 2026-10-02. The exact local artifact is
-`mauroprime-mssr-0.2.101.tgz`, 1,094,370 bytes, SHA-256
-`868c5180783776a7f6dc55bab736a6f38fd84fe647cdb26b0b8b34892ebc5499`
-(`pkg:0.2.101#868c5180`); independent file readback matched the final release
-receipt. The tarball contains `dist/project-context-librarian.js`, its
-declaration file, and the dedicated smoke/test scripts. It has not been
-published.
-
-The 0.2.100 package receipt remains
-`pkg:0.2.100#849b067d5f1578b3c32c73fc4e2bafcedaa8a5e01231ac1108fa92313a103d32`.
-The new work has not been published to npm. The verified 0.2.101 artifact is
-preserved as evidence. The 0.2.102 continuation below supersedes it as the next
-package candidate for any later Bridge adoption. Live Bridge remains unchanged
-until a separate restart/adoption decision.
+The 0.2.101 sidecar and package receipt remain preserved in the candidate receipts below. The D: source branch `codex/jev-citation-evidence-pack` remains MSSR 0.2.102 at `130447a`; this checkout is intentionally retained as that source line. Its clean main-rooted product integration continued separately as `codex/jev-citation-evidence-pack-clean` at `e3e0391` (MSSR 0.2.104); `npm run verify` and `npm run release:gate` passed. The package is 1,104,067 bytes, SHA-256 `714e9d0997e4bc92c2981e1aeb3e5b8a98beef91efc04f82e92d001748a7e4ca`. No main merge or npm publication occurred.
 
 ## 0.2.102 cited evidence-pack continuation — 2026-10-04
 
@@ -82,9 +23,7 @@ verified local 0.2.101 commit `ba1599b`. It adds the read-only
 `mssr_librarian_evidence_pack` MCP tool: up to 16 exact handles are re-fetched
 from caller-supplied current Markdown and returned verbatim with per-range
 owner/source/revision/line/fingerprint citations. Stale, duplicate, unmatched,
-privacy-excluded or over-budget evidence fails closed. This composes acquisition
-after a Jev/host choice but does not itself call Jev, reconstruct paragraph
-structure, generate prose, or write canonical sources. `npm run verify` and
+privacy-excluded or over-budget evidence fails closed. This endpoint provides exact evidence acquisition after Jev or host selection; it is one step in the Bibliotecario, not the whole system. The host can chain deterministic text/metadata retrieval, Jev choice and relation review, exact fetch, contradiction inspection, and citation packing. A host agent can then recover structure, compact evidence, and assemble cited paragraphs. The endpoint does not crawl beyond supplied sources or write canonical sources. `npm run verify` and
 `npm run release:gate` passed. The unpublished local 0.2.102 package is
 1,099,614 bytes, SHA-256
 `a26e74b7dd8605a19062277615885bb63ba0d8e48cfb63c7d5f2640b1a24617b`
@@ -100,29 +39,11 @@ matched. These uncalibrated signals are not quality labels. Receipt:
 `.mssr/runtime/jev-smokes/evidence-pack-20261004T032043309Z.json`; raw provider
 output was not persisted.
 
-The Codex user launcher now enables Windows system CA trust only for the Jev
-child process, retaining TLS validation. A standalone live provider smoke
-passed. The active Codex MCP still loads build `ecf594115342fa3c`; it has not
-adopted the new package. The user will restart the PC later; do not restart or
-interrupt the live Bridge/MCP during this continuation. After restart, verify
-the exact MSSR build and confirm this selection -> exact evidence-pack path
-through the active host as a plumbing smoke; keep it separate from quality
-scoring and confidence calibration.
+The Codex user launcher enables Windows system CA trust only for the Jev child process and retains TLS validation; a standalone provider smoke passed. On 2026-10-04, MSSR bootstrap reports the active Codex MCP loaded build `ecf594115342fa3c`, available build `24589ca94bee83fd`, status `stale`. Adoption of the 0.2.104 build through the active Codex host is therefore unverified. After the user's restart/reload, re-read the exact build and run only the selection-to-evidence-pack plumbing smoke; this is separate from quality scoring. Do not restart the active Bridge as part of this work.
 
 ## Bridge candidate
 
-Bridge branch `codex/bridge-mssr-0.2.100-adoption-20261002` is clean and remote
-synced at `2298b558598e427cdc6058983616315e08078a30`; it is 31 commits ahead of
-`origin/main` and zero behind. Feature commit
-`0497ce3f36363d383a78f695d8a569f1b3d3b72c` adds opt-in 0.6.146 per-single-section
-metadata. A real Jev smoke covered two eligible Bridge state sections and
-proved exact-fetch plumbing only. The read-only adoption review confirmed this
-candidate reads only `.mssr/project-context.json`: it does not consume
-`.mssr/project-context-librarian.json` or produce the sidecar's per-heading
-EvidenceAtoms. Adoption requires a new explicit mode and the exact verified
-MSSR 0.2.102 package; preserve 0.6.146 and keep the existing mode compatible.
-Live Bridge is still 0.6.144; no merge, PR, deployment, or restart was
-performed. Bridge's earlier dirty primary checkout remains untouched.
+The older 0.6.146 per-section review is historical: it read `.mssr/project-context.json` but did not consume the Librarian sidecar. The current isolated candidate is Bridge 0.6.156/MSSR 0.2.104 on `codex/jev-mssr-0.2.103-adoption-20261004` at `5a1dbf0`; vendored MSSR package identity and candidate release gates were verified. It is pushed but not deployed. Active Bridge remains 0.6.153/MSSR 0.2.101 and was not changed or restarted. Require a separate controlled adoption and live runtime readback; a candidate branch does not prove production use.
 
 ## 0.2.101 candidate receipts
 
@@ -161,76 +82,15 @@ maintenance issues, not sidecar runtime defects.
 
 ## Evaluation gates
 
-1. **Complete:** `npm run verify` and `npm run release:gate` passed. The exact
-   local package hash and ignored release receipt are recorded above; no npm
-   publication occurred.
-2. Freeze corpus bytes, manifest/sidecar revisions, query set, candidate limits,
-   acceptable ranges, and independent labels before comparing retrieval.
-3. Compare lexical search with metadata search using identical sources and
-   limits. Split by document, not paraphrased queries. Adjudicate relevance and
-   sufficiency independently of the sidecar selectors or model output.
-4. Only after the lexical-vs-metadata baseline is interpretable, run Jev over
-   identical exact handles and evaluate selection, abstention, contradiction,
-   fetch integrity, utility, and citation fidelity separately.
+MSSR 0.2.104 release verification passed; this is not a Jev quality result. Historical 48/51, 45/51, 31/52, 35/52, 34/52 and smoke scores remain exploratory: labels were author/Luna-created, ranges were incomplete and document holdouts overlapped or were opened during tuning. The 48/51 EvidenceAtom run covered 17 sections from four modules with repeated variants. The 21-document bilingual comparison scored 35/52, 34/52 and 31/52 on strict headings, not owner-adjudicated acceptable sets. Exact-fetch success proves handle integrity only.
 
-Historical 48/51, 45/51, 31/52, 35/52, 34/52 and smoke scores remain immutable
-exploratory artifacts; repeated ranges, author labels and incomplete holdouts do
-not calibrate confidence or establish a production threshold. Keep the
-confidence threshold unset and all decisions advisory.
+In frozen live-gate runs v1 has an unknown provider-call count; v2-v18 have zero calls. V18 is offline preflight only. V17 route and bootstrap evidence report differently scoped core indicators (6,453 route core characters versus 13,695 bootstrap context characters across nine refs); reconcile before claiming context coverage.
 
-The specific 48/51 EvidenceAtom-versus-parent-metadata rubric run is outside
-this repository at
-`D:\Dev\mssr-snapshots\benchmark-real-evidence-atom-20260930-rubricmatch-8f2c3a17`.
-Its `manifest.json` SHA-256 is
-`1ac3ce726999ff8a9934b5e43b799701a285a32d6a334d0a6a507921658030cf`.
-It covered 17 sections from four source modules with three repeated variants;
-labels were author-created, and the holdout had already been opened and used
-for tuning. Treat it as exploratory evidence only; the external directory and
-its other hashes are preserved at that location, not versioned in this checkout.
-
-The 2026-10-01 21-document / 200-heading bilingual comparison is recorded in
-`experiments/jev-mssr-live/runs/MSSR-LIBRARIAN-JEV-COMPARISON-20261001.md`:
-direct Choice runs scored 35/52 and 34/52; the hierarchical run scored 31/52.
-Labels were Luna-reviewed exact headings, not owner-adjudicated acceptable
-ranges. Fetch success measured handle integrity, not semantic quality. The
-offline Spanish lexical rewrite reused an opened holdout and worsened English
-recall; it stays out of product. The earlier October 2 confidence smoke did
-not include the new sidecar's records or EvidenceAtoms, so it proves neither
-metadata retrieval benefit nor sidecar-to-fetch integration. The later 22:38
-sidecar-derived Jev smoke does exercise the new handle path, but remains
-plumbing evidence, not quality evidence.
+A valid next evaluation freezes one source/product revision and separates candidate recall, metadata retrieval, Jev acceptable-set selection/distribution, sufficiency, contradiction/near negatives, abstention, exact-fetch/citation integrity, and host-composed structure recovery, compaction and cited-paragraph fidelity. Keep EN/ES variants paired and split by source-document and concept groups. Independently adjudicate acceptable ranges, answerability and sufficiency before tuning. Leave confidence uncalibrated and the threshold unset; decisions stay advisory.
 
 ## Next gates
 
-- **Complete on the source candidate:** full verification, local 0.2.102 release
-  gate and one real-document Jev -> exact evidence-pack wiring smoke. Preserve
-  all benchmark artifacts unchanged; neither the smoke nor historical scores
-  calibrate confidence or establish retrieval quality.
-- **Current:** preserve the source work as a narrow commit, then create a
-  separate worktree from clean
-  `origin/codex/mssr-0.2.101-product-integration` (`a0fa31f`). Transplant only
-  the reviewed 0.2.102 diff. The source branch includes unrelated Jev benchmark
-  history, so do not merge/push its ancestry or copy the whole tree. A Luna
-  read-only review found all 12 modified paths overlap target history since
-  common base `dfb2956`; preserve the target's 0.2.101 product and Bridge-audit
-  content while resolving overlaps. Keep the source branch and evaluation
-  artifacts intact.
-- After the clean product branch passes full verification and release gate,
-  publish only that normal feature ref and verify local/tracking/direct remote
-  refs. No npm publication or main merge is part of this work.
-- After the user's later PC restart, read back the active MSSR build and confirm
-  selection -> exact fetch -> evidence pack through the active host. This is a
-  host-adoption smoke, not a benchmark or confidence calibration.
-- After the exact 0.2.102 package and product integration are verified, create
-  a separate Bridge adoption branch from the clean 0.6.146 candidate. Add a new opt-in
-  `project-context-librarian-sidecar` mode; read only explicitly supplied
-  `sourceRefs`, validate sidecar/optional segment/ref presence and byte/path
-  bounds, and preserve current single-section behavior. Add adversarial and
-  exact-fetch regressions, then run the Bridge release checks. Keep live Bridge
-  unchanged until its host is available and adoption is verified.
-- Only after the product branches pass their gates, publish normal feature
-  branch refs and verify local `HEAD`, tracking refs and direct remote refs.
-  No main merge, npm publication, or live restart is part of the current work.
-- Freeze owner-adjudicated acceptable ranges and an untouched document-level
-  holdout before quality comparisons. Existing historical scores and current
-  plumbing smokes remain exploratory; confidence stays uncalibrated.
+- **Product:** the clean MSSR 0.2.104 branch and isolated Bridge 0.6.156/0.2.104 candidate are pushed and gated. Active Bridge remains 0.6.153/0.2.101. Production adoption, restart, main merge and npm publication remain separate gates.
+- **Librarian:** this is a composed evidence workflow, not a grep alias: deterministic search/metadata narrowing, Jev selection and relation review, exact revision/range fetch, contradiction review and citation packs. A host may chain structure recovery, compaction and cited paragraph assembly. Keep fetched evidence and citations source-grounded; synthesis does not write canonical sources.
+- **Benchmark:** preserve codex/benchmark-archive v1-v18. The separate owner worksheet has 32 paired concepts and 38 proposed citations across 28 unique source paths (30 files pinned, two not cited); its labels remain blank. The frozen live-gate input is a different suite: 26 active concepts × two languages (52 eligible requests), plus four excluded concepts (eight excluded language variants). Do not conflate the artifacts. C18 remains unresolved and C19 incomplete. Historical 0.2.97 runs have a reproducible exact-heading diagnostic at experiments/jev-metadata-integration/CONFIDENCE_DIAGNOSTIC.md: Brier/log loss are exploratory only, with no threshold or calibration accepted. The archive runner now freezes eligible/excluded IDs, validates records/counts and writes/verifies SHA256SUMS; latest offline preflight passed for 21 documents, 26 concepts and 52 eligible requests with the provider gate closed. A real calibration still needs owner-adjudicated ranges, sufficiency and abstention labels plus a fresh grouped holdout. Keep new harnesses and worksheets outside experiments/**/runs/**.
+- **Live Jev:** require a fresh complete provider-gate receipt and user review; make zero provider calls until the user sends the exact `START_JEV` token.
