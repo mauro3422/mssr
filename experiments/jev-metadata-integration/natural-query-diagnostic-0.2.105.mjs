@@ -393,7 +393,7 @@ async function runDiagnostic(candidateRootInput, runRootInput) {
   const readme = [
     "# MSSR Librarian natural-query retrieval diagnostic", "",
     "Status: " + receipt.status, "",
-    "This offline run compares the same candidate corpus and bilingual query seeds with no EvidenceAtoms versus the pinned .104 sidecar projection. No metadata query filters are used.",
+    "This offline run compares the same candidate corpus and bilingual query seeds with no EvidenceAtoms versus the pinned .105 sidecar projection. No metadata query filters are used.",
     "The query seeds and their heading anchors are unadjudicated. Anchor ranks are shown only as diagnostics and are not treated as correctness labels.",
     "C03 was excluded from this slice pending owner review of a possible query/selector premise mismatch. C24 is an untagged sidecar-behavior control.",
     "No Jev/provider/MCP/network call, labels, confidence calibration, or quality score were used. This result is a small rank-change diagnostic, not a quality benchmark.", "",
