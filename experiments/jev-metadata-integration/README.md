@@ -272,3 +272,51 @@ and fingerprint, plus Unicode/boundary/staleness regressions. For quality and
 calibration, next obtain owner-adjudicated accepted ranges, hard negatives,
 sufficiency/abstention labels, more independent source/concept clusters, and a
 grouped untouched holdout before tuning.
+
+## MSSR 0.2.105 sidecar-aware offline runs -- 2026-10-04
+
+The new `.105` artifacts are separate from the historical `.104` files and from
+the Jev live benchmark. Both runs pin MSSR
+`0c1ca590d3dcf9a8ba721f6a2975c909e13972c2` / build
+`mssr-build:sha256:58b3d5447d10b847`. Their 13/13 preflight and 37/37 ranking
+diagnostic SHA256SUMS entries were independently verified.
+
+### Sidecar preflight
+
+The offline run
+`jev-sidecar-preflight-20261004-0.2.105-v1` projected all 4/4 declarations,
+passed 4/4 metadata searches and 4/4 exact-fetch fingerprints, and passed the
+missing-sidecar and stale-fingerprint rejection controls. It fetched 11,559
+code units across the exact ranges. No network, provider, Jev, or MCP call was
+made; no labels or scores were read. The optional references manifest was
+absent. This verifies plumbing and fail-closed controls only.
+
+The immutable artifact root is
+`D:\MSSR-benchmark-artifacts\jev-sidecar-preflight-20261004-0.2.105-v1`;
+hashes and bounded details are in
+[evidence/metadata-preflight-0.2.105-20261004.json](evidence/metadata-preflight-0.2.105-20261004.json).
+
+### Bilingual ranking diagnostic
+
+The offline run
+`jev-natural-query-diagnostic-20261004-0.2.105-v1` searched the same 27
+documents for eight Spanish/English query variants, with and without the four
+projected EvidenceAtoms and without metadata filters. C01/C02/C04 are tagged;
+C24 is an untagged control; C03 remains excluded pending owner review.
+
+Across 147 available top-K result slots, both conditions returned the same
+candidates: zero added and zero removed. Five existing handle ranks changed in
+one query: C01 English moved its unadjudicated anchor from rank 9 to 5. C01
+Spanish remained absent in both conditions. The anchors appeared in four of
+eight queries under each condition, but these are unadjudicated proposals and
+must not be counted as recall or quality. All 16 exact-fetch fingerprints
+passed.
+
+No Jev/provider/MCP/network calls, labels, quality scores, or calibration were
+used. This is a small deterministic ranking/fetchability diagnostic, not a
+quality result. Hashes and bounded details are in
+[evidence/natural-query-diagnostic-0.2.105-20261004.json](evidence/natural-query-diagnostic-0.2.105-20261004.json).
+
+Next, adjudicate acceptable ranges and hard negatives, then freeze grouped
+calibration/holdout data before tuning. The live Jev run remains a separately
+gated step and needs its own immutable request/evidence receipt.
