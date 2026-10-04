@@ -54,3 +54,41 @@ runtime adoption, confidence calibration, or production suitability.
 No provider call was made for the archived integration smoke. Live Jev work
 requires a new immutable run and review of its provider-gate receipt before the
 exact `START_JEV` confirmation.
+
+
+## Live Bridge runtime metadata smoke — 2026-10-04
+
+A separate read-only run against the active Bridge runtime is archived at
+[`runs/20261004130221-bridge-0.6.153-live-sidecar/`](runs/20261004130221-bridge-0.6.153-live-sidecar/).
+It freezes the exact MSSR source documents, manifests, Bridge health/schema identity,
+queries, target ranges and fetch fingerprints.
+
+Observed on Bridge 0.6.153: all 4 declared sidecar entries projected from the
+three explicit source files; all 4 metadata-filtered exact target searches and
+all 4 exact fetches passed; the same typed filters with metadata mode off returned
+zero results. An exact lexical heading query returned the same ranking with and
+without the sidecar. A restricted source list projected 2 and explicitly omitted
+the other 2 as `source-not-provided`, confirming that this path does not crawl
+or silently add documents.
+
+The four positive queries echo declared selector values. This is runtime
+integration evidence only, not natural-language retrieval quality, Jev decision
+quality, Noul sufficiency quality, calibration, or activation evidence. No Jev or
+Noul provider call was made. One setup request exceeded the live schema's
+240-character snippet limit and was rejected; it was corrected before the
+successful run.
+
+The runtime reports Bridge 0.6.153 and a healthy 185-tool catalog. Exact MSSR
+dependency provenance remains unresolved: the active process's on-disk checkout
+reports 0.6.144 and its installed MSSR package 0.2.96, which does not identify
+the bytes loaded by the 0.6.153 runtime. Do not deploy the 0.6.156 branch until
+runtime source/dependency identity is mapped and candidate-only verification
+passes in an isolated checkout.
+
+## Unadjudicated query inventory
+
+[`candidate-bank.md`](candidate-bank.md) contains 18 bilingual candidate
+query pairs anchored to 15 MSSR source files. They are not labels or evaluation
+results. The present corpus still needs independent source/concept clusters and
+two-reviewer accepted-range labels before Jev selection or probability
+calibration.

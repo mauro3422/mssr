@@ -1,0 +1,221 @@
+{
+  "schema": "mssr-bridge-librarian-live-metadata-smoke-v1",
+  "runId": "20261004130221-bridge-0.6.153-live-sidecar",
+  "createdAt": "2026-10-04 13:08:37 UTC",
+  "source": {
+    "repository": "D:\\Dev\\mssr",
+    "branch": "codex/jev-citation-evidence-pack",
+    "commit": "cbc4f355d2e3dc322f23acfab26a790b1957daeb",
+    "packageVersion": "0.2.102",
+    "buildReceipt": "mssr-build:sha256:24589ca94bee83fd",
+    "buildFiles": 127,
+    "buildBytes": 1437328,
+    "packageArtifact": "mauroprime-mssr-0.2.102.tgz",
+    "packageArtifactSha256": "a26e74b7dd8605a19062277615885bb63ba0d8e48cfb63c7d5f2640b1a24617b"
+  },
+  "runtime": {
+    "bridgeVersion": "0.6.153",
+    "runtimeBootId": "ad26f0d1-9b72-45c3-aefb-4a13a1e3956b",
+    "healthz": {
+      "ok": true,
+      "status": 200
+    },
+    "readyz": {
+      "ok": true,
+      "status": 200
+    },
+    "restartPending": false,
+    "toolCatalog": {
+      "count": 185,
+      "hash": "98e1f48bc61a8f91"
+    },
+    "librarianSearchSchema": {
+      "source": "live-runtime-registry",
+      "schemaHash": "97bba476b8976443",
+      "metadataMode": "project-context-librarian-sidecar"
+    },
+    "mssrPackageLoadedByBridge": null,
+    "provenanceNote": "The live Bridge reports 0.6.153, while the on-disk checkout at its reported cwd was observed by a read-only audit as 0.6.144 with @mauroprime/mssr 0.2.96 and a dirty tree. This does not identify the bytes loaded by the live PID; exact dependency provenance remains unresolved."
+  },
+  "inputs": {
+    "sourceSnapshot": "source-snapshot/",
+    "branchCommitPinned": true,
+    "projectContextManifestSha256": "73f681cc3d1aaba577f3a14909b435196d8acf8c61c675fd2428302dc515b135",
+    "librarianManifestSha256": "40cc2dc59afbf87a10db098c9ac96bb49e571fb90204e4f4a1efb3772b03c1af",
+    "segmentsManifestSha256": "bd678369e89d9cd25b9841290eeadd1ad586204aa099fab3df290bd52e2757d6",
+    "referencesManifest": {
+      "observed": false
+    },
+    "sourceFiles": [
+      {
+        "path": ".mssr/PROJECT_CONTEXT.md",
+        "bytes": 8471,
+        "sha256": "0fd06df7bd70b42d3bd9bff3a79440f507e6fe15b43a4e5509385ea8ae1d27d4"
+      },
+      {
+        "path": ".mssr/PROJECT_STATE.md",
+        "bytes": 25860,
+        "sha256": "f5e90d91e50aa3e88630e893052d47695144f3ea307def7c91a78bf6650793da"
+      },
+      {
+        "path": ".mssr/project-context-librarian.json",
+        "bytes": 2838,
+        "sha256": "40cc2dc59afbf87a10db098c9ac96bb49e571fb90204e4f4a1efb3772b03c1af"
+      },
+      {
+        "path": ".mssr/project-context-segments.json",
+        "bytes": 5311,
+        "sha256": "bd678369e89d9cd25b9841290eeadd1ad586204aa099fab3df290bd52e2757d6"
+      },
+      {
+        "path": ".mssr/project-context.json",
+        "bytes": 25141,
+        "sha256": "73f681cc3d1aaba577f3a14909b435196d8acf8c61c675fd2428302dc515b135"
+      },
+      {
+        "path": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+        "bytes": 1955,
+        "sha256": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df"
+      },
+      {
+        "path": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+        "bytes": 25772,
+        "sha256": "4462bffb86c7e1c80ae33f06b7fc04be90fdc9133da8cf135420388e68fa7dfb"
+      },
+      {
+        "path": "docs/decisions/0009-semantic-evidence-plane.md",
+        "bytes": 29123,
+        "sha256": "d8a1c92e8528a56df7c831c1daae0cf7adb85b431816edbc70e600ae03a1043a"
+      }
+    ]
+  },
+  "procedure": {
+    "readOnly": true,
+    "explicitSourceRefs": [
+      ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+      ".mssr/PROJECT_STATE.md",
+      ".mssr/knowledge/research/jev-decision-model-use-cases.md"
+    ],
+    "metadataMode": "project-context-librarian-sidecar",
+    "selectorQueriesOnly": true,
+    "noFilesystemCrawl": true,
+    "providerCalls": 0,
+    "jevCalls": 0,
+    "noulCalls": 0,
+    "setupValidationRejection": {
+      "requestedMaxSnippetChars": 320,
+      "maximum": 240,
+      "correctedBeforeSuccessfulRun": true
+    }
+  },
+  "result": {
+    "declared": 4,
+    "projected": 4,
+    "omitted": 0,
+    "metadataFilteredSearches": 4,
+    "exactTargetCandidates": 4,
+    "exactFetchesPassed": 4,
+    "metadataOffSameFiltersReturned": 0,
+    "cases": [
+      {
+        "entryId": "mssr-architecture-impact-decision",
+        "selectorQuery": "coding",
+        "metadataFilter": {
+          "domain": "coding"
+        },
+        "target": {
+          "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+          "rangeId": "heading-1",
+          "rank": 1,
+          "score": 1,
+          "recordFingerprint": "f382f6a835c78e162efc099ee72ea3c72b0faf3a119e824cda03827171bd0f4a",
+          "evidenceAtomId": "evidence-atom:73056d9327c495e3fa919d7d",
+          "fetchFingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5"
+        },
+        "fetchPassed": true,
+        "withoutSidecarResults": 0
+      },
+      {
+        "entryId": "mssr-learning-dataset-state",
+        "selectorQuery": "agent-orchestration",
+        "metadataFilter": {
+          "domain": "agent-orchestration"
+        },
+        "target": {
+          "sourceRef": ".mssr/PROJECT_STATE.md",
+          "rangeId": "heading-21",
+          "rank": 2,
+          "score": 1,
+          "recordFingerprint": "1c2e433ed42bbef379f05ec62a8565e1364ab1a305d66089da87173751257250",
+          "evidenceAtomId": "evidence-atom:5e66c8defe4b70eb8f3ac93c",
+          "fetchFingerprint": "c29fe6bc992dd7c656284ddf76be85bdeb064e9063fdbdd9de431b548b94d3f3"
+        },
+        "fetchPassed": true,
+        "withoutSidecarResults": 0
+      },
+      {
+        "entryId": "mssr-core-skill-package-state",
+        "selectorQuery": "skill-system",
+        "metadataFilter": {
+          "domain": "skill-system"
+        },
+        "target": {
+          "sourceRef": ".mssr/PROJECT_STATE.md",
+          "rangeId": "heading-22",
+          "rank": 2,
+          "score": 1,
+          "recordFingerprint": "1aadf9fa8609e572a60f2832e33cbf57efb7c49f3455f6a17834cde0355d130a",
+          "evidenceAtomId": "evidence-atom:b0838fc3fe5acc72b2ca08f6",
+          "fetchFingerprint": "534388abe5c4d0392e215add388bac3a6bd0a1261bc3ed9c17d16ebd77961ca3"
+        },
+        "fetchPassed": true,
+        "withoutSidecarResults": 0
+      },
+      {
+        "entryId": "mssr-jev-use-case-hypotheses",
+        "selectorQuery": "agent-orchestration",
+        "metadataFilter": {
+          "domain": "agent-orchestration"
+        },
+        "target": {
+          "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+          "rangeId": "heading-10",
+          "rank": 1,
+          "score": 1,
+          "recordFingerprint": "63b86c3dadccb420ece450226671fdfcf4ee935f0a00d58fa217a0bb90a32314",
+          "evidenceAtomId": "evidence-atom:531383b6d1ad32753fc2cb90",
+          "fetchFingerprint": "9197101e89eee91feea5862c14ac1ec29c4a0036eb0fbf9d1e744a0e2306a1d5"
+        },
+        "fetchPassed": true,
+        "withoutSidecarResults": 0
+      }
+    ],
+    "selectorLexicalProbe": {
+      "query": "Learning dataset state",
+      "metadataModeOnTargetRange": "heading-21",
+      "metadataModeOnRank": 2,
+      "metadataModeOffTargetRange": "heading-21",
+      "metadataModeOffRank": 2,
+      "orderedResultsIdentical": true,
+      "interpretation": "When the query already names the lexical heading, the sidecar made no ranking difference."
+    },
+    "restrictedSourceScopeProbe": {
+      "explicitSourceRefs": [
+        ".mssr/PROJECT_STATE.md",
+        ".mssr/PROJECT_CONTEXT.md",
+        "docs/decisions/0009-semantic-evidence-plane.md"
+      ],
+      "declared": 4,
+      "projected": 2,
+      "omitted": 2,
+      "omissionReason": "source-not-provided",
+      "interpretation": "Sidecar entries for documents outside the explicit sourceRefs were omitted; the tool did not crawl or silently add sources."
+    },
+    "bridgeHealthMetricsObservedAt": "2026-10-04T13:04:11.694Z",
+    "bridgeTransportFailuresSinceBaseline": {
+      "tunnelService502": 0,
+      "localPostNoStatus": 0
+    }
+  },
+  "claim": "Integration smoke only. The run establishes runtime sidecar projection, metadata-filtered retrieval of the four declared exact ranges, and exact fetch fingerprint integrity. The query strings echo declared selector values, so it does not establish natural-language relevance, ranking quality, Jev choice accuracy, Noul sufficiency quality, confidence calibration, or production suitability."
+}

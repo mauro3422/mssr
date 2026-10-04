@@ -8,3 +8,6 @@ experiments/jev-mssr-live/runs/** -text whitespace=cr-at-eol
 # The standalone live runner pins these exact fixture bytes as part of its
 # offline preflight contract; do not normalize their line endings on checkout.
 inputs/** -text whitespace=cr-at-eol
+
+# Preserve exact bytes covered by immutable metadata integration receipts.
+experiments/jev-metadata-integration/runs/** -text whitespace=cr-at-eol
