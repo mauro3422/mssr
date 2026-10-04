@@ -156,4 +156,24 @@ The missing-sidecar negative control omits the Librarian manifest argument to th
 projector; the physical sidecar input is separately required by the pinned input
 map and hash check.
 
+### Completed preflight — 2026-10-04
+
+The run `jev-sidecar-preflight-20261004-v1` passed against the pinned `.104`
+candidate. It projected 4/4 declarations, passed 4/4 selector-driven metadata
+searches and exact fetch fingerprints, returned zero exact target hits without
+EvidenceAtoms, and fetched 10,779 code units. Missing-argument and stale-
+fingerprint controls passed. The receipt records Node 24.16.0, Windows x64 and
+Zod 3.25.76. Network, Jev, provider and MCP call counts are all zero; labels
+were not read and no quality scoring ran.
+
+The complete snapshot and receipt are stored outside the repository at
+`D:\MSSR-benchmark-artifacts\jev-sidecar-preflight-20261004-v1`. The
+`SHA256SUMS` file hash is
+`7613ae62002fce6f66b912f585167d55aef987376765af16fefd4edff9e60edc`;
+the receipt and per-file hashes are summarized in
+[`evidence/metadata-preflight-20261004.json`](evidence/metadata-preflight-20261004.json).
+This closes the sidecar plumbing preflight only. Natural-query relevance,
+acceptable-range recall, Jev selection, sufficiency, contradictions, abstention,
+synthesis, confidence calibration and Bridge adoption remain unmeasured.
+
 Run its regression tests with `node test/metadata-preflight.test.mjs`.

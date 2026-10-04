@@ -1,0 +1,47 @@
+{
+  "schema": "mssr-librarian-sidecar-preflight-summary-v1",
+  "runId": "jev-sidecar-preflight-20261004-v1",
+  "artifactRoot": "D:/MSSR-benchmark-artifacts/jev-sidecar-preflight-20261004-v1",
+  "sha256SumsFileSha256": "7613ae62002fce6f66b912f585167d55aef987376765af16fefd4edff9e60edc",
+  "manifestSha256": "a26a63835e0e63f750f6c98ea169d997e9372a00a60c9f41c51a6b1530ac935f",
+  "receiptSha256": "02a3631221219cfe5ee7ac49607c306d675bca33126ab7e36272e4355b1a850b",
+  "status": "preflight-passed-sidecar-verified-provider-gate-closed",
+  "mode": "offline-only",
+  "networkAccess": false,
+  "providerCallsMade": false,
+  "jevCallsMade": false,
+  "mcpCallsMade": false,
+  "labelsRead": false,
+  "scoringPerformed": false,
+  "candidate": {
+    "branch": "codex/jev-citation-evidence-pack-clean",
+    "commit": "e3e03912d63231ebf646fdaec9353ee1e28fe403",
+    "packageVersion": "0.2.104",
+    "buildId": "mssr-build:sha256:1508c8a279dc911c",
+    "buildFiles": 127,
+    "buildBytes": 1437913
+  },
+  "harness": {
+    "branch": "codex/benchmark-archive",
+    "commit": "fc5cc429408aea39aa8aceb46190cf1578f5dbdb",
+    "scriptSha256": "d7635e5137075d538f9cba04f7114ce72af39624cf101bd3603c6e182e16e932",
+    "pinsSha256": "42b7ab3d4388b982eacf7c0fa19e514666f6a863c29562575dbf64e8a44ae1c0"
+  },
+  "runtime": {
+    "node": "v24.16.0",
+    "platform": "win32",
+    "architecture": "x64",
+    "zodVersion": "3.25.76"
+  },
+  "result": {
+    "declaredEntries": 4,
+    "projectedEntries": 4,
+    "metadataSearches": 4,
+    "exactFetchesPassed": 4,
+    "metadataExactTargetHitsWithoutAtoms": 0,
+    "totalExactFetchCodeUnits": 10779,
+    "projectionRejectsOmittedSidecar": true,
+    "staleSidecarRejected": true
+  },
+  "interpretation": "Structural plumbing preflight only. Queries echoed typed selectors from the Librarian sidecar. It is not natural-query relevance or quality, acceptable-range recall, Jev/Noul quality, contradiction recall, synthesis quality, confidence calibration, or Bridge runtime adoption."
+}
