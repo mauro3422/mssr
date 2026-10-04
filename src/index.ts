@@ -94,6 +94,7 @@ export * from "./semantic-judgment.js";
 export * from "./semantic-synthesis-proposal.js";
 export * from "./semantic-evidence-review.js";
 export * from "./semantic-evidence-mcp.js";
+export * from "./librarian-evidence-pack.js";
 export * from "./librarian-jev-selection.js";
 export * from "./semantic-curation-queue.js";
 export * from "./semantic-curation-source.js";

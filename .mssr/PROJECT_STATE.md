@@ -1,9 +1,9 @@
 # MSSR project state
 
 ## Current release
-MSSR 0.2.100 remains the last release-gated package: `mauroprime-mssr-0.2.100.tgz`, SHA-256 `849b067d5f1578b3c32c73fc4e2bafcedaa8a5e01231ac1108fa92313a103d32`; it is not published. Bridge's pushed 0.2.100 candidate advanced through 0.6.145 to a clean, remote-synced 0.6.146 candidate; live Bridge remains 0.6.144. Detailed receipts and commit ids are in the Jev/Librarian handoff.
+MSSR 0.2.102 is the latest local release-gated package: `mauroprime-mssr-0.2.102.tgz`, 1,099,614 bytes, SHA-256 `a26e74b7dd8605a19062277615885bb63ba0d8e48cfb63c7d5f2640b1a24617b` (`pkg:0.2.102#a26e74b7`); it is unpublished. Full `npm run verify` and `npm run release:gate` passed on 2026-10-04. Exact artifact and npm integrity are recorded in `.mssr/runtime/releases/0.2.102.json`.
 
-MSSR 0.2.101 passed full `npm run verify` and `npm run release:gate` on `codex/project-context-librarian-sidecar-0.2.101`; local artifact `mauroprime-mssr-0.2.101.tgz` is 1,094,370 bytes, SHA-256 `868c5180783776a7f6dc55bab736a6f38fd84fe647cdb26b0b8b34892ebc5499` (`pkg:0.2.101#868c5180`), unpublished. Four real headings passed metadata search and exact fetch; one live Jev smoke selected the exact intended heading and fetch passed, with scores uncalibrated. Active local MCP still loads build `86070e2a0e734090` (0.2.99-era), so Bridge has not adopted this sidecar. Preserve the evaluation snapshot and exclude its run artifacts from product integration; see `.mssr/knowledge/operations/jev-librarian-integration-handoff.md`.
+The source candidate on `codex/jev-citation-evidence-pack` adds `mssr_librarian_evidence_pack` for bounded exact-range revalidation and citations. A separate live smoke used three real MSSR documents and eight exact candidates: Jev selected a changelog section (confidence 0.27, Noul 0.65; uncalibrated), and the pack's source slice, handle and citation matched exactly. This is plumbing evidence, not a quality benchmark. Active Codex MCP remains on build `ecf594115342fa3c`; the new build has not been adopted because the user will restart the PC later. Live Bridge remains unchanged. Preserve the benchmark branch/artifacts; transplant only the 0.2.102 product diff to the clean integration line before publishing.
 
 ## 0.2.98 package release receipt — historical
 
@@ -155,7 +155,7 @@ The near-term reliability program remains explicit in `ROADMAP.md`. **R1 Trace I
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.100 -->
+<!-- mssr-version:mssr.source=0.2.102 -->
 <!-- mssr-version:bridge.live=0.6.144 -->
 <!-- mssr-version:bridge.mssr=0.2.96 -->
 <!-- mssr-owner:semantic.consistency=mssr -->

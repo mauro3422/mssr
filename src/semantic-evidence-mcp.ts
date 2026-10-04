@@ -24,6 +24,11 @@ import {
   mssrLibrarianJevSelectInputSchema,
   selectMssrLibrarianEvidenceWithJev,
 } from "./librarian-jev-selection.js";
+import {
+  MSSR_LIBRARIAN_EVIDENCE_PACK_LIMITS,
+  buildMssrLibrarianEvidencePack,
+  mssrLibrarianEvidencePackInputSchema,
+} from "./librarian-evidence-pack.js";
 
 export const MSSR_SEMANTIC_EVIDENCE_TOOL_NAMES = [
   "mssr_librarian_search",
@@ -31,6 +36,7 @@ export const MSSR_SEMANTIC_EVIDENCE_TOOL_NAMES = [
   "mssr_semantic_evidence_relation_review",
   "mssr_semantic_evidence_synthesis_preview",
   "mssr_librarian_jev_select",
+  "mssr_librarian_evidence_pack",
 ] as const;
 
 export const mssrLibrarianSearchToolInputSchema = z.object({
@@ -101,4 +107,9 @@ export function registerMssrSemanticEvidenceTools(server: McpServer, options: Ms
     const provider = options.decisionProvider ?? new MssrJevSemanticCuratorProvider(args.model ? { model: args.model } : {}).decisionProvider;
     return response(await selectMssrLibrarianEvidenceWithJev(args, provider));
   });
+
+  server.registerTool(MSSR_SEMANTIC_EVIDENCE_TOOL_NAMES[5], {
+    description: `Build a read-only cited evidence pack from exact Librarian handles previously selected by the host or Jev. The host supplies current Markdown snapshots; MSSR revalidates every handle's owner, source, privacy class, revision, range and fingerprint, then returns source text unchanged with one citation record per range. Limits: ${MSSR_LIBRARIAN_EVIDENCE_PACK_LIMITS.maxDocuments} source documents, ${MSSR_LIBRARIAN_EVIDENCE_PACK_LIMITS.maxHandles} exact ranges, ${MSSR_LIBRARIAN_EVIDENCE_PACK_LIMITS.maxTotalMarkdownChars} total input Markdown characters and ${MSSR_LIBRARIAN_EVIDENCE_PACK_LIMITS.maxTotalFetchedChars} exact output characters. It does not summarize, generate prose, infer truth, merge canonical sources, scan files or write anything. Provenance and privacy labels remain caller-asserted.`,
+    inputSchema: mssrLibrarianEvidencePackInputSchema,
+  }, async (args) => response(buildMssrLibrarianEvidencePack(args)));
 }

@@ -53,15 +53,14 @@ been extracted or pushed yet.
 
 ## MSSR contract work
 
-The original branch is preserved as the rollback snapshot. Current work is on
-`codex/project-context-librarian-sidecar-0.2.101`, forked from the exact
-`ad25a9a` snapshot. The 0.2.101 sidecar binds project-declared selectors to one
-direct manifest-owned heading and its current fingerprint; it does not inherit
-module selectors, reuse delivery segments, or rewrite old benchmark runs. The
-adapter, health/init integration, focused tests and real-document smoke are
-local candidate work. Full `npm run verify` and `npm run release:gate` both
-passed on 2026-10-02. The current branch has no upstream; its working changes
-are uncommitted and have not been pushed. The exact local artifact is
+The original branch is preserved as the rollback snapshot. The 0.2.101 sidecar
+candidate is preserved on `codex/project-context-librarian-sidecar-0.2.101`,
+forked from the exact `ad25a9a` snapshot. Its sidecar binds project-declared
+selectors to one direct manifest-owned heading and its current fingerprint; it
+does not inherit module selectors, reuse delivery segments, or rewrite old
+benchmark runs. The adapter, health/init integration, focused tests and
+real-document smoke are local candidate work. Full `npm run verify` and
+`npm run release:gate` both passed on 2026-10-02. The exact local artifact is
 `mauroprime-mssr-0.2.101.tgz`, 1,094,370 bytes, SHA-256
 `868c5180783776a7f6dc55bab736a6f38fd84fe647cdb26b0b8b34892ebc5499`
 (`pkg:0.2.101#868c5180`); independent file readback matched the final release
@@ -72,10 +71,43 @@ published.
 The 0.2.100 package receipt remains
 `pkg:0.2.100#849b067d5f1578b3c32c73fc4e2bafcedaa8a5e01231ac1108fa92313a103d32`.
 The new work has not been published to npm. The verified 0.2.101 artifact is
-ready for isolated Bridge candidate adoption; preserve one-section-per-call
-exact-handle/fetch semantics, add a separate sidecar mode, run the new
-real-document smoke, and verify its exact package hash. Live Bridge remains
-unchanged until a separate restart/adoption decision.
+preserved as evidence. The 0.2.102 continuation below supersedes it as the next
+package candidate for any later Bridge adoption. Live Bridge remains unchanged
+until a separate restart/adoption decision.
+
+## 0.2.102 cited evidence-pack continuation — 2026-10-04
+
+Current source work is on `codex/jev-citation-evidence-pack`, branched from the
+verified local 0.2.101 commit `ba1599b`. It adds the read-only
+`mssr_librarian_evidence_pack` MCP tool: up to 16 exact handles are re-fetched
+from caller-supplied current Markdown and returned verbatim with per-range
+owner/source/revision/line/fingerprint citations. Stale, duplicate, unmatched,
+privacy-excluded or over-budget evidence fails closed. This composes acquisition
+after a Jev/host choice but does not itself call Jev, reconstruct paragraph
+structure, generate prose, or write canonical sources. `npm run verify` and
+`npm run release:gate` passed. The unpublished local 0.2.102 package is
+1,099,614 bytes, SHA-256
+`a26e74b7dd8605a19062277615885bb63ba0d8e48cfb63c7d5f2640b1a24617b`
+(`pkg:0.2.102#a26e74b7`); its full receipt is
+`.mssr/runtime/releases/0.2.102.json`.
+
+A real-document Jev -> evidence-pack smoke passed using three current MSSR
+documents and eight exact candidates. One `typesafe-jev` / `jev-1.13.0` call
+selected `changelogs/0.2.102.md` lines 1-29 (1,670 input / 127 output tokens,
+480.6 ms; Choice 0.27; Noul 0.65). The caller-supplied source slice matched the
+2,511-character packed range, and citation handle/source/revision/range/fingerprint
+matched. These uncalibrated signals are not quality labels. Receipt:
+`.mssr/runtime/jev-smokes/evidence-pack-20261004T032043309Z.json`; raw provider
+output was not persisted.
+
+The Codex user launcher now enables Windows system CA trust only for the Jev
+child process, retaining TLS validation. A standalone live provider smoke
+passed. The active Codex MCP still loads build `ecf594115342fa3c`; it has not
+adopted the new package. The user will restart the PC later; do not restart or
+interrupt the live Bridge/MCP during this continuation. After restart, verify
+the exact MSSR build and confirm this selection -> exact evidence-pack path
+through the active host as a plumbing smoke; keep it separate from quality
+scoring and confidence calibration.
 
 ## Bridge candidate
 
@@ -88,7 +120,7 @@ proved exact-fetch plumbing only. The read-only adoption review confirmed this
 candidate reads only `.mssr/project-context.json`: it does not consume
 `.mssr/project-context-librarian.json` or produce the sidecar's per-heading
 EvidenceAtoms. Adoption requires a new explicit mode and the exact verified
-MSSR 0.2.101 package; preserve 0.6.146 and keep the existing mode compatible.
+MSSR 0.2.102 package; preserve 0.6.146 and keep the existing mode compatible.
 Live Bridge is still 0.6.144; no merge, PR, deployment, or restart was
 performed. Bridge's earlier dirty primary checkout remains untouched.
 
@@ -170,16 +202,27 @@ plumbing evidence, not quality evidence.
 
 ## Next gates
 
-- **Complete:** full verification and release gate passed. Retain the exact
-  package hash above and ignored receipt under
-  `.mssr/runtime/releases/0.2.101.json`; keep the evaluation snapshot intact.
-- **Next:** extract reviewed product/source/docs/tests into a clean integration
-  branch rooted at `origin/main`, using the audited dependency chain. Keep all
-  206 `experiments/jev-mssr-live/runs/` files and large prediction outputs out
-  of the product branch. Preserve the original evaluation branch and current
-  candidate until extraction verifies; do not cherry-pick mixed commits blindly.
-- After the exact 0.2.101 package is verified, create a separate Bridge
-  adoption branch from the clean 0.6.146 candidate. Add a new opt-in
+- **Complete on the source candidate:** full verification, local 0.2.102 release
+  gate and one real-document Jev -> exact evidence-pack wiring smoke. Preserve
+  all benchmark artifacts unchanged; neither the smoke nor historical scores
+  calibrate confidence or establish retrieval quality.
+- **Current:** preserve the source work as a narrow commit, then create a
+  separate worktree from clean
+  `origin/codex/mssr-0.2.101-product-integration` (`a0fa31f`). Transplant only
+  the reviewed 0.2.102 diff. The source branch includes unrelated Jev benchmark
+  history, so do not merge/push its ancestry or copy the whole tree. A Luna
+  read-only review found all 12 modified paths overlap target history since
+  common base `dfb2956`; preserve the target's 0.2.101 product and Bridge-audit
+  content while resolving overlaps. Keep the source branch and evaluation
+  artifacts intact.
+- After the clean product branch passes full verification and release gate,
+  publish only that normal feature ref and verify local/tracking/direct remote
+  refs. No npm publication or main merge is part of this work.
+- After the user's later PC restart, read back the active MSSR build and confirm
+  selection -> exact fetch -> evidence pack through the active host. This is a
+  host-adoption smoke, not a benchmark or confidence calibration.
+- After the exact 0.2.102 package and product integration are verified, create
+  a separate Bridge adoption branch from the clean 0.6.146 candidate. Add a new opt-in
   `project-context-librarian-sidecar` mode; read only explicitly supplied
   `sourceRefs`, validate sidecar/optional segment/ref presence and byte/path
   bounds, and preserve current single-section behavior. Add adversarial and

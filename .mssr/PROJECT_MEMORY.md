@@ -1,5 +1,25 @@
 # MSSR project memory
 
+## Read-only cited evidence pack — 0.2.102
+
+The Librarian composition boundary now accepts bounded current Markdown plus
+exact handles selected by search/host/Jev, re-fetches each against owner, source,
+privacy, revision, line range and fingerprint, then returns unchanged source
+ranges with one citation per item. It is an acquisition/assembly primitive, not
+a summarizer, Jev call, truth verifier, paragraph generator or write path. This
+preserves Mauro's intended composed workflow: Jev decides among bounded choices;
+deterministic host/MSSR code retrieves, checks and carries evidence; a separate
+structure-recovery or prose stage may assemble useful paragraphs while keeping
+citations and contradiction review explicit. Source labels remain
+caller-asserted, and confidence remains uncalibrated.
+
+The 2026-10-04 real-document wiring smoke offered eight exact candidates from
+three current MSSR documents. Jev selected the 0.2.102 changelog section at
+Choice confidence 0.27 and Noul sufficiency 0.65; the caller then confirmed the
+packed range exactly matched the source slice and citation handle. This is one
+unadjudicated integration example: it validates selection-to-pack plumbing and
+citation integrity, not semantic accuracy or a confidence cutoff.
+
 ## Exact-range EvidenceAtom metadata projection — 0.2.98
 
 Librarian retrieval may accept exact EvidenceAtoms alongside caller-supplied
