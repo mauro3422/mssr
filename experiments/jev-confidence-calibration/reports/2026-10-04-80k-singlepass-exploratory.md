@@ -1,16 +1,16 @@
 # Jev 80k single-pass confidence diagnostic
 
-> **Superseded.** This version used 200 Choice options. The run-source audit found 200 heading candidates plus the explicit `none` option, for 201 total. Use [the corrected report](2026-10-04-80k-singlepass-exploratory-corrected.md); frozen Jev runs are unchanged.
+> **Superseded.** This report's n=200 calculation is retained only as a sensitivity scenario. Both historical runs used dirty source, and neither final Choice count is verified. Use the [conditional sensitivity report](2026-10-04-80k-singlepass-exploratory-source-conditional.md); frozen Jev runs are unchanged.
 
 Exploratory offline report from frozen historical runs. This is not production calibration.
 
 ## Method
 
-The final Choice count was validated as 200 in the manifest and every response record. The evaluator applies the documented TypeSafe normalized Choice confidence inverse (typesafe-choice-normalized-pmax-v1): pmax = 1/n + confidence * (1 - 1/n) ([documentation](https://docs.typesafe.ai/confidence)). It scores the reconstructed top-option mass against the frozen strict heading label as a diagnostic; it does not treat that value as the probability that evidence is correct. Full multiclass scores are unavailable because no complete candidate probability vectors were persisted.
+This historical calculation assumed that the 200 recorded heading candidates were the complete final Choice. The run manifests do not verify that assumption because both run trees were dirty and the exact selector source was not preserved. The current report compares n=200 with n=201, the latter assuming one additional `none` option. The documented TypeSafe normalized Choice confidence inverse is pmax = 1/n + confidence * (1 - 1/n) ([documentation](https://docs.typesafe.ai/confidence)); all scores in this historical report are conditional on n=200. Full multiclass scores are unavailable because no complete candidate probability vectors were persisted.
 
 ## Results
 
-| Run | Version / build | Dirty source | Selected | Abstained | Strict target matches | Top-label Brier | Top-label log-loss | Distinct source documents |
+| Run | Version / build | Dirty source | Selected | Abstained | Strict target matches | Brier (assumed n=200) | Log-loss (assumed n=200) | Distinct source documents |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
 | mssr-librarian-jev-bilingual-80k-singlepass-20261001T182504Z-v1 | 0.2.96 / no receipt | true | 50 | 2 | 35/50 | 0.184383 | 0.534465 | 21 |
 | ↳ en | same run | — | 25 | 1 | 18/25 | 0.183435 | 0.534856 | — |

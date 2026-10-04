@@ -2,7 +2,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { execFileSync } from "node:child_process";
 import { basename, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -11,15 +10,10 @@ const DEFAULT_RUNS = [
   "../jev-mssr-live/runs/mssr-librarian-jev-bilingual-80k-singlepass-20261001T182504Z-v1",
   "../jev-mssr-live/runs/mssr-librarian-jev-bilingual-80k-singlepass-20261001T184400Z-v2",
 ];
-const DEFAULT_OUT = "reports/2026-10-04-80k-singlepass-exploratory-corrected";
+const DEFAULT_OUT = "reports/2026-10-04-80k-singlepass-exploratory-source-conditional";
 const TRANSFORM_ID = "typesafe-choice-normalized-pmax-v1";
 const TRANSFORM_URL = "https://docs.typesafe.ai/confidence";
-const HISTORICAL_SELECTOR = {
-  commit: "5163dce31f3912aca4500cbd2fb58453d6ee7203",
-  path: "src/librarian-jev-selection.ts",
-  blobSha1: "7709fe2d094861e7f108992ebd63096e05751acf",
-  noneOptionCount: 1,
-};
+const SELECTOR_SOURCE_PATH = "src/librarian-jev-selection.ts";
 const BIN_EDGES = [0, 0.5, 0.7, 0.85, 1];
 const EPSILON = 1e-15;
 
@@ -40,7 +34,8 @@ function assertProbability(value, label) {
 /**
  * TypeSafe's normalized Choice confidence is documented as
  * (pmax - 1/n) / (1 - 1/n). This inverse is intentionally restricted to a
- * verified final Choice count; it is not a probability of correctness.
+ * assumed Choice count; it is not a probability of correctness. Callers must
+ * preserve the assumption status when the run-time option count is unknown.
  */
 export function normalizedChoiceConfidenceToPmax(confidence, optionCount) {
   assertProbability(confidence, "confidence");
@@ -48,29 +43,62 @@ export function normalizedChoiceConfidenceToPmax(confidence, optionCount) {
   return (1 / optionCount) + confidence * (1 - 1 / optionCount);
 }
 
-export function verifyFinalChoiceOptionCount(record, expectedCandidateCount, noneOptionCount = HISTORICAL_SELECTOR.noneOptionCount) {
-  assert.equal(record.selectionMode, "single-pass", "final option count is only accepted for single-pass Choice");
+export function verifyCandidateHeadingCount(record, expectedCandidateCount) {
+  assert.equal(record.selectionMode, "single-pass", "candidate heading count is only accepted for single-pass Choice");
   assert.ok(Number.isInteger(record.candidateCount) && record.candidateCount >= 2, "candidateCount is missing or invalid");
   assert.ok(Number.isInteger(record.finalistCount) && record.finalistCount >= 2, "finalistCount is missing or invalid");
   assert.equal(record.candidateCount, record.finalistCount, "single-pass candidate and finalist heading counts differ");
   assert.equal(record.finalistCount, expectedCandidateCount, "finalist heading count differs from the frozen catalog count");
-  assert.ok(Number.isInteger(noneOptionCount) && noneOptionCount >= 0, "noneOptionCount must be a non-negative integer");
-  return record.finalistCount + noneOptionCount;
+  return record.finalistCount;
 }
 
-export function verifyHistoricalSelectorSource(manifest) {
-  assert.equal(manifest.repository?.headAtRunKnown, HISTORICAL_SELECTOR.commit, "run head differs from the audited selector source commit");
-  const repositoryRoot = resolve(here, "../..");
-  const sourceSpec = `${HISTORICAL_SELECTOR.commit}:${HISTORICAL_SELECTOR.path}`;
-  const blobSha1 = execFileSync("git", ["rev-parse", sourceSpec], { cwd: repositoryRoot, encoding: "utf8" }).trim();
-  assert.equal(blobSha1, HISTORICAL_SELECTOR.blobSha1, "historical selector source blob changed");
-  const source = execFileSync("git", ["show", sourceSpec], { cwd: repositoryRoot, encoding: "utf8" });
-  assert.match(source, /options\.none\s*=/, "historical single-pass Choice does not declare the expected none option");
+export function assessChoiceCardinality(manifest) {
+  const headingCandidateCount = manifest.execution?.headings;
+  assert.ok(Number.isInteger(headingCandidateCount) && headingCandidateCount >= 2, "manifest heading candidate count is missing or invalid");
+  const repository = manifest.repository ?? {};
+  const sourceFingerprint = repository.sourceFileHashesAtManifest?.[SELECTOR_SOURCE_PATH] ?? null;
+  const sourceFingerprintValid = sourceFingerprint
+    && Number.isInteger(sourceFingerprint.bytes)
+    && /^[a-f0-9]{64}$/i.test(sourceFingerprint.sha256 ?? "");
+  const sourceIsDirty = repository.workingTreeDirtyAtManifest === true
+    || repository.runWasMadeFromUncommittedCandidate === true;
+  const scenarios = [
+    {
+      id: "headings-only",
+      optionCount: headingCandidateCount,
+      additionalOptionCount: 0,
+      assumption: "The final Choice contains only the frozen heading candidates and no extra option.",
+    },
+    {
+      id: "headings-plus-one-none",
+      optionCount: headingCandidateCount + 1,
+      additionalOptionCount: 1,
+      assumption: "The final Choice contains the frozen heading candidates plus exactly one explicit none option.",
+    },
+  ];
   return {
-    commit: HISTORICAL_SELECTOR.commit,
-    path: HISTORICAL_SELECTOR.path,
-    blobSha1: HISTORICAL_SELECTOR.blobSha1,
-    additionalOptions: ["none"],
+    status: "unverified-run-source-conditional-sensitivity",
+    verifiedOptionCount: null,
+    headingCandidateCount,
+    sourceIsDirty,
+    scenarios,
+    scenarioSetExhaustive: false,
+    evidence: {
+      runWasMadeFromUncommittedCandidate: repository.runWasMadeFromUncommittedCandidate ?? null,
+      workingTreeDirtyAtManifest: repository.workingTreeDirtyAtManifest ?? null,
+      headAtRunRecorded: repository.headAtRunKnown ?? null,
+      sourcePath: SELECTOR_SOURCE_PATH,
+      sourceFingerprintCaptured: Boolean(sourceFingerprintValid),
+      sourceFingerprint: sourceFingerprintValid
+        ? { bytes: sourceFingerprint.bytes, sha256: sourceFingerprint.sha256.toLowerCase() }
+        : null,
+      exactPreservedSourceMatched: false,
+      reason: sourceIsDirty
+        ? sourceFingerprintValid
+          ? "The manifest records a dirty-run source fingerprint, but no preserved selector source file matching that fingerprint is available; the committed run HEAD is not used as a substitute."
+          : "The run used dirty source and did not preserve a selector source fingerprint or matching source file; the committed run HEAD is not used as a substitute."
+        : "No exact preserved selector source artifact or explicit final Choice option count is available.",
+    },
   };
 }
 
@@ -227,7 +255,7 @@ export function validateRun(runDirInput) {
   ].map((relativePath) => readJson(resolve(runDir, relativePath)));
   const runInventory = verifyRunInventory(runDir);
   verifyHashes(runDir, manifest);
-  const selectorSource = verifyHistoricalSelectorSource(manifest);
+  const choiceCardinality = assessChoiceCardinality(manifest);
 
   assert.equal(manifest.execution?.provider, "typesafe-jev", "unexpected provider");
   assert.equal(manifest.execution?.mode, "single-pass", "only single-pass runs are supported");
@@ -271,7 +299,7 @@ export function validateRun(runDirInput) {
     seenKeys.add(key);
     assert.equal(response.selectionMode, "single-pass", `${key} is not single-pass`);
     assert.ok(["selected", "abstained"].includes(response.status), `${key} has an unsupported status`);
-    const finalChoiceOptionCount = verifyFinalChoiceOptionCount(response, manifest.execution.headings);
+    const headingCandidateCount = verifyCandidateHeadingCount(response, manifest.execution.headings);
     assert.equal(response.providerCalls, 1, `${key} must represent exactly one provider call`);
     assert.equal(response.model, manifest.execution.model, `${key} returned an unexpected model`);
     assertProbability(response.providerConfidence, `${key} providerConfidence`);
@@ -289,20 +317,19 @@ export function validateRun(runDirInput) {
       sourceDocument: target.sourceRef,
       status: response.status,
       confidence: response.providerConfidence,
-      finalChoiceOptionCount,
+      headingCandidateCount,
       correct: response.status === "selected" ? Number(exactTarget(response, target)) : null,
     });
   }
   assert.equal(seenKeys.size, 52, "some case/language pairs are missing");
   assert.equal(records.filter((row) => row.status === "selected").length, 50, "selected count differs from frozen run summary");
   assert.equal(records.filter((row) => row.status === "abstained").length, 2, "abstention count differs from frozen run summary");
-  return { runDir, manifest, cases, corpus, labels, targetIndex, responses, runInventory, selectorSource, records: stableRows(records) };
+  return { runDir, manifest, cases, corpus, labels, targetIndex, responses, runInventory, choiceCardinality, records: stableRows(records) };
 }
 
-export function summarizeRun(verified) {
-  const { records, manifest } = verified;
+function summarizeCardinalityScenario(records, scenario) {
   const selected = records.filter((row) => row.status === "selected");
-  const probabilities = selected.map((row) => normalizedChoiceConfidenceToPmax(row.confidence, row.finalChoiceOptionCount));
+  const probabilities = selected.map((row) => normalizedChoiceConfidenceToPmax(row.confidence, scenario.optionCount));
   const outcomes = selected.map((row) => row.correct);
   const scoredRows = selected.map((row, index) => ({ ...row, pmax: probabilities[index] }));
   const riskCoverage = [];
@@ -328,7 +355,7 @@ export function summarizeRun(verified) {
   const byLanguage = Object.fromEntries(["en", "es"].map((language) => {
     const languageRows = records.filter((row) => row.language === language);
     const languageSelected = languageRows.filter((row) => row.status === "selected");
-    const languageProbabilities = languageSelected.map((row) => normalizedChoiceConfidenceToPmax(row.confidence, row.finalChoiceOptionCount));
+    const languageProbabilities = languageSelected.map((row) => normalizedChoiceConfidenceToPmax(row.confidence, scenario.optionCount));
     const languageOutcomes = languageSelected.map((row) => row.correct);
     const languageScored = languageSelected.map((row, index) => ({ ...row, pmax: languageProbabilities[index] }));
     return [language, {
@@ -347,7 +374,26 @@ export function summarizeRun(verified) {
   }));
 
   return {
-    schemaVersion: 1,
+    id: scenario.id,
+    optionCount: scenario.optionCount,
+    additionalOptionCount: scenario.additionalOptionCount,
+    assumption: scenario.assumption,
+    binaryBrier: round(binaryBrier(probabilities, outcomes)),
+    binaryLogLoss: round(binaryLogLoss(probabilities, outcomes)),
+    byLanguage,
+    reliabilityBins: bins,
+    riskCoverage,
+  };
+}
+
+export function summarizeRun(verified) {
+  const { records, manifest, choiceCardinality } = verified;
+  const selected = records.filter((row) => row.status === "selected");
+  const outcomes = selected.map((row) => row.correct);
+  const cardinalityScenarios = choiceCardinality.scenarios.map((scenario) => summarizeCardinalityScenario(records, scenario));
+
+  return {
+    schemaVersion: 2,
     runId: manifest.runId,
     runDirectory: basename(verified.runDir),
     sourceHashes: Object.fromEntries(["cases.json", "corpus.json", "labels.json", "target-index.json"]
@@ -362,16 +408,17 @@ export function summarizeRun(verified) {
     },
     evaluationClass: "exploratory-top-label-confidence-diagnostic",
     choiceProbability: {
-      status: "reconstructed-from-source-verified-candidate-count",
+      status: choiceCardinality.status,
       transformId: TRANSFORM_ID,
       formula: "pmax = 1/n + confidence * (1 - 1/n)",
       source: TRANSFORM_URL,
       candidateCountField: "responses.records[].candidateCount (also copied to finalistCount by runner fallback)",
-      verifiedCandidateCount: manifest.execution.headings,
-      additionalOptions: verified.selectorSource.additionalOptions,
-      verifiedOptionCount: manifest.execution.headings + verified.selectorSource.additionalOptions.length,
-      optionCountEvidence: verified.selectorSource,
-      caveat: "Reconstructed probability mass assigned to the selected Choice option; it is not an independently validated probability that the evidence is sufficient or correct.",
+      headingCandidateCount: choiceCardinality.headingCandidateCount,
+      verifiedOptionCount: choiceCardinality.verifiedOptionCount,
+      sourceEvidence: choiceCardinality.evidence,
+      scenarios: choiceCardinality.scenarios,
+      scenarioSetExhaustive: choiceCardinality.scenarioSetExhaustive,
+      caveat: "Every reconstructed pmax and metric is conditional on an explicit option-count scenario. No final Choice count is verified for these dirty historical runs; the committed run HEAD is not treated as evidence of the dirty runtime source.",
     },
     counts: {
       decisions: records.length,
@@ -385,16 +432,27 @@ export function summarizeRun(verified) {
       languagesPerCase: 2,
     },
     topLabelMetrics: {
-      interpretation: "Exploratory binary top-label proper scores: reconstructed Choice mass on the selected option versus strict single-heading exact-match among selected answers. They are not independent calibration evidence or a measure of evidence sufficiency.",
-      binaryBrier: round(binaryBrier(probabilities, outcomes)),
-      binaryLogLoss: round(binaryLogLoss(probabilities, outcomes)),
+      status: "conditional-on-assumed-option-count-scenario",
+      interpretation: "Exploratory binary top-label proper scores: reconstructed Choice mass on the selected option versus strict single-heading exact-match among selected answers. Results vary with the assumed option count and are not independent calibration evidence or a measure of evidence sufficiency.",
+      scenarios: cardinalityScenarios.map(({ id, optionCount, assumption, binaryBrier: brier, binaryLogLoss: logLoss }) => ({
+        id, optionCount, assumption, binaryBrier: brier, binaryLogLoss: logLoss,
+      })),
     },
-    byLanguage,
-    reliabilityBins: bins,
+    byLanguage: Object.fromEntries(["en", "es"].map((language) => [language, {
+      decisions: records.filter((row) => row.language === language).length,
+      selected: records.filter((row) => row.language === language && row.status === "selected").length,
+      abstentions: records.filter((row) => row.language === language && row.status === "abstained").length,
+      strictExactTargetCorrect: records.filter((row) => row.language === language && row.status === "selected" && row.correct === 1).length,
+      scenarios: cardinalityScenarios.map((scenario) => ({ id: scenario.id, optionCount: scenario.optionCount, ...scenario.byLanguage[language] })),
+    }])),
+    reliabilityBins: {
+      status: "conditional-on-assumed-option-count-scenario",
+      scenarios: cardinalityScenarios.map(({ id, optionCount, assumption, reliabilityBins }) => ({ id, optionCount, assumption, bins: reliabilityBins })),
+    },
     riskCoverage: {
-      status: "exploratory-only",
+      status: "exploratory-only-conditional-on-assumed-option-count-scenario",
       denominator: "all 52 decisions; abstentions are not accepted at any threshold",
-      thresholds: riskCoverage,
+      scenarios: cardinalityScenarios.map(({ id, optionCount, assumption, riskCoverage: thresholds }) => ({ id, optionCount, assumption, thresholds })),
       noThresholdRecommendation: true,
     },
     multiclass: getMulticlassEvaluation(verified.responses.records, verified.targetIndex.targetIndex),
@@ -404,15 +462,20 @@ export function summarizeRun(verified) {
       "The single expected heading per query is strict; multiple semantically acceptable evidence ranges have not been independently adjudicated.",
       "The query-level split reuses the same 21 source documents; this does not test generalization to unseen documents or projects.",
       "Each language pair shares a concept and source document; 52 decisions are not 52 independent units.",
-      `The TypeSafe confidence transform is based on the audited run source at ${verified.selectorSource.commit}: ${manifest.execution.headings} heading options plus the explicit none option. The runner records finalistCount with a candidateCount fallback; raw native probabilities and SDK version were not persisted.`,
+      `The run-time selector source is not preserved at a fingerprint matching the dirty run. The ${manifest.execution.headings} headings-only and ${manifest.execution.headings}+1 (one none option) cardinalities are sensitivity assumptions, not verified facts; the recorded run HEAD is not used to infer them.`,
       "Abstention quality has no independent labels; abstentions are reported and excluded from top-label proper scores.",
       "This report does not select a production threshold or authorize any production behavior change.",
     ],
     records: records.map((row) => ({
       ...row,
-      reconstructedTopChoiceMass: row.status === "selected"
-        ? round(normalizedChoiceConfidenceToPmax(row.confidence, row.finalChoiceOptionCount)) : null,
+      conditionalTopChoiceMassByOptionCount: row.status === "selected"
+        ? Object.fromEntries(choiceCardinality.scenarios.map((scenario) => [
+          String(scenario.optionCount),
+          round(normalizedChoiceConfidenceToPmax(row.confidence, scenario.optionCount)),
+        ]))
+        : null,
     })),
+    cardinalityScenarios,
   };
 }
 
@@ -433,39 +496,47 @@ function parseArgs(argv) {
   return args;
 }
 
-function renderMarkdown(reports) {
+export function renderMarkdown(reports) {
   const lines = [
     "# Jev 80k single-pass confidence diagnostic",
     "",
-    "Corrected exploratory offline report from frozen historical runs. It supersedes `2026-10-04-80k-singlepass-exploratory.md` because that report used 200 where the audited Choice contained 200 headings plus `none` (201 options). This is not production calibration.",
+    "Conditional exploratory offline report from frozen historical runs. It supersedes the earlier n=200 report and the n=201 source-verified report: both runs were captured from dirty trees, and neither has a preserved selector source file matched to the run-time fingerprint. No actual final Choice option count is verified. This is not production calibration.",
     "",
     "## Method",
     "",
-    `The frozen manifest records 200 heading candidates. The audited run commit (${reports[0].choiceProbability.optionCountEvidence.commit}) shows that the single-pass selector adds an explicit \`none\` option, so the final Choice has 201 options. The runner copied \`finalistCount\` from \`candidateCount\` when absent; the evaluator verifies the run commit and selector blob before applying the documented TypeSafe normalized Choice confidence inverse (${TRANSFORM_ID}): pmax = 1/n + confidence * (1 - 1/n) ([documentation](${TRANSFORM_URL})). The resulting pmax is the mass assigned to the chosen option. Binary top-label scores compare that mass with strict heading match among selected answers; they do not establish independent calibration or evidence sufficiency. Full multiclass scores are unavailable because no complete candidate probability vectors were persisted.`,
+    `Both frozen manifests record 200 heading candidates and dirty run source. The v2 manifest captures a selector-source hash, but the matching source file is not preserved in the archive; v1 captured no selector-source hash. The recorded Git run HEAD is not proof of the code in those dirty working trees. Accordingly, this report shows conditional sensitivity scenarios: n=200 if the final Choice consisted only of headings, and n=201 if it added exactly one \`none\` option. These scenarios are not exhaustive if the dirty source added a different number of options. The runner copied \`finalistCount\` from \`candidateCount\` when absent, so neither field independently establishes final Choice cardinality. For each assumed n, the evaluator applies the documented TypeSafe normalized Choice confidence inverse (${TRANSFORM_ID}): pmax = 1/n + confidence * (1 - 1/n) ([documentation](${TRANSFORM_URL})). Resulting pmax is the conditional mass assigned to the chosen option. Binary top-label scores compare that mass with strict heading match among selected answers; they do not establish independent calibration or evidence sufficiency. Full multiclass scores are unavailable because no complete candidate probability vectors were persisted.`,
     "",
     "## Results",
     "",
-    "| Run | Version / build | Dirty source | Selected | Abstained | Strict target matches | Top-label Brier | Top-label log-loss | Distinct source documents |",
-    "|---|---|---:|---:|---:|---:|---:|---:|---:|",
+    "Every Brier/log-loss value and every probability-derived curve below is conditional on the column's assumed option count; none is based on a verified final Choice count.",
+    "",
+    "| Run | Version / build | Dirty source | Selected | Abstained | Strict target matches | Brier n=200 | Brier n=201 | Log-loss n=200 | Log-loss n=201 | Distinct source documents |",
+    "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
   ];
   for (const report of reports) {
     const provenance = report.sourceProvenance;
-    lines.push(`| ${report.runId} | ${provenance.packageVersion ?? "unknown"} / ${provenance.buildId ?? "no receipt"} | ${provenance.workingTreeDirtyAtManifest} | ${report.counts.selected} | ${report.counts.abstentions} | ${report.counts.strictExactTargetCorrect}/${report.counts.scoredSelectedDecisions} | ${report.topLabelMetrics.binaryBrier} | ${report.topLabelMetrics.binaryLogLoss} | ${report.counts.independentUnits} |`);
+    const scoreFor = (optionCount) => report.topLabelMetrics.scenarios.find((scenario) => scenario.optionCount === optionCount);
+    const n200 = scoreFor(200);
+    const n201 = scoreFor(201);
+    lines.push(`| ${report.runId} | ${provenance.packageVersion ?? "unknown"} / ${provenance.buildId ?? "no receipt"} | ${provenance.workingTreeDirtyAtManifest} | ${report.counts.selected} | ${report.counts.abstentions} | ${report.counts.strictExactTargetCorrect}/${report.counts.scoredSelectedDecisions} | ${n200?.binaryBrier ?? "—"} | ${n201?.binaryBrier ?? "—"} | ${n200?.binaryLogLoss ?? "—"} | ${n201?.binaryLogLoss ?? "—"} | ${report.counts.independentUnits} |`);
     for (const language of ["en", "es"]) {
       const metrics = report.byLanguage[language];
-      lines.push(`| ↳ ${language} | same run | — | ${metrics.selected} | ${metrics.abstentions} | ${metrics.strictExactTargetCorrect}/${metrics.selected} | ${metrics.binaryBrier} | ${metrics.binaryLogLoss} | — |`);
+      const langScore = (optionCount) => metrics.scenarios.find((scenario) => scenario.optionCount === optionCount);
+      lines.push(`| ↳ ${language} | same run | — | ${metrics.selected} | ${metrics.abstentions} | ${metrics.strictExactTargetCorrect}/${metrics.selected} | ${langScore(200)?.binaryBrier ?? "—"} | ${langScore(201)?.binaryBrier ?? "—"} | ${langScore(200)?.binaryLogLoss ?? "—"} | ${langScore(201)?.binaryLogLoss ?? "—"} | — |`);
     }
   }
   for (const report of reports) {
-    lines.push("", `### Reliability bins — ${report.runId}`, "", "| Reconstructed top-choice mass | Support | Mean mass | Strict exact-target rate | Correct |", "|---|---:|---:|---:|---:|");
-    for (const bin of report.reliabilityBins) {
-      lines.push(`| ${bin.interval} | ${bin.support} | ${bin.meanTopChoiceProbability ?? "—"} | ${bin.exactTargetRateAmongSelected ?? "—"} | ${bin.correct} |`);
+    for (const scenario of report.cardinalityScenarios) {
+      lines.push("", `### Conditional reliability bins — ${report.runId}, n=${scenario.optionCount} assumed`, "", `Assumption: ${scenario.assumption}`, "", "| Assumed top-choice mass | Support | Mean mass | Strict exact-target rate | Correct |", "|---|---:|---:|---:|---:|");
+      for (const bin of scenario.reliabilityBins) {
+        lines.push(`| ${bin.interval} | ${bin.support} | ${bin.meanTopChoiceProbability ?? "—"} | ${bin.exactTargetRateAmongSelected ?? "—"} | ${bin.correct} |`);
+      }
+      lines.push("", `### Exploratory conditional risk-coverage — ${report.runId}, n=${scenario.optionCount} assumed`, "", "| Minimum assumed top-choice mass | Accepted / 52 | Coverage | Errors / accepted | Selective risk |", "|---:|---:|---:|---:|---:|");
+      for (const row of scenario.riskCoverage.filter((item) => [0, 0.5, 0.7, 0.85, 0.9].includes(item.threshold))) {
+        lines.push(`| ${row.threshold} | ${row.accepted}/52 | ${row.coverage} | ${row.errors}/${row.accepted} | ${row.selectiveRisk ?? "—"} |`);
+      }
+      lines.push("", "Risk-coverage is an exploratory sweep over strict labels and selected outputs under this assumed n; it is not a reliable risk guarantee or threshold recommendation.");
     }
-    lines.push("", `### Exploratory risk-coverage — ${report.runId}`, "", "| Minimum top-choice mass | Accepted / 52 | Coverage | Errors / accepted | Selective risk |", "|---:|---:|---:|---:|---:|");
-    for (const row of report.riskCoverage.thresholds.filter((item) => [0, 0.5, 0.7, 0.85, 0.9].includes(item.threshold))) {
-      lines.push(`| ${row.threshold} | ${row.accepted}/52 | ${row.coverage} | ${row.errors}/${row.accepted} | ${row.selectiveRisk ?? "—"} |`);
-    }
-    lines.push("", "Risk-coverage here is an exploratory curve over the strict labels and selected outputs; it is not a reliable risk guarantee or threshold recommendation.");
   }
   lines.push(
     "",
@@ -474,13 +545,14 @@ function renderMarkdown(reports) {
     "- Labels were hidden from inference and reviewed by Luna, but there is no independent document-owner ground truth.",
     "- Each query has one strict target heading. Alternative valid ranges have not been adjudicated.",
     "- The grouped query split reuses all 21 source documents; the two languages and repeated runs are paired, not independent samples.",
-    "- Runs came from dirty source trees; v1 has no build receipt and v2 identifies build mssr-build:sha256:bc288853f02be406. Source hashes are preserved in each manifest.",
+    "- Both runs came from dirty source trees. v1 has no selector source hash; v2 has a selector source fingerprint but not the exact matching source file. The recorded Git run HEAD does not establish dirty run-time contents.",
+    "- n=200 and n=201 are sensitivity assumptions, not verified final Choice cardinalities. Other option counts are possible if the unpreserved selector source added a different number of options.",
     "- Abstention correctness is unlabeled. Abstentions are visible and excluded from top-label Brier/log-loss.",
     "- Multiclass Brier/log-loss are unavailable because complete per-option probability vectors are absent.",
     "- No production threshold is recommended. The data are too small and not owner-adjudicated for a production claim.",
     "",
   );
-  return `${lines.join("\n")}\n`;
+  return `${lines.join("\n").replace(/\n+$/, "")}\n`;
 }
 
 function main() {
@@ -502,10 +574,13 @@ function main() {
   assert.ok(!existsSync(jsonPath) && !existsSync(markdownPath), `refusing to overwrite report output: ${outStem}`);
   mkdirSync(dirname(outStem), { recursive: true });
   writeFileSync(jsonPath, `${JSON.stringify({
-    schemaVersion: 1,
-    status: "corrected-exploratory-report",
-    supersedes: "2026-10-04-80k-singlepass-exploratory",
-    correction: "Choice option count is 201 (200 source headings plus explicit none), not 200.",
+    schemaVersion: 2,
+    status: "conditional-exploratory-report",
+    supersedes: [
+      "2026-10-04-80k-singlepass-exploratory",
+      "2026-10-04-80k-singlepass-exploratory-corrected",
+    ],
+    correction: "The prior report's n=200 and corrected report's n=201 are both conditional scenarios. Neither run has a verified final Choice count because the run-time selector source is dirty and no exact matching source file is preserved.",
     reports,
   }, null, 2)}\n`, { flag: "wx" });
   writeFileSync(markdownPath, renderMarkdown(reports), { flag: "wx" });

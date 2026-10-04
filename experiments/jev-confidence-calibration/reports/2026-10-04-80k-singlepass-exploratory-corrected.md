@@ -1,14 +1,14 @@
 # Jev 80k single-pass confidence diagnostic
 
-Corrected exploratory offline report from frozen historical runs. It supersedes `2026-10-04-80k-singlepass-exploratory.md` because that report used 200 where the audited Choice contained 200 headings plus `none` (201 options). This is not production calibration.
+> **Superseded: cardinality claim withdrawn.** This report treated n=201 as source-verified from a committed blob, but both runs came from dirty source trees and no exact matching run-time selector file is preserved. Its n=201 metrics are retained only as a conditional scenario. See the [current conditional sensitivity report](2026-10-04-80k-singlepass-exploratory-source-conditional.md). Frozen runs remain unchanged.
 
 ## Method
 
-The frozen manifest records 200 heading candidates. The audited run commit (5163dce31f3912aca4500cbd2fb58453d6ee7203) shows that the single-pass selector adds an explicit `none` option, so the final Choice has 201 options. The runner copied `finalistCount` from `candidateCount` when absent; the evaluator verifies the run commit and selector blob before applying the documented TypeSafe normalized Choice confidence inverse (typesafe-choice-normalized-pmax-v1): pmax = 1/n + confidence * (1 - 1/n) ([documentation](https://docs.typesafe.ai/confidence)). The resulting pmax is the mass assigned to the chosen option. Binary top-label scores compare that mass with strict heading match among selected answers; they do not establish independent calibration or evidence sufficiency. Full multiclass scores are unavailable because no complete candidate probability vectors were persisted.
+The frozen manifests record 200 heading candidates. A committed selector blob adds an explicit `none` option, but it does not establish which dirty source produced either run. The runner copied `finalistCount` from `candidateCount` when absent, so neither field proves final Choice cardinality. The values in this report assume n=201 (200 headings plus one `none` option); the current report compares that scenario with n=200 and marks both as unverified assumptions. It applies the documented TypeSafe normalized Choice confidence inverse (typesafe-choice-normalized-pmax-v1): pmax = 1/n + confidence * (1 - 1/n) ([documentation](https://docs.typesafe.ai/confidence)). Binary top-label scores compare that conditional mass with strict heading match among selected answers; they do not establish independent calibration or evidence sufficiency. Full multiclass scores are unavailable because no complete candidate probability vectors were persisted.
 
 ## Results
 
-| Run | Version / build | Dirty source | Selected | Abstained | Strict target matches | Top-label Brier | Top-label log-loss | Distinct source documents |
+| Run | Version / build | Dirty source | Selected | Abstained | Strict target matches | Brier (assumed n=201) | Log-loss (assumed n=201) | Distinct source documents |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
 | mssr-librarian-jev-bilingual-80k-singlepass-20261001T182504Z-v1 | 0.2.96 / no receipt | true | 50 | 2 | 35/50 | 0.184383 | 0.534465 | 21 |
 | ↳ en | same run | — | 25 | 1 | 18/25 | 0.183436 | 0.534857 | — |

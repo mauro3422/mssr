@@ -1,6 +1,6 @@
 # Jev top-label confidence diagnostic
 
-**Correction:** [`reports/2026-10-04-80k-singlepass-exploratory-corrected.md`](reports/2026-10-04-80k-singlepass-exploratory-corrected.md) supersedes the earlier report. The original evaluator used `n=200`; source commit `5163dce` adds a `none` Choice option to the 200 heading candidates, so the correct option count is 201. Frozen benchmark runs were not modified.
+**Current report:** [`reports/2026-10-04-80k-singlepass-exploratory-source-conditional.md`](reports/2026-10-04-80k-singlepass-exploratory-source-conditional.md) supersedes both earlier reports. The runs record 200 heading candidates, but their final Choice cardinality is not verified: both run trees were dirty, v1 preserved no selector hash, and v2 preserved a selector hash without the exact matching source file. The committed run HEAD cannot stand in for dirty run-time source. Frozen benchmark run folders remain unchanged.
 
 This offline evaluator adds a derived, exploratory view over immutable Jev 80k
 single-pass runs. It does not make provider calls, edit the run folders, claim
@@ -13,18 +13,13 @@ node .\evaluate.mjs
 node --test .\evaluate.test.mjs
 ```
 
-The evaluator validates the run SHA256SUMS inventory, frozen input hashes, manifest/run identity, 26
-bilingual cases, all 52 response IDs, single-pass mode, and the selector source
-blob at the run's exact Git commit. The run records 200 heading candidates;
-that source adds one explicit `none` option, making the final Choice size 201.
-The runner's `finalistCount` falls back to `candidateCount`, so that field alone
-does not prove the option count. The evaluator reconstructs the selected
-option's probability mass from TypeSafe's normalized Choice confidence formula
-and the source-verified cardinality. It does not prove the selected evidence is
-sufficient or that the reported probability is empirically calibrated.
+The evaluator validates the run SHA256SUMS inventory, frozen input hashes, manifest/run identity, 26 bilingual cases, all 52 response IDs, and single-pass mode. It records the 200 heading-candidate count separately from final Choice option cardinality. The runner's `finalistCount` falls back to `candidateCount`, so neither response field independently proves the option count. The prior reports inferred final `n` from a committed source blob even though the runs came from dirty trees; that inference has been withdrawn.
 
-The JSON output includes exploratory top-label binary Brier/log-loss, fixed
-support-counted reliability bins, and a clearly marked risk-coverage sweep.
+The current report therefore compares two conditional scenarios: `n=200` if the final Choice contained only the headings, and `n=201` if it contained those headings plus exactly one `none` option. These are sensitivity cases, not a verified or exhaustive count of the dirty run source. For each assumed `n`, the evaluator reconstructs selected-option mass with TypeSafe's documented normalized Choice confidence formula. It does not prove evidence sufficiency or empirical calibration.
+
+The JSON output marks probability-derived values as conditional on the assumed
+option count and includes sensitivity results for both `n=200` and `n=201`,
+fixed support-counted reliability bins, and an exploratory risk-coverage sweep.
 Multiclass Brier/log-loss are reported as unavailable because the saved
 responses do not include a complete probability vector for all alternatives.
 Abstentions stay in coverage denominators and are excluded from selected-answer
@@ -38,7 +33,7 @@ are a scorer-development diagnostic only. The runner did not persist full
 per-option probabilities or the SDK version. Any future calibration or
 threshold claim needs a new frozen, independently adjudicated, grouped
 document/project holdout with the full probability vector, offered option IDs,
-native option count and SDK version.
+native option count, exact selector source artifact/hash, and SDK version.
 
 Output paths use exclusive file creation and fail if either target already
 exists, so rerunning cannot overwrite a previous report. Pass a new `--out`

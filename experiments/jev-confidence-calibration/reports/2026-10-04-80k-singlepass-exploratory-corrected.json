@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "status": "corrected-exploratory-report",
+  "status": "superseded-conditional-scenario",
   "supersedes": "2026-10-04-80k-singlepass-exploratory",
-  "correction": "Choice option count is 201 (200 source headings plus explicit none), not 200.",
+  "correction": "Historical metrics are conditional on assumed n=201; neither dirty run has a verified final Choice option count because no exact matching run-time selector source file is preserved.",
   "reports": [
     {
       "schemaVersion": 1,
@@ -41,25 +41,36 @@
       },
       "evaluationClass": "exploratory-top-label-confidence-diagnostic",
       "choiceProbability": {
-        "status": "reconstructed-from-source-verified-candidate-count",
+        "status": "assumed-option-count-not-run-source-verified",
         "transformId": "typesafe-choice-normalized-pmax-v1",
         "formula": "pmax = 1/n + confidence * (1 - 1/n)",
         "source": "https://docs.typesafe.ai/confidence",
         "candidateCountField": "responses.records[].candidateCount (also copied to finalistCount by runner fallback)",
-        "verifiedCandidateCount": 200,
-        "additionalOptions": [
-          "none"
-        ],
-        "verifiedOptionCount": 201,
-        "optionCountEvidence": {
-          "commit": "5163dce31f3912aca4500cbd2fb58453d6ee7203",
-          "path": "src/librarian-jev-selection.ts",
-          "blobSha1": "7709fe2d094861e7f108992ebd63096e05751acf",
+        "verifiedOptionCount": null,
+        "caveat": "Reconstructed probability mass assigned to the selected Choice option; it is not an independently validated probability that the evidence is sufficient or correct.",
+        "assumedOptionCount": 201,
+        "assumption": "Assumes the final Choice had 200 heading candidates plus exactly one none option.",
+        "sourceEvidence": {
+          "workingTreeDirtyAtManifest": true,
+          "runHeadRecordedButNotUsedAsSourceProof": "5163dce31f3912aca4500cbd2fb58453d6ee7203",
+          "exactPreservedSourceMatched": false
+        },
+        "priorSourceVerificationClaim": {
+          "status": "withdrawn",
+          "optionCountEvidence": {
+            "commit": "5163dce31f3912aca4500cbd2fb58453d6ee7203",
+            "path": "src/librarian-jev-selection.ts",
+            "blobSha1": "7709fe2d094861e7f108992ebd63096e05751acf",
+            "additionalOptions": [
+              "none"
+            ]
+          },
           "additionalOptions": [
             "none"
-          ]
-        },
-        "caveat": "Reconstructed probability mass assigned to the selected Choice option; it is not an independently validated probability that the evidence is sufficient or correct."
+          ],
+          "originalStatus": "reconstructed-from-source-verified-candidate-count",
+          "note": "This historical source-verification assertion was withdrawn because the run tree was dirty and its exact selector source was not preserved."
+        }
       },
       "counts": {
         "decisions": 52,
@@ -73,9 +84,11 @@
         "languagesPerCase": 2
       },
       "topLabelMetrics": {
-        "interpretation": "Exploratory binary top-label proper scores: reconstructed Choice mass on the selected option versus strict single-heading exact-match among selected answers. They are not independent calibration evidence or a measure of evidence sufficiency.",
+        "interpretation": "Historical binary top-label scores are conditional on assumed n=201; they are not based on a verified final Choice count.",
         "binaryBrier": 0.184383,
-        "binaryLogLoss": 0.534465
+        "binaryLogLoss": 0.534465,
+        "status": "conditional-on-assumed-option-count-scenario",
+        "assumedOptionCount": 201
       },
       "byLanguage": {
         "en": {
@@ -186,7 +199,7 @@
         }
       ],
       "riskCoverage": {
-        "status": "exploratory-only",
+        "status": "exploratory-only-conditional-on-assumed-option-count-scenario",
         "denominator": "all 52 decisions; abstentions are not accepted at any threshold",
         "thresholds": [
           {
@@ -358,7 +371,8 @@
             "selectiveRisk": null
           }
         ],
-        "noThresholdRecommendation": true
+        "noThresholdRecommendation": true,
+        "assumedOptionCount": 201
       },
       "multiclass": {
         "status": "unavailable",
@@ -383,9 +397,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
           "status": "selected",
           "confidence": 0.96,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.960199
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.960199
         },
         {
           "caseId": "01",
@@ -393,9 +408,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
           "status": "selected",
           "confidence": 0.93,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.930348
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.930348
         },
         {
           "caseId": "02",
@@ -403,9 +419,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
           "status": "selected",
           "confidence": 0.96,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.960199
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.960199
         },
         {
           "caseId": "02",
@@ -413,9 +430,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
           "status": "selected",
           "confidence": 0.4,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.402985
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.402985
         },
         {
           "caseId": "03",
@@ -423,9 +441,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
           "status": "selected",
           "confidence": 0.33,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.333333
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.333333
         },
         {
           "caseId": "03",
@@ -433,9 +452,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
           "status": "selected",
           "confidence": 0.27,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.273632
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.273632
         },
         {
           "caseId": "04",
@@ -443,9 +463,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
           "status": "selected",
           "confidence": 0.58,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.58209
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.58209
         },
         {
           "caseId": "04",
@@ -453,9 +474,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
           "status": "selected",
           "confidence": 0.97,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.970149
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.970149
         },
         {
           "caseId": "06",
@@ -463,9 +485,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/project-context-plane.md",
           "status": "abstained",
           "confidence": 0.65,
-          "finalChoiceOptionCount": 201,
           "correct": null,
-          "reconstructedTopChoiceMass": null
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": null
         },
         {
           "caseId": "06",
@@ -473,9 +496,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/project-context-plane.md",
           "status": "selected",
           "confidence": 0.98,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.9801
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.9801
         },
         {
           "caseId": "08",
@@ -483,9 +507,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
           "status": "selected",
           "confidence": 0.36,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.363184
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.363184
         },
         {
           "caseId": "08",
@@ -493,9 +518,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
           "status": "selected",
           "confidence": 0.56,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.562189
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.562189
         },
         {
           "caseId": "09",
@@ -503,9 +529,10 @@
           "sourceDocument": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
           "status": "selected",
           "confidence": 0.93,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.930348
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.930348
         },
         {
           "caseId": "09",
@@ -513,9 +540,10 @@
           "sourceDocument": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
           "status": "selected",
           "confidence": 0.8,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.800995
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.800995
         },
         {
           "caseId": "10",
@@ -523,9 +551,10 @@
           "sourceDocument": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
           "status": "selected",
           "confidence": 0.99,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.99005
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.99005
         },
         {
           "caseId": "10",
@@ -533,9 +562,10 @@
           "sourceDocument": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
           "status": "selected",
           "confidence": 0.97,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.970149
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.970149
         },
         {
           "caseId": "12",
@@ -543,9 +573,10 @@
           "sourceDocument": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
           "status": "selected",
           "confidence": 0.58,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.58209
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.58209
         },
         {
           "caseId": "12",
@@ -553,9 +584,10 @@
           "sourceDocument": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
           "status": "selected",
           "confidence": 0.6,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.60199
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.60199
         },
         {
           "caseId": "13",
@@ -563,9 +595,10 @@
           "sourceDocument": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
           "status": "selected",
           "confidence": 0.53,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.532338
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.532338
         },
         {
           "caseId": "13",
@@ -573,9 +606,10 @@
           "sourceDocument": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
           "status": "selected",
           "confidence": 0.31,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.313433
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.313433
         },
         {
           "caseId": "15",
@@ -583,9 +617,10 @@
           "sourceDocument": "docs/AGENT_PROTOCOL.md",
           "status": "selected",
           "confidence": 0.92,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.920398
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.920398
         },
         {
           "caseId": "15",
@@ -593,9 +628,10 @@
           "sourceDocument": "docs/AGENT_PROTOCOL.md",
           "status": "selected",
           "confidence": 0.5,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.502488
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.502488
         },
         {
           "caseId": "16",
@@ -603,9 +639,10 @@
           "sourceDocument": "docs/AGENT_PROTOCOL.md",
           "status": "selected",
           "confidence": 0.82,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.820896
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.820896
         },
         {
           "caseId": "16",
@@ -613,9 +650,10 @@
           "sourceDocument": "docs/AGENT_PROTOCOL.md",
           "status": "selected",
           "confidence": 0.91,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.910448
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.910448
         },
         {
           "caseId": "17",
@@ -623,9 +661,10 @@
           "sourceDocument": "docs/REPOSITORY_STRUCTURE.md",
           "status": "selected",
           "confidence": 0.86,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.860697
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.860697
         },
         {
           "caseId": "17",
@@ -633,9 +672,10 @@
           "sourceDocument": "docs/REPOSITORY_STRUCTURE.md",
           "status": "selected",
           "confidence": 0.86,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.860697
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.860697
         },
         {
           "caseId": "18",
@@ -643,9 +683,10 @@
           "sourceDocument": "docs/REPOSITORY_STRUCTURE.md",
           "status": "selected",
           "confidence": 0.67,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.671642
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.671642
         },
         {
           "caseId": "18",
@@ -653,9 +694,10 @@
           "sourceDocument": "docs/REPOSITORY_STRUCTURE.md",
           "status": "selected",
           "confidence": 0.76,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.761194
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.761194
         },
         {
           "caseId": "19",
@@ -663,9 +705,10 @@
           "sourceDocument": "docs/REGISTRY.md",
           "status": "selected",
           "confidence": 0.89,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.890547
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.890547
         },
         {
           "caseId": "19",
@@ -673,9 +716,10 @@
           "sourceDocument": "docs/REGISTRY.md",
           "status": "selected",
           "confidence": 0.88,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.880597
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.880597
         },
         {
           "caseId": "20",
@@ -683,9 +727,10 @@
           "sourceDocument": "docs/FIRST_PARTY_SKILLS_V1.md",
           "status": "selected",
           "confidence": 0.47,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.472637
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.472637
         },
         {
           "caseId": "20",
@@ -693,9 +738,10 @@
           "sourceDocument": "docs/FIRST_PARTY_SKILLS_V1.md",
           "status": "selected",
           "confidence": 0.32,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.323383
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.323383
         },
         {
           "caseId": "21",
@@ -703,9 +749,10 @@
           "sourceDocument": "docs/skill-routing/README.md",
           "status": "selected",
           "confidence": 0.36,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.363184
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.363184
         },
         {
           "caseId": "21",
@@ -713,9 +760,10 @@
           "sourceDocument": "docs/skill-routing/README.md",
           "status": "abstained",
           "confidence": 0.42,
-          "finalChoiceOptionCount": 201,
           "correct": null,
-          "reconstructedTopChoiceMass": null
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": null
         },
         {
           "caseId": "22",
@@ -723,9 +771,10 @@
           "sourceDocument": "docs/skill-routing/README.md",
           "status": "selected",
           "confidence": 0.88,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.880597
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.880597
         },
         {
           "caseId": "22",
@@ -733,9 +782,10 @@
           "sourceDocument": "docs/skill-routing/README.md",
           "status": "selected",
           "confidence": 0.84,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.840796
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.840796
         },
         {
           "caseId": "23",
@@ -743,9 +793,10 @@
           "sourceDocument": "docs/skill-routing/TESTING.md",
           "status": "selected",
           "confidence": 0.77,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.771144
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.771144
         },
         {
           "caseId": "23",
@@ -753,9 +804,10 @@
           "sourceDocument": "docs/skill-routing/TESTING.md",
           "status": "selected",
           "confidence": 0.7,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.701493
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.701493
         },
         {
           "caseId": "24",
@@ -763,9 +815,10 @@
           "sourceDocument": "docs/skill-routing/ROADMAP.md",
           "status": "selected",
           "confidence": 0.99,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.99005
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.99005
         },
         {
           "caseId": "24",
@@ -773,9 +826,10 @@
           "sourceDocument": "docs/skill-routing/ROADMAP.md",
           "status": "selected",
           "confidence": 0.99,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.99005
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.99005
         },
         {
           "caseId": "25",
@@ -783,9 +837,10 @@
           "sourceDocument": "docs/skill-routing/MAINTENANCE.md",
           "status": "selected",
           "confidence": 0.68,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.681592
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.681592
         },
         {
           "caseId": "25",
@@ -793,9 +848,10 @@
           "sourceDocument": "docs/skill-routing/MAINTENANCE.md",
           "status": "selected",
           "confidence": 0.55,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.552239
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.552239
         },
         {
           "caseId": "26",
@@ -803,9 +859,10 @@
           "sourceDocument": "docs/OPERATIONAL_NOTICE_PLANE.md",
           "status": "selected",
           "confidence": 0.92,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.920398
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.920398
         },
         {
           "caseId": "26",
@@ -813,9 +870,10 @@
           "sourceDocument": "docs/OPERATIONAL_NOTICE_PLANE.md",
           "status": "selected",
           "confidence": 0.97,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.970149
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.970149
         },
         {
           "caseId": "27",
@@ -823,9 +881,10 @@
           "sourceDocument": "docs/decisions/0001-context-plane-v1.md",
           "status": "selected",
           "confidence": 0.78,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.781095
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.781095
         },
         {
           "caseId": "27",
@@ -833,9 +892,10 @@
           "sourceDocument": "docs/decisions/0001-context-plane-v1.md",
           "status": "selected",
           "confidence": 0.73,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.731343
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.731343
         },
         {
           "caseId": "28",
@@ -843,9 +903,10 @@
           "sourceDocument": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
           "status": "selected",
           "confidence": 0.42,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.422886
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.422886
         },
         {
           "caseId": "28",
@@ -853,9 +914,10 @@
           "sourceDocument": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
           "status": "selected",
           "confidence": 0.7,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.701493
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.701493
         },
         {
           "caseId": "29",
@@ -863,9 +925,10 @@
           "sourceDocument": "docs/decisions/0004-situation-model-project-knowledge.md",
           "status": "selected",
           "confidence": 0.7,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.701493
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.701493
         },
         {
           "caseId": "29",
@@ -873,9 +936,10 @@
           "sourceDocument": "docs/decisions/0004-situation-model-project-knowledge.md",
           "status": "selected",
           "confidence": 0.51,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.512438
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.512438
         },
         {
           "caseId": "30",
@@ -883,9 +947,10 @@
           "sourceDocument": "docs/decisions/0005-architecture-impact-drift-links.md",
           "status": "selected",
           "confidence": 0.59,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.59204
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.59204
         },
         {
           "caseId": "30",
@@ -893,11 +958,14 @@
           "sourceDocument": "docs/decisions/0005-architecture-impact-drift-links.md",
           "status": "selected",
           "confidence": 0.64,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.641791
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.641791
         }
-      ]
+      ],
+      "reliabilityBinsStatus": "conditional-on-assumed-option-count-scenario",
+      "reliabilityBinsAssumedOptionCount": 201
     },
     {
       "schemaVersion": 1,
@@ -936,25 +1004,36 @@
       },
       "evaluationClass": "exploratory-top-label-confidence-diagnostic",
       "choiceProbability": {
-        "status": "reconstructed-from-source-verified-candidate-count",
+        "status": "assumed-option-count-not-run-source-verified",
         "transformId": "typesafe-choice-normalized-pmax-v1",
         "formula": "pmax = 1/n + confidence * (1 - 1/n)",
         "source": "https://docs.typesafe.ai/confidence",
         "candidateCountField": "responses.records[].candidateCount (also copied to finalistCount by runner fallback)",
-        "verifiedCandidateCount": 200,
-        "additionalOptions": [
-          "none"
-        ],
-        "verifiedOptionCount": 201,
-        "optionCountEvidence": {
-          "commit": "5163dce31f3912aca4500cbd2fb58453d6ee7203",
-          "path": "src/librarian-jev-selection.ts",
-          "blobSha1": "7709fe2d094861e7f108992ebd63096e05751acf",
+        "verifiedOptionCount": null,
+        "caveat": "Reconstructed probability mass assigned to the selected Choice option; it is not an independently validated probability that the evidence is sufficient or correct.",
+        "assumedOptionCount": 201,
+        "assumption": "Assumes the final Choice had 200 heading candidates plus exactly one none option.",
+        "sourceEvidence": {
+          "workingTreeDirtyAtManifest": true,
+          "runHeadRecordedButNotUsedAsSourceProof": "5163dce31f3912aca4500cbd2fb58453d6ee7203",
+          "exactPreservedSourceMatched": false
+        },
+        "priorSourceVerificationClaim": {
+          "status": "withdrawn",
+          "optionCountEvidence": {
+            "commit": "5163dce31f3912aca4500cbd2fb58453d6ee7203",
+            "path": "src/librarian-jev-selection.ts",
+            "blobSha1": "7709fe2d094861e7f108992ebd63096e05751acf",
+            "additionalOptions": [
+              "none"
+            ]
+          },
           "additionalOptions": [
             "none"
-          ]
-        },
-        "caveat": "Reconstructed probability mass assigned to the selected Choice option; it is not an independently validated probability that the evidence is sufficient or correct."
+          ],
+          "originalStatus": "reconstructed-from-source-verified-candidate-count",
+          "note": "This historical source-verification assertion was withdrawn because the run tree was dirty and its exact selector source was not preserved."
+        }
       },
       "counts": {
         "decisions": 52,
@@ -968,9 +1047,11 @@
         "languagesPerCase": 2
       },
       "topLabelMetrics": {
-        "interpretation": "Exploratory binary top-label proper scores: reconstructed Choice mass on the selected option versus strict single-heading exact-match among selected answers. They are not independent calibration evidence or a measure of evidence sufficiency.",
+        "interpretation": "Historical binary top-label scores are conditional on assumed n=201; they are not based on a verified final Choice count.",
         "binaryBrier": 0.178172,
-        "binaryLogLoss": 0.51508
+        "binaryLogLoss": 0.51508,
+        "status": "conditional-on-assumed-option-count-scenario",
+        "assumedOptionCount": 201
       },
       "byLanguage": {
         "en": {
@@ -1081,7 +1162,7 @@
         }
       ],
       "riskCoverage": {
-        "status": "exploratory-only",
+        "status": "exploratory-only-conditional-on-assumed-option-count-scenario",
         "denominator": "all 52 decisions; abstentions are not accepted at any threshold",
         "thresholds": [
           {
@@ -1253,7 +1334,8 @@
             "selectiveRisk": null
           }
         ],
-        "noThresholdRecommendation": true
+        "noThresholdRecommendation": true,
+        "assumedOptionCount": 201
       },
       "multiclass": {
         "status": "unavailable",
@@ -1278,9 +1360,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
           "status": "selected",
           "confidence": 0.95,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.950249
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.950249
         },
         {
           "caseId": "01",
@@ -1288,9 +1371,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
           "status": "selected",
           "confidence": 0.93,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.930348
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.930348
         },
         {
           "caseId": "02",
@@ -1298,9 +1382,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
           "status": "selected",
           "confidence": 0.96,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.960199
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.960199
         },
         {
           "caseId": "02",
@@ -1308,9 +1393,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
           "status": "selected",
           "confidence": 0.46,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.462687
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.462687
         },
         {
           "caseId": "03",
@@ -1318,9 +1404,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
           "status": "selected",
           "confidence": 0.32,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.323383
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.323383
         },
         {
           "caseId": "03",
@@ -1328,9 +1415,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
           "status": "selected",
           "confidence": 0.28,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.283582
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.283582
         },
         {
           "caseId": "04",
@@ -1338,9 +1426,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
           "status": "selected",
           "confidence": 0.62,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.621891
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.621891
         },
         {
           "caseId": "04",
@@ -1348,9 +1437,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
           "status": "selected",
           "confidence": 0.97,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.970149
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.970149
         },
         {
           "caseId": "06",
@@ -1358,9 +1448,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/project-context-plane.md",
           "status": "abstained",
           "confidence": 0.69,
-          "finalChoiceOptionCount": 201,
           "correct": null,
-          "reconstructedTopChoiceMass": null
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": null
         },
         {
           "caseId": "06",
@@ -1368,9 +1459,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/project-context-plane.md",
           "status": "selected",
           "confidence": 0.98,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.9801
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.9801
         },
         {
           "caseId": "08",
@@ -1378,9 +1470,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
           "status": "selected",
           "confidence": 0.32,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.323383
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.323383
         },
         {
           "caseId": "08",
@@ -1388,9 +1481,10 @@
           "sourceDocument": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
           "status": "selected",
           "confidence": 0.6,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.60199
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.60199
         },
         {
           "caseId": "09",
@@ -1398,9 +1492,10 @@
           "sourceDocument": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
           "status": "selected",
           "confidence": 0.9,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.900498
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.900498
         },
         {
           "caseId": "09",
@@ -1408,9 +1503,10 @@
           "sourceDocument": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
           "status": "selected",
           "confidence": 0.83,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.830846
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.830846
         },
         {
           "caseId": "10",
@@ -1418,9 +1514,10 @@
           "sourceDocument": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
           "status": "selected",
           "confidence": 0.99,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.99005
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.99005
         },
         {
           "caseId": "10",
@@ -1428,9 +1525,10 @@
           "sourceDocument": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
           "status": "selected",
           "confidence": 0.97,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.970149
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.970149
         },
         {
           "caseId": "12",
@@ -1438,9 +1536,10 @@
           "sourceDocument": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
           "status": "selected",
           "confidence": 0.56,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.562189
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.562189
         },
         {
           "caseId": "12",
@@ -1448,9 +1547,10 @@
           "sourceDocument": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
           "status": "selected",
           "confidence": 0.58,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.58209
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.58209
         },
         {
           "caseId": "13",
@@ -1458,9 +1558,10 @@
           "sourceDocument": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
           "status": "selected",
           "confidence": 0.51,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.512438
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.512438
         },
         {
           "caseId": "13",
@@ -1468,9 +1569,10 @@
           "sourceDocument": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
           "status": "selected",
           "confidence": 0.28,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.283582
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.283582
         },
         {
           "caseId": "15",
@@ -1478,9 +1580,10 @@
           "sourceDocument": "docs/AGENT_PROTOCOL.md",
           "status": "selected",
           "confidence": 0.91,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.910448
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.910448
         },
         {
           "caseId": "15",
@@ -1488,9 +1591,10 @@
           "sourceDocument": "docs/AGENT_PROTOCOL.md",
           "status": "selected",
           "confidence": 0.44,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.442786
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.442786
         },
         {
           "caseId": "16",
@@ -1498,9 +1602,10 @@
           "sourceDocument": "docs/AGENT_PROTOCOL.md",
           "status": "selected",
           "confidence": 0.87,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.870647
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.870647
         },
         {
           "caseId": "16",
@@ -1508,9 +1613,10 @@
           "sourceDocument": "docs/AGENT_PROTOCOL.md",
           "status": "selected",
           "confidence": 0.92,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.920398
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.920398
         },
         {
           "caseId": "17",
@@ -1518,9 +1624,10 @@
           "sourceDocument": "docs/REPOSITORY_STRUCTURE.md",
           "status": "selected",
           "confidence": 0.85,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.850746
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.850746
         },
         {
           "caseId": "17",
@@ -1528,9 +1635,10 @@
           "sourceDocument": "docs/REPOSITORY_STRUCTURE.md",
           "status": "selected",
           "confidence": 0.82,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.820896
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.820896
         },
         {
           "caseId": "18",
@@ -1538,9 +1646,10 @@
           "sourceDocument": "docs/REPOSITORY_STRUCTURE.md",
           "status": "selected",
           "confidence": 0.65,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.651741
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.651741
         },
         {
           "caseId": "18",
@@ -1548,9 +1657,10 @@
           "sourceDocument": "docs/REPOSITORY_STRUCTURE.md",
           "status": "selected",
           "confidence": 0.78,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.781095
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.781095
         },
         {
           "caseId": "19",
@@ -1558,9 +1668,10 @@
           "sourceDocument": "docs/REGISTRY.md",
           "status": "selected",
           "confidence": 0.9,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.900498
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.900498
         },
         {
           "caseId": "19",
@@ -1568,9 +1679,10 @@
           "sourceDocument": "docs/REGISTRY.md",
           "status": "selected",
           "confidence": 0.89,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.890547
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.890547
         },
         {
           "caseId": "20",
@@ -1578,9 +1690,10 @@
           "sourceDocument": "docs/FIRST_PARTY_SKILLS_V1.md",
           "status": "selected",
           "confidence": 0.53,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.532338
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.532338
         },
         {
           "caseId": "20",
@@ -1588,9 +1701,10 @@
           "sourceDocument": "docs/FIRST_PARTY_SKILLS_V1.md",
           "status": "selected",
           "confidence": 0.39,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.393035
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.393035
         },
         {
           "caseId": "21",
@@ -1598,9 +1712,10 @@
           "sourceDocument": "docs/skill-routing/README.md",
           "status": "selected",
           "confidence": 0.33,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.333333
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.333333
         },
         {
           "caseId": "21",
@@ -1608,9 +1723,10 @@
           "sourceDocument": "docs/skill-routing/README.md",
           "status": "abstained",
           "confidence": 0.39,
-          "finalChoiceOptionCount": 201,
           "correct": null,
-          "reconstructedTopChoiceMass": null
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": null
         },
         {
           "caseId": "22",
@@ -1618,9 +1734,10 @@
           "sourceDocument": "docs/skill-routing/README.md",
           "status": "selected",
           "confidence": 0.79,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.791045
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.791045
         },
         {
           "caseId": "22",
@@ -1628,9 +1745,10 @@
           "sourceDocument": "docs/skill-routing/README.md",
           "status": "selected",
           "confidence": 0.88,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.880597
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.880597
         },
         {
           "caseId": "23",
@@ -1638,9 +1756,10 @@
           "sourceDocument": "docs/skill-routing/TESTING.md",
           "status": "selected",
           "confidence": 0.79,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.791045
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.791045
         },
         {
           "caseId": "23",
@@ -1648,9 +1767,10 @@
           "sourceDocument": "docs/skill-routing/TESTING.md",
           "status": "selected",
           "confidence": 0.72,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.721393
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.721393
         },
         {
           "caseId": "24",
@@ -1658,9 +1778,10 @@
           "sourceDocument": "docs/skill-routing/ROADMAP.md",
           "status": "selected",
           "confidence": 0.99,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.99005
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.99005
         },
         {
           "caseId": "24",
@@ -1668,9 +1789,10 @@
           "sourceDocument": "docs/skill-routing/ROADMAP.md",
           "status": "selected",
           "confidence": 0.99,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.99005
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.99005
         },
         {
           "caseId": "25",
@@ -1678,9 +1800,10 @@
           "sourceDocument": "docs/skill-routing/MAINTENANCE.md",
           "status": "selected",
           "confidence": 0.66,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.661692
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.661692
         },
         {
           "caseId": "25",
@@ -1688,9 +1811,10 @@
           "sourceDocument": "docs/skill-routing/MAINTENANCE.md",
           "status": "selected",
           "confidence": 0.61,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.61194
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.61194
         },
         {
           "caseId": "26",
@@ -1698,9 +1822,10 @@
           "sourceDocument": "docs/OPERATIONAL_NOTICE_PLANE.md",
           "status": "selected",
           "confidence": 0.94,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.940299
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.940299
         },
         {
           "caseId": "26",
@@ -1708,9 +1833,10 @@
           "sourceDocument": "docs/OPERATIONAL_NOTICE_PLANE.md",
           "status": "selected",
           "confidence": 0.97,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.970149
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.970149
         },
         {
           "caseId": "27",
@@ -1718,9 +1844,10 @@
           "sourceDocument": "docs/decisions/0001-context-plane-v1.md",
           "status": "selected",
           "confidence": 0.8,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.800995
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.800995
         },
         {
           "caseId": "27",
@@ -1728,9 +1855,10 @@
           "sourceDocument": "docs/decisions/0001-context-plane-v1.md",
           "status": "selected",
           "confidence": 0.71,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.711443
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.711443
         },
         {
           "caseId": "28",
@@ -1738,9 +1866,10 @@
           "sourceDocument": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
           "status": "selected",
           "confidence": 0.48,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.482587
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.482587
         },
         {
           "caseId": "28",
@@ -1748,9 +1877,10 @@
           "sourceDocument": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
           "status": "selected",
           "confidence": 0.78,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.781095
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.781095
         },
         {
           "caseId": "29",
@@ -1758,9 +1888,10 @@
           "sourceDocument": "docs/decisions/0004-situation-model-project-knowledge.md",
           "status": "selected",
           "confidence": 0.65,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.651741
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.651741
         },
         {
           "caseId": "29",
@@ -1768,9 +1899,10 @@
           "sourceDocument": "docs/decisions/0004-situation-model-project-knowledge.md",
           "status": "selected",
           "confidence": 0.55,
-          "finalChoiceOptionCount": 201,
           "correct": 1,
-          "reconstructedTopChoiceMass": 0.552239
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.552239
         },
         {
           "caseId": "30",
@@ -1778,9 +1910,10 @@
           "sourceDocument": "docs/decisions/0005-architecture-impact-drift-links.md",
           "status": "selected",
           "confidence": 0.61,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.61194
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.61194
         },
         {
           "caseId": "30",
@@ -1788,11 +1921,15 @@
           "sourceDocument": "docs/decisions/0005-architecture-impact-drift-links.md",
           "status": "selected",
           "confidence": 0.72,
-          "finalChoiceOptionCount": 201,
           "correct": 0,
-          "reconstructedTopChoiceMass": 0.721393
+          "probabilityStatus": "conditional-on-assumed-option-count-scenario",
+          "assumedOptionCount": 201,
+          "conditionalTopChoiceMassUnderAssumedOptionCount": 0.721393
         }
-      ]
+      ],
+      "reliabilityBinsStatus": "conditional-on-assumed-option-count-scenario",
+      "reliabilityBinsAssumedOptionCount": 201
     }
-  ]
+  ],
+  "supersededBy": "2026-10-04-80k-singlepass-exploratory-source-conditional"
 }
