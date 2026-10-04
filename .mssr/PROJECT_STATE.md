@@ -15,6 +15,18 @@ Post-restart smoke on 2026-10-04 used the direct Codex MSSR MCP over real projec
 
 Offline natural-query v3 (8 bilingual seeds/27 docs): top-20 overlap 159/160 and 16/16 exact fingerprints; ES top-1 ranges exceeded the 20K fetch cap while rank 2 remained fetchable. Ranking/fetchability only, not quality or calibration. Archive commit `ac56327` preserves v3 plus the corrected 38-range worksheet, provisional cluster map, and six unadjudicated seed proposals; all 38 file/range hashes, bounds, and headings now verify. Owner labels remain blank and no grouped split or confidence threshold is accepted. Summary: `experiments/jev-metadata-integration/evidence/natural-query-diagnostic-20261004.json`; full run: `D:\MSSR-benchmark-artifacts\jev-natural-query-diagnostic-20261004-v3`.
 
+## MSSR 0.2.105 sidecar-aware offline runs - 2026-10-04
+
+Pinned candidate: `0c1ca590d3dcf9a8ba721f6a2975c909e13972c2`, MSSR 0.2.105, build `mssr-build:sha256:58b3d5447d10b847`.
+
+The offline sidecar preflight projected 4/4 entries, passed 4/4 metadata searches and exact-fetch fingerprints, and rejected missing-sidecar and stale-fingerprint controls. The 27-document bilingual ranking diagnostic used 8 queries and four source clusters. Atoms added/removed no candidates across 147 available top-K slots; five existing ranks changed in C01 EN, moving its unadjudicated anchor from rank 9 to 5. C01 ES remained absent. All 16 exact-fetch fingerprints passed.
+
+These runs made no Jev/provider/MCP/network calls and read no labels. Anchors are unadjudicated, so this is plumbing and ranking evidence only, not relevance/recall, Jev/Noul, contradiction, synthesis, calibration, or Bridge-adoption evidence. The references manifest was absent in the preflight.
+
+Receipts: `experiments/jev-metadata-integration/evidence/metadata-preflight-0.2.105-20261004.json` and `experiments/jev-metadata-integration/evidence/natural-query-diagnostic-0.2.105-20261004.json` on `codex/benchmark-archive`; immutable artifacts are under `D:\MSSR-benchmark-artifacts\jev-sidecar-preflight-20261004-0.2.105-v1` and `D:\MSSR-benchmark-artifacts\jev-natural-query-diagnostic-20261004-0.2.105-v1`.
+
+Next: owner-adjudicate acceptable ranges and negatives, then freeze grouped calibration/holdout data. A new live Jev selection run needs its own immutable request and reviewed provider-gate receipt.
+
 ## Bridge catalog and checkout — 2026-10-04
 
 Registry refresh at 2026-10-04 21:34 UTC reports the Bridge provider healthy, using uncached capabilities, with 185 tools and unknown freshness. Its catalog has Librarian search/fetch/Jev selection/relation/preview, but no `mssr_librarian_evidence_pack`; active package identity remains unknown. The `D:\Dev\bridge-mcp` checkout is `codex/jev-bridge-adoption-20260930`, version 0.6.144/vendor MSSR 0.2.96, with extensive tracked and untracked changes; it was left untouched. Bridge adoption of MSSR source 0.2.105 and isolated candidate 0.6.156 remain unverified/not deployed.
