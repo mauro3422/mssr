@@ -130,3 +130,30 @@ benchmark result. Do not use it to calibrate thresholds or claim quality.
 The 14 candidate additions C19–C32 came from two read-only Luna seed scans;
 their provenance and exclusions are recorded at
 [`review-proposals/2026-10-04-candidate-seed-scan.md`](review-proposals/2026-10-04-candidate-seed-scan.md).
+
+## Sidecar-aware offline preflight
+
+The v18 runner remains frozen and cannot cover the .104 sidecar: it pins an older
+source commit and runs with metadata off. The separate runner
+`metadata-preflight.mjs` uses `metadata-preflight-pins.json`; it supports offline
+preflight mode only, pins the clean .104 candidate/build/sidecar/source identities,
+snapshots declared inputs including the package lock, checks the installed Zod
+version and records the Node runtime, and verifies projection, typed-filter
+lookup, exact fetch, fingerprints, and fail-closed omitted/stale sidecar controls.
+
+From the benchmark repository, after committing the runner changes:
+
+```powershell
+node .\experiments\jev-metadata-integration\metadata-preflight.mjs --preflight --candidate-root 'C:\Users\mauro\.codex\worktrees\jev-evidence-pack-integration\mssr' --run-root 'D:\MSSR-benchmark-artifacts\jev-sidecar-preflight-20261004-v1'
+```
+
+The output root must be new, outside every repository, and outside any directory
+named `runs`. It contains the frozen input snapshot, structural receipt, README,
+and SHA256SUMS. No Jev/provider/MCP calls, labels, query-quality scores, or
+production changes are involved. This preflight is not a relevance-quality or
+calibration benchmark; use owner-adjudicated grouped data for those.
+The missing-sidecar negative control omits the Librarian manifest argument to the
+projector; the physical sidecar input is separately required by the pinned input
+map and hash check.
+
+Run its regression tests with `node test/metadata-preflight.test.mjs`.
