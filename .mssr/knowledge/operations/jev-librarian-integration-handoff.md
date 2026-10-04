@@ -118,6 +118,18 @@ the reviewed feature and retain its 0.2.101 and Bridge-audit state. The existing
 `D:\Dev\mssr-product-0.2.101` worktree and all 206 benchmark runs remain
 untouched. The isolated Bridge 0.6.147 candidate still vendors MSSR 0.2.101;
 adoption of 0.2.102 requires a separate successor candidate and release gate.
+
+Clean product integration is committed as
+`dfc51be2f8842fba1a31a03134cae2bee204ebcf`, parent `a0fa31f941785cc9298796dd2eccaca91951a371`,
+on `codex/jev-citation-evidence-pack-clean`. The new worktree preserved the
+existing `.101` worktree and target-specific Bridge audit; manual conflict
+resolution retained that state while applying only the 0.2.102 feature. Clean
+`npm ci`, full `npm run verify`, and `npm run release:gate` passed there. Its
+package identity is unchanged from the source release gate. The branch was
+pushed normally; local `HEAD`, upstream and direct `git ls-remote` all read
+`dfc51be2f8842fba1a31a03134cae2bee204ebcf`. The product commit has no paths
+under `experiments/jev-mssr-live/runs/**`.
+
 The active Codex MCP remains on build `ecf594115342fa3c`; after the user's later
 PC restart, verify its exact build and repeat the selector -> exact fetch ->
 evidence-pack host smoke. Do not restart the active Bridge/MCP in this task.
@@ -298,11 +310,12 @@ plumbing evidence, not quality evidence.
   current state update.
 - **Complete:** MSSR 0.2.102 full verification, local release gate, and one
   live real-document Jev -> evidence-pack smoke passed on the source candidate.
-- **Current:** finish the 0.2.102 transplant on an isolated branch rooted at
-  the clean 0.2.101 product integration, preserving all target-specific state
-  and excluding the source branch's experiment ancestry. Run full verification
-  and the release gate on that clean product branch before pushing its normal
-  feature ref; never publish the package to npm as part of this task.
+  Clean product commit `dfc51be2f8842fba1a31a03134cae2bee204ebcf` is pushed and
+  its direct remote ref is verified; the package remains unpublished.
+- **Current Bridge candidate:** start from the verified 0.6.147 candidate and
+  prepare a separate successor that vendors the exact 0.2.102 package and
+  consumes the evidence-pack path. Keep 0.6.147 and the live Bridge unchanged;
+  run Bridge tests and release checks on the isolated successor.
 - **Next host gate:** after the user's later PC restart, verify the active MSSR
   MCP build and run selector -> exact fetch -> evidence pack through that host.
   Keep live Bridge at 0.6.144 and the original dirty primary Bridge checkout
@@ -310,10 +323,11 @@ plumbing evidence, not quality evidence.
 - Keep all 206 `experiments/jev-mssr-live/runs/` paths, manifests, outputs,
   labels/reviews and hashes on their original evaluation branch. Do not
   cherry-pick the mixed evaluation snapshot or rewrite benchmark evidence.
-- After the Bridge 0.6.147 candidate passes `verify:all` at the intended active
-  endpoint, any 0.2.102 Bridge adoption must start from a separate successor
-  candidate that vendors the exact verified package and consumes the sidecar;
-  preserve existing `project-context-librarian-sidecar` and 0.6.146 behavior.
+- After the user's PC restart, verify the active MSSR MCP build and run
+  selector -> exact fetch -> evidence pack through that host. Any live Bridge
+  adoption remains a separate controlled gate after the successor candidate
+  passes `verify:all` at the intended active endpoint; preserve existing
+  `project-context-librarian-sidecar` and 0.6.146 behavior.
 - After Bridge integration passes, freeze bytes, sidecar/source revisions,
   query set, candidate limits, owner-adjudicated acceptable ranges, and an
   untouched document-level holdout. Compare lexical and metadata search with
