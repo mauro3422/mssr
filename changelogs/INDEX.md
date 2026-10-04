@@ -10,6 +10,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.105](0.2.105.md) - rank an exact-fetchable candidate ahead of an oversized candidate when lexical relevance scores tie.
 - [0.2.104](0.2.104.md) - filter common English/Spanish function words from Librarian query terms to prevent incidental-only candidate matches.
 - [0.2.103](0.2.103.md) - split Librarian metadata into exact-heading Project Context modules and restore projection/stale-data guidance for implementation and debugging intents.
 - [0.2.102](0.2.102.md) - add bounded read-only Librarian evidence packs that revalidate Jev-selected exact ranges and preserve verbatim text with per-range citations.

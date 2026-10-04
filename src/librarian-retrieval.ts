@@ -455,7 +455,7 @@ export function searchMssrLibrarianEvidence(args: { documents: readonly MssrLibr
       candidates.push({ handle, rangeCodeUnits, exactFetchable: rangeCodeUnits <= MSSR_LIBRARIAN_RETRIEVAL_LIMITS.fetchChars, score, title: range.title.slice(0, 240), headingPath: range.path.slice(0, 12), snippet: boundedSnippet(body, queryTerms, query.maxSnippetChars), metadata, ...(metadataProjectionMatches.length > 0 ? { metadataProjectionMatches } : {}), evidenceTier: "candidate", advisoryOnly: true, truthAuthority: false, ownerAndPrivacyAreCallerAsserted: true, catalogProvenanceIsCallerAsserted: true });
     }
   }
-  candidates.sort((a, b) => b.score - a.score || a.handle.owner.localeCompare(b.handle.owner) || a.handle.sourceRef.localeCompare(b.handle.sourceRef) || a.handle.startOffset - b.handle.startOffset || a.handle.id.localeCompare(b.handle.id));
+  candidates.sort((a, b) => b.score - a.score || Number(b.exactFetchable) - Number(a.exactFetchable) || a.handle.owner.localeCompare(b.handle.owner) || a.handle.sourceRef.localeCompare(b.handle.sourceRef) || a.handle.startOffset - b.handle.startOffset || a.handle.id.localeCompare(b.handle.id));
   return { results: candidates.slice(0, query.maxResults), advisoryOnly: true, truthAuthority: false, truncated: candidates.length > query.maxResults };
 }
 

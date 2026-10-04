@@ -1,11 +1,11 @@
 # MSSR project state
 
 ## Current release
-MSSR 0.2.104 is the latest local release-gated package: `mauroprime-mssr-0.2.104.tgz`, 1,108,092 bytes, SHA-256 `e5101fd39d1ec545c52d9d1dfbd054a5d144c68b571b8502e0c4fb87e095399e` (`pkg:0.2.104#e5101fd3`); it is unpublished. Full `npm run verify` and `npm run release:gate` passed on 2026-10-04. Receipt: `.mssr/runtime/releases/0.2.104.json`.
+MSSR 0.2.105 is the latest local release-gated package: `mauroprime-mssr-0.2.105.tgz`, 1,108,872 bytes, SHA-256 `96aba5308ed126da12da6d9602c90429d174905a0a7422133a2630043576ec3b` (`pkg:0.2.105#96aba530`); it is unpublished. Full `npm run verify` and `npm run release:gate` passed on 2026-10-04. Receipt: `.mssr/runtime/releases/0.2.105.json`.
 
-An earlier Jev smoke's Choice 0.27/Noul 0.65 remain uncalibrated. In this task, a direct MCP route projected two current sidecar entries and completed real Spanish/English search → exact fetch → verbatim evidence-pack checks; the post-fix local run preserved a 7,728-character range and removed the reproduced English stopword-only false match. These are connectivity/integrity checks, not quality labels. Existing preflight evidence remains at `D:\MSSR-benchmark-artifacts\jev-sidecar-preflight-20261004-v1` (archive commit `2452933`); v18 lacked a Librarian sidecar.
+An earlier Jev smoke's Choice 0.27/Noul 0.65 remain uncalibrated. In this task, a direct MCP route projected two current sidecar entries and completed real Spanish/English search → exact fetch → verbatim evidence-pack checks; local 0.2.104 removed the reproduced English stopword-only false match, and 0.2.105 promotes fetchable exact ranges over oversized candidates only when their lexical scores tie. These are connectivity/integrity checks, not quality labels. Existing preflight evidence remains at `D:\MSSR-benchmark-artifacts\jev-sidecar-preflight-20261004-v1` (archive commit `2452933`); v18 lacked a Librarian sidecar.
 
-After building 0.2.104, a fresh negative query against the active Codex MCP (`How many planets fit inside an underwater house?`) still returned three candidates from unrelated text sharing only `an`; the local 0.2.104 regression returns zero. Positive real-document search/fetch/evidence-pack checks pass, but the negative probe proves the active MCP has not demonstrated adoption of this retrieval fix. Its loaded package/build identity is unknown; do not treat the gated local package as deployed.
+After building 0.2.104, a fresh negative English control against the active Codex MCP still returned three candidates from unrelated text sharing only a common article; local 0.2.104 returns zero. Keep the control wording outside retrieved documents to avoid contaminating later real-corpus probes. The same local real-document queries surfaced oversized root ranges ahead of equally scoring fetchable children; 0.2.105 adds a deterministic fetchability tie-break and regression. Positive real-document search/fetch/evidence-pack checks pass, but the negative probe proves the active MCP has not demonstrated adoption of this retrieval fix. Its loaded package/build identity is unknown; do not treat the local release candidate as deployed.
 
 Offline natural-query v3 (8 bilingual seeds/27 docs): top-20 overlap 159/160 and 16/16 exact fingerprints; ES top-1 ranges exceeded the 20K fetch cap while rank 2 remained fetchable. Ranking/fetchability only, not quality or calibration. Archive commit `ac56327` preserves v3 plus the corrected 38-range worksheet, provisional cluster map, and six unadjudicated seed proposals; all 38 file/range hashes, bounds, and headings now verify. Owner labels remain blank and no grouped split or confidence threshold is accepted. Summary: `experiments/jev-metadata-integration/evidence/natural-query-diagnostic-20261004.json`; full run: `D:\MSSR-benchmark-artifacts\jev-natural-query-diagnostic-20261004-v3`.
 
@@ -167,7 +167,7 @@ The owner worksheet has 32 bilingual concept pairs; its 38 proposed citations sp
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.104 -->
+<!-- mssr-version:mssr.source=0.2.105 -->
 <!-- mssr-version:bridge.live=0.6.153 -->
 
 <!-- mssr-owner:semantic.consistency=mssr -->

@@ -216,6 +216,19 @@ assert.ok(decomposedSpanishMatch, "composed query ñ should match an n plus comb
 assert.ok(decomposedSpanishMatch.snippet.includes("an\u0303o fiscal"), "the source-offset map should center snippets on a decomposed ñ without rewriting source text");
 
 const fetchLimit = MSSR_LIBRARIAN_RETRIEVAL_LIMITS.fetchChars;
+const oversizedParentWithFetchableMatch = {
+  owner,
+  sourceRef: "docs/oversized-parent-with-match.md",
+  markdown: `# Large index\n\n${"evidence filler ".repeat(Math.ceil((fetchLimit + 100) / 16))}\n\n## Owner calibration\n\nOwner labels, holdout evidence remain blank.\n`,
+  privacyClass: "project-metadata",
+};
+const actionableMatches = searchMssrLibrarianEvidence({
+  documents: [oversizedParentWithFetchableMatch],
+  query: { query: "owner labels holdout evidence", maxResults: 10 },
+}).results;
+assert.equal(actionableMatches[0]?.title, "Owner calibration", "a fetchable exact section wins a lexical score tie with an oversized un-fetchable parent range");
+assert.equal(actionableMatches[0]?.exactFetchable, true);
+
 const exactBoundaryDocument = {
   owner,
   sourceRef: "docs/exact-fetch-boundary.md",

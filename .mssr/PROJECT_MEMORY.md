@@ -1,5 +1,13 @@
 # MSSR project memory
 
+## Fetchable Librarian tie ordering — 0.2.105
+
+Librarian relevance scores remain lexical overlap ratios. When two candidates
+tie, an exact-fetchable range now ranks before an oversized range; this makes
+top-result retrieval actionable without pretending that fetchability is a
+relevance label or changing the score. A regression uses a real-sized parent
+and a matching bounded child section.
+
 ## Librarian query stopwords — 0.2.104
 
 Deterministic search formerly allowed one shared token to emit a candidate, so
