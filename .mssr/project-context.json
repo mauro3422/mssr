@@ -916,13 +916,55 @@
       "maxChars": 1400
     },
     {
+      "id": "mssr-project-context-librarian-metadata-core",
+      "kind": "context",
+      "topic": "architecture",
+      "area": "project-context",
+      "description": "Librarian metadata ownership and authority invariants.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+        "sections": [
+          "## Goal and ownership"
+        ]
+      },
+      "domains": [
+        "skill-system",
+        "coding",
+        "agent-orchestration"
+      ],
+      "actions": [
+        "analyze",
+        "create",
+        "debug",
+        "design",
+        "edit",
+        "maintain",
+        "review",
+        "verify"
+      ],
+      "artifacts": [
+        "code",
+        "project",
+        "repository",
+        "document",
+        "mcp"
+      ],
+      "required": false,
+      "priority": 94,
+      "maxChars": 700
+    },
+    {
       "id": "mssr-project-context-librarian-metadata",
       "kind": "context",
       "topic": "architecture",
       "area": "project-context",
-      "description": "Per-heading Librarian metadata, exact source binding, limits, and stale-sidecar behavior.",
+      "description": "Librarian metadata declaration schema, limits, compatibility, and verification.",
       "source": {
-        "path": ".mssr/knowledge/architecture/project-context-librarian-metadata.md"
+        "path": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+        "sections": [
+          "## Declaration",
+          "## Compatibility and verification"
+        ]
       },
       "domains": [
         "skill-system",
@@ -942,17 +984,43 @@
         "document",
         "mcp"
       ],
-      "needs": [
-        "integrity-verification",
-        "version-control"
+      "required": false,
+      "priority": 94,
+      "maxChars": 2400
+    },
+    {
+      "id": "mssr-project-context-librarian-projection",
+      "kind": "context",
+      "topic": "architecture",
+      "area": "project-context",
+      "description": "Strict Librarian projection and fail-closed stale or invalid sidecar behavior.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+        "sections": [
+          "## Projection and stale-data behavior"
+        ]
+      },
+      "domains": [
+        "skill-system",
+        "coding",
+        "agent-orchestration"
       ],
-      "signals": [
-        "reusable-pattern",
-        "uncertainty"
+      "actions": [
+        "create",
+        "debug",
+        "edit",
+        "verify"
+      ],
+      "artifacts": [
+        "code",
+        "project",
+        "repository",
+        "document",
+        "mcp"
       ],
       "required": false,
       "priority": 94,
-      "maxChars": 2800
+      "maxChars": 2200
     },
     {
       "id": "mssr-jev-librarian-integration-handoff",
