@@ -4,3 +4,7 @@
 # Live experiment runs carry byte-level SHA-256 manifests. Keep their evidence
 # bytes intact instead of applying repository-wide text line-ending conversion.
 experiments/jev-mssr-live/runs/** -text whitespace=cr-at-eol
+
+# The standalone live runner pins these exact fixture bytes as part of its
+# offline preflight contract; do not normalize their line endings on checkout.
+inputs/** -text whitespace=cr-at-eol
