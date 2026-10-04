@@ -9,9 +9,26 @@ import { basename, dirname, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { spawn } from "node:child_process";
 
-const RUN_ROOT = dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT = resolve(RUN_ROOT, "../../../..");
-const RUN_ID = basename(RUN_ROOT);
+const REPO_ROOT = dirname(fileURLToPath(import.meta.url));
+let RUN_ROOT = null;
+let RUN_ID = null;
+let STAGED_IDENTITY = null;
+let PROJECT_ROOT = null;
+const RUNNER_CONTRACTS_RELATIVE_PATH = "experiments/jev-mssr-live/runner-contracts.mjs";
+const RUNNER_CONTRACTS_PATH = resolve(REPO_ROOT, RUNNER_CONTRACTS_RELATIVE_PATH);
+const {
+  assertCandidateIdentity,
+  assertPinnedInputHashes,
+  assertPreProviderLifecycleGate,
+  buildRunCompletionReceipt,
+  finalizeFatalRun,
+  isStartJevApproval,
+  observeSelectionProviderCalls,
+  resolveExternalRunRoot,
+  validateCompletionArtifacts,
+  verifySha256Inventory,
+  writeSha256Inventory,
+} = await import(pathToFileURL(RUNNER_CONTRACTS_PATH).href);
 const CANDIDATE_ROOT = "D:\\Dev\\bridge-mcp-jev-mssr-0.2.103";
 const SOURCE_COMMIT = "c4c93fb20faeb4bba81fc771718cd2f26c9c3c2a";
 const CONFIRMATION = "0.6.156:0.2.104:714e9d0997e4bc92c2981e1aeb3e5b8a98beef91efc04f82e92d001748a7e4ca";
@@ -29,9 +46,8 @@ const MAX_CANDIDATES = 100;
 const MAX_FETCH_CHARS = 20_000;
 
 const sha256 = (value) => createHash("sha256").update(value).digest("hex");
+const RUNNER_CONTRACTS_SHA256 = sha256(readFileSync(RUNNER_CONTRACTS_PATH));
 const readJson = (relativePath) => JSON.parse(readFileSync(resolve(RUN_ROOT, relativePath), "utf8"));
-const STAGED_IDENTITY = readJson("inputs/staged-project-identity.json");
-const PROJECT_ROOT = resolve(STAGED_IDENTITY.externalProjectRoot);
 const writeJsonExclusive = (relativePath, value) => writeFileSync(
   resolve(RUN_ROOT, relativePath),
   `${JSON.stringify(value, null, 2)}\n`,
@@ -39,11 +55,15 @@ const writeJsonExclusive = (relativePath, value) => writeFileSync(
 );
 
 function parseArgs(argv) {
-  const result = { mode: "preflight", candidateRoot: CANDIDATE_ROOT, confirmation: null, pauseAfterBootstrap: false };
+  const result = { mode: "preflight", runRoot: null, candidateRoot: CANDIDATE_ROOT, confirmation: null, pauseAfterBootstrap: false };
   for (let index = 0; index < argv.length; index += 1) {
     const item = argv[index];
     if (item === "--preflight") result.mode = "preflight";
     else if (item === "--live") result.mode = "live";
+    else if (item === "--run-root") {
+      assert.ok(argv[index + 1], "--run-root requires an existing external directory.");
+      result.runRoot = argv[++index];
+    }
     else if (item === "--candidate-root" && argv[index + 1]) result.candidateRoot = resolve(argv[++index]);
     else if (item === "--confirmation" && argv[index + 1]) result.confirmation = argv[++index];
     else if (item === "--pause-after-bootstrap") result.pauseAfterBootstrap = true;
@@ -52,9 +72,16 @@ function parseArgs(argv) {
   return result;
 }
 
+function initializeRunContext(requestedRunRoot) {
+  RUN_ROOT = resolveExternalRunRoot(REPO_ROOT, requestedRunRoot);
+  RUN_ID = basename(RUN_ROOT);
+  STAGED_IDENTITY = readJson("inputs/staged-project-identity.json");
+  PROJECT_ROOT = resolve(STAGED_IDENTITY.externalProjectRoot);
+}
+
 function assertFreshOutputPaths(mode) {
   const relativePaths = mode === "live"
-    ? ["manifest.json", "records.jsonl", "summary.json", "bootstrap-receipt.json", "bootstrap-failure.json", "run-completion.json"]
+    ? ["manifest.json", "records.jsonl", "summary.json", "bootstrap-receipt.json", "bootstrap-failure.json", "run-completion.json", "SHA256SUMS"]
     : ["preflight.json"];
   for (const relativePath of relativePaths) {
     assert.equal(existsSync(resolve(RUN_ROOT, relativePath)), false, `Refusing existing output: ${relativePath}`);
@@ -66,9 +93,7 @@ function verifyFrozenCorpus() {
     name,
     readFileSync(resolve(RUN_ROOT, "inputs", name)),
   ]));
-  for (const [name, expectedHash] of Object.entries(EXPECTED_INPUT_HASHES)) {
-    assert.equal(sha256(inputBytes[name]), expectedHash, `Frozen input bytes differ from the pinned hash: ${name}`);
-  }
+  assertPinnedInputHashes(inputBytes, EXPECTED_INPUT_HASHES);
   const repoTopLevel = execFileSync("git", ["-C", REPO_ROOT, "rev-parse", "--show-toplevel"], { encoding: "utf8" }).trim();
   assert.equal(resolve(repoTopLevel), resolve(REPO_ROOT), "Runner's computed MSSR repository root is incorrect.");
   const resolvedSourceCommit = execFileSync("git", ["-C", REPO_ROOT, "rev-parse", `${SOURCE_COMMIT}^{commit}`], { encoding: "utf8" }).trim();
@@ -331,10 +356,9 @@ async function runBootstrap(client) {
     error.failureCode = "bootstrap-lifecycle-gate-incomplete";
     throw error;
   }
+  assertPreProviderLifecycleGate(payload.lifecycleGate);
   const nextRequiredAction = payload.lifecycleGate.nextRequiredAction;
   const postContextAction = payload.lifecycleGate?.postContextAction ?? null;
-  assert.equal(postContextAction, null, "Benchmark runner refuses dynamic post-context actions before the human provider gate.");
-  assert.equal(nextRequiredAction, "execute-active-phase-then-record-phase-and-replan", "Lifecycle gate requires an unsupported action before the human provider gate.");
   const postContextActionExecuted = false;
   return {
     traceId,
@@ -443,7 +467,8 @@ async function runPreflight(candidateRoot) {
     controlSupportDocuments: frozen.controlInventory.files,
     controlSupportInventorySha256: frozen.stagedIdentity.controlSupportInventorySha256,
     inputHashes: frozen.inputHashes,
-    runnerSha256: sha256(readFileSync(resolve(RUN_ROOT, "runner.mjs"))),
+    runnerSha256: sha256(readFileSync(resolve(REPO_ROOT, "runner.mjs"))),
+    runnerContractsSha256: RUNNER_CONTRACTS_SHA256,
     stagedProject: frozen.stagedIdentity,
     controlSupport: frozen.controlInventory,
     candidate,
@@ -484,6 +509,54 @@ async function runPreflight(candidateRoot) {
   process.stdout.write(`${JSON.stringify({ status: result.status, providerCallsMade: false, candidate: candidate.bridgeVersion, mssr: candidate.mssrVersion, documents: frozen.corpus.documents.length, concepts: frozen.cases.cases.length, requests: result.pairedLanguageRequestCount })}\n`);
 }
 
+function writeRunCompletion(status, {
+  expectedRequests,
+  attemptedRequests,
+  completedRequests,
+  failedRequests,
+  excludedRequests,
+  providerCallsReported,
+  hasAmbiguousSelectionFailure,
+  traceId,
+  finishedAt,
+  reason = null,
+  bootstrapFailure = null,
+}) {
+  const manifestPath = resolve(RUN_ROOT, "manifest.json");
+  const recordsPath = resolve(RUN_ROOT, "records.jsonl");
+  const summaryPath = resolve(RUN_ROOT, "summary.json");
+  const receipt = buildRunCompletionReceipt({
+    runId: RUN_ID,
+    status,
+    manifestBytes: readFileSync(manifestPath),
+    recordsBytes: existsSync(recordsPath) ? readFileSync(recordsPath) : null,
+    summaryBytes: readFileSync(summaryPath),
+    requestCounts: {
+      expected: expectedRequests,
+      attempted: attemptedRequests,
+      completed: completedRequests,
+      failed: failedRequests,
+      excluded: excludedRequests,
+    },
+    providerCallsReported,
+    hasAmbiguousSelectionFailure,
+    traceId,
+    labelsExposedToProvider: false,
+    reason,
+    bootstrapFailure,
+    finishedAt,
+  });
+  writeJsonExclusive("run-completion.json", receipt);
+  const manifestBytes = readFileSync(manifestPath);
+  const recordsBytes = existsSync(recordsPath) ? readFileSync(recordsPath) : null;
+  const summaryBytes = readFileSync(summaryPath);
+  const completionBytes = readFileSync(resolve(RUN_ROOT, "run-completion.json"));
+  validateCompletionArtifacts({ manifestBytes, recordsBytes, summaryBytes, completionBytes });
+  writeSha256Inventory(RUN_ROOT);
+  verifySha256Inventory(RUN_ROOT);
+  return receipt;
+}
+
 async function runLive(candidateRoot, confirmation, pauseAfterBootstrap) {
   if (!pauseAfterBootstrap) throw new Error("Live Jev gate is closed: --pause-after-bootstrap is mandatory.");
   if (confirmation !== CONFIRMATION) throw new Error("Live Jev gate is closed: exact coordinator confirmation is required.");
@@ -493,10 +566,11 @@ async function runLive(candidateRoot, confirmation, pauseAfterBootstrap) {
   const runId = RUN_ID;
   const startedAt = new Date().toISOString();
   const preflight = readJson("preflight.json");
-  const runnerHash = sha256(readFileSync(resolve(RUN_ROOT, "runner.mjs")));
+  const runnerHash = sha256(readFileSync(resolve(REPO_ROOT, "runner.mjs")));
   assert.equal(preflight.status, "preflight-passed-provider-gate-closed", "A passing offline preflight is required before MCP startup.");
   assert.equal(preflight.runnerSha256, runnerHash, "Preflight was created from a different runner revision.");
-  assert.deepEqual(preflight.candidate, candidate, "Preflight candidate identity or any pinned build hash differs from the current candidate.");
+  assert.equal(preflight.runnerContractsSha256, RUNNER_CONTRACTS_SHA256, "Preflight was created from a different runner-contracts revision.");
+  assertCandidateIdentity(preflight.candidate, candidate);
   const preflightHash = sha256(readFileSync(resolve(RUN_ROOT, "preflight.json")));
   const recordsPath = resolve(RUN_ROOT, "records.jsonl");
   const environment = { ...process.env };
@@ -520,10 +594,19 @@ async function runLive(candidateRoot, confirmation, pauseAfterBootstrap) {
   let serverInfo = null;
   let bootstrapReceipt = null;
   let traceId = null;
+  let attemptedRequests = 0;
   let completedRequests = 0;
-  let succeededRequests = 0;
   let failedRequests = 0;
+  let liveStage = "mcp-connect";
+  let selectionRequestsAttempted = 0;
+  let selectionResponsesObserved = 0;
   const aggregate = { providerCalls: 0, inputTokens: 0, outputTokens: 0, elapsedMs: 0, endToEndElapsedMs: 0, fetchPassed: 0, fetchFailed: 0, abstentions: 0 };
+  let hasAmbiguousSelectionFailure = false;
+  const expectedRequestIds = frozen.cases.cases.flatMap((item) => frozen.cases.languages.map((language) => `${item.id}:${language}`));
+  const excludedRequestIds = (Array.isArray(frozen.cases.excludedCaseIds) ? frozen.cases.excludedCaseIds : [])
+    .flatMap((caseId) => frozen.cases.languages.map((language) => `${caseId}:${language}`));
+  const expectedRequests = expectedRequestIds.length;
+  const excludedRequests = excludedRequestIds.length;
   writeJsonExclusive("manifest.json", {
     schemaVersion: 1,
     runId,
@@ -531,13 +614,18 @@ async function runLive(candidateRoot, confirmation, pauseAfterBootstrap) {
     status: "prepared",
     evaluationClass: "exploratory-build-regression-paired-comparison",
     independentConceptCount: frozen.cases.cases.length,
-    pairedLanguageRequestCount: frozen.cases.cases.length * frozen.cases.languages.length,
+    pairedLanguageRequestCount: expectedRequests,
+    expectedRequests,
+    excludedRequests,
+    expectedRequestIds,
+    excludedRequestIds,
     sourceCommit: SOURCE_COMMIT,
     candidate,
     model: EXPECTED_MODEL,
     inputs: frozen.inputHashes,
     preflightSha256: preflightHash,
     runnerSha256: runnerHash,
+    runnerContractsSha256: RUNNER_CONTRACTS_SHA256,
     controlSupportInventorySha256: frozen.stagedIdentity.controlSupportInventorySha256,
     stagedProject: frozen.stagedIdentity,
     labelsRead: false,
@@ -549,14 +637,17 @@ async function runLive(candidateRoot, confirmation, pauseAfterBootstrap) {
     credentialValuePersisted: false,
   });
   try {
+    liveStage = "mcp-connect";
     await client.connect(transport);
     serverInfo = client.getServerVersion?.() ?? null;
     assert.equal(serverInfo?.version, EXPECTED_BRIDGE_VERSION, "MCP server handshake version differs from the confirmed candidate.");
+    liveStage = "mcp-catalog";
     const catalog = await client.listTools();
     const tools = new Map(catalog.tools.map((tool) => [tool.name, tool]));
     for (const name of ["skill_bootstrap", "skill_context_next", "mssr_librarian_search", "mssr_librarian_jev_select", "mssr_librarian_fetch"]) {
       assert.ok(tools.has(name), `Candidate MCP catalog is missing ${name}.`);
     }
+    liveStage = "bootstrap";
     try {
       bootstrapReceipt = await runBootstrap(client);
       traceId = bootstrapReceipt.traceId;
@@ -566,14 +657,42 @@ async function runLive(candidateRoot, confirmation, pauseAfterBootstrap) {
         process.stdout.write("awaiting-parent-gate: send START_JEV on this process stdin to begin live requests\n");
         const input = createInterface({ input: process.stdin });
         const approval = await new Promise((resolveApproval) => {
-          input.once("line", (line) => resolveApproval(line.trim()));
+          input.once("line", (line) => resolveApproval(line));
           input.once("close", () => resolveApproval(""));
         });
         input.close();
-        if (approval !== "START_JEV") {
+        if (!isStartJevApproval(approval)) {
           const finishedAt = new Date().toISOString();
-          writeJsonExclusive("summary.json", { schemaVersion: 1, runId, status: "provider-phase-not-started", providerCalls: 0, labelsRead: false, targetIndexRead: false, scoringPerformed: false, bootstrapReceipt, finishedAt });
-          writeJsonExclusive("run-completion.json", { schemaVersion: 1, runId, status: "provider-phase-not-started", reason: "explicit START_JEV input was not received", providerCalls: 0, finishedAt });
+          writeJsonExclusive("summary.json", {
+            schemaVersion: 1,
+            runId,
+            status: "provider-phase-not-started",
+            expectedRequests,
+            attemptedRequests: 0,
+            completedRequests: 0,
+            failedRequests: 0,
+            excludedRequests,
+            providerCalls: 0,
+            providerCallsReported: 0,
+            providerCallCountStatus: "known",
+            labelsRead: false,
+            targetIndexRead: false,
+            scoringPerformed: false,
+            bootstrapReceipt,
+            finishedAt,
+          });
+          writeRunCompletion("provider-phase-not-started", {
+            expectedRequests,
+            attemptedRequests: 0,
+            completedRequests: 0,
+            failedRequests: 0,
+            excludedRequests,
+            providerCallsReported: 0,
+            hasAmbiguousSelectionFailure: false,
+            traceId,
+            finishedAt,
+            reason: "exact interactive START_JEV was not received",
+          });
           return;
         }
       }
@@ -598,20 +717,36 @@ async function runLive(candidateRoot, confirmation, pauseAfterBootstrap) {
         schemaVersion: 1,
         runId,
         status: terminalStatus,
+        expectedRequests,
+        attemptedRequests: 0,
         completedRequests: 0,
-        succeededRequests: 0,
         failedRequests: 0,
+        excludedRequests,
         providerCalls: 0,
+        providerCallsReported: 0,
+        providerCallCountStatus: "known",
         labelsRead: false,
         targetIndexRead: false,
         scoringPerformed: false,
         bootstrapFailure: failure,
         finishedAt: failure.failedAt,
       });
-      writeJsonExclusive("run-completion.json", { schemaVersion: 1, runId, status: terminalStatus, providerCalls: 0, bootstrapFailure: failure, finishedAt: failure.failedAt });
+      writeRunCompletion(terminalStatus, {
+        expectedRequests,
+        attemptedRequests: 0,
+        completedRequests: 0,
+        failedRequests: 0,
+        excludedRequests,
+        providerCallsReported: 0,
+        hasAmbiguousSelectionFailure: false,
+        traceId,
+        finishedAt: failure.failedAt,
+        bootstrapFailure: failure,
+      });
       process.stdout.write(`${JSON.stringify({ status: terminalStatus, providerCallsMade: false, failureClass: failure.failureClass, failureCode: failure.failureCode })}\n`);
       return;
     }
+    liveStage = "provider";
     const refs = frozen.corpus.documents.map((item) => item.sourceRef);
     let lifecycleBlocked = false;
     for (const item of frozen.cases.cases) {
@@ -622,6 +757,7 @@ async function runLive(candidateRoot, confirmation, pauseAfterBootstrap) {
         const requestStartedAt = new Date().toISOString();
         const requestStarted = performance.now();
         let currentStage = "search";
+        let selectionResponseObserved = false;
         try {
           const searchResult = extractPayload(await client.callTool({
             name: "mssr_librarian_search",
@@ -652,6 +788,7 @@ async function runLive(candidateRoot, confirmation, pauseAfterBootstrap) {
             } : null,
           }));
           currentStage = "selection";
+          selectionRequestsAttempted += 1;
           const selection = extractPayload(await client.callTool({
             name: "mssr_librarian_jev_select",
             arguments: {
@@ -662,6 +799,11 @@ async function runLive(candidateRoot, confirmation, pauseAfterBootstrap) {
               model: EXPECTED_MODEL,
             },
           }), "mssr_librarian_jev_select");
+          selectionResponseObserved = true;
+          selectionResponsesObserved += 1;
+          const callObservation = observeSelectionProviderCalls(selection);
+          if (callObservation.status === "unknown") hasAmbiguousSelectionFailure = true;
+          else aggregate.providerCalls += callObservation.providerCalls;
           const choiceCalls = selection.jevCallMade === true ? validateChoiceCalls(selection, optionMap) : [];
           let exactFetch = { status: "not-attempted" };
           if (selection.status === "selected" && selection.selected?.handle) {
@@ -753,13 +895,13 @@ async function runLive(candidateRoot, confirmation, pauseAfterBootstrap) {
             elapsedMs: endToEndElapsedMs,
           };
           appendFileSync(recordsPath, `${JSON.stringify(record)}\n`, { flag: existsSync(recordsPath) ? "a" : "ax" });
-          succeededRequests += 1;
+          completedRequests += 1;
           aggregate.endToEndElapsedMs += endToEndElapsedMs;
-          aggregate.providerCalls += Number(selection.providerCalls ?? 0);
           aggregate.inputTokens += Number(selection.usage?.input_tokens ?? 0);
           aggregate.outputTokens += Number(selection.usage?.output_tokens ?? 0);
           aggregate.elapsedMs += Number(selection.elapsedMs ?? 0);
         } catch (error) {
+          if (currentStage === "selection" && !selectionResponseObserved) hasAmbiguousSelectionFailure = true;
           const record = {
             schemaVersion: 1,
             caseId: item.id,
@@ -782,11 +924,33 @@ async function runLive(candidateRoot, confirmation, pauseAfterBootstrap) {
           failedRequests += 1;
           if (error?.bridgeStatus === "mssr-lifecycle-preflight-required") lifecycleBlocked = true;
         }
-        completedRequests += 1;
-        process.stdout.write(`progress completed=${completedRequests}/${frozen.cases.cases.length * frozen.cases.languages.length} succeeded=${succeededRequests} failed=${failedRequests}\n`);
+        attemptedRequests += 1;
+        process.stdout.write(`progress attempted=${attemptedRequests}/${expectedRequests} completed=${completedRequests} failed=${failedRequests}\n`);
       }
       if (lifecycleBlocked) break;
     }
+  } catch (error) {
+    if (existsSync(resolve(RUN_ROOT, "manifest.json")) && !existsSync(resolve(RUN_ROOT, "run-completion.json"))) {
+      const fatal = finalizeFatalRun({
+        runRoot: RUN_ROOT,
+        runId: RUN_ID,
+        stage: liveStage,
+        error,
+        expectedRequests,
+        attemptedRequests,
+        completedRequests,
+        failedRequests,
+        excludedRequests,
+        providerCallsReported: aggregate.providerCalls,
+        selectionRequestsAttempted,
+        selectionResponsesObserved,
+        hasAmbiguousSelectionFailure,
+        traceId,
+        finishedAt: new Date().toISOString(),
+      });
+      process.stderr.write(`${JSON.stringify({ status: fatal.completion?.status ?? "fatal-run-finalized", failureClass: fatal.summary?.fatalFailure?.failureClass ?? "already-finalized", providerCallCountStatus: fatal.completion?.providerCallCountStatus ?? "unknown" })}\n`);
+    }
+    return;
   } finally {
     await client.close().catch(() => undefined);
     delete environment.TYPESAFE_API_KEY;
@@ -797,15 +961,19 @@ async function runLive(candidateRoot, confirmation, pauseAfterBootstrap) {
     schemaVersion: 1,
     runId,
     status: lifecycleBlocked ? "lifecycle-preflight-blocked" : failedRequests === 0 ? "complete-exploratory" : "partial-exploratory",
+    expectedRequests,
+    attemptedRequests,
     completedRequests,
-    succeededRequests,
     failedRequests,
+    excludedRequests,
     independentConceptCount: frozen.cases.cases.length,
     pairedLanguageRequestCount: frozen.cases.cases.length * frozen.cases.languages.length,
-    providerCalls: aggregate.providerCalls,
+    providerCalls: hasAmbiguousSelectionFailure ? null : aggregate.providerCalls,
+    providerCallsReported: aggregate.providerCalls,
+    providerCallCountStatus: hasAmbiguousSelectionFailure ? "unknown" : "known",
     inputTokens: aggregate.inputTokens,
     outputTokens: aggregate.outputTokens,
-    meanEndToEndElapsedMs: completedRequests ? Number((aggregate.endToEndElapsedMs / completedRequests).toFixed(1)) : null,
+    meanEndToEndElapsedMs: attemptedRequests ? Number((aggregate.endToEndElapsedMs / attemptedRequests).toFixed(1)) : null,
     exactFetchPassed: aggregate.fetchPassed,
     exactFetchFailed: aggregate.fetchFailed,
     abstentions: aggregate.abstentions,
@@ -820,16 +988,16 @@ async function runLive(candidateRoot, confirmation, pauseAfterBootstrap) {
     finishedAt,
   };
   writeJsonExclusive("summary.json", summary);
-  writeJsonExclusive("run-completion.json", {
-    schemaVersion: 1,
-    runId,
-    status: summary.status,
-    providerCalls: aggregate.providerCalls,
-    recordCount: completedRequests,
+  writeRunCompletion(summary.status, {
+    expectedRequests,
+    attemptedRequests,
+    completedRequests,
+    failedRequests,
+    excludedRequests,
+    providerCallsReported: aggregate.providerCalls,
+    hasAmbiguousSelectionFailure,
     traceId,
     finishedAt,
-    recordsSha256: existsSync(recordsPath) ? sha256(readFileSync(recordsPath)) : null,
-    summarySha256: sha256(readFileSync(resolve(RUN_ROOT, "summary.json"))),
   });
   process.stdout.write(`${JSON.stringify(summary)}\n`);
 }
@@ -837,6 +1005,10 @@ async function runLive(candidateRoot, confirmation, pauseAfterBootstrap) {
 const options = parseArgs(process.argv.slice(2));
 if (options.mode === "live") {
   if (!options.pauseAfterBootstrap) throw new Error("Live Jev gate is closed: pass --pause-after-bootstrap to require the exact START_JEV gate after bootstrap.");
+  if (options.confirmation !== CONFIRMATION) throw new Error("Live Jev gate is closed: exact coordinator confirmation is required.");
+}
+initializeRunContext(options.runRoot);
+if (options.mode === "live") {
   await runLive(options.candidateRoot, options.confirmation, options.pauseAfterBootstrap);
 } else {
   await runPreflight(options.candidateRoot);

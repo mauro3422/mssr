@@ -51,6 +51,30 @@ experiments/<suite>/runs/<UTC-run-id>/
   SHA256SUMS
 ```
 
+For the Jev Librarian harness, keep code and run data on separate roots. The
+checked-in `runner.mjs` and `experiments/jev-mssr-live/runner-contracts.mjs`
+are read from the MSSR benchmark repository. Every invocation must pass an
+existing `--run-root` outside that repository and outside any `runs/` tree;
+the runner rejects the repository itself and any ancestor directory. Stage the
+five hash-pinned files (`cases.json`, `corpus.json`,
+`control-support-inventory.json`, `source-inventory.json`, and
+`staged-project-identity.json`) under `<run-root>/inputs/`. Keep the staged MCP
+project at the separately declared path in `staged-project-identity.json`.
+Do not copy labels or target indexes into the live input set.
+
+Example PowerShell invocation (the run folder and inputs must already exist):
+
+```powershell
+node .\runner.mjs --preflight --run-root 'D:\MSSR-benchmark-runs\jev-v19'
+node .\runner.mjs --live --run-root 'D:\MSSR-benchmark-runs\jev-v19' `
+  --pause-after-bootstrap --confirmation '<exact coordinator-confirmed value>'
+```
+
+The pause and exact coordinator confirmation are validated before run-root
+input reads, output creation, or MCP startup. Preflight reads only local files;
+the live command still waits for the separate exact `START_JEV` stdin gate
+after a successful MSSR bootstrap.
+
 Use a UTC timestamp plus a collision-resistant suffix for the run ID. Never
 overwrite a run directory or raw record. A retry after interruption gets a new
 run ID and an explicit `parentRunId`; do not silently splice attempts together.
@@ -168,14 +192,37 @@ summary. A validator should check record counts and IDs against the frozen
 manifest, response shape, file hashes, and status before marking a run complete.
 Keep `summary.json` and human-readable reports separate from raw records.
 
+The Jev live runner freezes eligible and excluded request IDs in the manifest.
+Before closing a run it checks unique record IDs, eligibility, record statuses,
+summary denominators, completion counts, and exact-byte manifest/records/summary
+hashes. Summary fields use `attemptedRequests` for terminal records,
+`completedRequests` for successful requests, and `failedRequests` for failed
+requests. The final run-completion receipt is then written and `SHA256SUMS` is
+generated over every regular run file except itself; symbolic links are
+rejected. Verify that inventory before using the run.
+
 The manifest is frozen before inference and must not be edited to change
 `status: prepared` after calls begin. Record the terminal state in
-`run-completion.json`, including `runId`, `manifestSha256`, completion time,
-attempt/success/failure counts, and whether labels were exposed. Its status is
-authoritative for execution completion; the manifest remains authoritative for
-the frozen plan and input identities. Include the completion receipt, summary,
-review, report, manifest, records, and every input in `SHA256SUMS`; exclude only
-`SHA256SUMS` itself. Recompute the inventory after writing the final receipt.
+`run-completion.json`, including `runId`, the exact-byte `manifestSha256`,
+completion time, and request counts for expected, attempted, completed,
+failed, excluded, and not-started work. `completed` counts successful requests;
+`expected` means eligible requests after applying the frozen exclusions;
+`excluded` counts planned requests omitted from that denominator and is reported
+separately. `attempted` counts eligible requests with a terminal success or
+failure record; the remaining eligible requests are `notStarted`. Report whether
+labels were exposed to the provider.
+
+Provider-call counts must distinguish `known` from `unknown`. If a selector
+request may have reached the provider but no valid response arrived, report an
+unknown total rather than zero. `providerCallsReported` is the sum reported by
+observed valid selector responses; when the total is unknown, it is a possibly
+partial lower bound, not a substitute for the total. A zero is valid only when
+the runner can establish that no provider request was attempted. The
+run-completion receipt's status is authoritative for execution completion; the
+manifest remains authoritative for the frozen plan and input identities.
+Include the completion receipt, summary, review, report, manifest,
+records, and every input in `SHA256SUMS`; exclude only `SHA256SUMS` itself.
+Recompute the inventory after writing the final receipt.
 
 ## Labels, holdouts, and claims
 
