@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "candidate": {
+    "branch": "codex/jev-citation-evidence-pack",
+    "commit": "0c1ca590d3dcf9a8ba721f6a2975c909e13972c2",
+    "packageVersion": "0.2.105",
+    "projectKey": "mssr",
+    "build": {
+      "id": "mssr-build:sha256:58b3d5447d10b847",
+      "files": 127,
+      "bytes": 1438254,
+      "receiptSha256": "0cf8a3a83149509214766ace41f608934b2b0649eac083437d46e574a294dbd7"
+    }
+  },
+  "files": {
+    "package.json": "2cf90e68cc52537742ceccb9d63916ea4cf57941d8fc1c7b66b84a6d0dbf2e19",
+    "package-lock.json": "0edf130753728deb6ee644084594b38011eeb0cc8d76f7c1326c148d025d7c1b",
+    ".mssr/project-context.json": "f2636c26e6a00047b57a948e8284fb41eb493da868d1442ddda94858eb3f91b9",
+    ".mssr/project-context-librarian.json": "72fc7200a3e3360bee3fab6cab3ecfebbc24073a6222a554320bbdbdb6457928",
+    ".mssr/project-context-segments.json": "bd678369e89d9cd25b9841290eeadd1ad586204aa099fab3df290bd52e2757d6",
+    "dist/.build-receipt.json": "0cf8a3a83149509214766ace41f608934b2b0649eac083437d46e574a294dbd7",
+    ".mssr/knowledge/architecture/architecture-impact-review-decision.md": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+    ".mssr/PROJECT_STATE.md": "b760d6c5a72f592c9842796e7eeb65983925dfa28af7b0638acfe37de35d9ac5",
+    ".mssr/knowledge/research/jev-decision-model-use-cases.md": "eb76486df2546a5a69141b57b2f491d2d0870ef4df5dcc39f0913bd24788ee06"
+  },
+  "optionalReferencesManifest": {
+    "path": ".mssr/project-context-refs.json",
+    "present": false
+  },
+  "expected": {
+    "declaredEntries": 4,
+    "sourceFiles": 3
+  }
+}
