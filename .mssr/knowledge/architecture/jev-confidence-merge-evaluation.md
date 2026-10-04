@@ -184,10 +184,14 @@ For MSSR, the host can compose owner-authorized search and exact fetch, typed
 atom metadata, Jev selection/relation judgments, contradiction policy,
 iterative evidence acquisition, deterministic assembly or a separate prose
 generator, citation verification and reversible preview. Current portable APIs
-provide those pieces but do not run the whole loop, generate open prose, or
-automatically receive Bridge atoms; that host wiring and an end-to-end benchmark
-remain future gates. Each stage must retain source ranges and decisions. The
-preview is relation-aware and reversible; no automatic project write occurs.
+include the 0.2.102 read-only `mssr_librarian_evidence_pack`: it re-fetches up to
+16 supplied exact handles against current caller Markdown and returns verbatim
+ranges with per-range citations. It does not run iterative Jev selection,
+decision-guided structure recovery, or prose generation, and it does not
+automatically receive Bridge atoms; host orchestration and an end-to-end
+benchmark remain future gates. Each stage must retain source ranges and
+decisions. The preview is relation-aware and reversible; no automatic project
+write occurs.
 See TypeSafe's [Structure recovery](https://docs.typesafe.ai/cookbooks/autoformat),
 [Re-ranking](https://docs.typesafe.ai/cookbooks/rerank_typesafe),
 [question primitives](https://docs.typesafe.ai/primitives), and

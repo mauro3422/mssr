@@ -1,6 +1,6 @@
 {
   "name": "@mauroprime/mssr",
-  "version": "0.2.101",
+  "version": "0.2.102",
   "description": "Modular Semantic Skill Router: portable advisory semantic routing, modular context, registry, and optional MCP facade.",
   "type": "module",
   "main": "./dist/index.js",
@@ -58,7 +58,8 @@
     "test:skill-context-loader": "node scripts/test-skill-context-loader.mjs",
     "test:document-context": "node scripts/test-document-context.mjs",
     "test:document-surface": "node scripts/test-document-surface.mjs",
-    "test:librarian-contract": "node scripts/test-librarian-contract.mjs && node scripts/test-librarian-retrieval.mjs && node scripts/test-librarian-jev-selection.mjs",
+    "test:librarian-contract": "node scripts/test-librarian-contract.mjs && node scripts/test-librarian-retrieval.mjs && node scripts/test-librarian-jev-selection.mjs && node scripts/test-librarian-evidence-pack.mjs",
+    "test:librarian-evidence-pack": "node scripts/test-librarian-evidence-pack.mjs",
     "test:evidence-atom": "node scripts/test-evidence-atom.mjs",
     "test:librarian-coverage": "node scripts/test-librarian-coverage.mjs",
     "test:librarian-trace-adapter": "node scripts/test-librarian-trace-adapter.mjs",

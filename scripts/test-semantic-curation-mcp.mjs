@@ -100,6 +100,7 @@ try {
   assert.ok(tools.tools.some((tool) => tool.name === "mssr_semantic_evidence_relation_review"));
   assert.ok(tools.tools.some((tool) => tool.name === "mssr_semantic_evidence_synthesis_preview"));
   assert.ok(tools.tools.some((tool) => tool.name === "mssr_librarian_jev_select"));
+  assert.ok(tools.tools.some((tool) => tool.name === "mssr_librarian_evidence_pack"));
   assert.ok(tools.tools.some((tool) => tool.name === "mssr_semantic_experience_observe"));
   assert.ok(tools.tools.some((tool) => tool.name === "mssr_semantic_experience_status"));
   assert.ok(tools.tools.some((tool) => tool.name === "mssr_semantic_experience_feedback"));
@@ -133,6 +134,22 @@ try {
   }));
   assert.match(fetched.text, /selected paragraph retains the source revision/);
   assert.equal(fetched.truthAuthority, false);
+  const evidencePack = json(await client.callTool({
+    name: "mssr_librarian_evidence_pack",
+    arguments: {
+      documents: [{
+        owner: projectRoot,
+        sourceRef: "docs/explicit-fixture.md",
+        markdown: "# Evidence\n\n## Exact source\n\nThe selected paragraph retains the source revision and owner.\n",
+        privacyClass: "project-metadata",
+      }],
+      handles: [retrieved.results[0].handle],
+    },
+  }));
+  assert.equal(evidencePack.paragraphs.length, 1);
+  assert.equal(evidencePack.paragraphs[0].exactText, fetched.text);
+  assert.equal(evidencePack.paragraphs[0].citation.handleId, fetched.handle.id);
+  assert.equal(evidencePack.canonicalRewriteAllowed, false);
 
   const projectionMarkdown = "# Library\n\n## Unlabeled source\n\nThis body contains no catalog taxonomy.\n";
   const projectionSourceRef = "docs/projection-fixture.md";

@@ -1,7 +1,7 @@
 # MSSR project state
 
 ## Current release
-MSSR 0.2.101 passed `npm ci`, full `npm run verify`, and `npm run release:gate` on `codex/mssr-0.2.101-product-integration`, rooted at `origin/main` `dfb2956`. Product commit `cd7c834df2f91d581b8f84db9d89a9d425dd1c6f` is pushed; its package is release-gated but unpublished. Bridge sidecar and transport candidate commit `7b6fcd39e5d7d9c7513c231fcf98ceed76954c6b` is pushed with direct remote readback verified; isolated transport and full regression suites pass. Live-adoption gate remains separate and has not run. Live Bridge remains 0.6.144; benchmark snapshots remain unchanged on their original branch. See the integration handoff for exact commit, test and smoke evidence.
+MSSR 0.2.102 is the latest local release-gated package: `mauroprime-mssr-0.2.102.tgz`, 1,099,614 bytes, SHA-256 `a26e74b7dd8605a19062277615885bb63ba0d8e48cfb63c7d5f2640b1a24617b` (`pkg:0.2.102#a26e74b7`); it is unpublished. Full verification and the release gate passed. A real-document Jev -> evidence-pack smoke selected one exact changelog range and verified unchanged text plus citation identity; confidence 0.27 and Noul 0.65 are uncalibrated, not quality labels. The feature is preserved in source commit `cbc4f35` on a branch with unrelated benchmark ancestry; only its product diff is being integrated into the clean 0.2.101 product line. Bridge 0.6.147 still vendors MSSR 0.2.101; live Bridge remains 0.6.144. Active Codex MCP has not loaded 0.2.102 and awaits the user's later PC restart. Keep benchmark snapshots unchanged. See the handoff for receipts and gates.
 
 ## 0.2.98 package release receipt — historical
 
@@ -153,7 +153,7 @@ The near-term reliability program remains explicit in `ROADMAP.md`. **R1 Trace I
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.100 -->
+<!-- mssr-version:mssr.source=0.2.102 -->
 <!-- mssr-version:bridge.live=0.6.144 -->
 <!-- mssr-version:bridge.mssr=0.2.96 -->
 <!-- mssr-owner:semantic.consistency=mssr -->

@@ -88,6 +88,40 @@ The 0.2.101 package has not been published to npm. Its isolated Bridge
 candidate adoption is recorded below; live Bridge remains unchanged pending
 transport verification and a separate adoption decision.
 
+## MSSR 0.2.102 evidence-pack continuation — 2026-10-04
+
+MSSR 0.2.102 adds `mssr_librarian_evidence_pack`: up to 16 exact handles are
+re-fetched against caller-supplied current Markdown and returned unchanged with
+per-range owner/source/revision/line/fingerprint citations. It adds an evidence
+assembly boundary after deterministic or Jev selection; it does not call Jev,
+recover paragraph structure, generate prose, verify truth or write canonical
+sources. The full verification and release gate passed. The unpublished local
+package is 1,099,614 bytes, SHA-256
+`a26e74b7dd8605a19062277615885bb63ba0d8e48cfb63c7d5f2640b1a24617b`
+(`pkg:0.2.102#a26e74b7`); details are in
+`.mssr/runtime/releases/0.2.102.json`.
+
+Real MSSR documents exercised search -> one live `typesafe-jev` / `jev-1.13.0`
+selection -> evidence pack. Jev selected the 0.2.102 changelog from eight exact
+candidates in one call (1,670 input / 127 output tokens; 480.6 ms; Choice 0.27;
+Noul 0.65). The returned 2,511-character range matched the current source
+slice, and the citation matched handle/source/revision/range/fingerprint.
+This is a plumbing receipt, not an adjudicated quality result or calibration;
+raw provider output was not stored. Receipt:
+`.mssr/runtime/jev-smokes/evidence-pack-20261004T032043309Z.json`.
+
+Source commit `cbc4f355d2e3dc322f23acfab26a790b1957daeb` preserves the 0.2.102
+feature on the evaluation-derived source branch. Do not push or merge that
+branch's unrelated benchmark ancestry. The clean product line is rooted at
+`origin/codex/mssr-0.2.101-product-integration` (`a0fa31f`); transplant only
+the reviewed feature and retain its 0.2.101 and Bridge-audit state. The existing
+`D:\Dev\mssr-product-0.2.101` worktree and all 206 benchmark runs remain
+untouched. The isolated Bridge 0.6.147 candidate still vendors MSSR 0.2.101;
+adoption of 0.2.102 requires a separate successor candidate and release gate.
+The active Codex MCP remains on build `ecf594115342fa3c`; after the user's later
+PC restart, verify its exact build and repeat the selector -> exact fetch ->
+evidence-pack host smoke. Do not restart the active Bridge/MCP in this task.
+
 ## Bridge candidate
 
 Bridge 0.6.147 is on
@@ -262,12 +296,24 @@ plumbing evidence, not quality evidence.
   the active endpoint on port 3001 was unavailable. This update records the
   verified candidate state; the MSSR branch carries this handoff with the
   current state update.
-- **Next:** run `verify:all` when the intended active endpoint is available;
-  any live adoption remains a separate controlled gate. Keep live Bridge at
-  0.6.144 and the original dirty primary checkout untouched.
+- **Complete:** MSSR 0.2.102 full verification, local release gate, and one
+  live real-document Jev -> evidence-pack smoke passed on the source candidate.
+- **Current:** finish the 0.2.102 transplant on an isolated branch rooted at
+  the clean 0.2.101 product integration, preserving all target-specific state
+  and excluding the source branch's experiment ancestry. Run full verification
+  and the release gate on that clean product branch before pushing its normal
+  feature ref; never publish the package to npm as part of this task.
+- **Next host gate:** after the user's later PC restart, verify the active MSSR
+  MCP build and run selector -> exact fetch -> evidence pack through that host.
+  Keep live Bridge at 0.6.144 and the original dirty primary Bridge checkout
+  untouched until separate adoption and transport gates are satisfied.
 - Keep all 206 `experiments/jev-mssr-live/runs/` paths, manifests, outputs,
   labels/reviews and hashes on their original evaluation branch. Do not
   cherry-pick the mixed evaluation snapshot or rewrite benchmark evidence.
+- After the Bridge 0.6.147 candidate passes `verify:all` at the intended active
+  endpoint, any 0.2.102 Bridge adoption must start from a separate successor
+  candidate that vendors the exact verified package and consumes the sidecar;
+  preserve existing `project-context-librarian-sidecar` and 0.6.146 behavior.
 - After Bridge integration passes, freeze bytes, sidecar/source revisions,
   query set, candidate limits, owner-adjudicated acceptable ranges, and an
   untouched document-level holdout. Compare lexical and metadata search with
