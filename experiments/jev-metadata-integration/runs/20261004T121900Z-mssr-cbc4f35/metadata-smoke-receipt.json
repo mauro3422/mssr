@@ -1,0 +1,103 @@
+{
+  "schema": "mssr-project-context-librarian-real-doc-smoke-v1",
+  "createdAt": "2026-10-04T12:19:00.497Z",
+  "projectRoot": "D:\\Dev\\mssr",
+  "branch": "codex/jev-citation-evidence-pack",
+  "commit": "cbc4f355d2e3dc322f23acfab26a790b1957daeb",
+  "buildReceipt": {
+    "schema": "mssr-build-receipt-v1",
+    "id": "mssr-build:sha256:24589ca94bee83fd",
+    "version": "0.2.102",
+    "files": 127,
+    "bytes": 1437328
+  },
+  "inputs": {
+    "projectContextManifest": {
+      "path": ".mssr/project-context.json",
+      "sha256": "73f681cc3d1aaba577f3a14909b435196d8acf8c61c675fd2428302dc515b135"
+    },
+    "librarianManifest": {
+      "path": ".mssr/project-context-librarian.json",
+      "sha256": "40cc2dc59afbf87a10db098c9ac96bb49e571fb90204e4f4a1efb3772b03c1af"
+    },
+    "segments": {
+      "path": ".mssr/project-context-segments.json",
+      "observed": true
+    },
+    "references": {
+      "path": ".mssr/project-context-refs.json",
+      "observed": false
+    },
+    "sources": {
+      ".mssr/knowledge/architecture/architecture-impact-review-decision.md": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+      ".mssr/PROJECT_STATE.md": "f5e90d91e50aa3e88630e893052d47695144f3ea307def7c91a78bf6650793da",
+      ".mssr/knowledge/research/jev-decision-model-use-cases.md": "4462bffb86c7e1c80ae33f06b7fc04be90fdc9133da8cf135420388e68fa7dfb"
+    }
+  },
+  "result": {
+    "declared": 4,
+    "projected": 4,
+    "omitted": 0,
+    "metadataSearches": 4,
+    "exactFetchesPassed": 4,
+    "records": [
+      {
+        "entryId": "mssr-architecture-impact-decision",
+        "selectorField": "domains",
+        "selectorValue": "coding",
+        "sourcePath": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+        "sourceSha256": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+        "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+        "rangeId": "heading-1",
+        "handleId": "34ab2ace482bcb326544c06fce4a8312e957758cc24ba52ed2de601de1851c67",
+        "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+        "exactFetchCodeUnits": 1955,
+        "metadataMatched": true,
+        "exactFetchPassed": true
+      },
+      {
+        "entryId": "mssr-learning-dataset-state",
+        "selectorField": "domains",
+        "selectorValue": "agent-orchestration",
+        "sourcePath": ".mssr/PROJECT_STATE.md",
+        "sourceSha256": "f5e90d91e50aa3e88630e893052d47695144f3ea307def7c91a78bf6650793da",
+        "revision": "f5e90d91e50aa3e88630e893052d47695144f3ea307def7c91a78bf6650793da",
+        "rangeId": "heading-21",
+        "handleId": "b63576c51286ca41934b04dc3e6956797a443d73d5738c6d7bbb584a4ccad0ba",
+        "fingerprint": "c29fe6bc992dd7c656284ddf76be85bdeb064e9063fdbdd9de431b548b94d3f3",
+        "exactFetchCodeUnits": 891,
+        "metadataMatched": true,
+        "exactFetchPassed": true
+      },
+      {
+        "entryId": "mssr-core-skill-package-state",
+        "selectorField": "domains",
+        "selectorValue": "skill-system",
+        "sourcePath": ".mssr/PROJECT_STATE.md",
+        "sourceSha256": "f5e90d91e50aa3e88630e893052d47695144f3ea307def7c91a78bf6650793da",
+        "revision": "f5e90d91e50aa3e88630e893052d47695144f3ea307def7c91a78bf6650793da",
+        "rangeId": "heading-22",
+        "handleId": "cef3cd703967b533244e6a429105994a051c1f94ed8c911be11fb9fc4ac3f6bb",
+        "fingerprint": "534388abe5c4d0392e215add388bac3a6bd0a1261bc3ed9c17d16ebd77961ca3",
+        "exactFetchCodeUnits": 535,
+        "metadataMatched": true,
+        "exactFetchPassed": true
+      },
+      {
+        "entryId": "mssr-jev-use-case-hypotheses",
+        "selectorField": "domains",
+        "selectorValue": "agent-orchestration",
+        "sourcePath": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+        "sourceSha256": "4462bffb86c7e1c80ae33f06b7fc04be90fdc9133da8cf135420388e68fa7dfb",
+        "revision": "4462bffb86c7e1c80ae33f06b7fc04be90fdc9133da8cf135420388e68fa7dfb",
+        "rangeId": "heading-10",
+        "handleId": "cdcf39ba760c488418c1c1b33b622b9ccba28a7f3ce3191c26587ab10fc0e75c",
+        "fingerprint": "9197101e89eee91feea5862c14ac1ec29c4a0036eb0fbf9d1e744a0e2306a1d5",
+        "exactFetchCodeUnits": 7728,
+        "metadataMatched": true,
+        "exactFetchPassed": true
+      }
+    ]
+  },
+  "claim": "Integration smoke only: proves current sidecar projection, metadata-to-exact-range retrieval, and exact fetch integrity. It is not relevance adjudication, a quality benchmark, confidence calibration, or Bridge runtime adoption."
+}
