@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "candidateCommit": "0c1ca590d3dcf9a8ba721f6a2975c909e13972c2",
+  "candidateBranch": "codex/jev-citation-evidence-pack",
+  "candidateBank": {
+    "path": "experiments/jev-metadata-integration/candidate-bank.md",
+    "sha256": "764ea6348116de93ce6499dd218b86a9fa869a12ec6733468ce6beff9d6b014a"
+  },
+  "caseIds": [
+    "C01",
+    "C02",
+    "C04",
+    "C24"
+  ],
+  "expectedSidecarCaseIds": [
+    "C01",
+    "C02",
+    "C04"
+  ],
+  "expectedUntaggedCaseIds": [
+    "C24"
+  ],
+  "excludedCases": {
+    "C03": "Read-only review flagged a possible unsupported warning premise/selector in the target section; exclude pending owner adjudication. This is not a gold label."
+  },
+  "expectedConceptCases": 4,
+  "expectedUniqueSourceFiles": 27,
+  "topK": 20
+}
