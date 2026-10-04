@@ -1,4 +1,7 @@
 import assert from "node:assert/strict";
+import fs from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { buildMssrMarkdownDocumentSurface } from "../dist/document-surface.js";
 import { projectMssrProjectContextLibrarianMetadata } from "../dist/project-context-librarian.js";
 import { fetchMssrLibrarianEvidence, searchMssrLibrarianEvidence } from "../dist/librarian-retrieval.js";
@@ -274,5 +277,30 @@ assert.throws(() => projectMssrProjectContextLibrarianMetadata({
   sourceFiles: [{ path: sourcePath, markdown }],
   owner: "project:demo",
 }), /requires observed segment\/reference sidecar inputs/);
+
+// Keep the real project-state heading fingerprints and sidecar projection in sync.
+const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const [actualProjectContextManifest, actualLibrarianManifest, projectStateMarkdown] = await Promise.all([
+  fs.readFile(path.join(repositoryRoot, ".mssr", "project-context.json"), "utf8").then(JSON.parse),
+  fs.readFile(path.join(repositoryRoot, ".mssr", "project-context-librarian.json"), "utf8").then(JSON.parse),
+  fs.readFile(path.join(repositoryRoot, ".mssr", "PROJECT_STATE.md"), "utf8"),
+]);
+const currentStateEntries = actualLibrarianManifest.entries.filter((entry) => entry.sourcePath === ".mssr/PROJECT_STATE.md");
+assert.deepEqual(currentStateEntries.map((entry) => entry.entryId).sort(), [
+  "mssr-core-skill-package-state",
+  "mssr-learning-dataset-state",
+]);
+const actualStateProjection = projectMssrProjectContextLibrarianMetadata({
+  projectContextManifest: actualProjectContextManifest,
+  librarianManifest: { schemaVersion: 1, entries: currentStateEntries },
+  segmentsManifest: null,
+  referencesManifest: null,
+  sourceFiles: [{ path: ".mssr/PROJECT_STATE.md", markdown: projectStateMarkdown }],
+  owner: "project:mssr",
+  projectKey: "mssr",
+});
+assert.equal(actualStateProjection.projected, 2);
+assert.equal(actualStateProjection.omitted, 0);
+assert.deepEqual(actualStateProjection.records.map((record) => record.metadata.entryId).sort(), currentStateEntries.map((entry) => entry.entryId).sort());
 
 console.log("project-context Librarian selector tests passed");

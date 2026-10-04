@@ -123,10 +123,21 @@
         {
           "id": "evidence-librarian-baseline",
           "sections": [
-            "## Evidence atom and source boundary",
-            "## Document Surface and Librarian contract"
+            "## Evidence atom and source boundary"
           ],
           "baseline": true
+        },
+        {
+          "id": "document-surface-librarian",
+          "sections": [
+            "## Document Surface and Librarian contract"
+          ],
+          "terms": [
+            "document surface",
+            "librarian contract",
+            "ingress adapters"
+          ],
+          "priority": 25
         },
         {
           "id": "progressive-retrieval-acquisition",
@@ -195,6 +206,55 @@
             "explicit corrections"
           ],
           "priority": 30
+        }
+      ]
+    },
+    {
+      "moduleId": "mssr-project-context-librarian-metadata",
+      "segments": [
+        {
+          "id": "metadata-contract-baseline",
+          "sections": [
+            "## Goal and ownership"
+          ],
+          "baseline": true
+        },
+        {
+          "id": "metadata-declaration",
+          "sections": [
+            "## Declaration"
+          ],
+          "terms": [
+            "heading declarations",
+            "closed vocabulary",
+            "entryid"
+          ],
+          "priority": 25
+        },
+        {
+          "id": "metadata-projection-integrity",
+          "sections": [
+            "## Projection and stale-data behavior"
+          ],
+          "terms": [
+            "projection",
+            "stale-data behavior",
+            "exact section fingerprint",
+            "source revision"
+          ],
+          "priority": 25
+        },
+        {
+          "id": "metadata-compatibility-verification",
+          "sections": [
+            "## Compatibility and verification"
+          ],
+          "terms": [
+            "compatibility and verification",
+            "older consumers",
+            "tests cover"
+          ],
+          "priority": 25
         }
       ]
     }

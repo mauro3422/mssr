@@ -410,12 +410,11 @@
       "kind": "context",
       "topic": "architecture",
       "area": "semantic-evidence",
-      "description": "Current Jev confidence, contradiction-aware decisions, Librarian evidence retrieval, and reversible merge boundaries.",
+      "description": "Current Jev confidence, contradiction-aware decisions, and reversible merge boundaries.",
       "source": {
         "path": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
         "sections": [
           "## Keep source evidence separate from Jev judgment",
-          "## Librarian retrieval and evidence acquisition",
           "## Confidence and merge policy",
           "## Composed capability boundary"
         ]
@@ -959,13 +958,11 @@
       "kind": "state",
       "topic": "operations",
       "area": "semantic-evidence",
-      "description": "Current Librarian integration status, branch preservation, benchmark boundaries, and next host gates.",
+      "description": "Current Librarian integration status, preserved benchmark boundaries, and next host/evaluation gates.",
       "source": {
         "path": ".mssr/knowledge/operations/jev-librarian-integration-handoff.md",
         "sections": [
-          "## Repository snapshot and preservation",
-          "## MSSR contract work",
-          "## Evaluation gates",
+          "## Current status — 2026-10-04",
           "## Next gates"
         ]
       },
@@ -1002,6 +999,106 @@
       "required": false,
       "priority": 96,
       "maxChars": 5000
+    },
+    {
+      "id": "mssr-jev-librarian-history-lineage",
+      "kind": "context",
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "description": "Historical repository preservation, product lineage, and MSSR contract decisions; load only for explicit history recovery.",
+      "source": {
+        "path": ".mssr/knowledge/operations/jev-librarian-integration-handoff.md",
+        "sections": [
+          "## Repository snapshot and preservation",
+          "## Product lineage audit",
+          "## MSSR contract work"
+        ]
+      },
+      "domains": [
+        "git"
+      ],
+      "actions": [
+        "recover"
+      ],
+      "artifacts": [
+        "repository"
+      ],
+      "needs": [
+        "history-recovery",
+        "version-control"
+      ],
+      "signals": [
+        "conflicting-evidence"
+      ],
+      "priority": 38,
+      "maxChars": 6500
+    },
+    {
+      "id": "mssr-jev-librarian-history-bridge-adoption",
+      "kind": "context",
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "description": "Dated Bridge candidate, host adoption, and transport receipts; load only for explicit history recovery.",
+      "source": {
+        "path": ".mssr/knowledge/operations/jev-librarian-integration-handoff.md",
+        "sections": [
+          "## MSSR 0.2.102 evidence-pack continuation — 2026-10-04",
+          "## Bridge candidate",
+          "## Primary Bridge checkout preservation audit — 2026-10-03"
+        ]
+      },
+      "domains": [
+        "coding"
+      ],
+      "actions": [
+        "recover"
+      ],
+      "artifacts": [
+        "mcp"
+      ],
+      "needs": [
+        "history-recovery",
+        "integrity-verification"
+      ],
+      "signals": [
+        "missing-capability"
+      ],
+      "priority": 37,
+      "maxChars": 9500
+    },
+    {
+      "id": "mssr-jev-librarian-history-evaluation",
+      "kind": "context",
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "description": "Dated 0.2.101 receipts, resolved verification friction, and earlier evaluation gates; load only for explicit history recovery.",
+      "source": {
+        "path": ".mssr/knowledge/operations/jev-librarian-integration-handoff.md",
+        "sections": [
+          "## 0.2.101 candidate receipts",
+          "## Resolved verification friction",
+          "## Evaluation gates"
+        ]
+      },
+      "domains": [
+        "coding"
+      ],
+      "actions": [
+        "analyze",
+        "recover"
+      ],
+      "artifacts": [
+        "document"
+      ],
+      "needs": [
+        "history-recovery",
+        "performance"
+      ],
+      "signals": [
+        "uncertainty"
+      ],
+      "priority": 36,
+      "maxChars": 5500
     }
   ]
 }

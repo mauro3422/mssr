@@ -1,6 +1,6 @@
 # Jev confidence, contradiction and merge evaluation
 
-Status: research-backed architecture with an incremental portable implementation, reviewed 2026-09-30. This note does
+Status: research-backed architecture with an incremental portable implementation, reviewed 2026-10-04. This note does
 not authorize automatic project edits, provider calls, or host I/O.
 
 ## What the MSSR runs establish
@@ -40,6 +40,21 @@ selection and both exact fetches matched the source fingerprint. This is one
 already-exposed query concept, not bilingual accuracy or calibration evidence.
 The immutable run is
 experiments/jev-mssr-live/runs/mssr-librarian-jev-shortlist-repeatability-20261002T143234Z-v1/.
+
+An offline evaluator now verifies both frozen 80k single-pass run inventories,
+manifest/input hashes, and all 52 response records before computing exploratory
+top-label diagnostics. The documented Choice transform and recorded final
+option count (200) yield reconstructed top-choice masses; v1 is 35/50 exact
+strict-target matches (Brier 0.184383, log-loss 0.534465), and v2 is 34/50
+(0.178172, 0.515081). Full multiclass scores are unavailable because the runs
+did not persist per-option probability vectors. These metrics describe strict
+single-heading labels, not the probability that evidence is correct. Labels
+were Luna-reviewed but not adjudicated by document owners; equivalent ranges
+remain unreviewed and query splits reuse the same 21 documents. They do not
+calibrate Jev, prove generalization, or justify a threshold. The separate
+offline evaluator and reports live under
+`experiments/jev-confidence-calibration/` on `codex/benchmark-archive`; frozen
+run payloads remain unchanged.
 
 ## Keep source evidence separate from Jev judgment
 

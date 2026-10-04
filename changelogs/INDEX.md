@@ -9,6 +9,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 - [0.2.58](0.2.58.md) - routing correction: visual evidence requires both `visual-qa` and human approval, preventing non-visual functional code audits from inheriting required visual workflow obligations.
 
 ## Current releases
+- [0.2.103](0.2.103.md) - compact current state and scope Librarian history to explicit recovery; preserve Jev runs separately.
 
 - [0.2.102](0.2.102.md) - add bounded read-only Librarian evidence packs that revalidate Jev-selected exact ranges and preserve verbatim text with per-range citations.
 - [0.2.101](0.2.101.md) - add exact-heading Project Context Librarian metadata with bounded, advisory EvidenceAtom projection and health validation; preserve lexical retrieval, module routing, source truth and permissions.

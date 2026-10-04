@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import {
   MAX_PROJECT_CONTEXT_CHARS,
   MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES,
@@ -539,6 +540,225 @@ try {
   assert.equal(resA.core[0].sha256, resA2.core[0].sha256);
   assert.equal(resA.selected[0].sha256, resA2.selected[0].sha256);
   assert.equal(resA.advisoryOnly, true);
+
+  // Current project state and old history must load under distinct structured intents.
+  const currentHistoryRoot = await writeFixture("f-current-history", {
+    modules: [
+      mod("current-librarian-status", { path: "current.md", domains: ["coding", "git"], actions: ["review", "verify"], artifacts: ["project", "repository"], needs: ["version-control"], signals: ["conflicting-evidence"], priority: 80, estimatedChars: 128 }),
+      mod("archived-librarian-history", { path: "history.md", domains: ["coding", "git"], actions: ["recover"], artifacts: ["project", "repository"], needs: ["history-recovery"], signals: ["recovery-needed"], priority: 40, estimatedChars: 128 }),
+    ],
+    files: { "current.md": "Current verified status.", "history.md": "Dated source history." },
+  });
+  const currentHistoryIntent = intent({ domains: ["coding", "git"], actions: ["review", "verify"], artifacts: ["project", "repository"], needs: ["version-control"], signals: ["conflicting-evidence"], risk: "read-only", ambiguity: "medium" });
+  const archivedHistoryIntent = intent({ domains: ["coding", "git"], actions: ["recover"], artifacts: ["project", "repository"], needs: ["history-recovery"], signals: ["recovery-needed"], risk: "read-only", ambiguity: "medium" });
+  const currentHistoryLoad = await loadProjectContextModules({ projectRoot: currentHistoryRoot, intent: currentHistoryIntent, stage: "verify", includeCore: false });
+  assert.deepEqual(currentHistoryLoad.selected.map((record) => record.ref), ["current-librarian-status"]);
+  const archivedHistoryLoad = await loadProjectContextModules({ projectRoot: currentHistoryRoot, intent: archivedHistoryIntent, stage: "recover", includeCore: false });
+  assert.deepEqual(archivedHistoryLoad.selected.map((record) => record.ref), ["archived-librarian-history"]);
+
+  // Exercise the real MSSR handoff manifest: ordinary verification receives the
+  // current handoff, while explicit history recovery receives its archived modules.
+  const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+  const currentLibrarianLoad = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: intent({
+      domains: ["coding", "git"],
+      actions: ["review", "verify"],
+      artifacts: ["project", "repository", "document", "mcp"],
+      needs: ["version-control", "integrity-verification"],
+      signals: ["conflicting-evidence", "uncertainty"],
+      risk: "read-only",
+      ambiguity: "medium",
+    }),
+    stage: "verify",
+    maxChars: 20_000,
+    maxModules: 32,
+    includeCore: false,
+  });
+  assert.equal(currentLibrarianLoad.manifestStatus, "loaded");
+  const currentLibrarianIds = new Set(currentLibrarianLoad.selected.map((record) => record.ref));
+  assert.equal(currentLibrarianIds.has("mssr-jev-librarian-integration-handoff"), true);
+  for (const id of [
+    "mssr-jev-librarian-history-lineage",
+    "mssr-jev-librarian-history-bridge-adoption",
+    "mssr-jev-librarian-history-evaluation",
+  ]) assert.equal(currentLibrarianIds.has(id), false, `${id} must stay out of an ordinary verification load`);
+  assert.match(currentLibrarianLoad.selected.find((record) => record.ref === "mssr-jev-librarian-integration-handoff").content, /Librarian composes deterministic retrieval/);
+
+  const librarianHistoryCases = [
+    {
+      id: "mssr-jev-librarian-history-lineage",
+      heading: "## Product lineage audit",
+      intent: { domains: ["git"], actions: ["recover"], artifacts: ["repository"], needs: ["history-recovery", "version-control"], signals: ["conflicting-evidence"] },
+    },
+    {
+      id: "mssr-jev-librarian-history-bridge-adoption",
+      heading: "## MSSR 0.2.102 evidence-pack continuation — 2026-10-04",
+      intent: { domains: ["coding"], actions: ["recover"], artifacts: ["mcp"], needs: ["history-recovery", "integrity-verification"], signals: ["missing-capability"] },
+    },
+    {
+      id: "mssr-jev-librarian-history-evaluation",
+      heading: "## Evaluation gates",
+      intent: { domains: ["coding"], actions: ["analyze"], artifacts: ["document"], needs: ["history-recovery", "performance"], signals: ["uncertainty"] },
+    },
+  ];
+  const librarianHistoryIds = librarianHistoryCases.map(({ id }) => id);
+  for (const testCase of librarianHistoryCases) {
+    const historyLoad = await loadProjectContextModules({
+      projectRoot: repositoryRoot,
+      intent: intent({ ...testCase.intent, risk: "read-only", ambiguity: "medium" }),
+      stage: "recover",
+      maxChars: 20_000,
+      maxModules: 32,
+      includeCore: false,
+    });
+    const selectedHistory = historyLoad.selected.find((record) => record.ref === testCase.id);
+    assert.ok(selectedHistory, `${testCase.id} should load for its specific history-recovery intent`);
+    assert.match(selectedHistory.content, new RegExp(testCase.heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+    for (const otherId of librarianHistoryIds.filter((id) => id !== testCase.id)) {
+      assert.equal(historyLoad.selected.some((record) => record.ref === otherId), false, `${otherId} should not load with ${testCase.id}`);
+    }
+  }
+
+  const semanticEvidenceContext = (summary) => intent({
+    summary,
+    domains: ["coding"],
+    actions: ["review"],
+    artifacts: ["document"],
+    needs: ["integrity-verification"],
+    signals: ["reusable-pattern"],
+    risk: "read-only",
+    ambiguity: "medium",
+  });
+  const semanticEvidenceBase = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: semanticEvidenceContext("Review the semantic evidence plane architecture generally"),
+    stage: "verify",
+    maxChars: 20_000,
+    maxModules: 32,
+    includeCore: false,
+  });
+  const semanticEvidenceRecord = semanticEvidenceBase.selected.find((record) => record.ref === "mssr-semantic-evidence-plane");
+  assert.ok(semanticEvidenceRecord);
+  assert.match(semanticEvidenceRecord.content, /## Evidence atom and source boundary/);
+  assert.doesNotMatch(semanticEvidenceRecord.content, /## Document Surface and Librarian contract/);
+  assert.doesNotMatch(semanticEvidenceRecord.content, /## Progressive section retrieval/);
+  assert.equal(semanticEvidenceBase.ambiguousSegments.some((item) => item.moduleId === "mssr-semantic-evidence-plane"), false);
+
+  const documentSurfaceLoad = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: semanticEvidenceContext("Review the Document Surface and Librarian contract"),
+    stage: "verify",
+    maxChars: 20_000,
+    maxModules: 32,
+    includeCore: false,
+  });
+  const documentSurfaceRecord = documentSurfaceLoad.selected.find((record) => record.ref === "mssr-semantic-evidence-plane");
+  assert.ok(documentSurfaceRecord);
+  assert.match(documentSurfaceRecord.content, /## Evidence atom and source boundary/);
+  assert.match(documentSurfaceRecord.content, /## Document Surface and Librarian contract/);
+  assert.doesNotMatch(documentSurfaceRecord.content, /## Progressive section retrieval/);
+  assert.equal(documentSurfaceLoad.ambiguousSegments.some((item) => item.moduleId === "mssr-semantic-evidence-plane"), false);
+
+  const librarianMetadataIntent = (summary) => intent({
+    summary,
+    domains: ["coding"],
+    actions: ["review"],
+    artifacts: ["document"],
+    needs: ["integrity-verification"],
+    signals: ["uncertainty"],
+    risk: "read-only",
+    ambiguity: "medium",
+  });
+  const librarianMetadataBase = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: librarianMetadataIntent("Review the Librarian metadata contract and ownership"),
+    stage: "verify",
+    maxChars: 20_000,
+    maxModules: 32,
+    includeCore: false,
+  });
+  const librarianMetadataRecord = librarianMetadataBase.selected.find((record) => record.ref === "mssr-project-context-librarian-metadata");
+  assert.ok(librarianMetadataRecord);
+  assert.match(librarianMetadataRecord.content, /## Goal and ownership/);
+  assert.doesNotMatch(librarianMetadataRecord.content, /## Declaration/);
+  assert.doesNotMatch(librarianMetadataRecord.content, /## Projection and stale-data behavior/);
+  assert.doesNotMatch(librarianMetadataRecord.content, /## Compatibility and verification/);
+  assert.equal(librarianMetadataBase.ambiguousSegments.some((item) => item.moduleId === "mssr-project-context-librarian-metadata"), false);
+
+  const librarianMetadataDeclaration = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: librarianMetadataIntent("Review exact heading declarations and closed vocabulary for Librarian metadata"),
+    stage: "verify",
+    maxChars: 20_000,
+    maxModules: 32,
+    includeCore: false,
+  });
+  const librarianDeclarationRecord = librarianMetadataDeclaration.selected.find((record) => record.ref === "mssr-project-context-librarian-metadata");
+  assert.ok(librarianDeclarationRecord);
+  assert.match(librarianDeclarationRecord.content, /## Goal and ownership/);
+  assert.match(librarianDeclarationRecord.content, /## Declaration/);
+  assert.doesNotMatch(librarianDeclarationRecord.content, /## Projection and stale-data behavior/);
+  assert.doesNotMatch(librarianDeclarationRecord.content, /## Compatibility and verification/);
+  assert.equal(librarianMetadataDeclaration.ambiguousSegments.some((item) => item.moduleId === "mssr-project-context-librarian-metadata"), false);
+
+  const librarianMetadataProjection = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: librarianMetadataIntent("Review Librarian metadata projection and stale-data behavior for exact source revision"),
+    stage: "verify",
+    maxChars: 20_000,
+    maxModules: 32,
+    includeCore: false,
+  });
+  const librarianProjectionRecord = librarianMetadataProjection.selected.find((record) => record.ref === "mssr-project-context-librarian-metadata");
+  assert.ok(librarianProjectionRecord);
+  assert.match(librarianProjectionRecord.content, /## Projection and stale-data behavior/);
+  assert.doesNotMatch(librarianProjectionRecord.content, /## Compatibility and verification/);
+  assert.equal(librarianMetadataProjection.ambiguousSegments.some((item) => item.moduleId === "mssr-project-context-librarian-metadata"), false);
+
+  const confidenceMergeIntent = intent({
+    summary: "Analyze Jev confidence merge policy and composed capability boundary",
+    domains: ["coding"],
+    actions: ["analyze"],
+    artifacts: ["document"],
+    needs: ["integrity-verification"],
+    signals: ["conflicting-evidence"],
+    risk: "read-only",
+    ambiguity: "medium",
+  });
+  const confidenceMergeLoad = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: confidenceMergeIntent,
+    stage: "verify",
+    maxChars: 20_000,
+    maxModules: 32,
+    includeCore: false,
+  });
+  const confidenceMergeRecord = confidenceMergeLoad.selected.find((record) => record.ref === "mssr-jev-confidence-merge-evaluation");
+  assert.ok(confidenceMergeRecord);
+  assert.match(confidenceMergeRecord.content, /## Confidence and merge policy/);
+  assert.match(confidenceMergeRecord.content, /## Composed capability boundary/);
+  assert.doesNotMatch(confidenceMergeRecord.content, /## Librarian retrieval and evidence acquisition/);
+
+  const projectDocumentIndexLoad = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: intent({
+      summary: "Review durable project roadmap document references",
+      domains: ["filesystem"],
+      actions: ["review"],
+      artifacts: ["document"],
+      needs: ["cross-agent"],
+      risk: "read-only",
+      ambiguity: "medium",
+    }),
+    stage: "verify",
+    maxChars: 20_000,
+    maxModules: 32,
+    includeCore: false,
+  });
+  const projectDocumentIndex = projectDocumentIndexLoad.selected.find((record) => record.ref === "mssr-project-document-index");
+  assert.ok(projectDocumentIndex);
+  assert.match(projectDocumentIndex.content, /`ROADMAP\.md`/);
 
   console.log("project-context-loader tests passed");
 } finally {

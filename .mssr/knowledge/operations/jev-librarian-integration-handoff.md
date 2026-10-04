@@ -1,5 +1,16 @@
 # Jev Librarian integration and Git handoff
 
+## Current status — 2026-10-04
+
+Product branch `codex/jev-citation-evidence-pack-clean` has verified .102; .103 is the local knowledge/index candidate. Full `npm run verify` and `npm run release:gate` pass. The 1,102,613-byte package SHA-256 is `8191881b18a0e4a84b87b59750e6587d60be77e94893b55a52c740fb9e7c0fd5`; it is not published. Live Bridge is .153/.101 (PID 25952, boot ad26f0d1-9b72-45c3-aefb-4a13a1e3956b). At 05:59 UTC it showed 11 stalls (max 20,935 ms) and 19 HTTP client errors; cause remains unknown. At 06:11:51 UTC transport was live/ready with an empty queue and zero tunnel 502/localPostNoStatus since 00:20 UTC. This shows symptom recovery, not error attribution; no restart occurred. Candidate .148/.102 is 44ba5f27ece09ead2fc3d5eb74a97325257e7895. Active Codex still lacks `mssr_librarian_evidence_pack`.
+
+The Librarian composes deterministic retrieval over host-supplied text/catalog/metadata, Jev selection and relation review, exact revision/range/fingerprint fetch, and citation-preserving evidence packs. Hosts can chain/batch this for more evidence, contradiction review, compaction and cited drafting. MCP tools do not crawl autonomously or write canonical sources. The .103 context map selects deep contract sections by intent. The last live Jev→Evidence Pack call (Choice .27, Noul .65) proved wiring and citation integrity only.
+
+Frozen runs are preserved separately in archive commit 0d976e9bb91e87ca1f1f2c405f4efed6bb99fd69 on codex/benchmark-archive: 206 files, 53,079,986 bytes, run subtree b20ff5e22cb67b4edb95674074f15b92bb8a8d97, identical to source commit cbc4f355d2e3dc322f23acfab26a790b1957daeb. The branch also carries the exact controlled-run protocol and path-specific EOL protection. None of those run payloads enter the product branch.
+
+TypeSafe Choice confidence reflects distribution concentration, not an empirical correctness guarantee. The isolated offline evaluator reports v1 35/50 (Brier 0.184383; log-loss 0.534465) and v2 34/50 (0.178172; 0.515081), plus support-counted bins and exploratory risk/coverage. These are strict-heading diagnostics only: Luna-reviewed labels lack document-owner adjudication, equivalent ranges are unresolved, and both query splits reuse 21 documents. Multiclass metrics are unavailable without full choice vectors. No calibration or production threshold is justified. Evaluator and reports: `experiments/jev-confidence-calibration/` on `codex/benchmark-archive`; runs remain unchanged. See the [TypeSafe confidence guide](https://docs.typesafe.ai/confidence) and the indexed evaluation plan.
+
+
 ## Repository snapshot and preservation
 
 Read-only audit on 2026-10-02 found the MSSR snapshot branch
@@ -300,39 +311,8 @@ plumbing evidence, not quality evidence.
 
 ## Next gates
 
-- **Complete:** MSSR 0.2.101 product commit `cd7c834df2f91d581b8f84db9d89a9d425dd1c6f`
-  and Bridge candidate commit `7b6fcd39e5d7d9c7513c231fcf98ceed76954c6b` are
-  on separate pushed feature branches with direct remote readback verified.
-  MSSR's release gate passed; its package is not published. Bridge's isolated
-  transport and full regression gates pass; `verify:all` remains unrun because
-  the active endpoint on port 3001 was unavailable. This update records the
-  verified candidate state; the MSSR branch carries this handoff with the
-  current state update.
-- **Complete:** MSSR 0.2.102 full verification, local release gate, and one
-  live real-document Jev -> evidence-pack smoke passed on the source candidate.
-  Clean product commit `dfc51be2f8842fba1a31a03134cae2bee204ebcf` is pushed and
-  its direct remote ref is verified; the package remains unpublished.
-- **Current Bridge candidate:** start from the verified 0.6.147 candidate and
-  prepare a separate successor that vendors the exact 0.2.102 package and
-  consumes the evidence-pack path. Keep 0.6.147 and the live Bridge unchanged;
-  run Bridge tests and release checks on the isolated successor.
-- **Next host gate:** after the user's later PC restart, verify the active MSSR
-  MCP build and run selector -> exact fetch -> evidence pack through that host.
-  Keep live Bridge at 0.6.144 and the original dirty primary Bridge checkout
-  untouched until separate adoption and transport gates are satisfied.
-- Keep all 206 `experiments/jev-mssr-live/runs/` paths, manifests, outputs,
-  labels/reviews and hashes on their original evaluation branch. Do not
-  cherry-pick the mixed evaluation snapshot or rewrite benchmark evidence.
-- After the user's PC restart, verify the active MSSR MCP build and run
-  selector -> exact fetch -> evidence pack through that host. Any live Bridge
-  adoption remains a separate controlled gate after the successor candidate
-  passes `verify:all` at the intended active endpoint; preserve existing
-  `project-context-librarian-sidecar` and 0.6.146 behavior.
-- After Bridge integration passes, freeze bytes, sidecar/source revisions,
-  query set, candidate limits, owner-adjudicated acceptable ranges, and an
-  untouched document-level holdout. Compare lexical and metadata search with
-  identical source/limit sets; then evaluate Jev exact selection, abstention,
-  contradictions, fetch integrity, utility and citation fidelity separately.
-  Existing scores remain exploratory; do not set a confidence cutoff.
-- No main merge, npm publication, live Bridge restart, or deployment is part of
-  the current handoff.
+- **MSSR product:** current-vs-history, segment activation, metadata-sidecar, health, budget, and document-freshness fixtures pass. Run full `npm run verify` and the 0.2.103 release gate. Keep the resulting branch separate from main; do not publish npm yet.
+- **Bridge stability/adoption:** diagnose the live .153/.101 event-loop and HTTP-client counters from host logs before using it as the .148 target. When a controlled restart is available, verify .148/.102 startup, exact six-tool catalog, metadata sidecar search, Jev selection, exact fetch, citation pack and verify:all. No runtime restart occurred in this work.
+- **Benchmark calibration:** the offline top-label scorer and report are on `codex/benchmark-archive`; they provide exploratory analysis only. Before new Jev calls, freeze multiple acceptable ranges, answerability/sufficiency/abstention and relation labels; obtain independent owner review and hold out whole documents/projects. A target such as 200 decisions per family is a planning target, not an evidence-backed universal sufficiency rule. Keep exact-source, contradiction, unknown temporal scope and verifier gates hard regardless of score.
+- **Knowledge health:** the 0.2.103 selectors removed current `review` budget findings and connected the root roadmap. Remaining budget and fanout items are `watch` advisories (context-plane architecture 78%, semantic-evidence worst target 77%, public research 80%, plus history modules); inspect them only against exact selected payloads. Reconcile the empty host-local semantic-curation store with separate prior Semantic Experience observations before claiming learning continuity.
+- Keep all source benchmark blobs and the P7 reconciliation handoff intact. No main merge, npm publication or live Bridge restart is part of this handoff.

@@ -36,7 +36,7 @@
         "MSSR project state",
         "Learning dataset state"
       ],
-      "expectedFingerprint": "c29fe6bc992dd7c656284ddf76be85bdeb064e9063fdbdd9de431b548b94d3f3",
+      "expectedFingerprint": "6de94fd7fb8fa1d50bacf803296763e762892e349c9be1adf709ee356f2b7f4e",
       "selectors": {
         "domains": [
           "agent-orchestration",
@@ -65,7 +65,7 @@
         "MSSR project state",
         "Core skill package state"
       ],
-      "expectedFingerprint": "534388abe5c4d0392e215add388bac3a6bd0a1261bc3ed9c17d16ebd77961ca3",
+      "expectedFingerprint": "39393b20f5cad597bab35670f516c3871af304c03d7dc8c735a8fb03beb02571",
       "selectors": {
         "domains": [
           "skill-system"
