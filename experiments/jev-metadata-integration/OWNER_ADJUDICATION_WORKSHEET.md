@@ -51,7 +51,7 @@ For each concept, reviewers should independently identify all exact ranges that 
 
 - **English / Spanish (paired):** When repository evidence disagrees about an architecture decision, how should a change be routed for review? / Si dos señales del repositorio discrepan sobre una decisión de arquitectura, ¿cómo se decide si el cambio requiere revisión?
 - **Candidate range set for owner review (not accepted):**
-  - `.mssr/knowledge/architecture/architecture-impact-review-decision.md#Architecture impact review decision`, lines 1–6 [S02; file SHA-256 `e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df`; excerpt SHA-256 `3acd95557cd53ef95b9b31e94217340c2d332aa8d22aa87ba2239c703220627c`] — bank anchor.
+  - `.mssr/knowledge/architecture/architecture-impact-review-decision.md#Architecture impact review decision`, lines 1–5 [S02; file SHA-256 `e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df`; excerpt SHA-256 `e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df`] — bank anchor.
 - **Sufficiency checks:** Resolve how conflicting evidence affects attention; distinguish possible impact from proof that architecture changed and preserve explicit review/write authority.
 - **Negative / contradiction checks:** A linked or structurally changed source alone does not prove an architecture change; a receipt cannot silence changed structural/invariant evidence.
 - **Owner labels — leave blank until reviewed:** answerability/status (sufficient / partial / unanswerable / ambiguous): ____; accepted exact ranges (all valid alternatives): ____; sufficiency decision: ____; abstention expected (yes/no + why): ____; contradiction/temporal label if applicable: ____; owner/adjudicator + date: ____.
@@ -70,7 +70,7 @@ For each concept, reviewers should independently identify all exact ranges that 
 
 - **English / Spanish (paired):** What warning affects the skills package, and what was verified afterward? / ¿Qué advertencia afecta al paquete de skills y qué se verificó después?
 - **Candidate range set for owner review (not accepted):**
-  - `.mssr/PROJECT_STATE.md#Core skill package state`, lines 28–31 [S01; file SHA-256 `93d05a9aefc4e00db5cfe2dccd8229c13d8027aff1cbf4175eed04bcf7e5ef49`; excerpt SHA-256 `43393de93d6cdbc4f793e8efad462ab5742a2f65338f3e97ab70b025a1ae162e`] — bank anchor.
+  - `.mssr/PROJECT_STATE.md#Core skill package state`, lines 28–30 [S01; file SHA-256 `93d05a9aefc4e00db5cfe2dccd8229c13d8027aff1cbf4175eed04bcf7e5ef49`; excerpt SHA-256 `6291d31103fecb7088a65e4bb635eb5341bc0d8a097e80c24cd0756871e5c353`] — bank anchor.
 - **Sufficiency checks:** State package shape, .104 scope, Bridge .156 verification, and distinguish candidate verification from production adoption.
 - **Negative / contradiction checks:** Do not treat candidate integration/package tests as production adoption.
 - **Source/query review flag:** REWRITE/HOLD: current section records status but no explicit “warning”; rewrite to ask current package/adoption status or hold.
@@ -90,7 +90,7 @@ For each concept, reviewers should independently identify all exact ranges that 
 
 - **English / Spanish (paired):** Can learning observations change routing automatically today? / ¿Las observaciones de aprendizaje pueden cambiar el enrutamiento automáticamente hoy?
 - **Candidate range set for owner review (not accepted):**
-  - `.mssr/knowledge/decision/mssr-learning-activation-decision.md#Learning activation decision`, lines 1–4 [S15; file SHA-256 `fe4b24a72e3a5da3b2bc24f11c3d575ec81fa7aa86aaf00b81716fd1573cf935`; excerpt SHA-256 `69f985b73ba3b59c82c4c665af826d16ddf20213e3ca72d04e00d5d1b9542c20`] — bank anchor.
+  - `.mssr/knowledge/decision/mssr-learning-activation-decision.md#Learning activation decision`, lines 1–3 [S15; file SHA-256 `fe4b24a72e3a5da3b2bc24f11c3d575ec81fa7aa86aaf00b81716fd1573cf935`; excerpt SHA-256 `fe4b24a72e3a5da3b2bc24f11c3d575ec81fa7aa86aaf00b81716fd1573cf935`] — bank anchor.
 - **Sufficiency checks:** State current observe-only status, no routing/authority influence, and explicit activation gates.
 - **Negative / contradiction checks:** Do not infer learned observations currently change routing.
 - **Owner labels — leave blank until reviewed:** answerability/status (sufficient / partial / unanswerable / ambiguous): ____; accepted exact ranges (all valid alternatives): ____; sufficiency decision: ____; abstention expected (yes/no + why): ____; contradiction/temporal label if applicable: ____; owner/adjudicator + date: ____.
@@ -99,7 +99,7 @@ For each concept, reviewers should independently identify all exact ranges that 
 
 - **English / Spanish (paired):** What must a release changelog say about PROJECT_* before persistence can proceed? / ¿Qué debe declarar el changelog sobre PROJECT_* para permitir persistir una versión?
 - **Candidate range set for owner review (not accepted):**
-  - `.mssr/knowledge/pattern/mssr-change-history-contract.md#Change-history contract`, lines 1–4 [S21; file SHA-256 `ef4dec93e8718d6291ea3f03b83ef1c2b8aed3a54ffc1c904202ef7e3006a13a`; excerpt SHA-256 `f32b1c6dd30563431c17f911db0522038dfc2e80fa8f66467bbf4f3f1eaa7b2f`] — bank anchor.
+  - `.mssr/knowledge/pattern/mssr-change-history-contract.md#Change-history contract`, lines 1–3 [S21; file SHA-256 `ef4dec93e8718d6291ea3f03b83ef1c2b8aed3a54ffc1c904202ef7e3006a13a`; excerpt SHA-256 `ef4dec93e8718d6291ea3f03b83ef1c2b8aed3a54ffc1c904202ef7e3006a13a`] — bank anchor.
 - **Sufficiency checks:** Name all three PROJECT_* impact declarations and explain the persistence consequence of pending.
 - **Negative / contradiction checks:** Do not omit an authority or treat pending as pass.
 - **Owner labels — leave blank until reviewed:** answerability/status (sufficient / partial / unanswerable / ambiguous): ____; accepted exact ranges (all valid alternatives): ____; sufficiency decision: ____; abstention expected (yes/no + why): ____; contradiction/temporal label if applicable: ____; owner/adjudicator + date: ____.
@@ -126,7 +126,7 @@ For each concept, reviewers should independently identify all exact ranges that 
 
 - **English / Spanish (paired):** How should a historical claim be treated when a newer current-state observation exists? / ¿Cómo debe tratarse una afirmación histórica cuando existe un estado actual más reciente?
 - **Candidate range set for owner review (not accepted):**
-  - `.mssr/knowledge/decision/semantic-consistency-current-truth.md#R4 temporal validity`, lines 11–15 [S16; file SHA-256 `79661c8f5621932e9b3a5996ade87660a42d63e476578e5d40446181e91e1d99`; excerpt SHA-256 `5bace01f459d4a88ca6818bac0baab24895a43ef278ab59f1c3746e055b0814f`] — bank anchor.
+  - `.mssr/knowledge/decision/semantic-consistency-current-truth.md#R4 temporal validity`, lines 11–15 [S16; file SHA-256 `79661c8f5621932e9b3a5996ade87660a42d63e476578e5d40446181e91e1d99`; excerpt SHA-256 `d0f2a84ad37a92a7596e42f29b555e15a2c2151065bf9fa9e70eb6a2c2d1f27b`] — bank anchor.
 - **Sufficiency checks:** Preserve historical validity while recognizing newer observations only within comparable subject, scope, authority, and time/revision.
 - **Negative / contradiction checks:** A newer timestamp alone does not prove an older historical statement false or contradictory.
 - **Owner labels — leave blank until reviewed:** answerability/status (sufficient / partial / unanswerable / ambiguous): ____; accepted exact ranges (all valid alternatives): ____; sufficiency decision: ____; abstention expected (yes/no + why): ____; contradiction/temporal label if applicable: ____; owner/adjudicator + date: ____.
@@ -135,7 +135,7 @@ For each concept, reviewers should independently identify all exact ranges that 
 
 - **English / Spanish (paired):** Does high similarity prove that two claims support or contradict each other? / ¿Una similitud alta demuestra que dos afirmaciones se apoyan o se contradicen?
 - **Candidate range set for owner review (not accepted):**
-  - `.mssr/knowledge/decision/semantic-consistency-relations-retrieval.md#Semantic consistency relations and retrieval decision`, lines 1–8 [S17; file SHA-256 `b92e1c7d22e2a26a2e6b8b1f238ea0452ed140790379f458f4d4b5ccaf66c212`; excerpt SHA-256 `018b05b0805b637733179981d1c12dd2ab1c3bdb0fc2cb0dd8d9749f3006c785`] — bank anchor.
+  - `.mssr/knowledge/decision/semantic-consistency-relations-retrieval.md#Semantic consistency relations and retrieval decision`, lines 1–7 [S17; file SHA-256 `b92e1c7d22e2a26a2e6b8b1f238ea0452ed140790379f458f4d4b5ccaf66c212`; excerpt SHA-256 `b92e1c7d22e2a26a2e6b8b1f238ea0452ed140790379f458f4d4b5ccaf66c212`] — bank anchor.
 - **Sufficiency checks:** Separate similarity-based candidate retrieval from a verified typed relation; state identity/scope/time constraints for contradiction.
 - **Negative / contradiction checks:** High similarity alone proves neither support nor contradiction.
 - **Owner labels — leave blank until reviewed:** answerability/status (sufficient / partial / unanswerable / ambiguous): ____; accepted exact ranges (all valid alternatives): ____; sufficiency decision: ____; abstention expected (yes/no + why): ____; contradiction/temporal label if applicable: ____; owner/adjudicator + date: ____.
@@ -172,7 +172,7 @@ For each concept, reviewers should independently identify all exact ranges that 
 
 - **English / Spanish (paired):** How do we keep two tasks separate when they share a project and tools? / ¿Cómo evitamos mezclar dos tareas cuando comparten proyecto y herramientas?
 - **Candidate range set for owner review (not accepted):**
-  - `.mssr/knowledge/decision/human-task-identity.md#Human-task identity decision`, lines 1–8 [S13; file SHA-256 `7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e`; excerpt SHA-256 `1066cb0716426f49d698112c5d920e8fc39c534a58754a6a7fb940e9c7969931`] — bank anchor.
+  - `.mssr/knowledge/decision/human-task-identity.md#Human-task identity decision`, lines 1–7 [S13; file SHA-256 `7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e`; excerpt SHA-256 `7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e`] — bank anchor.
 - **Sufficiency checks:** Explain explicit stable task identity and immutable trace relations; distinguish task prose/tool overlap from actual identity.
 - **Negative / contradiction checks:** Do not infer task identity or lineage from shared project/tools, wording, time, or similarity.
 - **Owner labels — leave blank until reviewed:** answerability/status (sufficient / partial / unanswerable / ambiguous): ____; accepted exact ranges (all valid alternatives): ____; sufficiency decision: ____; abstention expected (yes/no + why): ____; contradiction/temporal label if applicable: ____; owner/adjudicator + date: ____.
@@ -181,7 +181,7 @@ For each concept, reviewers should independently identify all exact ranges that 
 
 - **English / Spanish (paired):** How should context be reduced without silently dropping required information? / ¿Cómo se reduce el contexto sin descartar en silencio información obligatoria?
 - **Candidate range set for owner review (not accepted):**
-  - `.mssr/knowledge/architecture/context-economy-v2.md#Context Economy v2`, lines 1–13 [S05; file SHA-256 `fa09f1ffa12379968e41481e4b1755f4ba1b618c4eabafefd52364c1d802d4ab`; excerpt SHA-256 `66298f74f501babc74d4555aa156bd020c54001d2db7db1b27a1cdaaf1b0687d`] — bank anchor.
+  - `.mssr/knowledge/architecture/context-economy-v2.md#Context Economy v2`, lines 1–13 [S05; file SHA-256 `fa09f1ffa12379968e41481e4b1755f4ba1b618c4eabafefd52364c1d802d4ab`; excerpt SHA-256 `fa09f1ffa12379968e41481e4b1755f4ba1b618c4eabafefd52364c1d802d4ab`] — bank anchor.
 - **Sufficiency checks:** Explain bounded context/paging and explicit retention evidence; preserve required units through omission, stale receipt, or invalid cursor handling.
 - **Negative / contradiction checks:** Prior delivery/load does not prove current retention; required information must not silently disappear.
 - **Owner labels — leave blank until reviewed:** answerability/status (sufficient / partial / unanswerable / ambiguous): ____; accepted exact ranges (all valid alternatives): ____; sufficiency decision: ____; abstention expected (yes/no + why): ____; contradiction/temporal label if applicable: ____; owner/adjudicator + date: ____.
@@ -239,7 +239,7 @@ For each concept, reviewers should independently identify all exact ranges that 
 
 - **English / Spanish (paired):** How does MSSR distribute first-party skills, and how does it avoid loading a large reference from a generic signal? / ¿Cómo distribuye MSSR sus skills propias y cómo evita cargar una referencia grande por una señal genérica?
 - **Candidate range set for owner review (not accepted):**
-  - `.mssr/knowledge/decision/mssr-first-party-skill-direction.md#First-party core skill direction`, lines 1–4 [S14; file SHA-256 `a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f`; excerpt SHA-256 `01f952fe11113cfb2841b4d30e6a7428626c565bb11a87849107266351d4f0a2`] — bank anchor.
+  - `.mssr/knowledge/decision/mssr-first-party-skill-direction.md#First-party core skill direction`, lines 1–3 [S14; file SHA-256 `a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f`; excerpt SHA-256 `a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f`] — bank anchor.
   - `docs/AGENT_PROTOCOL.md#Selective procedural context`, lines 47–60 [S24; file SHA-256 `30e9f8da6103c4904559009533fa946ac53c3e5bf04ac5898e6088f919a458ca`; excerpt SHA-256 `6fdbb2185fb9aff1468f960062d77403ad152f0b11d7955f3db576f6d1c30709`] — candidate loading-contract range.
 - **Sufficiency checks:** Describe first-party skill entry/package ownership and selective parent-owned references/modules by structured intent/stage.
 - **Negative / contradiction checks:** Generic signal/parent activation must not load every large optional reference.
@@ -249,7 +249,7 @@ For each concept, reviewers should independently identify all exact ranges that 
 
 - **English / Spanish (paired):** What does MSSR do when a repository lacks canonical initialization, and which legacy data may it migrate or discard? / ¿Qué hace MSSR si falta la inicialización canónica de un repositorio y qué datos heredados puede migrar o descartar?
 - **Candidate range set for owner review (not accepted):**
-  - `.mssr/knowledge/decision/canonical-project-context-cutover.md#Canonical project-context cutover`, lines 1–8 [S12; file SHA-256 `78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905`; excerpt SHA-256 `29857fa2a38af3f81e4c20a7ac54d02f92a0b91909ce196dd0334af40e6f65cd`] — bank anchor.
+  - `.mssr/knowledge/decision/canonical-project-context-cutover.md#Canonical project-context cutover`, lines 1–7 [S12; file SHA-256 `78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905`; excerpt SHA-256 `78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905`] — bank anchor.
 - **Sufficiency checks:** Cover explicit .mssr initialization, no .bridge fallback, obsolete inbox receipt discard, and review protection for durable legacy authorities.
 - **Negative / contradiction checks:** Do not describe legacy files as freely deletable or auto-migratable.
 - **Owner labels — leave blank until reviewed:** answerability/status (sufficient / partial / unanswerable / ambiguous): ____; accepted exact ranges (all valid alternatives): ____; sufficiency decision: ____; abstention expected (yes/no + why): ____; contradiction/temporal label if applicable: ____; owner/adjudicator + date: ____.
@@ -335,7 +335,7 @@ For each concept, reviewers should independently identify all exact ranges that 
 
 - **English / Spanish (paired):** In the 0.2.41–0.2.43 history, when can a reviewed-current receipt suppress another review, and what invalidates it? / En el historial 0.2.41–0.2.43, ¿cuándo puede un comprobante reviewed-current evitar otra revisión y qué lo invalida?
 - **Candidate range set for owner review (not accepted):**
-  - `.mssr/knowledge/architecture/architecture-impact-review-history.md#Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)`, lines 11–14 [S03; file SHA-256 `e1f817f4de9d44505708e95d75f552376fe0da6413ec30ce2c5ad39ee0baf514`; excerpt SHA-256 `bfa65c8225cb5276ec0153b959ac4fe4a2eabe3f72f6b4a21b50b3cf3bbdd05b`] — bank anchor.
+  - `.mssr/knowledge/architecture/architecture-impact-review-history.md#Derived invariants, context feedback, and reviewed-current receipts (0.2.41-0.2.43)`, lines 11–13 [S03; file SHA-256 `e1f817f4de9d44505708e95d75f552376fe0da6413ec30ce2c5ad39ee0baf514`; excerpt SHA-256 `7a492a4f0a4216b55a137b6231eb2c39ae98e073e9a67bdbaf82afb8e7c57cd7`] — bank anchor.
 - **Sufficiency checks:** List explicit completed review, exact receipt identity/fingerprint match and integrity; name fail-open invalidators.
 - **Negative / contradiction checks:** Missing/corrupt/incomplete evidence or relevant identity change cannot suppress review.
 - **Owner labels — leave blank until reviewed:** answerability/status (sufficient / partial / unanswerable / ambiguous): ____; accepted exact ranges (all valid alternatives): ____; sufficiency decision: ____; abstention expected (yes/no + why): ____; contradiction/temporal label if applicable: ____; owner/adjudicator + date: ____.
@@ -344,7 +344,7 @@ For each concept, reviewers should independently identify all exact ranges that 
 
 - **English / Spanish (paired):** Which signals activate a knowledge-maintenance review, and who may persist the change to canonical authority? / ¿Qué señales activan una revisión de mantenimiento y quién puede persistir el cambio en la autoridad canónica?
 - **Candidate range set for owner review (not accepted):**
-  - `.mssr/knowledge/operations/mssr-project-knowledge-drift-review.md#Project knowledge drift review decision`, lines 1–8 [S20; file SHA-256 `9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692`; excerpt SHA-256 `d09bd3264ca2d60283d62438939cd364beabc0e773bbaa47b35856cf904b6728`] — bank anchor.
+  - `.mssr/knowledge/operations/mssr-project-knowledge-drift-review.md#Project knowledge drift review decision`, lines 1–7 [S20; file SHA-256 `9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692`; excerpt SHA-256 `9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692`] — bank anchor.
 - **Sufficiency checks:** Name observable maintenance signals, WATCH versus REVIEW/REQUIRED, canonical-owner selection, and explicit host-owned write transaction.
 - **Negative / contradiction checks:** Drift detector/telemetry does not mutate canonical owner.
 - **Owner labels — leave blank until reviewed:** answerability/status (sufficient / partial / unanswerable / ambiguous): ____; accepted exact ranges (all valid alternatives): ____; sufficiency decision: ____; abstention expected (yes/no + why): ____; contradiction/temporal label if applicable: ____; owner/adjudicator + date: ____.
@@ -358,4 +358,18 @@ For each concept, reviewers should independently identify all exact ranges that 
 
 ## Mechanical anchor check
 
-All worksheet candidate headings were checked against `e3e03912d63231ebf646fdaec9353ee1e28fe403`; every listed heading occurs exactly once and each inclusive line range is in bounds. C18’s original bank anchor does not exist in this snapshot and is explicitly replaced with `.mssr/PROJECT_STATE.md#Current release`. The original C13 bank anchor does not contain the requested checkpoint list; the worksheet marks it unsupported and gives a separate `docs/AGENT_PROTOCOL.md#User-visible progress contract` candidate for owner review.
+Mechanical range audit (2026-10-04): all 38 cited file hashes and headings match
+the frozen source `e3e03912d63231ebf646fdaec9353ee1e28fe403`; headings are unique.
+The first audit found ten ranges one line beyond the physical end of a file and
+two in-bounds excerpt hashes that did not match. Those twelve anchors were
+normalized to one-based inclusive physical lines and re-hashed; a second pass
+verified all 38 ranges in-bounds with matching file/range SHA-256 values. This
+repairs mechanical citations only; answerability, sufficiency, abstention,
+contradiction, and owner labels remain pending. Detailed before/after evidence
+is in `review-proposals/2026-10-04-owner-range-integrity-audit.md`.
+
+C18’s original bank anchor does not exist in this snapshot and is explicitly
+replaced with `.mssr/PROJECT_STATE.md#Current release`. The original C13 bank
+anchor does not contain the requested checkpoint list; the worksheet marks it
+unsupported and gives a separate `docs/AGENT_PROTOCOL.md#User-visible progress
+contract` candidate for owner review.

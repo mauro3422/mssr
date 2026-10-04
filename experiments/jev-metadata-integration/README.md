@@ -130,6 +130,21 @@ benchmark result. Do not use it to calibrate thresholds or claim quality.
 The 14 candidate additions C19–C32 came from two read-only Luna seed scans;
 their provenance and exclusions are recorded at
 [`review-proposals/2026-10-04-candidate-seed-scan.md`](review-proposals/2026-10-04-candidate-seed-scan.md).
+Six supplementary, hash-verified query seeds from the frozen .104 source are
+listed separately as owner-review proposals at
+[`review-proposals/2026-10-04-candidate-seed-scan-v2.md`](review-proposals/2026-10-04-candidate-seed-scan-v2.md).
+They are not benchmark cases, gold labels, independent units, or split assignments.
+A second Luna review recommends P01 for core review, P03 only for an optional
+routing-governance sub-suite, and P02/P04/P05/P06 for separate host, skill, or
+operational suites; all suggested links to C01–C32 remain owner-review edges.
+The worksheet's 38 proposed ranges were also re-hashed against `.104`; ten
+off-by-one ends and two excerpt digests were corrected without filling labels.
+The before/after audit is at
+[`review-proposals/2026-10-04-owner-range-integrity-audit.md`](review-proposals/2026-10-04-owner-range-integrity-audit.md).
+A provisional exact-source/concept cluster map is available at
+[`review-proposals/2026-10-04-provisional-cluster-map.md`](review-proposals/2026-10-04-provisional-cluster-map.md).
+It finds four mandatory shared-source components and at most 26 components
+before semantic links; it is not an owner-approved split or independence claim.
 
 ## Sidecar-aware offline preflight
 
