@@ -16,6 +16,21 @@ or changes to production routing.
 - Dry-run and validation modes must never instantiate a provider client or make
   network requests. They should report the exact frozen inputs and request
   count they would use.
+- When a run calls an MSSR/Bridge tool that enforces a managed lifecycle
+  preflight, create or resume an explicit bounded `traceId` and call
+  `skill_bootstrap` under the same compatible host/session owner before any
+  dependent domain tool. For project-scoped operations, supply the matching
+  `projectRoot` and keep the trace owner aligned to it; other operations need
+  only their applicable owner scope. Complete required context through the
+  exact returned continuation action until it reports complete, then honor any
+  post-context action and lifecycle gate. Do not count bootstrap or a
+  lifecycle-rejected tool call as a provider request. If the applicable
+  lifecycle cannot be satisfied, stop before provider access and classify the
+  run record as `lifecycle-preflight-blocked` (a benchmark classification, not
+  a portable MSSR status). Record bounded trace/stage/status evidence only;
+  never include raw prompts, transcripts, secrets, or private reasoning in run
+  artifacts. MSSR guidance remains advisory and does not replace normal
+  authorization.
 - Live calls must record the requested and returned provider/model identifiers,
   endpoint identity without credentials, SDK/version, timeout, retry policy,
   concurrency, and the explicit opt-in used. Never write credentials, auth
@@ -108,11 +123,14 @@ It must identify all inputs and the evaluation plan. A minimal shape is:
     "exposedToRequests": false
   },
   "split": {
-    "method": "frozen-holdout | grouped-project | temporal | none",
+    "method": "frozen-holdout | grouped-project | grouped-concept-source | temporal | none",
     "trainIdsSha256": "<64 hex or null>",
+    "calibrationIdsSha256": "<64 hex or null>",
     "validationIdsSha256": "<64 hex or null>",
     "holdoutIdsSha256": "<64 hex or null>",
+    "calibrationOpenedAt": null,
     "holdoutOpenedAt": null,
+    "thresholdsFitOn": "calibration | pre-registered-fixed | none",
     "holdoutUsedForTuning": false
   },
   "plan": {
@@ -176,9 +194,22 @@ review, report, manifest, records, and every input in `SHA256SUMS`; exclude only
   labels in a separate frozen input file and set `exposedToRequests: false`.
 - Group splits by the true independent unit (for example, project or source
   document), not by repeated request. Near-duplicates and repeated variants of
-  one case stay in one split.
+  one case stay in one split. Keep translations and language variants of the
+  same concept together; count them as one concept-level unit, not independent
+  samples. When concepts share source documents, group by the source/concept
+  cluster chosen in the preregistered plan so related evidence cannot cross
+  splits.
+- Give `calibration` a distinct, frozen ID set and SHA-256 before inference.
+  Define the threshold objective and candidate thresholds in the plan. Open
+  calibration labels only after the instrument, rubric, metrics, exclusions,
+  and analysis plan are frozen; fit or select thresholds on calibration data
+  only. `validation` is an optional development split and must not silently
+  substitute for calibration. Keep the holdout ID set and labels separate and
+  unopened until the instrument, threshold, and analysis plan are frozen. Never
+  tune on holdout results. Record calibration and holdout opening timestamps.
 - Open holdout labels only after the instrument, thresholds, and analysis plan
-  are frozen. Any post-hoc change makes the holdout exploratory; create a new
+  are frozen. If a holdout label/result prompts any post-hoc change to the
+  instrument, threshold, or plan, mark that holdout exploratory and create a new
   untouched holdout for confirmatory claims.
 - Repeated model calls on one case measure repeatability, not independent
   sample size. Report per-case/project variability and use an interval or
@@ -191,10 +222,19 @@ Unless a suite declares a stricter, justified policy before the run, fewer than
 30 independent labeled units overall or fewer than 30 units in a claimed
 subgroup are exploratory only. Report the numerator, denominator, interval, and
 cluster unit; do not make a superiority, calibration, safety, or promotion claim
-from a small point estimate. For zero observed errors, report an uncertainty
-bound rather than claiming zero risk. Abstentions, invalid outputs, and
-provider failures must remain visible and must not disappear from denominators
-without a declared rule.
+from a small point estimate. This floor is a reporting gate, not a sample-size
+adequacy guarantee: 30 units may still be inadequate for threshold selection,
+subgroup claims, or stable reliability bins. Preregister the interval/resampling
+method at the independent-unit cluster level and show bin counts and uncertainty
+on reliability plots; do not interpret noisy ECE bins as precise calibration.
+For probabilistic outputs, report a proper score such as Brier score and/or log
+loss alongside reliability diagrams and ECE, with the event/options, class
+aggregation, binning rule, and empty-bin policy fixed in advance. For abstention
+or thresholded operation, report risk/error against coverage (including the
+threshold chosen on calibration data) on the untouched holdout. For zero
+observed errors, report an uncertainty bound rather than claiming zero risk.
+Abstentions, invalid outputs, and provider failures must remain visible and must
+not disappear from denominators without a declared rule.
 
 These support floors are reporting gates, not a guarantee of adequate power or
 representativeness. Any automated behavior change needs a separate, reviewed

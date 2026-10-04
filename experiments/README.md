@@ -14,3 +14,9 @@ This directory is intentionally separate from MSSR production source and is not 
 ## Requirements for new runs
 
 Keep every run immutable in a timestamped directory. Its manifest should hash the case set, runner, dependency lock, MSSR source/build/dist and every authority document consumed; preserve replayable input snapshots where licensing and privacy permit. Record model/provider/configuration and label provenance, including whether adjudication was independent. Store raw records once, keep summaries/reports derived, and make `latest` a small portable run-id plus artifact-hash pointer. Do not overwrite or silently “repair” historical labels or outputs; corrections require a new run and an explicit comparison.
+
+## MSSR Librarian/Jev live-gate suite — 2026-10-04
+
+The [external benchmark review](jev-mssr-live/EXTERNAL_BENCHMARKS.md) proposes stage-specific retrieval, selection, citation, contradiction, synthesis, and abstention metrics. The immutable preflight runs are under `jev-mssr-live/runs/`; v15 and v16 pass bootstrap gates but stop before any Jev/provider call, so they are workflow diagnostics, not quality scores. V1's provider-call count is unknown; v2–v16 record zero calls.
+
+Run v16 reuses 26 concepts as 52 paired English/Spanish requests. Count each bilingual concept once and keep its variants together; these repeated cases are exploratory regression evidence, not an independent calibration or holdout set. The frozen v16 directory must not be reused for provider calls. A live attempt requires a fresh child run and review of its provider-gate receipt before the exact `START_JEV` confirmation. The [controlled run protocol](CONTROLLED_RUN_PROTOCOL.md) defines calibration and untouched-holdout separation, grouped uncertainty, and the required confidence/abstention metrics.
