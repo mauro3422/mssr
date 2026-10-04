@@ -8,6 +8,7 @@ import {
   multiclassScores,
   normalizedChoiceConfidenceToPmax,
   verifyFinalChoiceOptionCount,
+  verifyHistoricalSelectorSource,
   validateRun,
 } from "./evaluate.mjs";
 
@@ -32,12 +33,20 @@ test("log-loss clips exact endpoints and rejects malformed probabilities", () =>
   assert.throws(() => binaryBrier([0.5], [2]), /binary/);
 });
 
-test("final Choice count must match the recorded single-pass candidate set", () => {
+test("final Choice count includes the explicit none option beyond single-pass heading candidates", () => {
   const response = { selectionMode: "single-pass", candidateCount: 200, finalistCount: 200 };
-  assert.equal(verifyFinalChoiceOptionCount(response, 200), 200);
-  assert.throws(() => verifyFinalChoiceOptionCount({ ...response, finalistCount: 4 }, 200), /final Choice count differ/);
+  assert.equal(verifyFinalChoiceOptionCount(response, 200), 201);
+  assert.throws(() => verifyFinalChoiceOptionCount({ ...response, finalistCount: 4 }, 200), /heading counts differ/);
   assert.throws(() => verifyFinalChoiceOptionCount({ ...response, candidateCount: null }, 200), /candidateCount is missing/);
   assert.throws(() => verifyFinalChoiceOptionCount({ ...response, selectionMode: "hierarchical" }, 200), /single-pass/);
+});
+
+test("historical run source commit explicitly adds the none Choice option", () => {
+  const verified = validateRun(fileURLToPath(new URL("../jev-mssr-live/runs/mssr-librarian-jev-bilingual-80k-singlepass-20261001T184400Z-v2/", import.meta.url)));
+  const source = verifyHistoricalSelectorSource(verified.manifest);
+  assert.deepEqual(source.additionalOptions, ["none"]);
+  assert.equal(source.commit, "5163dce31f3912aca4500cbd2fb58453d6ee7203");
+  assert.ok(verified.records.every((row) => row.finalChoiceOptionCount === 201));
 });
 
 test("multiclass metrics are only available from a complete normalized vector", () => {
@@ -58,7 +67,7 @@ test("the historical v2 run verifies its final Choice option count and frozen in
   const verified = validateRun(runDir);
   assert.equal(verified.records.length, 52);
   assert.equal(verified.records.filter((row) => row.status === "selected").length, 50);
-  assert.ok(verified.records.every((row) => row.finalChoiceOptionCount === 200));
+  assert.ok(verified.records.every((row) => row.finalChoiceOptionCount === 201));
   assert.ok(verified.runInventory["responses.json"]);
   assert.ok(verified.responses.records.every((row) => !row.choiceDistribution));
 });

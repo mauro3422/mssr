@@ -2,6 +2,7 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import { basename, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -10,9 +11,15 @@ const DEFAULT_RUNS = [
   "../jev-mssr-live/runs/mssr-librarian-jev-bilingual-80k-singlepass-20261001T182504Z-v1",
   "../jev-mssr-live/runs/mssr-librarian-jev-bilingual-80k-singlepass-20261001T184400Z-v2",
 ];
-const DEFAULT_OUT = "reports/2026-10-04-80k-singlepass-exploratory";
+const DEFAULT_OUT = "reports/2026-10-04-80k-singlepass-exploratory-corrected";
 const TRANSFORM_ID = "typesafe-choice-normalized-pmax-v1";
 const TRANSFORM_URL = "https://docs.typesafe.ai/confidence";
+const HISTORICAL_SELECTOR = {
+  commit: "5163dce31f3912aca4500cbd2fb58453d6ee7203",
+  path: "src/librarian-jev-selection.ts",
+  blobSha1: "7709fe2d094861e7f108992ebd63096e05751acf",
+  noneOptionCount: 1,
+};
 const BIN_EDGES = [0, 0.5, 0.7, 0.85, 1];
 const EPSILON = 1e-15;
 
@@ -41,13 +48,30 @@ export function normalizedChoiceConfidenceToPmax(confidence, optionCount) {
   return (1 / optionCount) + confidence * (1 - 1 / optionCount);
 }
 
-export function verifyFinalChoiceOptionCount(record, expectedCount) {
+export function verifyFinalChoiceOptionCount(record, expectedCandidateCount, noneOptionCount = HISTORICAL_SELECTOR.noneOptionCount) {
   assert.equal(record.selectionMode, "single-pass", "final option count is only accepted for single-pass Choice");
   assert.ok(Number.isInteger(record.candidateCount) && record.candidateCount >= 2, "candidateCount is missing or invalid");
   assert.ok(Number.isInteger(record.finalistCount) && record.finalistCount >= 2, "finalistCount is missing or invalid");
-  assert.equal(record.candidateCount, record.finalistCount, "single-pass candidateCount and final Choice count differ");
-  assert.equal(record.finalistCount, expectedCount, "final Choice count differs from frozen catalog count");
-  return record.finalistCount;
+  assert.equal(record.candidateCount, record.finalistCount, "single-pass candidate and finalist heading counts differ");
+  assert.equal(record.finalistCount, expectedCandidateCount, "finalist heading count differs from the frozen catalog count");
+  assert.ok(Number.isInteger(noneOptionCount) && noneOptionCount >= 0, "noneOptionCount must be a non-negative integer");
+  return record.finalistCount + noneOptionCount;
+}
+
+export function verifyHistoricalSelectorSource(manifest) {
+  assert.equal(manifest.repository?.headAtRunKnown, HISTORICAL_SELECTOR.commit, "run head differs from the audited selector source commit");
+  const repositoryRoot = resolve(here, "../..");
+  const sourceSpec = `${HISTORICAL_SELECTOR.commit}:${HISTORICAL_SELECTOR.path}`;
+  const blobSha1 = execFileSync("git", ["rev-parse", sourceSpec], { cwd: repositoryRoot, encoding: "utf8" }).trim();
+  assert.equal(blobSha1, HISTORICAL_SELECTOR.blobSha1, "historical selector source blob changed");
+  const source = execFileSync("git", ["show", sourceSpec], { cwd: repositoryRoot, encoding: "utf8" });
+  assert.match(source, /options\.none\s*=/, "historical single-pass Choice does not declare the expected none option");
+  return {
+    commit: HISTORICAL_SELECTOR.commit,
+    path: HISTORICAL_SELECTOR.path,
+    blobSha1: HISTORICAL_SELECTOR.blobSha1,
+    additionalOptions: ["none"],
+  };
 }
 
 export function binaryBrier(probabilities, labels) {
@@ -203,6 +227,7 @@ export function validateRun(runDirInput) {
   ].map((relativePath) => readJson(resolve(runDir, relativePath)));
   const runInventory = verifyRunInventory(runDir);
   verifyHashes(runDir, manifest);
+  const selectorSource = verifyHistoricalSelectorSource(manifest);
 
   assert.equal(manifest.execution?.provider, "typesafe-jev", "unexpected provider");
   assert.equal(manifest.execution?.mode, "single-pass", "only single-pass runs are supported");
@@ -246,7 +271,7 @@ export function validateRun(runDirInput) {
     seenKeys.add(key);
     assert.equal(response.selectionMode, "single-pass", `${key} is not single-pass`);
     assert.ok(["selected", "abstained"].includes(response.status), `${key} has an unsupported status`);
-    verifyFinalChoiceOptionCount(response, manifest.execution.headings);
+    const finalChoiceOptionCount = verifyFinalChoiceOptionCount(response, manifest.execution.headings);
     assert.equal(response.providerCalls, 1, `${key} must represent exactly one provider call`);
     assert.equal(response.model, manifest.execution.model, `${key} returned an unexpected model`);
     assertProbability(response.providerConfidence, `${key} providerConfidence`);
@@ -264,14 +289,14 @@ export function validateRun(runDirInput) {
       sourceDocument: target.sourceRef,
       status: response.status,
       confidence: response.providerConfidence,
-      finalChoiceOptionCount: response.finalistCount,
+      finalChoiceOptionCount,
       correct: response.status === "selected" ? Number(exactTarget(response, target)) : null,
     });
   }
   assert.equal(seenKeys.size, 52, "some case/language pairs are missing");
   assert.equal(records.filter((row) => row.status === "selected").length, 50, "selected count differs from frozen run summary");
   assert.equal(records.filter((row) => row.status === "abstained").length, 2, "abstention count differs from frozen run summary");
-  return { runDir, manifest, cases, corpus, labels, targetIndex, responses, runInventory, records: stableRows(records) };
+  return { runDir, manifest, cases, corpus, labels, targetIndex, responses, runInventory, selectorSource, records: stableRows(records) };
 }
 
 export function summarizeRun(verified) {
@@ -337,13 +362,16 @@ export function summarizeRun(verified) {
     },
     evaluationClass: "exploratory-top-label-confidence-diagnostic",
     choiceProbability: {
-      status: "reconstructed-from-verified-final-choice-count",
+      status: "reconstructed-from-source-verified-candidate-count",
       transformId: TRANSFORM_ID,
       formula: "pmax = 1/n + confidence * (1 - 1/n)",
       source: TRANSFORM_URL,
-      optionCountField: "responses.records[].finalistCount",
-      verifiedOptionCount: 200,
-      caveat: "Reconstructed top-option mass for the final Choice; not an estimate that the selected evidence is correct.",
+      candidateCountField: "responses.records[].candidateCount (also copied to finalistCount by runner fallback)",
+      verifiedCandidateCount: manifest.execution.headings,
+      additionalOptions: verified.selectorSource.additionalOptions,
+      verifiedOptionCount: manifest.execution.headings + verified.selectorSource.additionalOptions.length,
+      optionCountEvidence: verified.selectorSource,
+      caveat: "Reconstructed probability mass assigned to the selected Choice option; it is not an independently validated probability that the evidence is sufficient or correct.",
     },
     counts: {
       decisions: records.length,
@@ -357,7 +385,7 @@ export function summarizeRun(verified) {
       languagesPerCase: 2,
     },
     topLabelMetrics: {
-      interpretation: "Exploratory proper scores for reconstructed top-choice mass against a strict single-heading target label; not calibrated correctness probability.",
+      interpretation: "Exploratory binary top-label proper scores: reconstructed Choice mass on the selected option versus strict single-heading exact-match among selected answers. They are not independent calibration evidence or a measure of evidence sufficiency.",
       binaryBrier: round(binaryBrier(probabilities, outcomes)),
       binaryLogLoss: round(binaryLogLoss(probabilities, outcomes)),
     },
@@ -376,7 +404,7 @@ export function summarizeRun(verified) {
       "The single expected heading per query is strict; multiple semantically acceptable evidence ranges have not been independently adjudicated.",
       "The query-level split reuses the same 21 source documents; this does not test generalization to unseen documents or projects.",
       "Each language pair shares a concept and source document; 52 decisions are not 52 independent units.",
-      "The TypeSafe confidence transform is used only after validating the final Choice count and the single-pass mode; its reconstructed pmax is not correctness probability.",
+      `The TypeSafe confidence transform is based on the audited run source at ${verified.selectorSource.commit}: ${manifest.execution.headings} heading options plus the explicit none option. The runner records finalistCount with a candidateCount fallback; raw native probabilities and SDK version were not persisted.`,
       "Abstention quality has no independent labels; abstentions are reported and excluded from top-label proper scores.",
       "This report does not select a production threshold or authorize any production behavior change.",
     ],
@@ -409,11 +437,11 @@ function renderMarkdown(reports) {
   const lines = [
     "# Jev 80k single-pass confidence diagnostic",
     "",
-    "Exploratory offline report from frozen historical runs. This is not production calibration.",
+    "Corrected exploratory offline report from frozen historical runs. It supersedes `2026-10-04-80k-singlepass-exploratory.md` because that report used 200 where the audited Choice contained 200 headings plus `none` (201 options). This is not production calibration.",
     "",
     "## Method",
     "",
-    `The final Choice count was validated as 200 in the manifest and every response record. The evaluator applies the documented TypeSafe normalized Choice confidence inverse (${TRANSFORM_ID}): pmax = 1/n + confidence * (1 - 1/n) ([documentation](${TRANSFORM_URL})). It scores the reconstructed top-option mass against the frozen strict heading label as a diagnostic; it does not treat that value as the probability that evidence is correct. Full multiclass scores are unavailable because no complete candidate probability vectors were persisted.`,
+    `The frozen manifest records 200 heading candidates. The audited run commit (${reports[0].choiceProbability.optionCountEvidence.commit}) shows that the single-pass selector adds an explicit \`none\` option, so the final Choice has 201 options. The runner copied \`finalistCount\` from \`candidateCount\` when absent; the evaluator verifies the run commit and selector blob before applying the documented TypeSafe normalized Choice confidence inverse (${TRANSFORM_ID}): pmax = 1/n + confidence * (1 - 1/n) ([documentation](${TRANSFORM_URL})). The resulting pmax is the mass assigned to the chosen option. Binary top-label scores compare that mass with strict heading match among selected answers; they do not establish independent calibration or evidence sufficiency. Full multiclass scores are unavailable because no complete candidate probability vectors were persisted.`,
     "",
     "## Results",
     "",
@@ -473,7 +501,13 @@ function main() {
   const markdownPath = `${outStem}.md`;
   assert.ok(!existsSync(jsonPath) && !existsSync(markdownPath), `refusing to overwrite report output: ${outStem}`);
   mkdirSync(dirname(outStem), { recursive: true });
-  writeFileSync(jsonPath, `${JSON.stringify({ schemaVersion: 1, reports }, null, 2)}\n`, { flag: "wx" });
+  writeFileSync(jsonPath, `${JSON.stringify({
+    schemaVersion: 1,
+    status: "corrected-exploratory-report",
+    supersedes: "2026-10-04-80k-singlepass-exploratory",
+    correction: "Choice option count is 201 (200 source headings plus explicit none), not 200.",
+    reports,
+  }, null, 2)}\n`, { flag: "wx" });
   writeFileSync(markdownPath, renderMarkdown(reports), { flag: "wx" });
   process.stdout.write(`Wrote ${jsonPath}\nWrote ${markdownPath}\n`);
 }

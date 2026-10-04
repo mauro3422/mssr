@@ -1,32 +1,30 @@
 # Jev 80k single-pass confidence diagnostic
 
-> **Superseded.** This version used 200 Choice options. The run-source audit found 200 heading candidates plus the explicit `none` option, for 201 total. Use [the corrected report](2026-10-04-80k-singlepass-exploratory-corrected.md); frozen Jev runs are unchanged.
-
-Exploratory offline report from frozen historical runs. This is not production calibration.
+Corrected exploratory offline report from frozen historical runs. It supersedes `2026-10-04-80k-singlepass-exploratory.md` because that report used 200 where the audited Choice contained 200 headings plus `none` (201 options). This is not production calibration.
 
 ## Method
 
-The final Choice count was validated as 200 in the manifest and every response record. The evaluator applies the documented TypeSafe normalized Choice confidence inverse (typesafe-choice-normalized-pmax-v1): pmax = 1/n + confidence * (1 - 1/n) ([documentation](https://docs.typesafe.ai/confidence)). It scores the reconstructed top-option mass against the frozen strict heading label as a diagnostic; it does not treat that value as the probability that evidence is correct. Full multiclass scores are unavailable because no complete candidate probability vectors were persisted.
+The frozen manifest records 200 heading candidates. The audited run commit (5163dce31f3912aca4500cbd2fb58453d6ee7203) shows that the single-pass selector adds an explicit `none` option, so the final Choice has 201 options. The runner copied `finalistCount` from `candidateCount` when absent; the evaluator verifies the run commit and selector blob before applying the documented TypeSafe normalized Choice confidence inverse (typesafe-choice-normalized-pmax-v1): pmax = 1/n + confidence * (1 - 1/n) ([documentation](https://docs.typesafe.ai/confidence)). The resulting pmax is the mass assigned to the chosen option. Binary top-label scores compare that mass with strict heading match among selected answers; they do not establish independent calibration or evidence sufficiency. Full multiclass scores are unavailable because no complete candidate probability vectors were persisted.
 
 ## Results
 
 | Run | Version / build | Dirty source | Selected | Abstained | Strict target matches | Top-label Brier | Top-label log-loss | Distinct source documents |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
 | mssr-librarian-jev-bilingual-80k-singlepass-20261001T182504Z-v1 | 0.2.96 / no receipt | true | 50 | 2 | 35/50 | 0.184383 | 0.534465 | 21 |
-| ↳ en | same run | — | 25 | 1 | 18/25 | 0.183435 | 0.534856 | — |
+| ↳ en | same run | — | 25 | 1 | 18/25 | 0.183436 | 0.534857 | — |
 | ↳ es | same run | — | 25 | 1 | 17/25 | 0.18533 | 0.534074 | — |
-| mssr-librarian-jev-bilingual-80k-singlepass-20261001T184400Z-v2 | 0.2.97 / mssr-build:sha256:bc288853f02be406 | true | 50 | 2 | 34/50 | 0.178172 | 0.515081 | 21 |
-| ↳ en | same run | — | 25 | 1 | 17/25 | 0.169699 | 0.494576 | — |
-| ↳ es | same run | — | 25 | 1 | 17/25 | 0.186645 | 0.535587 | — |
+| mssr-librarian-jev-bilingual-80k-singlepass-20261001T184400Z-v2 | 0.2.97 / mssr-build:sha256:bc288853f02be406 | true | 50 | 2 | 34/50 | 0.178172 | 0.51508 | 21 |
+| ↳ en | same run | — | 25 | 1 | 17/25 | 0.169699 | 0.494574 | — |
+| ↳ es | same run | — | 25 | 1 | 17/25 | 0.186645 | 0.535585 | — |
 
 ### Reliability bins — mssr-librarian-jev-bilingual-80k-singlepass-20261001T182504Z-v1
 
 | Reconstructed top-choice mass | Support | Mean mass | Strict exact-target rate | Correct |
 |---|---:|---:|---:|---:|
-| [0, 0.5) | 9 | 0.3632 | 0.444444 | 4 |
-| [0.5, 0.7) | 12 | 0.584588 | 0.583333 | 7 |
-| [0.7, 0.85) | 10 | 0.7612 | 0.8 | 8 |
-| [0.85, 1] | 19 | 0.935063 | 0.842105 | 16 |
+| [0, 0.5) | 9 | 0.363184 | 0.444444 | 4 |
+| [0.5, 0.7) | 12 | 0.584577 | 0.583333 | 7 |
+| [0.7, 0.85) | 10 | 0.761194 | 0.8 | 8 |
+| [0.85, 1] | 19 | 0.935062 | 0.842105 | 16 |
 
 ### Exploratory risk-coverage — mssr-librarian-jev-bilingual-80k-singlepass-20261001T182504Z-v1
 
@@ -44,10 +42,10 @@ Risk-coverage here is an exploratory curve over the strict labels and selected o
 
 | Reconstructed top-choice mass | Support | Mean mass | Strict exact-target rate | Correct |
 |---|---:|---:|---:|---:|
-| [0, 0.5) | 9 | 0.369833 | 0.333333 | 3 |
-| [0.5, 0.7) | 12 | 0.596196 | 0.666667 | 8 |
-| [0.7, 0.85) | 10 | 0.77513 | 0.6 | 6 |
-| [0.85, 1] | 19 | 0.935063 | 0.894737 | 17 |
+| [0, 0.5) | 9 | 0.369818 | 0.333333 | 3 |
+| [0.5, 0.7) | 12 | 0.596186 | 0.666667 | 8 |
+| [0.7, 0.85) | 10 | 0.775124 | 0.6 | 6 |
+| [0.85, 1] | 19 | 0.935062 | 0.894737 | 17 |
 
 ### Exploratory risk-coverage — mssr-librarian-jev-bilingual-80k-singlepass-20261001T184400Z-v2
 
@@ -69,4 +67,4 @@ Risk-coverage here is an exploratory curve over the strict labels and selected o
 - Runs came from dirty source trees; v1 has no build receipt and v2 identifies build mssr-build:sha256:bc288853f02be406. Source hashes are preserved in each manifest.
 - Abstention correctness is unlabeled. Abstentions are visible and excluded from top-label Brier/log-loss.
 - Multiclass Brier/log-loss are unavailable because complete per-option probability vectors are absent.
-- No production threshold is recommended. The data are too small and not owner-adjudicated for a production claim.\n
+- No production threshold is recommended. The data are too small and not owner-adjudicated for a production claim.
