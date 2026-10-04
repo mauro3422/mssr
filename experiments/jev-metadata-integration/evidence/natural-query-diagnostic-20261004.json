@@ -1,0 +1,77 @@
+{
+  "schema": "mssr-librarian-natural-query-diagnostic-summary-v1",
+  "runId": "jev-natural-query-diagnostic-20261004-v3",
+  "artifactRoot": "D:/MSSR-benchmark-artifacts/jev-natural-query-diagnostic-20261004-v3",
+  "status": "offline-natural-query-ranking-diagnostic-complete",
+  "artifactHashes": {
+    "manifestSha256": "3c43944d7954b58958f33d67387474d5fa4213bd13b39f15b1aa688c9614955d",
+    "diagnosticSha256": "68e096152c93595b2f72eae730719c8d7d00ab7829dd4e269a1fd225f2088305",
+    "sha256SumsFileSha256": "c25f3df1f272cf32f4622ed242a59e3ed5100a3783df3ebdf3d37882633ce3c3",
+    "listedFilesVerified": 37,
+    "snapshotInputFiles": 34,
+    "snapshotInputBytes": 301350
+  },
+  "candidate": {
+    "branch": "codex/jev-citation-evidence-pack-clean",
+    "commit": "e3e03912d63231ebf646fdaec9353ee1e28fe403",
+    "packageVersion": "0.2.104",
+    "buildId": "mssr-build:sha256:1508c8a279dc911c",
+    "buildFiles": 127,
+    "buildBytes": 1437913,
+    "zodVersion": "3.25.76"
+  },
+  "harness": {
+    "branch": "codex/benchmark-archive",
+    "commit": "678a53f5a1200bd514f118e427cb3652a9b45311",
+    "scriptSha256": "1728885c95e8cc2cadf0f6cd9356a5fced43686ae59539d6ab2b706f69052f61",
+    "pinsSha256": "85ae9e170eb22696620fde67c64574188f3b51d7ee6c328838b6892c05943c9a0"
+  },
+  "design": {
+    "candidateBankSourceFiles": 27,
+    "queries": 8,
+    "sourceClusters": 4,
+    "topK": 20,
+    "exactFetchLimitCodeUnits": 20000,
+    "sidecarEntriesDeclared": 4,
+    "sidecarEntriesProjected": 4,
+    "taggedCases": ["C01", "C02", "C04"],
+    "untaggedControl": "C24",
+    "excludedPendingOwnerReview": "C03"
+  },
+  "results": {
+    "summedTopKOverlap": 159,
+    "summedTopKCapacity": 160,
+    "queriesWithChangedRanks": 1,
+    "changedQuery": {
+      "caseId": "C01",
+      "language": "en",
+      "unadjudicatedAnchorRankBaseline": null,
+      "unadjudicatedAnchorRankWithAtoms": 10,
+      "changedRankRows": 12
+    },
+    "exactFetchFingerprintsPassed": 16,
+    "exactFetchFingerprintsAttempted": 16,
+    "spanishTop1OversizedQueries": 4,
+    "spanishTop1CodeUnits": 25327,
+    "spanishHighestRankedFetchableRank": 2,
+    "englishTop1FetchableQueries": 4,
+    "englishHighestRankedFetchableRank": 1
+  },
+  "controls": {
+    "networkAccess": false,
+    "providerCallsMade": false,
+    "jevCallsMade": false,
+    "mcpCallsMade": false,
+    "labelsRead": false,
+    "qualityScoringPerformed": false,
+    "confidenceCalibrationPerformed": false,
+    "anchorLabelsAdjudicated": false
+  },
+  "interpretation": "Exploratory deterministic ranking/fetchability diagnostic only. The localized C01 EN rank change is not a quality improvement claim. Oversized exact ranges are intentionally visible as candidates and are not truncated; fetch can proceed with another fetchable handle. No relevance, acceptable-range recall, Jev/Noul, contradiction, synthesis, calibration, or production-adoption result is established.",
+  "nextGates": [
+    "Owner-adjudicate acceptable ranges, hard negatives, sufficiency and abstention; review C03 premise separately.",
+    "Expand independent source/concept clusters and preserve a grouped untouched holdout before any tuning.",
+    "Measure retrieval, fetchability, Jev choice/Noul, contradiction, synthesis and citation integrity separately.",
+    "If large-section subranges are needed, design new source-bound handles and regressions before product changes."
+  ]
+}

@@ -208,3 +208,52 @@ node .\experiments\jev-metadata-integration\natural-query-diagnostic.mjs --diagn
 This is an offline retrieval experiment: it makes no Jev/provider/MCP/network
 calls and reads no owner labels. It cannot support quality, recall, precision,
 calibration, contradiction or synthesis claims.
+
+### Completed run — 2026-10-04 (v3)
+
+The completed, immutable run is at
+`D:\MSSR-benchmark-artifacts\jev-natural-query-diagnostic-20261004-v3`.
+It used clean MSSR 0.2.104 commit `e3e03912d63231ebf646fdaec9353ee1e28fe403`
+(`mssr-build:sha256:1508c8a279dc911c`), the 27-document candidate bank, four
+projected sidecar entries, and eight bilingual query variants across four
+clusters. C01/C02/C04 are tagged; C24 remains the untagged control. C03 remains
+excluded pending owner review of its premise.
+
+Across eight baseline/atom pairs, summed top-20 overlap is 159/160. Only C01 EN
+changed: its unadjudicated candidate anchor moves from absent to rank 10 and 12
+rows change, mostly as rank displacement. This is a localized deterministic
+ranking effect, not a correct-answer or quality improvement. All four Spanish
+seeds return the same 25,327-code-unit top-1 range, above the 20,000 fetch cap;
+rank 2 is fetchable in both conditions. English top-1 is fetchable in all four
+seeds. The runner fetched the highest-ranked fetchable candidate for each
+query/condition and all 16 exact fingerprints passed. This shows the caller can
+continue to another intact handle; it does not establish the oversized result
+is wrong or useful.
+
+| Case | Language | Anchor baseline → atoms | Top-1 fetchable | Fetch rank baseline / atoms | Top-20 overlap | Changed ranks |
+| --- | --- | --- | --- | --- | ---: | ---: |
+| C01 | ES | absent → absent | no (25,327 chars) | 2 / 2 | 20 | 0 |
+| C01 | EN | absent → 10 | yes | 1 / 1 | 19 | 12 |
+| C02 | ES | absent → absent | no (25,327 chars) | 2 / 2 | 20 | 0 |
+| C02 | EN | absent → absent | yes | 1 / 1 | 20 | 0 |
+| C04 | ES | 2 → 2 | no (25,327 chars) | 2 / 2 | 20 | 0 |
+| C04 | EN | absent → absent | yes | 1 / 1 | 20 | 0 |
+| C24 | ES | absent → absent | no (25,327 chars) | 2 / 2 | 20 | 0 |
+| C24 | EN | 5 → 5 | yes | 1 / 1 | 20 | 0 |
+
+All anchors remain unadjudicated and were not counted as gold hits. No quality
+labels, relevance scoring, Jev/provider/MCP/network calls, or calibration were
+used. The 37 entries in the run's `SHA256SUMS` were independently verified;
+the external manifest and diagnostic hashes are recorded in
+[`evidence/natural-query-diagnostic-20261004.json`](evidence/natural-query-diagnostic-20261004.json).
+The separate v1/v2 attempts remain preserved as incomplete snapshots and are
+not benchmark outcomes.
+
+The 20,000-code-unit cap is intentional: search can expose an oversized section
+as a candidate while exact fetch refuses to truncate it. Do not change the cap
+or the existing handle fingerprint semantics based on this run. A future
+subrange feature would need its own source-bound handle, offsets, line metadata,
+and fingerprint, plus Unicode/boundary/staleness regressions. For quality and
+calibration, next obtain owner-adjudicated accepted ranges, hard negatives,
+sufficiency/abstention labels, more independent source/concept clusters, and a
+grouped untouched holdout before tuning.
