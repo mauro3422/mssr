@@ -136,6 +136,15 @@ uncalibrated; do not call a raw threshold “90% trusted.” Evaluate calibratio
 with reliability bins and Brier/log loss or ECE alongside accuracy, precision,
 recall, abstention and high-confidence errors.
 
+TypeSafe's current Choice contract returns a normalized probability for every
+offered option. Its `confidence` is derived from the top probability and the
+number of options, and ignores how the remaining mass is distributed; it is
+not the probability that a selected heading or relation is correct. MSSR .2.104
+therefore preserves the exact option IDs and full per-call vectors for later
+scoring, while any correctness threshold still requires independent labels.
+See the official [Choice](https://docs.typesafe.ai/primitives/choice) and
+[confidence](https://docs.typesafe.ai/confidence) definitions.
+
 Proposed stages:
 
 1. Deterministic identity, owner, revision, privacy and exact-evidence guards.
@@ -229,8 +238,8 @@ pair-classifier precision/recall; then score citation support,
 retained/rejected evidence, conflict handling, authority preservation,
 reversibility, and harmful false-merge rate. Group holdouts by project/source
 module. Repetitions measure stability, not sample size. Keep labels out of
-requests and preserve the manifest, exact inputs, runner/build hashes, raw
-responses and separate adjudication.
+requests. Preserve manifests, exact inputs, runner/build hashes, ordered Choice
+options and returned probability vectors, plus separate adjudication.
 
 ## Public evidence reviewed
 

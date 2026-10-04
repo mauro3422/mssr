@@ -276,6 +276,10 @@ Current TypeSafe documentation demonstrates the larger composed capability: Jev 
 
 ## Consequences
 
+### MSSR 0.2.104 — preserve Jev Choice call evidence
+
+The Librarian Jev selection result now returns a bounded `choiceCalls` record for each actual provider call: stage, exact ordered option IDs, selected ID, provider-supplied probability map (or `null` when absent), raw confidence, Noul sufficiency, provider/model, token usage and request fingerprint. In hierarchical selection this includes the local shard calls and the final global call. This closes an observability gap; the returned distribution remains uncalibrated evidence about Choice selection, not a probability that the selected range is correct. No authority, confidence threshold, abstention policy or write behavior changes.
+
 - MSSR becomes the portable semantic owner of evidence normalization/selection contracts without becoming a universal filesystem or execution proxy.
 - QuietDesk can evolve independently as the visual-observation/execution substrate while sharing the same Jev decision contract.
 - Large documents and skills can participate in progressive disclosure without requiring whole-file injection.

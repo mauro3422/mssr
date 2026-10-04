@@ -76,6 +76,19 @@ assert.deepEqual(selected.candidateRangeDiagnostics, {
 });
 assert.equal(selected.evidenceSufficiency, 0.91, "selection reports Noul's separate answer-sufficiency estimate");
 assert.equal(selected.confidenceCalibration, "uncalibrated-provider-score");
+assert.equal(selected.choiceCalls.length, 1);
+assert.equal(selected.choiceCalls[0].stage, "single");
+assert.deepEqual(selected.choiceCalls[0].offeredOptionIds, Object.keys(providerCalls[0].questions.selection.options));
+assert.equal(selected.choiceCalls[0].selectedOptionId, selected.selected.optionId);
+assert.deepEqual(selected.choiceCalls[0].probabilities, {
+  [selected.selected.optionId]: 0.8,
+  none: 0.2,
+}, "the provider's complete Choice distribution, including none, must be preserved");
+assert.equal(selected.choiceCalls[0].providerConfidence, 0.96);
+assert.equal(selected.choiceCalls[0].evidenceSufficiency, 0.91);
+assert.match(selected.choiceCalls[0].requestFingerprint, /^[a-f0-9]{64}$/);
+assert.match(selected.requestFingerprint, /^[a-f0-9]{64}$/);
+assert.notEqual(selected.choiceCalls[0].requestFingerprint, selected.requestFingerprint, "per-call and aggregate fingerprints identify different objects");
 const sent = providerCalls[0];
 const option = JSON.parse(sent.state.evidence[0].text);
 assert.equal(option[4], "block");
@@ -193,6 +206,16 @@ assert.equal(hierarchical.selected.title, "Target Needle");
 assert.equal(hierarchical.batchAssessments.length, 2);
 assert.deepEqual(hierarchical.batchAssessments.map((item) => item.retainedFinalistCount), [2, 2]);
 assert.ok(hierarchical.batchAssessments.every((item) => item.retainedFinalists.length === 2));
+assert.deepEqual(hierarchical.choiceCalls.map((call) => call.stage), ["local-shortlist", "local-shortlist", "global-shortlist"]);
+assert.equal(hierarchical.choiceCalls.length, hierarchical.providerCalls);
+for (const [index, call] of hierarchical.choiceCalls.entries()) {
+  const request = providerCalls[beforeHierarchicalCalls + index];
+  const offeredOptionIds = Object.keys(request.questions.selection.options);
+  assert.deepEqual(call.offeredOptionIds, offeredOptionIds, "each Choice trace records the exact ordered option set sent to Jev");
+  assert.deepEqual(Object.keys(call.probabilities).sort(), [...offeredOptionIds].sort(), "a preserved distribution must cover exactly the offered options");
+  assert.ok(Math.abs(Object.values(call.probabilities).reduce((sum, value) => sum + value, 0) - 1) < 1e-6);
+}
+assert.equal(hierarchical.choiceCalls.at(-1).selectedOptionId, hierarchical.selected.optionId);
 assert.equal(hierarchical.usage.input_tokens, 60);
 for (const request of providerCalls.slice(beforeHierarchicalCalls)) {
   const optionCount = Object.keys(request.questions.selection.options).length;
@@ -293,6 +316,7 @@ const fallbackHierarchy = await selectMssrLibrarianEvidenceWithJev({ documents: 
 assert.equal(fallbackHierarchy.status, "selected");
 assert.equal(fallbackHierarchy.finalistCount, 2, "providers without a probability map retain one selected candidate per shard");
 assert.deepEqual(fallbackHierarchy.batchAssessments.map((item) => item.retainedFinalistCount), [1, 1]);
+assert.ok(fallbackHierarchy.choiceCalls.every((call) => call.probabilities === null), "absence of a provider distribution must stay explicit and must not be inferred");
 assert.equal(noDistributionCalls.length, 3);
 
 const oversizedCatalogs = Array.from({ length: 4 }, (_, documentIndex) => {

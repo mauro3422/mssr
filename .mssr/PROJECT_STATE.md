@@ -2,22 +2,22 @@
 
 ## Current release
 
-MSSR 0.2.103 is a local candidate on codex/jev-citation-evidence-pack-clean. `npm run verify` and `npm run release:gate` pass; the local 1,102,613-byte package SHA-256 is 8191881b18a0e4a84b87b59750e6587d60be77e94893b55a52c740fb9e7c0fd5. The verified 0.2.102 baseline is 4abac0c6806e778a4bf3d886b5989c6c3b38b3cf (artifact SHA-256 a26e74b7dd8605a19062277615885bb63ba0d8e48cfb63c7d5f2640b1a24617b); 0.2.103 remains unpublished.
+MSSR 0.2.104 is the local release candidate on `codex/jev-citation-evidence-pack-clean`; focused Choice tests, `npm run verify`, and `npm run release:gate` pass. Its local package receipt is `.mssr/runtime/releases/0.2.104.json` (1,104,067 bytes; SHA-256 `714e9d0997e4bc92c2981e1aeb3e5b8a98beef91efc04f82e92d001748a7e4ca`). It is not published to npm or merged to main.
 
-Bridge 0.6.153/MSSR 0.2.101 had 11 event-loop stalls (max 20,935 ms) and 19 HTTP client errors; cause is unknown. At 06:11:51 UTC transport was live/ready, queue empty, with zero tunnel 502 or localPostNoStatus events since 00:20 UTC. Recovery is observed; the old errors remain unexplained. Candidate .148/.102 is at 44ba5f27ece09ead2fc3d5eb74a97325257e7895; active Codex does not expose `mssr_librarian_evidence_pack`.
+Active Bridge is 0.6.153/MSSR 0.2.101. Isolated Bridge candidate .155/MSSR .103 is published at `0565fdb`; candidate integration for MSSR .104/.156 is pending and must not replace or restart the active service.
 
-The Librarian composes bounded retrieval over host-supplied documents/atoms, Jev selection and relation review, exact-source fetch, and citation-preserving evidence packs. Hosts can chain these for contradiction review, compaction and cited drafting; tools do not crawl autonomously or write sources. The 0.2.103 map selects deep sections by intent and indexes root `ROADMAP.md`. Benchmark runs remain separate: archive commit 0d976e9 preserves 206 files (53,079,986 bytes); source branch cbc4f35 and the previous full state remain intact.
+The older `D:\Dev\mssr` branch at `cbc4f35` remains preserved; benchmark history is separately preserved in `D:\Dev\mssr-benchmark-preservation`. Librarian architecture, prior Bridge incident evidence, and Jev benchmark limitations live in their indexed knowledge/handoff modules. Historical labels do not establish correctness calibration or a production threshold.
 
 ## Machine-readable current-state claims
 <!-- mssr-state:roadmap.r1=completed -->
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.103 -->
+<!-- mssr-version:mssr.source=0.2.104 -->
 <!-- mssr-version:bridge.live=0.6.153 -->
 <!-- mssr-version:bridge.mssr=0.2.101 -->
-<!-- mssr-version:bridge.candidate=0.6.148 -->
-<!-- mssr-version:bridge.candidate.mssr=0.2.102 -->
+<!-- mssr-version:bridge.candidate=0.6.155 -->
+<!-- mssr-version:bridge.candidate.mssr=0.2.103 -->
 <!-- mssr-owner:semantic.consistency=mssr -->
 <!-- mssr-decision:adr.0006=r4-bf-portable -->
 
@@ -27,4 +27,4 @@ On 2026-10-04, the active local semantic-curation learning-status tool reported 
 
 ## Core skill package state
 
-The first-party MSSR package remains five operational skill roots. MSSR 0.2.103 changes only project context/state organization and verification fixtures; it adds no routed skill or runtime authority. Librarian capabilities remain in the existing MCP/tool contract.
+The first-party MSSR package remains five operational skill roots. MSSR 0.2.104 changes only Librarian Jev result evidence and its verification/documentation; it adds no routed skill or runtime authority. Librarian capabilities remain in the existing MCP/tool contract. Bridge .156 candidate integration is pending; active Bridge remains .153.

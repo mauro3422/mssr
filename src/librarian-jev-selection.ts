@@ -386,6 +386,8 @@ export async function selectMssrLibrarianEvidenceWithJev(
   }
 
   type CallOutcome = {
+    stage: "single" | "local-shortlist" | "global-shortlist";
+    offeredOptionIds: string[];
     selected: SelectionCandidate | null;
     choice: string;
     providerConfidence: number;
@@ -437,6 +439,8 @@ export async function selectMssrLibrarianEvidenceWithJev(
     if (answer.type !== "choice" || sufficiency.type !== "noul") throw new Error("Jev selection must return both Choice and Noul answers.");
     const candidateByOption = new Map(offered.map((candidate) => [candidate.optionId, candidate]));
     const callOutcome: CallOutcome = {
+      stage,
+      offeredOptionIds: Object.keys(options),
       selected: answer.choice === NONE_OPTION ? null : candidateByOption.get(answer.choice) ?? null,
       choice: answer.choice,
       providerConfidence: answer.confidence,
@@ -515,6 +519,18 @@ export async function selectMssrLibrarianEvidenceWithJev(
     selectionMode: hierarchical ? "hierarchical" as const : "single-pass" as const,
     selectionPasses: hierarchical ? 2 : 1,
     providerCalls: allCalls.length,
+    choiceCalls: allCalls.map((item) => ({
+      stage: item.stage,
+      offeredOptionIds: item.offeredOptionIds,
+      selectedOptionId: item.choice,
+      probabilities: item.probabilities ?? null,
+      providerConfidence: item.providerConfidence,
+      evidenceSufficiency: item.evidenceSufficiency,
+      provider: item.provider,
+      model: item.model,
+      usage: item.usage,
+      requestFingerprint: item.requestFingerprint,
+    })),
     providerConfidence: finalCall.providerConfidence,
     evidenceSufficiency: finalCall.evidenceSufficiency,
     provider: finalCall.provider,

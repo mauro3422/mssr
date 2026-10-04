@@ -9,6 +9,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 - [0.2.58](0.2.58.md) - routing correction: visual evidence requires both `visual-qa` and human approval, preventing non-visual functional code audits from inheriting required visual workflow obligations.
 
 ## Current releases
+- [0.2.104](0.2.104.md) - Preserve bounded, exact per-call Choice option sets and provider probability maps in Jev Librarian results; keep scores uncalibrated.
 - [0.2.103](0.2.103.md) - compact current state and scope Librarian history to explicit recovery; preserve Jev runs separately.
 
 - [0.2.102](0.2.102.md) - add bounded read-only Librarian evidence packs that revalidate Jev-selected exact ranges and preserve verbatim text with per-range citations.
