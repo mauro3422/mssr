@@ -10,6 +10,7 @@ const SUITE_ROOT = path.dirname(SCRIPT_PATH);
 const FIXTURE_PATH = path.join(SUITE_ROOT, "bilingual-query-seeds.v1.json");
 const NATURAL_RUN = "D:\\MSSR-benchmark-artifacts\\jev-natural-query-diagnostic-20261004-0.2.105-v1";
 const LIVE_SMOKE = "D:\\MSSR-benchmark-artifacts\\jev-live-smoke-20261004-0.2.105-v1";
+const NATURAL_RUN_CHECKSUM_COUNT = 37;
 const EXPECTED_VERSION = "0.2.105";
 const EXPECTED_BUILD_ID = "mssr-build:sha256:58b3d5447d10b847";
 const EXPECTED_SOURCE_COMMIT = "0c1ca590d3dcf9a8ba721f6a2975c909e13972c2";
@@ -72,12 +73,25 @@ const modeDefinitions = [
 
 // Read/hash only the 27 frozen Markdown sources. Never parse old anchors/rankings.
 const naturalManifestPath = path.join(NATURAL_RUN, "manifest.json");
+const naturalSums = verifySums(NATURAL_RUN, NATURAL_RUN_CHECKSUM_COUNT);
 const naturalManifestBytes = fs.readFileSync(naturalManifestPath);
 const naturalManifest = JSON.parse(naturalManifestBytes.toString("utf8"));
 const naturalSumsBytes = fs.readFileSync(path.join(NATURAL_RUN, "SHA256SUMS"));
+const expectedNaturalEntries = new Set([
+  ...naturalManifest.files.map((entry) => entry.path),
+  "README.md", "diagnostic.json", "manifest.json"
+]);
+if (expectedNaturalEntries.size !== naturalSums.entries.size
+  || [...naturalSums.entries.keys()].some((relative) => !expectedNaturalEntries.has(relative))) {
+  throw new Error("Natural snapshot checksum entries do not match the pinned manifest/package layout.");
+}
+for (const entry of naturalManifest.files) {
+  if (naturalSums.entries.get(entry.path) !== entry.sha256.toLowerCase()) {
+    throw new Error("Natural manifest and SHA256SUMS disagree: " + entry.path);
+  }
+}
 const diagnosticHash = hash(fs.readFileSync(path.join(NATURAL_RUN, "diagnostic.json")));
-const diagnosticSumLine = naturalSumsBytes.toString("utf8").split(/\r?\n/).find((line) => /\sdiagnostic\.json$/.test(line));
-if (!diagnosticSumLine || !diagnosticSumLine.startsWith(diagnosticHash)) throw new Error("Frozen query diagnostic checksum mismatch.");
+if (naturalSums.entries.get("diagnostic.json") !== diagnosticHash) throw new Error("Frozen query diagnostic checksum mismatch.");
 const markdownSources = naturalManifest.files.filter((entry) => entry.path.endsWith(".md")
   && (entry.path.startsWith("inputs/snapshot/.mssr/") || entry.path.startsWith("inputs/snapshot/docs/")));
 if (markdownSources.length !== 27 || payload.documents.length !== 27) throw new Error("Expected the same 27-document snapshots.");
@@ -380,6 +394,7 @@ const manifest = {
     naturalDiagnostic: {
       artifactRoot: path.basename(NATURAL_RUN), diagnosticSha256: diagnosticHash,
       manifestSha256: hash(naturalManifestBytes), sha256SumsSha256: hash(naturalSumsBytes),
+      checksumEntriesVerified: naturalSums.entries.size,
       markdownDocumentsMatched: markdownSources.length, anchorAndRankingObjectsParsed: false
     },
     liveSmoke: {
@@ -443,7 +458,7 @@ const outputs = {
   "exact-fetch-integrity.json": { schema: "mssr-bilingual-multicluster-exact-fetch-integrity-v1", cases: exactFetchIntegrity },
   "live-mcp-parity.json": { schema: "mssr-bilingual-multicluster-frozen-live-parity-v1", cases: frozenLiveParity },
   "manifest.json": manifest,
-  "README.md": `# MSSR bilingual multi-cluster union diagnostic\n\nStatus: offline exploratory mechanics check. It runs eight frozen Spanish/English queries for C01, C02, C04, and separately reports untagged C24 as a control over the same 27 exact Markdown documents. It compares a 2×2 design: lexical only, parent records only, projected EvidenceAtoms only, and both metadata layers together. Only the records/atoms arrays vary; the source snapshots and other document fields stay fixed. No metadata filters are applied.\n\nThe seed fixture contains only case ID, language, and query text. Its source is the hash-pinned natural-query diagnostic; this runner checks that diagnostic's hash but never parses prior results, candidate anchors, or rankings. It verifies all 11 live-smoke input hashes and byte-matches the 27 source Markdown files against the pinned natural snapshot. It compares the combined-metadata C01 local search against the frozen direct-MCP observations: both 20-handle orders and scores must match exactly. This runner itself makes no MCP calls.\n\nEach language is searched independently at top ${TOP_K}; separate-query unions deduplicate by exact handle ID and preserve source-language ranks without assigning a union score.\n\nUnion summary columns are unique handles / source refs / exact-fetchable / oversized:\n\n| Case | lexical only | parent records | atoms only | records + atoms |\n| --- | ---: | ---: | ---: | ---: |\n${unionTable}\n\nAll exact-fetchable handles from the combined metadata unions were fetched against the frozen source snapshots. Handle IDs, fingerprints, and returned code-unit lengths matched; the atoms-only union had the same exact handle set in each cluster.\n\nThe four combined unions are passed to the local .105 selector with a no-network stub. The stub choice and confidence are arbitrary. Request sizes and omission counts are mechanics only:\n\n| Case | Mode | Pool | Eligible/offered | Oversized | Stub calls | Max state chars | Max evidence chars |\n| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |\n${selectorTable}\n\nExact-fetch verification:\n\n| Case | Fetchable | Fingerprints checked | Mismatches |\n| --- | ---: | ---: | ---: |\n${fetchTable}\n\nThis run can show layer-specific ranking deltas, candidate fanout, fetchability, and selector bounds. It cannot show relevance or quality: anchors remain unadjudicated, no labels are read, and no live Jev/provider/MCP/network call is made. Do not use these counts to enable ranking changes or confidence thresholds.\n\nSee ` + "`manifest.json`" + `, ` + "`live-mcp-parity.json`" + `, and ` + "`SHA256SUMS`" + ` for pinned identities and output integrity.\n`
+  "README.md": `# MSSR bilingual multi-cluster union diagnostic\n\nStatus: offline exploratory mechanics check. It runs eight frozen Spanish/English queries for C01, C02, C04, and separately reports untagged C24 as a control over the same 27 exact Markdown documents. It compares a 2×2 design: lexical only, parent records only, projected EvidenceAtoms only, and both metadata layers together. Only the records/atoms arrays vary; the source snapshots and other document fields stay fixed. No metadata filters are applied.\n\nThe seed fixture contains only case ID, language, and query text. Its source is the hash-pinned natural-query diagnostic; this runner verifies all 37 natural-package checksums, requires the manifest and checksum list to agree, and never parses prior candidate anchors or rankings. It also verifies all 11 live-smoke input hashes and byte-matches the 27 source Markdown files against the pinned natural snapshot. It compares the combined-metadata C01 local search against the frozen direct-MCP observations: both 20-handle orders and scores must match exactly. This runner itself makes no MCP calls.\n\nEach language is searched independently at top ${TOP_K}; separate-query unions deduplicate by exact handle ID and preserve source-language ranks without assigning a union score.\n\nUnion summary columns are unique handles / source refs / exact-fetchable / oversized:\n\n| Case | lexical only | parent records | atoms only | records + atoms |\n| --- | ---: | ---: | ---: | ---: |\n${unionTable}\n\nAll exact-fetchable handles from the combined metadata unions were fetched against the frozen source snapshots. Handle IDs, fingerprints, and returned code-unit lengths matched; the atoms-only union had the same exact handle set in each cluster.\n\nThe four combined unions are passed to the local .105 selector with a no-network stub. The stub choice and confidence are arbitrary. Request sizes and omission counts are mechanics only:\n\n| Case | Mode | Pool | Eligible/offered | Oversized | Stub calls | Max state chars | Max evidence chars |\n| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |\n${selectorTable}\n\nExact-fetch verification:\n\n| Case | Fetchable | Fingerprints checked | Mismatches |\n| --- | ---: | ---: | ---: |\n${fetchTable}\n\nThis run can show layer-specific ranking deltas, candidate fanout, fetchability, and selector bounds. It cannot show relevance or quality: anchors remain unadjudicated, no labels are read, and no live Jev/provider/MCP/network call is made. Do not use these counts to enable ranking changes or confidence thresholds.\n\nSee ` + "`manifest.json`" + `, ` + "`live-mcp-parity.json`" + `, and ` + "`SHA256SUMS`" + ` for pinned identities and output integrity.\n`
 };
 
 fs.mkdirSync(outputRoot, { recursive: true });
