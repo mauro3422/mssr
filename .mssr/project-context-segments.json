@@ -124,9 +124,25 @@
           "id": "evidence-librarian-baseline",
           "sections": [
             "## Evidence atom and source boundary",
-            "## Document Surface and Librarian contract"
+            "## Core Document and Librarian guarantees"
           ],
           "baseline": true
+        },
+        {
+          "id": "document-surface-librarian-details",
+          "sections": [
+            "## Document Surface and Librarian contract"
+          ],
+          "terms": [
+            "bibliotecario",
+            "librarian",
+            "document surface",
+            "search",
+            "fetch",
+            "exact source range",
+            "revision-bound handle"
+          ],
+          "priority": 40
         },
         {
           "id": "progressive-retrieval-acquisition",

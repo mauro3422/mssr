@@ -82,6 +82,59 @@ const intentBlender = intent({ domains: ["blender"], actions: ["discover"], risk
 
 try {
   const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+  const repositoryManifest = JSON.parse(await fs.readFile(path.join(repositoryRoot, ".mssr", "project-context.json"), "utf8"));
+  const semanticEvidenceEntry = repositoryManifest.modules.find((entry) => entry.id === "mssr-semantic-evidence-plane");
+  assert.ok(semanticEvidenceEntry, "the semantic evidence plane must remain an indexed project-context module");
+  assert.equal(semanticEvidenceEntry.maxChars, 10_000, "segmentation must solve pressure without raising the declared entry budget");
+
+  const semanticEvidenceLibrarian = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: intent({
+      summary: "MSSR bibliotecario Jev búsqueda exacta y fetch de evidencia",
+      domains: ["coding"],
+      actions: ["analyze"],
+      artifacts: ["document"],
+      needs: ["integrity-verification"],
+      signals: ["tool-chain-needed"],
+      risk: "read-only",
+    }),
+    stage: "implement",
+    maxChars: 20_000,
+    maxModules: 32,
+    includeCore: false,
+  });
+  const evidencePlane = semanticEvidenceLibrarian.selected.find((record) => record.ref === "mssr-semantic-evidence-plane");
+  assert.ok(evidencePlane, "the repository's semantic evidence plane should load for Librarian/Jev work");
+  assert.ok(evidencePlane.bytes <= 10_000, "selected EvidenceAtom + Librarian sections must stay within the declared 10k budget");
+  assert.match(evidencePlane.content, /## Core Document and Librarian guarantees/);
+  assert.match(evidencePlane.content, /## Document Surface and Librarian contract/);
+  assert.match(evidencePlane.content, /same source revision/);
+  assert.equal(evidencePlane.segmentDecisions.find((decision) => decision.id === "document-surface-librarian-details")?.selected, true);
+  assert.deepEqual(semanticEvidenceLibrarian.ambiguousSegments, []);
+
+  const semanticEvidenceTriage = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: intent({
+      summary: "Jev semantic triage reduction batching and circuit breaking",
+      domains: ["coding"],
+      actions: ["analyze"],
+      artifacts: ["project"],
+      needs: ["integrity-verification"],
+      signals: ["tool-chain-needed"],
+      risk: "read-only",
+    }),
+    stage: "implement",
+    maxChars: 20_000,
+    maxModules: 32,
+    includeCore: false,
+  });
+  const triagePlane = semanticEvidenceTriage.selected.find((record) => record.ref === "mssr-semantic-evidence-plane");
+  assert.ok(triagePlane, "the repository's semantic evidence plane should load for Jev triage work");
+  assert.ok(triagePlane.bytes <= 10_000, "selected EvidenceAtom + Jev triage sections must stay within the declared 10k budget");
+  assert.match(triagePlane.content, /## Reduction, batching and semantic triage/);
+  assert.equal(triagePlane.segmentDecisions.find((decision) => decision.id === "reduction-semantic-triage")?.selected, true);
+  assert.deepEqual(semanticEvidenceTriage.ambiguousSegments, []);
+
   const librarianModules = (result) => result.selected
     .filter((record) => record.ref.startsWith("mssr-project-context-librarian"));
   const librarianImplementation = await loadProjectContextModules({

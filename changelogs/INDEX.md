@@ -8,6 +8,10 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 - [0.2.59](0.2.59.md) - first-party skill-context correction: proportional maintenance review, specific recovery selectors, explicit close checkpoints and deterministic context-economy fixtures.
 - [0.2.58](0.2.58.md) - routing correction: visual evidence requires both `visual-qa` and human approval, preventing non-visual functional code audits from inheriting required visual workflow obligations.
 
+## Next local source entry (not packaged or published)
+
+- [0.2.106](0.2.106.md) - keep the semantic evidence baseline compact while preserving full Document Surface/Librarian detail in a selectively loaded segment.
+
 ## Current releases
 
 - [0.2.105](0.2.105.md) - rank an exact-fetchable candidate ahead of an oversized candidate when lexical relevance scores tie.

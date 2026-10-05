@@ -8,6 +8,12 @@ The common unit is a bounded `EvidenceAtom`: identity (`kind`, `subject`, projec
 
 Human-authored `.md` stays the readable/versioned authority. High-volume atoms and indexes are reconstructable structured runtime data under host storage such as `.mssr/runtime`/SQLite/JSONL; storage format is not semantic authority. A workspace-level `D:\Dev\.mssr\runtime` projection may aggregate projects for discovery/maintenance only while preserving each original owner.
 
+## Core Document and Librarian guarantees
+
+Document Surface exposes revision-bound metadata and exact source ranges. A later fetch is usable only against the same source revision. Hosts read files and supply bounded Markdown; MSSR search does not scan the filesystem or turn derived indexes into project authority.
+
+Librarian adapts typed, privacy-safe producer metadata while retaining caller-asserted provenance; it does not authenticate that provenance. Deterministic structural duplicate checks run before optional Jev relation judgments. Jev selections, confidence and sufficiency scores remain advisory and uncalibrated. Exact fetch, independent verification and separate permission/write gates remain required; synthesis preview never writes canonical sources.
+
 ## Progressive section retrieval
 
 Eligible Markdown/skill sources may expose a revision-bound heading tree (`H1..H6`) with exact ranges. Retrieval is progressive: metadata -> top-level headings -> relevant branch -> exact section -> deeper/neighboring section only if necessary. Declared selectors, `project-context.json`, `context-modules.json`, `requiredWhen`, reviewed segments and canonical ownership outrank any derived heading index. Derived indexing is candidate/retrieval evidence only and never promotes an arbitrary document to authority.
