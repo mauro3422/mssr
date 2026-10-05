@@ -341,8 +341,62 @@ exploratory observations, not a quality score or calibration sample.
 
 ### Frozen live search inputs — 2026-10-04 local / 2026-10-05 UTC
 
-The read-only direct MSSR MCP search was repeated twice for C01 Spanish and English (four search calls total). The latest pass exactly matched the pinned local 0.2.105 candidate ordering. Each query returned 20 advisory handles: Spanish had 19 exact-fetchable and one oversized range; English had 18 exact-fetchable and two oversized ranges. The frozen Jev arguments need current Markdown for one source in Spanish and ten in English. Search and ranking have no truth authority.
+The read-only direct MSSR MCP search was repeated twice for C01 Spanish and
+English (four search calls total). The latest pass exactly matched the pinned
+local 0.2.105 candidate ordering. Each query returned 20 advisory handles:
+Spanish had 19 exact-fetchable and one oversized range; English had 18 and two.
+The frozen Jev arguments need current Markdown for one source in Spanish and
+ten in English. Search and ranking have no truth authority.
 
-The immutable preparation is at `D:\MSSR-benchmark-artifacts\jev-live-smoke-20261004-0.2.105-v1`. `inputs/mcp-live-search-results.json` preserves the exact results without full source bodies; the two `jev-select-c01-*.request.json` files freeze the source snapshots and handles. The request-builder script is `freeze-live-jev-requests.mjs`. Both inputs pass the compiled 0.2.105 tool schema and the selector was exercised offline with a no-network stub: one single-pass call per case, correct 20/19/1 and 20/18/2 offered/eligible/oversized counts, and exact-fetch-required results.
+The complete result capture preserves range metadata and
+`metadataProjectionMatches`. It shows zero atom-projected hits in Spanish and
+one in English at rank 5: `evidence-atom:d4596f6143e95e6ef429c8f5` matched the
+closed-vocabulary values `action=review` and `artifact=repository`. The offline
+with-atoms diagnostic moved the same unadjudicated English candidate from rank
+9 to rank 5 without adding or removing candidates; the live request lists it at
+rank 5. This is a retrieval-mechanics observation, not a relevance label or
+quality result.
 
-No Jev/provider call was made. The immutable gate receipt permits two sequential selector tool calls (Choice and Noul together), with one SDK retry per request and a maximum of four provider transport attempts total; there are no agent retries. Model override is unset. No gold labels or anchor designation enter the request, and no accuracy, quality, calibration or production activation claim is supported. The run is prepared and awaits the exact user message `START_JEV` before any provider call.
+The immutable preparation is at
+`D:\MSSR-benchmark-artifacts\jev-live-smoke-20261004-0.2.105-v1`.
+`inputs/mcp-live-search-results.json` preserves the search results and atom
+matches without full source bodies; the two
+`jev-select-c01-*.request.json` files freeze the source snapshots and handles.
+The request-builder script is `freeze-live-jev-requests.mjs`. Both inputs pass
+the compiled 0.2.105 tool schema, and the selector was exercised offline with a
+no-network stub: one single-pass call per case, the expected offered/eligible/
+oversized counts, and exact-fetch-required results.
+
+No Jev/provider call was made. The immutable gate receipt permits two
+sequential selector tool calls (Choice and Noul together), with one SDK retry
+per request and a maximum of four provider transport attempts total; there are
+no agent retries. Model override is unset. No gold labels or anchor designation
+enter the request, and no accuracy, quality, calibration, or production
+activation claim is supported. The run awaits the exact user message
+`START_JEV` before any provider call.
+
+### Bilingual query expansion sensitivity — 2026-10-04 / MSSR 0.2.105
+
+The offline runner `bilingual-query-expansion-diagnostic.mjs` compares raw concatenation of the frozen C01 Spanish/English pair with a separate-query union deduplicated by exact handle id. It also runs an unrelated Spanish/English control through both variants, then passes the C01 union to the local selector with an offline stub. The harness verifies all 11 source-run checksums and checks the exact 0.2.105 build before executing. Each run needs a fresh external output root.
+
+```powershell
+node .\experiments\jev-metadata-integration\bilingual-query-expansion-diagnostic.mjs `
+  'D:\Dev\mssr' `
+  'D:\MSSR-benchmark-artifacts\jev-bilingual-query-expansion-diagnostic-20261004-0.2.105-v1'
+```
+
+The immutable v1 run tested concatenation only. Spanish Top-20 came from one source and had 19/20 fetchable ranges. Concatenating English yielded 11 source refs, only two shared handles (18 added, 18 removed), and 17/20 fetchable ranges. The unrelated control changed from zero Spanish candidates to 20 concatenated candidates across six refs. Raw concatenation is rejected as a safe product fix; the output is retained at `D:\MSSR-benchmark-artifacts\jev-bilingual-query-expansion-diagnostic-20261004-0.2.105-v1`.
+
+### Separate-query union — v2
+
+Run the second diagnostic into a new immutable directory:
+
+```powershell
+node .\experiments\jev-metadata-integration\bilingual-query-expansion-diagnostic.mjs `
+  'D:\Dev\mssr' `
+  'D:\MSSR-benchmark-artifacts\jev-bilingual-query-expansion-diagnostic-20261004-0.2.105-v2'
+```
+
+The v2 runner verified all 11 source artifact checksums and the pinned build `mssr-build:sha256:58b3d5447d10b847`. Separate Spanish and English Top-20 searches produced 40 unique handles across 11 refs with no shared handle ids; 37 ranges were exact-fetchable and three were oversized. The local selector processed the bounded union and returned a synthetic `selected` status through one offline stub invocation, with `exactFetchRequired=true`. This is not Jev evidence: the stub's candidate choice, confidence, and sufficiency are arbitrary. One union candidate has an atom projection, inherited from the English results.
+
+The control's Spanish search returned zero candidates, while its English search returned 20 across six refs, so the separate-query control union contains 20 handles. Since these phrases have no owner relevance labels, treat this as a candidate-fanout stress observation, not proof of false positives or quality. Across both runs there were zero external provider calls, Jev calls, MCP calls, or network requests; no labels were read and production code was unchanged. All four output hashes in the v2 `SHA256SUMS` independently verify. The output is retained at `D:\MSSR-benchmark-artifacts\jev-bilingual-query-expansion-diagnostic-20261004-0.2.105-v2`.
