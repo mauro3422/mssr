@@ -131,7 +131,7 @@ async function main() {
     };
   });
 
-  for (const root of [runtimeRoot, path.dirname(artifactRoot)]) {
+  for (const root of [runtimeRoot, artifactRoot]) {
     const resolved = path.resolve(root);
     assert.ok(runRoot !== resolved && !runRoot.startsWith(resolved + path.sep), "Run root is inside protected source.");
   }
