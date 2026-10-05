@@ -338,3 +338,11 @@ node .\experiments\jev-metadata-integration\jev-live-preflight-0.2.105.mjs `
 The first live slice is C01 Spanish/English. Its candidate-bank anchor stays
 out of request state and remains unadjudicated; the two Jev responses are
 exploratory observations, not a quality score or calibration sample.
+
+### Frozen live search inputs — 2026-10-04 local / 2026-10-05 UTC
+
+The read-only direct MSSR MCP search was repeated twice for C01 Spanish and English (four search calls total). The latest pass exactly matched the pinned local 0.2.105 candidate ordering. Each query returned 20 advisory handles: Spanish had 19 exact-fetchable and one oversized range; English had 18 exact-fetchable and two oversized ranges. The frozen Jev arguments need current Markdown for one source in Spanish and ten in English. Search and ranking have no truth authority.
+
+The immutable preparation is at `D:\MSSR-benchmark-artifacts\jev-live-smoke-20261004-0.2.105-v1`. `inputs/mcp-live-search-results.json` preserves the exact results without full source bodies; the two `jev-select-c01-*.request.json` files freeze the source snapshots and handles. The request-builder script is `freeze-live-jev-requests.mjs`. Both inputs pass the compiled 0.2.105 tool schema and the selector was exercised offline with a no-network stub: one single-pass call per case, correct 20/19/1 and 20/18/2 offered/eligible/oversized counts, and exact-fetch-required results.
+
+No Jev/provider call was made. The immutable gate receipt permits two sequential selector tool calls (Choice and Noul together), with one SDK retry per request and a maximum of four provider transport attempts total; there are no agent retries. Model override is unset. No gold labels or anchor designation enter the request, and no accuracy, quality, calibration or production activation claim is supported. The run is prepared and awaits the exact user message `START_JEV` before any provider call.
