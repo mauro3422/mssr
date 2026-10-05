@@ -1,0 +1,20 @@
+{
+  "schema": "mssr-bilingual-query-seeds-v1",
+  "sourceDiagnostic": {
+    "artifactRoot": "jev-natural-query-diagnostic-20261004-0.2.105-v1",
+    "path": "diagnostic.json",
+    "sha256": "6140b55b6fb8994ecff4f99db277c00cf9aaa85058cded2e958e2705aa777da5",
+    "extractedFields": ["caseId", "language", "queryText"],
+    "excludedFields": ["sourceCluster", "candidateAnchorHeading", "ranking", "labels"]
+  },
+  "cases": [
+    {"caseId":"C01","language":"es","query":"Si dos señales del repositorio discrepan sobre una decisión de arquitectura, ¿cómo se decide si el cambio requiere revisión?"},
+    {"caseId":"C01","language":"en","query":"When repository evidence disagrees about an architecture decision, how should a change be routed for review?"},
+    {"caseId":"C02","language":"es","query":"¿Qué ejemplos de aprendizaje tenemos realmente y cuáles siguen sin etiquetas independientes?"},
+    {"caseId":"C02","language":"en","query":"Which learning examples are actually available, and which still lack independent labels?"},
+    {"caseId":"C04","language":"es","query":"¿Dónde está el inventario de usos posibles de Jev para MSSR?"},
+    {"caseId":"C04","language":"en","query":"Where is the inventory of possible Jev uses for MSSR?"},
+    {"caseId":"C24","language":"es","query":"¿Qué debe coincidir para que una declaración del sidecar se proyecte como átomo válido, y qué pasa si su rango o fingerprint quedó obsoleto?"},
+    {"caseId":"C24","language":"en","query":"What must match for a sidecar declaration to project as a valid atom, and what happens when its range or fingerprint is stale?"}
+  ]
+}

@@ -399,4 +399,25 @@ node .\experiments\jev-metadata-integration\bilingual-query-expansion-diagnostic
 
 The v2 runner verified all 11 source artifact checksums and the pinned build `mssr-build:sha256:58b3d5447d10b847`. Separate Spanish and English Top-20 searches produced 40 unique handles across 11 refs with no shared handle ids; 37 ranges were exact-fetchable and three were oversized. The local selector processed the bounded union and returned a synthetic `selected` status through one offline stub invocation, with `exactFetchRequired=true`. This is not Jev evidence: the stub's candidate choice, confidence, and sufficiency are arbitrary. One union candidate has an atom projection, inherited from the English results.
 
-The control's Spanish search returned zero candidates, while its English search returned 20 across six refs, so the separate-query control union contains 20 handles. Since these phrases have no owner relevance labels, treat this as a candidate-fanout stress observation, not proof of false positives or quality. Across both runs there were zero external provider calls, Jev calls, MCP calls, or network requests; no labels were read and production code was unchanged. All four output hashes in the v2 `SHA256SUMS` independently verify. The output is retained at `D:\MSSR-benchmark-artifacts\jev-bilingual-query-expansion-diagnostic-20261004-0.2.105-v2`.
+
+### Multi-cluster metadata-layer factorial — v4
+
+The runner `bilingual-multicluster-union-diagnostic.mjs` uses the eight frozen C01/C02/C04/C24 Spanish/English query seeds from `bilingual-query-seeds.v1.json`. It searches the same 27 Markdown files in four controlled modes: lexical only, parent catalog records only, EvidenceAtoms only, and records plus atoms. Only the `records` and `evidenceAtoms` arrays change between modes. C24 remains a separate untagged control. No candidate anchors or result rankings from the older natural-query diagnostic are parsed as labels.
+
+Run into a new immutable external directory:
+
+```powershell
+node .\experiments\jev-metadata-integration\bilingual-multicluster-union-diagnostic.mjs `
+  'D:\Dev\mssr' `
+  'D:\MSSR-benchmark-artifacts\jev-bilingual-multicluster-union-20261004-0.2.105-v4'
+```
+
+The v4 run pins MSSR 0.2.105/build `mssr-build:sha256:58b3d5447d10b847`, verifies all 11 frozen live-smoke checksums, and byte-matches the 27 Markdown files to the natural-query snapshot. It also reproduces the frozen direct MCP C01 Spanish and English results exactly: ordered handles and scores matched 40/40.
+
+Records alone and EvidenceAtoms without their parent records produced no ranking changes in these eight queries. With both layers present, C01 English produced one metadata projection match (`action=review`, `artifact=repository`): the existing range moved from rank 9 to rank 5, with four adjacent candidates each moving down one rank. No Top-20 handle was added or removed in any query. This is a localized ranking effect, not relevance or answer-quality evidence. The atoms-only condition is an ablation: the product projection attaches an atom through its matching parent catalog record.
+
+Separate-query Top-20 unions, shown as handles / source refs / fetchable / oversized, were C01 40/11/37/3, C02 27/7/24/3, C04 38/8/36/2, and C24 32/9/30/2. The combined-mode fetchable handles all passed exact-fetch fingerprint and code-unit-length checks (127/127). Each of the four combined unions fit one local selector pass; the biggest request state was 18,996 code units and aggregate evidence was 17,329, below the .105 bounds. The local selector used an offline stub, whose `selected` response is arbitrary.
+
+The immutable v4 output is at `D:\MSSR-benchmark-artifacts\jev-bilingual-multicluster-union-20261004-0.2.105-v4`. This runner made zero live Jev/provider, MCP, or network calls and read no labels. The earlier v1/v2 runner called the combined records-plus-atoms payload “with atoms”; its candidate-union observations remain useful for that combined mode, but they do not isolate atom effects. The first factorial artifact v3 is retained with its original bytes; its displayed ranks were zero-based and v4 is the canonical one-based/parity-checked result. All six v4 output hashes verify.
+
+A fresh v5 rerun against the same pinned build and source commit reproduced the five deterministic result/document files byte-for-byte; its manifest matched v4 after excluding only the run ID and timestamp. All six v5 hashes also verify. The repeat remains offline with zero provider, MCP, and network calls. Its immutable output is at `D:\MSSR-benchmark-artifacts\jev-bilingual-multicluster-union-20261004-0.2.105-v5`; v4 remains the canonical report.
