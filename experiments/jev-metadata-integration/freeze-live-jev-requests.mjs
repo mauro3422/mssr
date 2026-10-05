@@ -14,16 +14,32 @@ const requestBuilder = { path: "experiments/jev-metadata-integration/freeze-live
 const sourceKey = (owner, sourceRef) => owner + "\0" + sourceRef.trim().replace(/\\/g, "/").replace(/\/{2,}/g, "/");
 const searchResultsPath = path.join(inputs, "mcp-live-search-results.json");
 const searchResultsB64Path = searchResultsPath + ".b64";
-if (!fs.existsSync(searchResultsPath)) {
+if (fs.existsSync(searchResultsB64Path)) {
   const encoded = fs.readFileSync(searchResultsB64Path, "ascii");
   fs.writeFileSync(searchResultsPath, Buffer.from(encoded, "base64"));
   fs.unlinkSync(searchResultsB64Path);
+} else if (!fs.existsSync(searchResultsPath)) {
+  throw new Error("Missing complete direct MCP search results freeze.");
 }
 const observed = JSON.parse(fs.readFileSync(searchResultsPath, "utf8"));
 const payload = JSON.parse(fs.readFileSync(path.join(inputs, "mcp-search-payload.json"), "utf8"));
-if (observed.schema !== "mssr-librarian-live-search-freeze-v1") throw new Error("Unexpected live search freeze schema.");
+if (observed.schema !== "mssr-librarian-live-search-freeze-v2") throw new Error("Unexpected live search freeze schema.");
 if (observed.replay?.directMcpSearchCalls !== 4 || observed.replay?.truthAuthority !== false) throw new Error("Live search provenance is incomplete.");
 const docsByKey = new Map(payload.documents.map((doc) => [sourceKey(doc.owner, doc.sourceRef), doc]));
+const projectionSummary = observed.queries.map((item) => ({
+  language: item.language,
+  projectedHitCount: item.hits.filter((hit) => hit.metadataProjectionMatches?.length).length,
+  projectedBindingCount: item.hits.reduce((sum, hit) => sum + (hit.metadataProjectionMatches?.length || 0), 0),
+  matches: item.hits.flatMap((hit) => (hit.metadataProjectionMatches || []).flatMap((projection) => projection.matches.map((match) => ({
+    rank: hit.rank,
+    sourceRef: hit.handle.sourceRef,
+    rangeId: hit.handle.rangeId,
+    atomId: projection.atomId,
+    field: match.field,
+    value: match.value,
+    queryTerms: match.queryTerms
+  }))))
+}));
 const requestFiles = [];
 for (const item of observed.queries) {
   if (item.caseId !== "C01" || !["es", "en"].includes(item.language) || item.hits.length !== 20) {
@@ -79,6 +95,7 @@ const summary = {
   schema: "mssr-jev-frozen-selection-requests-v1",
   createdAtUtc: new Date().toISOString(),
   runtimeBuildId: observed.runtime.buildId,
+  retrievalProjection: projectionSummary,
   requests: requestFiles,
   providerPlan: {
     decisionJobs: requestFiles.length,
@@ -106,6 +123,7 @@ manifest.liveMcpObservation = {
   repeatedPassesPerQuery: observed.replay.repeatsPerQuery,
   latestPassOrderMatchedPinnedLocalImplementation: observed.replay.latestPassOrderMatchedPinnedLocalImplementation,
   providerCallsMade: false,
+  projectionSummary,
   sourceArtifact: "inputs/mcp-live-search-results.json",
   sourceArtifactSha256: hash(fs.readFileSync(searchResultsPath))
 };
@@ -132,6 +150,7 @@ manifest.design = {
   networkAccess: "MCP search completed; no Jev/provider call yet",
   jevCallsMade: false,
   providerCallsMade: false,
+  projectionSummary,
   qualityMetric: "none; selection smoke with no adjudicated labels"
 };
 manifest.nextGate = "Review inputs/jev-request-summary.json and provider-gate-receipt.json. Exact START_JEV token is required before the two sequential Jev selector tool calls.";
@@ -144,6 +163,7 @@ const receipt = {
   manifestSha256: manifestHash,
   runId: manifest.runId,
   runtimeBuildId: observed.runtime.buildId,
+  retrievalProjection: projectionSummary,
   requests: requestFiles.map((entry) => ({
     caseId: entry.caseId,
     language: entry.language,
@@ -175,7 +195,7 @@ const receipt = {
 fs.writeFileSync(path.join(runRoot, "provider-gate-receipt.json"), JSON.stringify(receipt, null, 2) + "\n", "utf8");
 const readme = "# MSSR 0.2.105 Jev live-selection smoke\n\n"
   + "Status: prepared; waiting for the exact START_JEV user message.\n\n"
-  + "This run freezes two real MSSR Librarian searches over the .105 sidecar-aware corpus: C01 Spanish and English. Four read-only search MCP calls were made (two passes for each query). The latest pass matched the pinned local .105 ranking order exactly. Search outputs are advisory and have no truth authority.\n\n"
+  + "This run freezes two real MSSR Librarian searches over the .105 sidecar-aware corpus: C01 Spanish and English. Four read-only search MCP calls were made (two passes for each query). The latest pass matched the pinned local .105 ranking order exactly. Search outputs are advisory and have no truth authority. The deterministic atom projection matched zero Spanish candidates and one English candidate at rank 5 through the closed-vocabulary values action=review and artifact=repository; it added no ranges to either candidate set.\n\n"
   + "The frozen selector requests contain the top 20 exact revision-bound handles per language plus only the caller-supplied Markdown snapshots needed to revalidate those handles. They contain no gold label, expected answer, or anchor designation. Jev receives the bounded query-focused excerpts built by MSSR, not a filesystem search request. Each of the two selector tool calls combines Choice and Noul in one System-One request; the SDK may retry each request once (four transport attempts maximum total). Calls are sequential, with no caller retry.\n\n"
   + "No Jev/provider calls have occurred. No production activation, source write, synthesis, quality score, or calibration claim is part of this smoke. If approved with the exact token, the selected handle must then be exact-fetched and reviewed; confidence and Noul remain descriptive and uncalibrated.\n\n"
   + "See manifest.json, provider-gate-receipt.json, and inputs/jev-request-summary.json for immutable identities and the exact request bounds.\n";
