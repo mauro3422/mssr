@@ -25,7 +25,9 @@ These runs made no Jev/provider/MCP/network calls and read no labels. Anchors ar
 
 Receipts: `experiments/jev-metadata-integration/evidence/metadata-preflight-0.2.105-20261004.json` and `experiments/jev-metadata-integration/evidence/natural-query-diagnostic-0.2.105-20261004.json` on `codex/benchmark-archive`; immutable artifacts are under `D:\MSSR-benchmark-artifacts\jev-sidecar-preflight-20261004-0.2.105-v1` and `D:\MSSR-benchmark-artifacts\jev-natural-query-diagnostic-20261004-0.2.105-v1`.
 
-Next: owner-adjudicate acceptable ranges and negatives, then freeze grouped calibration/holdout data. A new live Jev selection run needs its own immutable request and reviewed provider-gate receipt.
+The live-selection smoke is prepared at `D:\MSSR-benchmark-artifacts\jev-live-smoke-20261004-0.2.105-v1`. Four direct read-only MCP searches (two passes each for C01 Spanish/English) were captured; the latest order matches the pinned 0.2.105 implementation. Both queries returned 20 advisory candidates: Spanish has 19 exact-fetchable/1 oversized, English 18/2. Frozen requests use 1 and 10 current source snapshots respectively. The request schema and range revalidation passed an offline no-network stub; 11 artifact checksums and the receipt/request hashes verify. No Jev/provider call has occurred.
+
+Next: inspect the frozen request summary and receipt, then run only after the exact `START_JEV` message required by the benchmark protocol. The two requests run sequentially; Choice and Noul are combined per request, the SDK may retry once (maximum four provider transport attempts), and no agent retry is planned. Results will remain uncalibrated smoke evidence; owner-adjudicated ranges and grouped calibration/holdout data are still required before any quality claim.
 
 ## Bridge catalog and checkout — 2026-10-04
 
