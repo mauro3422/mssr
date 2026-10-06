@@ -49,6 +49,8 @@ function reidentifyHandle(handle, changes) {
 
 function judgmentFor(kind, selectedAtoms = atoms) {
   const selectedProbability = kind === "supports" ? 0.95 : 0.91;
+  const alternateKind = kind === "supports" ? "contradicts" : "supports";
+  const citationRoles = kind === "supersedes" ? ["supersession-source", "supersession-target"] : ["supports", "supports"];
   const raw = {
     schemaVersion: 1,
     immutable: true,
@@ -57,12 +59,12 @@ function judgmentFor(kind, selectedAtoms = atoms) {
     decisionFamily: "relation",
     inputs: selectedAtoms.map((atom) => ({ atomId: atom.id, sourceRef: atom.source.ref, revision: atom.source.revision, fingerprints: { record: atom.fingerprints.record, payload: atom.fingerprints.payload } })),
     heads: [
-      { head: "relation-kind", candidates: ["supports", "contradicts"], selectedId: kind, rawConfidence: selectedProbability, probabilities: [{ candidateId: "supports", probability: kind === "supports" ? 0.95 : 0.09 }, { candidateId: "contradicts", probability: kind === "contradicts" ? 0.91 : 0.05 }] },
+      { head: "relation-kind", candidates: [kind, alternateKind], selectedId: kind, rawConfidence: selectedProbability, probabilities: [{ candidateId: kind, probability: selectedProbability }, { candidateId: alternateKind, probability: Number((1 - selectedProbability).toFixed(6)) }] },
       { head: "relation-direction", candidates: ["left-to-right", "right-to-left"], selectedId: "left-to-right", rawConfidence: 0.8, probabilities: [{ candidateId: "left-to-right", probability: 0.8 }, { candidateId: "right-to-left", probability: 0.2 }] },
     ],
     calibratedConfidence: null,
     claim: { validity: "current", scope: "feature-contract", validFrom: "2026-01-01T00:00:00Z", validUntil: null },
-    citations: selectedAtoms.map((atom) => ({ atomId: atom.id, sourceRef: atom.source.ref, revision: atom.source.revision, fingerprint: atom.fingerprints.record, role: "supports" })),
+    citations: selectedAtoms.map((atom, index) => ({ atomId: atom.id, sourceRef: atom.source.ref, revision: atom.source.revision, fingerprint: atom.fingerprints.record, role: citationRoles[index] ?? "context" })),
     relations: [{
       leftAtomId: selectedAtoms[0].id,
       rightAtomId: selectedAtoms[1].id,
@@ -120,6 +122,15 @@ assert.equal(conflictPreview.disposition, "review");
 assert.equal(conflictPreview.groups.length, 2, "contradicting claims stay in separate groups");
 assert.ok(conflictPreview.groups.every((group) => group.disposition === "review" && group.markdown === null));
 assert.ok(conflictPreview.groups.every((group) => group.sourceSnapshots.length === 1), "the exact original source remains recoverable");
+
+const superseded = judgmentFor("supersedes");
+const supersessionPreview = buildMssrSemanticSynthesisProposal({ judgment: superseded, inputAtoms: atoms, sourceEvidence: evidence });
+assert.equal(supersessionPreview.disposition, "candidate", "the global disposition describes judgment evaluation, not consolidation eligibility");
+assert.equal(supersessionPreview.applyAllowed, false);
+assert.equal(supersessionPreview.relations[0].status, "separate");
+assert.ok(supersessionPreview.relations[0].reasonCodes.includes("supersession-keeps-both-time-bound-sources"));
+assert.equal(supersessionPreview.groups.length, 2, "superseded and superseding evidence stay in separate groups");
+assert.ok(supersessionPreview.groups.every((group) => group.disposition === "separate" && group.sourceSnapshots.length === 1));
 
 assert.throws(() => buildMssrSemanticSynthesisProposal({ judgment: supported, inputAtoms: atoms, sourceEvidence: [{ ...evidence[0], text: `${evidence[0].text} altered` }, evidence[1]] }), /fingerprint/i);
 assert.throws(() => buildMssrSemanticSynthesisProposal({ judgment: supported, inputAtoms: atoms, sourceEvidence: [{ ...evidence[0], handle: { ...evidence[0].handle, endLine: evidence[0].handle.endLine + 1 } }, evidence[1]] }), /content id/i);

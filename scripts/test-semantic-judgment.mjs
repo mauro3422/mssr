@@ -158,6 +158,10 @@ const chronologicalSupersedes = make({ relations: [supersedesTemporal], verifica
 const chronologicalEvaluation = evaluateMssrSemanticJudgment({ judgment: chronologicalSupersedes, inputAtoms: inputs });
 assert.ok(!chronologicalEvaluation.reasons.includes("relation-temporal-comparability-conflict"), "a later left claim may supersede an earlier historical claim");
 assert.ok(chronologicalEvaluation.reasons.includes("independent-verification-unavailable"), "temporal comparability does not remove independent verification requirements");
+const unknownTemporalSupersedes = make({ relations: [{ ...supersedesTemporal, comparability: { ...supersedesTemporal.comparability, temporal: {
+  ...supersedesTemporal.comparability.temporal, leftValidFrom: null,
+} } }], verificationEvidence: null });
+assert.ok(evaluateMssrSemanticJudgment({ judgment: unknownTemporalSupersedes, inputAtoms: inputs }).reasons.includes("relation-temporal-comparability-unknown"), "supersession still requires known temporal evidence");
 const reverseChronologySupersedes = make({ relations: [{ ...supersedesTemporal, comparability: { ...supersedesTemporal.comparability, temporal: {
   ...supersedesTemporal.comparability.temporal, leftValidFrom: "2026-10-01T00:00:00Z", rightValidFrom: "2026-10-02T00:00:00Z",
 } } }], verificationEvidence: null });
