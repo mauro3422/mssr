@@ -229,6 +229,27 @@ const actionableMatches = searchMssrLibrarianEvidence({
 assert.equal(actionableMatches[0]?.title, "Owner calibration", "a fetchable exact section wins a lexical score tie with an oversized un-fetchable parent range");
 assert.equal(actionableMatches[0]?.exactFetchable, true);
 
+const tiedDocuments = ["a", "b", "c"].map((name) => ({
+  owner,
+  sourceRef: `docs/tied-${name}.md`,
+  markdown: `# Evidence ${name}\n\n## Relevant ${name}\n\nNeedle evidence appears in document ${name}.\n\n## More ${name}\n\nNeedle evidence appears again in document ${name}.\n`,
+  privacyClass: "project-metadata",
+}));
+const diversifiedTie = searchMssrLibrarianEvidence({
+  documents: tiedDocuments,
+  query: { query: "needle evidence", maxResults: 4 },
+}).results;
+assert.deepEqual(
+  diversifiedTie.slice(0, 3).map((item) => item.handle.sourceRef),
+  tiedDocuments.map((item) => item.sourceRef),
+  "equal-score, equally fetchable ranges surface one candidate per source before a second range from the same source",
+);
+assert.equal(
+  diversifiedTie[3]?.handle.sourceRef,
+  tiedDocuments[0]?.sourceRef,
+  "after each tied source contributes once, subsequent ranges retain their within-source order",
+);
+
 const exactBoundaryDocument = {
   owner,
   sourceRef: "docs/exact-fetch-boundary.md",

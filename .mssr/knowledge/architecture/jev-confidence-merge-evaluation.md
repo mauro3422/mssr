@@ -1,9 +1,30 @@
 # Jev confidence, contradiction and merge evaluation
 
-Status: research-backed architecture with an incremental portable implementation, reviewed 2026-09-30. This note does
+Status: research-backed architecture with an incremental portable implementation, reviewed 2026-10-06. This note does
 not authorize automatic project edits, provider calls, or host I/O.
 
 ## What the MSSR runs establish
+
+On 2026-10-06, a deterministic Librarian search over ten frozen MSSR
+documents and 36 bilingual queries returned all requests without provider
+calls. The labels are AI-reviewed development evidence, not human gold: the
+first 30 queries had two blind reviews; six added no-answer controls were
+proposed by reviewer A and validated by reviewer B. Two grade disagreements
+in the first set are recorded in the adjudication file. The corpus had a
+bounded pre-run no-hit audit, but is now an open development set, not a
+protected holdout. The exact duplicate `es-12`/`en-10` counts as one concept.
+
+The baseline returned the supported source document in its top five for
+23/28 queries and an adjudicated line span in its top five for 17/28. After
+interleaving results only within equal-score/equal-fetchability groups, a
+post-change source run kept document recall@5 at 23/28 and improved annotated
+range recall@5 to 20/28 (Spanish 8/15; English 12/13); range recall@50 was
+24/28 and recall@1 remained 14/28. All eight no-answer controls still had
+nearby evidence in the top five. This measures retrieval only, not whether
+Jev/Noul abstains, and supports no confidence threshold or accuracy claim.
+Immutable baseline, post-change run, labels, hashes, and the corrected
+post-run dataset status are kept outside Git under
+`D:\MSSR-benchmark-artifacts\mssr-librarian-unseen-doc-labels-20261006-v1\`.
 
 The live rubric-matched section run used 17 real sections from four MSSR
 modules, three repeated requests per section, and Jev 1.13.0. EvidenceAtom

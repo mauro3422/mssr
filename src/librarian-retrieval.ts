@@ -177,6 +177,35 @@ function sectionRanges(surface: MssrDocumentSurface): Array<{ id: string; kind: 
   return [...headingRows, ...blockRows];
 }
 
+function diversifyRankTies(results: MssrLibrarianRetrievalResult[]): MssrLibrarianRetrievalResult[] {
+  const diversified: MssrLibrarianRetrievalResult[] = [];
+  for (let start = 0; start < results.length;) {
+    let end = start + 1;
+    while (end < results.length
+      && results[end]!.score === results[start]!.score
+      && results[end]!.exactFetchable === results[start]!.exactFetchable) end++;
+
+    const bySource = new Map<string, MssrLibrarianRetrievalResult[]>();
+    for (const result of results.slice(start, end)) {
+      const sourceKey = JSON.stringify([result.handle.owner, result.handle.sourceRef]);
+      const group = bySource.get(sourceKey) ?? [];
+      group.push(result);
+      bySource.set(sourceKey, group);
+    }
+
+    const groups = [...bySource.values()];
+    const maxGroupSize = Math.max(0, ...groups.map((group) => group.length));
+    for (let depth = 0; depth < maxGroupSize; depth++) {
+      for (const group of groups) {
+        const result = group[depth];
+        if (result) diversified.push(result);
+      }
+    }
+    start = end;
+  }
+  return diversified;
+}
+
 type ProjectedAtomMetadata = {
   atom: MssrEvidenceAtom;
   projectionFingerprint: string;
@@ -456,7 +485,8 @@ export function searchMssrLibrarianEvidence(args: { documents: readonly MssrLibr
     }
   }
   candidates.sort((a, b) => b.score - a.score || Number(b.exactFetchable) - Number(a.exactFetchable) || a.handle.owner.localeCompare(b.handle.owner) || a.handle.sourceRef.localeCompare(b.handle.sourceRef) || a.handle.startOffset - b.handle.startOffset || a.handle.id.localeCompare(b.handle.id));
-  return { results: candidates.slice(0, query.maxResults), advisoryOnly: true, truthAuthority: false, truncated: candidates.length > query.maxResults };
+  const rankedCandidates = diversifyRankTies(candidates);
+  return { results: rankedCandidates.slice(0, query.maxResults), advisoryOnly: true, truthAuthority: false, truncated: rankedCandidates.length > query.maxResults };
 }
 
 export function fetchMssrLibrarianEvidence(args: { handle: MssrLibrarianEvidenceHandle; owner: string; sourceRef: string; markdown: string; privacyClass: MssrLibrarianEvidenceHandle["privacyClass"] | "sensitive-excluded" }): { handle: MssrLibrarianEvidenceHandle; text: string; fingerprint: string; advisoryOnly: true; truthAuthority: false } {
