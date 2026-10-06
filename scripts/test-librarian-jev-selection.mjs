@@ -86,6 +86,61 @@ assert.equal(sent.questions.sufficiency.kind, "noul");
 assert.ok(Object.values(sent.questions.selection.options).every((value) => value.startsWith("Evidence candidate") || value === "No supplied range directly answers the information need."));
 assert.equal(JSON.stringify(sent).includes("TAIL-ONLY-MUST-NOT-BE-SENT"), false, "bounded Jev input must not include the unrelated section tail");
 
+const parentRange = searchResult.results.find((result) => result.handle.rangeKind === "section" && result.handle.rangeId !== "heading-1");
+assert.ok(parentRange, "search should expose the exact parent section containing the target block");
+const nestedCallStart = providerCalls.length;
+const nestedSelection = await selectMssrLibrarianEvidenceWithJev({
+  documents,
+  query: "Which exact match-window fingerprint verifies a deep retrieval candidate?",
+  candidateHandles: [parentRange.handle, searchedRange.handle],
+}, provider);
+assert.equal(nestedSelection.candidateCount, 2, "overlap diagnostics must not discard either exact candidate");
+assert.equal(nestedSelection.rangeOverlapDiagnostics.sameSourceRevisionPairs, 1);
+assert.equal(nestedSelection.rangeOverlapDiagnostics.overlappingPairCount, 1);
+assert.equal(nestedSelection.rangeOverlapDiagnostics.nestedPairCount, 1);
+assert.equal(nestedSelection.rangeOverlapDiagnostics.exactRangePairCount, 0);
+assert.equal(nestedSelection.rangeOverlapDiagnostics.partialOverlapPairCount, 0);
+assert.deepEqual(nestedSelection.rangeOverlapDiagnostics.pairs[0], {
+  leftOptionId: "h001",
+  leftRangeId: parentRange.handle.rangeId,
+  leftRangeKind: "section",
+  leftLines: [parentRange.handle.startLine, parentRange.handle.endLine],
+  rightOptionId: "h002",
+  rightRangeId: searchedRange.handle.rangeId,
+  rightRangeKind: "block",
+  rightLines: [searchedRange.handle.startLine, searchedRange.handle.endLine],
+  relation: "left-contains-right",
+  overlapCodeUnits: searchedRange.handle.endOffset - searchedRange.handle.startOffset,
+});
+assert.equal(nestedSelection.rangeOverlapDiagnostics.mutationApplied, false);
+assert.equal(nestedSelection.selected.handle.rangeId, searchedRange.handle.rangeId);
+assert.equal(providerCalls[nestedCallStart].state.evidence.length, 2, "Jev still receives both exact ranges after the diagnostic is computed");
+
+const disjointDocument = {
+  owner,
+  sourceRef: "docs/disjoint-ranges.md",
+  markdown: "# Disjoint ranges\n\n## Alpha\n\nALPHA_ONLY_EVIDENCE_FOR_RETENTION.\n\n## Beta\n\nBETA_ONLY_EVIDENCE_FOR_REPLAY.\n",
+  privacyClass: "project-metadata",
+};
+const alphaHandle = searchMssrLibrarianEvidence({
+  documents: [disjointDocument],
+  query: { query: "ALPHA_ONLY_EVIDENCE_FOR_RETENTION", maxResults: 10 },
+}).results.find((result) => result.handle.rangeKind === "block")?.handle;
+const betaHandle = searchMssrLibrarianEvidence({
+  documents: [disjointDocument],
+  query: { query: "BETA_ONLY_EVIDENCE_FOR_REPLAY", maxResults: 10 },
+}).results.find((result) => result.handle.rangeKind === "block")?.handle;
+assert.ok(alphaHandle && betaHandle, "disjoint source blocks should be available as exact candidate handles");
+const disjointSelection = await selectMssrLibrarianEvidenceWithJev({
+  documents: [disjointDocument],
+  query: "Which exact evidence range contains ALPHA_ONLY_EVIDENCE_FOR_RETENTION?",
+  candidateHandles: [alphaHandle, betaHandle],
+}, provider);
+assert.equal(disjointSelection.rangeOverlapDiagnostics.sameSourceRevisionPairs, 1);
+assert.equal(disjointSelection.rangeOverlapDiagnostics.overlappingPairCount, 0);
+assert.equal(disjointSelection.rangeOverlapDiagnostics.nestedPairCount, 0);
+assert.deepEqual(disjointSelection.rangeOverlapDiagnostics.pairs, []);
+
 const excerptWindowQuery = "Which exact search request should match the payload fingerprint offsets source revision and privacy class before a result is accepted?";
 const excerptWindowDocument = {
   owner,

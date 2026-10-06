@@ -190,6 +190,71 @@ function candidateEvidence(candidate: SelectionCandidate): string {
   return result;
 }
 
+const MAX_RANGE_OVERLAP_DIAGNOSTIC_PAIRS = 32;
+
+function diagnoseCandidateRangeOverlaps(candidates: readonly SelectionCandidate[]) {
+  let sameSourceRevisionPairs = 0;
+  let overlappingPairCount = 0;
+  let nestedPairCount = 0;
+  let exactRangePairCount = 0;
+  let partialOverlapPairCount = 0;
+  const pairs: Array<Record<string, unknown>> = [];
+
+  for (let leftIndex = 0; leftIndex < candidates.length; leftIndex += 1) {
+    const left = candidates[leftIndex]!;
+    for (let rightIndex = leftIndex + 1; rightIndex < candidates.length; rightIndex += 1) {
+      const right = candidates[rightIndex]!;
+      if (left.owner !== right.owner || left.sourceRef !== right.sourceRef || left.revision !== right.revision) continue;
+      sameSourceRevisionPairs += 1;
+
+      const overlapStart = Math.max(left.startOffset, right.startOffset);
+      const overlapEnd = Math.min(left.endOffset, right.endOffset);
+      if (overlapStart >= overlapEnd) continue;
+      overlappingPairCount += 1;
+
+      const exact = left.startOffset === right.startOffset && left.endOffset === right.endOffset;
+      const leftContainsRight = left.startOffset <= right.startOffset && left.endOffset >= right.endOffset;
+      const rightContainsLeft = right.startOffset <= left.startOffset && right.endOffset >= left.endOffset;
+      const relation = exact
+        ? "exact-range"
+        : leftContainsRight
+          ? "left-contains-right"
+          : rightContainsLeft
+            ? "right-contains-left"
+            : "partial-overlap";
+      if (exact) exactRangePairCount += 1;
+      else if (leftContainsRight || rightContainsLeft) nestedPairCount += 1;
+      else partialOverlapPairCount += 1;
+
+      if (pairs.length < MAX_RANGE_OVERLAP_DIAGNOSTIC_PAIRS) {
+        pairs.push({
+          leftOptionId: left.optionId,
+          leftRangeId: left.rangeId,
+          leftRangeKind: left.rangeKind,
+          leftLines: [left.startLine, left.endLine],
+          rightOptionId: right.optionId,
+          rightRangeId: right.rangeId,
+          rightRangeKind: right.rangeKind,
+          rightLines: [right.startLine, right.endLine],
+          relation,
+          overlapCodeUnits: overlapEnd - overlapStart,
+        });
+      }
+    }
+  }
+
+  return {
+    sameSourceRevisionPairs,
+    overlappingPairCount,
+    nestedPairCount,
+    exactRangePairCount,
+    partialOverlapPairCount,
+    pairs,
+    truncated: overlappingPairCount > pairs.length,
+    mutationApplied: false as const,
+  };
+}
+
 function partitionCandidates(candidates: readonly SelectionCandidate[]): SelectionCandidate[][] {
   const batches: SelectionCandidate[][] = [];
   let current: SelectionCandidate[] = [];
@@ -347,6 +412,7 @@ export async function selectMssrLibrarianEvidenceWithJev(
     maxFetchChars: MSSR_LIBRARIAN_RETRIEVAL_LIMITS.fetchChars,
     lengthUnit: "utf16-code-units" as const,
   };
+  const rangeOverlapDiagnostics = diagnoseCandidateRangeOverlaps(candidates);
 
   if (candidates.length === 0) {
     return {
@@ -356,6 +422,7 @@ export async function selectMssrLibrarianEvidenceWithJev(
       jevCallMade: false,
       fallbackTool: "mssr_librarian_search",
       candidateRangeDiagnostics,
+      rangeOverlapDiagnostics,
     };
   }
   let batches: SelectionCandidate[][];
@@ -369,6 +436,7 @@ export async function selectMssrLibrarianEvidenceWithJev(
       jevCallMade: false,
       fallbackTool: "mssr_librarian_search",
       candidateRangeDiagnostics,
+      rangeOverlapDiagnostics,
     };
   }
   const hierarchical = batches.length > 1;
@@ -382,6 +450,7 @@ export async function selectMssrLibrarianEvidenceWithJev(
       jevCallMade: false,
       fallbackTool: "mssr_librarian_search",
       candidateRangeDiagnostics,
+      rangeOverlapDiagnostics,
     };
   }
 
@@ -511,6 +580,7 @@ export async function selectMssrLibrarianEvidenceWithJev(
   const commonResult = {
     candidateCount: candidates.length,
     candidateRangeDiagnostics,
+    rangeOverlapDiagnostics,
     finalistCount,
     selectionMode: hierarchical ? "hierarchical" as const : "single-pass" as const,
     selectionPasses: hierarchical ? 2 : 1,

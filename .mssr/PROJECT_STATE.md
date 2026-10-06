@@ -1,7 +1,7 @@
 # MSSR project state
 
 ## Current release
-MSSR 0.2.105 is the latest local release-gated package: `mauroprime-mssr-0.2.105.tgz`, 1,108,872 bytes, SHA-256 `96aba5308ed126da12da6d9602c90429d174905a0a7422133a2630043576ec3b` (`pkg:0.2.105#96aba530`); it is unpublished. Full `npm run verify` and `npm run release:gate` passed on 2026-10-04. Receipt: `.mssr/runtime/releases/0.2.105.json`.
+MSSR 0.2.108 is the latest local release-gated package: `mauroprime-mssr-0.2.108.tgz`, 1,114,576 bytes, SHA-256 `8478731d2c653e50b2a5718f4fe5b30b3b40f8ddc99df67163b8c9a9b72b9f21` (`pkg:0.2.108#8478731d`); it is unpublished. Full `npm run verify` and `npm run release:gate` passed on 2026-10-06. Receipt: `.mssr/runtime/releases/0.2.108.json`. Bridge 0.6.158 still has the earlier vendored MSSR 0.2.105 build; exact 0.2.108 host adoption remains pending.
 
 ## Librarian and Jev host status — 2026-10-04
 

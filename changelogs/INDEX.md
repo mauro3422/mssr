@@ -10,11 +10,12 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Local source entries (not packaged or published)
 
-- [0.2.107](0.2.107.md) - diversify Librarian ranges across source documents only within relevance and exact-fetchability ties.
 - [0.2.106](0.2.106.md) - keep the semantic evidence baseline compact while preserving full Document Surface/Librarian detail in a selectively loaded segment.
 
 ## Current releases
 
+- [0.2.108](0.2.108.md) - report bounded exact/nested/partial candidate-range overlap diagnostics without changing Jev options or discarding source evidence.
+- [0.2.107](0.2.107.md) - diversify Librarian ranges across source documents only within relevance and exact-fetchability ties.
 - [0.2.105](0.2.105.md) - rank an exact-fetchable candidate ahead of an oversized candidate when lexical relevance scores tie.
 - [0.2.104](0.2.104.md) - filter common English/Spanish function words from Librarian query terms to prevent incidental-only candidate matches.
 - [0.2.103](0.2.103.md) - split Librarian metadata into exact-heading Project Context modules and restore projection/stale-data guidance for implementation and debugging intents.
