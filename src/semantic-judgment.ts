@@ -378,7 +378,14 @@ export function evaluateMssrSemanticJudgment(args: {
     } else {
       const leftEnd = temporal.leftValidUntil ? Date.parse(temporal.leftValidUntil) : Number.POSITIVE_INFINITY;
       const rightEnd = temporal.rightValidUntil ? Date.parse(temporal.rightValidUntil) : Number.POSITIVE_INFINITY;
-      if (temporal.leftValidity !== temporal.rightValidity
+      if (relation.kind === "supersedes") {
+        // Supersession is directional and may intentionally cross validity states or
+        // non-overlapping periods. Its temporal evidence is comparable when the
+        // replacement (left) does not begin before the replaced claim (right).
+        if (Date.parse(temporal.leftValidFrom) < Date.parse(temporal.rightValidFrom)) {
+          reasons.add("relation-temporal-comparability-conflict");
+        }
+      } else if (temporal.leftValidity !== temporal.rightValidity
         || Math.max(Date.parse(temporal.leftValidFrom), Date.parse(temporal.rightValidFrom)) > Math.min(leftEnd, rightEnd)) {
         reasons.add("relation-temporal-comparability-conflict");
       }

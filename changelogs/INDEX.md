@@ -10,6 +10,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Local source entries (not packaged or published)
 
+- [0.2.108](0.2.108.md) - evaluate temporal comparability by relation direction, allowing chronological supersession while rejecting reverse chronology.
 - [0.2.107](0.2.107.md) - diversify Librarian ranges across source documents only within relevance and exact-fetchability ties.
 - [0.2.106](0.2.106.md) - keep the semantic evidence baseline compact while preserving full Document Surface/Librarian detail in a selectively loaded segment.
 

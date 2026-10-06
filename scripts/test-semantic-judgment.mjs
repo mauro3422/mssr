@@ -146,6 +146,22 @@ const scopeConflict = make({ relations: [{ ...base.relations[0], comparability: 
 assert.ok(evaluateMssrSemanticJudgment({ judgment: scopeConflict, inputAtoms: inputs }).reasons.includes("relation-scope-conflict"));
 const timeConflict = make({ relations: [{ ...base.relations[0], comparability: { ...base.relations[0].comparability, temporal: { ...base.relations[0].comparability.temporal, rightValidity: "historical" } } }] });
 assert.ok(evaluateMssrSemanticJudgment({ judgment: timeConflict, inputAtoms: inputs }).reasons.includes("relation-temporal-comparability-conflict"));
+const supersedesTemporal = {
+  ...base.relations[0],
+  kind: "supersedes",
+  comparability: { ...base.relations[0].comparability, temporal: {
+    leftValidity: "current", leftValidFrom: "2026-10-06T00:00:00Z", leftValidUntil: null,
+    rightValidity: "historical", rightValidFrom: "2026-10-02T00:00:00Z", rightValidUntil: "2026-10-05T23:59:59Z",
+  } },
+};
+const chronologicalSupersedes = make({ relations: [supersedesTemporal], verificationEvidence: null });
+const chronologicalEvaluation = evaluateMssrSemanticJudgment({ judgment: chronologicalSupersedes, inputAtoms: inputs });
+assert.ok(!chronologicalEvaluation.reasons.includes("relation-temporal-comparability-conflict"), "a later left claim may supersede an earlier historical claim");
+assert.ok(chronologicalEvaluation.reasons.includes("independent-verification-unavailable"), "temporal comparability does not remove independent verification requirements");
+const reverseChronologySupersedes = make({ relations: [{ ...supersedesTemporal, comparability: { ...supersedesTemporal.comparability, temporal: {
+  ...supersedesTemporal.comparability.temporal, leftValidFrom: "2026-10-01T00:00:00Z", rightValidFrom: "2026-10-02T00:00:00Z",
+} } }], verificationEvidence: null });
+assert.ok(evaluateMssrSemanticJudgment({ judgment: reverseChronologySupersedes, inputAtoms: inputs }).reasons.includes("relation-temporal-comparability-conflict"), "a proposed supersession cannot point from an earlier left claim to a later right claim");
 assert.throws(() => make({ heads: [{ ...base.heads[0], selectedId: "contradicts", rawConfidence: 0.91, probabilities: [{ candidateId: "supports", probability: 0.09 }, { candidateId: "contradicts", probability: 0.91 }] }] }), /Every relation edge must agree/i, "a contradictory relation edge cannot disagree with the selected relation head");
 
 const abstaining = make({ abstainReasons: ["insufficient-evidence"] });
