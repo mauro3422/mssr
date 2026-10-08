@@ -213,6 +213,46 @@ automatically receive Bridge atoms; host orchestration and an end-to-end
 benchmark remain future gates. Each stage must retain source ranges and
 decisions. The preview is relation-aware and reversible; no automatic project
 write occurs.
+
+## Jev-guided lossless structure recovery: two exploratory MSSR samples (2026-10-08)
+
+An isolated host-side runner used the current generic Jev `Choice`/`Noul`
+provider contract against two short, real MSSR source excerpts. The runner
+removed Markdown markers and deterministically hard-wrapped source text, asked
+one mid-sentence `Noul` per adjacent line pair, kept explicit blank-line gaps
+as deterministic splits, asked one `Choice` per recovered block, then rendered
+paragraphs, level-two headings and list items without rewriting source words.
+The 0.2/0.5 punctuation-aware stitch thresholds reproduce the TypeSafe cookbook
+example; they are not calibrated for MSSR.
+
+The initial variant used a broad “same original block” `Choice` and flattened
+all blank gaps. On the English sample it got 23/28 queried boundaries correct;
+five list-item boundaries were joined and the resulting list was classified as
+a paragraph. This is concrete evidence that the question wording and
+deterministic treatment of blank gaps matter. The corrected variant achieved
+27/27 queried boundaries and exact reconstruction of all 8 blocks/types on an
+English ADR 0009 excerpt, and 25/25 boundaries with exact reconstruction of all
+7 blocks/types on a Spanish research excerpt. Both preserved the exact token
+sequence (288 and 272 tokens respectively). Each sample used two live
+`jev-1.13.0` requests. These are small, inspected development samples with
+source-derived labels, not independent human adjudication or a quality
+estimate. Confidence remains descriptive and uncalibrated.
+
+Receipts, external runner and source/build fingerprints are kept outside Git:
+`D:\MSSR-benchmark-artifacts\jev-structure-recovery-20261008-v1\` (failed
+prompt variant; result SHA-256 `E9F57BE9D17C73BA2F3C467261794D5D7D5B2252C07F06C86D9ECACEFEED3DCE`),
+`D:\MSSR-benchmark-artifacts\jev-structure-recovery-20261008-v2\` (English
+corrected variant; result SHA-256
+`5AAF8B40E0B6B431EC336662905810208D017B98A5632EF40BA6DA05C83BC97C`), and
+`D:\MSSR-benchmark-artifacts\jev-structure-recovery-20261008-v3\` (Spanish
+corrected variant; result SHA-256
+`9D0D283DFDE99090961696D977733E064FC856191B8DF87D4EA63C3B9C16FE0C`). No
+canonical document was modified. The result supports an opt-in composed
+preview as a plausible next implementation, but not automatic formatting or
+merge. Before exposing a product tool, test code/callout blocks, citation and
+line provenance retention, and a separate owner-adjudicated set; evaluate
+thresholds separately from token preservation.
+
 See TypeSafe's [Structure recovery](https://docs.typesafe.ai/cookbooks/autoformat),
 [Re-ranking](https://docs.typesafe.ai/cookbooks/rerank_typesafe),
 [question primitives](https://docs.typesafe.ai/primitives), and
