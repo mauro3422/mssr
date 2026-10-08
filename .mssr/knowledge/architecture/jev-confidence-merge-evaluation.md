@@ -49,6 +49,17 @@ references but synthetic tasks. Neither suite tests EvidenceAtom merge.
 Semantic Experience currently has 1,895 real shadow observations but no
 verified truth labels; they cannot score Jev semantic accuracy.
 
+A separate host-side structure-recovery diagnostic used Jev 1.13.0 on one real
+MSSR excerpt after removing JSON fences and blank-line separators while keeping
+each source line's citation. Noul recovered 14/14 adjacent boundaries; Choice
+classified all three exact blocks, and deterministic rendering reproduced the
+original Markdown exactly. The run used 4,418 input and 346 output tokens.
+This is one source-derived example with syntax-derived labels, not independent
+adjudication or a calibration result; Noul's 0.5 cutoff and raw confidence are
+unvalidated. Runner and receipt:
+`D:\MSSR-benchmark-artifacts\jev-structure-recovery-20261008-v5\` (result
+SHA-256 `BDC787EB651D8AF0FD21795FA3B10F2D2BA82E22648B76EBFD40EDE1793DB211`).
+
 The October 2 lexical bilingual rewrite was an offline deterministic-search
 experiment, not a Jev run. Spanish recall@100 rose from 4/26 to 9/26 overall
 (4/20 to 9/20 on development), but it found 0/6 in the previously opened
