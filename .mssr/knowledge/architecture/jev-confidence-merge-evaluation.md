@@ -49,16 +49,27 @@ references but synthetic tasks. Neither suite tests EvidenceAtom merge.
 Semantic Experience currently has 1,895 real shadow observations but no
 verified truth labels; they cannot score Jev semantic accuracy.
 
-A separate host-side structure-recovery diagnostic used Jev 1.13.0 on one real
-MSSR excerpt after removing JSON fences and blank-line separators while keeping
-each source line's citation. Noul recovered 14/14 adjacent boundaries; Choice
+A host-side structure-recovery diagnostic used Jev 1.13.0 on one real MSSR
+excerpt after removing JSON fences and blank-line separators while keeping
+each source line's citation. V5 recovered 14/14 adjacent boundaries; Choice
 classified all three exact blocks, and deterministic rendering reproduced the
-original Markdown exactly. The run used 4,418 input and 346 output tokens.
-This is one source-derived example with syntax-derived labels, not independent
-adjudication or a calibration result; Noul's 0.5 cutoff and raw confidence are
-unvalidated. Runner and receipt:
+original Markdown exactly (4,418 input / 346 output tokens). This was one
+source-derived example with syntax-derived labels, not independent adjudication
+or a calibration result. V5 receipt:
 `D:\MSSR-benchmark-artifacts\jev-structure-recovery-20261008-v5\` (result
 SHA-256 `BDC787EB651D8AF0FD21795FA3B10F2D2BA82E22648B76EBFD40EDE1793DB211`).
+
+V6 tested 47 lines/31 blocks from three real documents after removing blank
+gaps and Markdown markers. Jev 1.13.0 recovered 41/46 boundaries at Noul 0.5,
+23/31 exact blocks and 23/26 block types. The five errors were false joins
+(0.52–0.73): three list items and two paragraphs. Source hashes, line readback
+and citations passed. This diagnoses lossy preprocessing, not intrinsic Jev
+quality; preserve deterministic cues and ask Jev only about ambiguity. Offline
+threshold replay did not justify changing 0.5. V1–v6 remain syntax-labeled
+development diagnostics, not independent quality or calibration evidence.
+Runner/receipt are outside Git at
+`D:\MSSR-benchmark-artifacts\jev-structure-recovery-20261008-v6\` (result
+SHA-256 `22B2AF9116D1F69B880A085C46DE80EA7A281911719D00C298D39BA777B8A0D5`).
 
 The October 2 lexical bilingual rewrite was an offline deterministic-search
 experiment, not a Jev run. Spanish recall@100 rose from 4/26 to 9/26 overall
@@ -211,6 +222,12 @@ CLERC queries; these are provider-published examples, not independent MSSR
 results. This supports the user's observed intelligent grep, selection,
 lossless compaction and paragraph-assembly workflow as a composed capability.
 Semantic rewriting still needs a generator or a human.
+
+The official [Autoformat cookbook](https://docs.typesafe.ai/cookbooks/autoformat)
+also makes the important preprocessing boundary explicit: blank-line gaps and
+visible markers such as bullets and heading prefixes are read by code, not
+asked back as model judgments. Only ambiguous structure is sent to Jev. V6's
+false joins reproduce the failure mode caused by violating that boundary.
 
 For MSSR, the host can compose owner-authorized search and exact fetch, typed
 atom metadata, Jev selection/relation judgments, contradiction policy,
