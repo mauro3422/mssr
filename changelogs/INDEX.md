@@ -8,14 +8,22 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 - [0.2.59](0.2.59.md) - first-party skill-context correction: proportional maintenance review, specific recovery selectors, explicit close checkpoints and deterministic context-economy fixtures.
 - [0.2.58](0.2.58.md) - routing correction: visual evidence requires both `visual-qa` and human approval, preventing non-visual functional code audits from inheriting required visual workflow obligations.
 
-## Local source entries (not packaged or published)
+## Source entries incorporated by 0.2.109 (not separately published)
 
 - [0.2.108](0.2.108.md) - evaluate temporal comparability by relation direction, allowing chronological supersession while rejecting reverse chronology.
 - [0.2.107](0.2.107.md) - diversify Librarian ranges across source documents only within relevance and exact-fetchability ties.
 - [0.2.106](0.2.106.md) - keep the semantic evidence baseline compact while preserving full Document Surface/Librarian detail in a selectively loaded segment.
 
+## Source entries incorporated by 0.2.110 (not separately published)
+
+- [0.2.109](0.2.109.md) - package accumulated semantic relation corrections, including directional temporal evaluation of `supersedes`.
+- Restored the 0.2.108 read-only candidate range-overlap diagnostics after candidate package verification exposed their omission from 0.2.109.
+
 ## Current releases
 
+- [0.2.110](0.2.110.md) - restore bounded, read-only overlap diagnostics for Jev evidence candidates and package prior semantic relation corrections.
+
+- [0.2.109](0.2.109.md) - package relation-specific temporal evaluation, including chronological `supersedes`, with source-preserving synthesis.
 - [0.2.105](0.2.105.md) - rank an exact-fetchable candidate ahead of an oversized candidate when lexical relevance scores tie.
 - [0.2.104](0.2.104.md) - filter common English/Spanish function words from Librarian query terms to prevent incidental-only candidate matches.
 - [0.2.103](0.2.103.md) - split Librarian metadata into exact-heading Project Context modules and restore projection/stale-data guidance for implementation and debugging intents.
