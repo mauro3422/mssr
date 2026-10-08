@@ -253,6 +253,17 @@ merge. Before exposing a product tool, test code/callout blocks, citation and
 line provenance retention, and a separate owner-adjudicated set; evaluate
 thresholds separately from token preservation.
 
+A separate structure-type/provenance check classified an existing JSON code
+block and a Markdown validity callout correctly (2/2; raw Choice confidence
+1.0 for both). After Jev returned, the runner re-read both source files and
+verified the repository revision, source-document hashes, exact line ranges,
+range fingerprints and rendered text; all checks passed. The call used 1,374
+input and 123 output tokens. Receipt and runner are in
+`D:\MSSR-benchmark-artifacts\jev-structure-recovery-20261008-v4\` (result SHA-256
+`B94C0EF539DAE358862EC9A3F9779AEFB8B5A82F73FF6E2A07D303D7E394C6B5`). The sample
+tests classification and citation readback only; it does not test recovery of
+unmarked code boundaries or general accuracy.
+
 See TypeSafe's [Structure recovery](https://docs.typesafe.ai/cookbooks/autoformat),
 [Re-ranking](https://docs.typesafe.ai/cookbooks/rerank_typesafe),
 [question primitives](https://docs.typesafe.ai/primitives), and
