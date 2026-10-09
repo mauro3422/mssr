@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 1,
+  "suite": "mssr-bridge-real-docs-librarian-jev-selection-v1",
+  "runId": "mssr-bridge-real-docs-select-20261001T015733Z-4f3c2a",
+  "createdAt": "2026-10-01T02:01:31Z",
+  "status": "complete",
+  "parentRunId": null,
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "4c1cd24d7e389d620571497d9145af7e2f471f1e",
+    "workingTreeClean": false,
+    "codeSnapshotCleanAtFreeze": true,
+    "changedPaths": [
+      "experiments/jev-mssr-live/runs/mssr-bridge-real-docs-select-20261001T015733Z-4f3c2a/"
+    ],
+    "buildId": "Bridge 0.6.143 local compiled handler + MSSR 0.2.95 exact vendor artifact",
+    "buildArtifacts": [
+      {
+        "path": "dist/librarian-jev-selection.js",
+        "sha256": "45d84f3c9074c4903dce0cf53450ad60c612273f00f76bcb4a1463447af4fe6e"
+      },
+      {
+        "path": "dist/document-surface.js",
+        "sha256": "5304701921f8d07ff83503cc1e5fa8dbd58631646bdf40aeda6facfc7ec18172"
+      },
+      {
+        "path": "dist/librarian-retrieval.js",
+        "sha256": "5785c871f517fe21805106a54602092ddec09f94dad0347ce2308ffbab0f7965"
+      },
+      {
+        "path": "dist/semantic-curation-jev-contract.js",
+        "sha256": "dbed85a8c7b1175602e7a989cd7d0083563527b9936d885b1ed51111f9dd70b6"
+      },
+      {
+        "path": ".mssr/project-context.json",
+        "sha256": "9627c30109439e988d3e6b7245062351fcb524cb543e5fc3c5afe25fb894d831"
+      },
+      {
+        "path": "mauroprime-mssr-0.2.95.tgz",
+        "sha256": "53a563851fb503169c4a4db7057141d0ff55e8089790a1c2273be6d7092a7eb5"
+      }
+    ],
+    "hostBuild": {
+      "repository": "Bridge",
+      "branch": "codex/jev-bridge-adoption-20260930",
+      "gitCommit": "3b2f63cf56771be486db1575958096a3950d9fc9",
+      "workingTreeClean": false,
+      "featureChangedPaths": [
+        "package.json",
+        "package-lock.json",
+        "src/config.ts",
+        "src/tool-registry.ts",
+        "src/tools/mssr-semantic-evidence-tools.ts",
+        "scripts/test-mssr-semantic-evidence-tools.mjs",
+        "scripts/test-mssr-semantic-r4-adoption.mjs",
+        "scripts/test-v060-tools.mjs",
+        "TOOLS.md"
+      ],
+      "additionalUnrelatedChangesPresent": true,
+      "buildArtifacts": [
+        {
+          "path": "dist/tool-registry.js",
+          "sha256": "824bf43a0836fa68b19cd1386cefef66621a60843601282efd6387d6718faaec"
+        },
+        {
+          "path": "dist/tools/mssr-semantic-evidence-tools.js",
+          "sha256": "22f2b5bb61512968310680c4fe41da8e51bea2c424f1f5a026392c290df11fb6"
+        },
+        {
+          "path": "dist/config.js",
+          "sha256": "73c014be02bce8644ceb200e11febe09ef73a4443afe0f3dcbb828b13e82adf3"
+        },
+        {
+          "path": "vendor/mauroprime-mssr-0.2.95.tgz",
+          "sha256": "53a563851fb503169c4a4db7057141d0ff55e8089790a1c2273be6d7092a7eb5"
+        },
+        {
+          "path": "package-lock.json",
+          "sha256": "c713aaec25257aa2840047190525b70a9ce006f613cd845e96f078dd03494e52"
+        }
+      ]
+    }
+  },
+  "instrument": {
+    "runnerPath": "experiments/jev-mssr-live/runs/mssr-bridge-real-docs-select-20261001T015733Z-4f3c2a/runner.mjs",
+    "runnerSha256": "566257320cbeb1bd4392a1a181faf1be85c0cff60613190cb9a2667380d74c56",
+    "casesPath": "inputs/cases.json",
+    "casesSha256": "76660cfc49d397d598ce21f9c65ce7dc2d54d7467ee399068216ab15f3b2200a",
+    "lockfileSha256": "c713aaec25257aa2840047190525b70a9ce006f613cd845e96f078dd03494e52",
+    "runtime": "node v24.16.0",
+    "requestSchemaVersion": 1,
+    "toolIds": [
+      "mssr_librarian_jev_select",
+      "mssr_librarian_fetch"
+    ],
+    "executionMode": "isolated in-process Bridge registry containing only the semantic-evidence module; no Bridge HTTP restart"
+  },
+  "corpus": {
+    "snapshotPath": [
+      "inputs/semantic-evidence-plane.md",
+      "inputs/jev-confidence-merge-evaluation.md"
+    ],
+    "sha256": "5e65ea95afdc5679df7ccd8c1e196cbf76e7e15c48bd39949f62ae1421e5a394",
+    "items": 2,
+    "sourceRevision": "4c1cd24d7e389d620571497d9145af7e2f471f1e",
+    "sources": [
+      {
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "snapshotPath": "inputs/semantic-evidence-plane.md",
+        "sha256": "8195560b6c5c1d57f2a9710124c216cdf4a2d83cc7f9a65d51e7e5d64d3ea6bc",
+        "headings": 7
+      },
+      {
+        "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+        "snapshotPath": "inputs/jev-confidence-merge-evaluation.md",
+        "sha256": "72a3fc39152a0ffdd1b45e4e6c2e15c1c800b24cb1951157233314707b99dbb8",
+        "headings": 9
+      }
+    ],
+    "redaction": "reviewed project-metadata Markdown; exact source bytes frozen"
+  },
+  "provider": {
+    "mode": "live",
+    "provider": "TypeSafe Jev through the Bridge-owned credential/provider adapter",
+    "endpointIdentity": "api.typesafe.ai/v1/systemone",
+    "requestedModel": "jev-1.13.0",
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "timeoutMs": 30000,
+    "maxRetries": 1,
+    "concurrency": 1,
+    "networkOptIn": true,
+    "optInBasis": "The user has explicitly asked for live Jev trials on real MSSR documents; the runner separately requires --allow-network.",
+    "credentialValuePersisted": false,
+    "rawVendorResponsePersisted": false,
+    "providerRequestIdsAvailable": false,
+    "returnedModel": "jev-1.13.0"
+  },
+  "labels": {
+    "source": "author",
+    "frozenAt": "2026-10-01T02:01:31Z",
+    "adjudication": "none",
+    "labelFile": "inputs/labels.json",
+    "labelFileSha256": "91e9734387318a9642d27f06768aad78eda309ec8ac63cf384f8460e3b4fe436",
+    "exposedToRequests": false
+  },
+  "split": {
+    "method": "none-exploratory-smoke",
+    "trainIdsSha256": null,
+    "validationIdsSha256": null,
+    "holdoutIdsSha256": null,
+    "holdoutOpenedAt": null,
+    "holdoutUsedForTuning": false
+  },
+  "plan": {
+    "primaryMetric": "exact expected source heading match on frozen author labels",
+    "secondaryMetrics": [
+      "correct abstention on unrelated query",
+      "exact fetch fingerprint validation",
+      "input and output tokens",
+      "per-request provider latency",
+      "provider failures"
+    ],
+    "thresholds": {},
+    "independentUnit": "query over one frozen two-document project corpus",
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30
+    },
+    "uncertaintyMethod": "raw counts only; no confidence interval or calibration claim at n=3",
+    "expectedRequestCount": 3
+  },
+  "frozenInputHashes": {
+    "inputs/cases.json": "76660cfc49d397d598ce21f9c65ce7dc2d54d7467ee399068216ab15f3b2200a",
+    "inputs/labels.json": "91e9734387318a9642d27f06768aad78eda309ec8ac63cf384f8460e3b4fe436",
+    "inputs/semantic-evidence-plane.md": "8195560b6c5c1d57f2a9710124c216cdf4a2d83cc7f9a65d51e7e5d64d3ea6bc",
+    "inputs/jev-confidence-merge-evaluation.md": "72a3fc39152a0ffdd1b45e4e6c2e15c1c800b24cb1951157233314707b99dbb8"
+  },
+  "startedAt": "2026-10-01T02:04:54.236Z",
+  "completedAt": "2026-10-01T02:04:56.844Z",
+  "actualRequestCount": 3,
+  "successfulRequestCount": 3,
+  "failedRequestCount": 0,
+  "outputArtifacts": {
+    "recordsSha256": "55f2f1cd4cfe2ef8f70faa86e2f8d119747cc9ff952ef3ac690c26a380cfae12",
+    "scoringSha256": "1a71a9d096412c5677df8d87c2f7e8106c4eeaa546d2a3d3f0944dfb8187e5cf",
+    "summarySha256": "8a97d900e751e5f0a74b9ea159cadbe33d26e958eeebcfb304a6de5a0c584f7f",
+    "mcpE2eSha256": "7d475f6b45b0d0aa06c46120196c0b29ebc34dd033c4438161c692734b04ff25",
+    "reportSha256": "9e7a56613530d3c422b2c62e0240c4e432030ca525cd7c41ef158cd8291df66b"
+  },
+  "integrationVerification": {
+    "verificationId": "post-restart-mcp-roundtrip-20261001",
+    "status": "pass",
+    "scored": false,
+    "caseId": "exact-read-revision-check",
+    "runtimeBootId": "fef12ad4-e879-4c78-bfb2-54b3d4cdfcba",
+    "restartRequestId": "97ca3592-d184-43e8-9f40-bbbd74b697e0",
+    "providerCalls": 1,
+    "exactFetchPassed": 1,
+    "inputTokens": 2292,
+    "outputTokens": 197,
+    "latencyMs": 1017.2,
+    "resultPath": "mcp-e2e.json",
+    "resultSha256": "7d475f6b45b0d0aa06c46120196c0b29ebc34dd033c4438161c692734b04ff25",
+    "reportPath": "REPORT.md",
+    "reportSha256": "9e7a56613530d3c422b2c62e0240c4e432030ca525cd7c41ef158cd8291df66b",
+    "recordedAt": "2026-10-01T02:31:29Z"
+  }
+}

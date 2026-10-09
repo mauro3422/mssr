@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import {
   MAX_PROJECT_CONTEXT_CHARS,
   MAX_SEGMENTED_PROJECT_CONTEXT_SOURCE_BYTES,
@@ -80,6 +81,158 @@ const intentEdit = intent({ domains: ["coding"], actions: ["edit"] });
 const intentBlender = intent({ domains: ["blender"], actions: ["discover"], risk: "read-only" });
 
 try {
+  const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+  const repositoryManifest = JSON.parse(await fs.readFile(path.join(repositoryRoot, ".mssr", "project-context.json"), "utf8"));
+  const semanticEvidenceEntry = repositoryManifest.modules.find((entry) => entry.id === "mssr-semantic-evidence-plane");
+  assert.ok(semanticEvidenceEntry, "the semantic evidence plane must remain an indexed project-context module");
+  assert.equal(semanticEvidenceEntry.maxChars, 10_000, "segmentation must solve pressure without raising the declared entry budget");
+
+  const semanticEvidenceLibrarian = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: intent({
+      summary: "MSSR bibliotecario Jev búsqueda exacta y fetch de evidencia",
+      domains: ["coding"],
+      actions: ["analyze"],
+      artifacts: ["document"],
+      needs: ["integrity-verification"],
+      signals: ["tool-chain-needed"],
+      risk: "read-only",
+    }),
+    stage: "implement",
+    maxChars: 20_000,
+    maxModules: 32,
+    includeCore: false,
+  });
+  const evidencePlane = semanticEvidenceLibrarian.selected.find((record) => record.ref === "mssr-semantic-evidence-plane");
+  assert.ok(evidencePlane, "the repository's semantic evidence plane should load for Librarian/Jev work");
+  assert.ok(evidencePlane.bytes <= 10_000, "selected EvidenceAtom + Librarian sections must stay within the declared 10k budget");
+  assert.match(evidencePlane.content, /## Core Document and Librarian guarantees/);
+  assert.match(evidencePlane.content, /## Document Surface and Librarian contract/);
+  assert.match(evidencePlane.content, /same source revision/);
+  assert.equal(evidencePlane.segmentDecisions.find((decision) => decision.id === "document-surface-librarian-details")?.selected, true);
+  assert.deepEqual(semanticEvidenceLibrarian.ambiguousSegments, []);
+
+  const semanticEvidenceTriage = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: intent({
+      summary: "Jev semantic triage reduction batching and circuit breaking",
+      domains: ["coding"],
+      actions: ["analyze"],
+      artifacts: ["project"],
+      needs: ["integrity-verification"],
+      signals: ["tool-chain-needed"],
+      risk: "read-only",
+    }),
+    stage: "implement",
+    maxChars: 20_000,
+    maxModules: 32,
+    includeCore: false,
+  });
+  const triagePlane = semanticEvidenceTriage.selected.find((record) => record.ref === "mssr-semantic-evidence-plane");
+  assert.ok(triagePlane, "the repository's semantic evidence plane should load for Jev triage work");
+  assert.ok(triagePlane.bytes <= 10_000, "selected EvidenceAtom + Jev triage sections must stay within the declared 10k budget");
+  assert.match(triagePlane.content, /## Reduction, batching and semantic triage/);
+  assert.equal(triagePlane.segmentDecisions.find((decision) => decision.id === "reduction-semantic-triage")?.selected, true);
+  assert.deepEqual(semanticEvidenceTriage.ambiguousSegments, []);
+
+  const librarianModules = (result) => result.selected
+    .filter((record) => record.ref.startsWith("mssr-project-context-librarian"));
+  const librarianImplementation = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: intent({
+      domains: ["coding"],
+      actions: ["edit"],
+      artifacts: ["code"],
+      needs: ["unit-tests"],
+      signals: ["nominal"],
+      risk: "write",
+    }),
+    stage: "implement",
+    includeCore: false,
+  });
+  const implementationModules = librarianModules(librarianImplementation);
+  assert.deepEqual(implementationModules.map((record) => record.ref).sort(), [
+    "mssr-project-context-librarian-metadata-core",
+    "mssr-project-context-librarian-projection",
+  ]);
+  const implementationText = implementationModules.map((record) => record.content).join("\n");
+  assert.match(implementationText, /ordinary module selection, routing, context budgets, permission, or\s+canonical truth/);
+  assert.match(implementationText, /stale fingerprint produce an omission reason/);
+  assert.doesNotMatch(implementationText, /up to 512 heading declarations/);
+
+  const librarianDebug = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: intent({
+      domains: ["coding"],
+      actions: ["debug"],
+      artifacts: ["code"],
+      needs: ["integrity-verification"],
+      signals: ["error-observed"],
+      risk: "read-only",
+    }),
+    stage: "implement",
+    includeCore: false,
+  });
+  const debugModules = librarianModules(librarianDebug);
+  assert.deepEqual(debugModules.map((record) => record.ref).sort(), [
+    "mssr-project-context-librarian-metadata-core",
+    "mssr-project-context-librarian-projection",
+  ]);
+  assert.match(debugModules.map((record) => record.content).join("\n"), /stale fingerprint produce an omission reason/);
+
+  const librarianDesign = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: intent({
+      domains: ["coding"],
+      actions: ["design"],
+      artifacts: ["document"],
+      needs: [],
+      signals: ["nominal"],
+      risk: "read-only",
+    }),
+    stage: "start",
+    includeCore: false,
+  });
+  const designModules = librarianModules(librarianDesign);
+  assert.deepEqual(designModules.map((record) => record.ref).sort(), [
+    "mssr-project-context-librarian-metadata",
+    "mssr-project-context-librarian-metadata-core",
+  ]);
+  assert.match(designModules.map((record) => record.content).join("\n"), /up to 512 heading declarations/);
+  assert.doesNotMatch(designModules.map((record) => record.content).join("\n"), /stale fingerprint produce an omission reason/);
+
+  const librarianWrongArtifact = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: intent({
+      domains: ["coding"],
+      actions: ["debug"],
+      artifacts: ["spreadsheet"],
+      needs: [],
+      signals: ["nominal"],
+      risk: "read-only",
+    }),
+    stage: "implement",
+    includeCore: false,
+  });
+  assert.deepEqual(librarianModules(librarianWrongArtifact), []);
+
+  const librarianWrongAction = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: intent({
+      domains: ["coding"],
+      actions: ["review"],
+      artifacts: ["code"],
+      needs: [],
+      signals: ["nominal"],
+      risk: "read-only",
+    }),
+    stage: "implement",
+    includeCore: false,
+  });
+  assert.deepEqual(librarianModules(librarianWrongAction).map((record) => record.ref), [
+    "mssr-project-context-librarian-metadata-core",
+  ]);
+
   const filesA = {
     "core-a.md": "# Core\n\nAlways loaded.\n",
     "opt-edit.md": "# Edit\n\nChosen when editing.\n",

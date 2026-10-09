@@ -1,0 +1,1463 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-jev-candidate-selection-20260930-v1",
+  "rawVendorHttpBodiesPersisted": false,
+  "responses": [
+    {
+      "caseId": "01",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c053",
+      "selectedConfidence": 0.81,
+      "selectedCandidate": {
+        "optionId": "c053",
+        "rank": 53,
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "headingPath": [
+          "Semantic Evidence Plane architecture",
+          "Evidence atom and source boundary"
+        ],
+        "title": "Evidence atom and source boundary",
+        "snippet": "The common unit is a bounded `EvidenceAtom`: identity (`kind`, `subject`, project/trace/workflow/task when known), source/provenance (`sourceRef`, source class, canonical owner, observed time, freshn…",
+        "handleId": "b679f2aebe17b58c8767d7a7de847588ba4f53639fb18fab7f76b0a369caf481"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9506,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 851,
+      "startedAt": "2026-09-30T23:12:45.383Z",
+      "requestFingerprint": "972a53905196ad42b9acfa363d5cc3dd95f5533c4675110cfbb696e78895fda9",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "01",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.69,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9621,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 320.3,
+      "startedAt": "2026-09-30T23:12:46.323Z",
+      "requestFingerprint": "e087e55ab9d895a73d0e0c87a9dffb4c227f5931bdf9a6b01a62f2b6886b7a2a",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "02",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c017",
+      "selectedConfidence": 0.97,
+      "selectedCandidate": {
+        "optionId": "c017",
+        "rank": 17,
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "headingPath": [
+          "Semantic Evidence Plane architecture",
+          "Destinations, unused evidence and learning"
+        ],
+        "title": "Destinations, unused evidence and learning",
+        "snippet": "…cted/skipped -> delivered -> consumed/application evidence -> later verifier/outcome/correction. Unused evidence can therefore be sampled in counterfactual sweeps to detect missed relevance or corre…",
+        "handleId": "a1f70e01b5abda08352d35c8a74b0cc284d7ab6becf60e8557baa57e5ea7da1c"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9540,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 338.9,
+      "startedAt": "2026-09-30T23:12:46.761Z",
+      "requestFingerprint": "99682e4a3ce443410f6ab4dbb610b8227dc0a1585f00d4701cddc193564c6c89",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "02",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c061",
+      "selectedConfidence": 0.45,
+      "selectedCandidate": {
+        "optionId": "c061",
+        "rank": 61,
+        "sourceRef": "docs/skill-routing/ROADMAP.md",
+        "headingPath": [
+          "Roadmap de MSSR",
+          "Próximo nivel útil",
+          "3. Observabilidad de decisiones"
+        ],
+        "title": "3. Observabilidad de decisiones",
+        "snippet": "El analizador portable ya agrega decisiones por skill y por firma semántica. **Un skip no reduce globalmente la utilidad de una skill.** La evidencia debe responder preguntas contextuales: “¿en tarea…",
+        "handleId": "b669f45346aa25456eddc30b55a665680471ae8da26505b09437f8cc914d8a0a"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9838,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 309.1,
+      "startedAt": "2026-09-30T23:12:47.167Z",
+      "requestFingerprint": "7bb2f84e6c31ae1b065f90aed58738dbd8d7fe7c610429c8969a0c67472318ae",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "03",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c061",
+      "selectedConfidence": 0.32,
+      "selectedCandidate": {
+        "optionId": "c061",
+        "rank": 61,
+        "sourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+        "headingPath": [
+          "Project document reference lifecycle",
+          "States"
+        ],
+        "title": "States",
+        "snippet": "…lectable MSSR context. 2. **Candidate** — bounded Project Context Health discovery found it. Path/name evidence requests review only; it has no truth authority and causes no manifest write. 3. **Pro…",
+        "handleId": "319079624b4a04952e49f9bd0b8dab11eac1af168bddff81ad012be82f1afdeb"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9331,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 797,
+      "startedAt": "2026-09-30T23:12:47.597Z",
+      "requestFingerprint": "a5292b8eba821a5efbc2852ffd321425e83b0b44c0295f9122b937e66ec440cf",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "03",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c009",
+      "selectedConfidence": 0.55,
+      "selectedCandidate": {
+        "optionId": "c009",
+        "rank": 9,
+        "sourceRef": "docs/skill-routing/README.md",
+        "headingPath": [
+          "MSSR — Modular Semantic Skill Router",
+          "Descubrimiento de skills nuevas"
+        ],
+        "title": "Descubrimiento de skills nuevas",
+        "snippet": "## Descubrimiento de skills nuevas Cada llamada reescanea `~/.codex/skills` y el catálogo vivo de Roblox. Una skill nueva aparece inmediatamente y recibe metadata inferida por nombre y descripción. E…",
+        "handleId": "7d8c993f72f95e70d86f82106e350d794408e2d9befbff8fd4dbd499ab8ddb1b"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9741,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 323.5,
+      "startedAt": "2026-09-30T23:12:48.499Z",
+      "requestFingerprint": "5908c3e7193ae97da0baa90ac810aae04835fa47b666b5dfa559ea4b88d4e124",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "04",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c055",
+      "selectedConfidence": 0.61,
+      "selectedCandidate": {
+        "optionId": "c055",
+        "rank": 55,
+        "sourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+        "headingPath": [
+          "Project document reference lifecycle",
+          "Reference-on-miss"
+        ],
+        "title": "Reference-on-miss",
+        "snippet": "## Reference-on-miss This is recovery, not a second index. It chooses only from the current disconnected-candidate audit after normal context is insufficient. Selection is bounded and deterministic; …",
+        "handleId": "85818b07967c87311a3156583bed77f32f128f56d1751383fbe0d593fc62bc7a"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9300,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 315,
+      "startedAt": "2026-09-30T23:12:48.936Z",
+      "requestFingerprint": "b6cf58a51a8346b9e4dfb4dc2b48efbfabfe48951e16884b3cf759f62e9e9c6a",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "04",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.93,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9682,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 385.6,
+      "startedAt": "2026-09-30T23:12:49.363Z",
+      "requestFingerprint": "0fd03d0cf602a92da3e378d9fb8b4da8d9d9d23565c4c8a2f01c542ec909f3fa",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "06",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c073",
+      "selectedConfidence": 0.7,
+      "selectedCandidate": {
+        "optionId": "c073",
+        "rank": 73,
+        "sourceRef": "docs/decisions/0001-context-plane-v1.md",
+        "headingPath": [
+          "ADR 0001 — MSSR Context Plane v1",
+          "0.2.49 cross-cutting applicability amendment"
+        ],
+        "title": "0.2.49 cross-cutting applicability amendment",
+        "snippet": "…cannot belong to an `exclusiveGroup`. If required context exceeds the task budget, the loader reports required budget debt/overflow rather than silently dropping the contract or increasing limits. T…",
+        "handleId": "5696a73e31ff2ad48a3e521de1083862688abaaf5ea890d09585cc15a712df74"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9560,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 337.8,
+      "startedAt": "2026-09-30T23:12:49.872Z",
+      "requestFingerprint": "1f39b65cce42d0085ae3f8a05fa587291ed024fff93d3d604abcd530b02bbfec",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "06",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.48,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9682,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 321.6,
+      "startedAt": "2026-09-30T23:12:50.278Z",
+      "requestFingerprint": "abe5ccdaf19f0cbdae37025442048446976526ef1bbf589a3ce97c74d0d7c36c",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "08",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c016",
+      "selectedConfidence": 0.54,
+      "selectedCandidate": {
+        "optionId": "c016",
+        "rank": 16,
+        "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+        "headingPath": [
+          "Architecture Impact decision history"
+        ],
+        "title": "Architecture Impact decision history",
+        "snippet": "# Architecture Impact decision history ## Current cross-host coordinator (0.2.54) MSSR 0.2.54 exposes the completed portable coordinator through one identical native/Codex/OpenCode MCP boundary. Exac…",
+        "handleId": "85d1884aee0cf4f823e298637d355f7622b33f7b8d1ded10bf68e3ba1056979c"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 10044,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 304.1,
+      "startedAt": "2026-09-30T23:12:50.705Z",
+      "requestFingerprint": "40b7b1feeed6d3ea54464ee2cb1e97132a94fe9902dc311561feb79b8602f9a4",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "08",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.25,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9816,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 317.1,
+      "startedAt": "2026-09-30T23:12:51.147Z",
+      "requestFingerprint": "c9cfc833e60f6aea4f172edcf7e7169cd5d21878a7d0ae1d304969843f37e5cb",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "09",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c074",
+      "selectedConfidence": 0.77,
+      "selectedCandidate": {
+        "optionId": "c074",
+        "rank": 74,
+        "sourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+        "headingPath": [
+          "Semantic consistency relations and retrieval decision"
+        ],
+        "title": "Semantic consistency relations and retrieval decision",
+        "snippet": "Typed semantic relations are directional, scope-bound and provenance-bearing. Only current `declared` `mirrors`/`summarizes` edges may authorize deterministic comparison between differently named sub…",
+        "handleId": "2904eb2191c083f4f0f91dabd6ed376b5c45694ac443049ce42024dba4f9577d"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9760,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 327.7,
+      "startedAt": "2026-09-30T23:12:51.570Z",
+      "requestFingerprint": "20346dbce6996ccec4eacd2bff5b23c5b357e3edf6ef2402036762b56983ea91",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "09",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.53,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9720,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 340.9,
+      "startedAt": "2026-09-30T23:12:51.965Z",
+      "requestFingerprint": "7e1ca0dc384f4caaca062173841ac07b8992f65631f47bf977401079dc341b12",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "10",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c011",
+      "selectedConfidence": 0.67,
+      "selectedCandidate": {
+        "optionId": "c011",
+        "rank": 11,
+        "sourceRef": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
+        "headingPath": [
+          "Semantic consistency current-truth decision",
+          "R4 temporal validity"
+        ],
+        "title": "R4 temporal validity",
+        "snippet": "…es authority from temporal validity. A statement can be authoritative evidence of an earlier state without competing as current truth. Explicit `historical` and `superseded` claims remain provenance…",
+        "handleId": "8bb21b45cc29ed34bb7134fc40ff8d22b328333af59e2d5c9a2cdc40a665069e"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9607,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 310.2,
+      "startedAt": "2026-09-30T23:12:52.417Z",
+      "requestFingerprint": "16ea0ad39b1c872c2f9655af8a07753ce583a125205da484459a719308f1942e",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "10",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.49,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9658,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 433.4,
+      "startedAt": "2026-09-30T23:12:52.801Z",
+      "requestFingerprint": "7ac2044e3a23c85101c597fa9eb13b33f2ed18e7c2654fc0413f465a8892730a",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "12",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c043",
+      "selectedConfidence": 0.51,
+      "selectedCandidate": {
+        "optionId": "c043",
+        "rank": 43,
+        "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+        "headingPath": [
+          "Change-history contract"
+        ],
+        "title": "Change-history contract",
+        "snippet": "## Change-history contract Every release uses `changelogs/X.Y.Z.md` with explicit PROJECT_CONTEXT/PROJECT_MEMORY/PROJECT_STATE impact. The portable core parses/evaluates this contract; host adapters …",
+        "handleId": "0f5b5673d7003be67eae173ffa47b5951738686e62193ae79fd574e1d0a4d00e"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9458,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 342.4,
+      "startedAt": "2026-09-30T23:12:53.345Z",
+      "requestFingerprint": "11972fac2011cdd615fb9fff1b0b2d23ff6cfa45c70c1bb1b5805d06e9d6dad8",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "12",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.9,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9806,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 315.8,
+      "startedAt": "2026-09-30T23:12:53.769Z",
+      "requestFingerprint": "de35fe95da1351b393c267e5d05b39e8e9302194904696b62a3520519e585fbf",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "13",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c045",
+      "selectedConfidence": 0.27,
+      "selectedCandidate": {
+        "optionId": "c045",
+        "rank": 45,
+        "sourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+        "headingPath": [
+          "ADR 0004 — Situation Model for project knowledge",
+          "Verification gates"
+        ],
+        "title": "Verification gates",
+        "snippet": "1. inferred/learned evidence cannot be canonical; 2. historical PROJECT_MEMORY revision differing from current canonical revision yields REVIEW and evidence revalidation first; 3. matching revision r…",
+        "handleId": "054bd018c242105e2dec05181821873b1f26b65f95796c516a401c9e60197ece"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9764,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 301.9,
+      "startedAt": "2026-09-30T23:12:54.205Z",
+      "requestFingerprint": "0435a7269e16a24a7c8cee8d3f2f5cda6f34358f550ea9a5ff021ba337771cde",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "13",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.53,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9924,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 407.2,
+      "startedAt": "2026-09-30T23:12:54.573Z",
+      "requestFingerprint": "16a7883c3258dbcc34c1ef841f78217d07a7dbe1bced106fb7c1c1d016861d2a",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "15",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c001",
+      "selectedConfidence": 0.25,
+      "selectedCandidate": {
+        "optionId": "c001",
+        "rank": 1,
+        "sourceRef": "docs/AGENT_PROTOCOL.md",
+        "headingPath": [
+          "Agent protocol"
+        ],
+        "title": "Agent protocol",
+        "snippet": "…easoning. It makes routing reusable across skills and tools without forcing every request through a proxy. ## Intent envelope Before substantial specialized work, the host must form a compact intent…",
+        "handleId": "14cf7b5c80690f029bed56402b97fec4d5a8230e599a9320d743713a28643f4e"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9398,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 293,
+      "startedAt": "2026-09-30T23:12:55.105Z",
+      "requestFingerprint": "8a2717d2566a8451805bbbbc3e4bfb5b5c234801cbd559d68a38c070482a37cf",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "15",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.65,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9687,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 330.1,
+      "startedAt": "2026-09-30T23:12:55.467Z",
+      "requestFingerprint": "eb361edcd75a1081cb1ea15285338e52e928c4fb75885c8fcc1598fe25b6ac23",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "16",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c014",
+      "selectedConfidence": 0.97,
+      "selectedCandidate": {
+        "optionId": "c014",
+        "rank": 14,
+        "sourceRef": "docs/AGENT_PROTOCOL.md",
+        "headingPath": [
+          "Agent protocol",
+          "User-visible progress contract",
+          "Ephemeral trace working memory"
+        ],
+        "title": "Ephemeral trace working memory",
+        "snippet": "### Ephemeral trace working memory A host may preserve bounded working metadata only while a trace remains open when it materially improves continuation or recovery. The portable shape is deliberatel…",
+        "handleId": "e5d1abfa74290c84fb4e8deef9ade7585174d924414605e92ee4e938fc8fb7b1"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9607,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 354.9,
+      "startedAt": "2026-09-30T23:12:55.912Z",
+      "requestFingerprint": "e550c2b7cc0e0d562ffc4a56a868ad8b2e44ea0ff66015af0b44179abc54ff91",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "16",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c087",
+      "selectedConfidence": 0.26,
+      "selectedCandidate": {
+        "optionId": "c087",
+        "rank": 87,
+        "sourceRef": "docs/skill-routing/README.md",
+        "headingPath": [
+          "MSSR — Modular Semantic Skill Router",
+          "Contexto conversacional"
+        ],
+        "title": "Contexto conversacional",
+        "snippet": "`context` no debe ser una transcripción completa, conversación irrelevante ni cadena de pensamiento. Es evidencia adicional: el mensaje actual, las instrucciones superiores y la intención explícita c…",
+        "handleId": "71ab03aecdf6cb083629c377d8b11b025334212dd2eef44bb069a568d411c337"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9764,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 317,
+      "startedAt": "2026-09-30T23:12:56.331Z",
+      "requestFingerprint": "c7c9144c9ed2e4a7156d6ee9d49d04b5b2d28b7f35f7008e2d900b6e667f087c",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "17",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c040",
+      "selectedConfidence": 0.58,
+      "selectedCandidate": {
+        "optionId": "c040",
+        "rank": 40,
+        "sourceRef": "docs/REPOSITORY_STRUCTURE.md",
+        "headingPath": [
+          "MSSR repository structure",
+          "Generated and runtime outputs"
+        ],
+        "title": "Generated and runtime outputs",
+        "snippet": "## Generated and runtime outputs The skill dashboard is generated under the Codex runtime tree: ```text C:\\Users\\mauro\\.codex\\skills\\_dashboard\\ ``` It is not an editable source and is not committed …",
+        "handleId": "6285d1f9c08a52f87fcc04df256e9fab174ce66befddfcd29253cf1599d4f69e"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9629,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 484.4,
+      "startedAt": "2026-09-30T23:12:56.773Z",
+      "requestFingerprint": "00a77ebf3a9233f9142156af0d8cbc5b51f9a955a459efe66226daeecd0cdd23",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "17",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.38,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9598,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 373.5,
+      "startedAt": "2026-09-30T23:12:57.320Z",
+      "requestFingerprint": "41874a89b0a7fb32227f6c5a2566e78e40e2ee3e07c87d3356954ddb29cbf5fa",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "18",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.35,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9434,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 371.1,
+      "startedAt": "2026-09-30T23:12:57.804Z",
+      "requestFingerprint": "482272032d1955376d39e8eccee255d789412afe64c2c862383c3a77c8e9322b",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "18",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.69,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9796,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 358.8,
+      "startedAt": "2026-09-30T23:12:58.276Z",
+      "requestFingerprint": "092f42c2fb95540bc0789c6e005b64b5532d95e21b44e60641cc31b1c324f3bc",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "19",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c074",
+      "selectedConfidence": 0.28,
+      "selectedCandidate": {
+        "optionId": "c074",
+        "rank": 74,
+        "sourceRef": "docs/REGISTRY.md",
+        "headingPath": [
+          "Registry and autoregistry",
+          "What requires a tracked change"
+        ],
+        "title": "What requires a tracked change",
+        "snippet": "This distinction keeps agents informed without spending context on every tool name. An agent asks for a catalog/search/inspect only when the active task needs it.",
+        "handleId": "a3b5ad17c18b9a017708eac2d2fe9cf921ecf7aa7123424439d7c66220ecb3b2"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9598,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 543,
+      "startedAt": "2026-09-30T23:12:58.743Z",
+      "requestFingerprint": "2655752994ad1ed945a48fcc1a748af96b4419c7d51ba8c6861d52d48c044b3a",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "19",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.45,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9761,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 455.7,
+      "startedAt": "2026-09-30T23:12:59.422Z",
+      "requestFingerprint": "476384cd22a5461c9f3135f5d07473ec3e3d31b101805db7e3d8aae2ab888089",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "20",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c061",
+      "selectedConfidence": 0.46,
+      "selectedCandidate": {
+        "optionId": "c061",
+        "rank": 61,
+        "sourceRef": "docs/FIRST_PARTY_SKILLS_V1.md",
+        "headingPath": [
+          "First-party skills v1: distribution, migration, and evaluation",
+          "Package preflight"
+        ],
+        "title": "Package preflight",
+        "snippet": "…powershell npm run check npm run test:first-party-skills pwsh -NoProfile -File .\\scripts\\test-install-first-party-skills.ps1 ``` `test:first-party-skills` verifies manifest/source/frontmatter identi…",
+        "handleId": "dadf572ce2127f1d96d190b703d6b648c089659e7f4ac8dfc5af88867c684398"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9362,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 412.3,
+      "startedAt": "2026-09-30T23:13:00.005Z",
+      "requestFingerprint": "12d2d94a55fb82e2309f14a54efd1a5a058fe37bd5d16affdc5c1b6181a86cd7",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "20",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.53,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9637,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 348.6,
+      "startedAt": "2026-09-30T23:13:00.483Z",
+      "requestFingerprint": "493f8bcc28181d5768dcbff2c89518508e40732f842edfe2b9522b3440c5bb54",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "21",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.3,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9207,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 426.3,
+      "startedAt": "2026-09-30T23:13:00.960Z",
+      "requestFingerprint": "898863a088dbefbee8667fd9c7581e41a2dcb39f71bb302818f2af7598e4b8ab",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "21",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.42,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9757,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 326.8,
+      "startedAt": "2026-09-30T23:13:01.504Z",
+      "requestFingerprint": "b08698fca9987384ea77bd062b2cf5c489bc72bb3c18b1ce6535a523fc5f8ad1",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "22",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c074",
+      "selectedConfidence": 0.44,
+      "selectedCandidate": {
+        "optionId": "c074",
+        "rank": 74,
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "headingPath": [
+          "Semantic Evidence Plane architecture",
+          "Progressive section retrieval"
+        ],
+        "title": "Progressive section retrieval",
+        "snippet": "Eligible Markdown/skill sources may expose a revision-bound heading tree (`H1..H6`) with exact ranges. Retrieval is progressive: metadata -> top-level headings -> relevant branch -> exact section -> …",
+        "handleId": "fea534c33084997b6e89408e9271ecd8facad8f56ce304843e88b4acbbd05e2d"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9327,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 305.3,
+      "startedAt": "2026-09-30T23:13:01.959Z",
+      "requestFingerprint": "766b4f43223659efbe1b01314d7820ee0d447ee462b7ab4aa6cd8e6625e8a179",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "22",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c021",
+      "selectedConfidence": 0.47,
+      "selectedCandidate": {
+        "optionId": "c021",
+        "rank": 21,
+        "sourceRef": "docs/skill-routing/README.md",
+        "headingPath": [
+          "MSSR — Modular Semantic Skill Router",
+          "Ensamblado selectivo de contexto"
+        ],
+        "title": "Ensamblado selectivo de contexto",
+        "snippet": "- `contentMode=selective` es el default de `skill_bootstrap`; - `includeReferences=none` ensambla sólo el núcleo declarado; - `contentMode=full` devuelve el `SKILL.md` exacto para diagnóstico o rollb…",
+        "handleId": "f872282df8bd3d6166cad28285a158de01c12aeb7b35f6dff523161c787925ed"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9608,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 314.6,
+      "startedAt": "2026-09-30T23:13:02.329Z",
+      "requestFingerprint": "4a0e7642316c3ed6f5fcaedb099e44c5cb8a06e48bc6d63825a79c4d651b8383",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "23",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c062",
+      "selectedConfidence": 0.46,
+      "selectedCandidate": {
+        "optionId": "c062",
+        "rank": 62,
+        "sourceRef": "docs/skill-routing/TESTING.md",
+        "headingPath": [
+          "Pruebas de MSSR"
+        ],
+        "title": "Pruebas de MSSR",
+        "snippet": "…x La regresión determinista de `scripts/test-v060-tools.mjs` debe cubrir tres estados del catálogo remoto: 1. tools vivas presentes -> `healthy`; 2. tools vivas vacías con último catálogo sano -> `d…",
+        "handleId": "0e1272fcbbe1cf21a60b5f5ccd1d3e13380454b3663e5bc8f9bf46408de6661f"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9258,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 302.5,
+      "startedAt": "2026-09-30T23:13:02.753Z",
+      "requestFingerprint": "977ff77b9883207b5f13f22b4a53dcb9351066413a1b0426beb68bea6dd34a05",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "23",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c098",
+      "selectedConfidence": 0.54,
+      "selectedCandidate": {
+        "optionId": "c098",
+        "rank": 98,
+        "sourceRef": "docs/skill-routing/TESTING.md",
+        "headingPath": [
+          "Pruebas de MSSR",
+          "Capas",
+          "3. Regresión aislada"
+        ],
+        "title": "3. Regresión aislada",
+        "snippet": "`scripts/test-skill-routing.mjs` descubre el catálogo local mediante el provider de filesystem y ejecuta todas las fixtures versionadas contra el motor independiente.",
+        "handleId": "a09f209326c8244e4b599ec3a4d5484af1509b4d8dda2c0e9e13738fd8c2454e"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9771,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 301.3,
+      "startedAt": "2026-09-30T23:13:03.142Z",
+      "requestFingerprint": "a181564759490ea0f2035a9ea7f209c41a7d4733e139b314c0c74c880bfa99a5",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "24",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.58,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9689,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 316.6,
+      "startedAt": "2026-09-30T23:13:03.556Z",
+      "requestFingerprint": "deba1ddc36cfcad1f950918598f88504c9956f453b34415d2acccb73a036833b",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "24",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c004",
+      "selectedConfidence": 0.86,
+      "selectedCandidate": {
+        "optionId": "c004",
+        "rank": 4,
+        "sourceRef": "docs/skill-routing/ROADMAP.md",
+        "headingPath": [
+          "Roadmap de MSSR",
+          "Próximo nivel útil",
+          "2. Extender autoridad de contexto de proyecto a todos los hosts"
+        ],
+        "title": "2. Extender autoridad de contexto de proyecto a todos los hosts",
+        "snippet": "### 2. Extender autoridad de contexto de proyecto a todos los hosts El contrato portable y el adapter Bridge ya pueden detectar y resumir fuentes durables sin copiar todo su contenido. Falta llevar e…",
+        "handleId": "83a5ade172a04204fb9ab3ff881d74fa7cc485d36483bceea42d63dc68a8716b"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9820,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 493.9,
+      "startedAt": "2026-09-30T23:13:03.967Z",
+      "requestFingerprint": "dfc2fd151c339a30e51f96e90ac0a488562e59ec924b33c049270b05c1f428d2",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "25",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c039",
+      "selectedConfidence": 0.73,
+      "selectedCandidate": {
+        "optionId": "c039",
+        "rank": 39,
+        "sourceRef": "docs/AGENT_PROTOCOL.md",
+        "headingPath": [
+          "Agent protocol",
+          "When skills change"
+        ],
+        "title": "When skills change",
+        "snippet": "## When skills change Creating or materially changing a skill should trigger a routing audit: 1. Declare its domains, actions, artifacts, needs, and phase role. 2. Add durable routing metadata/fixtur…",
+        "handleId": "1a4194f1dd40567be0a849c8719fb23d236c2059576b7a7503def96d2883acd5"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9097,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 340,
+      "startedAt": "2026-09-30T23:13:04.596Z",
+      "requestFingerprint": "14dbdf354733a08ad2d3e59799f6ed0ca0f556181ccaad99428cab31f1115a7f",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "25",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c039",
+      "selectedConfidence": 0.35,
+      "selectedCandidate": {
+        "optionId": "c039",
+        "rank": 39,
+        "sourceRef": "docs/skill-routing/MAINTENANCE.md",
+        "headingPath": [
+          "Mantenimiento de MSSR",
+          "Al modificar una skill"
+        ],
+        "title": "Al modificar una skill",
+        "snippet": "## Al modificar una skill Actualizar routing y fixtures cuando cambie alguno de estos aspectos: - propósito o disparadores; - fase del workflow; - dependencias o skills complementarias; - artefactos …",
+        "handleId": "48d132ec21957049e268a3c826fdc8d0a217beca5e193352ffe060bad4510e39"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9796,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 367.6,
+      "startedAt": "2026-09-30T23:13:05.020Z",
+      "requestFingerprint": "0829a3e44304a3950763f8f96a540ffca454e0c3aeebe694051b07110a213818",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "26",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c071",
+      "selectedConfidence": 0.6,
+      "selectedCandidate": {
+        "optionId": "c071",
+        "rank": 71,
+        "sourceRef": "docs/OPERATIONAL_NOTICE_PLANE.md",
+        "headingPath": [
+          "MauroPrime Operational Notice Plane",
+          "What this is not"
+        ],
+        "title": "What this is not",
+        "snippet": "## What this is not The Notice Plane is not: - a replacement for MSSR traces; - a replacement for outcomes; - a replacement for Context Messages or the durable Context Plane inbox; - a new durable so…",
+        "handleId": "663728d70d47b8f370b0cc7e0d3b9814d2f8b8b30e1955baf9a00bcc7b02b9c6"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9387,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 398.3,
+      "startedAt": "2026-09-30T23:13:05.506Z",
+      "requestFingerprint": "481647f83ce368105ff0b9c34a2865e00783e071504665347bccfe0ef4656e64",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "26",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c083",
+      "selectedConfidence": 0.32,
+      "selectedCandidate": {
+        "optionId": "c083",
+        "rank": 83,
+        "sourceRef": "docs/skill-routing/README.md",
+        "headingPath": [
+          "MSSR — Modular Semantic Skill Router",
+          "Contexto conversacional"
+        ],
+        "title": "Contexto conversacional",
+        "snippet": "- `task`: el mensaje actual; - `context`: resumen resuelto y acotado de la conversación relevante en cualquier tarea especializada multi-turno; - `intent`: clasificación estructurada cuando sea posib…",
+        "handleId": "8b7ba090d1eaaa7e58add9f323c353d29f1870c8013f4cda494ca1540184002d"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9912,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 355.4,
+      "startedAt": "2026-09-30T23:13:05.971Z",
+      "requestFingerprint": "8d3ecaea1f594cd00f2fe218b639dcb604f60f96f849662ae44a46aa3cff023e",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "27",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c035",
+      "selectedConfidence": 0.52,
+      "selectedCandidate": {
+        "optionId": "c035",
+        "rank": 35,
+        "sourceRef": "docs/decisions/0001-context-plane-v1.md",
+        "headingPath": [
+          "ADR 0001 — MSSR Context Plane v1",
+          "Decision",
+          "Continuation and persistence"
+        ],
+        "title": "Continuation and persistence",
+        "snippet": "### Continuation and persistence A continuation carries a compact receipt of selected sources, their provenance/freshness, unresolved contradictions, compatible trace, and next gate. It must be reval…",
+        "handleId": "e41f16cb2f22d11fa1f40fed35f821c9c37643efa0bbbe71279fad0b667c3fd8"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9586,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 337.8,
+      "startedAt": "2026-09-30T23:13:06.444Z",
+      "requestFingerprint": "901a2f582407fcde3d87340f42021d08946af6a754fc4990bdbd21814653b8ad",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "27",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c044",
+      "selectedConfidence": 0.37,
+      "selectedCandidate": {
+        "optionId": "c044",
+        "rank": 44,
+        "sourceRef": "docs/skill-routing/README.md",
+        "headingPath": [
+          "MSSR — Modular Semantic Skill Router",
+          "Contexto conversacional"
+        ],
+        "title": "Contexto conversacional",
+        "snippet": "…es enviar normalmente entre 500 y 2000 caracteres de contexto, con un máximo de 4000. Debe cubrir el objetivo aceptado, restricciones relevantes, trabajo ya realizado o fase actual y referencias tod…",
+        "handleId": "53abe0fceda815bbba1e02a15d27282d0030bfa8f25fc008dceb9017a49fb2da"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9857,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 433.9,
+      "startedAt": "2026-09-30T23:13:06.850Z",
+      "requestFingerprint": "286deebc66239b2e1b25618eb727de66c00233159d1b0eee21fc615cc28dba07",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "28",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c014",
+      "selectedConfidence": 0.43,
+      "selectedCandidate": {
+        "optionId": "c014",
+        "rank": 14,
+        "sourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+        "headingPath": [
+          "ADR 0003 — Evidence-first consistency recommendations"
+        ],
+        "title": "ADR 0003 — Evidence-first consistency recommendations",
+        "snippet": "# ADR 0003 — Evidence-first consistency recommendations - Status: accepted - Date: 2026-08-16 - Owner: portable MSSR ## Context C2c can prove that bounded semantic claims disagree and can enumerate r…",
+        "handleId": "f98127a6604de802925d654c299d9c8581847c8b15a1db252cdb0271f40c28d9"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9626,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 321.4,
+      "startedAt": "2026-09-30T23:13:07.395Z",
+      "requestFingerprint": "7b536d907c3f59db06d989356e00c96a428f9fc9fa39fe05931f8b141c2b8d03",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "28",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.63,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9776,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 320.4,
+      "startedAt": "2026-09-30T23:13:07.818Z",
+      "requestFingerprint": "e8f055f270a42611a53e2a353d1592d50372d7feaf44595d50acc906f68316ec",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "29",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c033",
+      "selectedConfidence": 0.51,
+      "selectedCandidate": {
+        "optionId": "c033",
+        "rank": 33,
+        "sourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+        "headingPath": [
+          "ADR 0004 — Situation Model for project knowledge",
+          "Decision",
+          "Evidence classes"
+        ],
+        "title": "Evidence classes",
+        "snippet": "…ituation observations explicitly distinguish: 1. `observed` — directly measured machine evidence such as file revision/hash, test/runtime state; 2. `declared` — bounded claims/receipts intentionally…",
+        "handleId": "b632a380843de9f3e172da2572fbb4537719428c190631f385526ac93c8dabe0"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9669,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 353.7,
+      "startedAt": "2026-09-30T23:13:08.247Z",
+      "requestFingerprint": "9193f1f769a9899b7aa63bbfcd4f00b6711b3a8c2f9878260424259440bb9f83",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "29",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c032",
+      "selectedConfidence": 0.51,
+      "selectedCandidate": {
+        "optionId": "c032",
+        "rank": 32,
+        "sourceRef": "docs/skill-routing/README.md",
+        "headingPath": [
+          "MSSR — Modular Semantic Skill Router",
+          "Contexto conversacional",
+          "Routing Evidence Checkpoint y notices"
+        ],
+        "title": "Routing Evidence Checkpoint y notices",
+        "snippet": "### Routing Evidence Checkpoint y notices El “segundo tick” no es acceso a pensamientos privados. Es la frontera observable donde el agente, después de interpretar la consulta, emite la intención est…",
+        "handleId": "b217a85f99f3b076439070add37a6142d88fb52a4446f02fe1a43d7a59167107"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9716,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 398.8,
+      "startedAt": "2026-09-30T23:13:08.666Z",
+      "requestFingerprint": "0b525982bb8394c1f358032bff67189d6d1bff0cbb8b75b2f522c4df36efc639",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "30",
+      "language": "en",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "c028",
+      "selectedConfidence": 0.31,
+      "selectedCandidate": {
+        "optionId": "c028",
+        "rank": 28,
+        "sourceRef": "docs/decisions/0005-architecture-impact-drift-links.md",
+        "headingPath": [
+          "ADR 0005 — Architecture Impact / Drift Links",
+          "C2f-B boundary"
+        ],
+        "title": "C2f-B boundary",
+        "snippet": "1. MSSR deterministically plans the exact `authorityRef` and `impactRefs` a host should inspect for each declared architecture. 2. The host returns one explicit metadata observation per planned ref: …",
+        "handleId": "6787aaf6fc7d0ceab5c47df0d742dfe31d45cedc5313b95a71406ea948500208"
+      },
+      "noneSelected": false,
+      "usage": {
+        "input_tokens": 9780,
+        "output_tokens": 1027
+      },
+      "elapsedMs": 458.3,
+      "startedAt": "2026-09-30T23:13:09.178Z",
+      "requestFingerprint": "580aa8252d015844f013a403b66aebf91f6e19cb4ae4fb081891bdcc72476c59",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    },
+    {
+      "caseId": "30",
+      "language": "es",
+      "status": "success",
+      "requestedModel": "jev-1.13.0",
+      "returnedModel": "jev-1.13.0",
+      "provider": "typesafe-jev",
+      "selectedOption": "none",
+      "selectedConfidence": 0.33,
+      "selectedCandidate": null,
+      "noneSelected": true,
+      "usage": {
+        "input_tokens": 9964,
+        "output_tokens": 1024
+      },
+      "elapsedMs": 310.4,
+      "startedAt": "2026-09-30T23:13:09.702Z",
+      "requestFingerprint": "f829079c68afce607d88880f25f7e4ebe410dedde80a87048b70f005c90f2aed",
+      "offeredCandidates": 100,
+      "candidateListTruncated": true
+    }
+  ]
+}

@@ -25,7 +25,13 @@ export const mssrJevDecisionRequestSchema = z.object({
 }).strict();
 
 const mssrJevDecisionAnswerSchema = z.discriminatedUnion("type", [
-  z.object({ type: z.literal("choice"), choice: z.string().min(1), confidence: z.number().min(0).max(1) }).strict(),
+  z.object({
+    type: z.literal("choice"),
+    choice: z.string().min(1),
+    confidence: z.number().min(0).max(1),
+    /** Optional provider distribution retained for bounded within-shard candidate shortlisting. */
+    probabilities: z.record(z.string().min(1), z.number().min(0).max(1)).optional(),
+  }).strict(),
   z.object({ type: z.literal("noul"), noul: z.number().min(0).max(1) }).strict(),
 ]);
 
@@ -67,6 +73,22 @@ export function validateMssrJevDecisionResponse(
     if (question.kind === "choice") {
       if (answer.type !== "choice" || !(answer.choice in question.options)) {
         throw new Error(`Jev decision response contains an invalid choice for '${key}'.`);
+      }
+      if (answer.type === "choice" && answer.probabilities) {
+        const expectedOptions = Object.keys(question.options).sort();
+        const returnedOptions = Object.keys(answer.probabilities).sort();
+        if (expectedOptions.length !== returnedOptions.length || expectedOptions.some((option, index) => option !== returnedOptions[index])) {
+          throw new Error(`Jev decision response probabilities must exactly match the offered choices for '${key}'.`);
+        }
+        const totalProbability = Object.values(answer.probabilities).reduce((sum, probability) => sum + probability, 0);
+        if (Math.abs(totalProbability - 1) > 0.02) {
+          throw new Error(`Jev decision response probabilities must sum to approximately 1 for '${key}'.`);
+        }
+        const selectedProbability = answer.probabilities[answer.choice];
+        const highestProbability = Math.max(...Object.values(answer.probabilities));
+        if (highestProbability - selectedProbability > 0.02) {
+          throw new Error(`Jev decision response choice must have the highest reported probability for '${key}'.`);
+        }
       }
     } else if (answer.type !== "noul") {
       throw new Error(`Jev decision response contains an invalid Noul answer for '${key}'.`);

@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "retrieval": [
+    {
+      "id": "retrieval-q1",
+      "query": "MSSR routing advisory exact source ownership canonical project context",
+      "expectedRef": ".mssr/PROJECT_CONTEXT.md",
+      "expectedHeading": "Architecture",
+      "topK": 5
+    },
+    {
+      "id": "retrieval-q2",
+      "query": "raw confidence threshold calibrated false merge risk coverage review abstain",
+      "expectedRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "expectedHeading": "Confidence and merge policy",
+      "topK": 5
+    },
+    {
+      "id": "retrieval-q3",
+      "query": "Librarian Document Surface exact source revision range handle fetch",
+      "expectedRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "expectedHeading": "Document Surface and Librarian contract",
+      "topK": 5
+    },
+    {
+      "id": "retrieval-q4",
+      "query": "Jev deterministic retrieval generator executor independent verifier paragraph composition",
+      "expectedRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "expectedHeading": "Composed capability boundary",
+      "topK": 5
+    }
+  ],
+  "relationAtoms": [
+    {
+      "id": "atom-a",
+      "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "heading": "Evidence atom and source boundary",
+      "rangeKind": "block"
+    },
+    {
+      "id": "atom-b",
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "heading": "Keep source evidence separate from Jev judgment",
+      "rangeKind": "block"
+    },
+    {
+      "id": "atom-c",
+      "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "heading": "Document Surface and Librarian contract",
+      "rangeKind": "block"
+    },
+    {
+      "id": "atom-d",
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "heading": "Librarian retrieval and evidence acquisition",
+      "rangeKind": "block"
+    },
+    {
+      "id": "atom-e",
+      "sourceRef": ".mssr/PROJECT_CONTEXT.md",
+      "heading": "Project knowledge governance",
+      "rangeKind": "block"
+    },
+    {
+      "id": "atom-f",
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "heading": "Public evidence reviewed",
+      "rangeKind": "block"
+    },
+    {
+      "id": "atom-g",
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "heading": "Confidence and merge policy",
+      "rangeKind": "block"
+    },
+    {
+      "id": "atom-h",
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "heading": "Composed capability boundary",
+      "rangeKind": "block"
+    }
+  ],
+  "relationPairs": [
+    {
+      "id": "relation-r1",
+      "leftAtom": "atom-a",
+      "rightAtom": "atom-b",
+      "expected": "supports",
+      "comparability": "same current MSSR EvidenceAtom/source boundary"
+    },
+    {
+      "id": "relation-r2",
+      "leftAtom": "atom-c",
+      "rightAtom": "atom-d",
+      "expected": "supports",
+      "comparability": "same current Librarian retrieval capability"
+    },
+    {
+      "id": "relation-r3",
+      "leftAtom": "atom-e",
+      "rightAtom": "atom-f",
+      "expected": "unrelated",
+      "comparability": "same repository, distinct governance/research subjects"
+    },
+    {
+      "id": "relation-r4",
+      "leftAtom": "atom-g",
+      "rightAtom": "atom-h",
+      "expected": "unresolved",
+      "comparability": "intentionally unasserted scope and time; tests abstention guard"
+    }
+  ]
+}

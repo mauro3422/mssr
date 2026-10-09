@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 1,
+  "targetIndex": {
+    "10": {
+      "sourceRef": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
+      "targetHeading": "R4 temporal validity",
+      "targetHeadingPath": [
+        "Semantic consistency current-truth decision",
+        "R4 temporal validity"
+      ],
+      "targetRangeId": "heading-4",
+      "targetFingerprint": "d0f2a84ad37a92a7596e42f29b555e15a2c2151065bf9fa9e70eb6a2c2d1f27b"
+    },
+    "12": {
+      "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+      "targetHeading": "Change-history contract",
+      "targetHeadingPath": [
+        "Change-history contract"
+      ],
+      "targetRangeId": "heading-1",
+      "targetFingerprint": "748ab7ebe46fabb8f5fe0f982dd2d45108645fe42e8b3f103b31fa1cdc22f810"
+    },
+    "13": {
+      "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+      "targetHeading": "Project knowledge drift review decision",
+      "targetHeadingPath": [
+        "Project knowledge drift review decision"
+      ],
+      "targetRangeId": "heading-1",
+      "targetFingerprint": "d1a30123734725f87abf4b6903e4c2e413a2fe3b06566b776cf32c8c150de390"
+    },
+    "15": {
+      "sourceRef": "docs/AGENT_PROTOCOL.md",
+      "targetHeading": "Intent envelope",
+      "targetHeadingPath": [
+        "Agent protocol",
+        "Intent envelope"
+      ],
+      "targetRangeId": "heading-2",
+      "targetFingerprint": "80bb995ec72aeaa2574362e6b880ad889f6a37dc23b6721111b59bf54d7909f3"
+    },
+    "16": {
+      "sourceRef": "docs/AGENT_PROTOCOL.md",
+      "targetHeading": "Ephemeral trace working memory",
+      "targetHeadingPath": [
+        "Agent protocol",
+        "User-visible progress contract",
+        "Ephemeral trace working memory"
+      ],
+      "targetRangeId": "heading-8",
+      "targetFingerprint": "694e1a6bc6fd34bcd3481c483292df186c11e872d364b5aba12bc7f2ea2c0270"
+    },
+    "17": {
+      "sourceRef": "docs/REPOSITORY_STRUCTURE.md",
+      "targetHeading": "Canonical layout",
+      "targetHeadingPath": [
+        "MSSR repository structure",
+        "Canonical layout"
+      ],
+      "targetRangeId": "heading-3",
+      "targetFingerprint": "49ec900e5b14d2f9a012009ab2c1ad13eef71dc278a76f89bab909d1fc69f932"
+    },
+    "18": {
+      "sourceRef": "docs/REPOSITORY_STRUCTURE.md",
+      "targetHeading": "Generated and runtime outputs",
+      "targetHeadingPath": [
+        "MSSR repository structure",
+        "Generated and runtime outputs"
+      ],
+      "targetRangeId": "heading-5",
+      "targetFingerprint": "1896254bc354b88bada043c051171afa786d1f6e592d231e11c6d3e68ee8fe7d"
+    },
+    "19": {
+      "sourceRef": "docs/REGISTRY.md",
+      "targetHeading": "What requires a tracked change",
+      "targetHeadingPath": [
+        "Registry and autoregistry",
+        "What requires a tracked change"
+      ],
+      "targetRangeId": "heading-4",
+      "targetFingerprint": "555813b46b406358ecfd550b9c378d2963c664d5d8afaa6a641d5918aeefc5fc"
+    },
+    "20": {
+      "sourceRef": "docs/FIRST_PARTY_SKILLS_V1.md",
+      "targetHeading": "Package preflight",
+      "targetHeadingPath": [
+        "First-party skills v1: distribution, migration, and evaluation",
+        "Package preflight"
+      ],
+      "targetRangeId": "heading-3",
+      "targetFingerprint": "7766435cf8439500c8817de46e1e7c4753d90be2bbb9710f81d52b68ed3f8966"
+    },
+    "21": {
+      "sourceRef": "docs/skill-routing/README.md",
+      "targetHeading": "Skills requeridas, opcionales y diferidas",
+      "targetHeadingPath": [
+        "MSSR — Modular Semantic Skill Router",
+        "Skills requeridas, opcionales y diferidas"
+      ],
+      "targetRangeId": "heading-6",
+      "targetFingerprint": "916ade63eae452a91c71133ce7524c7b6de1bee93923b714e3d548cf3dcb524d"
+    },
+    "22": {
+      "sourceRef": "docs/skill-routing/README.md",
+      "targetHeading": "Ensamblado selectivo de contexto",
+      "targetHeadingPath": [
+        "MSSR — Modular Semantic Skill Router",
+        "Ensamblado selectivo de contexto"
+      ],
+      "targetRangeId": "heading-7",
+      "targetFingerprint": "2edeb2cfca243cc20fc8a04c5cbb7c36cac7a48cb8217faf5a2a7af4c6489999"
+    },
+    "23": {
+      "sourceRef": "docs/skill-routing/TESTING.md",
+      "targetHeading": "Comandos",
+      "targetHeadingPath": [
+        "Pruebas de MSSR",
+        "Comandos"
+      ],
+      "targetRangeId": "heading-9",
+      "targetFingerprint": "5d9e545b4ad2d2993f31c984ecddaf3c5c0ecb3ed2e642810388a5fe1ae3475d"
+    },
+    "24": {
+      "sourceRef": "docs/skill-routing/ROADMAP.md",
+      "targetHeading": "2. Extender autoridad de contexto de proyecto a todos los hosts",
+      "targetHeadingPath": [
+        "Roadmap de MSSR",
+        "Próximo nivel útil",
+        "2. Extender autoridad de contexto de proyecto a todos los hosts"
+      ],
+      "targetRangeId": "heading-6",
+      "targetFingerprint": "590f958e3edd5e1d41c2ab3b7c67decf5addd230f3d9d905bf6bfe20e2bbe37c"
+    },
+    "25": {
+      "sourceRef": "docs/skill-routing/MAINTENANCE.md",
+      "targetHeading": "Al modificar una skill",
+      "targetHeadingPath": [
+        "Mantenimiento de MSSR",
+        "Al modificar una skill"
+      ],
+      "targetRangeId": "heading-4",
+      "targetFingerprint": "940927724c84680ae5bd66c496e3660902801d3a3b5772757648e517b7f1dcd6"
+    },
+    "26": {
+      "sourceRef": "docs/OPERATIONAL_NOTICE_PLANE.md",
+      "targetHeading": "Four distinct concepts",
+      "targetHeadingPath": [
+        "MauroPrime Operational Notice Plane",
+        "Four distinct concepts"
+      ],
+      "targetRangeId": "heading-4",
+      "targetFingerprint": "20e270939df41447fffe3c19d48c123f2535595db38d04dc4cb3e8991bc067b4"
+    },
+    "27": {
+      "sourceRef": "docs/decisions/0001-context-plane-v1.md",
+      "targetHeading": "Continuation and persistence",
+      "targetHeadingPath": [
+        "ADR 0001 — MSSR Context Plane v1",
+        "Decision",
+        "Continuation and persistence"
+      ],
+      "targetRangeId": "heading-6",
+      "targetFingerprint": "824f062c99e55f766416a271d5851ee869bbdad0325aaca03da4581b05c6967e"
+    },
+    "28": {
+      "sourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      "targetHeading": "Evidence-first rules",
+      "targetHeadingPath": [
+        "ADR 0003 — Evidence-first consistency recommendations",
+        "Evidence-first rules"
+      ],
+      "targetRangeId": "heading-4",
+      "targetFingerprint": "32a8200dd43d7e80bbbf2fdee4a83c9d7c4a519534a94c66bc1547fb8a266ae6"
+    },
+    "29": {
+      "sourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+      "targetHeading": "Evidence classes",
+      "targetHeadingPath": [
+        "ADR 0004 — Situation Model for project knowledge",
+        "Decision",
+        "Evidence classes"
+      ],
+      "targetRangeId": "heading-4",
+      "targetFingerprint": "4da8a76635fff276b82f13e5f21a7539846737be47df7e7266f82374150d75e6"
+    },
+    "30": {
+      "sourceRef": "docs/decisions/0005-architecture-impact-drift-links.md",
+      "targetHeading": "Exact-only v1",
+      "targetHeadingPath": [
+        "ADR 0005 — Architecture Impact / Drift Links",
+        "Decision",
+        "Exact-only v1"
+      ],
+      "targetRangeId": "heading-4",
+      "targetFingerprint": "d96dcd6002c70934e8b3de41781c11b13e5fa4267fca917bb4b3468b4aeda16d"
+    },
+    "01": {
+      "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "targetHeading": "Evidence atom and source boundary",
+      "targetHeadingPath": [
+        "Semantic Evidence Plane architecture",
+        "Evidence atom and source boundary"
+      ],
+      "targetRangeId": "heading-2",
+      "targetFingerprint": "8266a3124189bb1157545f7035629d02a860e46b6b7481ebd086f52dd01023d5"
+    },
+    "02": {
+      "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "targetHeading": "Destinations, unused evidence and learning",
+      "targetHeadingPath": [
+        "Semantic Evidence Plane architecture",
+        "Destinations, unused evidence and learning"
+      ],
+      "targetRangeId": "heading-7",
+      "targetFingerprint": "555506f736827474fae0f13e48ed95c414e42e60c0dd58dfde62d66552050eb4"
+    },
+    "03": {
+      "sourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "targetHeading": "Retroactive discovery",
+      "targetHeadingPath": [
+        "Project document reference lifecycle",
+        "Retroactive discovery"
+      ],
+      "targetRangeId": "heading-3",
+      "targetFingerprint": "be20c8b82ad749e427252cefedd5d10f3386c62cc83dcd77d93cf5c733528da6"
+    },
+    "04": {
+      "sourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "targetHeading": "Reference-on-miss",
+      "targetHeadingPath": [
+        "Project document reference lifecycle",
+        "Reference-on-miss"
+      ],
+      "targetRangeId": "heading-4",
+      "targetFingerprint": "e29353e979cb99f5c2f078be2b880668601f4c9142d918ababa7906f04143839"
+    },
+    "06": {
+      "sourceRef": ".mssr/knowledge/architecture/project-context-plane.md",
+      "targetHeading": "Maintenance and write preflight",
+      "targetHeadingPath": [
+        "Project Context Plane architecture",
+        "Maintenance and write preflight"
+      ],
+      "targetRangeId": "heading-2",
+      "targetFingerprint": "5a9fde558d1ee059caa149b3836033b24955a93fe864ccb24f6f88ee50268fc4"
+    },
+    "08": {
+      "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+      "targetHeading": "Architecture Impact decision history",
+      "targetHeadingPath": [
+        "Architecture Impact decision history"
+      ],
+      "targetRangeId": "heading-1",
+      "targetFingerprint": "660e194efc5fd209e4e707f24a61fb5bdb1677a484d0b8425fbd09a17dca9f1c"
+    },
+    "09": {
+      "sourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+      "targetHeading": "Semantic consistency relations and retrieval decision",
+      "targetHeadingPath": [
+        "Semantic consistency relations and retrieval decision"
+      ],
+      "targetRangeId": "heading-1",
+      "targetFingerprint": "a375397a4ed4ec0a63dcb84a6f4092b2650d351c223a35f32f3ca9d91ac31574"
+    }
+  }
+}

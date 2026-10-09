@@ -1,0 +1,25 @@
+{
+  "runId": "mssr-librarian-jev-bilingual-hierarchical-20261001T174949Z-v1",
+  "status": "complete",
+  "sourceLabelFileRead": false,
+  "corpusDocuments": 21,
+  "offeredCandidates": 200,
+  "queryLanguage": "es",
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "selectionMode": "single-pass",
+  "providerCalls": 1,
+  "choiceConfidence": 0.94,
+  "evidenceSufficiency": 0.74,
+  "confidenceCalibration": "uncalibrated-provider-score",
+  "exactFetch": "passed",
+  "requestFingerprint": "bb0cc3a9d7acd7f4d3be286551fa61cde90e773506fe5b20a8e65331b294fb83",
+  "usage": {
+    "input_tokens": 28198,
+    "output_tokens": 2047
+  },
+  "elapsedMs": 888.9,
+  "rawVendorHttpBodiesPersisted": false,
+  "credentialValuePersisted": false,
+  "distSha256": "3c8bc14121c35294c2300080a5bd4ec595e5c07b2058da6aa52b2fb9b4c3f267"
+}

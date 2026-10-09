@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import { buildMssrMarkdownDocumentSurface } from "../dist/document-surface.js";
 import { initializeMssrProject } from "../dist/project-initialization.js";
 import { auditMssrProjectContextHealth } from "../dist/project-context-health.js";
 
@@ -28,6 +29,78 @@ try {
 
   const manifestPath = path.join(repo, ".mssr", "project-context.json");
   const manifest = JSON.parse(await fs.readFile(manifestPath, "utf8"));
+  // The optional per-heading Librarian sidecar is checked against the exact current
+  // manifest source. Stale, malformed, oversized and escaping source bindings fail closed.
+  const librarianSourcePath = ".mssr/knowledge/architecture/librarian-health-test.md";
+  const librarianSource = "# Librarian health fixture\n\n## Metadata\n\nThis exact section is a health fixture.\n";
+  const librarianSourceAbsolute = path.join(repo, librarianSourcePath);
+  await fs.mkdir(path.dirname(librarianSourceAbsolute), { recursive: true });
+  await fs.writeFile(librarianSourceAbsolute, librarianSource, "utf8");
+  const librarianModule = {
+    id: "librarian-health-fixture",
+    kind: "context",
+    topic: "architecture",
+    area: "librarian",
+    description: "Project Context Librarian health fixture.",
+    source: { path: librarianSourcePath, sections: ["## Metadata"] },
+    actions: ["review"],
+    required: false,
+    priority: 1,
+  };
+  manifest.modules.push(librarianModule);
+  await fs.writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+  const librarianHeading = buildMssrMarkdownDocumentSurface({ sourceRef: librarianSourcePath, markdown: librarianSource }).headings.find((heading) => heading.title === "Metadata");
+  assert.ok(librarianHeading);
+  const librarianSidecarPath = path.join(repo, ".mssr", "project-context-librarian.json");
+  const librarianEntry = {
+    entryId: librarianModule.id,
+    sourcePath: librarianSourcePath,
+    headingPath: librarianHeading.headingPath,
+    expectedFingerprint: librarianHeading.fingerprint,
+    selectors: { domains: ["coding"] },
+  };
+  await fs.writeFile(librarianSidecarPath, `${JSON.stringify({ schemaVersion: 1, entries: [librarianEntry] }, null, 2)}\n`, "utf8");
+  const validLibrarian = await auditMssrProjectContextHealth(repo);
+  assert.equal(validLibrarian.findings.some((item) => item.code.startsWith("project-context-librarian-")), false);
+  assert.equal(validLibrarian.findings.some((item) => item.code === "invalid-project-context-librarian-binding"), false);
+
+  await fs.writeFile(librarianSidecarPath, `${JSON.stringify({ schemaVersion: 1, entries: [{ ...librarianEntry, expectedFingerprint: "0".repeat(64) }] }, null, 2)}\n`, "utf8");
+  const staleLibrarian = await auditMssrProjectContextHealth(repo);
+  assert.equal(staleLibrarian.findings.some((item) => item.code === "stale-project-context-librarian-heading"), true);
+
+  await fs.writeFile(librarianSidecarPath, "{ malformed", "utf8");
+  const malformedLibrarian = await auditMssrProjectContextHealth(repo);
+  assert.equal(malformedLibrarian.findings.some((item) => item.code === "invalid-project-context-librarian-sidecar"), true);
+
+  await fs.writeFile(librarianSidecarPath, "x".repeat(2_000_001), "utf8");
+  const oversizedLibrarian = await auditMssrProjectContextHealth(repo);
+  assert.equal(oversizedLibrarian.findings.some((item) => item.code === "project-context-librarian-sidecar-size-limit"), true);
+
+  const outsideDirectory = path.join(root, "outside-librarian-source");
+  await fs.mkdir(outsideDirectory, { recursive: true });
+  const outsideMarkdown = "# Outside\n\n## Metadata\n\nMust not be read by project health.\n";
+  await fs.writeFile(path.join(outsideDirectory, "source.md"), outsideMarkdown, "utf8");
+  const junctionPath = path.join(repo, ".mssr", "knowledge", "architecture", "outside-link");
+  await fs.symlink(outsideDirectory, junctionPath, "junction");
+  const outsideSourcePath = ".mssr/knowledge/architecture/outside-link/source.md";
+  const outsideHeading = buildMssrMarkdownDocumentSurface({ sourceRef: outsideSourcePath, markdown: outsideMarkdown }).headings.find((heading) => heading.title === "Metadata");
+  assert.ok(outsideHeading);
+  manifest.modules[manifest.modules.length - 1].source.path = outsideSourcePath;
+  await fs.writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+  await fs.writeFile(librarianSidecarPath, `${JSON.stringify({ schemaVersion: 1, entries: [{
+    ...librarianEntry,
+    sourcePath: outsideSourcePath,
+    headingPath: outsideHeading.headingPath,
+    expectedFingerprint: outsideHeading.fingerprint,
+  }] }, null, 2)}\n`, "utf8");
+  const outsideLibrarian = await auditMssrProjectContextHealth(repo);
+  assert.equal(outsideLibrarian.findings.some((item) => item.code === "invalid-project-context-librarian-binding"), true);
+  assert.equal(outsideLibrarian.findings.some((item) => item.code === "stale-project-context-librarian-heading"), false);
+  assert.equal(outsideLibrarian.findings.some((item) => item.code === "project-context-librarian-source-total-limit"), false);
+  manifest.modules[manifest.modules.length - 1].source.path = librarianSourcePath;
+  await fs.writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+  await fs.rm(librarianSidecarPath, { force: true });
+
   const initializedMemoryPath = path.join(repo, ".mssr", "PROJECT_MEMORY.md");
   const initializedMemory = await fs.readFile(initializedMemoryPath, "utf8");
   await fs.writeFile(

@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "entryId": "mssr-architecture-impact-decision",
+      "sourcePath": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+      "headingPath": [
+        "Architecture impact review decision"
+      ],
+      "expectedFingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+      "selectors": {
+        "domains": [
+          "coding",
+          "filesystem"
+        ],
+        "actions": [
+          "analyze",
+          "review"
+        ],
+        "artifacts": [
+          "project",
+          "repository"
+        ],
+        "needs": [
+          "integrity-verification"
+        ],
+        "signals": [
+          "conflicting-evidence"
+        ]
+      }
+    },
+    {
+      "entryId": "mssr-learning-dataset-state",
+      "sourcePath": ".mssr/PROJECT_STATE.md",
+      "headingPath": [
+        "MSSR project state",
+        "Learning dataset state"
+      ],
+      "expectedFingerprint": "41502fd834d17d09568be87dbf783822369dc63c87f5d1dd1115f14104382ab5",
+      "selectors": {
+        "domains": [
+          "agent-orchestration",
+          "skill-system"
+        ],
+        "actions": [
+          "analyze",
+          "review"
+        ],
+        "artifacts": [
+          "project",
+          "document"
+        ],
+        "needs": [
+          "integrity-verification"
+        ],
+        "signals": [
+          "uncertainty"
+        ]
+      }
+    },
+    {
+      "entryId": "mssr-core-skill-package-state",
+      "sourcePath": ".mssr/PROJECT_STATE.md",
+      "headingPath": [
+        "MSSR project state",
+        "Core skill package state"
+      ],
+      "expectedFingerprint": "534388abe5c4d0392e215add388bac3a6bd0a1261bc3ed9c17d16ebd77961ca3",
+      "selectors": {
+        "domains": [
+          "skill-system"
+        ],
+        "actions": [
+          "verify",
+          "maintain"
+        ],
+        "artifacts": [
+          "repository",
+          "skill"
+        ],
+        "needs": [
+          "version-control"
+        ],
+        "signals": [
+          "warning-observed"
+        ]
+      }
+    },
+    {
+      "entryId": "mssr-jev-use-case-hypotheses",
+      "sourcePath": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+      "headingPath": [
+        "Jev, decisiones tipadas y casos de uso para MSSR",
+        "100 hipótesis de uso"
+      ],
+      "expectedFingerprint": "9197101e89eee91feea5862c14ac1ec29c4a0036eb0fbf9d1e744a0e2306a1d5",
+      "selectors": {
+        "domains": [
+          "agent-orchestration",
+          "coding"
+        ],
+        "actions": [
+          "design",
+          "discover"
+        ],
+        "artifacts": [
+          "document",
+          "mcp"
+        ],
+        "needs": [
+          "cross-agent"
+        ],
+        "signals": [
+          "reusable-pattern"
+        ]
+      }
+    }
+  ]
+}

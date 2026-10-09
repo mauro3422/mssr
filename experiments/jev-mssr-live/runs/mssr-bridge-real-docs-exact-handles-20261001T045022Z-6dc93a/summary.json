@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-bridge-real-docs-exact-handles-20261001T045022Z-6dc93a",
+  "status": "complete",
+  "environment": {"bridgeVersion":"0.6.144","mssrPackageVersion":"0.2.96","provider":"typesafe-jev","model":"jev-1.13.0","runtimeBootId":"b39f841c-6d96-4df1-a05e-98879004df61"},
+  "counts": {"cases":3,"liveJevCalls":3,"selected":3,"abstained":0,"providerFailures":0,"exactFetches":3,"exactFetchValid":3,"authorExactHandleMatches":3,"blindEvidenceCasesAnswered":3},
+  "usage": {"inputTokens":2371,"outputTokens":171,"meanProviderLatencyMs":777.2,"providerLatencyMs":[875,772.2,684.3],"bridgeCallLatencyMs":[908,804,713]},
+  "confidence": {"observedScores":[0.94,0.99,0.42],"mean":0.7833,"calibration":"uncalibrated","interpretation":"A 0.5 cutoff would reject one answer adjudicated correct in this N=3 sample; no threshold recommendation is supported."},
+  "scoring": {"authorExactHandleMatch":"3/3","blindEvidenceAdjudication":"3/3 selected ranges directly answer their query","limitation":"Author labels freeze one handle per case. Blind review found overlapping equivalent evidence ranges; freeze acceptable range sets in future runs."},
+  "limits": ["N=3, one project and two documents.","Candidate sets were manually curated from deterministic search results; retrieval recall was not measured.","Blind review followed inference and does not change frozen inputs or author labels.","No confidence calibration, production cutoff, auto-apply or promotion decision follows from this run."],
+  "sourceHashes": {"manifestSha256":"2d4e8b202396e156afc97576ca3ae7c5fd9d00b28a1e5441df18bc64be056a9d","casesSha256":"6ab3937c700d392d31f96bf073f29d173812f8dd4bf0a76587c017296ef1f61b","labelsSha256":"fcfc9f7bae9db822ff35982a91c847dbdd077a995866c9404346ff4d1f2ad028","retrievalResultsSha256":"1024778ecccf4c216e9354a7174595fb2fed9b005fae294684dbb1593928a5d2","corpusManifestSha256":"227768ffadf16f6d61b95753de51a702caa7db6613beac5334ec7e70e01c1d4d4"}
+}

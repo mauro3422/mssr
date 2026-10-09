@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-bilingual-expansion-20261002T133846Z-v1",
+  "manifestSha256": "4389a9ebc01c459c3f2a1ce968cfc4fa65ea30eb01dc438192ed3859c4ad91fa",
+  "completedAt": "2026-10-02T13:49:39.8091488Z",
+  "status": "partial",
+  "stage": "scoring",
+  "expectedSearchCalls": 156,
+  "attemptedSearchCalls": 156,
+  "successfulSearchCalls": 156,
+  "failedSearchCalls": 0,
+  "providerRequests": 0,
+  "jevRequests": 0,
+  "labelsExposedToRequests": false,
+  "evaluationLabelReadAfterPredictions": false,
+  "reasonCode": "scorer-envelope-shape-mismatch",
+  "note": "Prediction artifact was frozen. Scoring did not complete because the scorer addressed labels.cases as a root map and targetIndex as an unwrapped map; frozen files use schema envelopes."
+}

@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-jev-mcp-selector-smoke-20260930-v1",
+  "status": "complete",
+  "source": {
+    "repository": "MSSR",
+    "sourceCommitAtRun": "4abc2347baba4ea26a0a0292684b01a747610ffc",
+    "workingTreeDirtyAtRun": true,
+    "mssrPackageVersion": "0.2.95",
+    "mssrBuildReceipt": {
+      "schema": "mssr-build-receipt-v1",
+      "id": "mssr-build:sha256:600d0d72f5186a58",
+      "version": "0.2.95",
+      "files": 123,
+      "bytes": 1377442
+    },
+    "compiledFiles": [
+      {
+        "path": "dist/librarian-jev-selection.js",
+        "sha256": "45d84f3c9074c4903dce0cf53450ad60c612273f00f76bcb4a1463447af4fe6e"
+      },
+      {
+        "path": "dist/semantic-evidence-mcp.js",
+        "sha256": "03e1c2415ed06fb3a7dfb104e4ec9693ccfca73f5446af011b7b5689cce78a5c"
+      },
+      {
+        "path": "dist/semantic-curation-jev.js",
+        "sha256": "9793bb891503c90f05e97e4af5abde97337058fad927a09186d036177642759e"
+      },
+      {
+        "path": "dist/document-surface.js",
+        "sha256": "5304701921f8d07ff83503cc1e5fa8dbd58631646bdf40aeda6facfc7ec18172"
+      },
+      {
+        "path": "dist/librarian-retrieval.js",
+        "sha256": "5785c871f517fe21805106a54602092ddec09f94dad0347ce2308ffbab0f7965"
+      }
+    ],
+    "inputCorpusRun": "mssr-librarian-jev-full-heading-choice-20260930-v1",
+    "inputSourceCommit": "c4c93fb20faeb4bba81fc771718cd2f26c9c3c2a",
+    "inputCorpusSha256": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d",
+    "corpusDocuments": 21,
+    "queryCaseId": "01",
+    "queryLanguage": "es"
+  },
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "credentialValuePersisted": false,
+  "rawVendorResponsePersisted": false,
+  "selectionRunnerReadsLabelsOrTargets": false,
+  "inputHashes": {
+    "corpus.json": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d",
+    "cases.json": "70e4c30fa2473a73fd9c2626a92ecfc58addb548da132e2ee639614b94e384f4",
+    "target-index.json": "770e14acfaf74716dd3667cb8311e5e56a7222e5895dc725bcc44571e5f8a58a"
+  },
+  "scoring": {
+    "file": "scoring.json",
+    "exactTargetMatch": true,
+    "labelProvenance": "dual Luna review; not human document-owner adjudication"
+  },
+  "execution": {
+    "calls": 1,
+    "candidateHeadings": 200,
+    "optionsIncludingNone": 201,
+    "inputTokens": 18192,
+    "outputTokens": 2027,
+    "elapsedMs": 5670.1,
+    "exactFetchPassed": true,
+    "advisoryOnly": true,
+    "verification": "unverified",
+    "canonicalWrite": false
+  },
+  "compiledFiles": [
+    {
+      "path": "dist/librarian-jev-selection.js",
+      "sha256": "45d84f3c9074c4903dce0cf53450ad60c612273f00f76bcb4a1463447af4fe6e"
+    },
+    {
+      "path": "dist/semantic-evidence-mcp.js",
+      "sha256": "03e1c2415ed06fb3a7dfb104e4ec9693ccfca73f5446af011b7b5689cce78a5c"
+    },
+    {
+      "path": "dist/semantic-curation-jev.js",
+      "sha256": "9793bb891503c90f05e97e4af5abde97337058fad927a09186d036177642759e"
+    },
+    {
+      "path": "dist/document-surface.js",
+      "sha256": "5304701921f8d07ff83503cc1e5fa8dbd58631646bdf40aeda6facfc7ec18172"
+    },
+    {
+      "path": "dist/librarian-retrieval.js",
+      "sha256": "5785c871f517fe21805106a54602092ddec09f94dad0347ce2308ffbab0f7965"
+    }
+  ]
+}

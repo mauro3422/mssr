@@ -1,0 +1,1459 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "caseId": "01",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "targetHeadingPath": [
+        "Semantic Evidence Plane architecture",
+        "Evidence atom and source boundary"
+      ],
+      "baselineTargetRank": 38,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c053",
+      "selectedSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "selectedHeadingPath": [
+        "Semantic Evidence Plane architecture",
+        "Evidence atom and source boundary"
+      ],
+      "selectedCandidateRank": 53,
+      "selectedExpectedSection": true,
+      "selectedConfidence": 0.81,
+      "noneSelected": false,
+      "elapsedMs": 851,
+      "usage": {
+        "input_tokens": 9506,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "01",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "targetHeadingPath": [
+        "Semantic Evidence Plane architecture",
+        "Evidence atom and source boundary"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.69,
+      "noneSelected": true,
+      "elapsedMs": 320.3,
+      "usage": {
+        "input_tokens": 9621,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "02",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "targetHeadingPath": [
+        "Semantic Evidence Plane architecture",
+        "Destinations, unused evidence and learning"
+      ],
+      "baselineTargetRank": 16,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c017",
+      "selectedSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "selectedHeadingPath": [
+        "Semantic Evidence Plane architecture",
+        "Destinations, unused evidence and learning"
+      ],
+      "selectedCandidateRank": 17,
+      "selectedExpectedSection": true,
+      "selectedConfidence": 0.97,
+      "noneSelected": false,
+      "elapsedMs": 338.9,
+      "usage": {
+        "input_tokens": 9540,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "02",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "targetHeadingPath": [
+        "Semantic Evidence Plane architecture",
+        "Destinations, unused evidence and learning"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "c061",
+      "selectedSourceRef": "docs/skill-routing/ROADMAP.md",
+      "selectedHeadingPath": [
+        "Roadmap de MSSR",
+        "Próximo nivel útil",
+        "3. Observabilidad de decisiones"
+      ],
+      "selectedCandidateRank": 61,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.45,
+      "noneSelected": false,
+      "elapsedMs": 309.1,
+      "usage": {
+        "input_tokens": 9838,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "03",
+      "language": "en",
+      "status": "success",
+      "split": "grouped-holdout",
+      "targetSourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "targetHeadingPath": [
+        "Project document reference lifecycle",
+        "Retroactive discovery"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "c061",
+      "selectedSourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "selectedHeadingPath": [
+        "Project document reference lifecycle",
+        "States"
+      ],
+      "selectedCandidateRank": 61,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.32,
+      "noneSelected": false,
+      "elapsedMs": 797,
+      "usage": {
+        "input_tokens": 9331,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "03",
+      "language": "es",
+      "status": "success",
+      "split": "grouped-holdout",
+      "targetSourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "targetHeadingPath": [
+        "Project document reference lifecycle",
+        "Retroactive discovery"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "c009",
+      "selectedSourceRef": "docs/skill-routing/README.md",
+      "selectedHeadingPath": [
+        "MSSR — Modular Semantic Skill Router",
+        "Descubrimiento de skills nuevas"
+      ],
+      "selectedCandidateRank": 9,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.55,
+      "noneSelected": false,
+      "elapsedMs": 323.5,
+      "usage": {
+        "input_tokens": 9741,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "04",
+      "language": "en",
+      "status": "success",
+      "split": "grouped-holdout",
+      "targetSourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "targetHeadingPath": [
+        "Project document reference lifecycle",
+        "Reference-on-miss"
+      ],
+      "baselineTargetRank": 55,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c055",
+      "selectedSourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "selectedHeadingPath": [
+        "Project document reference lifecycle",
+        "Reference-on-miss"
+      ],
+      "selectedCandidateRank": 55,
+      "selectedExpectedSection": true,
+      "selectedConfidence": 0.61,
+      "noneSelected": false,
+      "elapsedMs": 315,
+      "usage": {
+        "input_tokens": 9300,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "04",
+      "language": "es",
+      "status": "success",
+      "split": "grouped-holdout",
+      "targetSourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "targetHeadingPath": [
+        "Project document reference lifecycle",
+        "Reference-on-miss"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.93,
+      "noneSelected": true,
+      "elapsedMs": 385.6,
+      "usage": {
+        "input_tokens": 9682,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "06",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": ".mssr/knowledge/architecture/project-context-plane.md",
+      "targetHeadingPath": [
+        "Project Context Plane architecture",
+        "Maintenance and write preflight"
+      ],
+      "baselineTargetRank": 47,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c073",
+      "selectedSourceRef": "docs/decisions/0001-context-plane-v1.md",
+      "selectedHeadingPath": [
+        "ADR 0001 — MSSR Context Plane v1",
+        "0.2.49 cross-cutting applicability amendment"
+      ],
+      "selectedCandidateRank": 73,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.7,
+      "noneSelected": false,
+      "elapsedMs": 337.8,
+      "usage": {
+        "input_tokens": 9560,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "06",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": ".mssr/knowledge/architecture/project-context-plane.md",
+      "targetHeadingPath": [
+        "Project Context Plane architecture",
+        "Maintenance and write preflight"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.48,
+      "noneSelected": true,
+      "elapsedMs": 321.6,
+      "usage": {
+        "input_tokens": 9682,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "08",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+      "targetHeadingPath": [
+        "Architecture Impact decision history"
+      ],
+      "baselineTargetRank": 16,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c016",
+      "selectedSourceRef": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+      "selectedHeadingPath": [
+        "Architecture Impact decision history"
+      ],
+      "selectedCandidateRank": 16,
+      "selectedExpectedSection": true,
+      "selectedConfidence": 0.54,
+      "noneSelected": false,
+      "elapsedMs": 304.1,
+      "usage": {
+        "input_tokens": 10044,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "08",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": ".mssr/knowledge/architecture/architecture-impact-review-history.md",
+      "targetHeadingPath": [
+        "Architecture Impact decision history"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.25,
+      "noneSelected": true,
+      "elapsedMs": 317.1,
+      "usage": {
+        "input_tokens": 9816,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "09",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+      "targetHeadingPath": [
+        "Semantic consistency relations and retrieval decision"
+      ],
+      "baselineTargetRank": 29,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c074",
+      "selectedSourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+      "selectedHeadingPath": [
+        "Semantic consistency relations and retrieval decision"
+      ],
+      "selectedCandidateRank": 74,
+      "selectedExpectedSection": true,
+      "selectedConfidence": 0.77,
+      "noneSelected": false,
+      "elapsedMs": 327.7,
+      "usage": {
+        "input_tokens": 9760,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "09",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+      "targetHeadingPath": [
+        "Semantic consistency relations and retrieval decision"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.53,
+      "noneSelected": true,
+      "elapsedMs": 340.9,
+      "usage": {
+        "input_tokens": 9720,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "10",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
+      "targetHeadingPath": [
+        "Semantic consistency current-truth decision",
+        "R4 temporal validity"
+      ],
+      "baselineTargetRank": 11,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c011",
+      "selectedSourceRef": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
+      "selectedHeadingPath": [
+        "Semantic consistency current-truth decision",
+        "R4 temporal validity"
+      ],
+      "selectedCandidateRank": 11,
+      "selectedExpectedSection": true,
+      "selectedConfidence": 0.67,
+      "noneSelected": false,
+      "elapsedMs": 310.2,
+      "usage": {
+        "input_tokens": 9607,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "10",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": ".mssr/knowledge/decision/semantic-consistency-current-truth.md",
+      "targetHeadingPath": [
+        "Semantic consistency current-truth decision",
+        "R4 temporal validity"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.49,
+      "noneSelected": true,
+      "elapsedMs": 433.4,
+      "usage": {
+        "input_tokens": 9658,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "12",
+      "language": "en",
+      "status": "success",
+      "split": "grouped-holdout",
+      "targetSourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+      "targetHeadingPath": [
+        "Change-history contract"
+      ],
+      "baselineTargetRank": 43,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c043",
+      "selectedSourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+      "selectedHeadingPath": [
+        "Change-history contract"
+      ],
+      "selectedCandidateRank": 43,
+      "selectedExpectedSection": true,
+      "selectedConfidence": 0.51,
+      "noneSelected": false,
+      "elapsedMs": 342.4,
+      "usage": {
+        "input_tokens": 9458,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "12",
+      "language": "es",
+      "status": "success",
+      "split": "grouped-holdout",
+      "targetSourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+      "targetHeadingPath": [
+        "Change-history contract"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.9,
+      "noneSelected": true,
+      "elapsedMs": 315.8,
+      "usage": {
+        "input_tokens": 9806,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "13",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+      "targetHeadingPath": [
+        "Project knowledge drift review decision"
+      ],
+      "baselineTargetRank": 5,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c045",
+      "selectedSourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+      "selectedHeadingPath": [
+        "ADR 0004 — Situation Model for project knowledge",
+        "Verification gates"
+      ],
+      "selectedCandidateRank": 45,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.27,
+      "noneSelected": false,
+      "elapsedMs": 301.9,
+      "usage": {
+        "input_tokens": 9764,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "13",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+      "targetHeadingPath": [
+        "Project knowledge drift review decision"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.53,
+      "noneSelected": true,
+      "elapsedMs": 407.2,
+      "usage": {
+        "input_tokens": 9924,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "15",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/AGENT_PROTOCOL.md",
+      "targetHeadingPath": [
+        "Agent protocol",
+        "Intent envelope"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "c001",
+      "selectedSourceRef": "docs/AGENT_PROTOCOL.md",
+      "selectedHeadingPath": [
+        "Agent protocol"
+      ],
+      "selectedCandidateRank": 1,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.25,
+      "noneSelected": false,
+      "elapsedMs": 293,
+      "usage": {
+        "input_tokens": 9398,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "15",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/AGENT_PROTOCOL.md",
+      "targetHeadingPath": [
+        "Agent protocol",
+        "Intent envelope"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.65,
+      "noneSelected": true,
+      "elapsedMs": 330.1,
+      "usage": {
+        "input_tokens": 9687,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "16",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/AGENT_PROTOCOL.md",
+      "targetHeadingPath": [
+        "Agent protocol",
+        "User-visible progress contract",
+        "Ephemeral trace working memory"
+      ],
+      "baselineTargetRank": 14,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c014",
+      "selectedSourceRef": "docs/AGENT_PROTOCOL.md",
+      "selectedHeadingPath": [
+        "Agent protocol",
+        "User-visible progress contract",
+        "Ephemeral trace working memory"
+      ],
+      "selectedCandidateRank": 14,
+      "selectedExpectedSection": true,
+      "selectedConfidence": 0.97,
+      "noneSelected": false,
+      "elapsedMs": 354.9,
+      "usage": {
+        "input_tokens": 9607,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "16",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/AGENT_PROTOCOL.md",
+      "targetHeadingPath": [
+        "Agent protocol",
+        "User-visible progress contract",
+        "Ephemeral trace working memory"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "c087",
+      "selectedSourceRef": "docs/skill-routing/README.md",
+      "selectedHeadingPath": [
+        "MSSR — Modular Semantic Skill Router",
+        "Contexto conversacional"
+      ],
+      "selectedCandidateRank": 87,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.26,
+      "noneSelected": false,
+      "elapsedMs": 317,
+      "usage": {
+        "input_tokens": 9764,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "17",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/REPOSITORY_STRUCTURE.md",
+      "targetHeadingPath": [
+        "MSSR repository structure",
+        "Canonical layout"
+      ],
+      "baselineTargetRank": 83,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c040",
+      "selectedSourceRef": "docs/REPOSITORY_STRUCTURE.md",
+      "selectedHeadingPath": [
+        "MSSR repository structure",
+        "Generated and runtime outputs"
+      ],
+      "selectedCandidateRank": 40,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.58,
+      "noneSelected": false,
+      "elapsedMs": 484.4,
+      "usage": {
+        "input_tokens": 9629,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "17",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/REPOSITORY_STRUCTURE.md",
+      "targetHeadingPath": [
+        "MSSR repository structure",
+        "Canonical layout"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.38,
+      "noneSelected": true,
+      "elapsedMs": 373.5,
+      "usage": {
+        "input_tokens": 9598,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "18",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/REPOSITORY_STRUCTURE.md",
+      "targetHeadingPath": [
+        "MSSR repository structure",
+        "Generated and runtime outputs"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.35,
+      "noneSelected": true,
+      "elapsedMs": 371.1,
+      "usage": {
+        "input_tokens": 9434,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "18",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/REPOSITORY_STRUCTURE.md",
+      "targetHeadingPath": [
+        "MSSR repository structure",
+        "Generated and runtime outputs"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.69,
+      "noneSelected": true,
+      "elapsedMs": 358.8,
+      "usage": {
+        "input_tokens": 9796,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "19",
+      "language": "en",
+      "status": "success",
+      "split": "grouped-holdout",
+      "targetSourceRef": "docs/REGISTRY.md",
+      "targetHeadingPath": [
+        "Registry and autoregistry",
+        "What requires a tracked change"
+      ],
+      "baselineTargetRank": 72,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c074",
+      "selectedSourceRef": "docs/REGISTRY.md",
+      "selectedHeadingPath": [
+        "Registry and autoregistry",
+        "What requires a tracked change"
+      ],
+      "selectedCandidateRank": 74,
+      "selectedExpectedSection": true,
+      "selectedConfidence": 0.28,
+      "noneSelected": false,
+      "elapsedMs": 543,
+      "usage": {
+        "input_tokens": 9598,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "19",
+      "language": "es",
+      "status": "success",
+      "split": "grouped-holdout",
+      "targetSourceRef": "docs/REGISTRY.md",
+      "targetHeadingPath": [
+        "Registry and autoregistry",
+        "What requires a tracked change"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.45,
+      "noneSelected": true,
+      "elapsedMs": 455.7,
+      "usage": {
+        "input_tokens": 9761,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "20",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/FIRST_PARTY_SKILLS_V1.md",
+      "targetHeadingPath": [
+        "First-party skills v1: distribution, migration, and evaluation",
+        "Package preflight"
+      ],
+      "baselineTargetRank": 61,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c061",
+      "selectedSourceRef": "docs/FIRST_PARTY_SKILLS_V1.md",
+      "selectedHeadingPath": [
+        "First-party skills v1: distribution, migration, and evaluation",
+        "Package preflight"
+      ],
+      "selectedCandidateRank": 61,
+      "selectedExpectedSection": true,
+      "selectedConfidence": 0.46,
+      "noneSelected": false,
+      "elapsedMs": 412.3,
+      "usage": {
+        "input_tokens": 9362,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "20",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/FIRST_PARTY_SKILLS_V1.md",
+      "targetHeadingPath": [
+        "First-party skills v1: distribution, migration, and evaluation",
+        "Package preflight"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.53,
+      "noneSelected": true,
+      "elapsedMs": 348.6,
+      "usage": {
+        "input_tokens": 9637,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "21",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/skill-routing/README.md",
+      "targetHeadingPath": [
+        "MSSR — Modular Semantic Skill Router",
+        "Skills requeridas, opcionales y diferidas"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.3,
+      "noneSelected": true,
+      "elapsedMs": 426.3,
+      "usage": {
+        "input_tokens": 9207,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "21",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/skill-routing/README.md",
+      "targetHeadingPath": [
+        "MSSR — Modular Semantic Skill Router",
+        "Skills requeridas, opcionales y diferidas"
+      ],
+      "baselineTargetRank": 4,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.42,
+      "noneSelected": true,
+      "elapsedMs": 326.8,
+      "usage": {
+        "input_tokens": 9757,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "22",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/skill-routing/README.md",
+      "targetHeadingPath": [
+        "MSSR — Modular Semantic Skill Router",
+        "Ensamblado selectivo de contexto"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "c074",
+      "selectedSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "selectedHeadingPath": [
+        "Semantic Evidence Plane architecture",
+        "Progressive section retrieval"
+      ],
+      "selectedCandidateRank": 74,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.44,
+      "noneSelected": false,
+      "elapsedMs": 305.3,
+      "usage": {
+        "input_tokens": 9327,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "22",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/skill-routing/README.md",
+      "targetHeadingPath": [
+        "MSSR — Modular Semantic Skill Router",
+        "Ensamblado selectivo de contexto"
+      ],
+      "baselineTargetRank": 7,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c021",
+      "selectedSourceRef": "docs/skill-routing/README.md",
+      "selectedHeadingPath": [
+        "MSSR — Modular Semantic Skill Router",
+        "Ensamblado selectivo de contexto"
+      ],
+      "selectedCandidateRank": 21,
+      "selectedExpectedSection": true,
+      "selectedConfidence": 0.47,
+      "noneSelected": false,
+      "elapsedMs": 314.6,
+      "usage": {
+        "input_tokens": 9608,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "23",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/skill-routing/TESTING.md",
+      "targetHeadingPath": [
+        "Pruebas de MSSR",
+        "Comandos"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "c062",
+      "selectedSourceRef": "docs/skill-routing/TESTING.md",
+      "selectedHeadingPath": [
+        "Pruebas de MSSR"
+      ],
+      "selectedCandidateRank": 62,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.46,
+      "noneSelected": false,
+      "elapsedMs": 302.5,
+      "usage": {
+        "input_tokens": 9258,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "23",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/skill-routing/TESTING.md",
+      "targetHeadingPath": [
+        "Pruebas de MSSR",
+        "Comandos"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "c098",
+      "selectedSourceRef": "docs/skill-routing/TESTING.md",
+      "selectedHeadingPath": [
+        "Pruebas de MSSR",
+        "Capas",
+        "3. Regresión aislada"
+      ],
+      "selectedCandidateRank": 98,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.54,
+      "noneSelected": false,
+      "elapsedMs": 301.3,
+      "usage": {
+        "input_tokens": 9771,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "24",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/skill-routing/ROADMAP.md",
+      "targetHeadingPath": [
+        "Roadmap de MSSR",
+        "Próximo nivel útil",
+        "2. Extender autoridad de contexto de proyecto a todos los hosts"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.58,
+      "noneSelected": true,
+      "elapsedMs": 316.6,
+      "usage": {
+        "input_tokens": 9689,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "24",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/skill-routing/ROADMAP.md",
+      "targetHeadingPath": [
+        "Roadmap de MSSR",
+        "Próximo nivel útil",
+        "2. Extender autoridad de contexto de proyecto a todos los hosts"
+      ],
+      "baselineTargetRank": 4,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c004",
+      "selectedSourceRef": "docs/skill-routing/ROADMAP.md",
+      "selectedHeadingPath": [
+        "Roadmap de MSSR",
+        "Próximo nivel útil",
+        "2. Extender autoridad de contexto de proyecto a todos los hosts"
+      ],
+      "selectedCandidateRank": 4,
+      "selectedExpectedSection": true,
+      "selectedConfidence": 0.86,
+      "noneSelected": false,
+      "elapsedMs": 493.9,
+      "usage": {
+        "input_tokens": 9820,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "25",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/skill-routing/MAINTENANCE.md",
+      "targetHeadingPath": [
+        "Mantenimiento de MSSR",
+        "Al modificar una skill"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "c039",
+      "selectedSourceRef": "docs/AGENT_PROTOCOL.md",
+      "selectedHeadingPath": [
+        "Agent protocol",
+        "When skills change"
+      ],
+      "selectedCandidateRank": 39,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.73,
+      "noneSelected": false,
+      "elapsedMs": 340,
+      "usage": {
+        "input_tokens": 9097,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "25",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/skill-routing/MAINTENANCE.md",
+      "targetHeadingPath": [
+        "Mantenimiento de MSSR",
+        "Al modificar una skill"
+      ],
+      "baselineTargetRank": 39,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c039",
+      "selectedSourceRef": "docs/skill-routing/MAINTENANCE.md",
+      "selectedHeadingPath": [
+        "Mantenimiento de MSSR",
+        "Al modificar una skill"
+      ],
+      "selectedCandidateRank": 39,
+      "selectedExpectedSection": true,
+      "selectedConfidence": 0.35,
+      "noneSelected": false,
+      "elapsedMs": 367.6,
+      "usage": {
+        "input_tokens": 9796,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "26",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/OPERATIONAL_NOTICE_PLANE.md",
+      "targetHeadingPath": [
+        "MauroPrime Operational Notice Plane",
+        "Four distinct concepts"
+      ],
+      "baselineTargetRank": 12,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c071",
+      "selectedSourceRef": "docs/OPERATIONAL_NOTICE_PLANE.md",
+      "selectedHeadingPath": [
+        "MauroPrime Operational Notice Plane",
+        "What this is not"
+      ],
+      "selectedCandidateRank": 71,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.6,
+      "noneSelected": false,
+      "elapsedMs": 398.3,
+      "usage": {
+        "input_tokens": 9387,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "26",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/OPERATIONAL_NOTICE_PLANE.md",
+      "targetHeadingPath": [
+        "MauroPrime Operational Notice Plane",
+        "Four distinct concepts"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "c083",
+      "selectedSourceRef": "docs/skill-routing/README.md",
+      "selectedHeadingPath": [
+        "MSSR — Modular Semantic Skill Router",
+        "Contexto conversacional"
+      ],
+      "selectedCandidateRank": 83,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.32,
+      "noneSelected": false,
+      "elapsedMs": 355.4,
+      "usage": {
+        "input_tokens": 9912,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "27",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/decisions/0001-context-plane-v1.md",
+      "targetHeadingPath": [
+        "ADR 0001 — MSSR Context Plane v1",
+        "Decision",
+        "Continuation and persistence"
+      ],
+      "baselineTargetRank": 35,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c035",
+      "selectedSourceRef": "docs/decisions/0001-context-plane-v1.md",
+      "selectedHeadingPath": [
+        "ADR 0001 — MSSR Context Plane v1",
+        "Decision",
+        "Continuation and persistence"
+      ],
+      "selectedCandidateRank": 35,
+      "selectedExpectedSection": true,
+      "selectedConfidence": 0.52,
+      "noneSelected": false,
+      "elapsedMs": 337.8,
+      "usage": {
+        "input_tokens": 9586,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "27",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/decisions/0001-context-plane-v1.md",
+      "targetHeadingPath": [
+        "ADR 0001 — MSSR Context Plane v1",
+        "Decision",
+        "Continuation and persistence"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "c044",
+      "selectedSourceRef": "docs/skill-routing/README.md",
+      "selectedHeadingPath": [
+        "MSSR — Modular Semantic Skill Router",
+        "Contexto conversacional"
+      ],
+      "selectedCandidateRank": 44,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.37,
+      "noneSelected": false,
+      "elapsedMs": 433.9,
+      "usage": {
+        "input_tokens": 9857,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "28",
+      "language": "en",
+      "status": "success",
+      "split": "grouped-holdout",
+      "targetSourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      "targetHeadingPath": [
+        "ADR 0003 — Evidence-first consistency recommendations",
+        "Evidence-first rules"
+      ],
+      "baselineTargetRank": 34,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c014",
+      "selectedSourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      "selectedHeadingPath": [
+        "ADR 0003 — Evidence-first consistency recommendations"
+      ],
+      "selectedCandidateRank": 14,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.43,
+      "noneSelected": false,
+      "elapsedMs": 321.4,
+      "usage": {
+        "input_tokens": 9626,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "28",
+      "language": "es",
+      "status": "success",
+      "split": "grouped-holdout",
+      "targetSourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      "targetHeadingPath": [
+        "ADR 0003 — Evidence-first consistency recommendations",
+        "Evidence-first rules"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.63,
+      "noneSelected": true,
+      "elapsedMs": 320.4,
+      "usage": {
+        "input_tokens": 9776,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "29",
+      "language": "en",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+      "targetHeadingPath": [
+        "ADR 0004 — Situation Model for project knowledge",
+        "Decision",
+        "Evidence classes"
+      ],
+      "baselineTargetRank": 33,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c033",
+      "selectedSourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+      "selectedHeadingPath": [
+        "ADR 0004 — Situation Model for project knowledge",
+        "Decision",
+        "Evidence classes"
+      ],
+      "selectedCandidateRank": 33,
+      "selectedExpectedSection": true,
+      "selectedConfidence": 0.51,
+      "noneSelected": false,
+      "elapsedMs": 353.7,
+      "usage": {
+        "input_tokens": 9669,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "29",
+      "language": "es",
+      "status": "success",
+      "split": "development",
+      "targetSourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+      "targetHeadingPath": [
+        "ADR 0004 — Situation Model for project knowledge",
+        "Decision",
+        "Evidence classes"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "c032",
+      "selectedSourceRef": "docs/skill-routing/README.md",
+      "selectedHeadingPath": [
+        "MSSR — Modular Semantic Skill Router",
+        "Contexto conversacional",
+        "Routing Evidence Checkpoint y notices"
+      ],
+      "selectedCandidateRank": 32,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.51,
+      "noneSelected": false,
+      "elapsedMs": 398.8,
+      "usage": {
+        "input_tokens": 9716,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "30",
+      "language": "en",
+      "status": "success",
+      "split": "grouped-holdout",
+      "targetSourceRef": "docs/decisions/0005-architecture-impact-drift-links.md",
+      "targetHeadingPath": [
+        "ADR 0005 — Architecture Impact / Drift Links",
+        "Decision",
+        "Exact-only v1"
+      ],
+      "baselineTargetRank": 46,
+      "targetPresentInCandidateSet": true,
+      "selectedOption": "c028",
+      "selectedSourceRef": "docs/decisions/0005-architecture-impact-drift-links.md",
+      "selectedHeadingPath": [
+        "ADR 0005 — Architecture Impact / Drift Links",
+        "C2f-B boundary"
+      ],
+      "selectedCandidateRank": 28,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.31,
+      "noneSelected": false,
+      "elapsedMs": 458.3,
+      "usage": {
+        "input_tokens": 9780,
+        "output_tokens": 1027
+      },
+      "providerFailureClass": null
+    },
+    {
+      "caseId": "30",
+      "language": "es",
+      "status": "success",
+      "split": "grouped-holdout",
+      "targetSourceRef": "docs/decisions/0005-architecture-impact-drift-links.md",
+      "targetHeadingPath": [
+        "ADR 0005 — Architecture Impact / Drift Links",
+        "Decision",
+        "Exact-only v1"
+      ],
+      "baselineTargetRank": null,
+      "targetPresentInCandidateSet": false,
+      "selectedOption": "none",
+      "selectedSourceRef": null,
+      "selectedHeadingPath": null,
+      "selectedCandidateRank": null,
+      "selectedExpectedSection": false,
+      "selectedConfidence": 0.33,
+      "noneSelected": true,
+      "elapsedMs": 310.4,
+      "usage": {
+        "input_tokens": 9964,
+        "output_tokens": 1024
+      },
+      "providerFailureClass": null
+    }
+  ]
+}

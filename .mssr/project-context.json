@@ -406,6 +406,212 @@
       "maxChars": 10000
     },
     {
+      "id": "mssr-jev-confidence-merge-evaluation",
+      "kind": "context",
+      "topic": "architecture",
+      "area": "semantic-evidence",
+      "description": "Current Jev confidence, contradiction-aware decisions, Librarian evidence retrieval, and reversible merge boundaries.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+        "sections": [
+          "## Keep source evidence separate from Jev judgment",
+          "## Librarian retrieval and evidence acquisition",
+          "## Confidence and merge policy",
+          "## Composed capability boundary"
+        ]
+      },
+      "domains": [
+        "coding",
+        "skill-system",
+        "agent-orchestration"
+      ],
+      "actions": [
+        "analyze",
+        "design",
+        "review",
+        "maintain",
+        "document"
+      ],
+      "artifacts": [
+        "repository",
+        "code",
+        "document"
+      ],
+      "needs": [
+        "integrity-verification",
+        "cross-agent"
+      ],
+      "signals": [
+        "conflicting-evidence",
+        "reusable-pattern",
+        "capability-discovery-needed"
+      ],
+      "priority": 92,
+      "maxChars": 10000
+    },
+    {
+      "id": "mssr-jev-confidence-benchmark-history",
+      "kind": "context",
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "description": "Historical Jev run results, public evidence, and the next evaluation protocol with their limitations.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+        "sections": [
+          "## What the MSSR runs establish",
+          "## Next MSSR evaluation",
+          "## Public evidence reviewed"
+        ]
+      },
+      "domains": [
+        "coding",
+        "agent-orchestration",
+        "skill-system"
+      ],
+      "actions": [
+        "analyze",
+        "review",
+        "verify"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document"
+      ],
+      "needs": [
+        "integrity-verification",
+        "cross-agent"
+      ],
+      "signals": [
+        "uncertainty",
+        "conflicting-evidence"
+      ],
+      "priority": 52,
+      "maxChars": 10000
+    },
+    {
+      "id": "mssr-jev-decision-model-use-cases",
+      "kind": "context",
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "description": "Jev decision boundaries, composed MSSR workflows, and evaluation requirements; source research and hypotheses are indexed separately.",
+      "source": {
+        "path": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+        "sections": [
+          "## Resumen ejecutivo",
+          "## Qué es evidencia y qué no",
+          "## Capacidades y límites de Jev",
+          "## Composición: cómo cubrir grep, selección, compacción y párrafos",
+          "## Evaluación mínima antes de considerar cualquier caso"
+        ]
+      },
+      "domains": [
+        "coding",
+        "agent-orchestration",
+        "skill-system"
+      ],
+      "actions": [
+        "analyze",
+        "review",
+        "design",
+        "discover",
+        "document"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document",
+        "skill"
+      ],
+      "needs": [
+        "integrity-verification",
+        "cross-agent"
+      ],
+      "signals": [
+        "capability-discovery-needed",
+        "reusable-pattern"
+      ],
+      "priority": 58,
+      "maxChars": 12000
+    },
+    {
+      "id": "mssr-jev-public-research-evidence",
+      "kind": "context",
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "description": "Dated QuietDesk, games, Reddit, and OpenAI Decisions API research; all results remain qualified by their source limits.",
+      "source": {
+        "path": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+        "sections": [
+          "## Evidencia local: QuietDesk",
+          "## Juegos: qué demuestran y qué no",
+          "## Reddit y otras evaluaciones tempranas",
+          "## OpenAI Decisions API: anuncio verificado, esquema pendiente",
+          "## Fuentes"
+        ]
+      },
+      "domains": [
+        "coding",
+        "agent-orchestration",
+        "skill-system"
+      ],
+      "actions": [
+        "analyze",
+        "discover",
+        "review"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document"
+      ],
+      "needs": [
+        "official-docs",
+        "integrity-verification"
+      ],
+      "signals": [
+        "capability-discovery-needed",
+        "uncertainty"
+      ],
+      "priority": 46,
+      "maxChars": 12000
+    },
+    {
+      "id": "mssr-jev-use-case-hypotheses",
+      "kind": "context",
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "description": "The complete set of 100 explicitly unvalidated Jev use-case hypotheses and its evaluation gate.",
+      "source": {
+        "path": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+        "sections": [
+          "## 100 hipótesis de uso"
+        ]
+      },
+      "domains": [
+        "coding",
+        "agent-orchestration",
+        "skill-system"
+      ],
+      "actions": [
+        "design",
+        "discover"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "skill"
+      ],
+      "needs": [
+        "integrity-verification"
+      ],
+      "signals": [
+        "reusable-pattern"
+      ],
+      "priority": 38,
+      "maxChars": 12000
+    },
+    {
       "id": "mssr-project-document-reference-lifecycle",
       "kind": "context",
       "topic": "reference",
@@ -708,6 +914,162 @@
       ],
       "priority": 92,
       "maxChars": 1400
+    },
+    {
+      "id": "mssr-project-context-librarian-metadata-core",
+      "kind": "context",
+      "topic": "architecture",
+      "area": "project-context",
+      "description": "Librarian metadata ownership and authority invariants.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+        "sections": [
+          "## Goal and ownership"
+        ]
+      },
+      "domains": [
+        "skill-system",
+        "coding",
+        "agent-orchestration"
+      ],
+      "actions": [
+        "analyze",
+        "create",
+        "debug",
+        "design",
+        "edit",
+        "maintain",
+        "review",
+        "verify"
+      ],
+      "artifacts": [
+        "code",
+        "project",
+        "repository",
+        "document",
+        "mcp"
+      ],
+      "required": false,
+      "priority": 94,
+      "maxChars": 700
+    },
+    {
+      "id": "mssr-project-context-librarian-metadata",
+      "kind": "context",
+      "topic": "architecture",
+      "area": "project-context",
+      "description": "Librarian metadata declaration schema, limits, compatibility, and verification.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+        "sections": [
+          "## Declaration",
+          "## Compatibility and verification"
+        ]
+      },
+      "domains": [
+        "skill-system",
+        "coding",
+        "agent-orchestration"
+      ],
+      "actions": [
+        "design",
+        "review",
+        "analyze",
+        "verify",
+        "maintain"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document",
+        "mcp"
+      ],
+      "required": false,
+      "priority": 94,
+      "maxChars": 2400
+    },
+    {
+      "id": "mssr-project-context-librarian-projection",
+      "kind": "context",
+      "topic": "architecture",
+      "area": "project-context",
+      "description": "Strict Librarian projection and fail-closed stale or invalid sidecar behavior.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+        "sections": [
+          "## Projection and stale-data behavior"
+        ]
+      },
+      "domains": [
+        "skill-system",
+        "coding",
+        "agent-orchestration"
+      ],
+      "actions": [
+        "create",
+        "debug",
+        "edit",
+        "verify"
+      ],
+      "artifacts": [
+        "code",
+        "project",
+        "repository",
+        "document",
+        "mcp"
+      ],
+      "required": false,
+      "priority": 94,
+      "maxChars": 2200
+    },
+    {
+      "id": "mssr-jev-librarian-integration-handoff",
+      "kind": "state",
+      "topic": "operations",
+      "area": "semantic-evidence",
+      "description": "Current Librarian integration status, branch preservation, benchmark boundaries, and next host gates.",
+      "source": {
+        "path": ".mssr/knowledge/operations/jev-librarian-integration-handoff.md",
+        "sections": [
+          "## Repository snapshot and preservation",
+          "## MSSR contract work",
+          "## Evaluation gates",
+          "## Next gates"
+        ]
+      },
+      "domains": [
+        "coding",
+        "skill-system",
+        "agent-orchestration",
+        "filesystem"
+      ],
+      "actions": [
+        "review",
+        "verify",
+        "maintain",
+        "recover",
+        "version",
+        "publish"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document",
+        "mcp"
+      ],
+      "needs": [
+        "version-control",
+        "integrity-verification",
+        "history-recovery"
+      ],
+      "signals": [
+        "conflicting-evidence",
+        "uncertainty",
+        "recovery-needed"
+      ],
+      "required": false,
+      "priority": 96,
+      "maxChars": 5000
     }
   ]
 }

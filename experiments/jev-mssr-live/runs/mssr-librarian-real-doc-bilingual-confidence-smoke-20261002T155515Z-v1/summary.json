@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-real-doc-bilingual-confidence-smoke-20261002T155515Z-v1",
+  "status": "complete",
+  "evaluationClass": "exploratory-live-selection-consistency-no-labels",
+  "manifestSha256": "badafa1bda82c37584443749666846ce618db2593acc18fd16bedc4a8e09bb1b",
+  "counts": {
+    "plannedToolCalls": 5,
+    "attemptedToolCalls": 5,
+    "attemptedProviderCalls": 3,
+    "successfulProviderCalls": 3,
+    "failedProviderCalls": 0,
+    "sameSelectedHandleAcrossThreeSelections": 3,
+    "exactFetchesAttempted": 2,
+    "exactFetchesPassed": 1,
+    "staleFetchResponses": 1,
+    "exactFetchIntegrityFailures": 0
+  },
+  "selections": {
+    "languages": {"es": 2, "en": 1},
+    "sharedTarget": {
+      "sourceRef": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+      "rangeId": "heading-5",
+      "title": "Confidence and merge policy",
+      "handleId": "cf807f2a2d16153f66ec8a87f8ea289968916b1eb0395f561513ee356d53785d"
+    },
+    "sameCandidateSetForAllSelections": false,
+    "noExpectedTargetLabel": true
+  },
+  "providerConfidence": {"values": [0.79, 0.49, 0.74], "range": [0.49, 0.79], "calibrated": false},
+  "evidenceSufficiency": {"values": [0.69, 0.72, 0.63], "calibrated": false},
+  "usage": {
+    "inputTokens": 8092,
+    "outputTokens": 571,
+    "meanProviderReportedLatencyMs": 382.7
+  },
+  "interpretation": "All three selector calls chose the same exact range, but the third call had a narrower corpus; there were no labels and this is not an accuracy, language-quality, confidence-calibration, or production-threshold result. One separately supplied fetch returned stale; an exact fetch made with the same snapshot as a later selection passed. Preserve the stale response as unresolved transport/source-revision evidence."
+}

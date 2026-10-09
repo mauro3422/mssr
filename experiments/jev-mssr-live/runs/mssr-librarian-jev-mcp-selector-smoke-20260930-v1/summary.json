@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-jev-mcp-selector-smoke-20260930-v1",
+  "status": "complete",
+  "source": {
+    "repository": "MSSR",
+    "sourceCommitAtRun": "4abc2347baba4ea26a0a0292684b01a747610ffc",
+    "workingTreeDirtyAtRun": true,
+    "mssrPackageVersion": "0.2.95",
+    "mssrBuildReceipt": {
+      "schema": "mssr-build-receipt-v1",
+      "id": "mssr-build:sha256:600d0d72f5186a58",
+      "version": "0.2.95",
+      "files": 123,
+      "bytes": 1377442
+    },
+    "compiledFiles": [
+      {
+        "path": "dist/librarian-jev-selection.js",
+        "sha256": "45d84f3c9074c4903dce0cf53450ad60c612273f00f76bcb4a1463447af4fe6e"
+      },
+      {
+        "path": "dist/semantic-evidence-mcp.js",
+        "sha256": "03e1c2415ed06fb3a7dfb104e4ec9693ccfca73f5446af011b7b5689cce78a5c"
+      },
+      {
+        "path": "dist/semantic-curation-jev.js",
+        "sha256": "9793bb891503c90f05e97e4af5abde97337058fad927a09186d036177642759e"
+      },
+      {
+        "path": "dist/document-surface.js",
+        "sha256": "5304701921f8d07ff83503cc1e5fa8dbd58631646bdf40aeda6facfc7ec18172"
+      },
+      {
+        "path": "dist/librarian-retrieval.js",
+        "sha256": "5785c871f517fe21805106a54602092ddec09f94dad0347ce2308ffbab0f7965"
+      }
+    ],
+    "inputCorpusRun": "mssr-librarian-jev-full-heading-choice-20260930-v1",
+    "inputSourceCommit": "c4c93fb20faeb4bba81fc771718cd2f26c9c3c2a",
+    "inputCorpusSha256": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d",
+    "corpusDocuments": 21,
+    "queryCaseId": "01",
+    "queryLanguage": "es"
+  },
+  "execution": {
+    "mcpServerRegisteredTool": true,
+    "mcpSelectionCall": true,
+    "sourceHeadingsOffered": 200,
+    "optionsIncludingNone": 201,
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "providerConfidence": 0.79,
+    "confidenceCalibration": "uncalibrated-provider-score",
+    "inputTokens": 18192,
+    "outputTokens": 2027,
+    "selectionElapsedMs": 5670.1,
+    "requestFingerprint": "c24497823d544e86bc64b74c28b239e5ae445d464808606acded3bb2e7463803",
+    "selected": {
+      "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "headingPath": [
+        "Semantic Evidence Plane architecture",
+        "Evidence atom and source boundary"
+      ],
+      "revision": "9ef9520262aea6b1e3b74af5712f6d37ee9217ed11555ae632ce606e4ad96b3e",
+      "fingerprint": "8266a3124189bb1157545f7035629d02a860e46b6b7481ebd086f52dd01023d5",
+      "handleId": "01a2263cfb73d01194424486dbb1b66b0cb0a06c53896939d658ca2324edaa7a"
+    },
+    "exactFetchPassed": true,
+    "exactFetchFingerprint": "8266a3124189bb1157545f7035629d02a860e46b6b7481ebd086f52dd01023d5",
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "verification": "unverified",
+    "autoApplyAllowed": false,
+    "sourceBodyPersisted": false,
+    "rawProviderResponsePersisted": false,
+    "credentialPersisted": false
+  }
+}

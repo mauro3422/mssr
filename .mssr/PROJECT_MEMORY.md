@@ -1,5 +1,101 @@
 # MSSR project memory
 
+## Fetchable Librarian tie ordering — 0.2.105
+
+Librarian relevance scores remain lexical overlap ratios. When two candidates
+tie, an exact-fetchable range now ranks before an oversized range; this makes
+top-result retrieval actionable without pretending that fetchability is a
+relevance label or changing the score. A regression uses a real-sized parent
+and a matching bounded child section.
+
+## Librarian query stopwords — 0.2.104
+
+Deterministic search formerly allowed one shared token to emit a candidate, so
+common English/Spanish function words could create low-score false positives.
+The query now drops a small bilingual function-word set while indexed source
+text retains every term. An all-function-word query returns no candidates.
+Scores remain lexical overlap indicators, not relevance probabilities or Jev
+confidence; translation, stemming, confidence thresholds and label-based
+calibration remain out of scope.
+
+## Read-only cited evidence pack — 0.2.102
+
+The Librarian composition boundary now accepts bounded current Markdown plus
+exact handles selected by search/host/Jev, re-fetches each against owner, source,
+privacy, revision, line range and fingerprint, then returns unchanged source
+ranges with one citation per item. It is an acquisition/assembly primitive, not
+a summarizer, Jev call, truth verifier, paragraph generator or write path. This
+preserves Mauro's intended composed workflow: Jev decides among bounded choices;
+deterministic host/MSSR code retrieves, checks and carries evidence; a separate
+structure-recovery or prose stage may assemble useful paragraphs while keeping
+citations and contradiction review explicit. Source labels remain
+caller-asserted, and confidence remains uncalibrated.
+
+The 2026-10-04 real-document wiring smoke offered eight exact candidates from
+three current MSSR documents. Jev selected the 0.2.102 changelog section at
+Choice confidence 0.27 and Noul sufficiency 0.65; the caller then confirmed the
+packed range exactly matched the source slice and citation handle. This is one
+unadjudicated integration example: it validates selection-to-pack plumbing and
+citation integrity, not semantic accuracy or a confidence cutoff.
+
+## Exact-range EvidenceAtom metadata projection — 0.2.98
+
+Librarian retrieval may accept exact EvidenceAtoms alongside caller-supplied
+Markdown and catalog records. Only allowlisted enum fields can contribute to
+search terms or metadata filters after the atom and catalog record bind to the
+same owner, privacy class, source/ref/revision, exact section/block identity,
+range offsets and payload fingerprint freshly derived from Document Surface.
+The result explains which field matched, carries a separate projection
+fingerprint, and labels provenance caller-asserted; full atoms and arbitrary
+metadata remain out of results. Existing `searchableMetadata` stays
+document-scoped. Stale, historical, and superseded freshness values remain
+searchable for review, do not affect ranking, and remain caller assertions;
+results identify atom fields that satisfied metadata filters. Indexed range and
+subject maps keep work bounded. The portable contract does not make
+Bridge/adapters send atoms automatically and confers no authentication or write
+authority.
+
+TypeSafe's official Structure recovery example confirms the useful composed
+capability Mauro observed: Jev classifies line joins and text blocks; a
+deterministic assembler preserves source words while rebuilding paragraphs and
+Markdown. Jev itself does not generate open prose. Keep retrieval, decision,
+exact fetch, deterministic rendering/generation, citation checks and host
+approval as separately measured stages.
+
+## Explicit Jev selection for the Librarian — 0.2.95
+The bilingual full-heading experiment supports offering a separate Jev Choice over caller-supplied sections when the deterministic lexical shortlist misses useful evidence. The original 0.2.95 contract offers at most 254 exact heading candidates plus `none`, returns only a revision-bound handle, and requires the caller to exact-fetch the selected section. It makes no filesystem scan, compaction, paragraph generation, verification or canonical write. Option limits fail closed to `not-run` instead of silently dropping candidates; raw provider confidence is descriptive and uncalibrated. Titles, paths and excerpts are untrusted input to the model, so the host must review the exact fetched source. The first live MCP smoke used the frozen 21-document MSSR corpus and selected one expected section with an integrity-passing exact fetch; its label was Luna-reviewed, not approved by the human document owner, and is a wiring check rather than quality validation.
+
+The 0.2.96 selector extension lets a host pass up to 100 exact handles returned by deterministic Librarian search. MSSR revalidates owner, explicit source, privacy classification, revision, range and fingerprint before producing a bounded query-centered excerpt for Jev. It returns the existing exact handle, which the host must still fetch; stale or out-of-scope candidates fail before provider use. Calls that omit handles retain heading enumeration. This repairs the missing bridge between lexical discovery and semantic choice without adding a tool, making search authoritative, calibrating confidence, or granting synthesis/write authority.
+
+MSSR 0.2.99 selects oversized excerpts using the window that covers the most distinct query terms, with earliest-window tie-breaking. This prevents a generic early match from crowding out denser binding evidence while preserving the 260-codepoint limit and exact-fetch requirement; it does not establish Jev selection accuracy or calibrate confidence.
+
+## Probabilistic shortlists across Jev option shards — 0.2.97
+
+The Jev Choice SDK exposes probabilities for each offered option, but the older MSSR transport mapping discarded them. The shared response contract now accepts that distribution optionally and validates exact option identity, approximate normalization and that the returned choice is among the highest-probability options. Hierarchical selection uses the within-shard distribution to retain up to two candidates per shard before one final Choice; a provider without a distribution retains its one selected local candidate. A 16-call preflight fails closed before contacting Jev. Noul is never a candidate-drop threshold. Single-pass Noul sees every offered candidate; hierarchical final Noul sees only retained finalists, so the values are not comparable across modes. All selected results remain advisory revision-bound handles and still require exact fetch.
+
+The full-heading selector now centers bounded excerpts over the whole section with Unicode-cluster normalization, so composed and decomposed accent spellings align without changing source text and Spanish ñ remains distinct from n. Deterministic retrieval remains lexical, no translation or stemming.
+
+The controlled live comparison uses byte-identical frozen inputs: 21 real MSSR documents, 200 headings and 26 paired English/Spanish questions (52 requests). Two 80k direct Choice runs on 0.2.96/0.2.97 scored 35/52 (18 EN, 17 ES) and 34/52 (17 EN, 17 ES), with 50/50 exact fetch checks each. They selected the same exact source/range in 50/52 cases; the one English strict-label change accounts for the one-point score difference. The paired 64k hierarchy scored 31/52 (14 EN, 17 ES), with 49/49 fetch checks and three abstentions over 156 calls. The previous full-heading result was 34/52. These runs do not show a repeatable quality improvement over the earlier full-heading path. Labels were reviewed by Luna agents, not approved by the human document owner; other acceptable ranges and abstention quality are unlabeled. Preserve every run and failed request-size smoke as exploratory evidence; do not infer a confidence cutoff from the small confidence bands.
+
+Choice confidence and Noul scores remain uncalibrated for MSSR policy until a representative, independently adjudicated held-out evaluation supports a policy. Typed probabilities can guide a review/abstention experiment; they do not establish correctness or authorize use. No threshold or authority is introduced.
+
+The end-user workflow may compose deterministic text search/fetch, Jev selection, iterative requests for more evidence, relation/contradiction review, a separate generator for compaction or paragraph assembly, and a reversible synthesis preview. This is the right architectural direction for the intelligent grep/selection/assembly behavior: each step contributes what it is good at and exposes evidence to the next. MSSR's current tools expose the search/fetch, selection, relation and preview contracts; an authorized host must orchestrate the loop and choose any open-text generator. Citation, current-revision, contradiction, independent-verifier and host approval gates stay explicit before canonical writes.
+
+## Jev composition, confidence and reversible synthesis — 0.2.93
+
+Jev supplies typed finite decisions inside composed workflows; it does not by
+itself implement text search, compaction, open paragraph generation, tool
+execution or verification. The host can combine grep/retrieval, bounded
+selection, a generator or deterministic assembler, policy, execution and an
+independent verifier around Jev. Keep each component's evidence and ownership
+separate. Raw confidence is a routing signal, not a calibrated probability or
+truth guarantee. Contradiction, unknown scope/time/freshness, or missing
+independent verification must preserve the source and route to review. Exact
+text synthesis remains an immutable, reversible preview with no canonical
+write authority. Freshness and verifier evidence remain caller assertions until
+a host re-reads current source revisions and verifies through its own trusted
+boundary; owner/privacy/catalog labels are not authentication.
+
 ## Librarian coverage scope decision — 0.2.92
 
 Coverage completeness belongs to an explicit evaluated scope. A producer-filtered
@@ -120,4 +216,4 @@ A shared source revision is not enough to prove two evidence records duplicate: 
 
 ## Evidence provenance and Jev host boundary decision
 
-EvidenceAtom v2 requires source class and canonical owner; `fresh` requires a host observation matching the exact normalized source ref, revision and owner with timestamp. Unknown remains safe. Sensitive-excluded atoms and free-form atom attributes are rejected. Semantic Curation may receive an injected normalized Jev decision provider so hosts own credentials/transport/retries; the legacy TypeSafe configuration is deprecated compatibility. This seam is separate from Librarian, which still does not submit relation candidates to Jev. Benchmark runs must preserve historical raw outputs, source/corpus hashes, label provenance and holdout boundaries; future run protocol defaults offline.
+EvidenceAtom v2 requires source class and canonical owner; `fresh` requires a host observation matching the exact normalized source ref, revision and owner with timestamp. Unknown remains safe. Sensitive-excluded atoms and free-form atom attributes are rejected. Semantic Curation may receive an injected normalized Jev decision provider so hosts own credentials/transport/retries; the legacy TypeSafe configuration is deprecated compatibility. As of 0.2.93, a bounded MCP flow supplies caller-owned exact source text to Jev relation review and emits unverified, atom-bound judgments; this adds no owner authentication, global index or write authority. Benchmark runs must preserve historical raw outputs, source/corpus hashes, label provenance and holdout boundaries; future run protocol defaults offline.

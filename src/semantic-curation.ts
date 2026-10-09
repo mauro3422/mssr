@@ -95,6 +95,15 @@ export const mssrSemanticCurationPairJudgmentSchema = z.object({
   if (value.leftId === value.rightId) ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Semantic curation pair endpoints must differ." });
 });
 
+export const mssrSemanticCurationPairCandidateSchema = z.object({
+  leftId: idSchema,
+  rightId: idSchema,
+}).strict().superRefine((value, ctx) => {
+  if (value.leftId === value.rightId) ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Semantic curation pair candidates must differ." });
+});
+
+export type MssrSemanticCurationPairCandidate = z.infer<typeof mssrSemanticCurationPairCandidateSchema>;
+
 export const mssrSemanticCurationProviderResultSchema = z.object({
   schemaVersion: z.literal(MSSR_SEMANTIC_CURATION_SCHEMA_VERSION),
   provider: z.string().min(1).max(120),
@@ -126,6 +135,7 @@ export type MssrSemanticCurationReviewReason =
   | "protected-drop-conflict"
   | "historical-drop-conflict"
   | "low-relation-confidence"
+  | "pair-not-offered"
   | "contradiction-candidate";
 
 export type MssrSemanticCurationBlockDecision = {
@@ -159,6 +169,7 @@ export type MssrSemanticCurationEvaluation = {
 export function evaluateMssrSemanticCuration(args: {
   blocks: readonly MssrSemanticCurationBlockInput[];
   result: unknown;
+  pairCandidates?: readonly MssrSemanticCurationPairCandidate[];
   roleConfidence?: number;
   destinationConfidence?: number;
   topicConfidence?: number;
@@ -174,6 +185,14 @@ export function evaluateMssrSemanticCuration(args: {
   const protectedProbability = args.protectedProbability ?? 0.8;
   const judgments = new Map(result.blockJudgments.map((judgment) => [judgment.blockId, judgment]));
   const blockById = new Map(blocks.map((block) => [block.id, block]));
+  const pairCandidates = (args.pairCandidates ?? []).map((pair) => mssrSemanticCurationPairCandidateSchema.parse(pair));
+  const offeredPairs = new Set(pairCandidates.map((pair) => `${pair.leftId}\u0000${pair.rightId}`));
+  if (new Set(pairCandidates.map((pair) => `${pair.leftId}\u0000${pair.rightId}`)).size !== pairCandidates.length) {
+    throw new Error("Semantic curation pair candidates must be unique.");
+  }
+  if (pairCandidates.some((pair) => !blockById.has(pair.leftId) || !blockById.has(pair.rightId))) {
+    throw new Error("Semantic curation pair candidates must reference supplied blocks.");
+  }
 
   const blockDecisions = blocks.map((block): MssrSemanticCurationBlockDecision => {
     const judgment = judgments.get(block.id);
@@ -216,22 +235,25 @@ export function evaluateMssrSemanticCuration(args: {
     };
   });
 
-  const pairDecisions = result.pairJudgments.flatMap((judgment): MssrSemanticCurationPairDecision[] => {
-    if (!blockById.has(judgment.leftId) || !blockById.has(judgment.rightId)) return [];
+  const pairDecisions = result.pairJudgments.map((judgment): MssrSemanticCurationPairDecision => {
+    if (!blockById.has(judgment.leftId) || !blockById.has(judgment.rightId)) {
+      throw new Error("Semantic curation pair judgments must reference supplied blocks.");
+    }
     const reasons: MssrSemanticCurationReviewReason[] = [];
+    if (!offeredPairs.has(`${judgment.leftId}\u0000${judgment.rightId}`)) reasons.push("pair-not-offered");
     if (judgment.relation.confidence < relationConfidence) reasons.push("low-relation-confidence");
     if (judgment.relation.value === "contradicts") reasons.push("contradiction-candidate");
     const connector = judgment.connector && judgment.connector.confidence >= relationConfidence
       ? judgment.connector.value
       : "none";
-    return [{
+    return {
       leftId: judgment.leftId,
       rightId: judgment.rightId,
       relation: judgment.relation.value,
       accepted: reasons.length === 0,
       connector,
       reviewReasons: reasons,
-    }];
+    };
   });
 
   return {

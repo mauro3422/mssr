@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "suite": "mssr-librarian-live-real-doc-bilingual-confidence-smoke-v1",
+  "runId": "mssr-librarian-real-doc-bilingual-confidence-smoke-20261002T155515Z-v1",
+  "createdAt": "2026-10-02T15:55:15Z",
+  "status": "complete",
+  "evaluationClass": "exploratory-live-selection-consistency-no-labels",
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "1dca80d0ee37dc22c7530f1c56ba35914e999e47",
+    "inputSourceCommit": "1dca80d0ee37dc22c7530f1c56ba35914e999e47",
+    "trackedWorkingTreeClean": false,
+    "sourceMarkdownMatchedCommittedRevisionAtRunTime": true,
+    "workingTreeCodeChangesExcludedFromInput": true
+  },
+  "instrument": {
+    "captureMethod": "Codex direct MCP calls to MSSR Librarian Jev selector and exact fetch; normalized response summaries captured",
+    "toolNames": [
+      "mssr_librarian_jev_select",
+      "mssr_librarian_fetch"
+    ],
+    "serverBuildIdentity": null,
+    "buildIdentityNote": "The MCP response did not expose the running MSSR package/build receipt.",
+    "credentialValuePersisted": false,
+    "rawProviderBodiesPersisted": false
+  },
+  "corpus": {
+    "sourceRefs": [
+      ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md"
+    ],
+    "sourceRevisionBySelectedHandle": {
+      ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md": "f925226afd0fc948a464e2a7b082f3305b9aac802122c680a56c744dbde92fb7"
+    },
+    "privacyClass": "project-metadata",
+    "atomsAndCatalogRecordsSuppliedToSearch": false,
+    "notes": "The direct selector received caller-supplied Markdown. This smoke does not exercise the new local exact-atom search projection or Bridge atom delivery."
+  },
+  "provider": {
+    "mode": "live",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "calls": 3
+  },
+  "inputs": {
+    "inputs/cases.json": {
+      "sha256": "345cbb1e82d1cf04887b86f9e4b99ae1d0d778fc19bd6222e54b1cc9cdb9f6dd",
+      "items": 3,
+      "expectedAnswersIncluded": false
+    }
+  },
+  "limits": {
+    "noIndependentLabels": true,
+    "sameCorpusAcrossAllCalls": false,
+    "calibrationClaimAllowed": false,
+    "productionThresholdClaimAllowed": false,
+    "qualityScoreClaimAllowed": false
+  }
+}

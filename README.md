@@ -61,9 +61,18 @@ See [architecture](docs/ARCHITECTURE.md), the
 
 ## Install and develop
 
+For a reproducible full verification baseline, use the committed lockfile and run
+the complete project gate:
+
 ```powershell
 cd D:\Dev\mssr
-npm install
+npm ci
+npm run verify
+```
+
+For a faster local edit loop, run the compiler and the focused routing tests:
+
+```powershell
 npm run check
 npm run test:skill-routing
 ```
@@ -104,6 +113,19 @@ npm run test:opencode-standalone
 
 The standalone test uses only this package, the MCP SDK, and Codex filesystem
 skill discovery; it does not require MauroPrime Bridge.
+
+### Explicit Librarian Jev selection
+
+The semantic evidence MCP tools include `mssr_librarian_jev_select`. A caller
+supplies bounded Markdown snapshots and a question; Jev compares up to 254
+revision-bound heading sections plus a `none` option and returns an exact
+evidence handle. Call `mssr_librarian_fetch` with that handle and the current
+source snapshot before using the evidence. A `not-run` response leaves the
+candidate set intact and points back to deterministic `mssr_librarian_search`.
+The selector is an explicit choice, not an automatic search stage. Its
+provider-reported confidence is uncalibrated, and the result cannot authorize
+source access, edits, synthesis or verification. Owner and privacy labels remain
+caller assertions; the host retains source authorization and review.
 
 The package also exports `planCodexSkillContexts` and
 `assembleCodexSkillContext`. These portable filesystem loaders materialize the

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "runPurpose": "repeatability-and-exact-fetch-smoke",
+  "exposure": "The same paired question/source set was already exercised earlier in this Codex trace. This is not an unopened holdout or a new quality evaluation.",
+  "providerInputsOnly": [
+    "query",
+    "ordered exact revision-bound candidate handles"
+  ],
+  "labels": {
+    "present": false,
+    "expectedAnswersIncluded": false,
+    "accuracyScoring": false
+  },
+  "cases": [
+    {
+      "caseId": "paired-concept-es",
+      "language": "es",
+      "query": "¿Cómo se separan la búsqueda léxica del Bibliotecario, la selección semántica de Jev y la verificación exacta de una cita en MSSR?",
+      "sourceRefs": [
+        "docs/decisions/0009-semantic-evidence-plane.md",
+        "docs/ARCHITECTURE.md"
+      ],
+      "providerCandidateFile": "candidate-handles.json#es",
+      "candidateCount": 66,
+      "priorSelection": {
+        "handleId": "47bd02a66e9e56c3228f05622dd481d29c768d73723bad3ea9424085c47fe4f2",
+        "rangeId": "block-26",
+        "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md"
+      },
+      "priorSelectionIsOnlyARepeatabilityReference": true
+    },
+    {
+      "caseId": "paired-concept-en",
+      "language": "en",
+      "query": "How are deterministic Librarian search, Jev semantic selection, and exact citation verification separated in MSSR?",
+      "sourceRefs": [
+        "docs/decisions/0009-semantic-evidence-plane.md",
+        "docs/ARCHITECTURE.md"
+      ],
+      "providerCandidateFile": "candidate-handles.json#en",
+      "candidateCount": 99,
+      "priorSelection": {
+        "handleId": "47bd02a66e9e56c3228f05622dd481d29c768d73723bad3ea9424085c47fe4f2",
+        "rangeId": "block-26",
+        "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md"
+      },
+      "priorSelectionIsOnlyARepeatabilityReference": true
+    }
+  ]
+}

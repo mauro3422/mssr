@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "suite": "mssr-librarian-bilingual-lexical-query-rewrite-v1",
+  "runId": "mssr-librarian-bilingual-expansion-20261002T135011Z-v2",
+  "createdAt": "2026-10-02T13:50:11Z",
+  "status": "prepared",
+  "evaluationClass": "exploratory-repeated-on-previously-opened-corpus-and-holdout",
+  "parentRunId": "mssr-librarian-bilingual-expansion-20261002T133846Z-v1",
+  "baselineReferenceRunId": "mssr-librarian-bilingual-retrieval-20260930-v1",
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "b080317aacb3db170711f317a58e155137055de7",
+    "workingTreeClean": false,
+    "sourceWorkingTreeCleanOutsideExperimentRuns": true,
+    "changedPaths": [
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T133846Z-v1/.gitattributes",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T133846Z-v1/SHA256SUMS",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T133846Z-v1/inputs/cases.json",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T133846Z-v1/inputs/corpus.json",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T133846Z-v1/inputs/expansion-lexicon.json",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T133846Z-v1/inputs/labels.json",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T133846Z-v1/inputs/target-index.json",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T133846Z-v1/manifest.json",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T133846Z-v1/predictions.json",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T133846Z-v1/run-completion.json",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T133846Z-v1/runner.mjs",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T133846Z-v1/score.mjs",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T135011Z-v2/.gitattributes",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T135011Z-v2/inputs/cases.json",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T135011Z-v2/inputs/corpus.json",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T135011Z-v2/inputs/expansion-lexicon.json",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T135011Z-v2/inputs/labels.json",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T135011Z-v2/inputs/target-index.json",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T135011Z-v2/runner.mjs",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T135011Z-v2/score.mjs"
+    ],
+    "buildId": "mssr-build:sha256:bc288853f02be406",
+    "buildArtifacts": [
+      {
+        "path": "package.json",
+        "sha256": "3881205325cf20613cb4800bbe083451ce60e5d367109c00515f0ca155c038a0"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "ca7372a2dacaed990ceb8c94a30bf29c9527c060fc8812468cb0d4bbddf07114"
+      },
+      {
+        "path": "src/librarian-retrieval.ts",
+        "sha256": "0582aef8d5cc21a7493c19acdbd2924e223c5bac31681b791c69954a4ded95b5"
+      },
+      {
+        "path": "src/librarian-text-normalization.ts",
+        "sha256": "59902533b8703960a1bc34b27e938a8fb058d5839014295087a2e9dd188544ba"
+      },
+      {
+        "path": "src/document-surface.ts",
+        "sha256": "977d35bf1369bd1cce62a37e8331d230bf829777bdc8b1db81aaffb491467593"
+      },
+      {
+        "path": "dist/librarian-retrieval.js",
+        "sha256": "2fe80d680792f162ea04263d6e370eae54a10016e362c61da791e45181241503"
+      },
+      {
+        "path": "dist/librarian-text-normalization.js",
+        "sha256": "427c48f67009b9e925786f850d1c01b34aa4f439ccfd2504f275f3040ae3454d"
+      },
+      {
+        "path": "dist/document-surface.js",
+        "sha256": "773978bd14c43dc7bb2ed4fda61fe3f19e7ccec05d726578d096c87aec115e02"
+      }
+    ]
+  },
+  "instrument": {
+    "runnerPath": "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T135011Z-v2/runner.mjs",
+    "runnerSha256": "b35db84e0553fb0ebce3839bb7f6746f7f3221106258e842d9f5c71045ec6236",
+    "scorerPath": "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T135011Z-v2/score.mjs",
+    "scorerSha256": "0eb1710e9e9f215087610be9d497bbc465c130f5db77dfc8ab7fb7999b71b952",
+    "requestSchemaVersion": 1,
+    "maxResultsPerSearch": 100,
+    "lexiconPath": "inputs/expansion-lexicon.json",
+    "merge": "deduplicate exact handles; take max lexical score across baseline/rewrite; tie-break by best branch rank then stable source/range order; truncate to 100"
+  },
+  "corpus": {
+    "snapshotPath": "inputs/corpus.json",
+    "sha256": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d",
+    "items": 21,
+    "sourceRevision": "c4c93fb20faeb4bba81fc771718cd2f26c9c3c2a",
+    "redaction": "not-applicable"
+  },
+  "inputs": {
+    "inputs/cases.json": {
+      "sha256": "70e4c30fa2473a73fd9c2626a92ecfc58addb548da132e2ee639614b94e384f4",
+      "bytes": 6406
+    },
+    "inputs/labels.json": {
+      "sha256": "c3f2c8db87f4086747d346596eacbf66038a4712c1210d1ffbf1bf6dcf731b99",
+      "bytes": 3823
+    },
+    "inputs/corpus.json": {
+      "sha256": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d",
+      "bytes": 198584
+    },
+    "inputs/target-index.json": {
+      "sha256": "770e14acfaf74716dd3667cb8311e5e56a7222e5895dc725bcc44571e5f8a58a",
+      "bytes": 10214
+    },
+    "inputs/expansion-lexicon.json": {
+      "sha256": "ef6f0b6b34299da9bf14a43e9c0567e3cbd3665172b82b8d9770bf2a71a32601",
+      "bytes": 2377
+    }
+  },
+  "provider": {
+    "mode": "offline",
+    "provider": "none",
+    "endpointIdentity": null,
+    "requestedModel": null,
+    "sdk": null,
+    "timeoutMs": 0,
+    "maxRetries": 0,
+    "concurrency": 1,
+    "networkOptIn": false,
+    "jevCalls": 0
+  },
+  "labels": {
+    "source": "independent-review",
+    "frozenAt": "2026-09-30T22:59:43.384Z",
+    "adjudication": "none",
+    "labelFile": "inputs/labels.json",
+    "labelFileSha256": "c3f2c8db87f4086747d346596eacbf66038a4712c1210d1ffbf1bf6dcf731b99",
+    "exposedToRequests": false,
+    "note": "Prediction stage validates this file's hash but does not parse or consult label contents; a separate scorer reads labels after predictions are frozen. Prior run already opened these labels, so all results remain exploratory."
+  },
+  "split": {
+    "method": "sort unique sourceRefs by SHA-256 and reserve ceil(20%) before scoring; no tuning performed",
+    "sourceRefs": [
+      ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "docs/REGISTRY.md",
+      "docs/decisions/0005-architecture-impact-drift-links.md",
+      "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      ".mssr/knowledge/pattern/mssr-change-history-contract.md"
+    ],
+    "holdoutOpenedAt": "2026-09-30T22:59:43.384Z",
+    "holdoutUsedForTuning": false,
+    "status": "previously-opened-exploratory-only"
+  },
+  "plan": {
+    "primaryMetric": "exact expected Markdown section recall@100 by query language",
+    "secondaryMetrics": [
+      "recall@1",
+      "recall@5",
+      "MRR@100",
+      "target absence",
+      "returned candidate count",
+      "lexicon translation coverage"
+    ],
+    "thresholds": {},
+    "independentUnit": "query-target source document; 26 query pairs over 21 documents",
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30
+    },
+    "uncertaintyMethod": "descriptive counts only; no inferential or calibration claim",
+    "variants": [
+      "current-search-baseline",
+      "lexicon-query-rewrite",
+      "paired-language-query-reference",
+      "baseline-plus-rewrite-score-max-merge"
+    ],
+    "limitations": [
+      "Single project corpus and author/model-assisted exact-heading labels; no human owner adjudication.",
+      "The paired-language query is a reference diagnostic, not a deployable translation method.",
+      "The holdout was already evaluated in the parent run and cannot support a confirmatory claim."
+    ]
+  }
+}

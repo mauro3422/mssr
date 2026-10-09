@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "suite": "mssr-librarian-jev-candidate-selection-v1",
+  "runId": "mssr-librarian-jev-candidate-selection-20260930-v1",
+  "parentRunId": "mssr-librarian-bilingual-retrieval-20260930-v1",
+  "createdAt": "2026-09-30T23:34:11.212Z",
+  "status": "complete",
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "c4c93fb20faeb4bba81fc771718cd2f26c9c3c2a",
+    "inputSourceCommit": "c4c93fb20faeb4bba81fc771718cd2f26c9c3c2a",
+    "workingTreeClean": false,
+    "retrievalAndProviderSourceFilesUnmodified": true,
+    "buildArtifacts": [
+      {
+        "path": "dist/librarian-retrieval.js",
+        "sha256": "5785c871f517fe21805106a54602092ddec09f94dad0347ce2308ffbab0f7965"
+      },
+      {
+        "path": "dist/document-surface.js",
+        "sha256": "5304701921f8d07ff83503cc1e5fa8dbd58631646bdf40aeda6facfc7ec18172"
+      },
+      {
+        "path": "dist/semantic-curation-jev.js",
+        "sha256": "9793bb891503c90f05e97e4af5abde97337058fad927a09186d036177642759e"
+      }
+    ]
+  },
+  "runtime": "v24.16.0",
+  "provider": "TypeSafe Jev via exported MSSR MssrJevSemanticCuratorProvider decisionProvider",
+  "model": "jev-1.13.0",
+  "credentialValuePersisted": false,
+  "rawVendorHttpBodiesPersisted": false,
+  "inputs": {
+    "corpusDocuments": 21,
+    "corpusSha256": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d",
+    "caseCount": 26,
+    "casesSha256": "70e4c30fa2473a73fd9c2626a92ecfc58addb548da132e2ee639614b94e384f4",
+    "labelsSha256": "c3f2c8db87f4086747d346596eacbf66038a4712c1210d1ffbf1bf6dcf731b99",
+    "targetIndexSha256": "770e14acfaf74716dd3667cb8311e5e56a7222e5895dc725bcc44571e5f8a58a"
+  },
+  "execution": {
+    "retrievalCalls": 52,
+    "jevCalls": 52,
+    "successfulJevCalls": 52,
+    "failedJevCalls": 0,
+    "maxCandidates": 100,
+    "choiceOptionsPerCall": 101,
+    "inputTokens": 501232,
+    "outputTokens": 53347
+  },
+  "groupedHoldout": {
+    "method": "sort unique sourceRefs by SHA-256 and reserve ceil(20%) before scoring; no tuning performed",
+    "sourceRefs": [
+      ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "docs/REGISTRY.md",
+      "docs/decisions/0005-architecture-impact-drift-links.md",
+      "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      ".mssr/knowledge/pattern/mssr-change-history-contract.md"
+    ]
+  },
+  "files": {
+    "inputs/cases.json": "70e4c30fa2473a73fd9c2626a92ecfc58addb548da132e2ee639614b94e384f4",
+    "inputs/labels.json": "c3f2c8db87f4086747d346596eacbf66038a4712c1210d1ffbf1bf6dcf731b99",
+    "inputs/corpus.json": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d",
+    "inputs/target-index.json": "770e14acfaf74716dd3667cb8311e5e56a7222e5895dc725bcc44571e5f8a58a",
+    "runner.mjs": "85f8343badae65839c0625c788155949e75fd8ef3a112dbfc596b6c1539ee606",
+    "score.mjs": "4eb0e52b6ca10d2b197e8288c9fff1c7b3942b834a5bc2988603747451836422",
+    "finalize.mjs": "c8d5a554cc7a3a1a223007c31343f79d724da1249b05a6a370485d53fa183795",
+    "requests.json": "5049346c00373acc36ade6b2eedd919cc708cd88c5086ab1aed8d37f3cb48a4b",
+    "responses.json": "f77d78b7fdfac3ddeb8a544917e3897cb0d79e21ba1c7253364a14078e608222",
+    "scored-records.json": "b4ee337e8f21373f0204488514d9ba220ac03f9a769b7a68b9d902e3f186784c",
+    "summary.json": "91082a6c680cc929a8110395b28cad6a8ff31e5529c67c1728ed38f4f2c3c75f",
+    "REPORT.md": "485be2c5a13e5dacc6acbc3a3cafa3f77f1389997d779427951a76800e85bcde"
+  }
+}

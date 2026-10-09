@@ -22,6 +22,7 @@ import { MSSR_CONSISTENCY_TOOL_NAMES, registerMssrConsistencyTools } from "./con
 import { MSSR_OPERATIONAL_NOTICE_TOOL_NAMES, registerMssrOperationalNoticeTools } from "./operational-notice-contract.js";
 import { MSSR_HOST_CONFORMANCE_TOOL_NAMES, registerMssrHostConformanceTools } from "./host-conformance-contract.js";
 import { MSSR_SEMANTIC_CURATION_TOOL_NAMES, registerMssrSemanticCurationTools } from "./semantic-curation-contract.js";
+import type { MssrSemanticEvidenceToolOptions } from "./semantic-evidence-mcp.js";
 import { MSSR_SEMANTIC_EXPERIENCE_TOOL_NAMES } from "./semantic-experience-contract.js";
 import { CapabilityRegistry, FilesystemSkillProvider, MssrFirstPartySkillProvider } from "./registry.js";
 import { createMssrRegistryFromEnvironment } from "./provider-config.js";
@@ -113,13 +114,16 @@ const nativeContextAckInputSchema = z.object({
   now: z.string().datetime({ offset: true }).optional(),
 }).strict();
 
-export function createMssrMcpServer(registry = new CapabilityRegistry([new MssrFirstPartySkillProvider(), new FilesystemSkillProvider()])) {
+export function createMssrMcpServer(
+  registry = new CapabilityRegistry([new MssrFirstPartySkillProvider(), new FilesystemSkillProvider()]),
+  semanticEvidenceOptions: MssrSemanticEvidenceToolOptions = {},
+) {
   const server = new McpServer({ name: "mssr", version: "0.2.1" });
   registerMssrProjectControlTools(server);
   registerMssrConsistencyTools(server);
   registerMssrOperationalNoticeTools(server);
   registerMssrHostConformanceTools(server);
-  registerMssrSemanticCurationTools(server);
+  registerMssrSemanticCurationTools(server, semanticEvidenceOptions);
 
   server.registerTool(MSSR_TOOL_NAMES[0], {
     description: "Show the immutable MSSR capability snapshot and provider health. Optionally refresh providers first.",

@@ -32,6 +32,7 @@ experiments/<suite>/runs/<UTC-run-id>/
   records.jsonl           # one record per attempted request; append during run
   summary.json            # derived after completion; never the source of truth
   review.json             # optional independent adjudication, separate from records
+  run-completion.json     # final status receipt when the frozen manifest stays prepared
   SHA256SUMS
 ```
 
@@ -41,6 +42,9 @@ run ID and an explicit `parentRunId`; do not silently splice attempts together.
 Record partial runs with `status: "partial"` and their completed/expected
 request counts. A later report may derive a combined view, but must keep each
 original run identifiable.
+When repository line-ending filters could rewrite hashed evidence, place a
+run-local `.gitattributes` rule such as `* -text` in the run directory and
+include that file in the final hash inventory.
 
 `latest` is only a small convenience pointer containing a run ID and manifest
 hash. It must not embed a manifest, records, or summary. A pointer is not
@@ -146,12 +150,28 @@ summary. A validator should check record counts and IDs against the frozen
 manifest, response shape, file hashes, and status before marking a run complete.
 Keep `summary.json` and human-readable reports separate from raw records.
 
+The manifest is frozen before inference and must not be edited to change
+`status: prepared` after calls begin. Record the terminal state in
+`run-completion.json`, including `runId`, `manifestSha256`, completion time,
+attempt/success/failure counts, and whether labels were exposed. Its status is
+authoritative for execution completion; the manifest remains authoritative for
+the frozen plan and input identities. Include the completion receipt, summary,
+review, report, manifest, records, and every input in `SHA256SUMS`; exclude only
+`SHA256SUMS` itself. Recompute the inventory after writing the final receipt.
+
 ## Labels, holdouts, and claims
 
 - Freeze labels, rubrics, candidate sets, questions, thresholds, and exclusions
   before inference. State whether labels were written by the experiment author,
   independently reviewed, or adjudicated; never call author-created labels
   independent ground truth.
+- For retrieval or evidence-selection tasks, freeze a gold set of acceptable
+  source ranges/handles per case when the corpus contains overlapping blocks
+  and sections. Keep exact match to one author-preferred handle as a separate
+  metric from whether the selected evidence answers the question. Declare
+  direct, equivalent, partial, and insufficient evidence criteria before
+  inference; do not treat a post-run blind adjudication as if it had been
+  frozen gold.
 - Do not place expected labels or rationales in provider request state. Keep
   labels in a separate frozen input file and set `exposedToRequests: false`.
 - Group splits by the true independent unit (for example, project or source

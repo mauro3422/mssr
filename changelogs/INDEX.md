@@ -8,8 +8,35 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 - [0.2.59](0.2.59.md) - first-party skill-context correction: proportional maintenance review, specific recovery selectors, explicit close checkpoints and deterministic context-economy fixtures.
 - [0.2.58](0.2.58.md) - routing correction: visual evidence requires both `visual-qa` and human approval, preventing non-visual functional code audits from inheriting required visual workflow obligations.
 
+## Source entries incorporated by 0.2.109 (not separately published)
+
+- [0.2.108](0.2.108.md) - evaluate temporal comparability by relation direction, allowing chronological supersession while rejecting reverse chronology.
+- [0.2.107](0.2.107.md) - diversify Librarian ranges across source documents only within relevance and exact-fetchability ties.
+- [0.2.106](0.2.106.md) - keep the semantic evidence baseline compact while preserving full Document Surface/Librarian detail in a selectively loaded segment.
+
+## Source entries incorporated by 0.2.110 (not separately published)
+
+- [0.2.109](0.2.109.md) - package accumulated semantic relation corrections, including directional temporal evaluation of `supersedes`.
+- Restored the 0.2.108 read-only candidate range-overlap diagnostics after candidate package verification exposed their omission from 0.2.109.
+
 ## Current releases
 
+- [0.2.110](0.2.110.md) - restore bounded, read-only overlap diagnostics for Jev evidence candidates and package prior semantic relation corrections.
+
+- [0.2.109](0.2.109.md) - package relation-specific temporal evaluation, including chronological `supersedes`, with source-preserving synthesis.
+- [0.2.105](0.2.105.md) - rank an exact-fetchable candidate ahead of an oversized candidate when lexical relevance scores tie.
+- [0.2.104](0.2.104.md) - filter common English/Spanish function words from Librarian query terms to prevent incidental-only candidate matches.
+- [0.2.103](0.2.103.md) - split Librarian metadata into exact-heading Project Context modules and restore projection/stale-data guidance for implementation and debugging intents.
+- [0.2.102](0.2.102.md) - add bounded read-only Librarian evidence packs that revalidate Jev-selected exact ranges and preserve verbatim text with per-range citations.
+- [0.2.101](0.2.101.md) - add exact-heading Project Context Librarian metadata with bounded, advisory EvidenceAtom projection and health validation; preserve lexical retrieval, module routing, source truth and permissions.
+- [0.2.100](0.2.100.md) - expose exact-range fetchability and omit oversized Jev candidates before provider calls; report candidate counts and abstain without Jev when no exact range is fetchable.
+- [0.2.99](0.2.99.md) - select bounded Jev excerpts by the window's coverage of distinct query terms so early generic matches do not hide later binding evidence; preserve exact source fetch and uncalibrated advisory selection.
+- [0.2.98](0.2.98.md) - add exact EvidenceAtom-backed typed metadata search/filter projections with exact source/range/catalog binding and indexed bounded matching; clarify decision-driven lossless structure recovery and preserve the bilingual real-doc live Jev smoke separately from quality benchmarks.
+- [0.2.97](0.2.97.md) - preserve and validate Jev Choice distributions for hierarchical top-two shortlists; normalize composed/decomposed Unicode for retrieval and query-centered excerpts; keep confidence uncalibrated and host authorization unchanged.
+- [0.2.96](0.2.96.md) - let Jev selection consume exact search handles with revision/privacy/fingerprint checks and bounded query-centered excerpts; retain heading-mode compatibility and uncalibrated advisory confidence.
+- [0.2.95](0.2.95.md) - add a separate bounded Jev Choice tool for selecting exact Librarian sections; keep deterministic search unchanged and confidence uncalibrated.
+- [0.2.94](0.2.94.md) - split Jev knowledge into section-scoped context modules, correct superseded adoption/handoff status, and document the reproducible full verification gate without changing historical benchmark evidence.
+- [0.2.93](0.2.93.md) - add bounded host-supplied Librarian retrieval, evidence-bound Jev judgments, and reversible contradiction-aware synthesis previews; keep host integration and calibrated confidence out of scope.
 - [0.2.92](0.2.92.md) - scope Librarian coverage claims correctly for filtered inventories, reject unknown producer selections, and clarify EvidenceAtom/host-adapter evidence limits.
 - [0.2.91](0.2.91.md) - require provenance and exact observation for fresh EvidenceAtoms, harden metadata ingress, and add an injectable host-owned Jev transport contract; define controlled benchmark runs.
 - [0.2.90](0.2.90.md) - Scope same-source-revision duplicate detection to matching evidence granularity and payload, so distinct sections in one document are not false duplicates.

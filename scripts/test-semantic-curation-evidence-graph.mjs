@@ -119,7 +119,7 @@ try {
         projectKey: job.projectKey,
         corpusKey: job.corpusKey,
         providerResult,
-        evaluation: evaluateMssrSemanticCuration({ blocks: job.blocks, result: providerResult }),
+        evaluation: evaluateMssrSemanticCuration({ blocks: job.blocks, result: providerResult, pairCandidates: job.pairCandidates }),
         batchId: `fixture:${index + 1}`,
         usage: { input_tokens: 10, output_tokens: 5 },
         elapsedMs: 1,

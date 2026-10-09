@@ -36,14 +36,23 @@ try {
   assert.deepEqual(cleaned.legacy.removed, [".bridge/PROJECT_CONTEXT.md"]);
   assert.equal(await fs.stat(path.join(repo, ".bridge", "PROJECT_CONTEXT.md")).then(() => true).catch(() => false), false);
 
+  // The optional Librarian sidecar is canonical `.mssr/` state. A matching
+  // historical `.bridge/` copy is cleanup debt, never a fallback source.
+  await fs.writeFile(path.join(repo, ".mssr", "project-context-librarian.json"), '{"schemaVersion":1,"entries":[]}\n', "utf8");
+  await fs.writeFile(path.join(repo, ".bridge", "project-context-librarian.json"), "legacy sidecar", "utf8");
+  const librarianCleanup = await initializeMssrProject(repo, { initializeMissing: true, cleanupLegacyArtifacts: true });
+  assert.deepEqual(librarianCleanup.legacy.removed, [".bridge/project-context-librarian.json"]);
+  assert.equal(await fs.stat(path.join(repo, ".bridge", "project-context-librarian.json")).then(() => true).catch(() => false), false);
+
   // Never erase a durable legacy authority if canonical data is absent.
   const blockedRepo = path.join(root, "repo-blocked");
   await fs.mkdir(path.join(blockedRepo, ".git"), { recursive: true });
   await fs.mkdir(path.join(blockedRepo, ".bridge"), { recursive: true });
   await fs.writeFile(path.join(blockedRepo, ".bridge", "PROJECT_MEMORY.md"), "legacy decision", "utf8");
+  await fs.writeFile(path.join(blockedRepo, ".bridge", "project-context-librarian.json"), "legacy sidecar", "utf8");
   const blocked = await initializeMssrProject(blockedRepo, { initializeMissing: false, cleanupLegacyArtifacts: true });
   assert.equal(blocked.initialized, false);
-  assert.deepEqual(blocked.legacy.blocked, [".bridge/PROJECT_MEMORY.md"]);
+  assert.deepEqual(blocked.legacy.blocked, [".bridge/PROJECT_MEMORY.md", ".bridge/project-context-librarian.json"]);
 
   // initializeMissing must not manufacture an empty canonical counterpart and
   // then erase a durable historical authority. This remains review-blocked.
@@ -51,7 +60,7 @@ try {
   assert.equal(blockedAuto.initialized, false);
   assert.equal(await fs.stat(path.join(blockedRepo, ".bridge", "PROJECT_MEMORY.md")).then(() => true).catch(() => false), true);
   assert.equal(await fs.stat(path.join(blockedRepo, ".mssr", "PROJECT_MEMORY.md")).then(() => true).catch(() => false), false);
-  assert.deepEqual(blockedAuto.legacy.blocked, [".bridge/PROJECT_MEMORY.md"]);
+  assert.deepEqual(blockedAuto.legacy.blocked, [".bridge/PROJECT_MEMORY.md", ".bridge/project-context-librarian.json"]);
 
   // Generated migration/audit containers are discovery exclusions, not managed projects.
   await fs.mkdir(path.join(root, "_migration-backups", "ignored", ".git"), { recursive: true });

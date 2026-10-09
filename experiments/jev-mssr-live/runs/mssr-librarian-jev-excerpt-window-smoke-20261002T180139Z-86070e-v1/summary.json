@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "evaluationClass": "exploratory-live-integration-smoke-no-labels",
+  "status": "complete",
+  "counts": {
+    "cases": 1,
+    "providerRequestsPlanned": 1,
+    "attempted": 1,
+    "succeeded": 1,
+    "failed": 0,
+    "exactFetchesAttempted": 1,
+    "exactFetchesPassed": 1
+  },
+  "outcome": {
+    "selectionStatus": "selected",
+    "selectedSearchRank": 2,
+    "selectedTitle": "Librarian retrieval and evidence acquisition",
+    "exactFetchFingerprintMatches": true,
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "rawProviderConfidence": 0.88,
+    "evidenceSufficiency": 0.72,
+    "usage": {
+      "input_tokens": 1419,
+      "output_tokens": 107
+    },
+    "latencyMs": 488.7
+  },
+  "labels": {
+    "available": false,
+    "independentAdjudication": false
+  },
+  "claims": {
+    "accuracy": null,
+    "qualityScore": null,
+    "confidenceCalibration": null,
+    "productionThreshold": null
+  },
+  "limitations": [
+    "One query and one document snapshot only.",
+    "No expected answer or independent label was supplied.",
+    "Raw Jev confidence and Noul are descriptive and uncalibrated.",
+    "No EvidenceAtoms or catalog records were supplied; the smoke does not evaluate atom-backed search.",
+    "The fingerprint match proves exact fetch integrity for this supplied snapshot, not current truth."
+  ]
+}

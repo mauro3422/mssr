@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "experiment": "mssr-librarian-jev-selection",
+  "runId": "mssr-librarian-jev-bilingual-hierarchical-64k-20261001T181350Z-v1",
+  "runFolder": "mssr-librarian-jev-bilingual-hierarchical-64k-20261001T181350Z-v1",
+  "capturedAt": "2026-10-01T18:54:11.450Z",
+  "classification": "Paired hierarchical 64k ablation. Runner runId constant was corrected after the completed outputs; summary and response files already contain the correct ID.",
+  "execution": {
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "mode": "hierarchical",
+    "selectionModesObserved": {
+      "hierarchical": 52
+    },
+    "aggregateCandidateEvidenceCharLimit": 64000,
+    "queries": 52,
+    "corpusDocuments": 21,
+    "headings": 200,
+    "providerCalls": 156,
+    "successfulCalls": 52,
+    "failedCalls": 0,
+    "abstentions": 3,
+    "exactFetchPassed": 49,
+    "inputTokens": 1546635,
+    "outputTokens": 112675,
+    "meanLatencyMs": 1196.7,
+    "sourceLabelFileReadByRunner": false,
+    "scorerOpenedFrozenLabelsAfterCompleteResponses": true,
+    "rawVendorHttpBodiesPersisted": false,
+    "credentialValuePersisted": false
+  },
+  "repository": {
+    "branchAtManifest": "codex/jev-confidence-merge-evaluation",
+    "headAtManifest": "5163dce31f3912aca4500cbd2fb58453d6ee7203",
+    "workingTreeDirtyAtManifest": true,
+    "headAtRunKnown": "5163dce31f3912aca4500cbd2fb58453d6ee7203",
+    "runWasMadeFromUncommittedCandidate": true,
+    "runTimeSourceFingerprintCaptured": false,
+    "packageVersionAtRun": "0.2.96",
+    "buildReceiptAtRun": null,
+    "sourceFileHashesAtManifest": {}
+  },
+  "times": {
+    "startedAt": "2026-10-01T18:14:28.802Z",
+    "completedAt": "2026-10-01T18:15:32.265Z"
+  },
+  "inputs": {
+    "cases.json": {
+      "sha256": "70e4c30fa2473a73fd9c2626a92ecfc58addb548da132e2ee639614b94e384f4",
+      "bytes": 6406
+    },
+    "corpus.json": {
+      "sha256": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d",
+      "bytes": 198584
+    },
+    "labels.json": {
+      "sha256": "c3f2c8db87f4086747d346596eacbf66038a4712c1210d1ffbf1bf6dcf731b99",
+      "bytes": 3823
+    },
+    "target-index.json": {
+      "sha256": "770e14acfaf74716dd3667cb8311e5e56a7222e5895dc725bcc44571e5f8a58a",
+      "bytes": 10214
+    }
+  },
+  "frozenInputsByteIdenticalAcrossRuns": [
+    "mssr-librarian-jev-bilingual-hierarchical-20261001T174949Z-v1",
+    "mssr-librarian-jev-bilingual-hierarchical-64k-20261001T181350Z-v1",
+    "mssr-librarian-jev-bilingual-80k-singlepass-20261001T182504Z-v1",
+    "mssr-librarian-jev-bilingual-80k-singlepass-20261001T184400Z-v2"
+  ],
+  "scores": {
+    "status": "complete-exploratory-score",
+    "metricScope": "strict single-heading target match; Luna-reviewed labels only",
+    "combined": {
+      "queries": 52,
+      "exactTargetSelections": 31,
+      "selected": 49,
+      "abstentions": 3,
+      "failed": 0,
+      "exactFetchChecks": 49,
+      "providerCalls": 156,
+      "inputTokens": 1546635,
+      "outputTokens": 112675,
+      "latencyMeanMs": 1196.7096,
+      "finalistCountMean": 4
+    },
+    "byLanguage": {
+      "en": {
+        "queries": 26,
+        "exactTargetSelections": 14,
+        "rate": 0.5385
+      },
+      "es": {
+        "queries": 26,
+        "exactTargetSelections": 17,
+        "rate": 0.6538
+      }
+    },
+    "confidenceCalibration": "not established",
+    "limitations": [
+      "The live runner did not read labels or target mappings; the scorer opened them only after the run completed.",
+      "Exact-target scores use Luna-reviewed single-heading labels, not human-owner adjudication; an alternate section may contain valid evidence.",
+      "There are no independent labels for abstention quality or sufficient answer evidence; Noul and Choice values remain descriptive and uncalibrated.",
+      "Hierarchical final Noul sees retained finalists while single-pass Noul sees the full offered candidate set; cross-mode sufficiency values are not comparable.",
+      "The grouped query holdout retains the same 21 source documents, so it is not unseen-document generalization.",
+      "This paired 64,000-character run exercises the hierarchical path on the 200-heading corpus; the separate 80,000-character run retains a direct full-catalog Choice, and neither establishes behavior across unseen-document catalogs.",
+      "This evaluates evidence range selection and exact fetch, not automatic iterative grep, contradiction truth, free-form synthesis, citation faithfulness, permissions or production activation."
+    ]
+  },
+  "files": [
+    {
+      "path": "inputs/cases.json",
+      "bytes": 6406,
+      "sha256": "70e4c30fa2473a73fd9c2626a92ecfc58addb548da132e2ee639614b94e384f4"
+    },
+    {
+      "path": "inputs/corpus.json",
+      "bytes": 198584,
+      "sha256": "40a4d6b1f936d71eea56e4feac4105a68b6db995d1b6b96e03d8570413fa5a4d"
+    },
+    {
+      "path": "inputs/labels.json",
+      "bytes": 3823,
+      "sha256": "c3f2c8db87f4086747d346596eacbf66038a4712c1210d1ffbf1bf6dcf731b99"
+    },
+    {
+      "path": "inputs/target-index.json",
+      "bytes": 10214,
+      "sha256": "770e14acfaf74716dd3667cb8311e5e56a7222e5895dc725bcc44571e5f8a58a"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 1815,
+      "sha256": "19ecf56aa3b23ae730eeb6280271a475ace80492775a894a752f5640897ece7d"
+    },
+    {
+      "path": "responses.json",
+      "bytes": 57897,
+      "sha256": "158939033cbd4edd25c939e91498ea0c72591fc8b6f77dfbf16671a397cb5241"
+    },
+    {
+      "path": "runner.mjs",
+      "bytes": 9976,
+      "sha256": "6f97251ddb6ae66228ef21666dfc9f7a8ccd3a2a7b244dc29ad889bb079b86a0"
+    },
+    {
+      "path": "score-summary.json",
+      "bytes": 18585,
+      "sha256": "e9beb149367256ff31c3256fc5ca827ca5ffcef200d5c4971c6894deae2449bf"
+    },
+    {
+      "path": "score.mjs",
+      "bytes": 12213,
+      "sha256": "6073786c1a06ca020864338eb7bdad18bf1f28e58ce735951ba9dc3cca1a3ce1"
+    },
+    {
+      "path": "scored-records.json",
+      "bytes": 64506,
+      "sha256": "2d052319061f5055dea6dd92513fdf296a0ebb186a893e743953361a4dc9b105"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 798,
+      "sha256": "bd1f99098da4882ccec523390b4e2c1e952ef592b3e026eb5f8a9bfa12269811"
+    }
+  ]
+}

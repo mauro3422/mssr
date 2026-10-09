@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "suite": "mssr-librarian-jev-excerpt-window-smoke-v1",
+  "runId": "mssr-librarian-jev-excerpt-window-smoke-20261002T180139Z-86070e-v1",
+  "createdAt": "2026-10-02T18:05:04Z",
+  "status": "prepared",
+  "evaluationClass": "exploratory-live-integration-smoke-no-labels",
+  "parentRunId": null,
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "6dfe60361090ed27a456f91db5725baef0c6abc3",
+    "trackedWorkingTreeClean": false,
+    "workingTreeClean": false,
+    "changedPaths": [
+      "src/librarian-jev-selection.ts",
+      "scripts/test-librarian-jev-selection.mjs",
+      "package.json",
+      "package-lock.json",
+      "CHANGELOG.md",
+      "changelogs/INDEX.md",
+      "changelogs/0.2.99.md",
+      ".mssr/PROJECT_MEMORY.md",
+      ".mssr/PROJECT_STATE.md",
+      "experiments/jev-mssr-live/runs/mssr-librarian-jev-excerpt-window-smoke-20261002T180139Z-86070e-v1/"
+    ],
+    "corpusSourceMatchesHead": true,
+    "buildId": "mssr-build:sha256:86070e2a0e734090",
+    "buildArtifacts": [
+      {
+        "path": "package.json",
+        "sha256": "81ff7d182c20249fff94eb28aa0a370c2f7a667ec3eaad6ff1a9c10ba5635c77"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "f1260f03d12ee11da1a99ee8929c82de13fa3a1c7b1dfc78a7c8f50ec691e689"
+      },
+      {
+        "path": "src/librarian-jev-selection.ts",
+        "sha256": "951d0b9572d0e97c38d93fb37af9cf03fcb524c024d6be5b12926a396a176a8e"
+      },
+      {
+        "path": "dist/librarian-jev-selection.js",
+        "sha256": "5776c8469dae409ca68ee4b1f48a8be0eaf23492aafbdd59d4e61a6a85da9a7c"
+      },
+      {
+        "path": "dist/.build-receipt.json",
+        "sha256": "b96f8d408c3bbecb8871164fb3dcd5aec62036aa70580a608e35eb433071640c"
+      }
+    ]
+  },
+  "instrument": {
+    "captureMethod": "Codex direct calls to the active MSSR MCP tools; normalized response summaries only",
+    "runnerPath": null,
+    "toolNames": [
+      "mssr_librarian_search",
+      "mssr_librarian_jev_select",
+      "mssr_librarian_fetch"
+    ],
+    "serverBuildIdentity": "mssr-build:sha256:86070e2a0e734090",
+    "requestSchemaVersion": 1,
+    "credentialValuePersisted": false,
+    "rawProviderBodiesPersisted": false
+  },
+  "corpus": {
+    "snapshotPath": "inputs/corpus.md",
+    "sha256": "77c7e74000ed1dc0247891f8c2fd503d00b124478e310e47594a3ecd743acc67",
+    "items": 1,
+    "sourceRefs": [
+      ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md"
+    ],
+    "owner": "project:mssr",
+    "sourceRevision": "6dd36b8e39079b8ec5ba4f2cafd15afe44b1a29f311f19e48a3ddfe4af8e22fb",
+    "sourceGitBlob": "1e415133a0e849449252067d687e25d10ed4b703",
+    "privacyClass": "project-metadata",
+    "redaction": "not-applicable",
+    "atomsAndCatalogRecordsSuppliedToSearch": false
+  },
+  "inputs": {
+    "inputs/cases.json": {
+      "sha256": "7fe8243573e92a573c883575a6c80303a4a789c0e17bccc6b918d478c521b7b8",
+      "items": 1,
+      "expectedAnswersIncluded": false
+    },
+    "inputs/search-results.json": {
+      "sha256": "119865bf8cae22d578f07d685c65813ff7119fa788e33bcef7a48e5846f9c4f1",
+      "candidateHandles": 6
+    },
+    "inputs/corpus.md": {
+      "sha256": "77c7e74000ed1dc0247891f8c2fd503d00b124478e310e47594a3ecd743acc67",
+      "items": 1
+    }
+  },
+  "provider": {
+    "mode": "live",
+    "provider": "typesafe-jev",
+    "endpointIdentity": null,
+    "requestedModel": "jev-1.13.0",
+    "sdk": null,
+    "timeoutMs": null,
+    "maxRetries": null,
+    "concurrency": 1,
+    "networkOptIn": true,
+    "optInBasis": "Explicit user request to use real Jev for MSSR testing",
+    "credentialValuePersisted": false,
+    "rawVendorBodiesPersisted": false,
+    "callsPlanned": 1
+  },
+  "labels": {
+    "source": "none",
+    "frozenAt": null,
+    "adjudication": "none",
+    "labelFile": null,
+    "exposedToRequests": false
+  },
+  "split": {
+    "method": "none; one integration smoke case",
+    "trainIdsSha256": null,
+    "validationIdsSha256": null,
+    "holdoutIdsSha256": null,
+    "holdoutOpenedAt": null,
+    "holdoutUsedForTuning": false
+  },
+  "plan": {
+    "primaryMetric": "successful MCP selection response followed by exact fetch with a matching source fingerprint; integration only",
+    "secondaryMetrics": [
+      "selected handle identity",
+      "provider/model",
+      "raw confidence and Noul descriptive values",
+      "usage and latency when returned"
+    ],
+    "thresholds": {},
+    "independentUnit": "one predeclared query over one exact MSSR document snapshot",
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30
+    },
+    "uncertaintyMethod": "one-case descriptive smoke; no quality, generalization, superiority or calibration claim",
+    "callsPlanned": {
+      "search": 1,
+      "jevSelection": 1,
+      "exactFetch": 1
+    }
+  }
+}

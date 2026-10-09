@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-jev-mcp-selector-smoke-20260930-v1",
+  "scoringMode": "post-run exact-target comparison",
+  "selectionRunnerReadTargets": false,
+  "labelProvenance": "dual Luna review; not human document-owner adjudication",
+  "acceptableAlternativesExhaustivelyReviewed": false,
+  "selectedSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+  "selectedHeadingPath": [
+    "Semantic Evidence Plane architecture",
+    "Evidence atom and source boundary"
+  ],
+  "expectedSourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+  "expectedHeadingPath": [
+    "Semantic Evidence Plane architecture",
+    "Evidence atom and source boundary"
+  ],
+  "exactTargetMatch": true,
+  "interpretation": "One exploratory expected-target match is a wiring check, not a quality estimate, calibrated score, or proof that no other section is acceptable.",
+  "targetIndexSha256": "770e14acfaf74716dd3667cb8311e5e56a7222e5895dc725bcc44571e5f8a58a"
+}

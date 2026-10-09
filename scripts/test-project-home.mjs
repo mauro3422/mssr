@@ -33,6 +33,9 @@ try {
   const inbox = await resolveMssrProjectFile(root, MSSR_PROJECT_CONTROL_FILES.contextInbox);
   assert.equal(inbox.relativePath, ".mssr/runtime/context-inbox.json");
   assert.equal(inbox.source, "missing");
+  const librarian = await resolveMssrProjectFile(root, MSSR_PROJECT_CONTROL_FILES.projectContextLibrarianManifest);
+  assert.equal(librarian.relativePath, ".mssr/project-context-librarian.json");
+  assert.equal(librarian.source, "missing");
 } finally {
   await fs.rm(root, { recursive: true, force: true });
 }

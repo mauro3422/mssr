@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-bridge-real-docs-select-20261001T015733Z-4f3c2a",
+  "status": "complete",
+  "attempted": 3,
+  "expected": 3,
+  "successfulCalls": 3,
+  "failedCalls": 0,
+  "exactTargetMatches": 3,
+  "exactTargetDenominator": 3,
+  "abstentionExpected": 1,
+  "abstentionCorrect": 1,
+  "selectedCount": 2,
+  "exactFetchPassed": 2,
+  "exactFetchDenominator": 2,
+  "totalInputTokens": 6863,
+  "totalOutputTokens": 588,
+  "latenciesMs": [
+    916.1,
+    820.2,
+    714.8
+  ],
+  "returnedModel": "jev-1.13.0",
+  "independentUnits": 3,
+  "labels": {
+    "source": "author",
+    "adjudication": "none"
+  },
+  "interpretation": "Exploratory Bridge-handler smoke on three author-labeled queries; not calibration, a representative benchmark, or production-quality evidence.",
+  "integrationVerification": {
+    "verificationId": "post-restart-mcp-roundtrip-20261001",
+    "status": "pass",
+    "scored": false,
+    "caseId": "exact-read-revision-check",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "providerCalls": 1,
+    "exactFetchPassed": 1,
+    "inputTokens": 2292,
+    "outputTokens": 197,
+    "latencyMs": 1017.2,
+    "resultArtifact": "mcp-e2e.json",
+    "interpretation": "Repeated integration check, excluded from scored denominator."
+  }
+}

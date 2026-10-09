@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "suite": "mssr-librarian-jev-shortlist-repeatability-v1",
+  "runId": "mssr-librarian-jev-shortlist-repeatability-20261002T143234Z-v1",
+  "createdAt": "2026-10-02T14:32:34Z",
+  "status": "prepared",
+  "evaluationClass": "exploratory-repeatability-smoke-same-query-and-source-already-exposed",
+  "parentRunId": null,
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "b080317aacb3db170711f317a58e155137055de7",
+    "inputSourceCommit": "b080317aacb3db170711f317a58e155137055de7",
+    "workingTreeClean": false,
+    "trackedWorkingTreeClean": true,
+    "changedPaths": [
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T133846Z-v1/",
+      "experiments/jev-mssr-live/runs/mssr-librarian-bilingual-expansion-20261002T135011Z-v2/"
+    ],
+    "buildId": "mssr-build:sha256:bc288853f02be406",
+    "buildArtifacts": [
+      {
+        "path": "package.json",
+        "sha256": "3881205325cf20613cb4800bbe083451ce60e5d367109c00515f0ca155c038a0"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "ca7372a2dacaed990ceb8c94a30bf29c9527c060fc8812468cb0d4bbddf07114"
+      },
+      {
+        "path": "src/librarian-retrieval.ts",
+        "sha256": "0582aef8d5cc21a7493c19acdbd2924e223c5bac31681b791c69954a4ded95b5"
+      },
+      {
+        "path": "src/librarian-text-normalization.ts",
+        "sha256": "59902533b8703960a1bc34b27e938a8fb058d5839014295087a2e9dd188544ba"
+      },
+      {
+        "path": "src/document-surface.ts",
+        "sha256": "977d35bf1369bd1cce62a37e8331d230bf829777bdc8b1db81aaffb491467593"
+      }
+    ]
+  },
+  "instrument": {
+    "captureMethod": "Codex direct MCP tool calls to MauroPrime Bridge; normalized returned values captured in records.jsonl",
+    "runtimeBootId": "b39f841c-6d96-4df1-a05e-98879004df61",
+    "tools": [
+      {
+        "name": "mssr_librarian_search",
+        "schemaHash": "9f2d067fb67ef65c"
+      },
+      {
+        "name": "mssr_librarian_jev_select",
+        "schemaHash": "b71de2b1917d821d"
+      },
+      {
+        "name": "mssr_librarian_fetch",
+        "schemaHash": "992cf19973405356"
+      }
+    ],
+    "requestSchemaVersion": 1,
+    "maxResultsPerSearch": 100,
+    "maxJevCandidateHandles": 100,
+    "exactFetchMaxCharacters": 20000
+  },
+  "corpus": {
+    "sourceRefs": [
+      "docs/decisions/0009-semantic-evidence-plane.md",
+      "docs/ARCHITECTURE.md"
+    ],
+    "items": 2,
+    "sourceRevisionByRef": {
+      "docs/decisions/0009-semantic-evidence-plane.md": "8eece07993801ebce44cace270d3e3693784b1cc56dd8e782d4b67edb8a58a8c",
+      "docs/ARCHITECTURE.md": "eb32c84a89f29e2b66db490c279c6f418b6d57462cbe770424bb502baccfc285"
+    },
+    "sourceRevision": "b080317aacb3db170711f317a58e155137055de7",
+    "redaction": "not-applicable"
+  },
+  "inputs": {
+    "inputs/cases.json": {
+      "sha256": "fdb435164d6eb89bf8c1044cda524fcb04f60a737687ff943c63ef1cc1638119",
+      "items": 2
+    },
+    "inputs/candidate-handles.json": {
+      "sha256": "115496322241ce8f12fbcea34082ce98746e0693a70ea771ab8d9b5aecb756b5",
+      "spanishCandidates": 66,
+      "englishCandidates": 99,
+      "oversizedExcludedPerLanguage": 1
+    }
+  },
+  "provider": {
+    "mode": "live",
+    "provider": "typesafe-jev-via-MauroPrime-Bridge",
+    "endpointIdentity": null,
+    "requestedModel": "jev-1.13.0",
+    "sdk": null,
+    "timeoutMs": null,
+    "maxRetries": null,
+    "concurrency": 2,
+    "networkOptIn": true,
+    "credentialValuePersisted": false,
+    "rawVendorHttpBodiesPersisted": false
+  },
+  "labels": {
+    "source": "none",
+    "frozenAt": null,
+    "adjudication": "none",
+    "labelFile": null,
+    "exposedToRequests": false,
+    "note": "This is a repeatability check against prior observed selections, not a correctness-labeled evaluation."
+  },
+  "split": {
+    "method": "none; same paired concept, documents and query text were exercised earlier in this trace",
+    "trainIdsSha256": null,
+    "validationIdsSha256": null,
+    "holdoutIdsSha256": null,
+    "holdoutOpenedAt": "2026-10-02",
+    "holdoutUsedForTuning": false
+  },
+  "plan": {
+    "primaryMetric": "per-language exact handle identity repeatability against the previous live shortlist selection",
+    "secondaryMetrics": [
+      "exact-fetch fingerprint integrity",
+      "provider success/failure",
+      "input/output tokens",
+      "provider-reported latency"
+    ],
+    "thresholds": {},
+    "independentUnit": "one paired question concept over one two-document project corpus; language variants are paired, not independent",
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30
+    },
+    "uncertaintyMethod": "descriptive values only; no quality, generalization, superiority or calibration claim",
+    "callsPlanned": {
+      "jevSelections": 2,
+      "exactFetches": 2,
+      "totalToolCalls": 4
+    }
+  }
+}

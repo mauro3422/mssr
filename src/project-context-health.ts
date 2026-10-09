@@ -10,7 +10,13 @@ import {
   inspectProjectContextSegments,
   loadProjectContextModuleManifest,
   readBoundedMarkdown,
+  safeMarkdownPath,
 } from "./project-context-loader.js";
+import {
+  PROJECT_CONTEXT_LIBRARIAN_LIMITS,
+  projectContextLibrarianManifestSchema,
+  projectMssrProjectContextLibrarianMetadata,
+} from "./project-context-librarian.js";
 import { MSSR_PROJECT_AUTHORITY_FILES, MSSR_PROJECT_CONTROL_FILES, MSSR_PROJECT_HOME_DIR } from "./project-home.js";
 
 export const PROJECT_CONTEXT_HEALTH_LEVELS = ["ok", "watch", "review"] as const;
@@ -49,7 +55,7 @@ export type ProjectDocumentReferenceAudit = {
 
 const LEGACY_MSSR_FILES = [
   "PROJECT_CONTEXT.md", "PROJECT_MEMORY.md", "PROJECT_STATE.md", "project-context.json",
-  "project-context-modules.json", "context-messages.json", "mssr-context-inbox.json",
+  "project-context-modules.json", "project-context-librarian.json", "context-messages.json", "mssr-context-inbox.json",
 ] as const;
 
 async function exists(target: string): Promise<boolean> {
@@ -310,6 +316,115 @@ async function selectedMeasurement(
   } catch { return null; }
 }
 
+async function inspectProjectContextLibrarianSidecar(
+  projectRoot: string,
+  manifest: ResolvedProjectContextManifest,
+  findings: ProjectContextHealthFinding[],
+): Promise<void> {
+  const sidecarPath = path.join(projectRoot, MSSR_PROJECT_HOME_DIR, MSSR_PROJECT_CONTROL_FILES.projectContextLibrarianManifest);
+  if (!(await exists(sidecarPath))) return;
+  try {
+    const projectRootReal = await fs.realpath(projectRoot);
+    const sidecarRealPath = await fs.realpath(sidecarPath);
+    const sidecarRelativePath = path.relative(projectRootReal, sidecarRealPath);
+    if (!sidecarRelativePath || sidecarRelativePath === ".." || sidecarRelativePath.startsWith(`..${path.sep}`) || path.isAbsolute(sidecarRelativePath)) {
+      findings.push({
+        code: "project-context-librarian-sidecar-outside-project",
+        level: "review",
+        target: `${MSSR_PROJECT_HOME_DIR}/${MSSR_PROJECT_CONTROL_FILES.projectContextLibrarianManifest}`,
+        message: "The Librarian sidecar resolves outside the project root and was not read.",
+        recommendation: "MOVE_PROJECT_CONTEXT_LIBRARIAN_SIDECAR_INSIDE_PROJECT",
+      });
+      return;
+    }
+    const sidecarStat = await fs.stat(sidecarRealPath);
+    if (!sidecarStat.isFile()) {
+      findings.push({
+        code: "invalid-project-context-librarian-sidecar",
+        level: "review",
+        target: `${MSSR_PROJECT_HOME_DIR}/${MSSR_PROJECT_CONTROL_FILES.projectContextLibrarianManifest}`,
+        message: "The Librarian sidecar is not a regular file.",
+        recommendation: "REPAIR_PROJECT_CONTEXT_LIBRARIAN_SIDECAR",
+      });
+      return;
+    }
+    if (sidecarStat.size > PROJECT_CONTEXT_LIBRARIAN_LIMITS.sidecarBytes) {
+      findings.push({
+        code: "project-context-librarian-sidecar-size-limit",
+        level: "review",
+        target: `${MSSR_PROJECT_HOME_DIR}/${MSSR_PROJECT_CONTROL_FILES.projectContextLibrarianManifest}`,
+        message: `The Librarian sidecar is ${sidecarStat.size} bytes and exceeds its ${PROJECT_CONTEXT_LIBRARIAN_LIMITS.sidecarBytes}-byte inspection limit.`,
+        recommendation: "SPLIT_PROJECT_CONTEXT_LIBRARIAN_SIDECAR",
+      });
+      return;
+    }
+    const sidecar = projectContextLibrarianManifestSchema.parse(JSON.parse((await readBoundedMarkdown(sidecarRealPath, PROJECT_CONTEXT_LIBRARIAN_LIMITS.sidecarBytes)).content));
+    const baseManifestPath = path.join(projectRoot, MSSR_PROJECT_HOME_DIR, MSSR_PROJECT_CONTROL_FILES.projectContextManifest);
+    const baseManifest = JSON.parse(await fs.readFile(baseManifestPath, "utf8")) as unknown;
+    const segmentsPath = path.join(projectRoot, MSSR_PROJECT_HOME_DIR, MSSR_PROJECT_CONTROL_FILES.projectContextSegmentsManifest);
+    const referencesPath = path.join(projectRoot, MSSR_PROJECT_HOME_DIR, MSSR_PROJECT_CONTROL_FILES.projectContextReferencesManifest);
+    const segmentsManifest = await exists(segmentsPath) ? JSON.parse(await fs.readFile(segmentsPath, "utf8")) as unknown : null;
+    const referencesManifest = await exists(referencesPath) ? JSON.parse(await fs.readFile(referencesPath, "utf8")) as unknown : null;
+    const entriesById = new Map([...manifest.core, ...manifest.modules].map((entry) => [entry.id, entry]));
+    const paths = [...new Set(sidecar.entries.flatMap((entry) => {
+      const canonical = entriesById.get(entry.entryId)?.source.path;
+      return canonical ? [canonical] : [];
+    }))];
+    const sourceFiles: Array<{ path: string; markdown: string }> = [];
+    let aggregateBytes = 0;
+    for (const sourcePath of paths.slice(0, PROJECT_CONTEXT_LIBRARIAN_LIMITS.sourceFiles)) {
+      const absolutePath = safeMarkdownPath(projectRoot, sourcePath);
+      const resolvedPath = await fs.realpath(absolutePath).catch(() => null);
+      if (!resolvedPath) continue;
+      const relativePath = path.relative(projectRootReal, resolvedPath);
+      if (!relativePath || relativePath === ".." || relativePath.startsWith(`..${path.sep}`) || path.isAbsolute(relativePath)) continue;
+      const stat = await fs.stat(resolvedPath).catch(() => null);
+      if (!stat?.isFile() || stat.size > PROJECT_CONTEXT_LIBRARIAN_LIMITS.charsPerSource) continue;
+      if (aggregateBytes + stat.size > PROJECT_CONTEXT_LIBRARIAN_LIMITS.totalSourceChars) {
+        findings.push({
+          code: "project-context-librarian-source-total-limit",
+          level: "review",
+          target: `${MSSR_PROJECT_HOME_DIR}/${MSSR_PROJECT_CONTROL_FILES.projectContextLibrarianManifest}`,
+          message: `Current source inspection would exceed the ${PROJECT_CONTEXT_LIBRARIAN_LIMITS.totalSourceChars}-byte aggregate limit.`,
+          recommendation: "SPLIT_PROJECT_CONTEXT_LIBRARIAN_SIDECAR",
+        });
+        break;
+      }
+      const source = await readBoundedMarkdown(resolvedPath, PROJECT_CONTEXT_LIBRARIAN_LIMITS.charsPerSource);
+      aggregateBytes += source.bytes;
+      sourceFiles.push({ path: sourcePath, markdown: source.content });
+    }
+    const projection = projectMssrProjectContextLibrarianMetadata({
+      projectContextManifest: baseManifest,
+      librarianManifest: sidecar,
+      segmentsManifest,
+      referencesManifest,
+      sourceFiles,
+      owner: projectRoot,
+      projectKey: path.basename(projectRoot),
+    });
+    for (const item of projection.items) {
+      if (item.status === "projected") continue;
+      const stale = item.issue === "stale-fingerprint";
+      findings.push({
+        code: stale ? "stale-project-context-librarian-heading" : "invalid-project-context-librarian-binding",
+        level: "review",
+        target: `${MSSR_PROJECT_HOME_DIR}/${MSSR_PROJECT_CONTROL_FILES.projectContextLibrarianManifest}#${item.entryId}`,
+        message: `Librarian heading metadata was omitted${item.issue ? ` (${item.issue})` : ""}; verify its exact Project Context owner, source and heading fingerprint.`,
+        recommendation: stale ? "REFRESH_OR_REMOVE_STALE_LIBRARIAN_METADATA" : "REVIEW_PROJECT_CONTEXT_LIBRARIAN_BINDING",
+      });
+    }
+  } catch (error) {
+    findings.push({
+      code: "invalid-project-context-librarian-sidecar",
+      level: "review",
+      target: `${MSSR_PROJECT_HOME_DIR}/${MSSR_PROJECT_CONTROL_FILES.projectContextLibrarianManifest}`,
+      message: error instanceof Error ? error.message : String(error),
+      recommendation: "REPAIR_PROJECT_CONTEXT_LIBRARIAN_SIDECAR",
+    });
+  }
+}
+
 export async function auditMssrProjectContextHealth(projectRootInput: string) {
   const projectRoot = path.resolve(projectRootInput);
   const home = path.join(projectRoot, MSSR_PROJECT_HOME_DIR);
@@ -347,6 +462,7 @@ export async function auditMssrProjectContextHealth(projectRootInput: string) {
   }
 
   if (manifest) {
+    await inspectProjectContextLibrarianSidecar(projectRoot, manifest, findings);
     if (manifest.modules.length > 48) findings.push({ code: "many-modules", level: "review", target: ".mssr/project-context.json", message: `${manifest.modules.length} modules make the manifest difficult to curate.`, recommendation: "REVIEW_AREA_GROUPING" });
     else if (manifest.modules.length > 24) findings.push({ code: "many-modules", level: "watch", target: ".mssr/project-context.json", message: `${manifest.modules.length} modules warrant an organization review.`, recommendation: "REVIEW_AREA_GROUPING" });
 
