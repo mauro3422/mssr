@@ -16,6 +16,9 @@ import { SKILL_ACTIONS, SKILL_ARTIFACTS, SKILL_DOMAINS, SKILL_NEEDS, SKILL_RISKS
 
 export const MSSR_LIBRARIAN_RETRIEVAL_LIMITS = {
   queryChars: 500,
+  maxQueryVariants: 4,
+  maxQueryVariantChars: 500,
+  maxTotalQueryVariantChars: 2_000,
   maxDocuments: 32,
   maxTotalDocumentChars: 4_000_000,
   maxLinesPerDocument: 50_000,
@@ -52,6 +55,8 @@ export type MssrLibrarianRetrievalDocument = z.input<typeof mssrLibrarianRetriev
 
 export const mssrLibrarianRetrievalQuerySchema = z.object({
   query: z.string().trim().min(1).max(MSSR_LIBRARIAN_RETRIEVAL_LIMITS.queryChars),
+  /** Optional alternate phrasings supplied explicitly by the calling host. */
+  queryVariants: z.array(z.string().trim().min(1).max(MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxQueryVariantChars)).max(MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxQueryVariants).optional(),
   owner: z.string().trim().min(1).max(240).optional(),
   sourceRef: z.string().trim().min(1).max(1_000).optional(),
   namespace: z.string().trim().min(1).max(80).optional(),
@@ -59,7 +64,24 @@ export const mssrLibrarianRetrievalQuerySchema = z.object({
   metadata: z.record(z.union([z.string().max(240), z.number(), z.boolean()])).optional(),
   maxResults: z.number().int().min(1).max(MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxResults).default(20),
   maxSnippetChars: z.number().int().min(40).max(MSSR_LIBRARIAN_RETRIEVAL_LIMITS.snippetChars).default(160),
-}).strict();
+}).strict().superRefine((value, ctx) => {
+  const variants = value.queryVariants ?? [];
+  const totalChars = variants.reduce((sum, variant) => sum + variant.length, 0);
+  if (totalChars > MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxTotalQueryVariantChars) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["queryVariants"], message: `Librarian query variants are limited to ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxTotalQueryVariantChars} total characters.` });
+  }
+  const seen = new Set([queryTokens(value.query).join("\u0000")]);
+  for (const [index, variant] of variants.entries()) {
+    const terms = queryTokens(variant);
+    if (terms.length === 0) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["queryVariants", index], message: "Each Librarian query variant must contain searchable terms." });
+      continue;
+    }
+    const key = terms.join("\u0000");
+    if (seen.has(key)) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["queryVariants", index], message: "Librarian query variants must be distinct after normalization." });
+    seen.add(key);
+  }
+});
 export type MssrLibrarianRetrievalQuery = z.input<typeof mssrLibrarianRetrievalQuerySchema>;
 
 export const MSSR_LIBRARIAN_SEARCH_PROJECTION_SCHEMA_VERSION = 1 as const;
@@ -74,7 +96,7 @@ export type MssrLibrarianSearchProjectionMatch = {
   recordFingerprint: string;
   producer: string;
   provenanceIsCallerAsserted: true;
-  matches: Array<{ field: MssrLibrarianSearchProjectionField; value: string; queryTerms: string[] }>;
+  matches: Array<{ field: MssrLibrarianSearchProjectionField; value: string; queryTerms: string[]; queryIndex?: number }>;
   filterMatches?: Array<{ field: MssrLibrarianSearchProjectionField; value: string }>;
 };
 
@@ -95,6 +117,10 @@ export type MssrLibrarianRetrievalResult = {
   /** Whether mssr_librarian_fetch can return this entire exact range under the current fetch cap. */
   exactFetchable: boolean;
   score: number;
+  /** Present only when host-supplied query variants are used; 0 is the primary query. */
+  scoreQueryIndex?: number;
+  /** Per-query lexical matches; scores are not combined and are not confidence estimates. */
+  queryMatches?: Array<{ queryIndex: number; score: number; matchedTerms: string[] }>;
   title: string;
   headingPath: string[];
   snippet: string;
@@ -182,6 +208,7 @@ function diversifyRankTies(results: MssrLibrarianRetrievalResult[]): MssrLibrari
   for (let start = 0; start < results.length;) {
     let end = start + 1;
     while (end < results.length
+      && results[end]!.scoreQueryIndex === results[start]!.scoreQueryIndex
       && results[end]!.score === results[start]!.score
       && results[end]!.exactFetchable === results[start]!.exactFetchable) end++;
 
@@ -389,9 +416,12 @@ export function searchMssrLibrarianEvidence(args: { documents: readonly MssrLibr
     if (totalRecords > MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxTotalRecords) throw new Error(`Librarian retrieval input exceeds ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxTotalRecords} total records.`);
     preparedDocuments.push({ ...doc, canonicalMarkdown: prepared.canonicalMarkdown });
   }
-  const queryTerms = queryTokens(query.query);
-  if (queryTerms.length === 0) return { results: [], advisoryOnly: true, truthAuthority: false, truncated: false };
+  const queryTermSets = [query.query, ...(query.queryVariants ?? [])].map((text) => queryTokens(text));
+  const hasQueryVariants = (query.queryVariants?.length ?? 0) > 0;
+  const queryTerms = queryTermSets[0]!;
+  if (queryTermSets.every((terms) => terms.length === 0)) return { results: [], advisoryOnly: true, truthAuthority: false, truncated: false };
   const candidates: MssrLibrarianRetrievalResult[] = [];
+  const candidatesByHandle = new Map<string, MssrLibrarianRetrievalResult>();
   let totalRanges = 0;
   for (const doc of preparedDocuments) {
     const sourceRef = normalizeRef(doc.sourceRef);
@@ -452,13 +482,21 @@ export function searchMssrLibrarianEvidence(args: { documents: readonly MssrLibr
       const body = canonicalMarkdown.slice(range.startOffset, range.endOffset);
       const searchText = [range.title, range.path.join(" "), range.terms.join(" "), range.hint, body, JSON.stringify(metadata), JSON.stringify(doc.searchableMetadata ?? {}), projectedTerms.flatMap((term) => [term.value, ...term.tokens]).join(" ")].join(" ");
       const searchTerms = new Set(tokens(searchText));
-      const matched = queryTerms.filter((term) => searchTerms.has(term));
-      if (matched.length === 0) continue;
-      const score = Number((matched.length / queryTerms.length).toFixed(6));
+      const queryMatches = queryTermSets.flatMap((terms, queryIndex) => {
+        const matchedTerms = terms.filter((term) => searchTerms.has(term));
+        return matchedTerms.length === 0 ? [] : [{ queryIndex, score: Number((matchedTerms.length / terms.length).toFixed(6)), matchedTerms }];
+      });
+      if (queryMatches.length === 0) continue;
+      const primaryMatch = queryMatches[0];
+      const scoreMatch = primaryMatch ?? queryMatches[0]!;
+      const score = scoreMatch.score;
       const metadataProjectionMatches = projectedAtoms.flatMap((projected) => {
         const matches = projected.terms.flatMap((term) => {
-          const queryMatches = queryTerms.filter((queryTerm) => term.tokens.includes(queryTerm));
-          return queryMatches.length > 0 ? [{ field: term.field, value: term.value, queryTerms: queryMatches }] : [];
+          const fieldMatches = queryTermSets.flatMap((terms, queryIndex) => {
+            const matchedTerms = terms.filter((queryTerm) => term.tokens.includes(queryTerm));
+            return matchedTerms.length === 0 ? [] : [{ field: term.field, value: term.value, queryTerms: matchedTerms, ...(hasQueryVariants ? { queryIndex } : {}) }];
+          });
+          return fieldMatches;
         });
         const filterMatches = Object.entries(query.metadata ?? {}).flatMap(([field, value]) =>
           typeof value === "string" && projected.terms.some((term) => term.field === field && term.value === value)
@@ -481,10 +519,48 @@ export function searchMssrLibrarianEvidence(args: { documents: readonly MssrLibr
       const handle = mssrLibrarianEvidenceHandleSchema.parse({ ...handleFields, id: mssrLibrarianEvidenceHandleId(handleFields) });
       const rangeCodeUnits = range.endOffset - range.startOffset;
       if (candidates.length >= MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxCandidates) throw new Error(`Librarian retrieval exceeds ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxCandidates} matching candidates.`);
-      candidates.push({ handle, rangeCodeUnits, exactFetchable: rangeCodeUnits <= MSSR_LIBRARIAN_RETRIEVAL_LIMITS.fetchChars, score, title: range.title.slice(0, 240), headingPath: range.path.slice(0, 12), snippet: boundedSnippet(body, queryTerms, query.maxSnippetChars), metadata, ...(metadataProjectionMatches.length > 0 ? { metadataProjectionMatches } : {}), evidenceTier: "candidate", advisoryOnly: true, truthAuthority: false, ownerAndPrivacyAreCallerAsserted: true, catalogProvenanceIsCallerAsserted: true });
+      const candidate: MssrLibrarianRetrievalResult = {
+        handle,
+        rangeCodeUnits,
+        exactFetchable: rangeCodeUnits <= MSSR_LIBRARIAN_RETRIEVAL_LIMITS.fetchChars,
+        score,
+        ...(hasQueryVariants ? { scoreQueryIndex: scoreMatch.queryIndex, queryMatches } : {}),
+        title: range.title.slice(0, 240),
+        headingPath: range.path.slice(0, 12),
+        snippet: boundedSnippet(body, scoreMatch.matchedTerms, query.maxSnippetChars),
+        metadata,
+        ...(metadataProjectionMatches.length > 0 ? { metadataProjectionMatches } : {}),
+        evidenceTier: "candidate",
+        advisoryOnly: true,
+        truthAuthority: false,
+        ownerAndPrivacyAreCallerAsserted: true,
+        catalogProvenanceIsCallerAsserted: true,
+      };
+      const existing = hasQueryVariants ? candidatesByHandle.get(handle.id) : undefined;
+      if (existing) {
+        const combinedQueryMatches = [...(existing.queryMatches ?? []), ...queryMatches];
+        existing.queryMatches = combinedQueryMatches.filter((match, index) => combinedQueryMatches.findIndex((candidate) => candidate.queryIndex === match.queryIndex) === index);
+        for (const projection of metadataProjectionMatches) {
+          const prior = existing.metadataProjectionMatches?.find((item) => item.projectionFingerprint === projection.projectionFingerprint);
+          if (!prior) existing.metadataProjectionMatches = [...(existing.metadataProjectionMatches ?? []), projection];
+          else {
+            for (const match of projection.matches) {
+              const duplicate = prior.matches.some((candidate) => candidate.field === match.field
+                && candidate.value === match.value
+                && candidate.queryIndex === match.queryIndex
+                && JSON.stringify(candidate.queryTerms) === JSON.stringify(match.queryTerms));
+              if (!duplicate) prior.matches.push(match);
+            }
+          }
+        }
+        continue;
+      }
+      if (candidates.length >= MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxCandidates) throw new Error(`Librarian retrieval exceeds ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxCandidates} matching candidates.`);
+      if (hasQueryVariants) candidatesByHandle.set(handle.id, candidate);
+      candidates.push(candidate);
     }
   }
-  candidates.sort((a, b) => b.score - a.score || Number(b.exactFetchable) - Number(a.exactFetchable) || a.handle.owner.localeCompare(b.handle.owner) || a.handle.sourceRef.localeCompare(b.handle.sourceRef) || a.handle.startOffset - b.handle.startOffset || a.handle.id.localeCompare(b.handle.id));
+  candidates.sort((a, b) => (a.scoreQueryIndex ?? 0) - (b.scoreQueryIndex ?? 0) || b.score - a.score || Number(b.exactFetchable) - Number(a.exactFetchable) || a.handle.owner.localeCompare(b.handle.owner) || a.handle.sourceRef.localeCompare(b.handle.sourceRef) || a.handle.startOffset - b.handle.startOffset || a.handle.id.localeCompare(b.handle.id));
   const rankedCandidates = diversifyRankTies(candidates);
   return { results: rankedCandidates.slice(0, query.maxResults), advisoryOnly: true, truthAuthority: false, truncated: rankedCandidates.length > query.maxResults };
 }

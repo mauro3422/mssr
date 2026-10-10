@@ -5,6 +5,7 @@ import { catalogMssrLibrarianRecord } from "../dist/librarian-contract.js";
 import {
   MSSR_LIBRARIAN_RETRIEVAL_LIMITS,
   fetchMssrLibrarianEvidence,
+  mssrLibrarianEvidenceHandleId,
   searchMssrLibrarianEvidence,
 } from "../dist/librarian-retrieval.js";
 
@@ -204,6 +205,85 @@ assert.equal(searchMssrLibrarianEvidence({
   documents: [spanishLanguageDoc],
   query: { query: "the and as for from to" },
 }).results.length, 0, "a query made only of English function words has no searchable content terms");
+
+const spanishLibrarianDoc = {
+  owner,
+  sourceRef: "docs/bibliotecario.md",
+  markdown: "# Bibliotecario\n\n## Evidencia y referencias\n\nEl bibliotecario organiza evidencia y referencias exactas para cada documento.\n",
+  privacyClass: "project-metadata",
+};
+const spanishVariantResult = searchMssrLibrarianEvidence({
+  documents: [spanishLibrarianDoc],
+  query: { query: "evidence librarian", queryVariants: ["bibliotecario evidencia"] },
+}).results.find((item) => item.title === "Evidencia y referencias");
+assert.ok(spanishVariantResult, "an explicit host-supplied Spanish query variant can find exact Spanish ranges");
+assert.equal(spanishVariantResult.scoreQueryIndex, 1, "the result identifies the variant that supplies its lexical score");
+assert.deepEqual(spanishVariantResult.queryMatches, [
+  { queryIndex: 1, score: 1, matchedTerms: ["bibliotecario", "evidencia"] },
+]);
+assert.equal(spanishVariantResult.handle.id, mssrLibrarianEvidenceHandleId({
+  version: 1,
+  owner,
+  sourceRef: spanishLibrarianDoc.sourceRef,
+  revision: spanishVariantResult.handle.revision,
+  rangeId: spanishVariantResult.handle.rangeId,
+  rangeKind: spanishVariantResult.handle.rangeKind,
+  startLine: spanishVariantResult.handle.startLine,
+  endLine: spanishVariantResult.handle.endLine,
+  startOffset: spanishVariantResult.handle.startOffset,
+  endOffset: spanishVariantResult.handle.endOffset,
+  fingerprint: spanishVariantResult.handle.fingerprint,
+  privacyClass: "project-metadata",
+}), "query variants do not change exact source handle identity");
+assert.equal(fetchMssrLibrarianEvidence({
+  handle: spanishVariantResult.handle,
+  owner,
+  sourceRef: spanishLibrarianDoc.sourceRef,
+  markdown: spanishLibrarianDoc.markdown,
+  privacyClass: "project-metadata",
+}).text, "## Evidencia y referencias\n\nEl bibliotecario organiza evidencia y referencias exactas para cada documento.\n");
+
+const duplicateSpanishDocs = [spanishLibrarianDoc, { ...spanishLibrarianDoc }];
+const duplicateWithoutVariants = searchMssrLibrarianEvidence({
+  documents: duplicateSpanishDocs,
+  query: { query: "bibliotecario evidencia", maxResults: 20 },
+}).results;
+assert.equal(duplicateWithoutVariants.filter((item) => item.handle.id === spanishVariantResult.handle.id).length, 2, "omitting variants preserves legacy duplicate-document results");
+const duplicateWithVariants = searchMssrLibrarianEvidence({
+  documents: duplicateSpanishDocs,
+  query: { query: "evidence librarian", queryVariants: ["bibliotecario evidencia"], maxResults: 20 },
+}).results;
+const coalescedDuplicate = duplicateWithVariants.find((item) => item.handle.id === spanishVariantResult.handle.id);
+assert.equal(duplicateWithVariants.filter((item) => item.handle.id === spanishVariantResult.handle.id).length, 1, "variant mode coalesces repeated exact handles");
+assert.deepEqual(coalescedDuplicate?.queryMatches?.map((match) => match.queryIndex), [1], "coalescing repeated documents does not duplicate query lineage");
+
+const primaryRanked = searchMssrLibrarianEvidence({
+  documents: [
+    { owner, sourceRef: "docs/primary.md", markdown: "# Primary\n\n## Routing\n\nOnly routing appears here.\n", privacyClass: "project-metadata" },
+    { owner, sourceRef: "docs/variant.md", markdown: "# Variant\n\n## Signal\n\nOnly signal appears here.\n", privacyClass: "project-metadata" },
+    { owner, sourceRef: "docs/both.md", markdown: "# Both\n\n## Routing and signal\n\nRouting and signal appear here.\n", privacyClass: "project-metadata" },
+  ],
+  query: { query: "routing architecture and declared decision policy", queryVariants: ["signal"] },
+}).results;
+assert.ok(primaryRanked.slice(0, 2).every((item) => item.scoreQueryIndex === 0), "all primary-query matches rank ahead of a short variant with a higher lexical ratio");
+assert.equal(primaryRanked.find((item) => item.scoreQueryIndex === 1)?.handle.sourceRef, "docs/variant.md", "variant-only matches follow the primary-query result group");
+const bothCandidate = primaryRanked.find((item) => item.handle.sourceRef === "docs/both.md");
+assert.deepEqual(bothCandidate?.queryMatches?.map((match) => match.queryIndex), [0, 1], "one exact handle deduplicates across queries while preserving match lineage");
+
+const projectionVariant = searchMssrLibrarianEvidence({
+  documents: [atomDoc],
+  query: { query: "unrelated terminology", queryVariants: ["skill-system"] },
+}).results[0];
+assert.equal(projectionVariant?.metadataProjectionMatches?.[0]?.matches[0]?.queryIndex, 1, "metadata projection matches retain the query-variant index");
+assert.equal(searchMssrLibrarianEvidence({
+  documents: [atomDoc],
+  query: { query: "unrelated terminology", queryVariants: ["skill-system"], metadata: { domain: "filesystem" } },
+}).results.length, 0, "query variants do not relax exact structured metadata filters");
+
+assert.throws(() => searchMssrLibrarianEvidence({ documents: [spanishLibrarianDoc], query: { query: "evidence librarian", queryVariants: ["the and for"] } }), /searchable terms/i);
+assert.throws(() => searchMssrLibrarianEvidence({ documents: [spanishLibrarianDoc], query: { query: "evidence librarian", queryVariants: ["evidence the librarian"] } }), /distinct after normalization/i);
+assert.throws(() => searchMssrLibrarianEvidence({ documents: [spanishLibrarianDoc], query: { query: "evidence librarian", queryVariants: Array(5).fill("bibliotecario evidencia") } }), /at most 4/);
+assert.throws(() => searchMssrLibrarianEvidence({ documents: [spanishLibrarianDoc], query: { query: "evidence librarian", queryVariants: ["b".repeat(501)] } }), /500/);
 
 const decomposedSpanishDoc = {
   owner,

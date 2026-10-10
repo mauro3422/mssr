@@ -208,6 +208,23 @@ try {
   assert.equal(atomProjected.results[0].metadataProjectionMatches[0].matches[0].field, "domain");
   assert.equal(atomProjected.results[0].metadataProjectionMatches[0].provenanceIsCallerAsserted, true);
 
+  const variantProjected = json(await client.callTool({
+    name: "mssr_librarian_search",
+    arguments: {
+      documents: [{
+        owner: projectRoot,
+        sourceRef: projectionSourceRef,
+        markdown: projectionMarkdown,
+        records: [projectionRecord],
+        evidenceAtoms: [projectionAtom],
+        privacyClass: "project-metadata",
+      }],
+      query: { query: "unrelated phrase", queryVariants: ["skill-system"] },
+    },
+  }));
+  assert.equal(variantProjected.results[0].scoreQueryIndex, 1, "the MCP schema forwards host-supplied query variants to portable retrieval");
+  assert.equal(variantProjected.results[0].metadataProjectionMatches[0].matches[0].queryIndex, 1, "MCP output preserves query lineage for metadata matches");
+
   // Exercise the production MCP handlers end to end with a host-owned fake
   // Jev transport: explicit source search -> exact fetch -> typed atom review
   // -> no-write preview. This catches wire/schema gaps the pure function test

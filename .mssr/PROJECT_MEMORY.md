@@ -1,5 +1,19 @@
 # MSSR project memory
 
+## Host-supplied Librarian query variants — 0.2.112
+
+Cross-language expansion belongs to the calling host because MSSR cannot
+authenticate a translation or decide which alternate phrasing is intended.
+The optional `queryVariants` contract lets a host explicitly search up to four
+bounded alternatives while keeping the current deterministic search unchanged
+when omitted. Never blend scores across queries: primary matches rank first,
+variant-only matches follow in input order, and each returned score identifies
+its query index. Scores remain lexical overlap, not confidence. Exact handles,
+structured metadata filters, and fetch validation remain unchanged. Static
+lexicon rewriting is not adopted: the earlier exploratory run degraded English
+and failed its opened holdout. Bridge runtime adoption requires a separately
+reviewed schema/adapter change.
+
 ## Fetchable Librarian tie ordering — 0.2.105
 
 Librarian relevance scores remain lexical overlap ratios. When two candidates
