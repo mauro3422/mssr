@@ -368,6 +368,9 @@ export function evaluateMssrSemanticJudgment(args: {
   if (judgment.relations.some((relation) => relation.kind === "contradicts")) reasons.add("contradictory-relations");
   if (judgment.relations.some((relation) => relation.kind === "unresolved" || relation.status === "unresolved")) reasons.add("unresolved-relations");
   for (const relation of judgment.relations) {
+    // An unrelated pair does not claim comparability. Different scopes or
+    // validity windows are compatible with (and often explain) that result.
+    if (relation.kind === "unrelated") continue;
     const { scope, temporal } = relation.comparability;
     if (!scope.left || !scope.right) reasons.add("relation-scope-unknown");
     else if (scope.left !== scope.right) reasons.add("relation-scope-conflict");

@@ -191,10 +191,6 @@ Gate E3 is live in Bridge `0.6.106` on packaged MSSR `0.2.31`: genuine MSSR sema
 
 Hosts may observe bounded operational failures, but portable MSSR owns deterministic clustering and maintenance priority. Repeated failures are identified by a stable sanitized `toolName + signature` identity and ranked using recurrence, cross-workflow breadth, recency, and severity; raw prompts, argument payloads, stack traces, secrets, or full error text are not portable evidence. Repeated clusters become advisory `repeated-friction` attention owned by `skill-maintenance-loop`; isolated failures stay lower priority. This operational maintenance signal is intentionally separate from routing-quality benchmarks and never authorizes automatic tool/skill mutation.
 
-## Semantic consistency decision
-
-C2c projection, C2d evidence-first recommendation policy, and R4 current-truth temporal validity are one bounded semantic-consistency decision family. Freshness remains separate; arbitrary prose is never promoted to canonical claim input; recommendation/evaluation never grants write authority. Detailed current semantics live in the selective module `.mssr/knowledge/decision/semantic-consistency-current-truth.md` and ADR 0006.
-
 ## Situation Model decision
 
 Project knowledge and operational evidence share one bounded Situation Model before C2c/C2d: current repository owners, delivered Context Plane receipts, runtime/test facts and explicit semantic claims retain separate authority/evidence-class metadata. `observed > declared > inferred > learned` is a reliability prior only; inferred/learned evidence cannot be canonical and no confidence score overrides ownership. The first reliable memory/context rule is revision-first: if an agent was delivered PROJECT_CONTEXT/MEMORY/STATE/changelog/ADR revision X and the current canonical owner is revision Y, MSSR may flag stale operating context and recommend revalidation without parsing or rewriting free-form prose. C2e-D extends this only through explicit structured claim producers: `release-version`, `state-value`, `ownership`, and `decision-revision` use closed source kinds plus bounded scalar/revision payloads; source determines role/category/observed-vs-declared classification, while authority remains explicit. C2e-E consumes only already-active C2c/C2d mismatch keys and ready context actions, resolves each canonical Situation `sourceRef` against the project-context manifest, and returns an exact bounded module only when the mapping is proven unique (including an explicit `#section` selector when needed). Shared-file ambiguity, unindexed sources, or missing canonical identity abstain to authority-only/unresolved guidance; feedback never auto-loads context or changes host budgets/permissions. Arbitrary Markdown, logs, prompts, transcripts, and model-extracted prose remain outside canonical producer/feedback inputs. A durable delivery receipt must represent the most recent evidence actually delivered: re-selecting the same message refreshes `sources` and continuation metadata, and current/newer evidence supersedes older receipts for Situation evaluation. Dynamic guidance belongs in the existing Notice Plane; AGENTS remains for stable repository rules.
@@ -205,10 +201,6 @@ The visual-evidence lifecycle is required only when the intent proves both actua
 
 Repository cleanup is evidence-gated: preserve active or unique owner-repository work.
 
-
-## Human-task identity boundary
-
-Stable human-task correlation is explicit host evidence above trace lifecycle; portable details and invariants are indexed in `mssr-human-task-identity`. Task grouping never infers completion or replaces raw trace provenance.
 
 ## Librarian duplicate granularity decision
 

@@ -146,6 +146,22 @@ const scopeConflict = make({ relations: [{ ...base.relations[0], comparability: 
 assert.ok(evaluateMssrSemanticJudgment({ judgment: scopeConflict, inputAtoms: inputs }).reasons.includes("relation-scope-conflict"));
 const timeConflict = make({ relations: [{ ...base.relations[0], comparability: { ...base.relations[0].comparability, temporal: { ...base.relations[0].comparability.temporal, rightValidity: "historical" } } }] });
 assert.ok(evaluateMssrSemanticJudgment({ judgment: timeConflict, inputAtoms: inputs }).reasons.includes("relation-temporal-comparability-conflict"));
+const unrelatedDifferentScopeAndTime = make({ relations: [{
+  ...base.relations[0],
+  kind: "unrelated",
+  comparability: {
+    scope: { left: "current-release", right: "historical-worktree" },
+    temporal: {
+      leftValidity: "current", leftValidFrom: "2026-10-01T00:00:00Z", leftValidUntil: null,
+      rightValidity: "historical", rightValidFrom: "2026-09-01T00:00:00Z", rightValidUntil: "2026-09-30T23:59:59Z",
+    },
+  },
+}], verificationEvidence: null });
+const unrelatedEvaluation = evaluateMssrSemanticJudgment({ judgment: unrelatedDifferentScopeAndTime, inputAtoms: inputs });
+assert.equal(unrelatedEvaluation.disposition, "review", "unrelated pairs skip comparability conflicts but still require independent verification");
+assert.ok(!unrelatedEvaluation.reasons.includes("relation-scope-conflict"));
+assert.ok(!unrelatedEvaluation.reasons.includes("relation-temporal-comparability-conflict"));
+assert.ok(unrelatedEvaluation.reasons.includes("independent-verification-unavailable"));
 const supersedesTemporal = {
   ...base.relations[0],
   kind: "supersedes",

@@ -135,6 +135,38 @@ try {
   assert.equal(triagePlane.segmentDecisions.find((decision) => decision.id === "reduction-semantic-triage")?.selected, true);
   assert.deepEqual(semanticEvidenceTriage.ambiguousSegments, []);
 
+  const jevBenchmarkContext = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: intent({
+      summary: "Jev confidence gates and measured MSSR Librarian benchmark history",
+      domains: ["coding", "agent-orchestration", "skill-system"],
+      actions: ["analyze", "review", "verify"],
+      artifacts: ["project", "repository", "document"],
+      needs: ["integrity-verification", "cross-agent"],
+      signals: ["uncertainty", "conflicting-evidence"],
+      risk: "read-only",
+    }),
+    stage: "verify",
+    maxChars: 20_000,
+    maxModules: 40,
+    includeCore: false,
+  });
+  const jevById = new Map(jevBenchmarkContext.selected.map((record) => [record.ref, record]));
+  const confidencePolicy = jevById.get("mssr-jev-confidence-merge-policy");
+  const runHistory = jevById.get("mssr-jev-confidence-run-history");
+  const evaluationProtocol = jevById.get("mssr-jev-confidence-benchmark-history");
+  assert.ok(confidencePolicy, "Jev conflict review should load the focused confidence/merge policy");
+  assert.ok(runHistory, "Jev benchmark review should load measured run history independently");
+  assert.ok(evaluationProtocol, "Jev benchmark review should retain the active evaluation protocol");
+  assert.ok(confidencePolicy.bytes < 4_000);
+  assert.ok(runHistory.bytes < 6_500);
+  assert.ok(evaluationProtocol.bytes < 1_800);
+  assert.match(confidencePolicy.content, /uncalibrated; do not call a raw threshold/i);
+  assert.match(runHistory.content, /What the MSSR runs establish/);
+  assert.match(runHistory.content, /labels were not independently\s+adjudicated/i);
+  assert.doesNotMatch(runHistory.content, /## Confidence and merge policy/);
+  assert.match(evaluationProtocol.content, /Next MSSR evaluation/);
+
   const librarianModules = (result) => result.selected
     .filter((record) => record.ref.startsWith("mssr-project-context-librarian"));
   const librarianImplementation = await loadProjectContextModules({

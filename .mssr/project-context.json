@@ -410,13 +410,12 @@
       "kind": "context",
       "topic": "architecture",
       "area": "semantic-evidence",
-      "description": "Current Jev confidence, contradiction-aware decisions, Librarian evidence retrieval, and reversible merge boundaries.",
+      "description": "Jev/source evidence separation, Librarian retrieval, composed text-work boundaries, and reversible previews; confidence/merge gates are indexed separately.",
       "source": {
         "path": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
         "sections": [
           "## Keep source evidence separate from Jev judgment",
           "## Librarian retrieval and evidence acquisition",
-          "## Confidence and merge policy",
           "## Composed capability boundary"
         ]
       },
@@ -450,17 +449,54 @@
       "maxChars": 10000
     },
     {
+      "id": "mssr-jev-confidence-merge-policy",
+      "kind": "context",
+      "topic": "architecture",
+      "area": "semantic-evidence",
+      "description": "Decision-specific confidence limits, contradiction handling, reversible synthesis, and verification gates for Jev proposals.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+        "sections": [
+          "## Confidence and merge policy"
+        ]
+      },
+      "domains": [
+        "coding",
+        "skill-system",
+        "agent-orchestration"
+      ],
+      "actions": [
+        "analyze",
+        "review",
+        "verify",
+        "maintain"
+      ],
+      "artifacts": [
+        "repository",
+        "code",
+        "document"
+      ],
+      "needs": [
+        "integrity-verification",
+        "cross-agent"
+      ],
+      "signals": [
+        "conflicting-evidence",
+        "uncertainty"
+      ],
+      "priority": 92,
+      "maxChars": 4000
+    },
+    {
       "id": "mssr-jev-confidence-benchmark-history",
       "kind": "context",
       "topic": "reference",
       "area": "semantic-evidence",
-      "description": "Historical Jev run results, public evidence, and the next evaluation protocol with their limitations.",
+      "description": "The active MSSR evaluation protocol, grouped holdout gates, and required evaluation axes.",
       "source": {
         "path": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
         "sections": [
-          "## What the MSSR runs establish",
-          "## Next MSSR evaluation",
-          "## Public evidence reviewed"
+          "## Next MSSR evaluation"
         ]
       },
       "domains": [
@@ -486,8 +522,84 @@
         "uncertainty",
         "conflicting-evidence"
       ],
-      "priority": 52,
-      "maxChars": 10000
+      "priority": 99,
+      "maxChars": 1800
+    },
+    {
+      "id": "mssr-jev-confidence-run-history",
+      "kind": "context",
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "description": "Measured MSSR Jev/Librarian runs, observed errors, and explicit limits on their evidential value.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+        "sections": [
+          "## What the MSSR runs establish"
+        ]
+      },
+      "domains": [
+        "coding",
+        "agent-orchestration",
+        "skill-system"
+      ],
+      "actions": [
+        "analyze",
+        "review",
+        "verify"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document"
+      ],
+      "needs": [
+        "integrity-verification",
+        "cross-agent"
+      ],
+      "signals": [
+        "uncertainty",
+        "conflicting-evidence"
+      ],
+      "priority": 100,
+      "maxChars": 6500
+    },
+    {
+      "id": "mssr-jev-public-benchmark-evidence",
+      "kind": "context",
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "description": "Published Jev and adjacent benchmark evidence with explicit limits on transfer to MSSR.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
+        "sections": [
+          "## Public evidence reviewed"
+        ]
+      },
+      "domains": [
+        "coding",
+        "agent-orchestration",
+        "skill-system"
+      ],
+      "actions": [
+        "analyze",
+        "discover",
+        "review"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document"
+      ],
+      "needs": [
+        "official-docs",
+        "integrity-verification"
+      ],
+      "signals": [
+        "uncertainty",
+        "capability-discovery-needed"
+      ],
+      "priority": 48,
+      "maxChars": 4000
     },
     {
       "id": "mssr-jev-decision-model-use-cases",
@@ -539,13 +651,12 @@
       "kind": "context",
       "topic": "reference",
       "area": "semantic-evidence",
-      "description": "Dated QuietDesk, games, Reddit, and OpenAI Decisions API research; all results remain qualified by their source limits.",
+      "description": "Dated QuietDesk, game, and OpenAI Decisions API evidence with source limitations; Reddit evaluation notes are indexed separately.",
       "source": {
         "path": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
         "sections": [
           "## Evidencia local: QuietDesk",
           "## Juegos: qué demuestran y qué no",
-          "## Reddit y otras evaluaciones tempranas",
           "## OpenAI Decisions API: anuncio verificado, esquema pendiente",
           "## Fuentes"
         ]
@@ -575,6 +686,43 @@
       ],
       "priority": 46,
       "maxChars": 12000
+    },
+    {
+      "id": "mssr-jev-reddit-evidence",
+      "kind": "context",
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "description": "Community-reported Jev evaluations and their task-specific, non-peer-reviewed evidence limits.",
+      "source": {
+        "path": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+        "sections": [
+          "## Reddit y otras evaluaciones tempranas"
+        ]
+      },
+      "domains": [
+        "coding",
+        "agent-orchestration",
+        "skill-system"
+      ],
+      "actions": [
+        "analyze",
+        "discover",
+        "review"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document"
+      ],
+      "needs": [
+        "integrity-verification"
+      ],
+      "signals": [
+        "uncertainty",
+        "capability-discovery-needed"
+      ],
+      "priority": 46,
+      "maxChars": 4500
     },
     {
       "id": "mssr-jev-use-case-hypotheses",
@@ -835,7 +983,7 @@
         "replan-needed"
       ],
       "priority": 93,
-      "maxChars": 2200
+      "maxChars": 2600
     },
     {
       "id": "mssr-trace-lifecycle-integrity",

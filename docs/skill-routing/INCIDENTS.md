@@ -1597,3 +1597,31 @@ Closed in MSSR 0.2.67 plus Bridge 0.6.135 host adoption. Portable MSSR now class
 **Correction/regression:** Canonical metadata plus positive, continuation and nearby negative fixtures were added to the MSSR source for both skills; source verification and Codex discovery pass. No installed package copy was edited.
 
 **Follow-up:** Include the updated contract in the next normal MSSR package and Bridge adoption, then rerun Bridge `skill_route_audit`. Do not patch `node_modules` as a second routing authority.
+
+## MSSR-051 — Current Bridge state in project handoff lagged live runtime
+
+**Date/status:** 2026-10-09 · Corrected; exact in-memory package-byte attestation remains unavailable.
+
+**Layer/owner:** MSSR project state and Librarian/JeV integration handoff.
+
+**Symptom and evidence:** The current `PROJECT_STATE.md` and integration handoff contained Bridge 0.6.153/0.6.161 snapshots, while the live readiness/catalog readback and TCP listener showed Bridge 0.6.162, PID 39780, boot `8cc63551-7a20-4a02-9455-a78f33d6927b`, serving the candidate checkout with installed MSSR 0.2.110. The exact process-to-package version evidence is preserved in `D:\MSSR-benchmark-artifacts\jev-shep-calibration-20261009-v1\consolidated-evidence-review-20261009.md`.
+
+**Cause:** No resuelta. Historical/current runtime statements were duplicated and not refreshed after the later activation.
+
+**Correction/regression:** Added a dated verified snapshot and marked the prior handoff/runtime block historical; updated current machine-readable version tags. No runtime restart or source/package change was made.
+
+**Follow-up:** Refresh current-state claims only from listener, readiness, activation receipt and installed-package evidence after each adoption; preserve the process-level package-hash limitation explicitly.
+
+## MSSR-052 — Bridge route planning and broad metrics summary showed high latency
+
+**Date/status:** 2026-10-09 · Open, cause not established.
+
+**Layer/owner:** Bridge metrics/route planning; diagnostic evidence observed through the MSSR close workflow.
+
+**Symptom and evidence:** The Bridge notice reported five `bridge-routing-latency` occurrences above 1,500 ms. A live `skill_route_plan` call took 1,643 ms; its timing assigned 1,090.56 ms to Context Plane and 409.34 ms to workflow-guide evaluation. An earlier route in the same workflow took 307 ms. A broad `bridge_metrics_summary(scope=all, limit=30)` then took 59,816 ms and emitted a large aggregate; a bounded `bridge_metrics_recent(scope=active, limit=12)` read took 38 ms. The telemetry store remained healthy: SQLite/JSONL enabled, zero failed/dropped events and no pending writes after completion.
+
+**Cause:** No resuelta. The slow route timing points to Context Plane/workflow-guide work; the long aggregate may reflect historical-scope volume and response aggregation, but this has not been isolated.
+
+**Correction:** No runtime threshold, code or retention policy was changed. The follow-up inspection used a bounded active-scope recent query and avoided another all-scope aggregate.
+
+**Follow-up:** Reproduce with a narrow active-scope query and exact route records, compare phase durations across a few traces, then fix the smallest measured owner. Do not raise latency thresholds or infer a route regression from this one run.

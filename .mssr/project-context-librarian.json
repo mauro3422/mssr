@@ -36,7 +36,7 @@
         "MSSR project state",
         "Learning dataset state"
       ],
-      "expectedFingerprint": "41502fd834d17d09568be87dbf783822369dc63c87f5d1dd1115f14104382ab5",
+      "expectedFingerprint": "a823e41d2a949973f765a14a0534a6e677bfcee88539c2a88c488b37435339db",
       "selectors": {
         "domains": [
           "agent-orchestration",

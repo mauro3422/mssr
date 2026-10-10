@@ -1,5 +1,13 @@
 # Jev Librarian integration and Git handoff
 
+## Current verified status — 2026-10-09
+
+The active Bridge is **0.6.162**, ready on 127.0.0.1:3001 under PID 39780, boot 8cc63551-7a20-4a02-9455-a78f33d6927b; the live tunnel is ready and no restart is pending. The serving code is `D:\Dev\bridge-mcp-candidate-0.6.160-mssr-0.2.109`; `D:\Dev\bridge-mcp` is the runtime/data root and `C:\Dev\bridge-mcp` is its compatibility junction. Bridge metadata and installed package readback report MSSR **0.2.110**. Local MSSR **0.2.111** is release-gated but not deployed. Exact in-memory package-byte attestation is unavailable. Full process/package/hash evidence is in `D:\MSSR-benchmark-artifacts\jev-shep-calibration-20261009-v1\consolidated-evidence-review-20261009.md`.
+
+Fresh Librarian/JeV evaluation uses four frozen owner documents from four repositories and four ES/EN concept pairs. Two live runs repeated the same dispositions: target recall@10 5/8 (EN 4/4; ES 1/4), Jev selected 5/8 and abstained 3/8, all five selected ranges matched source-derived targets and exact-fetched successfully. These labels are not owner-adjudicated gold; confidence remains uncalibrated; do not use the result to set thresholds or authorize writes. Detailed cases and outputs: `D:\MSSR-benchmark-artifacts\jev-shep-calibration-20261009-v1\librarian-fresh-corpus-20261009-v1\REPORT.md`.
+
+The verified snapshot above supersedes contradictory runtime/version statements in the historical sections below; retain those sections as chronology rather than current authority.
+
 ## Repository snapshot and preservation
 
 The detailed pre-integration handoff is preserved at docs/history/jev-librarian-integration-handoff-pre-0.2.104.md; its branch and gate statements are historical. This indexed handoff is the compact current view.
@@ -90,7 +98,7 @@ The user's current instruction explicitly authorizes live Jev calls for this MSS
 
 ## Next gates
 
-- **Product:** Bridge 0.6.161 currently runs MSSR 0.2.110 in production. The tool chain supports deterministic Librarian search, Jev selection/relation review, exact fetch, evidence packs, contradiction-aware review, and reversible source-text previews. No dedicated structure-recovery or generated-paragraph endpoint exists; previews do not write canonical sources. Keep npm publication and any new tool/API as separate release decisions.
+- **Product:** Current Bridge readback on 2026-10-09 is 0.6.162 with MSSR 0.2.110 in production; local MSSR 0.2.111 is release-gated but not adopted. The tool chain supports deterministic Librarian search, Jev selection/relation review, exact fetch, evidence packs, contradiction-aware review, and reversible source-text previews. No dedicated structure-recovery or generated-paragraph endpoint exists; previews do not write canonical sources. Keep npm publication and any new tool/API as separate release decisions.
 - **Bibliotecario evaluation:** keep retrieval recall, exact-fetch integrity, Jev choice/sufficiency, relation and contradiction quality, structure segmentation, citation retention, and synthesis faithfulness as separate measures. Build a fresh document-grouped sample with owner-adjudicated boundaries, list/callout/code hard negatives, Spanish/English cases, and an untouched holdout. V1-v6 structure receipts are development evidence only; no threshold or production promotion follows from them.
 - **Next structure run:** use the official Autoformat design principle: preserve blank-gap and explicit-marker evidence and resolve those boundaries deterministically; reserve Jev for ambiguous unmarked line joins and block classes. Compare against the deterministic baseline on fresh real documents; separately include genuinely unformatted/OCR-like text, owner-adjudicated labels, exact citations, hard negatives and a locked holdout. Do not tune thresholds on v1-v6.
 - **Live Jev:** bounded provider testing remains authorized by the user's current instruction. Save manifests/results outside `experiments/**/runs/**`, keep credentials out of receipts, and leave every unverified judgment review-only.
