@@ -1,6 +1,6 @@
 # ADR 0006 — Deterministic semantic consistency over the Situation Model
 
-Status: accepted direction; implementation is active. MSSR `0.2.72` completes the portable deterministic baseline through Gates A-F and native/Codex/OpenCode source/runtime-contract parity. Gate G remains open for separate Bridge packaged/live adoption plus representative longitudinal QA. Gate H has only the safe shadow-evidence boundary; no NLI/cross-encoder quality or promotion claim is made.
+Status: accepted direction; implementation is active. MSSR `0.2.72` completes the portable deterministic baseline through Gates A-F and native/Codex/OpenCode source/runtime-contract parity. Bridge `0.6.162` is live with the separately verified MSSR `0.2.110` package; the live semantic-evidence tools and current Jev relation calls confirm the host path is available. Gate G remains open for representative longitudinal QA, owner-adjudicated labels, and measured precision/recall, abstention/noise, and context cost. Gate H has only the safe shadow-evidence boundary; no NLI/cross-encoder quality or promotion claim is made.
 
 ## Context
 
@@ -208,7 +208,7 @@ This matrix directly addresses the class represented by C2e-D semantic claims an
 
 ### Gate A — integration coverage inventory
 
-**Status: complete in portable source.** The read-only inventory classifies selected portable capabilities and Context Message edges as `implemented`, `host-supplied`, `reserved`, `pending-adoption`, or `unresolved`. It distinguishes source-complete/test-only/export-only contracts without labeling every missing edge a bug. As of `0.2.72`, `roadmap-contradiction` / `unresolved-reference` have real portable producers; their Bridge edge remains independently `pending-adoption` until the packaged/live host upgrade occurs.
+**Status: complete in portable source; live host path verified.** The read-only inventory classifies selected portable capabilities and Context Message edges as `implemented`, `host-supplied`, `reserved`, `pending-adoption`, or `unresolved`. It distinguishes source-complete/test-only/export-only contracts without labeling every missing edge a bug. As of `0.2.72`, `roadmap-contradiction` / `unresolved-reference` have real portable producers; Bridge `0.6.162` runs the separately verified MSSR `0.2.110` package, and its semantic-evidence tool path has been exercised live. Longitudinal quality remains a separate open gate.
 
 ### Gate B — typed relationship/claim registry
 
@@ -232,7 +232,7 @@ This matrix directly addresses the class represented by C2e-D semantic claims an
 
 ### Gate G — host adoption and longitudinal QA
 
-**Status: partial / host-adoption phase.** Native, Codex and OpenCode register the same I/O-free semantic evaluation, candidate retrieval, Context Message production and shadow-evidence contracts; cross-host tests require identical outputs for the same structured inputs. Bridge is deliberately separate: live `0.6.139` still consumes MSSR `0.2.71` until the `0.2.72` package is adopted and restarted/verified. The seeded retrieval fixture measures only ranking regression; representative longitudinal precision/recall, abstention/noise/context-cost evidence must accumulate from real incidents instead of being inferred from source tests.
+**Status: host path verified; longitudinal QA remains open.** Native, Codex and OpenCode register the same I/O-free semantic evaluation, candidate retrieval, Context Message production and shadow-evidence contracts; cross-host tests require identical outputs for the same structured inputs. Bridge `0.6.162` is live with the separately verified MSSR `0.2.110` package, and current Bridge catalog/readback plus live Librarian/Jev relation calls confirm that the semantic-evidence host path is available. This does not establish production quality or gate closure: the seeded retrieval fixture measures only ranking regression, and representative longitudinal precision/recall, abstention/noise/context-cost evidence plus owner-adjudicated labels must accumulate from real cases.
 
 ### Gate H — optional semantic-model shadow experiment
 
