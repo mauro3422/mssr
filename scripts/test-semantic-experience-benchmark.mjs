@@ -5,7 +5,7 @@ import {
   createMssrSemanticExperienceObservation,
 } from "../dist/index.js";
 
-function observation({ projectKey, index, value = "select", proposalValue = value, decisionKind = "context-selection" }) {
+function observation({ projectKey, index, value = "select", proposalValue = value, decisionKind = "context-selection", verified = true }) {
   return createMssrSemanticExperienceObservation({
     projectKey,
     decisionKind,
@@ -18,7 +18,7 @@ function observation({ projectKey, index, value = "select", proposalValue = valu
     },
     evidenceUnits: [{ sourceRef: `fixture:${projectKey}:${index}`, role: "candidate", selected: value === "select" }],
     proposal: { value: proposalValue, confidence: 0.9, provider: "shef", modelId: "system-one" },
-    verification: {
+    verification: verified ? {
       status: proposalValue === value ? "confirmed" : "corrected",
       value,
       evidenceRef: `review:${projectKey}:${index}`,
@@ -31,7 +31,7 @@ function observation({ projectKey, index, value = "select", proposalValue = valu
       },
       independent: true,
       verifiedAt: `2026-09-${String(1 + index).padStart(2, "0")}T12:00:00.000Z`,
-    },
+    } : { status: "unknown" },
     observedAt: `2026-09-${String(1 + index).padStart(2, "0")}T11:00:00.000Z`,
   });
 }
@@ -50,11 +50,28 @@ assert.equal(eligible.promotion.status, "eligible-shadow-primary");
 assert.equal(eligible.promotion.autoApplyAllowed, false);
 assert.equal(eligible.promotion.authorityInfluence, false);
 
+const fourVerifiedProjectsAtMinimum = ["w", "x", "y", "z"].flatMap((projectKey) => Array.from({ length: 6 }, (_, index) => observation({ projectKey, index })));
+const eligibleAtVerifiedBreadthMinimum = benchmarkMssrSemanticExperience({ observations: fourVerifiedProjectsAtMinimum });
+assert.equal(eligibleAtVerifiedBreadthMinimum.verifiedTruth, 24);
+assert.equal(eligibleAtVerifiedBreadthMinimum.promotion.eligible, true, "Four projects with verified truth and 24 holdout decisions should meet the breadth/support minima");
+
+const threeVerifiedProjectsAndOneShadowOnly = [
+  ...projects.slice(0, 3).flatMap((projectKey) => Array.from({ length: 10 }, (_, index) => observation({ projectKey, index }))),
+  ...Array.from({ length: 10 }, (_, index) => observation({ projectKey: "shadow-only", index, verified: false })),
+];
+const blockedShadowProjectBreadth = benchmarkMssrSemanticExperience({ observations: threeVerifiedProjectsAndOneShadowOnly });
+assert.equal(blockedShadowProjectBreadth.projects, 4);
+assert.equal(blockedShadowProjectBreadth.verifiedTruth, 30);
+assert.equal(blockedShadowProjectBreadth.fallback.precision, 1);
+assert.equal(blockedShadowProjectBreadth.fallback.coverage, 1);
+assert.equal(blockedShadowProjectBreadth.promotion.eligible, false, "Shadow-only projects must not satisfy verified project-breadth gate");
+assert.ok(blockedShadowProjectBreadth.promotion.reasons.includes("verified-projects:3<4"));
+
 const sparse = stable.slice(0, 3);
 const blockedSparse = benchmarkMssrSemanticExperience({ observations: sparse, evaluatedAt: "2026-09-29T03:01:00.000Z" });
 assert.equal(blockedSparse.promotion.eligible, false);
 assert.ok(blockedSparse.promotion.reasons.some((reason) => reason.startsWith("verified-holdout:")));
-assert.ok(blockedSparse.promotion.reasons.some((reason) => reason.startsWith("distinct-projects:")));
+assert.ok(blockedSparse.promotion.reasons.some((reason) => reason.startsWith("verified-projects:")));
 
 const correctedProvider = projects.flatMap((projectKey) => Array.from({ length: 10 }, (_, index) => observation({
   projectKey,

@@ -93,6 +93,14 @@ assert.ok(listBlock);
 assert.equal(listBlock.sectionId, routingTwo.id);
 assert.ok(listBlock.hint.includes("first item"));
 
+const indentedCodeSurface = buildMssrMarkdownDocumentSurface({
+  sourceRef: "docs/indented-code.md",
+  markdown: "# Commands\n\n    - literal command one\n    - literal command two\n",
+});
+assert.equal(indentedCodeSurface.blocks.length, 1);
+assert.equal(indentedCodeSurface.blocks[0].kind, "code", "four-space-indented Markdown is code, not a list");
+assert.equal(indentedCodeSurface.blocks[0].terms.length, 0, "indented code does not leak code text into list search terms");
+
 const section = materializeMssrDocumentSurfaceSection({ markdown, surface, sectionId: routingOne.id });
 assert.ok(section.text.startsWith("## Routing"));
 assert.ok(section.text.includes("### Selection"), "a section includes descendant headings");

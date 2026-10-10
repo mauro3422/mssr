@@ -47,6 +47,83 @@ assert.equal(packed.advisoryOnly, true);
 assert.equal(packed.truthAuthority, false);
 assert.equal(packed.canonicalRewriteAllowed, false);
 assert.equal(packed.ownerAndPrivacyAreCallerAsserted, true);
+assert.equal("rangeCompaction" in packed, false, "default packing leaves all selected ranges and citations untouched");
+
+const nestedSource = {
+  owner: "project:nested-range-fixture",
+  sourceRef: "docs/nested.md",
+  markdown: "# Root\n\n## Parent section\n\nIntro text.\n\nSpecific child evidence.\n",
+  privacyClass: "project-metadata",
+};
+const nestedSurface = buildMssrMarkdownDocumentSurface(nestedSource);
+const parentRange = nestedSurface.headings.find((range) => range.title === "Parent section");
+const childRange = nestedSurface.blocks.find((range) => nestedSource.markdown.slice(range.startOffset, range.endOffset) === "Specific child evidence.");
+assert.ok(parentRange && childRange);
+const makeHandle = (range, rangeKind) => {
+  const fields = {
+    version: 1,
+    owner: nestedSource.owner,
+    sourceRef: nestedSource.sourceRef,
+    revision: nestedSurface.revision,
+    rangeId: range.id,
+    rangeKind,
+    startLine: range.startLine,
+    endLine: range.endLine,
+    startOffset: range.startOffset,
+    endOffset: range.endOffset,
+    fingerprint: range.fingerprint,
+    privacyClass: "project-metadata",
+  };
+  return { ...fields, id: mssrLibrarianEvidenceHandleId(fields) };
+};
+const parentHandle = makeHandle(parentRange, "section");
+const childHandle = makeHandle(childRange, "block");
+const nestedDocuments = [nestedSource];
+const nestedDefault = buildMssrLibrarianEvidencePack({ documents: nestedDocuments, handles: [childHandle, parentHandle] });
+assert.equal(nestedDefault.paragraphs.length, 2, "nested selected ranges are preserved unless compaction is explicitly enabled");
+const compacted = buildMssrLibrarianEvidencePack({ documents: nestedDocuments, handles: [childHandle, parentHandle], dedupeContainedRanges: true });
+assert.equal(compacted.paragraphs.length, 1);
+assert.equal(compacted.paragraphs[0].exactText, nestedSource.markdown.slice(parentRange.startOffset, parentRange.endOffset), "retained parent text remains byte-for-byte the source range");
+assert.equal(compacted.paragraphs[0].citation.handleId, parentHandle.id);
+assert.deepEqual(compacted.rangeCompaction, {
+  policy: "strict-contained-range-deduplication",
+  inputHandleCount: 2,
+  retainedHandleCount: 1,
+  removed: [{
+    handleId: childHandle.id,
+    coveredByHandleId: parentHandle.id,
+    owner: childHandle.owner,
+    sourceRef: childHandle.sourceRef,
+    revision: childHandle.revision,
+    rangeId: childHandle.rangeId,
+    rangeKind: childHandle.rangeKind,
+    startLine: childHandle.startLine,
+    endLine: childHandle.endLine,
+    fingerprint: childHandle.fingerprint,
+    privacyClass: childHandle.privacyClass,
+  }],
+});
+assert.deepEqual(
+  buildMssrLibrarianEvidencePack({ documents: nestedDocuments, handles: [parentHandle, childHandle], dedupeContainedRanges: true }),
+  compacted,
+  "opt-in compaction is deterministic regardless of handle order",
+);
+
+const siblingHandles = nestedSurface.blocks
+  .filter((range) => range.sectionId === parentRange.id)
+  .map((range) => makeHandle(range, "block"));
+assert.equal(siblingHandles.length, 2);
+assert.equal(buildMssrLibrarianEvidencePack({ documents: nestedDocuments, handles: siblingHandles, dedupeContainedRanges: true }).paragraphs.length, 2, "disjoint ranges are retained");
+assert.throws(() => buildMssrLibrarianEvidencePack({
+  documents: [{ ...nestedSource, markdown: `${nestedSource.markdown}\nchanged\n` }],
+  handles: [childHandle, parentHandle],
+  dedupeContainedRanges: true,
+}), /stale/i, "every original handle is revalidated before a contained range can be omitted");
+assert.throws(() => buildMssrLibrarianEvidencePack({
+  documents: nestedDocuments,
+  handles: [{ ...childHandle, id: "f".repeat(64) }, parentHandle],
+  dedupeContainedRanges: true,
+}), /handle id mismatch/i, "forged contained handles are rejected even when compaction would omit them");
 
 assert.throws(() => buildMssrLibrarianEvidencePack({
   documents: documents.map((document, index) => index === 0 ? { ...document, markdown: `${document.markdown}\nchanged\n` } : document),
@@ -81,5 +158,22 @@ const oversizedSearch = searchMssrLibrarianEvidence({ documents: oversizedSource
 const oversizedHandles = oversizedSources.map((source) => oversizedSearch.results.find((item) => item.handle.sourceRef === source.sourceRef && item.handle.rangeKind === "section")?.handle);
 assert.equal(oversizedHandles.filter(Boolean).length, 5);
 assert.equal(mssrLibrarianEvidencePackInputSchema.safeParse({ documents: oversizedSources, handles: oversizedHandles }).success, false, "aggregate exact output is bounded before fetch");
+
+const listItemDocument = {
+  owner,
+  sourceRef: "docs/list-items.md",
+  markdown: "# Policies\n\n## Rendering\n\n- Keep rendering deterministic.\n- Render dynamic user-facing strings as text, never HTML.\n- Preserve the unrelated cache policy.\n",
+  privacyClass: "project-metadata",
+};
+const listItemHandle = searchMssrLibrarianEvidence({
+  documents: [listItemDocument],
+  query: { query: "dynamic user-facing strings HTML", maxResults: 10 },
+}).results.find((result) => result.handle.rangeId.endsWith("/item-2"))?.handle;
+assert.ok(listItemHandle, "search should expose a precise list-item evidence handle");
+const listItemPack = buildMssrLibrarianEvidencePack({ documents: [listItemDocument], handles: [listItemHandle] });
+assert.equal(listItemPack.paragraphs.length, 1);
+assert.equal(listItemPack.paragraphs[0].exactText, "- Render dynamic user-facing strings as text, never HTML.");
+assert.equal(listItemPack.paragraphs[0].citation.rangeId, listItemHandle.rangeId);
+assert.equal(listItemPack.paragraphs[0].citation.rangeKind, "block");
 
 console.log("Librarian evidence pack tests passed");

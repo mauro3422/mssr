@@ -11,9 +11,9 @@
           "## Architecture"
         ]
       },
-      "maxChars": 5000,
       "topic": "architecture",
-      "area": "core"
+      "area": "core",
+      "maxChars": 5000
     },
     {
       "id": "mssr-current-release",
@@ -25,9 +25,9 @@
           "## Current release"
         ]
       },
-      "maxChars": 2500,
       "topic": "state",
-      "area": "release"
+      "area": "release",
+      "maxChars": 2500
     }
   ],
   "modules": [
@@ -38,6 +38,9 @@
       "source": {
         "path": ".mssr/knowledge/decision/mssr-learning-activation-decision.md"
       },
+      "topic": "decision",
+      "area": "learning",
+      "stages": [],
       "domains": [
         "skill-system",
         "agent-orchestration"
@@ -48,10 +51,12 @@
         "maintain",
         "debug"
       ],
+      "artifacts": [],
+      "needs": [],
+      "signals": [],
+      "required": false,
       "priority": 60,
-      "maxChars": 3500,
-      "topic": "decision",
-      "area": "learning"
+      "maxChars": 3500
     },
     {
       "id": "mssr-change-history-contract",
@@ -60,6 +65,10 @@
       "source": {
         "path": ".mssr/knowledge/pattern/mssr-change-history-contract.md"
       },
+      "topic": "pattern",
+      "area": "release",
+      "stages": [],
+      "domains": [],
       "actions": [
         "maintain",
         "version",
@@ -68,14 +77,15 @@
         "debug",
         "recover"
       ],
+      "artifacts": [],
       "needs": [
         "integrity-verification",
         "version-control"
       ],
+      "signals": [],
+      "required": false,
       "priority": 70,
-      "maxChars": 3500,
-      "topic": "pattern",
-      "area": "release"
+      "maxChars": 3500
     },
     {
       "id": "mssr-project-knowledge-drift-review",
@@ -84,6 +94,9 @@
       "source": {
         "path": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md"
       },
+      "topic": "operations",
+      "area": "project-context",
+      "stages": [],
       "domains": [
         "skill-system",
         "agent-orchestration",
@@ -95,6 +108,7 @@
         "document",
         "review"
       ],
+      "artifacts": [],
       "needs": [
         "integrity-verification",
         "version-control"
@@ -104,10 +118,9 @@
         "reusable-pattern",
         "repeated-friction"
       ],
+      "required": false,
       "priority": 75,
-      "maxChars": 4200,
-      "topic": "operations",
-      "area": "project-context"
+      "maxChars": 4200
     },
     {
       "id": "mssr-architecture-impact-decision",
@@ -119,6 +132,9 @@
           "## Architecture impact review decision"
         ]
       },
+      "topic": "decision",
+      "area": "project-context",
+      "stages": [],
       "domains": [
         "agent-orchestration",
         "coding",
@@ -142,10 +158,10 @@
         "integrity-verification",
         "cross-agent"
       ],
+      "signals": [],
+      "required": false,
       "priority": 88,
-      "maxChars": 3000,
-      "topic": "decision",
-      "area": "project-context"
+      "maxChars": 3000
     },
     {
       "id": "mssr-architecture-impact-history",
@@ -154,6 +170,9 @@
       "source": {
         "path": ".mssr/knowledge/architecture/architecture-impact-review-history.md"
       },
+      "topic": "reference",
+      "area": "architecture-impact",
+      "stages": [],
       "domains": [
         "agent-orchestration",
         "coding",
@@ -173,10 +192,10 @@
       "needs": [
         "history-recovery"
       ],
+      "signals": [],
+      "required": false,
       "priority": 55,
-      "maxChars": 4500,
-      "topic": "reference",
-      "area": "architecture-impact"
+      "maxChars": 4500
     },
     {
       "id": "mssr-first-party-skill-direction",
@@ -185,6 +204,9 @@
       "source": {
         "path": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md"
       },
+      "topic": "decision",
+      "area": "skills",
+      "stages": [],
       "domains": [
         "skill-system",
         "agent-orchestration"
@@ -198,21 +220,25 @@
         "skill",
         "project"
       ],
+      "needs": [],
+      "signals": [],
+      "required": false,
       "priority": 45,
-      "maxChars": 3000,
-      "topic": "decision",
-      "area": "skills"
+      "maxChars": 3000
     },
     {
       "id": "mssr-learning-dataset-state",
       "kind": "state",
       "description": "Current strict learning-digest collection state.",
       "source": {
-        "path": ".mssr/PROJECT_STATE.md",
+        "path": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
         "sections": [
           "## Learning dataset state"
         ]
       },
+      "topic": "state",
+      "area": "learning",
+      "stages": [],
       "domains": [
         "skill-system",
         "agent-orchestration"
@@ -222,10 +248,12 @@
         "review",
         "maintain"
       ],
+      "artifacts": [],
+      "needs": [],
+      "signals": [],
+      "required": false,
       "priority": 35,
-      "maxChars": 2500,
-      "topic": "state",
-      "area": "learning"
+      "maxChars": 2500
     },
     {
       "id": "mssr-core-skill-package-state",
@@ -237,6 +265,9 @@
           "## Core skill package state"
         ]
       },
+      "topic": "state",
+      "area": "skills",
+      "stages": [],
       "domains": [
         "skill-system",
         "agent-orchestration"
@@ -250,20 +281,22 @@
         "skill",
         "project"
       ],
+      "needs": [],
+      "signals": [],
+      "required": false,
       "priority": 30,
-      "maxChars": 2500,
-      "topic": "state",
-      "area": "skills"
+      "maxChars": 2500
     },
     {
       "id": "mssr-canonical-ownership",
       "kind": "context",
-      "topic": "architecture",
-      "area": "core",
       "description": "Compact canonical ownership and host-boundary contract; subsystem release history is indexed separately.",
       "source": {
         "path": ".mssr/knowledge/architecture/canonical-ownership.md"
       },
+      "topic": "architecture",
+      "area": "core",
+      "stages": [],
       "domains": [
         "skill-system",
         "agent-orchestration",
@@ -286,56 +319,69 @@
         "integrity-verification",
         "cross-agent"
       ],
+      "signals": [],
+      "required": false,
       "priority": 85,
       "maxChars": 5000
     },
     {
       "id": "mssr-context-plane-history",
       "kind": "memory",
-      "topic": "reference",
-      "area": "project-context",
       "description": "Release-by-release Context Plane ownership and delivery history for debugging and recovery.",
       "source": {
         "path": ".mssr/knowledge/architecture/context-plane-history.md"
       },
+      "topic": "reference",
+      "area": "project-context",
+      "stages": [],
+      "domains": [],
       "actions": [
         "debug",
         "recover"
       ],
+      "artifacts": [],
       "needs": [
         "history-recovery"
       ],
+      "signals": [],
+      "required": false,
       "priority": 55,
       "maxChars": 3200
     },
     {
       "id": "mssr-operational-notice-plane-history",
       "kind": "memory",
-      "topic": "reference",
-      "area": "operations",
       "description": "Operational Notice Plane ownership and host-delivery evolution for debugging and recovery.",
       "source": {
         "path": ".mssr/knowledge/architecture/operational-notice-plane-history.md"
       },
+      "topic": "reference",
+      "area": "operations",
+      "stages": [],
+      "domains": [],
       "actions": [
         "debug",
         "recover"
       ],
+      "artifacts": [],
       "needs": [
         "history-recovery"
       ],
+      "signals": [],
+      "required": false,
       "priority": 50,
       "maxChars": 2200
     },
     {
       "id": "mssr-project-context-plane-architecture",
       "kind": "context",
-      "topic": "architecture",
-      "area": "project-context",
       "description": "Canonical project-context plane, knowledge topics, runtime boundary, initialization and health contract.",
       "source": {
         "path": ".mssr/knowledge/architecture/project-context-plane.md"
       },
+      "topic": "architecture",
+      "area": "project-context",
+      "stages": [],
       "domains": [
         "skill-system",
         "agent-orchestration",
@@ -358,18 +404,21 @@
         "integrity-verification",
         "cross-agent"
       ],
+      "signals": [],
+      "required": false,
       "priority": 80,
       "maxChars": 4000
     },
     {
       "id": "mssr-semantic-evidence-plane",
       "kind": "context",
-      "topic": "architecture",
-      "area": "semantic-evidence",
       "description": "Semantic Evidence Plane: evidence atoms, section-level retrieval, batching, portable Jev triage, progressive evidence acquisition, coverage and shadow learning boundaries.",
       "source": {
         "path": ".mssr/knowledge/architecture/semantic-evidence-plane.md"
       },
+      "topic": "architecture",
+      "area": "semantic-evidence",
+      "stages": [],
       "domains": [
         "skill-system",
         "agent-orchestration",
@@ -402,14 +451,13 @@
         "capability-discovery-needed",
         "tool-chain-needed"
       ],
+      "required": false,
       "priority": 86,
       "maxChars": 10000
     },
     {
       "id": "mssr-jev-confidence-merge-evaluation",
       "kind": "context",
-      "topic": "architecture",
-      "area": "semantic-evidence",
       "description": "Jev/source evidence separation, Librarian retrieval, composed text-work boundaries, and reversible previews; confidence/merge gates are indexed separately.",
       "source": {
         "path": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
@@ -419,6 +467,9 @@
           "## Composed capability boundary"
         ]
       },
+      "topic": "architecture",
+      "area": "semantic-evidence",
+      "stages": [],
       "domains": [
         "coding",
         "skill-system",
@@ -445,14 +496,13 @@
         "reusable-pattern",
         "capability-discovery-needed"
       ],
+      "required": false,
       "priority": 92,
       "maxChars": 10000
     },
     {
       "id": "mssr-jev-confidence-merge-policy",
       "kind": "context",
-      "topic": "architecture",
-      "area": "semantic-evidence",
       "description": "Decision-specific confidence limits, contradiction handling, reversible synthesis, and verification gates for Jev proposals.",
       "source": {
         "path": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
@@ -460,6 +510,9 @@
           "## Confidence and merge policy"
         ]
       },
+      "topic": "architecture",
+      "area": "semantic-evidence",
+      "stages": [],
       "domains": [
         "coding",
         "skill-system",
@@ -484,14 +537,13 @@
         "conflicting-evidence",
         "uncertainty"
       ],
+      "required": false,
       "priority": 92,
       "maxChars": 4000
     },
     {
       "id": "mssr-jev-confidence-benchmark-history",
       "kind": "context",
-      "topic": "reference",
-      "area": "semantic-evidence",
       "description": "The active MSSR evaluation protocol, grouped holdout gates, and required evaluation axes.",
       "source": {
         "path": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
@@ -499,6 +551,9 @@
           "## Next MSSR evaluation"
         ]
       },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [],
       "domains": [
         "coding",
         "agent-orchestration",
@@ -522,21 +577,20 @@
         "uncertainty",
         "conflicting-evidence"
       ],
+      "required": false,
       "priority": 99,
       "maxChars": 1800
     },
     {
       "id": "mssr-jev-confidence-run-history",
       "kind": "context",
-      "topic": "reference",
-      "area": "semantic-evidence",
       "description": "Measured MSSR Jev/Librarian runs, observed errors, and explicit limits on their evidential value.",
       "source": {
-        "path": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
-        "sections": [
-          "## What the MSSR runs establish"
-        ]
+        "path": ".mssr/knowledge/reference/mssr-jev-confidence-run-history.md"
       },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [],
       "domains": [
         "coding",
         "agent-orchestration",
@@ -560,14 +614,78 @@
         "uncertainty",
         "conflicting-evidence"
       ],
+      "required": false,
       "priority": 100,
       "maxChars": 6500
     },
     {
-      "id": "mssr-jev-public-benchmark-evidence",
+      "id": "mssr-jev-librarian-current-document-evaluation-20261010",
       "kind": "context",
+      "description": "Dated current-document Librarian/JeV development evaluation, source provenance, exact-fetch checks, corrections, and limits.",
+      "source": {
+        "path": ".mssr/knowledge/reference/mssr-jev-librarian-current-document-evaluation-20261010.md",
+        "sections": [
+          "## Jev Librarian current-document evaluation — 2026-10-10"
+        ]
+      },
       "topic": "reference",
       "area": "semantic-evidence",
+      "stages": [
+        "verify"
+      ],
+      "domains": [
+        "filesystem"
+      ],
+      "actions": [
+        "analyze"
+      ],
+      "artifacts": [
+        "document",
+        "mcp"
+      ],
+      "needs": [
+        "integrity-verification"
+      ],
+      "signals": [],
+      "required": false,
+      "priority": 100,
+      "maxChars": 16000
+    },
+    {
+      "id": "mssr-jev-crossrepo-range-bilingual-evaluation-20261010",
+      "kind": "context",
+      "description": "Dated cross-repository Jev range and bilingual development evaluation with retrieval controls, exact-fetch results, and limits.",
+      "source": {
+        "path": ".mssr/knowledge/reference/mssr-jev-crossrepo-range-bilingual-evaluation-20261010.md",
+        "sections": [
+          "## Cross-repository Jev range and bilingual evaluation — 2026-10-10"
+        ]
+      },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [
+        "verify"
+      ],
+      "domains": [
+        "filesystem"
+      ],
+      "actions": [
+        "analyze",
+        "verify"
+      ],
+      "artifacts": [
+        "repository",
+        "document"
+      ],
+      "needs": [],
+      "signals": [],
+      "required": false,
+      "priority": 100,
+      "maxChars": 15000
+    },
+    {
+      "id": "mssr-jev-public-benchmark-evidence",
+      "kind": "context",
       "description": "Published Jev and adjacent benchmark evidence with explicit limits on transfer to MSSR.",
       "source": {
         "path": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
@@ -575,6 +693,9 @@
           "## Public evidence reviewed"
         ]
       },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [],
       "domains": [
         "coding",
         "agent-orchestration",
@@ -598,14 +719,13 @@
         "uncertainty",
         "capability-discovery-needed"
       ],
+      "required": false,
       "priority": 48,
       "maxChars": 4000
     },
     {
       "id": "mssr-jev-decision-model-use-cases",
       "kind": "context",
-      "topic": "reference",
-      "area": "semantic-evidence",
       "description": "Jev decision boundaries, composed MSSR workflows, and evaluation requirements; source research and hypotheses are indexed separately.",
       "source": {
         "path": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
@@ -617,6 +737,9 @@
           "## Evaluación mínima antes de considerar cualquier caso"
         ]
       },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [],
       "domains": [
         "coding",
         "agent-orchestration",
@@ -643,14 +766,13 @@
         "capability-discovery-needed",
         "reusable-pattern"
       ],
+      "required": false,
       "priority": 58,
       "maxChars": 12000
     },
     {
       "id": "mssr-jev-public-research-evidence",
       "kind": "context",
-      "topic": "reference",
-      "area": "semantic-evidence",
       "description": "Dated QuietDesk, game, and OpenAI Decisions API evidence with source limitations; Reddit evaluation notes are indexed separately.",
       "source": {
         "path": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
@@ -661,6 +783,9 @@
           "## Fuentes"
         ]
       },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [],
       "domains": [
         "coding",
         "agent-orchestration",
@@ -684,14 +809,13 @@
         "capability-discovery-needed",
         "uncertainty"
       ],
+      "required": false,
       "priority": 46,
       "maxChars": 12000
     },
     {
       "id": "mssr-jev-reddit-evidence",
       "kind": "context",
-      "topic": "reference",
-      "area": "semantic-evidence",
       "description": "Community-reported Jev evaluations and their task-specific, non-peer-reviewed evidence limits.",
       "source": {
         "path": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
@@ -699,6 +823,9 @@
           "## Reddit y otras evaluaciones tempranas"
         ]
       },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [],
       "domains": [
         "coding",
         "agent-orchestration",
@@ -721,14 +848,13 @@
         "uncertainty",
         "capability-discovery-needed"
       ],
+      "required": false,
       "priority": 46,
       "maxChars": 4500
     },
     {
       "id": "mssr-jev-use-case-hypotheses",
       "kind": "context",
-      "topic": "reference",
-      "area": "semantic-evidence",
       "description": "The complete set of 100 explicitly unvalidated Jev use-case hypotheses and its evaluation gate.",
       "source": {
         "path": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
@@ -736,6 +862,9 @@
           "## 100 hipótesis de uso"
         ]
       },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [],
       "domains": [
         "coding",
         "agent-orchestration",
@@ -756,18 +885,20 @@
       "signals": [
         "reusable-pattern"
       ],
+      "required": false,
       "priority": 38,
       "maxChars": 12000
     },
     {
       "id": "mssr-project-document-reference-lifecycle",
       "kind": "context",
-      "topic": "reference",
-      "area": "project-context",
       "description": "Project-document discovery, reference-on-miss, explicit forward registration, and freshness boundaries.",
       "source": {
         "path": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md"
       },
+      "topic": "reference",
+      "area": "project-context",
+      "stages": [],
       "domains": [
         "skill-system",
         "agent-orchestration",
@@ -790,18 +921,21 @@
         "cross-agent",
         "history-recovery"
       ],
+      "signals": [],
+      "required": false,
       "priority": 82,
       "maxChars": 4600
     },
     {
       "id": "mssr-project-document-index",
       "kind": "context",
-      "topic": "reference",
-      "area": "project-context",
       "description": "Reviewed pointers to durable project documents that remain external to bounded MSSR context payloads.",
       "source": {
         "path": ".mssr/knowledge/reference/project-document-index.md"
       },
+      "topic": "reference",
+      "area": "project-context",
+      "stages": [],
       "domains": [
         "skill-system",
         "agent-orchestration",
@@ -822,18 +956,21 @@
         "history-recovery",
         "cross-agent"
       ],
+      "signals": [],
+      "required": false,
       "priority": 68,
       "maxChars": 1200
     },
     {
       "id": "mssr-canonical-project-context-cutover",
       "kind": "memory",
-      "topic": "decision",
-      "area": "project-context",
       "description": "Decision to remove active .bridge fallback and require explicit canonical MSSR initialization.",
       "source": {
         "path": ".mssr/knowledge/decision/canonical-project-context-cutover.md"
       },
+      "topic": "decision",
+      "area": "project-context",
+      "stages": [],
       "domains": [
         "skill-system",
         "agent-orchestration",
@@ -860,18 +997,20 @@
         "conflicting-evidence",
         "reusable-pattern"
       ],
+      "required": false,
       "priority": 85,
       "maxChars": 3000
     },
     {
       "id": "mssr-context-economy-v2",
       "kind": "context",
-      "topic": "architecture",
-      "area": "context-economy",
       "description": "R3 retained procedural obligation identity, exact fingerprint reuse, paging integrity and context-savings contract.",
       "source": {
         "path": ".mssr/knowledge/architecture/context-economy-v2.md"
       },
+      "topic": "architecture",
+      "area": "context-economy",
+      "stages": [],
       "domains": [
         "skill-system",
         "agent-orchestration",
@@ -900,18 +1039,20 @@
         "reusable-pattern",
         "repeated-friction"
       ],
+      "required": false,
       "priority": 90,
       "maxChars": 3200
     },
     {
       "id": "mssr-semantic-consistency-decision",
       "kind": "memory",
-      "topic": "decision",
-      "area": "semantic-consistency",
       "description": "C2c/C2d semantic consistency boundaries plus R4 authority-versus-temporal-validity current-truth policy.",
       "source": {
         "path": ".mssr/knowledge/decision/semantic-consistency-current-truth.md"
       },
+      "topic": "decision",
+      "area": "semantic-consistency",
+      "stages": [],
       "domains": [
         "skill-system",
         "agent-orchestration",
@@ -941,18 +1082,20 @@
         "warning-observed",
         "replan-needed"
       ],
+      "required": false,
       "priority": 94,
       "maxChars": 3200
     },
     {
       "id": "mssr-semantic-relations-retrieval-decision",
       "kind": "memory",
-      "topic": "decision",
-      "area": "semantic-consistency",
       "description": "R4 declared/derived relations, bounded retrieval, Context Message production and shadow-model authority boundaries.",
       "source": {
         "path": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md"
       },
+      "topic": "decision",
+      "area": "semantic-consistency",
+      "stages": [],
       "domains": [
         "skill-system",
         "agent-orchestration",
@@ -982,18 +1125,20 @@
         "warning-observed",
         "replan-needed"
       ],
+      "required": false,
       "priority": 93,
       "maxChars": 2600
     },
     {
       "id": "mssr-trace-lifecycle-integrity",
       "kind": "memory",
-      "topic": "decision",
-      "area": "observability",
       "description": "Portable trace close semantics and cross-project trace-identity ownership boundary.",
       "source": {
         "path": ".mssr/knowledge/decision/trace-lifecycle-integrity.md"
       },
+      "topic": "decision",
+      "area": "observability",
+      "stages": [],
       "domains": [
         "agent-orchestration",
         "skill-system",
@@ -1021,18 +1166,20 @@
         "conflicting-evidence",
         "replan-needed"
       ],
+      "required": false,
       "priority": 92,
       "maxChars": 1800
     },
     {
       "id": "mssr-human-task-identity",
       "kind": "memory",
-      "topic": "decision",
-      "area": "observability",
       "description": "Explicit stable human-task identity and trace-lineage correlation boundary above trace lifecycle.",
       "source": {
         "path": ".mssr/knowledge/decision/human-task-identity.md"
       },
+      "topic": "decision",
+      "area": "observability",
+      "stages": [],
       "domains": [
         "agent-orchestration",
         "skill-system",
@@ -1060,14 +1207,13 @@
         "reusable-pattern",
         "replan-needed"
       ],
+      "required": false,
       "priority": 92,
       "maxChars": 1400
     },
     {
       "id": "mssr-project-context-librarian-metadata-core",
       "kind": "context",
-      "topic": "architecture",
-      "area": "project-context",
       "description": "Librarian metadata ownership and authority invariants.",
       "source": {
         "path": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
@@ -1075,6 +1221,9 @@
           "## Goal and ownership"
         ]
       },
+      "topic": "architecture",
+      "area": "project-context",
+      "stages": [],
       "domains": [
         "skill-system",
         "coding",
@@ -1097,6 +1246,8 @@
         "document",
         "mcp"
       ],
+      "needs": [],
+      "signals": [],
       "required": false,
       "priority": 94,
       "maxChars": 700
@@ -1104,8 +1255,6 @@
     {
       "id": "mssr-project-context-librarian-metadata",
       "kind": "context",
-      "topic": "architecture",
-      "area": "project-context",
       "description": "Librarian metadata declaration schema, limits, compatibility, and verification.",
       "source": {
         "path": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
@@ -1114,6 +1263,9 @@
           "## Compatibility and verification"
         ]
       },
+      "topic": "architecture",
+      "area": "project-context",
+      "stages": [],
       "domains": [
         "skill-system",
         "coding",
@@ -1132,6 +1284,8 @@
         "document",
         "mcp"
       ],
+      "needs": [],
+      "signals": [],
       "required": false,
       "priority": 94,
       "maxChars": 2400
@@ -1139,8 +1293,6 @@
     {
       "id": "mssr-project-context-librarian-projection",
       "kind": "context",
-      "topic": "architecture",
-      "area": "project-context",
       "description": "Strict Librarian projection and fail-closed stale or invalid sidecar behavior.",
       "source": {
         "path": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
@@ -1148,6 +1300,9 @@
           "## Projection and stale-data behavior"
         ]
       },
+      "topic": "architecture",
+      "area": "project-context",
+      "stages": [],
       "domains": [
         "skill-system",
         "coding",
@@ -1166,6 +1321,8 @@
         "document",
         "mcp"
       ],
+      "needs": [],
+      "signals": [],
       "required": false,
       "priority": 94,
       "maxChars": 2200
@@ -1173,8 +1330,6 @@
     {
       "id": "mssr-jev-librarian-integration-handoff",
       "kind": "state",
-      "topic": "operations",
-      "area": "semantic-evidence",
       "description": "Current Librarian integration status, branch preservation, benchmark boundaries, and next host gates.",
       "source": {
         "path": ".mssr/knowledge/operations/jev-librarian-integration-handoff.md",
@@ -1185,6 +1340,9 @@
           "## Next gates"
         ]
       },
+      "topic": "operations",
+      "area": "semantic-evidence",
+      "stages": [],
       "domains": [
         "coding",
         "skill-system",
@@ -1218,6 +1376,85 @@
       "required": false,
       "priority": 96,
       "maxChars": 5000
+    },
+    {
+      "id": "mssr-document-surface-librarian-contract",
+      "kind": "context",
+      "description": "Detailed revision-bound Document Surface, Librarian ingress, deterministic duplicate classes, and coverage contract.",
+      "source": {
+        "path": ".mssr/knowledge/architecture/document-surface-librarian-contract.md"
+      },
+      "topic": "architecture",
+      "area": "semantic-evidence",
+      "stages": [
+        "implement",
+        "verify"
+      ],
+      "domains": [
+        "coding"
+      ],
+      "actions": [
+        "analyze",
+        "review",
+        "verify"
+      ],
+      "artifacts": [
+        "document"
+      ],
+      "needs": [
+        "integrity-verification"
+      ],
+      "signals": [
+        "tool-chain-needed"
+      ],
+      "required": false,
+      "priority": 90,
+      "maxChars": 10000
+    },
+    {
+      "id": "mssr-jev-librarian-selector-release-history",
+      "kind": "memory",
+      "description": "Exact historical Jev Librarian selector design, bilingual results, probability handling, and calibration caveats from releases 0.2.95–0.2.99.",
+      "source": {
+        "path": ".mssr/knowledge/reference/mssr-jev-librarian-selector-release-history.md",
+        "sections": [
+          "## Explicit Jev selection for the Librarian — 0.2.95",
+          "## Probabilistic shortlists across Jev option shards — 0.2.97"
+        ]
+      },
+      "topic": "reference",
+      "area": "jev-selection",
+      "stages": [
+        "verify",
+        "resume"
+      ],
+      "domains": [
+        "coding",
+        "agent-orchestration",
+        "skill-system"
+      ],
+      "actions": [
+        "analyze",
+        "review",
+        "verify",
+        "recover"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document"
+      ],
+      "needs": [
+        "integrity-verification",
+        "cross-agent"
+      ],
+      "signals": [
+        "uncertainty",
+        "conflicting-evidence"
+      ],
+      "required": false,
+      "priority": 82,
+      "maxChars": 7000
     }
   ]
 }

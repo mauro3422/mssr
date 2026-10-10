@@ -166,6 +166,43 @@ try {
   for (const [id, content] of beforeById) assert.equal(afterById.get(id), content);
   const afterPlan = await planMssrProjectContextModularization(memoryRepo);
   assert.equal(afterPlan.health.findings.some((item) => item.code === "root-backed-memory-fanout"), false);
+
+  const alreadyKnowledgeRepo = path.join(root, "already-knowledge-repo");
+  await fs.mkdir(path.join(alreadyKnowledgeRepo, ".git"), { recursive: true });
+  await fs.mkdir(path.join(alreadyKnowledgeRepo, ".mssr", "knowledge", "reference"), { recursive: true });
+  await fs.writeFile(path.join(alreadyKnowledgeRepo, ".mssr", "PROJECT_CONTEXT.md"), "# Project Context\n", "utf8");
+  await fs.writeFile(path.join(alreadyKnowledgeRepo, ".mssr", "PROJECT_STATE.md"), "# Project State\n", "utf8");
+  await fs.writeFile(path.join(alreadyKnowledgeRepo, ".mssr", "PROJECT_MEMORY.md"), "# Project Memory\n", "utf8");
+  const alreadyKnowledgePath = ".mssr/knowledge/reference/already-modularized.md";
+  const alreadyKnowledgeText = `## Evaluation\n\n${"evidence-line ".repeat(95)}`;
+  await fs.writeFile(path.join(alreadyKnowledgeRepo, alreadyKnowledgePath), alreadyKnowledgeText, "utf8");
+  const alreadyKnowledgeManifest = {
+    schemaVersion: 1,
+    core: [],
+    modules: [{
+      id: "already-modularized",
+      kind: "context",
+      topic: "reference",
+      description: "Evaluation already stored in its knowledge module.",
+      source: { path: alreadyKnowledgePath, sections: ["## Evaluation"] },
+      domains: ["coding"],
+      actions: ["review"],
+      artifacts: ["document"],
+      priority: 10,
+      required: false,
+      maxChars: 1600,
+    }],
+  };
+  await fs.writeFile(
+    path.join(alreadyKnowledgeRepo, ".mssr", "project-context.json"),
+    `${JSON.stringify(alreadyKnowledgeManifest, null, 2)}\n`,
+    "utf8",
+  );
+  const alreadyKnowledgePlan = await planMssrProjectContextModularization(alreadyKnowledgeRepo);
+  assert.equal(alreadyKnowledgePlan.health.findings.some((item) =>
+    item.code === "module-entry-budget-pressure" && item.target === "already-modularized"), true);
+  assert.equal(alreadyKnowledgePlan.candidates.some((item) => item.entryId === "already-modularized"), false,
+    "a source already at its suggested knowledge path must not be offered as a self-extraction");
 } finally {
   await fs.rm(root, { recursive: true, force: true });
 }

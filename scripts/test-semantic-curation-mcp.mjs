@@ -8,12 +8,50 @@ import { CapabilityRegistry, createMssrMcpServer } from "../dist/index.js";
 import { buildMssrMarkdownDocumentSurface } from "../dist/document-surface.js";
 import { buildMssrEvidenceAtom, evidenceAtomFromLibrarianCatalogRecord } from "../dist/evidence-atom.js";
 import { catalogMssrLibrarianRecord } from "../dist/librarian-contract.js";
+import { summarizeMssrSemanticCurationProjectReview } from "../dist/semantic-curation-contract.js";
 
 function json(result) {
   const item = result.content?.find((entry) => entry.type === "text");
   assert.ok(item?.text, "Expected text MCP response");
   return JSON.parse(item.text);
 }
+
+const compactReview = summarizeMssrSemanticCurationProjectReview({
+  graph: { projectRoot: "fixture", sources: [], nodes: [], edges: [] },
+  jobs: [{}, {}],
+  run: {
+    results: [
+      {
+        jobId: "pair-block-review",
+        providerResult: { pairJudgments: [{ leftId: "a", rightId: "b", relation: { value: "supports", confidence: 0.9 } }] },
+        evaluation: {
+          blocks: [{ destination: "review" }],
+          pairs: [{ leftId: "a", rightId: "b", accepted: true }],
+          reviewRequired: true,
+        },
+      },
+      {
+        jobId: "pair-relation-review",
+        providerResult: { pairJudgments: [{ leftId: "c", rightId: "d", relation: { value: "unrelated", confidence: 0.5 } }] },
+        evaluation: {
+          blocks: [{ destination: "context" }],
+          pairs: [{ leftId: "c", rightId: "d", accepted: false }],
+          reviewRequired: true,
+        },
+      },
+    ],
+    totalHeads: 2,
+    totalInputTokens: 12,
+    totalOutputTokens: 3,
+    rejected: [],
+  },
+  reviewPath: "fixture.json",
+  learning: { observationsRecorded: 0 },
+});
+assert.equal(compactReview.reviewRequired, 1, "Legacy reviewRequired remains the relation-threshold count");
+assert.equal(compactReview.relationReviewRequired, 1);
+assert.equal(compactReview.blockReviewRequired, 1);
+assert.equal(compactReview.aggregateReviewRequired, 2, "Aggregate count includes either block or relation review gates");
 
 const root = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-semantic-curation-mcp-"));
 const projectRoot = path.join(root, "project");

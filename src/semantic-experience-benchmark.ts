@@ -94,6 +94,9 @@ export function benchmarkMssrSemanticExperience(args: {
     ...(args.policy ?? {}),
   };
   const projectKeys = [...new Set(observations.map((item) => item.projectKey))].sort();
+  const verifiedProjectKeys = [...new Set(observations
+    .filter((item) => verifiedValue(item) !== null)
+    .map((item) => item.projectKey))].sort();
   let verifiedTruth = 0;
   let rejected = 0;
   let shadow = 0;
@@ -174,7 +177,7 @@ export function benchmarkMssrSemanticExperience(args: {
   const providerAccuracy = providerComparable > 0 ? providerCorrect / providerComparable : null;
   const reasons: string[] = [];
   if (verifiedTruth < policy.minVerifiedHoldout) reasons.push(`verified-holdout:${verifiedTruth}<${policy.minVerifiedHoldout}`);
-  if (projectKeys.length < policy.minDistinctProjects) reasons.push(`distinct-projects:${projectKeys.length}<${policy.minDistinctProjects}`);
+  if (verifiedProjectKeys.length < policy.minDistinctProjects) reasons.push(`verified-projects:${verifiedProjectKeys.length}<${policy.minDistinctProjects}`);
   if (precision === null) reasons.push("fallback-no-decisions");
   else if (precision < policy.minFallbackPrecision) reasons.push(`fallback-precision:${precision.toFixed(4)}<${policy.minFallbackPrecision.toFixed(4)}`);
   if (coverage < policy.minFallbackCoverage) reasons.push(`fallback-coverage:${coverage.toFixed(4)}<${policy.minFallbackCoverage.toFixed(4)}`);

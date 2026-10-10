@@ -390,4 +390,101 @@ assert.ok(unicodeBoundaryResult);
 assert.equal(unicodeBoundaryResult.rangeCodeUnits, fetchLimit, "the limit and offsets are consistently measured in JavaScript UTF-16 code units for astral Unicode text");
 assert.equal(unicodeBoundaryResult.exactFetchable, true);
 
+const listDocument = {
+  owner,
+  sourceRef: "docs/list-items.md",
+  markdown: "# Decisions\n\n## Rendering\n\n- Keep the renderer deterministic.\n  Continuation belongs to this decision.\n  - Nested detail stays attached to its parent item.\n- Render dynamic user-facing strings as text, never HTML.\n- Keep the unrelated cache policy unchanged.\n",
+  privacyClass: "project-metadata",
+};
+const listSearch = searchMssrLibrarianEvidence({
+  documents: [listDocument],
+  query: { query: "dynamic user-facing strings HTML", maxResults: 20 },
+});
+const targetListItem = listSearch.results.find((item) => item.handle.rangeId.endsWith("/item-2"));
+assert.ok(targetListItem, "a specific list item becomes independently searchable");
+assert.equal(targetListItem.handle.rangeKind, "block", "derived list items remain compatible with the v1 block handle kind");
+assert.match(targetListItem.handle.rangeId, /^block-\d+\/item-2$/);
+const wholeList = listSearch.results.find((item) => item.handle.rangeKind === "block" && !item.handle.rangeId.includes("/item-"));
+assert.ok(wholeList, "the original aggregate list block remains indexed under its unchanged v1 identity");
+const targetListFetch = fetchMssrLibrarianEvidence({
+  handle: targetListItem.handle,
+  owner,
+  sourceRef: listDocument.sourceRef,
+  markdown: listDocument.markdown,
+  privacyClass: "project-metadata",
+});
+assert.equal(targetListFetch.text, "- Render dynamic user-facing strings as text, never HTML.");
+assert.equal(targetListFetch.fingerprint, targetListItem.handle.fingerprint);
+const parentListFetch = fetchMssrLibrarianEvidence({
+  handle: wholeList.handle,
+  owner,
+  sourceRef: listDocument.sourceRef,
+  markdown: listDocument.markdown,
+  privacyClass: "project-metadata",
+});
+assert.ok(parentListFetch.text.includes("Continuation belongs to this decision."));
+assert.ok(parentListFetch.text.includes("Nested detail stays attached to its parent item."));
+assert.ok(!targetListFetch.text.includes("unrelated cache policy"), "a derived child citation excludes adjacent list items");
+const forgedListHandleFields = { ...targetListItem.handle, startOffset: targetListItem.handle.startOffset + 1 };
+delete forgedListHandleFields.id;
+const forgedListHandle = { ...forgedListHandleFields, id: mssrLibrarianEvidenceHandleId(forgedListHandleFields) };
+assert.throws(() => fetchMssrLibrarianEvidence({
+  handle: forgedListHandle,
+  owner,
+  sourceRef: listDocument.sourceRef,
+  markdown: listDocument.markdown,
+  privacyClass: "project-metadata",
+}), /range or fingerprint mismatch/i, "recomputed arbitrary offsets are rejected because the exact derived range must be regenerated");
+const unterminatedListDocument = {
+  owner,
+  sourceRef: "docs/list-without-final-newline.md",
+  markdown: "# Items\n\n- The final item has no trailing newline",
+  privacyClass: "project-metadata",
+};
+const unterminatedItem = searchMssrLibrarianEvidence({
+  documents: [unterminatedListDocument],
+  query: { query: "final item trailing newline", maxResults: 10 },
+}).results.find((item) => item.handle.rangeId.endsWith("/item-1"));
+assert.ok(unterminatedItem, "lists without a final newline still produce exact item ranges");
+assert.equal(unterminatedItem.handle.endOffset, unterminatedListDocument.markdown.length);
+assert.equal(fetchMssrLibrarianEvidence({
+  handle: unterminatedItem.handle,
+  owner,
+  sourceRef: unterminatedListDocument.sourceRef,
+  markdown: unterminatedListDocument.markdown,
+  privacyClass: "project-metadata",
+}).text, "- The final item has no trailing newline");
+const indentedCodeDocument = {
+  owner,
+  sourceRef: "docs/indented-code-list-like.md",
+  markdown: "# Commands\n\n    - literal command one\n    - literal command two\n",
+  privacyClass: "project-metadata",
+};
+const indentedCodeSearch = searchMssrLibrarianEvidence({
+  documents: [indentedCodeDocument],
+  query: { query: "literal command", maxResults: 10 },
+});
+assert.ok(!indentedCodeSearch.results.some((item) => item.handle.rangeId.includes("/item-")), "indented code never emits list-item evidence handles");
+
+const fencedListDocument = {
+  owner,
+  sourceRef: "docs/fenced-list-items.md",
+  markdown: "# Steps\n\n  - First item\n    ```text\n  - this marker is code\n    ``` trailing text is not a closer\n  - this marker is also code\n    ```\n  - Second real item\n",
+  privacyClass: "project-metadata",
+};
+const fencedListSearch = searchMssrLibrarianEvidence({
+  documents: [fencedListDocument],
+  query: { query: "Second real item", maxResults: 20 },
+});
+const actualSecondFencedItem = fencedListSearch.results.find((item) => item.handle.rangeId.endsWith("/item-2"));
+assert.ok(actualSecondFencedItem, "an invalid fence closer with trailing text does not hide the next real list item");
+const secondFencedItemFetch = fetchMssrLibrarianEvidence({
+  handle: actualSecondFencedItem.handle,
+  owner,
+  sourceRef: fencedListDocument.sourceRef,
+  markdown: fencedListDocument.markdown,
+  privacyClass: "project-metadata",
+});
+assert.equal(secondFencedItemFetch.text, "  - Second real item");
+
 console.log("librarian retrieval tests passed");

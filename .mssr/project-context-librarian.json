@@ -31,12 +31,11 @@
     },
     {
       "entryId": "mssr-learning-dataset-state",
-      "sourcePath": ".mssr/PROJECT_STATE.md",
+      "sourcePath": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
       "headingPath": [
-        "MSSR project state",
         "Learning dataset state"
       ],
-      "expectedFingerprint": "a823e41d2a949973f765a14a0534a6e677bfcee88539c2a88c488b37435339db",
+      "expectedFingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
       "selectors": {
         "domains": [
           "agent-orchestration",

@@ -178,7 +178,7 @@ function summarizeQueue(entries: Awaited<ReturnType<typeof readMssrSemanticCurat
   };
 }
 
-function compactJevReview(result: Awaited<ReturnType<typeof reviewMssrProjectEvidenceGraph>>) {
+export function summarizeMssrSemanticCurationProjectReview(result: Awaited<ReturnType<typeof reviewMssrProjectEvidenceGraph>>) {
   const judgments = result.run.results.flatMap((item) => item.providerResult.pairJudgments.map((pair) => ({
     jobId: item.jobId,
     leftId: pair.leftId,
@@ -189,6 +189,9 @@ function compactJevReview(result: Awaited<ReturnType<typeof reviewMssrProjectEvi
   })));
   const relationCounts = new Map<string, number>();
   for (const judgment of judgments) relationCounts.set(judgment.relation, (relationCounts.get(judgment.relation) ?? 0) + 1);
+  const relationReviewRequired = judgments.filter((item) => !item.accepted).length;
+  const blockReviewRequired = result.run.results.filter((item) => item.evaluation.blocks.some((block) => block.destination === "review")).length;
+  const aggregateReviewRequired = result.run.results.filter((item) => item.evaluation.reviewRequired).length;
   return {
     mode: "jev" as const,
     projectRoot: result.graph.projectRoot,
@@ -197,7 +200,12 @@ function compactJevReview(result: Awaited<ReturnType<typeof reviewMssrProjectEvi
     edges: result.graph.edges.length,
     jobs: result.jobs.length,
     relationCounts: Object.fromEntries([...relationCounts.entries()].sort()),
-    reviewRequired: judgments.filter((item) => !item.accepted).length,
+    // Preserve the existing field as a compatibility alias; it counts only
+    // relation decisions below the local threshold, not aggregate review gates.
+    reviewRequired: relationReviewRequired,
+    relationReviewRequired,
+    blockReviewRequired,
+    aggregateReviewRequired,
     sample: judgments.slice(0, 12),
     sampleTruncated: judgments.length > 12,
     totals: {
@@ -313,7 +321,7 @@ export function registerMssrSemanticCurationTools(server: McpServer, options: Ms
   }))));
 
   server.registerTool(MSSR_SEMANTIC_CURATION_TOOL_NAMES[6], {
-    description: "Run one bounded cross-document semantic review for a project. In auto mode MSSR uses Jev first and falls back only when the provider is explicitly unavailable. Persisted Jev reviews create shadow learning observations; raw Jev output never becomes training truth. Summary detail is bounded by default to avoid context pressure.",
+    description: "Run one bounded cross-document semantic review for a project. In auto mode MSSR uses Jev first and falls back only when the provider is explicitly unavailable. Persisted Jev reviews create shadow learning observations; raw Jev output never becomes training truth. Summary detail is bounded by default to avoid context pressure. Summary counts distinguish relationReviewRequired, blockReviewRequired and aggregateReviewRequired; legacy reviewRequired remains an alias for relationReviewRequired.",
     inputSchema: mssrSemanticCurationProjectReviewInputSchema,
   }, async ({ projectRoot, maxSources, maxBlocks, maxPairs, minScore, concurrency, maxHeadsPerRequest, maxStateChars, model, persist, mode, detail, traceId, workflowKey }) => {
     const graphArgs = { projectRoot, maxSources, maxBlocks, maxPairs, minScore };
@@ -332,7 +340,7 @@ export function registerMssrSemanticCurationTools(server: McpServer, options: Ms
         persist,
         ...(trace ? { trace } : {}),
       });
-      return response(detail === "full" ? result : compactJevReview(result));
+      return response(detail === "full" ? result : summarizeMssrSemanticCurationProjectReview(result));
     } catch (error) {
       if (mode !== "auto" || !isJevUnavailableError(error)) throw error;
       const fallback = await reviewMssrProjectEvidenceGraphDeterministically(graphArgs);

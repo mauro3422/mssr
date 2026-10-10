@@ -194,6 +194,11 @@ export async function planMssrProjectContextModularization(projectRootInput: str
       const preserveModuleId = !core && headings.length === 1;
       const moduleId = preserveModuleId ? entry.id : boundedId(entry.id, suffix);
       const fileName = `${moduleId.replace(/[.]+/g, "-")}.md`;
+      const suggestedPath = path.posix.join(".mssr", "knowledge", topic, fileName);
+      // A section already stored at its canonical knowledge path cannot be
+      // meaningfully extracted again. Keep its health finding visible, but do
+      // not report a self-move with the same source and destination.
+      if (sourceKey === suggestedPath.toLowerCase()) continue;
       candidates.push({
         action: "extract-indexed-section",
         entryId: entry.id,
@@ -205,7 +210,7 @@ export async function planMssrProjectContextModularization(projectRootInput: str
         topic,
         topicInferred: !entry.topic,
         area: entry.area ?? null,
-        suggestedPath: path.posix.join(".mssr", "knowledge", topic, fileName),
+        suggestedPath,
         suggestedModuleId: moduleId,
         preserveModuleId,
         preserveSelectorsFrom: entry.id,

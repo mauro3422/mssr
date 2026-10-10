@@ -193,14 +193,98 @@ function recordMetadata(records: readonly unknown[] | undefined, sourceRef: stri
 export function mssrLibrarianEvidenceHandleId(fields: Omit<MssrLibrarianEvidenceHandle, "id">): string {
   return sha256(JSON.stringify([fields.version, fields.owner, fields.sourceRef, fields.revision, fields.rangeId, fields.rangeKind, fields.startLine, fields.endLine, fields.startOffset, fields.endOffset, fields.fingerprint, fields.privacyClass]));
 }
-function sectionRanges(surface: MssrDocumentSurface): Array<{ id: string; kind: "section" | "block"; startOffset: number; endOffset: number; fingerprint: string; title: string; path: string[]; terms: string[]; hint: string; metadata: Record<string, unknown> }> {
+export type MssrLibrarianIndexedRange = { id: string; kind: "section" | "block"; startOffset: number; endOffset: number; fingerprint: string; title: string; path: string[]; terms: string[]; hint: string; metadata: Record<string, unknown> };
+
+const TOP_LEVEL_LIST_ITEM_RE = /^([ \t]*)(?:[-*+]|\d+[.)])(?:[ \t]+|$)/;
+const INDENTED_FENCE_RE = /^([ \t]*)(`{3,}|~{3,})/;
+
+function listFenceClose(line: string, marker: string): boolean {
+  const char = marker[0];
+  const close = line.match(char === "`" ? /^[ \t]*(`{3,})[ \t]*$/ : /^[ \t]*(~{3,})[ \t]*$/);
+  return Boolean(close && close[1]![0] === char && close[1]!.length >= marker.length);
+}
+
+function listItemRanges(args: {
+  markdown: string;
+  lines: string[];
+  lineStarts: number[];
+  block: MssrDocumentSurfaceBlock;
+  title: string;
+  path: string[];
+}): MssrLibrarianIndexedRange[] {
+  const blockStart = args.block.startLine - 1;
+  const blockEnd = args.block.endLine - 1;
+  const markerAt = (index: number) => args.lines[index]?.match(TOP_LEVEL_LIST_ITEM_RE) ?? null;
+  const firstMarker = markerAt(blockStart);
+  if (!firstMarker) return [];
+  const baseIndent = firstMarker[1];
+  const starts: number[] = [];
+  let fence: { marker: string; length: number } | null = null;
+  for (let index = blockStart; index <= blockEnd; index += 1) {
+    const line = args.lines[index] ?? "";
+    const fenceMatch = line.match(INDENTED_FENCE_RE);
+    if (fence) {
+      if (listFenceClose(line, fence.marker)) fence = null;
+      continue;
+    }
+    if (fenceMatch) {
+      fence = { marker: fenceMatch[2]!, length: fenceMatch[2]!.length };
+      continue;
+    }
+    const marker = markerAt(index);
+    if (marker && marker[1] === baseIndent) starts.push(index);
+  }
+
+  const ranges: MssrLibrarianIndexedRange[] = [];
+  for (let itemIndex = 0; itemIndex < starts.length; itemIndex += 1) {
+    const startLineIndex = starts[itemIndex]!;
+    const endLineIndex = (starts[itemIndex + 1] ?? blockEnd + 1) - 1;
+    const startOffset = args.lineStarts[startLineIndex]!;
+    const endOffset = args.lineStarts[endLineIndex]! + (args.lines[endLineIndex]?.length ?? 0);
+    const text = args.markdown.slice(startOffset, endOffset);
+    if (!text.trim()) continue;
+    const ordinal = itemIndex + 1;
+    ranges.push({
+      id: `${args.block.id}/item-${ordinal}`,
+      kind: "block",
+      startOffset,
+      endOffset,
+      fingerprint: sha256(text),
+      title: args.title,
+      path: args.path,
+      terms: tokens(text),
+      hint: boundedSnippet(text, tokens(text), MSSR_LIBRARIAN_RETRIEVAL_LIMITS.snippetChars),
+      metadata: {
+        blockKind: "list-item",
+        parentBlockId: args.block.id,
+        parentBlockFingerprint: args.block.fingerprint,
+        listItemOrdinal: ordinal,
+        sectionId: args.block.sectionId,
+        startLine: startLineIndex + 1,
+        endLine: endLineIndex + 1,
+        chars: text.length,
+        bytes: Buffer.byteLength(text, "utf8"),
+        terms: tokens(text),
+      },
+    });
+  }
+  return ranges;
+}
+
+export function buildMssrLibrarianIndexedRanges(surface: MssrDocumentSurface, markdown: string): MssrLibrarianIndexedRange[] {
+  const lines = markdown.split("\n");
+  const lineStarts: number[] = [0];
+  for (const line of lines) lineStarts.push(lineStarts.at(-1)! + line.length + 1);
   const headings = new Map(surface.headings.map((heading) => [heading.id, heading] as const));
   const headingRows = surface.headings.map((heading: MssrDocumentSurfaceHeading) => ({ id: heading.id, kind: "section" as const, startOffset: heading.startOffset, endOffset: heading.endOffset, fingerprint: heading.fingerprint, title: heading.title, path: heading.headingPath, terms: heading.terms, hint: heading.hint ?? "", metadata: { level: heading.level, headingPath: heading.headingPath, parentId: heading.parentId, startLine: heading.startLine, endLine: heading.endLine, chars: heading.chars, bytes: heading.bytes, terms: heading.terms } }));
   const blockRows = surface.blocks.map((block: MssrDocumentSurfaceBlock) => {
     const heading = block.sectionId ? headings.get(block.sectionId) : undefined;
     return { id: block.id, kind: "block" as const, startOffset: block.startOffset, endOffset: block.endOffset, fingerprint: block.fingerprint, title: heading?.title ?? surface.title ?? surface.sourceRef, path: heading?.headingPath ?? [], terms: block.terms, hint: block.hint, metadata: { blockKind: block.kind, sectionId: block.sectionId, startLine: block.startLine, endLine: block.endLine, chars: block.chars, bytes: block.bytes, terms: block.terms } };
   });
-  return [...headingRows, ...blockRows];
+  const listItems = surface.blocks.flatMap((block) => block.kind === "list"
+    ? listItemRanges({ markdown, lines, lineStarts, block, title: headings.get(block.sectionId ?? "")?.title ?? surface.title ?? surface.sourceRef, path: headings.get(block.sectionId ?? "")?.headingPath ?? [] })
+    : []);
+  return [...headingRows, ...blockRows, ...listItems];
 }
 
 function diversifyRankTies(results: MssrLibrarianRetrievalResult[]): MssrLibrarianRetrievalResult[] {
@@ -292,7 +376,7 @@ function projectedAtomMetadata(args: {
   sourceRef: string;
   revision: string;
   privacyClass: "project-metadata" | "operational-metadata" | "public-metadata" | "sensitive-excluded";
-  range: ReturnType<typeof sectionRanges>[number];
+  range: MssrLibrarianIndexedRange;
   recordBindings: ReadonlySet<string>;
 }): ProjectedAtomMetadata | null {
   const { atom, range, recordBindings } = args;
@@ -449,7 +533,7 @@ export function searchMssrLibrarianEvidence(args: { documents: readonly MssrLibr
       group.push(atom);
       atomsBySubject.set(key, group);
     }
-    const sections = sectionRanges(surface);
+    const sections = buildMssrLibrarianIndexedRanges(surface, canonicalMarkdown);
     totalRanges += sections.length;
     if (sections.length > MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxRanges || totalRanges > MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxRanges) {
       throw new Error(`Librarian retrieval exceeds ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxRanges} indexed ranges.`);
@@ -576,7 +660,7 @@ export function fetchMssrLibrarianEvidence(args: { handle: MssrLibrarianEvidence
   if (potentialHeadingCount > MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxHeadingsPerDocument) throw new Error(`Librarian retrieval fetch exceeds ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxHeadingsPerDocument} potential headings.`);
   const surface = buildMssrMarkdownDocumentSurface({ sourceRef: normalizeRef(args.sourceRef), markdown: canonicalMarkdown });
   if (surface.revision !== handle.revision) throw new Error("Evidence handle is stale for the caller-provided source revision.");
-  const ranges = sectionRanges(surface);
+  const ranges = buildMssrLibrarianIndexedRanges(surface, canonicalMarkdown);
   const range = ranges.find((item) => item.id === handle.rangeId && item.kind === handle.rangeKind);
   if (!range || range.startOffset !== handle.startOffset || range.endOffset !== handle.endOffset
     || range.metadata.startLine !== handle.startLine || range.metadata.endLine !== handle.endLine

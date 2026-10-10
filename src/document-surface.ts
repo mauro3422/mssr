@@ -228,7 +228,9 @@ function scanHeadings(lines: readonly LineRecord[], sourceLength: number): Scann
 }
 
 function blockKind(lines: readonly string[]): MssrDocumentSurfaceBlockKind {
-  const first = lines.find((line) => line.trim().length > 0)?.trim() ?? "";
+  const rawFirst = lines.find((line) => line.trim().length > 0) ?? "";
+  if (/^(?: {4,}|\t)/.test(rawFirst)) return "code";
+  const first = rawFirst.trim();
   if (/^ {0,3}(`{3,}|~{3,})/.test(first)) return "code";
   if (/^(?:[-*+]\s+|\d+[.)]\s+)/.test(first)) return "list";
   if (/^>/.test(first)) return "quote";
@@ -313,12 +315,13 @@ function scanBlocks(args: {
 
     const startOffset = args.lines[index].startOffset;
     const endOffset = args.lines[endLineIndex].endOffset;
-    const text = args.source.slice(startOffset, endOffset).trim();
+    const rawText = args.source.slice(startOffset, endOffset);
+    const text = rawText.trim();
     if (text.length > 0) {
       const localStart = args.source.slice(startOffset, endOffset).indexOf(text);
       const exactStart = startOffset + Math.max(0, localStart);
       const exactEnd = exactStart + text.length;
-      const rawLines = text.split("\n");
+      const rawLines = rawText.split("\n");
       const kind = blockKind(rawLines);
       const section = deepestContainingSection(args.headings, exactStart, exactEnd);
       out.push({

@@ -129,22 +129,6 @@
           "baseline": true
         },
         {
-          "id": "document-surface-librarian-details",
-          "sections": [
-            "## Document Surface and Librarian contract"
-          ],
-          "terms": [
-            "bibliotecario",
-            "librarian",
-            "document surface",
-            "search",
-            "fetch",
-            "exact source range",
-            "revision-bound handle"
-          ],
-          "priority": 40
-        },
-        {
           "id": "progressive-retrieval-acquisition",
           "sections": [
             "## Progressive section retrieval",
@@ -211,6 +195,34 @@
             "explicit corrections"
           ],
           "priority": 30
+        }
+      ]
+    },
+    {
+      "moduleId": "mssr-document-surface-librarian-contract",
+      "segments": [
+        {
+          "id": "contract-activation",
+          "sections": [
+            "## Detail module activation"
+          ],
+          "baseline": true
+        },
+        {
+          "id": "document-surface-librarian-details",
+          "sections": [
+            "## Document Surface and Librarian contract"
+          ],
+          "terms": [
+            "bibliotecario",
+            "librarian",
+            "document surface",
+            "search",
+            "fetch",
+            "exact source range",
+            "revision-bound handle"
+          ],
+          "priority": 40
         }
       ]
     }

@@ -10,6 +10,7 @@ import {
   loadProjectContextModuleManifest,
   loadProjectContextModules,
   readBoundedMarkdown,
+  extractProjectContextSections,
   safeMarkdownPath,
 } from "../dist/project-context-loader.js";
 import { structuredSkillIntentSchema } from "../dist/index.js";
@@ -107,9 +108,20 @@ try {
   assert.ok(evidencePlane, "the repository's semantic evidence plane should load for Librarian/Jev work");
   assert.ok(evidencePlane.bytes <= 10_000, "selected EvidenceAtom + Librarian sections must stay within the declared 10k budget");
   assert.match(evidencePlane.content, /## Core Document and Librarian guarantees/);
-  assert.match(evidencePlane.content, /## Document Surface and Librarian contract/);
+  assert.doesNotMatch(evidencePlane.content, /## Document Surface and Librarian contract/);
   assert.match(evidencePlane.content, /same source revision/);
-  assert.equal(evidencePlane.segmentDecisions.find((decision) => decision.id === "document-surface-librarian-details")?.selected, true);
+  assert.equal(evidencePlane.segmentDecisions.some((decision) => decision.id === "document-surface-librarian-details"), false);
+  const librarianContract = semanticEvidenceLibrarian.selected.find((record) => record.ref === "mssr-document-surface-librarian-contract");
+  assert.ok(librarianContract, "focused Librarian work should load its independently budgeted contract module");
+  assert.ok(librarianContract.bytes <= 10_000);
+  assert.match(librarianContract.content, /## Document Surface and Librarian contract/);
+  assert.equal(librarianContract.segmentDecisions.find((decision) => decision.id === "document-surface-librarian-details")?.selected, true);
+  const librarianContractSource = await fs.readFile(path.join(repositoryRoot, ".mssr/knowledge/architecture/document-surface-librarian-contract.md"), "utf8");
+  assert.equal(
+    createHash("sha256").update(extractProjectContextSections(librarianContractSource, ["## Document Surface and Librarian contract"]), "utf8").digest("hex"),
+    "3292fe2a5253f745a74e922dec554de83240bab189a6958cdb7d92dc591eb2f3",
+    "the extracted Librarian contract must preserve the hash-addressed source section",
+  );
   assert.deepEqual(semanticEvidenceLibrarian.ambiguousSegments, []);
 
   const semanticEvidenceTriage = await loadProjectContextModules({
@@ -158,6 +170,8 @@ try {
   assert.ok(confidencePolicy, "Jev conflict review should load the focused confidence/merge policy");
   assert.ok(runHistory, "Jev benchmark review should load measured run history independently");
   assert.ok(evaluationProtocol, "Jev benchmark review should retain the active evaluation protocol");
+  const selectorReleaseHistory = jevById.get("mssr-jev-librarian-selector-release-history");
+  assert.ok(selectorReleaseHistory, "Jev benchmark review should load the exact selector release history");
   assert.ok(confidencePolicy.bytes < 4_000);
   assert.ok(runHistory.bytes < 6_500);
   assert.ok(evaluationProtocol.bytes < 1_800);
@@ -166,6 +180,99 @@ try {
   assert.match(runHistory.content, /labels were not independently\s+adjudicated/i);
   assert.doesNotMatch(runHistory.content, /## Confidence and merge policy/);
   assert.match(evaluationProtocol.content, /Next MSSR evaluation/);
+  assert.match(selectorReleaseHistory.content, /35\/52/);
+  assert.match(selectorReleaseHistory.content, /uncalibrated/i);
+  const selectorHistorySource = await fs.readFile(path.join(repositoryRoot, ".mssr/knowledge/reference/mssr-jev-librarian-selector-release-history.md"), "utf8");
+  assert.equal(
+    createHash("sha256").update(extractProjectContextSections(selectorHistorySource, [
+      "## Explicit Jev selection for the Librarian — 0.2.95",
+      "## Probabilistic shortlists across Jev option shards — 0.2.97",
+    ]), "utf8").digest("hex"),
+    "2d999cf30476852a2da68407981070d3eed256be5d9e56168ba8524880919f14",
+    "selector release history must preserve both source sections exactly",
+  );
+
+  const currentDocumentEvaluationContext = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: intent({
+      summary: "Review CBAnimal current-document Jev Librarian evaluation and exact-fetch evidence",
+      domains: ["filesystem"],
+      actions: ["analyze"],
+      artifacts: ["document", "mcp"],
+      needs: ["integrity-verification"],
+      signals: ["nominal"],
+      risk: "read-only",
+    }),
+    stage: "verify",
+    maxChars: 20_000,
+    maxModules: 40,
+    includeCore: false,
+  });
+  const currentDocumentEvaluation = currentDocumentEvaluationContext.selected.find(
+    (record) => record.ref === "mssr-jev-librarian-current-document-evaluation-20261010",
+  );
+  assert.ok(currentDocumentEvaluation, "current-document evaluation should load as a focused indexed module");
+  assert.ok(currentDocumentEvaluation.bytes <= 16_000);
+  assert.match(currentDocumentEvaluation.content, /CBAnimal/);
+  assert.match(currentDocumentEvaluation.content, /not owner-gold/i);
+  const currentDocumentSource = await fs.readFile(path.join(repositoryRoot, ".mssr/knowledge/reference/mssr-jev-librarian-current-document-evaluation-20261010.md"), "utf8");
+  assert.equal(
+    createHash("sha256").update(extractProjectContextSections(currentDocumentSource, ["## Jev Librarian current-document evaluation — 2026-10-10"]), "utf8").digest("hex"),
+    "b8c46a025e43a4c0118279c00b7cdd79d6f53f54de286401c51a00dbd0d48802",
+    "current-document evaluation must preserve the hash-addressed source section",
+  );
+
+  const crossRepositoryEvaluationContext = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: intent({
+      summary: "Review cross-repository bilingual Jev range and retrieval-granularity controls",
+      domains: ["filesystem"],
+      actions: ["analyze", "verify"],
+      artifacts: ["repository", "document"],
+      signals: ["nominal"],
+      risk: "read-only",
+    }),
+    stage: "verify",
+    maxChars: 20_000,
+    maxModules: 40,
+    includeCore: false,
+  });
+  const crossRepositoryEvaluation = crossRepositoryEvaluationContext.selected.find(
+    (record) => record.ref === "mssr-jev-crossrepo-range-bilingual-evaluation-20261010",
+  );
+  assert.ok(crossRepositoryEvaluation, "cross-repository evaluation should load as a focused indexed module");
+  assert.ok(crossRepositoryEvaluation.bytes <= 15_000);
+  assert.match(crossRepositoryEvaluation.content, /queryVariants/);
+  assert.match(crossRepositoryEvaluation.content, /uncalibrated/i);
+  const crossRepositorySource = await fs.readFile(path.join(repositoryRoot, ".mssr/knowledge/reference/mssr-jev-crossrepo-range-bilingual-evaluation-20261010.md"), "utf8");
+  assert.equal(
+    createHash("sha256").update(extractProjectContextSections(crossRepositorySource, ["## Cross-repository Jev range and bilingual evaluation — 2026-10-10"]), "utf8").digest("hex"),
+    "bec8ee123457557d6df9ce826e60674551dc12445a870d7254cb22bf43a99d30",
+    "cross-repository evaluation must preserve the hash-addressed source section",
+  );
+
+  const unrelatedEvaluationContext = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: intent({
+      summary: "Inspect a Blender image preview",
+      domains: ["blender"],
+      actions: ["discover"],
+      artifacts: ["asset"],
+      needs: ["visual-qa"],
+      signals: ["nominal"],
+      risk: "read-only",
+    }),
+    stage: "implement",
+    maxChars: 20_000,
+    maxModules: 40,
+    includeCore: false,
+  });
+  assert.equal(unrelatedEvaluationContext.selected.some((record) =>
+    record.ref === "mssr-jev-librarian-current-document-evaluation-20261010"
+      || record.ref === "mssr-jev-crossrepo-range-bilingual-evaluation-20261010"
+      || record.ref === "mssr-document-surface-librarian-contract"
+      || record.ref === "mssr-jev-librarian-selector-release-history"), false,
+  "unrelated image work must not load Jev evaluation or Librarian contract evidence");
 
   const librarianModules = (result) => result.selected
     .filter((record) => record.ref.startsWith("mssr-project-context-librarian"));

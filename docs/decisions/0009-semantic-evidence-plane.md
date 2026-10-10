@@ -282,6 +282,10 @@ On a local counterfactual replay of the frozen 42-document multirepo corpus, app
 
 The earlier 36-query exploratory bilingual development run over ten frozen MSSR documents remains historical: annotated-range recall@5 was 20/28 (baseline 17/28), source-document recall@5 23/28 (unchanged), and range recall@50 24/28 (baseline 23/28). Spanish range recall@5 was 8/15; English was 12/13. All eight no-answer controls returned nearby evidence in top five, which does not test abstention. Labels were AI-reviewed, not human gold. Frozen inputs, baseline, post-change run, labels and status are under `D:\MSSR-benchmark-artifacts\mssr-librarian-unseen-doc-labels-20261006-v1\`.
 
+## Implementation status update — 2026-10-10
+
+MSSR 0.2.116 adds a derived, revision-bound child range for each unambiguous top-level Markdown list item while preserving the existing aggregate list block and its `block-N` identity. Namespaced ids such as `block-3/item-2` remain `rangeKind=block` for v1 handle compatibility. The same exact derived index is rebuilt by search, Jev candidate validation, fetch, and evidence-pack assembly; current-source revision, exact line/offset range, and item fingerprint must all match. Indented code is excluded, and continuation/nested content remains attached to its parent item. This improves citation localization only; it does not calibrate confidence or prove item sufficiency. Focused source tests pass; Bridge adoption and live Jev verification through this version remain pending.
+
 ## Consequences
 
 - MSSR becomes the portable semantic owner of evidence normalization/selection contracts without becoming a universal filesystem or execution proxy.

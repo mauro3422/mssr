@@ -31,6 +31,8 @@ function sourceKey(owner: string, sourceRef: string): string {
 export const mssrLibrarianEvidencePackInputSchema = z.object({
   documents: z.array(evidencePackDocumentSchema).min(1).max(MSSR_LIBRARIAN_EVIDENCE_PACK_LIMITS.maxDocuments),
   handles: z.array(mssrLibrarianEvidenceHandleSchema).min(1).max(MSSR_LIBRARIAN_EVIDENCE_PACK_LIMITS.maxHandles),
+  /** Opt-in text-volume reduction. It never combines or rewrites source text. */
+  dedupeContainedRanges: z.boolean().optional().default(false),
 }).strict().superRefine((value, ctx) => {
   const totalMarkdownChars = value.documents.reduce((total, document) => total + document.markdown.length, 0);
   if (totalMarkdownChars > MSSR_LIBRARIAN_EVIDENCE_PACK_LIMITS.maxTotalMarkdownChars) {
@@ -102,8 +104,9 @@ export type MssrLibrarianEvidencePackParagraph = {
 export function buildMssrLibrarianEvidencePack(input: MssrLibrarianEvidencePackInput) {
   const parsed = mssrLibrarianEvidencePackInputSchema.parse(input);
   const documents = new Map(parsed.documents.map((document) => [sourceKey(document.owner, document.sourceRef), document]));
-  const paragraphs: MssrLibrarianEvidencePackParagraph[] = [];
+  const fetchedRows: Array<{ handle: MssrLibrarianEvidenceHandle; text: string; fingerprint: string }> = [];
 
+  // Validate and fetch every caller-supplied handle before any optional compaction.
   for (const handle of parsed.handles) {
     const document = documents.get(sourceKey(handle.owner, handle.sourceRef));
     if (!document) throw new Error("Evidence pack handle source is missing from the supplied documents.");
@@ -114,24 +117,67 @@ export function buildMssrLibrarianEvidencePack(input: MssrLibrarianEvidencePackI
       markdown: document.markdown,
       privacyClass: document.privacyClass,
     });
-    paragraphs.push({
-      ordinal: paragraphs.length + 1,
-      exactText: fetched.text,
-      citation: {
-        display: `${handle.sourceRef}:L${handle.startLine}-L${handle.endLine}`,
-        handleId: handle.id,
-        owner: handle.owner,
-        sourceRef: handle.sourceRef,
-        revision: handle.revision,
-        rangeId: handle.rangeId,
-        rangeKind: handle.rangeKind,
-        startLine: handle.startLine,
-        endLine: handle.endLine,
-        fingerprint: fetched.fingerprint,
-        privacyClass: handle.privacyClass,
-      },
-    });
+    fetchedRows.push({ handle, text: fetched.text, fingerprint: fetched.fingerprint });
   }
+
+  const removedByHandle = new Map<string, { handle: MssrLibrarianEvidenceHandle; coveredByHandleId: string }>();
+  if (parsed.dedupeContainedRanges) {
+    for (const child of fetchedRows) {
+      const containers = fetchedRows.filter((parent) => {
+        if (parent.handle.id === child.handle.id
+          || parent.handle.owner.trim() !== child.handle.owner.trim()
+          || normalizeSourceRef(parent.handle.sourceRef) !== normalizeSourceRef(child.handle.sourceRef)
+          || parent.handle.revision !== child.handle.revision) return false;
+        const strictContainment = parent.handle.startOffset <= child.handle.startOffset
+          && parent.handle.endOffset >= child.handle.endOffset
+          && (parent.handle.startOffset < child.handle.startOffset || parent.handle.endOffset > child.handle.endOffset);
+        if (!strictContainment) return false;
+        const relativeStart = child.handle.startOffset - parent.handle.startOffset;
+        return parent.text.slice(relativeStart, relativeStart + child.text.length) === child.text;
+      });
+      if (containers.length > 0) {
+        containers.sort((left, right) => (left.handle.endOffset - left.handle.startOffset) - (right.handle.endOffset - right.handle.startOffset)
+          || left.handle.id.localeCompare(right.handle.id));
+        removedByHandle.set(child.handle.id, { handle: child.handle, coveredByHandleId: containers[0]!.handle.id });
+      }
+    }
+  }
+
+  // Follow nested coverage to a retained citation, so provenance never points at
+  // another range that was itself removed.
+  const resolvedCoverage = [...removedByHandle.values()].map((entry) => {
+    let coveredByHandleId = entry.coveredByHandleId;
+    const visited = new Set([entry.handle.id]);
+    while (removedByHandle.has(coveredByHandleId) && !visited.has(coveredByHandleId)) {
+      visited.add(coveredByHandleId);
+      coveredByHandleId = removedByHandle.get(coveredByHandleId)!.coveredByHandleId;
+    }
+    return { ...entry, coveredByHandleId };
+  });
+  const retainedRows = fetchedRows.filter((row) => !removedByHandle.has(row.handle.id));
+  if (parsed.dedupeContainedRanges) {
+    retainedRows.sort((left, right) => normalizeSourceRef(left.handle.sourceRef).localeCompare(normalizeSourceRef(right.handle.sourceRef))
+      || left.handle.startOffset - right.handle.startOffset
+      || left.handle.endOffset - right.handle.endOffset
+      || left.handle.id.localeCompare(right.handle.id));
+  }
+  const paragraphs: MssrLibrarianEvidencePackParagraph[] = retainedRows.map(({ handle, text, fingerprint }, index) => ({
+    ordinal: index + 1,
+    exactText: text,
+    citation: {
+      display: `${handle.sourceRef}:L${handle.startLine}-L${handle.endLine}`,
+      handleId: handle.id,
+      owner: handle.owner,
+      sourceRef: handle.sourceRef,
+      revision: handle.revision,
+      rangeId: handle.rangeId,
+      rangeKind: handle.rangeKind,
+      startLine: handle.startLine,
+      endLine: handle.endLine,
+      fingerprint,
+      privacyClass: handle.privacyClass,
+    },
+  }));
 
   const totalFetchedChars = paragraphs.reduce((total, paragraph) => total + paragraph.exactText.length, 0);
   if (totalFetchedChars > MSSR_LIBRARIAN_EVIDENCE_PACK_LIMITS.maxTotalFetchedChars) {
@@ -144,6 +190,28 @@ export function buildMssrLibrarianEvidencePack(input: MssrLibrarianEvidencePackI
     assembly: "verbatim-source-ranges" as const,
     paragraphs,
     totalFetchedChars,
+    ...(parsed.dedupeContainedRanges ? {
+      rangeCompaction: {
+        policy: "strict-contained-range-deduplication" as const,
+        inputHandleCount: fetchedRows.length,
+        retainedHandleCount: retainedRows.length,
+        removed: resolvedCoverage
+          .sort((left, right) => left.handle.id.localeCompare(right.handle.id))
+          .map(({ handle, coveredByHandleId }) => ({
+            handleId: handle.id,
+            coveredByHandleId,
+            owner: handle.owner,
+            sourceRef: handle.sourceRef,
+            revision: handle.revision,
+            rangeId: handle.rangeId,
+            rangeKind: handle.rangeKind,
+            startLine: handle.startLine,
+            endLine: handle.endLine,
+            fingerprint: handle.fingerprint,
+            privacyClass: handle.privacyClass,
+          })),
+      },
+    } : {}),
     advisoryOnly: true as const,
     truthAuthority: false as const,
     canonicalRewriteAllowed: false as const,

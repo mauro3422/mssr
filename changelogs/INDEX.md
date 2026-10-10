@@ -21,6 +21,11 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.118](0.2.118.md) - require verified project breadth for Semantic Experience fallback preference; keep shadow-rule and holdout gates distinct.
+- [0.2.117](0.2.117.md) - prevent self-extraction plans and index exact Jev/Librarian evidence under focused context selectors.
+- [0.2.116](0.2.116.md) - add exact, revision-bound Librarian ranges for individual Markdown list items while preserving existing block identities.
+- [0.2.115](0.2.115.md) - add opt-in exact contained-range compaction to cited Librarian evidence packs with provenance for every omitted handle.
+- [0.2.114](0.2.114.md) - distinguish relation-threshold review counts from block-level and aggregate semantic-curation review gates.
 - [0.2.113](0.2.113.md) - rank exact-fetchable Librarian ranges before oversized ranges within each query's relevance group.
 - [0.2.112](0.2.112.md) - add bounded host-supplied Librarian query variants while preserving primary ranking, exact handles, and per-query lexical scores.
 - [0.2.111](0.2.111.md) - avoid false review reasons for `unrelated` pairs and split Jev confidence/run/research context into focused bounded entries.

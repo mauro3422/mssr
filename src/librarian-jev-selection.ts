@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { z } from "zod";
 import {
+  buildMssrLibrarianIndexedRanges,
   fetchMssrLibrarianEvidence,
   MSSR_LIBRARIAN_RETRIEVAL_LIMITS,
   mssrLibrarianEvidenceHandleId,
@@ -328,16 +329,9 @@ export async function selectMssrLibrarianEvidenceWithJev(
         surface = buildMssrMarkdownDocumentSurface({ sourceRef: normalizedSourceRef, markdown: document.markdown });
         surfacesBySource.set(sourceKey, surface);
       }
-      const heading = handle.rangeKind === "section"
-        ? surface.headings.find((item) => item.id === handle.rangeId)
-        : undefined;
-      const block = handle.rangeKind === "block"
-        ? surface.blocks.find((item) => item.id === handle.rangeId)
-        : undefined;
-      const parentHeading = block?.sectionId ? surface.headings.find((item) => item.id === block.sectionId) : undefined;
-      const title = heading?.title ?? parentHeading?.title ?? surface.title ?? normalizedSourceRef;
-      const headingPath = heading?.headingPath ?? parentHeading?.headingPath ?? [];
-      if (!heading && !block) throw new Error("Jev selection candidate handle does not resolve to a current document-surface range.");
+      const indexedRange = buildMssrLibrarianIndexedRanges(surface, document.markdown.replace(/\r\n?/g, "\n"))
+        .find((item) => item.id === handle.rangeId && item.kind === handle.rangeKind);
+      if (!indexedRange) throw new Error("Jev selection candidate handle does not resolve to a current document-surface range.");
       candidates.push({
         optionId: `h${String(candidates.length + 1).padStart(3, "0")}`,
         owner: handle.owner,
@@ -345,8 +339,8 @@ export async function selectMssrLibrarianEvidenceWithJev(
         revision: handle.revision,
         rangeId: handle.rangeId,
         rangeKind: handle.rangeKind,
-        title,
-        headingPath,
+        title: indexedRange.title,
+        headingPath: indexedRange.path,
         startLine: handle.startLine,
         endLine: handle.endLine,
         startOffset: handle.startOffset,

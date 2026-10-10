@@ -183,8 +183,6 @@ const decomposedSpanishStart = providerCalls.length;
 await selectMssrLibrarianEvidenceWithJev({ documents: [decomposedSpanishDocument], query: "¿Cuál es la evidencia clave del año fiscal?" }, provider);
 const decomposedSpanishEvidence = providerCalls[decomposedSpanishStart].state.evidence.map((item) => JSON.parse(item.text)[3]);
 assert.ok(decomposedSpanishEvidence.some((excerpt) => excerpt.includes("an\u0303o fiscal")), "query-centering must find composed ñ against decomposed source text and preserve its exact bytes");
-const beforeInvalidHandleChecks = providerCalls.length;
-
 const exact = fetchMssrLibrarianEvidence({
   handle: selected.selected.handle,
   owner,
@@ -194,6 +192,32 @@ const exact = fetchMssrLibrarianEvidence({
 });
 assert.match(exact.text, /cache eviction audit identity/);
 assert.equal(exact.fingerprint, searchedRange.handle.fingerprint);
+
+const listItemDocument = {
+  owner,
+  sourceRef: "docs/decisions-list.md",
+  markdown: "# Decisions\n\n## Rendering\n\n- Keep rendering deterministic.\n- Escape dynamic user-facing strings and render them as text.\n- Preserve cache identity for replay.\n",
+  privacyClass: "project-metadata",
+};
+const listItemSearch = searchMssrLibrarianEvidence({
+  documents: [listItemDocument],
+  query: { query: "dynamic user-facing strings render text", maxResults: 10 },
+});
+const selectedListItemHandle = listItemSearch.results.find((item) => item.handle.rangeId.endsWith("/item-2"))?.handle;
+assert.ok(selectedListItemHandle, "the second list item should be returned as an exact derived candidate");
+const listItemCallStart = providerCalls.length;
+const listItemSelection = await selectMssrLibrarianEvidenceWithJev({
+  documents: [listItemDocument],
+  query: "What is the rule for dynamic user-facing strings?",
+  candidateHandles: [selectedListItemHandle],
+}, provider);
+assert.equal(listItemSelection.status, "selected", "Jev accepts a derived list-item handle only after exact revalidation");
+assert.deepEqual(listItemSelection.selected.handle, selectedListItemHandle);
+assert.equal(listItemSelection.selected.headingPath.join("/"), "Decisions/Rendering");
+const listItemEvidence = JSON.parse(providerCalls[listItemCallStart].state.evidence[0].text);
+assert.ok(listItemEvidence[3].includes("Escape dynamic user-facing strings"));
+assert.ok(!listItemEvidence[3].includes("Preserve cache identity"), "Jev receives the selected item excerpt without an adjacent list decision");
+const beforeInvalidHandleChecks = providerCalls.length;
 
 await assert.rejects(
   selectMssrLibrarianEvidenceWithJev({
