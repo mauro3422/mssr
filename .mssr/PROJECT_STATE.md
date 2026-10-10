@@ -3,9 +3,9 @@
 ## Current release
 **Verified 0.2.118 baseline:** `verify` and release gate passed; artifact is 1,134,315 bytes, SHA-256 `51b6bb1f1cd45c0d32b90cd2f8790b7565cd400e03f2db55bb698e46bcb62bcd`, source commit `c107dc953a9bb51f1915488755c73d9c301156ac`.
 
-**Current 0.2.119 candidate:** Seven focused modules preserve 30 Jev/Librarian source blocks; split-map hashes are at `D:\MSSR-benchmark-artifacts\jev-shep-calibration-20261010-v1\project-context-evaluation-modularization-20261010-v1\`. `npm run verify` and `npm run release:gate` passed. Artifact: 1,135,179 bytes, SHA-256 `7af11163a36a93ae49ea3d7f4a61e7c736777ee3d3bb73b0a765863992e7196d`; receipt `.mssr/runtime/releases/0.2.119.json`. Health is `watch`; previous review findings are resolved. Candidate commit `98e4bfc9aee3c255647779c9db1a32e9ddcaf895` is pushed to `codex/mssr-librarian-query-variants-0.2.112`. Not published to npm or activated in Bridge.
+**Current 0.2.120 candidate:** Documents exact Librarian metadata filter behavior and the closed EvidenceAtom projection keys in the public query schema. Build `mssr-build:sha256:c0b0df2f3eeccf0f`; full `npm run verify` and `npm run release:gate` passed. Artifact: 1,136,180 bytes, SHA-256 `52b4bfbf928b222a282f672b22768d70ca3a5fbf344843b0a487429a56789946`; receipt `.mssr/runtime/releases/0.2.120.json`. Not published to npm or activated in Bridge.
 
-**Latest verified Bridge status:** At 21:08 UTC Bridge 0.6.166 was live/ready, boot `860eaa90-3aa0-4c29-a20f-eb0455e22569`, catalog `7aa95b86d2bbf88b` (188 tools), with no pending restart. The last exact active-package readback (18:47) was MSSR 0.2.112; the 21:08 health check did not report the package version. At 21:26 UTC, a live Bridge search accepted `queryVariants` and returned seven exact ranges matched only by the variant; Jev selection and exact fetch also completed through Bridge. The directly connected MSSR MCP search schema still rejects `queryVariants`, so that connector surface remains stale. The separate evidence-pack `dedupeContainedRanges` schema mismatch remains unverified here.
+**Latest verified Bridge status:** At 22:10 UTC Bridge 0.6.166 was live/ready, boot `d72c7f36-13c5-460f-8fda-0ee190fc1cf8`, catalog `7aa95b86d2bbf88b` (188 tools). The live Bridge schemas expose `queryVariants` on Librarian search and exact `candidateHandles` on Jev selection; this health/schema readback does not report the active packaged MSSR version. This branch's local MSSR route adapter reports its loaded build stale versus the available build; that is not a Bridge package-version readback. Bridge adoption of the 0.2.120 schema clarification remains unverified.
 **Historical baseline (15:36 UTC):** Bridge 0.6.165/MSSR 0.2.112; the dirty `D:\Dev\bridge-mcp` checkout was not changed or adopted.
 
 ## Document Surface/Librarian behavior in 0.2.116 — 2026-10-10
@@ -64,7 +64,7 @@ The historical owner worksheet had 32 bilingual concept pairs; its 38 proposed c
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.119 -->
+<!-- mssr-version:mssr.source=0.2.120 -->
 <!-- mssr-version:bridge.live=0.6.166 -->
 
 <!-- mssr-owner:semantic.consistency=mssr -->

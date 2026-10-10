@@ -35,6 +35,9 @@ export const MSSR_LIBRARIAN_RETRIEVAL_LIMITS = {
   snippetChars: 240,
   fetchChars: 20_000,
 } as const;
+const mssrLibrarianSearchProjectionFields = [
+  "authorityClass", "artifact", "domain", "freshness", "need", "privacyClass", "rangeKind", "risk", "signal", "sourceClass", "action",
+] as const;
 const searchableMetadataSchema = z.record(z.string().regex(/^[A-Za-z][A-Za-z0-9_.-]{0,79}$/), z.union([z.string().max(120), z.number().finite(), z.boolean()])).optional().superRefine((value, ctx) => {
   if (value && Object.keys(value).length > 64) ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Searchable Librarian metadata is limited to 64 projected fields." });
   if (value && Object.keys(value).some((key) => /(?:prompt|transcript|raw|body|content|text|instruction|summary|description|note|secret|credential|private|reasoning|argument|token)/i.test(key))) {
@@ -61,7 +64,9 @@ export const mssrLibrarianRetrievalQuerySchema = z.object({
   sourceRef: z.string().trim().min(1).max(1_000).optional(),
   namespace: z.string().trim().min(1).max(80).optional(),
   kind: z.string().trim().min(1).max(80).optional(),
-  metadata: z.record(z.union([z.string().max(240), z.number(), z.boolean()])).optional(),
+  metadata: z.record(z.union([z.string().max(240), z.number(), z.boolean()])).optional().describe(
+    `Exact-match metadata filters. They may match caller-supplied document/range metadata, searchableMetadata, or an exact EvidenceAtom projection. EvidenceAtom projection keys are the singular closed-vocabulary names ${mssrLibrarianSearchProjectionFields.join(", ")}. For Project Context sidecar selectors, filter with keys such as domain and action; declaration arrays named domains/actions are not filter keys. A missing or non-matching exact field yields no candidate.`,
+  ),
   maxResults: z.number().int().min(1).max(MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxResults).default(20),
   maxSnippetChars: z.number().int().min(40).max(MSSR_LIBRARIAN_RETRIEVAL_LIMITS.snippetChars).default(160),
 }).strict().superRefine((value, ctx) => {
@@ -85,9 +90,6 @@ export const mssrLibrarianRetrievalQuerySchema = z.object({
 export type MssrLibrarianRetrievalQuery = z.input<typeof mssrLibrarianRetrievalQuerySchema>;
 
 export const MSSR_LIBRARIAN_SEARCH_PROJECTION_SCHEMA_VERSION = 1 as const;
-const mssrLibrarianSearchProjectionFields = [
-  "authorityClass", "artifact", "domain", "freshness", "need", "privacyClass", "rangeKind", "risk", "signal", "sourceClass", "action",
-] as const;
 export type MssrLibrarianSearchProjectionField = typeof mssrLibrarianSearchProjectionFields[number];
 export type MssrLibrarianSearchProjectionMatch = {
   schemaVersion: typeof MSSR_LIBRARIAN_SEARCH_PROJECTION_SCHEMA_VERSION;

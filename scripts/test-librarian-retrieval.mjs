@@ -6,8 +6,15 @@ import {
   MSSR_LIBRARIAN_RETRIEVAL_LIMITS,
   fetchMssrLibrarianEvidence,
   mssrLibrarianEvidenceHandleId,
+  mssrLibrarianRetrievalQuerySchema,
   searchMssrLibrarianEvidence,
 } from "../dist/librarian-retrieval.js";
+
+const metadataFilterDescription = mssrLibrarianRetrievalQuerySchema._def.schema.shape.metadata.description ?? "";
+for (const field of ["authorityClass", "artifact", "domain", "freshness", "need", "privacyClass", "rangeKind", "risk", "signal", "sourceClass", "action"]) {
+  assert.ok(metadataFilterDescription.includes(field), `metadata filter docs include projection field ${field}`);
+}
+assert.match(metadataFilterDescription, /declaration arrays named domains\/actions are not filter keys/);
 
 const markdown = [
   "# Handbook",
