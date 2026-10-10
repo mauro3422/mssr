@@ -1,5 +1,17 @@
 # MSSR project memory
 
+## Fetchable-first Librarian ranking — 0.2.113
+
+Within each primary or host-supplied query-variant group, exact-fetchable
+Librarian ranges rank before oversized ranges, then lexical score orders each
+group. Query-index precedence remains unchanged. Fetchability is an
+actionability constraint for Jev/fetch, not relevance, truth, or confidence;
+exact handles and scores remain unchanged. A replay on an already-used frozen
+corpus improved strict target+heading top-10 recall by one case without
+changing source-level recall, but it is development evidence, not a new
+holdout or owner-gold. Keep observing on an independent owner-reviewed set
+before adopting more ranking features.
+
 ## Host-supplied Librarian query variants — 0.2.112
 
 Cross-language expansion belongs to the calling host because MSSR cannot

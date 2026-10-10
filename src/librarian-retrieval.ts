@@ -560,7 +560,7 @@ export function searchMssrLibrarianEvidence(args: { documents: readonly MssrLibr
       candidates.push(candidate);
     }
   }
-  candidates.sort((a, b) => (a.scoreQueryIndex ?? 0) - (b.scoreQueryIndex ?? 0) || b.score - a.score || Number(b.exactFetchable) - Number(a.exactFetchable) || a.handle.owner.localeCompare(b.handle.owner) || a.handle.sourceRef.localeCompare(b.handle.sourceRef) || a.handle.startOffset - b.handle.startOffset || a.handle.id.localeCompare(b.handle.id));
+  candidates.sort((a, b) => (a.scoreQueryIndex ?? 0) - (b.scoreQueryIndex ?? 0) || Number(b.exactFetchable) - Number(a.exactFetchable) || b.score - a.score || a.handle.owner.localeCompare(b.handle.owner) || a.handle.sourceRef.localeCompare(b.handle.sourceRef) || a.handle.startOffset - b.handle.startOffset || a.handle.id.localeCompare(b.handle.id));
   const rankedCandidates = diversifyRankTies(candidates);
   return { results: rankedCandidates.slice(0, query.maxResults), advisoryOnly: true, truthAuthority: false, truncated: rankedCandidates.length > query.maxResults };
 }

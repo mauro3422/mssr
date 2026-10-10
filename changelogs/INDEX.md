@@ -21,6 +21,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.113](0.2.113.md) - rank exact-fetchable Librarian ranges before oversized ranges within each query's relevance group.
 - [0.2.112](0.2.112.md) - add bounded host-supplied Librarian query variants while preserving primary ranking, exact handles, and per-query lexical scores.
 - [0.2.111](0.2.111.md) - avoid false review reasons for `unrelated` pairs and split Jev confidence/run/research context into focused bounded entries.
 - [0.2.110](0.2.110.md) - restore bounded, read-only overlap diagnostics for Jev evidence candidates and package prior semantic relation corrections.

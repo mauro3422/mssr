@@ -309,6 +309,19 @@ const actionableMatches = searchMssrLibrarianEvidence({
 assert.equal(actionableMatches[0]?.title, "Owner calibration", "a fetchable exact section wins a lexical score tie with an oversized un-fetchable parent range");
 assert.equal(actionableMatches[0]?.exactFetchable, true);
 
+const oversizedHighScoreParent = {
+  owner,
+  sourceRef: "docs/oversized-high-score-parent.md",
+  markdown: `# ${"alpha beta gamma ".repeat(Math.ceil((fetchLimit + 100) / 17))}\n\n## Small exact match\n\nalpha only.\n`,
+  privacyClass: "project-metadata",
+};
+const fetchableFirstResult = searchMssrLibrarianEvidence({
+  documents: [oversizedHighScoreParent],
+  query: { query: "alpha beta gamma", maxResults: 1 },
+}).results[0];
+assert.equal(fetchableFirstResult?.title, "Small exact match", "a lower-score fetchable exact range stays usable ahead of an oversized parent even when maxResults truncates the list");
+assert.equal(fetchableFirstResult?.exactFetchable, true);
+
 const tiedDocuments = ["a", "b", "c"].map((name) => ({
   owner,
   sourceRef: `docs/tied-${name}.md`,
