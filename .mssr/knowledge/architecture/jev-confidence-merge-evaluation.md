@@ -317,6 +317,14 @@ module. Repetitions measure stability, not sample size. Keep labels out of
 requests and preserve the manifest, exact inputs, runner/build hashes, raw
 responses and separate adjudication.
 
+The 2026-10-10 cross-repository development sample put a bilingual target at
+rank 32/74 with Spanish primary, and rank 2/20 with an English primary plus the
+Spanish variant. A nested child missed one subclaim at Noul 0.97; sibling
+sections selected the parent containing both. These source-derived cases are
+not owner-gold or calibration. Keep primary-first until a grouped owner-labeled
+comparison supports change; test host language ordering and non-overlapping
+ranges, and track the dedicated connector schema drift separately.
+
 ## Public evidence reviewed
 
 Public Jev results are useful prior evidence, not substitutes for MSSR
