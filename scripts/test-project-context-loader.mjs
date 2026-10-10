@@ -209,26 +209,27 @@ try {
     includeCore: false,
   });
   const currentDocumentEvaluation = currentDocumentEvaluationContext.selected.find(
-    (record) => record.ref === "mssr-jev-librarian-current-document-evaluation-20261010",
+    (record) => record.ref === "mssr-jev-cross-project-family-smokes-20261010",
   );
-  assert.ok(currentDocumentEvaluation, "current-document evaluation should load as a focused indexed module");
-  assert.ok(currentDocumentEvaluation.bytes <= 16_000);
+  assert.ok(currentDocumentEvaluation, "CBAnimal evaluation should load as a focused indexed module");
+  assert.ok(currentDocumentEvaluation.bytes <= 4_500);
   assert.match(currentDocumentEvaluation.content, /CBAnimal/);
   assert.match(currentDocumentEvaluation.content, /not owner-gold/i);
-  const currentDocumentSource = await fs.readFile(path.join(repositoryRoot, ".mssr/knowledge/reference/mssr-jev-librarian-current-document-evaluation-20261010.md"), "utf8");
+  const currentDocumentSource = await fs.readFile(path.join(repositoryRoot, ".mssr/knowledge/reference/jev-cross-project-family-smokes-20261010.md"), "utf8");
   assert.equal(
-    createHash("sha256").update(extractProjectContextSections(currentDocumentSource, ["## Jev Librarian current-document evaluation — 2026-10-10"]), "utf8").digest("hex"),
-    "b8c46a025e43a4c0118279c00b7cdd79d6f53f54de286401c51a00dbd0d48802",
-    "current-document evaluation must preserve the hash-addressed source section",
+    createHash("sha256").update(extractProjectContextSections(currentDocumentSource, ["## Scope and interpretation", "## Evaluation records"]), "utf8").digest("hex"),
+    "59c1fcd6885bf9b0c28e2639d88dd8d60bf9cfdceb5b48885585984869635ef0",
+    "cross-project family evaluation must preserve the hash-addressed source section",
   );
 
   const crossRepositoryEvaluationContext = await loadProjectContextModules({
     projectRoot: repositoryRoot,
     intent: intent({
-      summary: "Review cross-repository bilingual Jev range and retrieval-granularity controls",
+      summary: "Review Elemental Frontier bilingual Jev range granularity: Spanish query, English variant, primary-first queryVariants",
       domains: ["filesystem"],
       actions: ["analyze", "verify"],
-      artifacts: ["repository", "document"],
+      artifacts: ["repository", "document", "mcp"],
+      needs: ["integrity-verification"],
       signals: ["nominal"],
       risk: "read-only",
     }),
@@ -238,18 +239,54 @@ try {
     includeCore: false,
   });
   const crossRepositoryEvaluation = crossRepositoryEvaluationContext.selected.find(
-    (record) => record.ref === "mssr-jev-crossrepo-range-bilingual-evaluation-20261010",
+    (record) => record.ref === "mssr-jev-crossrepo-bilingual-range-retrieval-20261010",
   );
-  assert.ok(crossRepositoryEvaluation, "cross-repository evaluation should load as a focused indexed module");
-  assert.ok(crossRepositoryEvaluation.bytes <= 15_000);
+  assert.ok(crossRepositoryEvaluation, "cross-repository retrieval evaluation should load as a focused indexed module");
+  assert.ok(crossRepositoryEvaluation.bytes <= 5_000);
   assert.match(crossRepositoryEvaluation.content, /queryVariants/);
   assert.match(crossRepositoryEvaluation.content, /uncalibrated/i);
-  const crossRepositorySource = await fs.readFile(path.join(repositoryRoot, ".mssr/knowledge/reference/mssr-jev-crossrepo-range-bilingual-evaluation-20261010.md"), "utf8");
+  const crossRepositorySource = await fs.readFile(path.join(repositoryRoot, ".mssr/knowledge/reference/jev-crossrepo-bilingual-range-retrieval-20261010.md"), "utf8");
   assert.equal(
-    createHash("sha256").update(extractProjectContextSections(crossRepositorySource, ["## Cross-repository Jev range and bilingual evaluation — 2026-10-10"]), "utf8").digest("hex"),
-    "bec8ee123457557d6df9ce826e60674551dc12445a870d7254cb22bf43a99d30",
-    "cross-repository evaluation must preserve the hash-addressed source section",
+    createHash("sha256").update(extractProjectContextSections(crossRepositorySource, ["## Scope and interpretation", "## Evaluation records"]), "utf8").digest("hex"),
+    "afa002afe8c3e4019a528769f9a15e6c9e576178b0a8c9a5d035cb6fb793d3d8",
+    "cross-repository retrieval evaluation must preserve the hash-addressed source section",
   );
+
+  const relationControlEvaluation = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: intent({
+      summary: "Verify Jev relation controls, contradictions, supersession, and independent evidence",
+      domains: ["filesystem"],
+      actions: ["analyze", "verify"],
+      artifacts: ["document", "mcp"],
+      needs: ["integrity-verification"],
+      signals: ["nominal"],
+      risk: "read-only",
+    }),
+    stage: "verify",
+    maxChars: 20_000,
+    maxModules: 40,
+    includeCore: false,
+  });
+  assert.ok(relationControlEvaluation.selected.some((record) => record.ref === "mssr-jev-relation-control-cohorts-20261010"), "relation-control terms should select their focused evaluation module");
+  assert.ok(relationControlEvaluation.selected.find((record) => record.ref === "mssr-jev-relation-control-cohorts-20261010").bytes <= 9_500);
+
+  const genericVerificationEvaluation = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: intent({
+      summary: "Verify files in this project",
+      domains: ["filesystem"],
+      actions: ["analyze", "verify"],
+      artifacts: ["document"],
+      signals: ["nominal"],
+      risk: "read-only",
+    }),
+    stage: "verify",
+    maxChars: 20_000,
+    maxModules: 40,
+    includeCore: false,
+  });
+  assert.equal(genericVerificationEvaluation.selected.some((record) => record.ref.startsWith("mssr-jev-") && /evaluation|cohort|smokes|retrieval/.test(record.ref)), false, "generic verification should not load all dated Jev evaluation history");
 
   const unrelatedEvaluationContext = await loadProjectContextModules({
     projectRoot: repositoryRoot,
@@ -268,8 +305,7 @@ try {
     includeCore: false,
   });
   assert.equal(unrelatedEvaluationContext.selected.some((record) =>
-    record.ref === "mssr-jev-librarian-current-document-evaluation-20261010"
-      || record.ref === "mssr-jev-crossrepo-range-bilingual-evaluation-20261010"
+    record.ref.startsWith("mssr-jev-")
       || record.ref === "mssr-document-surface-librarian-contract"
       || record.ref === "mssr-jev-librarian-selector-release-history"), false,
   "unrelated image work must not load Jev evaluation or Librarian contract evidence");

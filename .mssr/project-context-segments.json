@@ -225,6 +225,197 @@
           "priority": 40
         }
       ]
+    },
+    {
+      "moduleId": "mssr-jev-cross-project-family-smokes-20261010",
+      "segments": [
+        {
+          "id": "scope-and-interpretation",
+          "sections": [
+            "## Scope and interpretation"
+          ],
+          "baseline": true
+        },
+        {
+          "id": "focused-evaluation",
+          "sections": [
+            "## Evaluation records"
+          ],
+          "terms": [
+            "CBAnimal",
+            "MotorGrafico",
+            "mannequin-animation-lab",
+            "Kode",
+            "new-family Jev Librarian"
+          ],
+          "priority": 20
+        }
+      ]
+    },
+    {
+      "moduleId": "mssr-jev-librarian-retrieval-regressions-20261010",
+      "segments": [
+        {
+          "id": "scope-and-interpretation",
+          "sections": [
+            "## Scope and interpretation"
+          ],
+          "baseline": true
+        },
+        {
+          "id": "focused-evaluation",
+          "sections": [
+            "## Evaluation records"
+          ],
+          "terms": [
+            "queryVariants",
+            "fetchable-first",
+            "mixed holdout v3",
+            "contrastive authority abstention",
+            "retrieval rank",
+            "compound query"
+          ],
+          "priority": 20
+        }
+      ]
+    },
+    {
+      "moduleId": "mssr-jev-evidence-pack-compaction-evaluations-20261010",
+      "segments": [
+        {
+          "id": "scope-and-interpretation",
+          "sections": [
+            "## Scope and interpretation"
+          ],
+          "baseline": true
+        },
+        {
+          "id": "focused-evaluation",
+          "sections": [
+            "## Evaluation records"
+          ],
+          "terms": [
+            "contained range",
+            "evidence pack",
+            "strict containment",
+            "temporal compaction",
+            "citation compaction"
+          ],
+          "priority": 20
+        }
+      ]
+    },
+    {
+      "moduleId": "mssr-jev-librarian-bridge-integration-20261010",
+      "segments": [
+        {
+          "id": "scope-and-interpretation",
+          "sections": [
+            "## Scope and interpretation"
+          ],
+          "baseline": true
+        },
+        {
+          "id": "focused-evaluation",
+          "sections": [
+            "## Evaluation records"
+          ],
+          "terms": [
+            "Bridge runtime",
+            "sidecar",
+            "multi-candidate",
+            "negative abstention",
+            "cross-repository Librarian holdout",
+            "cohort provenance"
+          ],
+          "priority": 20
+        }
+      ]
+    },
+    {
+      "moduleId": "mssr-jev-crossrepo-bilingual-range-retrieval-20261010",
+      "segments": [
+        {
+          "id": "scope-and-interpretation",
+          "sections": [
+            "## Scope and interpretation"
+          ],
+          "baseline": true
+        },
+        {
+          "id": "focused-evaluation",
+          "sections": [
+            "## Evaluation records"
+          ],
+      "terms": [
+        "Elemental Frontier",
+        "bilingual",
+        "retrieval",
+        "granularity",
+        "queryVariants",
+        "Spanish query",
+            "English variant",
+            "range granularity",
+            "primary-first",
+            "broad vs atomic query"
+          ],
+          "priority": 20
+        }
+      ]
+    },
+    {
+      "moduleId": "mssr-jev-relation-control-cohorts-20261010",
+      "segments": [
+        {
+          "id": "scope-and-interpretation",
+          "sections": [
+            "## Scope and interpretation"
+          ],
+          "baseline": true
+        },
+        {
+          "id": "focused-evaluation",
+          "sections": [
+            "## Evaluation records"
+          ],
+          "terms": [
+            "relation controls",
+            "supports",
+            "unrelated",
+            "contradiction",
+            "supersedes",
+            "relation-scope-conflict",
+            "independent verification"
+          ],
+          "priority": 20
+        }
+      ]
+    },
+    {
+      "moduleId": "mssr-jev-bridge-active-runtime-smokes-20261010",
+      "segments": [
+        {
+          "id": "scope-and-interpretation",
+          "sections": [
+            "## Scope and interpretation"
+          ],
+          "baseline": true
+        },
+        {
+          "id": "focused-evaluation",
+          "sections": [
+            "## Evaluation records"
+          ],
+          "terms": [
+            "Bridge 0.6.163",
+            "active runtime",
+            "synthesis preview",
+            "evidence-pack assembly",
+            "MSSR 0.2.112"
+          ],
+          "priority": 20
+        }
+      ]
     }
   ]
 }

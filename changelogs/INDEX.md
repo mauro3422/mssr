@@ -21,6 +21,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.119](0.2.119.md) - split dated Jev evaluation history into focused, term-selected modules without dropping source evidence.
 - [0.2.118](0.2.118.md) - require verified project breadth for Semantic Experience fallback preference; keep shadow-rule and holdout gates distinct.
 - [0.2.117](0.2.117.md) - prevent self-extraction plans and index exact Jev/Librarian evidence under focused context selectors.
 - [0.2.116](0.2.116.md) - add exact, revision-bound Librarian ranges for individual Markdown list items while preserving existing block identities.

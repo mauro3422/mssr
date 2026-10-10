@@ -619,71 +619,6 @@
       "maxChars": 6500
     },
     {
-      "id": "mssr-jev-librarian-current-document-evaluation-20261010",
-      "kind": "context",
-      "description": "Dated current-document Librarian/JeV development evaluation, source provenance, exact-fetch checks, corrections, and limits.",
-      "source": {
-        "path": ".mssr/knowledge/reference/mssr-jev-librarian-current-document-evaluation-20261010.md",
-        "sections": [
-          "## Jev Librarian current-document evaluation — 2026-10-10"
-        ]
-      },
-      "topic": "reference",
-      "area": "semantic-evidence",
-      "stages": [
-        "verify"
-      ],
-      "domains": [
-        "filesystem"
-      ],
-      "actions": [
-        "analyze"
-      ],
-      "artifacts": [
-        "document",
-        "mcp"
-      ],
-      "needs": [
-        "integrity-verification"
-      ],
-      "signals": [],
-      "required": false,
-      "priority": 100,
-      "maxChars": 16000
-    },
-    {
-      "id": "mssr-jev-crossrepo-range-bilingual-evaluation-20261010",
-      "kind": "context",
-      "description": "Dated cross-repository Jev range and bilingual development evaluation with retrieval controls, exact-fetch results, and limits.",
-      "source": {
-        "path": ".mssr/knowledge/reference/mssr-jev-crossrepo-range-bilingual-evaluation-20261010.md",
-        "sections": [
-          "## Cross-repository Jev range and bilingual evaluation — 2026-10-10"
-        ]
-      },
-      "topic": "reference",
-      "area": "semantic-evidence",
-      "stages": [
-        "verify"
-      ],
-      "domains": [
-        "filesystem"
-      ],
-      "actions": [
-        "analyze",
-        "verify"
-      ],
-      "artifacts": [
-        "repository",
-        "document"
-      ],
-      "needs": [],
-      "signals": [],
-      "required": false,
-      "priority": 100,
-      "maxChars": 15000
-    },
-    {
       "id": "mssr-jev-public-benchmark-evidence",
       "kind": "context",
       "description": "Published Jev and adjacent benchmark evidence with explicit limits on transfer to MSSR.",
@@ -1455,6 +1390,216 @@
       "required": false,
       "priority": 82,
       "maxChars": 7000
+    },
+    {
+      "id": "mssr-jev-cross-project-family-smokes-20261010",
+      "kind": "context",
+      "description": "Jev cross-project family smokes — 2026-10-10",
+      "source": {
+        "path": ".mssr/knowledge/reference/jev-cross-project-family-smokes-20261010.md"
+      },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [
+        "verify"
+      ],
+      "domains": [
+        "filesystem"
+      ],
+      "actions": [
+        "analyze"
+      ],
+      "artifacts": [
+        "document",
+        "mcp"
+      ],
+      "needs": [
+        "integrity-verification"
+      ],
+      "signals": [],
+      "required": false,
+      "priority": 100,
+      "maxChars": 4500
+    },
+    {
+      "id": "mssr-jev-librarian-retrieval-regressions-20261010",
+      "kind": "context",
+      "description": "Jev Librarian retrieval regressions — 2026-10-10",
+      "source": {
+        "path": ".mssr/knowledge/reference/jev-librarian-retrieval-regressions-20261010.md"
+      },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [
+        "verify"
+      ],
+      "domains": [
+        "filesystem"
+      ],
+      "actions": [
+        "analyze"
+      ],
+      "artifacts": [
+        "document",
+        "mcp"
+      ],
+      "needs": [
+        "integrity-verification"
+      ],
+      "signals": [],
+      "required": false,
+      "priority": 100,
+      "maxChars": 7000
+    },
+    {
+      "id": "mssr-jev-evidence-pack-compaction-evaluations-20261010",
+      "kind": "context",
+      "description": "Jev evidence-pack and compaction evaluations — 2026-10-10",
+      "source": {
+        "path": ".mssr/knowledge/reference/jev-evidence-pack-compaction-evaluations-20261010.md"
+      },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [
+        "verify"
+      ],
+      "domains": [
+        "filesystem"
+      ],
+      "actions": [
+        "analyze"
+      ],
+      "artifacts": [
+        "document",
+        "mcp"
+      ],
+      "needs": [
+        "integrity-verification"
+      ],
+      "signals": [],
+      "required": false,
+      "priority": 100,
+      "maxChars": 3500
+    },
+    {
+      "id": "mssr-jev-librarian-bridge-integration-20261010",
+      "kind": "context",
+      "description": "Jev Librarian Bridge integration evaluations — 2026-10-10",
+      "source": {
+        "path": ".mssr/knowledge/reference/jev-librarian-bridge-integration-20261010.md"
+      },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [
+        "verify"
+      ],
+      "domains": [
+        "filesystem"
+      ],
+      "actions": [
+        "analyze"
+      ],
+      "artifacts": [
+        "document",
+        "mcp"
+      ],
+      "needs": [
+        "integrity-verification"
+      ],
+      "signals": [],
+      "required": false,
+      "priority": 100,
+      "maxChars": 6500
+    },
+    {
+      "id": "mssr-jev-crossrepo-bilingual-range-retrieval-20261010",
+      "kind": "context",
+      "description": "Jev cross-repository bilingual range retrieval — 2026-10-10",
+      "source": {
+        "path": ".mssr/knowledge/reference/jev-crossrepo-bilingual-range-retrieval-20261010.md"
+      },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [
+        "verify"
+      ],
+      "domains": [
+        "filesystem"
+      ],
+      "actions": [
+        "analyze"
+      ],
+      "artifacts": [
+        "document",
+        "mcp"
+      ],
+      "needs": [
+        "integrity-verification"
+      ],
+      "signals": [],
+      "required": false,
+      "priority": 100,
+      "maxChars": 5000
+    },
+    {
+      "id": "mssr-jev-relation-control-cohorts-20261010",
+      "kind": "context",
+      "description": "Jev relation-control cohorts — 2026-10-10",
+      "source": {
+        "path": ".mssr/knowledge/reference/jev-relation-control-cohorts-20261010.md"
+      },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [
+        "verify"
+      ],
+      "domains": [
+        "filesystem"
+      ],
+      "actions": [
+        "analyze"
+      ],
+      "artifacts": [
+        "document",
+        "mcp"
+      ],
+      "needs": [
+        "integrity-verification"
+      ],
+      "signals": [],
+      "required": false,
+      "priority": 100,
+      "maxChars": 9500
+    },
+    {
+      "id": "mssr-jev-bridge-active-runtime-smokes-20261010",
+      "kind": "context",
+      "description": "Jev Bridge active-runtime smokes — 2026-10-10",
+      "source": {
+        "path": ".mssr/knowledge/reference/jev-bridge-active-runtime-smokes-20261010.md"
+      },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [
+        "verify"
+      ],
+      "domains": [
+        "filesystem"
+      ],
+      "actions": [
+        "analyze"
+      ],
+      "artifacts": [
+        "document",
+        "mcp"
+      ],
+      "needs": [
+        "integrity-verification"
+      ],
+      "signals": [],
+      "required": false,
+      "priority": 100,
+      "maxChars": 6500
     }
   ]
 }
