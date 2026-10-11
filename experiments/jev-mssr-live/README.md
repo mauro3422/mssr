@@ -30,6 +30,10 @@ confidence-calibration evidence.
   actual execution interval; if a frozen timestamp is wrong, add an erratum and
   preserve the original manifest hash.
 
+## Historical full-path live baseline — 2026-09-30
+
+[`mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1`](runs/mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1/) exercised live Jev 1.13.0 on four real MSSR Markdown documents: retrieval recall@5 was 4/4 but top-1 was 0/4 (MRR 0.383); exact fetch passed 8/8; relation judgments matched 3/4 author-written labels; and both synthesis previews stayed `review` with zero apply permission. The labels were not independently adjudicated, no positive contradiction case or holdout existed, and the source/build was MSSR commit `7fd0f741` / `mssr-build:sha256:cfaaa9b0f9ad1977`. This is an archived plumbing/quality diagnostic, not current Bridge 0.6.169 adoption evidence, owner-gold, or calibration. Verify the frozen payload via its `SHA256SUMS` before reuse.
+
 ## Current linked diagnostic sequence
 
 1. [`mssr-librarian-live-path-unseen-20261011T111400Z-a71d3f`](runs/mssr-librarian-live-path-unseen-20261011T111400Z-a71d3f/) — ten exploratory requests across five source documents; a scorer heading-marker mismatch was corrected only in a derived analysis. Blind review found a Spanish-to-English retrieval miss and an incomplete compound preview query.
