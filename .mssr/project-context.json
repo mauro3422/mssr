@@ -1600,6 +1600,38 @@
       "required": false,
       "priority": 100,
       "maxChars": 6500
+    },
+    {
+      "id": "mssr-jev-zsw-hud-minimap-diagnostics-20261011",
+      "kind": "context",
+      "description": "ZSW HUD/minimap Jev query-coverage diagnostics and paired benchmark gate — 2026-10-11",
+      "source": {
+        "path": ".mssr/knowledge/reference/jev-zsw-hud-minimap-diagnostics-20261011.md"
+      },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [
+        "verify"
+      ],
+      "domains": [
+        "filesystem",
+        "coding"
+      ],
+      "actions": [
+        "analyze",
+        "verify"
+      ],
+      "artifacts": [
+        "document",
+        "repository"
+      ],
+      "needs": [
+        "integrity-verification"
+      ],
+      "signals": [],
+      "required": false,
+      "priority": 100,
+      "maxChars": 5000
     }
   ]
 }

@@ -1,13 +1,11 @@
 # MSSR project state
 
 ## Current release
-**MSSR 0.2.120 candidate:** Exact Librarian metadata-filter documentation; `npm run verify` and release gate passed. Receipt: `.mssr/runtime/releases/0.2.120.json`. Not published or active in Bridge.
+MSSR 0.2.120 is a verified but unpublished/inactive candidate; receipt: `.mssr/runtime/releases/0.2.120.json`. Bridge is currently 0.6.167 / MSSR 0.2.115, ready on boot `a35f9a0e-a504-4601-9cde-b4fbd2ac4d2d` with 188 tools. Data root: `D:\Dev\bridge-mcp`; code root: `D:\Dev\bridge-mcp-mssr-0.2.112-query-variants`; current Librarian schema: `b931631885199014`.
 
-**Bridge runtime (2026-10-10 22:43 UTC):** 0.6.167 / MSSR 0.2.115 is ready, boot `d0d360a5-469f-4ddc-8414-67667e2d12d6`, catalog 188 tools. Live Librarian schema `b931631885199014` documents exact singular EvidenceAtom filters. Data root is `D:\Dev\bridge-mcp`; code root is `D:\Dev\bridge-mcp-mssr-0.2.112-query-variants`.
+The latest live Jev/Librarian diagnostics ran 2026-10-11 on one Zomboid Smartwatch HUD/minimap source family. Three grouped concepts plus focused facets exposed both abstentions and exact-fetched selections; they are source-derived, not owner-gold or confidence calibration. ZSW source bytes were unchanged. Case results, report hashes and paired-comparison gate: [ZSW diagnostic module](knowledge/reference/jev-zsw-hud-minimap-diagnostics-20261011.md).
 
-**Latest live Librarian/Jev replay (2026-10-10):** The Bridge search returned 92 candidates/four variant-only, target raw rank 85, and two oversized handles at ranks 87–88. A query × pool crossover then re-used the 90-eligible broad pool and five-candidate focused pool. Both specific-question calls selected and exact-fetched the complete `Lectura` section; both broad-question calls selected related but partial `Métricas por partición` content, even in the five-candidate pool. This single previously examined document family suggests question specificity matters more here than shrinking the pool; it is not a general or causal estimate. Choice/Noul remain uncalibrated; this is not owner-gold, independent, or calibration evidence, and the holdout remains untouched. Full evidence and hashes are in the integration handoff's linked v2 replay report.
-
-**Bridge runtime/connector readback (23:27 UTC):** Bridge 0.6.167 remains live/ready on boot `d0d360a5-469f-4ddc-8414-67667e2d12d6`; no restart is pending, catalog remains 188 tools, and transport failures since the 22:43 UTC baseline remain zero. Runtime search schema `b931631885199014` accepts `queryVariants`; the dedicated connector schema omits it, while read-only `bridge_tool_query` accepts it. The MSSR package version remains as recorded above; health does not expose it.
+Prior 2026-10-10 replay and connector/runtime snapshots are historical. Their detailed results and limits remain in the indexed [integration handoff](knowledge/operations/jev-librarian-integration-handoff.md) and [runtime smoke history](knowledge/reference/jev-bridge-active-runtime-smokes-20261010.md). Do not infer runtime state from those dated records.
 
 ## Document Surface/Librarian behavior in 0.2.116 — 2026-10-10
 MSSR 0.2.116 exposed exact derived handles for individual top-level list items while retaining Document Surface v1 aggregate list blocks and IDs. Search, Jev candidate validation, fetch, and evidence packs share the rebuilt index; forged offsets fail closed. Four-space-indented code is excluded from list-item candidates. `npm run verify` and `npm run release:gate` passed; final artifact identity is recorded above. Bridge runtime adoption and a live Jev run through this implementation remain unverified. This narrows citations but is not evidence of higher answer accuracy or calibrated confidence.
@@ -66,7 +64,7 @@ The historical owner worksheet had 32 bilingual concept pairs; its 38 proposed c
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
 <!-- mssr-version:mssr.source=0.2.120 -->
-<!-- mssr-version:bridge.live=0.6.166 -->
+<!-- mssr-version:bridge.live=0.6.167 -->
 
 <!-- mssr-owner:semantic.consistency=mssr -->
 <!-- mssr-decision:adr.0006=r4-bf-portable -->
