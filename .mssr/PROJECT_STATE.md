@@ -6,7 +6,7 @@ MSSR 0.2.121 remains live in Bridge 0.6.169 (boot `adf97c06-a668-4ff9-a187-c12ab
 
 ## Current Jev/Librarian evaluation
 
-Jev/Librarian remains exploratory and is not confidence-calibrated. Production Bridge remains 0.6.169 with packaged MSSR 0.2.121; source MSSR 0.2.124 is not adopted, and these experiments did not restart or mutate the production runtime. The paired cap diagnostic completed 10/10 real Jev calls over five source clusters: exact-fetch fingerprints passed 9/9 selections. A 780-character excerpt recovered one answerable result that 260 abstained on, but selected a 3,735-character overbroad range. Scores rose in all five long-cap pairs, but remain descriptive and do not justify changing defaults or thresholds. See the [paired-cap report](../experiments/jev-mssr-live/runs/mssr-librarian-excerpt-cap-paired-20261011T161000Z-v1/ADJUDICATION-REPORT.md).
+Jev/Librarian remains exploratory and is not confidence-calibrated. Production Bridge remains 0.6.169 with packaged MSSR 0.2.121; source MSSR 0.2.126 is not adopted, and these experiments did not restart or mutate the production runtime. The paired cap diagnostic completed 10/10 real Jev calls over five source clusters: exact-fetch fingerprints passed 9/9 selections. A 780-character excerpt recovered one answerable result that 260 abstained on, but selected a 3,735-character overbroad range. Scores rose in all five long-cap pairs, but remain descriptive and do not justify changing defaults or thresholds. See the [paired-cap report](../experiments/jev-mssr-live/runs/mssr-librarian-excerpt-cap-paired-20261011T161000Z-v1/ADJUDICATION-REPORT.md).
 
 A follow-up on one already-exposed ADR 0002 cluster used deterministic search handles and five real Jev calls. The composite query selected a precise 284-character transition block but omitted notice authority; two manually split facets selected exact 284- and 100-character blocks. The existing strict provider-off composed-runner replay accepted two real receipts, revalidated exact fetches and built a cited two-paragraph verbatim pack of 384 characters. The replay's 1/1 line-span result per facet is not semantic coverage. Two blind Luna reviewers independently rated the cited union-composed answer Full with low overbreadth. This supports reusing search → exact-handle selection → fetch → evidence-pack → host composition, but does not establish automatic query decomposition, semantic coverage gating, owner-gold, or general reliability. The development harness now blocks synthesis on abstained/missing exact evidence and leaves semantic coverage unknown pending independent review; see changelog 0.2.125. See the [search-derived block report](../experiments/jev-mssr-live/runs/mssr-librarian-notice-blocks-20261011T162000Z-v1/ADJUDICATION-REPORT.md), [receipt replay report](../experiments/jev-mssr-live/runs/mssr-librarian-notice-union-replay-20261011T162500Z-v1/RUN-REPORT.md), its [erratum](../experiments/jev-mssr-live/runs/mssr-librarian-notice-union-replay-20261011T162500Z-v1/RUN-ERRATUM.md), and [run ledger](../experiments/jev-mssr-live/README.md).
 
@@ -34,6 +34,15 @@ All six selected exact fetches matched fingerprints. Scores remain
 uncalibrated, and production Bridge/runtime behavior did not change. The
 follow-up plan timestamps were declared incorrectly; the append-only erratum
 records Bridge write-before-call event ordering. See the [run report](../experiments/jev-mssr-live/runs/mssr-librarian-fresh-changelog-clusters-20261011T1717Z-v1/RUN-REPORT.md)
+and [run ledger](../experiments/jev-mssr-live/README.md).
+
+The latest cross-family diagnostic selected the expected section and passed
+exact fetch/evidence-pack verification on 3/3 documents. Blind review found
+answer-complete excerpts with extra context; this is a small source-derived
+diagnostic, not calibration. Its frozen runner also dropped numeric Noul
+because of a field-name mismatch; the missing values cannot be recovered. The
+derived summary now reports normalized heading matches and exposes missing
+evidence-sufficiency capture. See the [report](../experiments/jev-mssr-live/runs/mssr-librarian-cross-family-fresh-smoke-20261011T181217Z-v1/ADJUDICATION-REPORT.md)
 and [run ledger](../experiments/jev-mssr-live/README.md).
 
 Project Context modularization review split the confidence-run history by

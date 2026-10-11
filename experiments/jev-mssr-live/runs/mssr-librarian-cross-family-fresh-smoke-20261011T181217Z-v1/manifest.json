@@ -1,0 +1,129 @@
+{
+  "plan": {
+    "minimumSupport": {
+      "perClaimedSubgroup": 30,
+      "overall": 30
+    },
+    "thresholds": {},
+    "independentUnit": "three distinct source-document clusters, all authored in one repository",
+    "primaryMetric": "exact selected heading match to frozen source-derived target",
+    "expectedRequestCount": 3,
+    "uncertaintyMethod": "raw counts only; three source-document clusters; no reliability or calibration claim",
+    "secondaryMetrics": [
+      "search target present in top 100",
+      "exact fetch/fingerprint validation",
+      "evidence pack success",
+      "latency",
+      "provider tokens",
+      "failures",
+      "blind excerpt completeness and overbreadth"
+    ]
+  },
+  "createdAt": "2026-10-11T18:14:02Z",
+  "parentRunId": null,
+  "source": {
+    "gitCommit": "82b6de9eddc62d69a69805297909df135d7bbcca",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "bridgeRoot": "D:\\Dev\\bridge-mcp-mssr-0.2.112-query-variants",
+    "bridgeVersion": "0.6.169",
+    "workingTreeClean": false,
+    "repository": "MSSR",
+    "buildArtifacts": [
+      {
+        "path": "dist/tool-registry.js",
+        "sha256": "dc155b2c0ce369ea33b8a4de124b37e79636bb397932cef3827cf34bec5a8fbe"
+      },
+      {
+        "path": "dist/tools/mssr-semantic-evidence-tools.js",
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa"
+      },
+      {
+        "path": "node_modules/@mauroprime/mssr/package.json",
+        "sha256": "eb06b760aa92f405df2ced15e6866ee17d28e2c01983a194eecd2260be2bc61a"
+      },
+      {
+        "path": "vendor/mauroprime-mssr-0.2.121.tgz",
+        "sha256": "181bf914da4f5767c457755990798169f6d539f56886b420bd8410951b5d8971"
+      },
+      {
+        "path": "scripts/read-windows-credential.ps1",
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e"
+      }
+    ],
+    "codeSnapshotCleanAtFreeze": true,
+    "bridgeCommit": "2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc",
+    "mssrVersion": "0.2.121",
+    "changedPaths": [
+      "experiments/jev-mssr-live/runs/mssr-librarian-cross-family-fresh-smoke-20261011T181217Z-v1/"
+    ]
+  },
+  "runId": "mssr-librarian-cross-family-fresh-smoke-20261011T181217Z-v1",
+  "provider": {
+    "networkOptInMethod": "explicit command-line --allow-network plus user authorization recorded in manifest",
+    "mode": "live",
+    "concurrency": 1,
+    "networkOptIn": true,
+    "credentialSource": "Windows Credential Manager; secret value not persisted",
+    "requestedModel": "jev-1.13.0",
+    "maxRetries": 1,
+    "providerRequestIdsAvailable": "unknown",
+    "timeoutMs": 30000,
+    "provider": "TypeSafe Jev through clean Bridge 0.6.169 provider adapter",
+    "endpointIdentity": "api.typesafe.ai/v1/systemone",
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "rawVendorResponsePersisted": false
+  },
+  "schemaVersion": 1,
+  "corpus": {
+    "snapshotPath": "experiments/jev-mssr-live/runs/mssr-librarian-cross-family-fresh-smoke-20261011T181217Z-v1/inputs/sources/",
+    "sources": [
+      {
+        "snapshotPath": "inputs/sources/source-01.md",
+        "sha256": "c43b0649e3a53a1997b87f50b0e1719229417a228ef01f298aa0c386e83d1d38",
+        "sourceRef": "skills/shared-skill-governance/references/activation-across-hosts.md"
+      },
+      {
+        "snapshotPath": "inputs/sources/source-02.md",
+        "sha256": "6ee272e1d03c7778aaf6a637a4a08949e62e9173d82cd77c694cbd4938c5e134",
+        "sourceRef": "skills/mssr-observability-maintenance/references/telemetry-safety.md"
+      },
+      {
+        "snapshotPath": "inputs/sources/source-03.md",
+        "sha256": "28c1b547a1f1e64958c76a8191f5b65f5e08bf2b4eb2ff4f35005be61235ac64",
+        "sourceRef": "skills/skill-routing-maintainer/references/routing-contract-maintenance.md"
+      }
+    ],
+    "sourceRevision": "82b6de9eddc62d69a69805297909df135d7bbcca",
+    "redaction": "reviewed project metadata Markdown; exact source bytes frozen",
+    "items": 3,
+    "projectRoot": "D:\\Dev\\mssr"
+  },
+  "split": {
+    "holdoutIdsSha256": null,
+    "validationIdsSha256": null,
+    "holdoutUsedForTuning": false,
+    "trainIdsSha256": null,
+    "holdoutOpenedAt": null,
+    "method": "none-exploratory-source-grouped"
+  },
+  "instrument": {
+    "casesPath": "experiments/jev-mssr-live/runs/mssr-librarian-cross-family-fresh-smoke-20261011T181217Z-v1/inputs/cases.json",
+    "lockfileSha256": "7a909621ed8de24fdaebef04f166ff54b9ec49ff57596de254b80738a255c031",
+    "runnerPath": "experiments/jev-mssr-live/runs/mssr-librarian-cross-family-fresh-smoke-20261011T181217Z-v1/runner.mjs",
+    "runnerSha256": "ec324b58138dea339425573a50db92e62a57fd59ed288f1d073aa57f0779f20c",
+    "runtime": "v24.16.0",
+    "requestSchemaVersion": 1,
+    "casesSha256": "95ea0245d3beb1295267b5c0708c300e5803a4e82bd1d8120541bf4868afd3d9"
+  },
+  "suite": "mssr-librarian-live-cross-family-fresh-diagnostic-v1",
+  "labels": {
+    "adjudication": "blind model-assisted; not owner-gold",
+    "exposedToRequests": false,
+    "note": "No matching path or distinctive answer phrase found in persisted experiment artifacts and reachable experiment history; this is not proof of no unrecorded model exposure.",
+    "source": "source-derived-author plus blind Luna model-assisted reviewer",
+    "frozenAt": "2026-10-11T18:14:02Z",
+    "labelFileSha256": "4012ef2e745092463848eff9d71b227fd0616d22a7ba7a27713ff050d96e5ed0",
+    "labelFile": "experiments/jev-mssr-live/runs/mssr-librarian-cross-family-fresh-smoke-20261011T181217Z-v1/inputs/labels.json"
+  },
+  "status": "prepared"
+}

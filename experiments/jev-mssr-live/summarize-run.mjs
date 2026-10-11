@@ -16,6 +16,12 @@ const manifestBytes = await fs.readFile(path.join(runDir, "manifest.json"));
 const manifest = JSON.parse(manifestBytes.toString("utf8"));
 const completion = await readJson("run-completion.json");
 const cases = (await readJson("inputs/cases.json")).cases;
+let labels = null;
+try {
+  labels = await readJson("inputs/labels.json");
+} catch (error) {
+  if (error?.code !== "ENOENT") throw error;
+}
 const records = (await fs.readFile(path.join(runDir, "records.jsonl"), "utf8"))
   .split(/\r?\n/u)
   .filter(Boolean)
@@ -37,6 +43,13 @@ const selected = records.filter((record) => record.jev?.status === "selected");
 const abstained = records.filter((record) => record.jev?.status === "abstained");
 const fetched = records.filter((record) => record.fetch?.passed === true);
 const packs = records.filter((record) => record.evidencePack?.status === "complete");
+const evidenceSufficiencyRecorded = records.filter((record) => Number.isFinite(
+  record.jev?.evidenceSufficiency ?? record.jev?.noul ?? record.jev?.sufficiency,
+));
+if (labels) {
+  assert.equal(labels.cases?.length, records.length, "label/record count mismatch");
+  assert.equal(new Set(labels.cases.map((label) => label.caseId)).size, labels.cases.length, "duplicate label case IDs");
+}
 const sourceRefs = [...new Set(records.map((record) => record.sourceRef))].sort();
 const tokenUsage = records.reduce((total, record) => ({
   input: total.input + (record.jev?.usage?.input_tokens ?? 0),
@@ -48,6 +61,28 @@ const manifestTime = Date.parse(manifest.createdAt);
 const firstRequestTime = started.length ? Date.parse(started[0]) : Number.NaN;
 const createdAtDeltaMs = Number.isFinite(manifestTime) && Number.isFinite(firstRequestTime)
   ? firstRequestTime - manifestTime
+  : null;
+const normalizeHeading = (value) => String(value ?? "").replace(/^#{1,6}\s+/u, "").trim();
+const labelsByCase = new Map((labels?.cases ?? []).map((label) => [label.caseId, label]));
+const labelScores = labels
+  ? records.map((record) => {
+      const label = labelsByCase.get(record.caseId);
+      assert.ok(label, `missing label for record ${record.caseId}`);
+      const expectedHeading = normalizeHeading(label.expectedHeading);
+      const observedHeading = normalizeHeading(record.jev?.selected?.title);
+      const searchTargetFound = (record.search?.results ?? [])
+        .some((result) => normalizeHeading(result.title) === expectedHeading);
+      return {
+        caseId: record.caseId,
+        sourceRef: record.sourceRef,
+        expectedHeading: label.expectedHeading,
+        observedHeading: record.jev?.selected?.title ?? null,
+        normalizedExactHeadingMatch: record.jev?.status === "selected"
+          && observedHeading === expectedHeading,
+        searchTargetFound,
+        exactFetchPassed: record.fetch?.passed === true,
+      };
+    })
   : null;
 
 const report = {
@@ -67,6 +102,13 @@ const report = {
   abstained: abstained.length,
   exactFetchesWithFingerprint: fetched.length,
   evidencePacksBuilt: packs.length,
+  evidenceSufficiencyCapture: {
+    recorded: evidenceSufficiencyRecorded.length,
+    missingFromRecords: records.length - evidenceSufficiencyRecorded.length,
+    note: evidenceSufficiencyRecorded.length === records.length
+      ? "All records contain a numeric evidence-sufficiency value."
+      : "Some records do not persist MSSR evidenceSufficiency (sometimes mislabeled Noul); do not interpret null as provider abstention.",
+  },
   tokenUsage,
   firstRequestStartedAt: started[0] ?? null,
   lastRequestCompletedAt: completed.at(-1) ?? null,
@@ -77,6 +119,18 @@ const report = {
     : null,
   independentUnit: manifest.plan.independentUnit,
   calibrationClaim: false,
+  labelMetrics: labelScores
+    ? {
+        reportType: "strict normalized heading match; not semantic adjudication or calibration",
+        labelSource: labels.source ?? null,
+        adjudication: labels.adjudication ?? null,
+        normalizedExactHeadingMatches: labelScores.filter((item) => item.normalizedExactHeadingMatch).length,
+        exactHeadingDenominator: labelScores.length,
+        searchTargetFound: labelScores.filter((item) => item.searchTargetFound).length,
+        searchTargetDenominator: labelScores.length,
+        records: labelScores,
+      }
+    : null,
   records: records.map((record) => ({
     caseId: record.caseId,
     sourceRef: record.sourceRef,
@@ -85,6 +139,10 @@ const report = {
     jevStatus: record.jev?.status ?? null,
     selectedRangeId: record.jev?.selected?.handle?.rangeId ?? null,
     rawChoiceConfidence: record.jev?.rawChoiceConfidence ?? null,
+    evidenceSufficiency: record.jev?.evidenceSufficiency
+      ?? record.jev?.noul
+      ?? record.jev?.sufficiency
+      ?? null,
     exactFetchPassed: record.fetch?.passed === true,
     evidencePackBuilt: record.evidencePack?.status === "complete",
     elapsedMs: record.elapsedMs ?? null,

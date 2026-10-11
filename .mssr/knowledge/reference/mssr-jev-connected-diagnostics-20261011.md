@@ -33,3 +33,12 @@ were declared incorrectly; the append-only erratum records Bridge
 write-before-call event ordering. See
 `experiments/jev-mssr-live/runs/mssr-librarian-fresh-changelog-clusters-20261011T1717Z-v1/RUN-REPORT.md`
 and the [run ledger](../../../experiments/jev-mssr-live/README.md).
+
+The cross-family run used three queries on separate MSSR documents through
+Bridge 0.6.169 / MSSR 0.2.121. Target sections, search, exact fetches and packs
+passed 3/3. Blind Luna grades were complete, with extra context; labels are not
+owner-gold or calibration. A heading-format mismatch caused the original 0/3;
+the summarizer now normalizes titles. The runner dropped numeric
+`evidenceSufficiency` under a wrong field name, so Noul values are lost, not
+Jev omissions. Runtime and thresholds did not change. See the [report](../../../experiments/jev-mssr-live/runs/mssr-librarian-cross-family-fresh-smoke-20261011T181217Z-v1/ADJUDICATION-REPORT.md)
+and [run ledger](../../../experiments/jev-mssr-live/README.md).

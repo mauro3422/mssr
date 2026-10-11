@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-capability-chaining-multicandidate-20261011T180632Z-v2",
+  "status": "frozen-before-provider-call",
+  "observedAt": "2026-10-11T18:06:32Z",
+  "purpose": "multi-candidate connected Jev retrieval and exact-fetch smoke; exploratory, not calibration or owner-gold",
+  "system": {
+    "bridge": "0.6.169",
+    "packagedMssr": "0.2.121",
+    "sourceMssr": "0.2.126",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "commit": "82b6de9eddc62d69a69805297909df135d7bbcca"
+  },
+  "sources": [
+    {
+      "sourceRef": "skills/mssr-agent-routing/references/capability-chaining.md",
+      "sha256": "3300d407c82a44a62535fb68622403012afbbb88ab488adaa6e2a46f11b8e080",
+      "bytes": 892
+    },
+    {
+      "sourceRef": "skills/mssr-agent-routing/references/signals-and-recovery.md",
+      "sha256": "d90702ad99682cd452ee57234dcf13c3edb4bd53708bba709988fb43bcad920f",
+      "bytes": 1290
+    },
+    {
+      "sourceRef": "skills/skill-maintenance-loop/references/project-context-modularization.md",
+      "sha256": "ac671d66e72fcce3b4f3d8f27ca3ce0f640100503dddf9c658ecbd0357522e34",
+      "bytes": 5295
+    }
+  ],
+  "priorExposureAudit": "No prior persisted exact reference/body found for these candidate docs; this does not prove no historical exposure.",
+  "query": "What exact sequence should be followed after a missing tool or skill is identified before using that capability?",
+  "expected": {
+    "sourceRef": "skills/mssr-agent-routing/references/capability-chaining.md",
+    "heading": "Capability chaining and maintenance",
+    "sequence": "search -> inspect -> execute -> verify"
+  },
+  "rubric": {
+    "full": "Selects the capability-chaining section; exact fetch matches current source and contains the complete prescribed sequence.",
+    "partial": "Selects relevant but incomplete/overbroad source evidence.",
+    "miss": "Abstains or selects unrelated evidence."
+  },
+  "limits": [
+    "three source documents in two source families",
+    "one query",
+    "model-assisted outcome is not owner-gold",
+    "Choice/Noul are uncalibrated",
+    "no runtime behavior change"
+  ]
+}

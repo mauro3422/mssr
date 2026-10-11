@@ -1,0 +1,27 @@
+{
+  "adjudication": "blind model-assisted; not owner-gold",
+  "exposedToRequests": false,
+  "independentUnit": "source-document cluster",
+  "cases": [
+    {
+      "expectedHeading": "# Activation across hosts",
+      "concept": "ChatGPT Web re-plans at verify, persist, close",
+      "allowedEquivalent": "Answer may be concise; adding caller-schema or route-plan/bootstrap detail is unnecessary and can be overbroad.",
+      "caseId": "web-replan-phases"
+    },
+    {
+      "expectedHeading": "# Telemetry safety",
+      "concept": "Only observable contract/release boundary; record old epoch, baseline, version/commit, active/all counts",
+      "allowedEquivalent": "Preserve history and prove the new active epoch; database-reset conditions are a separate rule.",
+      "caseId": "telemetry-epoch-boundary"
+    },
+    {
+      "expectedHeading": "# Routing contract maintenance",
+      "concept": "Explicit metadata; positive active/deferred; nearby negative unless always-active; bounded continuation when resumable; real route plan",
+      "allowedEquivalent": "Do not require unrelated audit/discovery/package steps as stability criteria.",
+      "caseId": "skill-stability-fixtures"
+    }
+  ],
+  "source": "source-derived-author plus blind Luna model-assisted review",
+  "schemaVersion": 1
+}

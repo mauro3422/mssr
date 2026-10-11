@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-capability-chaining-connected-20261011T180632Z-v1",
+  "status": "frozen-before-provider-call",
+  "observedAt": "2026-10-11T18:06:32Z",
+  "purpose": "single-case connected Jev retrieval/exact-fetch smoke; exploratory, not calibration or owner-gold",
+  "system": {
+    "bridge": "0.6.169",
+    "packagedMssr": "0.2.121",
+    "sourceMssr": "0.2.126",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "commit": "82b6de9eddc62d69a69805297909df135d7bbcca"
+  },
+  "source": {
+    "owner": "project:mssr",
+    "sourceRef": "skills/mssr-agent-routing/references/capability-chaining.md",
+    "sha256": "3300d407c82a44a62535fb68622403012afbbb88ab488adaa6e2a46f11b8e080",
+    "bytes": 892,
+    "priorExposureAudit": "No prior persisted exact reference/body found; this does not prove no historical exposure."
+  },
+  "query": "What sequence does the project prescribe after a missing tool or skill is discovered?",
+  "expectedEvidence": {
+    "targetHeading": "Capability chaining and maintenance",
+    "answer": "Stop only the dependent branch; search and inspect the candidate, refresh a stale provider when needed, re-plan on current evidence, then invoke through the owning host and verify."
+  },
+  "rubric": {
+    "full": "Selects the exact section containing the prescribed sequence, with exact source fetch valid.",
+    "partial": "Selects relevant but incomplete or overbroad evidence.",
+    "miss": "Abstains or selects unrelated evidence."
+  },
+  "limits": [
+    "one source cluster",
+    "one query",
+    "AI provider output is evidence only",
+    "choice/Noul are uncalibrated",
+    "no production behavior change"
+  ]
+}

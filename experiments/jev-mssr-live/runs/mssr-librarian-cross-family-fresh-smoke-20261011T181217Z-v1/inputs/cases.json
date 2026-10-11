@@ -1,0 +1,23 @@
+{
+  "cases": [
+    {
+      "id": "web-replan-phases",
+      "sourceRef": "skills/shared-skill-governance/references/activation-across-hosts.md",
+      "language": "en",
+      "query": "At which phases must ChatGPT Web re-plan after applying the current phase?"
+    },
+    {
+      "id": "telemetry-epoch-boundary",
+      "sourceRef": "skills/mssr-observability-maintenance/references/telemetry-safety.md",
+      "language": "en",
+      "query": "What event permits starting a new active telemetry epoch, and which four values must be recorded at that boundary?"
+    },
+    {
+      "id": "skill-stability-fixtures",
+      "sourceRef": "skills/skill-routing-maintainer/references/routing-contract-maintenance.md",
+      "language": "en",
+      "query": "Which fixtures or route evidence make a new or renamed skill stable?"
+    }
+  ],
+  "schemaVersion": 1
+}
