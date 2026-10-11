@@ -1639,3 +1639,29 @@ Closed in MSSR 0.2.67 plus Bridge 0.6.135 host adoption. Portable MSSR now class
 **Correction:** Compacted .mssr/PROJECT_STATE.md to 2,336 bytes, retaining current release/runtime and evaluation status, indexed owner-module links, package ownership, and machine-readable claims. Detailed evaluation history stays in indexed references and earlier exact state remains recoverable from Git history. A subsequent skill_bootstrap(stage=verify) loaded successfully.
 
 **Regression/follow-up:** Re-run Project Context Health after publication; keep the current release section within the manifest's 2,500-byte maximum and place completed history in selective owner modules. No routing semantics or code changed.
+
+## MSSR-054 — Cross-adapter trace checkpoint did not resolve the Bridge trace
+
+**Date/status:** 2026-10-11 · Open; host trace continuity not established.
+
+**Layer/owner:** MSSR host trace adapters and Bridge/Codex lifecycle integration.
+
+**Symptom and evidence:** Bridge routing and skill loading used trace
+`mssr-20261011121045-c38d8613-d58`. Calling the separate Codex-local
+`mssr_trace_record` with that explicit ID returned blocking
+`mssr-trace-missing`. Bridge's own recorder then persisted the checkpoint for
+the same ID. Its first request was rejected because `summary` exceeded the
+300-character schema limit; retrying with a shorter summary succeeded.
+
+**Cause:** No resuelta. The evidence shows that the Codex-local recorder did
+not resolve this Bridge-created trace; it does not establish whether the
+adapters intentionally own separate trace stores or continuity regressed.
+
+**Correction:** Recorded the bounded persistence checkpoint through the Bridge
+recorder after respecting its 300-character summary limit. No trace data or
+project work was lost, and no adapter code was changed.
+
+**Follow-up:** Reproduce a route/load/checkpoint sequence across the native
+MSSR and Bridge adapters with the same explicit trace ID. Confirm the intended
+host boundary, then add cross-adapter conformance coverage or document the
+required recorder. Keep checkpoint summaries within the declared schema limit.
