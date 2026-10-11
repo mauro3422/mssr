@@ -485,6 +485,58 @@
           "priority": 20
         }
       ]
+    },
+    {
+      "moduleId": "mssr-jev-librarian-integration-handoff",
+      "segments": [
+        {
+          "id": "current-handoff",
+          "sections": [
+            "## Repository snapshot and preservation",
+            "## Current next gates"
+          ],
+          "baseline": true
+        },
+        {
+          "id": "candidate-branch-lineage",
+          "sections": [
+            "## MSSR contract work"
+          ],
+          "terms": [
+            "candidate branch",
+            "package receipt",
+            "codex/jev-citation-evidence-pack",
+            "0.2.101"
+          ],
+          "priority": 20
+        },
+        {
+          "id": "historical-evaluation-gates",
+          "sections": [
+            "## Evaluation gates"
+          ],
+          "terms": [
+            "metadata and ontology runs",
+            "v1-v6",
+            "structure-recovery",
+            "production state 0.6.161"
+          ],
+          "priority": 20
+        },
+        {
+          "id": "pre-diagnostic-gates-snapshot",
+          "sections": [
+            "## Historical next gates snapshot — 2026-10-11"
+          ],
+          "terms": [
+            "two source clusters",
+            "pre-diagnostic snapshot",
+            "ADR 0007",
+            "before the trace diagnostic"
+          ],
+          "priority": 15
+        }
+      ]
     }
   ]
 }

@@ -185,7 +185,21 @@ The 2026-10-08 production state is Bridge 0.6.161 with MSSR 0.2.110, recorded in
 
 The user's current instruction explicitly authorizes live Jev calls for this MSSR work; the historical `START_JEV` token is not required for these tests. Credentials are retrieved from Windows Credential Manager under `TypeSafe:MSSR:JevLab` and are not recorded in receipts. This authorization covers bounded evaluation calls, not applying unverified judgments to canonical sources.
 
-## Next gates
+## Current next gates
+
+The current release, live Bridge identity, recent diagnostic and exploratory
+limits belong to `.mssr/PROJECT_STATE.md` and the linked run records. Continue
+with an independently owner-adjudicated, source-grouped evaluation that keeps
+retrieval and exact-fetch integrity separate from Jev choice/abstention,
+relation and contradiction quality, synthesis boundaries, and citation
+support. Treat related queries, facets, retries and multiple ranges from one
+source family as a single cluster. Do not calibrate Choice/Noul, change a
+threshold, enable automatic merge, or write canonical sources from exploratory
+smokes. Keep using explicit trace IDs for connected Bridge calls; investigate
+the dedicated-connector trace-attribution issue in Bridge's own repository
+after its unrelated changes are reconciled.
+
+## Historical next gates snapshot — 2026-10-11
 
 - **Product:** Canonical current state is MSSR 0.2.121 / Bridge 0.6.169, boot `adf97c06-a668-4ff9-a187-c12ab058bff2`; see `.mssr/PROJECT_STATE.md` for release and package receipts. Connected Librarian search, Jev Choice, exact fetch, and evidence-pack calls succeeded in the 2026-10-11 smoke via explicit Bridge wrappers. Direct dedicated connector calls did not carry the active trace in this chat; recording the issue in Bridge's `docs/INCIDENTS.md` remains pending because the `D:\Dev\bridge-mcp` tree contains unrelated changes and was left untouched. The local composition harness still blocks live mode until it can verify the connected runtime identity. Current registered Librarian tools expose search, Jev selection, exact fetch and verbatim evidence pack; the pack does not synthesize prose, and no dedicated paragraph-generation endpoint was found in this tool catalog.
 - **Evaluation:** Connected diagnostics now cover two source clusters: ADR 0007 trace ownership, and AGENT_PROTOCOL capability-needs/replanning guidance. The latter still does not state a formal failure policy for a required tool being unavailable. Within each source, linked calls are not independent. Exact fetch and verbatim packs passed; no owner-gold, calibration, or threshold change. Measure retrieval, exact fetch, compound coverage, choice/abstention, relations/contradictions, host synthesis and citation support separately.

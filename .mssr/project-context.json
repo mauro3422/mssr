@@ -1255,45 +1255,29 @@
       "kind": "state",
       "description": "Current Librarian integration status, branch preservation, benchmark boundaries, and next host gates.",
       "source": {
-        "path": ".mssr/knowledge/operations/jev-librarian-integration-handoff.md",
-        "sections": [
-          "## Repository snapshot and preservation",
-          "## MSSR contract work",
-          "## Evaluation gates",
-          "## Next gates"
-        ]
+        "path": ".mssr/knowledge/operations/jev-librarian-integration-handoff.md"
       },
       "topic": "operations",
       "area": "semantic-evidence",
-      "stages": [],
+      "stages": [
+        "resume"
+      ],
       "domains": [
         "coding",
-        "skill-system",
-        "agent-orchestration",
+        "git",
         "filesystem"
       ],
       "actions": [
-        "review",
-        "verify",
-        "maintain",
-        "recover",
-        "version",
-        "publish"
+        "recover"
       ],
       "artifacts": [
-        "project",
         "repository",
-        "document",
-        "mcp"
+        "document"
       ],
       "needs": [
-        "version-control",
-        "integrity-verification",
         "history-recovery"
       ],
       "signals": [
-        "conflicting-evidence",
-        "uncertainty",
         "recovery-needed"
       ],
       "required": false,

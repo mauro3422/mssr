@@ -2,11 +2,13 @@
 
 ## Current release
 
-MSSR 0.2.121 is live in Bridge 0.6.169 (boot `adf97c06-a668-4ff9-a187-c12ab058bff2`, 188 tools, tunnel ready, no restart pending). The release package SHA-256 is `181bf914da4f5767c457755990798169f6d539f56886b420bd8410951b5d8971`; runtime adoption record: `2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc`. Search/selection/fetch/evidence-pack parity matched once; provider identity and replay receipts remain unverified. See the [Bridge smoke report](knowledge/reference/jev-mssr-live-bridge-smoke-20261011-bridge-06169.md).
+MSSR 0.2.121 remains live in Bridge 0.6.169 (boot `adf97c06-a668-4ff9-a187-c12ab058bff2`, 188 tools, tunnel ready, no restart pending). Its package SHA-256 is `181bf914da4f5767c457755990798169f6d539f56886b420bd8410951b5d8971`; runtime adoption record: `2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc`. Source package 0.2.122 passed `npm run verify` and `npm run release:gate` but is not adopted by Bridge. Its tarball is 1,149,810 bytes, SHA-256 `6785a2471492cb967446b70b2f9f5b3df5fa5e9edb9aec384c615b13682b053d`, with receipt at [0.2.122 release receipt](runtime/releases/0.2.122.json). Search/selection/fetch/evidence-pack parity matched once; provider identity and replay receipts remain unverified. See the [Bridge smoke report](knowledge/reference/jev-mssr-live-bridge-smoke-20261011-bridge-06169.md).
 
 ## Current Jev/Librarian evaluation
 
 Jev/Librarian remains exploratory: no owner-gold, uncalibrated scores, and no threshold changes. Four new blind-labeled pairs across three docs produced two Jev `supports` (0.71/0.59) and two `unresolved` (0.54/0.66); two previews stayed abstain/review with no apply permission. Cases are correlated; blind Luna labels are not gold. A host model alias caused HTTP 400; provider ID `jev-1.13.0` succeeded. A formal required-tool-unavailable policy remains unsourced. See the [run ledger](../experiments/jev-mssr-live/README.md), [current integration handoff](knowledge/operations/jev-librarian-integration-handoff.md), [latest relation batch](../experiments/jev-mssr-live/runs/mssr-librarian-jev-relation-blind-batch-20261011T1351Z-v1/REPORT.md), and [confidence history](knowledge/reference/mssr-jev-confidence-benchmark-history.md).
+
+A post-hoc connected Bridge 0.6.169 diagnostic on ADR 0008 confirms explicit trace attribution across Librarian search, Jev selection, exact fetch, and evidence packing. A narrow two-facet query fetched a complete exact range after a linked broad query returned a partial range, despite the broad query's higher raw score. This is one source cluster, not a benchmark or calibration sample; see the [trace diagnostic](../experiments/jev-mssr-live/diagnostics/adr0008-trace-attribution-posthoc-20261011.md). The integration handoff now keeps current gates separate from historical branch/evaluation notes; source evidence remains in place, with the older next-gates snapshot relabeled and excluded from current context.
 
 ## Core skill package state
 
@@ -18,7 +20,7 @@ Core package state: five first-party MSSR operational skill roots. Semantic evid
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.121 -->
+<!-- mssr-version:mssr.source=0.2.122 -->
 <!-- mssr-version:bridge.live=0.6.169 -->
 
 <!-- mssr-owner:semantic.consistency=mssr -->
