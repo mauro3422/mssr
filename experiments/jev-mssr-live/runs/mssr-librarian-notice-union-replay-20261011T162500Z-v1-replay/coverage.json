@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "metric": "line-span-coverage-only",
+  "semanticCoverage": false,
+  "ownerGold": false,
+  "benchmark": false,
+  "facets": [
+    {
+      "facetId": "transition-threshold",
+      "status": "selected",
+      "metric": "line-span-coverage-only",
+      "semanticCoverage": false,
+      "ownerGold": false,
+      "expectedLineCount": 1,
+      "coveredLineCount": 1,
+      "lineSpanCoverage": 1,
+      "spans": [
+        {
+          "start": 22,
+          "end": 22,
+          "covered": true,
+          "coveredStart": 22,
+          "coveredEnd": 22
+        }
+      ]
+    },
+    {
+      "facetId": "notice-authority",
+      "status": "selected",
+      "metric": "line-span-coverage-only",
+      "semanticCoverage": false,
+      "ownerGold": false,
+      "expectedLineCount": 1,
+      "coveredLineCount": 1,
+      "lineSpanCoverage": 1,
+      "spans": [
+        {
+          "start": 24,
+          "end": 24,
+          "covered": true,
+          "coveredStart": 24,
+          "coveredEnd": 24
+        }
+      ]
+    }
+  ]
+}

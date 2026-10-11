@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "status": "completed",
+  "mode": "provider-off-replay",
+  "benchmark": false,
+  "providerCalls": 0,
+  "unionParagraphCount": 2,
+  "coverageMetric": "line-span-coverage-only",
+  "semanticCoverage": false,
+  "ownerGold": false,
+  "confidenceCalibration": "none"
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "mssrCommit": "ae44aea05b552ea8f2b1a5ab6c3b55e0edcdae2e",
+  "bridgeCommit": "2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc",
+  "bridgeWorktree": "D:/Dev/bridge-mcp-jev-cap-study",
+  "bridgeWorktreeClean": true,
+  "mssrBuildReceipt": "D:/Dev/mssr/dist/.build-receipt.json",
+  "mssrPackageVersion": "0.2.124",
+  "bridgePackageVersion": "0.6.169",
+  "providerModel": "jev-1.13.0",
+  "fileSha256": {
+    "D:/Dev/mssr/experiments/jev-mssr-live/runs/mssr-librarian-notice-union-replay-20261011T162500Z-v1/run-study.mjs": "55a0ed5ccd1e58ad8e546dcda3dd668e95f3f40967f5495b1804adf06b179334",
+    "D:/Dev/mssr/experiments/jev-mssr-live/runs/mssr-librarian-notice-union-replay-20261011T162500Z-v1/plan.json": "a6eae582bcf5652d3bac639062fdf87923de276b2d2dbf85aaf8edabc876a8b7",
+    "D:/Dev/mssr/experiments/jev-mssr-live/runs/mssr-librarian-notice-union-replay-20261011T162500Z-v1/inputs/sources/notice.md": "3443c44356a7d3ebd6d542679bde62631ee04b32948a591a9d8526cd3f8f66fb",
+    "D:/Dev/mssr/experiments/jev-mssr-live/runs/mssr-librarian-notice-union-replay-20261011T162500Z-v1/adjudication/expected-rubric.json": "90045cb260ac8a005c073d2a1778ad1f21e4298a5f577d942edbe19d1726f26b",
+    "D:/Dev/mssr/dist/librarian-jev-selection.js": "2c293ab74dad3b6845f04258166e108a16e034d6286fb18372f460c09c0fbc75",
+    "D:/Dev/mssr/dist/librarian-retrieval.js": "9c05aa61d93781da33d1357bc6b29e1b798f9a96ec9299d8da5f373c3a94fd10",
+    "D:/Dev/mssr/dist/librarian-evidence-pack.js": "937d6d1072d54f77dbba00555877a1c8b6da0ee5549c50f2b66de8c653923e87",
+    "D:/Dev/mssr/dist/.build-receipt.json": "34db5408494aec04f2afdda2979f5140199de41a14de196eebadf6dd6c53aee9",
+    "D:/Dev/bridge-mcp-jev-cap-study/dist/tools/mssr-semantic-evidence-tools.js": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa",
+    "D:/Dev/bridge-mcp-jev-cap-study/src/tools/mssr-semantic-evidence-tools.ts": "622269d203652cc9e1e29dfa3856e612bda9c7a2d2c37c18d27884ce13740289"
+  }
+}

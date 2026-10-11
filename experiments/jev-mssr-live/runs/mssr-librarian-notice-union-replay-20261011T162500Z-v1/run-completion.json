@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-notice-union-replay-20261011T162500Z-v1",
+  "status": "complete",
+  "manifestSha256": "e97f8113f92a4f99c0a3c49045faa249e3d7908e29c475dca78a63b1209fe66e",
+  "expectedRequests": 2,
+  "attemptedRequests": 2,
+  "providerCalls": 2,
+  "productionRuntimeTouched": false,
+  "finishedAt": "2026-10-11T16:21:37.676Z"
+}

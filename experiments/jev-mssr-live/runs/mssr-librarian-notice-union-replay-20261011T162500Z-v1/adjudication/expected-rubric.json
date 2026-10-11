@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "ownerGold": false,
+  "facets": [
+    { "facetId": "transition-threshold", "expectedLines": [22, 22], "requiredFacts": ["attention threshold is review", "entry/change/escalation/de-escalation/exit of actionable threshold creates advisory candidate"] },
+    { "facetId": "notice-authority", "expectedLines": [24, 24], "requiredFacts": ["notice may recommend a host action", "notice never authorizes or executes it automatically"] }
+  ]
+}

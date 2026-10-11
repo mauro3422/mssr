@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen-pre-call",
+  "runId": "mssr-librarian-notice-union-replay-20261011T162500Z-v1",
+  "createdAt": "2026-10-11T16:21:26.712Z",
+  "mode": "real-isolated-Jev-selection-plus-provider-off-composition-replay",
+  "sourceClusters": 1,
+  "provider": "typesafe-jev via isolated Bridge adapter",
+  "providerModel": "jev-1.13.0",
+  "bridgeCommit": "2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc",
+  "bridgePackageVersion": "0.6.169",
+  "mssrCommit": "ae44aea05b552ea8f2b1a5ab6c3b55e0edcdae2e",
+  "mssrPackageVersion": "0.2.124",
+  "execution": "isolated Node provider call; then strict provider-off replay through scripts/run-composed-librarian-experiment.mjs",
+  "productionRuntimeTouched": false,
+  "providerCallsExpected": 2,
+  "plan": "plan.json",
+  "sourceSnapshot": "inputs/sources/notice.md",
+  "receiptPath": "facet-receipts.jsonl",
+  "composedReplayOutput": "mssr-librarian-notice-union-replay-20261011T162500Z-v1-replay",
+  "owner": "normalized local MSSR repository root",
+  "ownerGold": false,
+  "limitations": [
+    "One previously exposed ADR source cluster only.",
+    "Facet queries are manually authored; automatic facet planning is not tested.",
+    "Composed harness coverage is line-span overlap only, explicitly not semantic coverage.",
+    "The evidence pack is verbatim source evidence and does not synthesize prose.",
+    "Jev scores remain uncalibrated; production Bridge process/catalog/runtime are untouched."
+  ]
+}

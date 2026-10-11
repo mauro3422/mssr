@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "classification": {
+    "kind": "exploratory-development-diagnostic",
+    "benchmark": false,
+    "holdoutUsed": false
+  },
+  "corpus": {
+    "priorExposure": "known-exposed",
+    "priorExposureNote": "ADR 0002 has appeared in earlier MSSR experiments; this run checks strict receipt replay and exact evidence-pack union, not holdout quality.",
+    "sources": [
+      {
+        "sourceRef": "docs/decisions/0002-operational-notice-plane.md",
+        "sha256": "3443c44356a7d3ebd6d542679bde62631ee04b32948a591a9d8526cd3f8f66fb"
+      }
+    ]
+  },
+  "provider": {
+    "model": "jev-1.13.0"
+  },
+  "facets": [
+    {
+      "id": "transition-threshold",
+      "sourceRef": "docs/decisions/0002-operational-notice-plane.md",
+      "query": "Which evidence transitions create an advisory transition candidate, and what attention threshold is used?",
+      "expectedLines": [
+        {
+          "start": 22,
+          "end": 22
+        }
+      ]
+    },
+    {
+      "id": "notice-authority",
+      "sourceRef": "docs/decisions/0002-operational-notice-plane.md",
+      "query": "Does an operational notice authorize or execute its recommended host action automatically?",
+      "expectedLines": [
+        {
+          "start": 24,
+          "end": 24
+        }
+      ]
+    }
+  ]
+}
