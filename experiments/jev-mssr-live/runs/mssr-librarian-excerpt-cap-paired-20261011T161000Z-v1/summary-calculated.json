@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 2,
+  "schemaProfile": "paired-excerpt-cap-v1",
+  "reportType": "mechanically-derived paired diagnostic; no semantic adjudication",
+  "runId": "mssr-librarian-excerpt-cap-paired-20261011T161000Z-v1",
+  "completionStatus": "complete",
+  "frozenManifestSha256": null,
+  "checksumFile": {
+    "present": true,
+    "verified": 17,
+    "requiredFiles": [
+      "manifest.json",
+      "run-completion.json",
+      "inputs/cases.json",
+      "records.jsonl"
+    ]
+  },
+  "preRegistered": true,
+  "labelsPreparedBeforeProviderCalls": true,
+  "ownerGold": false,
+  "independentVariable": "MSSR_LIBRARIAN_JEV_SELECTION_LIMITS.maxExcerptChars only",
+  "arms": [
+    260,
+    780
+  ],
+  "pairedCases": 5,
+  "expectedPairs": 5,
+  "completedPairs": 5,
+  "expectedProviderCalls": 10,
+  "attemptedRequests": 10,
+  "selected": 9,
+  "abstained": 1,
+  "failedRequests": 0,
+  "sourceDocumentClusters": 5,
+  "sourceRefs": [
+    "docs/HANDOFF_MSSR_LONGITUDINAL_ATTENTION_2026-09-03.md",
+    "docs/HANDOFF_REPOSITORY_RECONCILIATION_2026-09-17.md",
+    "docs/LEARNING_LOOP.md",
+    "docs/PROJECT_CONTEXT.md",
+    "docs/decisions/0002-operational-notice-plane.md"
+  ],
+  "clusterInterpretation": "Distinct sourceRef grouping only; it does not establish independent statistical sampling.",
+  "exactFetchesWithFingerprint": 9,
+  "providerConfidenceCapture": {
+    "recorded": 10,
+    "missing": 0
+  },
+  "evidenceSufficiencyCapture": {
+    "recorded": 10,
+    "missing": 0
+  },
+  "tokenUsage": {
+    "input": 49467,
+    "output": 3027
+  },
+  "calibrationClaim": false,
+  "labelMetrics": null,
+  "records": [
+    {
+      "caseId": "notice-transition",
+      "sourceRef": "docs/decisions/0002-operational-notice-plane.md",
+      "cap": 780,
+      "status": "selected",
+      "selectedRangeId": "heading-3",
+      "selectedTitle": "Decision",
+      "rawChoiceConfidence": 0.96,
+      "evidenceSufficiency": 0.71,
+      "exactFetchPassed": true,
+      "elapsedMs": 845
+    },
+    {
+      "caseId": "notice-transition",
+      "sourceRef": "docs/decisions/0002-operational-notice-plane.md",
+      "cap": 260,
+      "status": "abstained",
+      "selectedRangeId": null,
+      "selectedTitle": null,
+      "rawChoiceConfidence": 0.83,
+      "evidenceSufficiency": 0.14,
+      "exactFetchPassed": false,
+      "elapsedMs": 642
+    },
+    {
+      "caseId": "safe-update-transaction",
+      "sourceRef": "docs/PROJECT_CONTEXT.md",
+      "cap": 260,
+      "status": "selected",
+      "selectedRangeId": "heading-16",
+      "selectedTitle": "Safe update contract",
+      "rawChoiceConfidence": 0.68,
+      "evidenceSufficiency": 0.37,
+      "exactFetchPassed": true,
+      "elapsedMs": 707
+    },
+    {
+      "caseId": "safe-update-transaction",
+      "sourceRef": "docs/PROJECT_CONTEXT.md",
+      "cap": 780,
+      "status": "selected",
+      "selectedRangeId": "heading-16",
+      "selectedTitle": "Safe update contract",
+      "rawChoiceConfidence": 0.96,
+      "evidenceSufficiency": 0.66,
+      "exactFetchPassed": true,
+      "elapsedMs": 651
+    },
+    {
+      "caseId": "optional-wait-reconsideration",
+      "sourceRef": "docs/HANDOFF_MSSR_LONGITUDINAL_ATTENTION_2026-09-03.md",
+      "cap": 260,
+      "status": "selected",
+      "selectedRangeId": "heading-64",
+      "selectedTitle": "vNext Lite target",
+      "rawChoiceConfidence": 0.4,
+      "evidenceSufficiency": 0.64,
+      "exactFetchPassed": true,
+      "elapsedMs": 777
+    },
+    {
+      "caseId": "optional-wait-reconsideration",
+      "sourceRef": "docs/HANDOFF_MSSR_LONGITUDINAL_ATTENTION_2026-09-03.md",
+      "cap": 780,
+      "status": "selected",
+      "selectedRangeId": "heading-64",
+      "selectedTitle": "vNext Lite target",
+      "rawChoiceConfidence": 0.99,
+      "evidenceSufficiency": 0.92,
+      "exactFetchPassed": true,
+      "elapsedMs": 821
+    },
+    {
+      "caseId": "superseded-worktree-evidence",
+      "sourceRef": "docs/HANDOFF_REPOSITORY_RECONCILIATION_2026-09-17.md",
+      "cap": 780,
+      "status": "selected",
+      "selectedRangeId": "heading-4",
+      "selectedTitle": "Old Codex worktree",
+      "rawChoiceConfidence": 1,
+      "evidenceSufficiency": 0.9,
+      "exactFetchPassed": true,
+      "elapsedMs": 668
+    },
+    {
+      "caseId": "superseded-worktree-evidence",
+      "sourceRef": "docs/HANDOFF_REPOSITORY_RECONCILIATION_2026-09-17.md",
+      "cap": 260,
+      "status": "selected",
+      "selectedRangeId": "heading-4",
+      "selectedTitle": "Old Codex worktree",
+      "rawChoiceConfidence": 0.92,
+      "evidenceSufficiency": 0.8,
+      "exactFetchPassed": true,
+      "elapsedMs": 714
+    },
+    {
+      "caseId": "learning-rate-n1",
+      "sourceRef": "docs/LEARNING_LOOP.md",
+      "cap": 780,
+      "status": "selected",
+      "selectedRangeId": "heading-4",
+      "selectedTitle": "What the current numbers mean",
+      "rawChoiceConfidence": 1,
+      "evidenceSufficiency": 0.91,
+      "exactFetchPassed": true,
+      "elapsedMs": 693
+    },
+    {
+      "caseId": "learning-rate-n1",
+      "sourceRef": "docs/LEARNING_LOOP.md",
+      "cap": 260,
+      "status": "selected",
+      "selectedRangeId": "heading-4",
+      "selectedTitle": "What the current numbers mean",
+      "rawChoiceConfidence": 0.99,
+      "evidenceSufficiency": 0.84,
+      "exactFetchPassed": true,
+      "elapsedMs": 691
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "reportType": "mechanically-derived run summary; no semantic adjudication",
+  "runId": "mssr-librarian-cross-family-fresh-smoke-20261011T181217Z-v1",
+  "parentRunId": null,
+  "frozenManifestSha256": "c137b88c28b566fc23f5976fa6574168f038bf61867be9e3778294cc94f45cbf",
+  "completionStatus": "complete",
+  "sourceDocumentClusters": 3,
+  "sourceRefs": [
+    "skills/mssr-observability-maintenance/references/telemetry-safety.md",
+    "skills/shared-skill-governance/references/activation-across-hosts.md",
+    "skills/skill-routing-maintainer/references/routing-contract-maintenance.md"
+  ],
+  "expectedRequests": 3,
+  "attemptedRequests": 3,
+  "successfulRequests": 3,
+  "failedRequests": 0,
+  "selected": 3,
+  "abstained": 0,
+  "exactFetchesWithFingerprint": 3,
+  "evidencePacksBuilt": 3,
+  "evidenceSufficiencyCapture": {
+    "recorded": 0,
+    "missingFromRecords": 3,
+    "note": "Some records do not persist MSSR evidenceSufficiency (sometimes mislabeled Noul); do not interpret null as provider abstention."
+  },
+  "tokenUsage": {
+    "input": 3612,
+    "output": 301
+  },
+  "firstRequestStartedAt": "2026-10-11T18:14:29.944Z",
+  "lastRequestCompletedAt": "2026-10-11T18:14:32.408Z",
+  "manifestCreatedAt": "2026-10-11T18:14:02Z",
+  "createdAtDeltaMs": 27944,
+  "timestampWarning": null,
+  "independentUnit": "three distinct source-document clusters, all authored in one repository",
+  "calibrationClaim": false,
+  "labelMetrics": {
+    "reportType": "strict normalized heading match; not semantic adjudication or calibration",
+    "labelSource": "source-derived-author plus blind Luna model-assisted review",
+    "adjudication": "blind model-assisted; not owner-gold",
+    "normalizedExactHeadingMatches": 3,
+    "exactHeadingDenominator": 3,
+    "searchTargetFound": 3,
+    "searchTargetDenominator": 3,
+    "records": [
+      {
+        "caseId": "web-replan-phases",
+        "sourceRef": "skills/shared-skill-governance/references/activation-across-hosts.md",
+        "expectedHeading": "# Activation across hosts",
+        "observedHeading": "Activation across hosts",
+        "normalizedExactHeadingMatch": true,
+        "searchTargetFound": true,
+        "exactFetchPassed": true
+      },
+      {
+        "caseId": "telemetry-epoch-boundary",
+        "sourceRef": "skills/mssr-observability-maintenance/references/telemetry-safety.md",
+        "expectedHeading": "# Telemetry safety",
+        "observedHeading": "Telemetry safety",
+        "normalizedExactHeadingMatch": true,
+        "searchTargetFound": true,
+        "exactFetchPassed": true
+      },
+      {
+        "caseId": "skill-stability-fixtures",
+        "sourceRef": "skills/skill-routing-maintainer/references/routing-contract-maintenance.md",
+        "expectedHeading": "# Routing contract maintenance",
+        "observedHeading": "Routing contract maintenance",
+        "normalizedExactHeadingMatch": true,
+        "searchTargetFound": true,
+        "exactFetchPassed": true
+      }
+    ]
+  },
+  "records": [
+    {
+      "caseId": "web-replan-phases",
+      "sourceRef": "skills/shared-skill-governance/references/activation-across-hosts.md",
+      "status": "complete",
+      "searchResultCount": 3,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-3",
+      "rawChoiceConfidence": 0.48,
+      "evidenceSufficiency": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 966.394
+    },
+    {
+      "caseId": "telemetry-epoch-boundary",
+      "sourceRef": "skills/mssr-observability-maintenance/references/telemetry-safety.md",
+      "status": "complete",
+      "searchResultCount": 4,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-3",
+      "rawChoiceConfidence": 0.95,
+      "evidenceSufficiency": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 740.6913
+    },
+    {
+      "caseId": "skill-stability-fixtures",
+      "sourceRef": "skills/skill-routing-maintainer/references/routing-contract-maintenance.md",
+      "status": "complete",
+      "searchResultCount": 9,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-2",
+      "rawChoiceConfidence": 0.58,
+      "evidenceSufficiency": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 754.6321
+    }
+  ]
+}

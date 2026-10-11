@@ -1,16 +1,29 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
+  "schemaProfile": "generic-librarian-run-v1",
   "reportType": "mechanically-derived run summary; no semantic adjudication",
   "runId": "mssr-librarian-cross-family-fresh-smoke-20261011T181217Z-v1",
   "parentRunId": null,
   "frozenManifestSha256": "c137b88c28b566fc23f5976fa6574168f038bf61867be9e3778294cc94f45cbf",
   "completionStatus": "complete",
+  "checksumFile": {
+    "present": true,
+    "verified": 11,
+    "requiredFiles": [
+      "manifest.json",
+      "run-completion.json",
+      "inputs/cases.json",
+      "records.jsonl",
+      "inputs/labels.json"
+    ]
+  },
   "sourceDocumentClusters": 3,
   "sourceRefs": [
     "skills/mssr-observability-maintenance/references/telemetry-safety.md",
     "skills/shared-skill-governance/references/activation-across-hosts.md",
     "skills/skill-routing-maintainer/references/routing-contract-maintenance.md"
   ],
+  "clusterInterpretation": "Distinct sourceRef grouping only; it does not establish independent statistical sampling.",
   "expectedRequests": 3,
   "attemptedRequests": 3,
   "successfulRequests": 3,
@@ -22,7 +35,12 @@
   "evidenceSufficiencyCapture": {
     "recorded": 0,
     "missingFromRecords": 3,
-    "note": "Some records do not persist MSSR evidenceSufficiency (sometimes mislabeled Noul); do not interpret null as provider abstention."
+    "note": "Only the explicit jev.evidenceSufficiency field is counted; raw Noul and other aliases are reported separately."
+  },
+  "rawNoulCapture": {
+    "recorded": 0,
+    "missingFromRecords": 3,
+    "note": "Provider Noul is descriptive and is not treated as an evidence-sufficiency alias."
   },
   "tokenUsage": {
     "input": 3612,
@@ -33,7 +51,9 @@
   "manifestCreatedAt": "2026-10-11T18:14:02Z",
   "createdAtDeltaMs": 27944,
   "timestampWarning": null,
-  "independentUnit": "three distinct source-document clusters, all authored in one repository",
+  "declaredIndependentUnitUnverified": "three distinct source-document clusters, all authored in one repository",
+  "independentUnitDeclarationInterpretation": "Manifest text is retained for audit; it is not verified against observed sourceRef clusters.",
+  "independentUnit": "source-document cluster (descriptive grouping only)",
   "calibrationClaim": false,
   "labelMetrics": {
     "reportType": "strict normalized heading match; not semantic adjudication or calibration",
@@ -83,6 +103,7 @@
       "selectedRangeId": "block-3",
       "rawChoiceConfidence": 0.48,
       "evidenceSufficiency": null,
+      "providerNoul": null,
       "exactFetchPassed": true,
       "evidencePackBuilt": true,
       "elapsedMs": 966.394
@@ -96,6 +117,7 @@
       "selectedRangeId": "block-3",
       "rawChoiceConfidence": 0.95,
       "evidenceSufficiency": null,
+      "providerNoul": null,
       "exactFetchPassed": true,
       "evidencePackBuilt": true,
       "elapsedMs": 740.6913
@@ -109,6 +131,7 @@
       "selectedRangeId": "block-2",
       "rawChoiceConfidence": 0.58,
       "evidenceSufficiency": null,
+      "providerNoul": null,
       "exactFetchPassed": true,
       "evidencePackBuilt": true,
       "elapsedMs": 754.6321
