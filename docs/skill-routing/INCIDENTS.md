@@ -1625,3 +1625,17 @@ Closed in MSSR 0.2.67 plus Bridge 0.6.135 host adoption. Portable MSSR now class
 **Correction:** No runtime threshold, code or retention policy was changed. The follow-up inspection used a bounded active-scope recent query and avoided another all-scope aggregate.
 
 **Follow-up:** Reproduce with a narrow active-scope query and exact route records, compare phase durations across a few traces, then fix the smallest measured owner. Do not raise latency thresholds or infer a route regression from this one run.
+
+## MSSR-053 — Project State core exceeded the selective-load byte budget
+
+**Date/status:** 2026-10-11 · Resolved in source; follow-up health review remains.
+
+**Layer/owner:** MSSR project knowledge and selective project-context loading.
+
+**Symptom and evidence:** After a benchmark-status update, both skill_bootstrap(stage=verify) and skill_route_plan(stage=verify) failed with “Project-context selection exceeds 2500 bytes: .mssr/PROJECT_STATE.md”. The read-only modularization plan measured the indexed mssr-current-release section at 2,546/2,500 bytes and the whole Project State authority at 18,000 bytes.
+
+**Cause:** The mutable current-state authority had accumulated completed historical snapshots, and its always-loaded release section exceeded the selector's declared budget.
+
+**Correction:** Compacted .mssr/PROJECT_STATE.md to 2,336 bytes, retaining current release/runtime and evaluation status, indexed owner-module links, package ownership, and machine-readable claims. Detailed evaluation history stays in indexed references and earlier exact state remains recoverable from Git history. A subsequent skill_bootstrap(stage=verify) loaded successfully.
+
+**Regression/follow-up:** Re-run Project Context Health after publication; keep the current release section within the manifest's 2,500-byte maximum and place completed history in selective owner modules. No routing semantics or code changed.

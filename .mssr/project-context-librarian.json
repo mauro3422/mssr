@@ -64,7 +64,7 @@
         "MSSR project state",
         "Core skill package state"
       ],
-      "expectedFingerprint": "534388abe5c4d0392e215add388bac3a6bd0a1261bc3ed9c17d16ebd77961ca3",
+      "expectedFingerprint": "66c76973bc206278db0e1b4a9f13d1150766ae83a868b405a3c3f577b4ae1f73",
       "selectors": {
         "domains": [
           "skill-system"

@@ -25,19 +25,3 @@ sections selected the parent containing both. These source-derived cases are
 not owner-gold or calibration. Keep primary-first until a grouped owner-labeled
 comparison supports change; test host language ordering and non-overlapping
 ranges, and track the dedicated connector schema drift separately.
-
-## 2026-10-11 linked exact-range coverage diagnostics
-
-The independent-source smoke (3 linked calls across 3 source documents) and
-two subsequent query-split packets (6 then 4 calls over the same 2 documents)
-are preserved in the [live experiment ledger](../../../experiments/jev-mssr-live/README.md).
-In the latest four-call packet, search target, exact heading, fingerprinted
-fetch, and evidence-pack construction each passed 4/4. Blind review of literal
-fetched text found 3 complete answers and one partial answer: the trace/route
-query selected the right lifecycle rule but did not include the separate
-ambiguous-ownership rule. Thus heading selection/tool integrity are not
-semantic completeness. These are linked, source-derived diagnostics, not
-independent samples, owner-gold, a quality estimate, or confidence calibration.
-Raw Choice values varied from 0.42 to 0.92 across only four linked cases and
-remain descriptive. The follow-up manifest's inherited `createdAt` is corrected
-by a separate erratum; the frozen manifest is unchanged.
