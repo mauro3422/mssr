@@ -4,11 +4,33 @@ import { readFile } from "node:fs/promises";
 import {
   auditMssrLearningDataset,
   calibrateMssrLearningPredictions,
+  createMssrLearningDigest,
   evaluateMssrLearningHoldout,
   evaluateMssrLearningObserveOnly,
   replayMssrLearningDecisions,
   shadowMssrLearningDecisions,
 } from "../dist/index.js";
+
+const contextSelection = (index) => ({
+  scope: index % 2 === 0 ? "skill" : "project",
+  owner: `owner-${index}`,
+  module: `module-${index}`,
+  selected: index % 3 === 0,
+  reasonCode: index % 3 === 0 ? "selected" : "budget-exceeded",
+});
+const digestBase = {
+  semanticSignature: "stage=implement|d=coding|a=debug|r=code|n=unit-tests|s=error-observed",
+  finalStage: "implement",
+  contextSelections: Array.from({ length: 102 }, (_, index) => contextSelection(index)),
+  outcome: { status: "success" },
+};
+assert.equal(createMssrLearningDigest(digestBase).contextSelections.length, 102,
+  "learning digests must retain all observed context selections above the former 96-item limit");
+assert.throws(() => createMssrLearningDigest({
+  ...digestBase,
+  contextSelections: Array.from({ length: 129 }, (_, index) => contextSelection(index)),
+}), /Array must contain at most 128 element\(s\)/,
+"learning digests must fail closed above the explicit 128-item bound");
 
 const signature = "stage=verify|d=skill-system|a=analyze,verify|r=code|n=integrity-verification|s=repeated-friction";
 

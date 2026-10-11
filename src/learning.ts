@@ -61,7 +61,7 @@ export const mssrLearningDigestSchema = z.object({
   loadedSkills: z.array(boundedName).max(48).default([]),
   skillDecisions: z.array(mssrSkillDecisionSchema).max(48).default([]),
   skillTransitions: z.array(mssrLearningSkillTransitionSchema).max(64).default([]),
-  contextSelections: z.array(mssrLearningContextSelectionSchema).max(96).default([]),
+  contextSelections: z.array(mssrLearningContextSelectionSchema).max(128).default([]),
   findings: z.array(mssrLearningFindingSchema).max(12).default([]),
   outcome: z.object({
     status: z.enum(MSSR_CHECKPOINT_STATUSES),

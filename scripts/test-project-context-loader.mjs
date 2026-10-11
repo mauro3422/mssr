@@ -181,8 +181,8 @@ try {
   assert.match(runHistory.content, /What the MSSR runs establish/);
   assert.match(runHistory.content, /labels were not independently\s+adjudicated/i);
   assert.doesNotMatch(runHistory.content, /## Confidence and merge policy/);
-  assert.match(connectedDiagnostics.content, /answerable compound question/i);
-  assert.match(connectedDiagnostics.content, /not owner-gold, independent evaluation or\s+calibration/i);
+  assert.match(connectedDiagnostics.content, /answer-complete/i);
+  assert.match(connectedDiagnostics.content, /not owner-gold, reliability estimates,/i);
   assert.match(evaluationProtocol.content, /Next MSSR evaluation/);
   assert.match(selectorReleaseHistory.content, /35\/52/);
   assert.match(selectorReleaseHistory.content, /uncalibrated/i);

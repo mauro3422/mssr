@@ -651,7 +651,7 @@
       ],
       "required": false,
       "priority": 100,
-      "maxChars": 3500
+      "maxChars": 4000
     },
     {
       "id": "mssr-jev-public-benchmark-evidence",

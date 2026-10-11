@@ -83,7 +83,7 @@ Core package state: five first-party MSSR operational skill roots. Semantic evid
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.126 -->
+<!-- mssr-version:mssr.source=0.2.127 -->
 <!-- mssr-version:bridge.live=0.6.170 -->
 
 <!-- mssr-owner:semantic.consistency=mssr -->
@@ -93,6 +93,8 @@ Core package state: five first-party MSSR operational skill roots. Semantic evid
 
 **Latest source-new Jev diagnostic (2026-10-11):** Active Bridge .170 / MSSR .121 selected and exact-fetched the frozen Acceptance matrix heading from a source absent in recent ledger entries 23–27. Choice .63 and evidence sufficiency .43 remain uncalibrated. Blind review marked Partial despite all nine checklist facets being present, because the matrix does not explain each check; preserve answer-depth ambiguity. One exploratory source cluster only, no holdout/owner-gold/reliability claim and no adoption decision. See [run ledger entry 28](../experiments/jev-mssr-live/README.md) and [report](../experiments/jev-mssr-live/runs/mssr-librarian-event-trigger-acceptance-live-20261011T192430Z-v1/REPORT.md).
 
+**Learning digest overflow correction (2026-10-11):** MSSR 0.2.127 raises the strict context-selection bound from 96 to 128 after a closed real Jev trace accumulated 102 unique skill/project selections and its digest failed validation. The source regression preserves all 102 and rejects 129; there is no truncation. This fixes the package contract only. Bridge 0.6.170 still packages MSSR .121 until an isolated host release is verified and adopted; retrying the failed trace outcome remains a recovery gate.
+
 ## Project knowledge review
 
-This delivery updated PROJECT_STATE for the verified .170 runtime and run 28. PROJECT_CONTEXT and PROJECT_MEMORY were reviewed; this diagnostic adds no stable architecture or decision, so both are `reviewed-none`. Health remains advisory `review`: 49 indexed modules and the existing `mssr-jev-connected-diagnostics-20261011` module is 3,670/3,500 bytes; PROJECT_MEMORY is 30,224 bytes and approaching monolithic context. Next maintenance gate is a semantic module-grouping/split review; no automatic move or rewrite was applied.
+This delivery updated PROJECT_STATE for the verified .170 runtime and run 28. The `mssr-jev-connected-diagnostics-20261011` module budget is now 4,000 for its measured 3,670-character content, so recent diagnostics remain loadable without dropping evidence. PROJECT_CONTEXT was updated; PROJECT_MEMORY remains `reviewed-none` for this release. Health remains advisory `review`: 49 indexed modules and PROJECT_MEMORY is 30,224 bytes and approaching monolithic context. Next maintenance gate is a semantic module-grouping/split review; no automatic move or rewrite was applied.
