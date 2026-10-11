@@ -240,22 +240,41 @@ const scored = records.map((record) => {
   const label = labelByCase.get(record.caseId);
   assert.ok(label, "missing label " + record.caseId);
   const selected = record.jev?.selected;
-  const expectedHeading = normalizeHeading(label.expectedHeading);
-  const matchesExpectedRange = (handle) => !Number.isInteger(label.expectedStartLine)
-    || (handle?.startLine === label.expectedStartLine && handle?.endLine === label.expectedEndLine);
-  const matchesExpectedHeading = (item) => Boolean(expectedHeading && (
-    normalizeHeading(item?.title) === expectedHeading
-      || (Array.isArray(item?.headingPath) && item.headingPath.some((part) => normalizeHeading(part) === expectedHeading))));
-  const targetInSearchTop100 = Boolean(record.search?.results?.some((item) =>
-    matchesExpectedHeading(item) && matchesExpectedRange(item.handle)));
+  const acceptedRanges = Array.isArray(label.acceptableRanges) && label.acceptableRanges.length > 0
+    ? label.acceptableRanges
+    : [{
+      sourceRef: label.sourceRef ?? record.sourceRef,
+      expectedHeading: label.expectedHeading,
+      startLine: label.expectedStartLine,
+      endLine: label.expectedEndLine,
+    }];
+  const matchesAcceptedRange = (item) => acceptedRanges.some((range) => {
+    const expectedHeading = normalizeHeading(range.expectedHeading);
+    const actualSourceRef = item?.sourceRef ?? item?.handle?.sourceRef;
+    const sourceMatches = range.sourceRef === record.sourceRef
+      && (!actualSourceRef || actualSourceRef === range.sourceRef);
+    const headingMatches = Boolean(expectedHeading && (
+      normalizeHeading(item?.title) === expectedHeading
+        || (Array.isArray(item?.headingPath) && item.headingPath.some((part) => normalizeHeading(part) === expectedHeading))));
+    const lineRangeMatches = !Number.isInteger(range.startLine)
+      || (item?.handle?.startLine === range.startLine && item?.handle?.endLine === range.endLine);
+    return sourceMatches && headingMatches && lineRangeMatches;
+  });
+  const targetInSearchTop100 = Boolean(record.search?.results?.some(matchesAcceptedRange));
   return {
     caseId: record.caseId,
     sourceRef: record.sourceRef,
     expectedHeading: label.expectedHeading,
     expectedStartLine: label.expectedStartLine ?? null,
     expectedEndLine: label.expectedEndLine ?? null,
+    acceptableRanges: acceptedRanges.map((range) => ({
+      sourceRef: range.sourceRef,
+      expectedHeading: range.expectedHeading,
+      startLine: range.startLine ?? null,
+      endLine: range.endLine ?? null,
+    })),
     observedHeading: selected?.title ?? null,
-    exactHeadingMatch: Boolean(record.status === "complete" && matchesExpectedHeading(selected) && matchesExpectedRange(selected?.handle)),
+    exactHeadingMatch: Boolean(record.status === "complete" && matchesAcceptedRange(selected)),
     targetInSearchTop100,
     exactFetchPassed: Boolean(record.fetch?.passed),
     evidencePackBuilt: record.evidencePack?.passed === true,

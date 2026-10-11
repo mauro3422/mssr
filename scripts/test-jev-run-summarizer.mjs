@@ -71,8 +71,13 @@ try {
     privacyClass: "project-metadata",
   };
   const fixtureCase = { id: "fixture-01", sourceRef: fixtureHandle.sourceRef, query: "What is the exact fixture evidence?" };
-  const fixtureLabel = { caseId: fixtureCase.id, expectedHeading: "Sample" };
+  const fixtureLabel = { caseId: fixtureCase.id, sourceRef: fixtureCase.sourceRef, expectedHeading: "Sample" };
   assert.equal(validateRunInputs([fixtureCase], { cases: [fixtureLabel] }, [fixtureCase.sourceRef]), true);
+  assert.equal(validateRunInputs([fixtureCase], { cases: [{ caseId: fixtureCase.id, expectedHeading: "Sample" }] }, [fixtureCase.sourceRef]), true,
+    "legacy labels may infer sourceRef from their matching case");
+  assert.throws(() => validateRunInputs([fixtureCase], { cases: [{ ...fixtureLabel, sourceRef: "docs/other.md" }] }, [fixtureCase.sourceRef]), /sourceRef must match its case/u);
+  assert.throws(() => validateRunInputs([fixtureCase], { cases: [{ ...fixtureLabel, acceptableRanges: [{ sourceRef: "docs/other.md", expectedHeading: "Sample", startLine: 1, endLine: 3 }] }] }, [fixtureCase.sourceRef]), /acceptable range must use its case sourceRef/u);
+  assert.throws(() => validateRunInputs([fixtureCase], { cases: [{ ...fixtureLabel, acceptableRanges: [{ sourceRef: fixtureCase.sourceRef, expectedHeading: "Different", startLine: 1, endLine: 3 }] }] }, [fixtureCase.sourceRef]), /primary heading\/range must appear in acceptableRanges/u);
   assert.throws(() => validateRunInputs([fixtureCase, fixtureCase], { cases: [fixtureLabel, fixtureLabel] }, [fixtureCase.sourceRef]), /duplicate case id/u);
   assert.throws(() => validateRunInputs([fixtureCase], { cases: [] }, [fixtureCase.sourceRef]), /one-to-one mapping/u);
   assert.throws(() => validateRunInputs([fixtureCase], { cases: [fixtureLabel] }, []), /absent from the frozen corpus/u);
@@ -354,7 +359,17 @@ try {
   const mockLabelsBytes = await writeJson(path.join(mockRun, "inputs/labels.json"), {
     schemaVersion: 1,
     adjudication: "fixture-only",
-    cases: [{ caseId: "mock-case-01", expectedHeading: "Sample", expectedStartLine: 1, expectedEndLine: 3 }],
+    cases: [{
+      caseId: "mock-case-01",
+      sourceRef: "docs/one.md",
+      expectedHeading: "Primary label target",
+      expectedStartLine: 10,
+      expectedEndLine: 12,
+      acceptableRanges: [
+        { sourceRef: "docs/one.md", expectedHeading: "Primary label target", startLine: 10, endLine: 12 },
+        { sourceRef: "docs/one.md", expectedHeading: "Sample", startLine: 1, endLine: 3 },
+      ],
+    }],
   });
   const mockManifest = {
     schemaVersion: 1,
@@ -403,6 +418,8 @@ try {
   assert.equal(mockSummary.successfulRequests, 1);
   assert.equal(mockSummary.exactHeadingMatches, 1);
   assert.equal(mockSummary.searchTargetRecallAt100, 1);
+  assert.equal(mockSummary.records[0].acceptableRanges.length, 2,
+    "summary must expose every accepted range used by the scorer");
   assert.equal(mockSummary.exactFetchesWithFingerprint, 1);
   assert.equal(mockSummary.evidencePacksBuilt, 1);
   const mockRecord = JSON.parse((await fs.readFile(path.join(mockRun, "records.jsonl"), "utf8")).trim());

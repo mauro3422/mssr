@@ -31,12 +31,33 @@ export function validateRunInputs(cases, labels, sourceRefs) {
     assert.ok(!labelIds.has(label.caseId), `duplicate label caseId: ${label.caseId}`);
     labelIds.add(label.caseId);
     assert.ok(typeof label.expectedHeading === "string" && label.expectedHeading.trim().length > 0, `label ${label.caseId} needs an expectedHeading`);
+    const matchingCase = cases.find((item) => item.id === label.caseId);
+    assert.ok(matchingCase, `label has no matching case ${label.caseId}`);
+    if (label.sourceRef !== undefined) {
+      assert.equal(label.sourceRef, matchingCase.sourceRef, `label ${label.caseId} sourceRef must match its case`);
+    }
     const hasStart = label.expectedStartLine !== undefined;
     const hasEnd = label.expectedEndLine !== undefined;
     assert.equal(hasStart, hasEnd, `label ${label.caseId} must provide both expectedStartLine and expectedEndLine`);
     if (hasStart) {
       assert.ok(Number.isInteger(label.expectedStartLine) && label.expectedStartLine > 0, `label ${label.caseId} expectedStartLine must be a positive integer`);
       assert.ok(Number.isInteger(label.expectedEndLine) && label.expectedEndLine >= label.expectedStartLine, `label ${label.caseId} expectedEndLine must be an integer at or after expectedStartLine`);
+    }
+    if (label.acceptableRanges !== undefined) {
+      assert.ok(Array.isArray(label.acceptableRanges) && label.acceptableRanges.length > 0, `label ${label.caseId} acceptableRanges must be a non-empty array`);
+      for (const range of label.acceptableRanges) {
+        assert.ok(range && typeof range === "object", `label ${label.caseId} acceptable range must be an object`);
+        assert.equal(range.sourceRef, matchingCase.sourceRef, `label ${label.caseId} acceptable range must use its case sourceRef`);
+        assert.ok(typeof range.expectedHeading === "string" && range.expectedHeading.trim().length > 0, `label ${label.caseId} acceptable range needs an expectedHeading`);
+        assert.ok(Number.isInteger(range.startLine) && range.startLine > 0, `label ${label.caseId} acceptable range startLine must be a positive integer`);
+        assert.ok(Number.isInteger(range.endLine) && range.endLine >= range.startLine, `label ${label.caseId} acceptable range endLine must be an integer at or after startLine`);
+      }
+      assert.ok(label.acceptableRanges.some((range) =>
+        range.sourceRef === matchingCase.sourceRef
+          && range.expectedHeading === label.expectedHeading
+          && range.startLine === label.expectedStartLine
+          && range.endLine === label.expectedEndLine),
+      `label ${label.caseId} primary heading/range must appear in acceptableRanges`);
     }
   }
 

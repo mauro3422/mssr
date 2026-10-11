@@ -28,7 +28,11 @@ confidence-calibration evidence.
   --allow-network before any provider call. The shared serializer keeps
   canonical evidenceSufficiency separate from a separately returned raw
   noul field. The support module validates one-to-one case/label IDs, exact
-  fetch fingerprints, evidence-pack citations, and exclusive run locking.
+  label-to-source bindings, fetch fingerprints, evidence-pack citations, and
+  exclusive run locking.
+- Scoring accepts any frozen `acceptableRanges` entry for a label, while
+  retaining the primary label fields for audit and displaying all accepted
+  ranges in the result record.
 - `run-completion.json` distinguishes explicit network authorization from
   returned Jev request IDs. The local runner cannot observe transport calls
   below the Bridge adapter, so `providerTransportInvocationsObserved` stays
