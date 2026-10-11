@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "createdAfterProviderCalls": true,
+  "ownerGold": false,
+  "sourceDerivedAuthor": true,
+  "perFacet": [
+    {
+      "facetId": "host-observation",
+      "status": "complete",
+      "supportingRangeIds": [
+        "heading-4"
+      ],
+      "citation": "docs/decisions/0007-automatic-lifecycle-coverage.md:L17-L29"
+    },
+    {
+      "facetId": "activation-policy",
+      "status": "complete",
+      "supportingRangeIds": [
+        "heading-5"
+      ],
+      "citation": "docs/decisions/0007-automatic-lifecycle-coverage.md:L30-L43"
+    },
+    {
+      "facetId": "trace-routing-branches",
+      "status": "complete",
+      "supportingRangeIds": [
+        "block-9/item-6",
+        "block-9/item-7"
+      ],
+      "citation": "docs/decisions/0007-automatic-lifecycle-coverage.md:L37-L38"
+    },
+    {
+      "facetId": "authority-boundaries",
+      "status": "complete",
+      "supportingRangeIds": [
+        "block-10",
+        "block-11"
+      ],
+      "citation": "docs/decisions/0007-automatic-lifecycle-coverage.md:L42-L50"
+    }
+  ],
+  "firstPass": "Incomplete: broad queries returned only partial ranges; a corrective query abstained.",
+  "finalUnion": "Complete for these four source-derived facets after focused selection and exact-range union; one exposed ADR only."
+}

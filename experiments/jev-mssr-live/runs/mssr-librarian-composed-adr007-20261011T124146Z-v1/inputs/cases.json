@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "compoundQuestion": "Summarize how ADR 0007 classifies lifecycle work, handles trace ownership/route states, and separates evaluator recommendations from mutation and host authority.",
+  "facets": [
+    {
+      "id": "host-observation",
+      "expectedSource": "L17-L29",
+      "text": "Which host-observed fields feed the lifecycle evaluator, and what is excluded from portable policy?"
+    },
+    {
+      "id": "activation-policy",
+      "expectedSource": "L30-L36; L38-L40",
+      "text": "Which operations remain lightweight, become managed, or abstain to review, and when is Project Context requested?"
+    },
+    {
+      "id": "trace-routing-branches",
+      "expectedSource": "L37-L38",
+      "text": "What route action follows managed work with no trace, compatible trace without route, compatible route, or ambiguous/mismatched/unknown ownership?"
+    },
+    {
+      "id": "authority-boundaries",
+      "expectedSource": "L42; L46-L50",
+      "text": "What authority does the evaluator have, and which contracts/components retain trace identity, skill routing, execution, and I/O ownership?"
+    }
+  ],
+  "labelsCreatedAfterProviderCalls": true,
+  "labelBasis": "Source-derived author review, not owner-gold, not sent to Jev."
+}

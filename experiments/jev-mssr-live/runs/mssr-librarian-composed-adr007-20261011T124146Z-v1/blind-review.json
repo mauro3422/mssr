@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "blind literal-text review",
+  "reviewer": "Luna sub-agent",
+  "goldStatus": false,
+  "initialDraftFinding": "First draft omitted the deterministic-signal exception for unknown operation semantics and used ambiguous scope for no-migration; corrected.",
+  "finalDraftFinding": "Final exact-text review found all claims supported, citations aligned, and no important omission for four declared facets.",
+  "reviewLimit": "Single previously exposed source cluster and one model-assisted reviewer; not owner adjudication."
+}

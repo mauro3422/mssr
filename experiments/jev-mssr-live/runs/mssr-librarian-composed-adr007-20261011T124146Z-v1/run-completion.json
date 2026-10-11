@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-composed-adr007-20261011T124146Z-v1",
+  "status": "completed",
+  "frozenAt": "2026-10-11T12:44:36Z",
+  "selected": 8,
+  "abstained": 1,
+  "exactFetchCalls": 9,
+  "finalUnionRanges": 6,
+  "finalUnionFingerprintChecks": "passed",
+  "facetCoverage": "4/4 for declared source-derived facets after targeted follow-up; first pass incomplete",
+  "finalParagraphReview": "supported; citations aligned; model-assisted non-gold",
+  "sourceClusters": 1,
+  "priorExposure": "known-exposed",
+  "holdoutUsed": false,
+  "calibrationClaim": false,
+  "fetchToolInvocations": 9,
+  "uniqueFetchedRanges": 7,
+  "evidencePackCalls": 2
+}

@@ -1,0 +1,116 @@
+{
+  "projectOwner": "d:/dev/mssr",
+  "sourceCount": 1,
+  "schemaVersion": 1,
+  "kind": "mssr-librarian-evidence-pack",
+  "assembly": "verbatim-source-ranges",
+  "paragraphs": [
+    {
+      "ordinal": 1,
+      "exactText": "### Host observation boundary\n\nThe host supplies:\n\n- operation `effect`: `control-plane`, `read`, `inspect`, `verify`, `execute`, `mutate`, `persist`, `publish`, `external-side-effect`, or `unknown`;\n- operation `scale`: `trivial`, `substantial`, or `unknown`;\n- current trace state after the R1 immutable-owner check: `none`, `compatible`, `ambiguous`, `mismatch`, or `unknown`;\n- whether that compatible trace already has a route;\n- whether work is project-scoped;\n- whether the call is an explicit lifecycle phase boundary.\n\nHosts may derive these fields from their own registry/tool contract and bounded orchestration state. Raw prompts, arbitrary command text and a host-specific tool-name catalog do not belong in portable MSSR policy.\n\n",
+      "citation": {
+        "display": "docs/decisions/0007-automatic-lifecycle-coverage.md:L17-L29",
+        "handleId": "65a30d27619fdcb3df52393cc9068ff05c67a7ebf97e3383b5031f9863701c3c",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+        "revision": "92e6a35bc007060a6e8634c63e94dc638e3636ba5a7c5f46abdd2a87f8e16a69",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "startLine": 17,
+        "endLine": 29,
+        "fingerprint": "29f046412b44befd6c00f998e33e0916d83a7b05cb8b1f34fa40f24bc1a581dd",
+        "privacyClass": "project-metadata"
+      }
+    },
+    {
+      "ordinal": 2,
+      "exactText": "6. Managed work with no trace requests `ensure-trace-and-route`; with a compatible trace but no route it requests `ensure-route`; with a compatible route it continues or replans that route.",
+      "citation": {
+        "display": "docs/decisions/0007-automatic-lifecycle-coverage.md:L37-L37",
+        "handleId": "0fa919e6ae876eb7791fd1aab95b01581cec66238c72a74707fcaff28a0fb72f",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+        "revision": "92e6a35bc007060a6e8634c63e94dc638e3636ba5a7c5f46abdd2a87f8e16a69",
+        "rangeId": "block-9/item-6",
+        "rangeKind": "block",
+        "startLine": 37,
+        "endLine": 37,
+        "fingerprint": "54c118c09cd6ef455fa46d8359d339119a994cd9d360e9de261f3a9460379042",
+        "privacyClass": "project-metadata"
+      }
+    },
+    {
+      "ordinal": 3,
+      "exactText": "7. Ambiguous, mismatched or unknown trace ownership never migrates a trace. The decision abstains into `review`/`inspect-traces`; R1 remains the authoritative owner-integrity contract.",
+      "citation": {
+        "display": "docs/decisions/0007-automatic-lifecycle-coverage.md:L38-L38",
+        "handleId": "1d59724906ca0e98a48b14940b6c09020935345bf3063bd8ba010bbc062d5aa0",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+        "revision": "92e6a35bc007060a6e8634c63e94dc638e3636ba5a7c5f46abdd2a87f8e16a69",
+        "rangeId": "block-9/item-7",
+        "rangeKind": "block",
+        "startLine": 38,
+        "endLine": 38,
+        "fingerprint": "daa123d6489f5e07ff6535ff0ca71d13951ee4e025b95a3571450ae40fad1527",
+        "privacyClass": "project-metadata"
+      }
+    },
+    {
+      "ordinal": 4,
+      "exactText": "### Portable activation rules\n\n1. `control-plane` calls are exempt from automatic lifecycle activation so `skill_bootstrap`, trace inspection and related MSSR control operations cannot recursively bootstrap themselves.\n2. Known trivial operations remain lightweight. If a compatible trace already exists, the host may inherit attribution without loading another route.\n3. `mutate`, `persist`, `publish`, and `external-side-effect` are managed even when scale is unknown.\n4. Any operation explicitly classified `substantial`, including read-only analysis or verification, is managed.\n5. An explicit phase boundary is managed and replans an existing compatible route.\n6. Managed work with no trace requests `ensure-trace-and-route`; with a compatible trace but no route it requests `ensure-route`; with a compatible route it continues or replans that route.\n7. Ambiguous, mismatched or unknown trace ownership never migrates a trace. The decision abstains into `review`/`inspect-traces`; R1 remains the authoritative owner-integrity contract.\n8. Unknown operation semantics do not silently become substantial. The policy abstains to `review` unless another deterministic signal already requires management.\n9. Project Context is requested only for managed work explicitly observed as project-scoped.\n\nThe evaluator is advisory and I/O-free. It can recommend lifecycle control, but it never authorizes project/file/tool mutation.\n\n",
+      "citation": {
+        "display": "docs/decisions/0007-automatic-lifecycle-coverage.md:L30-L43",
+        "handleId": "c103eafbdfb9d6be1b317427535b2daaf065d40a3b2968e8439482982672eb16",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+        "revision": "92e6a35bc007060a6e8634c63e94dc638e3636ba5a7c5f46abdd2a87f8e16a69",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "startLine": 30,
+        "endLine": 43,
+        "fingerprint": "d397565b8c9d744add38212478b9c7bc57fff0213a1259e05126163148f5ca48",
+        "privacyClass": "project-metadata"
+      }
+    },
+    {
+      "ordinal": 5,
+      "exactText": "The evaluator is advisory and I/O-free. It can recommend lifecycle control, but it never authorizes project/file/tool mutation.",
+      "citation": {
+        "display": "docs/decisions/0007-automatic-lifecycle-coverage.md:L42-L42",
+        "handleId": "7df53ce98ab560f1b71d8e82ec68dd2394a11c907833c38573023ee4d30852b9",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+        "revision": "92e6a35bc007060a6e8634c63e94dc638e3636ba5a7c5f46abdd2a87f8e16a69",
+        "rangeId": "block-10",
+        "rangeKind": "block",
+        "startLine": 42,
+        "endLine": 42,
+        "fingerprint": "09b50440db7b677f7387e027a7b1326fa0679a5dff8d2730676581eb05be8b73",
+        "privacyClass": "project-metadata"
+      }
+    },
+    {
+      "ordinal": 6,
+      "exactText": "- **R1 Trace Identity Integrity** remains prior: owner compatibility is evaluated before lifecycle adoption.\n- **C2b routing compliance** remains the after-the-fact recovery/observability layer. A `substantial-tool-without-route` finding is now evidence that the host failed to apply R2, not the primary activation mechanism.\n- **Skill routing** remains the owner of semantic skill selection and required lifecycle phases after a route exists. R2 decides whether to enter/replan that control plane; it does not duplicate `inferredRequiredPhases(...)`.\n- **R3 Context Economy v2** is defined by ADR 0008 and MSSR `0.2.70`: managed replans may suppress only exact host-attested retained procedural obligations, while unknown/changed retention re-delivers normally. R2/R3 never raise context budgets to hide ceremony.\n- **Bridge and other hosts** retain execution, registry metadata, trace persistence, transport and I/O ownership.",
+      "citation": {
+        "display": "docs/decisions/0007-automatic-lifecycle-coverage.md:L46-L50",
+        "handleId": "a2459be31d85205c250450ca8757140f87d89374af3df852bc880775f2240521",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+        "revision": "92e6a35bc007060a6e8634c63e94dc638e3636ba5a7c5f46abdd2a87f8e16a69",
+        "rangeId": "block-11",
+        "rangeKind": "block",
+        "startLine": 46,
+        "endLine": 50,
+        "fingerprint": "cffed9d22b0e4b47d6fac4b10894f60f972dbb32ecfb51cb558601011351b386",
+        "privacyClass": "project-metadata"
+      }
+    }
+  ],
+  "totalFetchedChars": 3599,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "canonicalRewriteAllowed": false,
+  "ownerAndPrivacyAreCallerAsserted": true
+}
