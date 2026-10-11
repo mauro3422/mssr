@@ -1732,6 +1732,42 @@
       "required": false,
       "priority": 90,
       "maxChars": 4000
+    },
+    {
+      "id": "mssr-jev-live-bridge-smoke-20261011-bridge-06169",
+      "kind": "context",
+      "description": "Exploratory real-document Jev smoke on active Bridge 0.6.169 — 2026-10-11; exact-range selection and evidence-pack limits.",
+      "source": {
+        "path": ".mssr/knowledge/reference/jev-mssr-live-bridge-smoke-20261011-bridge-06169.md"
+      },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [
+        "verify"
+      ],
+      "domains": [
+        "coding",
+        "filesystem"
+      ],
+      "actions": [
+        "analyze",
+        "verify"
+      ],
+      "artifacts": [
+        "document",
+        "repository",
+        "mcp"
+      ],
+      "needs": [
+        "integrity-verification"
+      ],
+      "signals": [
+        "uncertainty",
+        "conflicting-evidence"
+      ],
+      "required": false,
+      "priority": 100,
+      "maxChars": 3000
     }
   ]
 }
