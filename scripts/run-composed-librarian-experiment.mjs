@@ -155,6 +155,26 @@ function coverageRows(plan, receipts) {
     return { facetId: facet.id, status: r?.status || "missing", metric: "line-span-coverage-only", semanticCoverage: false, ownerGold: false, expectedLineCount: expected, coveredLineCount: covered, lineSpanCoverage: expected ? covered / expected : 0, spans };
   });
 }
+function compositionGate(plan, receipts) {
+  const facets = plan.facets.map((facet) => {
+    const receipt = receipts.find((item) => item.facetId === facet.id);
+    return { facetId: facet.id, exactEvidence: receipt?.status === "selected" && receipt.fetch?.status === "verified" };
+  });
+  const incompleteFacetIds = facets.filter((facet) => !facet.exactEvidence).map((facet) => facet.facetId);
+  return {
+    schemaVersion: 1,
+    exactEvidenceStatus: incompleteFacetIds.length === 0 ? "complete" : "incomplete",
+    requiredFacetCount: facets.length,
+    exactFetchedFacetCount: facets.length - incompleteFacetIds.length,
+    incompleteFacetIds,
+    semanticCoverageStatus: "unknown",
+    ownerGold: false,
+    answerSynthesisStatus: incompleteFacetIds.length > 0
+      ? "blocked-incomplete-facet-evidence"
+      : "pending-independent-semantic-review",
+    answerSynthesisAllowed: false,
+  };
+}
 async function distIdentity(root, requireMssrReceipt = false) {
   await rejectReparseComponents(path.resolve(root));
   const realRoot = await fs.realpath(root);
@@ -290,6 +310,7 @@ async function main() {
     }
     const orderedReceipts = plan.facets.map((f) => byFacet.get(f.id));
     const coverage = coverageRows(plan, orderedReceipts);
+    const composition = compositionGate(plan, orderedReceipts);
     let union = null;
     if (handles.length) {
       const docs = [...new Set(handles.map((h) => h.owner + "\u0000" + h.sourceRef))].map((key) => {
@@ -314,16 +335,17 @@ async function main() {
         await completeRun(dir, {
           schemaVersion: 1, status: "completed", mode: "provider-off-replay", benchmark: false, providerCalls: 0,
           unionParagraphCount: union?.paragraphs.length || 0, coverageMetric: "line-span-coverage-only", semanticCoverage: false, ownerGold: false, confidenceCalibration: "none",
+          compositionGate: composition,
         }, [
           ...(union ? [{ name: "evidence-pack.json", bytes: JSON.stringify(union, null, 2) + "\n" }] : []),
-          { name: "coverage.json", bytes: JSON.stringify({ schemaVersion: 1, metric: "line-span-coverage-only", semanticCoverage: false, ownerGold: false, benchmark: false, facets: coverage }, null, 2) + "\n" },
+          { name: "coverage.json", bytes: JSON.stringify({ schemaVersion: 1, metric: "line-span-coverage-only", semanticCoverage: false, ownerGold: false, benchmark: false, facets: coverage, compositionGate: composition }, null, 2) + "\n" },
         ]);
       } catch (error) {
         await leaveFailureState(dir, "provider-off-replay", error);
         throw error;
       }
     }
-    process.stdout.write(JSON.stringify({ status: "provider-off-replay", networkRequests: 0, providerCalls: 0, outputDir: dir, unionParagraphCount: union?.paragraphs.length || 0, metric: "line-span-coverage-only", semanticCoverage: false, ownerGold: false, facets: coverage }, null, 2) + "\n");
+    process.stdout.write(JSON.stringify({ status: "provider-off-replay", networkRequests: 0, providerCalls: 0, outputDir: dir, unionParagraphCount: union?.paragraphs.length || 0, metric: "line-span-coverage-only", semanticCoverage: false, ownerGold: false, compositionGate: composition, facets: coverage }, null, 2) + "\n");
     return;
   }
   if (!flag("--allow-network")) {

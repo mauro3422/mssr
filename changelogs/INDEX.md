@@ -21,6 +21,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.125](0.2.125.md) - distinguish exact facet evidence completeness from unknown semantic coverage and keep answer synthesis blocked pending independent semantic review.
 - [0.2.124](0.2.124.md) - preserve supplementary Unicode characters while bounding Librarian Jev excerpts; record a small live-source pilot without claiming calibration.
 - [0.2.123](0.2.123.md) - correct Bridge adoption provenance and plan an isolated paired excerpt-cap study.
 - [0.2.122](0.2.122.md) - separate current Librarian next gates from selectively loaded historical Git and evaluation notes.

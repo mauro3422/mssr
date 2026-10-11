@@ -37,6 +37,22 @@ const selectedReceipt = {
   },
   safeError: null,
 };
+const secondHandle = search.results.find((result) => result.handle.id !== handle.id)?.handle;
+assert.ok(secondHandle, "the fixture source must expose two distinct exact evidence handles");
+const secondFetched = fetchMssrLibrarianEvidence({ handle: secondHandle, owner, sourceRef, markdown, privacyClass: secondHandle.privacyClass });
+const secondTextHash = createHash("sha256").update(secondFetched.text, "utf8").digest("hex");
+const secondSelectedReceipt = {
+  ...structuredClone(selectedReceipt),
+  facetId: "second-selected-facet",
+  candidates: [secondHandle],
+  selection: { ...structuredClone(selectedReceipt.selection), selected: { handle: secondHandle } },
+  selectedHandle: secondHandle,
+  fetch: {
+    status: "verified", handleFingerprint: secondHandle.fingerprint, fetchedFingerprint: secondFetched.fingerprint,
+    textSha256: secondTextHash, expectedTextSha256: secondTextHash, textChars: secondFetched.text.length,
+    exactText: secondFetched.text, startLineFromSource: secondHandle.startLine, endLineFromSource: secondHandle.endLine,
+  },
+};
 const abstainedReceipt = {
   schemaVersion: 1, facetId: "abstained-facet", sourceRef, sourceSha256, query: unmatchedQuery, candidateSource: "implicit-headings", status: "abstained",
   candidates: [],
@@ -90,6 +106,27 @@ try {
   assert.equal(replayResult.metric, "line-span-coverage-only");
   assert.equal(replayResult.semanticCoverage, false);
   assert.deepEqual(replayResult.facets.map((item) => item.status), ["selected", "abstained"]);
+  assert.equal(replayResult.compositionGate.exactEvidenceStatus, "incomplete");
+  assert.deepEqual(replayResult.compositionGate.incompleteFacetIds, ["abstained-facet"]);
+  assert.equal(replayResult.compositionGate.semanticCoverageStatus, "unknown");
+  assert.equal(replayResult.compositionGate.answerSynthesisStatus, "blocked-incomplete-facet-evidence");
+  assert.equal(replayResult.compositionGate.answerSynthesisAllowed, false);
+
+  const allSelectedPlan = structuredClone(plan);
+  allSelectedPlan.facets[1] = { ...allSelectedPlan.facets[1], id: "second-selected-facet", query };
+  const allSelectedReceiptsPath = await writeReceipts("all-selected.jsonl", [
+    selectedReceipt,
+    secondSelectedReceipt,
+  ]);
+  const allSelected = invoke(await writePlan("all-selected-plan.json", allSelectedPlan), ["--replay", allSelectedReceiptsPath]);
+  assert.equal(allSelected.status, 0, allSelected.stderr);
+  const allSelectedGate = JSON.parse(allSelected.stdout).compositionGate;
+  assert.equal(allSelectedGate.exactEvidenceStatus, "complete");
+  assert.equal(allSelectedGate.exactFetchedFacetCount, 2);
+  assert.deepEqual(allSelectedGate.incompleteFacetIds, []);
+  assert.equal(allSelectedGate.semanticCoverageStatus, "unknown", "exact fetches must not be upgraded to semantic coverage");
+  assert.equal(allSelectedGate.answerSynthesisStatus, "pending-independent-semantic-review");
+  assert.equal(allSelectedGate.answerSynthesisAllowed, false, "the harness must never authorize generated answer prose");
 
   const missing = structuredClone([selectedReceipt, abstainedReceipt]);
   delete missing[0].selection;
@@ -125,9 +162,11 @@ try {
   const allAbstain = invoke(planPath, ["--replay", allAbstainFile, "--output-dir", allAbstainOutput]);
   assert.equal(allAbstain.status, 0, allAbstain.stderr);
   assert.equal(JSON.parse(allAbstain.stdout).unionParagraphCount, 0);
+  assert.equal(JSON.parse(allAbstain.stdout).compositionGate.answerSynthesisStatus, "blocked-incomplete-facet-evidence");
   const completion = JSON.parse(await fs.readFile(path.join(allAbstainOutput, "run-completion.json"), "utf8"));
   assert.equal(completion.status, "completed");
   assert.equal(completion.unionParagraphCount, 0);
+  assert.equal(completion.compositionGate.exactFetchedFacetCount, 0);
 
   const persisted = invoke(planPath, ["--replay", receiptsPath, "--output-dir", runOutput]);
   assert.equal(persisted.status, 0, persisted.stderr);
@@ -137,6 +176,8 @@ try {
   assert.ok(manifest.gitHead);
   assert.ok(manifest.mssrBuild.buildId);
   assert.equal(manifest.coverageMetric, "line-span-coverage-only; semanticCoverage=false; ownerGold=false");
+  const persistedCompletion = JSON.parse(await fs.readFile(path.join(runOutput, "run-completion.json"), "utf8"));
+  assert.equal(persistedCompletion.compositionGate.answerSynthesisStatus, "blocked-incomplete-facet-evidence");
   await fs.access(path.join(runOutput, "inputs", "runner.mjs"));
   await fs.access(path.join(runOutput, "inputs", "01.md"));
   const sums = await fs.readFile(path.join(runOutput, "SHA256SUMS"), "utf8");
