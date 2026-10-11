@@ -1,0 +1,1 @@
+{"event":"provider-call-completed","caseId":"jev-use-cases-retrieval-category-runtime-parity","observedAt":"2026-10-11T19:19:08Z","providerElapsedMs":881.9,"exactHostTimingAvailable":false,"note":"Completion observation time is a post-call bound; exact ingress/egress timestamps were not surfaced by the connector."}

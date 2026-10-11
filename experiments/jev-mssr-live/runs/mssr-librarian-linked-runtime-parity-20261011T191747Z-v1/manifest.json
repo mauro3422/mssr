@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-linked-runtime-parity-20261011T191747Z-v1",
+  "status": "prepared",
+  "createdAt": "2026-10-11T19:17:47Z",
+  "comparison": {
+    "type": "post-hoc linked runtime parity diagnostic",
+    "candidateRunId": "mssr-librarian-parent-child-real-linked-20261011T190000Z-v1",
+    "candidateMssrVersion": "0.2.126",
+    "productionMssrVersion": "0.2.121",
+    "productionBridgeVersion": "0.6.170",
+    "independentUnit": "one previously exposed real source-document cluster",
+    "calibration": false,
+    "holdout": false
+  },
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "b0d5805e090415b86561bfd3333f5c76d5751840",
+    "workingTreeClean": true,
+    "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+    "snapshot": "inputs/source.md",
+    "sha256": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+    "previouslyExposed": true
+  },
+  "case": {
+    "id": "jev-use-cases-retrieval-category-runtime-parity",
+    "query": "¿Qué casos concretos enumera la categoría B para búsqueda, archivos y recuperación del conocimiento?",
+    "expectedHeading": "B. Búsqueda, archivos y recuperación de conocimiento",
+    "mode": "heading-no-candidate-handles",
+    "requestedCalls": 1,
+    "labelsSentToProvider": false
+  },
+  "provider": {
+    "provider": "TypeSafe Jev via active Bridge MCP",
+    "model": "jev-1.13.0",
+    "networkCall": "live",
+    "explicitUserAuthorization": "Prior user authorization in this conversation to use the real Jev provider for tests",
+    "maximumCalls": 1
+  }
+}
