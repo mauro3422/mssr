@@ -167,9 +167,11 @@ try {
   const confidencePolicy = jevById.get("mssr-jev-confidence-merge-policy");
   const runHistory = jevById.get("mssr-jev-confidence-run-history");
   const evaluationProtocol = jevById.get("mssr-jev-confidence-benchmark-history");
+  const connectedDiagnostics = jevById.get("mssr-jev-connected-diagnostics-20261011");
   assert.ok(confidencePolicy, "Jev conflict review should load the focused confidence/merge policy");
   assert.ok(runHistory, "Jev benchmark review should load measured run history independently");
   assert.ok(evaluationProtocol, "Jev benchmark review should retain the active evaluation protocol");
+  assert.ok(connectedDiagnostics, "Jev benchmark review should load the recent connected diagnostic module independently");
   const selectorReleaseHistory = jevById.get("mssr-jev-librarian-selector-release-history");
   assert.ok(selectorReleaseHistory, "Jev benchmark review should load the exact selector release history");
   assert.ok(confidencePolicy.bytes < 4_000);
@@ -179,6 +181,8 @@ try {
   assert.match(runHistory.content, /What the MSSR runs establish/);
   assert.match(runHistory.content, /labels were not independently\s+adjudicated/i);
   assert.doesNotMatch(runHistory.content, /## Confidence and merge policy/);
+  assert.match(connectedDiagnostics.content, /answerable compound question/i);
+  assert.match(connectedDiagnostics.content, /not owner-gold, independent evaluation or\s+calibration/i);
   assert.match(evaluationProtocol.content, /Next MSSR evaluation/);
   assert.match(selectorReleaseHistory.content, /35\/52/);
   assert.match(selectorReleaseHistory.content, /uncalibrated/i);

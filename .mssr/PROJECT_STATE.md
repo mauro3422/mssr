@@ -2,7 +2,7 @@
 
 ## Current release
 
-MSSR 0.2.121 remains live in Bridge 0.6.169 (boot `adf97c06-a668-4ff9-a187-c12ab058bff2`, 188 tools, tunnel ready, no restart pending). Its package SHA-256 is `181bf914da4f5767c457755990798169f6d539f56886b420bd8410951b5d8971`; the [Bridge smoke report](knowledge/reference/jev-mssr-live-bridge-smoke-20261011-bridge-06169.md) records watchdog acknowledgement `18b4db27-1fc8-47c5-b670-dafc194ab57f` and activation-documentation follow-up commit `2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc`. The repository has no separate persisted runtime-adoption receipt for 0.2.121. Source package 0.2.122 passed `npm run verify` and `npm run release:gate` but is not adopted by Bridge. Its tarball is 1,149,810 bytes, SHA-256 `6785a2471492cb967446b70b2f9f5b3df5fa5e9edb9aec384c615b13682b053d`, with receipt at [0.2.122 release receipt](runtime/releases/0.2.122.json). Source package 0.2.123 contains documentation/state reconciliation only, passed `npm run verify` and `npm run release:gate`, and is not adopted by Bridge. Its tarball is 1,150,191 bytes, SHA-256 `50a76c98b4a684fee3ea93a461030c57b4e2ff8e5ec7bcd322e20612e7becbcd`, with receipt at [0.2.123 release receipt](runtime/releases/0.2.123.json). Source package 0.2.124 fixes Unicode-safe excerpt truncation and records an exploratory live Jev pilot; `npm run verify` and `npm run release:gate` pass. Its tarball is 1,151,540 bytes, SHA-256 `c4b9eb8962283431ce5f489aef7a59015598aa23965e914a90f617cc4ade2761`, with receipt at [0.2.124 release receipt](runtime/releases/0.2.124.json); it is not adopted by Bridge. MSSR 0.2.125 adds a development-only composed-replay gate that separates exact evidence completeness from unknown semantic coverage; `npm run verify` and `npm run release:gate` pass. Its tarball is 1,152,782 bytes, SHA-256 `8b23ac75300adaa83bd976e1a91db7c2586031b89ceec388af92ff28721cdfb9`, with receipt at [0.2.125 release receipt](runtime/releases/0.2.125.json). It is not adopted by Bridge; no source release above 0.2.121 is active there.
+MSSR 0.2.121 remains live in Bridge 0.6.169 (boot `adf97c06-a668-4ff9-a187-c12ab058bff2`, 188 tools, tunnel ready, no restart pending). Its package SHA-256 is `181bf914da4f5767c457755990798169f6d539f56886b420bd8410951b5d8971`; the [Bridge smoke report](knowledge/reference/jev-mssr-live-bridge-smoke-20261011-bridge-06169.md) records watchdog acknowledgement `18b4db27-1fc8-47c5-b670-dafc194ab57f` and activation-documentation follow-up commit `2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc`. The repository has no separate persisted runtime-adoption receipt for 0.2.121. Source package 0.2.122 passed `npm run verify` and `npm run release:gate` but is not adopted by Bridge. Its tarball is 1,149,810 bytes, SHA-256 `6785a2471492cb967446b70b2f9f5b3df5fa5e9edb9aec384c615b13682b053d`, with receipt at [0.2.122 release receipt](runtime/releases/0.2.122.json). Source package 0.2.123 contains documentation/state reconciliation only, passed `npm run verify` and `npm run release:gate`, and is not adopted by Bridge. Its tarball is 1,150,191 bytes, SHA-256 `50a76c98b4a684fee3ea93a461030c57b4e2ff8e5ec7bcd322e20612e7becbcd`, with receipt at [0.2.123 release receipt](runtime/releases/0.2.123.json). Source package 0.2.124 fixes Unicode-safe excerpt truncation and records an exploratory live Jev pilot; `npm run verify` and `npm run release:gate` pass. Its tarball is 1,151,540 bytes, SHA-256 `c4b9eb8962283431ce5f489aef7a59015598aa23965e914a90f617cc4ade2761`, with receipt at [0.2.124 release receipt](runtime/releases/0.2.124.json); it is not adopted by Bridge. MSSR 0.2.125 adds a development-only composed-replay gate that separates exact evidence completeness from unknown semantic coverage; `npm run verify` and `npm run release:gate` pass. Its tarball is 1,152,782 bytes, SHA-256 `8b23ac75300adaa83bd976e1a91db7c2586031b89ceec388af92ff28721cdfb9`, with receipt at [0.2.125 release receipt](runtime/releases/0.2.125.json). It is not adopted by Bridge; no source release above 0.2.121 is active there. Source package 0.2.126 fixes Jev heading excerpt offsets across newline variants and restores selective loading for current connected diagnostics. It passed npm run verify and npm run release:gate; its 1,154,880-byte tarball has SHA-256 d9b68866b6414d5248bb8c2c7e90cce99c13db21c76f679ddad82dbdf121cf82, with receipt at [0.2.126 release receipt](runtime/releases/0.2.126.json). It is not adopted by Bridge.
 
 ## Current Jev/Librarian evaluation
 
@@ -36,15 +36,16 @@ follow-up plan timestamps were declared incorrectly; the append-only erratum
 records Bridge write-before-call event ordering. See the [run report](../experiments/jev-mssr-live/runs/mssr-librarian-fresh-changelog-clusters-20261011T1717Z-v1/RUN-REPORT.md)
 and [run ledger](../experiments/jev-mssr-live/README.md).
 
-Project Context modularization remains a review item: the confidence-run
-history module's whole unindexed section is 7,143 characters against the
-7,000-character loading target. The planner did not identify a safe exact
-split; keep it for a semantic, selector-aware review rather than moving it
-mechanically. A prior situation-review warning's detailed payload was not
-retained, so its historical-claim/receipt/state mismatch codes cannot be
-mapped conclusively to a canonical edit yet. The current version and release
-receipt evidence are internally consistent; do not rewrite those claims from
-an unrecoverable notice alone.
+Project Context modularization review split the confidence-run history by
+evaluation era: the pre-2026-10-11 measured history remains in its existing
+module, while three connected 2026-10-11 diagnostics are separately indexed.
+This brings the measured history below its 7,000-character load budget and
+keeps recent connected-path evidence selectable without loading all earlier
+runs. A prior situation-review warning's detailed payload was not retained,
+so its historical-claim/receipt/state mismatch codes cannot be mapped
+conclusively to a canonical edit yet. The current version and release receipt
+evidence are internally consistent; do not rewrite those claims from an
+unrecoverable notice alone.
 
 ## Core skill package state
 
@@ -56,7 +57,7 @@ Core package state: five first-party MSSR operational skill roots. Semantic evid
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.125 -->
+<!-- mssr-version:mssr.source=0.2.126 -->
 <!-- mssr-version:bridge.live=0.6.169 -->
 
 <!-- mssr-owner:semantic.consistency=mssr -->

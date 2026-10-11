@@ -247,6 +247,47 @@ assert.equal(legacy.selected.handle.rangeKind, "section");
 const legacyOption = JSON.parse(providerCalls[legacyCallIndex].state.evidence[0].text);
 assert.equal(legacyOption[4], "section");
 
+const newlineVariants = [
+  ["\n", "\n", "\n"],
+  ["\r\n", "\r\n", "\r\n"],
+  ["\r", "\r", "\r"],
+  ["\r\n", "\n", "\r"],
+];
+let lfHeadingExcerpt;
+for (const [index, lineSeparators] of newlineVariants.entries()) {
+  const newlineLines = ["# Root", "intro before target 😀", "## Target Needle", "TARGET_BODY_ONLY"];
+  const newlineDocument = {
+    owner,
+    sourceRef: `docs/newline-variant-${index}.md`,
+    markdown: newlineLines.map((line, lineIndex) => lineIndex === 0
+      ? line
+      : `${lineSeparators[lineIndex - 1]}${line}`).join(""),
+    privacyClass: "project-metadata",
+  };
+  const callStart = providerCalls.length;
+  const newlineSelection = await selectMssrLibrarianEvidenceWithJev({
+    documents: [newlineDocument],
+    query: "What text follows the Target Needle heading?",
+  }, provider);
+  assert.equal(newlineSelection.status, "selected", `heading mode should select on newline variant ${index}`);
+  const request = providerCalls[callStart];
+  const targetOption = request.state.evidence
+    .map((item) => JSON.parse(item.text))
+    .find((option) => option[2].at(-1) === "Target Needle");
+  assert.ok(targetOption, `Target Needle candidate must be sent on newline variant ${index}`);
+  if (index === 0) lfHeadingExcerpt = targetOption[3];
+  assert.equal(targetOption[3], lfHeadingExcerpt, `heading candidate excerpt must be newline-invariant for variant ${index}`);
+  assert.ok(targetOption[3].includes("TARGET_BODY_ONLY"), `heading candidate excerpt must retain complete target body for variant ${index}`);
+  const newlineExact = fetchMssrLibrarianEvidence({
+    handle: newlineSelection.selected.handle,
+    owner,
+    sourceRef: newlineDocument.sourceRef,
+    markdown: newlineDocument.markdown,
+    privacyClass: newlineDocument.privacyClass,
+  });
+  assert.ok(newlineExact.text.includes("TARGET_BODY_ONLY"), `the returned handle must exact-fetch the target body for variant ${index}`);
+}
+
 const assertWellFormedUnicode = (value, label) => {
   for (const character of value) {
     const codePoint = character.codePointAt(0);

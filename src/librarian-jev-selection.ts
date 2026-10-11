@@ -369,7 +369,8 @@ export async function selectMssrLibrarianEvidenceWithJev(
   for (const document of input.documents) {
     const normalizedSourceRef = document.sourceRef.trim().replace(/\\/g, "/").replace(/\/{2,}/g, "/");
     if (document.privacyClass === "sensitive-excluded") continue;
-    const potentialHeadingCount = document.markdown.split("\n").filter((line) => /^ {0,3}#{1,6}\s+\S/.test(line)).length;
+    const canonicalMarkdown = document.markdown.replace(/\r\n?/g, "\n");
+    const potentialHeadingCount = canonicalMarkdown.split("\n").filter((line) => /^ {0,3}#{1,6}\s+\S/.test(line)).length;
     if (potentialHeadingCount > MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxHeadingsPerDocument) {
       throw new Error(`Jev selection source exceeds ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxHeadingsPerDocument} potential headings.`);
     }
@@ -377,15 +378,15 @@ export async function selectMssrLibrarianEvidenceWithJev(
     if (totalHeadings > MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxTotalHeadings) {
       throw new Error(`Jev selection input exceeds ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxTotalHeadings} total potential headings.`);
     }
-    const surface = buildMssrMarkdownDocumentSurface({ sourceRef: normalizedSourceRef, markdown: document.markdown });
+    const surface = buildMssrMarkdownDocumentSurface({ sourceRef: normalizedSourceRef, markdown: canonicalMarkdown });
     offeredCandidateCount += surface.headings.length;
     for (const heading of surface.headings) {
       if (heading.endOffset - heading.startOffset > MSSR_LIBRARIAN_RETRIEVAL_LIMITS.fetchChars) {
         oversizedCandidateCount += 1;
         continue;
       }
-      const leadStart = document.markdown.indexOf("\n", heading.startOffset);
-      const sectionText = document.markdown.slice(leadStart < 0 ? heading.startOffset : leadStart + 1, heading.endOffset);
+      const leadStart = canonicalMarkdown.indexOf("\n", heading.startOffset);
+      const sectionText = canonicalMarkdown.slice(leadStart < 0 ? heading.startOffset : leadStart + 1, heading.endOffset);
       const excerpt = queryCenteredExcerpt(sectionText, input.query);
       candidates.push({
         optionId: `h${String(candidates.length + 1).padStart(3, "0")}`,

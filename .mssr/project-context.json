@@ -613,6 +613,47 @@
       "maxChars": 7000
     },
     {
+      "id": "mssr-jev-connected-diagnostics-20261011",
+      "kind": "context",
+      "description": "Recent connected Jev/Librarian diagnostics, exact-fetch outcomes, and calibration limits from 2026-10-11.",
+      "source": {
+        "path": ".mssr/knowledge/reference/mssr-jev-connected-diagnostics-20261011.md"
+      },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [
+        "verify",
+        "resume"
+      ],
+      "domains": [
+        "coding",
+        "agent-orchestration",
+        "skill-system"
+      ],
+      "actions": [
+        "analyze",
+        "review",
+        "verify"
+      ],
+      "artifacts": [
+        "project",
+        "repository",
+        "document",
+        "mcp"
+      ],
+      "needs": [
+        "integrity-verification",
+        "cross-agent"
+      ],
+      "signals": [
+        "uncertainty",
+        "conflicting-evidence"
+      ],
+      "required": false,
+      "priority": 100,
+      "maxChars": 3500
+    },
+    {
       "id": "mssr-jev-public-benchmark-evidence",
       "kind": "context",
       "description": "Published Jev and adjacent benchmark evidence with explicit limits on transfer to MSSR.",

@@ -1665,3 +1665,57 @@ project work was lost, and no adapter code was changed.
 MSSR and Bridge adapters with the same explicit trace ID. Confirm the intended
 host boundary, then add cross-adapter conformance coverage or document the
 required recorder. Keep checkpoint summaries within the declared schema limit.
+
+## MSSR-055 — Jev heading excerpts used offsets from normalized Markdown on raw CRLF text
+
+**Date/status:** 2026-10-11 · Resolved in source 0.2.126; runtime adoption pending.
+
+**Layer/owner:** MSSR Librarian Jev heading-selection path.
+
+**Symptom and evidence:** The no-handle heading-selection path built Document
+Surface offsets after normalizing line endings, then sliced the caller's raw
+Markdown. The new regression reproduced a truncated `TARGET_BODY_ONLY` excerpt
+for CRLF input (`## Target Needle TARGET_BODY_O`) while LF input returned the
+full body. Bare CR and mixed endings were included in the regression matrix.
+
+**Cause:** Candidate offsets and excerpt slicing used different string
+representations. Exact fetch still revalidated the returned source range, so
+the defect affected provider evidence text rather than handle integrity.
+
+**Correction/regression:** Source Markdown is normalized once to LF for
+heading counts, Document Surface construction, heading boundaries and excerpt
+slicing. `scripts/test-librarian-jev-selection.mjs` checks LF, CRLF, CR and
+mixed endings with supplementary Unicode before the target heading and verifies
+exact fetch. `npm run test:librarian-contract`, `npm run verify` and
+`npm run release:gate` pass for source 0.2.126.
+
+**Follow-up:** Bridge 0.6.169 still packages MSSR 0.2.121. After the normal
+host reconnect/adoption gate, rerun the same newline matrix through the
+connected Jev path and retain provider identity plus exact-fetch receipts.
+No runtime restart or adoption is implied by this source fix.
+
+## MSSR-056 — Jev evaluation history exceeded its selective-load budget
+
+**Date/status:** 2026-10-11 · Resolved in source 0.2.126.
+
+**Layer/owner:** MSSR Project Context reference manifest and benchmark-history
+module.
+
+**Symptom and evidence:** `test-project-context-loader` could not load the
+measured Jev run-history module for a benchmark-review intent. The unindexed
+history source measured 7,144 characters against its 7,000-character module
+budget, and the active 20,000-character request also selected other high-value
+review modules.
+
+**Cause:** Recent connected diagnostics and prior evaluation history shared one
+large module, which prevented independent selective loading.
+
+**Correction/regression:** Moved the three 2026-10-11 connected diagnostics to
+`.mssr/knowledge/reference/mssr-jev-connected-diagnostics-20261011.md`, indexed
+that module for verify/resume, and kept the older measured history intact.
+`test-project-context-loader.mjs` now requires both modules for the benchmark
+intent; Project Context health and modularization tests pass.
+
+**Follow-up:** Keep future connected runs in dated, selectively indexed
+references and retain the confidence caveats in the stable benchmark-history
+module. No Jev score or production threshold changed.
