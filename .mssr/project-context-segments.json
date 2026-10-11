@@ -416,6 +416,75 @@
           "priority": 20
         }
       ]
+    },
+    {
+      "moduleId": "mssr-jev-zsw-hud-minimap-diagnostics-20261011",
+      "segments": [
+        {
+          "id": "scope",
+          "sections": [
+            "## Scope"
+          ],
+          "baseline": true
+        },
+        {
+          "id": "compound-query-diagnostics",
+          "sections": [
+            "## Round 1 — compound query coverage",
+            "## Round 2 — three grouped concepts"
+          ],
+          "terms": [
+            "compound query",
+            "HUD layer",
+            "MapOverlay",
+            "GPS membership",
+            "marker ownership"
+          ],
+          "priority": 20
+        },
+        {
+          "id": "paired-version-comparison",
+          "sections": [
+            "## Round 3 — frozen 0.2.115/0.2.120 paired diagnostic and facet follow-up"
+          ],
+          "terms": [
+            "0.2.115",
+            "0.2.120",
+            "paired diagnostic",
+            "facet follow-up",
+            "range pool"
+          ],
+          "priority": 30
+        },
+        {
+          "id": "atomic-evidence-pack",
+          "sections": [
+            "## Round 4 — atomic facet chain, evidence pack and one cited paragraph"
+          ],
+          "terms": [
+            "atomic facet",
+            "evidence pack",
+            "exact fetch",
+            "citation",
+            "claim review"
+          ],
+          "priority": 30
+        },
+        {
+          "id": "interpretation-and-next-gate",
+          "sections": [
+            "## Interpretation and next gate"
+          ],
+          "terms": [
+            "holdout",
+            "owner-gold",
+            "calibration",
+            "accuracy",
+            "next gate"
+          ],
+          "priority": 20
+        }
+      ]
     }
   ]
 }
