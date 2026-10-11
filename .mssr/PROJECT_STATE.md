@@ -12,6 +12,17 @@ A follow-up on one already-exposed ADR 0002 cluster used deterministic search ha
 
 Prior relation, trace-attribution, bilingual retrieval and host-composition diagnostics remain historical evidence, with source-cluster and blind-label limits documented in the [run ledger](../experiments/jev-mssr-live/README.md) and [confidence history](knowledge/reference/mssr-jev-confidence-benchmark-history.md). The [integration handoff](knowledge/operations/jev-librarian-integration-handoff.md) remains the activation gate; the earlier connected smoke still lacks verified provider identity and replay receipts. A formal required-tool-unavailable policy remains unsourced.
 
+A separate post-hoc Bridge 0.6.169 / MSSR 0.2.121 diagnostic then exercised
+the real Bridge search → Jev → exact-fetch wrappers on one cutover document.
+All 5 exact fetches matched their selected fingerprints. With the same 3
+handles offered to each query, split authority and inbox facets selected the
+expected blocks (2/2); a compound query selected only the inbox block and
+omitted the explicit `.bridge/` fallback rule, despite Noul 0.83. Bridge
+metrics persisted the calls under the live boot ID, and one blind Luna reviewer
+also marked the compound result partial. This supplies a bounded
+connected-path receipt with Jev provider/model identity, not a calibration
+sample or a general quality claim. See the [diagnostic report](../experiments/jev-mssr-live/runs/mssr-bridge-cutover-compound-diagnostic-20261011T1704Z-v1/RUN-REPORT.md).
+
 ## Core skill package state
 
 Core package state: five first-party MSSR operational skill roots. Semantic evidence remains a core/MCP capability, not a new skill. Ownership policy: [canonical ownership](knowledge/architecture/canonical-ownership.md).

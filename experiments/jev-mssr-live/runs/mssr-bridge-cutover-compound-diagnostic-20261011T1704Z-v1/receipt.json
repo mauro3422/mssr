@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-bridge-cutover-compound-diagnostic-20261011T1704Z-v1",
+  "startedAt": "2026-10-11T17:03:39Z",
+  "completedAt": "2026-10-11T17:05:19Z",
+  "classification": "post-hoc-single-source-diagnostic",
+  "benchmarkEligible": false,
+  "ownerGold": false,
+  "confidenceCalibration": "uncalibrated",
+  "source": {
+    "owner": "d:/dev/mssr",
+    "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+    "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+    "sha256": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+    "privacyClass": "project-metadata"
+  },
+  "runtime": {
+    "connector": "MauroPrime_Bridge",
+    "bridgeVersion": "0.6.169",
+    "mssrVersion": "0.2.121",
+    "identityProvenance": "PROJECT_STATE record corroborated by the live bridge_metrics_status boot ID; per-call wrapper response confirms Bridge path and Jev provider/model",
+    "bootId": "adf97c06-a668-4ff9-a187-c12ab058bff2",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "metricsPersistence": {
+      "pending": 0,
+      "failed": 0,
+      "dropped": 0,
+      "workerActive": true,
+      "lastError": null
+    }
+  },
+  "candidatePool": [
+    {"rangeId":"heading-1","rangeKind":"section","fingerprint":"024a4e297c68ddbff57fcdea3f432756275727ab57b4fa37e8996a126103c6f3","codeUnits":844},
+    {"rangeId":"block-1","rangeKind":"block","fingerprint":"944e789596c989b078e23b6bb6d3c0948cbd833d4360429141b817ec6332ff79","codeUnits":257},
+    {"rangeId":"block-2","rangeKind":"block","fingerprint":"830a5237e2dd9f417ba8236ea0cf4915d73da9b847303dfb63ff80493e02c7dd","codeUnits":344}
+  ],
+  "calls": [
+    {"arm":"compound-one-candidate","query":"¿Qué regla rige las autoridades de proyecto y el inbox heredado?","candidateCount":1,"selected":"block-1","providerConfidence":0.68,"choiceProbability":0.84,"noul":0.45,"inputTokens":665,"outputTokens":57,"providerLatencyMs":731.4,"requestFingerprint":"d9c76da2966c9cb88d8634b1c9673c336eab572bc4d7ae52c12524f04e525e33","fetchFingerprint":"944e789596c989b078e23b6bb6d3c0948cbd833d4360429141b817ec6332ff79","bridgeMetricIds":["mv42ohy3-apdqm3bb","mv42okv6-wgzb68d6"]},
+    {"arm":"inbox-one-candidate","query":"¿Qué se hace con los recibos del inbox runtime obsoleto durante el cutover?","candidateCount":1,"selected":"block-2","providerConfidence":1.0,"choiceProbability":1.0,"noul":0.89,"inputTokens":668,"outputTokens":57,"providerLatencyMs":807.6,"requestFingerprint":"67187d2a099e4412cff0fcc7930be53ed40ee11de4b6963f9d221d5c86a78fd1","fetchFingerprint":"830a5237e2dd9f417ba8236ea0cf4915d73da9b847303dfb63ff80493e02c7dd","bridgeMetricIds":["mv42oqd4-u037ck7f","mv42ounn-d5u4przc"]},
+    {"arm":"compound-fixed-pool","query":"¿Qué establece el cutover sobre las autoridades de proyecto y qué se hace con los recibos del inbox runtime antiguo?","candidateCount":3,"selected":"block-2","providerConfidence":0.32,"choiceProbabilities":{"heading-1":0.4,"block-1":0.01,"block-2":0.49,"none":0.1},"noul":0.83,"inputTokens":939,"outputTokens":77,"providerLatencyMs":702.4,"requestFingerprint":"820601db6f78df72ee4e9d46fe204437c45b854fbafd2943c41b8f9e31c36654","fetchFingerprint":"830a5237e2dd9f417ba8236ea0cf4915d73da9b847303dfb63ff80493e02c7dd","bridgeMetricIds":["mv42p9qc-io5ybz2b","mv42pdbo-x43bydb8"]},
+    {"arm":"authority-fixed-pool","query":"¿Qué define el cutover como autoridad canónica del contexto del proyecto y qué evita cargar desde .bridge/ ?","candidateCount":3,"selected":"block-1","providerConfidence":0.89,"choiceProbability":0.92,"noul":0.78,"inputTokens":929,"outputTokens":77,"providerLatencyMs":689.8,"requestFingerprint":"de748238f34e2de603b5fe4aa0726c761bb5715dace515a4220e0547f745c082","fetchFingerprint":"944e789596c989b078e23b6bb6d3c0948cbd833d4360429141b817ec6332ff79","bridgeMetricIds":["mv42q8ja-63o5xa9g","mv42qexq-2a07qm1b"]},
+    {"arm":"inbox-fixed-pool","query":"¿Qué pasa con los recibos del inbox runtime obsoleto y bajo qué condición puede borrarse una autoridad legacy?","candidateCount":3,"selected":"block-2","providerConfidence":0.93,"choiceProbability":0.95,"noul":0.83,"inputTokens":940,"outputTokens":77,"providerLatencyMs":656.4,"requestFingerprint":"70ef56df85a606306409fd5e2ff93973def51722afd34814a7117610560bb913","fetchFingerprint":"830a5237e2dd9f417ba8236ea0cf4915d73da9b847303dfb63ff80493e02c7dd","bridgeMetricIds":["mv42q930-dys2g22b","mv42qexw-2p5c2v3g"]}
+  ],
+  "totals": {
+    "providerCalls": 5,
+    "independentSourceClusters": 1,
+    "exactFetchesPassed": 5,
+    "inputTokens": 4141,
+    "outputTokens": 345,
+    "providerLatencyMs": 3587.6,
+    "providerLatencyMeanMs": 717.52,
+    "compoundFixedPoolFacetCoverage": "partial",
+    "atomicFixedPoolExpectedSelection": "2/2",
+    "thresholdChanged": false,
+    "productionBehaviorChanged": false
+  },
+  "blindReview": {
+    "reviewer": "Luna model-assisted reviewer",
+    "blindToJevScores": true,
+    "reviewedOutput": "fixed-pool compound query and exact fetched selected text",
+    "label": "partial",
+    "coveredFacets": ["discard obsolete runtime inbox receipts", "preserve durable legacy authorities unless canonical counterpart exists; otherwise block cleanup for review"],
+    "missingFacets": ["canonical .mssr/ project authority and removal of active .bridge/ fallback"],
+    "ownerGold": false,
+    "reviewerCount": 1
+  },
+  "excluded": [
+    {"event":"mssr_librarian_search schema validation failure: maxSnippetChars 500 exceeds maximum 240","providerCallMade":false,"includedInTotals":false}
+  ]
+}
