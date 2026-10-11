@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "suite": "mssr-librarian-temporal-scope-facet-v1",
+  "runId": "mssr-librarian-temporal-scope-facet-20261011T112431Z-91cd52",
+  "createdAt": "2026-10-11T11:24:31Z",
+  "status": "prepared",
+  "parentRunId": "mssr-librarian-linked-diagnostics-20261011T121000Z-7c4e91",
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "5bf47526b15b169b3725a9e62e9859ae7bbe1c07",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "workingTreeClean": false,
+    "changedPaths": [
+      "experiments/jev-mssr-live/runs/mssr-librarian-live-path-unseen-20261011T111400Z-a71d3f/",
+      "experiments/jev-mssr-live/runs/mssr-librarian-linked-diagnostics-20261011T121000Z-7c4e91",
+      "/",
+      "experiments/jev-mssr-live/runs/mssr-librarian-temporal-scope-facet-20261011T112431Z-91cd52",
+      "/"
+    ],
+    "bridgeRoot": "D:\\Dev\\bridge-mcp-mssr-0.2.112-query-variants",
+    "bridgeCommit": "2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc",
+    "bridgeVersion": "0.6.169",
+    "mssrVersion": "0.2.121",
+    "buildArtifacts": [
+      {
+        "path": "dist/tool-registry.js",
+        "sha256": "dc155b2c0ce369ea33b8a4de124b37e79636bb397932cef3827cf34bec5a8fbe"
+      },
+      {
+        "path": "dist/tools/mssr-semantic-evidence-tools.js",
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa"
+      },
+      {
+        "path": "node_modules/@mauroprime/mssr/package.json",
+        "sha256": "eb06b760aa92f405df2ced15e6866ee17d28e2c01983a194eecd2260be2bc61a"
+      },
+      {
+        "path": "vendor/mauroprime-mssr-0.2.121.tgz",
+        "sha256": "181bf914da4f5767c457755990798169f6d539f56886b420bd8410951b5d8971"
+      },
+      {
+        "path": "scripts/read-windows-credential.ps1",
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e"
+      }
+    ],
+    "codeSnapshotCleanAtFreeze": true
+  },
+  "instrument": {
+    "runnerPath": "experiments/jev-mssr-live/runs/mssr-librarian-temporal-scope-facet-20261011T112431Z-91cd52/runner.mjs",
+    "runnerSha256": "f863a326ed9b679a2f3c12c3f1e2412ef75362616d7d1dafa877349484e1859a",
+    "casesPath": "experiments/jev-mssr-live/runs/mssr-librarian-temporal-scope-facet-20261011T112431Z-91cd52/inputs/cases.json",
+    "casesSha256": "07eb3e517757474b447cedc26ff971f34160895c0a759b7cc7ff378db32d52b7",
+    "lockfileSha256": "7a909621ed8de24fdaebef04f166ff54b9ec49ff57596de254b80738a255c031",
+    "runtime": "v24.16.0",
+    "requestSchemaVersion": 1
+  },
+  "corpus": {
+    "projectRoot": "D:\\Dev\\mssr",
+    "snapshotPath": "experiments/jev-mssr-live/runs/mssr-librarian-temporal-scope-facet-20261011T112431Z-91cd52/inputs/sources/",
+    "sources": [
+      {
+        "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+        "snapshotPath": "inputs/sources/source-01.md",
+        "sha256": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c"
+      }
+    ],
+    "items": 1,
+    "sourceRevision": "5bf47526b15b169b3725a9e62e9859ae7bbe1c07",
+    "redaction": "reviewed project metadata Markdown; exact source bytes frozen"
+  },
+  "provider": {
+    "mode": "live",
+    "provider": "TypeSafe Jev through the clean Bridge 0.6.169 provider adapter",
+    "endpointIdentity": "api.typesafe.ai/v1/systemone",
+    "requestedModel": "jev-1.13.0",
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "timeoutMs": 30000,
+    "maxRetries": 1,
+    "concurrency": 1,
+    "networkOptIn": true,
+    "networkOptInMethod": "explicit command-line --allow-network plus user authorization recorded in manifest",
+    "credentialSource": "Windows Credential Manager; secret value not persisted",
+    "providerRequestIdsAvailable": "unknown",
+    "rawVendorResponsePersisted": false
+  },
+  "labels": {
+    "source": "source-derived-author",
+    "frozenAt": "2026-10-11T11:24:31Z",
+    "adjudication": "none",
+    "labelFile": "experiments/jev-mssr-live/runs/mssr-librarian-temporal-scope-facet-20261011T112431Z-91cd52/inputs/labels.json",
+    "labelFileSha256": "7d3aee07289880a980e349af4d3d1bff62f20234000efa89f9935dedffca03fe",
+    "exposedToRequests": false,
+    "note": "Source-derived label not passed to Jev; linked precision diagnostic, not an independent holdout or calibration sample."
+  },
+  "split": {
+    "method": "none-exploratory-source-grouped",
+    "trainIdsSha256": null,
+    "validationIdsSha256": null,
+    "holdoutIdsSha256": null,
+    "holdoutOpenedAt": null,
+    "holdoutUsedForTuning": false
+  },
+  "plan": {
+    "primaryMetric": "exact selected heading match to frozen source-derived target",
+    "secondaryMetrics": [
+      "search target present in top 100",
+      "exact fetch/fingerprint validation",
+      "evidence pack success",
+      "latency",
+      "provider tokens",
+      "failures"
+    ],
+    "thresholds": {},
+    "independentUnit": "same-document linked diagnostic repeat; not independent evidence unit",
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30
+    },
+    "uncertaintyMethod": "one linked source-document diagnostic only; no reliability or calibration claim",
+    "expectedRequestCount": 1
+  }
+}

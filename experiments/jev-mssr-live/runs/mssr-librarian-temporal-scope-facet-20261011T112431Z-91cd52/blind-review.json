@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "model-assisted blind review; not owner-gold adjudication",
+  "reviewer": "blind Luna subagent",
+  "reviewedInputs": ["records.jsonl", "inputs/sources/source-01.md"],
+  "labelsAvailableDuringReview": false,
+  "finding": {
+    "caseId": "temporal-scope-review-trigger",
+    "classification": "direct",
+    "selectedRange": "block-3/item-3",
+    "detail": "The selected passage explicitly names missing temporal/scope data, low confidence, and contradiction as triggers to review/abstain; all requested facets are present."
+  },
+  "limitations": "Blind model-assisted evidence review only; not owner adjudication or calibration evidence."
+}

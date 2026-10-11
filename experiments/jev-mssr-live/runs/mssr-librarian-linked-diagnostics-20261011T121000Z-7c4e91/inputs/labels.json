@@ -1,0 +1,20 @@
+{
+  "cases": [
+    {
+      "caseId": "confidence-bilingual-query-variants",
+      "expectedHeading": "Confidence and merge policy",
+      "expectedFacet": "The deterministic restrictions and approval gates remain intact."
+    },
+    {
+      "caseId": "preview-positive-relations",
+      "expectedHeading": "Confidence and merge policy",
+      "expectedFacet": "Only comparable supports or duplicate relations; exact fingerprint-bound snapshots."
+    },
+    {
+      "caseId": "preview-review-only-cases",
+      "expectedHeading": "Confidence and merge policy",
+      "expectedFacet": "Contradiction, unresolved, low-confidence, non-comparable or unverified remain separate/review-only; unknown/non-fresh blocks candidate status."
+    }
+  ],
+  "schemaVersion": 1
+}

@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "suite": "mssr-librarian-live-path-unseen-exploratory-v1",
+  "runId": "mssr-librarian-live-path-unseen-20261011T111400Z-a71d3f",
+  "createdAt": "2026-10-11T11:14:00Z",
+  "status": "prepared",
+  "parentRunId": null,
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "5bf47526b15b169b3725a9e62e9859ae7bbe1c07",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "workingTreeClean": false,
+    "changedPaths": [
+      "experiments/jev-mssr-live/runs/mssr-librarian-live-path-unseen-20261011T111400Z-a71d3f/"
+    ],
+    "bridgeRoot": "D:\\Dev\\bridge-mcp-mssr-0.2.112-query-variants",
+    "bridgeCommit": "2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc",
+    "bridgeVersion": "0.6.169",
+    "mssrVersion": "0.2.121",
+    "buildArtifacts": [
+      {
+        "path": "dist/tool-registry.js",
+        "sha256": "dc155b2c0ce369ea33b8a4de124b37e79636bb397932cef3827cf34bec5a8fbe"
+      },
+      {
+        "path": "dist/tools/mssr-semantic-evidence-tools.js",
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa"
+      },
+      {
+        "path": "node_modules/@mauroprime/mssr/package.json",
+        "sha256": "eb06b760aa92f405df2ced15e6866ee17d28e2c01983a194eecd2260be2bc61a"
+      },
+      {
+        "path": "vendor/mauroprime-mssr-0.2.121.tgz",
+        "sha256": "181bf914da4f5767c457755990798169f6d539f56886b420bd8410951b5d8971"
+      },
+      {
+        "path": "scripts/read-windows-credential.ps1",
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e"
+      }
+    ],
+    "codeSnapshotCleanAtFreeze": true
+  },
+  "instrument": {
+    "runnerPath": "experiments\\jev-mssr-live\\runs\\mssr-librarian-live-path-unseen-20261011T111400Z-a71d3f/runner.mjs",
+    "runnerSha256": "ec324b58138dea339425573a50db92e62a57fd59ed288f1d073aa57f0779f20c",
+    "casesPath": "experiments\\jev-mssr-live\\runs\\mssr-librarian-live-path-unseen-20261011T111400Z-a71d3f/inputs/cases.json",
+    "casesSha256": "e3234a154915b97136da9babff4c7519c790e2dee860b5e25220d82044e4b29b",
+    "lockfileSha256": "7a909621ed8de24fdaebef04f166ff54b9ec49ff57596de254b80738a255c031",
+    "runtime": "v24.16.0",
+    "requestSchemaVersion": 1
+  },
+  "corpus": {
+    "projectRoot": "D:\\Dev\\mssr",
+    "snapshotPath": "experiments\\jev-mssr-live\\runs\\mssr-librarian-live-path-unseen-20261011T111400Z-a71d3f/inputs/sources/",
+    "sources": [
+      {
+        "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+        "snapshotPath": "inputs/sources/source-01.md",
+        "sha256": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c"
+      },
+      {
+        "sourceRef": ".mssr/knowledge/architecture/operational-notice-plane-history.md",
+        "snapshotPath": "inputs/sources/source-02.md",
+        "sha256": "647d9816032ff17817169e215ff6d7eb8f53630cd54091354050441aad10b6ea"
+      },
+      {
+        "sourceRef": ".mssr/knowledge/reference/project-document-index.md",
+        "snapshotPath": "inputs/sources/source-03.md",
+        "sha256": "be97facc7ce3732a0db9094d98f6a8b19a6bda0ea4be16d6e5d3f0fe7151b33e"
+      },
+      {
+        "sourceRef": "docs/decisions/README.md",
+        "snapshotPath": "inputs/sources/source-04.md",
+        "sha256": "d02d4fc4f65de5f9c71066ee7174f67ff11afbcf502229e8f74e90b880f36c90"
+      },
+      {
+        "sourceRef": "docs/skill-routing/MAINTENANCE.md",
+        "snapshotPath": "inputs/sources/source-05.md",
+        "sha256": "05b327f9179317332c361de14273876ce90e5504ec50c812111cc40aa68fe2fa"
+      }
+    ],
+    "items": 5,
+    "sourceRevision": "5bf47526b15b169b3725a9e62e9859ae7bbe1c07",
+    "redaction": "reviewed project metadata Markdown; exact source bytes frozen"
+  },
+  "provider": {
+    "mode": "live",
+    "provider": "TypeSafe Jev through the clean Bridge 0.6.169 provider adapter",
+    "endpointIdentity": "api.typesafe.ai/v1/systemone",
+    "requestedModel": "jev-1.13.0",
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "timeoutMs": 30000,
+    "maxRetries": 1,
+    "concurrency": 1,
+    "networkOptIn": true,
+    "networkOptInMethod": "explicit command-line --allow-network plus user authorization recorded in manifest",
+    "credentialSource": "Windows Credential Manager; secret value not persisted",
+    "providerRequestIdsAvailable": "unknown",
+    "rawVendorResponsePersisted": false
+  },
+  "labels": {
+    "source": "source-derived-author",
+    "frozenAt": "2026-10-11T11:14:00Z",
+    "adjudication": "none",
+    "labelFile": "experiments\\jev-mssr-live\\runs\\mssr-librarian-live-path-unseen-20261011T111400Z-a71d3f/inputs/labels.json",
+    "labelFileSha256": "f567ed644f6b1efaf4801e8671a0bdb73073e48b52703d0934fa21b3cdace936",
+    "exposedToRequests": false,
+    "note": "Path-unseen only within the reviewed local artifact inventory; not a protected holdout or owner-gold set."
+  },
+  "split": {
+    "method": "none-exploratory-source-grouped",
+    "trainIdsSha256": null,
+    "validationIdsSha256": null,
+    "holdoutIdsSha256": null,
+    "holdoutOpenedAt": null,
+    "holdoutUsedForTuning": false
+  },
+  "plan": {
+    "primaryMetric": "exact selected heading match to frozen source-derived target",
+    "secondaryMetrics": [
+      "search target present in top 100",
+      "exact fetch/fingerprint validation",
+      "evidence pack success",
+      "latency",
+      "provider tokens",
+      "failures"
+    ],
+    "thresholds": {},
+    "independentUnit": "source-document cluster",
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30
+    },
+    "uncertaintyMethod": "raw counts only; five source-document clusters; no reliability or calibration claim",
+    "expectedRequestCount": 10
+  }
+}

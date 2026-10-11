@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "confidence-raw-threshold",
+      "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+      "query": "¿Qué acciones siguen prohibidas aunque una relación candidata tenga alta confianza cruda?",
+      "language": "es"
+    },
+    {
+      "id": "synthesis-provenance-retention",
+      "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+      "query": "What must a synthesis proposal preserve so reviewers can inspect inclusion, omission, and separation?",
+      "language": "en"
+    },
+    {
+      "id": "preview-relations-and-blockers",
+      "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+      "query": "¿Qué relaciones pueden ser candidatas para preview y cuáles deben quedar separadas o solo para revisión?",
+      "language": "es"
+    },
+    {
+      "id": "notice-plane-ownership",
+      "sourceRef": ".mssr/knowledge/architecture/operational-notice-plane-history.md",
+      "query": "Which responsibilities belong to portable MSSR, and which stay with the host?",
+      "language": "en"
+    },
+    {
+      "id": "notice-delivery-failure",
+      "sourceRef": ".mssr/knowledge/architecture/operational-notice-plane-history.md",
+      "query": "Si falla la entrega de un aviso al host, ¿MSSR reintenta o administra una cola universal?",
+      "language": "es"
+    },
+    {
+      "id": "architecture-document-pointer",
+      "sourceRef": ".mssr/knowledge/reference/project-document-index.md",
+      "query": "Which document should I read for the full architecture narrative, and what role do the selective modules serve?",
+      "language": "en"
+    },
+    {
+      "id": "adr-host-implementation-limits",
+      "sourceRef": "docs/decisions/README.md",
+      "query": "¿Qué límite advierte el README antes de inferir que una decisión ya fue implementada en todos los hosts?",
+      "language": "es"
+    },
+    {
+      "id": "new-skill-stability-gates",
+      "sourceRef": "docs/skill-routing/MAINTENANCE.md",
+      "query": "Al crear una skill propia, ¿qué auditorías, metadata y fixtures hacen falta antes de considerarla estable?",
+      "language": "es"
+    },
+    {
+      "id": "skill-behavior-change-boundary",
+      "sourceRef": "docs/skill-routing/MAINTENANCE.md",
+      "query": "When does a skill edit require routing and fixture changes, and what is exempt for a wording-only correction?",
+      "language": "en"
+    },
+    {
+      "id": "empty-external-catalog",
+      "sourceRef": "docs/skill-routing/MAINTENANCE.md",
+      "query": "If a requested external MCP source reports zero tools, how should routing and source health be reported?",
+      "language": "en"
+    }
+  ]
+}

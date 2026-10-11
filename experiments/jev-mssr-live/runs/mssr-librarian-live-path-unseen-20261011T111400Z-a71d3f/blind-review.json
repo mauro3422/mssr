@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "model-assisted blind review; not owner-gold adjudication",
+  "reviewer": "blind Luna subagent",
+  "labelsAvailableDuringReview": false,
+  "assessment": {
+    "direct": 8,
+    "partial": 1,
+    "endToEndMiss": 1,
+    "fetchedPassagesOutrightWrong": 0,
+    "limitations": "Ten requests are grouped into five source-document clusters; model-assisted judgments do not replace owner adjudication."
+  },
+  "findings": [
+    {"caseId":"confidence-raw-threshold","classification":"end-to-end miss","detail":"Spanish query produced zero lexical candidates against the English source; Jev abstained among two heading candidates although the source contains the rule."},
+    {"caseId":"preview-relations-and-blockers","classification":"partial facet coverage","detail":"Search found 12 exact ranges; Jev selected the temporal/scope/low-confidence/contradiction review item, omitting positive supports/duplicate relations and fingerprint-bound snapshot conditions."},
+    {"caseId":"synthesis-provenance-retention","classification":"direct","detail":"Fetched range contains proposal provenance for inclusion, omission, and separation."},
+    {"caseId":"notice-plane-ownership","classification":"direct","detail":"Selected evidence answers portable MSSR versus host ownership."},
+    {"caseId":"notice-delivery-failure","classification":"direct","detail":"Selected evidence answers delivery-failure ownership and retry limitations."},
+    {"caseId":"architecture-document-pointer","classification":"direct","detail":"Selected evidence points to the architecture narrative and selective modules."},
+    {"caseId":"adr-host-implementation-limits","classification":"direct","detail":"Selected evidence warns against inferring implementation across every host."},
+    {"caseId":"new-skill-stability-gates","classification":"direct","detail":"Selected evidence covers routing audit, metadata, and fixture gates."},
+    {"caseId":"skill-behavior-change-boundary","classification":"direct","detail":"Selected evidence distinguishes behavior changes from wording-only edits."},
+    {"caseId":"empty-external-catalog","classification":"direct","detail":"Selected evidence treats a zero-tool catalog as health evidence, not proof of nonexistence."}
+  ]
+}

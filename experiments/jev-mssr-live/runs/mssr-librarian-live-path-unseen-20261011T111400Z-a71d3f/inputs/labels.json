@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "source": "source-derived-author",
+  "adjudication": "none",
+  "exposedToRequests": false,
+  "independentUnit": "source-document cluster",
+  "cases": [
+    {
+      "caseId": "confidence-raw-threshold",
+      "expectedHeading": "## Confidence and merge policy",
+      "concept": "raw confidence does not grant destructive merge or canonical write",
+      "allowedEquivalent": "Adjacent exact range may be accepted by later blind review only; do not alter this frozen exact-heading score."
+    },
+    {
+      "caseId": "synthesis-provenance-retention",
+      "expectedHeading": "## Confidence and merge policy",
+      "concept": "proposal provenance and review fields",
+      "allowedEquivalent": "Adjacent exact range may be accepted by later blind review only; do not alter this frozen exact-heading score."
+    },
+    {
+      "caseId": "preview-relations-and-blockers",
+      "expectedHeading": "## Confidence and merge policy",
+      "concept": "preview eligibility and fail-closed cases",
+      "allowedEquivalent": "Adjacent exact range may be accepted by later blind review only; do not alter this frozen exact-heading score."
+    },
+    {
+      "caseId": "notice-plane-ownership",
+      "expectedHeading": "# Operational Notice Plane ownership history",
+      "concept": "portable policy versus host transport/persistence",
+      "allowedEquivalent": "Adjacent exact range may be accepted by later blind review only; do not alter this frozen exact-heading score."
+    },
+    {
+      "caseId": "notice-delivery-failure",
+      "expectedHeading": "# Operational Notice Plane ownership history",
+      "concept": "delivery failure and queue ownership",
+      "allowedEquivalent": "Adjacent exact range may be accepted by later blind review only; do not alter this frozen exact-heading score."
+    },
+    {
+      "caseId": "architecture-document-pointer",
+      "expectedHeading": "# Project document index",
+      "concept": "architecture doc pointer and selective module role",
+      "allowedEquivalent": "Adjacent exact range may be accepted by later blind review only; do not alter this frozen exact-heading score."
+    },
+    {
+      "caseId": "adr-host-implementation-limits",
+      "expectedHeading": "# Architecture decisions",
+      "concept": "ADR intent does not prove every host implementation",
+      "allowedEquivalent": "Adjacent exact range may be accepted by later blind review only; do not alter this frozen exact-heading score."
+    },
+    {
+      "caseId": "new-skill-stability-gates",
+      "expectedHeading": "## Al crear una skill",
+      "concept": "first-party skill stability checklist",
+      "allowedEquivalent": "Adjacent exact range may be accepted by later blind review only; do not alter this frozen exact-heading score."
+    },
+    {
+      "caseId": "skill-behavior-change-boundary",
+      "expectedHeading": "## Al modificar una skill",
+      "concept": "behavioral versus editorial skill changes",
+      "allowedEquivalent": "Adjacent exact range may be accepted by later blind review only; do not alter this frozen exact-heading score."
+    },
+    {
+      "caseId": "empty-external-catalog",
+      "expectedHeading": "## Salud de fuentes externas",
+      "concept": "empty catalog is degraded source, preserve other routing",
+      "allowedEquivalent": "Adjacent exact range may be accepted by later blind review only; do not alter this frozen exact-heading score."
+    }
+  ]
+}

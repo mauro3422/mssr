@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "reportType": "mechanically-derived run summary; no semantic adjudication",
+  "runId": "mssr-librarian-linked-diagnostics-20261011T121000Z-7c4e91",
+  "parentRunId": "mssr-librarian-live-path-unseen-20261011T111400Z-a71d3f",
+  "frozenManifestSha256": "bf7da3bb20c43078c9e517f54e719859fa48dd2efefbd4ddb7d5f43fdfea9b40",
+  "completionStatus": "complete",
+  "sourceDocumentClusters": 1,
+  "sourceRefs": [
+    ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md"
+  ],
+  "expectedRequests": 3,
+  "attemptedRequests": 3,
+  "successfulRequests": 3,
+  "failedRequests": 0,
+  "selected": 3,
+  "abstained": 0,
+  "exactFetchesWithFingerprint": 3,
+  "evidencePacksBuilt": 3,
+  "tokenUsage": {
+    "input": 5230,
+    "output": 401
+  },
+  "firstRequestStartedAt": "2026-10-11T11:23:05.622Z",
+  "lastRequestCompletedAt": "2026-10-11T11:23:08.007Z",
+  "manifestCreatedAt": "2026-10-11T12:10:00Z",
+  "createdAtDeltaMs": -2814378,
+  "timestampWarning": "manifest createdAt is future-dated relative to the first request; use request events as execution time",
+  "independentUnit": "same-source linked diagnostic cases; not independent evidence units",
+  "calibrationClaim": false,
+  "records": [
+    {
+      "caseId": "confidence-bilingual-query-variants",
+      "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+      "status": "complete",
+      "searchResultCount": 12,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-3/item-4",
+      "rawChoiceConfidence": 0.96,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 887.2383
+    },
+    {
+      "caseId": "preview-positive-relations",
+      "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+      "status": "complete",
+      "searchResultCount": 7,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-4",
+      "rawChoiceConfidence": 1,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 781.9943
+    },
+    {
+      "caseId": "preview-review-only-cases",
+      "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+      "status": "complete",
+      "searchResultCount": 7,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-4",
+      "rawChoiceConfidence": 0.54,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 713.8172
+    }
+  ]
+}

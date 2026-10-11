@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "summaryType": "post-run diagnostic interpretation; raw provider records unchanged",
+  "runId": "mssr-librarian-temporal-scope-facet-20261011T112431Z-91cd52",
+  "parentRunId": "mssr-librarian-linked-diagnostics-20261011T121000Z-7c4e91",
+  "actualExecutionIntervalUtc": {"completedAt":"2026-10-11T11:25:14.592Z"},
+  "sourceDocumentClusters": 1,
+  "requests": 1,
+  "providerFailures": 0,
+  "searchCandidates": 12,
+  "selectedRange": "block-3/item-3",
+  "exactFetchPassed": true,
+  "evidencePackBuilt": true,
+  "modelAssistedBlindAssessment": {"direct":1,"ownerAdjudicated":false},
+  "rawChoiceConfidence": {"value":0.99,"status":"uncalibrated descriptive output"},
+  "finding": "The fetched passage explicitly covers all four required triggers: missing temporal data, missing scope data, low confidence, and contradiction. The prior partial coverage was repaired by asking the omitted facet directly.",
+  "limitations": ["One linked repeat against the same source document; not an independent sample.","Blind review is model-assisted and not owner-gold truth.","This does not calibrate raw Choice confidence or establish general reliability."],
+  "runnerSummaryCaveat": "summary.json retains stale template text referring to five document clusters and ten requests; this reviewed summary reflects the actual one-cluster, one-request diagnostic."
+}

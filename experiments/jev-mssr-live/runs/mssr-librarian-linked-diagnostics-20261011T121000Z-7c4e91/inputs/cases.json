@@ -1,0 +1,33 @@
+{
+  "cases": [
+    {
+      "id": "confidence-bilingual-query-variants",
+      "language": "es+en-variant",
+      "queryVariants": [
+        "Which actions remain prohibited even when a candidate relation has high raw confidence?",
+        "What may a raw confidence threshold permit, and what can it never authorize?"
+      ],
+      "query": "¿Qué acciones siguen prohibidas aunque una relación candidata tenga alta confianza cruda?",
+      "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md"
+    },
+    {
+      "id": "preview-positive-relations",
+      "language": "en",
+      "queryVariants": [
+        "The preview builder accepts comparable supports or duplicate relations only when exact fingerprints bind the source snapshots."
+      ],
+      "query": "Which relation types can the current preview builder accept, and what exact evidence condition must hold?",
+      "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md"
+    },
+    {
+      "id": "preview-review-only-cases",
+      "language": "en",
+      "queryVariants": [
+        "What conditions block candidate status and prevent automatic consolidation?"
+      ],
+      "query": "Which candidate cases must remain separate or review-only?",
+      "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md"
+    }
+  ],
+  "schemaVersion": 1
+}

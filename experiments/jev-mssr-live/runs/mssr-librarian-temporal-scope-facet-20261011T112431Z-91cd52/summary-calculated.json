@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "reportType": "mechanically-derived run summary; no semantic adjudication",
+  "runId": "mssr-librarian-temporal-scope-facet-20261011T112431Z-91cd52",
+  "parentRunId": "mssr-librarian-linked-diagnostics-20261011T121000Z-7c4e91",
+  "frozenManifestSha256": "882f5b0bbc9df3fc9d2cd3c3973dbbae1bd7444db9937144504b5e2ca766b041",
+  "completionStatus": "complete",
+  "sourceDocumentClusters": 1,
+  "sourceRefs": [
+    ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md"
+  ],
+  "expectedRequests": 1,
+  "attemptedRequests": 1,
+  "successfulRequests": 1,
+  "failedRequests": 0,
+  "selected": 1,
+  "abstained": 0,
+  "exactFetchesWithFingerprint": 1,
+  "evidencePacksBuilt": 1,
+  "tokenUsage": {
+    "input": 2079,
+    "output": 167
+  },
+  "firstRequestStartedAt": "2026-10-11T11:25:13.729Z",
+  "lastRequestCompletedAt": "2026-10-11T11:25:14.590Z",
+  "manifestCreatedAt": "2026-10-11T11:24:31Z",
+  "createdAtDeltaMs": 42729,
+  "timestampWarning": null,
+  "independentUnit": "same-document linked diagnostic repeat; not independent evidence unit",
+  "calibrationClaim": false,
+  "records": [
+    {
+      "caseId": "temporal-scope-review-trigger",
+      "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+      "status": "complete",
+      "searchResultCount": 12,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-3/item-3",
+      "rawChoiceConfidence": 0.99,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 860.8218
+    }
+  ]
+}

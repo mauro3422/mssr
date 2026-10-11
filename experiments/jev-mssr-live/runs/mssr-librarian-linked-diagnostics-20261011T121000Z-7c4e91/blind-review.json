@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "model-assisted blind review; not owner-gold adjudication",
+  "reviewer": "blind Luna subagent",
+  "reviewedInputs": ["records.jsonl", "inputs/sources/source-01.md"],
+  "labelsAvailableDuringReview": false,
+  "findings": [
+    {"caseId":"confidence-bilingual-query-variants","classification":"direct","detail":"Explicit English variants restored search (12 candidates after the Spanish-only baseline had 0); Jev selected and fetched exact block-3/item-4, stating that raw thresholding may admit a derived synthesis preview but never destructive source merge or canonical write."},
+    {"caseId":"preview-positive-relations","classification":"direct","detail":"block-4 explicitly gives comparable supports/duplicate plus exact fingerprint-bound source snapshots; relevant but broader than the minimum."},
+    {"caseId":"preview-review-only-cases","classification":"partial-near-direct","detail":"block-4 lists contradiction, unresolved, low-confidence, non-comparable, and unverified cases as separate/review-only and unknown/non-fresh as blocking candidate status, but does not explicitly name missing temporal/scope data."}
+  ],
+  "limitations": "Blind model-assisted evidence review only; no owner-adjudicated gold labels, independent unit, reliability or calibration claim."
+}

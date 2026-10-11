@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "summaryType": "post-run diagnostic interpretation; raw provider records unchanged",
+  "runId": "mssr-librarian-linked-diagnostics-20261011T121000Z-7c4e91",
+  "parentRunId": "mssr-librarian-live-path-unseen-20261011T111400Z-a71d3f",
+  "actualExecutionIntervalUtc": {"firstRequestStartedAt":"2026-10-11T11:23:05Z","lastRequestCompletedAt":"2026-10-11T11:23:08Z"},
+  "sourceDocumentClusters": 1,
+  "requests": 3,
+  "providerFailures": 0,
+  "exactFetches": 3,
+  "evidencePacksBuilt": 3,
+  "modelAssistedBlindAssessment": {"direct":2,"partial":1,"miss":0,"reviewer":"blind Luna subagent","ownerAdjudicated":false},
+  "findings": [
+    {"caseId":"confidence-bilingual-query-variants","result":"direct","observed":"English query variants changed lexical retrieval from 0 candidates in the Spanish-only parent case to 12 candidates. Jev selected exact block-3/item-4, which explicitly forbids destructive source merge and canonical write."},
+    {"caseId":"preview-positive-relations","result":"direct","observed":"block-4 explicitly says only comparable supports or duplicate relations with exact fingerprint-bound source snapshots can be accepted by the preview builder."},
+    {"caseId":"preview-review-only-cases","result":"partial","observed":"block-4 names contradiction, unresolved, low-confidence, non-comparable, and unverified cases plus unknown/non-fresh status; the blind reviewer found missing temporal/scope data is not explicit in this selected passage."}
+  ],
+  "providerTokenUsage": {"input":5230,"output":401},
+  "rawChoiceConfidence": {"status":"uncalibrated descriptive output","values":[0.96,1,0.54]},
+  "limitations": ["All three queries target one source document and are linked diagnostics, not independent samples.","Labels were source-derived and hidden from Jev, but have no owner adjudication.","Blind review is model-assisted and not gold truth.","Exact heading and search-at-100 metrics in summary.json are not semantic answer quality."],
+  "runnerSummaryCaveat": "summary.json was emitted from a template that still states five document clusters and ten requests; that field is stale for this child run. This reviewed summary reports the actual one-cluster, three-request run."
+}

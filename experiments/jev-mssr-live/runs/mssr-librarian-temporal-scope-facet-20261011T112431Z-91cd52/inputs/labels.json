@@ -1,0 +1,10 @@
+{
+  "cases": [
+    {
+      "expectedHeading": "Confidence and merge policy",
+      "caseId": "temporal-scope-review-trigger",
+      "expectedFacet": "Missing temporal/scope data, low confidence, or contradiction sends the proposal to review/abstain."
+    }
+  ],
+  "schemaVersion": 1
+}

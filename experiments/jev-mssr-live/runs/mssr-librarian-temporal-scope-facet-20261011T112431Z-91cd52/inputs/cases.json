@@ -1,0 +1,15 @@
+{
+  "cases": [
+    {
+      "id": "temporal-scope-review-trigger",
+      "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+      "query": "Which missing evidence conditions explicitly send a proposal to review or abstain?",
+      "queryVariants": [
+        "Missing temporal/scope data, low confidence, or a contradiction sends the proposal to review/abstain.",
+        "Missing temporal data or missing scope data are review triggers even when raw relation confidence is high."
+      ],
+      "language": "en"
+    }
+  ],
+  "schemaVersion": 1
+}

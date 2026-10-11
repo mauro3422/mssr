@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "kind": "append-only-manifest-erratum",
+  "runId": "mssr-librarian-linked-diagnostics-20261011T121000Z-7c4e91",
+  "field": "createdAt and timestamp-like runId slug",
+  "frozenManifestSha256": "bf7da3bb20c43078c9e517f54e719859fa48dd2efefbd4ddb7d5f43fdfea9b40",
+  "recordedCreatedAt": "2026-10-11T12:10:00Z",
+  "correctedObservation": {"firstRequestStartedAt":"2026-10-11T11:23:05Z","lastRequestCompletedAt":"2026-10-11T11:23:08Z","runCompletionCompletedAt":"2026-10-11T11:23:08.009Z"},
+  "correction": "The createdAt and timestamp-like runId slug were entered with a future 12:10Z time although request records show execution around 11:23Z. The frozen manifest and run-completion were not rewritten; request-event timestamps define the actual execution interval."
+}
