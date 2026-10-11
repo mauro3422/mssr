@@ -1,13 +1,17 @@
-// Reusable template: copy this file and selection-record.mjs into a new run
-// packet, freeze both hashes in manifest.instrument, then review before live use.
+// Reusable template: copy this file and both helpers into a new run packet,
+// freeze all three hashes in manifest.instrument, then review before live use.
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { pathToFileURL } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { serializeJevEvidenceMetrics } from "./selection-record.mjs";
+import { acquireExclusiveRunLock, validateEvidencePack, validateFetchResult, validateRunInputs } from "./runner-support.mjs";
 
-const runDir = path.dirname(new URL(import.meta.url).pathname.replace(/^\/(\w:)/, "$1"));
+async function main() {
+const runDir = path.dirname(fileURLToPath(import.meta.url));
+const releaseRunLock = await acquireExclusiveRunLock(path.join(runDir, ".runner.lock"));
+try {
 const manifest = JSON.parse(await fs.readFile(path.join(runDir, "manifest.json"), "utf8"));
 const allowNetwork = process.argv.includes("--allow-network");
 const cases = JSON.parse(await fs.readFile(path.join(runDir, "inputs/cases.json"), "utf8")).cases;
@@ -28,6 +32,7 @@ assert.equal(manifest.status, "prepared");
 assert.equal(cases.length, manifest.plan.expectedRequestCount);
 assert.equal(await hashFile(path.join(runDir, "runner.mjs")), manifest.instrument.runnerSha256);
 assert.equal(await hashFile(path.join(runDir, "selection-record.mjs")), manifest.instrument.selectionRecordSha256);
+assert.equal(await hashFile(path.join(runDir, "runner-support.mjs")), manifest.instrument.runnerSupportSha256);
 assert.equal(await hashFile(path.join(runDir, "inputs/cases.json")), manifest.instrument.casesSha256);
 assert.equal(await hashFile(path.join(runDir, "inputs/labels.json")), manifest.labels.labelFileSha256);
 for (const source of manifest.corpus.sources) {
@@ -48,12 +53,13 @@ if (!allowNetwork) {
     cases: cases.map(({ id, sourceRef, query }) => ({ id, sourceRef, query })),
     labelsParsed: false,
   }, null, 2));
-  process.exit(0);
+  return;
 }
 assert.equal(manifest.provider.mode, "live");
 assert.equal(manifest.provider.networkOptIn, true);
 assert.equal(manifest.provider.networkOptInMethod, "explicit command-line --allow-network plus user authorization recorded in manifest");
 const labels = JSON.parse(await fs.readFile(path.join(runDir, "inputs/labels.json"), "utf8"));
+validateRunInputs(cases, labels, manifest.corpus.sources.map((source) => source.sourceRef));
 const frozenManifestHash = await hashFile(path.join(runDir, "manifest.json"));
 const registryUrl = pathToFileURL(path.join(bridgeRoot, "dist/tool-registry.js")).href;
 const toolsUrl = pathToFileURL(path.join(bridgeRoot, "dist/tools/mssr-semantic-evidence-tools.js")).href;
@@ -170,29 +176,43 @@ for (const testCase of cases) {
         projectRoot,
         handle: selected.selected.handle,
       });
+      const fetchValidation = validateFetchResult(fetched, selected.selected.handle);
       record.fetch = {
-        status: fetched.status ?? "fetched",
+        status: fetchValidation.passed ? "validated" : "invalid",
+        projectOwner: fetched.projectOwner ?? null,
         handleId: fetched.handle?.id ?? null,
         revision: fetched.handle?.revision ?? null,
         fingerprint: fetched.handle?.fingerprint ?? null,
+        returnedFingerprint: fetched.fingerprint ?? null,
         textSha256: hash(Buffer.from(fetched.text ?? "", "utf8")),
         selectedFingerprint: selected.selected.handle.fingerprint,
-        passed: fetched.handle?.fingerprint === selected.selected.handle.fingerprint,
+        passed: fetchValidation.passed,
+        validationErrors: fetchValidation.errors,
+        advisoryOnly: fetched.advisoryOnly ?? null,
+        truthAuthority: fetched.truthAuthority ?? null,
         textChars: (fetched.text ?? "").length,
         text: fetched.text ?? null,
       };
+      assert.ok(fetchValidation.passed, `Fetch validation failed: ${fetchValidation.errors.join("; ")}`);
       const pack = await registry.call("mssr_librarian_evidence_pack", {
         projectRoot,
         sourceRefs: [testCase.sourceRef],
         handles: [selected.selected.handle],
         dedupeContainedRanges: false,
       });
+      const packValidation = validateEvidencePack(pack, selected.selected.handle, fetched.text);
       record.evidencePack = {
-        status: pack.status ?? "complete",
-        evidenceCount: pack.evidence?.length ?? pack.items?.length ?? pack.entries?.length ?? null,
+        status: packValidation.passed ? "validated" : "invalid",
+        projectOwner: pack.projectOwner ?? null,
+        sourceCount: pack.sourceCount ?? null,
+        evidenceCount: pack.paragraphs?.length ?? null,
+        totalFetchedChars: pack.totalFetchedChars ?? null,
+        passed: packValidation.passed,
+        validationErrors: packValidation.errors,
         outputSha256: hash(Buffer.from(JSON.stringify(pack), "utf8")),
         rawPack: pack,
       };
+      assert.ok(packValidation.passed, `Evidence-pack validation failed: ${packValidation.errors.join("; ")}`);
     }
     record.status = "complete";
   } catch (error) {
@@ -221,18 +241,24 @@ const scored = records.map((record) => {
   assert.ok(label, "missing label " + record.caseId);
   const selected = record.jev?.selected;
   const expectedHeading = normalizeHeading(label.expectedHeading);
-  const targetInSearchTop100 = Boolean(expectedHeading && record.search?.results?.some((item) =>
-    normalizeHeading(item.title) === expectedHeading
-      || (Array.isArray(item.headingPath) && item.headingPath.some((part) => normalizeHeading(part) === expectedHeading))));
+  const matchesExpectedRange = (handle) => !Number.isInteger(label.expectedStartLine)
+    || (handle?.startLine === label.expectedStartLine && handle?.endLine === label.expectedEndLine);
+  const matchesExpectedHeading = (item) => Boolean(expectedHeading && (
+    normalizeHeading(item?.title) === expectedHeading
+      || (Array.isArray(item?.headingPath) && item.headingPath.some((part) => normalizeHeading(part) === expectedHeading))));
+  const targetInSearchTop100 = Boolean(record.search?.results?.some((item) =>
+    matchesExpectedHeading(item) && matchesExpectedRange(item.handle)));
   return {
     caseId: record.caseId,
     sourceRef: record.sourceRef,
     expectedHeading: label.expectedHeading,
+    expectedStartLine: label.expectedStartLine ?? null,
+    expectedEndLine: label.expectedEndLine ?? null,
     observedHeading: selected?.title ?? null,
-    exactHeadingMatch: Boolean(record.status === "complete" && normalizeHeading(selected?.title) === expectedHeading),
+    exactHeadingMatch: Boolean(record.status === "complete" && matchesExpectedHeading(selected) && matchesExpectedRange(selected?.handle)),
     targetInSearchTop100,
     exactFetchPassed: Boolean(record.fetch?.passed),
-    evidencePackBuilt: Boolean(record.evidencePack?.outputSha256),
+    evidencePackBuilt: record.evidencePack?.passed === true,
     status: record.status,
   };
 });
@@ -285,15 +311,17 @@ await fs.writeFile(path.join(runDir, "run-completion.json"), json({
   successfulRequests: summary.successfulRequests,
   failedRequests: summary.failedRequests,
   labelsExposedToProvider: false,
-  networkOptInUsed: true,
-  argvContainsAllowNetwork: true,
+  networkOptInAuthorized: allowNetwork && manifest.provider.networkOptIn === true,
+  argvContainsAllowNetwork: allowNetwork,
+  jevRequestIdsReturned: records.filter((record) => Boolean(record.jev?.providerRequestId)).length,
+  providerTransportInvocationsObserved: null,
 }), "utf8");
 const fileList = [];
 async function walk(dir) {
   for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) await walk(full);
-    else if (entry.name !== "SHA256SUMS") fileList.push(path.relative(runDir, full).replaceAll("\\", "/"));
+    else if (entry.name !== "SHA256SUMS" && entry.name !== ".runner.lock") fileList.push(path.relative(runDir, full).replaceAll("\\", "/"));
   }
 }
 await walk(runDir);
@@ -302,3 +330,14 @@ const sums = [];
 for (const file of fileList) sums.push((await hashFile(path.join(runDir, file))) + "  " + file);
 await fs.writeFile(path.join(runDir, "SHA256SUMS"), sums.join("\n") + "\n", "utf8");
 console.log(JSON.stringify(summary, null, 2));
+} finally {
+  await releaseRunLock();
+}
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

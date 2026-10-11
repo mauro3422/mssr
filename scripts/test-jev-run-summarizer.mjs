@@ -6,6 +6,12 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { serializeJevEvidenceMetrics } from "../experiments/jev-mssr-live/selection-record.mjs";
+import {
+  acquireExclusiveRunLock,
+  validateEvidencePack,
+  validateFetchResult,
+  validateRunInputs,
+} from "../experiments/jev-mssr-live/runner-support.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const summarizer = path.join(root, "experiments/jev-mssr-live/summarize-run.mjs");
@@ -47,6 +53,91 @@ assert.equal(serializeJevEvidenceMetrics({ sufficiency: 0.88, noul: 0.77 }).evid
   "unknown aliases must not impersonate canonical evidenceSufficiency");
 
 try {
+  const fixtureText = "Exact fixture evidence.\n";
+  const fixtureFingerprint = digest(Buffer.from(fixtureText, "utf8"));
+  const fixtureHandle = {
+    id: "fixture-handle-01",
+    version: 1,
+    owner: "D:\\Dev\\mssr",
+    sourceRef: "docs/one.md",
+    revision: "fixture-revision-01",
+    rangeId: "sample-heading",
+    rangeKind: "section",
+    startLine: 1,
+    endLine: 3,
+    startOffset: 0,
+    endOffset: fixtureText.length,
+    fingerprint: fixtureFingerprint,
+    privacyClass: "project-metadata",
+  };
+  const fixtureCase = { id: "fixture-01", sourceRef: fixtureHandle.sourceRef, query: "What is the exact fixture evidence?" };
+  const fixtureLabel = { caseId: fixtureCase.id, expectedHeading: "Sample" };
+  assert.equal(validateRunInputs([fixtureCase], { cases: [fixtureLabel] }, [fixtureCase.sourceRef]), true);
+  assert.throws(() => validateRunInputs([fixtureCase, fixtureCase], { cases: [fixtureLabel, fixtureLabel] }, [fixtureCase.sourceRef]), /duplicate case id/u);
+  assert.throws(() => validateRunInputs([fixtureCase], { cases: [] }, [fixtureCase.sourceRef]), /one-to-one mapping/u);
+  assert.throws(() => validateRunInputs([fixtureCase], { cases: [fixtureLabel] }, []), /absent from the frozen corpus/u);
+
+  const fixtureFetch = {
+    handle: fixtureHandle,
+    text: fixtureText,
+    fingerprint: fixtureFingerprint,
+    projectOwner: fixtureHandle.owner,
+    advisoryOnly: true,
+    truthAuthority: false,
+  };
+  assert.deepEqual(validateFetchResult(fixtureFetch, fixtureHandle), { passed: true, errors: [] });
+  const missingFetchFingerprint = validateFetchResult({ ...fixtureFetch, fingerprint: undefined }, fixtureHandle);
+  assert.equal(missingFetchFingerprint.passed, false, "missing fetch fingerprints must not count as a successful exact fetch");
+  const wrongFetchText = validateFetchResult({ ...fixtureFetch, text: "different bytes" }, fixtureHandle);
+  assert.equal(wrongFetchText.passed, false, "fingerprint must bind to the exact fetched text bytes");
+
+  const fixturePack = {
+    schemaVersion: 1,
+    kind: "mssr-librarian-evidence-pack",
+    assembly: "verbatim-source-ranges",
+    projectOwner: fixtureHandle.owner,
+    sourceCount: 1,
+    paragraphs: [{
+      ordinal: 1,
+      exactText: fixtureText,
+      citation: {
+        display: "docs/one.md:L1-L3",
+        handleId: fixtureHandle.id,
+        owner: fixtureHandle.owner,
+        sourceRef: fixtureHandle.sourceRef,
+        revision: fixtureHandle.revision,
+        rangeId: fixtureHandle.rangeId,
+        rangeKind: fixtureHandle.rangeKind,
+        startLine: fixtureHandle.startLine,
+        endLine: fixtureHandle.endLine,
+        fingerprint: fixtureFingerprint,
+        privacyClass: fixtureHandle.privacyClass,
+      },
+    }],
+    totalFetchedChars: fixtureText.length,
+    advisoryOnly: true,
+    truthAuthority: false,
+    canonicalRewriteAllowed: false,
+  };
+  assert.deepEqual(validateEvidencePack(fixturePack, fixtureHandle, fixtureText), { passed: true, errors: [] });
+  assert.equal(validateEvidencePack({ ...fixturePack, kind: "failed", paragraphs: [] }, fixtureHandle, fixtureText).passed, false,
+    "a malformed or empty pack must not count as built");
+
+  const lockDirectory = path.join(scratch, "exclusive-lock-test");
+  await fs.mkdir(lockDirectory, { recursive: true });
+  const lockPath = path.join(lockDirectory, ".runner.lock");
+  const lockResults = await Promise.allSettled([
+    acquireExclusiveRunLock(lockPath),
+    acquireExclusiveRunLock(lockPath),
+  ]);
+  const acquired = lockResults.filter((result) => result.status === "fulfilled");
+  const refused = lockResults.filter((result) => result.status === "rejected");
+  assert.equal(acquired.length, 1, "only one runner may acquire a packet lock");
+  assert.equal(refused.length, 1);
+  assert.match(String(refused[0].reason), /exclusive run lock already exists/u);
+  await acquired[0].value();
+  await assert.rejects(fs.access(lockPath), "released run locks must be removed");
+
   const generic = path.join(scratch, "generic");
   const genericCases = [
     { id: "heading-one", sourceRef: "docs/a.md", expectedHeading: "# Overview" },
@@ -119,17 +210,20 @@ try {
   assert.deepEqual(genericSummary.checksumFile.requiredFiles, genericChecksumFiles);
   await assert.rejects(fs.access(path.join(generic, "summary-calculated.json")), "stdout mode must not write run artifacts");
 
-  const templateRun = path.join(scratch, "template-run");
+  const templateRun = path.join(scratch, "template run with spaces");
   const templateProject = path.join(templateRun, "project");
   const templateBridge = path.join(templateRun, "bridge");
   const templateRunnerPath = path.join(templateRun, "runner.mjs");
   const runnerTemplate = path.join(root, "experiments/jev-mssr-live/runner-template.mjs");
   const selectionRecordModule = path.join(root, "experiments/jev-mssr-live/selection-record.mjs");
+  const runnerSupportModule = path.join(root, "experiments/jev-mssr-live/runner-support.mjs");
   await fs.mkdir(templateRun, { recursive: true });
   await fs.copyFile(runnerTemplate, templateRunnerPath);
   await fs.copyFile(selectionRecordModule, path.join(templateRun, "selection-record.mjs"));
+  await fs.copyFile(runnerSupportModule, path.join(templateRun, "runner-support.mjs"));
   const templateRunnerBytes = await fs.readFile(templateRunnerPath);
   const templateSelectionRecordBytes = await fs.readFile(path.join(templateRun, "selection-record.mjs"));
+  const templateRunnerSupportBytes = await fs.readFile(path.join(templateRun, "runner-support.mjs"));
   const templateSourceBytes = Buffer.from("# Sample\n\nExact fixture evidence.\n");
   await fs.mkdir(path.join(templateProject, "docs"), { recursive: true });
   await fs.writeFile(path.join(templateProject, "docs/one.md"), templateSourceBytes);
@@ -143,11 +237,8 @@ try {
     schemaVersion: 1,
     cases: [{ id: "template-smoke", sourceRef: "docs/one.md", query: "What is the exact fixture evidence?" }],
   });
-  const templateLabelsBytes = await writeJson(path.join(templateRun, "inputs/labels.json"), {
-    schemaVersion: 1,
-    adjudication: "fixture-only",
-    cases: [{ caseId: "template-smoke", expectedHeading: "Sample" }],
-  });
+  const templateLabelsBytes = Buffer.from("not parsed during dry-run\n", "utf8");
+  await fs.writeFile(path.join(templateRun, "inputs/labels.json"), templateLabelsBytes);
   const templateManifest = {
     schemaVersion: 1,
     status: "prepared",
@@ -171,6 +262,7 @@ try {
     instrument: {
       runnerSha256: digest(templateRunnerBytes),
       selectionRecordSha256: digest(templateSelectionRecordBytes),
+      runnerSupportSha256: digest(templateRunnerSupportBytes),
       casesSha256: digest(templateCasesBytes),
     },
     labels: { adjudication: "fixture-only", labelFileSha256: digest(templateLabelsBytes) },
@@ -188,7 +280,153 @@ try {
   assert.equal(templateDryRunSummary.requestedCalls, 1);
   assert.equal(templateDryRunSummary.sourceDocuments, 1);
   assert.equal(templateDryRunSummary.labelsParsed, false);
+  await assert.rejects(fs.access(path.join(templateRun, ".runner.lock")), "dry-run must release its exclusive packet lock");
   await assert.rejects(fs.access(path.join(templateRun, "records.jsonl")), "dry-run must not write provider records");
+  const partialRecordsPath = path.join(templateRun, "records.jsonl");
+  const partialRecordBytes = Buffer.from("partial evidence must be preserved\n", "utf8");
+  await fs.writeFile(partialRecordsPath, partialRecordBytes);
+  const refusedPartialReplay = spawnSync(process.execPath, [templateRunnerPath], {
+    cwd: templateRun,
+    encoding: "utf8",
+    windowsHide: true,
+  });
+  assert.notEqual(refusedPartialReplay.status, 0, "a packet with partial output must not be replayed");
+  assert.match(refusedPartialReplay.stderr, /Refusing to overwrite output: records\.jsonl/u);
+  assert.deepEqual(await fs.readFile(partialRecordsPath), partialRecordBytes, "partial evidence must remain unchanged after a refused replay");
+  await assert.rejects(fs.access(path.join(templateRun, ".runner.lock")), "failed preflight must release the run lock");
+
+  const mockRun = path.join(scratch, "mock live run with spaces");
+  const mockProject = path.join(mockRun, "project");
+  const mockBridge = path.join(mockRun, "bridge");
+  const mockSourceText = "# Sample\n\nExact fixture evidence.\n";
+  const mockSourceBytes = Buffer.from(mockSourceText, "utf8");
+  const mockRunnerPath = path.join(mockRun, "runner.mjs");
+  await fs.mkdir(path.join(mockProject, "docs"), { recursive: true });
+  await fs.mkdir(path.join(mockRun, "inputs/sources"), { recursive: true });
+  await fs.mkdir(path.join(mockBridge, "dist/tools"), { recursive: true });
+  await fs.writeFile(path.join(mockProject, "docs/one.md"), mockSourceBytes);
+  await fs.writeFile(path.join(mockRun, "inputs/sources/source-01.md"), mockSourceBytes);
+  await writeJson(path.join(mockBridge, "package.json"), { type: "module" });
+  const mockRegistrySource = [
+    "export function createToolRegistry(modules) {",
+    "  const [module] = modules;",
+    "  return { has: (name) => module.has(name), call: (name, args) => module.call(name, args) };",
+    "}",
+  ].join("\n");
+  const mockToolsSource = [
+    'import { createHash } from "node:crypto";',
+    'const text = "# Sample\\n\\nExact fixture evidence.\\n";',
+    'const fingerprint = createHash("sha256").update(Buffer.from(text, "utf8")).digest("hex");',
+    'const owner = process.env.MSSR_TEST_OWNER;',
+    'const handle = { id: "fixture-handle-01", version: 1, owner, sourceRef: "docs/one.md", revision: "fixture-revision-01", rangeId: "sample-heading", rangeKind: "section", startLine: 1, endLine: 3, startOffset: 0, endOffset: text.length, fingerprint, privacyClass: "project-metadata" };',
+    'const names = new Set(["mssr_librarian_search", "mssr_librarian_jev_select", "mssr_librarian_fetch", "mssr_librarian_evidence_pack"]);',
+    'export function createMssrJevBridgeDecisionProvider() { return { choose() { throw new Error("mock run must never invoke Jev transport"); } }; }',
+    'export function createMssrSemanticEvidenceToolModule() {',
+    '  return {',
+    '    has: (name) => names.has(name),',
+    '    async call(name, args) {',
+    '      if (name === "mssr_librarian_search") return { sourceCount: 1, results: [{ title: "Sample", headingPath: ["Sample"], score: 1, handle }] };',
+    '      if (name === "mssr_librarian_jev_select") return { status: "selected", provider: "fixture-mock", model: "fixture-no-network", providerConfidence: 0.91, confidenceCalibration: "uncalibrated", evidenceSufficiency: 0.87, noul: 0.65, usage: { input_tokens: 4, output_tokens: 2 }, selected: { title: "Sample", headingPath: ["Sample"], handle } };',
+    '      if (name === "mssr_librarian_fetch") return { handle, text, fingerprint, projectOwner: owner, advisoryOnly: true, truthAuthority: false };',
+    '      if (name === "mssr_librarian_evidence_pack") {',
+    '        const citation = { display: "docs/one.md:L1-L3", handleId: handle.id, owner, sourceRef: handle.sourceRef, revision: handle.revision, rangeId: handle.rangeId, rangeKind: handle.rangeKind, startLine: 1, endLine: 3, fingerprint, privacyClass: handle.privacyClass };',
+    '        return { schemaVersion: 1, kind: "mssr-librarian-evidence-pack", assembly: "verbatim-source-ranges", projectOwner: owner, sourceCount: 1, paragraphs: [{ ordinal: 1, exactText: text, citation }], totalFetchedChars: text.length, advisoryOnly: true, truthAuthority: false, canonicalRewriteAllowed: false };',
+    '      }',
+    '      throw new Error("unexpected mock tool " + name);',
+    '    },',
+    '  };',
+    '}',
+  ].join("\n");
+  await fs.writeFile(path.join(mockBridge, "dist/tool-registry.js"), mockRegistrySource);
+  await fs.writeFile(path.join(mockBridge, "dist/tools/mssr-semantic-evidence-tools.js"), mockToolsSource);
+  await fs.copyFile(runnerTemplate, mockRunnerPath);
+  await fs.copyFile(selectionRecordModule, path.join(mockRun, "selection-record.mjs"));
+  await fs.copyFile(runnerSupportModule, path.join(mockRun, "runner-support.mjs"));
+  const mockRunnerBytes = await fs.readFile(mockRunnerPath);
+  const mockSelectionBytes = await fs.readFile(path.join(mockRun, "selection-record.mjs"));
+  const mockSupportBytes = await fs.readFile(path.join(mockRun, "runner-support.mjs"));
+  const mockRegistryBytes = await fs.readFile(path.join(mockBridge, "dist/tool-registry.js"));
+  const mockToolsBytes = await fs.readFile(path.join(mockBridge, "dist/tools/mssr-semantic-evidence-tools.js"));
+  const mockCasesBytes = await writeJson(path.join(mockRun, "inputs/cases.json"), {
+    schemaVersion: 1,
+    cases: [{ id: "mock-case-01", sourceRef: "docs/one.md", query: "What is the exact fixture evidence?" }],
+  });
+  const mockLabelsBytes = await writeJson(path.join(mockRun, "inputs/labels.json"), {
+    schemaVersion: 1,
+    adjudication: "fixture-only",
+    cases: [{ caseId: "mock-case-01", expectedHeading: "Sample", expectedStartLine: 1, expectedEndLine: 3 }],
+  });
+  const mockManifest = {
+    schemaVersion: 1,
+    status: "prepared",
+    runId: "runner-template-mock-live-path",
+    source: {
+      bridgeRoot: mockBridge,
+      bridgeVersion: "fixture-bridge",
+      bridgeCommit: "fixture-commit",
+      mssrVersion: "fixture-mssr",
+      buildArtifacts: [
+        { path: "dist/tool-registry.js", sha256: digest(mockRegistryBytes) },
+        { path: "dist/tools/mssr-semantic-evidence-tools.js", sha256: digest(mockToolsBytes) },
+      ],
+    },
+    corpus: {
+      projectRoot: mockProject,
+      sources: [{ sourceRef: "docs/one.md", sha256: digest(mockSourceBytes), snapshotPath: "inputs/sources/source-01.md" }],
+    },
+    provider: {
+      provider: "fixture-mock",
+      requestedModel: "fixture-no-network",
+      mode: "live",
+      networkOptIn: true,
+      networkOptInMethod: "explicit command-line --allow-network plus user authorization recorded in manifest",
+    },
+    plan: { expectedRequestCount: 1, independentUnit: "fixture sourceRef only; no statistical claim" },
+    instrument: {
+      runnerSha256: digest(mockRunnerBytes),
+      selectionRecordSha256: digest(mockSelectionBytes),
+      runnerSupportSha256: digest(mockSupportBytes),
+      casesSha256: digest(mockCasesBytes),
+    },
+    labels: { adjudication: "fixture-only", labelFileSha256: digest(mockLabelsBytes) },
+  };
+  await writeJson(path.join(mockRun, "manifest.json"), mockManifest);
+  const mockLiveRun = spawnSync(process.execPath, [mockRunnerPath, "--allow-network"], {
+    cwd: mockRun,
+    encoding: "utf8",
+    windowsHide: true,
+    env: { ...process.env, MSSR_TEST_OWNER: mockProject },
+  });
+  assert.equal(mockLiveRun.status, 0, mockLiveRun.stderr);
+  const mockSummary = JSON.parse(mockLiveRun.stdout);
+  assert.equal(mockSummary.status, "complete");
+  assert.equal(mockSummary.successfulRequests, 1);
+  assert.equal(mockSummary.exactHeadingMatches, 1);
+  assert.equal(mockSummary.searchTargetRecallAt100, 1);
+  assert.equal(mockSummary.exactFetchesWithFingerprint, 1);
+  assert.equal(mockSummary.evidencePacksBuilt, 1);
+  const mockRecord = JSON.parse((await fs.readFile(path.join(mockRun, "records.jsonl"), "utf8")).trim());
+  assert.equal(mockRecord.jev.evidenceSufficiency, 0.87);
+  assert.equal(mockRecord.jev.noul, 0.65);
+  assert.equal(mockRecord.fetch.passed, true);
+  assert.equal(mockRecord.evidencePack.passed, true);
+  const mockCompletion = JSON.parse(await fs.readFile(path.join(mockRun, "run-completion.json"), "utf8"));
+  assert.equal(mockCompletion.labelsExposedToProvider, false);
+  assert.equal(mockCompletion.networkOptInAuthorized, true);
+  assert.equal(mockCompletion.argvContainsAllowNetwork, true);
+  assert.equal(mockCompletion.jevRequestIdsReturned, 0, "fake provider flow must not claim returned Jev request IDs");
+  assert.equal(mockCompletion.providerTransportInvocationsObserved, null,
+    "runner cannot observe network transport calls below the Bridge adapter");
+  assert.equal("networkOptInUsed" in mockCompletion, false,
+    "authorization must not be mislabeled as observed network use");
+  await assert.rejects(fs.access(path.join(mockRun, ".runner.lock")), "mock live path must release its exclusive packet lock");
+  const mockSumsText = await fs.readFile(path.join(mockRun, "SHA256SUMS"), "utf8");
+  assert.doesNotMatch(mockSumsText, /\\.runner\.lock/u, "transient lock must not be included in packet checksums");
+  for (const line of mockSumsText.trim().split(/\r?\n/u)) {
+    const [, expectedHash, relativePath] = line.match(/^([0-9a-f]{64})  (.+)$/u) ?? [];
+    assert.ok(expectedHash && relativePath, `malformed mock-run checksum line: ${line}`);
+    assert.equal(digest(await fs.readFile(path.join(mockRun, ...relativePath.split("/")))), expectedHash, `mock-run checksum mismatch: ${relativePath}`);
+  }
 
   const duplicateRecords = [genericRecords[0], genericRecords[0], genericRecords[2]];
   await fs.writeFile(genericRecordsPath, `${duplicateRecords.map((row) => JSON.stringify(row)).join("\n")}\n`);
