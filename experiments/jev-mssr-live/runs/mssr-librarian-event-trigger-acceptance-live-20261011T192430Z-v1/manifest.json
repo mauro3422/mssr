@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-event-trigger-acceptance-live-20261011T192430Z-v1",
+  "status": "prepared",
+  "createdAt": "2026-10-11T19:24:30Z",
+  "comparison": {
+    "type": "exploratory fresh-source live Jev diagnostic",
+    "independentUnit": "one real MSSR source document",
+    "calibration": false,
+    "holdout": false
+  },
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "e1c81272bc8edf279efc3f9dad49a2803b2e6f68",
+    "workingTreeClean": true,
+    "sourceRef": "docs/HANDOFF_EVENT_TRIGGER_WEBHOOKS.md",
+    "snapshot": "inputs/source.md",
+    "sha256": "cc1469488ff63b316a88769d608d9237150c2c7b2699424ae973c3d16fdee4fa",
+    "exposureAudit": "Not found in recent experiment ledger entries 23–27 or sampled recent manifests; exploratory source-new diagnostic only, not a statistical holdout."
+  },
+  "case": {
+    "id": "event-trigger-acceptance-matrix",
+    "query": "¿Qué validaciones de la matriz de aceptación especifica para el primer adaptador portable de eventos?",
+    "expectedHeading": "Acceptance matrix",
+    "mode": "heading-no-candidate-handles",
+    "requestedCalls": 1,
+    "labelsSentToProvider": false
+  },
+  "provider": {
+    "provider": "TypeSafe Jev via active Bridge MCP",
+    "model": "jev-1.13.0",
+    "networkCall": "live",
+    "explicitUserAuthorization": "Prior user authorization in this conversation to use real Jev for tests",
+    "maximumCalls": 1
+  }
+}

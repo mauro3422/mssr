@@ -1,0 +1,22 @@
+{
+  "reviewer": "blind Luna",
+  "reviewMode": "exact-text-only; source labels not shown",
+  "query": "¿Qué validaciones de la matriz de aceptación especifica para el primer adaptador portable de eventos?",
+  "verdict": "Partial",
+  "coveredFacets": [
+    "duplicate event idempotency",
+    "stale event handling",
+    "unverified source rejection",
+    "native event no polling",
+    "labeled bounded polling fallback",
+    "restart recovery",
+    "missing-capability/replan",
+    "mutation lifecycle",
+    "cross-host portable evaluator"
+  ],
+  "missingExplicitFacets": [],
+  "overbreadth": "low",
+  "evidenceSufficient": true,
+  "rationale": "The section lists all acceptance checks but does not explain each validation.",
+  "adjudication": "Keep the Partial review as-is. The frozen label is a structural heading target; retrieval/fetch is verified, while semantic response depth remains ambiguous."
+}

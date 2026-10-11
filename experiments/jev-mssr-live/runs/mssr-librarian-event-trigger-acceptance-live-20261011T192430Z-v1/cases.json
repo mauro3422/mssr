@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "query": "¿Qué validaciones de la matriz de aceptación especifica para el primer adaptador portable de eventos?",
+      "id": "event-trigger-acceptance-matrix",
+      "sourceRef": "docs/HANDOFF_EVENT_TRIGGER_WEBHOOKS.md"
+    }
+  ]
+}

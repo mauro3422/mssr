@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-event-trigger-acceptance-live-20261011T192430Z-v1",
+  "status": "complete",
+  "completedAt": "2026-10-11T19:26:00Z",
+  "providerCalls": 1,
+  "exactFetch": "passed",
+  "blindReview": "Partial; all nine explicit checklist facets present; response-depth ambiguity retained",
+  "calibration": false,
+  "holdout": false,
+  "adoptionDecision": "none"
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "requiredPoints": [
+        "duplicate event accepted once",
+        "stale event handled without unsafe action",
+        "unverified source does not trigger implicit action",
+        "native event avoids periodic poll",
+        "no-event provider uses labeled bounded polling fallback",
+        "restart resumes subscription and receipt safely",
+        "unavailable capability follows missing-capability/replan",
+        "event mutation follows verification/persistence/outcome",
+        "portable evaluator conforms across hosts"
+      ],
+      "id": "event-trigger-acceptance-matrix",
+      "expectedHeading": "Acceptance matrix"
+    }
+  ]
+}
