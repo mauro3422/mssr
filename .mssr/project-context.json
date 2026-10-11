@@ -1664,6 +1664,42 @@
       "required": false,
       "priority": 100,
       "maxChars": 5000
+    },
+    {
+      "id": "mssr-jev-live-bridge-smoke-20261011",
+      "kind": "context",
+      "description": "Consolidated live MSSR Bridge/Jev smoke and bilingual abstention follow-up — 2026-10-11",
+      "source": {
+        "path": ".mssr/knowledge/reference/jev-mssr-live-bridge-smoke-20261011.md"
+      },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [
+        "verify"
+      ],
+      "domains": [
+        "coding",
+        "filesystem"
+      ],
+      "actions": [
+        "analyze",
+        "verify"
+      ],
+      "artifacts": [
+        "document",
+        "repository",
+        "mcp"
+      ],
+      "needs": [
+        "integrity-verification"
+      ],
+      "signals": [
+        "uncertainty",
+        "conflicting-evidence"
+      ],
+      "required": false,
+      "priority": 100,
+      "maxChars": 8000
     }
   ]
 }

@@ -15,3 +15,24 @@ The fetched text directly supports both parts of this query. This is a source-de
 ## Reproducibility
 
 The full receipt, including the exact fetched text and candidate summary, is stored outside the repository at `D:\MSSR-benchmark-artifacts\jev-shep-calibration-20261011-v1\jev-mssr-live-bridge-smoke-20261011-v1\receipt.json` (SHA-256 `97b121fe9e68bea28569bdc983cdeec627265791938ba2a6065e75cfcead82fe`). This live Bridge smoke is separate from the offline baseline/candidate diagnostic.
+
+## Bilingual abstention and range-precision follow-up
+
+A follow-up on the same source revision used Bridge 0.6.167 / MSSR 0.2.115 and Jev `typesafe-jev` 1.13.0. These calls share one document and claim; they are correlated diagnostics, not independent evaluation cases.
+
+The live runtime search schema accepts up to four explicit `queryVariants` in the nested query object. The dedicated ChatGPT connector schema omits that field; `bridge_tool_query` successfully passed it to the runtime. Search does not translate; it reports per-query lexical overlap and prioritizes primary-query matches. With a Spanish primary query and one English variant, the eight exact-fetchable results included `heading-4` and nested `block-11` at ranks 1 and 2. Each scored 0.083333 on the Spanish primary and 0.454545 on the English variant. These are lexical ranking values, not confidence.
+
+| Query / options | Jev result | Raw provider fields |
+| --- | --- | --- |
+| Earlier English wording, eight candidates | selected `heading-4` | confidence 0.79; sufficiency 0.44; 1,806 input / 127 output tokens |
+| Spanish wording, eight candidates | abstained (`none`) | confidence 0.73; sufficiency 0.19; 1,756 / 124 tokens |
+| Spanish wording, same two candidates (`heading-4`, `block-11`) | abstained (`none`) | confidence 0.41; sufficiency 0.22; 860 / 64 tokens |
+| English wording, same two candidates and order | selected `heading-4` | confidence 0.19; sufficiency 0.65; 823 / 67 tokens |
+
+Two blind assessments received the Spanish question and exact passage without Jev's output. Both judged the passage complete, said abstention was not appropriate when it was offered, and preferred `block-11` as the minimum sufficient range. `heading-4` also answers the question but is broader. The exact paragraph fetch is lines 62–62, offsets 3,137–4,046, fingerprint `8b52f9321fd1b5ad3468a8b7533ce9c6d5f72ff41d46e235e8970fd96f13e9c9`; its text is recorded in the prior receipt and the original smoke report. The English selection was exact-fetched at lines 28–63, offsets 2,082–4,048, fingerprint `3011bc7f729130c60359bb6167921b35642ee5e4a26a67296596927609269c94` and contains the exact paragraph.
+
+On the paired two-option comparison, changing only the query language changed Jev from abstention on Spanish to selection of the broader section on English. This is evidence of language-sensitive behavior in this single case, not an estimate of Spanish performance. The selected English range is correct but less precise; the Spanish abstentions are misses for this offered-candidate task. All scores remain uncalibrated, and blind adjudication of one source does not establish owner-gold or general accuracy.
+
+Next: use source-grouped owner-labeled bilingual cases with fixed candidate pools. Compare Spanish-only, English-only, and host-supplied bilingual retrieval; compare Jev over identical handles; then exact-fetch and blind-adjudicate completeness and minimum sufficient span. Report abstention, false selections, range precision, facet coverage, and score calibration separately. Resolve the dedicated connector schema gap in its owning Bridge integration workflow before relying on variants through that connector.
+
+One attempted English repeat was rejected locally because two manually reconstructed fingerprints were malformed; Jev was not called for it. The subsequent comparisons used only the two exact handles above.
