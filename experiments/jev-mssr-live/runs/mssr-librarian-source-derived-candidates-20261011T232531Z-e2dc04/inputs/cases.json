@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "cohort-01",
+      "sourceRef": "docs/skill-routing/AUDIT_CONTEXT_VALUE_2026-09-05.md",
+      "query": "Según esta auditoría del 2026-09-05, ¿qué tres estados distingue la revisión proporcional?"
+    },
+    {
+      "id": "cohort-02",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_FIX_TERRA_2026-09-05.md",
+      "query": "At the time of this handoff, why did release:gate stop?"
+    },
+    {
+      "id": "cohort-03",
+      "sourceRef": "docs/skill-routing/NEXT_TRIAL_AFTER_QUOTA_RESET.md",
+      "query": "According to this dated trial note, what should serve as the next modeling trial's quality reference?"
+    },
+    {
+      "id": "cohort-04",
+      "sourceRef": "skills/mssr-agent-routing/SKILL.md",
+      "query": "Which workflow-stage changes explicitly call for a re-plan?"
+    },
+    {
+      "id": "cohort-05",
+      "sourceRef": "skills/mssr-observability-maintenance/SKILL.md",
+      "query": "Which evidence types are outside Bridge's observation boundary?"
+    },
+    {
+      "id": "cohort-06",
+      "sourceRef": "skills/shared-skill-governance/SKILL.md",
+      "query": "Are runtime mounts editable skill sources or junctions?"
+    },
+    {
+      "id": "cohort-07",
+      "sourceRef": "skills/skill-maintenance-loop/SKILL.md",
+      "query": "What disposition should maintenance record when no reusable change is found?"
+    },
+    {
+      "id": "cohort-08",
+      "sourceRef": "skills/skill-routing-maintainer/SKILL.md",
+      "query": "Which three cases must be measured for a skill-context change?"
+    },
+    {
+      "id": "cohort-09",
+      "sourceRef": "changelogs/0.2.120.md",
+      "query": "What equality rule do metadata filters use in release 0.2.120?"
+    },
+    {
+      "id": "cohort-10",
+      "sourceRef": "changelogs/0.2.122.md",
+      "query": "How many historical sections may a recovery query select from the handoff sidecar?"
+    },
+    {
+      "id": "cohort-11",
+      "sourceRef": "changelogs/0.2.123.md",
+      "query": "How does release 0.2.123 classify the 260-vs-larger excerpt comparison?"
+    },
+    {
+      "id": "cohort-12",
+      "sourceRef": "changelogs/0.2.126.md",
+      "query": "Which line-ending variants does the normalization regression cover?"
+    },
+    {
+      "id": "cohort-13",
+      "sourceRef": "docs/FIRST_PARTY_SKILLS_V1.md",
+      "query": "What does test:first-party-skills verify?"
+    },
+    {
+      "id": "cohort-14",
+      "sourceRef": ".mssr/PROJECT_CONTEXT.md",
+      "query": "Who owns authorized observation and tool execution: portable MSSR or the host?"
+    },
+    {
+      "id": "cohort-15",
+      "sourceRef": ".mssr/PROJECT_MEMORY.md",
+      "query": "According to this memory entry, what independent properties justify creating a new skill?"
+    },
+    {
+      "id": "cohort-16",
+      "sourceRef": "docs/decisions/0001-context-plane-v1.md",
+      "query": "Which freshness values may a context message or receipt declare?"
+    },
+    {
+      "id": "cohort-17",
+      "sourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      "query": "What may the system do when evidence is insufficient for a corrective action?"
+    },
+    {
+      "id": "cohort-18",
+      "sourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+      "query": "Does the producer extract claims from prose or accept facts that are already structured?"
+    },
+    {
+      "id": "cohort-19",
+      "sourceRef": "docs/decisions/0005-architecture-impact-drift-links.md",
+      "query": "Can optional structural refinement introduce an architecture or implementation file that was not declared?"
+    },
+    {
+      "id": "cohort-20",
+      "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+      "query": "In Typed Claim IR, what does confidence represent?"
+    },
+    {
+      "id": "cohort-21",
+      "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+      "query": "What must be verified before a Document Surface body is materialized?"
+    },
+    {
+      "id": "cohort-22",
+      "sourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+      "query": "Under what temporal conditions may supersedes compare claims across validity states or intervals?"
+    },
+    {
+      "id": "cohort-23",
+      "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+      "query": "How must a host establish taskKey?"
+    },
+    {
+      "id": "cohort-24",
+      "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+      "query": "Does reserved-name precedence require loading every first-party skill on every task?"
+    },
+    {
+      "id": "cohort-25",
+      "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+      "query": "What default evidence thresholds apply to distilling a shadow rule?"
+    },
+    {
+      "id": "cohort-26",
+      "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+      "query": "Who owns the explicit write/manifest transaction after drift review?"
+    },
+    {
+      "id": "cohort-27",
+      "sourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "query": "What action moves a document into the explicitly connected state?"
+    },
+    {
+      "id": "cohort-28",
+      "sourceRef": ".mssr/knowledge/architecture/project-context-plane.md",
+      "query": "When may structural maintenance move content automatically?"
+    },
+    {
+      "id": "cohort-29",
+      "sourceRef": ".mssr/knowledge/architecture/document-surface-librarian-contract.md",
+      "query": "What coverage condition makes a negative catalog result valid for its scope?"
+    },
+    {
+      "id": "cohort-30",
+      "sourceRef": "docs/skill-routing/TESTING.md",
+      "query": "What must the Bridge regression prove about trace propagation when calls omit a manual ID?"
+    }
+  ]
+}

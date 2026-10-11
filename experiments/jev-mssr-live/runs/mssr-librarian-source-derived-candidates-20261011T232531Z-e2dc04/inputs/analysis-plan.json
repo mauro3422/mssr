@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "question": "¿El pipeline MSSR Librarian encuentra el rango objetivo, Jev selecciona heading/rango esperado, y fetch/pack conservan texto y citas exactos?",
+  "scope": "Diagnóstico mecánico/integración search → Jev selection → exact fetch → verbatim evidence pack sobre 30 fuentes MSSR congeladas.",
+  "cohortStatus": "source-derived candidate; author-created target labels; 48 runs anteriores considerados desarrollo/expuestos; no es holdout protegido ni owner-gold.",
+  "unit": "Una query por sourceRef único. Los 30 grupos son descriptivos, no una afirmación de independencia estadística o representatividad.",
+  "primaryMetric": "Raw count of cases where Jev selects any pre-call frozen acceptable heading and line range for the case source.",
+  "secondaryMetrics": [
+    "target range presente en search top 100",
+    "validación exacta de handle/revision/fingerprint en fetch",
+    "cita y texto exactos del evidence pack",
+    "requests intentados, completos, fallidos y abstenciones",
+    "modelo e IDs Jev devueltos cuando existan",
+    "latencia y tokens",
+    "evidenceSufficiency y Noul descriptivos, sin calibración"
+  ],
+  "excludedClaims": [
+    "exactitud/completitud semántica general",
+    "abstención apropiada",
+    "calibración de confianza",
+    "fiabilidad o seguridad general",
+    "producción o promoción de umbral",
+    "síntesis de párrafos o planificación automática"
+  ],
+  "noThresholdTuning": true,
+  "labelExposure": "Expected headings/ranges are only in labels.json. Runner sends only cases.json id/sourceRef/query.",
+  "language": "Preguntas congeladas en español e inglés; sin comparación experimental por idioma.",
+  "reviewPlan": "Después del run, Luna ciega revisará query + fetched text con direct/partial/unsupported/overbroad/ambiguous. Evaluación descriptiva posterior, no gold.",
+  "acceptableRangePolicy": "A selected/search candidate matches when its sourceRef, normalized heading, and line anchors match any label.acceptableRanges entry frozen before calls; legacy labels without acceptableRanges use their primary heading and line anchors."
+}

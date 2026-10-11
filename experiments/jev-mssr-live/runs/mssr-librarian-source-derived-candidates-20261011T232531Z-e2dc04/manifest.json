@@ -1,0 +1,511 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "runId": "mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04",
+  "createdAt": "2026-10-11T23:25:31.557Z",
+  "parentRunId": null,
+  "suite": "mssr-librarian-source-derived-candidate-integration-diagnostic-v1",
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "3217effade2460c13e42bff8871dd3f4844e1611",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "workingTreeClean": false,
+    "changedPaths": [
+      "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04"
+    ],
+    "buildId": "Bridge 0.6.172 / MSSR 0.2.127",
+    "bridgeRoot": "D:\\Dev\\bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+    "bridgeCommit": "8c181ef33919038f400f623bd9a42ca1fd6b17a6",
+    "bridgeVersion": "0.6.172",
+    "mssrVersion": "0.2.127",
+    "bridgeWorkingTreeClean": true,
+    "sdkVersion": "0.6.0",
+    "buildArtifacts": [
+      {
+        "path": "package.json",
+        "sha256": "61518ac7f910582f2cc29084856880adb3cbec426c78b7ed716287a9097988c4",
+        "snapshotPath": "inputs/build/package.json"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "917b9fd3a89254412cc7d40d4bfd0b1adb06d05d2214ae6fa713b2ab2e305a03",
+        "snapshotPath": "inputs/build/package-lock.json"
+      },
+      {
+        "path": "src/tools/mssr-semantic-evidence-tools.ts",
+        "sha256": "622269d203652cc9e1e29dfa3856e612bda9c7a2d2c37c18d27884ce13740289",
+        "snapshotPath": "inputs/build/src/tools/mssr-semantic-evidence-tools.ts"
+      },
+      {
+        "path": "scripts/read-windows-credential.ps1",
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e",
+        "snapshotPath": "inputs/build/scripts/read-windows-credential.ps1"
+      },
+      {
+        "path": "dist/tool-registry.js",
+        "sha256": "670a6cbdec428f7ad0bd6f7a13173c716fd013c3eb87a54d1c9bb38d7f626554",
+        "snapshotPath": "inputs/build/dist/tool-registry.js"
+      },
+      {
+        "path": "dist/tools/mssr-semantic-evidence-tools.js",
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa",
+        "snapshotPath": "inputs/build/dist/tools/mssr-semantic-evidence-tools.js"
+      },
+      {
+        "path": "node_modules/@mauroprime/mssr/package.json",
+        "sha256": "9a57998657fb40e8fae0ec44efef08592f6a332c807d15a90792cdd4a27e4ea2",
+        "snapshotPath": "inputs/build/node_modules/@mauroprime/mssr/package.json"
+      },
+      {
+        "path": "node_modules/@typesafe-ai/sdk/package.json",
+        "sha256": "b94bd1d862b166be53b0b91a36a2af27a0b14e397ffea8f0c53cbfcc9718c508",
+        "snapshotPath": "inputs/build/node_modules/@typesafe-ai/sdk/package.json"
+      },
+      {
+        "path": "vendor/mauroprime-mssr-0.2.127.tgz",
+        "sha256": "70e79ae6e472517501ffdd38c4b0eaad740652c7d570b600bf17f90023703bfc",
+        "snapshotPath": "inputs/build/vendor/mauroprime-mssr-0.2.127.tgz"
+      }
+    ],
+    "preRunCodeCommit": "3217effade2460c13e42bff8871dd3f4844e1611"
+  },
+  "instrument": {
+    "runnerPath": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/runner.mjs",
+    "runnerSha256": "0a1ead21d33fdcb9d09794b040c60e006e622e0ae1dfdf319b38734c98b609cb",
+    "selectionRecordPath": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/selection-record.mjs",
+    "selectionRecordSha256": "847a1224278ed09941526aff7d781842a854f21b3007e4e00ae357e84faa5834",
+    "runnerSupportPath": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/runner-support.mjs",
+    "runnerSupportSha256": "55116392248e7f374c91453d16d1bf7cb3866094ea386ced31d85b300717f8f0",
+    "casesPath": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/cases.json",
+    "casesSha256": "d8058ec6e37d133a7a5945a7a857c1ee7d5fb3957159d02143fc03666f200408",
+    "analysisPlanPath": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/analysis-plan.json",
+    "analysisPlanSha256": "9d9f6edc51b7539f3f1e1a27e0e27c1614fb8e9275fd1ac967120936eeb08977",
+    "lockfileSha256": "917b9fd3a89254412cc7d40d4bfd0b1adb06d05d2214ae6fa713b2ab2e305a03",
+    "mssrProjectLockfileSha256": "0f587856d3bd0a86909565b230df601a752e71ba4955775e11be10e886329cda",
+    "runtime": "v24.16.0",
+    "requestSchemaVersion": 1
+  },
+  "corpus": {
+    "snapshotPath": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/",
+    "sourceRevision": "3217effade2460c13e42bff8871dd3f4844e1611",
+    "redaction": "public MSSR documentation, skill text and project knowledge; exact source bytes; no credentials or user-private corpus",
+    "items": 30,
+    "projectRoot": "D:\\Dev\\mssr",
+    "sources": [
+      {
+        "sourceRef": "docs/skill-routing/AUDIT_CONTEXT_VALUE_2026-09-05.md",
+        "sha256": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+        "snapshotPath": "inputs/sources/source-01.md"
+      },
+      {
+        "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_FIX_TERRA_2026-09-05.md",
+        "sha256": "81dde4350efd5143be12bb83c24bf443f8527cfeeaecf9593a7a8ea74f09a742",
+        "snapshotPath": "inputs/sources/source-02.md"
+      },
+      {
+        "sourceRef": "docs/skill-routing/NEXT_TRIAL_AFTER_QUOTA_RESET.md",
+        "sha256": "d6c17672a5bc1e6e742fa1993ebf1b59e92de0fd53a88a46011b74c4701f206d",
+        "snapshotPath": "inputs/sources/source-03.md"
+      },
+      {
+        "sourceRef": "skills/mssr-agent-routing/SKILL.md",
+        "sha256": "bfe11b49b8ab65890a53e552ea5eedd720860e4adfca4b859ef6a658c681f07a",
+        "snapshotPath": "inputs/sources/source-04.md"
+      },
+      {
+        "sourceRef": "skills/mssr-observability-maintenance/SKILL.md",
+        "sha256": "55ba6f5ac9fdd1b284cb0cbabf26e04af4fe844f9813fad7da7c51d5ce24b29f",
+        "snapshotPath": "inputs/sources/source-05.md"
+      },
+      {
+        "sourceRef": "skills/shared-skill-governance/SKILL.md",
+        "sha256": "e5b44602c0bba48ab21939eedf3f708f7253837ec03b1b301ead4bba9c5e2942",
+        "snapshotPath": "inputs/sources/source-06.md"
+      },
+      {
+        "sourceRef": "skills/skill-maintenance-loop/SKILL.md",
+        "sha256": "cbb6c999546804528df4375af6e94dc774330e25da05acf5c7cbab5b1e4c53de",
+        "snapshotPath": "inputs/sources/source-07.md"
+      },
+      {
+        "sourceRef": "skills/skill-routing-maintainer/SKILL.md",
+        "sha256": "d7ed4664327d02c755716ddefdf8b8b406141454febe4270c404279fc36ab93c",
+        "snapshotPath": "inputs/sources/source-08.md"
+      },
+      {
+        "sourceRef": "changelogs/0.2.120.md",
+        "sha256": "3794707b39a7ad27ec13d089f4682722248053ce309fe64e5e8a6556cda4fcfd",
+        "snapshotPath": "inputs/sources/source-09.md"
+      },
+      {
+        "sourceRef": "changelogs/0.2.122.md",
+        "sha256": "004782dbb9fbbfa835389e220ad2d00fcd53f301c86a2e1a749d00468db4dc89",
+        "snapshotPath": "inputs/sources/source-10.md"
+      },
+      {
+        "sourceRef": "changelogs/0.2.123.md",
+        "sha256": "04539e3d3809405f1c951b301c9d52284e5ef928ed8b74936d7c3a212a0cdbf9",
+        "snapshotPath": "inputs/sources/source-11.md"
+      },
+      {
+        "sourceRef": "changelogs/0.2.126.md",
+        "sha256": "7e333f0ab2f25a2de889bb125279ed9f529c6dfc870ad19d6d19b02a2c46feb8",
+        "snapshotPath": "inputs/sources/source-12.md"
+      },
+      {
+        "sourceRef": "docs/FIRST_PARTY_SKILLS_V1.md",
+        "sha256": "cc312b8c50c10c2909bceb63472bc611a6516bd02f9f0073947ecfa1a12c3b4d",
+        "snapshotPath": "inputs/sources/source-13.md"
+      },
+      {
+        "sourceRef": ".mssr/PROJECT_CONTEXT.md",
+        "sha256": "b8c4f99b827a92035c90ced135e4e588518d8d32212241f1192aec982dd1feb6",
+        "snapshotPath": "inputs/sources/source-14.md"
+      },
+      {
+        "sourceRef": ".mssr/PROJECT_MEMORY.md",
+        "sha256": "9cfc87f0f51ecd888ea6a245536e53d0018736a06fe085522348d88661c858a7",
+        "snapshotPath": "inputs/sources/source-15.md"
+      },
+      {
+        "sourceRef": "docs/decisions/0001-context-plane-v1.md",
+        "sha256": "96b7f4d707915a73feeb1e6b3f538b5882eaae11b8d9a4a85303a493b87bee0d",
+        "snapshotPath": "inputs/sources/source-16.md"
+      },
+      {
+        "sourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+        "sha256": "9d8e552c6797bce396de5ca821eecbf3c0e72506cc0093a493fe9bd847425b29",
+        "snapshotPath": "inputs/sources/source-17.md"
+      },
+      {
+        "sourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+        "sha256": "bb9072f74d6201ce650ec0c01f469dc940f434b64d929f824e31e5c2c0daf7a1",
+        "snapshotPath": "inputs/sources/source-18.md"
+      },
+      {
+        "sourceRef": "docs/decisions/0005-architecture-impact-drift-links.md",
+        "sha256": "b2b98c50c799a62f3c9aaf21762433c24780f26bf24ae82d346b359cc5f47872",
+        "snapshotPath": "inputs/sources/source-19.md"
+      },
+      {
+        "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+        "sha256": "6c8626f6d6cd8f8fca8ab53ef753ee14eafea4a45409d532bf839f08f3201649",
+        "snapshotPath": "inputs/sources/source-20.md"
+      },
+      {
+        "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+        "sha256": "63bac32774a54bdb8e7a5dd6021fa3f0351e491c6475cbb6745ce4c1e05ed2ad",
+        "snapshotPath": "inputs/sources/source-21.md"
+      },
+      {
+        "sourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+        "sha256": "8879d7ffb50f41d4c22565d9cb6554f7e1aab2cee4073a65139e0c5ebc0847c3",
+        "snapshotPath": "inputs/sources/source-22.md"
+      },
+      {
+        "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+        "sha256": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+        "snapshotPath": "inputs/sources/source-23.md"
+      },
+      {
+        "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+        "sha256": "a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f",
+        "snapshotPath": "inputs/sources/source-24.md"
+      },
+      {
+        "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+        "sha256": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+        "snapshotPath": "inputs/sources/source-25.md"
+      },
+      {
+        "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+        "sha256": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+        "snapshotPath": "inputs/sources/source-26.md"
+      },
+      {
+        "sourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+        "sha256": "7909dfc3a2c16ac628491f779b4dcb949b8d77483fe9ad47df7e7ecb368295c0",
+        "snapshotPath": "inputs/sources/source-27.md"
+      },
+      {
+        "sourceRef": ".mssr/knowledge/architecture/project-context-plane.md",
+        "sha256": "436da00e7f93de2891040c5177d6ccf0b02272fabfe63b5fef2d7c8fcc143ed7",
+        "snapshotPath": "inputs/sources/source-28.md"
+      },
+      {
+        "sourceRef": ".mssr/knowledge/architecture/document-surface-librarian-contract.md",
+        "sha256": "52757e094bee8d03d2609eee822593e8dcbc285e8c50914ee31c45e5f270c563",
+        "snapshotPath": "inputs/sources/source-29.md"
+      },
+      {
+        "sourceRef": "docs/skill-routing/TESTING.md",
+        "sha256": "0ce399dcdf13797a09d52ac35b2e96dbd521d42456ade41872465397725564b4",
+        "snapshotPath": "inputs/sources/source-30.md"
+      }
+    ],
+    "contextArtifacts": [
+      {
+        "path": ".mssr/project-context.json",
+        "sha256": "3e9b70a028124c49ff06c18cbcda3d6f5ce4cd9daf2e3f71cb6ad52581fd2a28",
+        "snapshotPath": "inputs/project-context/context-01-project-context.json"
+      },
+      {
+        "path": ".mssr/PROJECT_STATE.md",
+        "sha256": "775d167d4e3389ccb4362711f16133e5349e2545971264088a7e0fc231407cba",
+        "snapshotPath": "inputs/project-context/context-02-PROJECT_STATE.md"
+      }
+    ]
+  },
+  "provider": {
+    "mode": "live",
+    "provider": "TypeSafe Jev through clean Bridge 0.6.172 provider adapter",
+    "endpointIdentity": "https://api.typesafe.ai (TypeSafeClient.executeSystemOne; no credential)",
+    "requestedModel": "jev-1.13.0",
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "timeoutMs": 30000,
+    "maxRetries": 1,
+    "concurrency": 1,
+    "credentialSource": "Windows Credential Manager target TypeSafe:MSSR:JevLab; secret value not read or persisted",
+    "providerRequestIdsAvailable": "unknown",
+    "rawVendorResponsePersisted": false,
+    "networkOptIn": true,
+    "networkOptInMethod": "explicit command-line --allow-network plus user authorization recorded in manifest"
+  },
+  "plan": {
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30,
+      "interpretation": "reporting floor only; does not guarantee power, independence, representativeness, or gold labels"
+    },
+    "thresholds": {},
+    "independentUnit": "one case per each of 30 unique sourceRef groups; descriptive only, not independent statistical sample claim",
+    "primaryMetric": "Conteo crudo de casos donde Jev selecciona el heading y rango de línea fijados antes de la llamada.",
+    "expectedRequestCount": 30,
+    "uncertaintyMethod": "raw counts only; no inferential interval or calibration claim; source-derived labels and no protected holdout",
+    "secondaryMetrics": [
+      "target range presente en search top 100",
+      "validación exacta de handle/revision/fingerprint en fetch",
+      "cita y texto exactos del evidence pack",
+      "requests intentados, completos, fallidos y abstenciones",
+      "modelo e IDs Jev devueltos cuando existan",
+      "latencia y tokens",
+      "evidenceSufficiency y Noul descriptivos, sin calibración"
+    ],
+    "excludedClaims": [
+      "exactitud/completitud semántica general",
+      "abstención apropiada",
+      "calibración de confianza",
+      "fiabilidad o seguridad general",
+      "producción o promoción de umbral",
+      "síntesis de párrafos o planificación automática"
+    ],
+    "noThresholdTuning": true
+  },
+  "split": {
+    "method": "none-source-derived-development-exposed",
+    "holdoutUsedForTuning": false,
+    "holdoutIdsSha256": null,
+    "validationIdsSha256": null,
+    "trainIdsSha256": null,
+    "holdoutOpenedAt": null,
+    "priorRunPolicy": "all 48 prior reviewed Jev run directories treated as development/exposed"
+  },
+  "labels": {
+    "schemaVersion": 1,
+    "adjudication": "author-created source-derived candidate ranges; Luna independently checked heading/range/answerability; not owner-gold; blind semantic review pending",
+    "exposedToRequests": false,
+    "independentUnit": "sourceRef group; descriptive only",
+    "source": "author",
+    "frozenAt": "2026-10-11T23:25:31.338Z",
+    "exposureReview": {
+      "priorRuns": "All 48 previously reviewed Jev run directories are treated as development/exposed; this cohort is not a holdout.",
+      "novelty": "A prior inventory found exact ranges absent from reviewed run packets, but some source paths had appeared. Novelty is not a holdout guarantee."
+    },
+    "cases": [
+      {
+        "caseId": "cohort-01",
+        "expectedHeading": "## Hallazgos y correcciones",
+        "expectedStartLine": 28,
+        "expectedEndLine": 37
+      },
+      {
+        "caseId": "cohort-02",
+        "expectedHeading": "## Exact remaining state",
+        "expectedStartLine": 14,
+        "expectedEndLine": 23
+      },
+      {
+        "caseId": "cohort-03",
+        "expectedHeading": "# Next trial after quota reset",
+        "expectedStartLine": 1,
+        "expectedEndLine": 21
+      },
+      {
+        "caseId": "cohort-04",
+        "expectedHeading": "## Core protocol",
+        "expectedStartLine": 10,
+        "expectedEndLine": 36
+      },
+      {
+        "caseId": "cohort-05",
+        "expectedHeading": "## Core protocol",
+        "expectedStartLine": 11,
+        "expectedEndLine": 28
+      },
+      {
+        "caseId": "cohort-06",
+        "expectedHeading": "## Core rules",
+        "expectedStartLine": 11,
+        "expectedEndLine": 28
+      },
+      {
+        "caseId": "cohort-07",
+        "expectedHeading": "## Core loop",
+        "expectedStartLine": 11,
+        "expectedEndLine": 29
+      },
+      {
+        "caseId": "cohort-08",
+        "expectedHeading": "## Core protocol",
+        "expectedStartLine": 11,
+        "expectedEndLine": 32
+      },
+      {
+        "caseId": "cohort-09",
+        "expectedHeading": "## Behavior",
+        "expectedStartLine": 11,
+        "expectedEndLine": 16
+      },
+      {
+        "caseId": "cohort-10",
+        "expectedHeading": "## Behavior",
+        "expectedStartLine": 11,
+        "expectedEndLine": 18
+      },
+      {
+        "caseId": "cohort-11",
+        "expectedHeading": "## Behavior",
+        "expectedStartLine": 11,
+        "expectedEndLine": 15
+      },
+      {
+        "caseId": "cohort-12",
+        "expectedHeading": "## Behavior",
+        "expectedStartLine": 11,
+        "expectedEndLine": 18
+      },
+      {
+        "caseId": "cohort-13",
+        "expectedHeading": "## Package preflight",
+        "expectedStartLine": 23,
+        "expectedEndLine": 53
+      },
+      {
+        "caseId": "cohort-14",
+        "expectedHeading": "## Architecture",
+        "expectedStartLine": 3,
+        "expectedEndLine": 14
+      },
+      {
+        "caseId": "cohort-15",
+        "expectedHeading": "## Skill capability/reference architecture",
+        "expectedStartLine": 174,
+        "expectedEndLine": 179
+      },
+      {
+        "caseId": "cohort-16",
+        "expectedHeading": "### Message contract",
+        "expectedStartLine": 34,
+        "expectedEndLine": 53
+      },
+      {
+        "caseId": "cohort-17",
+        "expectedHeading": "## Evidence-first rules",
+        "expectedStartLine": 32,
+        "expectedEndLine": 43
+      },
+      {
+        "caseId": "cohort-18",
+        "expectedHeading": "### Explicit semantic claim producers",
+        "expectedStartLine": 66,
+        "expectedEndLine": 73
+      },
+      {
+        "caseId": "cohort-19",
+        "expectedHeading": "## C2f-C.5 boundary — Architecture Impact Map / Structural Fingerprints",
+        "expectedStartLine": 102,
+        "expectedEndLine": 114
+      },
+      {
+        "caseId": "cohort-20",
+        "expectedHeading": "## 2. Typed Claim IR",
+        "expectedStartLine": 86,
+        "expectedEndLine": 108
+      },
+      {
+        "caseId": "cohort-21",
+        "expectedHeading": "### 3.1 Document Surface and the Librarian contract",
+        "expectedStartLine": 94,
+        "expectedEndLine": 113
+      },
+      {
+        "caseId": "cohort-22",
+        "expectedHeading": "# Semantic consistency relations and retrieval decision",
+        "expectedStartLine": 1,
+        "expectedEndLine": 9
+      },
+      {
+        "caseId": "cohort-23",
+        "expectedHeading": "# Human-task identity decision",
+        "expectedStartLine": 1,
+        "expectedEndLine": 7
+      },
+      {
+        "caseId": "cohort-24",
+        "expectedHeading": "## First-party core skill direction",
+        "expectedStartLine": 1,
+        "expectedEndLine": 3
+      },
+      {
+        "caseId": "cohort-25",
+        "expectedHeading": "## Separate shadow-rule and fallback-preference gates",
+        "expectedStartLine": 5,
+        "expectedEndLine": 9
+      },
+      {
+        "caseId": "cohort-26",
+        "expectedHeading": "## Project knowledge drift review decision",
+        "expectedStartLine": 1,
+        "expectedEndLine": 7
+      },
+      {
+        "caseId": "cohort-27",
+        "expectedHeading": "## States",
+        "expectedStartLine": 5,
+        "expectedEndLine": 15
+      },
+      {
+        "caseId": "cohort-28",
+        "expectedHeading": "## Maintenance and write preflight",
+        "expectedStartLine": 9,
+        "expectedEndLine": 18
+      },
+      {
+        "caseId": "cohort-29",
+        "expectedHeading": "## Document Surface and Librarian contract",
+        "expectedStartLine": 7,
+        "expectedEndLine": 21
+      },
+      {
+        "caseId": "cohort-30",
+        "expectedHeading": "## Benchmark de activación y resultado",
+        "expectedStartLine": 106,
+        "expectedEndLine": 121
+      }
+    ],
+    "labelFileSha256": "0f77ef179b54230bf5ed6bcfd9079396bfab7e737ce8fd7e1d216d9fb70a7627",
+    "labelFile": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/labels.json"
+  },
+  "preCallFrozenAt": "2026-10-11T23:35:42.299Z",
+  "preCallFreezeStatus": "frozen-before-provider-calls"
+}

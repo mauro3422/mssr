@@ -1,0 +1,168 @@
+# ADR 0001 — MSSR Context Plane v1
+
+- Status: accepted as a documentation and contract direction
+- Date: 2026-08-13
+- Scope: portable context-message semantics; no runtime implementation is
+  implied by this ADR alone
+
+## Context
+
+MSSR already separates reusable routing from project-local knowledge and has
+trace, observability, notice, and modular context mechanisms. Without an
+explicit boundary, an adapter can appear to own repository meaning, a notice can
+be mistaken for a permission grant, or a continuation can present stale evidence
+as current.
+
+## Decision
+
+Define **MSSR Context Plane v1** as the portable contract for selecting,
+carrying, receiving, and accounting for bounded context messages.
+
+### Ownership
+<!-- mssr-arch-anchor: context-plane-ownership -->
+
+| Concern | Canonical owner |
+|---|---|
+| Message categories, selection dimensions, continuity/receipt semantics, privacy and freshness requirements | MSSR portable contract |
+| Architecture, vocabulary, local decisions, state, ADRs, incidents, changelogs, and accepted persistence | Owning repository/project |
+| Filesystem/runtime reads, provider health, transport, authentication, inbox/piggyback delivery, local retention | Host adapters and providers |
+| A Bridge-delivered message | Bridge owns delivery only; never the message's project semantics |
+
+MSSR remains advisory. A message does not grant permission, mutate a target,
+replace user instructions, or become an allowlist.
+
+### Message contract
+
+A v1 message or its receipt must be bounded and identify:
+
+- message purpose and source class;
+- canonical owner and a stable evidence reference;
+- provenance/revision and observed time when available;
+- freshness: `fresh`, `stale`, `unknown`, `conflicting`, or `unavailable`;
+- compatible trace association when one is known;
+- the next gate or review request, without private reasoning.
+
+Permitted source classes include project documents, ADRs, changelogs, incidents,
+Git history, live runtime/provider evidence, and task-trace evidence. A source
+class expresses provenance, not equal authority: a changelog is not live runtime
+proof and a trace is not project truth.
+
+Messages are delivered either in a pull inbox or piggybacked on the next normal
+tool result. No design may assume that an MCP server push automatically creates
+a new host/model turn.
+
+### Continuation and persistence
+
+A continuation carries a compact receipt of selected sources, their
+provenance/freshness, unresolved contradictions, compatible trace, and next
+gate. It must be revalidated after restart, ownership handoff, source change,
+or when freshness cannot be proven.
+
+Any suggestion to update project context, an ADR, an incident, a skill, routing
+metadata, or a changelog is a **persistence proposal**. It is addressed to the
+canonical owner, requires review and normal persistence/verification gates, and
+must never be auto-applied merely because it appears in a message or telemetry.
+
+### Privacy
+
+Messages, receipts, telemetry, and continuation state exclude raw prompts,
+transcripts, secrets, arbitrary tool output, and private chain-of-thought.
+They retain only bounded references and observable evidence necessary for the
+next action. A missing, stale, or contradictory source is evidence and must not
+be replaced by inference.
+
+## Consequences
+
+- Repositories retain authority over their facts while hosts remain replaceable.
+- Bridge can provide useful inbox and piggyback behavior without becoming a
+  semantic proxy.
+- Hosts can expose only proven fields while preserving explicit uncertainty.
+- Cross-host parity requires fixtures and runtime evidence, not matching prose.
+
+As of MSSR 0.2.10, phase 2 adds the portable strict producers, the bounded
+repository collector (ADR/incident/changelog/PROJECT_* facts plus supplied
+Git/provider receipts), evidence freshness revalidation, and a durable
+explicit-ack advisory-only JSON inbox. These are pure core modules with no host
+adapter wired to drain them.
+
+As of MSSR 0.2.11, repository facts become keyed (explicit selectors,
+source-kind defaults, and an optional `.bridge/context-messages.json` manifest),
+a modular `.bridge/project-context-modules.json` loader is added, and the
+durable plane is wired into native, Codex, and OpenCode route/bootstrap through
+the shared `loadProjectContextHost` helper plus an explicit `mssr_context_ack`.
+The Bridge adapter delivery remains pending because its local dependency
+junction crosses the OpenCode workspace authority boundary and must consume a
+packaged 0.2.11 artifact.
+
+## 0.2.18 canonical project-knowledge amendment
+
+The earlier 0.2.11 `.bridge/...` and compact `project-context-modules.json` paths above are historical implementation records, not current authority. MSSR 0.2.18 adopts a canonical-only project contract:
+
+- `.mssr/project-context.json` is the single active selective manifest;
+- PROJECT_* remains a compact control plane while situational project knowledge may live under indexed `.mssr/knowledge/<topic>/` modules;
+- `.mssr/runtime/` owns ephemeral inbox/receipt state and is not versioned project truth;
+- `.bridge/` is never a Context Plane retrieval fallback. Known old MSSR artifacts there are reported as initialization/cleanup debt and handled only by explicit initialization tooling;
+- repository initialization is a portable MSSR operation, not host-specific setup. Missing or invalid initialization is observable maintenance evidence;
+- Project Context Health may detect growth, missing indexing, stale structure, or legacy artifacts, but remains advisory and never rewrites durable project knowledge;
+- reviewed project statements can be normalized into a bounded knowledge-capture proposal (`topic`, `area`, `kind`, selectors, target path/module), while raw conversations, private reasoning, secrets, and transient tool output remain excluded.
+
+This amendment preserves the original ADR ownership boundary: repositories own meaning, MSSR owns portable selection/health contracts, and hosts own authorized filesystem/runtime delivery.
+
+## 0.2.49 cross-cutting applicability amendment
+
+Semantic similarity is not sufficient for every project rule. A repository may have a narrow subsystem task while still mutating a payload governed by encoding/localization, packaging, trust-boundary, persistence, or runtime invariants. Requiring those modules unconditionally would bloat every read-only turn; leaving them purely semantic can omit a critical contract.
+
+Portable Project Context therefore supports explicit conditional applicability on selective modules: `requiredWhen: { mutation: true, artifacts?: [...] }`. `required:true` keeps its existing unconditional-within-stage meaning. A `requiredWhen` match makes the module effectively required before semantic ranking and required-context budgeting; a read-only task does not activate it. Mutation is determined only from canonical structured intent (`risk` and the bounded mutating-action set), with optional artifact overlap as an additional gate. The repository must declare this relationship explicitly: MSSR does not infer criticality from prose, memory content, filenames, or semantic similarity, and the resulting context never grants write permission.
+
+Conditional-required modules cannot belong to an `exclusiveGroup`. If required context exceeds the task budget, the loader reports required budget debt/overflow rather than silently dropping the contract or increasing limits. This preserves the original ownership boundary and selective-loading goal while adding a fail-visible path for cross-cutting invariants.
+## 0.2.62 structural maintenance amendment
+
+Project Context maintenance is an MSSR semantic responsibility; Bridge and other hosts remain transport/I/O adapters. Health or telemetry evidence alone still never authorizes a semantic rewrite. MSSR may, however, execute a narrowly provable structural normalization when project meaning is unchanged: one already-indexed non-core Markdown section may move to `.mssr/knowledge/` only while preserving its exact bytes, logical module id, kind and selectors, with source/manifest hash preconditions, collision checks, atomic persistence, rollback and readback.
+
+Automatic maintenance abstains when another selector overlaps the moved bytes, a whole-file consumer depends on the source, core would need narrowing, the destination conflicts, or current source identity differs from the plan. Whole-file segmentation, selector invention, summarization and reclassification remain explicit review work. Write preflight blocks growth that would newly cross an entry into REVIEW pressure and directs the caller to MSSR maintenance; shrinking an already-pressured entry remains valid. This extends portable MSSR ownership without making a notice, telemetry event, host adapter or Bridge delivery path an authority over repository meaning.
+
+## 0.2.63 parent-internal semantic segmentation amendment
+
+Reviewed historical modules may attach semantic `segments` through the optional `.mssr/project-context-segments.json` sidecar while remaining one logical Project Context module for parent routing, priority, identity and budget in the backward-compatible base manifest. Exactly one segment is an unconditional baseline. Optional segments bind exact Markdown headings to explicit structured selectors and/or bounded normalized summary terms; the repository declares this semantic metadata, and MSSR never derives it from the history prose itself. Hosts that package an older MSSR may ignore the sidecar without failing to parse `.mssr/project-context.json`.
+
+After normal parent selection, portable MSSR materializes the baseline and at most one uniquely highest-scoring optional segment. Equal top candidates are not tie-broken arbitrarily: only the baseline is delivered and the ambiguity plus per-segment decisions remain observable. Segment headings must resolve exactly once and their Markdown ranges must not overlap. This is progressive disclosure inside an already-selected authority, not a new independently routed child-module graph.
+
+Health and write preflight account for the maximum payload MSSR can deliver for one target (`baseline + largest optional segment`), rather than charging every historical byte that is never co-delivered. That selected-payload budget is separate from physical backing-file growth: segmented sources keep the normal 65,536-byte physical maintenance budget with WATCH/REVIEW pressure at the existing ratios, plus a 262,144-byte recovery hard limit so an already-pressured history remains readable long enough to diagnose and shrink it. Growth into either selected-payload REVIEW or physical REVIEW remains blocked before persistence; crossing the recovery hard limit is invalid. The structural maintenance executor still cannot invent, split, summarize or reclassify semantic segments; a pressured segmented module returns explicit review debt. Hosts continue to provide authorized I/O/transport only, while MSSR owns validation, deterministic selection, ambiguity and budget semantics.
+
+## 0.2.74 project-document reference lifecycle amendment
+
+Project Context distinguishes **discoverability** from **authority**. A bounded retroactive audit may surface current-looking project Markdown that is neither a manifest source nor explicitly named by already-selectable `.mssr` context. Those files are review candidates only: path/name evidence can raise WATCH but cannot establish canonical ownership, mutate `.mssr/project-context.json`, or influence routing as durable project truth.
+
+When normal selected context is insufficient, a read-only `reference-on-miss` path may recover one bounded disconnected candidate. It must abstain on no-match or unresolved ambiguity and label returned evidence `candidate-only`, advisory, non-routing, and non-authoritative. Reading a candidate never promotes it.
+
+The forward path is explicit. When a workflow deliberately creates or recognizes a durable project authority, MSSR may plan its exact manifest registration immediately rather than waiting for retroactive discovery. Planning validates source/module identity and current source/manifest hashes without mutation. Applying the registration is a separate reviewed persistence operation requiring exact source-path confirmation plus those hashes, followed by manifest readback and health verification. A source or manifest change invalidates the plan.
+
+Rename/delete semantics remain conservative: a missing declared source is exact health debt; a renamed document may independently become a new candidate, but MSSR never infers replacement identity. Dashboards may project this lifecycle for humans but remain non-authoritative views over canonical evidence.
+
+## Staged adoption gates
+
+1. [x] Publish portable message and continuation-receipt fixtures with
+   no-authority and privacy assertions (0.2.9 cross-host fixtures).
+2. [x] Portable core: strict producers, repository collector, freshness
+   revalidation, and a durable explicit-ack advisory-only JSON inbox (0.2.10).
+   This proves the selectable/accounted message plane, not adapter delivery.
+3. [x] Adapter delivery (native, Codex, OpenCode) — native/Codex/OpenCode
+   route and bootstrap drain the durable inbox through one shared host helper,
+   return the advisory context plane, and expose explicit `mssr_context_ack`
+   (0.2.11), proven by the six-probe activation tests including an
+   unrelated-domain negative.
+   [ ] Adapter delivery (Bridge/ChatGPT Web) — pending; the Bridge adapter must
+   consume a packaged 0.2.11 artifact because its dependency junction crosses
+   the OpenCode workspace authority boundary.
+4. [ ] Prove resume and persistence-proposal behavior on native, Codex,
+   OpenCode, and Bridge/ChatGPT Web.
+5. [ ] Only then use aggregate observability to review context quality; learning
+   remains observe-only until its separate replay, calibration, shadow, feature
+   flag, and rollback gates pass.
+
+## Non-goals
+
+- a global database of repository facts;
+- automatic editing from notices, telemetry, or learning;
+- treating a context receipt as authorization or a successful outcome;
+- claiming current all-host runtime parity before its tests exist.
