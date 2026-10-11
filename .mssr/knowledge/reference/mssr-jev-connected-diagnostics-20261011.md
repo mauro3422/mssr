@@ -30,3 +30,5 @@ Bridge checkout was restored to 0.2.121 and verified clean. The full packets,
 linked control, request excerpts, and blind reviews are indexed in the
 [experiment ledger](../../../experiments/jev-mssr-live/README.md), entries
 23–25. The cross-family report also records the previous 3/3 diagnostic.
+
+A subsequent linked diagnostic used one real Jev 1.13.0 call through isolated Bridge 0.6.169 / MSSR 0.2.126 candidate against the previously exposed `jev-decision-model-use-cases.md`. Heading mode selected category B exactly among 20 headings; exact fetch/fingerprint passed for its 791-character range, containing cases 11–20. Blind Luna exact-text review marked full/low overbreadth. The runner summary's static “synthetic” label is corrected in an append-only erratum; frozen evidence remains intact. This is not independent holdout, owner-gold, reliability or calibration evidence; scores remain uncalibrated. See run ledger entry 26 and the [adjudication report](../../../experiments/jev-mssr-live/runs/mssr-librarian-parent-child-real-linked-20261011T190000Z-v1/ADJUDICATION-REPORT.md).

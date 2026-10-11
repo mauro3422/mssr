@@ -1,0 +1,14 @@
+{
+  "reviewer": "Luna blind exact-fetch reviewer",
+  "reviewMode": "blind review of fetched text against the frozen case rubric; provider scores and expected heading withheld",
+  "reviewedArtifact": "records.jsonl selection.fetch.text",
+  "verdict": "full",
+  "overbreadth": "low",
+  "coveredCases": [11,12,13,14,15,16,17,18,19,20],
+  "limitations": [
+    "One real MSSR source-document cluster, already exposed in prior diagnostics.",
+    "One request; not an independent holdout or owner-gold.",
+    "Blind model-assisted review is not independent human adjudication.",
+    "Raw Choice and evidence-sufficiency scores remain uncalibrated."
+  ]
+}

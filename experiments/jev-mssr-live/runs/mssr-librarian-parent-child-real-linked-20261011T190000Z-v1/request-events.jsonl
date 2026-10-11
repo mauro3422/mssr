@@ -1,0 +1,2 @@
+{"event":"request-started","caseId":"jev-use-cases-retrieval-category","requestFingerprint":"395fcffad5bde8e71a39d5df178bd56a8ab58ffe7b826d9b501a01e6f8bfdb4c","startedAt":"2026-10-11T18:47:22.455Z","inputHashes":["a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469"]}
+{"event":"request-completed","caseId":"jev-use-cases-retrieval-category","requestFingerprint":"395fcffad5bde8e71a39d5df178bd56a8ab58ffe7b826d9b501a01e6f8bfdb4c","completedAt":"2026-10-11T18:47:23.482Z","status":"complete"}

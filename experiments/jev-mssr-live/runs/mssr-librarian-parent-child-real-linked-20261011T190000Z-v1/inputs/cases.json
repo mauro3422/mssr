@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "jev-use-cases-retrieval-category",
+      "query": "¿Qué casos concretos enumera la categoría B para búsqueda, archivos y recuperación del conocimiento?",
+      "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md"
+    }
+  ]
+}

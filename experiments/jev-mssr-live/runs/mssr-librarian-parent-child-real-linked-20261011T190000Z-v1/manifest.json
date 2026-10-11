@@ -1,0 +1,97 @@
+{
+  "source": {
+    "bridgeRoot": "D:\\Dev\\bridge-mcp-mssr-0.2.112-query-variants",
+    "gitCommit": "273e23b252006fa17cc598bd186712b59dc2b889",
+    "workingTreeClean": false,
+    "buildArtifacts": [
+      {
+        "sha256": "dc155b2c0ce369ea33b8a4de124b37e79636bb397932cef3827cf34bec5a8fbe",
+        "path": "dist/tool-registry.js"
+      },
+      {
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa",
+        "path": "dist/tools/mssr-semantic-evidence-tools.js"
+      },
+      {
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e",
+        "path": "scripts/read-windows-credential.ps1"
+      },
+      {
+        "sha256": "181bf914da4f5767c457755990798169f6d539f56886b420bd8410951b5d8971",
+        "path": "vendor/mauroprime-mssr-0.2.121.tgz"
+      }
+    ],
+    "expectedMssrVersion": "0.2.126",
+    "bridgeCommit": "2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc",
+    "codeSnapshotCleanAtFreeze": true,
+    "bridgeVersion": "0.6.169",
+    "repository": "MSSR",
+    "candidateTarballSha256": "d9b68866b6414d5248bb8c2c7e90cce99c13db21c76f679ddad82dbdf121cf82",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112"
+  },
+  "runId": "mssr-librarian-parent-child-real-linked-20261011T190000Z-v1",
+  "schemaVersion": 1,
+  "plan": {
+    "uncertaintyMethod": "one linked source; not reliability or calibration evidence",
+    "independentUnit": "one linked real MSSR source document; diagnostic only",
+    "minimumSupport": {
+      "overall": 30
+    },
+    "secondaryMetrics": [
+      "exact fetch fingerprint",
+      "Choice raw confidence",
+      "Noul evidence sufficiency",
+      "provider tokens",
+      "latency",
+      "fetched range chars"
+    ],
+    "primaryMetric": "expected child heading selected in heading mode without candidateHandles",
+    "expectedRequestCount": 1
+  },
+  "corpus": {
+    "snapshotPath": "inputs/sources/",
+    "projectRoot": "D:\\Dev\\mssr",
+    "redaction": "real MSSR project knowledge doc, one previously exposed source ref; labels hidden from provider",
+    "sources": [
+      {
+        "snapshotPath": "inputs/sources/source.md",
+        "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+        "sha256": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469"
+      }
+    ],
+    "items": 1,
+    "sourceRevision": "273e23b252006fa17cc598bd186712b59dc2b889"
+  },
+  "parentRunId": "mssr-librarian-crlf-tail-candidate-20261011T183700Z-v1",
+  "status": "prepared",
+  "createdAt": "2026-10-11T18:47:08Z",
+  "labels": {
+    "labelFile": "experiments/jev-mssr-live/runs/mssr-librarian-parent-child-real-linked-20261011T190000Z-v1/inputs/labels.json",
+    "source": "source-derived author, held out from provider request",
+    "adjudication": "blind semantic review pending",
+    "frozenAt": "2026-10-11T18:47:08Z",
+    "labelFileSha256": "88285c688cb157b9cedc945e47443426db5cac692c73b606291ded7eb8c0dcf0",
+    "exposedToRequests": false
+  },
+  "instrument": {
+    "runtime": "v24.16.0",
+    "runnerSha256": "ad3d20ea9d36266383628e4806586d49b3d4892063ce5da44d78df69ec86d166",
+    "lockfileSha256": "9aeecec5b35a339daef19e35547c6193278f09dbf380a91056ba451de2d58a25",
+    "casesPath": "experiments/jev-mssr-live/runs/mssr-librarian-parent-child-real-linked-20261011T190000Z-v1/inputs/cases.json",
+    "requestSchemaVersion": 1,
+    "casesSha256": "26df545e14b6ff0bcd2502a53fb5118257522c4a1959a66d6c70a433cb929cec",
+    "runnerPath": "experiments/jev-mssr-live/runs/mssr-librarian-parent-child-real-linked-20261011T190000Z-v1/runner.mjs"
+  },
+  "provider": {
+    "timeoutMs": 30000,
+    "requestedModel": "jev-1.13.0",
+    "rawVendorResponsePersisted": false,
+    "maxRetries": 1,
+    "networkOptInMethod": "explicit --allow-network plus prior user authorization in conversation",
+    "credentialSource": "Windows Credential Manager; secret value not persisted",
+    "networkOptIn": true,
+    "endpointIdentity": "api.typesafe.ai/v1/systemone",
+    "provider": "TypeSafe Jev through isolated Bridge 0.6.169 adapter",
+    "mode": "live"
+  }
+}

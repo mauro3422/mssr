@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "jev-use-cases-retrieval-category",
+      "requiredPoints": [
+        "grep",
+        "rutas",
+        "refs/documentos",
+        "relevancia",
+        "duplicados",
+        "autoridad",
+        "desactualizada",
+        "siguiente acción",
+        "citas",
+        "suficiencia"
+      ],
+      "expectedHeading": "B. Búsqueda, archivos y recuperación de conocimiento"
+    }
+  ]
+}

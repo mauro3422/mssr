@@ -1,0 +1,5 @@
+# Run erratum — source classification and limitation
+
+The frozen `summary.json` says “One synthetic diagnostic source only”. That statement is a copied static template error. The frozen manifest identifies a real, versioned MSSR project knowledge document at `.mssr/knowledge/research/jev-decision-model-use-cases.md`, snapshotted at source revision `273e23b252006fa17cc598bd186712b59dc2b889`; the source hash and exact fetched range are recorded in the manifest and provider record. The case was also previously exposed in an earlier diagnostic, as disclosed at freeze. The source is therefore real but linked/exposed, not synthetic and not unseen.
+
+Only the interpretation is corrected here. The original manifest, provider record, runner, summary, and original `SHA256SUMS` remain unchanged. This is one linked source-document cluster and one request, so it is diagnostic evidence only: not an independent holdout, owner-gold, reliability estimate, or confidence calibration. Choice 1.00 and Noul/evidence sufficiency 0.92 remain uncalibrated provider scores.
