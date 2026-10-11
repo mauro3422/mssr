@@ -12,6 +12,8 @@ A post-hoc connected Bridge 0.6.169 diagnostic on ADR 0008 confirms explicit tra
 
 A second post-hoc connected diagnostic exercised four linked Jev queries over the same `docs/AGENT_PROTOCOL.md` section. Exact fetch and evidence packing passed for the section and a focused prose block. Raw Choice/Noul varied with wording; blind review of the compound query missed an ambiguity between ephemeral trace memory and the durable learning digest. Code inspection shows selection uses a query-centered excerpt capped at 260 characters before the subsequent full-range fetch. This is a hypothesis for a controlled excerpt-size comparison, not causal evidence or calibration; no threshold or runtime behavior changed. See the [working-memory diagnostic](../experiments/jev-mssr-live/diagnostics/agent-protocol-working-memory-jev-posthoc-20261011.md).
 
+Its linked addendum adds a fifth Jev request, exact fetch/pack for the retention-and-digest paragraph, and a host-composed Spanish answer cited to two exact blocks. A blind Luna review marked the composed answer Full with the ephemeral-versus-durable distinction intact. This validates one complete connected workflow on the same single document cluster, not independent quality or calibration. A no-trace direct connector call was rejected before Jev; an explicit-trace wrapper retry succeeded. See the [composition addendum](../experiments/jev-mssr-live/diagnostics/agent-protocol-working-memory-composition-addendum-20261011.md).
+
 ## Core skill package state
 
 Core package state: five first-party MSSR operational skill roots. Semantic evidence remains a core/MCP capability, not a new skill. Ownership policy: [canonical ownership](knowledge/architecture/canonical-ownership.md).
