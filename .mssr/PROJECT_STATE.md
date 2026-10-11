@@ -2,7 +2,7 @@
 
 ## Current release
 
-MSSR 0.2.121 remains live in Bridge 0.6.169 (boot `adf97c06-a668-4ff9-a187-c12ab058bff2`, 188 tools, tunnel ready, no restart pending). Its package SHA-256 is `181bf914da4f5767c457755990798169f6d539f56886b420bd8410951b5d8971`; runtime adoption record: `2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc`. Source package 0.2.122 passed `npm run verify` and `npm run release:gate` but is not adopted by Bridge. Its tarball is 1,149,810 bytes, SHA-256 `6785a2471492cb967446b70b2f9f5b3df5fa5e9edb9aec384c615b13682b053d`, with receipt at [0.2.122 release receipt](runtime/releases/0.2.122.json). Search/selection/fetch/evidence-pack parity matched once; provider identity and replay receipts remain unverified. See the [Bridge smoke report](knowledge/reference/jev-mssr-live-bridge-smoke-20261011-bridge-06169.md).
+MSSR 0.2.121 remains live in Bridge 0.6.169 (boot `adf97c06-a668-4ff9-a187-c12ab058bff2`, 188 tools, tunnel ready, no restart pending). Its package SHA-256 is `181bf914da4f5767c457755990798169f6d539f56886b420bd8410951b5d8971`; the [Bridge smoke report](knowledge/reference/jev-mssr-live-bridge-smoke-20261011-bridge-06169.md) records watchdog acknowledgement `18b4db27-1fc8-47c5-b670-dafc194ab57f` and activation-documentation follow-up commit `2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc`. The repository has no separate persisted runtime-adoption receipt for 0.2.121. Source package 0.2.122 passed `npm run verify` and `npm run release:gate` but is not adopted by Bridge. Its tarball is 1,149,810 bytes, SHA-256 `6785a2471492cb967446b70b2f9f5b3df5fa5e9edb9aec384c615b13682b053d`, with receipt at [0.2.122 release receipt](runtime/releases/0.2.122.json). Source package 0.2.123 contains documentation/state reconciliation only, passed `npm run verify` and `npm run release:gate`, and is not adopted by Bridge. Its tarball is 1,150,191 bytes, SHA-256 `50a76c98b4a684fee3ea93a461030c57b4e2ff8e5ec7bcd322e20612e7becbcd`, with receipt at [0.2.123 release receipt](runtime/releases/0.2.123.json). Search/selection/fetch/evidence-pack parity matched once; provider identity and replay receipts remain unverified. See the [Bridge smoke report](knowledge/reference/jev-mssr-live-bridge-smoke-20261011-bridge-06169.md).
 
 ## Current Jev/Librarian evaluation
 
@@ -24,7 +24,7 @@ Core package state: five first-party MSSR operational skill roots. Semantic evid
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.122 -->
+<!-- mssr-version:mssr.source=0.2.123 -->
 <!-- mssr-version:bridge.live=0.6.169 -->
 
 <!-- mssr-owner:semantic.consistency=mssr -->

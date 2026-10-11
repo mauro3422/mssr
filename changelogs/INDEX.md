@@ -21,6 +21,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.123](0.2.123.md) - correct Bridge adoption provenance and plan an isolated paired excerpt-cap study.
 - [0.2.122](0.2.122.md) - separate current Librarian next gates from selectively loaded historical Git and evaluation notes.
 - [0.2.121](0.2.121.md) - preserve blank-line-separated Markdown list continuations, nested evidence, and sibling item boundaries in exact Librarian ranges.
 - [0.2.120](0.2.120.md) - document exact metadata filter behavior and the closed EvidenceAtom projection keys in the Librarian search schema.
