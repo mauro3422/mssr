@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "gpt-6-luna subagent",
+  "timing": "Delivered before the live Jev calls; written to this repository only after all calls completed.",
+  "ownerGold": false,
+  "blindToJevResults": true,
+  "cases": [
+    {
+      "caseId": "opencode-queue-compound",
+      "coverage": "full",
+      "expectedHeading": "Host metadata plugin",
+      "requiredFacts": [
+        "queue only validated privacy-bounded host-call envelopes",
+        "Windows default path",
+        "128-entry capacity",
+        "bounded exponential backoff",
+        "five attempt maximum",
+        "MSSR_OPENCODE_TELEMETRY_QUEUE_PATH override"
+      ]
+    },
+    {
+      "caseId": "trace-propagation",
+      "coverage": "full",
+      "expectedHeading": "Trace contract v1",
+      "requiredFacts": [
+        "automatic propagation only when one compatible trace exists",
+        "explicit IDs after restart/across processes/ambiguity/historical selection/host without propagation"
+      ]
+    },
+    {
+      "caseId": "event-host-mssr-boundary",
+      "coverage": "full",
+      "expectedHeading": "Architectural boundary and Required invariants",
+      "requiredFacts": [
+        "host/provider receives/authenticates event and normalizes safe metadata",
+        "secrets/raw body remain host-owned",
+        "MSSR evaluates bounded watch spec and returns advisory intent",
+        "polling is explicit fallback/degraded, not falsely called a webhook"
+      ]
+    }
+  ]
+}

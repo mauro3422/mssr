@@ -1,0 +1,177 @@
+[
+  {
+    "id": "opencode-queue-compound",
+    "status": "abstained",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "providerConfidence": 0.71,
+    "evidenceSufficiency": 0.13,
+    "selected": null,
+    "providerCalls": 1,
+    "usage": {
+      "input_tokens": 1069,
+      "output_tokens": 84
+    },
+    "elapsedMs": 403.9,
+    "requestFingerprint": "526415d9270113d4d287822962b76b0fa58f227e0ae864aa763fc0463745062e",
+    "exactFetch": null
+  },
+  {
+    "id": "opencode-queue-mechanics",
+    "status": "abstained",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "providerConfidence": 0.79,
+    "evidenceSufficiency": 0.1,
+    "selected": null,
+    "providerCalls": 1,
+    "usage": {
+      "input_tokens": 1030,
+      "output_tokens": 84
+    },
+    "elapsedMs": 341,
+    "requestFingerprint": "ebee2ff2671de0c2a312ddabe6a22116251c1a55448dbdb7a1f735ef2a168544",
+    "exactFetch": null
+  },
+  {
+    "id": "opencode-queue-capacity",
+    "status": "selected",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "providerConfidence": 1,
+    "evidenceSufficiency": 0.96,
+    "selected": {
+      "rangeId": "heading-2",
+      "rangeKind": "section",
+      "title": "Host metadata plugin",
+      "headingPath": [
+        "OpenCode CLI",
+        "Host metadata plugin"
+      ],
+      "handle": {
+        "version": 1,
+        "id": "afe8c15e8086822e2c8f7d2a090d9fbb13da2baef07e6b419a0171d0812ac507",
+        "owner": "project:mssr",
+        "sourceRef": "docs/OPENCODE.md",
+        "revision": "3eacfde79c88fdf128b62a004fdace02e7a207082f38a7affbee90b93e2187ef",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "startLine": 44,
+        "endLine": 129,
+        "startOffset": 1634,
+        "endOffset": 6837,
+        "fingerprint": "d4df545e9d5f007e66a11c51ed0f6c0ef71308e8c507ca2ff6d17f98d723472e",
+        "privacyClass": "project-metadata"
+      }
+    },
+    "providerCalls": 1,
+    "usage": {
+      "input_tokens": 1066,
+      "output_tokens": 87
+    },
+    "elapsedMs": 303.4,
+    "requestFingerprint": "c38b24f0771e3c123ffedc3c57bcb6c68b39594be2af6257dd87e74227af216f",
+    "exactFetch": {
+      "handleId": "afe8c15e8086822e2c8f7d2a090d9fbb13da2baef07e6b419a0171d0812ac507",
+      "revision": "3eacfde79c88fdf128b62a004fdace02e7a207082f38a7affbee90b93e2187ef",
+      "fingerprint": "d4df545e9d5f007e66a11c51ed0f6c0ef71308e8c507ca2ff6d17f98d723472e",
+      "rangeId": "heading-2",
+      "characters": 5203,
+      "passed": true
+    }
+  },
+  {
+    "id": "trace-propagation",
+    "status": "selected",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "providerConfidence": 0.81,
+    "evidenceSufficiency": 0.31,
+    "selected": {
+      "rangeId": "heading-5",
+      "rangeKind": "section",
+      "title": "Trace contract v1",
+      "headingPath": [
+        "Routing evidence, notices, and outcome observability",
+        "Trace contract v1"
+      ],
+      "handle": {
+        "version": 1,
+        "id": "979adec94b2ef77d8dcbe63703354ab51736d2cbf80b114b930dce745e1ed08f",
+        "owner": "project:mssr",
+        "sourceRef": "docs/ROUTING_EVIDENCE_OBSERVATORY.md",
+        "revision": "22f37288fbad671f7002817d5dd489a0f14d6216aacfa2f13fb7b45d54b69118",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "startLine": 68,
+        "endLine": 102,
+        "startOffset": 4516,
+        "endOffset": 7432,
+        "fingerprint": "2d80d13691b4444d6d65c58422ccaa8ae1ffebec02f023d99e90601b478a645a",
+        "privacyClass": "project-metadata"
+      }
+    },
+    "providerCalls": 1,
+    "usage": {
+      "input_tokens": 2744,
+      "output_tokens": 217
+    },
+    "elapsedMs": 414.8,
+    "requestFingerprint": "3e53a3b1ab8c90d20f04b493a3d7a3bf56dc8e82ff85e2ad10d0d35849d6e729",
+    "exactFetch": {
+      "handleId": "979adec94b2ef77d8dcbe63703354ab51736d2cbf80b114b930dce745e1ed08f",
+      "revision": "22f37288fbad671f7002817d5dd489a0f14d6216aacfa2f13fb7b45d54b69118",
+      "fingerprint": "2d80d13691b4444d6d65c58422ccaa8ae1ffebec02f023d99e90601b478a645a",
+      "rangeId": "heading-5",
+      "characters": 2916,
+      "passed": true
+    }
+  },
+  {
+    "id": "event-host-mssr-boundary",
+    "status": "selected",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "providerConfidence": 0.47,
+    "evidenceSufficiency": 0.72,
+    "selected": {
+      "rangeId": "heading-3",
+      "rangeKind": "section",
+      "title": "Architectural boundary",
+      "headingPath": [
+        "Handoff — Event-driven triggers / webhook-capable hosts",
+        "Architectural boundary"
+      ],
+      "handle": {
+        "version": 1,
+        "id": "a749e2fafb26d61301cb0fa274adb5c938af93928c105dc024e8fddafdf69e1e",
+        "owner": "project:mssr",
+        "sourceRef": "docs/HANDOFF_EVENT_TRIGGER_WEBHOOKS.md",
+        "revision": "6c329c77d53e78d217d01d5aa236bcff052ef81d3076ae7adda5927ef1b7aa46",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 12,
+        "endLine": 23,
+        "startOffset": 906,
+        "endOffset": 1823,
+        "fingerprint": "6791a44ab45c0243ad92b45490d57dc477cf5d9cdfb25c08eac6cec6638f04d4",
+        "privacyClass": "project-metadata"
+      }
+    },
+    "providerCalls": 1,
+    "usage": {
+      "input_tokens": 2026,
+      "output_tokens": 157
+    },
+    "elapsedMs": 324.1,
+    "requestFingerprint": "903a19d7771b1e64fe2fd2fa78762ef37468e6abfcf4ccd08cd80c4f9ed0dc01",
+    "exactFetch": {
+      "handleId": "a749e2fafb26d61301cb0fa274adb5c938af93928c105dc024e8fddafdf69e1e",
+      "revision": "6c329c77d53e78d217d01d5aa236bcff052ef81d3076ae7adda5927ef1b7aa46",
+      "fingerprint": "6791a44ab45c0243ad92b45490d57dc477cf5d9cdfb25c08eac6cec6638f04d4",
+      "rangeId": "heading-3",
+      "characters": 917,
+      "passed": true
+    }
+  }
+]

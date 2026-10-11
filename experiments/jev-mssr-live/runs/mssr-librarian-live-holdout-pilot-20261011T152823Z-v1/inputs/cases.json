@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "opencode-queue-compound",
+      "source": "source-01",
+      "query": "When the authenticated telemetry endpoint is temporarily unavailable, how does the OpenCode plugin deliver the host-call envelope, what queue and retry limits apply, and what default Windows queue path and override does it use?",
+      "group": "source-01",
+      "arm": "production-default-260"
+    },
+    {
+      "id": "opencode-queue-mechanics",
+      "source": "source-01",
+      "query": "When delivery fails because the authenticated endpoint is temporarily unavailable, what exactly is queued and what are the queue capacity and maximum retry count?",
+      "group": "source-01",
+      "arm": "production-default-260"
+    },
+    {
+      "id": "opencode-queue-capacity",
+      "source": "source-01",
+      "query": "What is the maximum number of entries in the local host-call queue?",
+      "group": "source-01",
+      "arm": "production-default-260"
+    },
+    {
+      "id": "trace-propagation",
+      "source": "source-02",
+      "query": "When may the host automatically propagate a traceId, and in which situations must the caller still supply it explicitly?",
+      "group": "source-02",
+      "arm": "production-default-260"
+    },
+    {
+      "id": "event-host-mssr-boundary",
+      "source": "source-03",
+      "query": "When an event arrives, which responsibilities stay with the host/provider, what does portable MSSR evaluate, and how must polling be represented when no native event capability exists?",
+      "group": "source-03",
+      "arm": "production-default-260"
+    }
+  ]
+}

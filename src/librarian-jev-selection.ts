@@ -151,6 +151,20 @@ function sha256(value: string): string {
   return createHash("sha256").update(value, "utf8").digest("hex");
 }
 
+function truncateCodePoints(value: string, maxCodePoints: number): string {
+  return Array.from(value).slice(0, maxCodePoints).join("");
+}
+
+function truncateUtf16Safely(value: string, maxCodeUnits: number): string {
+  let end = Math.max(0, maxCodeUnits);
+  if (end < value.length) {
+    const lastIncluded = value.charCodeAt(end - 1);
+    const firstExcluded = value.charCodeAt(end);
+    if (lastIncluded >= 0xd800 && lastIncluded <= 0xdbff && firstExcluded >= 0xdc00 && firstExcluded <= 0xdfff) end -= 1;
+  }
+  return value.slice(0, end);
+}
+
 function queryCenteredExcerpt(text: string, query: string): string {
   const sourcePoints = Array.from(text.replace(/\s+/g, " ").trim());
   const flat = sourcePoints.join("");
@@ -242,7 +256,7 @@ function candidateEvidence(candidate: SelectionCandidate): string {
   }
   if (result.length > MSSR_LIBRARIAN_JEV_SELECTION_LIMITS.maxOptionTextChars) {
     const fixedChars = result.length - excerpt.length;
-    excerpt = excerpt.slice(0, Math.max(40, MSSR_LIBRARIAN_JEV_SELECTION_LIMITS.maxOptionTextChars - fixedChars - 4));
+    excerpt = truncateUtf16Safely(excerpt, Math.max(40, MSSR_LIBRARIAN_JEV_SELECTION_LIMITS.maxOptionTextChars - fixedChars - 4));
     result = serialize();
   }
   if (result.length > MSSR_LIBRARIAN_JEV_SELECTION_LIMITS.maxOptionTextChars) {
@@ -388,7 +402,7 @@ export async function selectMssrLibrarianEvidenceWithJev(
         endOffset: heading.endOffset,
         fingerprint: heading.fingerprint,
         privacyClass: document.privacyClass,
-        excerpt: excerpt.slice(0, MSSR_LIBRARIAN_JEV_SELECTION_LIMITS.maxExcerptChars),
+        excerpt: truncateCodePoints(excerpt, MSSR_LIBRARIAN_JEV_SELECTION_LIMITS.maxExcerptChars),
       });
     }
   }

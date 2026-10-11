@@ -87,3 +87,5 @@ exact search rank 25→3 and Jev fetched the analysis-only rule (Choice
 evidence. D12/D14 probes found partial support or abstention. No owner-gold/
 holdout; labels/thresholds unchanged. Receipts:
 `D:\MSSR-benchmark-artifacts\jev-shep-calibration-20261009-v1\librarian-contrastive-authority-abstention-20261010-v1\`.
+
+2026-10-11 direct-MCP pilot: five selection requests across three exact source-document clusters; expected ranges selected on two primary cases and one narrow facet, while compound OpenCode queries abstained. Exact fetches passed. Labels were blind Luna model-assisted, not owner-gold; the run was ad hoc, exploratory, and uncalibrated. Full packet: `experiments/jev-mssr-live/runs/mssr-librarian-live-holdout-pilot-20261011T152823Z-v1/`. No threshold change.

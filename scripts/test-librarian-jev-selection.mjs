@@ -247,6 +247,47 @@ assert.equal(legacy.selected.handle.rangeKind, "section");
 const legacyOption = JSON.parse(providerCalls[legacyCallIndex].state.evidence[0].text);
 assert.equal(legacyOption[4], "section");
 
+const assertWellFormedUnicode = (value, label) => {
+  for (const character of value) {
+    const codePoint = character.codePointAt(0);
+    assert.ok(codePoint < 0xd800 || codePoint > 0xdfff, `${label} must not contain an unpaired UTF-16 surrogate`);
+  }
+};
+const unicodeSectionBody = `target evidence ${"x".repeat(242)}😀${" trailing context".repeat(30)}`;
+const unicodeSectionDocument = {
+  owner,
+  sourceRef: "docs/unicode-section.md",
+  markdown: `# Unicode test\n\n## Long body\n\n${unicodeSectionBody}\n`,
+  privacyClass: "project-metadata",
+};
+const unicodeSectionCallStart = providerCalls.length;
+const unicodeSectionSelection = await selectMssrLibrarianEvidenceWithJev({
+  documents: [unicodeSectionDocument],
+  query: "target evidence",
+}, provider);
+assert.equal(unicodeSectionSelection.status, "selected");
+const unicodeSectionOptions = providerCalls[unicodeSectionCallStart].state.evidence.map((item) => JSON.parse(item.text));
+for (const option of unicodeSectionOptions) {
+  assertWellFormedUnicode(option[3], "heading-mode excerpt");
+  assert.ok(Array.from(option[3]).length <= 260, "heading-mode excerpt remains bounded in Unicode code points");
+}
+assert.ok(unicodeSectionOptions.some((option) => option[3].includes("😀")), "a complete supplementary character before the excerpt boundary must remain intact");
+
+const escapingHeavyTitle = `Target ${'"\\'.repeat(90)}`;
+const metadataPressureDocument = {
+  owner,
+  sourceRef: "docs/unicode-metadata-pressure.md",
+  markdown: `# Root\n\n## ${"A".repeat(200)}\n\n### ${"B".repeat(200)}\n\n#### ${"C".repeat(200)}\n\n##### ${escapingHeavyTitle}\n\ntarget evidence ${"x".repeat(179)}😀${" more".repeat(40)}\n`,
+  privacyClass: "project-metadata",
+};
+const metadataPressureCallStart = providerCalls.length;
+const metadataPressureSelection = await selectMssrLibrarianEvidenceWithJev({ documents: [metadataPressureDocument], query: "target evidence" }, provider);
+assert.equal(metadataPressureSelection.status, "selected", "bounded metadata compaction should still make a valid Jev call");
+const metadataPressureEvidence = providerCalls[metadataPressureCallStart].state.evidence.map((item) => JSON.parse(item.text));
+assert.ok(metadataPressureEvidence.length > 0);
+for (const evidence of metadataPressureEvidence) assertWellFormedUnicode(evidence[3], "metadata-compacted excerpt");
+assert.ok(metadataPressureEvidence.some((evidence) => Array.from(evidence[3]).length < 260), "long metadata must exercise the per-option excerpt compaction path");
+
 const manyHeadings = ["# Large evidence catalog", ""];
 for (let index = 1; index <= 260; index += 1) {
   manyHeadings.push(`## ${index === 260 ? "Target Needle" : `Section ${String(index).padStart(3, "0")}`}`, "", `Candidate ${index} contains bounded evidence for catalog hierarchy and selection. ${index === 260 ? "UNIQUE_TARGET_EVIDENCE" : ""}`, "");

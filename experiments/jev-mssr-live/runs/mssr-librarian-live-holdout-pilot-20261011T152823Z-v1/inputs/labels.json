@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "gpt-6-luna subagent",
+  "timing": "Independent source-level labels delivered before live Jev responses were observed; persisted after provider calls.",
+  "ownerGold": false,
+  "cases": [
+    {
+      "id": "opencode-queue-compound",
+      "expected": "full",
+      "preferredRange": "heading-2 / Host metadata plugin",
+      "minimumFacts": [
+        "only validated privacy-bounded host-call envelopes are queued",
+        "Windows default queue path",
+        "capacity 128",
+        "bounded exponential backoff",
+        "maximum five attempts",
+        "override environment variable"
+      ],
+      "notes": "Jev abstained. Source-level answerable-target miss; the 260-character excerpt may have hidden distributed facets. Not a calibration result."
+    },
+    {
+      "id": "trace-propagation",
+      "expected": "full",
+      "preferredRange": "Trace contract v1",
+      "minimumFacts": [
+        "automatic propagation only with one compatible trace",
+        "explicit ID after restart/across processes/ambiguity/historical selection/hosts without propagation"
+      ],
+      "notes": "Jev chose the expected section; Noul was low and remains uncalibrated."
+    },
+    {
+      "id": "event-host-mssr-boundary",
+      "expected": "full",
+      "preferredRange": "Architectural boundary plus Required invariants",
+      "minimumFacts": [
+        "host/provider authenticates and normalizes safe metadata",
+        "secrets/raw bodies remain host-owned",
+        "MSSR evaluates bounded trigger/watch spec and emits advisory intent",
+        "polling explicitly labeled fallback/degraded"
+      ],
+      "notes": "Jev chose Architectural boundary; exact fetch contains fallback statement."
+    }
+  ]
+}
