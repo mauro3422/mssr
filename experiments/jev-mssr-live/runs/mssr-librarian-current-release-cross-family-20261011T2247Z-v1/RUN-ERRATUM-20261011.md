@@ -18,3 +18,20 @@ The frozen runner's static text and frozen `summary.json` say “source-document
 ## Interpretation boundary
 
 This is a small exploratory diagnostic with source-derived targets and no owner-gold adjudication, statistical holdout, calibration, or reliability estimate. It exercised search → Jev selection → exact fetch → evidence-pack construction; it did not test relation review, contradiction detection, host synthesis, or automatic query decomposition. Do not tune a threshold or change production policy from this run.
+
+## Follow-up: exact evidence-sufficiency capture cause
+
+Source inspection confirms Jev completed the typed Noul request and MSSR
+returned the numeric value as evidenceSufficiency. The clean Bridge 0.6.172
+adapter preserves that selector result. This run's frozen runner instead
+serialized noul: selected.noul ?? selected.sufficiency ?? null, omitting the
+canonical selected.evidenceSufficiency field. The three missing values are
+therefore a runner serialization defect, not a Jev abstention or Bridge
+omission.
+
+The packet contains neither the canonical field nor raw vendor response bytes,
+so the numeric values cannot be recovered from run 30. Its manifest, records,
+summary, runner, and original checksum index remain unchanged. New packets
+should use the shared selection-record.mjs serializer and freeze its hash
+alongside the reusable runner. The regression exercises distinct canonical and
+raw-Noul values and an offline, zero-network runner dry run.

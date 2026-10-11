@@ -5,6 +5,7 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { serializeJevEvidenceMetrics } from "../experiments/jev-mssr-live/selection-record.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const summarizer = path.join(root, "experiments/jev-mssr-live/summarize-run.mjs");
@@ -29,6 +30,21 @@ const invoke = (directory, args = []) => spawnSync(process.execPath, [summarizer
   encoding: "utf8",
   windowsHide: true,
 });
+
+const capturedJevMetrics = serializeJevEvidenceMetrics({
+  providerConfidence: 0.44,
+  confidenceCalibration: "uncalibrated",
+  evidenceSufficiency: 0.58,
+  noul: 0.91,
+});
+assert.deepEqual(capturedJevMetrics, {
+  rawChoiceConfidence: 0.44,
+  confidenceCalibration: "uncalibrated",
+  evidenceSufficiency: 0.58,
+  noul: 0.91,
+});
+assert.equal(serializeJevEvidenceMetrics({ sufficiency: 0.88, noul: 0.77 }).evidenceSufficiency, null,
+  "unknown aliases must not impersonate canonical evidenceSufficiency");
 
 try {
   const generic = path.join(scratch, "generic");
@@ -60,7 +76,7 @@ try {
     {
       caseId: "heading-one", sourceRef: "docs/a.md", status: "complete",
       search: { resultCount: 1, results: [{ title: "A section", headingPath: ["Root", "## Overview"] }] },
-      jev: { status: "selected", rawChoiceConfidence: 0.44, evidenceSufficiency: 0.58, noul: 0.91, usage: { input_tokens: 10, output_tokens: 2 }, selected: { title: "Overview", handle: { rangeId: "heading-1" } } },
+      jev: { status: "selected", ...capturedJevMetrics, usage: { input_tokens: 10, output_tokens: 2 }, selected: { title: "Overview", handle: { rangeId: "heading-1" } } },
       fetch: { passed: true }, evidencePack: { status: "complete" }, startedAt: "2026-10-11T00:00:01Z", completedAt: "2026-10-11T00:00:02Z",
     },
     {
@@ -102,6 +118,77 @@ try {
   assert.equal(genericSummary.calibrationClaim, false);
   assert.deepEqual(genericSummary.checksumFile.requiredFiles, genericChecksumFiles);
   await assert.rejects(fs.access(path.join(generic, "summary-calculated.json")), "stdout mode must not write run artifacts");
+
+  const templateRun = path.join(scratch, "template-run");
+  const templateProject = path.join(templateRun, "project");
+  const templateBridge = path.join(templateRun, "bridge");
+  const templateRunnerPath = path.join(templateRun, "runner.mjs");
+  const runnerTemplate = path.join(root, "experiments/jev-mssr-live/runner-template.mjs");
+  const selectionRecordModule = path.join(root, "experiments/jev-mssr-live/selection-record.mjs");
+  await fs.mkdir(templateRun, { recursive: true });
+  await fs.copyFile(runnerTemplate, templateRunnerPath);
+  await fs.copyFile(selectionRecordModule, path.join(templateRun, "selection-record.mjs"));
+  const templateRunnerBytes = await fs.readFile(templateRunnerPath);
+  const templateSelectionRecordBytes = await fs.readFile(path.join(templateRun, "selection-record.mjs"));
+  const templateSourceBytes = Buffer.from("# Sample\n\nExact fixture evidence.\n");
+  await fs.mkdir(path.join(templateProject, "docs"), { recursive: true });
+  await fs.writeFile(path.join(templateProject, "docs/one.md"), templateSourceBytes);
+  await fs.mkdir(path.join(templateRun, "inputs/sources"), { recursive: true });
+  await fs.writeFile(path.join(templateRun, "inputs/sources/source-01.md"), templateSourceBytes);
+  const templateArtifactPath = "dist/tool-registry.js";
+  const templateArtifactBytes = Buffer.from("fixture Bridge artifact\n");
+  await fs.mkdir(path.join(templateBridge, "dist"), { recursive: true });
+  await fs.writeFile(path.join(templateBridge, templateArtifactPath), templateArtifactBytes);
+  const templateCasesBytes = await writeJson(path.join(templateRun, "inputs/cases.json"), {
+    schemaVersion: 1,
+    cases: [{ id: "template-smoke", sourceRef: "docs/one.md", query: "What is the exact fixture evidence?" }],
+  });
+  const templateLabelsBytes = await writeJson(path.join(templateRun, "inputs/labels.json"), {
+    schemaVersion: 1,
+    adjudication: "fixture-only",
+    cases: [{ caseId: "template-smoke", expectedHeading: "Sample" }],
+  });
+  const templateManifest = {
+    schemaVersion: 1,
+    status: "prepared",
+    runId: "runner-template-dry-run",
+    source: {
+      bridgeRoot: templateBridge,
+      bridgeVersion: "fixture-bridge",
+      mssrVersion: "fixture-mssr",
+      buildArtifacts: [{ path: templateArtifactPath, sha256: digest(templateArtifactBytes) }],
+    },
+    corpus: {
+      projectRoot: templateProject,
+      sources: [{
+        sourceRef: "docs/one.md",
+        sha256: digest(templateSourceBytes),
+        snapshotPath: "inputs/sources/source-01.md",
+      }],
+    },
+    provider: { requestedModel: "jev-fixture-no-network" },
+    plan: { expectedRequestCount: 1, independentUnit: "one descriptive sourceRef cluster" },
+    instrument: {
+      runnerSha256: digest(templateRunnerBytes),
+      selectionRecordSha256: digest(templateSelectionRecordBytes),
+      casesSha256: digest(templateCasesBytes),
+    },
+    labels: { adjudication: "fixture-only", labelFileSha256: digest(templateLabelsBytes) },
+  };
+  await writeJson(path.join(templateRun, "manifest.json"), templateManifest);
+  const templateDryRun = spawnSync(process.execPath, [templateRunnerPath], {
+    cwd: templateRun,
+    encoding: "utf8",
+    windowsHide: true,
+  });
+  assert.equal(templateDryRun.status, 0, templateDryRun.stderr);
+  const templateDryRunSummary = JSON.parse(templateDryRun.stdout);
+  assert.equal(templateDryRunSummary.status, "dry-run");
+  assert.equal(templateDryRunSummary.networkRequests, 0);
+  assert.equal(templateDryRunSummary.requestedCalls, 1);
+  assert.equal(templateDryRunSummary.sourceDocuments, 1);
+  assert.equal(templateDryRunSummary.labelsParsed, false);
+  await assert.rejects(fs.access(path.join(templateRun, "records.jsonl")), "dry-run must not write provider records");
 
   const duplicateRecords = [genericRecords[0], genericRecords[0], genericRecords[2]];
   await fs.writeFile(genericRecordsPath, `${duplicateRecords.map((row) => JSON.stringify(row)).join("\n")}\n`);

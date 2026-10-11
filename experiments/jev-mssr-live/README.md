@@ -20,6 +20,13 @@ confidence-calibration evidence.
   assume that `noul` or `sufficiency` are its schema aliases. The summarizer
   reports missing values as a recording gap, not a provider abstention. Keep
   this score descriptive and uncalibrated.
+- For new live packets, copy runner-template.mjs and selection-record.mjs
+  into the run directory before freezing it. Record their hashes as
+  manifest.instrument.runnerSha256 and
+  manifest.instrument.selectionRecordSha256; run the template without
+  --allow-network before any provider call. The shared serializer keeps
+  canonical evidenceSufficiency separate from a separately returned raw
+  noul field.
 - A runner-produced `summary.json` is convenient output, not an authority for
   cluster counts or semantic answer quality. Copied runners can retain static
   template text. Use `summary-calculated.json` for mechanical counts and keep
@@ -93,6 +100,22 @@ The composed replay harness now reports a separate `compositionGate`: missing/ab
 [`scripts/run-composed-librarian-experiment.mjs`](../../scripts/run-composed-librarian-experiment.mjs) is a development harness for dry-run and provider-off receipt replay. Replay requires a strict receipt linking Jev's recorded choice, offered candidates, and an exact source fetch; it snapshots plan, runner, source bytes, MSSR build identity, and checksums. Its coverage value is explicitly line-span overlap only, not semantic support or owner-gold. Junction/reparse-point paths are refused. Live mode currently writes a checksummed `blocked` record with zero provider/network calls: the local Bridge tree is dirty and the harness cannot prove that its module build is the connected process/catalog. Do not use this prototype to make benchmark, reliability, or confidence-calibration claims.
 
 Together these latest runs show that host-supplied query variants help when wording has low lexical overlap, while adding them to an already-overlapping query need not change the result. Exact retrieval integrity does not ensure complete or focused answers: measure facet coverage and overbreadth separately, and keep the no-candidate abstention distinct from a Jev selection error. Both source clusters in the four-call comparison were exposed to local artifacts; the low-overlap pair is one cluster and not an independent benchmark sample. No confidence threshold or production policy is changed.
+
+## Run 30 serialization follow-up — 2026-10-11
+
+Source inspection confirmed the missing Noul/evidence-sufficiency value was
+dropped by the frozen runner serializer, not by Jev or the Bridge adapter.
+MSSR's Jev selector validates Noul and returns it under evidenceSufficiency;
+the run 30 runner serialized only noul or sufficiency. The packet did not
+retain raw provider response bytes, so the three numeric values cannot be
+reconstructed. The original run remains unchanged; the cause is recorded in
+its append-only erratum.
+
+Future packets now have a reusable runner template and shared serializer.
+The offline regression checks distinct canonical/raw fields and executes a
+manifest-hash-checked dry run with zero network requests. This repairs capture
+for future runs; it does not retroactively add metric values or alter run 30's
+quality result.
 
 20. [`mssr-librarian-fresh-changelog-clusters-20261011T1717Z-v1`](runs/mssr-librarian-fresh-changelog-clusters-20261011T1717Z-v1/) — three fresh changelog source clusters received primary live Jev queries. Two selections exact-fetched; one answerable compound question inappropriately abstained. Four linked manual facets on that same source each exact-fetched, and two blind Luna reviewers judged their union complete for the frozen parent rubric. This is evidence for manual host-side decomposition on one diagnostic cluster, not automatic planning, independent holdout, owner-gold, or calibration. Raw scores remain uncalibrated; no runtime or threshold changed. The follow-up freeze-time declarations were inaccurate; actual Bridge write/call event ordering is documented in the [append-only timestamp erratum](runs/mssr-librarian-fresh-changelog-clusters-20261011T1717Z-v1/TIMESTAMP-ERRATUM-20261011.md). See the [run report](runs/mssr-librarian-fresh-changelog-clusters-20261011T1717Z-v1/RUN-REPORT.md), blind review files, and checksums.
 
