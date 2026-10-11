@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "blind literal union-pack completeness",
+  "reviewer": "gpt-6-luna",
+  "reviewerRole": "independent model-assisted reviewer; not owner-gold",
+  "inputBoundary": "Reviewer saw only the compound query and exact multi-range evidence-pack paragraphs, not source file or labels.",
+  "case": {
+    "query": "For managed work, summarize the actions for no trace, compatible trace without route, compatible trace with route, and ambiguous trace ownership. State whether the ambiguous trace may migrate.",
+    "grade": "direct-complete",
+    "rationale": "The two paragraphs cover all managed-work route states and explicitly state that ambiguous ownership does not migrate and abstains into review/inspect-traces. The reviewer corrected an initial misread after a literal-text check.",
+    "providerCallsAdded": 0
+  },
+  "limitations": [
+    "This judges exact evidence coverage, not generated answer quality; no synthesis was requested.",
+    "Evidence comes from one source-document cluster and is not owner adjudication or calibration."
+  ]
+}

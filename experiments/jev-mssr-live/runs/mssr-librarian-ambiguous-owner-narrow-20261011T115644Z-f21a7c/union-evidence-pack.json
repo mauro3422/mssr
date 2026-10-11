@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "derived exact multi-range Librarian evidence pack",
+  "runId": "mssr-librarian-ambiguous-owner-narrow-20261011T115644Z-f21a7c",
+  "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+  "sourceRevision": "92e6a35bc007060a6e8634c63e94dc638e3636ba5a7c5f46abdd2a87f8e16a69",
+  "providerCallsAdded": 0,
+  "compositionQuery": "For managed work, summarize the actions for no trace, compatible trace without route, compatible trace with route, and ambiguous trace ownership. State whether the ambiguous trace may migrate.",
+  "method": "Two Jev-selected and fingerprint-verified handles from separately worded queries were combined using mssr_librarian_evidence_pack. This records exact evidence only; no answer synthesis was requested or produced.",
+  "evidencePack": {
+    "projectOwner": "d:/dev/mssr",
+    "sourceCount": 1,
+    "schemaVersion": 1,
+    "kind": "mssr-librarian-evidence-pack",
+    "assembly": "verbatim-source-ranges",
+    "paragraphs": [
+      {
+        "ordinal": 1,
+        "exactText": "7. Ambiguous, mismatched or unknown trace ownership never migrates a trace. The decision abstains into `review`/`inspect-traces`; R1 remains the authoritative owner-integrity contract.",
+        "citation": {
+          "display": "docs/decisions/0007-automatic-lifecycle-coverage.md:L38-L38",
+          "handleId": "1d59724906ca0e98a48b14940b6c09020935345bf3063bd8ba010bbc062d5aa0",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+          "revision": "92e6a35bc007060a6e8634c63e94dc638e3636ba5a7c5f46abdd2a87f8e16a69",
+          "rangeId": "block-9/item-7",
+          "rangeKind": "block",
+          "startLine": 38,
+          "endLine": 38,
+          "fingerprint": "daa123d6489f5e07ff6535ff0ca71d13951ee4e025b95a3571450ae40fad1527",
+          "privacyClass": "project-metadata"
+        }
+      },
+      {
+        "ordinal": 2,
+        "exactText": "6. Managed work with no trace requests `ensure-trace-and-route`; with a compatible trace but no route it requests `ensure-route`; with a compatible route it continues or replans that route.",
+        "citation": {
+          "display": "docs/decisions/0007-automatic-lifecycle-coverage.md:L37-L37",
+          "handleId": "0fa919e6ae876eb7791fd1aab95b01581cec66238c72a74707fcaff28a0fb72f",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+          "revision": "92e6a35bc007060a6e8634c63e94dc638e3636ba5a7c5f46abdd2a87f8e16a69",
+          "rangeId": "block-9/item-6",
+          "rangeKind": "block",
+          "startLine": 37,
+          "endLine": 37,
+          "fingerprint": "54c118c09cd6ef455fa46d8359d339119a994cd9d360e9de261f3a9460379042",
+          "privacyClass": "project-metadata"
+        }
+      }
+    ],
+    "totalFetchedChars": 373,
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "canonicalRewriteAllowed": false,
+    "ownerAndPrivacyAreCallerAsserted": true
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "ambiguous-trace-ownership-narrow",
+      "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+      "language": "en",
+      "query": "When trace ownership is ambiguous, mismatched, or unknown, may the host reuse or migrate that trace? What exact review action should it take, and which contract remains authoritative?"
+    },
+    {
+      "id": "trace-route-branches-with-ambiguous-case",
+      "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+      "language": "en",
+      "query": "For managed work, what should the host do when there is no trace, a compatible trace without a route, a compatible trace with a route, or ambiguous trace ownership? State whether the ambiguous trace may migrate."
+    }
+  ]
+}

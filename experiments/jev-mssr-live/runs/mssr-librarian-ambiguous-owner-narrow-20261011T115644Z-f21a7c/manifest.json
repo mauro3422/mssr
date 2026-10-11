@@ -1,0 +1,118 @@
+{
+  "parentRunId": "mssr-librarian-facet-followup-20261011T114800Z-42cd10",
+  "instrument": {
+    "casesPath": "experiments/jev-mssr-live/runs/mssr-librarian-ambiguous-owner-narrow-20261011T115644Z-f21a7c/inputs/cases.json",
+    "runnerPath": "experiments/jev-mssr-live/runs/mssr-librarian-ambiguous-owner-narrow-20261011T115644Z-f21a7c/runner.mjs",
+    "runtime": "v24.16.0",
+    "requestSchemaVersion": 1,
+    "casesSha256": "f1c22e9e17ba66aea32d1664cc66cbeb84e8afb473a3e5e99258bce7ef9887b2",
+    "lockfileSha256": "7a909621ed8de24fdaebef04f166ff54b9ec49ff57596de254b80738a255c031",
+    "runnerSha256": "149cd305415f23009bb1ff4b61d2472490db431c775fcbf7608fd5891e3097a9"
+  },
+  "status": "prepared",
+  "corpus": {
+    "sourceRevision": "16cc4cf64aae5938ce00bfd60a2ec62e3f198a0d",
+    "snapshotPath": "experiments/jev-mssr-live/runs/mssr-librarian-ambiguous-owner-narrow-20261011T115644Z-f21a7c/inputs/sources/",
+    "items": 1,
+    "redaction": "reviewed project Markdown; exact source bytes frozen",
+    "projectRoot": "D:\\Dev\\mssr",
+    "sources": [
+      {
+        "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+        "sha256": "92e6a35bc007060a6e8634c63e94dc638e3636ba5a7c5f46abdd2a87f8e16a69",
+        "snapshotPath": "inputs/sources/source-01.md"
+      }
+    ]
+  },
+  "schemaVersion": 1,
+  "suite": "mssr-librarian-ambiguous-owner-narrow-v1",
+  "source": {
+    "buildArtifacts": [
+      {
+        "sha256": "dc155b2c0ce369ea33b8a4de124b37e79636bb397932cef3827cf34bec5a8fbe",
+        "path": "dist/tool-registry.js"
+      },
+      {
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa",
+        "path": "dist/tools/mssr-semantic-evidence-tools.js"
+      },
+      {
+        "sha256": "eb06b760aa92f405df2ced15e6866ee17d28e2c01983a194eecd2260be2bc61a",
+        "path": "node_modules/@mauroprime/mssr/package.json"
+      },
+      {
+        "sha256": "181bf914da4f5767c457755990798169f6d539f56886b420bd8410951b5d8971",
+        "path": "vendor/mauroprime-mssr-0.2.121.tgz"
+      },
+      {
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e",
+        "path": "scripts/read-windows-credential.ps1"
+      }
+    ],
+    "bridgeCommit": "2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc",
+    "codeSnapshotCleanAtFreeze": true,
+    "bridgeVersion": "0.6.169",
+    "bridgeRoot": "D:\\Dev\\bridge-mcp-mssr-0.2.112-query-variants",
+    "mssrVersion": "0.2.121",
+    "gitCommit": "16cc4cf64aae5938ce00bfd60a2ec62e3f198a0d",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "repository": "MSSR",
+    "workingTreeClean": false,
+    "changedPaths": [
+      "experiments/jev-mssr-live/runs/mssr-librarian-ambiguous-owner-narrow-20261011T115644Z-f21a7c/"
+    ]
+  },
+  "plan": {
+    "expectedRequestCount": 2,
+    "primaryMetric": "literal ambiguous-trace ownership facet coverage; linked diagnostic only",
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30
+    },
+    "thresholds": {},
+    "uncertaintyMethod": "raw counts and literal fetch review only; no generalization, owner-gold, or calibration",
+    "independentUnit": "one source-document cluster; two linked targeted query diagnostics; not independent samples",
+    "secondaryMetrics": [
+      "target subsection present in search top 100",
+      "exact fetch/fingerprint validation",
+      "evidence pack success",
+      "latency",
+      "provider tokens",
+      "provider/tool failures"
+    ]
+  },
+  "labels": {
+    "note": "Source-derived split targets for diagnosis only; not owner-gold, protected holdout or calibration.",
+    "exposedToRequests": false,
+    "labelFileSha256": "26500286c9374fe8fc84429ac27e0ccbe147ed797666972d3cd5926cfed43d5d",
+    "adjudication": "source-derived-author; not owner-gold",
+    "frozenAt": "2026-10-11T11:56:44Z",
+    "source": "source-derived-author",
+    "labelFile": "experiments/jev-mssr-live/runs/mssr-librarian-ambiguous-owner-narrow-20261011T115644Z-f21a7c/inputs/labels.json"
+  },
+  "runId": "mssr-librarian-ambiguous-owner-narrow-20261011T115644Z-f21a7c",
+  "split": {
+    "trainIdsSha256": null,
+    "holdoutOpenedAt": null,
+    "validationIdsSha256": null,
+    "holdoutIdsSha256": null,
+    "holdoutUsedForTuning": false,
+    "method": "none-exploratory-source-grouped"
+  },
+  "provider": {
+    "rawVendorResponsePersisted": false,
+    "timeoutMs": 30000,
+    "mode": "live",
+    "provider": "TypeSafe Jev through the clean Bridge 0.6.169 provider adapter",
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "maxRetries": 1,
+    "requestedModel": "jev-1.13.0",
+    "networkOptInMethod": "explicit command-line --allow-network plus user authorization recorded in manifest",
+    "credentialSource": "Windows Credential Manager; secret value not persisted",
+    "providerRequestIdsAvailable": "unknown",
+    "endpointIdentity": "api.typesafe.ai/v1/systemone",
+    "networkOptIn": true,
+    "concurrency": 1
+  },
+  "createdAt": "2026-10-11T11:56:44Z"
+}

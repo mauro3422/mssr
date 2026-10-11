@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "adjudication": "source-derived-author; not owner-gold",
+  "exposedToProvider": false,
+  "cases": [
+    {
+      "caseId": "ambiguous-trace-ownership-narrow",
+      "expectedHeading": "Portable activation rules",
+      "expectedFacets": [
+        "ambiguous, mismatched or unknown trace ownership never migrates",
+        "abstain to review/inspect-traces",
+        "R1 remains trace-owner integrity authority"
+      ]
+    },
+    {
+      "caseId": "trace-route-branches-with-ambiguous-case",
+      "expectedHeading": "Portable activation rules",
+      "expectedFacets": [
+        "ambiguous, mismatched or unknown trace ownership never migrates",
+        "abstain to review/inspect-traces",
+        "R1 remains trace-owner integrity authority"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "blind literal-fetch-text semantic completeness",
+  "reviewer": "gpt-6-luna",
+  "reviewerRole": "independent model-assisted reviewer; not owner-gold",
+  "inputBoundary": "Reviewer saw only each query and the literal fetched text, not the frozen labels or source document.",
+  "cases": [
+    {
+      "caseId": "ambiguous-trace-ownership-narrow",
+      "grade": "direct-complete",
+      "rationale": "States that ambiguous/mismatched/unknown trace ownership never migrates, gives review/inspect-traces, and names R1 as authoritative."
+    },
+    {
+      "caseId": "trace-route-branches-with-ambiguous-case",
+      "grade": "partial",
+      "rationale": "Covers no trace and compatible trace states but omits the ambiguous-ownership action and whether migration is allowed."
+    }
+  ],
+  "limitations": [
+    "Two linked requests against one source-document cluster, not independent samples.",
+    "Model-assisted judgment is not owner adjudication, a benchmark estimate, or confidence calibration."
+  ]
+}

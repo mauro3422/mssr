@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "reportType": "mechanically-derived run summary; no semantic adjudication",
+  "runId": "mssr-librarian-ambiguous-owner-narrow-20261011T115644Z-f21a7c",
+  "parentRunId": "mssr-librarian-facet-followup-20261011T114800Z-42cd10",
+  "frozenManifestSha256": "5913f4a4ca7d053c7eba743ada4345b9bd12a86d9ef32263a889d16c49d22f9d",
+  "completionStatus": "complete",
+  "sourceDocumentClusters": 1,
+  "sourceRefs": [
+    "docs/decisions/0007-automatic-lifecycle-coverage.md"
+  ],
+  "expectedRequests": 2,
+  "attemptedRequests": 2,
+  "successfulRequests": 2,
+  "failedRequests": 0,
+  "selected": 2,
+  "abstained": 0,
+  "exactFetchesWithFingerprint": 2,
+  "evidencePacksBuilt": 2,
+  "tokenUsage": {
+    "input": 12379,
+    "output": 974
+  },
+  "firstRequestStartedAt": "2026-10-11T11:57:44.667Z",
+  "lastRequestCompletedAt": "2026-10-11T11:57:47.090Z",
+  "manifestCreatedAt": "2026-10-11T11:56:44Z",
+  "createdAtDeltaMs": 60667,
+  "timestampWarning": null,
+  "independentUnit": "one source-document cluster; two linked targeted query diagnostics; not independent samples",
+  "calibrationClaim": false,
+  "records": [
+    {
+      "caseId": "ambiguous-trace-ownership-narrow",
+      "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+      "status": "complete",
+      "searchResultCount": 43,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-9/item-7",
+      "rawChoiceConfidence": 0.8,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 1296.5576
+    },
+    {
+      "caseId": "trace-route-branches-with-ambiguous-case",
+      "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+      "status": "complete",
+      "searchResultCount": 45,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-9/item-6",
+      "rawChoiceConfidence": 0.75,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 1125.2923
+    }
+  ]
+}
