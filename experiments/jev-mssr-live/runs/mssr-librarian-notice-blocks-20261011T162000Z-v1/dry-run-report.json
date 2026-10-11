@@ -1,0 +1,45 @@
+{
+  "status": "dry-run-passed-no-provider-calls",
+  "providerCalls": 0,
+  "cases": [
+    {
+      "caseId": "composite-needs-one-range",
+      "candidateCount": 10,
+      "expectedRangeRank": 2,
+      "expectedHandleOffered": true,
+      "status": "selected",
+      "selectedLines": [
+        12,
+        35
+      ],
+      "selectedRangeKind": "section",
+      "providerCalls": 1
+    },
+    {
+      "caseId": "facet-transition-threshold",
+      "candidateCount": 10,
+      "expectedRangeRank": 3,
+      "expectedHandleOffered": true,
+      "status": "selected",
+      "selectedLines": [
+        22,
+        22
+      ],
+      "selectedRangeKind": "block",
+      "providerCalls": 1
+    },
+    {
+      "caseId": "facet-notice-authority",
+      "candidateCount": 10,
+      "expectedRangeRank": 3,
+      "expectedHandleOffered": true,
+      "status": "selected",
+      "selectedLines": [
+        24,
+        24
+      ],
+      "selectedRangeKind": "block",
+      "providerCalls": 1
+    }
+  ]
+}

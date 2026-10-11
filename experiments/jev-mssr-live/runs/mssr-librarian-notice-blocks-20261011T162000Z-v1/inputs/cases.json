@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "composite-needs-one-range",
+      "source": "source-01",
+      "sourceRef": "docs/decisions/0002-operational-notice-plane.md",
+      "query": "Under the Operational Notice Plane decision, which evidence transitions create an attention candidate, what threshold is used, and does the notice authorize or execute the recommended action?",
+      "expectedRangeLines": [12, 35],
+      "purpose": "Control: one compound query with search-derived section and block handles; measures whether one range covers the whole request."
+    },
+    {
+      "id": "facet-transition-threshold",
+      "source": "source-01",
+      "sourceRef": "docs/decisions/0002-operational-notice-plane.md",
+      "query": "Which evidence transitions create an advisory transition candidate, and what attention threshold is used?",
+      "expectedRangeLines": [22, 22],
+      "purpose": "Facet: retrieve the transition and threshold rule as a bounded exact block."
+    },
+    {
+      "id": "facet-notice-authority",
+      "source": "source-01",
+      "sourceRef": "docs/decisions/0002-operational-notice-plane.md",
+      "query": "Does an operational notice authorize or execute its recommended host action automatically?",
+      "expectedRangeLines": [24, 24],
+      "purpose": "Facet: retrieve the advisory-only authority rule as a bounded exact block."
+    }
+  ]
+}

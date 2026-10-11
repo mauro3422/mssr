@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent blind Luna review of exact ranges and host-composed answer",
+  "reviewers": [
+    {
+      "reviewerId": "notice_blocks_blind_a",
+      "labels": [
+        { "sampleId": "4e493f08c4", "rating": "partial", "overbreadth": "low", "omittedFacet": "whether the notice authorizes or executes the action" },
+        { "sampleId": "16a3c6b21f", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "76987ae113", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "297f2ac005", "rating": "full", "overbreadth": "low" }
+      ]
+    },
+    {
+      "reviewerId": "notice_blocks_blind_b",
+      "labels": [
+        { "sampleId": "4e493f08c4", "rating": "partial", "overbreadth": "low", "omittedFacet": "whether the notice authorizes or executes the action" },
+        { "sampleId": "16a3c6b21f", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "76987ae113", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "297f2ac005", "rating": "full", "overbreadth": "low" }
+      ]
+    }
+  ],
+  "agreement": {
+    "ratingAgreement": "4/4 samples",
+    "keyFinding": "Both reviewers marked the one-range composite result partial because it omits notice authority. Both facet ranges and the host-composed answer supported by their cited union were full and low-overbreadth."
+  },
+  "limitations": [
+    "Blind model-assisted judgments are not owner-gold.",
+    "All samples come from the same already-exposed ADR document cluster.",
+    "The host decomposed the compound need and composed the final answer; automatic facet planning and coverage gating were not tested."
+  ]
+}

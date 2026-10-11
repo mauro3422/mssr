@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "mssrCommit": "061ca1875c1e75179a8ca1024cec906df7105c1a",
+  "bridgeCommit": "2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc",
+  "bridgeWorktree": "D:/Dev/bridge-mcp-jev-cap-study",
+  "bridgeWorktreeClean": true,
+  "mssrBuildReceipt": "D:/Dev/mssr/dist/.build-receipt.json",
+  "bridgePackageVersion": "0.6.169",
+  "mssrPackageVersion": "0.2.124",
+  "providerModel": "jev-1.13.0",
+  "fileSha256": {
+    "D:/Dev/mssr/experiments/jev-mssr-live/runs/mssr-librarian-notice-blocks-20261011T162000Z-v1/run-study.mjs": "2d1a293fb2a0e9ebda8d23bbabb4d6e57d51d21078c22f09f7b9d7ef8f1007a9",
+    "D:/Dev/mssr/experiments/jev-mssr-live/runs/mssr-librarian-notice-blocks-20261011T162000Z-v1/inputs/sources/source-01.md": "3443c44356a7d3ebd6d542679bde62631ee04b32948a591a9d8526cd3f8f66fb",
+    "D:/Dev/mssr/dist/librarian-jev-selection.js": "2c293ab74dad3b6845f04258166e108a16e034d6286fb18372f460c09c0fbc75",
+    "D:/Dev/mssr/dist/librarian-retrieval.js": "9c05aa61d93781da33d1357bc6b29e1b798f9a96ec9299d8da5f373c3a94fd10",
+    "D:/Dev/mssr/dist/.build-receipt.json": "34db5408494aec04f2afdda2979f5140199de41a14de196eebadf6dd6c53aee9",
+    "D:/Dev/bridge-mcp-jev-cap-study/dist/tools/mssr-semantic-evidence-tools.js": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa",
+    "D:/Dev/bridge-mcp-jev-cap-study/src/tools/mssr-semantic-evidence-tools.ts": "622269d203652cc9e1e29dfa3856e612bda9c7a2d2c37c18d27884ce13740289"
+  }
+}

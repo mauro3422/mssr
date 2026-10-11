@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-notice-blocks-20261011T162000Z-v1",
+  "manifestSha256": "29bf55659562bd388a83682b365d43b4d1724c105ebf65e26b9c1ed0be6d6c81",
+  "status": "complete",
+  "expectedRequests": 3,
+  "attemptedRequests": 3,
+  "providerCalls": 3,
+  "completedCaseIds": [
+    "composite-needs-one-range",
+    "facet-transition-threshold",
+    "facet-notice-authority"
+  ],
+  "productionRuntimeTouched": false,
+  "finishedAt": "2026-10-11T16:17:04.869Z"
+}

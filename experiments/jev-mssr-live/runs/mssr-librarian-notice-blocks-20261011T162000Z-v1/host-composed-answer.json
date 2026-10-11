@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-notice-blocks-20261011T162000Z-v1",
+  "query": "Under the Operational Notice Plane decision, which evidence transitions create an attention candidate, what threshold is used, and does the notice authorize or execute the recommended action?",
+  "answer": "Se genera un candidato de atención cuando la evidencia entra, cambia, escala, desescala o sale del umbral accionable. El umbral es `review` dentro de `ok < watch < review < error`. La notificación puede recomendar una acción del host, pero no la autoriza ni la ejecuta automáticamente.",
+  "citations": [
+    {
+      "sourceRef": "docs/decisions/0002-operational-notice-plane.md",
+      "lines": [
+        22,
+        22
+      ],
+      "fingerprint": "8a8e7cdd6287745d769029b9eac8722c2b4a6913900da61f5c344f30624d6850"
+    },
+    {
+      "sourceRef": "docs/decisions/0002-operational-notice-plane.md",
+      "lines": [
+        24,
+        24
+      ],
+      "fingerprint": "38ff5221578a72f7be056858ef7ff3ba389e86fa50033d5a20f86788433c8a8f"
+    }
+  ],
+  "evidence": [
+    {
+      "sourceRef": "docs/decisions/0002-operational-notice-plane.md",
+      "lines": [
+        22,
+        22
+      ],
+      "fingerprint": "8a8e7cdd6287745d769029b9eac8722c2b4a6913900da61f5c344f30624d6850",
+      "text": "Default levels are `ok < watch < review < error`, with `review` as the attention threshold. Stable OK/WATCH stays quiet. Stable actionable evidence does not re-notify. Entering/changing/escalating/deescalating/leaving the actionable threshold creates an advisory transition candidate."
+    },
+    {
+      "sourceRef": "docs/decisions/0002-operational-notice-plane.md",
+      "lines": [
+        24,
+        24
+      ],
+      "fingerprint": "38ff5221578a72f7be056858ef7ff3ba389e86fa50033d5a20f86788433c8a8f",
+      "text": "A notice may recommend a host action, but it never authorizes or executes that action automatically."
+    }
+  ]
+}

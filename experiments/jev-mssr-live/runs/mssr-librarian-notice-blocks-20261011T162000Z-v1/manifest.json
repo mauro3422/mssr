@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen-pre-call",
+  "runId": "mssr-librarian-notice-blocks-20261011T162000Z-v1",
+  "createdAt": "2026-10-11T16:16:53.526Z",
+  "study": "search-derived exact-block selection and host facet union diagnostic",
+  "provider": "typesafe-jev via isolated Bridge adapter",
+  "providerModel": "jev-1.13.0",
+  "bridgePackageVersion": "0.6.169",
+  "bridgeAdapterCommit": "2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc",
+  "mssrPackageVersion": "0.2.124",
+  "mssrCommit": "061ca1875c1e75179a8ca1024cec906df7105c1a",
+  "mssrBuildReceiptId": null,
+  "execution": "separate Node process in isolated test harness; not connected Bridge MCP selector/runtime",
+  "productionRuntimeTouched": false,
+  "preRegistered": true,
+  "liveCallAuthorization": "Previously explicit user authorization to use the real Jev provider for MSSR tests; no credential value is stored.",
+  "labelsPreparedBeforeProviderCalls": true,
+  "ownerGold": false,
+  "sourceHashes": [
+    {
+      "id": "source-01",
+      "path": "docs/decisions/0002-operational-notice-plane.md",
+      "sha256": "3443c44356a7d3ebd6d542679bde62631ee04b32948a591a9d8526cd3f8f66fb",
+      "gitBlob": "9ec80038e1b54e83e6a14dc5ac2bcaf1051a8652"
+    }
+  ],
+  "search": {
+    "provider": "local deterministic MSSR librarian retrieval",
+    "maxResults": 10
+  },
+  "selector": {
+    "maxExcerptChars": 260,
+    "candidateMode": "revision-bound candidateHandles from local search",
+    "oneProviderCallPerCase": true
+  },
+  "independentSourceClusters": 1,
+  "plannedProviderCalls": 3,
+  "cases": "inputs/cases.json",
+  "rubric": "adjudication/expected-rubric.json",
+  "limitations": [
+    "One already-exposed source-document cluster; three linked questions, not three independent benchmark units.",
+    "Host-authored source-derived labels, not owner-gold.",
+    "The composite query may require more than one exact range; selector is single-range.",
+    "Raw Jev scores remain descriptive and uncalibrated.",
+    "No production Bridge process, catalog, runtime, defaults, or policy are changed."
+  ]
+}

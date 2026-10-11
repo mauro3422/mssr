@@ -1,0 +1,22 @@
+[
+  {
+    "sampleId": "4e493f08c4",
+    "caseId": "composite-needs-one-range",
+    "label": "composite single-range selection"
+  },
+  {
+    "sampleId": "16a3c6b21f",
+    "caseId": "facet-transition-threshold",
+    "label": "transition facet selection"
+  },
+  {
+    "sampleId": "76987ae113",
+    "caseId": "facet-notice-authority",
+    "label": "authority facet selection"
+  },
+  {
+    "sampleId": "297f2ac005",
+    "caseId": "host-composed-union",
+    "label": "host composition from two exact facet fetches"
+  }
+]

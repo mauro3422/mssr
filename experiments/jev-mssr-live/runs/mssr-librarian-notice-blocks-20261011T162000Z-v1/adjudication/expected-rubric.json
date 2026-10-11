@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "ownerGold": false,
+  "labels": [
+    {
+      "caseId": "composite-needs-one-range",
+      "expectedRangeLines": [12, 35],
+      "facets": ["transition triggers", "review threshold", "notice does not authorize or execute"],
+      "expectation": "A single exact selected range can be relevant but is incomplete if it omits any requested facet."
+    },
+    {
+      "caseId": "facet-transition-threshold",
+      "expectedRangeLines": [22, 22],
+      "facets": ["enter/change/escalate/de-escalate/leave actionable threshold", "review is attention threshold"]
+    },
+    {
+      "caseId": "facet-notice-authority",
+      "expectedRangeLines": [24, 24],
+      "facets": ["notice may recommend", "does not authorize or execute automatically"]
+    }
+  ]
+}
