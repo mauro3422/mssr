@@ -53,8 +53,8 @@ assert.equal(serializeJevEvidenceMetrics({ sufficiency: 0.88, noul: 0.77 }).evid
   "unknown aliases must not impersonate canonical evidenceSufficiency");
 
 try {
-  const fixtureText = "Exact fixture evidence.\n";
-  const fixtureFingerprint = digest(Buffer.from(fixtureText, "utf8"));
+  const fixtureText = "\nExact fixture evidence.\n";
+  const fixtureFingerprint = digest(Buffer.from(fixtureText.trim(), "utf8"));
   const fixtureHandle = {
     id: "fixture-handle-01",
     version: 1,
@@ -90,11 +90,53 @@ try {
     advisoryOnly: true,
     truthAuthority: false,
   };
-  assert.deepEqual(validateFetchResult(fixtureFetch, fixtureHandle), { passed: true, errors: [] });
-  const missingFetchFingerprint = validateFetchResult({ ...fixtureFetch, fingerprint: undefined }, fixtureHandle);
+  assert.deepEqual(validateFetchResult(fixtureFetch, fixtureHandle, fixtureText), { passed: true, errors: [] });
+  const missingSnapshotRange = validateFetchResult(fixtureFetch, fixtureHandle);
+  assert.equal(missingSnapshotRange.passed, false, "exact fetch verification must require the frozen source-range text");
+  const wrongFetchFingerprint = validateFetchResult({ ...fixtureFetch, fingerprint: digest(Buffer.from(fixtureText, "utf8")) }, fixtureHandle, fixtureText);
+  assert.equal(wrongFetchFingerprint.passed, false, "section fingerprints cover trimmed range content, not outer range whitespace");
+  const fixtureBlockText = "Exact fixture block evidence.";
+  const blockHandle = {
+    ...fixtureHandle,
+    rangeKind: "block",
+    startOffset: 0,
+    endOffset: fixtureBlockText.length,
+    fingerprint: digest(Buffer.from(fixtureBlockText, "utf8")),
+  };
+  const blockFetch = {
+    ...fixtureFetch,
+    handle: blockHandle,
+    text: fixtureBlockText,
+    fingerprint: blockHandle.fingerprint,
+  };
+  assert.deepEqual(validateFetchResult(blockFetch, blockHandle, fixtureBlockText),
+    { passed: true, errors: [] }, "normal block fingerprints cover their exact trimmed offsets");
+  const fixtureListItemText = "  - Exact fixture list item.";
+  const listItemHandle = {
+    ...blockHandle,
+    rangeId: "sample-list/item-1",
+    startOffset: 0,
+    endOffset: fixtureListItemText.length,
+    fingerprint: digest(Buffer.from(fixtureListItemText, "utf8")),
+  };
+  assert.deepEqual(validateFetchResult({
+    ...blockFetch,
+    handle: listItemHandle,
+    text: fixtureListItemText,
+    fingerprint: listItemHandle.fingerprint,
+  }, listItemHandle, fixtureListItemText), { passed: true, errors: [] },
+  "list-item block fingerprints preserve indentation in their exact indexed slice");
+  assert.equal(validateFetchResult({
+    ...blockFetch,
+    handle: listItemHandle,
+    text: fixtureListItemText,
+    fingerprint: digest(Buffer.from(fixtureListItemText.trim(), "utf8")),
+  }, listItemHandle, fixtureListItemText).passed, false,
+  "list-item fingerprints must not trim indexed indentation");
+  const missingFetchFingerprint = validateFetchResult({ ...fixtureFetch, fingerprint: undefined }, fixtureHandle, fixtureText);
   assert.equal(missingFetchFingerprint.passed, false, "missing fetch fingerprints must not count as a successful exact fetch");
-  const wrongFetchText = validateFetchResult({ ...fixtureFetch, text: "different bytes" }, fixtureHandle);
-  assert.equal(wrongFetchText.passed, false, "fingerprint must bind to the exact fetched text bytes");
+  const wrongFetchText = validateFetchResult({ ...fixtureFetch, text: " Exact fixture evidence.\n" }, fixtureHandle, fixtureText);
+  assert.equal(wrongFetchText.passed, false, "trim-equivalent text must still match the frozen source range byte-for-byte");
 
   const fixturePack = {
     schemaVersion: 1,
@@ -125,6 +167,14 @@ try {
     canonicalRewriteAllowed: false,
   };
   assert.deepEqual(validateEvidencePack(fixturePack, fixtureHandle, fixtureText), { passed: true, errors: [] });
+  assert.equal(validateEvidencePack({
+    ...fixturePack,
+    paragraphs: [{ ...fixturePack.paragraphs[0], citation: {
+      ...fixturePack.paragraphs[0].citation,
+      fingerprint: digest(Buffer.from(fixtureText, "utf8")),
+    } }],
+  }, fixtureHandle, fixtureText).passed, false,
+  "section evidence-pack citations must use the selected section fingerprint contract");
   assert.equal(validateEvidencePack({ ...fixturePack, kind: "failed", paragraphs: [] }, fixtureHandle, fixtureText).passed, false,
     "a malformed or empty pack must not count as built");
 
@@ -321,7 +371,7 @@ try {
   const mockToolsSource = [
     'import { createHash } from "node:crypto";',
     'const text = "# Sample\\n\\nExact fixture evidence.\\n";',
-    'const fingerprint = createHash("sha256").update(Buffer.from(text, "utf8")).digest("hex");',
+    'const fingerprint = createHash("sha256").update(Buffer.from(text.trim(), "utf8")).digest("hex");',
     'const owner = process.env.MSSR_TEST_OWNER;',
     'const handle = { id: "fixture-handle-01", version: 1, owner, sourceRef: "docs/one.md", revision: "fixture-revision-01", rangeId: "sample-heading", rangeKind: "section", startLine: 1, endLine: 3, startOffset: 0, endOffset: text.length, fingerprint, privacyClass: "project-metadata" };',
     'const names = new Set(["mssr_librarian_search", "mssr_librarian_jev_select", "mssr_librarian_fetch", "mssr_librarian_evidence_pack"]);',

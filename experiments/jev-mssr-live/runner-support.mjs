@@ -5,6 +5,7 @@ import { createHash } from "node:crypto";
 
 const isSha256 = (value) => typeof value === "string" && /^[0-9a-f]{64}$/u.test(value);
 const sha256Text = (value) => createHash("sha256").update(Buffer.from(value, "utf8")).digest("hex");
+const rangeFingerprintPayload = (rangeKind, text) => rangeKind === "section" ? text.trim() : text;
 const ownerKey = (value) => typeof value === "string"
   ? path.normalize(value.trim()).replace(/[\\/]+$/u, "").toLocaleLowerCase("en-US")
   : "";
@@ -75,10 +76,12 @@ function sameHandleIdentity(actual, expected) {
   return Boolean(actual && expected && keys.every((key) => actual[key] === expected[key]));
 }
 
-export function validateFetchResult(fetched, expectedHandle) {
+export function validateFetchResult(fetched, expectedHandle, expectedText) {
   const errors = [];
   if (!fetched || typeof fetched !== "object") return { passed: false, errors: ["fetch result is not an object"] };
   if (typeof fetched.text !== "string") errors.push("fetch text is missing or not a string");
+  if (typeof expectedText !== "string") errors.push("exact source range from the frozen snapshot is missing");
+  else if (typeof fetched.text === "string" && fetched.text !== expectedText) errors.push("fetch text does not match the exact frozen source range");
   if (!sameHandleIdentity(fetched.handle, expectedHandle)) errors.push("returned fetch handle does not match the selected handle");
   if (typeof fetched.projectOwner !== "string" || ownerKey(fetched.projectOwner) !== ownerKey(expectedHandle?.owner)) {
     errors.push("Bridge projectOwner does not match the selected handle owner");
@@ -86,7 +89,9 @@ export function validateFetchResult(fetched, expectedHandle) {
   if (!isSha256(fetched.fingerprint)) errors.push("fetch fingerprint is not a SHA-256 hex digest");
   if (!isSha256(fetched.handle?.fingerprint)) errors.push("returned handle fingerprint is not a SHA-256 hex digest");
   if (typeof fetched.text === "string" && isSha256(fetched.fingerprint)
-    && sha256Text(fetched.text) !== fetched.fingerprint) errors.push("fetch fingerprint does not match exact text bytes");
+    && sha256Text(rangeFingerprintPayload(expectedHandle?.rangeKind, fetched.text)) !== fetched.fingerprint) {
+    errors.push("fetch fingerprint does not match the selected range fingerprint contract");
+  }
   if (fetched.fingerprint !== expectedHandle?.fingerprint) errors.push("fetch fingerprint differs from the selected handle fingerprint");
   if (fetched.handle?.fingerprint !== fetched.fingerprint) errors.push("fetch result and returned handle fingerprints differ");
   if (fetched.advisoryOnly !== true || fetched.truthAuthority !== false) errors.push("fetch authority flags do not match the advisory contract");
@@ -117,8 +122,9 @@ export function validateEvidencePack(pack, expectedHandle, fetchedText) {
   if (!isSha256(citation?.fingerprint) || citation?.fingerprint !== expectedHandle?.fingerprint) {
     errors.push("evidence-pack citation fingerprint does not match the selected handle");
   }
-  if (typeof paragraph?.exactText === "string" && citation?.fingerprint !== sha256Text(paragraph.exactText)) {
-    errors.push("evidence-pack citation fingerprint does not match paragraph exactText");
+  if (typeof paragraph?.exactText === "string"
+    && citation?.fingerprint !== sha256Text(rangeFingerprintPayload(expectedHandle?.rangeKind, paragraph.exactText))) {
+    errors.push("evidence-pack citation fingerprint does not match the selected range fingerprint contract");
   }
   const totalChars = Array.isArray(pack.paragraphs)
     ? pack.paragraphs.reduce((sum, item) => sum + (typeof item?.exactText === "string" ? item.exactText.length : 0), 0)

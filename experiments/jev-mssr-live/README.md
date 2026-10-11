@@ -28,8 +28,13 @@ confidence-calibration evidence.
   --allow-network before any provider call. The shared serializer keeps
   canonical evidenceSufficiency separate from a separately returned raw
   noul field. The support module validates one-to-one case/label IDs, exact
-  label-to-source bindings, fetch fingerprints, evidence-pack citations, and
-  exclusive run locking.
+  label-to-source bindings, selected-range offsets and byte-for-byte text
+  against the normalized frozen source snapshot, range-kind-specific fetch
+  fingerprints (sections hash trimmed text; indexed blocks hash their exact
+  slice, with normal block offsets already trimmed and list-item indentation
+  preserved), evidence-pack citations, and exclusive run locking. Snapshot
+  comparison is the primary exact-fetch check; a matching digest alone is not
+  treated as proof that returned text came from the frozen source range.
 - Scoring accepts any frozen `acceptableRanges` entry for a label, while
   retaining the primary label fields for audit and displaying all accepted
   ranges in the result record.
@@ -154,6 +159,8 @@ retroactively add metric values or alter run 30's quality result.
 29. `jev-bridge-release-bounds-fresh-source-20261011T203537Z-v1` — one live Jev 1.13.0 exploratory diagnostic on the fresh Bridge 0.6.171 changelog (`e9d91c4`, one source cluster). Jev selected the expected exact range; exact fetch/fingerprint and evidence pack matched, and blind review found all 3/3 queried facts. Raw Choice 1.00 and evidence sufficiency 0.85 remain uncalibrated. The case is cross-repository, not an independent MSSR holdout or owner-gold; the connected MCP call deviated from the frozen CLI runner and raw serialized vendor request/response bytes were unavailable. No reliability/calibration claim or threshold/runtime change follows. Full checksummed artifact packet: `D:\MSSR-benchmark-artifacts\jev-bridge-release-bounds-fresh-source-20261011T203537Z-v1\` (manifest SHA-256 `54fa174f4b06083fe96d76964ef26114e47c2726d8dd41a8dcb5db2947139c77`).
 
 30. [`mssr-librarian-current-release-cross-family-20261011T2247Z-v1`](runs/mssr-librarian-current-release-cross-family-20261011T2247Z-v1/) — three live Jev 1.13.0 calls over three MSSR source clusters using the clean Bridge 0.6.172 / MSSR 0.2.127 release adapter. Expected headings, search presence, exact fetch/fingerprints, and evidence packs passed 3/3. Blind Luna review found all excerpts full and directly supported; one was moderately overbroad. Raw Choice scores (0.70/0.66/0.93) remain uncalibrated, while numeric evidence-sufficiency and Noul were absent from records. Source-derived labels are not owner-gold; this is exploratory, not holdout/reliability/calibration evidence. The frozen runner/summary contain stale copied counts and package versions, corrected append-only in the [erratum](runs/mssr-librarian-current-release-cross-family-20261011T2247Z-v1/RUN-ERRATUM-20261011.md); original frozen inputs are unchanged. See the [adjudication report](runs/mssr-librarian-current-release-cross-family-20261011T2247Z-v1/ADJUDICATION-REPORT.md), [blind review](runs/mssr-librarian-current-release-cross-family-20261011T2247Z-v1/BLIND-REVIEW-20261011.md), and derived checksums.
+
+31. [`mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04`](runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/) — 30 recorded Jev-selection cases over 30 distinct, previously exposed MSSR source documents using the Bridge 0.6.172 / MSSR 0.2.127 release adapter. The frozen output contains 28 selections and 2 abstentions; the expected range appeared in search 29/30. Post-run revalidation found all 28 fetched texts byte-identical to their frozen source slices with matching range fingerprints; 17/17 evidence packs actually built by the original runner validated. Eleven section fetches had been marked failed by the old harness because it hashed untrimmed text; those 11 packs were never requested. Blind Luna review of the 28 literal excerpts found 26 direct/full, 1 partial, and 1 unsupported, with medium/high overbreadth in 15 cases. The derived reports preserve the corrected counts without rewriting the original records, completion file, or checksums. This remains source-derived development evidence, not owner-gold, holdout, confidence calibration, or a synthesis/paragraph-composition test; provider transport calls beneath the Bridge adapter were not independently observable. See [`INTEGRATION-QUALITY-ANALYSIS.json`](runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/derived/INTEGRATION-QUALITY-ANALYSIS.json), [`POST-RUN-HARNESS-REVALIDATION.json`](runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/derived/POST-RUN-HARNESS-REVALIDATION.json), and the run's `DERIVED-SHA256SUMS`.
 
 ## Follow-up: experiment-summary integrity corrections (2026-10-11)
 

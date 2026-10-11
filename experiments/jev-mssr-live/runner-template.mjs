@@ -60,6 +60,11 @@ assert.equal(manifest.provider.networkOptIn, true);
 assert.equal(manifest.provider.networkOptInMethod, "explicit command-line --allow-network plus user authorization recorded in manifest");
 const labels = JSON.parse(await fs.readFile(path.join(runDir, "inputs/labels.json"), "utf8"));
 validateRunInputs(cases, labels, manifest.corpus.sources.map((source) => source.sourceRef));
+const frozenSourceTextByRef = new Map();
+for (const source of manifest.corpus.sources) {
+  frozenSourceTextByRef.set(source.sourceRef,
+    (await fs.readFile(path.join(runDir, source.snapshotPath), "utf8")).replace(/\r\n?/gu, "\n"));
+}
 const frozenManifestHash = await hashFile(path.join(runDir, "manifest.json"));
 const registryUrl = pathToFileURL(path.join(bridgeRoot, "dist/tool-registry.js")).href;
 const toolsUrl = pathToFileURL(path.join(bridgeRoot, "dist/tools/mssr-semantic-evidence-tools.js")).href;
@@ -172,11 +177,21 @@ for (const testCase of cases) {
     record.returnedProvider = selected.provider ?? null;
     record.returnedModel = selected.model ?? null;
     if (selected.status === "selected" && selected.selected?.handle) {
+      const selectedHandle = selected.selected.handle;
+      const frozenSourceText = frozenSourceTextByRef.get(selectedHandle.sourceRef);
+      assert.equal(typeof frozenSourceText, "string", "selected source is absent from frozen corpus snapshots");
+      assert.ok(Number.isSafeInteger(selectedHandle.startOffset)
+        && Number.isSafeInteger(selectedHandle.endOffset)
+        && selectedHandle.startOffset >= 0
+        && selectedHandle.endOffset >= selectedHandle.startOffset
+        && selectedHandle.endOffset <= frozenSourceText.length,
+      "selected range offsets are outside the normalized frozen source snapshot");
+      const expectedFetchText = frozenSourceText.slice(selectedHandle.startOffset, selectedHandle.endOffset);
       const fetched = await registry.call("mssr_librarian_fetch", {
         projectRoot,
-        handle: selected.selected.handle,
+        handle: selectedHandle,
       });
-      const fetchValidation = validateFetchResult(fetched, selected.selected.handle);
+      const fetchValidation = validateFetchResult(fetched, selectedHandle, expectedFetchText);
       record.fetch = {
         status: fetchValidation.passed ? "validated" : "invalid",
         projectOwner: fetched.projectOwner ?? null,
@@ -185,7 +200,9 @@ for (const testCase of cases) {
         fingerprint: fetched.handle?.fingerprint ?? null,
         returnedFingerprint: fetched.fingerprint ?? null,
         textSha256: hash(Buffer.from(fetched.text ?? "", "utf8")),
-        selectedFingerprint: selected.selected.handle.fingerprint,
+        expectedTextSha256: hash(Buffer.from(expectedFetchText, "utf8")),
+        textMatchesFrozenSource: fetched.text === expectedFetchText,
+        selectedFingerprint: selectedHandle.fingerprint,
         passed: fetchValidation.passed,
         validationErrors: fetchValidation.errors,
         advisoryOnly: fetched.advisoryOnly ?? null,
@@ -197,10 +214,10 @@ for (const testCase of cases) {
       const pack = await registry.call("mssr_librarian_evidence_pack", {
         projectRoot,
         sourceRefs: [testCase.sourceRef],
-        handles: [selected.selected.handle],
+        handles: [selectedHandle],
         dedupeContainedRanges: false,
       });
-      const packValidation = validateEvidencePack(pack, selected.selected.handle, fetched.text);
+      const packValidation = validateEvidencePack(pack, selectedHandle, expectedFetchText);
       record.evidencePack = {
         status: packValidation.passed ? "validated" : "invalid",
         projectOwner: pack.projectOwner ?? null,
