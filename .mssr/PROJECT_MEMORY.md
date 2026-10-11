@@ -8,6 +8,9 @@ fields through exact fetch and evidence assembly. Terminal/output framing can
 append a newline and create a different derived revision despite identical
 underlying files. A matching single case supports plumbing parity only; it is
 not semantic equivalence, answer-quality evidence, or score calibration.
+Generic Bridge traces cannot prove the direct connector build or retain Jev
+inputs/results needed for replay. Paired evaluations need a separate
+hash-bound receipt for exact inputs, tool/runtime identities, and outputs.
 
 ## Source-level list item boundaries — 0.2.121
 

@@ -610,7 +610,7 @@
       ],
       "required": false,
       "priority": 100,
-      "maxChars": 6500
+      "maxChars": 7000
     },
     {
       "id": "mssr-jev-public-benchmark-evidence",
@@ -1377,7 +1377,7 @@
       ],
       "required": false,
       "priority": 82,
-      "maxChars": 7000
+      "maxChars": 6500
     },
     {
       "id": "mssr-jev-cross-project-family-smokes-20261010",
@@ -1767,7 +1767,7 @@
       ],
       "required": false,
       "priority": 100,
-      "maxChars": 6500
+      "maxChars": 7200
     }
   ]
 }

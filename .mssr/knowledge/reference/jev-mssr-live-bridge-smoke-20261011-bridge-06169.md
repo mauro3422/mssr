@@ -43,3 +43,9 @@ This is one exploratory connector-parity case, not an owner-adjudicated benchmar
 ### Interpretation and limits
 
 This records one same-input path through search → Jev selection → exact fetch → cited evidence assembly across direct MSSR and Bridge. It supports observed connector/data-path parity for this case, not general semantic equivalence, answer correctness, source coverage, benchmark quality, reliability, or calibrated scores. Keep source bytes and serialization framing identical in future comparisons: host-output framing can create a false revision mismatch. No source, threshold, authority, or runtime was changed by this smoke.
+
+### Trace provenance and replay limits
+
+- Trace `mssr-codex-parity-provenance-20261011T1100Z` confirms the limit: Bridge evidence records its runtime/calls, but not connector namespace or full tool inputs/results. It cannot prove the direct MSSR build or Jev provider/model for this paired case; no hash-bound request/result receipt exists, so replay is unavailable.
+- Future receipts should bind trace/call IDs, connector/tool/schema and runtime/package identities, observable Jev provider/model, exact source/query-input hashes, status, and canonical output hashes. Keep secrets and full prompts out of generic telemetry.
+- The related packet `D:\MSSR-benchmark-artifacts\jev-shep-calibration-20261011-v1\jev-mssr-semantic-evidence-plane-atomic-20261011-v1` has manifest SHA-256 `4e338d6963edd8a87cf83ba7985e22c7f66477291169721888a44c2a9a91e0ac` and records Bridge 0.6.167 / MSSR candidate 0.2.120 / Jev `typesafe-jev` 1.13.0. It is a different atomic-query evaluation, not a receipt or replicate for this 0.6.169/0.2.121 parity case.
