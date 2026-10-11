@@ -1,5 +1,34 @@
 # Jev Librarian integration and Git handoff
 
+## Connected Librarian smoke — 2026-10-11
+
+One connected-Bridge diagnostic ran over the already exposed ADR 0007 source.
+For a compound query mixing trace ownership, current-trace behavior and an
+unavailable-tool facet, Jev selected the broad parent list at raw confidence
+0.47 and Noul 0.26; the explicit `none` probability was 0.44. A linked narrow
+query on ambiguous/mismatched/unknown trace ownership was offered five exact
+handles and selected list item 7 at 0.99 / 0.90. Both selected handles passed
+revision-bound fetch and verbatim evidence-pack checks. The narrow result
+directly states `review`/`inspect-traces` and no trace migration. The ADR does
+not answer the unavailable-tool facet.
+
+This is one source cluster with linked queries, no owner-gold labels, and no
+calibration. Treat the score difference as a prompt to evaluate query
+decomposition and candidate precision, not as evidence that 0.99 is a safe
+threshold. This smoke exercised retrieval, Jev range selection, exact fetch and
+packaging; it did not ask Jev to assemble paragraphs or synthesize prose. See
+the [connected smoke record](../../../experiments/jev-mssr-live/runs/mssr-librarian-connected-smoke-adr007-20261011T1317Z/CONNECTED-SMOKE.md).
+
+The direct dedicated connector calls were blocked before execution because the
+active trace did not reach them. After runtime-schema inspection, explicit
+Bridge `bridge_tool_query` for read-only search/fetch/pack and
+`bridge_tool_action` for the Jev external call succeeded with the exact active
+trace. This is an unresolved Bridge connector/trace-attribution follow-up, not
+a Librarian data-integrity failure. Bridge owns its incident ledger at
+`D:\Dev\bridge-mcp\docs\INCIDENTS.md`; that dirty repository was not modified
+as part of this MSSR smoke. No source/runtime configuration or confidence
+policy was changed.
+
 ## Dated evaluation history — 2026-10-11
 
 **ZSW HUD/minimap query-coverage diagnostic:** Two read-only live rounds ran on Bridge 0.6.167 / MSSR 0.2.115 with Jev 1.13.0 over one Zomboid Smartwatch source family. Round 1 used one compound concept: the broad authority selection was related but partial; a lifecycle/overlay facet recovered the MapOverlay responsibility range; a scoped battery-duration negative abstained. Round 2 grouped three concepts and made 8 Jev calls, 4 searches and 3 exact fetches. Broad/overlapping candidate pools abstained for HUD-v9 and marker cases, while exact ownership/marker ranges selected; the GPS/HUD distinction selected the ownership section. Every selected handle was exact-fetched; decisions are source-derived diagnostics with no owner-gold labels, and Choice/Noul remain uncalibrated. The ZSW source and worktree were left unchanged. Full reports/manifests and hashes are in [active runtime smokes](../reference/jev-bridge-active-runtime-smokes-20261010.md); external payloads remain under `D:\MSSR-benchmark-artifacts\jev-shep-calibration-20261011-v1\`.

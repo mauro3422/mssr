@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "recordKind": "connected-jev-librarian-smoke-summary",
+  "runId": "mssr-librarian-connected-smoke-adr007-20261011T1317Z",
+  "capturedAt": "2026-10-11T13:17:00Z",
+  "classification": "exploratory-linked-diagnostic",
+  "independentUnit": "one-source-document-cluster; two linked query facets; not independent samples",
+  "ownerGold": false,
+  "confidenceCalibration": "uncalibrated-provider-score",
+  "source": {
+    "projectRoot": "D:\\Dev\\mssr",
+    "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+    "revision": "92e6a35bc007060a6e8634c63e94dc638e3636ba5a7c5f46abdd2a87f8e16a69",
+    "owner": "d:/dev/mssr",
+    "privacyClass": "project-metadata"
+  },
+  "runtime": {
+    "bridgeBootId": "adf97c06-a668-4ff9-a187-c12ab058bff2",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "traceId": "mssr-codex-composition-runner-20261011-01",
+    "connectorTracePropagation": "dedicated calls blocked before execution; explicit wrapper trace succeeded"
+  },
+  "linkedQueries": [
+    {
+      "queryFacet": "compound ownership/current-trace/unavailable-tool",
+      "searchResultCount": 8,
+      "searchTruncated": true,
+      "choiceCandidateCount": 7,
+      "choiceRequestFingerprint": "04144cd4f4e28a7c3d4b2e57a1bfdd2371ace7d77d78d13a788269f3d3ea40a4",
+      "selectedRangeId": "block-9",
+      "selectedHandleId": "13d7a3db662f335b9aa28595bc4af97f3f829ff1590f97152743b94a044e62fc",
+      "selectedFingerprint": "0928a9df17b6214dc143e1e45e492fc2d9a4fea37aec575f2fa8c631dcec9b41",
+      "providerConfidence": 0.47,
+      "noul": 0.26,
+      "noneProbability": 0.44,
+      "usage": { "input_tokens": 1557, "output_tokens": 117 },
+      "elapsedMs": 807.9,
+      "exactFetchPassed": true,
+      "evidencePackPassed": true,
+      "semanticAssessment": "The fetched broad list contains the ambiguous-ownership rule but does not directly answer unavailable-tool handling."
+    },
+    {
+      "queryFacet": "ambiguous-mismatched-or-unknown-trace-ownership",
+      "searchResultCount": 25,
+      "searchTruncated": true,
+      "choiceCandidateCount": 5,
+      "choiceRequestFingerprint": "a3a77fee7a0d437eca6a6b0c0ec36dd0e06cd89db8557c4cff6271a9896b8ec1",
+      "selectedRangeId": "block-9/item-7",
+      "selectedHandleId": "1d59724906ca0e98a48b14940b6c09020935345bf3063bd8ba010bbc062d5aa0",
+      "selectedFingerprint": "daa123d6489f5e07ff6535ff0ca71d13951ee4e025b95a3571450ae40fad1527",
+      "providerConfidence": 0.99,
+      "noul": 0.9,
+      "noneProbability": 0,
+      "usage": { "input_tokens": 1216, "output_tokens": 97 },
+      "elapsedMs": 717.4,
+      "exactFetchPassed": true,
+      "evidencePackPassed": true,
+      "fetchedText": "7. Ambiguous, mismatched or unknown trace ownership never migrates a trace. The decision abstains into `review`/`inspect-traces`; R1 remains the authoritative owner-integrity contract."
+    }
+  ],
+  "limits": [
+    "same source revision and linked queries; not independent observations",
+    "no owner-gold or independently adjudicated labels",
+    "provider confidence and Noul are uncalibrated",
+    "provider request/response receipts are not replayable",
+    "no prose synthesis was requested or performed",
+    "the unavailable-required-tool facet remains unanswered"
+  ]
+}
