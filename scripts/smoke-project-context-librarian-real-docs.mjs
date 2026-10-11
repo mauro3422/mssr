@@ -60,6 +60,7 @@ const documents = sourceFiles.map((source) => ({
 }));
 const fieldNames = { domains: "domain", actions: "action", artifacts: "artifact", needs: "need", signals: "signal" };
 const results = [];
+const adversarialChecks = [];
 for (const entry of librarianManifest.entries) {
   const projected = projection.items.find((item) => item.entryId === entry.entryId && item.status === "projected"
     && JSON.stringify(item.headingPath) === JSON.stringify(entry.headingPath));
@@ -84,6 +85,46 @@ for (const entry of librarianManifest.entries) {
     privacyClass: "project-metadata",
   });
   assert.equal(fetched.fingerprint, entry.expectedFingerprint);
+  const targetDocument = documents.find((item) => item.sourceRef === entry.sourcePath);
+  const targetAtom = targetDocument?.evidenceAtoms.find((atom) => atom.subject.identity === entry.sourcePath + "#" + projected.rangeId);
+  assert.ok(targetDocument && targetAtom, "missing exact projected atom for " + entry.entryId);
+  const lexicalTerms = fetched.text.match(/[\p{L}\p{N}_-]{5,}/gu) ?? [];
+  const atomMetadataText = JSON.stringify(targetDocument.evidenceAtoms.map((atom) => atom.attributes)).toLocaleLowerCase();
+  const lexicalProbe = lexicalTerms.find((term) => !atomMetadataText.includes(term.toLocaleLowerCase()));
+  assert.ok(lexicalProbe, "no source-only lexical probe for " + entry.entryId);
+  const lexicalResults = (evidenceAtoms) => searchMssrLibrarianEvidence({
+    documents: [{ ...targetDocument, evidenceAtoms }],
+    query: { query: lexicalProbe, maxResults: 20 },
+  }).results.map(({ handle, score, title, snippet }) => ({ handle, score, title, snippet }));
+  const lexicalBaseline = lexicalResults(undefined);
+  const variants = [
+    ["owner", { provenance: { ...targetAtom.provenance, canonicalOwner: owner + ":tampered" } }],
+    ["privacy", { privacyClass: "operational-metadata" }],
+    ["source-ref", { source: { ...targetAtom.source, ref: entry.sourcePath + ".tampered" } }],
+    ["revision", { source: { ...targetAtom.source, revision: "0".repeat(64) } }],
+    ["start-line", { source: { ...targetAtom.source, range: { ...targetAtom.source.range, startLine: targetAtom.source.range.startLine + 1 } } }],
+    ["end-line", { source: { ...targetAtom.source, range: { ...targetAtom.source.range, endLine: targetAtom.source.range.endLine + 1 } } }],
+    ["start-offset", { source: { ...targetAtom.source, range: { ...targetAtom.source.range, startOffset: targetAtom.source.range.startOffset + 1 } } }],
+    ["end-offset", { source: { ...targetAtom.source, range: { ...targetAtom.source.range, endOffset: targetAtom.source.range.endOffset - 1 } } }],
+    ["payload-fingerprint", { fingerprints: { ...targetAtom.fingerprints, payload: "0".repeat(64) } }],
+    ["record-fingerprint", { fingerprints: { ...targetAtom.fingerprints, record: "0".repeat(64) } }],
+    ["producer", { provenance: { ...targetAtom.provenance, producer: targetAtom.provenance.producer + ":tampered" } }],
+    ["subject-identity", { subject: { ...targetAtom.subject, identity: targetAtom.subject.identity + ":tampered" } }],
+  ];
+  for (const [binding, patch] of variants) {
+    const invalidAtom = { ...targetAtom, ...patch };
+    const invalidMetadataSearch = searchMssrLibrarianEvidence({
+      documents: [{ ...targetDocument, evidenceAtoms: [invalidAtom] }],
+      query: { query: selectorValue, metadata: { [fieldNames[selectorField]]: selectorValue }, maxResults: 20 },
+    });
+    assert.equal(
+      invalidMetadataSearch.results.some((item) => item.handle.sourceRef === entry.sourcePath && item.handle.rangeId === projected.rangeId),
+      false,
+      entry.entryId + ": " + binding + " tampering must block the exact atom-backed metadata match",
+    );
+    assert.deepEqual(lexicalResults([invalidAtom]), lexicalBaseline, entry.entryId + ": " + binding + " tampering must not change source-text retrieval");
+    adversarialChecks.push({ entryId: entry.entryId, binding, metadataMatchExcluded: true, lexicalResultsUnchanged: true });
+  }
   results.push({
     entryId: entry.entryId,
     selectorField,
@@ -142,8 +183,14 @@ const receipt = {
     metadataSearches: results.length,
     exactFetchesPassed: results.filter((item) => item.exactFetchPassed).length,
     records: results,
+    adversarial: {
+      cases: adversarialChecks.length,
+      metadataMatchesExcluded: adversarialChecks.filter((item) => item.metadataMatchExcluded).length,
+      lexicalResultsUnchanged: adversarialChecks.filter((item) => item.lexicalResultsUnchanged).length,
+      checks: adversarialChecks,
+    },
   },
-  claim: "Integration smoke only: proves current sidecar projection, metadata-to-exact-range retrieval, and exact fetch integrity. It is not relevance adjudication, a quality benchmark, confidence calibration, or Bridge runtime adoption.",
+  claim: "Integration/adversarial smoke only: proves current sidecar projection, metadata-to-exact-range retrieval, exact fetch integrity, and exclusion of tampered atom bindings without changing lexical retrieval. It is not relevance adjudication, a quality benchmark, confidence calibration, or Bridge runtime adoption.",
 };
 const runtimeDir = path.join(mssrRoot, "runtime");
 await fs.mkdir(runtimeDir, { recursive: true });

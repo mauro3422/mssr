@@ -113,6 +113,7 @@ const changedProjectionAtom = evidenceAtomFromLibrarianCatalogRecord({
 });
 assert.equal(changedProjectionAtom.id, routingAtom.id, "EvidenceAtom identity remains stable when non-identity attributes change");
 const changedProjection = searchMssrLibrarianEvidence({ documents: [{ ...atomDoc, evidenceAtoms: [changedProjectionAtom] }], query: { query: "coding" } });
+assert.equal(changedProjection.results[0]?.metadataProjectionMatches?.[0]?.provenanceIsCallerAsserted, true, "atom attributes remain caller assertions and are not authenticated by the linked catalog record metadata");
 assert.notEqual(changedProjection.results[0]?.metadataProjectionMatches?.[0]?.projectionFingerprint, metadataOnly.results[0]?.metadataProjectionMatches?.[0]?.projectionFingerprint, "the search projection fingerprint changes independently from the atom id");
 
 const bodyOnlyWithoutAtoms = searchMssrLibrarianEvidence({ documents: [{ ...doc, searchableMetadata: undefined }], query: { query: "routing declared capabilities" } }).results;
