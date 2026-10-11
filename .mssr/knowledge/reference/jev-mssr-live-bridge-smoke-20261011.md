@@ -35,4 +35,19 @@ On the paired two-option comparison, changing only the query language changed Je
 
 Next: use source-grouped owner-labeled bilingual cases with fixed candidate pools. Compare Spanish-only, English-only, and host-supplied bilingual retrieval; compare Jev over identical handles; then exact-fetch and blind-adjudicate completeness and minimum sufficient span. Report abstention, false selections, range precision, facet coverage, and score calibration separately. Resolve the dedicated connector schema gap in its owning Bridge integration workflow before relying on variants through that connector.
 
-One attempted English repeat was rejected locally because two manually reconstructed fingerprints were malformed; Jev was not called for it. The subsequent comparisons used only the two exact handles above.
+One retry with malformed reconstructed fingerprints failed locally without calling Jev; subsequent comparisons used exact handles.
+
+## Paired source-grouped development diagnostic — 2026-10-11
+
+To extend beyond ADR 0009, four different canonical MSSR documents were searched with explicit Spanish/English variants. For each source, the same retrieved handles were offered to one Spanish and one English live Jev Choice call; selected ranges were exact-fetched and independently reviewed blind. These are four source groups within one repository, not four independent projects or owner-adjudicated labels.
+
+| Source case | English | Spanish | Blind source/range review |
+| --- | --- | --- | --- |
+| Directional `supersedes` (`semantic-consistency-relations-retrieval.md`) | selected `block-2`, confidence/sufficiency .59/.27 | selected `block-2`, .76/.43 | Complete: left replaces right; no deletion/consolidation authority |
+| Coverage and empty results (`document-surface-librarian-contract.md`) | selected `block-6`, 1.00/.87 | abstained, .57/.24 | `block-6` fully answers Spanish query; false abstention |
+| Historical vs current truth (`semantic-consistency-current-truth.md`) | selected `heading-1`, .88/.79 | selected `block-3`, .84/.44 | Both answer; English section is broader |
+| Sidecar metadata (`project-context-librarian-metadata.md`) | selected `block-4`, .34/.79 | abstained, .42/.45 | English range omits selector non-inheritance; the offered whole-document range answers Spanish, but is broad. Minimum sufficient evidence is `block-3` + `block-4`. |
+
+Across eight calls, six selected and two abstained. One selected range omitted a required facet despite Noul sufficiency .79; both Spanish abstentions had an offered answerable range. Scores are raw, uncalibrated provider outputs, not correctness percentages. This small within-repository diagnostic supports two follow-up gates: measure answer coverage by required query facet, and evaluate Spanish abstention separately from retrieval. It does not estimate general accuracy, justify a threshold change, or establish reliability. No runtime, code, or confidence policy changed.
+
+The direct MSSR MCP provider `typesafe-jev` 1.13.0 handled these calls. The contemporaneous MSSR registry snapshot reported the MauroPrime Bridge provider unavailable (`MCP error -32000: Connection closed`), so this paired diagnostic does not verify the Bridge endpoint. Detailed request fingerprints, token usage, source revisions, and blind-review outcomes are in the separated artifact `D:\MSSR-benchmark-artifacts\jev-shep-calibration-20261011-v1\paired-librarian-diagnostic-20261011-v1\RUN.md` (SHA-256 `9B90155906AFF075D020E9A7F10AA1CC84C620C64A1F759CD2F12E2FDF690F48`).
