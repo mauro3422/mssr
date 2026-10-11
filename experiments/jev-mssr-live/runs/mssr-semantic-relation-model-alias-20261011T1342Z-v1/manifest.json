@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-semantic-relation-model-alias-20261011T1342Z-v1",
+  "capturedAt": "2026-10-11T13:42:00Z",
+  "status": "complete",
+  "classification": "connected-single-pair-relation-diagnostic",
+  "goalClass": "capability-chaining-policy-relation",
+  "sourceDocuments": 2,
+  "evaluationCases": 1,
+  "independentUnits": "one linked relation pair; not a holdout or an independent corpus sample",
+  "ownerGold": false,
+  "confidenceCalibration": "uncalibrated-provider-score",
+  "runtime": {
+    "bridgeVersion": "0.6.169",
+    "bridgeBootId": "adf97c06-a668-4ff9-a187-c12ab058bff2",
+    "provider": "typesafe-jev",
+    "providerModel": "jev-1.13.0",
+    "traceId": "mssr-codex-reliability-iter-20261011-01",
+    "projectRoot": "D:\\Dev\\mssr"
+  },
+  "sourceEvidence": [
+    {
+      "sourceRef": "docs/AGENT_PROTOCOL.md",
+      "revision": "30e9f8da6103c4904559009533fa946ac53c3e5bf04ac5898e6088f919a458ca",
+      "rangeId": "block-46",
+      "handleId": "cbce17b0db731ac23563283fc2e41b653def280cc4b1502bd0cca4b7075c8613",
+      "fingerprint": "b8350c4ca229df4d68ff878fdba2cd7cd27a2457a471835fbfcf3b584adf2d65",
+      "lines": [206, 209]
+    },
+    {
+      "sourceRef": "AGENTS.md",
+      "revision": "cb2d567bf085e68ed2e97ec5650de5a152d2a41f4293fe124917ebd3a3f346d2",
+      "rangeId": "block-2/item-10",
+      "handleId": "3fd5294ffeccc9969374a8af00662fcfd61eb08615f686b930805bd0aa43b831",
+      "fingerprint": "b617663fd4a06f28a0b20562fd2bd439fcf28b26a085777860dee4c325d4c7e5",
+      "lines": [47, 48]
+    }
+  ],
+  "providerAttempts": [
+    {
+      "attempt": 1,
+      "requestedModel": "gpt-6-luna",
+      "status": "failed",
+      "httpStatus": 400,
+      "responseBody": "suppressed by Bridge",
+      "providerRequestId": null,
+      "note": "MSSR input, atoms, source handles, question and pair stayed fixed for attempt 2; only the model field changed."
+    },
+    {
+      "attempt": 2,
+      "requestedModel": "jev-1.13.0",
+      "status": "complete",
+      "provider": "typesafe-jev",
+      "returnedModel": "jev-1.13.0",
+      "relation": "supports",
+      "rawConfidence": 0.77,
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "usage": {
+        "input_tokens": 1098,
+        "output_tokens": 69
+      },
+      "elapsedMs": 969.7893,
+      "requestFingerprint": null
+    }
+  ],
+  "independentReview": {
+    "reviewer": "Luna subagent",
+    "method": "blind review of exact excerpts before Jev result was available",
+    "relation": "supports",
+    "uncertainty": "low",
+    "ownerGold": false,
+    "scopeAndTimeComparability": "not established from excerpts"
+  },
+  "preview": {
+    "id": "semantic-synthesis:dd5f08750d7b6badca987a11",
+    "disposition": "review",
+    "minimumRawRelationConfidence": 0.7,
+    "thresholdCalibrated": false,
+    "reversible": true,
+    "sourceEvidenceRetained": true,
+    "applyAllowed": false,
+    "canonicalRewriteAllowed": false,
+    "blockingReasons": [
+      "independent-verification-unavailable",
+      "missing-claim-scope",
+      "missing-claim-validity",
+      "relation-scope-unknown",
+      "relation-temporal-comparability-unknown",
+      "source-freshness-not-confirmed"
+    ]
+  },
+  "limits": [
+    "One relation pair across two current project documents; this does not estimate general reliability.",
+    "The blind Luna label is independent model-assisted review, not content-owner adjudication.",
+    "Raw Jev confidence is not calibrated and must not be used to tune a production threshold.",
+    "The first HTTP 400 body and provider request ID were suppressed; changing only the model field and then succeeding strongly implicates the host-model alias, but the provider-side cause is not independently confirmed.",
+    "Preview did not create merged prose or write either source; the deterministic result remained review-only."
+  ]
+}
