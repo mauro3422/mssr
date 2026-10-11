@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "exposedToRequests": false,
+  "cases": [
+    {
+      "caseId": "librarian-metadata-acceptance",
+      "expectedHeading": "## Projection and stale-data behavior",
+      "allowedEquivalent": "Adjacent section only if blind reviewer verifies all required clauses; no owner-gold claim.",
+      "concept": "single exact heading and current fingerprint; invalid, stale, indirect or out-of-scope bindings are omitted"
+    },
+    {
+      "caseId": "trace-success-closure",
+      "expectedHeading": "# Trace lifecycle integrity decision",
+      "allowedEquivalent": "The whole source is one section; answer must preserve the before/after distinction.",
+      "concept": "ready before accepted outcome, complete after close, never regress to pending"
+    },
+    {
+      "caseId": "lifecycle-managed-review-boundary",
+      "expectedHeading": "### Portable activation rules",
+      "allowedEquivalent": "Host observation section may provide supporting detail but core target remains Portable activation rules.",
+      "concept": "managed work enters route control; ambiguous/mismatched ownership abstains to review; routing never grants mutation permission"
+    }
+  ],
+  "adjudication": "none",
+  "independentUnit": "source-document clusters",
+  "source": "source-derived-author"
+}

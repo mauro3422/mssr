@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "blind model-assisted semantic review; not owner-gold",
+  "reviewer": "gpt-6-luna (independent review agent)",
+  "reviewInputBoundary": ["inputs/cases.json", "inputs/sources/*.md", "records.jsonl"],
+  "excludedInputs": ["manifest.json", "inputs/labels.json", "summary.json", "summary-calculated.json", "SHA256SUMS"],
+  "reviewHistory": [
+    {"pass":"initial", "observation":"First pass rated metadata omission and host-observation cases direct/complete; it overread the selected block as if it were the whole source section."},
+    {"pass":"fetch-text-correction", "observation":"A follow-up restricted review to each literal fetch.text corrected both to partial: one omitted the list of omission reasons; the other listed observation inputs but not the mapping rules."}
+  ],
+  "cases": [
+    {"caseId":"metadata-declaration-eligibility","rating":"direct-complete","basis":"Fetched Declaration states selector requirement, closed vocabulary, source-path and scope conditions."},
+    {"caseId":"metadata-projection-omission","rating":"partial","basis":"Fetched block covers exact identity, selector vocabulary, freshness and advisory authority but omits the separate list of omission triggers."},
+    {"caseId":"metadata-selector-freshness-authority","rating":"direct-complete","basis":"Fetched whole source includes multi-value selector handling, freshness unknown without observation evidence, caller-asserted provenance and no truth/rewrite authority."},
+    {"caseId":"lifecycle-host-observations","rating":"partial","basis":"Fetched Host observation boundary lists effect, scale, trace/route, project scope and phase-boundary inputs but not the rules mapping them to lightweight/managed/review."},
+    {"caseId":"lifecycle-route-action","rating":"direct-complete","basis":"Fetched Portable activation rule gives ensure-trace-and-route, ensure-route, and continue/replan for the requested cases."},
+    {"caseId":"lifecycle-recommendation-authority","rating":"direct-complete","basis":"Fetched block directly says the evaluator is advisory and never authorizes project/file/tool mutation."}
+  ],
+  "limitations": ["Six repeated diagnostics across two source-document clusters; not six independent samples.","Source-derived case criteria, no owner adjudication or calibration.","First-pass reviewer overread demonstrates blind-review instability; correction is preserved here.","A whole-source fetch may answer a compound query while reducing citation precision; selection quality and semantic coverage must be scored separately."]
+}

@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "reportType": "mechanically-derived run summary; no semantic adjudication",
+  "runId": "mssr-librarian-split-diagnostic-20261011T114100Z-9bc623",
+  "parentRunId": "mssr-librarian-independent-sources-20261011T113622Z-f94729",
+  "frozenManifestSha256": "45145b96f54ff63f4b7fb61a889f698fcf362acd9e5a73e1e3211628118b4ab0",
+  "completionStatus": "complete",
+  "sourceDocumentClusters": 2,
+  "sourceRefs": [
+    ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+    "docs/decisions/0007-automatic-lifecycle-coverage.md"
+  ],
+  "expectedRequests": 6,
+  "attemptedRequests": 6,
+  "successfulRequests": 6,
+  "failedRequests": 0,
+  "selected": 6,
+  "abstained": 0,
+  "exactFetchesWithFingerprint": 6,
+  "evidencePacksBuilt": 6,
+  "tokenUsage": {
+    "input": 20371,
+    "output": 1612
+  },
+  "firstRequestStartedAt": "2026-10-11T11:39:24.901Z",
+  "lastRequestCompletedAt": "2026-10-11T11:39:30.099Z",
+  "manifestCreatedAt": "2026-10-11T11:39:20Z",
+  "createdAtDeltaMs": 4901,
+  "timestampWarning": null,
+  "independentUnit": "two source-document clusters; six linked query diagnostics; not six independent samples",
+  "calibrationClaim": false,
+  "records": [
+    {
+      "caseId": "metadata-declaration-eligibility",
+      "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+      "status": "complete",
+      "searchResultCount": 11,
+      "jevStatus": "selected",
+      "selectedRangeId": "heading-3",
+      "rawChoiceConfidence": 0.28,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 803.3038
+    },
+    {
+      "caseId": "metadata-projection-omission",
+      "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+      "status": "complete",
+      "searchResultCount": 8,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-5",
+      "rawChoiceConfidence": 0.47,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 701.508
+    },
+    {
+      "caseId": "metadata-selector-freshness-authority",
+      "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+      "status": "complete",
+      "searchResultCount": 7,
+      "jevStatus": "selected",
+      "selectedRangeId": "heading-1",
+      "rawChoiceConfidence": 0.29,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 674.3784
+    },
+    {
+      "caseId": "lifecycle-host-observations",
+      "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+      "status": "complete",
+      "searchResultCount": 42,
+      "jevStatus": "selected",
+      "selectedRangeId": "heading-4",
+      "rawChoiceConfidence": 0.59,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 1093.8982
+    },
+    {
+      "caseId": "lifecycle-route-action",
+      "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+      "status": "complete",
+      "searchResultCount": 54,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-9/item-6",
+      "rawChoiceConfidence": 0.8,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 1165.3107
+    },
+    {
+      "caseId": "lifecycle-recommendation-authority",
+      "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+      "status": "complete",
+      "searchResultCount": 11,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-10",
+      "rawChoiceConfidence": 0.99,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 743.1479
+    }
+  ]
+}

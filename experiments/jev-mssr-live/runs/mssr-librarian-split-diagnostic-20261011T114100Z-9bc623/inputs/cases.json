@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+      "id": "metadata-declaration-eligibility",
+      "language": "en",
+      "query": "What conditions must a declaration satisfy before the host considers it eligible for metadata projection?"
+    },
+    {
+      "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+      "id": "metadata-projection-omission",
+      "language": "en",
+      "query": "What exact validations are required to recover an accepted atom, and which cases cause omission instead of partial matching?"
+    },
+    {
+      "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+      "id": "metadata-selector-freshness-authority",
+      "language": "en",
+      "query": "How are multi-value selectors interpreted during retrieval, and what constraints govern vocabulary, freshness, and authority?"
+    },
+    {
+      "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+      "id": "lifecycle-host-observations",
+      "language": "en",
+      "query": "Which host observations determine whether an operation is lightweight, managed, or review?"
+    },
+    {
+      "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+      "id": "lifecycle-route-action",
+      "language": "en",
+      "query": "For substantial read-only work, which lifecycle action applies when there is no trace, a compatible route, or ambiguous trace ownership?"
+    },
+    {
+      "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+      "id": "lifecycle-recommendation-authority",
+      "language": "en",
+      "query": "What authority does the evaluator recommendation have over project, file, or tool mutations?"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "exposedToRequests": false,
+  "cases": [
+    {
+      "caseId": "metadata-declaration-eligibility",
+      "expectedHeading": "Declaration",
+      "concept": "Eligible declarations have exact ownership/path/full heading/fingerprint and closed selector contract."
+    },
+    {
+      "caseId": "metadata-projection-omission",
+      "expectedHeading": "Projection and stale-data behavior",
+      "concept": "Exact matching and omission reasons; no partial/guessed atom."
+    },
+    {
+      "caseId": "metadata-selector-freshness-authority",
+      "expectedHeading": "Projection and stale-data behavior",
+      "concept": "Selector parsing is closed vocabulary; freshness unknown absent evidence; advisory only."
+    },
+    {
+      "caseId": "lifecycle-host-observations",
+      "expectedHeading": "Host observation boundary",
+      "concept": "Host supplies bounded observations that determine lifecycle class."
+    },
+    {
+      "caseId": "lifecycle-route-action",
+      "expectedHeading": "Portable activation rules",
+      "concept": "Managed work yields route control; ambiguous ownership reviews, not migration."
+    },
+    {
+      "caseId": "lifecycle-recommendation-authority",
+      "expectedHeading": "Portable activation rules",
+      "concept": "Recommendation never authorizes project/file/tool mutation."
+    }
+  ],
+  "adjudication": "none",
+  "independentUnit": "source-document clusters",
+  "source": "source-derived-author; diagnostic split labels, not owner gold"
+}

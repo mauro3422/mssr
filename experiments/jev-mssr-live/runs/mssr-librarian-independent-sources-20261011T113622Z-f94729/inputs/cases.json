@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+      "id": "librarian-metadata-acceptance",
+      "language": "es",
+      "query": "¿Qué comprobaciones exactas debe pasar una declaración del sidecar para producir un atom y qué causas hacen que se omita?"
+    },
+    {
+      "sourceRef": ".mssr/knowledge/decision/trace-lifecycle-integrity.md",
+      "id": "trace-success-closure",
+      "language": "en",
+      "query": "When does an open trace become ready to close successfully, and what must the accepted closed outcome report afterward?"
+    },
+    {
+      "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+      "id": "lifecycle-managed-review-boundary",
+      "language": "en",
+      "query": "What should the host do for substantial read-only work with no route or ambiguous ownership, and can the resulting recommendation authorize mutation?"
+    }
+  ]
+}

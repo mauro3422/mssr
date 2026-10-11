@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "model-assisted semantic review; not owner-gold",
+  "reviewer": "gpt-6-luna (blind review agent)",
+  "reviewBoundaries": "The reviewer assessment was produced without owner adjudication. Exact input boundary of the earlier review was not fully captured in the run metadata; treat it as indicative only.",
+  "cases": [
+    {"caseId":"librarian-metadata-acceptance","rating":"partial","basis":"Jev selected Declaration, which covers declaration shape and eligibility, but the compound query also asked omission causes held under Projection and stale-data behavior.","confidence":"low; reviewer judgment"},
+    {"caseId":"trace-success-closure","rating":"direct-complete","basis":"Selected exact trace lifecycle section covering readiness before accepted closure and complete accepted outcome after closure.","confidence":"medium; reviewer judgment"},
+    {"caseId":"lifecycle-managed-review-boundary","rating":"abstention-likely-inappropriate","basis":"Jev abstained despite search returning the full ADR and its relevant Decision/Portable activation rules; blind reviewer judged all requested clauses recoverable, though distributed across sections.","confidence":"low; reviewer judgment"}
+  ],
+  "limitations": ["Small source-derived exploratory set.","Review is model-assisted, not owner-adjudicated.","No raw Choice score is calibrated.","The third case's multi-section coverage makes abstention assessment uncertain."]
+}

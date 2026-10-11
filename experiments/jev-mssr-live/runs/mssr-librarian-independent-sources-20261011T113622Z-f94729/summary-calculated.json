@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "reportType": "mechanically-derived run summary; no semantic adjudication",
+  "runId": "mssr-librarian-independent-sources-20261011T113622Z-f94729",
+  "parentRunId": null,
+  "frozenManifestSha256": "75edbce5488e421286b1f9b89f8dd2c1e87bb6c8410ea46fb13cfb84e867aa50",
+  "completionStatus": "complete",
+  "sourceDocumentClusters": 3,
+  "sourceRefs": [
+    ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+    ".mssr/knowledge/decision/trace-lifecycle-integrity.md",
+    "docs/decisions/0007-automatic-lifecycle-coverage.md"
+  ],
+  "expectedRequests": 3,
+  "attemptedRequests": 3,
+  "successfulRequests": 3,
+  "failedRequests": 0,
+  "selected": 2,
+  "abstained": 1,
+  "exactFetchesWithFingerprint": 2,
+  "evidencePacksBuilt": 2,
+  "tokenUsage": {
+    "input": 9143,
+    "output": 718
+  },
+  "firstRequestStartedAt": "2026-10-11T11:36:47.846Z",
+  "lastRequestCompletedAt": "2026-10-11T11:36:50.559Z",
+  "manifestCreatedAt": "2026-10-11T11:36:40Z",
+  "createdAtDeltaMs": 7846,
+  "timestampWarning": null,
+  "independentUnit": "source-document clusters; 3 unique source docs; exploratory only",
+  "calibrationClaim": false,
+  "records": [
+    {
+      "caseId": "librarian-metadata-acceptance",
+      "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+      "status": "complete",
+      "searchResultCount": 11,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-2",
+      "rawChoiceConfidence": 0.49,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 937.246
+    },
+    {
+      "caseId": "trace-success-closure",
+      "sourceRef": ".mssr/knowledge/decision/trace-lifecycle-integrity.md",
+      "status": "complete",
+      "searchResultCount": 4,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-1",
+      "rawChoiceConfidence": 0.96,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 739.7207
+    },
+    {
+      "caseId": "lifecycle-managed-review-boundary",
+      "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+      "status": "complete",
+      "searchResultCount": 43,
+      "jevStatus": "abstained",
+      "selectedRangeId": null,
+      "rawChoiceConfidence": 0.21,
+      "exactFetchPassed": false,
+      "evidencePackBuilt": false,
+      "elapsedMs": 1034.6633
+    }
+  ]
+}

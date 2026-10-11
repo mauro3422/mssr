@@ -1,0 +1,123 @@
+{
+  "parentRunId": "mssr-librarian-independent-sources-20261011T113622Z-f94729",
+  "instrument": {
+    "casesPath": "experiments\\\\jev-mssr-live\\\\runs\\\\mssr-librarian-split-diagnostic-20261011T114100Z-9bc623/inputs/cases.json",
+    "runnerPath": "experiments\\\\jev-mssr-live\\\\runs\\\\mssr-librarian-split-diagnostic-20261011T114100Z-9bc623/runner.mjs",
+    "runtime": "v24.16.0",
+    "requestSchemaVersion": 1,
+    "casesSha256": "df626c9f9c95ec6771ab55e687979371b5c62d2bdb03dedca97a66856d3ef6bb",
+    "lockfileSha256": "7a909621ed8de24fdaebef04f166ff54b9ec49ff57596de254b80738a255c031",
+    "runnerSha256": "27a10b703fbf2da4cedb127a406bab3036e7a3707d7f2bd36328ef32fb3cf307"
+  },
+  "status": "prepared",
+  "corpus": {
+    "sourceRevision": "107474d577a290b0a10b257a2747a249a747537e",
+    "snapshotPath": "experiments\\\\jev-mssr-live\\\\runs\\\\mssr-librarian-split-diagnostic-20261011T114100Z-9bc623/inputs/sources/",
+    "items": 2,
+    "redaction": "reviewed project Markdown; exact source bytes frozen",
+    "projectRoot": "D:\\Dev\\mssr",
+    "sources": [
+      {
+        "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+        "sha256": "1ec96fe144070027033c74c9487f3b2219be3e7985e81ee7d168ea921c0e5d90",
+        "snapshotPath": "inputs/sources/source-01.md"
+      },
+      {
+        "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+        "sha256": "92e6a35bc007060a6e8634c63e94dc638e3636ba5a7c5f46abdd2a87f8e16a69",
+        "snapshotPath": "inputs/sources/source-03.md"
+      }
+    ]
+  },
+  "schemaVersion": 1,
+  "suite": "mssr-librarian-query-split-diagnostic-v1",
+  "source": {
+    "buildArtifacts": [
+      {
+        "sha256": "dc155b2c0ce369ea33b8a4de124b37e79636bb397932cef3827cf34bec5a8fbe",
+        "path": "dist/tool-registry.js"
+      },
+      {
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa",
+        "path": "dist/tools/mssr-semantic-evidence-tools.js"
+      },
+      {
+        "sha256": "eb06b760aa92f405df2ced15e6866ee17d28e2c01983a194eecd2260be2bc61a",
+        "path": "node_modules/@mauroprime/mssr/package.json"
+      },
+      {
+        "sha256": "181bf914da4f5767c457755990798169f6d539f56886b420bd8410951b5d8971",
+        "path": "vendor/mauroprime-mssr-0.2.121.tgz"
+      },
+      {
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e",
+        "path": "scripts/read-windows-credential.ps1"
+      }
+    ],
+    "bridgeCommit": "2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc",
+    "codeSnapshotCleanAtFreeze": true,
+    "bridgeVersion": "0.6.169",
+    "bridgeRoot": "D:\\Dev\\bridge-mcp-mssr-0.2.112-query-variants",
+    "mssrVersion": "0.2.121",
+    "gitCommit": "107474d577a290b0a10b257a2747a249a747537e",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "repository": "MSSR",
+    "workingTreeClean": false,
+    "changedPaths": [
+      "experiments/jev-mssr-live/runs/mssr-librarian-split-diagnostic-20261011T114100Z-9bc623/"
+    ]
+  },
+  "plan": {
+    "expectedRequestCount": 6,
+    "primaryMetric": "split-query target-heading selection; diagnostic only",
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30
+    },
+    "thresholds": {},
+    "uncertaintyMethod": "raw counts only; same-source repeated queries; no quality generalization or calibration claim",
+    "independentUnit": "two source-document clusters; six linked query diagnostics; not six independent samples",
+    "secondaryMetrics": [
+      "search target present in top 100",
+      "exact fetch/fingerprint validation",
+      "evidence pack success",
+      "latency",
+      "provider tokens",
+      "failures"
+    ]
+  },
+  "labels": {
+    "note": "Source-derived split targets for diagnosis only; not owner-gold, protected holdout or calibration.",
+    "exposedToRequests": false,
+    "labelFileSha256": "b572433b58622aab50d0f1635c3ab4ad08b04b0d76ed82fad72977c58f1970d9",
+    "adjudication": "none",
+    "frozenAt": "2026-10-11T11:39:20Z",
+    "source": "source-derived-author",
+    "labelFile": "experiments\\\\jev-mssr-live\\\\runs\\\\mssr-librarian-split-diagnostic-20261011T114100Z-9bc623\\\\inputs/labels.json"
+  },
+  "runId": "mssr-librarian-split-diagnostic-20261011T114100Z-9bc623",
+  "split": {
+    "trainIdsSha256": null,
+    "holdoutOpenedAt": null,
+    "validationIdsSha256": null,
+    "holdoutIdsSha256": null,
+    "holdoutUsedForTuning": false,
+    "method": "none-exploratory-source-grouped"
+  },
+  "provider": {
+    "rawVendorResponsePersisted": false,
+    "timeoutMs": 30000,
+    "mode": "live",
+    "provider": "TypeSafe Jev through the clean Bridge 0.6.169 provider adapter",
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "maxRetries": 1,
+    "requestedModel": "jev-1.13.0",
+    "networkOptInMethod": "explicit command-line --allow-network plus user authorization recorded in manifest",
+    "credentialSource": "Windows Credential Manager; secret value not persisted",
+    "providerRequestIdsAvailable": "unknown",
+    "endpointIdentity": "api.typesafe.ai/v1/systemone",
+    "networkOptIn": true,
+    "concurrency": 1
+  },
+  "createdAt": "2026-10-11T11:39:20Z"
+}
