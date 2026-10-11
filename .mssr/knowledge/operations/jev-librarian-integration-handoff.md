@@ -33,6 +33,12 @@ The current runtime and latest smoke are maintained in .mssr/PROJECT_STATE.md. T
 
 The detailed pre-integration handoff is preserved at docs/history/jev-librarian-integration-handoff-pre-0.2.104.md; its branch and gate statements are historical. This indexed handoff is the compact current view.
 
+## 2026-10-11 — composed-runner and live-use gate
+
+The ADR 0007 composed diagnostic was rechecked against the active Bridge Librarian after its run: all six final-pack handles matched exact text, fingerprint and source revision. Preserve the original records; the append-only correction is in `experiments/jev-mssr-live/runs/mssr-librarian-composed-adr007-20261011T124146Z-v1/REVALIDATION-ERRATUM-20261011.md`.
+
+The development harness at `scripts/run-composed-librarian-experiment.mjs` now has strict replay receipts, source-bounded line labels, junction/reparse-point rejection, source/plan/runner/build snapshots, checksums, and an all-abstain success path. Its offline regression passes. The metric is only exact-handle line-span overlap; it is not semantic facet correctness, owner-gold, or confidence calibration. The harness's live path is intentionally blocked with zero provider calls until it can verify that the Bridge build/catalog it invokes is the connected runtime. The current `D:\Dev\bridge-mcp` source checkout has mixed staged, unstaged and untracked work; it was not modified for this MSSR change. Continue live Jev tests only through the connected Bridge tools with a separately frozen receipt, or after isolating and pinning that Bridge build.
+
 The 2026-10-02 audit found `codex/jev-confidence-merge-evaluation` at `ad25a9a`, clean and 29 commits ahead of main. Its 255-path diff included 206 frozen Jev run files (53,079,986 bytes). The separate `codex/benchmark-archive` now preserves v1-v18 plus diagnostic/proposal evidence at `ac56327`; this documentation commit left frozen run payloads intact. Never merge the evaluation branch wholesale into product or rewrite/prune run manifests, outputs, labels, reviews or hashes.
 
 ## Product lineage audit
