@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-jev-relation-blind-batch-20261011T1351Z-v1",
+  "capturedAt": "2026-10-11T13:51:00Z",
+  "status": "complete-exploratory",
+  "classification": "connected-live-blind-labeled-relation-diagnostic",
+  "goalClass": "mssr-policy-and-librarian-relation-review",
+  "sourceDocuments": 3,
+  "evaluationCases": 4,
+  "independentUnits": "two connected evidence-graph components over three documents; four linked pairs are not four independent units",
+  "ownerGold": false,
+  "confidenceCalibration": "uncalibrated-provider-score",
+  "runtime": {
+    "bridgeVersion": "0.6.169",
+    "bridgeBootId": "adf97c06-a668-4ff9-a187-c12ab058bff2",
+    "provider": "typesafe-jev",
+    "providerModel": "jev-1.13.0",
+    "traceId": "mssr-jev-relation-case-review-20261011-02",
+    "parentTraceId": "mssr-codex-reliability-iter-20261011-01",
+    "projectRoot": "D:\\Dev\\mssr"
+  },
+  "requestAccounting": {
+    "providerRequests": 2,
+    "providerErrors": 0,
+    "rejectedPairs": 0,
+    "pairsPerRequest": [2, 2],
+    "inputTokens": 5177,
+    "outputTokens": 276,
+    "providerElapsedMs": [789.2041, 643.4849],
+    "concurrency": 1,
+    "stateChars": [8724, 4319],
+    "independentComponentIsolation": true
+  },
+  "sourceEvidence": [
+    {
+      "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+      "revision": "6c8626f6d6cd8f8fca8ab53ef753ee14eafea4a45409d532bf839f08f3201649",
+      "ranges": [
+        {"rangeId":"block-28","handleId":"cb7c3784118a0469dd86f019f71bd77202843dc64ef18928227bc4ad7b96885b","fingerprint":"1a57219ca16ff5dfedc22bf4d68720d27363aeff0d9fb0f050f59b6c39d50e9d","lines":[152,152]},
+        {"rangeId":"block-45","handleId":"79104ebbf6ba531b0b96797feee4db763593337ee8f1daf5e60997013ce6b62f","fingerprint":"9d23d0f36dd3d10129a0ba66302dde83f5e9bc99d8f9a839a5d6cfc190cbe0e2","lines":[223,223]}
+      ]
+    },
+    {
+      "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+      "revision": "63bac32774a54bdb8e7a5dd6021fa3f0351e491c6475cbb6745ce4c1e05ed2ad",
+      "ranges": [
+        {"rangeId":"block-65","handleId":"c14863bf03968a1b184c574ecc53ff9d712527f4081ad57e6db71f3c199c4097","fingerprint":"f1ceba1f266e59f9df1790ed85d6b97f40830b1761a91c1b0e35b4d0c6526ba7","lines":[265,265]},
+        {"rangeId":"block-68","handleId":"832fc22dfa85a1f6ac305930f90dbc8cf0a3fd033a7c5d64935ebf8faee7ea1e","fingerprint":"f8c28825c0d7ee91d10f72810f29f734e01619d80706c663afe3a0b3f84ba3f5","lines":[273,273]}
+      ]
+    },
+    {
+      "sourceRef": ".mssr/knowledge/architecture/document-surface-librarian-contract.md",
+      "revision": "52757e094bee8d03d2609eee822593e8dcbc285e8c50914ee31c45e5f270c563",
+      "ranges": [
+        {"rangeId":"block-6","handleId":"ad00e40f0846320097e201b1820493acf5e3a4d2ea8e12d240e666bd38bf7f72","fingerprint":"2c82774c3f08e802225af6c17630c95a85f8d109f8085d1bf1f60b4ff9b9c876","lines":[17,17]},
+        {"rangeId":"block-7","handleId":"041de048cb7c1db6220d693d6cf28f4fd321a4f573ce0c523eea10541912c534","fingerprint":"4d117bbbf7cb93dbb0231b05237797fa9362c123ab29622ba458661f4f700338","lines":[19,19]}
+      ]
+    }
+  ],
+  "cases": [
+    {"pairId":"blind-support-1","left":"ADR 0006 block-28","right":"ADR 0009 block-65","blindLabel":"supports","jevLabel":"unresolved","rawConfidence":0.54,"disposition":"abstain","evidenceCoverageComplete":true,"verification":"unverified"},
+    {"pairId":"blind-support-2","left":"ADR 0006 block-45","right":"Librarian contract block-6","blindLabel":"supports","jevLabel":"unresolved","rawConfidence":0.66,"disposition":"abstain","evidenceCoverageComplete":true,"verification":"unverified"},
+    {"pairId":"blind-support-3","left":"ADR 0009 block-65","right":"Librarian contract block-7","blindLabel":"supports","jevLabel":"supports","rawConfidence":0.71,"disposition":"review","evidenceCoverageComplete":true,"verification":"unverified"},
+    {"pairId":"blind-support-4","left":"ADR 0006 block-45","right":"ADR 0009 block-68","blindLabel":"supports","jevLabel":"supports","rawConfidence":0.59,"disposition":"review","evidenceCoverageComplete":true,"verification":"unverified"}
+  ],
+  "blindReview": {
+    "reviewer": "Luna subagent",
+    "timing": "labels prepared before the Jev batch was run",
+    "labelForAllFourCases": "supports",
+    "uncertainty": "low",
+    "ownerGold": false
+  },
+  "previews": [
+    {"pairId":"blind-support-1","previewId":"semantic-synthesis:c17d726d35036952ff1cff53","disposition":"abstain","minimumRawRelationConfidence":0.75,"thresholdCalibrated":false,"reversible":true,"applyAllowed":false,"canonicalRewriteAllowed":false},
+    {"pairId":"blind-support-3","previewId":"semantic-synthesis:64bcbd0946cf1ab90108e110","disposition":"review","minimumRawRelationConfidence":0.75,"thresholdCalibrated":false,"reversible":true,"applyAllowed":false,"canonicalRewriteAllowed":false}
+  ],
+  "limitations": [
+    "The four pairs form two connected components over three documents; repeated atoms and documents mean the cases are correlated.",
+    "All blind labels are model-assisted and not owner-adjudicated; their agreement or disagreement is not a reliability estimate.",
+    "All raw Jev scores are descriptive and uncalibrated; no threshold or merge policy was tuned.",
+    "Scope, claim validity, temporal comparability, source freshness and independent verification were intentionally left unknown.",
+    "Two Jev unresolved selections disagree with the blind supports labels; the passages may be related by broad policy but do not establish same-scope/time support.",
+    "Previews are immutable/read-only and did not create merged prose or modify canonical documents."
+  ]
+}

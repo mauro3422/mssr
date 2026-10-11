@@ -39,6 +39,19 @@ permission, because scope, temporal comparability, validity, freshness and
 independent verification were unresolved. No project source was changed. See
 the [relation and preview diagnostic](../../../experiments/jev-mssr-live/runs/mssr-semantic-relation-model-alias-20261011T1342Z-v1/REPORT.md).
 
+A follow-up live batch reviewed four blind-labeled pairs over ADR 0006, ADR
+0009, and the Document Surface/Librarian contract. Jev 1.13.0 completed the
+four connected judgments in two component-isolated requests (5,177 input / 276
+output tokens, no provider errors). Two cases selected `supports` at 0.71 and
+0.59; two selected `unresolved` at 0.54 and 0.66. The blind Luna labels were
+`supports` for all four: two agreed and two disagree, but those labels are not
+owner-gold and the cases are correlated across only two graph components.
+Previews for one unresolved case and one supports case returned `abstain` and
+`review`; neither allowed application or canonical rewriting. The supports
+preview remained blocked below the uncalibrated 0.75 gate and on unknown
+scope/time/freshness/verification. This is useful evidence of conservative
+gating, not reliability or calibration; see the [checksummed batch report](../../../experiments/jev-mssr-live/runs/mssr-librarian-jev-relation-blind-batch-20261011T1351Z-v1/REPORT.md).
+
 The direct dedicated connector calls were blocked before execution because the
 active trace did not reach them. After runtime-schema inspection, explicit
 Bridge `bridge_tool_query` for read-only search/fetch/pack and

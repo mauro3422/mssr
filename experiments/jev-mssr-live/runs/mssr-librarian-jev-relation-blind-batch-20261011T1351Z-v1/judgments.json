@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "traceId": "mssr-jev-relation-case-review-20261011-02",
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "promptVersion": "mssr-semantic-evidence-relation-v1",
+  "providerSchemaVersion": "mssr-jev-decision-v1",
+  "policy": {
+    "maximumPairsPerRequest": 4,
+    "maximumStateChars": 24000,
+    "mixedProjectOrCorpusState": false,
+    "providerConfidenceDistributionInvented": false,
+    "judgmentsVerified": false,
+    "advisoryOnly": true
+  },
+  "batches": [
+    {"batchId":"jev-evidence:mssr:1","pairIds":["blind-support-1","blind-support-3"],"questions":2,"stateChars":8724,"inputTokens":2992,"outputTokens":138,"elapsedMs":789.2041},
+    {"batchId":"jev-evidence:mssr:2","pairIds":["blind-support-2","blind-support-4"],"questions":2,"stateChars":4319,"inputTokens":2185,"outputTokens":138,"elapsedMs":643.4849}
+  ],
+  "judgments": [
+    {"pairId":"blind-support-1","blindLabel":"supports","relation":"unresolved","rawConfidence":0.54,"disposition":"abstain","abstainReasons":["jev-selected-unresolved"],"evaluationReasons":["independent-verification-unavailable","jev-selected-unresolved","missing-claim-scope","missing-claim-validity","relation-scope-unknown","relation-temporal-comparability-unknown","source-freshness-not-confirmed","unresolved-relations"],"evidenceCoverageComplete":true,"verification":"unverified","judgmentId":"semantic-judgment:4f7931586a351a1856668a08"},
+    {"pairId":"blind-support-2","blindLabel":"supports","relation":"unresolved","rawConfidence":0.66,"disposition":"abstain","abstainReasons":["jev-selected-unresolved"],"evaluationReasons":["independent-verification-unavailable","jev-selected-unresolved","missing-claim-scope","missing-claim-validity","relation-scope-unknown","relation-temporal-comparability-unknown","source-freshness-not-confirmed","unresolved-relations"],"evidenceCoverageComplete":true,"verification":"unverified","judgmentId":"semantic-judgment:3374ff51b46f1635eccf8b08"},
+    {"pairId":"blind-support-3","blindLabel":"supports","relation":"supports","rawConfidence":0.71,"disposition":"review","abstainReasons":[],"evaluationReasons":["independent-verification-unavailable","missing-claim-scope","missing-claim-validity","relation-scope-unknown","relation-temporal-comparability-unknown","source-freshness-not-confirmed"],"evidenceCoverageComplete":true,"verification":"unverified","judgmentId":"semantic-judgment:bd0418fe0cf81ad285593d0f"},
+    {"pairId":"blind-support-4","blindLabel":"supports","relation":"supports","rawConfidence":0.59,"disposition":"review","abstainReasons":[],"evaluationReasons":["independent-verification-unavailable","missing-claim-scope","missing-claim-validity","relation-scope-unknown","relation-temporal-comparability-unknown","source-freshness-not-confirmed"],"evidenceCoverageComplete":true,"verification":"unverified","judgmentId":"semantic-judgment:178d242612b6245ef5679a00"}
+  ],
+  "previews": [
+    {"pairId":"blind-support-1","id":"semantic-synthesis:c17d726d35036952ff1cff53","disposition":"abstain","minimumRawRelationConfidence":0.75,"thresholdCalibrated":false,"applyAllowed":false,"canonicalRewriteAllowed":false,"reversible":true},
+    {"pairId":"blind-support-3","id":"semantic-synthesis:64bcbd0946cf1ab90108e110","disposition":"review","minimumRawRelationConfidence":0.75,"thresholdCalibrated":false,"applyAllowed":false,"canonicalRewriteAllowed":false,"reversible":true}
+  ],
+  "sourceHandles": [
+    {"sourceRef":"docs/decisions/0006-deterministic-semantic-consistency.md","rangeId":"block-28","revision":"6c8626f6d6cd8f8fca8ab53ef753ee14eafea4a45409d532bf839f08f3201649","handleId":"cb7c3784118a0469dd86f019f71bd77202843dc64ef18928227bc4ad7b96885b","fingerprint":"1a57219ca16ff5dfedc22bf4d68720d27363aeff0d9fb0f050f59b6c39d50e9d"},
+    {"sourceRef":"docs/decisions/0009-semantic-evidence-plane.md","rangeId":"block-65","revision":"63bac32774a54bdb8e7a5dd6021fa3f0351e491c6475cbb6745ce4c1e05ed2ad","handleId":"c14863bf03968a1b184c574ecc53ff9d712527f4081ad57e6db71f3c199c4097","fingerprint":"f1ceba1f266e59f9df1790ed85d6b97f40830b1761a91c1b0e35b4d0c6526ba7"},
+    {"sourceRef":"docs/decisions/0006-deterministic-semantic-consistency.md","rangeId":"block-45","revision":"6c8626f6d6cd8f8fca8ab53ef753ee14eafea4a45409d532bf839f08f3201649","handleId":"79104ebbf6ba531b0b96797feee4db763593337ee8f1daf5e60997013ce6b62f","fingerprint":"9d23d0f36dd3d10129a0ba66302dde83f5e9bc99d8f9a839a5d6cfc190cbe0e2"},
+    {"sourceRef":".mssr/knowledge/architecture/document-surface-librarian-contract.md","rangeId":"block-6","revision":"52757e094bee8d03d2609eee822593e8dcbc285e8c50914ee31c45e5f270c563","handleId":"ad00e40f0846320097e201b1820493acf5e3a4d2ea8e12d240e666bd38bf7f72","fingerprint":"2c82774c3f08e802225af6c17630c95a85f8d109f8085d1bf1f60b4ff9b9c876"},
+    {"sourceRef":".mssr/knowledge/architecture/document-surface-librarian-contract.md","rangeId":"block-7","revision":"52757e094bee8d03d2609eee822593e8dcbc285e8c50914ee31c45e5f270c563","handleId":"041de048cb7c1db6220d693d6cf28f4fd321a4f573ce0c523eea10541912c534","fingerprint":"4d117bbbf7cb93dbb0231b05237797fa9362c123ab29622ba458661f4f700338"},
+    {"sourceRef":"docs/decisions/0009-semantic-evidence-plane.md","rangeId":"block-68","revision":"63bac32774a54bdb8e7a5dd6021fa3f0351e491c6475cbb6745ce4c1e05ed2ad","handleId":"832fc22dfa85a1f6ac305930f90dbc8cf0a3fd033a7c5d64935ebf8faee7ea1e","fingerprint":"f8c28825c0d7ee91d10f72810f29f734e01619d80706c663afe3a0b3f84ba3f5"}
+  ]
+}
