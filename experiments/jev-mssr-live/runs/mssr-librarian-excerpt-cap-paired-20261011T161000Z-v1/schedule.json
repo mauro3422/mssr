@@ -1,0 +1,37 @@
+[
+  {
+    "caseId": "notice-transition",
+    "arms": [
+      780,
+      260
+    ]
+  },
+  {
+    "caseId": "safe-update-transaction",
+    "arms": [
+      260,
+      780
+    ]
+  },
+  {
+    "caseId": "optional-wait-reconsideration",
+    "arms": [
+      260,
+      780
+    ]
+  },
+  {
+    "caseId": "superseded-worktree-evidence",
+    "arms": [
+      780,
+      260
+    ]
+  },
+  {
+    "caseId": "learning-rate-n1",
+    "arms": [
+      780,
+      260
+    ]
+  }
+]

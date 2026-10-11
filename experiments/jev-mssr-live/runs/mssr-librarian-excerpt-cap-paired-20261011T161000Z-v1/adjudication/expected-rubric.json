@@ -1,0 +1,90 @@
+{
+  "labels": [
+    {
+      "expectedRangeLines": [
+        12,
+        24
+      ],
+      "expectedHeadingPath": [
+        "Decision"
+      ],
+      "caseId": "notice-transition",
+      "facts": [
+        "Portable MSSR owns host-neutral transition semantics; hosts own observation and delivery.",
+        "Attention threshold is review among ok < watch < review < error.",
+        "Stable OK/WATCH and unchanged actionable evidence remain quiet.",
+        "Entering, changing, escalating, de-escalating or leaving the actionable threshold yields an advisory transition candidate.",
+        "The notice can suggest an action but does not authorize or execute it."
+      ]
+    },
+    {
+      "expectedRangeLines": [
+        300,
+        306
+      ],
+      "expectedHeadingPath": [
+        "Safe update contract"
+      ],
+      "caseId": "safe-update-transaction",
+      "facts": [
+        "Update uses stable-section upsert keyed by physical knowledge kind and exact Markdown heading; replaces only that section and verifies bytes/hash.",
+        "expectedSha256 fails closed if target changed concurrently.",
+        "Registering a root section and updating Markdown plus manifest is one bounded transaction: validate module, derive source/section, preserve module ID, verify both, restore previous pair on failure.",
+        "directive is selectable but not globally active.",
+        "No helper persists raw conversation text automatically."
+      ]
+    },
+    {
+      "expectedRangeLines": [
+        551,
+        565
+      ],
+      "expectedHeadingPath": [
+        "vNext Lite target"
+      ],
+      "caseId": "optional-wait-reconsideration",
+      "facts": [
+        "ACCEPT materializes with sufficient observable evidence.",
+        "WAIT preserves a plausible candidate without paying context cost yet.",
+        "REJECT means not relevant to current task/phase.",
+        "Reconsider WAIT only after meaningful observable change such as error, artifact, publish intent, tool/provider failure, user correction or phase transition; not after every successful call.",
+        "Reuse/map accepted, pending and explicit skipped host-gated semantics instead of a second incompatible state machine."
+      ]
+    },
+    {
+      "expectedRangeLines": [
+        19,
+        31
+      ],
+      "expectedHeadingPath": [
+        "Old Codex worktree"
+      ],
+      "caseId": "superseded-worktree-evidence",
+      "facts": [
+        "Old worktree detached at a779b94 with 20 dirty/untracked paths from 0.2.57.",
+        "No process referenced it and newest write was 2026-09-03 13:27:46 -03:00.",
+        "Substantive routing/source changes and handoff docs already existed on current main.",
+        "Only unpreserved additions were obsolete draft 0.2.58 state/index statements.",
+        "It was classified as superseded historical scratch and removed without merge/cherry-pick."
+      ]
+    },
+    {
+      "expectedRangeLines": [
+        34,
+        50
+      ],
+      "expectedHeadingPath": [
+        "What the current numbers mean"
+      ],
+      "caseId": "learning-rate-n1",
+      "facts": [
+        "Initial metrics are empirical rates, not calibrated probabilities.",
+        "evidenceCount, recommendedCount, loadedCount, accepted/skipped, activationRate, acceptanceRate and successRateWhenLoaded have the stated event/count meanings.",
+        "Transition aggregates capture recurring stage-to-skill patterns; context priors capture bounded modules selected for the same semantic signature.",
+        "A raw rate 1.0 with n=1 means only one observed event succeeded, never a 100% reliable prediction."
+      ]
+    }
+  ],
+  "adjudicationStatus": "host-authored source-derived rubric; not owner-gold; independent blind reviews pending",
+  "schemaVersion": 1
+}

@@ -1,0 +1,24 @@
+{
+  "dryRunReport": "dry-run-report.json",
+  "bridgePackageVersion": "0.6.169",
+  "mssrBuildReceiptId": "mssr-build:sha256:1d405b4db4c5c466",
+  "bridgeWorktreeClean": true,
+  "bridgeCommit": "2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc",
+  "schemaVersion": 1,
+  "mssrPackageVersion": "0.2.124",
+  "mssrCommit": "e79518ad1fb893847802277bbfc96accbcdd3488",
+  "providerModel": "jev-1.13.0",
+  "dryRunPassed": true,
+  "frozenAt": "2026-10-11T16:15:00Z",
+  "fileSha256": {
+    "D:\\Dev\\mssr\\experiments\\jev-mssr-live\\runs\\mssr-librarian-excerpt-cap-paired-20261011T161000Z-v1\\run-study.mjs": "E696A7712E90861693CE342061D145DEC011F7087B66DDE2A891EB2FE8BE3E40",
+    "D:\\Dev\\mssr\\dist\\librarian-jev-selection.js": "2C293AB74DAD3B6845F04258166E108A16E034D6286FB18372F460C09C0FBC75",
+    "D:\\Dev\\mssr\\dist\\.build-receipt.json": "34DB5408494AEC04F2AFDDA2979F5140199DE41A14DE196EEBADF6DD6C53AEE9",
+    "D:\\Dev\\bridge-mcp-jev-cap-study\\dist\\tools\\mssr-semantic-evidence-tools.js": "FBED1C7F1614A1B3C46F379187781D81669E7B355AC043696E055C879055F8AA",
+    "D:\\Dev\\bridge-mcp-jev-cap-study\\src\\tools\\mssr-semantic-evidence-tools.ts": "622269D203652CC9E1E29DFA3856E612BDA9C7A2D2C37C18D27884CE13740289",
+    "D:\\Dev\\mssr\\src\\librarian-jev-selection.ts": "3FB946965B27ECA4520EBBFE6A3C896FA34657A49B56CCC658598062B9681006",
+    "D:\\Dev\\bridge-mcp-jev-cap-study\\vendor\\mauroprime-mssr-0.2.121.tgz": "181BF914DA4F5767C457755990798169F6D539F56886B420BD8410951B5D8971"
+  },
+  "dryRunProviderCalls": 0,
+  "vendoredMssrPackage": "0.2.121"
+}

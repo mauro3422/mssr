@@ -1,0 +1,52 @@
+[
+  {
+    "sampleId": "7e8f156860",
+    "caseId": "notice-transition",
+    "cap": 780
+  },
+  {
+    "sampleId": "cd09e217aa",
+    "caseId": "notice-transition",
+    "cap": 260
+  },
+  {
+    "sampleId": "f693dfb7d5",
+    "caseId": "safe-update-transaction",
+    "cap": 260
+  },
+  {
+    "sampleId": "4433e212af",
+    "caseId": "safe-update-transaction",
+    "cap": 780
+  },
+  {
+    "sampleId": "e7bbc1119f",
+    "caseId": "optional-wait-reconsideration",
+    "cap": 260
+  },
+  {
+    "sampleId": "78b4eb5697",
+    "caseId": "optional-wait-reconsideration",
+    "cap": 780
+  },
+  {
+    "sampleId": "59f66d916a",
+    "caseId": "superseded-worktree-evidence",
+    "cap": 780
+  },
+  {
+    "sampleId": "307bfecdf1",
+    "caseId": "superseded-worktree-evidence",
+    "cap": 260
+  },
+  {
+    "sampleId": "5e70525d07",
+    "caseId": "learning-rate-n1",
+    "cap": 780
+  },
+  {
+    "sampleId": "00b2ead6ac",
+    "caseId": "learning-rate-n1",
+    "cap": 260
+  }
+]

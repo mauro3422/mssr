@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-excerpt-cap-paired-20261011T161000Z-v1",
+  "status": "complete",
+  "expectedPairs": 5,
+  "completedPairs": 5,
+  "providerCalls": 10,
+  "completedCaseIds": [
+    "notice-transition",
+    "safe-update-transaction",
+    "optional-wait-reconsideration",
+    "superseded-worktree-evidence",
+    "learning-rate-n1"
+  ],
+  "productionRuntimeTouched": false,
+  "finishedAt": "2026-10-11T16:08:43.638Z"
+}

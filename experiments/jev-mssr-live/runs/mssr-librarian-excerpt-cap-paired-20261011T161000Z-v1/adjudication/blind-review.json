@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent blind Luna judgments of exact fetched range or abstention",
+  "reviewers": [
+    {
+      "reviewerId": "blind_cap_reviewer_a",
+      "labels": [
+        { "sampleId": "00b2ead6ac", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "78b4eb5697", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "59f66d916a", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "4433e212af", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "e7bbc1119f", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "f693dfb7d5", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "307bfecdf1", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "5e70525d07", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "7e8f156860", "rating": "full", "overbreadth": "high" },
+        { "sampleId": "cd09e217aa", "rating": "inappropriate-abstention", "overbreadth": null }
+      ]
+    },
+    {
+      "reviewerId": "blind_cap_reviewer_b",
+      "labels": [
+        { "sampleId": "00b2ead6ac", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "78b4eb5697", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "59f66d916a", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "4433e212af", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "e7bbc1119f", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "f693dfb7d5", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "307bfecdf1", "rating": "full", "overbreadth": "low" },
+        { "sampleId": "5e70525d07", "rating": "full", "overbreadth": "high" },
+        { "sampleId": "7e8f156860", "rating": "full", "overbreadth": "high" },
+        { "sampleId": "cd09e217aa", "rating": "inappropriate-abstention", "overbreadth": null }
+      ]
+    }
+  ],
+  "agreement": {
+    "ratingAgreement": "10/10",
+    "overbreadthAgreement": "8/9 comparable selected ranges; disagreement on learning-rate-n1 cap-780 sample",
+    "noticeTransitionFinding": "Both reviewers judged the selected long-cap range full but highly overbroad, and the short-cap abstention inappropriate."
+  },
+  "limitations": [
+    "Blind model-assisted review is not owner-gold.",
+    "The ten judgments cover five source-document clusters, not ten independent benchmark units.",
+    "Reviewers saw the source material, question, and selected exact text or abstention, but not scores, cap labels, answer key, or expected labels."
+  ]
+}

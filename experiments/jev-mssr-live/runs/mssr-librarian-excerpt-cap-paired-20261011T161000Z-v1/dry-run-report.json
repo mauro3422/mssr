@@ -1,0 +1,107 @@
+{
+  "status": "dry-run-passed-no-provider-calls",
+  "caseCount": 5,
+  "providerCalls": 0,
+  "cases": [
+    {
+      "caseId": "notice-transition",
+      "targetHeadingPath": [
+        "Decision"
+      ],
+      "candidateCount": 10,
+      "targetExcerptLengths": [
+        {
+          "cap": 780,
+          "excerptCodePoints": 780,
+          "requestJsonChars": 8276
+        },
+        {
+          "cap": 260,
+          "excerptCodePoints": 260,
+          "requestJsonChars": 5914
+        }
+      ],
+      "allCandidatesOfferedInSameOrder": true
+    },
+    {
+      "caseId": "safe-update-transaction",
+      "targetHeadingPath": [
+        "Safe update contract"
+      ],
+      "candidateCount": 15,
+      "targetExcerptLengths": [
+        {
+          "cap": 260,
+          "excerptCodePoints": 260,
+          "requestJsonChars": 8393
+        },
+        {
+          "cap": 780,
+          "excerptCodePoints": 780,
+          "requestJsonChars": 15554
+        }
+      ],
+      "allCandidatesOfferedInSameOrder": true
+    },
+    {
+      "caseId": "optional-wait-reconsideration",
+      "targetHeadingPath": [
+        "vNext Lite target"
+      ],
+      "candidateCount": 76,
+      "targetExcerptLengths": [
+        {
+          "cap": 260,
+          "excerptCodePoints": 260,
+          "requestJsonChars": 39288
+        },
+        {
+          "cap": 780,
+          "excerptCodePoints": 780,
+          "requestJsonChars": 57777
+        }
+      ],
+      "allCandidatesOfferedInSameOrder": true
+    },
+    {
+      "caseId": "superseded-worktree-evidence",
+      "targetHeadingPath": [
+        "Old Codex worktree"
+      ],
+      "candidateCount": 7,
+      "targetExcerptLengths": [
+        {
+          "cap": 780,
+          "excerptCodePoints": 780,
+          "requestJsonChars": 7167
+        },
+        {
+          "cap": 260,
+          "excerptCodePoints": 260,
+          "requestJsonChars": 4749
+        }
+      ],
+      "allCandidatesOfferedInSameOrder": true
+    },
+    {
+      "caseId": "learning-rate-n1",
+      "targetHeadingPath": [
+        "What the current numbers mean"
+      ],
+      "candidateCount": 20,
+      "targetExcerptLengths": [
+        {
+          "cap": 780,
+          "excerptCodePoints": 780,
+          "requestJsonChars": 16090
+        },
+        {
+          "cap": 260,
+          "excerptCodePoints": 260,
+          "requestJsonChars": 10294
+        }
+      ],
+      "allCandidatesOfferedInSameOrder": true
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "sourceHashes": [
+    {
+      "id": "source-01",
+      "blob": "9ec80038e1b54e83e6a14dc5ac2bcaf1051a8652",
+      "sha": "3443C44356A7D3EBD6D542679BDE62631EE04B32948A591A9D8526CD3F8F66FB",
+      "path": "docs/decisions/0002-operational-notice-plane.md"
+    },
+    {
+      "id": "source-02",
+      "blob": "1702f40b7cc1bfd4392cdb018d91a726e812fde4",
+      "sha": "B7570F3B4CE0AB310ED6F4EBBB3CD2F21E5E14682D54928670CE63AEE767559F",
+      "path": "docs/PROJECT_CONTEXT.md"
+    },
+    {
+      "id": "source-03",
+      "blob": "88e65fb10dcebd523d8cf81b918af0c6b9a9cb55",
+      "sha": "11774697CB2D5318A5EE12409E121F8481F77FF09174E3D8378F0813E857C684",
+      "path": "docs/HANDOFF_MSSR_LONGITUDINAL_ATTENTION_2026-09-03.md"
+    },
+    {
+      "id": "source-04",
+      "blob": "d2764ce00ba16134cd8d5df9134ca6c72e1fe09c",
+      "sha": "9B8603357291C26AE74C2BD27A692D447D149583C89AC806E70B862B0B433442",
+      "path": "docs/HANDOFF_REPOSITORY_RECONCILIATION_2026-09-17.md"
+    },
+    {
+      "id": "source-05",
+      "blob": "4a69f6e23f2b4e15b4dbb27e60ddb142b1dfdcca",
+      "sha": "F4A6A863C596A74FC12737E4516FD882E371AE8FBD04255129E028CFB8E97FB6",
+      "path": "docs/LEARNING_LOOP.md"
+    }
+  ],
+  "ownerGold": false,
+  "status": "frozen-pre-call",
+  "schemaVersion": 1,
+  "liveCallAuthorization": "Previously explicit user authorization to use the real Jev provider for MSSR tests; no credential value is stored.",
+  "study": "paired-excerpt-cap-diagnostic",
+  "providerModel": "jev-1.13.0",
+  "bridgeAdapterCommit": "2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc",
+  "execution": "separate Node process; direct provider adapter call; not connected MCP selector/runtime and no production restart",
+  "preRegistered": true,
+  "labelsPreparedBeforeProviderCalls": true,
+  "capturedAt": "2026-10-11T16:10:00Z",
+  "runId": "mssr-librarian-excerpt-cap-paired-20261011T161000Z-v1",
+  "bridgeWorktree": "D:\\Dev\\bridge-mcp-jev-cap-study",
+  "mssrBuildReceipt": "dist/.build-receipt.json",
+  "mssrSelectorVersion": "0.2.124",
+  "provider": "typesafe-jev via isolated Bridge adapter",
+  "bridgeVersion": "0.6.169",
+  "providerCallsExpected": 10,
+  "independentSourceClusters": 5,
+  "strata": [
+    "Four core source clusters: notice policy, project-authority updates, optional-skill WAIT semantics, historical worktree reconciliation. One separately reported related-topic stratum: learning metrics."
+  ],
+  "fixedVariables": [
+    "source snapshots and candidate order",
+    "query wording",
+    "candidate generation and heading ranges",
+    "selector prompts and options",
+    "provider/model",
+    "transport adapter",
+    "process environment"
+  ],
+  "exposureAudit": "Path and exact target-range scan across all textual files in experiments/jev-mssr-live found zero hits for all five frozen source/range pairs. Prior related topics may exist; source-level holdout only.",
+  "mssrSelectorCommit": "e79518ad1fb893847802277bbfc96accbcdd3488",
+  "limitations": [
+    "Small directional pilot, not reliability estimate or calibration.",
+    "Scores are descriptive and uncalibrated for this MSSR task.",
+    "Cases are host-authored from canonical source; owner-gold status is false.",
+    "Different cap may change provider payload tokenization only through the excerpt content and resulting request size."
+  ],
+  "arms": [
+    260,
+    780
+  ],
+  "independentVariable": "MSSR_LIBRARIAN_JEV_SELECTION_LIMITS.maxExcerptChars only"
+}

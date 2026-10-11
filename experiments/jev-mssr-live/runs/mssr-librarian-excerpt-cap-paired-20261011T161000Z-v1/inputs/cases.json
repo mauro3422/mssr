@@ -1,0 +1,50 @@
+{
+  "cases": [
+    {
+      "id": "notice-transition",
+      "group": "source-01",
+      "language": "en",
+      "source": "source-01",
+      "sourceRef": "docs/decisions/0002-operational-notice-plane.md",
+      "query": "Under the Operational Notice Plane decision, which evidence transitions create an attention candidate, what threshold is used, and does the notice authorize or execute the recommended action?",
+      "stratum": "core"
+    },
+    {
+      "id": "safe-update-transaction",
+      "group": "source-02",
+      "language": "en",
+      "source": "source-02",
+      "sourceRef": "docs/PROJECT_CONTEXT.md",
+      "query": "When a host updates a root project-authority section and registers it in .mssr/project-context.json, what transaction and verification guarantees apply, and what does registering kind directive activate?",
+      "stratum": "core"
+    },
+    {
+      "id": "optional-wait-reconsideration",
+      "group": "source-03",
+      "language": "en",
+      "source": "source-03",
+      "sourceRef": "docs/HANDOFF_MSSR_LONGITUDINAL_ATTENTION_2026-09-03.md",
+      "query": "Which three semantic states are proposed for optional candidates, when should WAIT be reconsidered, and what prevents a second state machine?",
+      "stratum": "core"
+    },
+    {
+      "id": "superseded-worktree-evidence",
+      "group": "source-04",
+      "language": "en",
+      "source": "source-04",
+      "sourceRef": "docs/HANDOFF_REPOSITORY_RECONCILIATION_2026-09-17.md",
+      "query": "What evidence led the reconciliation to classify and remove the old Codex worktree without merging or cherry-picking it?",
+      "stratum": "core"
+    },
+    {
+      "id": "learning-rate-n1",
+      "group": "source-05",
+      "language": "en",
+      "source": "source-05",
+      "sourceRef": "docs/LEARNING_LOOP.md",
+      "query": "What do the first learning metrics measure, and what does a raw rate of 1.0 with n=1 actually imply?",
+      "stratum": "related-learning-metrics"
+    }
+  ],
+  "schemaVersion": 1
+}
