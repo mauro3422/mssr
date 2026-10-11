@@ -1,0 +1,15 @@
+{
+  "source": "source-derived author, held out from provider request",
+  "exposedToRequests": false,
+  "adjudication": "blind semantic review pending",
+  "cases": [
+    {
+      "concept": "observable contract/release boundary and four recorded values",
+      "caseId": "crlf-target-evidence",
+      "allowedEquivalent": "Selector must choose the exact target section; the Unicode preamble and database reset distractor are not answer-bearing.",
+      "expectedHeading": "Target evidence"
+    }
+  ],
+  "schemaVersion": 1,
+  "independentUnit": "one synthetic diagnostic document"
+}

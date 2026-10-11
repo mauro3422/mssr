@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "source": "source-derived author, held out from provider request",
+  "exposedToRequests": false,
+  "adjudication": "blind semantic review pending",
+  "independentUnit": "one synthetic diagnostic document",
+  "cases": [
+    {
+      "caseId": "crlf-tail-focused",
+      "concept": "signed activation boundary and five exact recorded values",
+      "expectedHeading": "Rule",
+      "allowedEquivalent": "Select Rule and retain signed activation authority plus prior, baseline, version, active, and archived counts; filler staging lines are irrelevant."
+    }
+  ]
+}

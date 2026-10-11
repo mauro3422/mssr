@@ -45,6 +45,20 @@ derived summary now reports normalized heading matches and exposes missing
 evidence-sufficiency capture. See the [report](../experiments/jev-mssr-live/runs/mssr-librarian-cross-family-fresh-smoke-20261011T181217Z-v1/ADJUDICATION-REPORT.md)
 and [run ledger](../experiments/jev-mssr-live/README.md).
 
+A focused CRLF follow-up exercised source MSSR 0.2.126 through an isolated
+Bridge 0.6.169 adapter. A 99-CRLF heading-mode query selected the exact child
+section (Choice 1.00, Noul 0.88), and exact-fetch fingerprint validation passed;
+blind review found full answer coverage but high irrelevant overbreadth. A
+provider-off package capture on the same frozen source shows .121's excerpt
+ended before the late rule, while .126 included its authority and field list
+within the 260-character cap. A short 13-CRLF control did not distinguish the
+versions. A separate 101-CRLF run selected an overbroad parent heading, so
+nested-heading precision remains open. All source swaps were confined to the
+isolated checkout, restored to packaged .121 and verified clean. Production
+Bridge remains on .121 without restart; these synthetic cases are not
+owner-gold, reliability evidence, or calibration. See the [run ledger](../experiments/jev-mssr-live/README.md),
+entries 23–25.
+
 Project Context modularization review split the confidence-run history by
 evaluation era: the pre-2026-10-11 measured history remains in its existing
 module, while three connected 2026-10-11 diagnostics are separately indexed.

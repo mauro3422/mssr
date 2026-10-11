@@ -1,0 +1,9 @@
+{
+  "reviewer": "Luna independent model-assisted reviewer",
+  "inputBoundary": "Reviewer read only the exact fetched text and frozen query; labels and source document were withheld.",
+  "caseId": "crlf-tail-focused",
+  "verdict": "full",
+  "coverage": "The signed activation boundary and all five requested values are present.",
+  "overbreadth": "High; repeated unrelated staging telemetry dominates much of the exact range.",
+  "limitation": "One synthetic diagnostic item; not owner-gold."
+}

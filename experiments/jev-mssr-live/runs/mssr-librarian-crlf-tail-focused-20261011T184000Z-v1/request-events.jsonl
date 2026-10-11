@@ -1,0 +1,2 @@
+{"event":"request-started","caseId":"crlf-tail-focused","requestFingerprint":"5c595901aab4a77f8410e1ab15622a265896747bfa4efd66a3d9148ab388bd48","startedAt":"2026-10-11T18:35:46.926Z","inputHashes":["4b0ef1e43518a7f00c3e37cc001bebc02c5f32fd955b2636d620dbf5cef8e7da"]}
+{"event":"request-completed","caseId":"crlf-tail-focused","requestFingerprint":"5c595901aab4a77f8410e1ab15622a265896747bfa4efd66a3d9148ab388bd48","completedAt":"2026-10-11T18:35:47.849Z","status":"complete"}

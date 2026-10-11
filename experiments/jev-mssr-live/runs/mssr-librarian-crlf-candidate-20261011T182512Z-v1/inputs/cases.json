@@ -1,0 +1,11 @@
+{
+  "cases": [
+    {
+      "query": "Which exact contract boundary starts a new epoch, and what must be recorded at that boundary?",
+      "id": "crlf-target-evidence",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-crlf-candidate-20261011T182512Z-v1/inputs/sources/crlf-fixture.md",
+      "language": "en"
+    }
+  ],
+  "schemaVersion": 1
+}

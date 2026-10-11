@@ -1,0 +1,9 @@
+{
+  "reviewer": "Luna independent model-assisted reviewer",
+  "inputBoundary": "Reviewer saw the exact fetched text and question, not the label or source document.",
+  "caseId": "crlf-tail-boundary",
+  "verdict": "full",
+  "coverage": "The signed activation and all five requested values appear in the range.",
+  "overbreadth": "Very high; the exact answer is buried after 90 staging lines and repetitive unrelated paragraphs.",
+  "limitation": "One synthetic diagnostic item; not owner-gold."
+}

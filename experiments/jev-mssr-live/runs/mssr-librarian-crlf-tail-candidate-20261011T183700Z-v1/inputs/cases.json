@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "crlf-tail-boundary",
+      "sourceRef": "experiments/jev-mssr-live/crlf-tail.md",
+      "language": "en",
+      "query": "Which signed activation changes epoch authority, and what exact values must be logged?"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+{"event":"request-started","caseId":"crlf-tail-boundary","requestFingerprint":"48f55c82f0be784e6b31e529800938649eb6a7f07066893b49c2f594f98a3a14","startedAt":"2026-10-11T18:34:35.686Z","inputHashes":["fafccbc5bb44597967f4b0d804143a2a73769e087fe01fd7e88d0612944450e4"]}
+{"event":"request-completed","caseId":"crlf-tail-boundary","requestFingerprint":"48f55c82f0be784e6b31e529800938649eb6a7f07066893b49c2f594f98a3a14","completedAt":"2026-10-11T18:34:36.797Z","status":"complete"}

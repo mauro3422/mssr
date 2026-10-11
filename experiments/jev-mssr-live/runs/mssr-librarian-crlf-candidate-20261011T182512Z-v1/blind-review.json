@@ -1,0 +1,9 @@
+{
+  "reviewer": "Luna independent model-assisted reviewer",
+  "inputBoundary": "Reviewer saw only the frozen query and exact fetched text; no labels or source document.",
+  "caseId": "crlf-target-evidence",
+  "verdict": "full",
+  "coverage": "Identifies the contract/release boundary and all four recorded values.",
+  "overbreadth": "Low; relevant context only.",
+  "limitation": "One synthetic diagnostic item; not owner-gold."
+}

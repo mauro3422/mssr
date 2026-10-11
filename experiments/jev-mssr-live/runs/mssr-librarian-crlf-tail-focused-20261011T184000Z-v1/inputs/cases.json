@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "crlf-tail-focused",
+      "sourceRef": "experiments/jev-mssr-live/crlf-tail-focused.md",
+      "language": "en",
+      "query": "Which signed activation changes epoch authority, and what exact values must be logged?"
+    }
+  ]
+}

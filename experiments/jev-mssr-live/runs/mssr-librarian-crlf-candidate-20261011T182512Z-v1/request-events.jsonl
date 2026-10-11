@@ -1,0 +1,2 @@
+{"event":"request-started","caseId":"crlf-target-evidence","requestFingerprint":"5bf9c36126957fa2d6f171ba8c70a932feb7b5b81f5aa025155ca6033e7127e5","startedAt":"2026-10-11T18:28:23.284Z","inputHashes":["efbe816917d694119c65b137f6c86a0e217a0a52ec67678ee81c077651732d2b"]}
+{"event":"request-completed","caseId":"crlf-target-evidence","requestFingerprint":"5bf9c36126957fa2d6f171ba8c70a932feb7b5b81f5aa025155ca6033e7127e5","completedAt":"2026-10-11T18:28:24.329Z","status":"complete"}

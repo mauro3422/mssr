@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-crlf-tail-focused-20261011T184000Z-v1",
+  "createdAt": "2026-10-11T18:35:21Z",
+  "status": "prepared",
+  "parentRunId": "mssr-librarian-crlf-tail-candidate-20261011T183700Z-v1",
+  "plan": {
+    "expectedRequestCount": 1,
+    "independentUnit": "one new synthetic diagnostic document; linked to prior CRLF probes",
+    "primaryMetric": "exact target heading selected in heading mode without candidateHandles",
+    "minimumSupport": {
+      "overall": 30
+    },
+    "uncertaintyMethod": "one synthetic case; no reliability or calibration claim",
+    "secondaryMetrics": [
+      "exact fetch fingerprint",
+      "Choice raw confidence",
+      "Noul evidence sufficiency capture",
+      "provider tokens",
+      "latency"
+    ]
+  },
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "fd6e853629d2d37bf78abb99703f0a52363fff62",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "bridgeRoot": "D:\\Dev\\bridge-mcp-mssr-0.2.112-query-variants",
+    "bridgeVersion": "0.6.169",
+    "bridgeCommit": "2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc",
+    "workingTreeClean": false,
+    "codeSnapshotCleanAtFreeze": true,
+    "expectedMssrVersion": "0.2.126",
+    "candidateTarballSha256": "d9b68866b6414d5248bb8c2c7e90cce99c13db21c76f679ddad82dbdf121cf82",
+    "buildArtifacts": [
+      {
+        "path": "dist/tool-registry.js",
+        "sha256": "dc155b2c0ce369ea33b8a4de124b37e79636bb397932cef3827cf34bec5a8fbe"
+      },
+      {
+        "path": "dist/tools/mssr-semantic-evidence-tools.js",
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa"
+      },
+      {
+        "path": "scripts/read-windows-credential.ps1",
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e"
+      },
+      {
+        "path": "vendor/mauroprime-mssr-0.2.121.tgz",
+        "sha256": "181bf914da4f5767c457755990798169f6d539f56886b420bd8410951b5d8971"
+      }
+    ]
+  },
+  "provider": {
+    "mode": "live",
+    "networkOptIn": true,
+    "networkOptInMethod": "explicit command-line --allow-network plus prior user authorization in conversation",
+    "credentialSource": "Windows Credential Manager; secret value not persisted",
+    "provider": "TypeSafe Jev through isolated Bridge 0.6.169 provider adapter",
+    "endpointIdentity": "api.typesafe.ai/v1/systemone",
+    "requestedModel": "jev-1.13.0",
+    "maxRetries": 1,
+    "timeoutMs": 30000,
+    "rawVendorResponsePersisted": false
+  },
+  "corpus": {
+    "projectRoot": "D:\\Dev\\mssr",
+    "snapshotPath": "inputs/sources/",
+    "sourceRevision": "fd6e853629d2d37bf78abb99703f0a52363fff62",
+    "redaction": "synthetic CRLF probe with 90 preamble lines and no parent heading; exact bytes frozen",
+    "items": 1,
+    "sources": [
+      {
+        "sourceRef": "experiments/jev-mssr-live/crlf-tail-focused.md",
+        "snapshotPath": "inputs/sources/source.md",
+        "sha256": "4b0ef1e43518a7f00c3e37cc001bebc02c5f32fd955b2636d620dbf5cef8e7da"
+      }
+    ]
+  },
+  "instrument": {
+    "runnerPath": "experiments/jev-mssr-live/runs/mssr-librarian-crlf-tail-focused-20261011T184000Z-v1/runner.mjs",
+    "runnerSha256": "ad3d20ea9d36266383628e4806586d49b3d4892063ce5da44d78df69ec86d166",
+    "casesPath": "experiments/jev-mssr-live/runs/mssr-librarian-crlf-tail-focused-20261011T184000Z-v1/inputs/cases.json",
+    "casesSha256": "890f5be60a0182384c67fd49281481d5f04b4645f285dcc2d1c034f458a5737e",
+    "lockfileSha256": "9aeecec5b35a339daef19e35547c6193278f09dbf380a91056ba451de2d58a25",
+    "runtime": "v24.16.0",
+    "requestSchemaVersion": 1
+  },
+  "labels": {
+    "source": "source-derived author, held out from provider request",
+    "exposedToRequests": false,
+    "adjudication": "blind semantic review pending",
+    "frozenAt": "2026-10-11T18:35:21Z",
+    "labelFile": "experiments/jev-mssr-live/runs/mssr-librarian-crlf-tail-focused-20261011T184000Z-v1/inputs/labels.json",
+    "labelFileSha256": "0916d7f4d5937824c8f1fb5671b2e50cf0a007c7e9cd40401f2e6bc23ab2ab97"
+  }
+}
