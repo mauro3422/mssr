@@ -1,0 +1,17 @@
+{
+  "reviewMode": "blind literal-text relevance review",
+  "cases": [
+    {
+      "case": "A",
+      "query": "¿Qué áreas de nuestro trabajo siguen sin evaluación externa?",
+      "selectedTitle": null,
+      "fetchedText": null
+    },
+    {
+      "case": "B",
+      "query": "¿Qué áreas de nuestro trabajo siguen sin evaluación externa?",
+      "selectedTitle": "Public evidence reviewed",
+      "fetchedText": "No public benchmark found in this review measures Jev on MSSR's real\ndocuments, skill references, contradiction layer, EvidenceAtom provenance,\nLibrarian evidence retrieval, or reversible semantic merges."
+    }
+  ]
+}

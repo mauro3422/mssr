@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-crosslang-variants-20261011T121611Z-v1",
+  "reviewType": "blind literal-text relevance review",
+  "reviewer": "gpt-6-luna",
+  "gold": false,
+  "limitations": [
+    "Reviewer saw only neutral case ids, primary queries, selected titles and exact fetched text.",
+    "This review checks query relevance only; it does not verify factual truth or owner gold."
+  ],
+  "cases": [
+    {
+      "case": "A",
+      "grade": "partial",
+      "covered": [
+        "Identifies areas not covered by public benchmarks: MSSR documents, skills, contradiction layer, EvidenceAtom provenance, Librarian retrieval and reversible merges."
+      ],
+      "missing": [
+        "Names the public benchmarks mentioned in the question."
+      ],
+      "note": "Directly answers only the MSSR coverage-gap facet."
+    },
+    {
+      "case": "B",
+      "grade": "partial",
+      "covered": [
+        "Identifies areas not covered by public benchmarks: MSSR documents, skills, contradiction layer, EvidenceAtom provenance, Librarian retrieval and reversible merges."
+      ],
+      "missing": [
+        "Names the public benchmarks mentioned in the question."
+      ],
+      "note": "Same fetched text as A."
+    },
+    {
+      "case": "C",
+      "grade": "direct-with-overbreadth",
+      "covered": [
+        "jev-kit code rules pass about 93% of tool calls; Jev handles the gray area; the report is author-reported, not a reviewed benchmark."
+      ],
+      "missing": [],
+      "note": "Fulfills requested facets but fetches unrelated reports."
+    },
+    {
+      "case": "D",
+      "grade": "direct-with-overbreadth",
+      "covered": [
+        "jev-kit code rules pass about 93% of tool calls; Jev handles the gray area; the report is author-reported, not a reviewed benchmark."
+      ],
+      "missing": [],
+      "note": "Same fetched text as C; includes unrelated reports."
+    }
+  ]
+}

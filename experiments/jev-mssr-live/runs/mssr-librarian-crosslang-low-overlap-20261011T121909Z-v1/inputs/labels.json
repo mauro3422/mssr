@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "adjudication": "source-derived-author; not owner-gold",
+  "exposedToProvider": false,
+  "cases": [
+    {
+      "caseId": "mssr-work-es-primary-only",
+      "expectedHeading": "Public evidence reviewed",
+      "expectedFacets": [
+        "The reviewed public benchmark evidence does not include Jev evaluation on MSSR documents, skills, contradiction layer, EvidenceAtom provenance, Librarian retrieval or reversible merges."
+      ],
+      "expectedEvidenceFragments": [
+        "No public benchmark found in this review measures Jev on MSSR"
+      ]
+    },
+    {
+      "caseId": "mssr-work-es-plus-en-variant",
+      "expectedHeading": "Public evidence reviewed",
+      "expectedFacets": [
+        "The reviewed public benchmark evidence does not include Jev evaluation on MSSR documents, skills, contradiction layer, EvidenceAtom provenance, Librarian retrieval or reversible merges."
+      ],
+      "expectedEvidenceFragments": [
+        "No public benchmark found in this review measures Jev on MSSR"
+      ]
+    }
+  ]
+}

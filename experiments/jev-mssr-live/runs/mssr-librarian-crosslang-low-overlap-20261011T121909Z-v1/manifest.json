@@ -1,0 +1,119 @@
+{
+  "parentRunId": "mssr-librarian-crosslang-variants-20261011T121611Z-v1",
+  "instrument": {
+    "casesPath": "experiments/jev-mssr-live/runs/mssr-librarian-crosslang-low-overlap-20261011T121909Z-v1/inputs/cases.json",
+    "runnerPath": "experiments/jev-mssr-live/runs/mssr-librarian-crosslang-low-overlap-20261011T121909Z-v1/runner.mjs",
+    "runtime": "v24.16.0",
+    "requestSchemaVersion": 1,
+    "casesSha256": "e50a2487efac584a8be21681b1844529e889e66b5ab49ca9dde2821a25baf0a8",
+    "lockfileSha256": "9aeecec5b35a339daef19e35547c6193278f09dbf380a91056ba451de2d58a25",
+    "runnerSha256": "ba7dc849fa902a6f11767eabcae007846f3c33ef065a7488862ace20c0228c1f"
+  },
+  "status": "prepared",
+  "corpus": {
+    "sourceRevision": "024031a2c448ac8859278deba99844dfec07c3c2",
+    "snapshotPath": "experiments/jev-mssr-live/runs/mssr-librarian-crosslang-low-overlap-20261011T121909Z-v1/inputs/sources/",
+    "items": 1,
+    "redaction": "reviewed MSSR-owned project Markdown; exact source bytes frozen",
+    "projectRoot": "D:\\Dev\\mssr",
+    "sources": [
+      {
+        "sourceRef": ".mssr/knowledge/reference/mssr-jev-public-benchmark-evidence.md",
+        "sha256": "d7b75a627d3993d78ece37c847df47004c005f7f222541b275a51dbf1987c49a",
+        "snapshotPath": "inputs/sources/source-01.md"
+      }
+    ]
+  },
+  "schemaVersion": 1,
+  "suite": "mssr-librarian-cross-language-zero-overlap-control-v1",
+  "source": {
+    "buildArtifacts": [
+      {
+        "path": "dist/tool-registry.js",
+        "sha256": "dc155b2c0ce369ea33b8a4de124b37e79636bb397932cef3827cf34bec5a8fbe"
+      },
+      {
+        "path": "dist/tools/mssr-semantic-evidence-tools.js",
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa"
+      },
+      {
+        "path": "node_modules/@mauroprime/mssr/package.json",
+        "sha256": "eb06b760aa92f405df2ced15e6866ee17d28e2c01983a194eecd2260be2bc61a"
+      },
+      {
+        "path": "vendor/mauroprime-mssr-0.2.121.tgz",
+        "sha256": "181bf914da4f5767c457755990798169f6d539f56886b420bd8410951b5d8971"
+      },
+      {
+        "path": "scripts/read-windows-credential.ps1",
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e"
+      }
+    ],
+    "bridgeCommit": "2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc",
+    "codeSnapshotCleanAtFreeze": true,
+    "bridgeVersion": "0.6.169",
+    "bridgeRoot": "D:\\Dev\\bridge-mcp-mssr-0.2.112-query-variants",
+    "mssrVersion": "0.2.121",
+    "gitCommit": "024031a2c448ac8859278deba99844dfec07c3c2",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "repository": "MSSR",
+    "workingTreeClean": false,
+    "changedPaths": [
+      "experiments/jev-mssr-live/runs/mssr-librarian-crosslang-low-overlap-20261011T121909Z-v1/"
+    ]
+  },
+  "plan": {
+    "expectedRequestCount": 2,
+    "primaryMetric": "paired effect of explicit English search variant under Spanish primary query with low lexical overlap",
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30
+    },
+    "thresholds": {},
+    "uncertaintyMethod": "paired raw counts and literal fetched text; one source cluster, no reliability/calibration claim",
+    "independentUnit": "one previously exposed source-document cluster; two linked query conditions",
+    "secondaryMetrics": [
+      "search result count and expected target retrieval",
+      "selected exact-range precision/overbreadth by blind review",
+      "exact fetch/fingerprint validation",
+      "evidence pack success",
+      "latency",
+      "tokens",
+      "failures"
+    ]
+  },
+  "labels": {
+    "note": "Source-derived paired retrieval targets only; not owner-gold or holdout. Labels are loaded after provider calls and excluded from requests.",
+    "exposedToRequests": false,
+    "labelFileSha256": "d1cf092cf1e911ce2a533434c98c6472190ab900e86491f3549ca95b451fd4f8",
+    "adjudication": "source-derived-author; not owner-gold",
+    "frozenAt": "2026-10-11T12:19:09Z",
+    "source": "source-derived-author",
+    "labelFile": "experiments/jev-mssr-live/runs/mssr-librarian-crosslang-low-overlap-20261011T121909Z-v1/inputs/labels.json",
+    "priorExposure": "known exposed: same source used in parent run; linked development diagnostic only."
+  },
+  "split": {
+    "trainIdsSha256": null,
+    "holdoutOpenedAt": null,
+    "validationIdsSha256": null,
+    "holdoutIdsSha256": null,
+    "holdoutUsedForTuning": false,
+    "method": "none-linked-exploratory-source-grouped"
+  },
+  "provider": {
+    "rawVendorResponsePersisted": false,
+    "timeoutMs": 30000,
+    "mode": "live",
+    "provider": "TypeSafe Jev through the clean Bridge 0.6.169 provider adapter",
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "maxRetries": 1,
+    "requestedModel": "jev-1.13.0",
+    "networkOptInMethod": "explicit command-line --allow-network plus user authorization recorded in manifest",
+    "credentialSource": "Windows Credential Manager; secret value not persisted",
+    "providerRequestIdsAvailable": "unknown",
+    "endpointIdentity": "api.typesafe.ai/v1/systemone",
+    "networkOptIn": true,
+    "concurrency": 1
+  },
+  "createdAt": "2026-10-11T12:19:09Z"
+}

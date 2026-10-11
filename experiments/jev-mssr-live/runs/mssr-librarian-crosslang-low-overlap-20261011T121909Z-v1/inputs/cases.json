@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "mssr-work-es-primary-only",
+      "sourceRef": ".mssr/knowledge/reference/mssr-jev-public-benchmark-evidence.md",
+      "language": "es",
+      "query": "¿Qué áreas de nuestro trabajo siguen sin evaluación externa?"
+    },
+    {
+      "id": "mssr-work-es-plus-en-variant",
+      "sourceRef": ".mssr/knowledge/reference/mssr-jev-public-benchmark-evidence.md",
+      "language": "es",
+      "query": "¿Qué áreas de nuestro trabajo siguen sin evaluación externa?",
+      "queryVariants": [
+        "No public benchmark found in this review measures Jev on MSSR real documents, skill references, contradiction layer, EvidenceAtom provenance, Librarian evidence retrieval, or reversible semantic merges."
+      ]
+    }
+  ]
+}

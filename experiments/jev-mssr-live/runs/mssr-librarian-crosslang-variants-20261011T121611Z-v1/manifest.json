@@ -1,0 +1,125 @@
+{
+  "parentRunId": "mssr-librarian-ambiguous-owner-narrow-20261011T115644Z-f21a7c",
+  "instrument": {
+    "casesPath": "experiments/jev-mssr-live/runs/mssr-librarian-crosslang-variants-20261011T121611Z-v1/inputs/cases.json",
+    "runnerPath": "experiments/jev-mssr-live/runs/mssr-librarian-crosslang-variants-20261011T121611Z-v1/runner.mjs",
+    "runtime": "v24.16.0",
+    "requestSchemaVersion": 1,
+    "casesSha256": "2378e96dd739482cf76e035eb010c1236108705703753e852218b90a7974f7f4",
+    "lockfileSha256": "9aeecec5b35a339daef19e35547c6193278f09dbf380a91056ba451de2d58a25",
+    "runnerSha256": "ba7dc849fa902a6f11767eabcae007846f3c33ef065a7488862ace20c0228c1f"
+  },
+  "status": "prepared",
+  "corpus": {
+    "sourceRevision": "024031a2c448ac8859278deba99844dfec07c3c2",
+    "snapshotPath": "experiments/jev-mssr-live/runs/mssr-librarian-crosslang-variants-20261011T121611Z-v1/inputs/sources/",
+    "items": 2,
+    "redaction": "reviewed MSSR-owned project Markdown; exact source bytes frozen",
+    "projectRoot": "D:\\Dev\\mssr",
+    "sources": [
+      {
+        "sourceRef": ".mssr/knowledge/reference/mssr-jev-public-benchmark-evidence.md",
+        "sha256": "d7b75a627d3993d78ece37c847df47004c005f7f222541b275a51dbf1987c49a",
+        "snapshotPath": "inputs/sources/source-01.md"
+      },
+      {
+        "sourceRef": ".mssr/knowledge/reference/mssr-jev-reddit-evidence.md",
+        "sha256": "e41c21a34c67dab376a0c2c1cb8ec940b19a9a11a9d89417506e4e7b5513ee90",
+        "snapshotPath": "inputs/sources/source-02.md"
+      }
+    ]
+  },
+  "schemaVersion": 1,
+  "suite": "mssr-librarian-explicit-cross-language-search-variants-v1",
+  "source": {
+    "buildArtifacts": [
+      {
+        "path": "dist/tool-registry.js",
+        "sha256": "dc155b2c0ce369ea33b8a4de124b37e79636bb397932cef3827cf34bec5a8fbe"
+      },
+      {
+        "path": "dist/tools/mssr-semantic-evidence-tools.js",
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa"
+      },
+      {
+        "path": "node_modules/@mauroprime/mssr/package.json",
+        "sha256": "eb06b760aa92f405df2ced15e6866ee17d28e2c01983a194eecd2260be2bc61a"
+      },
+      {
+        "path": "vendor/mauroprime-mssr-0.2.121.tgz",
+        "sha256": "181bf914da4f5767c457755990798169f6d539f56886b420bd8410951b5d8971"
+      },
+      {
+        "path": "scripts/read-windows-credential.ps1",
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e"
+      }
+    ],
+    "bridgeCommit": "2ee6ddcd788836b4edb4e03b8569f1b8606e3cbc",
+    "codeSnapshotCleanAtFreeze": true,
+    "bridgeVersion": "0.6.169",
+    "bridgeRoot": "D:\\Dev\\bridge-mcp-mssr-0.2.112-query-variants",
+    "mssrVersion": "0.2.121",
+    "gitCommit": "024031a2c448ac8859278deba99844dfec07c3c2",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "repository": "MSSR",
+    "workingTreeClean": false,
+    "changedPaths": [
+      "experiments/jev-mssr-live/runs/mssr-librarian-crosslang-variants-20261011T121611Z-v1/"
+    ]
+  },
+  "plan": {
+    "expectedRequestCount": 4,
+    "primaryMetric": "paired effect of explicit English query variant on Spanish Librarian search and exact fetched target evidence",
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30
+    },
+    "thresholds": {},
+    "uncertaintyMethod": "raw paired counts and literal fetch review; no generalization, owner-gold or calibration",
+    "independentUnit": "two MSSR source-document clusters; four paired queries are not four independent units",
+    "secondaryMetrics": [
+      "primary-query vs explicit-variant search matches",
+      "target present in top 100",
+      "selected exact range relevance by blind text review",
+      "exact fetch/fingerprint validation",
+      "evidence pack success",
+      "latency",
+      "provider tokens",
+      "provider/tool failures"
+    ]
+  },
+  "labels": {
+    "note": "Source-derived retrieval targets for exploratory diagnosis only; not owner-gold or protected holdout. Labels are read after provider calls and excluded from requests.",
+    "exposedToRequests": false,
+    "labelFileSha256": "156350788ed2b35ab601766bfd455205614584aaa9879e64cb6e6266754a75fd",
+    "adjudication": "source-derived-author; not owner-gold",
+    "frozenAt": "2026-10-11T12:16:11Z",
+    "source": "source-derived-author",
+    "labelFile": "experiments/jev-mssr-live/runs/mssr-librarian-crosslang-variants-20261011T121611Z-v1/inputs/labels.json",
+    "priorExposure": "unknown: basename not found in reviewed local run/benchmark artifacts, but prompt/context or other uninspected exposure cannot be ruled out."
+  },
+  "split": {
+    "trainIdsSha256": null,
+    "holdoutOpenedAt": null,
+    "validationIdsSha256": null,
+    "holdoutIdsSha256": null,
+    "holdoutUsedForTuning": false,
+    "method": "none-exploratory-source-grouped"
+  },
+  "provider": {
+    "rawVendorResponsePersisted": false,
+    "timeoutMs": 30000,
+    "mode": "live",
+    "provider": "TypeSafe Jev through the clean Bridge 0.6.169 provider adapter",
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "maxRetries": 1,
+    "requestedModel": "jev-1.13.0",
+    "networkOptInMethod": "explicit command-line --allow-network plus user authorization recorded in manifest",
+    "credentialSource": "Windows Credential Manager; secret value not persisted",
+    "providerRequestIdsAvailable": "unknown",
+    "endpointIdentity": "api.typesafe.ai/v1/systemone",
+    "networkOptIn": true,
+    "concurrency": 1
+  },
+  "createdAt": "2026-10-11T12:16:11Z"
+}

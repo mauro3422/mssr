@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-crosslang-low-overlap-20261011T121909Z-v1",
+  "reviewType": "blind literal-text relevance review",
+  "reviewer": "gpt-6-luna",
+  "gold": false,
+  "limitations": [
+    "Reviewer saw only neutral case ids, primary queries, selected titles and exact fetched text.",
+    "This review checks query relevance only; it does not verify factual truth or owner gold."
+  ],
+  "cases": [
+    {
+      "case": "A",
+      "grade": "no-evidence",
+      "covered": [],
+      "missing": [
+        "No fetched title or text was supplied; none of the requested facets is evidenced."
+      ]
+    },
+    {
+      "case": "B",
+      "grade": "partial",
+      "covered": [
+        "The note says no public benchmark found in the review measures Jev on MSSR real documents, skill references, contradiction layer, EvidenceAtom provenance, Librarian retrieval or reversible merges."
+      ],
+      "missing": [
+        "It does not establish that those areas remain unevaluated by external evaluations generally."
+      ],
+      "note": "The source claim is scoped to the public-benchmark review."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "reportType": "mechanically-derived run summary; no semantic adjudication",
+  "parentRunId": "mssr-librarian-crosslang-variants-20261011T121611Z-v1",
+  "frozenManifestSha256": "26d12e8e7c696416933bce491ca9338764ba18002fc2808f57dbd029145f94e6",
+  "completionStatus": "complete",
+  "sourceDocumentClusters": 1,
+  "sourceRefs": [
+    ".mssr/knowledge/reference/mssr-jev-public-benchmark-evidence.md"
+  ],
+  "expectedRequests": 2,
+  "attemptedRequests": 2,
+  "successfulRequests": 2,
+  "failedRequests": 0,
+  "selected": 1,
+  "abstained": 1,
+  "exactFetchesWithFingerprint": 1,
+  "evidencePacksBuilt": 1,
+  "tokenUsage": {
+    "input": 2764,
+    "output": 211
+  },
+  "firstRequestStartedAt": "2026-10-11T12:19:19.301Z",
+  "lastRequestCompletedAt": "2026-10-11T12:19:20.978Z",
+  "manifestCreatedAt": "2026-10-11T12:19:09Z",
+  "createdAtDeltaMs": 10301,
+  "timestampWarning": null,
+  "independentUnit": "one previously exposed source-document cluster; two linked query conditions",
+  "calibrationClaim": false,
+  "records": [
+    {
+      "caseId": "mssr-work-es-primary-only",
+      "sourceRef": ".mssr/knowledge/reference/mssr-jev-public-benchmark-evidence.md",
+      "status": "complete",
+      "searchResultCount": 0,
+      "jevStatus": "abstained",
+      "selectedRangeId": null,
+      "rawChoiceConfidence": 0.98,
+      "exactFetchPassed": false,
+      "evidencePackBuilt": false,
+      "elapsedMs": 851.2523
+    },
+    {
+      "caseId": "mssr-work-es-plus-en-variant",
+      "sourceRef": ".mssr/knowledge/reference/mssr-jev-public-benchmark-evidence.md",
+      "status": "complete",
+      "searchResultCount": 11,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-3",
+      "rawChoiceConfidence": 0.92,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 812.8048
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "public-benchmark-es-primary-only",
+      "sourceRef": ".mssr/knowledge/reference/mssr-jev-public-benchmark-evidence.md",
+      "language": "es",
+      "query": "¿Qué benchmarks públicos se mencionan y qué evaluación específica de documentos, skills y evidencia del MSSR falta?"
+    },
+    {
+      "id": "public-benchmark-es-plus-en-variant",
+      "sourceRef": ".mssr/knowledge/reference/mssr-jev-public-benchmark-evidence.md",
+      "language": "es",
+      "query": "¿Qué benchmarks públicos se mencionan y qué evaluación específica de documentos, skills y evidencia del MSSR falta?",
+      "queryVariants": [
+        "No public benchmark found in this review measures Jev on MSSR real documents, skill references, contradiction layer, EvidenceAtom provenance, Librarian evidence retrieval, or reversible semantic merges."
+      ]
+    },
+    {
+      "id": "reddit-jevkit-es-primary-only",
+      "sourceRef": ".mssr/knowledge/reference/mssr-jev-reddit-evidence.md",
+      "language": "es",
+      "query": "¿Qué integración se describe para jev-kit, cómo usa Jev frente a reglas de código y qué tipo de autorreporte es?"
+    },
+    {
+      "id": "reddit-jevkit-es-plus-en-variant",
+      "sourceRef": ".mssr/knowledge/reference/mssr-jev-reddit-evidence.md",
+      "language": "es",
+      "query": "¿Qué integración se describe para jev-kit, cómo usa Jev frente a reglas de código y qué tipo de autorreporte es?",
+      "queryVariants": [
+        "A user on r/ClaudeCode describes jev-kit: code rules pass about 93% of tool calls in about 33 ms; Jev handles the gray area, helps size subagents, catches unverified completion reports, and uses plocate or Everything. It is an author-reported integration, not an independent benchmark."
+      ]
+    }
+  ]
+}

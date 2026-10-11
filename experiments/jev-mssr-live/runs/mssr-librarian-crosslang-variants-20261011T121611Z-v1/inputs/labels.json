@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "adjudication": "source-derived-author; not owner-gold",
+  "exposedToProvider": false,
+  "cases": [
+    {
+      "caseId": "public-benchmark-es-primary-only",
+      "expectedHeading": "Public evidence reviewed",
+      "expectedFacets": [
+        "Public review found no benchmark of Jev on MSSR documents, skill references, contradiction handling, EvidenceAtom provenance, Librarian retrieval or reversible merges."
+      ],
+      "expectedEvidenceFragments": [
+        "No public benchmark found in this review measures Jev on MSSR"
+      ]
+    },
+    {
+      "caseId": "public-benchmark-es-plus-en-variant",
+      "expectedHeading": "Public evidence reviewed",
+      "expectedFacets": [
+        "Public review found no benchmark of Jev on MSSR documents, skill references, contradiction handling, EvidenceAtom provenance, Librarian retrieval or reversible merges."
+      ],
+      "expectedEvidenceFragments": [
+        "No public benchmark found in this review measures Jev on MSSR"
+      ]
+    },
+    {
+      "caseId": "reddit-jevkit-es-primary-only",
+      "expectedHeading": "Reddit y otras evaluaciones tempranas",
+      "expectedFacets": [
+        "jev-kit uses deterministic code rules for most tool calls and Jev on the gray area; its author reports subagent sizing, catching unverified completion reports, and file discovery; this is self-reported integration evidence."
+      ],
+      "expectedEvidenceFragments": [
+        "jev-kit",
+        "~93%",
+        "autorreporte de su propia integración"
+      ]
+    },
+    {
+      "caseId": "reddit-jevkit-es-plus-en-variant",
+      "expectedHeading": "Reddit y otras evaluaciones tempranas",
+      "expectedFacets": [
+        "jev-kit uses deterministic code rules for most tool calls and Jev on the gray area; its author reports subagent sizing, catching unverified completion reports, and file discovery; this is self-reported integration evidence."
+      ],
+      "expectedEvidenceFragments": [
+        "jev-kit",
+        "~93%",
+        "autorreporte de su propia integración"
+      ]
+    }
+  ]
+}

@@ -50,6 +50,13 @@ lexicon rewriting is not adopted: the earlier exploratory run degraded English
 and failed its opened holdout. Bridge runtime adoption requires a separately
 reviewed schema/adapter change.
 
+The 2026-10-11 low-overlap diagnostic confirms why variants must remain
+host-supplied: one Spanish query returned no candidates and Jev abstained;
+adding an explicit English variant returned 11 candidates and enabled an exact
+fetch of the relevant range. This is one previously exposed source cluster,
+with no owner-gold labels; it supports the retrieval mechanism only, not broad
+bilingual quality or confidence calibration.
+
 ## Fetchable Librarian tie ordering — 0.2.105
 
 Librarian relevance scores remain lexical overlap ratios. When two candidates

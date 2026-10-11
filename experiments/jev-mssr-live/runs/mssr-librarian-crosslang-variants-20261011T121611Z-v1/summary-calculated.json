@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "reportType": "mechanically-derived run summary; no semantic adjudication",
+  "parentRunId": "mssr-librarian-ambiguous-owner-narrow-20261011T115644Z-f21a7c",
+  "frozenManifestSha256": "348c4eff4930eb835bd37e7eedf2b5c181cfe334ef505614302d319739d20d8a",
+  "completionStatus": "complete",
+  "sourceDocumentClusters": 2,
+  "sourceRefs": [
+    ".mssr/knowledge/reference/mssr-jev-public-benchmark-evidence.md",
+    ".mssr/knowledge/reference/mssr-jev-reddit-evidence.md"
+  ],
+  "expectedRequests": 4,
+  "attemptedRequests": 4,
+  "successfulRequests": 4,
+  "failedRequests": 0,
+  "selected": 4,
+  "abstained": 0,
+  "exactFetchesWithFingerprint": 4,
+  "evidencePacksBuilt": 4,
+  "tokenUsage": {
+    "input": 7828,
+    "output": 568
+  },
+  "firstRequestStartedAt": "2026-10-11T12:16:30.914Z",
+  "lastRequestCompletedAt": "2026-10-11T12:16:34.574Z",
+  "manifestCreatedAt": "2026-10-11T12:16:11Z",
+  "createdAtDeltaMs": 19914,
+  "timestampWarning": null,
+  "independentUnit": "two MSSR source-document clusters; four paired queries are not four independent units",
+  "calibrationClaim": false,
+  "records": [
+    {
+      "caseId": "public-benchmark-es-primary-only",
+      "sourceRef": ".mssr/knowledge/reference/mssr-jev-public-benchmark-evidence.md",
+      "status": "complete",
+      "searchResultCount": 11,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-3",
+      "rawChoiceConfidence": 0.88,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 1215.3181
+    },
+    {
+      "caseId": "public-benchmark-es-plus-en-variant",
+      "sourceRef": ".mssr/knowledge/reference/mssr-jev-public-benchmark-evidence.md",
+      "status": "complete",
+      "searchResultCount": 11,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-3",
+      "rawChoiceConfidence": 0.87,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 795.6547
+    },
+    {
+      "caseId": "reddit-jevkit-es-primary-only",
+      "sourceRef": ".mssr/knowledge/reference/mssr-jev-reddit-evidence.md",
+      "status": "complete",
+      "searchResultCount": 8,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-1",
+      "rawChoiceConfidence": 0.4,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 849.3787
+    },
+    {
+      "caseId": "reddit-jevkit-es-plus-en-variant",
+      "sourceRef": ".mssr/knowledge/reference/mssr-jev-reddit-evidence.md",
+      "status": "complete",
+      "searchResultCount": 8,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-1",
+      "rawChoiceConfidence": 0.45,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 796.3854
+    }
+  ]
+}
