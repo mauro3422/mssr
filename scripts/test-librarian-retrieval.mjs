@@ -432,6 +432,83 @@ const parentListFetch = fetchMssrLibrarianEvidence({
 assert.ok(parentListFetch.text.includes("Continuation belongs to this decision."));
 assert.ok(parentListFetch.text.includes("Nested detail stays attached to its parent item."));
 assert.ok(!targetListFetch.text.includes("unrelated cache policy"), "a derived child citation excludes adjacent list items");
+const blankLineListDocument = {
+  owner,
+  sourceRef: "docs/list-items-with-blank-lines.md",
+  markdown: [
+    "- Parent requirement.",
+    "",
+    "  Continuation paragraph belongs to the parent.",
+    "",
+    "  - Nested requirement stays attached.",
+    "",
+    "- Sibling requirement remains separate.",
+    "",
+    "Unrelated prose is outside the list.",
+  ].join("\n"),
+  privacyClass: "project-metadata",
+};
+const blankLineListSearch = searchMssrLibrarianEvidence({
+  documents: [blankLineListDocument],
+  query: { query: "parent continuation nested sibling requirement", maxResults: 20 },
+});
+const blankLineItemResults = blankLineListSearch.results.filter((item) => item.handle.rangeId.includes("/item-"));
+assert.deepEqual(
+  blankLineItemResults.map((item) => item.handle.rangeId),
+  ["block-1/item-1", "block-1/item-2"],
+  "blank-line continuations, nested blocks, and sibling items stay under one stable list-block identity without duplicate nested children",
+);
+const blankLineParentFetch = fetchMssrLibrarianEvidence({
+  handle: blankLineItemResults[0].handle,
+  owner,
+  sourceRef: blankLineListDocument.sourceRef,
+  markdown: blankLineListDocument.markdown,
+  privacyClass: "project-metadata",
+});
+assert.equal(
+  blankLineParentFetch.text,
+  "- Parent requirement.\n\n  Continuation paragraph belongs to the parent.\n\n  - Nested requirement stays attached.",
+  "the exact parent item range includes blank-line-separated continuation and nested-list evidence, but not its sibling",
+);
+const blankLineSiblingFetch = fetchMssrLibrarianEvidence({
+  handle: blankLineItemResults[1].handle,
+  owner,
+  sourceRef: blankLineListDocument.sourceRef,
+  markdown: blankLineListDocument.markdown,
+  privacyClass: "project-metadata",
+});
+assert.equal(blankLineSiblingFetch.text, "- Sibling requirement remains separate.");
+assert.equal(blankLineSiblingFetch.fingerprint, blankLineItemResults[1].handle.fingerprint);
+assert.ok(!blankLineSiblingFetch.text.includes("Unrelated prose"), "the blank-line list range stops before unrelated prose");
+const mixedIndentListDocument = {
+  owner,
+  sourceRef: "docs/list-items-with-mixed-indent.md",
+  markdown: [
+    " \t- Tab-indented first sibling.",
+    "    - Space-indented second sibling at the same visual column.",
+    "    - Another space-indented sibling.",
+    "Outside prose.",
+  ].join("\n"),
+  privacyClass: "project-metadata",
+};
+const mixedIndentListSearch = searchMssrLibrarianEvidence({
+  documents: [mixedIndentListDocument],
+  query: { query: "tab space sibling", maxResults: 20 },
+});
+const mixedIndentItemResults = mixedIndentListSearch.results.filter((item) => item.handle.rangeId.includes("/item-"));
+assert.deepEqual(
+  mixedIndentItemResults.map((item) => item.handle.rangeId),
+  ["block-1/item-1", "block-1/item-2", "block-1/item-3"],
+  "sibling detection compares visual indentation columns across tabs and spaces",
+);
+const mixedIndentSiblingFetch = fetchMssrLibrarianEvidence({
+  handle: mixedIndentItemResults[1].handle,
+  owner,
+  sourceRef: mixedIndentListDocument.sourceRef,
+  markdown: mixedIndentListDocument.markdown,
+  privacyClass: "project-metadata",
+});
+assert.equal(mixedIndentSiblingFetch.text, "    - Space-indented second sibling at the same visual column.");
 const forgedListHandleFields = { ...targetListItem.handle, startOffset: targetListItem.handle.startOffset + 1 };
 delete forgedListHandleFields.id;
 const forgedListHandle = { ...forgedListHandleFields, id: mssrLibrarianEvidenceHandleId(forgedListHandleFields) };

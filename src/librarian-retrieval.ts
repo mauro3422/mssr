@@ -206,41 +206,86 @@ function listFenceClose(line: string, marker: string): boolean {
   return Boolean(close && close[1]![0] === char && close[1]!.length >= marker.length);
 }
 
+function indentationColumns(line: string): number {
+  let columns = 0;
+  for (const character of line) {
+    if (character === " ") columns += 1;
+    else if (character === "\t") columns += 4 - columns % 4;
+    else break;
+  }
+  return columns;
+}
+
 function listItemRanges(args: {
   markdown: string;
   lines: string[];
   lineStarts: number[];
   block: MssrDocumentSurfaceBlock;
+  headingLines: ReadonlySet<number>;
   title: string;
   path: string[];
-}): MssrLibrarianIndexedRange[] {
+}): { ranges: MssrLibrarianIndexedRange[]; consumedThroughLine: number } {
   const blockStart = args.block.startLine - 1;
-  const blockEnd = args.block.endLine - 1;
   const markerAt = (index: number) => args.lines[index]?.match(TOP_LEVEL_LIST_ITEM_RE) ?? null;
   const firstMarker = markerAt(blockStart);
-  if (!firstMarker) return [];
+  if (!firstMarker) return { ranges: [], consumedThroughLine: blockStart };
   const baseIndent = firstMarker[1];
-  const starts: number[] = [];
+  const baseIndentColumns = indentationColumns(baseIndent);
+  const starts: number[] = [blockStart];
+  const ends: number[] = [];
+  let currentItemEnd = blockStart;
   let fence: { marker: string; length: number } | null = null;
-  for (let index = blockStart; index <= blockEnd; index += 1) {
+  for (let index = blockStart + 1; index < args.lines.length;) {
+    if (args.headingLines.has(index)) break;
     const line = args.lines[index] ?? "";
+    if (!fence && line.trim().length === 0) {
+      let nextIndex = index + 1;
+      while (nextIndex < args.lines.length && args.lines[nextIndex]!.trim().length === 0) nextIndex += 1;
+      if (nextIndex >= args.lines.length || args.headingLines.has(nextIndex)) break;
+      const next = args.lines[nextIndex] ?? "";
+      const nextMarker = markerAt(nextIndex);
+      if (nextMarker && indentationColumns(nextMarker[1]!) === baseIndentColumns) {
+        ends.push(currentItemEnd);
+        starts.push(nextIndex);
+        currentItemEnd = nextIndex;
+        index = nextIndex + 1;
+        continue;
+      }
+      if (indentationColumns(next) <= baseIndentColumns) break;
+      index = nextIndex;
+      continue;
+    }
     const fenceMatch = line.match(INDENTED_FENCE_RE);
     if (fence) {
       if (listFenceClose(line, fence.marker)) fence = null;
+      currentItemEnd = index;
+      index += 1;
       continue;
     }
     if (fenceMatch) {
       fence = { marker: fenceMatch[2]!, length: fenceMatch[2]!.length };
+      currentItemEnd = index;
+      index += 1;
       continue;
     }
     const marker = markerAt(index);
-    if (marker && marker[1] === baseIndent) starts.push(index);
+    if (marker && indentationColumns(marker[1]!) === baseIndentColumns) {
+      ends.push(currentItemEnd);
+      starts.push(index);
+      currentItemEnd = index;
+      index += 1;
+      continue;
+    }
+    if (indentationColumns(line) <= baseIndentColumns) break;
+    currentItemEnd = index;
+    index += 1;
   }
+  ends.push(currentItemEnd);
 
   const ranges: MssrLibrarianIndexedRange[] = [];
   for (let itemIndex = 0; itemIndex < starts.length; itemIndex += 1) {
     const startLineIndex = starts[itemIndex]!;
-    const endLineIndex = (starts[itemIndex + 1] ?? blockEnd + 1) - 1;
+    const endLineIndex = ends[itemIndex]!;
     const startOffset = args.lineStarts[startLineIndex]!;
     const endOffset = args.lineStarts[endLineIndex]! + (args.lines[endLineIndex]?.length ?? 0);
     const text = args.markdown.slice(startOffset, endOffset);
@@ -270,7 +315,7 @@ function listItemRanges(args: {
       },
     });
   }
-  return ranges;
+  return { ranges, consumedThroughLine: currentItemEnd };
 }
 
 export function buildMssrLibrarianIndexedRanges(surface: MssrDocumentSurface, markdown: string): MssrLibrarianIndexedRange[] {
@@ -283,9 +328,23 @@ export function buildMssrLibrarianIndexedRanges(surface: MssrDocumentSurface, ma
     const heading = block.sectionId ? headings.get(block.sectionId) : undefined;
     return { id: block.id, kind: "block" as const, startOffset: block.startOffset, endOffset: block.endOffset, fingerprint: block.fingerprint, title: heading?.title ?? surface.title ?? surface.sourceRef, path: heading?.headingPath ?? [], terms: block.terms, hint: block.hint, metadata: { blockKind: block.kind, sectionId: block.sectionId, startLine: block.startLine, endLine: block.endLine, chars: block.chars, bytes: block.bytes, terms: block.terms } };
   });
-  const listItems = surface.blocks.flatMap((block) => block.kind === "list"
-    ? listItemRanges({ markdown, lines, lineStarts, block, title: headings.get(block.sectionId ?? "")?.title ?? surface.title ?? surface.sourceRef, path: headings.get(block.sectionId ?? "")?.headingPath ?? [] })
-    : []);
+  const headingLines = new Set(surface.headings.map((heading) => heading.startLine - 1));
+  const listItems: MssrLibrarianIndexedRange[] = [];
+  let consumedThroughLine = -1;
+  for (const block of surface.blocks) {
+    if (block.kind !== "list" || block.startLine - 1 <= consumedThroughLine) continue;
+    const derived = listItemRanges({
+      markdown,
+      lines,
+      lineStarts,
+      block,
+      headingLines,
+      title: headings.get(block.sectionId ?? "")?.title ?? surface.title ?? surface.sourceRef,
+      path: headings.get(block.sectionId ?? "")?.headingPath ?? [],
+    });
+    listItems.push(...derived.ranges);
+    consumedThroughLine = Math.max(consumedThroughLine, derived.consumedThroughLine);
+  }
   return [...headingRows, ...blockRows, ...listItems];
 }
 

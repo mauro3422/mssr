@@ -1,16 +1,15 @@
 # MSSR project state
 
 ## Current release
-MSSR source 0.2.120 is verified but unpublished/inactive (`.mssr/runtime/releases/0.2.120.json`). Bridge health rechecked 2026-10-11: 0.6.167, boot `a35f9a0e-a504-4601-9cde-b4fbd2ac4d2d`, 188 runtime tools, tunnel live/ready, no restart pending; active MSSR package last exact readback 0.2.115. Search/fetch/evidence-pack/Jev-selection/relation/preview exist in the runtime registry; Jev 1.13.0 selection worked through `bridge_tool_action`. Six checked tool names had no direct connector exposure, so full connector parity remains unverified.
+MSSR source candidate 0.2.121 passed `npm run verify` and `npm run release:gate` on 2026-10-11. The gate produced `.mssr/runtime/releases/0.2.121.json` for `mauroprime-mssr-0.2.121.tgz` (1,137,867 bytes, SHA-256 `181bf914da4f5767c457755990798169f6d539f56886b420bd8410951b5d8971`). Project Context Health is `watch` with no REVIEW-level findings. Last verified/adopted runtime: Bridge 0.6.168 (boot `ee6bc4d6-3df7-4a85-b319-82baa6956926`, 188 tools, tunnel live/ready, no restart pending) with MSSR 0.2.120. The 0.2.121 candidate is not yet published or active; direct connector parity remains partly unverified.
 
-Jev/Librarian results dated 2026-10-11 remain development diagnostics, not owner-gold or calibration; raw Choice/Noul scores are uncalibrated. On one fixed query, Jev selected the same exact block in three candidate sets (Choice 1.00/1.00/0.60; Noul .89–.91); exact fetch and blind host composition passed (1.00/1.00/1.00/0.95). Earlier bilingual abstentions, one omitted query facet, and a relation-pair disagreement remain open. Exact methods/results: [live MSSR report](knowledge/reference/jev-mssr-live-bridge-smoke-20261011.md), [ZSW report](knowledge/reference/jev-zsw-hud-minimap-diagnostics-20261011.md), [offline report](knowledge/reference/jev-mssr-semantic-evidence-plane-diagnostics-20261011.md), [paired experiment artifact](D:\MSSR-benchmark-artifacts\jev-shep-calibration-20261011-v1\paired-librarian-diagnostic-20261011-v1\RUN.md). ADR 0009 progressive smoke: two Jev selections/two exact fetches; §4 alone was partial (blind coverage .72), combined answer .90/.95/.95/.88. Diagnostic only; no calibration. Follow-up: bilingual search was English-sensitive (ES .13, EN .64); Jev selected §5 (Choice .31/Noul .60), exact fetch passed, and a bounded no-answer control abstained (Noul .01). Next: owner-adjudicate the sealed 10-query packet; do not tune thresholds.
-
-Project Context Health remains `review` from module/index pressure (46 modules; document index 94%; live Bridge smoke module 99%). The current-release core remains below its 2,500-byte cap; use fresh health output for its current size.
-
-For runtime history and integration boundaries, see the indexed [integration handoff](knowledge/operations/jev-librarian-integration-handoff.md) and [runtime smoke history](knowledge/reference/jev-bridge-active-runtime-smokes-20261010.md). Historical snapshots are not current runtime evidence.
+Jev/Librarian diagnostics remain exploratory, not owner-gold or confidence calibration; do not tune thresholds from raw Choice/Noul scores. The sealed 10-query packet still needs owner adjudication. Preserve benchmark cohorts and runtime/version boundaries in the [Jev/Librarian integration handoff](knowledge/operations/jev-librarian-integration-handoff.md) and dated [live smoke report](knowledge/reference/jev-mssr-live-bridge-smoke-20261011.md); that report is historical Bridge 0.6.167 / MSSR 0.2.115 evidence, not a current runtime readback. See also [runtime smoke history](knowledge/reference/jev-bridge-active-runtime-smokes-20261010.md). Historical snapshots do not establish current runtime state.
 
 ## Document Surface/Librarian behavior in 0.2.116 — 2026-10-10
 MSSR 0.2.116 exposed exact derived handles for individual top-level list items while retaining Document Surface v1 aggregate list blocks and IDs. Search, Jev candidate validation, fetch, and evidence packs share the rebuilt index; forged offsets fail closed. Four-space-indented code is excluded from list-item candidates. `npm run verify` and `npm run release:gate` passed; final artifact identity is recorded above. Bridge runtime adoption and a live Jev run through this implementation remain unverified. This narrows citations but is not evidence of higher answer accuracy or calibrated confidence.
+
+## List range boundary correction in 0.2.121 - 2026-10-11
+A controlled reproduction found that Document Surface splits at blank lines while Librarian derived list children only from the initial `list` block. A blank-line-separated indented continuation and nested list were omitted from the parent child range, and a following sibling was not indexed under that list block. A follow-up review also found that sibling indentation must compare visual columns when tabs and spaces are mixed. MSSR 0.2.121 changes the shared derived index to follow indented source lines across blank separators, retain sibling boundaries and stop before unindented prose/headings, without changing aggregate block IDs. The regression failed before the fix; focused tests, full `npm run verify`, and `npm run release:gate` passed. Bridge adoption and a live Jev run through 0.2.121 remain pending. This is a citation-completeness correction, not a semantic-quality or confidence-calibration result.
 
 ## Jev Librarian current-document evaluation — 2026-10-10
 
@@ -65,8 +64,8 @@ The historical owner worksheet had 32 bilingual concept pairs; its 38 proposed c
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.120 -->
-<!-- mssr-version:bridge.live=0.6.167 -->
+<!-- mssr-version:mssr.source=0.2.121 -->
+<!-- mssr-version:bridge.live=0.6.168 -->
 
 <!-- mssr-owner:semantic.consistency=mssr -->
 <!-- mssr-decision:adr.0006=r4-bf-portable -->

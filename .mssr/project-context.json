@@ -505,10 +505,7 @@
       "kind": "context",
       "description": "Decision-specific confidence limits, contradiction handling, reversible synthesis, and verification gates for Jev proposals.",
       "source": {
-        "path": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
-        "sections": [
-          "## Confidence and merge policy"
-        ]
+        "path": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md"
       },
       "topic": "architecture",
       "area": "semantic-evidence",
@@ -546,10 +543,7 @@
       "kind": "context",
       "description": "The active MSSR evaluation protocol, grouped holdout gates, and required evaluation axes.",
       "source": {
-        "path": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
-        "sections": [
-          "## Next MSSR evaluation"
-        ]
+        "path": ".mssr/knowledge/reference/mssr-jev-confidence-benchmark-history.md"
       },
       "topic": "reference",
       "area": "semantic-evidence",
@@ -623,10 +617,7 @@
       "kind": "context",
       "description": "Published Jev and adjacent benchmark evidence with explicit limits on transfer to MSSR.",
       "source": {
-        "path": ".mssr/knowledge/architecture/jev-confidence-merge-evaluation.md",
-        "sections": [
-          "## Public evidence reviewed"
-        ]
+        "path": ".mssr/knowledge/reference/mssr-jev-public-benchmark-evidence.md"
       },
       "topic": "reference",
       "area": "semantic-evidence",
@@ -753,10 +744,7 @@
       "kind": "context",
       "description": "Community-reported Jev evaluations and their task-specific, non-peer-reviewed evidence limits.",
       "source": {
-        "path": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
-        "sections": [
-          "## Reddit y otras evaluaciones tempranas"
-        ]
+        "path": ".mssr/knowledge/reference/mssr-jev-reddit-evidence.md"
       },
       "topic": "reference",
       "area": "semantic-evidence",
@@ -1670,7 +1658,13 @@
       "kind": "context",
       "description": "Consolidated live MSSR Bridge/Jev smoke and bilingual abstention follow-up — 2026-10-11",
       "source": {
-        "path": ".mssr/knowledge/reference/jev-mssr-live-bridge-smoke-20261011.md"
+        "path": ".mssr/knowledge/reference/jev-mssr-live-bridge-smoke-20261011.md",
+        "sections": [
+          "## Scope and method",
+          "## Exact-fetch review",
+          "## Reproducibility",
+          "## Bilingual abstention and range-precision follow-up"
+        ]
       },
       "topic": "reference",
       "area": "semantic-evidence",
@@ -1700,6 +1694,44 @@
       "required": false,
       "priority": 100,
       "maxChars": 8000
+    },
+    {
+      "id": "mssr-jev-live-paired-source-diagnostic-20261011",
+      "kind": "context",
+      "description": "Historical 2026-10-11 paired source-grouped bilingual development diagnostic (Bridge 0.6.167 / MSSR 0.2.115); not current runtime evidence.",
+      "source": {
+        "path": ".mssr/knowledge/reference/jev-mssr-live-bridge-smoke-20261011.md",
+        "sections": [
+          "## Paired source-grouped development diagnostic — 2026-10-11"
+        ]
+      },
+      "topic": "reference",
+      "area": "semantic-evidence",
+      "stages": [
+        "verify"
+      ],
+      "domains": [
+        "coding",
+        "filesystem"
+      ],
+      "actions": [
+        "analyze",
+        "verify"
+      ],
+      "artifacts": [
+        "document",
+        "repository",
+        "mcp"
+      ],
+      "needs": [
+        "integrity-verification"
+      ],
+      "signals": [
+        "uncertainty"
+      ],
+      "required": false,
+      "priority": 90,
+      "maxChars": 4000
     }
   ]
 }

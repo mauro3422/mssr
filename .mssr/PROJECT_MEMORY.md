@@ -1,5 +1,17 @@
 # MSSR project memory
 
+## Source-level list item boundaries — 0.2.121
+
+Document Surface paragraph blocks split at blank lines, but a Markdown list
+item may continue across those blocks. Derive child item ranges from the source
+lines across blank separators only while indentation keeps the lines inside the
+list; compare sibling indentation by visual columns so tabs/spaces remain
+consistent, preserve same-level siblings as separate exact ranges, and stop at
+unindented prose or a heading. Keep aggregate block IDs unchanged, and rebuild
+the same derived index for search, Jev validation, fetch, and evidence packs.
+This protects citation completeness; it is not evidence of improved answer
+accuracy or calibrated confidence.
+
 ## Fetchable-first Librarian ranking — 0.2.113
 
 Within each primary or host-supplied query-variant group, exact-fetchable

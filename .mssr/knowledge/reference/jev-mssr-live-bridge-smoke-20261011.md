@@ -1,4 +1,6 @@
-# MSSR live Bridge/Jev smoke — 2026-10-11
+# Historical MSSR live Bridge/Jev smoke — 2026-10-11
+
+The evidence in this report records Bridge 0.6.167 / MSSR 0.2.115 and must not be read as a current runtime readback.
 
 ## Scope and method
 
