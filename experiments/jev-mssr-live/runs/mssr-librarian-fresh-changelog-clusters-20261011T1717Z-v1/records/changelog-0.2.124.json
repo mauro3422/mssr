@@ -1,0 +1,1057 @@
+{
+  "caseId": "changelog-0.2.124",
+  "query": "How does 0.2.124 avoid malformed Unicode during truncation, and did it change the public excerpt cap?",
+  "sourceRef": "changelogs/0.2.124.md",
+  "search": {
+    "projectOwner": "d:/dev/mssr",
+    "sourceCount": 1,
+    "results": [
+      {
+        "handle": {
+          "version": 1,
+          "id": "2d65220db6718c8b8c73640518837792d6fc0cec55b2ef91cc13a5a3739143fc",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 24,
+          "startOffset": 0,
+          "endOffset": 1429,
+          "fingerprint": "6502734abf6c564cec8a1dfd397b881432ffe75d8c136b5c940e209a34f7b727",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 1429,
+        "exactFetchable": true,
+        "score": 0.727273,
+        "title": "0.2.124 - 2026-10-11",
+        "headingPath": [
+          "0.2.124 - 2026-10-11"
+        ],
+        "snippet": "# 0.2.124 - 2026-10-11 ## Contract - Summary: prevent the Librarian Jev selector from producing malformed Unicode when excerpt budgets truncate text, and preserve a bounded exploratory live-source diagnostic. - Areas: L…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "headingPath": [
+            "0.2.124 - 2026-10-11"
+          ],
+          "level": 1,
+          "parentId": null,
+          "startLine": 1,
+          "endLine": 24,
+          "chars": 1429,
+          "bytes": 1429,
+          "terms": [
+            "2026-10-11",
+            "jev",
+            "librarian",
+            "reviewed-none",
+            "areas",
+            "bounded",
+            "budgets",
+            "diagnostic"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "c6dd3d089cfc6e3d1c2eb7267a231b0ab040dffcce80fb1a856d8e0123ecbc8b",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "rangeId": "heading-3",
+          "rangeKind": "section",
+          "startLine": 11,
+          "endLine": 17,
+          "startOffset": 356,
+          "endOffset": 1032,
+          "fingerprint": "6ac1efd868351601f380b944259428ed2b4f65c250aedef4b6e4304858c82944",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 676,
+        "exactFetchable": true,
+        "score": 0.636364,
+        "title": "Behavior",
+        "headingPath": [
+          "0.2.124 - 2026-10-11",
+          "Behavior"
+        ],
+        "snippet": "## Behavior - Apply the existing heading-mode excerpt limit in Unicode code points, consistently with query-centered excerpt construction. - When per-option metadata pressure requires a UTF-16 length truncation, move th…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "headingPath": [
+            "0.2.124 - 2026-10-11",
+            "Behavior"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 11,
+          "endLine": 17,
+          "chars": 676,
+          "bytes": 676,
+          "terms": [
+            "behavior",
+            "cap",
+            "code",
+            "excerpt",
+            "260-character",
+            "across",
+            "added",
+            "all"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "334ade05cd573b62723354d16f016a4dc1144741802abd6017eba24b195cdd5d",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "startLine": 13,
+          "endLine": 16,
+          "startOffset": 369,
+          "endOffset": 1030,
+          "fingerprint": "41d74b762d8ade1f2fe14c893f7743166ca5f2a62c48320db93c1df61434058d",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 661,
+        "exactFetchable": true,
+        "score": 0.636364,
+        "title": "Behavior",
+        "headingPath": [
+          "0.2.124 - 2026-10-11",
+          "Behavior"
+        ],
+        "snippet": "- Apply the existing heading-mode excerpt limit in Unicode code points, consistently with query-centered excerpt construction. - When per-option metadata pressure requires a UTF-16 length truncation, move the boundary b…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "headingPath": [
+            "0.2.124 - 2026-10-11",
+            "Behavior"
+          ],
+          "blockKind": "list",
+          "sectionId": "heading-3",
+          "startLine": 13,
+          "endLine": 16,
+          "chars": 661,
+          "bytes": 661,
+          "terms": [
+            "cap",
+            "code",
+            "excerpt",
+            "260-character",
+            "across",
+            "added",
+            "all",
+            "apply"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "ee631a3f3b95dbfc4295016cfafa58b92e968e714783940290cf78492417b8b8",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "startLine": 3,
+          "endLine": 10,
+          "startOffset": 24,
+          "endOffset": 356,
+          "fingerprint": "877b1c6360476b8191ef616dfc2089532435fe7e59cdb722d4a5e78a6eae0d7a",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 332,
+        "exactFetchable": true,
+        "score": 0.363636,
+        "title": "Contract",
+        "headingPath": [
+          "0.2.124 - 2026-10-11",
+          "Contract"
+        ],
+        "snippet": "…ary: prevent the Librarian Jev selector from producing malformed Unicode when excerpt budgets truncate text, and preserve a bounded exploratory live-source diagnostic. - Areas: Librarian Jev selection, experiment evide…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "headingPath": [
+            "0.2.124 - 2026-10-11",
+            "Contract"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 3,
+          "endLine": 10,
+          "chars": 332,
+          "bytes": 332,
+          "terms": [
+            "contract",
+            "jev",
+            "librarian",
+            "reviewed-none",
+            "areas",
+            "bounded",
+            "budgets",
+            "diagnostic"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "9ad73e49facd0487a3e7e5806e11028c63643123d9170b4fded03886e9fe1c33",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "startLine": 5,
+          "endLine": 9,
+          "startOffset": 37,
+          "endOffset": 354,
+          "fingerprint": "3e23297100b8b523b66c152095bd9372f6f20a94ff963b381174af7a77a957ae",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 317,
+        "exactFetchable": true,
+        "score": 0.363636,
+        "title": "Contract",
+        "headingPath": [
+          "0.2.124 - 2026-10-11",
+          "Contract"
+        ],
+        "snippet": "…ary: prevent the Librarian Jev selector from producing malformed Unicode when excerpt budgets truncate text, and preserve a bounded exploratory live-source diagnostic. - Areas: Librarian Jev selection, experiment evide…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "headingPath": [
+            "0.2.124 - 2026-10-11",
+            "Contract"
+          ],
+          "blockKind": "list",
+          "sectionId": "heading-2",
+          "startLine": 5,
+          "endLine": 9,
+          "chars": 317,
+          "bytes": 317,
+          "terms": [
+            "jev",
+            "librarian",
+            "reviewed-none",
+            "areas",
+            "bounded",
+            "budgets",
+            "diagnostic",
+            "evidence"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "f45102a4d91510adecb306ec2355d51bb6d2824ce18cd7096651682f8b1a9237",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "rangeId": "block-1/item-1",
+          "rangeKind": "block",
+          "startLine": 5,
+          "endLine": 5,
+          "startOffset": 37,
+          "endOffset": 210,
+          "fingerprint": "792cddcf94129f2a1c75ffed5d8ea7142ffaabeade8c95442ed111e9a6d775b0",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 173,
+        "exactFetchable": true,
+        "score": 0.363636,
+        "title": "Contract",
+        "headingPath": [
+          "0.2.124 - 2026-10-11",
+          "Contract"
+        ],
+        "snippet": "- Summary: prevent the Librarian Jev selector from producing malformed Unicode when excerpt budgets truncate text, and preserve a bounded exploratory live-source diagnostic.",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "headingPath": [
+            "0.2.124 - 2026-10-11",
+            "Contract"
+          ],
+          "blockKind": "list-item",
+          "parentBlockId": "block-1",
+          "parentBlockFingerprint": "3e23297100b8b523b66c152095bd9372f6f20a94ff963b381174af7a77a957ae",
+          "listItemOrdinal": 1,
+          "sectionId": "heading-2",
+          "startLine": 5,
+          "endLine": 5,
+          "chars": 173,
+          "bytes": 173,
+          "terms": [
+            "summary",
+            "prevent",
+            "the",
+            "librarian",
+            "jev",
+            "selector",
+            "from",
+            "producing",
+            "malformed",
+            "unicode",
+            "when",
+            "excerpt",
+            "budgets",
+            "truncate",
+            "text",
+            "and",
+            "preserve",
+            "bounded",
+            "exploratory",
+            "live-source",
+            "diagnostic"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "c16b4558a8bc5112bfab6d5d7b0406b91c0d06607620d15756f8a537a264dedd",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "rangeId": "heading-4",
+          "rangeKind": "section",
+          "startLine": 18,
+          "endLine": 24,
+          "startOffset": 1032,
+          "endOffset": 1429,
+          "fingerprint": "745cfe48614c9d0cbf24328dd9d11c7e3bde799d3e17e227378919fa4dd702f5",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 397,
+        "exactFetchable": true,
+        "score": 0.363636,
+        "title": "Verification",
+        "headingPath": [
+          "0.2.124 - 2026-10-11",
+          "Verification"
+        ],
+        "snippet": "… - `npm run test:librarian-contract` passed, including Unicode excerpt and metadata-compaction regressions. - `npm run test:semantic-curation-mcp` passed; public MCP behavior remains unchanged. - Source package release…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "headingPath": [
+            "0.2.124 - 2026-10-11",
+            "Verification"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 18,
+          "endLine": 24,
+          "chars": 397,
+          "bytes": 397,
+          "terms": [
+            "verification",
+            "npm",
+            "passed",
+            "run",
+            "runtime",
+            "test",
+            "adoption",
+            "behavior"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "a704afbd3d2f44de31992f8e23d5c5bd6d4a1687d8fa7f8c8c3a4a3495122157",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "startLine": 20,
+          "endLine": 24,
+          "startOffset": 1049,
+          "endOffset": 1428,
+          "fingerprint": "368613903211bae11371d79b7fdb5626b83d42e1ee0c5778293ffeb3bdce7e73",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 379,
+        "exactFetchable": true,
+        "score": 0.363636,
+        "title": "Verification",
+        "headingPath": [
+          "0.2.124 - 2026-10-11",
+          "Verification"
+        ],
+        "snippet": "… - `npm run test:librarian-contract` passed, including Unicode excerpt and metadata-compaction regressions. - `npm run test:semantic-curation-mcp` passed; public MCP behavior remains unchanged. - Source package release…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "headingPath": [
+            "0.2.124 - 2026-10-11",
+            "Verification"
+          ],
+          "blockKind": "list",
+          "sectionId": "heading-4",
+          "startLine": 20,
+          "endLine": 24,
+          "chars": 379,
+          "bytes": 379,
+          "terms": [
+            "npm",
+            "passed",
+            "run",
+            "runtime",
+            "test",
+            "adoption",
+            "behavior",
+            "bridge"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "2edea936b8ffa7718fb3674301de7c592af02227708783f92a1388b2b1fd81cc",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "rangeId": "block-2/item-1",
+          "rangeKind": "block",
+          "startLine": 13,
+          "endLine": 13,
+          "startOffset": 369,
+          "endOffset": 495,
+          "fingerprint": "b4a5a3d687afce8939469a7a86c67cefa205aafe26097e995bffe4ae6de6d5a8",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 126,
+        "exactFetchable": true,
+        "score": 0.272727,
+        "title": "Behavior",
+        "headingPath": [
+          "0.2.124 - 2026-10-11",
+          "Behavior"
+        ],
+        "snippet": "- Apply the existing heading-mode excerpt limit in Unicode code points, consistently with query-centered excerpt construction.",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "headingPath": [
+            "0.2.124 - 2026-10-11",
+            "Behavior"
+          ],
+          "blockKind": "list-item",
+          "parentBlockId": "block-2",
+          "parentBlockFingerprint": "41d74b762d8ade1f2fe14c893f7743166ca5f2a62c48320db93c1df61434058d",
+          "listItemOrdinal": 1,
+          "sectionId": "heading-3",
+          "startLine": 13,
+          "endLine": 13,
+          "chars": 126,
+          "bytes": 126,
+          "terms": [
+            "apply",
+            "the",
+            "existing",
+            "heading-mode",
+            "excerpt",
+            "limit",
+            "in",
+            "unicode",
+            "code",
+            "points",
+            "consistently",
+            "with",
+            "query-centered",
+            "construction"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "65a50f42c7eed7d602f211b8220e25ab74a03f91896866183a8fa70cc806b045",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "rangeId": "block-2/item-2",
+          "rangeKind": "block",
+          "startLine": 14,
+          "endLine": 14,
+          "startOffset": 496,
+          "endOffset": 641,
+          "fingerprint": "bbb3c5fd6e0abb2a96ea4a1349efb9bfe1e5d468251db3c861e6d57c678dc46c",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 145,
+        "exactFetchable": true,
+        "score": 0.272727,
+        "title": "Behavior",
+        "headingPath": [
+          "0.2.124 - 2026-10-11",
+          "Behavior"
+        ],
+        "snippet": "- When per-option metadata pressure requires a UTF-16 length truncation, move the boundary back one code unit if it would split a surrogate pair.",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.124.md",
+          "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+          "headingPath": [
+            "0.2.124 - 2026-10-11",
+            "Behavior"
+          ],
+          "blockKind": "list-item",
+          "parentBlockId": "block-2",
+          "parentBlockFingerprint": "41d74b762d8ade1f2fe14c893f7743166ca5f2a62c48320db93c1df61434058d",
+          "listItemOrdinal": 2,
+          "sectionId": "heading-3",
+          "startLine": 14,
+          "endLine": 14,
+          "chars": 145,
+          "bytes": 145,
+          "terms": [
+            "when",
+            "per-option",
+            "metadata",
+            "pressure",
+            "requires",
+            "utf-16",
+            "length",
+            "truncation",
+            "move",
+            "the",
+            "boundary",
+            "back",
+            "one",
+            "code",
+            "unit",
+            "if",
+            "it",
+            "would",
+            "split",
+            "surrogate",
+            "pair"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      }
+    ],
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "truncated": true
+  },
+  "selection": {
+    "projectOwner": "d:/dev/mssr",
+    "sourceCount": 1,
+    "status": "selected",
+    "candidateCount": 10,
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "verification": "unverified",
+    "confidenceCalibration": "uncalibrated-provider-score",
+    "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+    "exactFetchRequired": true,
+    "autoApplyAllowed": false,
+    "candidateRangeDiagnostics": {
+      "offered": 10,
+      "eligible": 10,
+      "oversizedOmitted": 0,
+      "maxFetchChars": 20000,
+      "lengthUnit": "utf16-code-units"
+    },
+    "rangeOverlapDiagnostics": {
+      "sameSourceRevisionPairs": 45,
+      "overlappingPairCount": 18,
+      "nestedPairCount": 18,
+      "exactRangePairCount": 0,
+      "partialOverlapPairCount": 0,
+      "pairs": [
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            24
+          ],
+          "rightOptionId": "h002",
+          "rightRangeId": "heading-3",
+          "rightRangeKind": "section",
+          "rightLines": [
+            11,
+            17
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 676
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            24
+          ],
+          "rightOptionId": "h003",
+          "rightRangeId": "block-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            13,
+            16
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 661
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            24
+          ],
+          "rightOptionId": "h004",
+          "rightRangeId": "heading-2",
+          "rightRangeKind": "section",
+          "rightLines": [
+            3,
+            10
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 332
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            24
+          ],
+          "rightOptionId": "h005",
+          "rightRangeId": "block-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            5,
+            9
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 317
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            24
+          ],
+          "rightOptionId": "h006",
+          "rightRangeId": "block-1/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            5,
+            5
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 173
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            24
+          ],
+          "rightOptionId": "h007",
+          "rightRangeId": "heading-4",
+          "rightRangeKind": "section",
+          "rightLines": [
+            18,
+            24
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 397
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            24
+          ],
+          "rightOptionId": "h008",
+          "rightRangeId": "block-3",
+          "rightRangeKind": "block",
+          "rightLines": [
+            20,
+            24
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 379
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            24
+          ],
+          "rightOptionId": "h009",
+          "rightRangeId": "block-2/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            13,
+            13
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 126
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            24
+          ],
+          "rightOptionId": "h010",
+          "rightRangeId": "block-2/item-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            14,
+            14
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 145
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "heading-3",
+          "leftRangeKind": "section",
+          "leftLines": [
+            11,
+            17
+          ],
+          "rightOptionId": "h003",
+          "rightRangeId": "block-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            13,
+            16
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 661
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "heading-3",
+          "leftRangeKind": "section",
+          "leftLines": [
+            11,
+            17
+          ],
+          "rightOptionId": "h009",
+          "rightRangeId": "block-2/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            13,
+            13
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 126
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "heading-3",
+          "leftRangeKind": "section",
+          "leftLines": [
+            11,
+            17
+          ],
+          "rightOptionId": "h010",
+          "rightRangeId": "block-2/item-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            14,
+            14
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 145
+        },
+        {
+          "leftOptionId": "h003",
+          "leftRangeId": "block-2",
+          "leftRangeKind": "block",
+          "leftLines": [
+            13,
+            16
+          ],
+          "rightOptionId": "h009",
+          "rightRangeId": "block-2/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            13,
+            13
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 126
+        },
+        {
+          "leftOptionId": "h003",
+          "leftRangeId": "block-2",
+          "leftRangeKind": "block",
+          "leftLines": [
+            13,
+            16
+          ],
+          "rightOptionId": "h010",
+          "rightRangeId": "block-2/item-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            14,
+            14
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 145
+        },
+        {
+          "leftOptionId": "h004",
+          "leftRangeId": "heading-2",
+          "leftRangeKind": "section",
+          "leftLines": [
+            3,
+            10
+          ],
+          "rightOptionId": "h005",
+          "rightRangeId": "block-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            5,
+            9
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 317
+        },
+        {
+          "leftOptionId": "h004",
+          "leftRangeId": "heading-2",
+          "leftRangeKind": "section",
+          "leftLines": [
+            3,
+            10
+          ],
+          "rightOptionId": "h006",
+          "rightRangeId": "block-1/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            5,
+            5
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 173
+        },
+        {
+          "leftOptionId": "h005",
+          "leftRangeId": "block-1",
+          "leftRangeKind": "block",
+          "leftLines": [
+            5,
+            9
+          ],
+          "rightOptionId": "h006",
+          "rightRangeId": "block-1/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            5,
+            5
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 173
+        },
+        {
+          "leftOptionId": "h007",
+          "leftRangeId": "heading-4",
+          "leftRangeKind": "section",
+          "leftLines": [
+            18,
+            24
+          ],
+          "rightOptionId": "h008",
+          "rightRangeId": "block-3",
+          "rightRangeKind": "block",
+          "rightLines": [
+            20,
+            24
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 379
+        }
+      ],
+      "truncated": false,
+      "mutationApplied": false
+    },
+    "finalistCount": 10,
+    "selectionMode": "single-pass",
+    "selectionPasses": 1,
+    "providerCalls": 1,
+    "providerConfidence": 0.69,
+    "evidenceSufficiency": 0.76,
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "providersUsed": [
+      "typesafe-jev"
+    ],
+    "modelsUsed": [
+      "jev-1.13.0"
+    ],
+    "usage": {
+      "input_tokens": 1892,
+      "output_tokens": 147
+    },
+    "requestFingerprint": "e040d7ba0e216bdbbae5128d61f16bfcdbc92d6986a9206ef3edb652029539b9",
+    "elapsedMs": 709.9,
+    "jevCallMade": true,
+    "selected": {
+      "optionId": "h002",
+      "title": "Behavior",
+      "headingPath": [
+        "0.2.124 - 2026-10-11",
+        "Behavior"
+      ],
+      "handle": {
+        "version": 1,
+        "id": "c6dd3d089cfc6e3d1c2eb7267a231b0ab040dffcce80fb1a856d8e0123ecbc8b",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "changelogs/0.2.124.md",
+        "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 11,
+        "endLine": 17,
+        "startOffset": 356,
+        "endOffset": 1032,
+        "fingerprint": "6ac1efd868351601f380b944259428ed2b4f65c250aedef4b6e4304858c82944",
+        "privacyClass": "project-metadata"
+      }
+    },
+    "choiceCalls": [
+      {
+        "questionKey": "selection",
+        "offeredOptionIds": [
+          "h001",
+          "h002",
+          "h003",
+          "h004",
+          "h005",
+          "h006",
+          "h007",
+          "h008",
+          "h009",
+          "h010",
+          "none"
+        ],
+        "selectedOptionId": "h002",
+        "confidence": 0.69,
+        "probabilities": {
+          "h001": 0,
+          "h002": 0.72,
+          "h003": 0.17,
+          "h004": 0,
+          "h005": 0,
+          "h006": 0,
+          "h007": 0.01,
+          "h008": 0,
+          "h009": 0,
+          "h010": 0.05,
+          "none": 0.05
+        }
+      }
+    ]
+  },
+  "fetch": {
+    "projectOwner": "d:/dev/mssr",
+    "handle": {
+      "version": 1,
+      "id": "c6dd3d089cfc6e3d1c2eb7267a231b0ab040dffcce80fb1a856d8e0123ecbc8b",
+      "owner": "d:/dev/mssr",
+      "sourceRef": "changelogs/0.2.124.md",
+      "revision": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+      "rangeId": "heading-3",
+      "rangeKind": "section",
+      "startLine": 11,
+      "endLine": 17,
+      "startOffset": 356,
+      "endOffset": 1032,
+      "fingerprint": "6ac1efd868351601f380b944259428ed2b4f65c250aedef4b6e4304858c82944",
+      "privacyClass": "project-metadata"
+    },
+    "text": "## Behavior\n\n- Apply the existing heading-mode excerpt limit in Unicode code points, consistently with query-centered excerpt construction.\n- When per-option metadata pressure requires a UTF-16 length truncation, move the boundary back one code unit if it would split a surrogate pair.\n- Keep the public selector schema and production 260-character cap unchanged. No experimental cap override was added.\n- Persist five live Jev selection calls across three source-document clusters, with exact fetch checks for selected handles and a blind model-assisted review. The run is exploratory, not preregistered, owner-gold, or calibration evidence; all scores remain uncalibrated.\n\n",
+    "fingerprint": "6ac1efd868351601f380b944259428ed2b4f65c250aedef4b6e4304858c82944",
+    "advisoryOnly": true,
+    "truthAuthority": false
+  }
+}

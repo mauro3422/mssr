@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "reviewMode": "independent-model-assisted-blind-review",
+  "reviewBoundary": "Reviewers saw frozen queries, source snapshots/rubric, and exact fetched ranges only; Jev choices, scores, and provider records were withheld until judgments were returned.",
+  "ownerGold": false,
+  "cases": [
+    {
+      "id": "changelog-0.2.121",
+      "answerability": "answerable",
+      "requiredFacets": ["indentation-based continuation/nesting boundaries", "same-level siblings separated by visual indentation columns", "aggregate block IDs preserved", "range completeness does not establish semantic answer quality/calibration; confidence, authority, privacy, and canonical-write policy unchanged"],
+      "minimumAdequateSourceLines": [13, 16],
+      "reviewers": 2,
+      "agreement": true
+    },
+    {
+      "id": "changelog-0.2.124",
+      "answerability": "answerable",
+      "requiredFacets": ["heading excerpt cap uses Unicode code points", "UTF-16 truncation avoids splitting surrogate pairs", "public schema and production 260-character cap unchanged"],
+      "minimumAdequateSourceLines": [13, 15],
+      "reviewers": 2,
+      "agreement": true
+    },
+    {
+      "id": "changelog-0.2.125",
+      "answerability": "answerable",
+      "requiredFacets": ["line-span overlap is structural only", "exact selection/fetch does not establish semantic coverage", "complete exact evidence remains pending independent semantic review and never authorizes prose"],
+      "minimumAdequateSourceLines": [13, 14],
+      "reviewers": 2,
+      "agreement": true
+    }
+  ],
+  "limits": ["Three source-document clusters in one repository/authorship context.", "Model-assisted labels are not owner-gold, a holdout, or a reliability estimate.", "Raw Jev scores remain uncalibrated."]
+}

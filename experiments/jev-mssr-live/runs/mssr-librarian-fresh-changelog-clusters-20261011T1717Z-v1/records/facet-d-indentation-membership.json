@@ -1,0 +1,1093 @@
+{
+  "id": "facet-d-indentation-membership",
+  "query": "Across blank-separated Markdown lines, what condition keeps a continuation within a list item's exact range, and what boundaries stop it?",
+  "sourceRef": "changelogs/0.2.121.md",
+  "linkedToParentCluster": "changelog-0.2.121",
+  "search": {
+    "projectOwner": "d:/dev/mssr",
+    "sourceCount": 1,
+    "results": [
+      {
+        "handle": {
+          "version": 1,
+          "id": "377e10b0d26fc85f2840e141ccd3516df392f98881e32e880a26d2e21e2fb288",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 26,
+          "startOffset": 0,
+          "endOffset": 2548,
+          "fingerprint": "68cb0357c959591b4d71b0280aa698518a1ade86bb071116003a60b09be1a379",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 2548,
+        "exactFetchable": true,
+        "score": 0.733333,
+        "title": "0.2.121 - 2026-10-11",
+        "headingPath": [
+          "0.2.121 - 2026-10-11"
+        ],
+        "snippet": "# 0.2.121 - 2026-10-11 ## Contract - Summary: derive exact Librarian list-item ranges across blank-line-separated Markdown continuations and nested lists, including visually equivalent mixed tab/space sibling indentatio…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "headingPath": [
+            "0.2.121 - 2026-10-11"
+          ],
+          "level": 1,
+          "parentId": null,
+          "startLine": 1,
+          "endLine": 26,
+          "chars": 2548,
+          "bytes": 2548,
+          "terms": [
+            "2026-10-11",
+            "evidence",
+            "updated",
+            "sibling",
+            "across",
+            "aggregate",
+            "areas",
+            "blank-line-separated"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "b48ac89ede206bba49e746e7c2c9f6ecde62f86a09e8dd7903fb4b8bf32cbe0c",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "rangeId": "heading-3",
+          "rangeKind": "section",
+          "startLine": 11,
+          "endLine": 18,
+          "startOffset": 576,
+          "endOffset": 1597,
+          "fingerprint": "f2bee78d1cd2e52e6e0858cd2d6852493aad99f113aef865c832ba3f5264f11a",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 1021,
+        "exactFetchable": true,
+        "score": 0.6,
+        "title": "Behavior",
+        "headingPath": [
+          "0.2.121 - 2026-10-11",
+          "Behavior"
+        ],
+        "snippet": "## Behavior - Rebuild child list-item ranges from original source lines across blank separators only while indentation keeps the lines inside the list; stop before unindented prose or a heading. - Keep same-level siblin…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "headingPath": [
+            "0.2.121 - 2026-10-11",
+            "Behavior"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 11,
+          "endLine": 18,
+          "chars": 1021,
+          "bytes": 1021,
+          "terms": [
+            "behavior",
+            "lines",
+            "blank",
+            "evidence",
+            "exact",
+            "indentation",
+            "preserve",
+            "ranges"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "91168dcdec252d1c2040a5838abcd408e6239f9d07cb3ddccf36aac6dcd50844",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "startLine": 13,
+          "endLine": 17,
+          "startOffset": 589,
+          "endOffset": 1595,
+          "fingerprint": "07c65c5b5f8a5f861cdc366b6e5b6243849f1c959ec7cad66586514b9ec5d126",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 1006,
+        "exactFetchable": true,
+        "score": 0.6,
+        "title": "Behavior",
+        "headingPath": [
+          "0.2.121 - 2026-10-11",
+          "Behavior"
+        ],
+        "snippet": "- Rebuild child list-item ranges from original source lines across blank separators only while indentation keeps the lines inside the list; stop before unindented prose or a heading. - Keep same-level siblings in separa…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "headingPath": [
+            "0.2.121 - 2026-10-11",
+            "Behavior"
+          ],
+          "blockKind": "list",
+          "sectionId": "heading-3",
+          "startLine": 13,
+          "endLine": 17,
+          "chars": 1006,
+          "bytes": 1006,
+          "terms": [
+            "lines",
+            "blank",
+            "evidence",
+            "exact",
+            "indentation",
+            "preserve",
+            "ranges",
+            "runtime"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "7458beaf772246b78e9657555652fad6f59c6024f60af0f6dc277706e331e69a",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "startLine": 5,
+          "endLine": 9,
+          "startOffset": 37,
+          "endOffset": 574,
+          "fingerprint": "3c3a8c8e514edb02f7cb5870f02e1ab4f5e68d21ebd25157ff674e9af469da7c",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 537,
+        "exactFetchable": true,
+        "score": 0.333333,
+        "title": "Contract",
+        "headingPath": [
+          "0.2.121 - 2026-10-11",
+          "Contract"
+        ],
+        "snippet": "- Summary: derive exact Librarian list-item ranges across blank-line-separated Markdown continuations and nested lists, including visually equivalent mixed tab/space sibling indentation, while preserving sibling boundar…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "headingPath": [
+            "0.2.121 - 2026-10-11",
+            "Contract"
+          ],
+          "blockKind": "list",
+          "sectionId": "heading-2",
+          "startLine": 5,
+          "endLine": 9,
+          "chars": 537,
+          "bytes": 537,
+          "terms": [
+            "evidence",
+            "updated",
+            "sibling",
+            "across",
+            "aggregate",
+            "areas",
+            "blank-line-separated",
+            "block"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "e8fdcfee970159d85b677a9921cbcdfe7f87d3a732d8da6c0b410ea3bfac0940",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "rangeId": "block-2/item-1",
+          "rangeKind": "block",
+          "startLine": 13,
+          "endLine": 13,
+          "startOffset": 589,
+          "endOffset": 771,
+          "fingerprint": "1ee799b9788a6a29f8c82b0b23494f035b2103cc0fad8febb1a6ec85aecab55d",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 182,
+        "exactFetchable": true,
+        "score": 0.333333,
+        "title": "Behavior",
+        "headingPath": [
+          "0.2.121 - 2026-10-11",
+          "Behavior"
+        ],
+        "snippet": "- Rebuild child list-item ranges from original source lines across blank separators only while indentation keeps the lines inside the list; stop before unindented prose or a heading.",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "headingPath": [
+            "0.2.121 - 2026-10-11",
+            "Behavior"
+          ],
+          "blockKind": "list-item",
+          "parentBlockId": "block-2",
+          "parentBlockFingerprint": "07c65c5b5f8a5f861cdc366b6e5b6243849f1c959ec7cad66586514b9ec5d126",
+          "listItemOrdinal": 1,
+          "sectionId": "heading-3",
+          "startLine": 13,
+          "endLine": 13,
+          "chars": 182,
+          "bytes": 182,
+          "terms": [
+            "rebuild",
+            "child",
+            "list-item",
+            "ranges",
+            "from",
+            "original",
+            "source",
+            "lines",
+            "across",
+            "blank",
+            "separators",
+            "only",
+            "while",
+            "indentation",
+            "keeps",
+            "the",
+            "inside",
+            "list",
+            "stop",
+            "before",
+            "unindented",
+            "prose",
+            "or",
+            "heading"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "02bcad93c0146f60ecf1787702cfad27650c0b4ba3efc836d216d0bc496206b7",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "rangeId": "block-2/item-2",
+          "rangeKind": "block",
+          "startLine": 14,
+          "endLine": 14,
+          "startOffset": 772,
+          "endOffset": 979,
+          "fingerprint": "9d29c15d3240b64077abda231eda762fcc20d984a0cf80cb483bc1f70ae86a39",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 207,
+        "exactFetchable": true,
+        "score": 0.333333,
+        "title": "Behavior",
+        "headingPath": [
+          "0.2.121 - 2026-10-11",
+          "Behavior"
+        ],
+        "snippet": "- Keep same-level siblings in separate exact ranges by visual indentation columns, preserve nested and continuation lines with their parent item, and exclude trailing blank separators from the fetched range.",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "headingPath": [
+            "0.2.121 - 2026-10-11",
+            "Behavior"
+          ],
+          "blockKind": "list-item",
+          "parentBlockId": "block-2",
+          "parentBlockFingerprint": "07c65c5b5f8a5f861cdc366b6e5b6243849f1c959ec7cad66586514b9ec5d126",
+          "listItemOrdinal": 2,
+          "sectionId": "heading-3",
+          "startLine": 14,
+          "endLine": 14,
+          "chars": 207,
+          "bytes": 207,
+          "terms": [
+            "keep",
+            "same-level",
+            "siblings",
+            "in",
+            "separate",
+            "exact",
+            "ranges",
+            "by",
+            "visual",
+            "indentation",
+            "columns",
+            "preserve",
+            "nested",
+            "and",
+            "continuation",
+            "lines",
+            "with",
+            "their",
+            "parent",
+            "item",
+            "exclude",
+            "trailing",
+            "blank",
+            "separators",
+            "from",
+            "the",
+            "fetched",
+            "range"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "73fef24b8d087c6271dcd528ba55eae554140db449c682e9cd002804ce8240a9",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "startLine": 3,
+          "endLine": 10,
+          "startOffset": 24,
+          "endOffset": 576,
+          "fingerprint": "4ff8f0583f86607798ed8abf2517e53efaa73088a97434e55650c743f7b1e1ec",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 552,
+        "exactFetchable": true,
+        "score": 0.266667,
+        "title": "Contract",
+        "headingPath": [
+          "0.2.121 - 2026-10-11",
+          "Contract"
+        ],
+        "snippet": "## Contract - Summary: derive exact Librarian list-item ranges across blank-line-separated Markdown continuations and nested lists, including visually equivalent mixed tab/space sibling indentation, while preserving sib…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "headingPath": [
+            "0.2.121 - 2026-10-11",
+            "Contract"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 3,
+          "endLine": 10,
+          "chars": 552,
+          "bytes": 552,
+          "terms": [
+            "contract",
+            "evidence",
+            "updated",
+            "sibling",
+            "across",
+            "aggregate",
+            "areas",
+            "blank-line-separated"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "21732b05f39c52545498f18ad12d091837c59085383c6e2112cf8d5b7048cc88",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "rangeId": "block-1/item-1",
+          "rangeKind": "block",
+          "startLine": 5,
+          "endLine": 5,
+          "startOffset": 37,
+          "endOffset": 391,
+          "fingerprint": "b27fdaa5450fa0305e822533f2d5ddc1356320101a77b59d8cc5b266cee34d58",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 354,
+        "exactFetchable": true,
+        "score": 0.266667,
+        "title": "Contract",
+        "headingPath": [
+          "0.2.121 - 2026-10-11",
+          "Contract"
+        ],
+        "snippet": "- Summary: derive exact Librarian list-item ranges across blank-line-separated Markdown continuations and nested lists, including visually equivalent mixed tab/space sibling indentation, while preserving sibling boundar…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "headingPath": [
+            "0.2.121 - 2026-10-11",
+            "Contract"
+          ],
+          "blockKind": "list-item",
+          "parentBlockId": "block-1",
+          "parentBlockFingerprint": "3c3a8c8e514edb02f7cb5870f02e1ab4f5e68d21ebd25157ff674e9af469da7c",
+          "listItemOrdinal": 1,
+          "sectionId": "heading-2",
+          "startLine": 5,
+          "endLine": 5,
+          "chars": 354,
+          "bytes": 354,
+          "terms": [
+            "summary",
+            "derive",
+            "exact",
+            "librarian",
+            "list-item",
+            "ranges",
+            "across",
+            "blank-line-separated",
+            "markdown",
+            "continuations",
+            "and",
+            "nested",
+            "lists",
+            "including",
+            "visually",
+            "equivalent",
+            "mixed",
+            "tab",
+            "space",
+            "sibling",
+            "indentation",
+            "while",
+            "preserving",
+            "boundaries",
+            "aggregate",
+            "document",
+            "surface",
+            "block",
+            "ids",
+            "compact",
+            "split",
+            "over-budget",
+            "project",
+            "context",
+            "references",
+            "without",
+            "changing",
+            "evidence",
+            "bytes"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "4859771604197907e464ab1977535734191274f7311f453e37996b08b73d5dd3",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "startLine": 21,
+          "endLine": 26,
+          "startOffset": 1614,
+          "endOffset": 2547,
+          "fingerprint": "72be593bb6ce89aace4c0a2810e2ba8a9bad17fa0af6024817f6e87b5d5dd63a",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 933,
+        "exactFetchable": true,
+        "score": 0.2,
+        "title": "Verification",
+        "headingPath": [
+          "0.2.121 - 2026-10-11",
+          "Verification"
+        ],
+        "snippet": "…plementation change on the blank-line-separated parent/continuation/nested/sibling case. - `npm run build` passed after implementation. - `npm run test:librarian-contract` passed, including contract, retrieval, Jev sel…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "headingPath": [
+            "0.2.121 - 2026-10-11",
+            "Verification"
+          ],
+          "blockKind": "list",
+          "sectionId": "heading-4",
+          "startLine": 21,
+          "endLine": 26,
+          "chars": 933,
+          "bytes": 933,
+          "terms": [
+            "npm",
+            "run",
+            "passed",
+            "mssr",
+            "after",
+            "bridge",
+            "hash",
+            "implementation"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "80505a892d1b8550b9b21c633b5d46b94fb91b400a74516928f08f2ae084b214",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "rangeId": "heading-4",
+          "rangeKind": "section",
+          "startLine": 19,
+          "endLine": 26,
+          "startOffset": 1597,
+          "endOffset": 2548,
+          "fingerprint": "32216546fe6194dca8c633a7d87271f18cdd114e6eb51eef931af53e51442cbc",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 951,
+        "exactFetchable": true,
+        "score": 0.133333,
+        "title": "Verification",
+        "headingPath": [
+          "0.2.121 - 2026-10-11",
+          "Verification"
+        ],
+        "snippet": "…plementation change on the blank-line-separated parent/continuation/nested/sibling case. - `npm run build` passed after implementation. - `npm run test:librarian-contract` passed, including contract, retrieval, Jev sel…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.121.md",
+          "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+          "headingPath": [
+            "0.2.121 - 2026-10-11",
+            "Verification"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 19,
+          "endLine": 26,
+          "chars": 951,
+          "bytes": 951,
+          "terms": [
+            "verification",
+            "npm",
+            "run",
+            "passed",
+            "mssr",
+            "after",
+            "bridge",
+            "hash"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      }
+    ],
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "truncated": true
+  },
+  "selection": {
+    "projectOwner": "d:/dev/mssr",
+    "sourceCount": 1,
+    "status": "selected",
+    "candidateCount": 10,
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "verification": "unverified",
+    "confidenceCalibration": "uncalibrated-provider-score",
+    "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+    "exactFetchRequired": true,
+    "autoApplyAllowed": false,
+    "candidateRangeDiagnostics": {
+      "offered": 10,
+      "eligible": 10,
+      "oversizedOmitted": 0,
+      "maxFetchChars": 20000,
+      "lengthUnit": "utf16-code-units"
+    },
+    "rangeOverlapDiagnostics": {
+      "sameSourceRevisionPairs": 45,
+      "overlappingPairCount": 18,
+      "nestedPairCount": 18,
+      "exactRangePairCount": 0,
+      "partialOverlapPairCount": 0,
+      "pairs": [
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            26
+          ],
+          "rightOptionId": "h002",
+          "rightRangeId": "heading-3",
+          "rightRangeKind": "section",
+          "rightLines": [
+            11,
+            18
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 1021
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            26
+          ],
+          "rightOptionId": "h003",
+          "rightRangeId": "block-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            13,
+            17
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 1006
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            26
+          ],
+          "rightOptionId": "h004",
+          "rightRangeId": "block-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            5,
+            9
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 537
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            26
+          ],
+          "rightOptionId": "h005",
+          "rightRangeId": "block-2/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            13,
+            13
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 182
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            26
+          ],
+          "rightOptionId": "h006",
+          "rightRangeId": "block-2/item-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            14,
+            14
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 207
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            26
+          ],
+          "rightOptionId": "h007",
+          "rightRangeId": "heading-2",
+          "rightRangeKind": "section",
+          "rightLines": [
+            3,
+            10
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 552
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            26
+          ],
+          "rightOptionId": "h008",
+          "rightRangeId": "block-1/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            5,
+            5
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 354
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            26
+          ],
+          "rightOptionId": "h009",
+          "rightRangeId": "block-3",
+          "rightRangeKind": "block",
+          "rightLines": [
+            21,
+            26
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 933
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            26
+          ],
+          "rightOptionId": "h010",
+          "rightRangeId": "heading-4",
+          "rightRangeKind": "section",
+          "rightLines": [
+            19,
+            26
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 951
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "heading-3",
+          "leftRangeKind": "section",
+          "leftLines": [
+            11,
+            18
+          ],
+          "rightOptionId": "h003",
+          "rightRangeId": "block-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            13,
+            17
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 1006
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "heading-3",
+          "leftRangeKind": "section",
+          "leftLines": [
+            11,
+            18
+          ],
+          "rightOptionId": "h005",
+          "rightRangeId": "block-2/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            13,
+            13
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 182
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "heading-3",
+          "leftRangeKind": "section",
+          "leftLines": [
+            11,
+            18
+          ],
+          "rightOptionId": "h006",
+          "rightRangeId": "block-2/item-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            14,
+            14
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 207
+        },
+        {
+          "leftOptionId": "h003",
+          "leftRangeId": "block-2",
+          "leftRangeKind": "block",
+          "leftLines": [
+            13,
+            17
+          ],
+          "rightOptionId": "h005",
+          "rightRangeId": "block-2/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            13,
+            13
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 182
+        },
+        {
+          "leftOptionId": "h003",
+          "leftRangeId": "block-2",
+          "leftRangeKind": "block",
+          "leftLines": [
+            13,
+            17
+          ],
+          "rightOptionId": "h006",
+          "rightRangeId": "block-2/item-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            14,
+            14
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 207
+        },
+        {
+          "leftOptionId": "h004",
+          "leftRangeId": "block-1",
+          "leftRangeKind": "block",
+          "leftLines": [
+            5,
+            9
+          ],
+          "rightOptionId": "h007",
+          "rightRangeId": "heading-2",
+          "rightRangeKind": "section",
+          "rightLines": [
+            3,
+            10
+          ],
+          "relation": "right-contains-left",
+          "overlapCodeUnits": 537
+        },
+        {
+          "leftOptionId": "h004",
+          "leftRangeId": "block-1",
+          "leftRangeKind": "block",
+          "leftLines": [
+            5,
+            9
+          ],
+          "rightOptionId": "h008",
+          "rightRangeId": "block-1/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            5,
+            5
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 354
+        },
+        {
+          "leftOptionId": "h007",
+          "leftRangeId": "heading-2",
+          "leftRangeKind": "section",
+          "leftLines": [
+            3,
+            10
+          ],
+          "rightOptionId": "h008",
+          "rightRangeId": "block-1/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            5,
+            5
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 354
+        },
+        {
+          "leftOptionId": "h009",
+          "leftRangeId": "block-3",
+          "leftRangeKind": "block",
+          "leftLines": [
+            21,
+            26
+          ],
+          "rightOptionId": "h010",
+          "rightRangeId": "heading-4",
+          "rightRangeKind": "section",
+          "rightLines": [
+            19,
+            26
+          ],
+          "relation": "right-contains-left",
+          "overlapCodeUnits": 933
+        }
+      ],
+      "truncated": false,
+      "mutationApplied": false
+    },
+    "finalistCount": 10,
+    "selectionMode": "single-pass",
+    "selectionPasses": 1,
+    "providerCalls": 1,
+    "providerConfidence": 0.77,
+    "evidenceSufficiency": 0.88,
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "providersUsed": [
+      "typesafe-jev"
+    ],
+    "modelsUsed": [
+      "jev-1.13.0"
+    ],
+    "usage": {
+      "input_tokens": 1885,
+      "output_tokens": 147
+    },
+    "requestFingerprint": "a72117f29d6ed829f4317aae59638a0e14276d6d2315c9ac11686a33c1d1a616",
+    "elapsedMs": 751.2,
+    "jevCallMade": true,
+    "selected": {
+      "optionId": "h005",
+      "title": "Behavior",
+      "headingPath": [
+        "0.2.121 - 2026-10-11",
+        "Behavior"
+      ],
+      "handle": {
+        "version": 1,
+        "id": "e8fdcfee970159d85b677a9921cbcdfe7f87d3a732d8da6c0b410ea3bfac0940",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "changelogs/0.2.121.md",
+        "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+        "rangeId": "block-2/item-1",
+        "rangeKind": "block",
+        "startLine": 13,
+        "endLine": 13,
+        "startOffset": 589,
+        "endOffset": 771,
+        "fingerprint": "1ee799b9788a6a29f8c82b0b23494f035b2103cc0fad8febb1a6ec85aecab55d",
+        "privacyClass": "project-metadata"
+      }
+    },
+    "choiceCalls": [
+      {
+        "questionKey": "selection",
+        "offeredOptionIds": [
+          "h001",
+          "h002",
+          "h003",
+          "h004",
+          "h005",
+          "h006",
+          "h007",
+          "h008",
+          "h009",
+          "h010",
+          "none"
+        ],
+        "selectedOptionId": "h005",
+        "confidence": 0.77,
+        "probabilities": {
+          "h001": 0,
+          "h002": 0.09,
+          "h003": 0.11,
+          "h004": 0,
+          "h005": 0.79,
+          "h006": 0.01,
+          "h007": 0,
+          "h008": 0,
+          "h009": 0,
+          "h010": 0,
+          "none": 0
+        }
+      }
+    ]
+  },
+  "fetch": {
+    "projectOwner": "d:/dev/mssr",
+    "handle": {
+      "version": 1,
+      "id": "e8fdcfee970159d85b677a9921cbcdfe7f87d3a732d8da6c0b410ea3bfac0940",
+      "owner": "d:/dev/mssr",
+      "sourceRef": "changelogs/0.2.121.md",
+      "revision": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+      "rangeId": "block-2/item-1",
+      "rangeKind": "block",
+      "startLine": 13,
+      "endLine": 13,
+      "startOffset": 589,
+      "endOffset": 771,
+      "fingerprint": "1ee799b9788a6a29f8c82b0b23494f035b2103cc0fad8febb1a6ec85aecab55d",
+      "privacyClass": "project-metadata"
+    },
+    "text": "- Rebuild child list-item ranges from original source lines across blank separators only while indentation keeps the lines inside the list; stop before unindented prose or a heading.",
+    "fingerprint": "1ee799b9788a6a29f8c82b0b23494f035b2103cc0fad8febb1a6ec85aecab55d",
+    "advisoryOnly": true,
+    "truthAuthority": false
+  }
+}

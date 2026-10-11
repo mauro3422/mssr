@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-fresh-changelog-clusters-20261011T1717Z-v1",
+  "frozenAt": "2026-10-11T17:17:21Z",
+  "projectRoot": "D:/Dev/mssr",
+  "status": "pre-call-frozen",
+  "method": "Three focused real-Bridge search -> Jev Choice -> exact-fetch cases over distinct source-document clusters. Query text frozen before live calls; only exact handles for each listed source are passed to Jev. No labels or acceptance criteria sent to Jev. Group by source document; do not treat repeated facets as independent.",
+  "provider": "typesafe-jev",
+  "expectedModel": "jev-1.13.0",
+  "runtimeBootId": "adf97c06-a668-4ff9-a187-c12ab058bff2",
+  "mssrBridgeRuntime": "Bridge 0.6.169 / MSSR 0.2.121",
+  "cases": [
+    {
+      "id": "changelog-0.2.121",
+      "sourceRef": "changelogs/0.2.121.md",
+      "frozenInput": "inputs/changelog-0.2.121.md",
+      "sourceSha256": "09cdf497bfbb596008b93e6317f55577af2746597d5b0b0b1fd192df66b866db",
+      "query": "What changed about exact list-item ranges in 0.2.121, and what does that change explicitly leave unproven?",
+      "expectedEvidenceLocation": "lines 13-16"
+    },
+    {
+      "id": "changelog-0.2.124",
+      "sourceRef": "changelogs/0.2.124.md",
+      "frozenInput": "inputs/changelog-0.2.124.md",
+      "sourceSha256": "37884ed3307f614b2a6ace7e16b71fe7be4ad6b150716ee59ba991c31ee1b5c0",
+      "query": "How does 0.2.124 avoid malformed Unicode during truncation, and did it change the public excerpt cap?",
+      "expectedEvidenceLocation": "lines 13-15"
+    },
+    {
+      "id": "changelog-0.2.125",
+      "sourceRef": "changelogs/0.2.125.md",
+      "frozenInput": "inputs/changelog-0.2.125.md",
+      "sourceSha256": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+      "query": "When may the composed harness say synthesis is ready, and what does exact facet evidence mean?",
+      "expectedEvidenceLocation": "lines 13-15"
+    }
+  ]
+}

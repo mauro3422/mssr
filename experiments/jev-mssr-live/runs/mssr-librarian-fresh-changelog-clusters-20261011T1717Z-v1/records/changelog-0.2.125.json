@@ -1,0 +1,1088 @@
+{
+  "caseId": "changelog-0.2.125",
+  "query": "When may the composed harness say synthesis is ready, and what does exact facet evidence mean?",
+  "sourceRef": "changelogs/0.2.125.md",
+  "search": {
+    "projectOwner": "d:/dev/mssr",
+    "sourceCount": 1,
+    "results": [
+      {
+        "handle": {
+          "version": 1,
+          "id": "37d40eb01c537920c588eaefb4a42268f92c6f30784a734556dd38b2d4a4bade",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 23,
+          "startOffset": 0,
+          "endOffset": 1503,
+          "fingerprint": "1755b35815df01f191d26cf04d60ed8f35d06ed1e88d21ea5c096b245d22ae6a",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 1503,
+        "exactFetchable": true,
+        "score": 0.6,
+        "title": "0.2.125 - 2026-10-11",
+        "headingPath": [
+          "0.2.125 - 2026-10-11"
+        ],
+        "snippet": "# 0.2.125 - 2026-10-11 ## Contract - Summary: make the composed Librarian experiment harness report exact facet-evidence completeness separately from semantic coverage and answer-synthesis readiness. - Areas: Librarian …",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "headingPath": [
+            "0.2.125 - 2026-10-11"
+          ],
+          "level": 1,
+          "parentId": null,
+          "startLine": 1,
+          "endLine": 23,
+          "chars": 1503,
+          "bytes": 1503,
+          "terms": [
+            "2026-10-11",
+            "experiment",
+            "harness",
+            "librarian",
+            "reviewed-none",
+            "answer-synthesis",
+            "areas",
+            "completeness"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "c181268552f2d1974d0aa9853848b32a5e6cd6cefad272bd608d5245ac441102",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "rangeId": "heading-3",
+          "rangeKind": "section",
+          "startLine": 11,
+          "endLine": 16,
+          "startOffset": 354,
+          "endOffset": 998,
+          "fingerprint": "c1fde12f11e3ef934b6c2e35655ffcd4b4ba4907e7d6d1da8b12824dfb1805bf",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 644,
+        "exactFetchable": true,
+        "score": 0.5,
+        "title": "Behavior",
+        "headingPath": [
+          "0.2.125 - 2026-10-11",
+          "Behavior"
+        ],
+        "snippet": "…ic only. The replay now reports whether every required facet has a selected, exact-fetched receipt, while semantic coverage remains `unknown` and owner gold remains false. - Block answer synthesis when any facet abstai…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "headingPath": [
+            "0.2.125 - 2026-10-11",
+            "Behavior"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 11,
+          "endLine": 16,
+          "chars": 644,
+          "bytes": 644,
+          "terms": [
+            "behavior",
+            "facet",
+            "answer",
+            "every",
+            "evidence",
+            "exact",
+            "fetched",
+            "production"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "ac8bf20a4931c617afbc6d77b9ce16d6e20aa28ffe1f208cef7cb0b46e23f19a",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "startLine": 13,
+          "endLine": 15,
+          "startOffset": 367,
+          "endOffset": 996,
+          "fingerprint": "e12b721e63324aecd23d0211b538ba91eadc221c8495f416f800c8b8762918e1",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 629,
+        "exactFetchable": true,
+        "score": 0.5,
+        "title": "Behavior",
+        "headingPath": [
+          "0.2.125 - 2026-10-11",
+          "Behavior"
+        ],
+        "snippet": "…ic only. The replay now reports whether every required facet has a selected, exact-fetched receipt, while semantic coverage remains `unknown` and owner gold remains false. - Block answer synthesis when any facet abstai…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "headingPath": [
+            "0.2.125 - 2026-10-11",
+            "Behavior"
+          ],
+          "blockKind": "list",
+          "sectionId": "heading-3",
+          "startLine": 13,
+          "endLine": 15,
+          "chars": 629,
+          "bytes": 629,
+          "terms": [
+            "facet",
+            "answer",
+            "every",
+            "evidence",
+            "exact",
+            "fetched",
+            "production",
+            "remains"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "e0764f8f68461e24aebc61381bb294ffe8992ce901b3067705749e888267d0c1",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "rangeId": "block-2/item-2",
+          "rangeKind": "block",
+          "startLine": 14,
+          "endLine": 14,
+          "startOffset": 584,
+          "endOffset": 809,
+          "fingerprint": "bf046ec8a66c949e30159c222c87f5489346141ea6da2f3028a809cd891385a5",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 225,
+        "exactFetchable": true,
+        "score": 0.5,
+        "title": "Behavior",
+        "headingPath": [
+          "0.2.125 - 2026-10-11",
+          "Behavior"
+        ],
+        "snippet": "- Block answer synthesis when any facet abstains or lacks exact fetched evidence. When every facet has exact fetched evidence, report `pending-independent-semantic-review`; the harness never authorizes generated answer …",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "headingPath": [
+            "0.2.125 - 2026-10-11",
+            "Behavior"
+          ],
+          "blockKind": "list-item",
+          "parentBlockId": "block-2",
+          "parentBlockFingerprint": "e12b721e63324aecd23d0211b538ba91eadc221c8495f416f800c8b8762918e1",
+          "listItemOrdinal": 2,
+          "sectionId": "heading-3",
+          "startLine": 14,
+          "endLine": 14,
+          "chars": 225,
+          "bytes": 225,
+          "terms": [
+            "block",
+            "answer",
+            "synthesis",
+            "when",
+            "any",
+            "facet",
+            "abstains",
+            "or",
+            "lacks",
+            "exact",
+            "fetched",
+            "evidence",
+            "every",
+            "has",
+            "report",
+            "pending-independent-semantic-review",
+            "the",
+            "harness",
+            "never",
+            "authorizes",
+            "generated",
+            "prose"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "03f1a2eb3afdad8af2e6e06be01777cc4102ffe123d41cfbc49f253294bc2b0d",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "startLine": 3,
+          "endLine": 10,
+          "startOffset": 24,
+          "endOffset": 354,
+          "fingerprint": "92284eec5b63eff1bf7a760932d5ce4e74da73c5484c6b2a3270821821e41730",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 330,
+        "exactFetchable": true,
+        "score": 0.3,
+        "title": "Contract",
+        "headingPath": [
+          "0.2.125 - 2026-10-11",
+          "Contract"
+        ],
+        "snippet": "## Contract - Summary: make the composed Librarian experiment harness report exact facet-evidence completeness separately from semantic coverage and answer-synthesis readiness. - Areas: Librarian experiment harness, ver…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "headingPath": [
+            "0.2.125 - 2026-10-11",
+            "Contract"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 3,
+          "endLine": 10,
+          "chars": 330,
+          "bytes": 330,
+          "terms": [
+            "contract",
+            "experiment",
+            "harness",
+            "librarian",
+            "reviewed-none",
+            "answer-synthesis",
+            "areas",
+            "completeness"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "83b60eeb19612ec3cdc1ca3c61065adbf59080c98f94c2eb46f3f9a87358e7f4",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "startLine": 5,
+          "endLine": 9,
+          "startOffset": 37,
+          "endOffset": 352,
+          "fingerprint": "b4f9acc3ff454caa662b7b18d1d8affbea6a52beb8435743ab6922a76f2842e2",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 315,
+        "exactFetchable": true,
+        "score": 0.3,
+        "title": "Contract",
+        "headingPath": [
+          "0.2.125 - 2026-10-11",
+          "Contract"
+        ],
+        "snippet": "- Summary: make the composed Librarian experiment harness report exact facet-evidence completeness separately from semantic coverage and answer-synthesis readiness. - Areas: Librarian experiment harness, verification fi…",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "headingPath": [
+            "0.2.125 - 2026-10-11",
+            "Contract"
+          ],
+          "blockKind": "list",
+          "sectionId": "heading-2",
+          "startLine": 5,
+          "endLine": 9,
+          "chars": 315,
+          "bytes": 315,
+          "terms": [
+            "experiment",
+            "harness",
+            "librarian",
+            "reviewed-none",
+            "answer-synthesis",
+            "areas",
+            "completeness",
+            "composed"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "b91efd7f8274194333bb97df1cd78aef6fa83281f6f34855c4b0ac9313976a05",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "rangeId": "block-1/item-1",
+          "rangeKind": "block",
+          "startLine": 5,
+          "endLine": 5,
+          "startOffset": 37,
+          "endOffset": 201,
+          "fingerprint": "85869ffd287f7afb9c85d3c89e2ef19cabc7f94305a001191b01f078e0f771bb",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 164,
+        "exactFetchable": true,
+        "score": 0.3,
+        "title": "Contract",
+        "headingPath": [
+          "0.2.125 - 2026-10-11",
+          "Contract"
+        ],
+        "snippet": "- Summary: make the composed Librarian experiment harness report exact facet-evidence completeness separately from semantic coverage and answer-synthesis readiness.",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "headingPath": [
+            "0.2.125 - 2026-10-11",
+            "Contract"
+          ],
+          "blockKind": "list-item",
+          "parentBlockId": "block-1",
+          "parentBlockFingerprint": "b4f9acc3ff454caa662b7b18d1d8affbea6a52beb8435743ab6922a76f2842e2",
+          "listItemOrdinal": 1,
+          "sectionId": "heading-2",
+          "startLine": 5,
+          "endLine": 5,
+          "chars": 164,
+          "bytes": 164,
+          "terms": [
+            "summary",
+            "make",
+            "the",
+            "composed",
+            "librarian",
+            "experiment",
+            "harness",
+            "report",
+            "exact",
+            "facet-evidence",
+            "completeness",
+            "separately",
+            "from",
+            "semantic",
+            "coverage",
+            "and",
+            "answer-synthesis",
+            "readiness"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "4836e9df83cedb780a2324f8fc8cdee405c94261633edd72c78dd6d1a84e02b5",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "rangeId": "block-1/item-2",
+          "rangeKind": "block",
+          "startLine": 6,
+          "endLine": 6,
+          "startOffset": 202,
+          "endOffset": 262,
+          "fingerprint": "759f4615b033abfe3cecb8c31fef6bf973a2448dabb71c7f7d3d1dcc71c84e72",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 60,
+        "exactFetchable": true,
+        "score": 0.1,
+        "title": "Contract",
+        "headingPath": [
+          "0.2.125 - 2026-10-11",
+          "Contract"
+        ],
+        "snippet": "- Areas: Librarian experiment harness, verification fixtures",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "headingPath": [
+            "0.2.125 - 2026-10-11",
+            "Contract"
+          ],
+          "blockKind": "list-item",
+          "parentBlockId": "block-1",
+          "parentBlockFingerprint": "b4f9acc3ff454caa662b7b18d1d8affbea6a52beb8435743ab6922a76f2842e2",
+          "listItemOrdinal": 2,
+          "sectionId": "heading-2",
+          "startLine": 6,
+          "endLine": 6,
+          "chars": 60,
+          "bytes": 60,
+          "terms": [
+            "areas",
+            "librarian",
+            "experiment",
+            "harness",
+            "verification",
+            "fixtures"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "16402e564c6cfa25d0b1f6d4e67256aa35a16f4fa011dcebe6ef0a90ad180792",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "rangeId": "block-2/item-1",
+          "rangeKind": "block",
+          "startLine": 13,
+          "endLine": 13,
+          "startOffset": 367,
+          "endOffset": 583,
+          "fingerprint": "2e993e007c5869bc80dc7c3a32ecf82de25c606d4b6bed41f2d0d83384a0bf30",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 216,
+        "exactFetchable": true,
+        "score": 0.1,
+        "title": "Behavior",
+        "headingPath": [
+          "0.2.125 - 2026-10-11",
+          "Behavior"
+        ],
+        "snippet": "- Keep line-span overlap as a structural metric only. The replay now reports whether every required facet has a selected, exact-fetched receipt, while semantic coverage remains `unknown` and owner gold remains false.",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "headingPath": [
+            "0.2.125 - 2026-10-11",
+            "Behavior"
+          ],
+          "blockKind": "list-item",
+          "parentBlockId": "block-2",
+          "parentBlockFingerprint": "e12b721e63324aecd23d0211b538ba91eadc221c8495f416f800c8b8762918e1",
+          "listItemOrdinal": 1,
+          "sectionId": "heading-3",
+          "startLine": 13,
+          "endLine": 13,
+          "chars": 216,
+          "bytes": 216,
+          "terms": [
+            "keep",
+            "line-span",
+            "overlap",
+            "as",
+            "structural",
+            "metric",
+            "only",
+            "the",
+            "replay",
+            "now",
+            "reports",
+            "whether",
+            "every",
+            "required",
+            "facet",
+            "has",
+            "selected",
+            "exact-fetched",
+            "receipt",
+            "while",
+            "semantic",
+            "coverage",
+            "remains",
+            "unknown",
+            "and",
+            "owner",
+            "gold",
+            "false"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "a0a049e30d205c18d0ca3bed758f4c6106d5ca98190ea65f46612a16b72a4390",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "rangeId": "heading-4",
+          "rangeKind": "section",
+          "startLine": 17,
+          "endLine": 23,
+          "startOffset": 998,
+          "endOffset": 1503,
+          "fingerprint": "406d5f5f32f508b51f2ae256dcb6137d6a6053f3610e44fda4b3bed4d374c045",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 505,
+        "exactFetchable": true,
+        "score": 0.1,
+        "title": "Verification",
+        "headingPath": [
+          "0.2.125 - 2026-10-11",
+          "Verification"
+        ],
+        "snippet": "## Verification - `node scripts/test-composed-librarian-experiment.mjs` passes selected, abstained, all-abstain, exact-fetch and persisted replay gates. - `npm run test:librarian-contract` passes. - The composed replay …",
+        "metadata": {
+          "sourceRef": "changelogs/0.2.125.md",
+          "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+          "headingPath": [
+            "0.2.125 - 2026-10-11",
+            "Verification"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 17,
+          "endLine": 23,
+          "chars": 505,
+          "bytes": 505,
+          "terms": [
+            "verification",
+            "npm",
+            "run",
+            "passes",
+            "replay",
+            "runtime",
+            "test",
+            "abstained"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      }
+    ],
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "truncated": true
+  },
+  "selection": {
+    "projectOwner": "d:/dev/mssr",
+    "sourceCount": 1,
+    "status": "selected",
+    "candidateCount": 10,
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "verification": "unverified",
+    "confidenceCalibration": "uncalibrated-provider-score",
+    "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+    "exactFetchRequired": true,
+    "autoApplyAllowed": false,
+    "candidateRangeDiagnostics": {
+      "offered": 10,
+      "eligible": 10,
+      "oversizedOmitted": 0,
+      "maxFetchChars": 20000,
+      "lengthUnit": "utf16-code-units"
+    },
+    "rangeOverlapDiagnostics": {
+      "sameSourceRevisionPairs": 45,
+      "overlappingPairCount": 19,
+      "nestedPairCount": 19,
+      "exactRangePairCount": 0,
+      "partialOverlapPairCount": 0,
+      "pairs": [
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            23
+          ],
+          "rightOptionId": "h002",
+          "rightRangeId": "heading-3",
+          "rightRangeKind": "section",
+          "rightLines": [
+            11,
+            16
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 644
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            23
+          ],
+          "rightOptionId": "h003",
+          "rightRangeId": "block-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            13,
+            15
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 629
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            23
+          ],
+          "rightOptionId": "h004",
+          "rightRangeId": "block-2/item-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            14,
+            14
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 225
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            23
+          ],
+          "rightOptionId": "h005",
+          "rightRangeId": "heading-2",
+          "rightRangeKind": "section",
+          "rightLines": [
+            3,
+            10
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 330
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            23
+          ],
+          "rightOptionId": "h006",
+          "rightRangeId": "block-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            5,
+            9
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 315
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            23
+          ],
+          "rightOptionId": "h007",
+          "rightRangeId": "block-1/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            5,
+            5
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 164
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            23
+          ],
+          "rightOptionId": "h008",
+          "rightRangeId": "block-1/item-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            6,
+            6
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 60
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            23
+          ],
+          "rightOptionId": "h009",
+          "rightRangeId": "block-2/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            13,
+            13
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 216
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            23
+          ],
+          "rightOptionId": "h010",
+          "rightRangeId": "heading-4",
+          "rightRangeKind": "section",
+          "rightLines": [
+            17,
+            23
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 505
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "heading-3",
+          "leftRangeKind": "section",
+          "leftLines": [
+            11,
+            16
+          ],
+          "rightOptionId": "h003",
+          "rightRangeId": "block-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            13,
+            15
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 629
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "heading-3",
+          "leftRangeKind": "section",
+          "leftLines": [
+            11,
+            16
+          ],
+          "rightOptionId": "h004",
+          "rightRangeId": "block-2/item-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            14,
+            14
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 225
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "heading-3",
+          "leftRangeKind": "section",
+          "leftLines": [
+            11,
+            16
+          ],
+          "rightOptionId": "h009",
+          "rightRangeId": "block-2/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            13,
+            13
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 216
+        },
+        {
+          "leftOptionId": "h003",
+          "leftRangeId": "block-2",
+          "leftRangeKind": "block",
+          "leftLines": [
+            13,
+            15
+          ],
+          "rightOptionId": "h004",
+          "rightRangeId": "block-2/item-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            14,
+            14
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 225
+        },
+        {
+          "leftOptionId": "h003",
+          "leftRangeId": "block-2",
+          "leftRangeKind": "block",
+          "leftLines": [
+            13,
+            15
+          ],
+          "rightOptionId": "h009",
+          "rightRangeId": "block-2/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            13,
+            13
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 216
+        },
+        {
+          "leftOptionId": "h005",
+          "leftRangeId": "heading-2",
+          "leftRangeKind": "section",
+          "leftLines": [
+            3,
+            10
+          ],
+          "rightOptionId": "h006",
+          "rightRangeId": "block-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            5,
+            9
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 315
+        },
+        {
+          "leftOptionId": "h005",
+          "leftRangeId": "heading-2",
+          "leftRangeKind": "section",
+          "leftLines": [
+            3,
+            10
+          ],
+          "rightOptionId": "h007",
+          "rightRangeId": "block-1/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            5,
+            5
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 164
+        },
+        {
+          "leftOptionId": "h005",
+          "leftRangeId": "heading-2",
+          "leftRangeKind": "section",
+          "leftLines": [
+            3,
+            10
+          ],
+          "rightOptionId": "h008",
+          "rightRangeId": "block-1/item-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            6,
+            6
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 60
+        },
+        {
+          "leftOptionId": "h006",
+          "leftRangeId": "block-1",
+          "leftRangeKind": "block",
+          "leftLines": [
+            5,
+            9
+          ],
+          "rightOptionId": "h007",
+          "rightRangeId": "block-1/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            5,
+            5
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 164
+        },
+        {
+          "leftOptionId": "h006",
+          "leftRangeId": "block-1",
+          "leftRangeKind": "block",
+          "leftLines": [
+            5,
+            9
+          ],
+          "rightOptionId": "h008",
+          "rightRangeId": "block-1/item-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            6,
+            6
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 60
+        }
+      ],
+      "truncated": false,
+      "mutationApplied": false
+    },
+    "finalistCount": 10,
+    "selectionMode": "single-pass",
+    "selectionPasses": 1,
+    "providerCalls": 1,
+    "providerConfidence": 0.9,
+    "evidenceSufficiency": 0.66,
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "providersUsed": [
+      "typesafe-jev"
+    ],
+    "modelsUsed": [
+      "jev-1.13.0"
+    ],
+    "usage": {
+      "input_tokens": 1847,
+      "output_tokens": 147
+    },
+    "requestFingerprint": "2094b8729590430abb78d46d7fdfd2009f4d9253996ed3dda98fd22ccc961e5f",
+    "elapsedMs": 677.6,
+    "jevCallMade": true,
+    "selected": {
+      "optionId": "h004",
+      "title": "Behavior",
+      "headingPath": [
+        "0.2.125 - 2026-10-11",
+        "Behavior"
+      ],
+      "handle": {
+        "version": 1,
+        "id": "e0764f8f68461e24aebc61381bb294ffe8992ce901b3067705749e888267d0c1",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "changelogs/0.2.125.md",
+        "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+        "rangeId": "block-2/item-2",
+        "rangeKind": "block",
+        "startLine": 14,
+        "endLine": 14,
+        "startOffset": 584,
+        "endOffset": 809,
+        "fingerprint": "bf046ec8a66c949e30159c222c87f5489346141ea6da2f3028a809cd891385a5",
+        "privacyClass": "project-metadata"
+      }
+    },
+    "choiceCalls": [
+      {
+        "questionKey": "selection",
+        "offeredOptionIds": [
+          "h001",
+          "h002",
+          "h003",
+          "h004",
+          "h005",
+          "h006",
+          "h007",
+          "h008",
+          "h009",
+          "h010",
+          "none"
+        ],
+        "selectedOptionId": "h004",
+        "confidence": 0.9,
+        "probabilities": {
+          "h001": 0,
+          "h002": 0.03,
+          "h003": 0,
+          "h004": 0.91,
+          "h005": 0,
+          "h006": 0,
+          "h007": 0,
+          "h008": 0,
+          "h009": 0.01,
+          "h010": 0,
+          "none": 0.05
+        }
+      }
+    ]
+  },
+  "fetch": {
+    "projectOwner": "d:/dev/mssr",
+    "handle": {
+      "version": 1,
+      "id": "e0764f8f68461e24aebc61381bb294ffe8992ce901b3067705749e888267d0c1",
+      "owner": "d:/dev/mssr",
+      "sourceRef": "changelogs/0.2.125.md",
+      "revision": "d63bf469f89ab2845e2b8c1aeadad8072fa3c22f69b7635b05f22a9104b6ee5e",
+      "rangeId": "block-2/item-2",
+      "rangeKind": "block",
+      "startLine": 14,
+      "endLine": 14,
+      "startOffset": 584,
+      "endOffset": 809,
+      "fingerprint": "bf046ec8a66c949e30159c222c87f5489346141ea6da2f3028a809cd891385a5",
+      "privacyClass": "project-metadata"
+    },
+    "text": "- Block answer synthesis when any facet abstains or lacks exact fetched evidence. When every facet has exact fetched evidence, report `pending-independent-semantic-review`; the harness never authorizes generated answer prose.",
+    "fingerprint": "bf046ec8a66c949e30159c222c87f5489346141ea6da2f3028a809cd891385a5",
+    "advisoryOnly": true,
+    "truthAuthority": false
+  }
+}

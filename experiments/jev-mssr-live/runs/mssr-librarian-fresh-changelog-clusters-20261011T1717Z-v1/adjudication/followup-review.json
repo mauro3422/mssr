@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "reviewMode": "independent-model-assisted-blind-review",
+  "reviewBoundary": "Reviewers saw frozen follow-up questions and exact text spans without Jev records or scores.",
+  "ownerGold": false,
+  "linkedSourceCluster": "changelogs/0.2.121.md",
+  "facets": [
+    {"id":"facet-a-boundary","answerability":"answerable","exactFetchedLines":[14],"grade":"partial","omitted":"line 13 indentation membership/stopping condition"},
+    {"id":"facet-b-limits","answerability":"answerable","exactFetchedLines":[16],"grade":"partial","omitted":"line 15 preserved aggregate block-N identity"},
+    {"id":"facet-c-aggregate-id","answerability":"answerable","exactFetchedLines":[15],"grade":"full-for-facet","reviewers":2,"agreement":true},
+    {"id":"facet-d-indentation-membership","answerability":"answerable","exactFetchedLines":[13],"grade":"full-for-facet","reviewers":2,"agreement":true}
+  ],
+  "unionReview": {
+    "lines": [13,16],
+    "reviewers": 2,
+    "agreement": true,
+    "grade": "full-for-frozen-parent-question",
+    "supportedExtras": ["trailing blank separators are excluded", "shared index is used for search, candidate validation, exact fetch, and cited evidence packs"],
+    "limits": ["No automatic facet planner was tested.", "Exact line coverage is structural, not semantic proof.", "The result is one linked source cluster, not independent benchmark evidence."]
+  }
+}

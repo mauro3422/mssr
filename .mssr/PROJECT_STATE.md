@@ -23,6 +23,29 @@ also marked the compound result partial. This supplies a bounded
 connected-path receipt with Jev provider/model identity, not a calibration
 sample or a general quality claim. See the [diagnostic report](../experiments/jev-mssr-live/runs/mssr-bridge-cutover-compound-diagnostic-20261011T1704Z-v1/RUN-REPORT.md).
 
+The next connected diagnostic tested three fresh changelog source clusters.
+Jev selected and exact-fetched two primary cases; on the third it abstained
+from an answerable compound question. Four linked, manually split facets on
+that same source then selected exact ranges, and two blind Luna reviewers
+judged their union complete for the frozen question. This supports a manual
+host-side decomposition/evidence-union pattern for one case; it does not prove
+automatic facet planning, semantic-coverage gating, owner-gold, or calibration.
+All six selected exact fetches matched fingerprints. Scores remain
+uncalibrated, and production Bridge/runtime behavior did not change. The
+follow-up plan timestamps were declared incorrectly; the append-only erratum
+records Bridge write-before-call event ordering. See the [run report](../experiments/jev-mssr-live/runs/mssr-librarian-fresh-changelog-clusters-20261011T1717Z-v1/RUN-REPORT.md)
+and [run ledger](../experiments/jev-mssr-live/README.md).
+
+Project Context modularization remains a review item: the confidence-run
+history module's whole unindexed section is 7,143 characters against the
+7,000-character loading target. The planner did not identify a safe exact
+split; keep it for a semantic, selector-aware review rather than moving it
+mechanically. A prior situation-review warning's detailed payload was not
+retained, so its historical-claim/receipt/state mismatch codes cannot be
+mapped conclusively to a canonical edit yet. The current version and release
+receipt evidence are internally consistent; do not rewrite those claims from
+an unrecoverable notice alone.
+
 ## Core skill package state
 
 Core package state: five first-party MSSR operational skill roots. Semantic evidence remains a core/MCP capability, not a new skill. Ownership policy: [canonical ownership](knowledge/architecture/canonical-ownership.md).

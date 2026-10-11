@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "frozenBeforeProviderCalls": true,
+  "reviewBoundary": "Review the exact fetched range and question only. Do not inspect Jev score, selection, or provider identity until labels are frozen.",
+  "grading": ["full", "partial", "incorrect", "abstention-appropriate", "abstention-inappropriate"],
+  "cases": [
+    {"id":"changelog-0.2.121","mustCover":["list continuations/nesting remain in item only while indentation keeps them in list","same-level siblings use visual indentation columns","aggregate block IDs preserved","no semantic answer-quality or score-calibration claim; confidence/authority/privacy/write policy unchanged"],"trap":"Do not infer semantic quality or calibration from range completeness."},
+    {"id":"changelog-0.2.124","mustCover":["heading excerpt cap measured in Unicode code points","UTF-16 metadata truncation avoids splitting surrogate pairs","public schema and production 260-character cap unchanged"],"trap":"Do not treat 780-character experimental arm as a production cap."},
+    {"id":"changelog-0.2.125","mustCover":["line-span overlap is structural only","exact selected/fetched evidence does not establish semantic coverage","complete exact facet evidence remains pending independent semantic review; harness never authorizes generated prose"],"trap":"Do not equate exact fetch completeness with semantic coverage or permission to synthesize."}
+  ],
+  "limits": ["one source-document cluster per case","same repository and authorship context","model-assisted diagnostic, not owner-gold or calibration","raw Jev scores remain uncalibrated"]
+}
