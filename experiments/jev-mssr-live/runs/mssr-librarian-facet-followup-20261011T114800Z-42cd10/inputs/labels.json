@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    { "caseId": "metadata-omission-triggers", "expectedHeading": "Projection and stale-data behavior" },
+    { "caseId": "metadata-retrieval-identity-checks", "expectedHeading": "Projection and stale-data behavior" },
+    { "caseId": "lifecycle-host-signal-mapping", "expectedHeading": "Portable activation rules" },
+    { "caseId": "lifecycle-trace-route-branching", "expectedHeading": "Portable activation rules" }
+  ]
+}

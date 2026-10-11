@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "blind semantic review of literal exact-fetch text",
+  "reviewer": "gpt-6-luna",
+  "reviewerModel": "gpt-6-luna",
+  "inputBoundary": "Raw records.jsonl query and fetch.text only; labels, expected headings, summaries, and prior reviews were not opened.",
+  "ownerGold": false,
+  "cases": [
+    { "caseId": "metadata-omission-triggers", "grade": "direct-complete", "note": "Fetched text enumerates invalid/stale declaration omissions and malformed-manifest rejection." },
+    { "caseId": "metadata-retrieval-identity-checks", "grade": "direct-complete", "note": "Fetched text covers exact identity/range/revision/fingerprint/owner checks, selector validation, and freshness/provenance caveats." },
+    { "caseId": "lifecycle-host-signal-mapping", "grade": "direct-complete", "note": "Fetched rules map host observations and unknown/ambiguous conditions to lightweight/managed/review. No numeric scale threshold is stated; none should be inferred." },
+    { "caseId": "lifecycle-trace-route-branching", "grade": "partial", "note": "Fetched text covers no trace, trace without route, and compatible trace+route, but omits ambiguous ownership although the query asks for it." }
+  ],
+  "summary": { "directComplete": 3, "partial": 1, "irrelevant": 0, "abstentionIssue": 0 },
+  "limitations": [
+    "Four linked queries over two source-document clusters are diagnostic repeats, not independent cases.",
+    "Labels are source-derived and not owner-adjudicated.",
+    "This review does not calibrate Choice confidence or Noul."
+  ]
+}

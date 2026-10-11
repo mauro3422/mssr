@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+      "id": "metadata-omission-triggers",
+      "language": "en",
+      "query": "Which exact invalid or stale declaration conditions cause the host to omit an atom instead of emitting a partial or guessed match?"
+    },
+    {
+      "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+      "id": "metadata-retrieval-identity-checks",
+      "language": "en",
+      "query": "What exact identity, range, revision, fingerprint, owner, and selector checks must match before an accepted metadata atom is retrieved?"
+    },
+    {
+      "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+      "id": "lifecycle-host-signal-mapping",
+      "language": "en",
+      "query": "Map the observed operation effect, scale, trace state, route presence, project scope, and explicit phase boundary to lightweight, managed, or review, including unknown and ambiguous cases."
+    },
+    {
+      "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+      "id": "lifecycle-trace-route-branching",
+      "language": "en",
+      "query": "For managed work, what action applies in each trace and route state: no trace, trace without route, compatible trace and route, or ambiguous ownership?"
+    }
+  ]
+}

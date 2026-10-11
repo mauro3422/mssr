@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "reportType": "mechanically-derived run summary; no semantic adjudication",
+  "runId": "mssr-librarian-facet-followup-20261011T114800Z-42cd10",
+  "parentRunId": "mssr-librarian-split-diagnostic-20261011T114100Z-9bc623",
+  "frozenManifestSha256": "96878de7899daf7f6d7c3f94d667bb456dedb7c801af3827d285ffc70ae0b5a9",
+  "completionStatus": "complete",
+  "sourceDocumentClusters": 2,
+  "sourceRefs": [
+    ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+    "docs/decisions/0007-automatic-lifecycle-coverage.md"
+  ],
+  "expectedRequests": 4,
+  "attemptedRequests": 4,
+  "successfulRequests": 4,
+  "failedRequests": 0,
+  "selected": 4,
+  "abstained": 0,
+  "exactFetchesWithFingerprint": 4,
+  "evidencePacksBuilt": 4,
+  "tokenUsage": {
+    "input": 15289,
+    "output": 1188
+  },
+  "firstRequestStartedAt": "2026-10-11T11:46:25.288Z",
+  "lastRequestCompletedAt": "2026-10-11T11:46:29.090Z",
+  "manifestCreatedAt": "2026-10-11T11:39:20Z",
+  "createdAtDeltaMs": 425288,
+  "timestampWarning": null,
+  "independentUnit": "two source-document clusters; four linked query diagnostics; not four independent samples",
+  "calibrationClaim": false,
+  "records": [
+    {
+      "caseId": "metadata-omission-triggers",
+      "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+      "status": "complete",
+      "searchResultCount": 9,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-4",
+      "rawChoiceConfidence": 0.48,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 886.5154
+    },
+    {
+      "caseId": "metadata-retrieval-identity-checks",
+      "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+      "status": "complete",
+      "searchResultCount": 11,
+      "jevStatus": "selected",
+      "selectedRangeId": "heading-4",
+      "rawChoiceConfidence": 0.88,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 766.1361
+    },
+    {
+      "caseId": "lifecycle-host-signal-mapping",
+      "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+      "status": "complete",
+      "searchResultCount": 43,
+      "jevStatus": "selected",
+      "selectedRangeId": "heading-5",
+      "rawChoiceConfidence": 0.42,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 1116.363
+    },
+    {
+      "caseId": "lifecycle-trace-route-branching",
+      "sourceRef": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+      "status": "complete",
+      "searchResultCount": 37,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-9/item-6",
+      "rawChoiceConfidence": 0.92,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 1029.5902
+    }
+  ]
+}

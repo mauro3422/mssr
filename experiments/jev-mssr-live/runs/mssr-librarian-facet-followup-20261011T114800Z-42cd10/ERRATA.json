@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-facet-followup-20261011T114800Z-42cd10",
+  "appliesTo": "manifest.json",
+  "manifestSha256": "96878de7899daf7f6d7c3f94d667bb456dedb7c801af3827d285ffc70ae0b5a9",
+  "issue": "The top-level createdAt value was inherited when the frozen manifest was cloned from its parent run.",
+  "originalCreatedAt": "2026-10-11T11:39:20Z",
+  "correctedInterpretation": "This timestamp is not the creation time of the follow-up run. The exact preparation timestamp was not retained; labels.frozenAt is 2026-10-11T11:46:14.093Z, and request-events.jsonl is authoritative for the provider execution interval.",
+  "preservation": "The frozen manifest and its hash were not rewritten."
+}
