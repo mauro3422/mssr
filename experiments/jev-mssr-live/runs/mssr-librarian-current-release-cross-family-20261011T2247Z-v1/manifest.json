@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "runId": "mssr-librarian-current-release-cross-family-20261011T2247Z-v1",
+  "createdAt": "2026-10-11T22:49:01.921Z",
+  "parentRunId": null,
+  "suite": "mssr-librarian-live-cross-family-current-release-diagnostic-v1",
+  "source": {
+    "gitCommit": "460c3d00ae3ca44199b1aa296349ceb6a942ca63",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "bridgeRoot": "D:/Dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+    "bridgeVersion": "0.6.172",
+    "workingTreeClean": false,
+    "repository": "MSSR",
+    "buildArtifacts": [
+      {
+        "path": "dist/tool-registry.js",
+        "sha256": "670a6cbdec428f7ad0bd6f7a13173c716fd013c3eb87a54d1c9bb38d7f626554"
+      },
+      {
+        "path": "dist/tools/mssr-semantic-evidence-tools.js",
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa"
+      },
+      {
+        "path": "node_modules/@mauroprime/mssr/package.json",
+        "sha256": "9a57998657fb40e8fae0ec44efef08592f6a332c807d15a90792cdd4a27e4ea2"
+      },
+      {
+        "path": "vendor/mauroprime-mssr-0.2.127.tgz",
+        "sha256": "70e79ae6e472517501ffdd38c4b0eaad740652c7d570b600bf17f90023703bfc"
+      },
+      {
+        "path": "scripts/read-windows-credential.ps1",
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e"
+      }
+    ],
+    "codeSnapshotCleanAtFreeze": true,
+    "bridgeCommit": "8c181ef33919038f400f623bd9a42ca1fd6b17a6",
+    "mssrVersion": "0.2.127",
+    "changedPaths": [
+      "experiments/jev-mssr-live/runs/mssr-librarian-current-release-cross-family-20261011T2247Z-v1/"
+    ]
+  },
+  "corpus": {
+    "snapshotPath": "experiments/jev-mssr-live/runs/mssr-librarian-current-release-cross-family-20261011T2247Z-v1/inputs/sources/",
+    "sourceRevision": "460c3d00ae3ca44199b1aa296349ceb6a942ca63",
+    "redaction": "public MSSR project Markdown; exact source bytes frozen; no secrets",
+    "items": 3,
+    "projectRoot": "D:/Dev/mssr",
+    "sources": [
+      {
+        "sourceRef": "changelogs/0.2.127.md",
+        "sha256": "1b3e6a5f18811e0747d736158698a0a707d5cb9fdde87261af53cae629d25b64",
+        "snapshotPath": "inputs/sources/source-01.md"
+      },
+      {
+        "sourceRef": "docs/decisions/0008-context-economy-v2.md",
+        "sha256": "fddc73ba3178f5335ae0d9a7df53964d458c4cd7925cd9ce2e4b292d94a132e5",
+        "snapshotPath": "inputs/sources/source-02.md"
+      },
+      {
+        "sourceRef": "docs/HANDOFF_SEMANTIC_EXPERIENCE_LAYER_2026-09-29.md",
+        "sha256": "a1283affc89651210f4aa6b95a8aa4750f4d87d93cbddfe24b940ffbe5b69e92",
+        "snapshotPath": "inputs/sources/source-03.md"
+      }
+    ]
+  },
+  "provider": {
+    "networkOptInMethod": "explicit command-line --allow-network plus user authorization recorded in manifest",
+    "mode": "live",
+    "networkOptIn": true,
+    "concurrency": 1,
+    "credentialSource": "Windows Credential Manager; secret value not persisted",
+    "requestedModel": "jev-1.13.0",
+    "maxRetries": 1,
+    "providerRequestIdsAvailable": "unknown",
+    "timeoutMs": 30000,
+    "provider": "TypeSafe Jev through clean Bridge 0.6.172 provider adapter",
+    "endpointIdentity": "api.typesafe.ai/v1/systemone",
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "rawVendorResponsePersisted": false
+  },
+  "plan": {
+    "minimumSupport": {
+      "perClaimedSubgroup": 30,
+      "overall": 30
+    },
+    "thresholds": {},
+    "independentUnit": "three distinct source-document clusters within MSSR; linked queries would not increase n",
+    "primaryMetric": "exact selected heading component matches frozen source-derived target",
+    "expectedRequestCount": 3,
+    "uncertaintyMethod": "raw counts only; n=3 source clusters; no reliability or calibration claim",
+    "secondaryMetrics": [
+      "search target present",
+      "exact fetch/fingerprint validation",
+      "evidence pack success",
+      "latency",
+      "provider tokens",
+      "failures",
+      "blind excerpt completeness and overbreadth"
+    ]
+  },
+  "split": {
+    "method": "none-exploratory-source-grouped",
+    "holdoutUsedForTuning": false,
+    "holdoutIdsSha256": null,
+    "validationIdsSha256": null,
+    "trainIdsSha256": null,
+    "holdoutOpenedAt": null
+  },
+  "instrument": {
+    "casesPath": "experiments/jev-mssr-live/runs/mssr-librarian-current-release-cross-family-20261011T2247Z-v1/inputs/cases.json",
+    "lockfileSha256": "917b9fd3a89254412cc7d40d4bfd0b1adb06d05d2214ae6fa713b2ab2e305a03",
+    "runnerPath": "experiments/jev-mssr-live/runs/mssr-librarian-current-release-cross-family-20261011T2247Z-v1/runner.mjs",
+    "runnerSha256": "ec324b58138dea339425573a50db92e62a57fd59ed288f1d073aa57f0779f20c",
+    "runtime": "v24.16.0",
+    "requestSchemaVersion": 1,
+    "casesSha256": "08b88c519fb4637e5160d9c09e684201ce69cd65b5777b2019d7977faae76d6e"
+  },
+  "labels": {
+    "schemaVersion": 1,
+    "adjudication": "source-derived targets; not owner-gold; blind review pending",
+    "exposedToRequests": false,
+    "independentUnit": "source-document cluster",
+    "source": "MSSR source headings and explicit authored statements; manual target mapping, not independent owner adjudication",
+    "frozenAt": "2026-10-11T22:49:01.908Z",
+    "exposureReview": {
+      "changelogs/0.2.127.md": "No body/hash or distinctive behavior found in the 48-run audit.",
+      "docs/decisions/0008-context-economy-v2.md": "Topic/link mention only; no body/range snapshot found.",
+      "docs/HANDOFF_SEMANTIC_EXPERIENCE_LAYER_2026-09-29.md": "No path or body hit in the reviewed runs; historical source."
+    },
+    "cases": [
+      {
+        "caseId": "digest-hard-bound",
+        "expectedHeading": "Behavior",
+        "concept": "The bound is 128 and inputs above it fail closed without silent truncation or a partial digest.",
+        "allowedEquivalent": "Concise answer supported by the exact fetched range; no present-day claim may be inferred from the historical handoff."
+      },
+      {
+        "caseId": "retained-context-receipt",
+        "expectedHeading": "Decision",
+        "concept": "The stable unit id and SHA-256 fingerprint of exact assembled bytes must match a host-observed unit still present in current uncompacted context.",
+        "allowedEquivalent": "Concise answer supported by the exact fetched range; no present-day claim may be inferred from the historical handoff."
+      },
+      {
+        "caseId": "shadow-verification-sequence",
+        "expectedHeading": "Goal",
+        "concept": "A model selection is shadow only; independent evidence confirms/corrects; repeated verified evidence can form a candidate rule; a safe distilled rule becomes advisory fallback, otherwise abstain/review.",
+        "allowedEquivalent": "Concise answer supported by the exact fetched range; no present-day claim may be inferred from the historical handoff."
+      }
+    ],
+    "labelFileSha256": "bb0c6e097822d90229f4db68edebc5326147acb24c9cb10c50530c1946915942",
+    "labelFile": "experiments/jev-mssr-live/runs/mssr-librarian-current-release-cross-family-20261011T2247Z-v1/inputs/labels.json"
+  }
+}

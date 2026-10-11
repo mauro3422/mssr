@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "digest-hard-bound",
+      "sourceRef": "changelogs/0.2.127.md",
+      "language": "en",
+      "query": "What is the strict contextSelections digest bound in MSSR 0.2.127, and what happens above the bound?"
+    },
+    {
+      "id": "retained-context-receipt",
+      "sourceRef": "docs/decisions/0008-context-economy-v2.md",
+      "language": "en",
+      "query": "Which exact evidence must match before a selected procedural context unit can be suppressed from delivery?"
+    },
+    {
+      "id": "shadow-verification-sequence",
+      "sourceRef": "docs/HANDOFF_SEMANTIC_EXPERIENCE_LAYER_2026-09-29.md",
+      "language": "en",
+      "query": "In this handoff, what sequence distinguishes a Jev or Shef shadow observation from verified experience and a safe deterministic fallback?"
+    }
+  ]
+}

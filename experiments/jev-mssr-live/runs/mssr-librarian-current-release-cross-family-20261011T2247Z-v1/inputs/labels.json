@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "adjudication": "source-derived targets; not owner-gold; blind review pending",
+  "exposedToRequests": false,
+  "independentUnit": "source-document cluster",
+  "source": "MSSR source headings and explicit authored statements; manual target mapping, not independent owner adjudication",
+  "frozenAt": "2026-10-11T22:49:01.908Z",
+  "exposureReview": {
+    "changelogs/0.2.127.md": "No body/hash or distinctive behavior found in the 48-run audit.",
+    "docs/decisions/0008-context-economy-v2.md": "Topic/link mention only; no body/range snapshot found.",
+    "docs/HANDOFF_SEMANTIC_EXPERIENCE_LAYER_2026-09-29.md": "No path or body hit in the reviewed runs; historical source."
+  },
+  "cases": [
+    {
+      "caseId": "digest-hard-bound",
+      "expectedHeading": "Behavior",
+      "concept": "The bound is 128 and inputs above it fail closed without silent truncation or a partial digest.",
+      "allowedEquivalent": "Concise answer supported by the exact fetched range; no present-day claim may be inferred from the historical handoff."
+    },
+    {
+      "caseId": "retained-context-receipt",
+      "expectedHeading": "Decision",
+      "concept": "The stable unit id and SHA-256 fingerprint of exact assembled bytes must match a host-observed unit still present in current uncompacted context.",
+      "allowedEquivalent": "Concise answer supported by the exact fetched range; no present-day claim may be inferred from the historical handoff."
+    },
+    {
+      "caseId": "shadow-verification-sequence",
+      "expectedHeading": "Goal",
+      "concept": "A model selection is shadow only; independent evidence confirms/corrects; repeated verified evidence can form a candidate rule; a safe distilled rule becomes advisory fallback, otherwise abstain/review.",
+      "allowedEquivalent": "Concise answer supported by the exact fetched range; no present-day claim may be inferred from the historical handoff."
+    }
+  ]
+}

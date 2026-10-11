@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 2,
+  "schemaProfile": "generic-librarian-run-v1",
+  "reportType": "mechanically-derived run summary; no semantic adjudication",
+  "runId": "mssr-librarian-current-release-cross-family-20261011T2247Z-v1",
+  "parentRunId": null,
+  "frozenManifestSha256": "63895b3bcc7e3bccebd768601b4fa95a46b30fc5ae22a96a77b8ade079c2728a",
+  "completionStatus": "complete",
+  "checksumFile": {
+    "present": true,
+    "verified": 11,
+    "requiredFiles": [
+      "manifest.json",
+      "run-completion.json",
+      "inputs/cases.json",
+      "records.jsonl",
+      "inputs/labels.json"
+    ]
+  },
+  "sourceDocumentClusters": 3,
+  "sourceRefs": [
+    "changelogs/0.2.127.md",
+    "docs/HANDOFF_SEMANTIC_EXPERIENCE_LAYER_2026-09-29.md",
+    "docs/decisions/0008-context-economy-v2.md"
+  ],
+  "clusterInterpretation": "Distinct sourceRef grouping only; it does not establish independent statistical sampling.",
+  "expectedRequests": 3,
+  "attemptedRequests": 3,
+  "successfulRequests": 3,
+  "failedRequests": 0,
+  "selected": 3,
+  "abstained": 0,
+  "exactFetchesWithFingerprint": 3,
+  "evidencePacksBuilt": 3,
+  "evidenceSufficiencyCapture": {
+    "recorded": 0,
+    "missingFromRecords": 3,
+    "note": "Only the explicit jev.evidenceSufficiency field is counted; raw Noul and other aliases are reported separately."
+  },
+  "rawNoulCapture": {
+    "recorded": 0,
+    "missingFromRecords": 3,
+    "note": "Provider Noul is descriptive and is not treated as an evidence-sufficiency alias."
+  },
+  "tokenUsage": {
+    "input": 24070,
+    "output": 1821
+  },
+  "firstRequestStartedAt": "2026-10-11T22:49:16.305Z",
+  "lastRequestCompletedAt": "2026-10-11T22:49:20.302Z",
+  "manifestCreatedAt": "2026-10-11T22:49:01.921Z",
+  "createdAtDeltaMs": 14384,
+  "timestampWarning": null,
+  "declaredIndependentUnitUnverified": "three distinct source-document clusters within MSSR; linked queries would not increase n",
+  "independentUnitDeclarationInterpretation": "Manifest text is retained for audit; it is not verified against observed sourceRef clusters.",
+  "independentUnit": "source-document cluster (descriptive grouping only)",
+  "calibrationClaim": false,
+  "labelMetrics": {
+    "reportType": "strict normalized heading match; not semantic adjudication or calibration",
+    "labelSource": "MSSR source headings and explicit authored statements; manual target mapping, not independent owner adjudication",
+    "adjudication": "source-derived targets; not owner-gold; blind review pending",
+    "normalizedExactHeadingMatches": 3,
+    "exactHeadingDenominator": 3,
+    "searchTargetFound": 3,
+    "searchTargetDenominator": 3,
+    "records": [
+      {
+        "caseId": "digest-hard-bound",
+        "sourceRef": "changelogs/0.2.127.md",
+        "expectedHeading": "Behavior",
+        "observedHeading": "Behavior",
+        "normalizedExactHeadingMatch": true,
+        "searchTargetFound": true,
+        "exactFetchPassed": true
+      },
+      {
+        "caseId": "retained-context-receipt",
+        "sourceRef": "docs/decisions/0008-context-economy-v2.md",
+        "expectedHeading": "Decision",
+        "observedHeading": "Decision",
+        "normalizedExactHeadingMatch": true,
+        "searchTargetFound": true,
+        "exactFetchPassed": true
+      },
+      {
+        "caseId": "shadow-verification-sequence",
+        "sourceRef": "docs/HANDOFF_SEMANTIC_EXPERIENCE_LAYER_2026-09-29.md",
+        "expectedHeading": "Goal",
+        "observedHeading": "Goal",
+        "normalizedExactHeadingMatch": true,
+        "searchTargetFound": true,
+        "exactFetchPassed": true
+      }
+    ]
+  },
+  "records": [
+    {
+      "caseId": "digest-hard-bound",
+      "sourceRef": "changelogs/0.2.127.md",
+      "status": "complete",
+      "searchResultCount": 23,
+      "jevStatus": "selected",
+      "selectedRangeId": "heading-3",
+      "rawChoiceConfidence": 0.7,
+      "evidenceSufficiency": null,
+      "providerNoul": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 1098.3202
+    },
+    {
+      "caseId": "retained-context-receipt",
+      "sourceRef": "docs/decisions/0008-context-economy-v2.md",
+      "status": "complete",
+      "searchResultCount": 45,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-7",
+      "rawChoiceConfidence": 0.66,
+      "evidenceSufficiency": null,
+      "providerNoul": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 995.2217
+    },
+    {
+      "caseId": "shadow-verification-sequence",
+      "sourceRef": "docs/HANDOFF_SEMANTIC_EXPERIENCE_LAYER_2026-09-29.md",
+      "status": "complete",
+      "searchResultCount": 100,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-3",
+      "rawChoiceConfidence": 0.93,
+      "evidenceSufficiency": null,
+      "providerNoul": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 1899.8859
+    }
+  ]
+}
