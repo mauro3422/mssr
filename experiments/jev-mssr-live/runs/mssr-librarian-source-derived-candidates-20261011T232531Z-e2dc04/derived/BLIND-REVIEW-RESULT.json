@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "reviewType": "independent blind model-assisted literal-text review",
+  "reviewer": {
+    "model": "gpt-6-luna",
+    "subagent": "blind_literal_review",
+    "labelsSeen": false,
+    "artifactsProvided": [
+      "BLIND-REVIEW-INPUT.json"
+    ]
+  },
+  "sourceRun": "mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04",
+  "inputSha256": "e6c37b13ad2ef38bcae56907aaf18bec433afd09b26cbc9a79fd03805463546b",
+  "notOwnerGold": true,
+  "notIndependentHumanAdjudication": true,
+  "counts": {
+    "cases": 28,
+    "grades": {
+      "direct": 26,
+      "unsupported": 1,
+      "partial": 1
+    },
+    "coverage": {
+      "full": 26,
+      "none": 1,
+      "partial": 1
+    },
+    "overbreadth": {
+      "low": 13,
+      "medium": 12,
+      "high": 3
+    }
+  },
+  "limitations": [
+    "The reviewer received only anonymized query and fetched text; it did not receive source paths, target labels, headings, scores or status.",
+    "This is a single model-assisted review, not human owner adjudication or gold labels.",
+    "The reviewer judged literal excerpt answerability only; full coverage does not establish factual correctness outside the frozen source or overall production reliability."
+  ],
+  "cases": [
+    {
+      "blindId": "097ada6c-8906-45c2-882e-c5c5f7200058",
+      "caseId": "cohort-01",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "low",
+      "justification": "Enumera los tres estados: `no-learning-change`, `insufficient-evidence` y `proposal-ready`, junto con otros hallazgos de la auditoría."
+    },
+    {
+      "blindId": "14e291ba-5f01-4f64-b500-b992ec1037d4",
+      "caseId": "cohort-02",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "low",
+      "justification": "Indica que el gate se detuvo porque `CHANGELOG.md` no identificaba `0.2.60` como versión actual."
+    },
+    {
+      "blindId": "64b3c022-1507-42d0-b5cc-6531f8213f10",
+      "caseId": "cohort-03",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "medium",
+      "justification": "Señala que el guante aceptado v2 sirve como referencia de calidad y agrega varias instrucciones de ensayo."
+    },
+    {
+      "blindId": "990d2e80-89e6-49b0-84c3-cc560bb17a7d",
+      "caseId": "cohort-04",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "low",
+      "justification": "Nombra los cambios de etapa a verificación, persistencia y cierre como motivos explícitos para replantear."
+    },
+    {
+      "blindId": "8dc8382a-ca21-43ad-a539-21e08a041a0f",
+      "caseId": "cohort-05",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "medium",
+      "justification": "Enumera elementos fuera del límite de observación, además de detalles del protocolo."
+    },
+    {
+      "blindId": "da080407-a733-4ad2-98a0-90c45e2e28ab",
+      "caseId": "cohort-06",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "low",
+      "justification": "Afirma que los mounts de runtime son junctions y nunca copias editables."
+    },
+    {
+      "blindId": "e9f4ffd0-8d53-4f55-a565-1ef49c25aa37",
+      "caseId": "cohort-07",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "medium",
+      "justification": "Dice que, si no hay cambio reutilizable, se registre `reviewed-none` y se complete el mantenimiento, dentro de una explicación más amplia."
+    },
+    {
+      "blindId": "ab64fcd5-e127-4073-b433-0d66c093baeb",
+      "caseId": "cohort-09",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "low",
+      "justification": "Especifica que los filtros usan igualdad exacta de campo y valor."
+    },
+    {
+      "blindId": "e012d57c-3bf1-42f1-9e6c-8b0c7949c274",
+      "caseId": "cohort-10",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "medium",
+      "justification": "Limita a una la sección histórica seleccionada por consulta de recuperación y agrega restricciones de baseline y tamaño."
+    },
+    {
+      "blindId": "48fb6a9a-df80-4f80-9bac-930714231cf6",
+      "caseId": "cohort-11",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "medium",
+      "justification": "Clasifica la comparación como solo planificada y aclara qué evidencia y cambios quedan excluidos."
+    },
+    {
+      "blindId": "af928ebe-d433-4d40-b536-15a28b2e489e",
+      "caseId": "cohort-12",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "low",
+      "justification": "Enumera LF, CRLF, CR aislado y finales mixtos como variantes."
+    },
+    {
+      "blindId": "1d64be5d-ea42-4b6e-a816-cc7b12e541e1",
+      "caseId": "cohort-13",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "medium",
+      "justification": "Describe verificaciones de identidad y `npm pack --dry-run`, con detalles de la prueba del instalador."
+    },
+    {
+      "blindId": "4c071f63-725a-4c7b-80d5-28d25a2c2f9b",
+      "caseId": "cohort-14",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "high",
+      "justification": "Responde que el host posee la observación autorizada y ejecución de herramientas, pero incluye detalles extensos de arquitectura y gobernanza."
+    },
+    {
+      "blindId": "d1878393-09bc-4697-9530-2c464d10684f",
+      "caseId": "cohort-15",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "medium",
+      "justification": "Indica que una habilidad nueva requiere activación, resultado, responsable y verificación independientes, y desarrolla la arquitectura de referencias."
+    },
+    {
+      "blindId": "3a635205-6002-4234-9d4b-72318b8887d4",
+      "caseId": "cohort-16",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "low",
+      "justification": "Enumera `fresh`, `stale`, `unknown`, `conflicting` y `unavailable` como valores de freshness."
+    },
+    {
+      "blindId": "89cace58-a929-446c-8db9-6606e020bed2",
+      "caseId": "cohort-17",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "low",
+      "justification": "Establece que la evidencia vacía o insuficiente puede llevar a una abstención explícita en vez de una corrección inventada."
+    },
+    {
+      "blindId": "2d62bebf-7640-451e-96f2-9fa5f409d639",
+      "caseId": "cohort-18",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "low",
+      "justification": "Aclara que el productor trabaja con hechos ya estructurados y no analiza la prosa documental."
+    },
+    {
+      "blindId": "5e9ef5a1-8fca-44b5-a414-6d09be769816",
+      "caseId": "cohort-19",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "low",
+      "justification": "Dice que la refinación no puede introducir una arquitectura nueva ni un archivo de implementación no declarado."
+    },
+    {
+      "blindId": "dc7ed4b1-bb6f-4313-80b4-7d14f651a6e5",
+      "caseId": "cohort-20",
+      "grade": "unsupported",
+      "coverage": "none",
+      "overbreadth": "medium",
+      "justification": "El texto clasifica niveles de evidencia, pero no define qué representa la confianza en Typed Claim IR."
+    },
+    {
+      "blindId": "30f34fd1-94d4-475b-97dc-8afed4851cc6",
+      "caseId": "cohort-21",
+      "grade": "partial",
+      "coverage": "partial",
+      "overbreadth": "medium",
+      "justification": "Describe comprobaciones de snapshot, privacidad, revisión y fingerprint, pero no enuncia directamente la condición general para materializar un body de Document Surface."
+    },
+    {
+      "blindId": "608ee5d1-2e21-4549-bbbd-deb439862ca1",
+      "caseId": "cohort-22",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "medium",
+      "justification": "Explica que `supersedes` puede cruzar estados e intervalos si ambos inicios son conocidos y el izquierdo no precede al derecho."
+    },
+    {
+      "blindId": "a242987e-ad33-4538-9eab-94d372a3e2a4",
+      "caseId": "cohort-23",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "low",
+      "justification": "Establece que `taskKey` debe ser evidencia explícita del host y enumera fuentes que no deben derivarlo."
+    },
+    {
+      "blindId": "a4f96650-6633-416f-861e-9ab76e95ea50",
+      "caseId": "cohort-24",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "medium",
+      "justification": "Aclara que la precedencia de nombres reservados no implica cargar todas las habilidades en cada tarea."
+    },
+    {
+      "blindId": "5683bcd2-8f09-4ce0-8047-5befb2676e9b",
+      "caseId": "cohort-26",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "high",
+      "justification": "Afirma que el host posee la transacción explícita de escritura y manifiesto, dentro de un texto amplio sobre drift y consistencia."
+    },
+    {
+      "blindId": "efee4be7-8ccf-48fe-8750-0c8ffacf9c24",
+      "caseId": "cohort-27",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "low",
+      "justification": "Indica que el estado conectado se obtiene cuando la persistencia revisada registra la fuente exacta o el contexto seleccionable la referencia explícitamente."
+    },
+    {
+      "blindId": "636daece-ca00-497e-964e-8e1c53a6d53a",
+      "caseId": "cohort-28",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "low",
+      "justification": "Restringe el movimiento automático a traslados de bytes exactos demostrables y con límites seguros."
+    },
+    {
+      "blindId": "b1f5c650-742a-43f0-bd0c-d9a91d57c84e",
+      "caseId": "cohort-29",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "high",
+      "justification": "Dice que un resultado negativo es válido solo si la cobertura relevante está completa, y expone detalles adicionales del contrato Librarian."
+    },
+    {
+      "blindId": "9d752d6a-f8f5-4524-b77d-ef8f11496214",
+      "caseId": "cohort-30",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "medium",
+      "justification": "Exige que una ruta sin ID manual conserve y propague la misma traza a las fases enumeradas, junto con otros casos de regresión."
+    }
+  ]
+}

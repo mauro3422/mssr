@@ -1,0 +1,667 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "derived integration and literal-evidence quality analysis",
+  "createdAt": "2026-10-11T23:54:27.592Z",
+  "runId": "mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04",
+  "sourceLabels": "source-derived, not owner-adjudicated",
+  "blindReviewer": "single model-assisted Luna reviewer; received anonymized query and fetched text only",
+  "counts": {
+    "cases": 30,
+    "distinctSourceDocuments": 30,
+    "searchTargetPresent": 29,
+    "searchDenominator": 30,
+    "selected": 28,
+    "abstained": 2,
+    "strictAcceptedRangeMatches": 8,
+    "selectedWithinAcceptedRange": 24,
+    "selectedOverlappingAcceptedRange": 26,
+    "blindReview": {
+      "directFull": 26,
+      "partial": 1,
+      "unsupported": 1,
+      "overbreadthLow": 13,
+      "overbreadthMedium": 12,
+      "overbreadthHigh": 3
+    }
+  },
+  "interpretation": [
+    "For this source-pinned cohort, retrieval exposed the expected target in 29/30 searches. Of 28 selections, 24 were wholly inside an accepted target range and 26 intersected one; strict full-range equality was only 8/30, a metric that misses narrower relevant blocks.",
+    "The blind Luna review judged 26/28 fetched excerpts to answer their query fully, one partial, and one unsupported. This is useful semantic diagnostic evidence, not owner-gold or an independent-human quality estimate.",
+    "15/28 fetched excerpts were rated medium or high overbreadth, so answer coverage does not yet imply focused retrieval. The 17 packs that the original runner constructed validated; the 11 ranges blocked by the false-negative fetch validator have no pack result and remain unmeasured.",
+    "Choice and evidence-sufficiency values remain descriptive and uncalibrated. Thirty distinct sourceRefs do not establish statistical independence; these labels and documents have prior development exposure.",
+    "The run tests explicit-source search, Jev selection, exact fetch, and verbatim evidence packing. It does not test global discovery, metadata-filter quality, multi-range union, compaction, synthesis/paragraph composition, or calibrated confidence."
+  ],
+  "nextDiagnostics": [
+    {
+      "caseId": "cohort-20",
+      "focus": "The fetched range does not overlap the expected Typed Claim IR range and the blind review found no answer. Investigate candidate ranking/selection for the meaning of confidence without changing thresholds from this single case."
+    },
+    {
+      "caseId": "cohort-21",
+      "focus": "The selected block lies inside the expected section but is only partial for the materialization question. Test whether a second facet/range is required and whether evidence-pack union can preserve the missing condition."
+    },
+    {
+      "focus": "Review medium/high-overbreadth excerpts and compare narrower block selections with full sections while preserving answer coverage."
+    }
+  ],
+  "focusCases": [
+    {
+      "caseId": "cohort-20",
+      "query": "In Typed Claim IR, what does confidence represent?",
+      "expectedRange": [
+        {
+          "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+          "expectedHeading": "## 2. Typed Claim IR",
+          "startLine": 86,
+          "endLine": 108
+        }
+      ],
+      "selectedRange": {
+        "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+        "rangeKind": "section",
+        "startLine": 154,
+        "endLine": 164
+      },
+      "choiceConfidence": 0.34,
+      "evidenceSufficiency": 0.53,
+      "blindLiteralReview": {
+        "blindId": "dc7ed4b1-bb6f-4313-80b4-7d14f651a6e5",
+        "caseId": "cohort-20",
+        "grade": "unsupported",
+        "coverage": "none",
+        "overbreadth": "medium",
+        "justification": "El texto clasifica niveles de evidencia, pero no define qué representa la confianza en Typed Claim IR."
+      }
+    },
+    {
+      "caseId": "cohort-21",
+      "query": "What must be verified before a Document Surface body is materialized?",
+      "expectedRange": [
+        {
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "expectedHeading": "### 3.1 Document Surface and the Librarian contract",
+          "startLine": 94,
+          "endLine": 113
+        }
+      ],
+      "selectedRange": {
+        "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+        "rangeKind": "block",
+        "startLine": 106,
+        "endLine": 106
+      },
+      "choiceConfidence": 0.63,
+      "evidenceSufficiency": 0.71,
+      "blindLiteralReview": {
+        "blindId": "30f34fd1-94d4-475b-97dc-8afed4851cc6",
+        "caseId": "cohort-21",
+        "grade": "partial",
+        "coverage": "partial",
+        "overbreadth": "medium",
+        "justification": "Describe comprobaciones de snapshot, privacidad, revisión y fingerprint, pero no enuncia directamente la condición general para materializar un body de Document Surface."
+      }
+    }
+  ],
+  "perCaseSelections": [
+    {
+      "caseId": "cohort-01",
+      "rangeKind": "section",
+      "selectedLines": {
+        "start": 28,
+        "end": 37
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 28,
+          "end": 37
+        }
+      ],
+      "exactRange": true,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "low"
+    },
+    {
+      "caseId": "cohort-02",
+      "rangeKind": "block",
+      "selectedLines": {
+        "start": 17,
+        "end": 17
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 14,
+          "end": 23
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "low"
+    },
+    {
+      "caseId": "cohort-03",
+      "rangeKind": "block",
+      "selectedLines": {
+        "start": 12,
+        "end": 17
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 1,
+          "end": 21
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "medium"
+    },
+    {
+      "caseId": "cohort-04",
+      "rangeKind": "block",
+      "selectedLines": {
+        "start": 1,
+        "end": 4
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 10,
+          "end": 36
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": false,
+      "overlapsAcceptedRange": false,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "low"
+    },
+    {
+      "caseId": "cohort-05",
+      "rangeKind": "section",
+      "selectedLines": {
+        "start": 11,
+        "end": 28
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 11,
+          "end": 28
+        }
+      ],
+      "exactRange": true,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "medium"
+    },
+    {
+      "caseId": "cohort-06",
+      "rangeKind": "section",
+      "selectedLines": {
+        "start": 11,
+        "end": 28
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 11,
+          "end": 28
+        }
+      ],
+      "exactRange": true,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "low"
+    },
+    {
+      "caseId": "cohort-07",
+      "rangeKind": "section",
+      "selectedLines": {
+        "start": 11,
+        "end": 29
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 11,
+          "end": 29
+        }
+      ],
+      "exactRange": true,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "medium"
+    },
+    {
+      "caseId": "cohort-09",
+      "rangeKind": "block",
+      "selectedLines": {
+        "start": 13,
+        "end": 13
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 11,
+          "end": 16
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "low"
+    },
+    {
+      "caseId": "cohort-10",
+      "rangeKind": "block",
+      "selectedLines": {
+        "start": 14,
+        "end": 14
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 11,
+          "end": 18
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "medium"
+    },
+    {
+      "caseId": "cohort-11",
+      "rangeKind": "block",
+      "selectedLines": {
+        "start": 14,
+        "end": 14
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 11,
+          "end": 15
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "medium"
+    },
+    {
+      "caseId": "cohort-12",
+      "rangeKind": "block",
+      "selectedLines": {
+        "start": 15,
+        "end": 15
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 11,
+          "end": 18
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "low"
+    },
+    {
+      "caseId": "cohort-13",
+      "rangeKind": "block",
+      "selectedLines": {
+        "start": 33,
+        "end": 36
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 23,
+          "end": 53
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "medium"
+    },
+    {
+      "caseId": "cohort-14",
+      "rangeKind": "section",
+      "selectedLines": {
+        "start": 1,
+        "end": 26
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 3,
+          "end": 14
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": false,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "high"
+    },
+    {
+      "caseId": "cohort-15",
+      "rangeKind": "section",
+      "selectedLines": {
+        "start": 174,
+        "end": 179
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 174,
+          "end": 179
+        }
+      ],
+      "exactRange": true,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "medium"
+    },
+    {
+      "caseId": "cohort-16",
+      "rangeKind": "block",
+      "selectedLines": {
+        "start": 41,
+        "end": 41
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 34,
+          "end": 53
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "low"
+    },
+    {
+      "caseId": "cohort-17",
+      "rangeKind": "block",
+      "selectedLines": {
+        "start": 41,
+        "end": 41
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 32,
+          "end": 43
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "low"
+    },
+    {
+      "caseId": "cohort-18",
+      "rangeKind": "block",
+      "selectedLines": {
+        "start": 68,
+        "end": 68
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 66,
+          "end": 73
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "low"
+    },
+    {
+      "caseId": "cohort-19",
+      "rangeKind": "block",
+      "selectedLines": {
+        "start": 108,
+        "end": 108
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 102,
+          "end": 114
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "low"
+    },
+    {
+      "caseId": "cohort-20",
+      "rangeKind": "section",
+      "selectedLines": {
+        "start": 154,
+        "end": 164
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 86,
+          "end": 108
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": false,
+      "overlapsAcceptedRange": false,
+      "blindLiteralReview": "unsupported",
+      "blindCoverage": "none",
+      "blindOverbreadth": "medium"
+    },
+    {
+      "caseId": "cohort-21",
+      "rangeKind": "block",
+      "selectedLines": {
+        "start": 106,
+        "end": 106
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 94,
+          "end": 113
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "partial",
+      "blindCoverage": "partial",
+      "blindOverbreadth": "medium"
+    },
+    {
+      "caseId": "cohort-22",
+      "rangeKind": "section",
+      "selectedLines": {
+        "start": 1,
+        "end": 9
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 1,
+          "end": 9
+        }
+      ],
+      "exactRange": true,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "medium"
+    },
+    {
+      "caseId": "cohort-23",
+      "rangeKind": "block",
+      "selectedLines": {
+        "start": 3,
+        "end": 3
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 1,
+          "end": 7
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "low"
+    },
+    {
+      "caseId": "cohort-24",
+      "rangeKind": "section",
+      "selectedLines": {
+        "start": 1,
+        "end": 3
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 1,
+          "end": 3
+        }
+      ],
+      "exactRange": true,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "medium"
+    },
+    {
+      "caseId": "cohort-26",
+      "rangeKind": "section",
+      "selectedLines": {
+        "start": 1,
+        "end": 7
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 1,
+          "end": 7
+        }
+      ],
+      "exactRange": true,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "high"
+    },
+    {
+      "caseId": "cohort-27",
+      "rangeKind": "block",
+      "selectedLines": {
+        "start": 12,
+        "end": 12
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 5,
+          "end": 15
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "low"
+    },
+    {
+      "caseId": "cohort-28",
+      "rangeKind": "block",
+      "selectedLines": {
+        "start": 13,
+        "end": 13
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 9,
+          "end": 18
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "low"
+    },
+    {
+      "caseId": "cohort-29",
+      "rangeKind": "section",
+      "selectedLines": {
+        "start": 1,
+        "end": 21
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 7,
+          "end": 21
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": false,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "high"
+    },
+    {
+      "caseId": "cohort-30",
+      "rangeKind": "block",
+      "selectedLines": {
+        "start": 119,
+        "end": 119
+      },
+      "acceptedTargetLines": [
+        {
+          "start": 106,
+          "end": 121
+        }
+      ],
+      "exactRange": false,
+      "containedWithinAcceptedRange": true,
+      "overlapsAcceptedRange": true,
+      "blindLiteralReview": "direct",
+      "blindCoverage": "full",
+      "blindOverbreadth": "medium"
+    }
+  ]
+}
