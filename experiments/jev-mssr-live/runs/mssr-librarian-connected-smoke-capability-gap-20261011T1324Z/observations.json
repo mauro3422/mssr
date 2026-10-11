@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "recordKind": "connected-jev-librarian-smoke-summary",
+  "runId": "mssr-librarian-connected-smoke-capability-gap-20261011T1324Z",
+  "capturedAt": "2026-10-11T13:24:52Z",
+  "classification": "exploratory-linked-diagnostic",
+  "independentUnit": "one-source-document-cluster; two linked query facets; not independent samples",
+  "ownerGold": false,
+  "confidenceCalibration": "uncalibrated-provider-score",
+  "source": {
+    "projectRoot": "D:\\Dev\\mssr",
+    "sourceRef": "docs/AGENT_PROTOCOL.md",
+    "revision": "30e9f8da6103c4904559009533fa946ac53c3e5bf04ac5898e6088f919a458ca",
+    "owner": "d:/dev/mssr",
+    "privacyClass": "project-metadata"
+  },
+  "runtime": {
+    "bridgeBootId": "adf97c06-a668-4ff9-a187-c12ab058bff2",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "traceId": "mssr-codex-unavailable-tool-facet-20261011-01",
+    "connectorTracePropagation": "explicit Bridge wrappers carried the trace; direct dedicated calls were not part of this follow-up"
+  },
+  "linkedQueries": [
+    {
+      "queryFacet": "broad-capability-discovery-and-replanning-guidance",
+      "searchSources": 4,
+      "queryVariants": "explicit English and Spanish/English variants supplied by host",
+      "searchResultsTruncated": true,
+      "selectedRangeId": "heading-13",
+      "selectedHandleId": "611c124666d2c1035fda8fdc7bd1c724eaff60bf0889b75f4e6d162ee6e971fa",
+      "selectedFingerprint": "fc516955aab596c6520e56fbc6a561d4d2ca2710d4676e9229f3fc74ce6faf3c",
+      "sourceRevision": "30e9f8da6103c4904559009533fa946ac53c3e5bf04ac5898e6088f919a458ca",
+      "sourceLines": [196, 217],
+      "providerConfidence": 0.94,
+      "noul": 0.71,
+      "usage": { "input_tokens": 802, "output_tokens": 67 },
+      "elapsedMs": 785.7,
+      "exactFetchPassed": true,
+      "evidencePackPassed": true
+    },
+    {
+      "queryFacet": "exact-capability-needs-recording-and-replan-rule",
+      "selectedRangeId": "block-46",
+      "selectedHandleId": "cbce17b0db731ac23563283fc2e41b653def280cc4b1502bd0cca4b7075c8613",
+      "selectedFingerprint": "b8350c4ca229df4d68ff878fdba2cd7cd27a2457a471835fbfcf3b584adf2d65",
+      "sourceRevision": "30e9f8da6103c4904559009533fa946ac53c3e5bf04ac5898e6088f919a458ca",
+      "sourceLines": [206, 209],
+      "providerConfidence": 0.8,
+      "noul": 0.91,
+      "noneProbability": 0.01,
+      "usage": { "input_tokens": 809, "output_tokens": 67 },
+      "elapsedMs": 694.6,
+      "exactFetchPassed": true,
+      "evidencePackPassed": true,
+      "fetchedText": "When a selected skill/tool reveals another need, record the signal and a short `capabilityNeeds` description, refresh or inspect the registry if necessary, then re-plan. The host retains normal authority to use any available authorized tool; MSSR is not an allowlist."
+    }
+  ],
+  "limits": [
+    "one source-document cluster; linked queries are not independent samples",
+    "no owner-gold or independently adjudicated labels",
+    "provider confidence and Noul are uncalibrated; do not tune thresholds",
+    "different query and candidate pools prevent a controlled score comparison",
+    "retrieved guidance concerns capability chaining; it is not a formal unavailable-required-tool failure policy",
+    "provider responses are not replayable and raw query text was not retained",
+    "evidence pack is verbatim; paragraph composition/synthesis was not tested"
+  ]
+}

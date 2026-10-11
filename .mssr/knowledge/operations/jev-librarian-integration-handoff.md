@@ -19,6 +19,13 @@ threshold. This smoke exercised retrieval, Jev range selection, exact fetch and
 packaging; it did not ask Jev to assemble paragraphs or synthesize prose. See
 the [connected smoke record](../../../experiments/jev-mssr-live/runs/mssr-librarian-connected-smoke-adr007-20261011T1317Z/CONNECTED-SMOKE.md).
 
+A second connected smoke used `docs/AGENT_PROTOCOL.md` as a separate source
+cluster. Jev selected the exact capability-needs/replan block after a broad
+section selection; both exact fetches and verbatim packs passed. This documents
+how to record a capability need, inspect/refresh the registry and replan, but it
+does not settle a formal unavailable-required-tool failure policy. Choice/Noul
+remain uncalibrated; see the [capability-gap smoke record](../../../experiments/jev-mssr-live/runs/mssr-librarian-connected-smoke-capability-gap-20261011T1324Z/CONNECTED-SMOKE.md).
+
 The direct dedicated connector calls were blocked before execution because the
 active trace did not reach them. After runtime-schema inspection, explicit
 Bridge `bridge_tool_query` for read-only search/fetch/pack and
@@ -155,7 +162,7 @@ The user's current instruction explicitly authorizes live Jev calls for this MSS
 ## Next gates
 
 - **Product:** Canonical current state is MSSR 0.2.121 / Bridge 0.6.169, boot `adf97c06-a668-4ff9-a187-c12ab058bff2`; see `.mssr/PROJECT_STATE.md` for release and package receipts. Connected Librarian search, Jev Choice, exact fetch, and evidence-pack calls succeeded in the 2026-10-11 smoke via explicit Bridge wrappers. Direct dedicated connector calls did not carry the active trace in this chat; recording the issue in Bridge's `docs/INCIDENTS.md` remains pending because the `D:\Dev\bridge-mcp` tree contains unrelated changes and was left untouched. The local composition harness still blocks live mode until it can verify the connected runtime identity. Current registered Librarian tools expose search, Jev selection, exact fetch and verbatim evidence pack; the pack does not synthesize prose, and no dedicated paragraph-generation endpoint was found in this tool catalog.
-- **Evaluation:** The latest connected diagnostic used one ADR 0007 source cluster and two linked queries: the compound query was broad/low-sufficiency; the narrowed ownership facet selected the exact list item and both fetch/pack checks passed. This remains exploratory, not owner-gold, independent evaluation or calibration. The unavailable-required-tool facet remains untested against an authoritative source. Measure retrieval, exact fetch, compound coverage, choice/abstention, relations/contradictions, synthesis and citation support separately. Keep thresholds unchanged.
+- **Evaluation:** Connected diagnostics now cover two source clusters: ADR 0007 trace ownership, and AGENT_PROTOCOL capability-needs/replanning guidance. The latter still does not state a formal failure policy for a required tool being unavailable. Within each source, linked calls are not independent. Exact fetch and verbatim packs passed; no owner-gold, calibration, or threshold change. Measure retrieval, exact fetch, compound coverage, choice/abstention, relations/contradictions, host synthesis and citation support separately.
 - **Next corpus:** Use source-grouped owner labels and a locked holdout. Preserve blank-gap and explicit-marker evidence deterministically; use Jev for ambiguous joins. Do not tune frozen v1-v6 or count repeated runs as independent cases.
 - **Jev and artifacts:** Live Jev tests are authorized. Keep receipts outside experiments/**/runs/**, exclude credentials and raw query text, and keep unverified decisions review-only. No automatic merge, canonical write or confidence threshold follows from these smokes.
 
