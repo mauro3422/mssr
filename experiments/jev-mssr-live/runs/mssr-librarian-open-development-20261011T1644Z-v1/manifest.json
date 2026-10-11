@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-open-development-20261011T1644Z-v1",
+  "createdAt": "2026-10-11T16:44:00Z",
+  "repositoryRoot": "D:/Dev/mssr",
+  "branch": "codex/mssr-librarian-query-variants-0.2.112",
+  "sourceCommit": "fc91bc8563d71036663648334c1bbcea7f06b41b",
+  "packageVersion": "0.2.125",
+  "runtime": {
+    "bridgeVersion": "0.6.169",
+    "mssrVersion": "0.2.121",
+    "productionMutation": false
+  },
+  "cohort": "open-development",
+  "sourceClusterCount": 7,
+  "caseCount": 15,
+  "sourceRefs": [
+    {
+      "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+      "sourceBytesSha256": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905"
+    },
+    {
+      "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+      "sourceBytesSha256": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e"
+    },
+    {
+      "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+      "sourceBytesSha256": "a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f"
+    },
+    {
+      "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+      "sourceBytesSha256": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe"
+    },
+    {
+      "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+      "sourceBytesSha256": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692"
+    },
+    {
+      "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+      "sourceBytesSha256": "ef4dec93e8718d6291ea3f03b83ef1c2b8aed3a54ffc1c904202ef7e3006a13a"
+    },
+    {
+      "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+      "sourceBytesSha256": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188"
+    }
+  ],
+  "frozenInputs": [
+    {
+      "path": "inputs/cases.json",
+      "sha256": "d3bdd99a4924a461e6f684492e2d71974e660858d0f009f455b0138bfd484df6"
+    }
+  ],
+  "labelAuthority": "independent-blind-agent-review; Codex adjudication; not owner-gold",
+  "providerCalls": 15,
+  "confidenceCalibrationClaim": false,
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "exactFetchCount": 11,
+  "blindReview": "single blinded Luna excerpt review; 9 sufficient, 2 partial, 4 no-selection (recomputed from case rows)",
+  "unpersistedDuplicateProviderCalls": 30,
+  "extraWarmupProviderCall": 1,
+  "totalObservedProviderCallsIncludingUnpersisted": 46,
+  "analysis": "jev-analysis.json",
+  "selectionRuntimeEvidence": {
+    "status": "stale",
+    "loaded": "mssr-build:sha256:c0b0df2f3eeccf0f",
+    "available": "mssr-build:sha256:1d405b4db4c5c466",
+    "observedAt": "2026-10-11T16:54:56Z",
+    "note": "The selection calls returned successfully through direct MSSR MCP, but the host reported its loaded build differs from the available build; exact package version of this direct service was not exposed in the result. Bridge registry health was unavailable in a 06:12Z snapshot and is stale evidence, not current outage proof."
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "parentRun": "mssr-librarian-open-development-20261011T1644Z-v1",
+  "cohort": "post-hoc diagnostic only; excluded from primary metrics",
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "successfulProviderCalls": 10,
+  "inputValidationFailures": 6,
+  "providerCallsForValidationFailures": 0,
+  "probes": [
+    {
+      "probeId": "cutover-fallback",
+      "query": "¿Qué cambió MSSR 0.2.18 respecto a usar .bridge/ como fallback activo para el contexto del proyecto?",
+      "candidateCount": 4,
+      "status": "selected",
+      "selectedRange": "block-1",
+      "providerConfidence": 0.87,
+      "evidenceSufficiency": 0.9,
+      "providerCalls": 1,
+      "elapsedMs": 409.7
+    },
+    {
+      "probeId": "cutover-inbox",
+      "query": "¿Qué se decidió hacer con los recibos del inbox runtime anterior a MSSR 0.2.18 y por qué?",
+      "candidateCount": 4,
+      "status": "selected",
+      "selectedRange": "block-2",
+      "providerConfidence": 0.94,
+      "evidenceSufficiency": 0.93,
+      "providerCalls": 1,
+      "elapsedMs": 282.3
+    },
+    {
+      "probeId": "drift-integration",
+      "query": "¿Qué cadena debe probarse para distinguir adopción runtime real de código exportado o un ítem del roadmap?",
+      "candidateCount": 3,
+      "status": "selected",
+      "selectedRange": "block-2",
+      "providerConfidence": 0.81,
+      "evidenceSufficiency": 0.51,
+      "providerCalls": 1,
+      "elapsedMs": 288.2
+    },
+    {
+      "probeId": "learning-preference",
+      "query": "¿Qué condiciones del holdout se requieren para preferir un fallback en el host?",
+      "candidateCount": 5,
+      "status": "selected",
+      "selectedRange": "block-3",
+      "providerConfidence": 1,
+      "evidenceSufficiency": 0.9,
+      "providerCalls": 1,
+      "elapsedMs": 284.5
+    },
+    {
+      "probeId": "learning-shadow",
+      "query": "¿Qué evidencia y umbrales requiere generar una regla shadow?",
+      "candidateCount": 5,
+      "status": "selected",
+      "selectedRange": "block-2",
+      "providerConfidence": 0.44,
+      "evidenceSufficiency": 0.39,
+      "providerCalls": 1,
+      "elapsedMs": 281
+    },
+    {
+      "probeId": "skills-progressive",
+      "query": "¿Qué cambia MSSR 0.2.55 sobre las referencias seleccionadas por señales amplias de anomalía y qué deben cumplir los procedimientos detallados?",
+      "candidateCount": 2,
+      "status": "abstained",
+      "selectedRange": null,
+      "providerConfidence": 0.27,
+      "evidenceSufficiency": 0.4,
+      "providerCalls": 1,
+      "elapsedMs": 280.8
+    },
+    {
+      "probeId": "skills-progressive-en",
+      "query": "How does MSSR 0.2.55 prevent broad anomaly signals from loading detailed monolithic references, and what selectors must detailed procedures match?",
+      "candidateCount": 2,
+      "status": "selected",
+      "selectedRange": "heading-1",
+      "providerConfidence": 0.38,
+      "evidenceSufficiency": 0.66,
+      "providerCalls": 1,
+      "elapsedMs": 340.1
+    },
+    {
+      "probeId": "skills-progressive-es-direct",
+      "query": "En MSSR 0.2.55, ¿qué se carga ante una anomalía amplia y qué selectores conjuntivos se requieren para cargar procedimientos detallados?",
+      "candidateCount": 2,
+      "status": "abstained",
+      "selectedRange": null,
+      "providerConfidence": 0.95,
+      "evidenceSufficiency": 0.05,
+      "providerCalls": 1,
+      "elapsedMs": 345.6
+    },
+    {
+      "probeId": "skills-progressive-es-short",
+      "query": "¿Qué hizo MSSR 0.2.55 para que una señal general de anomalía no cargue una referencia monolítica? ¿Qué selectores se exigen para cargar procedimientos detallados?",
+      "candidateCount": 2,
+      "status": "abstained",
+      "selectedRange": null,
+      "providerConfidence": 0.98,
+      "evidenceSufficiency": 0.03,
+      "providerCalls": 1,
+      "elapsedMs": 289.6
+    },
+    {
+      "probeId": "skills-progressive-es-simple",
+      "query": "¿Qué cambió en la carga de referencias detalladas en MSSR 0.2.55?",
+      "candidateCount": 2,
+      "status": "abstained",
+      "selectedRange": null,
+      "providerConfidence": 0.94,
+      "evidenceSufficiency": 0.04,
+      "providerCalls": 1,
+      "elapsedMs": 289.7
+    }
+  ],
+  "exactFetches": 6,
+  "exactFetchFingerprintsVerified": true,
+  "blindReview": {
+    "reviewer": "jev_followup_blind_review",
+    "method": "single blinded Luna review of query and exact fetched excerpts without labels or scores",
+    "counts": {
+      "sufficient": 5,
+      "partial": 1,
+      "irrelevant": 0,
+      "noSelection": 4
+    },
+    "notes": {
+      "skills-progressive-en": "The reviewer called this partial because it did not spell out which selectors; the fetched text explicitly says “conjunctive stage/intent selectors”. Codex adjudicates it sufficient for this query wording; exact allowed selector values were not requested. Keep the raw disagreement."
+    }
+  },
+  "diagnosticFindings": {
+    "compoundQuerySplits": {
+      "cutover": [
+        "cutover-fallback",
+        "cutover-inbox"
+      ],
+      "learning": [
+        "learning-shadow",
+        "learning-preference"
+      ]
+    },
+    "recoveredAnswerableAbstention": [
+      "drift-integration"
+    ],
+    "remainingAbstention": [
+      "skills-progressive",
+      "skills-progressive-es-short",
+      "skills-progressive-es-direct",
+      "skills-progressive-es-simple"
+    ],
+    "englishControlSelected": "skills-progressive-en",
+    "interpretation": "All four Spanish variants abstained while one English counterpart selected an exact section. This is a meaningful language-sensitivity signal for this source/query family, not evidence that Jev generally fails Spanish; the initial cohort includes other Spanish queries successfully selected. The selected English excerpt text itself names both selector dimensions; reviewer and Codex scope judgment differ."
+  },
+  "limitations": [
+    "Post-hoc queries are tuned after seeing primary outcomes and are not benchmark evidence.",
+    "Only one English/Spanish source/query family was probed; no language-wide estimate.",
+    "The runtime reported a stale loaded build; rerun after safe server refresh before treating these as current source behavior."
+  ]
+}

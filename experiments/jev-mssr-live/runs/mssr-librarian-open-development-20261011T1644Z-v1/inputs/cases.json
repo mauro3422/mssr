@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "cohort": "open-development",
+  "queryCases": [
+    {
+      "caseId": "cutover-01",
+      "query": "¿Qué cambió MSSR 0.2.18 respecto al fallback de .bridge y cómo trató el inbox anterior a esa versión?"
+    },
+    {
+      "caseId": "identity-01",
+      "query": "¿De dónde debe venir taskKey y qué señales del texto o del flujo están prohibidas para derivarlo?"
+    },
+    {
+      "caseId": "identity-02",
+      "query": "¿Qué pueden y qué no pueden hacer parentTraceId y supersedesTraceId con otro trace?"
+    },
+    {
+      "caseId": "skills-01",
+      "query": "¿Qué precedencia tienen los nombres de skills first-party y qué implica el bundle acerca de cargarlos en cada tarea?"
+    },
+    {
+      "caseId": "skills-02",
+      "query": "¿Qué cambió MSSR 0.2.55 para evitar que señales genéricas carguen referencias procedimentales monolíticas?"
+    },
+    {
+      "caseId": "learning-01",
+      "query": "¿En qué modo corre el aprendizaje operativo y qué condiciones mantienen la influencia histórica fuera del routing?"
+    },
+    {
+      "caseId": "learning-02",
+      "query": "¿Qué requisitos distintos se exigen para generar una regla shadow y para preferir un fallback en un holdout?"
+    },
+    {
+      "caseId": "drift-01",
+      "query": "¿Qué evidencia puede elevar el mantenimiento de WATCH a REVIEW o REQUIRED, y qué significan esos niveles?"
+    },
+    {
+      "caseId": "drift-02",
+      "query": "¿Qué comprueba el sistema para distinguir una capacidad realmente integrada de código exportado o una casilla de roadmap?"
+    },
+    {
+      "caseId": "drift-03",
+      "query": "¿Cuándo una revisión de freshness obliga a revisar una guía y qué no demuestra sobre su contenido?"
+    },
+    {
+      "caseId": "history-01",
+      "query": "¿Qué debe declarar cada changelog de release y qué estado impide persistir el cambio?"
+    },
+    {
+      "caseId": "dataset-01",
+      "query": "¿Cuál es el último readback local del store de Semantic Experience y cuántos registros tenían verdad verificada o reglas generadas?"
+    },
+    {
+      "caseId": "dataset-02",
+      "query": "¿Qué diferencia hay entre el snapshot histórico de Bridge y el readback local más reciente?"
+    },
+    {
+      "caseId": "no-evidence-01",
+      "query": "¿Qué precisión calibrada obtuvo Jev en un holdout owner-gold con 100 proyectos independientes?"
+    },
+    {
+      "caseId": "no-evidence-02",
+      "query": "¿Cuántos fallos de producción confirmó un verificador independiente durante octubre de 2026?"
+    }
+  ],
+  "documents": [
+    {
+      "owner": "D:/Dev/mssr",
+      "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+      "markdown": "# Canonical project-context cutover\n\nMSSR 0.2.18 removes active project-context fallback to `.bridge/`. A managed repository must be explicitly initialized under `.mssr/`; missing/invalid initialization is observable maintenance evidence rather than permission to guess or load old authorities.\n\nThe cutover deliberately discards the obsolete pre-0.2.18 runtime inbox instead of migrating its receipts, because those receipts may preserve stale `.bridge` provenance. Durable legacy authorities are never deleted unless their canonical counterpart already exists; otherwise initialization reports a blocked cleanup requiring explicit review.\n\nRepository initialization is portable MSSR behavior. Hosts such as Bridge, Codex, and OpenCode may expose/invoke it, but they must not fork the initialization, health, topic, or project-home semantics.\n",
+      "privacyClass": "project-metadata",
+      "sourceBytesSha256": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905"
+    },
+    {
+      "owner": "D:/Dev/mssr",
+      "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+      "markdown": "# Human-task identity decision\n\nHuman-task identity is a correlation layer above trace ownership. `taskKey` is explicit host evidence, never derived from task prose, `workflowKey`, similarity, recency, or inactivity. Optional `parentTraceId` and `supersedesTraceId` preserve lineage inside a task; they do not close, cancel, replace, validate, or mutate another trace.\n\nTask identity is additive and immutable per trace. Unknown fields may bind once; known task, parent, or supersedes values never migrate. Relation fields require `taskKey`; a trace cannot parent or supersede itself, and parent/superseded refs must differ. Referenced traces may exist only in persisted or cross-process history.\n\nHosts may group retries, delegated children, parallel agents, or resumed conversations by explicit `taskKey` while retaining trace ids and provenance. Lifecycle/outcome evidence remains completion authority. Dashboard task status is projection-only unless an authorized owner records it.\n",
+      "privacyClass": "project-metadata",
+      "sourceBytesSha256": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e"
+    },
+    {
+      "owner": "D:/Dev/mssr",
+      "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+      "markdown": "## First-party core skill direction\n\nMSSR-owned operational skills have one canonical bundled source for the five names in `config/first-party-skills.json`. Native, Codex-local, and OpenCode-local source providers discover that package with reserved-name precedence; a custom catalog may not reclaim one of those names as an editable owner. The package boundary does not imply loading every first-party skill on every task; required/on-demand/closing activation remains explicit. In 0.2.54 each root became a compact control plane and selected direct parent-owned references through its manifest; routing metadata/fixtures remained unchanged. The 0.2.55 maintenance follow-up makes progressive disclosure apply to reference units too: a compact root is not sufficient when a generic signal still selects one monolithic reference, so broad anomaly evidence loads only a compact index and detailed procedures require conjunctive stage/intent selectors. The v1 distribution gate proves package dry-run, routing/context selection, safe opt-in junction migration and audit without publishing externally.\n",
+      "privacyClass": "project-metadata",
+      "sourceBytesSha256": "a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f"
+    },
+    {
+      "owner": "D:/Dev/mssr",
+      "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+      "markdown": "## Learning activation decision\n\nOperational learning remains external to model weights and currently runs in `observe-only` mode. MSSR 0.2.54 implements dataset-quality audit, chronological replay/frozen holdout, Beta(1,1)+Wilson support-aware calibration and counterfactual shadow evaluation, but every result fixes `routingInfluence=false` and `automaticPromotionPerformed=false`; the module has no router import/consumption path and sparse or unmeasurable evidence abstains. Historical influence on routing/context remains zero until representative real data demonstrates repeatable net benefit. Activation still requires an explicit reviewed versioned feature flag, exploration floor and instant rollback.\n\n## Separate shadow-rule and fallback-preference gates\n\nGenerating a deterministic Semantic Experience rule and preferring that fallback in a held-out benchmark are separate gates. The shadow-rule distiller uses only independently confirmed/corrected evidence, keeps the latest observation per evidence family, and by default requires at least 8 evidence units from 2 distinct projects, observed dominance of at least 0.80 and a 95% Wilson lower bound of at least 0.65. Semantic-relation contradictions remain excluded from distillation. These support thresholds create an advisory shadow rule; they do not qualify the fallback for host preference.\n\nThe leave-one-project-out preference benchmark separately requires at least 24 independently verified holdout decisions, 4 distinct projects containing verified truth, fallback precision of at least 0.95, coverage of at least 0.25, and zero wrong fallback decisions. Project breadth counts only projects with independently confirmed/corrected truth; projects containing only shadow or rejected observations cannot satisfy it. Meeting the benchmark permits advisory host preference only; authority, routing, canonical rewrite and auto-apply remain false. A reviewed versioned feature flag, exploration floor and immediate rollback are still required for activation. Implementation owners: `src/semantic-experience.ts` and `src/semantic-experience-benchmark.ts`.\n",
+      "privacyClass": "project-metadata",
+      "sourceBytesSha256": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe"
+    },
+    {
+      "owner": "D:/Dev/mssr",
+      "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+      "markdown": "## Project knowledge drift review decision\n\nDrift detection and durable correction are separate responsibilities. `project_change_consistency` compares release diffs/changelog declarations with PROJECT_* authorities; Context Plane compares canonical source revisions with advisory evidence; Project Context Health inspects initialization, authority/module size, missing sources, unindexed `.mssr/knowledge/`, and old MSSR artifacts; `skill_route_audit` and structural Skill Health inspect routing and capability/reference debt. `evaluateMssrProjectKnowledgeMaintenance` combines bounded observable metadata from any host — trace stage, changed paths/tool categories, package/runtime adoption, routing/skill-structure changes, project initialization/health, freshness conflicts and user corrections — into `NONE`/`WATCH`/`REVIEW`/`REQUIRED` targets. These detectors produce evidence only. `WATCH` does not force extra context; `REVIEW`/`REQUIRED` activates maintenance, where `skill-maintenance-loop` chooses the canonical target (`AGENTS.md`, PROJECT_*, an indexed knowledge module, owning skill/reference, routing/fixture, or local documentation) and verifies the resulting diff. Reviewed durable statements may be normalized by `planMssrProjectKnowledgeCapture`, but the host owns the explicit write/manifest transaction. No detector silently writes the owner it is auditing.\n\nSemantic/document inconsistency uses the same evidence-first boundary. First classify whether a capability is actually integrated (`producer -> evaluator -> host consumer -> notice/context surface -> regression`) instead of treating exported code/tests/roadmap checkboxes as runtime adoption. For prose/current-state drift, exact declared identities and deterministic typed claims are authoritative comparison inputs. Similarity/fuzzy/vector retrieval may only find candidate pairs; it must not prove contradiction. Temporal scope, subject identity, authority class and comparable value/revision must agree before deterministic rules can elevate evidence to a proven conflict. Otherwise the system emits bounded review/abstention evidence. This preserves useful heuristics without granting semantic rewrite authority.\n\nDocument Freshness extends that boundary for explicitly current-state documentation. A repository may opt a roadmap/status/guide into `.mssr/document-freshness.json` and declare exact project-relative refs whose later host-observed revisions should force review. This is freshness evidence, not prose understanding: `review-due` never proves arbitrary text false, historical documents remain undeclared, and no freshness result may auto-edit project knowledge. This closes the class of lag where old Bridge/Roblox roadmaps could still look unfinished after the implementation had advanced.\n",
+      "privacyClass": "project-metadata",
+      "sourceBytesSha256": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692"
+    },
+    {
+      "owner": "D:/Dev/mssr",
+      "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+      "markdown": "## Change-history contract\n\nEvery release uses `changelogs/X.Y.Z.md` with explicit PROJECT_CONTEXT/PROJECT_MEMORY/PROJECT_STATE impact. The portable core parses/evaluates this contract; host adapters observe Git/filesystem state. `reviewed-none` is a valid deliberate result, `updated` should correspond to an observed authority change, and `pending` blocks persistence. The evaluator never writes project knowledge automatically.\n",
+      "privacyClass": "project-metadata",
+      "sourceBytesSha256": "ef4dec93e8718d6291ea3f03b83ef1c2b8aed3a54ffc1c904202ef7e3006a13a"
+    },
+    {
+      "owner": "D:/Dev/mssr",
+      "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+      "markdown": "## Learning dataset state\n\nSemantic Experience remains separate from routing authority. `0.2.87` automatically projects the privacy-safe `learning-digest-v1` into bounded trace-linked context-selection, drift, maintenance and abstention shadows and records fallback abstentions without self-verification. The store is now accumulating real cross-project shadows, including context-selection, but independent confirmed/corrected evidence remains insufficient for promotion. Preference remains leave-one-project-out gated and blocked until the existing breadth/precision/coverage/zero-wrong thresholds pass. `0.2.88` near-match diagnostics are routing-repair metadata and do not grant Semantic Experience any routing influence. The entire learning plane remains advisory with `authorityInfluence=false`, `routingInfluence=false`, `canonicalRewriteAllowed=false` and `autoApplyAllowed=false`.\n\nHistorical Bridge snapshot (2026-10-09 23:49 UTC): 5,603 observations, all shadow-only; zero verified, corrected, rejected, eligible, or generated rules. This is not current local telemetry; details are preserved in `D:\\MSSR-benchmark-artifacts\\jev-shep-calibration-20261009-v1\\librarian-sidecar-learning-state-followup-20261010-v1\\REPORT.md`.\n\n**Latest local MSSR store readback (2026-10-10 18:56:52 UTC):** the Semantic Experience status tool returned 7,198 observations, all shadow-only: 6,305 context-selection, 813 maintenance-disposition, 76 semantic-relation, 2 document-role, and 2 placement. Verified, corrected, rejected, unverified-feedback, eligible, and generated-rule counts were all zero. The live policy still requires independently verified, project-held-out evidence and keeps routing, authority, canonical rewrite, and auto-apply influence disabled. This is a local-store observation, distinct from the earlier Bridge readback above; it supersedes that older count for the local store only. The sidecar-selected 5,603 figure remains a correctly fetched historical snapshot, not present-day telemetry. Development follow-up: `D:\\MSSR-benchmark-artifacts\\jev-shep-calibration-20261009-v1\\librarian-sidecar-learning-state-followup-20261010-v1\\REPORT.md`.\n",
+      "privacyClass": "project-metadata",
+      "sourceBytesSha256": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188"
+    }
+  ],
+  "freezePolicy": {
+    "labelsSentToJev": false,
+    "oneSplitUnit": "sourceRef + exact sourceBytesSha256",
+    "useForThresholdTuning": "development-only",
+    "status": "frozen-before-live-Jev-calls"
+  }
+}

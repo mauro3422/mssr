@@ -1,0 +1,111 @@
+{
+  "reviewer": "notice_blocks_blind_a",
+  "method": "independent blind source-only review; no Jev outputs",
+  "cases": [
+    [
+      "cutover-01",
+      "answerable",
+      ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+      "paragraphs 1-2",
+      true
+    ],
+    [
+      "identity-01",
+      "answerable",
+      ".mssr/knowledge/decision/human-task-identity.md",
+      "paragraph 1",
+      true
+    ],
+    [
+      "identity-02",
+      "answerable",
+      ".mssr/knowledge/decision/human-task-identity.md",
+      "paragraph 1",
+      true
+    ],
+    [
+      "skills-01",
+      "answerable",
+      ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+      "paragraph 1, first three sentences",
+      true
+    ],
+    [
+      "skills-02",
+      "answerable",
+      ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+      "paragraph 1, 0.2.55 sentence",
+      true
+    ],
+    [
+      "learning-01",
+      "answerable",
+      ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+      "paragraph 1",
+      true
+    ],
+    [
+      "learning-02",
+      "answerable",
+      ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+      "section 2, paragraphs 1-2",
+      true
+    ],
+    [
+      "drift-01",
+      "partial",
+      ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+      "paragraph 1",
+      "uncertain"
+    ],
+    [
+      "drift-02",
+      "answerable",
+      ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+      "paragraph 2",
+      true
+    ],
+    [
+      "drift-03",
+      "answerable",
+      ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+      "paragraph 3",
+      true
+    ],
+    [
+      "history-01",
+      "answerable",
+      ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+      "paragraph 1",
+      true
+    ],
+    [
+      "dataset-01",
+      "answerable",
+      ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+      "latest local readback paragraph",
+      true
+    ],
+    [
+      "dataset-02",
+      "answerable",
+      ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+      "historical Bridge and latest local paragraphs",
+      true
+    ],
+    [
+      "no-evidence-01",
+      "no-evidence",
+      null,
+      null,
+      false
+    ],
+    [
+      "no-evidence-02",
+      "no-evidence",
+      null,
+      null,
+      false
+    ]
+  ]
+}

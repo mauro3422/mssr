@@ -1,0 +1,28 @@
+{
+  "reviewer": "independent_case_audit (gpt-6-luna)",
+  "method": "blind query/source audit; no Jev outputs",
+  "answerable": [
+    "cutover-01",
+    "identity-01",
+    "identity-02",
+    "skills-01",
+    "skills-02",
+    "learning-01",
+    "learning-02",
+    "drift-01",
+    "drift-02",
+    "drift-03",
+    "history-01",
+    "dataset-01",
+    "dataset-02"
+  ],
+  "noEvidence": [
+    "no-evidence-01",
+    "no-evidence-02"
+  ],
+  "notes": [
+    "Both negatives mean not established by the supplied corpus; they do not prove that such evidence exists nowhere.",
+    "drift-01 is answerable at the level asked: source enumerates bounded metadata and defines WATCH versus REVIEW/REQUIRED activation; exact transition thresholds are unstated.",
+    "No cases recommended for revision before live calls."
+  ]
+}

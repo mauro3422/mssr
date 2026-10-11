@@ -1,0 +1,4078 @@
+{
+  "runId": "mssr-librarian-open-development-20261011T1644Z-v1",
+  "evaluatedAt": "2026-10-11T16:44:39Z",
+  "method": "MSSR deterministic mssr_librarian_search over the seven frozen source snapshots",
+  "results": [
+    {
+      "caseId": "cutover-01",
+      "query": "¿Qué cambió MSSR 0.2.18 respecto al fallback de .bridge y cómo trató el inbox anterior a esa versión?",
+      "isError": false,
+      "results": [
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.454545,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "451e8055763071568cb8b9b554c41abc077f7b7ba2826750be24a85af8311df6",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 844,
+            "fingerprint": "024a4e297c68ddbff57fcdea3f432756275727ab57b4fa37e8996a126103c6f3",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.363636,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "d872d1a3d0b708e8d11254677961fc491a16c92aae43a9be6450d363e8f81a56",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 37,
+            "endOffset": 294,
+            "fingerprint": "944e789596c989b078e23b6bb6d3c0948cbd833d4360429141b817ec6332ff79",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.363636,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "28c5e1597db90b6ad0bc3ef37cabb831ccf5a7b9fff1e82dc73e04672a908453",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2162,
+            "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.363636,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "117ff427ea48d80f9cf5affa7a3294e055ac0dd59d9fd7fdb226cbb0c1e4c679",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 296,
+            "endOffset": 640,
+            "fingerprint": "830a5237e2dd9f417ba8236ea0cf4915d73da9b847303dfb63ff80493e02c7dd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.272727,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "cdc3781d24694b6d5e679cb451c56585653c7fe18ec88a16ce9c54a8b92a19fb",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 1236,
+            "endOffset": 2161,
+            "fingerprint": "539b10b8f7b0f68421ef413514bd3a2ba1ade6278924d44ea7aba6ca3d31e26a",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.181818,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "0f3d11fa35c48eec883f2bc3052ed702efa465cb9aa301d1c85a07239039fd1b",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 642,
+            "endOffset": 843,
+            "fingerprint": "2f7357c73e343f8d3ee4d96a18e58cac34075d9091d0f6b73a6da757a5c8032c",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.181818,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "72878947c139ddaacdf05697ca9fa26c0db9fa2a46ec83c7e907cb86aa36339e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 5,
+            "endLine": 9,
+            "startOffset": 712,
+            "endOffset": 2122,
+            "fingerprint": "7c9b1a721918ad1cbff73e8e93b9a6d3e414dafdb8736eb7701040796f6bfecd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.181818,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "54b98dff1e1a00a7765de11463a567b5473dbd908821c9fca04d77c7c3a73f7e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2788,
+            "fingerprint": "d1a30123734725f87abf4b6903e4c2e413a2fe3b06566b776cf32c8c150de390",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.181818,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "9286cd3b4b34e3d5dc2645914cc8cbb5351de2dedceea7c32a31ba845a048ff1",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 27,
+            "endOffset": 889,
+            "fingerprint": "3526b6c9cea70e3ef28439974d9ec46709dcdf784696aa69fa2a4f640c05b8ce",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.181818,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "e42f4b6f16d3e801b301c86ec256aca7e0e88a04a7639d570f04fcb48a70a100",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 767,
+            "endOffset": 1359,
+            "fingerprint": "4043e98ee77327ad57f414fe9ff627d8f83a359abf2b4b884733f81b20360469",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.181818,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "79aa90220cab80415b7c87942fb407fd56e0ca783fcc4e14956467c8d3bdbf36",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 2198,
+            "endOffset": 2787,
+            "fingerprint": "46b4508427dccc3b89a204dfb954e576b4e9fec2b48a332a8ee7c9a4321f9aca",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.181818,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "9b57760db5adf60d9ff09ca808f51a0271f981cb3bbfb6095cef19b1a220f794",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 891,
+            "endOffset": 1234,
+            "fingerprint": "d4bfbcfb1d44f04f08ba01801a66aaccd16574d959fed0ce071824c2a5dc405a",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.181818,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "182bf5d4bb4cda3771aa3a506cce439a7844ba63667cb790864a59878c69b490",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "startOffset": 1361,
+            "endOffset": 2121,
+            "fingerprint": "be9cbcb2e91c62bbabc8463f36e45457d5ac9079dfcf04ebf1671d5e8796c850",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.090909,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "bb508a5bca74f950bd4c3663a7f38063562116672b879ae34f061b3029d0bb9c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 986,
+            "fingerprint": "971c48233dc14fae04bd146161fb72c0c883cd759cbbf40a5578026b8128fe7d",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "First-party core skill direction",
+          "headingPath": [
+            "First-party core skill direction"
+          ],
+          "score": 0.090909,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "3ab40cbe60013ecb293aa43b17803ddc3b04ba6c9728fc76a1cc840fa7b752a6",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+            "revision": "a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 3,
+            "startOffset": 0,
+            "endOffset": 1099,
+            "fingerprint": "12358cdcdf29c56b30d0cfa8eccc39edb6e2b93bda31e05d9be90f6d8a03ba27",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Learning activation decision",
+          "headingPath": [
+            "Learning activation decision"
+          ],
+          "score": 0.090909,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "37649bbe7dadcbf1aa8b237a7e52b27482ebc636edaa58e9af762b967d2d249c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 4,
+            "startOffset": 0,
+            "endOffset": 712,
+            "fingerprint": "c5ed56b712ee5184ca352d3cdde4364d1e816b509be4257b0b39fbf5437ab72f",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.090909,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "436d96d7f49d9c2e2f5577c1b3735f960415a42ab350bb38736bb40ed5789e0c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 44,
+            "endOffset": 1377,
+            "fingerprint": "6cceed2e3d9b010ec09dd0db9a4e5b519a65a45efdf70ce2904626ecb4213d11",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Change-history contract",
+          "headingPath": [
+            "Change-history contract"
+          ],
+          "score": 0.090909,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "0f5b5673d7003be67eae173ffa47b5951738686e62193ae79fd574e1d0a4d00e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+            "revision": "ef4dec93e8718d6291ea3f03b83ef1c2b8aed3a54ffc1c904202ef7e3006a13a",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 3,
+            "startOffset": 0,
+            "endOffset": 431,
+            "fingerprint": "748ab7ebe46fabb8f5fe0f982dd2d45108645fe42e8b3f103b31fa1cdc22f810",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.090909,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "b852966552db46c387427f8f89e917d535ffab4fc55a661e4f12fcca806bcdf5",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 32,
+            "endOffset": 368,
+            "fingerprint": "042e82904acef5af520631c67db67e1aad4b3c249f4236eed695fae69b9da8bc",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "First-party core skill direction",
+          "headingPath": [
+            "First-party core skill direction"
+          ],
+          "score": 0.090909,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "c5ac5ce55a0b26e4e3b9b346dfac329038c481c61f0127d779cbcd46f846321c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+            "revision": "a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 37,
+            "endOffset": 1098,
+            "fingerprint": "74dd44d49868f3118d2a39fd588301280731cc1dcbfd0a9c8740ca5af78fcf27",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Learning activation decision",
+          "headingPath": [
+            "Learning activation decision"
+          ],
+          "score": 0.090909,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "34715166043528bd8c86a1a7df22d377c07c76fd7104e05ac9311e8457374c0e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 33,
+            "endOffset": 710,
+            "fingerprint": "0cdf24dccd507c651fc2abc7deb8e82b7b5a3799dbe527610762424ec5fb8fae",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.090909,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "f6b010c0cd25e39735ed41b3328e59ed233db2f4239cae1f969a22e45429b04e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 1379,
+            "endOffset": 2196,
+            "fingerprint": "dfd2b55ddf49a12b53c709391e559ac4c9d637ad0c7b20b63ba952f4d89576c6",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Change-history contract",
+          "headingPath": [
+            "Change-history contract"
+          ],
+          "score": 0.090909,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "90d5cdfe4ddcbae50db2bfac0ca9c9162afa21e7196238baf6948d53ddb19ab3",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+            "revision": "ef4dec93e8718d6291ea3f03b83ef1c2b8aed3a54ffc1c904202ef7e3006a13a",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 28,
+            "endOffset": 430,
+            "fingerprint": "8c12ff299317eb7ce21f44c0238163a0ad1547d7aa95ed71f7ff07e58fe26ee9",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.090909,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "8f66657686395d2c84479dbda4b9f38e7528ef9a8afc8750fba588bebc4bcb80",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 370,
+            "endOffset": 696,
+            "fingerprint": "36d5660090b5fbcff4d8adf1ffb2909c957ec510866483d85396121882a17354",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.090909,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "9f32a846807c1f96cf4bfa5a12152e8465461d317584ccc9047ad3826705201c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 698,
+            "endOffset": 985,
+            "fingerprint": "5af34ecd86545c345af03fb5d8cb01792c0cc3f08faea76bae398f6db7ae8084",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "diagnostics": null
+    },
+    {
+      "caseId": "identity-01",
+      "query": "¿De dónde debe venir taskKey y qué señales del texto o del flujo están prohibidas para derivarlo?",
+      "isError": false,
+      "results": [
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "bb508a5bca74f950bd4c3663a7f38063562116672b879ae34f061b3029d0bb9c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 986,
+            "fingerprint": "971c48233dc14fae04bd146161fb72c0c883cd759cbbf40a5578026b8128fe7d",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "b852966552db46c387427f8f89e917d535ffab4fc55a661e4f12fcca806bcdf5",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 32,
+            "endOffset": 368,
+            "fingerprint": "042e82904acef5af520631c67db67e1aad4b3c249f4236eed695fae69b9da8bc",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "8f66657686395d2c84479dbda4b9f38e7528ef9a8afc8750fba588bebc4bcb80",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 370,
+            "endOffset": 696,
+            "fingerprint": "36d5660090b5fbcff4d8adf1ffb2909c957ec510866483d85396121882a17354",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "9f32a846807c1f96cf4bfa5a12152e8465461d317584ccc9047ad3826705201c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 698,
+            "endOffset": 985,
+            "fingerprint": "5af34ecd86545c345af03fb5d8cb01792c0cc3f08faea76bae398f6db7ae8084",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "diagnostics": null
+    },
+    {
+      "caseId": "identity-02",
+      "query": "¿Qué pueden y qué no pueden hacer parentTraceId y supersedesTraceId con otro trace?",
+      "isError": false,
+      "results": [
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.428571,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "bb508a5bca74f950bd4c3663a7f38063562116672b879ae34f061b3029d0bb9c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 986,
+            "fingerprint": "971c48233dc14fae04bd146161fb72c0c883cd759cbbf40a5578026b8128fe7d",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.428571,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "b852966552db46c387427f8f89e917d535ffab4fc55a661e4f12fcca806bcdf5",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 32,
+            "endOffset": 368,
+            "fingerprint": "042e82904acef5af520631c67db67e1aad4b3c249f4236eed695fae69b9da8bc",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.285714,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "54b98dff1e1a00a7765de11463a567b5473dbd908821c9fca04d77c7c3a73f7e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2788,
+            "fingerprint": "d1a30123734725f87abf4b6903e4c2e413a2fe3b06566b776cf32c8c150de390",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.285714,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "436d96d7f49d9c2e2f5577c1b3735f960415a42ab350bb38736bb40ed5789e0c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 44,
+            "endOffset": 1377,
+            "fingerprint": "6cceed2e3d9b010ec09dd0db9a4e5b519a65a45efdf70ce2904626ecb4213d11",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.142857,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "8f66657686395d2c84479dbda4b9f38e7528ef9a8afc8750fba588bebc4bcb80",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 370,
+            "endOffset": 696,
+            "fingerprint": "36d5660090b5fbcff4d8adf1ffb2909c957ec510866483d85396121882a17354",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Learning activation decision",
+          "headingPath": [
+            "Learning activation decision"
+          ],
+          "score": 0.142857,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "37649bbe7dadcbf1aa8b237a7e52b27482ebc636edaa58e9af762b967d2d249c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 4,
+            "startOffset": 0,
+            "endOffset": 712,
+            "fingerprint": "c5ed56b712ee5184ca352d3cdde4364d1e816b509be4257b0b39fbf5437ab72f",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.142857,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "79aa90220cab80415b7c87942fb407fd56e0ca783fcc4e14956467c8d3bdbf36",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 2198,
+            "endOffset": 2787,
+            "fingerprint": "46b4508427dccc3b89a204dfb954e576b4e9fec2b48a332a8ee7c9a4321f9aca",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.142857,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "9f32a846807c1f96cf4bfa5a12152e8465461d317584ccc9047ad3826705201c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 698,
+            "endOffset": 985,
+            "fingerprint": "5af34ecd86545c345af03fb5d8cb01792c0cc3f08faea76bae398f6db7ae8084",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Learning activation decision",
+          "headingPath": [
+            "Learning activation decision"
+          ],
+          "score": 0.142857,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "34715166043528bd8c86a1a7df22d377c07c76fd7104e05ac9311e8457374c0e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 33,
+            "endOffset": 710,
+            "fingerprint": "0cdf24dccd507c651fc2abc7deb8e82b7b5a3799dbe527610762424ec5fb8fae",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "diagnostics": null
+    },
+    {
+      "caseId": "skills-01",
+      "query": "¿Qué precedencia tienen los nombres de skills first-party y qué implica el bundle acerca de cargarlos en cada tarea?",
+      "isError": false,
+      "results": [
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "First-party core skill direction",
+          "headingPath": [
+            "First-party core skill direction"
+          ],
+          "score": 0.181818,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "3ab40cbe60013ecb293aa43b17803ddc3b04ba6c9728fc76a1cc840fa7b752a6",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+            "revision": "a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 3,
+            "startOffset": 0,
+            "endOffset": 1099,
+            "fingerprint": "12358cdcdf29c56b30d0cfa8eccc39edb6e2b93bda31e05d9be90f6d8a03ba27",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "First-party core skill direction",
+          "headingPath": [
+            "First-party core skill direction"
+          ],
+          "score": 0.181818,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "c5ac5ce55a0b26e4e3b9b346dfac329038c481c61f0127d779cbcd46f846321c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+            "revision": "a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 37,
+            "endOffset": 1098,
+            "fingerprint": "74dd44d49868f3118d2a39fd588301280731cc1dcbfd0a9c8740ca5af78fcf27",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "diagnostics": null
+    },
+    {
+      "caseId": "skills-02",
+      "query": "¿Qué cambió MSSR 0.2.55 para evitar que señales genéricas carguen referencias procedimentales monolíticas?",
+      "isError": false,
+      "results": [
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "First-party core skill direction",
+          "headingPath": [
+            "First-party core skill direction"
+          ],
+          "score": 0.2,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "3ab40cbe60013ecb293aa43b17803ddc3b04ba6c9728fc76a1cc840fa7b752a6",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+            "revision": "a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 3,
+            "startOffset": 0,
+            "endOffset": 1099,
+            "fingerprint": "12358cdcdf29c56b30d0cfa8eccc39edb6e2b93bda31e05d9be90f6d8a03ba27",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "First-party core skill direction",
+          "headingPath": [
+            "First-party core skill direction"
+          ],
+          "score": 0.2,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "c5ac5ce55a0b26e4e3b9b346dfac329038c481c61f0127d779cbcd46f846321c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+            "revision": "a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 37,
+            "endOffset": 1098,
+            "fingerprint": "74dd44d49868f3118d2a39fd588301280731cc1dcbfd0a9c8740ca5af78fcf27",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "451e8055763071568cb8b9b554c41abc077f7b7ba2826750be24a85af8311df6",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 844,
+            "fingerprint": "024a4e297c68ddbff57fcdea3f432756275727ab57b4fa37e8996a126103c6f3",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "bb508a5bca74f950bd4c3663a7f38063562116672b879ae34f061b3029d0bb9c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 986,
+            "fingerprint": "971c48233dc14fae04bd146161fb72c0c883cd759cbbf40a5578026b8128fe7d",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Learning activation decision",
+          "headingPath": [
+            "Learning activation decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "37649bbe7dadcbf1aa8b237a7e52b27482ebc636edaa58e9af762b967d2d249c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 4,
+            "startOffset": 0,
+            "endOffset": 712,
+            "fingerprint": "c5ed56b712ee5184ca352d3cdde4364d1e816b509be4257b0b39fbf5437ab72f",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "54b98dff1e1a00a7765de11463a567b5473dbd908821c9fca04d77c7c3a73f7e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2788,
+            "fingerprint": "d1a30123734725f87abf4b6903e4c2e413a2fe3b06566b776cf32c8c150de390",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Change-history contract",
+          "headingPath": [
+            "Change-history contract"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "0f5b5673d7003be67eae173ffa47b5951738686e62193ae79fd574e1d0a4d00e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+            "revision": "ef4dec93e8718d6291ea3f03b83ef1c2b8aed3a54ffc1c904202ef7e3006a13a",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 3,
+            "startOffset": 0,
+            "endOffset": 431,
+            "fingerprint": "748ab7ebe46fabb8f5fe0f982dd2d45108645fe42e8b3f103b31fa1cdc22f810",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "28c5e1597db90b6ad0bc3ef37cabb831ccf5a7b9fff1e82dc73e04672a908453",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2162,
+            "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "d872d1a3d0b708e8d11254677961fc491a16c92aae43a9be6450d363e8f81a56",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 37,
+            "endOffset": 294,
+            "fingerprint": "944e789596c989b078e23b6bb6d3c0948cbd833d4360429141b817ec6332ff79",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "b852966552db46c387427f8f89e917d535ffab4fc55a661e4f12fcca806bcdf5",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 32,
+            "endOffset": 368,
+            "fingerprint": "042e82904acef5af520631c67db67e1aad4b3c249f4236eed695fae69b9da8bc",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Learning activation decision",
+          "headingPath": [
+            "Learning activation decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "34715166043528bd8c86a1a7df22d377c07c76fd7104e05ac9311e8457374c0e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 33,
+            "endOffset": 710,
+            "fingerprint": "0cdf24dccd507c651fc2abc7deb8e82b7b5a3799dbe527610762424ec5fb8fae",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "436d96d7f49d9c2e2f5577c1b3735f960415a42ab350bb38736bb40ed5789e0c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 44,
+            "endOffset": 1377,
+            "fingerprint": "6cceed2e3d9b010ec09dd0db9a4e5b519a65a45efdf70ce2904626ecb4213d11",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Change-history contract",
+          "headingPath": [
+            "Change-history contract"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "90d5cdfe4ddcbae50db2bfac0ca9c9162afa21e7196238baf6948d53ddb19ab3",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+            "revision": "ef4dec93e8718d6291ea3f03b83ef1c2b8aed3a54ffc1c904202ef7e3006a13a",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 28,
+            "endOffset": 430,
+            "fingerprint": "8c12ff299317eb7ce21f44c0238163a0ad1547d7aa95ed71f7ff07e58fe26ee9",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "9286cd3b4b34e3d5dc2645914cc8cbb5351de2dedceea7c32a31ba845a048ff1",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 27,
+            "endOffset": 889,
+            "fingerprint": "3526b6c9cea70e3ef28439974d9ec46709dcdf784696aa69fa2a4f640c05b8ce",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "117ff427ea48d80f9cf5affa7a3294e055ac0dd59d9fd7fdb226cbb0c1e4c679",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 296,
+            "endOffset": 640,
+            "fingerprint": "830a5237e2dd9f417ba8236ea0cf4915d73da9b847303dfb63ff80493e02c7dd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "8f66657686395d2c84479dbda4b9f38e7528ef9a8afc8750fba588bebc4bcb80",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 370,
+            "endOffset": 696,
+            "fingerprint": "36d5660090b5fbcff4d8adf1ffb2909c957ec510866483d85396121882a17354",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "72878947c139ddaacdf05697ca9fa26c0db9fa2a46ec83c7e907cb86aa36339e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 5,
+            "endLine": 9,
+            "startOffset": 712,
+            "endOffset": 2122,
+            "fingerprint": "7c9b1a721918ad1cbff73e8e93b9a6d3e414dafdb8736eb7701040796f6bfecd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "f6b010c0cd25e39735ed41b3328e59ed233db2f4239cae1f969a22e45429b04e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 1379,
+            "endOffset": 2196,
+            "fingerprint": "dfd2b55ddf49a12b53c709391e559ac4c9d637ad0c7b20b63ba952f4d89576c6",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "9b57760db5adf60d9ff09ca808f51a0271f981cb3bbfb6095cef19b1a220f794",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 891,
+            "endOffset": 1234,
+            "fingerprint": "d4bfbcfb1d44f04f08ba01801a66aaccd16574d959fed0ce071824c2a5dc405a",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "0f3d11fa35c48eec883f2bc3052ed702efa465cb9aa301d1c85a07239039fd1b",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 642,
+            "endOffset": 843,
+            "fingerprint": "2f7357c73e343f8d3ee4d96a18e58cac34075d9091d0f6b73a6da757a5c8032c",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "9f32a846807c1f96cf4bfa5a12152e8465461d317584ccc9047ad3826705201c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 698,
+            "endOffset": 985,
+            "fingerprint": "5af34ecd86545c345af03fb5d8cb01792c0cc3f08faea76bae398f6db7ae8084",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "e42f4b6f16d3e801b301c86ec256aca7e0e88a04a7639d570f04fcb48a70a100",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 767,
+            "endOffset": 1359,
+            "fingerprint": "4043e98ee77327ad57f414fe9ff627d8f83a359abf2b4b884733f81b20360469",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "79aa90220cab80415b7c87942fb407fd56e0ca783fcc4e14956467c8d3bdbf36",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 2198,
+            "endOffset": 2787,
+            "fingerprint": "46b4508427dccc3b89a204dfb954e576b4e9fec2b48a332a8ee7c9a4321f9aca",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "cdc3781d24694b6d5e679cb451c56585653c7fe18ec88a16ce9c54a8b92a19fb",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 1236,
+            "endOffset": 2161,
+            "fingerprint": "539b10b8f7b0f68421ef413514bd3a2ba1ade6278924d44ea7aba6ca3d31e26a",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "182bf5d4bb4cda3771aa3a506cce439a7844ba63667cb790864a59878c69b490",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "startOffset": 1361,
+            "endOffset": 2121,
+            "fingerprint": "be9cbcb2e91c62bbabc8463f36e45457d5ac9079dfcf04ebf1671d5e8796c850",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "diagnostics": null
+    },
+    {
+      "caseId": "learning-01",
+      "query": "¿En qué modo corre el aprendizaje operativo y qué condiciones mantienen la influencia histórica fuera del routing?",
+      "isError": false,
+      "results": [
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "First-party core skill direction",
+          "headingPath": [
+            "First-party core skill direction"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "3ab40cbe60013ecb293aa43b17803ddc3b04ba6c9728fc76a1cc840fa7b752a6",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+            "revision": "a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 3,
+            "startOffset": 0,
+            "endOffset": 1099,
+            "fingerprint": "12358cdcdf29c56b30d0cfa8eccc39edb6e2b93bda31e05d9be90f6d8a03ba27",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Learning activation decision",
+          "headingPath": [
+            "Learning activation decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "37649bbe7dadcbf1aa8b237a7e52b27482ebc636edaa58e9af762b967d2d249c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 4,
+            "startOffset": 0,
+            "endOffset": 712,
+            "fingerprint": "c5ed56b712ee5184ca352d3cdde4364d1e816b509be4257b0b39fbf5437ab72f",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "54b98dff1e1a00a7765de11463a567b5473dbd908821c9fca04d77c7c3a73f7e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2788,
+            "fingerprint": "d1a30123734725f87abf4b6903e4c2e413a2fe3b06566b776cf32c8c150de390",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "28c5e1597db90b6ad0bc3ef37cabb831ccf5a7b9fff1e82dc73e04672a908453",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2162,
+            "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "First-party core skill direction",
+          "headingPath": [
+            "First-party core skill direction"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "c5ac5ce55a0b26e4e3b9b346dfac329038c481c61f0127d779cbcd46f846321c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+            "revision": "a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 37,
+            "endOffset": 1098,
+            "fingerprint": "74dd44d49868f3118d2a39fd588301280731cc1dcbfd0a9c8740ca5af78fcf27",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Learning activation decision",
+          "headingPath": [
+            "Learning activation decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "34715166043528bd8c86a1a7df22d377c07c76fd7104e05ac9311e8457374c0e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 33,
+            "endOffset": 710,
+            "fingerprint": "0cdf24dccd507c651fc2abc7deb8e82b7b5a3799dbe527610762424ec5fb8fae",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "436d96d7f49d9c2e2f5577c1b3735f960415a42ab350bb38736bb40ed5789e0c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 44,
+            "endOffset": 1377,
+            "fingerprint": "6cceed2e3d9b010ec09dd0db9a4e5b519a65a45efdf70ce2904626ecb4213d11",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "9286cd3b4b34e3d5dc2645914cc8cbb5351de2dedceea7c32a31ba845a048ff1",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 27,
+            "endOffset": 889,
+            "fingerprint": "3526b6c9cea70e3ef28439974d9ec46709dcdf784696aa69fa2a4f640c05b8ce",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "72878947c139ddaacdf05697ca9fa26c0db9fa2a46ec83c7e907cb86aa36339e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 5,
+            "endLine": 9,
+            "startOffset": 712,
+            "endOffset": 2122,
+            "fingerprint": "7c9b1a721918ad1cbff73e8e93b9a6d3e414dafdb8736eb7701040796f6bfecd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "cdc3781d24694b6d5e679cb451c56585653c7fe18ec88a16ce9c54a8b92a19fb",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 1236,
+            "endOffset": 2161,
+            "fingerprint": "539b10b8f7b0f68421ef413514bd3a2ba1ade6278924d44ea7aba6ca3d31e26a",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "182bf5d4bb4cda3771aa3a506cce439a7844ba63667cb790864a59878c69b490",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "startOffset": 1361,
+            "endOffset": 2121,
+            "fingerprint": "be9cbcb2e91c62bbabc8463f36e45457d5ac9079dfcf04ebf1671d5e8796c850",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "diagnostics": null
+    },
+    {
+      "caseId": "learning-02",
+      "query": "¿Qué requisitos distintos se exigen para generar una regla shadow y para preferir un fallback en un holdout?",
+      "isError": false,
+      "results": [
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.333333,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "72878947c139ddaacdf05697ca9fa26c0db9fa2a46ec83c7e907cb86aa36339e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 5,
+            "endLine": 9,
+            "startOffset": 712,
+            "endOffset": 2122,
+            "fingerprint": "7c9b1a721918ad1cbff73e8e93b9a6d3e414dafdb8736eb7701040796f6bfecd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.333333,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "182bf5d4bb4cda3771aa3a506cce439a7844ba63667cb790864a59878c69b490",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "startOffset": 1361,
+            "endOffset": 2121,
+            "fingerprint": "be9cbcb2e91c62bbabc8463f36e45457d5ac9079dfcf04ebf1671d5e8796c850",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Learning activation decision",
+          "headingPath": [
+            "Learning activation decision"
+          ],
+          "score": 0.222222,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "37649bbe7dadcbf1aa8b237a7e52b27482ebc636edaa58e9af762b967d2d249c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 4,
+            "startOffset": 0,
+            "endOffset": 712,
+            "fingerprint": "c5ed56b712ee5184ca352d3cdde4364d1e816b509be4257b0b39fbf5437ab72f",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Learning activation decision",
+          "headingPath": [
+            "Learning activation decision"
+          ],
+          "score": 0.222222,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "34715166043528bd8c86a1a7df22d377c07c76fd7104e05ac9311e8457374c0e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 33,
+            "endOffset": 710,
+            "fingerprint": "0cdf24dccd507c651fc2abc7deb8e82b7b5a3799dbe527610762424ec5fb8fae",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.222222,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "e42f4b6f16d3e801b301c86ec256aca7e0e88a04a7639d570f04fcb48a70a100",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 767,
+            "endOffset": 1359,
+            "fingerprint": "4043e98ee77327ad57f414fe9ff627d8f83a359abf2b4b884733f81b20360469",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "451e8055763071568cb8b9b554c41abc077f7b7ba2826750be24a85af8311df6",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 844,
+            "fingerprint": "024a4e297c68ddbff57fcdea3f432756275727ab57b4fa37e8996a126103c6f3",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "28c5e1597db90b6ad0bc3ef37cabb831ccf5a7b9fff1e82dc73e04672a908453",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2162,
+            "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "d872d1a3d0b708e8d11254677961fc491a16c92aae43a9be6450d363e8f81a56",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 37,
+            "endOffset": 294,
+            "fingerprint": "944e789596c989b078e23b6bb6d3c0948cbd833d4360429141b817ec6332ff79",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "9286cd3b4b34e3d5dc2645914cc8cbb5351de2dedceea7c32a31ba845a048ff1",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 27,
+            "endOffset": 889,
+            "fingerprint": "3526b6c9cea70e3ef28439974d9ec46709dcdf784696aa69fa2a4f640c05b8ce",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "diagnostics": null
+    },
+    {
+      "caseId": "drift-01",
+      "query": "¿Qué evidencia puede elevar el mantenimiento de WATCH a REVIEW o REQUIRED, y qué significan esos niveles?",
+      "isError": false,
+      "results": [
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.3,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "54b98dff1e1a00a7765de11463a567b5473dbd908821c9fca04d77c7c3a73f7e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2788,
+            "fingerprint": "d1a30123734725f87abf4b6903e4c2e413a2fe3b06566b776cf32c8c150de390",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.3,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "436d96d7f49d9c2e2f5577c1b3735f960415a42ab350bb38736bb40ed5789e0c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 44,
+            "endOffset": 1377,
+            "fingerprint": "6cceed2e3d9b010ec09dd0db9a4e5b519a65a45efdf70ce2904626ecb4213d11",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "451e8055763071568cb8b9b554c41abc077f7b7ba2826750be24a85af8311df6",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 844,
+            "fingerprint": "024a4e297c68ddbff57fcdea3f432756275727ab57b4fa37e8996a126103c6f3",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "First-party core skill direction",
+          "headingPath": [
+            "First-party core skill direction"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "3ab40cbe60013ecb293aa43b17803ddc3b04ba6c9728fc76a1cc840fa7b752a6",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+            "revision": "a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 3,
+            "startOffset": 0,
+            "endOffset": 1099,
+            "fingerprint": "12358cdcdf29c56b30d0cfa8eccc39edb6e2b93bda31e05d9be90f6d8a03ba27",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "72878947c139ddaacdf05697ca9fa26c0db9fa2a46ec83c7e907cb86aa36339e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 5,
+            "endLine": 9,
+            "startOffset": 712,
+            "endOffset": 2122,
+            "fingerprint": "7c9b1a721918ad1cbff73e8e93b9a6d3e414dafdb8736eb7701040796f6bfecd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "f6b010c0cd25e39735ed41b3328e59ed233db2f4239cae1f969a22e45429b04e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 1379,
+            "endOffset": 2196,
+            "fingerprint": "dfd2b55ddf49a12b53c709391e559ac4c9d637ad0c7b20b63ba952f4d89576c6",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "117ff427ea48d80f9cf5affa7a3294e055ac0dd59d9fd7fdb226cbb0c1e4c679",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 296,
+            "endOffset": 640,
+            "fingerprint": "830a5237e2dd9f417ba8236ea0cf4915d73da9b847303dfb63ff80493e02c7dd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "First-party core skill direction",
+          "headingPath": [
+            "First-party core skill direction"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "c5ac5ce55a0b26e4e3b9b346dfac329038c481c61f0127d779cbcd46f846321c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+            "revision": "a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 37,
+            "endOffset": 1098,
+            "fingerprint": "74dd44d49868f3118d2a39fd588301280731cc1dcbfd0a9c8740ca5af78fcf27",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "182bf5d4bb4cda3771aa3a506cce439a7844ba63667cb790864a59878c69b490",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "startOffset": 1361,
+            "endOffset": 2121,
+            "fingerprint": "be9cbcb2e91c62bbabc8463f36e45457d5ac9079dfcf04ebf1671d5e8796c850",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "79aa90220cab80415b7c87942fb407fd56e0ca783fcc4e14956467c8d3bdbf36",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 2198,
+            "endOffset": 2787,
+            "fingerprint": "46b4508427dccc3b89a204dfb954e576b4e9fec2b48a332a8ee7c9a4321f9aca",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "diagnostics": null
+    },
+    {
+      "caseId": "drift-02",
+      "query": "¿Qué comprueba el sistema para distinguir una capacidad realmente integrada de código exportado o una casilla de roadmap?",
+      "isError": false,
+      "results": [
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "54b98dff1e1a00a7765de11463a567b5473dbd908821c9fca04d77c7c3a73f7e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2788,
+            "fingerprint": "d1a30123734725f87abf4b6903e4c2e413a2fe3b06566b776cf32c8c150de390",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "f6b010c0cd25e39735ed41b3328e59ed233db2f4239cae1f969a22e45429b04e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 1379,
+            "endOffset": 2196,
+            "fingerprint": "dfd2b55ddf49a12b53c709391e559ac4c9d637ad0c7b20b63ba952f4d89576c6",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.1,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "79aa90220cab80415b7c87942fb407fd56e0ca783fcc4e14956467c8d3bdbf36",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 2198,
+            "endOffset": 2787,
+            "fingerprint": "46b4508427dccc3b89a204dfb954e576b4e9fec2b48a332a8ee7c9a4321f9aca",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "diagnostics": null
+    },
+    {
+      "caseId": "drift-03",
+      "query": "¿Cuándo una revisión de freshness obliga a revisar una guía y qué no demuestra sobre su contenido?",
+      "isError": false,
+      "results": [
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.333333,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "54b98dff1e1a00a7765de11463a567b5473dbd908821c9fca04d77c7c3a73f7e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2788,
+            "fingerprint": "d1a30123734725f87abf4b6903e4c2e413a2fe3b06566b776cf32c8c150de390",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.333333,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "436d96d7f49d9c2e2f5577c1b3735f960415a42ab350bb38736bb40ed5789e0c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 44,
+            "endOffset": 1377,
+            "fingerprint": "6cceed2e3d9b010ec09dd0db9a4e5b519a65a45efdf70ce2904626ecb4213d11",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.333333,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "79aa90220cab80415b7c87942fb407fd56e0ca783fcc4e14956467c8d3bdbf36",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 2198,
+            "endOffset": 2787,
+            "fingerprint": "46b4508427dccc3b89a204dfb954e576b4e9fec2b48a332a8ee7c9a4321f9aca",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Learning activation decision",
+          "headingPath": [
+            "Learning activation decision"
+          ],
+          "score": 0.222222,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "37649bbe7dadcbf1aa8b237a7e52b27482ebc636edaa58e9af762b967d2d249c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 4,
+            "startOffset": 0,
+            "endOffset": 712,
+            "fingerprint": "c5ed56b712ee5184ca352d3cdde4364d1e816b509be4257b0b39fbf5437ab72f",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Learning activation decision",
+          "headingPath": [
+            "Learning activation decision"
+          ],
+          "score": 0.222222,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "34715166043528bd8c86a1a7df22d377c07c76fd7104e05ac9311e8457374c0e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 33,
+            "endOffset": 710,
+            "fingerprint": "0cdf24dccd507c651fc2abc7deb8e82b7b5a3799dbe527610762424ec5fb8fae",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "451e8055763071568cb8b9b554c41abc077f7b7ba2826750be24a85af8311df6",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 844,
+            "fingerprint": "024a4e297c68ddbff57fcdea3f432756275727ab57b4fa37e8996a126103c6f3",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "bb508a5bca74f950bd4c3663a7f38063562116672b879ae34f061b3029d0bb9c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 986,
+            "fingerprint": "971c48233dc14fae04bd146161fb72c0c883cd759cbbf40a5578026b8128fe7d",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "First-party core skill direction",
+          "headingPath": [
+            "First-party core skill direction"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "3ab40cbe60013ecb293aa43b17803ddc3b04ba6c9728fc76a1cc840fa7b752a6",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+            "revision": "a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 3,
+            "startOffset": 0,
+            "endOffset": 1099,
+            "fingerprint": "12358cdcdf29c56b30d0cfa8eccc39edb6e2b93bda31e05d9be90f6d8a03ba27",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "72878947c139ddaacdf05697ca9fa26c0db9fa2a46ec83c7e907cb86aa36339e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 5,
+            "endLine": 9,
+            "startOffset": 712,
+            "endOffset": 2122,
+            "fingerprint": "7c9b1a721918ad1cbff73e8e93b9a6d3e414dafdb8736eb7701040796f6bfecd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "f6b010c0cd25e39735ed41b3328e59ed233db2f4239cae1f969a22e45429b04e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 1379,
+            "endOffset": 2196,
+            "fingerprint": "dfd2b55ddf49a12b53c709391e559ac4c9d637ad0c7b20b63ba952f4d89576c6",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Change-history contract",
+          "headingPath": [
+            "Change-history contract"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "0f5b5673d7003be67eae173ffa47b5951738686e62193ae79fd574e1d0a4d00e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+            "revision": "ef4dec93e8718d6291ea3f03b83ef1c2b8aed3a54ffc1c904202ef7e3006a13a",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 3,
+            "startOffset": 0,
+            "endOffset": 431,
+            "fingerprint": "748ab7ebe46fabb8f5fe0f982dd2d45108645fe42e8b3f103b31fa1cdc22f810",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "28c5e1597db90b6ad0bc3ef37cabb831ccf5a7b9fff1e82dc73e04672a908453",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2162,
+            "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "d872d1a3d0b708e8d11254677961fc491a16c92aae43a9be6450d363e8f81a56",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 37,
+            "endOffset": 294,
+            "fingerprint": "944e789596c989b078e23b6bb6d3c0948cbd833d4360429141b817ec6332ff79",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "b852966552db46c387427f8f89e917d535ffab4fc55a661e4f12fcca806bcdf5",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 32,
+            "endOffset": 368,
+            "fingerprint": "042e82904acef5af520631c67db67e1aad4b3c249f4236eed695fae69b9da8bc",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "First-party core skill direction",
+          "headingPath": [
+            "First-party core skill direction"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "c5ac5ce55a0b26e4e3b9b346dfac329038c481c61f0127d779cbcd46f846321c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+            "revision": "a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 37,
+            "endOffset": 1098,
+            "fingerprint": "74dd44d49868f3118d2a39fd588301280731cc1dcbfd0a9c8740ca5af78fcf27",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "e42f4b6f16d3e801b301c86ec256aca7e0e88a04a7639d570f04fcb48a70a100",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 767,
+            "endOffset": 1359,
+            "fingerprint": "4043e98ee77327ad57f414fe9ff627d8f83a359abf2b4b884733f81b20360469",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Change-history contract",
+          "headingPath": [
+            "Change-history contract"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "90d5cdfe4ddcbae50db2bfac0ca9c9162afa21e7196238baf6948d53ddb19ab3",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+            "revision": "ef4dec93e8718d6291ea3f03b83ef1c2b8aed3a54ffc1c904202ef7e3006a13a",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 28,
+            "endOffset": 430,
+            "fingerprint": "8c12ff299317eb7ce21f44c0238163a0ad1547d7aa95ed71f7ff07e58fe26ee9",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "9286cd3b4b34e3d5dc2645914cc8cbb5351de2dedceea7c32a31ba845a048ff1",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 27,
+            "endOffset": 889,
+            "fingerprint": "3526b6c9cea70e3ef28439974d9ec46709dcdf784696aa69fa2a4f640c05b8ce",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "117ff427ea48d80f9cf5affa7a3294e055ac0dd59d9fd7fdb226cbb0c1e4c679",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 296,
+            "endOffset": 640,
+            "fingerprint": "830a5237e2dd9f417ba8236ea0cf4915d73da9b847303dfb63ff80493e02c7dd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "8f66657686395d2c84479dbda4b9f38e7528ef9a8afc8750fba588bebc4bcb80",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 370,
+            "endOffset": 696,
+            "fingerprint": "36d5660090b5fbcff4d8adf1ffb2909c957ec510866483d85396121882a17354",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "182bf5d4bb4cda3771aa3a506cce439a7844ba63667cb790864a59878c69b490",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "startOffset": 1361,
+            "endOffset": 2121,
+            "fingerprint": "be9cbcb2e91c62bbabc8463f36e45457d5ac9079dfcf04ebf1671d5e8796c850",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "9b57760db5adf60d9ff09ca808f51a0271f981cb3bbfb6095cef19b1a220f794",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 891,
+            "endOffset": 1234,
+            "fingerprint": "d4bfbcfb1d44f04f08ba01801a66aaccd16574d959fed0ce071824c2a5dc405a",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "0f3d11fa35c48eec883f2bc3052ed702efa465cb9aa301d1c85a07239039fd1b",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 642,
+            "endOffset": 843,
+            "fingerprint": "2f7357c73e343f8d3ee4d96a18e58cac34075d9091d0f6b73a6da757a5c8032c",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Human-task identity decision",
+          "headingPath": [
+            "Human-task identity decision"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "9f32a846807c1f96cf4bfa5a12152e8465461d317584ccc9047ad3826705201c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+            "revision": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 698,
+            "endOffset": 985,
+            "fingerprint": "5af34ecd86545c345af03fb5d8cb01792c0cc3f08faea76bae398f6db7ae8084",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "cdc3781d24694b6d5e679cb451c56585653c7fe18ec88a16ce9c54a8b92a19fb",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 1236,
+            "endOffset": 2161,
+            "fingerprint": "539b10b8f7b0f68421ef413514bd3a2ba1ade6278924d44ea7aba6ca3d31e26a",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "diagnostics": null
+    },
+    {
+      "caseId": "history-01",
+      "query": "¿Qué debe declarar cada changelog de release y qué estado impide persistir el cambio?",
+      "isError": false,
+      "results": [
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.222222,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "54b98dff1e1a00a7765de11463a567b5473dbd908821c9fca04d77c7c3a73f7e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2788,
+            "fingerprint": "d1a30123734725f87abf4b6903e4c2e413a2fe3b06566b776cf32c8c150de390",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.222222,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "436d96d7f49d9c2e2f5577c1b3735f960415a42ab350bb38736bb40ed5789e0c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 44,
+            "endOffset": 1377,
+            "fingerprint": "6cceed2e3d9b010ec09dd0db9a4e5b519a65a45efdf70ce2904626ecb4213d11",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Change-history contract",
+          "headingPath": [
+            "Change-history contract"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "0f5b5673d7003be67eae173ffa47b5951738686e62193ae79fd574e1d0a4d00e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+            "revision": "ef4dec93e8718d6291ea3f03b83ef1c2b8aed3a54ffc1c904202ef7e3006a13a",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 3,
+            "startOffset": 0,
+            "endOffset": 431,
+            "fingerprint": "748ab7ebe46fabb8f5fe0f982dd2d45108645fe42e8b3f103b31fa1cdc22f810",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Change-history contract",
+          "headingPath": [
+            "Change-history contract"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "90d5cdfe4ddcbae50db2bfac0ca9c9162afa21e7196238baf6948d53ddb19ab3",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/pattern/mssr-change-history-contract.md",
+            "revision": "ef4dec93e8718d6291ea3f03b83ef1c2b8aed3a54ffc1c904202ef7e3006a13a",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 28,
+            "endOffset": 430,
+            "fingerprint": "8c12ff299317eb7ce21f44c0238163a0ad1547d7aa95ed71f7ff07e58fe26ee9",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "diagnostics": null
+    },
+    {
+      "caseId": "dataset-01",
+      "query": "¿Cuál es el último readback local del store de Semantic Experience y cuántos registros tenían verdad verificada o reglas generadas?",
+      "isError": false,
+      "results": [
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.384615,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "28c5e1597db90b6ad0bc3ef37cabb831ccf5a7b9fff1e82dc73e04672a908453",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2162,
+            "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.384615,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "cdc3781d24694b6d5e679cb451c56585653c7fe18ec88a16ce9c54a8b92a19fb",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 1236,
+            "endOffset": 2161,
+            "fingerprint": "539b10b8f7b0f68421ef413514bd3a2ba1ade6278924d44ea7aba6ca3d31e26a",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.230769,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "9286cd3b4b34e3d5dc2645914cc8cbb5351de2dedceea7c32a31ba845a048ff1",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 27,
+            "endOffset": 889,
+            "fingerprint": "3526b6c9cea70e3ef28439974d9ec46709dcdf784696aa69fa2a4f640c05b8ce",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.153846,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "72878947c139ddaacdf05697ca9fa26c0db9fa2a46ec83c7e907cb86aa36339e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 5,
+            "endLine": 9,
+            "startOffset": 712,
+            "endOffset": 2122,
+            "fingerprint": "7c9b1a721918ad1cbff73e8e93b9a6d3e414dafdb8736eb7701040796f6bfecd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.153846,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "54b98dff1e1a00a7765de11463a567b5473dbd908821c9fca04d77c7c3a73f7e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2788,
+            "fingerprint": "d1a30123734725f87abf4b6903e4c2e413a2fe3b06566b776cf32c8c150de390",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.153846,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "e42f4b6f16d3e801b301c86ec256aca7e0e88a04a7639d570f04fcb48a70a100",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 767,
+            "endOffset": 1359,
+            "fingerprint": "4043e98ee77327ad57f414fe9ff627d8f83a359abf2b4b884733f81b20360469",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.076923,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "436d96d7f49d9c2e2f5577c1b3735f960415a42ab350bb38736bb40ed5789e0c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 44,
+            "endOffset": 1377,
+            "fingerprint": "6cceed2e3d9b010ec09dd0db9a4e5b519a65a45efdf70ce2904626ecb4213d11",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.076923,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "9b57760db5adf60d9ff09ca808f51a0271f981cb3bbfb6095cef19b1a220f794",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 891,
+            "endOffset": 1234,
+            "fingerprint": "d4bfbcfb1d44f04f08ba01801a66aaccd16574d959fed0ce071824c2a5dc405a",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.076923,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "f6b010c0cd25e39735ed41b3328e59ed233db2f4239cae1f969a22e45429b04e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 1379,
+            "endOffset": 2196,
+            "fingerprint": "dfd2b55ddf49a12b53c709391e559ac4c9d637ad0c7b20b63ba952f4d89576c6",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "diagnostics": null
+    },
+    {
+      "caseId": "dataset-02",
+      "query": "¿Qué diferencia hay entre el snapshot histórico de Bridge y el readback local más reciente?",
+      "isError": false,
+      "results": [
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.5,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "28c5e1597db90b6ad0bc3ef37cabb831ccf5a7b9fff1e82dc73e04672a908453",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2162,
+            "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.5,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "cdc3781d24694b6d5e679cb451c56585653c7fe18ec88a16ce9c54a8b92a19fb",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 1236,
+            "endOffset": 2161,
+            "fingerprint": "539b10b8f7b0f68421ef413514bd3a2ba1ade6278924d44ea7aba6ca3d31e26a",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.375,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "9b57760db5adf60d9ff09ca808f51a0271f981cb3bbfb6095cef19b1a220f794",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 891,
+            "endOffset": 1234,
+            "fingerprint": "d4bfbcfb1d44f04f08ba01801a66aaccd16574d959fed0ce071824c2a5dc405a",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.25,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "54b98dff1e1a00a7765de11463a567b5473dbd908821c9fca04d77c7c3a73f7e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2788,
+            "fingerprint": "d1a30123734725f87abf4b6903e4c2e413a2fe3b06566b776cf32c8c150de390",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.125,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "451e8055763071568cb8b9b554c41abc077f7b7ba2826750be24a85af8311df6",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 844,
+            "fingerprint": "024a4e297c68ddbff57fcdea3f432756275727ab57b4fa37e8996a126103c6f3",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.125,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "436d96d7f49d9c2e2f5577c1b3735f960415a42ab350bb38736bb40ed5789e0c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 44,
+            "endOffset": 1377,
+            "fingerprint": "6cceed2e3d9b010ec09dd0db9a4e5b519a65a45efdf70ce2904626ecb4213d11",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.125,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "d872d1a3d0b708e8d11254677961fc491a16c92aae43a9be6450d363e8f81a56",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 37,
+            "endOffset": 294,
+            "fingerprint": "944e789596c989b078e23b6bb6d3c0948cbd833d4360429141b817ec6332ff79",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Project knowledge drift review decision",
+          "headingPath": [
+            "Project knowledge drift review decision"
+          ],
+          "score": 0.125,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "79aa90220cab80415b7c87942fb407fd56e0ca783fcc4e14956467c8d3bdbf36",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+            "revision": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 2198,
+            "endOffset": 2787,
+            "fingerprint": "46b4508427dccc3b89a204dfb954e576b4e9fec2b48a332a8ee7c9a4321f9aca",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.125,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "117ff427ea48d80f9cf5affa7a3294e055ac0dd59d9fd7fdb226cbb0c1e4c679",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 296,
+            "endOffset": 640,
+            "fingerprint": "830a5237e2dd9f417ba8236ea0cf4915d73da9b847303dfb63ff80493e02c7dd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Canonical project-context cutover",
+          "headingPath": [
+            "Canonical project-context cutover"
+          ],
+          "score": 0.125,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "0f3d11fa35c48eec883f2bc3052ed702efa465cb9aa301d1c85a07239039fd1b",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/canonical-project-context-cutover.md",
+            "revision": "78454857b313a70bfef25c00d24ecc59cbf6ff52ec3d1d1f0cc05ef2d0ee6905",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 642,
+            "endOffset": 843,
+            "fingerprint": "2f7357c73e343f8d3ee4d96a18e58cac34075d9091d0f6b73a6da757a5c8032c",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "diagnostics": null
+    },
+    {
+      "caseId": "no-evidence-01",
+      "query": "¿Qué precisión calibrada obtuvo Jev en un holdout owner-gold con 100 proyectos independientes?",
+      "isError": false,
+      "results": [
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.222222,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "72878947c139ddaacdf05697ca9fa26c0db9fa2a46ec83c7e907cb86aa36339e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 5,
+            "endLine": 9,
+            "startOffset": 712,
+            "endOffset": 2122,
+            "fingerprint": "7c9b1a721918ad1cbff73e8e93b9a6d3e414dafdb8736eb7701040796f6bfecd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "title": "Separate shadow-rule and fallback-preference gates",
+          "headingPath": [
+            "Separate shadow-rule and fallback-preference gates"
+          ],
+          "score": 0.222222,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "182bf5d4bb4cda3771aa3a506cce439a7844ba63667cb790864a59878c69b490",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "startOffset": 1361,
+            "endOffset": 2121,
+            "fingerprint": "be9cbcb2e91c62bbabc8463f36e45457d5ac9079dfcf04ebf1671d5e8796c850",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Learning activation decision",
+          "headingPath": [
+            "Learning activation decision"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "37649bbe7dadcbf1aa8b237a7e52b27482ebc636edaa58e9af762b967d2d249c",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 4,
+            "startOffset": 0,
+            "endOffset": 712,
+            "fingerprint": "c5ed56b712ee5184ca352d3cdde4364d1e816b509be4257b0b39fbf5437ab72f",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "28c5e1597db90b6ad0bc3ef37cabb831ccf5a7b9fff1e82dc73e04672a908453",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2162,
+            "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Learning activation decision",
+          "headingPath": [
+            "Learning activation decision"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "34715166043528bd8c86a1a7df22d377c07c76fd7104e05ac9311e8457374c0e",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+            "revision": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 33,
+            "endOffset": 710,
+            "fingerprint": "0cdf24dccd507c651fc2abc7deb8e82b7b5a3799dbe527610762424ec5fb8fae",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.111111,
+          "exactFetchable": true,
+          "handle": {
+            "version": 1,
+            "id": "9286cd3b4b34e3d5dc2645914cc8cbb5351de2dedceea7c32a31ba845a048ff1",
+            "owner": "D:/Dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 27,
+            "endOffset": 889,
+            "fingerprint": "3526b6c9cea70e3ef28439974d9ec46709dcdf784696aa69fa2a4f640c05b8ce",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "diagnostics": null
+    },
+    {
+      "caseId": "no-evidence-02",
+      "query": "¿Cuántos fallos de producción confirmó un verificador independiente durante octubre de 2026?",
+      "isError": false,
+      "results": [],
+      "diagnostics": null
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-open-development-20261011T1644Z-v1",
+  "reviewMethod": "Single blinded independent Luna review of queries and exact fetched Jev excerpts; reviewer did not receive adjudicated labels or confidence scores.",
+  "reviewer": "jev_excerpt_review2",
+  "labelAuthority": "independent-blind-agent-review; Codex synthesis; not owner-gold",
+  "cases": [
+    {
+      "caseId": "cutover-01",
+      "assessment": "partial",
+      "note": "Selected excerpt covers inbox handling but misses the .bridge fallback change."
+    },
+    {
+      "caseId": "identity-01",
+      "assessment": "sufficient",
+      "note": null
+    },
+    {
+      "caseId": "identity-02",
+      "assessment": "sufficient",
+      "note": null
+    },
+    {
+      "caseId": "skills-01",
+      "assessment": "sufficient",
+      "note": null
+    },
+    {
+      "caseId": "skills-02",
+      "assessment": "no-selection",
+      "note": "Jev abstained; excerpt-only blind packet cannot judge answerability."
+    },
+    {
+      "caseId": "learning-01",
+      "assessment": "sufficient",
+      "note": null
+    },
+    {
+      "caseId": "learning-02",
+      "assessment": "partial",
+      "note": "Selected excerpt covers shadow-rule gate but misses separate holdout fallback-preference gate."
+    },
+    {
+      "caseId": "drift-01",
+      "assessment": "sufficient",
+      "note": null
+    },
+    {
+      "caseId": "drift-02",
+      "assessment": "no-selection",
+      "note": "Jev abstained; excerpt-only blind packet cannot judge answerability."
+    },
+    {
+      "caseId": "drift-03",
+      "assessment": "sufficient",
+      "note": null
+    },
+    {
+      "caseId": "history-01",
+      "assessment": "sufficient",
+      "note": null
+    },
+    {
+      "caseId": "dataset-01",
+      "assessment": "sufficient",
+      "note": null
+    },
+    {
+      "caseId": "dataset-02",
+      "assessment": "sufficient",
+      "note": null
+    },
+    {
+      "caseId": "no-evidence-01",
+      "assessment": "no-selection",
+      "note": null
+    },
+    {
+      "caseId": "no-evidence-02",
+      "assessment": "no-selection",
+      "note": null
+    }
+  ],
+  "reviewerReportedCounts": {
+    "sufficient": 8,
+    "partial": 2,
+    "irrelevant": 0,
+    "noSelection": 4
+  },
+  "reconciledCounts": {
+    "sufficient": 9,
+    "partial": 2,
+    "irrelevant": 0,
+    "noSelection": 4
+  },
+  "countNote": "The reviewer table contains nine sufficient case rows although its prose reports eight; aggregate counts were recomputed from the per-case assessments."
+}

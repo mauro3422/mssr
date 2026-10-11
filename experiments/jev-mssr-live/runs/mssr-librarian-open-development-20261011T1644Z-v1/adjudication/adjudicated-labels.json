@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-open-development-20261011T1644Z-v1",
+  "labelAuthority": "independent-blind-agent-review; Codex adjudication; not owner-gold",
+  "sourceScope": "Only the seven frozen Markdown snapshots in inputs/cases.json. A no-evidence label means absent from this supplied corpus, not globally nonexistent.",
+  "reviewers": [
+    "notice_blocks_blind_a",
+    "notice_blocks_blind_b",
+    "independent_case_audit (gpt-6-luna)"
+  ],
+  "adjudication": {
+    "drift01": "Answerable for the requested metadata classes and status effects; one reviewer marked partial because exact escalation thresholds are absent. Preserve that scope limitation and count the case as disagreement 2/3 versus 1/3.",
+    "identity02": "Paragraph 1 is sufficient for asked lineage authority; paragraph 2 is supplemental validation constraints, not required for this question."
+  },
+  "labels": [
+    {
+      "caseId": "cutover-01",
+      "answerability": "answerable",
+      "acceptableSourceRefs": [
+        ".mssr/knowledge/decision/canonical-project-context-cutover.md"
+      ],
+      "requiredClaims": [
+        "MSSR 0.2.18 removed active fallback to .bridge/ and requires explicit .mssr/ initialization.",
+        "The obsolete pre-0.2.18 runtime inbox is discarded, not migrated, due to potentially stale .bridge provenance."
+      ],
+      "abstentionRequired": false
+    },
+    {
+      "caseId": "identity-01",
+      "answerability": "answerable",
+      "acceptableSourceRefs": [
+        ".mssr/knowledge/decision/human-task-identity.md"
+      ],
+      "requiredClaims": [
+        "taskKey is explicit host evidence.",
+        "Do not derive it from prose, workflowKey, similarity, recency, or inactivity."
+      ],
+      "abstentionRequired": false
+    },
+    {
+      "caseId": "identity-02",
+      "answerability": "answerable",
+      "acceptableSourceRefs": [
+        ".mssr/knowledge/decision/human-task-identity.md"
+      ],
+      "requiredClaims": [
+        "parentTraceId and supersedesTraceId preserve lineage within a task.",
+        "They do not close, cancel, replace, validate, or mutate another trace."
+      ],
+      "abstentionRequired": false
+    },
+    {
+      "caseId": "skills-01",
+      "answerability": "answerable",
+      "acceptableSourceRefs": [
+        ".mssr/knowledge/decision/mssr-first-party-skill-direction.md"
+      ],
+      "requiredClaims": [
+        "The five first-party names have one canonical bundled source with reserved-name precedence.",
+        "The bundle does not load every skill on every task; activation remains explicit."
+      ],
+      "abstentionRequired": false
+    },
+    {
+      "caseId": "skills-02",
+      "answerability": "answerable",
+      "acceptableSourceRefs": [
+        ".mssr/knowledge/decision/mssr-first-party-skill-direction.md"
+      ],
+      "requiredClaims": [
+        "The 0.2.55 follow-up extends progressive disclosure to reference units.",
+        "Broad anomaly evidence loads a compact index; detailed procedure requires conjunctive stage and intent selectors."
+      ],
+      "abstentionRequired": false
+    },
+    {
+      "caseId": "learning-01",
+      "answerability": "answerable",
+      "acceptableSourceRefs": [
+        ".mssr/knowledge/decision/mssr-learning-activation-decision.md"
+      ],
+      "requiredClaims": [
+        "Operational learning is external to model weights and remains observe-only.",
+        "Routing/context influence stays zero pending representative real data with repeatable net benefit and explicit reviewed flag, exploration floor, and instant rollback."
+      ],
+      "abstentionRequired": false
+    },
+    {
+      "caseId": "learning-02",
+      "answerability": "answerable",
+      "acceptableSourceRefs": [
+        ".mssr/knowledge/decision/mssr-learning-activation-decision.md"
+      ],
+      "requiredClaims": [
+        "Shadow-rule gate: independent confirmed/corrected evidence, latest per family, default minimum 8 units from 2 projects, dominance 0.80, Wilson lower bound 0.65; relation contradictions excluded.",
+        "Fallback preference is separate: at least 24 independently verified holdout decisions, 4 truth-bearing projects, precision 0.95, coverage 0.25, zero wrong decisions.",
+        "Meeting preference gate allows advisory preference only; activation still needs reviewed flag, exploration floor, and rollback."
+      ],
+      "abstentionRequired": false
+    },
+    {
+      "caseId": "drift-01",
+      "answerability": "answerable",
+      "acceptableSourceRefs": [
+        ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md"
+      ],
+      "requiredClaims": [
+        "The evaluator combines trace stage, changed paths/tool categories, package/runtime adoption, routing/skill-structure changes, initialization/health, freshness conflicts, and user corrections.",
+        "WATCH is informational; REVIEW and REQUIRED activate maintenance."
+      ],
+      "abstentionRequired": false,
+      "uncertainty": "Exact mapping thresholds from each signal to WATCH/REVIEW/REQUIRED are not stated in the source."
+    },
+    {
+      "caseId": "drift-02",
+      "answerability": "answerable",
+      "acceptableSourceRefs": [
+        ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md"
+      ],
+      "requiredClaims": [
+        "Integration is assessed through producer → evaluator → host consumer → notice/context surface → regression.",
+        "Exported code, tests, and roadmap checkboxes alone do not prove runtime adoption."
+      ],
+      "abstentionRequired": false
+    },
+    {
+      "caseId": "drift-03",
+      "answerability": "answerable",
+      "acceptableSourceRefs": [
+        ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md"
+      ],
+      "requiredClaims": [
+        "Freshness applies to explicitly declared current-state docs and exact host-observed refs; a later revision forces review.",
+        "review-due does not prove prose false; historical docs remain undeclared and no auto-edit occurs."
+      ],
+      "abstentionRequired": false
+    },
+    {
+      "caseId": "history-01",
+      "answerability": "answerable",
+      "acceptableSourceRefs": [
+        ".mssr/knowledge/pattern/mssr-change-history-contract.md"
+      ],
+      "requiredClaims": [
+        "Each release declares PROJECT_CONTEXT, PROJECT_MEMORY, and PROJECT_STATE impact.",
+        "pending blocks persistence; reviewed-none is valid and updated corresponds to observed authority change."
+      ],
+      "abstentionRequired": false
+    },
+    {
+      "caseId": "dataset-01",
+      "answerability": "answerable",
+      "acceptableSourceRefs": [
+        ".mssr/knowledge/state/mssr-learning-dataset-state.md"
+      ],
+      "requiredClaims": [
+        "Latest local readback (2026-10-10 18:56:52 UTC) is 7,198 observations.",
+        "Category counts are 6,305 context-selection, 813 maintenance-disposition, 76 semantic-relation, 2 document-role, 2 placement.",
+        "Verified/corrected/rejected/unverified-feedback/eligible/generated-rule counts are all zero."
+      ],
+      "abstentionRequired": false
+    },
+    {
+      "caseId": "dataset-02",
+      "answerability": "answerable",
+      "acceptableSourceRefs": [
+        ".mssr/knowledge/state/mssr-learning-dataset-state.md"
+      ],
+      "requiredClaims": [
+        "Historical Bridge snapshot (2026-10-09 23:49 UTC) is 5,603 shadow-only observations.",
+        "Later local readback (2026-10-10 18:56:52 UTC) is 7,198 observations, also shadow-only.",
+        "The scopes differ; newer local value does not represent current Bridge telemetry."
+      ],
+      "abstentionRequired": false
+    },
+    {
+      "caseId": "no-evidence-01",
+      "answerability": "no-evidence",
+      "acceptableSourceRefs": [],
+      "requiredClaims": [
+        "The supplied corpus contains no measured calibrated Jev precision for a 100-project owner-gold holdout."
+      ],
+      "abstentionRequired": true
+    },
+    {
+      "caseId": "no-evidence-02",
+      "answerability": "no-evidence",
+      "acceptableSourceRefs": [],
+      "requiredClaims": [
+        "The supplied corpus contains no independently verified October 2026 production-failure count."
+      ],
+      "abstentionRequired": true
+    }
+  ]
+}
