@@ -1,5 +1,14 @@
 # MSSR project memory
 
+## Exact-input connector parity
+
+When comparing direct MSSR and a host adapter, provide byte-identical source
+text and compare owner, revision, range, offsets, fingerprint, and citation
+fields through exact fetch and evidence assembly. Terminal/output framing can
+append a newline and create a different derived revision despite identical
+underlying files. A matching single case supports plumbing parity only; it is
+not semantic equivalence, answer-quality evidence, or score calibration.
+
 ## Source-level list item boundaries — 0.2.121
 
 Document Surface paragraph blocks split at blank lines, but a Markdown list

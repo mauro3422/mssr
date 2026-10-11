@@ -1736,7 +1736,7 @@
     {
       "id": "mssr-jev-live-bridge-smoke-20261011-bridge-06169",
       "kind": "context",
-      "description": "Exploratory real-document Jev smoke on active Bridge 0.6.169 — 2026-10-11; exact-range selection and evidence-pack limits.",
+      "description": "Exploratory Bridge 0.6.169 Jev smoke and one same-snapshot direct/Bridge connector-parity case — 2026-10-11.",
       "source": {
         "path": ".mssr/knowledge/reference/jev-mssr-live-bridge-smoke-20261011-bridge-06169.md"
       },
@@ -1767,7 +1767,7 @@
       ],
       "required": false,
       "priority": 100,
-      "maxChars": 3000
+      "maxChars": 6500
     }
   ]
 }
