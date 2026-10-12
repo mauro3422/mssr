@@ -1,0 +1,253 @@
+{
+  "schema": "blind-review-input-v1",
+  "runId": "mssr-librarian-synthetic-contract-20261012T0451Z-v1",
+  "instruction": "Independently judge whether each Jev-selected exact range supports the query, and whether abstention is appropriate for an exact sample-size question that the source does not specify. Do not use any separate labels file. This is a blind AI review, not owner-gold.",
+  "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+  "sourceSha256": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+  "cases": [
+    {
+      "caseId": "S01",
+      "query": "¿Quién conserva la autoridad final y qué debe hacer el bibliotecario ante fuentes contradictorias?",
+      "deterministicCandidates": [
+        {
+          "title": "Synthetic MSSR Librarian Fixture v1",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1"
+          ],
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "score": 0.1
+        },
+        {
+          "title": "Authority and contradiction handling",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1",
+            "Authority and contradiction handling"
+          ],
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "score": 0.1
+        },
+        {
+          "title": "Authority and contradiction handling",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1",
+            "Authority and contradiction handling"
+          ],
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "score": 0.1
+        }
+      ],
+      "jev": {
+        "status": "selected",
+        "selected": {
+          "title": "Authority and contradiction handling",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1",
+            "Authority and contradiction handling"
+          ],
+          "rangeId": "block-2",
+          "rangeKind": "block"
+        },
+        "providerConfidence": 0.52,
+        "evidenceSufficiency": 0.9,
+        "choiceCalls": [
+          {
+            "questionKey": "selection",
+            "offeredOptionIds": [
+              "h001",
+              "h002",
+              "h003",
+              "none"
+            ],
+            "selectedOptionId": "h003",
+            "confidence": 0.52,
+            "probabilities": {
+              "h001": 0.01,
+              "h002": 0.35,
+              "h003": 0.64,
+              "none": 0
+            }
+          }
+        ]
+      },
+      "exactFetchedText": "The repository owner retains final authority over canonical project knowledge. The Librarian may surface conflicting passages, but it must preserve their provenance and present the conflict for review. Jev can select among bounded evidence candidates; it cannot decide which source is canonical or write a canonical replacement."
+    },
+    {
+      "caseId": "S02",
+      "query": "What must the host do before relying on a Librarian citation?",
+      "deterministicCandidates": [
+        {
+          "title": "Synthetic MSSR Librarian Fixture v1",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1"
+          ],
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "score": 1
+        },
+        {
+          "title": "Exact citation retrieval",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1",
+            "Exact citation retrieval"
+          ],
+          "rangeId": "heading-3",
+          "rangeKind": "section",
+          "score": 1
+        },
+        {
+          "title": "Exact citation retrieval",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1",
+            "Exact citation retrieval"
+          ],
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "score": 1
+        },
+        {
+          "title": "Authority and contradiction handling",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1",
+            "Authority and contradiction handling"
+          ],
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "score": 0.4
+        },
+        {
+          "title": "Authority and contradiction handling",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1",
+            "Authority and contradiction handling"
+          ],
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "score": 0.4
+        }
+      ],
+      "jev": {
+        "status": "selected",
+        "selected": {
+          "title": "Exact citation retrieval",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1",
+            "Exact citation retrieval"
+          ],
+          "rangeId": "block-3",
+          "rangeKind": "block"
+        },
+        "providerConfidence": 0.44,
+        "evidenceSufficiency": 0.96,
+        "choiceCalls": [
+          {
+            "questionKey": "selection",
+            "offeredOptionIds": [
+              "h001",
+              "h002",
+              "h003",
+              "h004",
+              "h005",
+              "none"
+            ],
+            "selectedOptionId": "h003",
+            "confidence": 0.44,
+            "probabilities": {
+              "h001": 0.01,
+              "h002": 0.46,
+              "h003": 0.53,
+              "h004": 0,
+              "h005": 0,
+              "none": 0
+            }
+          }
+        ]
+      },
+      "exactFetchedText": "Before relying on a Librarian citation, the host must fetch the exact revision-bound source range and verify that the evidence pack binds to the same source, revision, and range. A search result or a Jev selection handle alone does not prove that the cited text supports the answer."
+    },
+    {
+      "caseId": "S03",
+      "query": "¿Cuál es el número exacto de etiquetas owner-gold necesarias para calibrar el umbral de confianza de producción?",
+      "deterministicCandidates": [
+        {
+          "title": "Synthetic MSSR Librarian Fixture v1",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1"
+          ],
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "score": 0.111111
+        },
+        {
+          "title": "Synthetic MSSR Librarian Fixture v1",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1"
+          ],
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "score": 0.111111
+        },
+        {
+          "title": "Confidence and sample-size limits",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1",
+            "Confidence and sample-size limits"
+          ],
+          "rangeId": "heading-4",
+          "rangeKind": "section",
+          "score": 0.111111
+        },
+        {
+          "title": "Confidence and sample-size limits",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1",
+            "Confidence and sample-size limits"
+          ],
+          "rangeId": "block-4",
+          "rangeKind": "block",
+          "score": 0.111111
+        }
+      ],
+      "jev": {
+        "status": "abstained",
+        "selected": null,
+        "providerConfidence": 0.82,
+        "evidenceSufficiency": 0.24,
+        "choiceCalls": [
+          {
+            "questionKey": "selection",
+            "offeredOptionIds": [
+              "h001",
+              "h002",
+              "h003",
+              "h004",
+              "none"
+            ],
+            "selectedOptionId": "none",
+            "confidence": 0.82,
+            "probabilities": {
+              "h001": 0.03,
+              "h002": 0,
+              "h003": 0.06,
+              "h004": 0.05,
+              "none": 0.86
+            }
+          }
+        ]
+      },
+      "exactFetchedText": null
+    }
+  ],
+  "evidencePack": [
+    {
+      "citation": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md:L7-L7",
+      "exactText": "The repository owner retains final authority over canonical project knowledge. The Librarian may surface conflicting passages, but it must preserve their provenance and present the conflict for review. Jev can select among bounded evidence candidates; it cannot decide which source is canonical or write a canonical replacement."
+    },
+    {
+      "citation": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md:L11-L11",
+      "exactText": "Before relying on a Librarian citation, the host must fetch the exact revision-bound source range and verify that the evidence pack binds to the same source, revision, and range. A search result or a Jev selection handle alone does not prove that the cited text supports the answer."
+    }
+  ]
+}

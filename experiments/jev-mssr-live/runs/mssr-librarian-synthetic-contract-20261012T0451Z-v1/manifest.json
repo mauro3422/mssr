@@ -1,0 +1,18 @@
+{
+  "schema": "mssr-librarian-experiment-v1",
+  "runId": "mssr-librarian-synthetic-contract-20261012T0451Z-v1",
+  "status": "frozen-before-provider-calls",
+  "createdAt": "2026-10-12T04:51:32.6391338Z",
+  "design": "synthetic-only; not a real-repository generalization; no owner-gold",
+  "hypothesis": "Deterministic lexical retrieval should surface the labeled facet; Jev should select exact supporting ranges for two answerable questions and abstain from inventing an unspecified exact sample size.",
+  "projectRoot": "D:\\Dev\\mssr",
+  "sourceRefs": [
+    "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md"
+  ],
+  "sourceSha256": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+  "provider": "Jev through MauroPrime Bridge HTTP runtime 0.6.172; embedded MSSR 0.2.127",
+  "providerCallsPlanned": 3,
+  "providerCallsUsed": 0,
+  "labelsRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/labels/frozen-labels.json",
+  "labelsFileExposure": "not included in sourceRefs; do not send to Jev"
+}

@@ -1,0 +1,42 @@
+{
+  "schema": "synthetic-labels-v1",
+  "runId": "jev-mssr-synthetic-librarian-20261012-v1",
+  "status": "frozen-before-provider-calls; not owner-gold",
+  "labels": [
+    {
+      "caseId": "S01",
+      "language": "es",
+      "query": "¿Quién conserva la autoridad final y qué debe hacer el bibliotecario ante fuentes contradictorias?",
+      "answerable": true,
+      "expectedHeading": "Authority and contradiction handling",
+      "requiredFacts": [
+        "repository owner retains final authority",
+        "conflicting passages must be presented for review",
+        "Jev cannot choose canonical source or write replacement"
+      ]
+    },
+    {
+      "caseId": "S02",
+      "language": "en",
+      "query": "What must the host do before relying on a Librarian citation?",
+      "answerable": true,
+      "expectedHeading": "Exact citation retrieval",
+      "requiredFacts": [
+        "fetch exact revision-bound range",
+        "verify source/revision/range binding",
+        "selection handle alone does not prove support"
+      ]
+    },
+    {
+      "caseId": "S03",
+      "language": "es",
+      "query": "¿Cuál es el número exacto de etiquetas owner-gold necesarias para calibrar el umbral de confianza de producción?",
+      "answerable": false,
+      "expectedHeading": null,
+      "requiredFacts": [
+        "no exact sample size is specified",
+        "do not invent a number"
+      ]
+    }
+  ]
+}

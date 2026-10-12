@@ -1,0 +1,1311 @@
+{
+  "schema": "mssr-librarian-synthetic-run-results-v1",
+  "runId": "mssr-librarian-synthetic-contract-20261012T0451Z-v1",
+  "generatedAt": "2026-10-12T04:51:19Z-or-later",
+  "providerRuntime": {
+    "bridgeVersion": "0.6.172",
+    "bridgeBootId": "c25d1548-6654-4833-b5a4-994aa9d08ae9",
+    "embeddedMssrPackage": "0.2.127",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0"
+  },
+  "toolSchemaHashes": {
+    "mssr_librarian_search": "b931631885199014",
+    "mssr_librarian_jev_select": "0317e3b12c77efaa"
+  },
+  "budget": {
+    "jeVProviderCallsPlanned": 3,
+    "jevProviderCallsUsed": 3
+  },
+  "queries": [
+    {
+      "caseId": "S01",
+      "query": "¿Quién conserva la autoridad final y qué debe hacer el bibliotecario ante fuentes contradictorias?"
+    },
+    {
+      "caseId": "S02",
+      "query": "What must the host do before relying on a Librarian citation?"
+    },
+    {
+      "caseId": "S03",
+      "query": "¿Cuál es el número exacto de etiquetas owner-gold necesarias para calibrar el umbral de confianza de producción?"
+    }
+  ],
+  "deterministicSearch": [
+    {
+      "projectOwner": "d:/dev/mssr",
+      "sourceCount": 1,
+      "results": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "5be58043afc87470bd2db2bfb92f9b787466bb39c0102886983f9ad9a42b3d62",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 15,
+            "startOffset": 0,
+            "endOffset": 1236,
+            "fingerprint": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 1236,
+          "exactFetchable": true,
+          "score": 0.1,
+          "title": "Synthetic MSSR Librarian Fixture v1",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1"
+          ],
+          "snippet": "…iction handling The repository owner retains final authority over canonical project knowledge. The Librarian may surface conflicting passages, but it must preserve their provenan…",
+          "metadata": {
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "headingPath": [
+              "Synthetic MSSR Librarian Fixture v1"
+            ],
+            "level": 1,
+            "parentId": null,
+            "startLine": 1,
+            "endLine": 15,
+            "chars": 1236,
+            "bytes": 1236,
+            "terms": [
+              "fixture",
+              "librarian",
+              "mssr",
+              "synthetic",
+              "human",
+              "invented",
+              "owner-gold",
+              "policy"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "a31e1f0a36a87643147a370ba3c9d461840f7852f4d5cf5625186fdc3015c489",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 5,
+            "endLine": 8,
+            "startOffset": 146,
+            "endOffset": 517,
+            "fingerprint": "a4d25b7906cfe97e3f2acc1f0c9ac937d39c64881d4ebaed027250c95ffedd3b",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 371,
+          "exactFetchable": true,
+          "score": 0.1,
+          "title": "Authority and contradiction handling",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1",
+            "Authority and contradiction handling"
+          ],
+          "snippet": "…iction handling The repository owner retains final authority over canonical project knowledge. The Librarian may surface conflicting passages, but it must preserve their provenan…",
+          "metadata": {
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "headingPath": [
+              "Synthetic MSSR Librarian Fixture v1",
+              "Authority and contradiction handling"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 5,
+            "endLine": 8,
+            "chars": 371,
+            "bytes": 371,
+            "terms": [
+              "authority",
+              "contradiction",
+              "handling",
+              "canonical",
+              "among",
+              "bounded",
+              "but",
+              "can"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "9dfc28fe595756e6f0ea604e2be76137dd0eae15d19a8143dcb9f34436f9441d",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 187,
+            "endOffset": 515,
+            "fingerprint": "3feb604a56e8d7544d44abfabdea93b486c1ad01a080e3454e8d950b41a27de4",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 328,
+          "exactFetchable": true,
+          "score": 0.1,
+          "title": "Authority and contradiction handling",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1",
+            "Authority and contradiction handling"
+          ],
+          "snippet": "The repository owner retains final authority over canonical project knowledge. The Librarian may surface conflicting passages, but it must preserve their provenance and present th…",
+          "metadata": {
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "headingPath": [
+              "Synthetic MSSR Librarian Fixture v1",
+              "Authority and contradiction handling"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-2",
+            "startLine": 7,
+            "endLine": 7,
+            "chars": 328,
+            "bytes": 328,
+            "terms": [
+              "canonical",
+              "among",
+              "authority",
+              "bounded",
+              "but",
+              "can",
+              "candidates",
+              "cannot"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        }
+      ],
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "truncated": false
+    },
+    {
+      "projectOwner": "d:/dev/mssr",
+      "sourceCount": 1,
+      "results": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "5be58043afc87470bd2db2bfb92f9b787466bb39c0102886983f9ad9a42b3d62",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 15,
+            "startOffset": 0,
+            "endOffset": 1236,
+            "fingerprint": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 1236,
+          "exactFetchable": true,
+          "score": 1,
+          "title": "Synthetic MSSR Librarian Fixture v1",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1"
+          ],
+          "snippet": "# Synthetic MSSR Librarian Fixture v1 This file is an invented test fixture. It is not project policy, a real MSSR source, or human owner-gold. ## Authority and contradiction hand…",
+          "metadata": {
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "headingPath": [
+              "Synthetic MSSR Librarian Fixture v1"
+            ],
+            "level": 1,
+            "parentId": null,
+            "startLine": 1,
+            "endLine": 15,
+            "chars": 1236,
+            "bytes": 1236,
+            "terms": [
+              "fixture",
+              "librarian",
+              "mssr",
+              "synthetic",
+              "human",
+              "invented",
+              "owner-gold",
+              "policy"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "50d66fe35af7168bb3deaeb795e7387356ee930c3e343ba63beaeb88d4ed6fb2",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "rangeId": "heading-3",
+            "rangeKind": "section",
+            "startLine": 9,
+            "endLine": 12,
+            "startOffset": 517,
+            "endOffset": 830,
+            "fingerprint": "de1a84dd1b8579000f2d9c38b5090cb98a28ead98c5104dd99a68f9d7e8d0e37",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 313,
+          "exactFetchable": true,
+          "score": 1,
+          "title": "Exact citation retrieval",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1",
+            "Exact citation retrieval"
+          ],
+          "snippet": "## Exact citation retrieval Before relying on a Librarian citation, the host must fetch the exact revision-bound source range and verify that the evidence pack binds to the same s…",
+          "metadata": {
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "headingPath": [
+              "Synthetic MSSR Librarian Fixture v1",
+              "Exact citation retrieval"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 9,
+            "endLine": 12,
+            "chars": 313,
+            "bytes": 313,
+            "terms": [
+              "citation",
+              "exact",
+              "retrieval",
+              "range",
+              "source",
+              "alone",
+              "answer",
+              "before"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "c11575bd0a53c7c392d7cb63bea361b6de38a7e0b54c59d1f483635562cc0c26",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 11,
+            "endLine": 11,
+            "startOffset": 546,
+            "endOffset": 828,
+            "fingerprint": "a58c792e6b0dd0b17e196beb157d52c9702903c316f8d82c56d36de9bdad1e4b",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 282,
+          "exactFetchable": true,
+          "score": 1,
+          "title": "Exact citation retrieval",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1",
+            "Exact citation retrieval"
+          ],
+          "snippet": "Before relying on a Librarian citation, the host must fetch the exact revision-bound source range and verify that the evidence pack binds to the same source, revision, and range. …",
+          "metadata": {
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "headingPath": [
+              "Synthetic MSSR Librarian Fixture v1",
+              "Exact citation retrieval"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-3",
+            "startLine": 11,
+            "endLine": 11,
+            "chars": 282,
+            "bytes": 282,
+            "terms": [
+              "range",
+              "source",
+              "alone",
+              "answer",
+              "before",
+              "binds",
+              "citation",
+              "cited"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "a31e1f0a36a87643147a370ba3c9d461840f7852f4d5cf5625186fdc3015c489",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 5,
+            "endLine": 8,
+            "startOffset": 146,
+            "endOffset": 517,
+            "fingerprint": "a4d25b7906cfe97e3f2acc1f0c9ac937d39c64881d4ebaed027250c95ffedd3b",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 371,
+          "exactFetchable": true,
+          "score": 0.4,
+          "title": "Authority and contradiction handling",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1",
+            "Authority and contradiction handling"
+          ],
+          "snippet": "…hority over canonical project knowledge. The Librarian may surface conflicting passages, but it must preserve their provenance and present the conflict for review. Jev can select…",
+          "metadata": {
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "headingPath": [
+              "Synthetic MSSR Librarian Fixture v1",
+              "Authority and contradiction handling"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 5,
+            "endLine": 8,
+            "chars": 371,
+            "bytes": 371,
+            "terms": [
+              "authority",
+              "contradiction",
+              "handling",
+              "canonical",
+              "among",
+              "bounded",
+              "but",
+              "can"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "9dfc28fe595756e6f0ea604e2be76137dd0eae15d19a8143dcb9f34436f9441d",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 187,
+            "endOffset": 515,
+            "fingerprint": "3feb604a56e8d7544d44abfabdea93b486c1ad01a080e3454e8d950b41a27de4",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 328,
+          "exactFetchable": true,
+          "score": 0.4,
+          "title": "Authority and contradiction handling",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1",
+            "Authority and contradiction handling"
+          ],
+          "snippet": "…hority over canonical project knowledge. The Librarian may surface conflicting passages, but it must preserve their provenance and present the conflict for review. Jev can select…",
+          "metadata": {
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "headingPath": [
+              "Synthetic MSSR Librarian Fixture v1",
+              "Authority and contradiction handling"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-2",
+            "startLine": 7,
+            "endLine": 7,
+            "chars": 328,
+            "bytes": 328,
+            "terms": [
+              "canonical",
+              "among",
+              "authority",
+              "bounded",
+              "but",
+              "can",
+              "candidates",
+              "cannot"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        }
+      ],
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "truncated": true
+    },
+    {
+      "projectOwner": "d:/dev/mssr",
+      "sourceCount": 1,
+      "results": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "5be58043afc87470bd2db2bfb92f9b787466bb39c0102886983f9ad9a42b3d62",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 15,
+            "startOffset": 0,
+            "endOffset": 1236,
+            "fingerprint": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 1236,
+          "exactFetchable": true,
+          "score": 0.111111,
+          "title": "Synthetic MSSR Librarian Fixture v1",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1"
+          ],
+          "snippet": "…project policy, a real MSSR source, or human owner-gold. ## Authority and contradiction handling The repository owner retains final authority over canonical project knowledge. Th…",
+          "metadata": {
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "headingPath": [
+              "Synthetic MSSR Librarian Fixture v1"
+            ],
+            "level": 1,
+            "parentId": null,
+            "startLine": 1,
+            "endLine": 15,
+            "chars": 1236,
+            "bytes": 1236,
+            "terms": [
+              "fixture",
+              "librarian",
+              "mssr",
+              "synthetic",
+              "human",
+              "invented",
+              "owner-gold",
+              "policy"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "d18d11ba49f54da0c15c07cd30f8c4c61f06a676ed8a61a7fe9fc7069b0c12a4",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 39,
+            "endOffset": 144,
+            "fingerprint": "ffbf30c04a9f8e0c7301b45676afb0eca8bab45ca4070bbcfbf0438b204b6ed8",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 105,
+          "exactFetchable": true,
+          "score": 0.111111,
+          "title": "Synthetic MSSR Librarian Fixture v1",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1"
+          ],
+          "snippet": "This file is an invented test fixture. It is not project policy, a real MSSR source, or human owner-gold.",
+          "metadata": {
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "headingPath": [
+              "Synthetic MSSR Librarian Fixture v1"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-1",
+            "startLine": 3,
+            "endLine": 3,
+            "chars": 105,
+            "bytes": 105,
+            "terms": [
+              "fixture",
+              "human",
+              "invented",
+              "mssr",
+              "owner-gold",
+              "policy",
+              "real",
+              "source"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "99fdbb9f251d166c801c609070725471cea23f7aa61b65518745abfe215e1e87",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "rangeId": "heading-4",
+            "rangeKind": "section",
+            "startLine": 13,
+            "endLine": 15,
+            "startOffset": 830,
+            "endOffset": 1236,
+            "fingerprint": "a01a9ece3ae08edec66457bd064205c2ba68ae9c84ed0bc839c34c085674d237",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 406,
+          "exactFetchable": true,
+          "score": 0.111111,
+          "title": "Confidence and sample-size limits",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1",
+            "Confidence and sample-size limits"
+          ],
+          "snippet": "…old must be owned by the project and evaluated against independently labeled cases. The fixture specifies no exact number of owner-gold labels needed to calibrate such a threshol…",
+          "metadata": {
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "headingPath": [
+              "Synthetic MSSR Librarian Fixture v1",
+              "Confidence and sample-size limits"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 13,
+            "endLine": 15,
+            "chars": 406,
+            "bytes": 406,
+            "terms": [
+              "confidence",
+              "limits",
+              "sample-size",
+              "threshold",
+              "fixture",
+              "against",
+              "any",
+              "authority"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "c512a3ec1115479d26b1eab15b60848026a1e8d0a1c83d5280fa24cb37692550",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "rangeId": "block-4",
+            "rangeKind": "block",
+            "startLine": 15,
+            "endLine": 15,
+            "startOffset": 868,
+            "endOffset": 1236,
+            "fingerprint": "7eb96ffe53e071d25a8502971d7dab75ac1797ef56cdf022ce92ae9c34db1311",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 368,
+          "exactFetchable": true,
+          "score": 0.111111,
+          "title": "Confidence and sample-size limits",
+          "headingPath": [
+            "Synthetic MSSR Librarian Fixture v1",
+            "Confidence and sample-size limits"
+          ],
+          "snippet": "…old must be owned by the project and evaluated against independently labeled cases. The fixture specifies no exact number of owner-gold labels needed to calibrate such a threshol…",
+          "metadata": {
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+            "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+            "headingPath": [
+              "Synthetic MSSR Librarian Fixture v1",
+              "Confidence and sample-size limits"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-4",
+            "startLine": 15,
+            "endLine": 15,
+            "chars": 368,
+            "bytes": 368,
+            "terms": [
+              "threshold",
+              "confidence",
+              "fixture",
+              "against",
+              "any",
+              "authority",
+              "calibrate",
+              "cases"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        }
+      ],
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "truncated": false
+    }
+  ],
+  "jevSelection": [
+    {
+      "projectOwner": "d:/dev/mssr",
+      "sourceCount": 1,
+      "status": "selected",
+      "candidateCount": 3,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "verification": "unverified",
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "exactFetchRequired": true,
+      "autoApplyAllowed": false,
+      "candidateRangeDiagnostics": {
+        "offered": 3,
+        "eligible": 3,
+        "oversizedOmitted": 0,
+        "maxFetchChars": 20000,
+        "lengthUnit": "utf16-code-units"
+      },
+      "rangeOverlapDiagnostics": {
+        "sameSourceRevisionPairs": 3,
+        "overlappingPairCount": 3,
+        "nestedPairCount": 3,
+        "exactRangePairCount": 0,
+        "partialOverlapPairCount": 0,
+        "pairs": [
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              15
+            ],
+            "rightOptionId": "h002",
+            "rightRangeId": "heading-2",
+            "rightRangeKind": "section",
+            "rightLines": [
+              5,
+              8
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 371
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              15
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-2",
+            "rightRangeKind": "block",
+            "rightLines": [
+              7,
+              7
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 328
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-2",
+            "leftRangeKind": "section",
+            "leftLines": [
+              5,
+              8
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-2",
+            "rightRangeKind": "block",
+            "rightLines": [
+              7,
+              7
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 328
+          }
+        ],
+        "truncated": false,
+        "mutationApplied": false
+      },
+      "finalistCount": 3,
+      "selectionMode": "single-pass",
+      "selectionPasses": 1,
+      "providerCalls": 1,
+      "providerConfidence": 0.52,
+      "evidenceSufficiency": 0.9,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 1023,
+        "output_tokens": 77
+      },
+      "requestFingerprint": "5bd2d24a79778f8e0784e18ef673382b2848ca750d1fce9f0d9eb2c01a150030",
+      "elapsedMs": 802.8,
+      "jevCallMade": true,
+      "selected": {
+        "optionId": "h003",
+        "title": "Authority and contradiction handling",
+        "headingPath": [
+          "Synthetic MSSR Librarian Fixture v1",
+          "Authority and contradiction handling"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "9dfc28fe595756e6f0ea604e2be76137dd0eae15d19a8143dcb9f34436f9441d",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+          "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "startLine": 7,
+          "endLine": 7,
+          "startOffset": 187,
+          "endOffset": 515,
+          "fingerprint": "3feb604a56e8d7544d44abfabdea93b486c1ad01a080e3454e8d950b41a27de4",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "none"
+          ],
+          "selectedOptionId": "h003",
+          "confidence": 0.52,
+          "probabilities": {
+            "h001": 0.01,
+            "h002": 0.35,
+            "h003": 0.64,
+            "none": 0
+          }
+        }
+      ]
+    },
+    {
+      "projectOwner": "d:/dev/mssr",
+      "sourceCount": 1,
+      "status": "selected",
+      "candidateCount": 5,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "verification": "unverified",
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "exactFetchRequired": true,
+      "autoApplyAllowed": false,
+      "candidateRangeDiagnostics": {
+        "offered": 5,
+        "eligible": 5,
+        "oversizedOmitted": 0,
+        "maxFetchChars": 20000,
+        "lengthUnit": "utf16-code-units"
+      },
+      "rangeOverlapDiagnostics": {
+        "sameSourceRevisionPairs": 10,
+        "overlappingPairCount": 6,
+        "nestedPairCount": 6,
+        "exactRangePairCount": 0,
+        "partialOverlapPairCount": 0,
+        "pairs": [
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              15
+            ],
+            "rightOptionId": "h002",
+            "rightRangeId": "heading-3",
+            "rightRangeKind": "section",
+            "rightLines": [
+              9,
+              12
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 313
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              15
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-3",
+            "rightRangeKind": "block",
+            "rightLines": [
+              11,
+              11
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 282
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              15
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "heading-2",
+            "rightRangeKind": "section",
+            "rightLines": [
+              5,
+              8
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 371
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              15
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "block-2",
+            "rightRangeKind": "block",
+            "rightLines": [
+              7,
+              7
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 328
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-3",
+            "leftRangeKind": "section",
+            "leftLines": [
+              9,
+              12
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-3",
+            "rightRangeKind": "block",
+            "rightLines": [
+              11,
+              11
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 282
+          },
+          {
+            "leftOptionId": "h004",
+            "leftRangeId": "heading-2",
+            "leftRangeKind": "section",
+            "leftLines": [
+              5,
+              8
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "block-2",
+            "rightRangeKind": "block",
+            "rightLines": [
+              7,
+              7
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 328
+          }
+        ],
+        "truncated": false,
+        "mutationApplied": false
+      },
+      "finalistCount": 5,
+      "selectionMode": "single-pass",
+      "selectionPasses": 1,
+      "providerCalls": 1,
+      "providerConfidence": 0.44,
+      "evidenceSufficiency": 0.96,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 1359,
+        "output_tokens": 97
+      },
+      "requestFingerprint": "1744a838858b453be092d6b18c011b2a6cc81aa9508d09c39080878e59cd7c58",
+      "elapsedMs": 621.3,
+      "jevCallMade": true,
+      "selected": {
+        "optionId": "h003",
+        "title": "Exact citation retrieval",
+        "headingPath": [
+          "Synthetic MSSR Librarian Fixture v1",
+          "Exact citation retrieval"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "c11575bd0a53c7c392d7cb63bea361b6de38a7e0b54c59d1f483635562cc0c26",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+          "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "startLine": 11,
+          "endLine": 11,
+          "startOffset": 546,
+          "endOffset": 828,
+          "fingerprint": "a58c792e6b0dd0b17e196beb157d52c9702903c316f8d82c56d36de9bdad1e4b",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "h005",
+            "none"
+          ],
+          "selectedOptionId": "h003",
+          "confidence": 0.44,
+          "probabilities": {
+            "h001": 0.01,
+            "h002": 0.46,
+            "h003": 0.53,
+            "h004": 0,
+            "h005": 0,
+            "none": 0
+          }
+        }
+      ]
+    },
+    {
+      "projectOwner": "d:/dev/mssr",
+      "sourceCount": 1,
+      "status": "abstained",
+      "candidateCount": 4,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "verification": "unverified",
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "exactFetchRequired": true,
+      "autoApplyAllowed": false,
+      "candidateRangeDiagnostics": {
+        "offered": 4,
+        "eligible": 4,
+        "oversizedOmitted": 0,
+        "maxFetchChars": 20000,
+        "lengthUnit": "utf16-code-units"
+      },
+      "rangeOverlapDiagnostics": {
+        "sameSourceRevisionPairs": 6,
+        "overlappingPairCount": 4,
+        "nestedPairCount": 4,
+        "exactRangePairCount": 0,
+        "partialOverlapPairCount": 0,
+        "pairs": [
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              15
+            ],
+            "rightOptionId": "h002",
+            "rightRangeId": "block-1",
+            "rightRangeKind": "block",
+            "rightLines": [
+              3,
+              3
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 105
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              15
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "heading-4",
+            "rightRangeKind": "section",
+            "rightLines": [
+              13,
+              15
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 406
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              15
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-4",
+            "rightRangeKind": "block",
+            "rightLines": [
+              15,
+              15
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 368
+          },
+          {
+            "leftOptionId": "h003",
+            "leftRangeId": "heading-4",
+            "leftRangeKind": "section",
+            "leftLines": [
+              13,
+              15
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-4",
+            "rightRangeKind": "block",
+            "rightLines": [
+              15,
+              15
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 368
+          }
+        ],
+        "truncated": false,
+        "mutationApplied": false
+      },
+      "finalistCount": 4,
+      "selectionMode": "single-pass",
+      "selectionPasses": 1,
+      "providerCalls": 1,
+      "providerConfidence": 0.82,
+      "evidenceSufficiency": 0.24,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 1183,
+        "output_tokens": 84
+      },
+      "requestFingerprint": "04cd7f09eba65c9704df91b2b3e5ea36066f0cb9cbbf4b92e664662e6da61b7e",
+      "elapsedMs": 679.5,
+      "jevCallMade": true,
+      "selected": null,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "none"
+          ],
+          "selectedOptionId": "none",
+          "confidence": 0.82,
+          "probabilities": {
+            "h001": 0.03,
+            "h002": 0,
+            "h003": 0.06,
+            "h004": 0.05,
+            "none": 0.86
+          }
+        }
+      ]
+    }
+  ],
+  "exactFetch": [
+    {
+      "projectOwner": "d:/dev/mssr",
+      "handle": {
+        "version": 1,
+        "id": "9dfc28fe595756e6f0ea604e2be76137dd0eae15d19a8143dcb9f34436f9441d",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+        "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 7,
+        "startOffset": 187,
+        "endOffset": 515,
+        "fingerprint": "3feb604a56e8d7544d44abfabdea93b486c1ad01a080e3454e8d950b41a27de4",
+        "privacyClass": "project-metadata"
+      },
+      "text": "The repository owner retains final authority over canonical project knowledge. The Librarian may surface conflicting passages, but it must preserve their provenance and present the conflict for review. Jev can select among bounded evidence candidates; it cannot decide which source is canonical or write a canonical replacement.",
+      "fingerprint": "3feb604a56e8d7544d44abfabdea93b486c1ad01a080e3454e8d950b41a27de4",
+      "advisoryOnly": true,
+      "truthAuthority": false
+    },
+    {
+      "projectOwner": "d:/dev/mssr",
+      "handle": {
+        "version": 1,
+        "id": "c11575bd0a53c7c392d7cb63bea361b6de38a7e0b54c59d1f483635562cc0c26",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+        "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+        "rangeId": "block-3",
+        "rangeKind": "block",
+        "startLine": 11,
+        "endLine": 11,
+        "startOffset": 546,
+        "endOffset": 828,
+        "fingerprint": "a58c792e6b0dd0b17e196beb157d52c9702903c316f8d82c56d36de9bdad1e4b",
+        "privacyClass": "project-metadata"
+      },
+      "text": "Before relying on a Librarian citation, the host must fetch the exact revision-bound source range and verify that the evidence pack binds to the same source, revision, and range. A search result or a Jev selection handle alone does not prove that the cited text supports the answer.",
+      "fingerprint": "a58c792e6b0dd0b17e196beb157d52c9702903c316f8d82c56d36de9bdad1e4b",
+      "advisoryOnly": true,
+      "truthAuthority": false
+    }
+  ],
+  "evidencePack": {
+    "projectOwner": "d:/dev/mssr",
+    "sourceCount": 1,
+    "schemaVersion": 1,
+    "kind": "mssr-librarian-evidence-pack",
+    "assembly": "verbatim-source-ranges",
+    "paragraphs": [
+      {
+        "ordinal": 1,
+        "exactText": "The repository owner retains final authority over canonical project knowledge. The Librarian may surface conflicting passages, but it must preserve their provenance and present the conflict for review. Jev can select among bounded evidence candidates; it cannot decide which source is canonical or write a canonical replacement.",
+        "citation": {
+          "display": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md:L7-L7",
+          "handleId": "9dfc28fe595756e6f0ea604e2be76137dd0eae15d19a8143dcb9f34436f9441d",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+          "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "startLine": 7,
+          "endLine": 7,
+          "fingerprint": "3feb604a56e8d7544d44abfabdea93b486c1ad01a080e3454e8d950b41a27de4",
+          "privacyClass": "project-metadata"
+        }
+      },
+      {
+        "ordinal": 2,
+        "exactText": "Before relying on a Librarian citation, the host must fetch the exact revision-bound source range and verify that the evidence pack binds to the same source, revision, and range. A search result or a Jev selection handle alone does not prove that the cited text supports the answer.",
+        "citation": {
+          "display": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md:L11-L11",
+          "handleId": "c11575bd0a53c7c392d7cb63bea361b6de38a7e0b54c59d1f483635562cc0c26",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-synthetic-contract-20261012T0451Z-v1/sources/fixture.md",
+          "revision": "cee9d777dcb690ca05ffdb4f0c24249eb78ff54678c3e2aeca7741258d39c6d7",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "startLine": 11,
+          "endLine": 11,
+          "fingerprint": "a58c792e6b0dd0b17e196beb157d52c9702903c316f8d82c56d36de9bdad1e4b",
+          "privacyClass": "project-metadata"
+        }
+      }
+    ],
+    "totalFetchedChars": 610,
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "canonicalRewriteAllowed": false,
+    "ownerAndPrivacyAreCallerAsserted": true
+  }
+}
