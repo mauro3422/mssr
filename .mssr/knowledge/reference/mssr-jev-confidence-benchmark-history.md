@@ -29,3 +29,28 @@ ranges, and track the dedicated connector schema drift separately.
 ## Run 35 evaluator invariant
 
 Score answerability disposition (select versus abstain) and selected-range precision as separate outcomes. A valid Jev selection's exact/relevant range match must be scored from its selector status and returned range, independently of later fetch or evidence-pack success; keep exact-fetch fingerprint and pack integrity as separate pipeline metrics. Contradictory outputs such as selected with choice: none remain failed-or-unknown and must not count as valid range selections. This evaluator correction does not calibrate raw Choice/sufficiency or authorize a production threshold.
+
+## Runs 37–39: project-specific sidecar and atomic facets (2026-10-12)
+
+Three linked live Jev 1.13.0 diagnostics used one exposed MSSR
+`architecture-impact-review-decision.md` source cluster through Bridge 0.6.172
+/ MSSR 0.2.127. In run 37, the compound WATCH/REVIEW plus inferred-edge
+question had its target in a 48-range search, but Jev selected an unrelated
+range from another MSSR document; exact fetch integrity passed, while relevant
+range selection did not. In run 38, the same query was scoped by sidecar
+metadata to three candidates; Jev abstained on this source-labeled answerable
+case. In run 39, two manually separated atomic facets were both selected,
+exact-fetched, and packed with citations. Exact accepted-range selection was
+1/2, explicitly relevant selection 1/2; a blind Luna literal-text review found
+both excerpts sufficient, one tight and one moderately broad.
+
+The comparison suggests that manual facet decomposition can recover useful
+evidence where a compound query fails, but these linked repeats are not
+independent cases and do not validate an automatic decomposition or coverage
+gate. The labels are source-derived, blind review is model-assisted, and there
+is no owner-gold or holdout. Raw Choice and evidence-sufficiency values remain
+uncalibrated; no threshold or production behavior changed. See the
+[experiment ledger](../../../experiments/jev-mssr-live/README.md), the
+[run 37 report](../../../experiments/jev-mssr-live/runs/mssr-librarian-sidecar-architecture-impact-20261012T0346Z-v1/RUN-REPORT.md),
+the [run 38 report](../../../experiments/jev-mssr-live/runs/mssr-librarian-sidecar-architecture-impact-narrowed-followup-20261012T0353Z-v1/RUN-REPORT.md),
+and the [run 39 report](../../../experiments/jev-mssr-live/runs/mssr-librarian-sidecar-architecture-impact-atomic-facets-20261012T0400Z-v1/RUN-REPORT.md).

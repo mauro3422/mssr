@@ -1,0 +1,205 @@
+{
+  "firstIndex": 32,
+  "lastIndex": 39,
+  "candidates": [
+    {
+      "handle": {
+        "version": 1,
+        "id": "321c0739d58f3aeb65e4a55d155ac704cd3d6597789bf2cf9fe1abd542ad3ceb",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+        "revision": "1ec96fe144070027033c74c9487f3b2219be3e7985e81ee7d168ea921c0e5d90",
+        "rangeId": "block-6",
+        "rangeKind": "block",
+        "startLine": 56,
+        "endLine": 63,
+        "startOffset": 3126,
+        "endOffset": 3721,
+        "fingerprint": "672746f534b7406e14b88535e56481ecc71484573814b891238f1679f27c886a",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Compatibility and verification",
+      "score": 0.1,
+      "headingPath": [
+        "Project Context librarian metadata sidecar",
+        "Compatibility and verification"
+      ],
+      "rangeCodeUnits": 595,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "d46b8febc4996ecb1dbdf7b86c85c61dce648db4a3e0a899a1bf59cbdca8c3f5",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "block-12",
+        "rangeKind": "block",
+        "startLine": 34,
+        "endLine": 34,
+        "startOffset": 5902,
+        "endOffset": 6239,
+        "fingerprint": "bd46aef9f0de1142e82475920b4d212dcc1bf16426399ebdf7ab88b1c9412fb9",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Progressive evidence acquisition",
+      "score": 0.1,
+      "headingPath": [
+        "Semantic Evidence Plane architecture",
+        "Progressive evidence acquisition"
+      ],
+      "rangeCodeUnits": 337,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "f10c1241f575a60b819c32fbe362d03f651d6b02d53ba2edf3c4be67aee3128f",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "block-13",
+        "rangeKind": "block",
+        "startLine": 36,
+        "endLine": 36,
+        "startOffset": 6241,
+        "endOffset": 6684,
+        "fingerprint": "aa5750addcc78c5dcf87ee9876b238057ebf57d81d5a24ec49ebae6c359eb107",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Progressive evidence acquisition",
+      "score": 0.1,
+      "headingPath": [
+        "Semantic Evidence Plane architecture",
+        "Progressive evidence acquisition"
+      ],
+      "rangeCodeUnits": 443,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "6bb58efeeb401a2b41378cbd5d05c7f2cd902ffab79936a88470815fd5e00c3d",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "block-15",
+        "rangeKind": "block",
+        "startLine": 40,
+        "endLine": 47,
+        "startOffset": 6706,
+        "endOffset": 6905,
+        "fingerprint": "613d122c87f1dcd6a7713ea51208809a7ecaa2b5a9edc944b64893b627b6bad2",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Progressive evidence acquisition",
+      "score": 0.1,
+      "headingPath": [
+        "Semantic Evidence Plane architecture",
+        "Progressive evidence acquisition"
+      ],
+      "rangeCodeUnits": 199,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "359b7f042d0596063bfeadffe5715a607bc2f9f6ec750be23b1605deefb99086",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "block-17",
+        "rangeKind": "block",
+        "startLine": 53,
+        "endLine": 53,
+        "startOffset": 7303,
+        "endOffset": 7591,
+        "fingerprint": "3ab26732d55afcfc925cbc464518e7a012796c8671e698677faf0e4272046c6e",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Destinations, unused evidence and learning",
+      "score": 0.1,
+      "headingPath": [
+        "Semantic Evidence Plane architecture",
+        "Destinations, unused evidence and learning"
+      ],
+      "rangeCodeUnits": 288,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "8305665387c4a4a6b6b0d9eb152f7a7d0015b3b09b0f7e1a49295dff984869a2",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "block-18",
+        "rangeKind": "block",
+        "startLine": 55,
+        "endLine": 55,
+        "startOffset": 7593,
+        "endOffset": 7945,
+        "fingerprint": "d2c751027193548133d3676055005f67f47fac9c78e873a5c271f10208c71ae2",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Destinations, unused evidence and learning",
+      "score": 0.1,
+      "headingPath": [
+        "Semantic Evidence Plane architecture",
+        "Destinations, unused evidence and learning"
+      ],
+      "rangeCodeUnits": 352,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "b19e773261d49c5e5be54ab302ab909f9da40b95391262c7adf9fb209f544a1a",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "block-7",
+        "rangeKind": "block",
+        "startLine": 21,
+        "endLine": 21,
+        "startOffset": 3282,
+        "endOffset": 3538,
+        "fingerprint": "25b5d5493c66b65aa7b4296dcaf6b8e587c656049b0ce6a6bde57195c7670714",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Progressive section retrieval",
+      "score": 0.05,
+      "headingPath": [
+        "Semantic Evidence Plane architecture",
+        "Progressive section retrieval"
+      ],
+      "rangeCodeUnits": 256,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "99bc6b8e56d1f7622db7d552611067d78a69b7e349edc21fa1bb39d8880c862d",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+        "revision": "8879d7ffb50f41d4c22565d9cb6554f7e1aab2cee4073a65139e0c5ebc0847c3",
+        "rangeId": "block-1",
+        "rangeKind": "block",
+        "startLine": 3,
+        "endLine": 3,
+        "startOffset": 57,
+        "endOffset": 460,
+        "fingerprint": "affed34f94611ff0dcc89f9f243f11b96bca05a48bf838bc0e45175d98039bf6",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Semantic consistency relations and retrieval decision",
+      "score": 0.05,
+      "headingPath": [
+        "Semantic consistency relations and retrieval decision"
+      ],
+      "rangeCodeUnits": 403,
+      "exactFetchable": true
+    }
+  ]
+}

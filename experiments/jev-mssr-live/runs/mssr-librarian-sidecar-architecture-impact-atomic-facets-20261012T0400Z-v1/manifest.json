@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "provider": {
+    "networkOptInMethod": "Explicit user authorization in this conversation; two connected Bridge MCP Jev tool calls, sequentially. Local runner --allow-network is not used.",
+    "tool": "mssr_librarian_jev_select",
+    "provider": "typesafe-jev",
+    "requestedModel": "jev-1.13.0",
+    "evidencePackToolSchemaHash": "6b50677074828944",
+    "userAuthorization": "The user explicitly authorized using live Jev for MSSR testing in this conversation.",
+    "networkOptIn": true,
+    "mode": "live",
+    "searchToolSchemaHash": "b931631885199014",
+    "fetchToolSchemaHash": "992cf19973405356",
+    "toolSchemaHash": "0317e3b12c77efaa"
+  },
+  "status": "prepared",
+  "parentRunId": "mssr-librarian-sidecar-architecture-impact-narrowed-followup-20261012T0353Z-v1",
+  "instrument": {
+    "candidateSetSha256": "46348fca10779a17b578c47f43ae756738394bc7e6fa213da868ced988d8d6fa",
+    "runnerSha256": "fec35e2727c77e5f12b200e347bf92d78ad8cd23a0e9276d67606613f38857db",
+    "selectionRecordSha256": "847a1224278ed09941526aff7d781842a854f21b3007e4e00ae357e84faa5834",
+    "casesSha256": "41a999e1f48a47a6d40023d6db20b51b9f100347b508686d3b3753f6e0ad5574",
+    "runnerSupportSha256": "6a9377ec0cdc0c1db4b4f939efa3881fa17facaca5f67fdf02cf6ad5ce123c9a",
+    "metadataSidecarSearchSha256": "b0f05547ba20ace809c2978c01deff6cb451d6cdbd969d9181eaa35c1d5d5c17"
+  },
+  "exposure": {
+    "exactSourceRefOrSnapshotHadPriorExposureBeforeParentRun": "The exact source and a compound related question were sent to Jev in the parent run.",
+    "interpretation": "Same source and candidate set; linked diagnostic only, no independent inference or generalization.",
+    "exactSourceWasIncludedInParentProviderCall": true
+  },
+  "study": "atomic-facet-wording-linked-diagnostic",
+  "createdAt": "2026-10-12T03:58:07.643Z",
+  "runId": "mssr-librarian-sidecar-architecture-impact-atomic-facets-20261012T0400Z-v1",
+  "comparison": {
+    "parentRunId": "mssr-librarian-sidecar-architecture-impact-narrowed-followup-20261012T0353Z-v1",
+    "metric": "same three exact candidate handles per call; compare per-facet selection and token usage descriptively. Two calls are linked and correlated.",
+    "followupCandidateCount": 3,
+    "parentInputTokens": 951,
+    "parentCandidateCount": 3
+  },
+  "corpus": {
+    "sources": [
+      {
+        "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+        "sha256": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+        "snapshotPath": "inputs/sources/source-01-architecture-impact-review-decision.md"
+      }
+    ],
+    "projectRoot": "D:\\Dev\\mssr",
+    "sourceCount": 1
+  },
+  "source": {
+    "executionMode": "Connected Bridge MCP calls are made directly by the host. The copied run template is used only for no-network input/source preflight; --allow-network is not used.",
+    "bridgeRuntimeBootId": "c25d1548-6654-4833-b5a4-994aa9d08ae9",
+    "buildArtifacts": [],
+    "bridgeRoot": "D:\\Dev\\bridge-mcp-mssr-0.2.112-query-variants",
+    "mssrVersion": "0.2.127",
+    "bridgeVersion": "0.6.172",
+    "bridgeCommit": "391a1bb1bce092a3bdeb879b5b9e5a9ad3e78745",
+    "bridgeCheckoutCommit": "3de489cf040f5e581b2b328521f4cbd44f2b81a9"
+  },
+  "plan": {
+    "pipeline": "metadata sidecar -> source-scoped lexical search -> Jev exact-range choice -> exact fetch -> deterministic evidence pack",
+    "inputCandidateCount": 3,
+    "metadataMode": "sidecar exact-selector source scoping followed by source-local lexical candidates; same three revision-bound handles are offered in each request",
+    "independentUnit": "same architecture-impact source-document cluster as parent; linked atomic-query diagnostic, not independent samples",
+    "expectedRequestCount": 2,
+    "excluded": "No new semantic source cluster, no independent gold adjudication, no synthesis, paragraph composition, contradiction judgment, confidence calibration, or production threshold."
+  },
+  "labels": {
+    "labelsPreparedBeforeProviderCalls": true,
+    "labelFileSha256": "9b835330da1a1767f76a58f71bfa70d6772bcd9f82ae6f6f0a29bd5c7436305f",
+    "adjudication": "Same source-derived label as linked parent; no project-owner or independent expert adjudication.",
+    "exposedSourceStatus": "The source and related query facets were already sent to Jev in linked parent runs; exposed remediation diagnostic, never holdout evidence.",
+    "labelFile": "inputs/labels.json",
+    "ownerGold": false
+  }
+}

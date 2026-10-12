@@ -1,0 +1,14 @@
+{
+  "cases": [
+    {
+      "id": "watch-review-facet",
+      "query": "What evidence separates a WATCH assessment from a REVIEW assessment?",
+      "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md"
+    },
+    {
+      "id": "inferred-edge-authority-facet",
+      "query": "How are dependency relationships inferred from structure treated when deciding whether to elevate architecture attention?",
+      "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md"
+    }
+  ]
+}

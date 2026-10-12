@@ -1,0 +1,206 @@
+{
+  "firstIndex": 24,
+  "lastIndex": 31,
+  "candidates": [
+    {
+      "handle": {
+        "version": 1,
+        "id": "ec43605b9144957f7dc45e0a5aea38b6766dcaa6b1a05a06c116576ad37d522f",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+        "revision": "1ec96fe144070027033c74c9487f3b2219be3e7985e81ee7d168ea921c0e5d90",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "startLine": 30,
+        "endLine": 53,
+        "startOffset": 1525,
+        "endOffset": 3091,
+        "fingerprint": "73c79f1941e29f9ccbefb388031763b175492f57bb810b8371d24b4fdb2cafe7",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Projection and stale-data behavior",
+      "score": 0.1,
+      "headingPath": [
+        "Project Context librarian metadata sidecar",
+        "Projection and stale-data behavior"
+      ],
+      "rangeCodeUnits": 1566,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "49277908f1072ed3b670b5f100e1011ef353abc11da8de4dc69dbc3713994e1a",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "block-4",
+        "rangeKind": "block",
+        "startLine": 13,
+        "endLine": 13,
+        "startOffset": 2006,
+        "endOffset": 2277,
+        "fingerprint": "6664f0aa337fcc7f328af4241999aefc49288ff0613173df37047e38dd3e21bd",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Core Document and Librarian guarantees",
+      "score": 0.1,
+      "headingPath": [
+        "Semantic Evidence Plane architecture",
+        "Core Document and Librarian guarantees"
+      ],
+      "rangeCodeUnits": 271,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "ddfa923716d1adf441833bff521c3579f013a5165eae41f07c22774bc7f072fa",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+        "revision": "1ec96fe144070027033c74c9487f3b2219be3e7985e81ee7d168ea921c0e5d90",
+        "rangeId": "block-4",
+        "rangeKind": "block",
+        "startLine": 32,
+        "endLine": 39,
+        "startOffset": 1564,
+        "endOffset": 2165,
+        "fingerprint": "bc371f6f44f2230bd271d86c6d7d8a66ce56a546cc02ff6d13cc15b325a7bae0",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Projection and stale-data behavior",
+      "score": 0.1,
+      "headingPath": [
+        "Project Context librarian metadata sidecar",
+        "Projection and stale-data behavior"
+      ],
+      "rangeCodeUnits": 601,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "dfba18f1000301801c7301f67c7f8106caef7af78df51045b5b1ba0fb76a033c",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "startLine": 17,
+        "endLine": 23,
+        "startOffset": 2732,
+        "endOffset": 3716,
+        "fingerprint": "212dd168a9b227687b07098c634f8480a967140159480d93307fcf18d16ad0eb",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Progressive section retrieval",
+      "score": 0.1,
+      "headingPath": [
+        "Semantic Evidence Plane architecture",
+        "Progressive section retrieval"
+      ],
+      "rangeCodeUnits": 984,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "c04fd4339fd7824e4218cc61f4079174ea19512856c8899dce55f4cc77887987",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+        "revision": "1ec96fe144070027033c74c9487f3b2219be3e7985e81ee7d168ea921c0e5d90",
+        "rangeId": "block-5",
+        "rangeKind": "block",
+        "startLine": 41,
+        "endLine": 52,
+        "startOffset": 2167,
+        "endOffset": 3089,
+        "fingerprint": "fd1c10d8ca214f9e5170073b3b9c96fb26ee0b32190c768d55afb1b317f55439",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Projection and stale-data behavior",
+      "score": 0.1,
+      "headingPath": [
+        "Project Context librarian metadata sidecar",
+        "Projection and stale-data behavior"
+      ],
+      "rangeCodeUnits": 922,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "a50bad52f3c17968138eea761cc61de881ba542769f281cd8ec6337222b0800c",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "block-6",
+        "rangeKind": "block",
+        "startLine": 19,
+        "endLine": 19,
+        "startOffset": 2766,
+        "endOffset": 3280,
+        "fingerprint": "b3733f2f6210f0757c44deb7f8949246c213404285f4b4c579374d3c626312eb",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Progressive section retrieval",
+      "score": 0.1,
+      "headingPath": [
+        "Semantic Evidence Plane architecture",
+        "Progressive section retrieval"
+      ],
+      "rangeCodeUnits": 514,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "4cc34d68d8fceeae8fb5607ed2641de7abee39043620782d367a49d7d668ef82",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+        "revision": "1ec96fe144070027033c74c9487f3b2219be3e7985e81ee7d168ea921c0e5d90",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "startLine": 54,
+        "endLine": 63,
+        "startOffset": 3091,
+        "endOffset": 3722,
+        "fingerprint": "3f492396c72946bbf86c0e1b774a319d5ce30147e3dd1e10412496549f9378b3",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Compatibility and verification",
+      "score": 0.1,
+      "headingPath": [
+        "Project Context librarian metadata sidecar",
+        "Compatibility and verification"
+      ],
+      "rangeCodeUnits": 631,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "6d5468f96cec0b9ef0e179dbdbe01bafdfe878982c24e6a7b6f7113c1be69301",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "block-9",
+        "rangeKind": "block",
+        "startLine": 26,
+        "endLine": 26,
+        "startOffset": 3760,
+        "endOffset": 5084,
+        "fingerprint": "428e04d6b84b05989a0c6e2eacfdfbf712f21b9ec6958a95e28516cb7f9b3857",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Reduction, batching and semantic triage",
+      "score": 0.1,
+      "headingPath": [
+        "Semantic Evidence Plane architecture",
+        "Reduction, batching and semantic triage"
+      ],
+      "rangeCodeUnits": 1324,
+      "exactFetchable": true
+    }
+  ]
+}

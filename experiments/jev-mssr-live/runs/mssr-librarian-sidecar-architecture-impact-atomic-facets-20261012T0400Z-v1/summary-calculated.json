@@ -1,0 +1,197 @@
+{
+  "schemaVersion": 2,
+  "schemaProfile": "generic-librarian-run-v1",
+  "reportType": "mechanically-derived run summary; no semantic adjudication",
+  "runId": "mssr-librarian-sidecar-architecture-impact-atomic-facets-20261012T0400Z-v1",
+  "parentRunId": "mssr-librarian-sidecar-architecture-impact-narrowed-followup-20261012T0353Z-v1",
+  "frozenManifestSha256": "b43705ee2be0dc9d88f3afb51c149a413252e7a623d2070921c05d50afef83f3",
+  "completionStatus": "complete",
+  "checksumFile": {
+    "present": true,
+    "verified": 19,
+    "requiredFiles": [
+      "manifest.json",
+      "run-completion.json",
+      "inputs/cases.json",
+      "records.jsonl",
+      "inputs/labels.json"
+    ]
+  },
+  "sourceDocumentClusters": 1,
+  "sourceRefs": [
+    ".mssr/knowledge/architecture/architecture-impact-review-decision.md"
+  ],
+  "clusterInterpretation": "Distinct sourceRef grouping only; it does not establish independent statistical sampling.",
+  "expectedRequests": 2,
+  "attemptedRequests": 2,
+  "successfulRequests": 2,
+  "failedRequests": 0,
+  "selected": 2,
+  "abstained": 0,
+  "exactFetchesWithFingerprint": 2,
+  "evidencePacksBuilt": 2,
+  "evidenceSufficiencyCapture": {
+    "recorded": 2,
+    "missingFromRecords": 0,
+    "note": "Only the explicit jev.evidenceSufficiency field is counted; raw Noul and other aliases are reported separately."
+  },
+  "rawNoulCapture": {
+    "recorded": 0,
+    "missingFromRecords": 2,
+    "note": "Provider Noul is descriptive and is not treated as an evidence-sufficiency alias."
+  },
+  "tokenUsage": {
+    "input": 1892,
+    "output": 154
+  },
+  "firstRequestStartedAt": null,
+  "lastRequestCompletedAt": null,
+  "manifestCreatedAt": "2026-10-12T03:58:07.643Z",
+  "createdAtDeltaMs": null,
+  "timestampWarning": null,
+  "declaredIndependentUnitUnverified": "same architecture-impact source-document cluster as parent; linked atomic-query diagnostic, not independent samples",
+  "independentUnitDeclarationInterpretation": "Manifest text is retained for audit; it is not verified against observed sourceRef clusters.",
+  "independentUnit": "source-document cluster (descriptive grouping only)",
+  "calibrationClaim": false,
+  "labelMetrics": {
+    "reportType": "answerability disposition and independently labeled range-selection diagnostics; not semantic adjudication or calibration",
+    "labelSource": null,
+    "adjudication": null,
+    "answerabilityMetrics": {
+      "answerable": {
+        "cases": 2,
+        "correctAnswerabilityDecisions": 2,
+        "correctExactRangeSelections": 1,
+        "correctRelevantRangeSelections": 1,
+        "selectedOutsideLabeledRanges": 0,
+        "incorrectDecisions": 0,
+        "failedOrUnknownDecisions": 0,
+        "abstentions": 0
+      },
+      "unanswerable": {
+        "cases": 0,
+        "correctAbstentions": 0,
+        "falseSelections": 0,
+        "failedOrUnknownDecisions": 0
+      },
+      "classifiedDecisions": 2,
+      "correctDecisions": 2,
+      "incorrectDecisions": 0,
+      "failedOrUnknownDecisions": 0,
+      "decisionAccuracy": 1,
+      "decisionAccuracyNote": "This is answerability-status accuracy (select when answerable, abstain when unanswerable); exact/relevant/outside-labeled range quality is reported separately. Failures/unknown decisions stay separate; raw Jev scores remain descriptive and uncalibrated."
+    },
+    "rangeSelectionMetrics": {
+      "exactMatches": 1,
+      "relevantLabeledMatches": 1,
+      "outsideLabeledRanges": 0,
+      "abstentions": 0,
+      "failedOrUnknown": 0,
+      "note": "A range outside the exact or explicitly labeled relevant ranges is ungraded for semantic usefulness; it is not automatically irrelevant. Inspect source text and blinded review separately."
+    },
+    "normalizedExactHeadingMatches": 2,
+    "exactHeadingDenominator": 2,
+    "exactAcceptedRangeMatches": 1,
+    "exactAcceptedRangeDenominator": 2,
+    "relevantRangeMatches": 1,
+    "relevantRangeDenominator": 2,
+    "searchTargetFound": 2,
+    "searchTargetDenominator": 2,
+    "searchExactAcceptedRangeFound": 2,
+    "searchExactAcceptedRangeDenominator": 2,
+    "searchRelevantRangeFound": 2,
+    "searchRelevantRangeDenominator": 2,
+    "records": [
+      {
+        "caseId": "watch-review-facet",
+        "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+        "answerability": "answerable",
+        "expectedHeading": "Architecture impact review decision",
+        "observedHeading": "Architecture impact review decision",
+        "normalizedExactHeadingMatch": true,
+        "exactAcceptedRangeMatch": true,
+        "relevantRangeMatch": false,
+        "relevantRanges": [
+          {
+            "expectedHeading": "Architecture impact review decision",
+            "rangeKind": "section",
+            "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+            "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+            "endLine": 5,
+            "startLine": 1,
+            "rangeId": "heading-1"
+          }
+        ],
+        "searchTargetFound": true,
+        "searchExactAcceptedRangeFound": true,
+        "searchRelevantRangeFound": true,
+        "decisionStatus": "selected",
+        "decisionCorrect": true,
+        "answerabilityDecisionCorrect": true,
+        "rangeSelectionAssessment": "exact",
+        "exactFetchPassed": true,
+        "pipelineStatus": "complete"
+      },
+      {
+        "caseId": "inferred-edge-authority-facet",
+        "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+        "answerability": "answerable",
+        "expectedHeading": "Architecture impact review decision",
+        "observedHeading": "Architecture impact review decision",
+        "normalizedExactHeadingMatch": true,
+        "exactAcceptedRangeMatch": false,
+        "relevantRangeMatch": true,
+        "relevantRanges": [
+          {
+            "expectedHeading": "Architecture impact review decision",
+            "rangeKind": "section",
+            "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+            "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+            "endLine": 5,
+            "startLine": 1,
+            "rangeId": "heading-1"
+          }
+        ],
+        "searchTargetFound": true,
+        "searchExactAcceptedRangeFound": true,
+        "searchRelevantRangeFound": true,
+        "decisionStatus": "selected",
+        "decisionCorrect": true,
+        "answerabilityDecisionCorrect": true,
+        "rangeSelectionAssessment": "relevant",
+        "exactFetchPassed": true,
+        "pipelineStatus": "complete"
+      }
+    ]
+  },
+  "records": [
+    {
+      "caseId": "watch-review-facet",
+      "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+      "status": "complete",
+      "searchResultCount": 3,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-2",
+      "rawChoiceConfidence": 0.97,
+      "evidenceSufficiency": 0.64,
+      "providerNoul": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 816.2
+    },
+    {
+      "caseId": "inferred-edge-authority-facet",
+      "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+      "status": "complete",
+      "searchResultCount": 3,
+      "jevStatus": "selected",
+      "selectedRangeId": "heading-1",
+      "rawChoiceConfidence": 0.36,
+      "evidenceSufficiency": 0.56,
+      "providerNoul": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 814.6
+    }
+  ]
+}

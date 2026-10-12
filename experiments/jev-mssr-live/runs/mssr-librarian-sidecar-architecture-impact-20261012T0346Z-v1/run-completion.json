@@ -1,0 +1,11 @@
+{
+  "runId": "mssr-librarian-sidecar-architecture-impact-20261012T0346Z-v1",
+  "status": "complete",
+  "attemptedRequests": 1,
+  "completedAt": "2026-10-12T03:52:21.000Z",
+  "manifestSha256": "94b75e04492239aab1c06e6f5868063243cae12f03b017d83cfe52a3f96aa479",
+  "executionPath": "connected-MCP",
+  "bridgeRuntimeInvocationVerified": true,
+  "providerCalls": 1,
+  "outcome": "completed with a semantic range-selection miss; deterministic exact fetch and evidence pack validated."
+}

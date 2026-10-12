@@ -1,0 +1,22 @@
+{
+  "projectOwner": "d:/dev/mssr",
+  "handle": {
+    "version": 1,
+    "id": "656e3cc4407e694c0dfa8c1dd26d330553f6257019a42565a3c506caf2943a89",
+    "owner": "d:/dev/mssr",
+    "sourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+    "revision": "8879d7ffb50f41d4c22565d9cb6554f7e1aab2cee4073a65139e0c5ebc0847c3",
+    "rangeId": "block-2",
+    "rangeKind": "block",
+    "startLine": 5,
+    "endLine": 5,
+    "startOffset": 462,
+    "endOffset": 1179,
+    "fingerprint": "6b41417d5911201a54520fff3ea1021650e60355196bfe89a1cffad8d4cf423e",
+    "privacyClass": "project-metadata"
+  },
+  "text": "Temporal comparability is relation-specific. `supports`, `contradicts` and `duplicate` require known matching validity and overlapping intervals before they can be compared. `supersedes` is directional: left replaces right, so it may cross validity states and intervals, but both start times must be known and the left claim must not predate the right claim. `unrelated` does not assert comparability, so scope or temporal differences must not by themselves force review; `unresolved` remains review-worthy. Missing comparability evidence for relations that require it remains review-worthy, and temporal ordering does not satisfy independent verification or authorize consolidation; synthesis preserves both sources.",
+  "fingerprint": "6b41417d5911201a54520fff3ea1021650e60355196bfe89a1cffad8d4cf423e",
+  "advisoryOnly": true,
+  "truthAuthority": false
+}

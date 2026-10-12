@@ -1,0 +1,11 @@
+{
+  "runId": "mssr-librarian-sidecar-architecture-impact-narrowed-followup-20261012T0353Z-v1",
+  "status": "complete",
+  "attemptedRequests": 1,
+  "completedAt": "2026-10-12T03:54:07.000Z",
+  "manifestSha256": "184ba6a37768bc9f4805f09507e0a25aa19e8cb6b41119c9c192bb0ceec74ba3",
+  "executionPath": "connected-MCP",
+  "bridgeRuntimeInvocationVerified": true,
+  "providerCalls": 1,
+  "outcome": "completed with an answerability miss: Jev abstained despite the exact target being present among three source-scoped candidates."
+}

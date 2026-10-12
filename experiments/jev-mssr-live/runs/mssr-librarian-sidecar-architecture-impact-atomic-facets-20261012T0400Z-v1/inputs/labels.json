@@ -1,0 +1,69 @@
+{
+  "labelSource": "source-derived by exact read of frozen MSSR authority; no owner adjudication",
+  "cases": [
+    {
+      "expectedHeading": "Architecture impact review decision",
+      "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+      "relevantRanges": [
+        {
+          "expectedHeading": "Architecture impact review decision",
+          "rangeKind": "section",
+          "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+          "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+          "endLine": 5,
+          "startLine": 1,
+          "rangeId": "heading-1"
+        }
+      ],
+      "rationale": "Exact block states the WATCH/REVIEW distinction and that inferred structural edges are non-authoritative. Full section is broader relevant context.",
+      "acceptableRanges": [
+        {
+          "expectedHeading": "Architecture impact review decision",
+          "rangeKind": "block",
+          "fingerprint": "e8433965e494f2c123f94d92837e02bc1b1630c3b129691a8b65467d681b2275",
+          "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+          "endLine": 5,
+          "startLine": 5,
+          "rangeId": "block-2"
+        }
+      ],
+      "expectedStartLine": 5,
+      "answerability": "answerable",
+      "expectedEndLine": 5,
+      "caseId": "watch-review-facet"
+    },
+    {
+      "expectedHeading": "Architecture impact review decision",
+      "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+      "relevantRanges": [
+        {
+          "expectedHeading": "Architecture impact review decision",
+          "rangeKind": "section",
+          "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+          "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+          "endLine": 5,
+          "startLine": 1,
+          "rangeId": "heading-1"
+        }
+      ],
+      "rationale": "Exact block states the WATCH/REVIEW distinction and that inferred structural edges are non-authoritative. Full section is broader relevant context.",
+      "acceptableRanges": [
+        {
+          "expectedHeading": "Architecture impact review decision",
+          "rangeKind": "block",
+          "fingerprint": "e8433965e494f2c123f94d92837e02bc1b1630c3b129691a8b65467d681b2275",
+          "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+          "endLine": 5,
+          "startLine": 5,
+          "rangeId": "block-2"
+        }
+      ],
+      "expectedStartLine": 5,
+      "answerability": "answerable",
+      "expectedEndLine": 5,
+      "caseId": "inferred-edge-authority-facet"
+    }
+  ],
+  "ownerGold": false,
+  "schemaVersion": 1
+}

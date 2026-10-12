@@ -1,0 +1,199 @@
+{
+  "firstIndex": 0,
+  "lastIndex": 7,
+  "candidates": [
+    {
+      "handle": {
+        "version": 1,
+        "id": "22d2467b49817f36964d9a926b714096acb976143610f251803a890f0939ada9",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+        "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 5,
+        "startOffset": 0,
+        "endOffset": 1955,
+        "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Architecture impact review decision",
+      "score": 0.5,
+      "headingPath": [
+        "Architecture impact review decision"
+      ],
+      "rangeCodeUnits": 1955,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "caea75743aa474ef0dc6eb8607c479858be4ed7b300ba71b8fbe906b3b28d943",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+        "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 5,
+        "endLine": 5,
+        "startOffset": 473,
+        "endOffset": 1954,
+        "fingerprint": "e8433965e494f2c123f94d92837e02bc1b1630c3b129691a8b65467d681b2275",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Architecture impact review decision",
+      "score": 0.5,
+      "headingPath": [
+        "Architecture impact review decision"
+      ],
+      "rangeCodeUnits": 1481,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "7be9c43de5eb18c7e1e58dc32bfc88dce41936e42f6ceaf844478c585470c5d1",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 65,
+        "startOffset": 0,
+        "endOffset": 9431,
+        "fingerprint": "55cc7dcec8e39fa0c7bd33415aa37a857416205c2e704fea1572929248ee1a83",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Semantic Evidence Plane architecture",
+      "score": 0.4,
+      "headingPath": [
+        "Semantic Evidence Plane architecture"
+      ],
+      "rangeCodeUnits": 9431,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "426a2a8517f424b0e1251298b89cac68c7c5d6cccc83ecb51401e430f6be133f",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+        "revision": "8879d7ffb50f41d4c22565d9cb6554f7e1aab2cee4073a65139e0c5ebc0847c3",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 9,
+        "startOffset": 0,
+        "endOffset": 1992,
+        "fingerprint": "ffc3b2c41cdac374b70173f60eda44e8f01988c23cb626afcbaf58e9060d9d47",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Semantic consistency relations and retrieval decision",
+      "score": 0.25,
+      "headingPath": [
+        "Semantic consistency relations and retrieval decision"
+      ],
+      "rangeCodeUnits": 1992,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "e31a6b2393ca11e00dcfc43cd28172b568b6ffd615b32a0f2849b687cd6cff4c",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+        "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+        "rangeId": "block-1",
+        "rangeKind": "block",
+        "startLine": 3,
+        "endLine": 3,
+        "startOffset": 40,
+        "endOffset": 471,
+        "fingerprint": "eb42c78ebdd7f706fbad295abba3340c6791fa710c882a1c488e6e8eaed357ab",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Architecture impact review decision",
+      "score": 0.2,
+      "headingPath": [
+        "Architecture impact review decision"
+      ],
+      "rangeCodeUnits": 431,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "4e5dd9cdd2f7a65bedc059064b1e9a344e34b34714501c7696371ec719e4922a",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+        "revision": "1ec96fe144070027033c74c9487f3b2219be3e7985e81ee7d168ea921c0e5d90",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 63,
+        "startOffset": 0,
+        "endOffset": 3722,
+        "fingerprint": "2a176b95cf72fb0b76401119da78c1185c46be1b8717dda1a396fc9414ee59ff",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Project Context librarian metadata sidecar",
+      "score": 0.2,
+      "headingPath": [
+        "Project Context librarian metadata sidecar"
+      ],
+      "rangeCodeUnits": 3722,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "44ff6d436e293b49ccbf5ae6b5f947301d1868481b591cecfa8b2235e2621fab",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 11,
+        "endLine": 16,
+        "startOffset": 1963,
+        "endOffset": 2732,
+        "fingerprint": "aa1a4555149ff2cfc27077271adf28530351cc4b4ef9c92b1a6647a27adecc67",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Core Document and Librarian guarantees",
+      "score": 0.2,
+      "headingPath": [
+        "Semantic Evidence Plane architecture",
+        "Core Document and Librarian guarantees"
+      ],
+      "rangeCodeUnits": 769,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "656e3cc4407e694c0dfa8c1dd26d330553f6257019a42565a3c506caf2943a89",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+        "revision": "8879d7ffb50f41d4c22565d9cb6554f7e1aab2cee4073a65139e0c5ebc0847c3",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 5,
+        "endLine": 5,
+        "startOffset": 462,
+        "endOffset": 1179,
+        "fingerprint": "6b41417d5911201a54520fff3ea1021650e60355196bfe89a1cffad8d4cf423e",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Semantic consistency relations and retrieval decision",
+      "score": 0.2,
+      "headingPath": [
+        "Semantic consistency relations and retrieval decision"
+      ],
+      "rangeCodeUnits": 717,
+      "exactFetchable": true
+    }
+  ]
+}

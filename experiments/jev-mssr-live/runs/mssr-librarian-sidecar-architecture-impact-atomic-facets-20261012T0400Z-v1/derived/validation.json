@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-sidecar-architecture-impact-atomic-facets-20261012T0400Z-v1",
+  "canonicalSourceSha256": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+  "frozenSnapshotSha256": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+  "sourceRevisionUnchanged": true,
+  "exactFetches": [
+    {
+      "caseId": "watch-review-facet",
+      "rangeId": "block-2",
+      "exactFetchMatchesSnapshot": true,
+      "revisionMatchesSnapshot": true,
+      "fingerprint": "e8433965e494f2c123f94d92837e02bc1b1630c3b129691a8b65467d681b2275",
+      "chars": 1481
+    },
+    {
+      "caseId": "inferred-edge-authority-facet",
+      "rangeId": "heading-1",
+      "exactFetchMatchesSnapshot": true,
+      "revisionMatchesSnapshot": true,
+      "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+      "chars": 1955
+    }
+  ],
+  "evidencePack": {
+    "passed": true,
+    "paragraphs": 2,
+    "citationsMatchSelections": true,
+    "exactTextMatchesValidatedFetches": true,
+    "totalFetchedChars": 3436,
+    "canonicalRewriteAllowed": false
+  },
+  "providerScoresAreUncalibrated": true
+}

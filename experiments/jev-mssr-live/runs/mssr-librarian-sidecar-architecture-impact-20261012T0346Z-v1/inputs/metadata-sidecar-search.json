@@ -1,0 +1,193 @@
+{
+  "positive": {
+    "request": {
+      "query": "Which decision explains architecture impact evidence and keeps derived structural edges non-authoritative?",
+      "metadataMode": "project-context-librarian-sidecar",
+      "metadata": {
+        "domain": "coding",
+        "action": "review",
+        "artifact": "repository",
+        "need": "integrity-verification",
+        "signal": "conflicting-evidence"
+      },
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/architecture-impact-review-decision.md"
+      ]
+    },
+    "metadataIndex": {
+      "mode": "project-context-librarian-sidecar",
+      "status": "applied",
+      "projectContextManifestRevision": "3e9b70a028124c49ff06c18cbcda3d6f5ce4cd9daf2e3f71cb6ad52581fd2a28",
+      "librarianManifestRevision": "9e80e6e2b9973b9bd4b32e55af3a65bb4d1325d01ede0eb2e4e91ca238f1abd7",
+      "segmentsManifestRevision": "dc4f3530a6b63f21356b327fcec91b88341c696ed4013de9e21572a3778c8de6",
+      "referencesManifestRevision": null,
+      "declared": 4,
+      "projected": 1,
+      "omitted": 3,
+      "items": [
+        {
+          "entryId": "mssr-architecture-impact-decision",
+          "headingPath": [
+            "Architecture impact review decision"
+          ],
+          "status": "projected",
+          "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+          "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+          "rangeId": "heading-1",
+          "recordFingerprint": "f382f6a835c78e162efc099ee72ea3c72b0faf3a119e824cda03827171bd0f4a",
+          "evidenceAtomId": "evidence-atom:73056d9327c495e3fa919d7d"
+        },
+        {
+          "entryId": "mssr-learning-dataset-state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "status": "omitted",
+          "issue": "source-not-provided"
+        },
+        {
+          "entryId": "mssr-core-skill-package-state",
+          "headingPath": [
+            "MSSR project state",
+            "Core skill package state"
+          ],
+          "status": "omitted",
+          "issue": "source-not-provided"
+        },
+        {
+          "entryId": "mssr-jev-use-case-hypotheses",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "100 hipótesis de uso"
+          ],
+          "status": "omitted",
+          "issue": "source-not-provided"
+        }
+      ],
+      "selectorsAreProjectDeclared": true,
+      "sourceOwnerIsCallerAsserted": true,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "canonicalRewriteAllowed": false
+    },
+    "resultCount": 1,
+    "results": [
+      {
+        "handle": {
+          "version": 1,
+          "id": "22d2467b49817f36964d9a926b714096acb976143610f251803a890f0939ada9",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+          "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 5,
+          "startOffset": 0,
+          "endOffset": 1955,
+          "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+          "privacyClass": "project-metadata"
+        },
+        "title": "Architecture impact review decision",
+        "score": 0.8,
+        "metadata": {
+          "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+          "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+          "headingPath": [
+            "Architecture impact review decision"
+          ],
+          "level": 2,
+          "parentId": null,
+          "startLine": 1,
+          "endLine": 5,
+          "chars": 1955,
+          "bytes": 1955,
+          "terms": [
+            "architecture",
+            "decision",
+            "impact",
+            "review",
+            "changed",
+            "evidence",
+            "mssr",
+            "only"
+          ]
+        }
+      }
+    ]
+  },
+  "nearMiss": {
+    "request": {
+      "query": "Which decision explains architecture impact evidence and keeps derived structural edges non-authoritative?",
+      "metadataMode": "project-context-librarian-sidecar",
+      "metadata": {
+        "domain": "coding",
+        "action": "review",
+        "artifact": "repository",
+        "need": "integrity-verification",
+        "signal": "uncertainty"
+      },
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/architecture-impact-review-decision.md"
+      ]
+    },
+    "metadataIndex": {
+      "mode": "project-context-librarian-sidecar",
+      "status": "applied",
+      "projectContextManifestRevision": "3e9b70a028124c49ff06c18cbcda3d6f5ce4cd9daf2e3f71cb6ad52581fd2a28",
+      "librarianManifestRevision": "9e80e6e2b9973b9bd4b32e55af3a65bb4d1325d01ede0eb2e4e91ca238f1abd7",
+      "segmentsManifestRevision": "dc4f3530a6b63f21356b327fcec91b88341c696ed4013de9e21572a3778c8de6",
+      "referencesManifestRevision": null,
+      "declared": 4,
+      "projected": 1,
+      "omitted": 3,
+      "items": [
+        {
+          "entryId": "mssr-architecture-impact-decision",
+          "headingPath": [
+            "Architecture impact review decision"
+          ],
+          "status": "projected",
+          "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+          "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+          "rangeId": "heading-1",
+          "recordFingerprint": "f382f6a835c78e162efc099ee72ea3c72b0faf3a119e824cda03827171bd0f4a",
+          "evidenceAtomId": "evidence-atom:73056d9327c495e3fa919d7d"
+        },
+        {
+          "entryId": "mssr-learning-dataset-state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "status": "omitted",
+          "issue": "source-not-provided"
+        },
+        {
+          "entryId": "mssr-core-skill-package-state",
+          "headingPath": [
+            "MSSR project state",
+            "Core skill package state"
+          ],
+          "status": "omitted",
+          "issue": "source-not-provided"
+        },
+        {
+          "entryId": "mssr-jev-use-case-hypotheses",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "100 hipótesis de uso"
+          ],
+          "status": "omitted",
+          "issue": "source-not-provided"
+        }
+      ],
+      "selectorsAreProjectDeclared": true,
+      "sourceOwnerIsCallerAsserted": true,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "canonicalRewriteAllowed": false
+    },
+    "resultCount": 0,
+    "results": []
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "runId": "mssr-librarian-sidecar-architecture-impact-atomic-facets-20261012T0400Z-v1",
+  "status": "complete",
+  "attemptedRequests": 2,
+  "completedAt": "2026-10-12T04:01:29.231Z",
+  "manifestSha256": "b43705ee2be0dc9d88f3afb51c149a413252e7a623d2070921c05d50afef83f3",
+  "executionPath": "connected-MCP",
+  "bridgeRuntimeInvocationVerified": true,
+  "providerCalls": 2,
+  "outcome": "Both atomic diagnostic calls selected evidence; first selected the exact labeled block, second selected broader relevant context. Exact fetches and two-range evidence citations matched the frozen source. One source cluster only; linked diagnostic, not calibration.",
+  "timingNote": "completedAt is host-observed artifact finalization time; per-call wall-clock timestamps were not captured."
+}

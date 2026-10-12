@@ -1,0 +1,73 @@
+{
+  "interpretation": "Same three exact revision-bound handles returned for both atomic queries; query ordering and lexical scores are recorded, but labels were frozen before Jev.",
+  "sourceSha256": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+  "truncated": false,
+  "candidateCount": 3,
+  "frozenAt": "2026-10-12T03:58:07.5991699Z",
+  "candidateHandles": [
+    {
+      "owner": "d:/dev/mssr",
+      "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+      "id": "22d2467b49817f36964d9a926b714096acb976143610f251803a890f0939ada9",
+      "endLine": 5,
+      "endOffset": 1955,
+      "privacyClass": "project-metadata",
+      "version": 1,
+      "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+      "rangeKind": "section",
+      "rangeId": "heading-1",
+      "startLine": 1,
+      "startOffset": 0,
+      "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md"
+    },
+    {
+      "owner": "d:/dev/mssr",
+      "fingerprint": "e8433965e494f2c123f94d92837e02bc1b1630c3b129691a8b65467d681b2275",
+      "id": "caea75743aa474ef0dc6eb8607c479858be4ed7b300ba71b8fbe906b3b28d943",
+      "endLine": 5,
+      "endOffset": 1954,
+      "privacyClass": "project-metadata",
+      "version": 1,
+      "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+      "rangeKind": "block",
+      "rangeId": "block-2",
+      "startLine": 5,
+      "startOffset": 473,
+      "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md"
+    },
+    {
+      "owner": "d:/dev/mssr",
+      "fingerprint": "eb42c78ebdd7f706fbad295abba3340c6791fa710c882a1c488e6e8eaed357ab",
+      "id": "e31a6b2393ca11e00dcfc43cd28172b568b6ffd615b32a0f2849b687cd6cff4c",
+      "endLine": 3,
+      "endOffset": 471,
+      "privacyClass": "project-metadata",
+      "version": 1,
+      "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+      "rangeKind": "block",
+      "rangeId": "block-1",
+      "startLine": 3,
+      "startOffset": 40,
+      "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md"
+    }
+  ],
+  "perQuery": [
+    {
+      "lexicalScores": [
+        0.6,
+        0.6,
+        0.4
+      ],
+      "caseId": "watch-review-facet"
+    },
+    {
+      "lexicalScores": [
+        0.4,
+        0.3,
+        0.2
+      ],
+      "caseId": "inferred-edge-authority-facet"
+    }
+  ],
+  "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md"
+}

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "labelSource": "source-derived by exact read of frozen MSSR authority; no owner adjudication",
+  "ownerGold": false,
+  "cases": [
+    {
+      "caseId": "arch-impact-watch-review-and-derived-edges",
+      "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+      "answerability": "answerable",
+      "expectedHeading": "Architecture impact review decision",
+      "expectedStartLine": 5,
+      "expectedEndLine": 5,
+      "acceptableRanges": [
+        {
+          "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+          "expectedHeading": "Architecture impact review decision",
+          "startLine": 5,
+          "endLine": 5,
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "fingerprint": "e8433965e494f2c123f94d92837e02bc1b1630c3b129691a8b65467d681b2275"
+        }
+      ],
+      "relevantRanges": [
+        {
+          "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+          "expectedHeading": "Architecture impact review decision",
+          "startLine": 1,
+          "endLine": 5,
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5"
+        }
+      ],
+      "rationale": "The exact block says compatible unchanged structural fingerprints may lower coarse possible-impact to WATCH; changed or unresolved landmarks stay REVIEW; derived graph edges are candidates and cannot raise canonical attention. Full section is broader relevant context."
+    }
+  ],
+  "scoringPolicy": "Same frozen parent label. Linked remediation diagnostic only; not independent evidence."
+}

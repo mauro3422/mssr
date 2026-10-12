@@ -1,0 +1,16 @@
+{
+  "query": "If architecture impact says a source might matter, what keeps it at WATCH versus raising it to REVIEW, and can inferred dependency edges themselves raise canonical attention?",
+  "sourceRefs": [
+    ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+    ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+    ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+    ".mssr/knowledge/architecture/project-context-librarian-metadata.md"
+  ],
+  "metadataMode": "off",
+  "maxResults": 100,
+  "maxSnippetChars": 240,
+  "resultCount": 48,
+  "truncated": false,
+  "candidateFileCount": 6,
+  "targetExactHandlePresent": true
+}

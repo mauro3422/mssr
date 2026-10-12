@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-sidecar-architecture-impact-20261012T0346Z-v1",
+  "createdAt": "2026-10-12T03:49:00.000Z",
+  "status": "prepared",
+  "study": "project-context-sidecar-candidate-retrieval-and-exact-range-choice-diagnostic",
+  "source": {
+    "bridgeRoot": "D:\\Dev\\bridge-mcp-mssr-0.2.112-query-variants",
+    "bridgeVersion": "0.6.172",
+    "bridgeCommit": "391a1bb1bce092a3bdeb879b5b9e5a9ad3e78745",
+    "bridgeCheckoutCommit": "3de489cf040f5e581b2b328521f4cbd44f2b81a9",
+    "mssrVersion": "0.2.127",
+    "bridgeRuntimeBootId": "c25d1548-6654-4833-b5a4-994aa9d08ae9",
+    "executionMode": "Connected Bridge MCP. Copied runner template is used only for a no-network input/source preflight; it will not be invoked with --allow-network.",
+    "buildArtifacts": []
+  },
+  "corpus": {
+    "projectRoot": "D:\\Dev\\mssr",
+    "sourceCount": 4,
+    "sources": [
+      {
+        "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+        "snapshotPath": "inputs/sources/source-01-architecture-impact-review-decision.md",
+        "sha256": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df"
+      },
+      {
+        "sourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+        "snapshotPath": "inputs/sources/source-02-semantic-consistency-relations-retrieval.md",
+        "sha256": "8879d7ffb50f41d4c22565d9cb6554f7e1aab2cee4073a65139e0c5ebc0847c3"
+      },
+      {
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "snapshotPath": "inputs/sources/source-03-semantic-evidence-plane.md",
+        "sha256": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94"
+      },
+      {
+        "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+        "snapshotPath": "inputs/sources/source-04-project-context-librarian-metadata.md",
+        "sha256": "1ec96fe144070027033c74c9487f3b2219be3e7985e81ee7d168ea921c0e5d90"
+      }
+    ]
+  },
+  "provider": {
+    "provider": "typesafe-jev",
+    "requestedModel": "jev-1.13.0",
+    "mode": "live",
+    "networkOptIn": true,
+    "networkOptInMethod": "Explicit user authorization in this conversation; one connected Bridge MCP Jev tool call. Local runner --allow-network is not used.",
+    "userAuthorization": "The user explicitly authorized using live Jev for MSSR testing in this conversation.",
+    "tool": "mssr_librarian_jev_select",
+    "toolSchemaHash": "0317e3b12c77efaa",
+    "searchToolSchemaHash": "b931631885199014",
+    "fetchToolSchemaHash": "992cf19973405356",
+    "evidencePackToolSchemaHash": "6b50677074828944"
+  },
+  "plan": {
+    "expectedRequestCount": 1,
+    "independentUnit": "One diagnostic source-document cluster, with four explicit source documents in the candidate set; not an independent or holdout sample.",
+    "inputCandidateCount": 48,
+    "metadataMode": "sidecar positive/near-miss tests are separate search calls; broad lexical handles are passed to Jev",
+    "pipeline": "metadata search -> broad lexical search -> Jev exact-range choice -> exact fetch -> deterministic evidence pack",
+    "excluded": "No relation judgment, contradiction learning, synthesis, paragraph composition, confidence calibration, or production threshold."
+  },
+  "labels": {
+    "labelFile": "inputs/labels.json",
+    "labelFileSha256": "4e8bf93d7e6f42d686758ef39d6234b0b1b57775c1a7dfa088121b29d5bfe00d",
+    "labelsPreparedBeforeProviderCalls": true,
+    "adjudication": "Source-derived from the frozen canonical architecture decision; no project-owner or independent expert adjudication.",
+    "ownerGold": false,
+    "exposedSourceStatus": "No exact source ref/snapshot/current-hash exposure found by the 2026-10-12 packet audit; indirect module mention exists. Treat as prospective diagnostic only, not protected holdout."
+  },
+  "instrument": {
+    "runnerSha256": "fec35e2727c77e5f12b200e347bf92d78ad8cd23a0e9276d67606613f38857db",
+    "selectionRecordSha256": "847a1224278ed09941526aff7d781842a854f21b3007e4e00ae357e84faa5834",
+    "runnerSupportSha256": "6a9377ec0cdc0c1db4b4f939efa3881fa17facaca5f67fdf02cf6ad5ce123c9a",
+    "casesSha256": "a298d4ba4c997f24e6d95b7f6fe213654bdf7f6144821618b9a3e4bf134cd432",
+    "candidateSearchSha256": "516d9c9f89cfcd073cb3bec5331b88e83498305cad6b827746d20b8d56a7de14",
+    "candidateHandleFiles": {
+      "inputs/candidate-handles-01.json": "9c3838ed69f2c35052c655c440356b7773d64864eaa0618a217e65d94f60c566",
+      "inputs/candidate-handles-02.json": "6fd682a5525946447833f78625f98926651638a2a9dbce8e695861160ede2994",
+      "inputs/candidate-handles-03.json": "ca68ebc9a5cc1e6d760064375b271ce1ed7ebb3f3651fd353288e62902011763",
+      "inputs/candidate-handles-04.json": "866a94e45a4ab5c321d24cf81584d716da4a75d988ac1691c1bd98fa1668dd07",
+      "inputs/candidate-handles-05.json": "2260f73f6381dbb83390533ef24269afd72f3dc9d8c8e1e8488f426a95a93e31",
+      "inputs/candidate-handles-06.json": "dd23b5d3c8a56a3845701982b8bdb08916236df9f66cf0a9663bd5ecce966ae4"
+    },
+    "metadataSidecarSearchSha256": "8bb99802eb205354f82fe0ed1cfc91d4ed93b845d65d1592c090dad002648051",
+    "candidateHandles": 48
+  },
+  "metadataSearch": {
+    "mode": "project-context-librarian-sidecar",
+    "declared": 4,
+    "projected": 1,
+    "omittedBecauseSourcesNotProvided": 3,
+    "positiveExactFilterCount": 1,
+    "nearMissExactFilterCount": 0,
+    "sourceOwnerAndProvenanceRemainCallerAsserted": true,
+    "advisoryOnly": true,
+    "truthAuthority": false
+  },
+  "exposure": {
+    "exactSourceRefOrSnapshotFoundInPriorPackets": false,
+    "indirectMentionFound": true,
+    "auditScope": "57 experiment packets and 1,187 packet files inspected by read-only exposure sweep.",
+    "interpretation": "No exact exposure evidence found is not proof the candidate was unseen by every model or through every indirect mention."
+  }
+}

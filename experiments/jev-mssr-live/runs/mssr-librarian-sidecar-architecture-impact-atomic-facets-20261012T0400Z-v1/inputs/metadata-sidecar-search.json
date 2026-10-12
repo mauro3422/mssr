@@ -1,0 +1,68 @@
+{
+  "omitted": 3,
+  "resultCount": 1,
+  "projected": 1,
+  "truthAuthority": false,
+  "status": "applied",
+  "advisoryOnly": true,
+  "declared": 4,
+  "result": {
+    "metadataProjectionMatches": {
+      "filterMatches": [
+        {
+          "field": "domain",
+          "value": "coding"
+        },
+        {
+          "field": "action",
+          "value": "review"
+        },
+        {
+          "field": "artifact",
+          "value": "repository"
+        },
+        {
+          "field": "need",
+          "value": "integrity-verification"
+        },
+        {
+          "field": "signal",
+          "value": "conflicting-evidence"
+        }
+      ]
+    },
+    "handle": {
+      "owner": "d:/dev/mssr",
+      "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+      "id": "22d2467b49817f36964d9a926b714096acb976143610f251803a890f0939ada9",
+      "endLine": 5,
+      "endOffset": 1955,
+      "privacyClass": "project-metadata",
+      "version": 1,
+      "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+      "rangeKind": "section",
+      "rangeId": "heading-1",
+      "startLine": 1,
+      "startOffset": 0,
+      "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md"
+    },
+    "title": "Architecture impact review decision",
+    "score": 0.8
+  },
+  "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+  "canonicalRewriteAllowed": false,
+  "request": {
+    "sourceRefs": [
+      ".mssr/knowledge/architecture/architecture-impact-review-decision.md"
+    ],
+    "query": "Which decision explains architecture impact evidence and keeps derived structural edges non-authoritative?",
+    "metadataMode": "project-context-librarian-sidecar",
+    "metadata": {
+      "artifact": "repository",
+      "need": "integrity-verification",
+      "action": "review",
+      "signal": "conflicting-evidence",
+      "domain": "coding"
+    }
+  }
+}

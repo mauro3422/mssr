@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 2,
+  "schemaProfile": "generic-librarian-run-v1",
+  "reportType": "mechanically-derived run summary; no semantic adjudication",
+  "runId": "mssr-librarian-sidecar-architecture-impact-narrowed-followup-20261012T0353Z-v1",
+  "parentRunId": "mssr-librarian-sidecar-architecture-impact-20261012T0346Z-v1",
+  "frozenManifestSha256": "184ba6a37768bc9f4805f09507e0a25aa19e8cb6b41119c9c192bb0ceec74ba3",
+  "completionStatus": "complete",
+  "checksumFile": {
+    "present": true,
+    "verified": 14,
+    "requiredFiles": [
+      "manifest.json",
+      "run-completion.json",
+      "inputs/cases.json",
+      "records.jsonl",
+      "inputs/labels.json"
+    ]
+  },
+  "sourceDocumentClusters": 1,
+  "sourceRefs": [
+    ".mssr/knowledge/architecture/architecture-impact-review-decision.md"
+  ],
+  "clusterInterpretation": "Distinct sourceRef grouping only; it does not establish independent statistical sampling.",
+  "expectedRequests": 1,
+  "attemptedRequests": 1,
+  "successfulRequests": 1,
+  "failedRequests": 0,
+  "selected": 0,
+  "abstained": 1,
+  "exactFetchesWithFingerprint": 0,
+  "evidencePacksBuilt": 0,
+  "evidenceSufficiencyCapture": {
+    "recorded": 1,
+    "missingFromRecords": 0,
+    "note": "Only the explicit jev.evidenceSufficiency field is counted; raw Noul and other aliases are reported separately."
+  },
+  "rawNoulCapture": {
+    "recorded": 0,
+    "missingFromRecords": 1,
+    "note": "Provider Noul is descriptive and is not treated as an evidence-sufficiency alias."
+  },
+  "tokenUsage": {
+    "input": 951,
+    "output": 74
+  },
+  "firstRequestStartedAt": "2026-10-12T03:54:06.066Z",
+  "lastRequestCompletedAt": "2026-10-12T03:54:07.000Z",
+  "manifestCreatedAt": "2026-10-12T03:53:33.000Z",
+  "createdAtDeltaMs": 33066,
+  "timestampWarning": null,
+  "declaredIndependentUnitUnverified": "same architecture-impact source-document cluster as parent run; linked follow-up, not an independent sample",
+  "independentUnitDeclarationInterpretation": "Manifest text is retained for audit; it is not verified against observed sourceRef clusters.",
+  "independentUnit": "source-document cluster (descriptive grouping only)",
+  "calibrationClaim": false,
+  "labelMetrics": {
+    "reportType": "answerability disposition and independently labeled range-selection diagnostics; not semantic adjudication or calibration",
+    "labelSource": null,
+    "adjudication": null,
+    "answerabilityMetrics": {
+      "answerable": {
+        "cases": 1,
+        "correctAnswerabilityDecisions": 0,
+        "correctExactRangeSelections": 0,
+        "correctRelevantRangeSelections": 0,
+        "selectedOutsideLabeledRanges": 0,
+        "incorrectDecisions": 1,
+        "failedOrUnknownDecisions": 0,
+        "abstentions": 1
+      },
+      "unanswerable": {
+        "cases": 0,
+        "correctAbstentions": 0,
+        "falseSelections": 0,
+        "failedOrUnknownDecisions": 0
+      },
+      "classifiedDecisions": 1,
+      "correctDecisions": 0,
+      "incorrectDecisions": 1,
+      "failedOrUnknownDecisions": 0,
+      "decisionAccuracy": 0,
+      "decisionAccuracyNote": "This is answerability-status accuracy (select when answerable, abstain when unanswerable); exact/relevant/outside-labeled range quality is reported separately. Failures/unknown decisions stay separate; raw Jev scores remain descriptive and uncalibrated."
+    },
+    "rangeSelectionMetrics": {
+      "exactMatches": 0,
+      "relevantLabeledMatches": 0,
+      "outsideLabeledRanges": 0,
+      "abstentions": 1,
+      "failedOrUnknown": 0,
+      "note": "A range outside the exact or explicitly labeled relevant ranges is ungraded for semantic usefulness; it is not automatically irrelevant. Inspect source text and blinded review separately."
+    },
+    "normalizedExactHeadingMatches": 0,
+    "exactHeadingDenominator": 1,
+    "exactAcceptedRangeMatches": 0,
+    "exactAcceptedRangeDenominator": 1,
+    "relevantRangeMatches": 0,
+    "relevantRangeDenominator": 1,
+    "searchTargetFound": 1,
+    "searchTargetDenominator": 1,
+    "searchExactAcceptedRangeFound": 1,
+    "searchExactAcceptedRangeDenominator": 1,
+    "searchRelevantRangeFound": 1,
+    "searchRelevantRangeDenominator": 1,
+    "records": [
+      {
+        "caseId": "arch-impact-watch-review-and-derived-edges",
+        "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+        "answerability": "answerable",
+        "expectedHeading": "Architecture impact review decision",
+        "observedHeading": null,
+        "normalizedExactHeadingMatch": false,
+        "exactAcceptedRangeMatch": false,
+        "relevantRangeMatch": false,
+        "relevantRanges": [
+          {
+            "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+            "expectedHeading": "Architecture impact review decision",
+            "startLine": 1,
+            "endLine": 5,
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5"
+          }
+        ],
+        "searchTargetFound": true,
+        "searchExactAcceptedRangeFound": true,
+        "searchRelevantRangeFound": true,
+        "decisionStatus": "abstained",
+        "decisionCorrect": false,
+        "answerabilityDecisionCorrect": false,
+        "rangeSelectionAssessment": "abstained",
+        "exactFetchPassed": false,
+        "pipelineStatus": "complete"
+      }
+    ]
+  },
+  "records": [
+    {
+      "caseId": "arch-impact-watch-review-and-derived-edges",
+      "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+      "status": "complete",
+      "searchResultCount": 3,
+      "jevStatus": "abstained",
+      "selectedRangeId": null,
+      "rawChoiceConfidence": 0.64,
+      "evidenceSufficiency": 0.21,
+      "providerNoul": null,
+      "exactFetchPassed": false,
+      "evidencePackBuilt": false,
+      "elapsedMs": 933.2
+    }
+  ]
+}

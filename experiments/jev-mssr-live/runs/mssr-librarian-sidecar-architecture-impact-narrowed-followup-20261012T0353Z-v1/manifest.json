@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-sidecar-architecture-impact-narrowed-followup-20261012T0353Z-v1",
+  "parentRunId": "mssr-librarian-sidecar-architecture-impact-20261012T0346Z-v1",
+  "createdAt": "2026-10-12T03:53:33.000Z",
+  "status": "prepared",
+  "study": "project-context-sidecar-source-scoping-linked-followup",
+  "source": {
+    "bridgeRoot": "D:\\Dev\\bridge-mcp-mssr-0.2.112-query-variants",
+    "bridgeVersion": "0.6.172",
+    "bridgeCommit": "391a1bb1bce092a3bdeb879b5b9e5a9ad3e78745",
+    "bridgeCheckoutCommit": "3de489cf040f5e581b2b328521f4cbd44f2b81a9",
+    "mssrVersion": "0.2.127",
+    "bridgeRuntimeBootId": "c25d1548-6654-4833-b5a4-994aa9d08ae9",
+    "executionMode": "Connected Bridge MCP. Copied runner template is used only for a no-network input/source preflight; --allow-network is not used.",
+    "buildArtifacts": []
+  },
+  "corpus": {
+    "projectRoot": "D:\\Dev\\mssr",
+    "sourceCount": 1,
+    "sources": [
+      {
+        "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+        "snapshotPath": "inputs/sources/source-01-architecture-impact-review-decision.md",
+        "sha256": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df"
+      }
+    ]
+  },
+  "provider": {
+    "provider": "typesafe-jev",
+    "requestedModel": "jev-1.13.0",
+    "mode": "live",
+    "networkOptIn": true,
+    "networkOptInMethod": "Explicit user authorization in this conversation; one connected Bridge MCP Jev tool call. Local runner --allow-network is not used.",
+    "userAuthorization": "The user explicitly authorized using live Jev for MSSR testing in this conversation.",
+    "tool": "mssr_librarian_jev_select",
+    "toolSchemaHash": "0317e3b12c77efaa",
+    "searchToolSchemaHash": "b931631885199014",
+    "fetchToolSchemaHash": "992cf19973405356",
+    "evidencePackToolSchemaHash": "6b50677074828944"
+  },
+  "plan": {
+    "expectedRequestCount": 1,
+    "independentUnit": "same architecture-impact source-document cluster as parent run; linked follow-up, not an independent sample",
+    "inputCandidateCount": 3,
+    "metadataMode": "sidecar exact-selector source scoping followed by source-local lexical candidates",
+    "pipeline": "metadata sidecar -> source-scoped lexical search -> Jev exact-range choice -> exact fetch -> deterministic evidence pack",
+    "excluded": "No new semantic source cluster, no contradiction judgment, synthesis, paragraph composition, confidence calibration, or production threshold."
+  },
+  "labels": {
+    "labelFile": "inputs/labels.json",
+    "labelFileSha256": "851a12005903c9a2c556575902050f8c7582fec9d7f11fd604beb63a2b6cc1ac",
+    "labelsPreparedBeforeProviderCalls": true,
+    "adjudication": "Same source-derived label as parent, no project-owner or independent expert adjudication.",
+    "ownerGold": false,
+    "exposedSourceStatus": "The source and question were already sent to Jev in the parent run; this is an explicitly linked remediation diagnostic, never holdout evidence."
+  },
+  "instrument": {
+    "runnerSha256": "fec35e2727c77e5f12b200e347bf92d78ad8cd23a0e9276d67606613f38857db",
+    "selectionRecordSha256": "847a1224278ed09941526aff7d781842a854f21b3007e4e00ae357e84faa5834",
+    "runnerSupportSha256": "6a9377ec0cdc0c1db4b4f939efa3881fa17facaca5f67fdf02cf6ad5ce123c9a",
+    "casesSha256": "a298d4ba4c997f24e6d95b7f6fe213654bdf7f6144821618b9a3e4bf134cd432",
+    "candidateSetSha256": "3aab52769b70a1732352afe09f4512b1608ca5cc5af4e9248f93479f8d7df0b7",
+    "metadataSidecarSearchSha256": "088483c377e18fd726b100bc78800fc0d4bbba843b7fbc342ed263c5c3b7b06b"
+  },
+  "comparison": {
+    "parentRunId": "mssr-librarian-sidecar-architecture-impact-20261012T0346Z-v1",
+    "parentCandidateCount": 48,
+    "parentInputTokens": 7125,
+    "followupCandidateCount": 3,
+    "metric": "same question/source cluster; descriptive candidate and token reduction only."
+  },
+  "exposure": {
+    "exactSourceWasIncludedInParentProviderCall": true,
+    "exactSourceRefOrSnapshotHadPriorExposureBeforeParentRun": "No exact source ref/snapshot/current-hash evidence was found in the 57-packet audit; indirect mention existed.",
+    "interpretation": "This run is an exposed linked follow-up; no independent inference or generalization."
+  }
+}

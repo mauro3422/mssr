@@ -1,0 +1,42 @@
+{
+  "validationVersion": 1,
+  "runId": "mssr-librarian-sidecar-architecture-impact-20261012T0346Z-v1",
+  "runInputsValid": true,
+  "candidateCount": 48,
+  "targetExactRangePresentInSearch": true,
+  "selectedRangeWasOffered": true,
+  "selectedExactAcceptedRange": false,
+  "selectedPredeclaredRelevantRange": false,
+  "selectionAssessment": "outside-labeled-ranges",
+  "fetch": {
+    "passed": true,
+    "errors": [],
+    "exactFrozenSnapshotText": true,
+    "selectedSourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+    "selectedRangeId": "block-2",
+    "chars": 717,
+    "fingerprintMatches": true
+  },
+  "evidencePack": {
+    "passed": true,
+    "errors": [],
+    "exactFetchTextPreserved": true,
+    "citationMatchesSelectedHandle": true,
+    "chars": 717
+  },
+  "choice": {
+    "status": "selected",
+    "optionId": "h008",
+    "confidence": 0.31,
+    "evidenceSufficiency": 0.37,
+    "calibrated": false,
+    "candidateCount": 48,
+    "overlapDiagnosticsTruncated": true
+  },
+  "metadataSidecar": {
+    "positiveResultCount": 1,
+    "nearMissResultCount": 0,
+    "exactSelectorsApplied": true
+  },
+  "semanticOutcome": "Jev selected an unrelated temporal-comparability block from the relations document; exact fetch and pack integrity passed but the answer range was missed."
+}

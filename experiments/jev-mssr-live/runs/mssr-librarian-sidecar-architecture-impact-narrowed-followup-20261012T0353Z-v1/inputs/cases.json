@@ -1,0 +1,9 @@
+{
+  "cases": [
+    {
+      "id": "arch-impact-watch-review-and-derived-edges",
+      "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+      "query": "If architecture impact says a source might matter, what keeps it at WATCH versus raising it to REVIEW, and can inferred dependency edges themselves raise canonical attention?"
+    }
+  ]
+}

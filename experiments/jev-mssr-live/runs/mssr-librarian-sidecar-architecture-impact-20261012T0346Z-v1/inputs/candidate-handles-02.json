@@ -1,0 +1,205 @@
+{
+  "firstIndex": 8,
+  "lastIndex": 15,
+  "candidates": [
+    {
+      "handle": {
+        "version": 1,
+        "id": "12cf41a33e58e3f1299f940e4fd881111192baed0dc3a02d3b6899efca5671d4",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "startLine": 24,
+        "endLine": 31,
+        "startOffset": 3716,
+        "endOffset": 5865,
+        "fingerprint": "0215e92763d651a87cb09aa555efc852c0f079f6a55c38aa761a92a32a1c516e",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Reduction, batching and semantic triage",
+      "score": 0.2,
+      "headingPath": [
+        "Semantic Evidence Plane architecture",
+        "Reduction, batching and semantic triage"
+      ],
+      "rangeCodeUnits": 2149,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "3c0456ac5b0c3096fb383cb6f14ceeb3f058dbb19efbff2e462ae1b5035b97ef",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "heading-6",
+        "rangeKind": "section",
+        "startLine": 32,
+        "endLine": 50,
+        "startOffset": 5865,
+        "endOffset": 7256,
+        "fingerprint": "8eee105b0d43115b82f22c36c9dbf9a3e14dbb36f7473e11f6bb8d787262a45a",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Progressive evidence acquisition",
+      "score": 0.2,
+      "headingPath": [
+        "Semantic Evidence Plane architecture",
+        "Progressive evidence acquisition"
+      ],
+      "rangeCodeUnits": 1391,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "2f701cd32e5beced212d1f14e5b3c0544e6c21dd60463a6c585f8abae453b8e0",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+        "revision": "1ec96fe144070027033c74c9487f3b2219be3e7985e81ee7d168ea921c0e5d90",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "startLine": 3,
+        "endLine": 11,
+        "startOffset": 46,
+        "endOffset": 482,
+        "fingerprint": "b76f7b0b28c8528dfb19e966c837b5cc867d86987df17fd023e3c6fb8ce790b2",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Goal and ownership",
+      "score": 0.15,
+      "headingPath": [
+        "Project Context librarian metadata sidecar",
+        "Goal and ownership"
+      ],
+      "rangeCodeUnits": 436,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "1c3449e03cc7396d2dcaf464a646761496449772346ee4e0ddd728009489685b",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "block-1",
+        "rangeKind": "block",
+        "startLine": 3,
+        "endLine": 3,
+        "startOffset": 40,
+        "endOffset": 462,
+        "fingerprint": "67e8797a23c9b8837b4dbb841059b2d4dbf57debc0f0ee06943a199b0cd75a2a",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Semantic Evidence Plane architecture",
+      "score": 0.15,
+      "headingPath": [
+        "Semantic Evidence Plane architecture"
+      ],
+      "rangeCodeUnits": 422,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "cac37fa21e2ac6d27160b58c7fed4e3c067f17d629d109eff14262ba2c76ac10",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+        "revision": "1ec96fe144070027033c74c9487f3b2219be3e7985e81ee7d168ea921c0e5d90",
+        "rangeId": "block-1",
+        "rangeKind": "block",
+        "startLine": 5,
+        "endLine": 10,
+        "startOffset": 69,
+        "endOffset": 480,
+        "fingerprint": "910398609314ba9da1426b7de7bf9e47ce4ff3106307e6e1df545effa9f7e8ab",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Goal and ownership",
+      "score": 0.15,
+      "headingPath": [
+        "Project Context librarian metadata sidecar",
+        "Goal and ownership"
+      ],
+      "rangeCodeUnits": 411,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "197001ac2877d247ef501e4b0ee50476769cc14fc9876e40dde24ca136f6e845",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "startLine": 5,
+        "endLine": 10,
+        "startOffset": 464,
+        "endOffset": 1963,
+        "fingerprint": "8266a3124189bb1157545f7035629d02a860e46b6b7481ebd086f52dd01023d5",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Evidence atom and source boundary",
+      "score": 0.15,
+      "headingPath": [
+        "Semantic Evidence Plane architecture",
+        "Evidence atom and source boundary"
+      ],
+      "rangeCodeUnits": 1499,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "f2567080ae817a2d68104df6c204ffdc121f4cd18db0c145f92596030a4ea615",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/project-context-librarian-metadata.md",
+        "revision": "1ec96fe144070027033c74c9487f3b2219be3e7985e81ee7d168ea921c0e5d90",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 12,
+        "endLine": 29,
+        "startOffset": 482,
+        "endOffset": 1525,
+        "fingerprint": "d355413333bbd2e8aecd3943eba4d97a33ab1d711dd29c72100aad096070d270",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Declaration",
+      "score": 0.15,
+      "headingPath": [
+        "Project Context librarian metadata sidecar",
+        "Declaration"
+      ],
+      "rangeCodeUnits": 1043,
+      "exactFetchable": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "200f5bf71cd34e9e1f4bdec7db05906aed4fda6d2948342c320b1591a27860d5",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 7,
+        "startOffset": 502,
+        "endOffset": 1582,
+        "fingerprint": "52915681b7a57a4623dc07b5642db7d18871252e9b5de2503a54f2dbf0b46161",
+        "privacyClass": "project-metadata"
+      },
+      "title": "Evidence atom and source boundary",
+      "score": 0.15,
+      "headingPath": [
+        "Semantic Evidence Plane architecture",
+        "Evidence atom and source boundary"
+      ],
+      "rangeCodeUnits": 1080,
+      "exactFetchable": true
+    }
+  ]
+}
