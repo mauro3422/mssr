@@ -1,0 +1,208 @@
+{
+  "caseId": "conmap-positive",
+  "projectId": "conmap",
+  "sourceRef": "changelogs/v36.0-touch-and-print.md",
+  "sourceSha256": "badecad4a4e2261cc6820b390d4d101ec05bc22929e33e2336b32e4e469e1657",
+  "request": {
+    "query": "¿Qué ocurre en v36.0 al soltar un dedo durante pinch zoom y qué cambia al imprimir?",
+    "metadataMode": "off",
+    "maxResults": 100,
+    "maxSnippetChars": 240
+  },
+  "search": {
+    "sourceCount": 1,
+    "resultCount": 13,
+    "returnedTop8": [
+      {
+        "title": "v36.0 - Touch Zoom & Print Optimization Engine",
+        "headingPath": [
+          "v36.0 - Touch Zoom & Print Optimization Engine"
+        ],
+        "score": 0.555556,
+        "handle": {
+          "id": "8ed7d2481583b9c5b5a484654f04031561f98c15c70fea56144cc9a508f772c2",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 14,
+          "fingerprint": "5acdecb4ea5b011fa945d348c64306e12a9359974d3f04116cf127a01535ebe7",
+          "revision": "badecad4a4e2261cc6820b390d4d101ec05bc22929e33e2336b32e4e469e1657"
+        }
+      },
+      {
+        "title": "✨ Nuevas Funcionalidades",
+        "headingPath": [
+          "v36.0 - Touch Zoom & Print Optimization Engine",
+          "✨ Nuevas Funcionalidades"
+        ],
+        "score": 0.555556,
+        "handle": {
+          "id": "13cab75a1204ba99973a81231781fa1306eb85415cc7fc5acbaf8176bf16e0db",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "startLine": 5,
+          "endLine": 10,
+          "fingerprint": "206e964d467ae5c4d3668bfc0977f1700c35662005d5e2b14e68a16b2d667f83",
+          "revision": "badecad4a4e2261cc6820b390d4d101ec05bc22929e33e2336b32e4e469e1657"
+        }
+      },
+      {
+        "title": "✨ Nuevas Funcionalidades",
+        "headingPath": [
+          "v36.0 - Touch Zoom & Print Optimization Engine",
+          "✨ Nuevas Funcionalidades"
+        ],
+        "score": 0.555556,
+        "handle": {
+          "id": "b5da077e00b9bb292b28fc885f8dd4b5fa6478df31a05538f6c31fd69f1d3642",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "startLine": 6,
+          "endLine": 9,
+          "fingerprint": "f43689a12602a369d813b303817087e6b01a6d7473d3349def95f6668b5dd04c",
+          "revision": "badecad4a4e2261cc6820b390d4d101ec05bc22929e33e2336b32e4e469e1657"
+        }
+      },
+      {
+        "title": "✨ Nuevas Funcionalidades",
+        "headingPath": [
+          "v36.0 - Touch Zoom & Print Optimization Engine",
+          "✨ Nuevas Funcionalidades"
+        ],
+        "score": 0.444444,
+        "handle": {
+          "id": "ff7f0bc55998190344da3ddc406fdc6fcc9a21b39103cf089db2e71af61358f9",
+          "rangeId": "block-2/item-3",
+          "rangeKind": "block",
+          "startLine": 8,
+          "endLine": 8,
+          "fingerprint": "30dd8f90a4478a1e414565def5c830e6dea476eeb506f378678937b3bf7e79b2",
+          "revision": "badecad4a4e2261cc6820b390d4d101ec05bc22929e33e2336b32e4e469e1657"
+        }
+      },
+      {
+        "title": "✨ Nuevas Funcionalidades",
+        "headingPath": [
+          "v36.0 - Touch Zoom & Print Optimization Engine",
+          "✨ Nuevas Funcionalidades"
+        ],
+        "score": 0.333333,
+        "handle": {
+          "id": "4bfa7458b306f2e568890389b212ef3a00c6b9be654e7d5d70b6d6c084389b65",
+          "rangeId": "block-2/item-2",
+          "rangeKind": "block",
+          "startLine": 7,
+          "endLine": 7,
+          "fingerprint": "47e1e4fe961a80797301252b04d7ad9834dacf10d883c8d93b49ecb0235b93f6",
+          "revision": "badecad4a4e2261cc6820b390d4d101ec05bc22929e33e2336b32e4e469e1657"
+        }
+      },
+      {
+        "title": "✨ Nuevas Funcionalidades",
+        "headingPath": [
+          "v36.0 - Touch Zoom & Print Optimization Engine",
+          "✨ Nuevas Funcionalidades"
+        ],
+        "score": 0.333333,
+        "handle": {
+          "id": "d24ef90b76a85c8b212d280db1634b91fa6e15be537ca8735ec9e57d6378b03d",
+          "rangeId": "block-2/item-4",
+          "rangeKind": "block",
+          "startLine": 9,
+          "endLine": 9,
+          "fingerprint": "cc1825ea9c88dc0fe04bb5764d6c86532a9c1bacd85efde7225f06c2ba427ddb",
+          "revision": "badecad4a4e2261cc6820b390d4d101ec05bc22929e33e2336b32e4e469e1657"
+        }
+      },
+      {
+        "title": "v36.0 - Touch Zoom & Print Optimization Engine",
+        "headingPath": [
+          "v36.0 - Touch Zoom & Print Optimization Engine"
+        ],
+        "score": 0.222222,
+        "handle": {
+          "id": "ffeea5a881992716fb8ca5451c3e4435bce0c73793c13ebbd17035a6363d59a3",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "startLine": 2,
+          "endLine": 3,
+          "fingerprint": "e238623d0f371b46fe2cc6e71e510ea608aaf61fbae5041f0fe493a2d5f588c1",
+          "revision": "badecad4a4e2261cc6820b390d4d101ec05bc22929e33e2336b32e4e469e1657"
+        }
+      },
+      {
+        "title": "✨ Nuevas Funcionalidades",
+        "headingPath": [
+          "v36.0 - Touch Zoom & Print Optimization Engine",
+          "✨ Nuevas Funcionalidades"
+        ],
+        "score": 0.222222,
+        "handle": {
+          "id": "7c40746035da5101b7ed93e7aea68611707d70e2112f4965b5fb1b826ce7fb46",
+          "rangeId": "block-2/item-1",
+          "rangeKind": "block",
+          "startLine": 6,
+          "endLine": 6,
+          "fingerprint": "50d830a7002e9987c638d1588e1ccc3a15ce4fd16ac2d7de82c832c1cf749704",
+          "revision": "badecad4a4e2261cc6820b390d4d101ec05bc22929e33e2336b32e4e469e1657"
+        }
+      }
+    ],
+    "targetRangePresent": true,
+    "targetRankFirst": 1,
+    "targetInTop8": true
+  },
+  "jev": {
+    "status": "abstained",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "jevCallMade": true,
+    "selectionMode": "single-pass",
+    "providerConfidence": 0.53,
+    "evidenceSufficiency": 0.91,
+    "confidenceCalibration": "uncalibrated-provider-score",
+    "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+    "candidateCount": 13,
+    "finalistCount": 13,
+    "providerCalls": 1,
+    "elapsedMs": 680.7,
+    "usage": {
+      "input_tokens": 2504,
+      "output_tokens": 174
+    },
+    "choiceCalls": [
+      {
+        "questionKey": "selection",
+        "selectedOptionId": "none",
+        "confidence": 0.53,
+        "probabilities": {
+          "h001": 0.02,
+          "h002": 0,
+          "h003": 0,
+          "h004": 0.02,
+          "h005": 0.33,
+          "h006": 0.06,
+          "h007": 0,
+          "h008": 0,
+          "h009": 0,
+          "h010": 0,
+          "h011": 0,
+          "h012": 0,
+          "h013": 0,
+          "none": 0.56
+        }
+      }
+    ],
+    "selected": null,
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "verification": "unverified",
+    "autoApplyAllowed": false,
+    "rangeOverlapDiagnostics": {
+      "sameSourceRevisionPairs": 78,
+      "overlappingPairCount": 28,
+      "nestedPairCount": 28,
+      "exactRangePairCount": 0
+    }
+  }
+}

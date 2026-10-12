@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-independent-four-project-cohort-20261012T2000Z-v1",
+  "completedAt": "2026-10-12 20:07:15 UTC",
+  "manifestSha256BeforeRequests": "525ac513688258d860449f9e002a80d2a39119b93f67b9f89db03f8340eda2e4",
+  "cohort": {
+    "projects": 4,
+    "queries": 8,
+    "positives": 4,
+    "unanswerableControls": 4,
+    "independentUnit": "repository/project",
+    "labels": "two independent source-only reviewers; not owner-gold"
+  },
+  "search": {
+    "requests": 8,
+    "emptyPools": 3,
+    "positiveTargetRangePresent": 3,
+    "positiveTargetInTop8": 3,
+    "negativeQueriesWithCandidatePools": 2,
+    "candidateCounts": {
+      "bee-positive": 0,
+      "bee-negative": 0,
+      "proyectox-positive": 21,
+      "proyectox-negative": 21,
+      "conmap-positive": 13,
+      "conmap-negative": 13,
+      "kairos-positive": 28,
+      "kairos-negative": 0
+    }
+  },
+  "jev": {
+    "providerCalls": 5,
+    "selected": 2,
+    "abstained": 3,
+    "errors": 0,
+    "positiveEndToEndSelections": 2,
+    "positiveSelectionsAmongNonemptyPools": 2,
+    "negativeEndToEndNoSelection": 4,
+    "negativeJevAbstentions": 2,
+    "rawScoresAlwaysUncalibrated": true
+  },
+  "selectedRange": {
+    "selectedPositiveRanges": 2,
+    "coveredLabelRanges": 2,
+    "exactLineRangeMatches": 0,
+    "interpretation": "Both selected sections include labeled evidence but are broader than the labeled ranges; Kairos label has two disjoint relevant spans."
+  },
+  "fetchPack": {
+    "selectedCases": 2,
+    "allFingerprintsMatch": true,
+    "allPackTextsEqualFetched": true,
+    "allCitationsMatchHandle": true,
+    "canonicalWritesAllowed": false
+  },
+  "usage": {
+    "inputTokens": 15326,
+    "outputTokens": 1176,
+    "providerElapsedMs": 4096.4
+  },
+  "findings": [
+    "BeeIncremental Spanish positive query returned no lexical candidates although the answer exists; a separate query-variant diagnostic is needed to establish whether this is a cross-language gap.",
+    "Proyectox and ConMap negative controls each returned a large candidate pool (21 and 13 ranges); Jev abstained on both.",
+    "ConMap positive compound question had its target in the top 8, but Jev abstained; raw evidenceSufficiency was 0.91. Follow-up should split the facets.",
+    "Kairos positive selected lines 209–233, covering labeled evidence at 212–214 and 227 but with substantial overbreadth. Project Context Health flags this document as disconnected; explicit source selection worked.",
+    "No thresholds were tuned, no canonical files were written, and no labels were exposed to Jev."
+  ],
+  "limitations": [
+    "Only four independent project clusters and eight questions; descriptive pilot only.",
+    "metadataMode=off and explicit sourceRefs; automatic atom/context discovery was not tested.",
+    "Source-derived labels are not owner-gold.",
+    "Raw Choice confidence and evidence sufficiency are uncalibrated and are not percentages."
+  ],
+  "recordsPath": "records.jsonl"
+}

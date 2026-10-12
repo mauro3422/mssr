@@ -1,0 +1,24 @@
+{
+  "caseId": "bee-negative",
+  "projectId": "beeincremental",
+  "sourceRef": "docs/GAMEPLAY_LOOP.md",
+  "sourceSha256": "d16c7b526bb35a400a67c7988e87444ae29f75aed1f4aebb14de29ccb6eccd88",
+  "request": {
+    "query": "¿Cuántos segundos exactos tarda en emerger la primera obrera?",
+    "metadataMode": "off",
+    "maxResults": 100,
+    "maxSnippetChars": 240
+  },
+  "search": {
+    "sourceCount": 1,
+    "resultCount": 0,
+    "returnedTop8": [],
+    "targetRangePresent": false,
+    "targetRankFirst": null,
+    "targetInTop8": false
+  },
+  "jev": {
+    "status": "not-called",
+    "reason": "No search candidate handles; fail closed, no implicit whole-document fallback."
+  }
+}

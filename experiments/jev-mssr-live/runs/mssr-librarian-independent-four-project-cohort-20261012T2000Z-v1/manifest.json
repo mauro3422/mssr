@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-independent-four-project-cohort-20261012T2000Z-v1",
+  "createdAt": "2026-10-12T20:00:00Z",
+  "status": "prepared",
+  "goal": "Evaluate source-scoped Librarian search and live Jev exact-range selection on a small four-project bilingual-independent cohort with positive and unanswerable controls.",
+  "plan": {
+    "expectedRequestCount": 8,
+    "independentUnit": "four distinct project repositories; one positive and one source-scoped unanswerable query per project",
+    "primaryMetrics": [
+      "search target presence",
+      "Jev source-range selection or abstention",
+      "answerable/negative decision",
+      "exact fetch and citation-pack integrity"
+    ],
+    "secondaryMetrics": [
+      "selected range line overlap and overbreadth",
+      "raw uncalibrated Choice confidence",
+      "latency and reported token usage"
+    ],
+    "uncertaintyMethod": "descriptive counts only; cohort far below 30 independent examples per subgroup",
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30
+    },
+    "noThresholdTuning": true,
+    "metadataScope": "metadataMode=off; explicit single sourceRef per request; this pilot does not test atom projection or automatic source discovery",
+    "emptyPoolRule": "if search returns no handles, record no-candidate and do not call Jev"
+  },
+  "corpus": {
+    "sourceRevision": "file SHA-256, tracked target cleanliness, repository HEAD/branch, and frozen snapshot",
+    "labelSource": "two independent source-only reviewers; analyst labels, not owner-gold",
+    "labelsExposedToProvider": false,
+    "sources": [
+      {
+        "projectId": "beeincremental",
+        "projectRoot": "D:\\Dev\\BeeIncremental",
+        "sourceRef": "docs/GAMEPLAY_LOOP.md",
+        "snapshotPath": "inputs/sources/bee-gameplay-loop.md",
+        "sha256": "d16c7b526bb35a400a67c7988e87444ae29f75aed1f4aebb14de29ccb6eccd88",
+        "gitHead": "854dfb40555a9a4ec4b94ca2118b63d20f13b0ce",
+        "branch": "master",
+        "targetFileCleanAtFreeze": true,
+        "projectContextHealth": "watch"
+      },
+      {
+        "projectId": "proyectox",
+        "projectRoot": "D:\\Dev\\proyectox",
+        "sourceRef": "changelogs/v1.1.0.md",
+        "snapshotPath": "inputs/sources/proyectox-v1.1.0.md",
+        "sha256": "076303c902d4eb53f38449e6fe6888843a34f3c69efa585bc239c0f22592dd9a",
+        "gitHead": "2535d0119aeecfd5ed84683b84d1cb9a4289425e",
+        "branch": "main",
+        "targetFileCleanAtFreeze": true,
+        "projectContextHealth": "ok"
+      },
+      {
+        "projectId": "conmap",
+        "projectRoot": "D:\\Dev\\TP",
+        "sourceRef": "changelogs/v36.0-touch-and-print.md",
+        "snapshotPath": "inputs/sources/conmap-v36.0.md",
+        "sha256": "badecad4a4e2261cc6820b390d4d101ec05bc22929e33e2336b32e4e469e1657",
+        "gitHead": "2974b1d952e7c773e6c929b6e8ec7f54f3a22928",
+        "branch": "main",
+        "targetFileCleanAtFreeze": true,
+        "projectContextHealth": "ok"
+      },
+      {
+        "projectId": "kairos",
+        "projectRoot": "D:\\Dev\\Kairos",
+        "sourceRef": "docs/CONTRACTS.md",
+        "snapshotPath": "inputs/sources/kairos-contracts.md",
+        "sha256": "97459f19a474e62100726685ba8a5c6567d2b46f5e0d72a78a8816e2b07db83f",
+        "gitHead": "f93acbf2434eb8de0cb270adbea3df0f71784cb0",
+        "branch": "master",
+        "targetFileCleanAtFreeze": true,
+        "projectContextHealth": "watch"
+      }
+    ]
+  },
+  "labels": {
+    "path": "inputs/labels.json",
+    "sha256": "44220bbde6647dab8bc5aa83bc8965aa160845182ea2a9de6d066be0b2a28642",
+    "source": "independent source-only reviews; analyst labels; not repository-owner gold",
+    "labelFileFrozenBeforeProviderCalls": true
+  },
+  "inputs": {
+    "casesPath": "inputs/cases.json",
+    "casesSha256": "cdfa2f4590d2441f9362dfac609e843a5f27dbe6812dc57deb6e5aa41eb4e079",
+    "labelsPath": "inputs/labels.json",
+    "labelsSha256": "44220bbde6647dab8bc5aa83bc8965aa160845182ea2a9de6d066be0b2a28642"
+  },
+  "provider": {
+    "mode": "live",
+    "provider": "TypeSafe Jev through the connected MauroPrime Bridge MCP",
+    "requestedModel": "jev-1.13.0",
+    "networkAuthorization": "User previously authorized real Jev calls and use of stored credential; no secret value persisted",
+    "catalogSchemaObservedAt": "2026-10-12",
+    "toolChain": [
+      "mssr_librarian_search",
+      "mssr_librarian_jev_select",
+      "mssr_librarian_fetch",
+      "mssr_librarian_evidence_pack"
+    ],
+    "requestConcurrency": 1
+  },
+  "sourceNotes": [
+    "BeeIncremental AGENTS.md names historical .bridge project facts; this run uses only the canonical .mssr load and explicit tracked source file, never .bridge as authority.",
+    "Kairos project-context health reports docs/CONTRACTS.md as a high-priority disconnected documentation candidate; this run deliberately supplies that exact sourceRef and does not claim automatic source/atom discovery."
+  ],
+  "safety": {
+    "readOnly": true,
+    "canonicalWrites": false,
+    "automaticThresholdChanges": false,
+    "rawPromptOrSecretPersisted": false
+  }
+}

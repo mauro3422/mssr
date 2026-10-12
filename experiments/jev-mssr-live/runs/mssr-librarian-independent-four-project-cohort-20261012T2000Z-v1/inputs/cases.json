@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "bee-positive",
+      "projectId": "beeincremental",
+      "sourceRef": "docs/GAMEPLAY_LOOP.md",
+      "answerabilityCategory": "answerable",
+      "query": "¿Cuál es la gramática central de progresión del juego?"
+    },
+    {
+      "id": "bee-negative",
+      "projectId": "beeincremental",
+      "sourceRef": "docs/GAMEPLAY_LOOP.md",
+      "answerabilityCategory": "unanswerable",
+      "query": "¿Cuántos segundos exactos tarda en emerger la primera obrera?"
+    },
+    {
+      "id": "proyectox-positive",
+      "projectId": "proyectox",
+      "sourceRef": "changelogs/v1.1.0.md",
+      "answerabilityCategory": "answerable",
+      "query": "¿Qué cambios de v1.1.0 modularizaron páginas, widgets y tablas?"
+    },
+    {
+      "id": "proyectox-negative",
+      "projectId": "proyectox",
+      "sourceRef": "changelogs/v1.1.0.md",
+      "answerabilityCategory": "unanswerable",
+      "query": "¿Qué versiones de React y Vite se actualizaron en v1.1.0?"
+    },
+    {
+      "id": "conmap-positive",
+      "projectId": "conmap",
+      "sourceRef": "changelogs/v36.0-touch-and-print.md",
+      "answerabilityCategory": "answerable",
+      "query": "¿Qué ocurre en v36.0 al soltar un dedo durante pinch zoom y qué cambia al imprimir?"
+    },
+    {
+      "id": "conmap-negative",
+      "projectId": "conmap",
+      "sourceRef": "changelogs/v36.0-touch-and-print.md",
+      "answerabilityCategory": "unanswerable",
+      "query": "¿Qué DPI o resolución de impresora fija v36.0?"
+    },
+    {
+      "id": "kairos-positive",
+      "projectId": "kairos",
+      "sourceRef": "docs/CONTRACTS.md",
+      "answerabilityCategory": "answerable",
+      "query": "Según el contrato, ¿qué diferencia de información hay entre `/health` y `/api/diagnostics`, y por qué `/api/diagnostics` no debe usarse como sustituto de `/live`?"
+    },
+    {
+      "id": "kairos-negative",
+      "projectId": "kairos",
+      "sourceRef": "docs/CONTRACTS.md",
+      "answerabilityCategory": "unanswerable",
+      "query": "¿Qué objetivo de latencia P95/P99/SLO exige el contrato?"
+    }
+  ]
+}

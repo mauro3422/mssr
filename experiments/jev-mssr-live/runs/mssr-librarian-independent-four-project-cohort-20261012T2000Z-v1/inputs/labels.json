@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "source": "two independent source-only reviews; analyst labels; not repository-owner gold",
+  "adjudication": "Each label is scoped to the exact frozen Markdown file. Labels were not sent to Jev. The six Bee/Proyectox/ConMap classifications agreed across two reviewers. The Kairos positive wording was tightened after both reviews exposed ambiguity; both reviewers then confirmed the revised pair. All four positive and four negative labels agree.",
+  "labels": [
+    {
+      "caseId": "bee-positive",
+      "sourceRef": "docs/GAMEPLAY_LOOP.md",
+      "answerability": "answerable",
+      "acceptableRanges": [
+        {
+          "startLine": 7,
+          "endLine": 11
+        }
+      ],
+      "evidence": "Manual task → improve → automate with bees → new manual task."
+    },
+    {
+      "caseId": "bee-negative",
+      "sourceRef": "docs/GAMEPLAY_LOOP.md",
+      "answerability": "unanswerable",
+      "nearbyRange": {
+        "startLine": 27,
+        "endLine": 30
+      },
+      "evidence": "No duration in seconds is specified."
+    },
+    {
+      "caseId": "proyectox-positive",
+      "sourceRef": "changelogs/v1.1.0.md",
+      "answerability": "answerable",
+      "acceptableRanges": [
+        {
+          "startLine": 13,
+          "endLine": 17
+        }
+      ],
+      "evidence": "Pages use shared templates; widgets split into submodules; tables separate rendering, state, and interactions."
+    },
+    {
+      "caseId": "proyectox-negative",
+      "sourceRef": "changelogs/v1.1.0.md",
+      "answerability": "unanswerable",
+      "evidence": "No React or Vite version is stated."
+    },
+    {
+      "caseId": "conmap-positive",
+      "sourceRef": "changelogs/v36.0-touch-and-print.md",
+      "answerability": "answerable",
+      "acceptableRanges": [
+        {
+          "startLine": 7,
+          "endLine": 9
+        }
+      ],
+      "evidence": "One-finger release reanchors panning; print switches theme, removes UI, produces a one-sheet vector PDF, and restores dark mode."
+    },
+    {
+      "caseId": "conmap-negative",
+      "sourceRef": "changelogs/v36.0-touch-and-print.md",
+      "answerability": "unanswerable",
+      "evidence": "No printer DPI or resolution is stated."
+    },
+    {
+      "caseId": "kairos-positive",
+      "sourceRef": "docs/CONTRACTS.md",
+      "answerability": "answerable",
+      "acceptableRanges": [
+        {
+          "startLine": 212,
+          "endLine": 214
+        },
+        {
+          "startLine": 227,
+          "endLine": 227
+        }
+      ],
+      "evidence": "/health is the node-health view; /api/diagnostics is a wider envelope; /live remains the low-cost liveness probe."
+    },
+    {
+      "caseId": "kairos-negative",
+      "sourceRef": "docs/CONTRACTS.md",
+      "answerability": "unanswerable",
+      "evidence": "No P95/P99 latency objective or SLO is stated."
+    }
+  ]
+}

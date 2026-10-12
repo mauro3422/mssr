@@ -1,0 +1,19 @@
+{
+  "runId": "mssr-librarian-independent-four-project-cohort-20261012T2000Z-v1",
+  "status": "complete",
+  "completedAt": "2026-10-12 20:07:15 UTC",
+  "manifestSha256": "525ac513688258d860449f9e002a80d2a39119b93f67b9f89db03f8340eda2e4",
+  "caseCount": 8,
+  "jevCalls": 5,
+  "toolErrors": 0,
+  "sourceFilesChanged": false,
+  "canonicalWrites": false,
+  "thresholdsChanged": false,
+  "verification": {
+    "preRunSourceAndSnapshotHashesPassed": true,
+    "allCasesRecorded": true,
+    "fetchFingerprintChecksPassed": true,
+    "evidencePackIntegrityPassed": true,
+    "labelsNotSentToProvider": true
+  }
+}

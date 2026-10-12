@@ -1,0 +1,216 @@
+{
+  "caseId": "proyectox-negative",
+  "projectId": "proyectox",
+  "sourceRef": "changelogs/v1.1.0.md",
+  "sourceSha256": "076303c902d4eb53f38449e6fe6888843a34f3c69efa585bc239c0f22592dd9a",
+  "request": {
+    "query": "¿Qué versiones de React y Vite se actualizaron en v1.1.0?",
+    "metadataMode": "off",
+    "maxResults": 100,
+    "maxSnippetChars": 240
+  },
+  "search": {
+    "sourceCount": 1,
+    "resultCount": 21,
+    "returnedTop8": [
+      {
+        "title": "v1.1.0 - Estandarización de arquitectura y widgets",
+        "headingPath": [
+          "v1.1.0 - Estandarización de arquitectura y widgets"
+        ],
+        "score": 0.2,
+        "handle": {
+          "id": "9839f06d304f7f25fd65b2bf3addfb76f783f169efa59a9e3251f5ff29c2b0a0",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 26,
+          "fingerprint": "0722e0b3ceb9ad18ca038b473ffe37310d7e8d34bc4beb12ed0dbd81996dfa57",
+          "revision": "e33f1807e1c4dd774c0c3c723a813c18555c59b39584822ef82d4bdafd6f095c"
+        }
+      },
+      {
+        "title": "v1.1.0 - Estandarización de arquitectura y widgets",
+        "headingPath": [
+          "v1.1.0 - Estandarización de arquitectura y widgets"
+        ],
+        "score": 0.2,
+        "handle": {
+          "id": "b8aced157582d9af49aecd48ff38b40d8d973af867bb98f94ca4b2faccf4a742",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "startLine": 3,
+          "endLine": 3,
+          "fingerprint": "c054c5637636284d68799f72712553136c00ca4087f35dc605f657cd80fabaee",
+          "revision": "e33f1807e1c4dd774c0c3c723a813c18555c59b39584822ef82d4bdafd6f095c"
+        }
+      },
+      {
+        "title": "Resumen",
+        "headingPath": [
+          "v1.1.0 - Estandarización de arquitectura y widgets",
+          "Resumen"
+        ],
+        "score": 0.2,
+        "handle": {
+          "id": "1ba792612b66f2dae1feec0eb83b8781fc58e72d41fcd8123d6f3cf98814c2ba",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "startLine": 5,
+          "endLine": 8,
+          "fingerprint": "26e7ad1226dad67c8090ec25709feec9a695a38282cad29396cf5d6dd1e8b060",
+          "revision": "e33f1807e1c4dd774c0c3c723a813c18555c59b39584822ef82d4bdafd6f095c"
+        }
+      },
+      {
+        "title": "Resumen",
+        "headingPath": [
+          "v1.1.0 - Estandarización de arquitectura y widgets",
+          "Resumen"
+        ],
+        "score": 0.2,
+        "handle": {
+          "id": "8cf3f63a1ddf28b9d493c7b030a117bf6cb0a7e7a44c9de459d0f99ac156801f",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "startLine": 7,
+          "endLine": 7,
+          "fingerprint": "8f33308429727f49cdc495550d30039da07d36a36e2bb1207e32855053db964c",
+          "revision": "e33f1807e1c4dd774c0c3c723a813c18555c59b39584822ef82d4bdafd6f095c"
+        }
+      },
+      {
+        "title": "Cambios Principales",
+        "headingPath": [
+          "v1.1.0 - Estandarización de arquitectura y widgets",
+          "Cambios Principales"
+        ],
+        "score": 0.2,
+        "handle": {
+          "id": "28ee8a16581a634d4d9dab87434bf2082f195e9c317f136b73c0f36fba14ccc0",
+          "rangeId": "heading-3",
+          "rangeKind": "section",
+          "startLine": 9,
+          "endLine": 20,
+          "fingerprint": "b6ace97a8161453688a0c1161d8470612a3e9bea67965dd8b022bc3ea64b5f61",
+          "revision": "e33f1807e1c4dd774c0c3c723a813c18555c59b39584822ef82d4bdafd6f095c"
+        }
+      },
+      {
+        "title": "Cambios Principales",
+        "headingPath": [
+          "v1.1.0 - Estandarización de arquitectura y widgets",
+          "Cambios Principales"
+        ],
+        "score": 0.2,
+        "handle": {
+          "id": "484f8972b9fc6d4d4867a6ce2dc37eb2814b21138bc3dc34c50de9cfc926e88d",
+          "rangeId": "block-3/item-1",
+          "rangeKind": "block",
+          "startLine": 11,
+          "endLine": 11,
+          "fingerprint": "0eca194147ab83142cdb81fabfbafefbeef01a5cc26f76c0e9bfb2991618f209",
+          "revision": "e33f1807e1c4dd774c0c3c723a813c18555c59b39584822ef82d4bdafd6f095c"
+        }
+      },
+      {
+        "title": "Cambios Principales",
+        "headingPath": [
+          "v1.1.0 - Estandarización de arquitectura y widgets",
+          "Cambios Principales"
+        ],
+        "score": 0.2,
+        "handle": {
+          "id": "9ced155dfa53611c2b75d1e2facd540dd81cfcabf633b4c7b189b67799835e1e",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "startLine": 11,
+          "endLine": 19,
+          "fingerprint": "448df0a4478e0079ef34157dd688f5b287ac4c1b2d426cac0b813661c3023052",
+          "revision": "e33f1807e1c4dd774c0c3c723a813c18555c59b39584822ef82d4bdafd6f095c"
+        }
+      },
+      {
+        "title": "Cambios Principales",
+        "headingPath": [
+          "v1.1.0 - Estandarización de arquitectura y widgets",
+          "Cambios Principales"
+        ],
+        "score": 0.2,
+        "handle": {
+          "id": "67cf8c5acdc4a210502f604cbb6c0c6f5a1fa63de2a8aaf84f7f67f92b563774",
+          "rangeId": "block-3/item-2",
+          "rangeKind": "block",
+          "startLine": 12,
+          "endLine": 12,
+          "fingerprint": "370d1c2580471c1e2d218790e11784bfeb02e2aa6e9b2ba17e8b903d09a384c5",
+          "revision": "e33f1807e1c4dd774c0c3c723a813c18555c59b39584822ef82d4bdafd6f095c"
+        }
+      }
+    ],
+    "targetRangePresent": false,
+    "targetRankFirst": null,
+    "targetInTop8": false
+  },
+  "jev": {
+    "status": "abstained",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "jevCallMade": true,
+    "selectionMode": "single-pass",
+    "providerConfidence": 1,
+    "evidenceSufficiency": 0.02,
+    "confidenceCalibration": "uncalibrated-provider-score",
+    "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+    "candidateCount": 21,
+    "finalistCount": 21,
+    "providerCalls": 1,
+    "elapsedMs": 1072.5,
+    "usage": {
+      "input_tokens": 3166,
+      "output_tokens": 254
+    },
+    "choiceCalls": [
+      {
+        "questionKey": "selection",
+        "selectedOptionId": "none",
+        "confidence": 1,
+        "probabilities": {
+          "h001": 0,
+          "h002": 0,
+          "h003": 0,
+          "h004": 0,
+          "h005": 0,
+          "h006": 0,
+          "h007": 0,
+          "h008": 0,
+          "h009": 0,
+          "h010": 0,
+          "h011": 0,
+          "h012": 0,
+          "h013": 0,
+          "h014": 0,
+          "h015": 0,
+          "h016": 0,
+          "h017": 0,
+          "h018": 0,
+          "h019": 0,
+          "h020": 0,
+          "h021": 0,
+          "none": 1
+        }
+      }
+    ],
+    "selected": null,
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "verification": "unverified",
+    "autoApplyAllowed": false,
+    "rangeOverlapDiagnostics": {
+      "sameSourceRevisionPairs": 210,
+      "overlappingPairCount": 49,
+      "nestedPairCount": 49,
+      "exactRangePairCount": 0
+    }
+  }
+}

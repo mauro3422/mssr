@@ -1,0 +1,263 @@
+{
+  "caseId": "kairos-positive",
+  "projectId": "kairos",
+  "sourceRef": "docs/CONTRACTS.md",
+  "sourceSha256": "97459f19a474e62100726685ba8a5c6567d2b46f5e0d72a78a8816e2b07db83f",
+  "request": {
+    "query": "Según el contrato, ¿qué diferencia de información hay entre `/health` y `/api/diagnostics`, y por qué `/api/diagnostics` no debe usarse como sustituto de `/live`?",
+    "metadataMode": "off",
+    "maxResults": 100,
+    "maxSnippetChars": 240
+  },
+  "search": {
+    "sourceCount": 1,
+    "resultCount": 28,
+    "returnedTop8": [
+      {
+        "title": "Public Function Map",
+        "headingPath": [
+          "K-Chat Contract Map",
+          "Public Function Map"
+        ],
+        "score": 0.384615,
+        "handle": {
+          "id": "0f79f008c7f6b0784c208280072d42a7ab3d77d379fd3ea94eb5c6d4238b48b3",
+          "rangeId": "heading-5",
+          "rangeKind": "section",
+          "startLine": 38,
+          "endLine": 292,
+          "fingerprint": "e104c50d5cf9266c1d244755f90d22f420ac247ece9e5624417940e4bd1453a5",
+          "revision": "71d38f5a964665759517f03a3333d153318be37ea9dd7167fdabece9bfbaa574"
+        }
+      },
+      {
+        "title": "System Boundaries",
+        "headingPath": [
+          "K-Chat Contract Map",
+          "System Boundaries"
+        ],
+        "score": 0.307692,
+        "handle": {
+          "id": "d0590d0c03bd0030509fd7ffb8329d83096cf4dad5cb260878cca79f8574973c",
+          "rangeId": "heading-3",
+          "rangeKind": "section",
+          "startLine": 19,
+          "endLine": 35,
+          "fingerprint": "6e56efbb7212baed01643643b8f7f410b1b4964cc80874012ae9c9eea0221bee",
+          "revision": "71d38f5a964665759517f03a3333d153318be37ea9dd7167fdabece9bfbaa574"
+        }
+      },
+      {
+        "title": "System Boundaries",
+        "headingPath": [
+          "K-Chat Contract Map",
+          "System Boundaries"
+        ],
+        "score": 0.307692,
+        "handle": {
+          "id": "a39edb050d65fedd472d470b70cbb929ed344f124fbb09dab9b61faac8043705",
+          "rangeId": "block-5",
+          "rangeKind": "block",
+          "startLine": 21,
+          "endLine": 34,
+          "fingerprint": "d263e4f7ed09b94856661a291bb8dc4e81a2c142a6c1045d3b11fb8ef072a236",
+          "revision": "71d38f5a964665759517f03a3333d153318be37ea9dd7167fdabece9bfbaa574"
+        }
+      },
+      {
+        "title": "5b. Health and Diagnostics Snapshots",
+        "headingPath": [
+          "K-Chat Contract Map",
+          "Public Function Map",
+          "5b. Health and Diagnostics Snapshots"
+        ],
+        "score": 0.307692,
+        "handle": {
+          "id": "4b7f1da2761992a65e252bf07ed137205d587ed207b93b9a296de7b079b97cd9",
+          "rangeId": "heading-16",
+          "rangeKind": "section",
+          "startLine": 209,
+          "endLine": 233,
+          "fingerprint": "2f47fdc16bdedfd804010a43063d372ba3fadbf92ef30767481ca70bac621473",
+          "revision": "71d38f5a964665759517f03a3333d153318be37ea9dd7167fdabece9bfbaa574"
+        }
+      },
+      {
+        "title": "5b. Health and Diagnostics Snapshots",
+        "headingPath": [
+          "K-Chat Contract Map",
+          "Public Function Map",
+          "5b. Health and Diagnostics Snapshots"
+        ],
+        "score": 0.307692,
+        "handle": {
+          "id": "c0a228581f2acc790471614336496d7e591b4220f8f61cc951fe1d7eca77e1c1",
+          "rangeId": "block-35",
+          "rangeKind": "block",
+          "startLine": 211,
+          "endLine": 215,
+          "fingerprint": "cde796cd51bed08b2453f5f816c8a91cb95418693c876a955281ef1f98df85cb",
+          "revision": "71d38f5a964665759517f03a3333d153318be37ea9dd7167fdabece9bfbaa574"
+        }
+      },
+      {
+        "title": "5b. Health and Diagnostics Snapshots",
+        "headingPath": [
+          "K-Chat Contract Map",
+          "Public Function Map",
+          "5b. Health and Diagnostics Snapshots"
+        ],
+        "score": 0.307692,
+        "handle": {
+          "id": "c526f054044eeaee693c5cfd682c36214a5ad6762446fc25a204866266e35607",
+          "rangeId": "block-37",
+          "rangeKind": "block",
+          "startLine": 224,
+          "endLine": 227,
+          "fingerprint": "b1f1b0aa50d1ebcd134416d8967f57fcdc25767d39df2acda135e646aec3d346",
+          "revision": "71d38f5a964665759517f03a3333d153318be37ea9dd7167fdabece9bfbaa574"
+        }
+      },
+      {
+        "title": "5b. Health and Diagnostics Snapshots",
+        "headingPath": [
+          "K-Chat Contract Map",
+          "Public Function Map",
+          "5b. Health and Diagnostics Snapshots"
+        ],
+        "score": 0.230769,
+        "handle": {
+          "id": "b646ca305af470eaea588dc875930e930a24dbc892214db6d185f9ce4e132888",
+          "rangeId": "block-38",
+          "rangeKind": "block",
+          "startLine": 229,
+          "endLine": 232,
+          "fingerprint": "e82aef7eecca2a1b0bfe8a80bef160f0246e1f30eab43a0c0bbc48de908ba0e2",
+          "revision": "71d38f5a964665759517f03a3333d153318be37ea9dd7167fdabece9bfbaa574"
+        }
+      },
+      {
+        "title": "5b. Health and Diagnostics Snapshots",
+        "headingPath": [
+          "K-Chat Contract Map",
+          "Public Function Map",
+          "5b. Health and Diagnostics Snapshots"
+        ],
+        "score": 0.153846,
+        "handle": {
+          "id": "39e64947c763c03638f58b628f95356d4c18d099b9959c968aa6b743ecd30b21",
+          "rangeId": "block-36",
+          "rangeKind": "block",
+          "startLine": 217,
+          "endLine": 222,
+          "fingerprint": "9dc3024083407bd6f976c5435313360f8bdbfb858516b40388db468febb6e946",
+          "revision": "71d38f5a964665759517f03a3333d153318be37ea9dd7167fdabece9bfbaa574"
+        }
+      }
+    ],
+    "targetRangePresent": true,
+    "targetRankFirst": 1,
+    "targetInTop8": true
+  },
+  "jev": {
+    "status": "selected",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "jevCallMade": true,
+    "selectionMode": "single-pass",
+    "providerConfidence": 0.28,
+    "evidenceSufficiency": 0.43,
+    "confidenceCalibration": "uncalibrated-provider-score",
+    "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+    "candidateCount": 27,
+    "finalistCount": 27,
+    "providerCalls": 1,
+    "elapsedMs": 743.7,
+    "usage": {
+      "input_tokens": 4018,
+      "output_tokens": 317
+    },
+    "choiceCalls": [
+      {
+        "questionKey": "selection",
+        "selectedOptionId": "h004",
+        "confidence": 0.28,
+        "probabilities": {
+          "h001": 0,
+          "h002": 0,
+          "h003": 0,
+          "h004": 0.31,
+          "h005": 0.17,
+          "h006": 0.01,
+          "h007": 0,
+          "h008": 0.25,
+          "h009": 0,
+          "h010": 0,
+          "h011": 0,
+          "h012": 0,
+          "h013": 0,
+          "h014": 0,
+          "h015": 0,
+          "h016": 0,
+          "h017": 0,
+          "h018": 0,
+          "h019": 0,
+          "h020": 0,
+          "h021": 0,
+          "h022": 0,
+          "h023": 0,
+          "h024": 0,
+          "h025": 0,
+          "h026": 0,
+          "h027": 0,
+          "none": 0.26
+        }
+      }
+    ],
+    "selected": {
+      "title": "5b. Health and Diagnostics Snapshots",
+      "headingPath": [
+        "K-Chat Contract Map",
+        "Public Function Map",
+        "5b. Health and Diagnostics Snapshots"
+      ],
+      "handle": {
+        "version": 1,
+        "id": "4b7f1da2761992a65e252bf07ed137205d587ed207b93b9a296de7b079b97cd9",
+        "owner": "d:/dev/kairos",
+        "sourceRef": "docs/CONTRACTS.md",
+        "revision": "71d38f5a964665759517f03a3333d153318be37ea9dd7167fdabece9bfbaa574",
+        "rangeId": "heading-16",
+        "rangeKind": "section",
+        "startLine": 209,
+        "endLine": 233,
+        "startOffset": 13111,
+        "endOffset": 15907,
+        "fingerprint": "2f47fdc16bdedfd804010a43063d372ba3fadbf92ef30767481ca70bac621473",
+        "privacyClass": "project-metadata"
+      }
+    },
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "verification": "unverified",
+    "autoApplyAllowed": false,
+    "rangeOverlapDiagnostics": {
+      "sameSourceRevisionPairs": 351,
+      "overlappingPairCount": 37,
+      "nestedPairCount": 37,
+      "exactRangePairCount": 0
+    }
+  },
+  "fetchAndPack": {
+    "fetchFingerprintMatchesSelected": true,
+    "packTextEqualsFetched": true,
+    "citationHandleMatchesSelected": true,
+    "citationFingerprintMatchesSelected": true,
+    "citationStartLine": 209,
+    "citationEndLine": 233,
+    "textChars": 2796,
+    "packTotalFetchedChars": 2796,
+    "canonicalRewriteAllowed": false,
+    "truthAuthority": false
+  }
+}

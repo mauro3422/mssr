@@ -1,0 +1,317 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-independent-four-project-cohort-20261012T2000Z-v1",
+  "classification": "exploratory post-hoc probes; same source documents as primary cohort; not independent samples; excluded from primary metrics; no thresholds modified",
+  "probes": [
+    {
+      "id": "bee-english-progression",
+      "classification": "exploratory_posthoc_not_in_primary_cohort",
+      "projectId": "beeincremental",
+      "sourceRef": "docs/GAMEPLAY_LOOP.md",
+      "sourceSha256": "d16c7b526bb35a400a67c7988e87444ae29f75aed1f4aebb14de29ccb6eccd88",
+      "query": "What is the core progression loop of the game?",
+      "search": {
+        "resultCount": 51,
+        "topResults": [
+          {
+            "title": "Gameplay Loop",
+            "score": 1,
+            "rangeId": "heading-1",
+            "startLine": 1,
+            "endLine": 100
+          },
+          {
+            "title": "Core progression grammar",
+            "score": 1,
+            "rangeId": "heading-2",
+            "startLine": 3,
+            "endLine": 12
+          },
+          {
+            "title": "Core progression grammar",
+            "score": 1,
+            "rangeId": "block-1",
+            "startLine": 5,
+            "endLine": 5
+          },
+          {
+            "title": "Core progression grammar",
+            "score": 0.75,
+            "rangeId": "block-2",
+            "startLine": 7,
+            "endLine": 7
+          },
+          {
+            "title": "Core progression grammar",
+            "score": 0.75,
+            "rangeId": "block-3",
+            "startLine": 9,
+            "endLine": 9
+          },
+          {
+            "title": "Core progression grammar",
+            "score": 0.75,
+            "rangeId": "block-4",
+            "startLine": 11,
+            "endLine": 11
+          },
+          {
+            "title": "Click variety rule",
+            "score": 0.5,
+            "rangeId": "heading-9",
+            "startLine": 38,
+            "endLine": 52
+          },
+          {
+            "title": "Click variety rule",
+            "score": 0.5,
+            "rangeId": "block-16",
+            "startLine": 51,
+            "endLine": 51
+          }
+        ]
+      },
+      "jev": {
+        "status": "selected",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "candidateCount": 51,
+        "selected": {
+          "rangeId": "block-3",
+          "startLine": 9,
+          "endLine": 9,
+          "fingerprint": "997420c4264021465280981a7a4f19fac29a17639a9bbc444b832e5c823004c5"
+        },
+        "providerConfidence": 0.57,
+        "evidenceSufficiency": 0.93,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "elapsedMs": 1044.8,
+        "usage": {
+          "input_tokens": 5755,
+          "output_tokens": 557
+        }
+      },
+      "fetchPack": {
+        "fingerprintMatches": true,
+        "packTextEqualsFetched": true,
+        "citationHandleMatches": true,
+        "citationFingerprintMatches": true,
+        "citationRange": [
+          9,
+          9
+        ],
+        "text": "`perform task manually -> improve task -> recruit/enable bees -> bees automate task -> new task becomes manual`",
+        "canonicalRewriteAllowed": false
+      }
+    },
+    {
+      "id": "conmap-pinch-facet",
+      "classification": "exploratory_posthoc_not_in_primary_cohort",
+      "projectId": "conmap",
+      "sourceRef": "changelogs/v36.0-touch-and-print.md",
+      "sourceSha256": "badecad4a4e2261cc6820b390d4d101ec05bc22929e33e2336b32e4e469e1657",
+      "query": "¿Qué hace la cámara cuando se suelta un dedo durante pinch zoom?",
+      "search": {
+        "resultCount": 13,
+        "topResults": [
+          {
+            "title": "v36.0 - Touch Zoom & Print Optimization Engine",
+            "score": 0.625,
+            "rangeId": "heading-1",
+            "startLine": 1,
+            "endLine": 14
+          },
+          {
+            "title": "✨ Nuevas Funcionalidades",
+            "score": 0.625,
+            "rangeId": "heading-2",
+            "startLine": 5,
+            "endLine": 10
+          },
+          {
+            "title": "✨ Nuevas Funcionalidades",
+            "score": 0.625,
+            "rangeId": "block-2",
+            "startLine": 6,
+            "endLine": 9
+          },
+          {
+            "title": "✨ Nuevas Funcionalidades",
+            "score": 0.625,
+            "rangeId": "block-2/item-2",
+            "startLine": 7,
+            "endLine": 7
+          },
+          {
+            "title": "v36.0 - Touch Zoom & Print Optimization Engine",
+            "score": 0.125,
+            "rangeId": "block-1",
+            "startLine": 2,
+            "endLine": 3
+          },
+          {
+            "title": "✨ Nuevas Funcionalidades",
+            "score": 0.125,
+            "rangeId": "block-2/item-1",
+            "startLine": 6,
+            "endLine": 6
+          },
+          {
+            "title": "✨ Nuevas Funcionalidades",
+            "score": 0.125,
+            "rangeId": "block-2/item-3",
+            "startLine": 8,
+            "endLine": 8
+          },
+          {
+            "title": "✨ Nuevas Funcionalidades",
+            "score": 0.125,
+            "rangeId": "block-2/item-4",
+            "startLine": 9,
+            "endLine": 9
+          }
+        ]
+      },
+      "jev": {
+        "status": "selected",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "candidateCount": 13,
+        "selected": {
+          "rangeId": "block-2/item-2",
+          "startLine": 7,
+          "endLine": 7,
+          "fingerprint": "47e1e4fe961a80797301252b04d7ad9834dacf10d883c8d93b49ecb0235b93f6"
+        },
+        "providerConfidence": 1,
+        "evidenceSufficiency": 0.93,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "elapsedMs": 731.6,
+        "usage": {
+          "input_tokens": 2475,
+          "output_tokens": 177
+        }
+      },
+      "fetchPack": {
+        "fingerprintMatches": true,
+        "packTextEqualsFetched": true,
+        "citationHandleMatches": true,
+        "citationFingerprintMatches": true,
+        "citationRange": [
+          7,
+          7
+        ],
+        "text": "- **Transición Táctil Fluida:** El sistema reconoce cuando se suelta un dedo y re-ancla la cámara sin que la pantalla \"salte\", permitiendo continuar el paneo suave con el dedo restante.",
+        "canonicalRewriteAllowed": false
+      }
+    },
+    {
+      "id": "conmap-print-facet",
+      "classification": "exploratory_posthoc_not_in_primary_cohort",
+      "projectId": "conmap",
+      "sourceRef": "changelogs/v36.0-touch-and-print.md",
+      "sourceSha256": "badecad4a4e2261cc6820b390d4d101ec05bc22929e33e2336b32e4e469e1657",
+      "query": "¿Qué cambia al imprimir en v36.0?",
+      "search": {
+        "resultCount": 13,
+        "topResults": [
+          {
+            "title": "v36.0 - Touch Zoom & Print Optimization Engine",
+            "score": 1,
+            "rangeId": "heading-1",
+            "startLine": 1,
+            "endLine": 14
+          },
+          {
+            "title": "✨ Nuevas Funcionalidades",
+            "score": 1,
+            "rangeId": "heading-2",
+            "startLine": 5,
+            "endLine": 10
+          },
+          {
+            "title": "✨ Nuevas Funcionalidades",
+            "score": 1,
+            "rangeId": "block-2",
+            "startLine": 6,
+            "endLine": 9
+          },
+          {
+            "title": "✨ Nuevas Funcionalidades",
+            "score": 1,
+            "rangeId": "block-2/item-3",
+            "startLine": 8,
+            "endLine": 8
+          },
+          {
+            "title": "✨ Nuevas Funcionalidades",
+            "score": 0.666667,
+            "rangeId": "block-2/item-4",
+            "startLine": 9,
+            "endLine": 9
+          },
+          {
+            "title": "v36.0 - Touch Zoom & Print Optimization Engine",
+            "score": 0.333333,
+            "rangeId": "block-1",
+            "startLine": 2,
+            "endLine": 3
+          },
+          {
+            "title": "✨ Nuevas Funcionalidades",
+            "score": 0.333333,
+            "rangeId": "block-2/item-1",
+            "startLine": 6,
+            "endLine": 6
+          },
+          {
+            "title": "✨ Nuevas Funcionalidades",
+            "score": 0.333333,
+            "rangeId": "block-2/item-2",
+            "startLine": 7,
+            "endLine": 7
+          }
+        ]
+      },
+      "jev": {
+        "status": "selected",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "candidateCount": 13,
+        "selected": {
+          "rangeId": "block-2/item-4",
+          "startLine": 9,
+          "endLine": 9,
+          "fingerprint": "cc1825ea9c88dc0fe04bb5764d6c86532a9c1bacd85efde7225f06c2ba427ddb"
+        },
+        "providerConfidence": 0.47,
+        "evidenceSufficiency": 0.86,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "elapsedMs": 690.4,
+        "usage": {
+          "input_tokens": 2480,
+          "output_tokens": 177
+        }
+      },
+      "fetchPack": {
+        "fingerprintMatches": true,
+        "packTextEqualsFetched": true,
+        "citationHandleMatches": true,
+        "citationFingerprintMatches": true,
+        "citationRange": [
+          9,
+          9
+        ],
+        "text": "- **Clean Paper UI:** Mediante reglas `@media print`, al imprimir se elimina por completo el menú superior, botones de zoom, leyenda y footer, enviando a la impresora un esquema PDF limpio de 1 sola hoja vectorizada.",
+        "canonicalRewriteAllowed": false
+      }
+    }
+  ],
+  "interpretation": {
+    "bee": "The Spanish query had no candidates in the primary run; an English query found 51 candidates and Jev selected the single source line stating the progression grammar. This supports a language mismatch hypothesis but does not prove a general multilingual fix.",
+    "conmap": "The compound question was abstained on in the primary cohort. Two single-facet probes each selected the exact one-line source block for pinch re-anchoring and print behavior; exact fetch and citation-pack validation passed for both. This supports facet decomposition as a useful query-planning step, but the probes reuse the same document and are not new validation samples."
+  }
+}
