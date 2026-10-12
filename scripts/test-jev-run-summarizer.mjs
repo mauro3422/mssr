@@ -531,6 +531,7 @@ try {
     'const text = "# Sample\\n\\nExact fixture evidence.\\n";',
     'const fingerprint = createHash("sha256").update(Buffer.from(text.trim(), "utf8")).digest("hex");',
     'const owner = process.env.MSSR_TEST_OWNER;',
+    'let failNextFetch = false;',
     'const handle = { id: "fixture-handle-01", version: 1, owner, sourceRef: "docs/one.md", revision: "fixture-revision-01", rangeId: "sample-heading", rangeKind: "section", startLine: 1, endLine: 3, startOffset: 0, endOffset: text.length, fingerprint, privacyClass: "project-metadata" };',
     'const names = new Set(["mssr_librarian_search", "mssr_librarian_jev_select", "mssr_librarian_fetch", "mssr_librarian_evidence_pack"]);',
     'export function createMssrJevBridgeDecisionProvider() { return { choose() { throw new Error("mock run must never invoke Jev transport"); } }; }',
@@ -539,8 +540,8 @@ try {
     '    has: (name) => names.has(name),',
     '    async call(name, args) {',
     '      if (name === "mssr_librarian_search") return { sourceCount: 1, results: [{ title: "Sample", headingPath: ["Sample"], score: 1, handle }] };',
-    '      if (name === "mssr_librarian_jev_select") { const labelKeys = ["answerability", "expectedHeading", "expectedStartLine", "expectedEndLine", "acceptableRanges", "relevantRanges"]; const requestText = JSON.stringify(args); if (labelKeys.some((key) => key in args) || requestText.includes("LABEL_ONLY_SENTINEL") || requestText.includes("97831") || requestText.includes("unanswerable")) throw new Error("labels must not be sent to Jev"); if (args.query.includes("absent")) return { status: "abstained", choice: "none", provider: "fixture-mock", model: "fixture-no-network", providerConfidence: 0.11, confidenceCalibration: "uncalibrated", evidenceSufficiency: 0.13, noul: 0.65, usage: { input_tokens: 4, output_tokens: 1 }, selected: null }; const choice = args.query.includes("conflict") ? "none" : "fixture-handle-01"; return { status: "selected", choice, provider: "fixture-mock", model: "fixture-no-network", providerConfidence: 0.91, confidenceCalibration: "uncalibrated", evidenceSufficiency: 0.87, noul: 0.65, usage: { input_tokens: 4, output_tokens: 2 }, selected: { title: "Sample", headingPath: ["Sample"], handle } }; }',
-    '      if (name === "mssr_librarian_fetch") return { handle, text, fingerprint, projectOwner: owner, advisoryOnly: true, truthAuthority: false };',
+    '      if (name === "mssr_librarian_jev_select") { const labelKeys = ["answerability", "expectedHeading", "expectedStartLine", "expectedEndLine", "acceptableRanges", "relevantRanges"]; const requestText = JSON.stringify(args); if (labelKeys.some((key) => key in args) || requestText.includes("LABEL_ONLY_SENTINEL") || requestText.includes("97831") || requestText.includes("unanswerable")) throw new Error("labels must not be sent to Jev"); if (args.query.includes("absent")) return { status: "abstained", choice: "none", provider: "fixture-mock", model: "fixture-no-network", providerConfidence: 0.11, confidenceCalibration: "uncalibrated", evidenceSufficiency: 0.13, noul: 0.65, usage: { input_tokens: 4, output_tokens: 1 }, selected: null }; failNextFetch = args.query.includes("fetch-failure"); const choice = args.query.includes("conflict") ? "none" : "fixture-handle-01"; return { status: "selected", choice, provider: "fixture-mock", model: "fixture-no-network", providerConfidence: 0.91, confidenceCalibration: "uncalibrated", evidenceSufficiency: 0.87, noul: 0.65, usage: { input_tokens: 4, output_tokens: 2 }, selected: { title: "Sample", headingPath: ["Sample"], handle } }; }',
+    '      if (name === "mssr_librarian_fetch") { if (failNextFetch) { failNextFetch = false; throw new Error("fixture fetch failure"); } return { handle, text, fingerprint, projectOwner: owner, advisoryOnly: true, truthAuthority: false }; }',
     '      if (name === "mssr_librarian_evidence_pack") {',
     '        const citation = { display: "docs/one.md:L1-L3", handleId: handle.id, owner, sourceRef: handle.sourceRef, revision: handle.revision, rangeId: handle.rangeId, rangeKind: handle.rangeKind, startLine: 1, endLine: 3, fingerprint, privacyClass: handle.privacyClass };',
     '        return { schemaVersion: 1, kind: "mssr-librarian-evidence-pack", assembly: "verbatim-source-ranges", projectOwner: owner, sourceCount: 1, paragraphs: [{ ordinal: 1, exactText: text, citation }], totalFetchedChars: text.length, advisoryOnly: true, truthAuthority: false, canonicalRewriteAllowed: false };',
@@ -566,6 +567,7 @@ try {
       { id: "mock-case-01", sourceRef: "docs/one.md", query: "What is the exact fixture evidence?" },
       { id: "mock-unanswerable", sourceRef: "docs/one.md", query: "What absent fact is not in this fixture?" },
       { id: "mock-conflicted", sourceRef: "docs/one.md", query: "Check this conflict fixture." },
+      { id: "mock-fetch-failure", sourceRef: "docs/one.md", query: "Select the exact fixture despite a fetch-failure." },
     ],
   });
   const mockLabelsBytes = await writeJson(path.join(mockRun, "inputs/labels.json"), {
@@ -591,6 +593,15 @@ try {
         expectedStartLine: 1,
         expectedEndLine: 3,
         acceptableRanges: [{ sourceRef: "docs/one.md", expectedHeading: "Sample", startLine: 1, endLine: 3 }],
+      },
+      {
+        caseId: "mock-fetch-failure",
+        sourceRef: "docs/one.md",
+        expectedHeading: "Sample",
+        expectedStartLine: 1,
+        expectedEndLine: 3,
+        acceptableRanges: [{ sourceRef: "docs/one.md", expectedHeading: "Sample", startLine: 1, endLine: 3 }],
+        relevantRanges: [{ sourceRef: "docs/one.md", expectedHeading: "Sample", startLine: 1, endLine: 3 }],
       },
     ],
   });
@@ -619,7 +630,7 @@ try {
       networkOptIn: true,
       networkOptInMethod: "explicit command-line --allow-network plus user authorization recorded in manifest",
     },
-    plan: { expectedRequestCount: 3, independentUnit: "fixture sourceRef only; no statistical claim" },
+    plan: { expectedRequestCount: 4, independentUnit: "fixture sourceRef only; no statistical claim" },
     instrument: {
       runnerSha256: digest(mockRunnerBytes),
       selectionRecordSha256: digest(mockSelectionBytes),
@@ -637,15 +648,16 @@ try {
   });
   assert.equal(mockLiveRun.status, 0, mockLiveRun.stderr);
   const mockSummary = JSON.parse(mockLiveRun.stdout);
-  assert.equal(mockSummary.status, "complete");
+  assert.equal(mockSummary.status, "partial");
   assert.equal(mockSummary.successfulRequests, 3);
-  assert.equal(mockSummary.exactHeadingMatches, 1);
-  assert.equal(mockSummary.exactHeadingDenominator, 2);
+  assert.equal(mockSummary.failedRequests, 1);
+  assert.equal(mockSummary.exactHeadingMatches, 2);
+  assert.equal(mockSummary.exactHeadingDenominator, 3);
   assert.deepEqual(mockSummary.answerabilityMetrics.answerable, {
-    cases: 2,
-    correctAnswerabilityDecisions: 1,
-    correctExactRangeSelections: 1,
-    correctRelevantRangeSelections: 0,
+    cases: 3,
+    correctAnswerabilityDecisions: 2,
+    correctExactRangeSelections: 2,
+    correctRelevantRangeSelections: 1,
     selectedOutsideLabeledRanges: 0,
     incorrectDecisions: 0,
     failedOrUnknownDecisions: 1,
@@ -653,7 +665,7 @@ try {
   });
   assert.equal(mockSummary.answerabilityMetrics.unanswerable.correctAbstentions, 1);
   assert.equal(mockSummary.answerabilityMetrics.decisionAccuracy, 1);
-  assert.equal(mockSummary.searchTargetRecallAt100, 2);
+  assert.equal(mockSummary.searchTargetRecallAt100, 3);
   assert.equal(mockSummary.records[0].acceptableRanges.length, 2,
     "summary must expose every accepted range used by the scorer");
   assert.equal(mockSummary.records[0].relevantRanges.length, 0,
@@ -661,6 +673,15 @@ try {
   assert.equal(mockSummary.records[2].decisionStatus, "failed-or-unknown");
   assert.equal(mockSummary.records[2].exactAcceptedRangeMatch, false,
     "the live runner must not score a selected-plus-none conflict as an exact hit");
+  assert.equal(mockSummary.records[3].decisionStatus, "selected");
+  assert.equal(mockSummary.records[3].exactAcceptedRangeMatch, true,
+    "a valid exact selector decision remains scoreable when exact fetch fails downstream");
+  assert.equal(mockSummary.records[3].relevantRangeMatch, true,
+    "a valid relevant-range selector decision remains scoreable when exact fetch fails downstream");
+  assert.equal(mockSummary.records[3].exactFetchPassed, false,
+    "downstream exact-fetch integrity remains an independent metric");
+  assert.equal(mockSummary.records[3].evidencePackBuilt, false,
+    "a failed exact fetch must prevent evidence-pack construction");
   assert.equal(mockSummary.exactFetchesWithFingerprint, 1,
     "the live runner must not fetch a contradictory selection");
   assert.equal(mockSummary.evidencePacksBuilt, 1,
@@ -669,6 +690,7 @@ try {
   const mockRecord = JSON.parse(mockRecordLines[0]);
   const mockAbstentionRecord = JSON.parse(mockRecordLines[1]);
   const mockConflictedRecord = JSON.parse(mockRecordLines[2]);
+  const mockFetchFailureRecord = JSON.parse(mockRecordLines[3]);
   assert.equal(mockRecord.jev.evidenceSufficiency, 0.87);
   assert.equal(mockRecord.jev.choice, "fixture-handle-01");
   assert.equal(mockRecord.jev.noul, 0.65);
@@ -678,6 +700,10 @@ try {
   assert.equal(mockAbstentionRecord.fetch, null, "a recorded abstention must not trigger exact fetch or evidence packing");
   assert.equal(mockConflictedRecord.jev.choice, "none");
   assert.equal(mockConflictedRecord.fetch, null, "a contradictory selection must not trigger exact fetch or evidence packing");
+  assert.equal(mockFetchFailureRecord.status, "failed");
+  assert.equal(mockFetchFailureRecord.jev.status, "selected");
+  assert.equal(mockFetchFailureRecord.fetch, null, "failed fetch must not produce a validated fetch record");
+  assert.equal(mockFetchFailureRecord.evidencePack, null, "failed fetch must stop before evidence-pack construction");
   const mockCompletion = JSON.parse(await fs.readFile(path.join(mockRun, "run-completion.json"), "utf8"));
   assert.equal(mockCompletion.labelsExposedToProvider, false);
   assert.equal(mockCompletion.networkOptInAuthorized, true);

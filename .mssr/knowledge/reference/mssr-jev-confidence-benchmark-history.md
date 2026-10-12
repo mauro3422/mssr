@@ -25,3 +25,7 @@ sections selected the parent containing both. These source-derived cases are
 not owner-gold or calibration. Keep primary-first until a grouped owner-labeled
 comparison supports change; test host language ordering and non-overlapping
 ranges, and track the dedicated connector schema drift separately.
+
+## Run 35 evaluator invariant
+
+Score answerability disposition (select versus abstain) and selected-range precision as separate outcomes. A valid Jev selection's exact/relevant range match must be scored from its selector status and returned range, independently of later fetch or evidence-pack success; keep exact-fetch fingerprint and pack integrity as separate pipeline metrics. Contradictory outputs such as selected with choice: none remain failed-or-unknown and must not count as valid range selections. This evaluator correction does not calibrate raw Choice/sufficiency or authorize a production threshold.

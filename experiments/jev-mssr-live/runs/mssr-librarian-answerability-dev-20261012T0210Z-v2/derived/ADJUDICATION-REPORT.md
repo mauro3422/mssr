@@ -16,7 +16,7 @@ Labels were proposed and source-checked by one Luna reviewer; they are not owner
 
 ## Measurement correction
 
-The original `summary.json` remains frozen. Its original `decisionCorrect` calculation conflated “select when answerable / abstain when unanswerable” with exact or pre-labeled relevant range quality, so the broad-but-answer-bearing Q09 range reduced the former score. The experiment summarizer and runner now report answerability disposition separately from exact, relevant-labeled, and outside-labeled range outcomes. `derived/summary-calculated.json` is the recalculation; `outside-labeled-ranges` means only that the selected range did not match the frozen precision labels. It does not assert semantic irrelevance. No frozen provider output, manifest, source snapshot, case, or label was edited.
+The original `summary.json` remains frozen. Its original `decisionCorrect` calculation conflated “select when answerable / abstain when unanswerable” with exact or pre-labeled relevant range quality, so the broad-but-answer-bearing Q09 range reduced the former score. The experiment summarizer and runner now report answerability disposition separately from exact, relevant-labeled, and outside-labeled range outcomes. The derived [`summary-calculated.json`](../summary-calculated.json) is the recalculation; `outside-labeled-ranges` means only that the selected range did not match the frozen precision labels. It does not assert semantic irrelevance. No frozen provider output, manifest, source snapshot, case, or label was edited.
 
 ## Limits and next gate
 

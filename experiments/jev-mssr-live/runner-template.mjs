@@ -319,8 +319,8 @@ const scored = records.map((record) => {
       || (item?.handle?.startLine === range.startLine && item?.handle?.endLine === range.endLine);
     return sourceMatches && headingMatches && lineRangeMatches;
   });
-  const exactAcceptedRangeMatch = Boolean(record.status === "complete" && decisionStatus === "selected" && matchesRanges(selected, acceptedRanges));
-  const relevantRangeMatch = Boolean(record.status === "complete" && decisionStatus === "selected" && matchesRanges(selected, relevantRanges));
+  const exactAcceptedRangeMatch = Boolean(decisionStatus === "selected" && matchesRanges(selected, acceptedRanges));
+  const relevantRangeMatch = Boolean(decisionStatus === "selected" && matchesRanges(selected, relevantRanges));
   const targetInSearchTop100 = Boolean(record.search?.results?.some((item) => matchesRanges(item, acceptedRanges)));
   const relevantTargetInSearchTop100 = Boolean(record.search?.results?.some((item) => matchesRanges(item, relevantRanges)));
   answerabilityDecisionCorrect = decisionStatus === "failed-or-unknown"
