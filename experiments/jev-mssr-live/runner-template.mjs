@@ -165,6 +165,7 @@ for (const testCase of cases) {
       usage: selected.usage ?? null,
       candidateCount: selected.candidateCount ?? candidateHandles.length,
       choiceCalls: selected.choiceCalls ?? null,
+      choice: selected.choice ?? null,
       selected: selected.selected ? {
         title: selected.selected.title ?? null,
         headingPath: selected.selected.headingPath ?? null,
@@ -176,7 +177,7 @@ for (const testCase of cases) {
     };
     record.returnedProvider = selected.provider ?? null;
     record.returnedModel = selected.model ?? null;
-    if (selected.status === "selected" && selected.selected?.handle) {
+    if (selected.status === "selected" && selected.choice !== "none" && selected.selected?.handle) {
       const selectedHandle = selected.selected.handle;
       const frozenSourceText = frozenSourceTextByRef.get(selectedHandle.sourceRef);
       assert.equal(typeof frozenSourceText, "string", "selected source is absent from frozen corpus snapshots");
@@ -256,7 +257,47 @@ const labelByCase = new Map(labels.cases.map((label) => [label.caseId, label]));
 const scored = records.map((record) => {
   const label = labelByCase.get(record.caseId);
   assert.ok(label, "missing label " + record.caseId);
+  const answerability = label.answerability ?? "answerable";
+  assert.ok(["answerable", "unanswerable"].includes(answerability), "invalid answerability for " + record.caseId);
   const selected = record.jev?.selected;
+  const hasSelectionConflict = (record.jev?.status === "abstained" && selected != null)
+    || (record.jev?.status === "selected" && (selected == null || record.jev?.choice === "none"))
+    || (record.jev?.status === "abstained" && record.jev?.choice != null && record.jev.choice !== "none")
+    || (record.jev?.status == null && record.jev?.choice === "none" && selected != null);
+  const hasSelectedDecision = !hasSelectionConflict && record.jev?.status === "selected" && selected != null;
+  const hasAbstainedDecision = !hasSelectionConflict && (record.jev?.status === "abstained"
+    || (record.jev?.status == null && record.jev?.choice === "none" && selected == null));
+  const decisionStatus = hasSelectedDecision ? "selected" : hasAbstainedDecision ? "abstained" : "failed-or-unknown";
+  let answerabilityDecisionCorrect = decisionStatus === "failed-or-unknown"
+    ? null
+    : answerability === "unanswerable"
+      ? decisionStatus === "abstained"
+      : decisionStatus === "selected";
+  if (answerability === "unanswerable") {
+    return {
+      caseId: record.caseId,
+      sourceRef: record.sourceRef,
+      answerability,
+      expectedHeading: null,
+      expectedStartLine: null,
+      expectedEndLine: null,
+      acceptableRanges: [],
+      relevantRanges: [],
+      observedHeading: selected?.title ?? null,
+      decisionStatus,
+      answerabilityCorrect: answerabilityDecisionCorrect,
+      answerabilityDecisionCorrect,
+      rangeSelectionAssessment: decisionStatus,
+      exactHeadingMatch: null,
+      exactAcceptedRangeMatch: null,
+      relevantRangeMatch: null,
+      targetInSearchTop100: null,
+      relevantTargetInSearchTop100: null,
+      exactFetchPassed: Boolean(record.fetch?.passed),
+      evidencePackBuilt: record.evidencePack?.passed === true,
+      status: record.status,
+    };
+  }
   const acceptedRanges = Array.isArray(label.acceptableRanges) && label.acceptableRanges.length > 0
     ? label.acceptableRanges
     : [{
@@ -265,7 +306,8 @@ const scored = records.map((record) => {
       startLine: label.expectedStartLine,
       endLine: label.expectedEndLine,
     }];
-  const matchesAcceptedRange = (item) => acceptedRanges.some((range) => {
+  const relevantRanges = Array.isArray(label.relevantRanges) ? label.relevantRanges : [];
+  const matchesRanges = (item, ranges) => ranges.some((range) => {
     const expectedHeading = normalizeHeading(range.expectedHeading);
     const actualSourceRef = item?.sourceRef ?? item?.handle?.sourceRef;
     const sourceMatches = range.sourceRef === record.sourceRef
@@ -277,10 +319,24 @@ const scored = records.map((record) => {
       || (item?.handle?.startLine === range.startLine && item?.handle?.endLine === range.endLine);
     return sourceMatches && headingMatches && lineRangeMatches;
   });
-  const targetInSearchTop100 = Boolean(record.search?.results?.some(matchesAcceptedRange));
+  const exactAcceptedRangeMatch = Boolean(record.status === "complete" && decisionStatus === "selected" && matchesRanges(selected, acceptedRanges));
+  const relevantRangeMatch = Boolean(record.status === "complete" && decisionStatus === "selected" && matchesRanges(selected, relevantRanges));
+  const targetInSearchTop100 = Boolean(record.search?.results?.some((item) => matchesRanges(item, acceptedRanges)));
+  const relevantTargetInSearchTop100 = Boolean(record.search?.results?.some((item) => matchesRanges(item, relevantRanges)));
+  answerabilityDecisionCorrect = decisionStatus === "failed-or-unknown"
+    ? null
+    : decisionStatus === "selected";
+  const rangeSelectionAssessment = decisionStatus !== "selected"
+    ? decisionStatus
+    : exactAcceptedRangeMatch
+      ? "exact"
+      : relevantRangeMatch
+        ? "relevant"
+        : "outside-labeled-ranges";
   return {
     caseId: record.caseId,
     sourceRef: record.sourceRef,
+    answerability,
     expectedHeading: label.expectedHeading,
     expectedStartLine: label.expectedStartLine ?? null,
     expectedEndLine: label.expectedEndLine ?? null,
@@ -290,14 +346,32 @@ const scored = records.map((record) => {
       startLine: range.startLine ?? null,
       endLine: range.endLine ?? null,
     })),
+    relevantRanges: relevantRanges.map((range) => ({
+      sourceRef: range.sourceRef,
+      expectedHeading: range.expectedHeading,
+      startLine: range.startLine,
+      endLine: range.endLine,
+    })),
     observedHeading: selected?.title ?? null,
-    exactHeadingMatch: Boolean(record.status === "complete" && matchesAcceptedRange(selected)),
+    exactHeadingMatch: exactAcceptedRangeMatch,
+    exactAcceptedRangeMatch,
+    relevantRangeMatch,
+    decisionStatus,
+    answerabilityCorrect: answerabilityDecisionCorrect,
+    answerabilityDecisionCorrect,
+    rangeSelectionAssessment,
     targetInSearchTop100,
+    relevantTargetInSearchTop100,
     exactFetchPassed: Boolean(record.fetch?.passed),
     evidencePackBuilt: record.evidencePack?.passed === true,
     status: record.status,
   };
 });
+const answerableScores = scored.filter((item) => item.answerability === "answerable");
+const unanswerableScores = scored.filter((item) => item.answerability === "unanswerable");
+const classifiedDecisionCount = scored.filter((item) => item.answerabilityDecisionCorrect !== null).length;
+const correctDecisionCount = scored.filter((item) => item.answerabilityDecisionCorrect === true).length;
+const incorrectDecisionCount = scored.filter((item) => item.answerabilityDecisionCorrect === false).length;
 const sourceDocumentClusters = new Set(records.map((record) => record.sourceRef).filter(Boolean)).size;
 const summary = {
   schemaVersion: 1,
@@ -310,10 +384,44 @@ const summary = {
   sourceDocumentClusters,
   independentUnits: manifest.plan.independentUnit ?? "sourceRef clusters (descriptive grouping only)",
   clusterInterpretation: "Distinct sourceRef grouping only; it does not establish independent statistical sampling.",
-  exactHeadingMatches: scored.filter((item) => item.exactHeadingMatch).length,
-  exactHeadingDenominator: scored.length,
-  searchTargetRecallAt100: scored.filter((item) => item.targetInSearchTop100).length,
-  searchTargetRecallAt100Denominator: scored.length,
+  exactHeadingMatches: answerableScores.filter((item) => item.exactHeadingMatch).length,
+  exactHeadingDenominator: answerableScores.length,
+  searchTargetRecallAt100: answerableScores.filter((item) => item.targetInSearchTop100).length,
+  searchTargetRecallAt100Denominator: answerableScores.length,
+  searchRelevantRangeFound: answerableScores.filter((item) => item.relevantTargetInSearchTop100).length,
+  searchRelevantRangeDenominator: answerableScores.filter((item) => item.relevantRanges.length > 0).length,
+  answerabilityMetrics: {
+    answerable: {
+      cases: answerableScores.length,
+      correctAnswerabilityDecisions: answerableScores.filter((item) => item.answerabilityDecisionCorrect === true).length,
+      correctExactRangeSelections: answerableScores.filter((item) => item.exactAcceptedRangeMatch === true).length,
+      correctRelevantRangeSelections: answerableScores.filter((item) => item.relevantRangeMatch === true).length,
+      selectedOutsideLabeledRanges: answerableScores.filter((item) => item.rangeSelectionAssessment === "outside-labeled-ranges").length,
+      incorrectDecisions: answerableScores.filter((item) => item.answerabilityDecisionCorrect === false).length,
+      failedOrUnknownDecisions: answerableScores.filter((item) => item.answerabilityDecisionCorrect === null).length,
+      abstentions: answerableScores.filter((item) => item.decisionStatus === "abstained").length,
+    },
+    unanswerable: {
+      cases: unanswerableScores.length,
+      correctAbstentions: unanswerableScores.filter((item) => item.answerabilityDecisionCorrect === true).length,
+      falseSelections: unanswerableScores.filter((item) => item.decisionStatus === "selected").length,
+      failedOrUnknownDecisions: unanswerableScores.filter((item) => item.answerabilityDecisionCorrect === null).length,
+    },
+    classifiedDecisions: classifiedDecisionCount,
+    correctDecisions: correctDecisionCount,
+    incorrectDecisions: incorrectDecisionCount,
+    failedOrUnknownDecisions: scored.length - classifiedDecisionCount,
+    decisionAccuracy: classifiedDecisionCount > 0 ? correctDecisionCount / classifiedDecisionCount : null,
+    decisionAccuracyNote: "This is answerability-status accuracy (select when answerable, abstain when unanswerable); exact/relevant/outside-labeled range quality is separate. Failures/unknown decisions are reported separately; raw Jev scores remain descriptive and uncalibrated.",
+  },
+  rangeSelectionMetrics: {
+    exactMatches: answerableScores.filter((item) => item.rangeSelectionAssessment === "exact").length,
+    relevantLabeledMatches: answerableScores.filter((item) => item.rangeSelectionAssessment === "relevant").length,
+    outsideLabeledRanges: answerableScores.filter((item) => item.rangeSelectionAssessment === "outside-labeled-ranges").length,
+    abstentions: answerableScores.filter((item) => item.rangeSelectionAssessment === "abstained").length,
+    failedOrUnknown: answerableScores.filter((item) => item.rangeSelectionAssessment === "failed-or-unknown").length,
+    note: "A range outside the exact or explicitly labeled relevant ranges is ungraded for semantic usefulness; it is not automatically irrelevant. Inspect source text and blinded review separately.",
+  },
   exactFetchesWithFingerprint: scored.filter((item) => item.exactFetchPassed).length,
   evidencePacksBuilt: scored.filter((item) => item.evidencePackBuilt).length,
   tokenUsage: {

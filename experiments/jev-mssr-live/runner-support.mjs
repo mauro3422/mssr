@@ -31,12 +31,20 @@ export function validateRunInputs(cases, labels, sourceRefs) {
     assert.ok(typeof label.caseId === "string" && label.caseId.trim().length > 0, `label ${index + 1} needs a non-empty caseId`);
     assert.ok(!labelIds.has(label.caseId), `duplicate label caseId: ${label.caseId}`);
     labelIds.add(label.caseId);
-    assert.ok(typeof label.expectedHeading === "string" && label.expectedHeading.trim().length > 0, `label ${label.caseId} needs an expectedHeading`);
     const matchingCase = cases.find((item) => item.id === label.caseId);
     assert.ok(matchingCase, `label has no matching case ${label.caseId}`);
     if (label.sourceRef !== undefined) {
       assert.equal(label.sourceRef, matchingCase.sourceRef, `label ${label.caseId} sourceRef must match its case`);
     }
+    const answerability = label.answerability ?? "answerable";
+    assert.ok(["answerable", "unanswerable"].includes(answerability), `label ${label.caseId} answerability must be answerable or unanswerable`);
+    if (answerability === "unanswerable") {
+      for (const key of ["expectedHeading", "expectedStartLine", "expectedEndLine", "acceptableRanges", "relevantRanges"]) {
+        assert.equal(label[key], undefined, `unanswerable label ${label.caseId} must not define ${key}`);
+      }
+      continue;
+    }
+    assert.ok(typeof label.expectedHeading === "string" && label.expectedHeading.trim().length > 0, `label ${label.caseId} needs an expectedHeading`);
     const hasStart = label.expectedStartLine !== undefined;
     const hasEnd = label.expectedEndLine !== undefined;
     assert.equal(hasStart, hasEnd, `label ${label.caseId} must provide both expectedStartLine and expectedEndLine`);
@@ -59,6 +67,16 @@ export function validateRunInputs(cases, labels, sourceRefs) {
           && range.startLine === label.expectedStartLine
           && range.endLine === label.expectedEndLine),
       `label ${label.caseId} primary heading/range must appear in acceptableRanges`);
+    }
+    if (label.relevantRanges !== undefined) {
+      assert.ok(Array.isArray(label.relevantRanges) && label.relevantRanges.length > 0, `label ${label.caseId} relevantRanges must be a non-empty array`);
+      for (const range of label.relevantRanges) {
+        assert.ok(range && typeof range === "object", `label ${label.caseId} relevant range must be an object`);
+        assert.equal(range.sourceRef, matchingCase.sourceRef, `label ${label.caseId} relevant range must use its case sourceRef`);
+        assert.ok(typeof range.expectedHeading === "string" && range.expectedHeading.trim().length > 0, `label ${label.caseId} relevant range needs an expectedHeading`);
+        assert.ok(Number.isInteger(range.startLine) && range.startLine > 0, `label ${label.caseId} relevant range startLine must be a positive integer`);
+        assert.ok(Number.isInteger(range.endLine) && range.endLine >= range.startLine, `label ${label.caseId} relevant range endLine must be an integer at or after startLine`);
+      }
     }
   }
 

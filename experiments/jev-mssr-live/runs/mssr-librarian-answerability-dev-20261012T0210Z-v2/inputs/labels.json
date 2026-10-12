@@ -1,0 +1,154 @@
+{
+  "source": "source-derived; Luna-proposed, then checked against the current source text",
+  "adjudication": "source-checked by one Luna reviewer; not independent adjudication and not owner-gold",
+  "cases": [
+    {
+      "caseId": "104-pos-en",
+      "sourceRef": "changelogs/0.2.104.md",
+      "answerability": "answerable",
+      "expectedHeading": "Bilingual query term filtering",
+      "expectedStartLine": 13,
+      "expectedEndLine": 13,
+      "acceptableRanges": [
+        {
+          "sourceRef": "changelogs/0.2.104.md",
+          "expectedHeading": "Bilingual query term filtering",
+          "startLine": 13,
+          "endLine": 13
+        }
+      ],
+      "rationale": "Line 13 states that filtering applies only to query terms while indexed/fetched source words remain unchanged.",
+      "relevantRanges": [
+        {
+          "sourceRef": "changelogs/0.2.104.md",
+          "expectedHeading": "Bilingual query term filtering",
+          "startLine": 11,
+          "endLine": 17
+        }
+      ]
+    },
+    {
+      "caseId": "104-neg-es",
+      "sourceRef": "changelogs/0.2.104.md",
+      "answerability": "unanswerable",
+      "rationale": "This source specifies English/Spanish function words only, not a Japanese word list."
+    },
+    {
+      "caseId": "114-pos-es",
+      "sourceRef": "changelogs/0.2.114.md",
+      "answerability": "answerable",
+      "expectedHeading": "Behavior",
+      "expectedStartLine": 15,
+      "expectedEndLine": 15,
+      "acceptableRanges": [
+        {
+          "sourceRef": "changelogs/0.2.114.md",
+          "expectedHeading": "Behavior",
+          "startLine": 15,
+          "endLine": 15
+        }
+      ],
+      "rationale": "Line 15 defines aggregateReviewRequired and its two review causes.",
+      "relevantRanges": [
+        {
+          "sourceRef": "changelogs/0.2.114.md",
+          "expectedHeading": "Behavior",
+          "startLine": 11,
+          "endLine": 17
+        }
+      ]
+    },
+    {
+      "caseId": "114-neg-en",
+      "sourceRef": "changelogs/0.2.114.md",
+      "answerability": "unanswerable",
+      "rationale": "The source mentions judgments below a local threshold but gives no numeric threshold value."
+    },
+    {
+      "caseId": "115-pos-en",
+      "sourceRef": "changelogs/0.2.115.md",
+      "answerability": "answerable",
+      "expectedHeading": "Behavior",
+      "expectedStartLine": 15,
+      "expectedEndLine": 15,
+      "acceptableRanges": [
+        {
+          "sourceRef": "changelogs/0.2.115.md",
+          "expectedHeading": "Behavior",
+          "startLine": 15,
+          "endLine": 15
+        }
+      ],
+      "rationale": "Line 15 enumerates the provenance retained for every omitted handle.",
+      "relevantRanges": [
+        {
+          "sourceRef": "changelogs/0.2.115.md",
+          "expectedHeading": "Behavior",
+          "startLine": 11,
+          "endLine": 17
+        }
+      ]
+    },
+    {
+      "caseId": "115-neg-es",
+      "sourceRef": "changelogs/0.2.115.md",
+      "answerability": "unanswerable",
+      "rationale": "The change does not declare a compression ratio or token target."
+    },
+    {
+      "caseId": "117-pos-es",
+      "sourceRef": "changelogs/0.2.117.md",
+      "answerability": "answerable",
+      "expectedHeading": "Behavior",
+      "expectedStartLine": 15,
+      "expectedEndLine": 15,
+      "acceptableRanges": [
+        {
+          "sourceRef": "changelogs/0.2.117.md",
+          "expectedHeading": "Behavior",
+          "startLine": 15,
+          "endLine": 15
+        }
+      ],
+      "rationale": "Line 15 states where full selector history lives and what PROJECT_MEMORY points to.",
+      "relevantRanges": [
+        {
+          "sourceRef": "changelogs/0.2.117.md",
+          "expectedHeading": "Behavior",
+          "startLine": 11,
+          "endLine": 17
+        }
+      ]
+    },
+    {
+      "caseId": "117-neg-en",
+      "sourceRef": "changelogs/0.2.117.md",
+      "answerability": "unanswerable",
+      "rationale": "The changelog explicitly says no confidence calibration changed and provides no threshold value."
+    },
+    {
+      "caseId": "radar-pos-en",
+      "sourceRef": "docs/research_agent_memory_selection_radar_2026-09-03.md",
+      "answerability": "answerable",
+      "expectedHeading": "The key distinction for MSSR",
+      "expectedStartLine": 251,
+      "expectedEndLine": 257,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/research_agent_memory_selection_radar_2026-09-03.md",
+          "expectedHeading": "The key distinction for MSSR",
+          "startLine": 251,
+          "endLine": 257
+        }
+      ],
+      "rationale": "Lines 251–257 include both the proposed ordered trace and the contrast with text similarity."
+    },
+    {
+      "caseId": "radar-neg-es",
+      "sourceRef": "docs/research_agent_memory_selection_radar_2026-09-03.md",
+      "answerability": "unanswerable",
+      "rationale": "The note proposes future comparisons and explicitly says not to assume the learned controller wins; it reports no such MSSR result."
+    }
+  ],
+  "scoringPolicy": "acceptableRanges are precise expected ranges; relevantRanges are explicit broader ranges scored separately"
+}

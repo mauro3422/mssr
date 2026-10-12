@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "104-pos-en",
+      "sourceRef": "changelogs/0.2.104.md",
+      "sourceCluster": "source-01",
+      "language": "en",
+      "query": "What does bilingual term filtering change, and what remains unchanged in indexed and fetched source text?"
+    },
+    {
+      "id": "104-neg-es",
+      "sourceRef": "changelogs/0.2.104.md",
+      "sourceCluster": "source-01",
+      "language": "es",
+      "query": "¿Qué palabras funcionales japonesas agrega esta versión al filtro?"
+    },
+    {
+      "id": "114-pos-es",
+      "sourceRef": "changelogs/0.2.114.md",
+      "sourceCluster": "source-02",
+      "language": "es",
+      "query": "¿Qué cuenta aggregateReviewRequired en este contrato?"
+    },
+    {
+      "id": "114-neg-en",
+      "sourceRef": "changelogs/0.2.114.md",
+      "sourceCluster": "source-02",
+      "language": "en",
+      "query": "What numeric value does this changelog set for the local relation-review threshold?"
+    },
+    {
+      "id": "115-pos-en",
+      "sourceRef": "changelogs/0.2.115.md",
+      "sourceCluster": "source-03",
+      "language": "en",
+      "query": "Which provenance fields does rangeCompaction.removed preserve for each omitted handle?"
+    },
+    {
+      "id": "115-neg-es",
+      "sourceRef": "changelogs/0.2.115.md",
+      "sourceCluster": "source-03",
+      "language": "es",
+      "query": "¿Qué proporción de compresión o límite de tokens apunta a alcanzar la compactación?"
+    },
+    {
+      "id": "117-pos-es",
+      "sourceRef": "changelogs/0.2.117.md",
+      "sourceCluster": "source-04",
+      "language": "es",
+      "query": "¿Dónde conserva el historial completo de Jev y qué relación queda entre ese módulo y PROJECT_MEMORY?"
+    },
+    {
+      "id": "117-neg-en",
+      "sourceRef": "changelogs/0.2.117.md",
+      "sourceCluster": "source-04",
+      "language": "en",
+      "query": "Which numeric Jev confidence threshold did this release set?"
+    },
+    {
+      "id": "radar-pos-en",
+      "sourceRef": "docs/research_agent_memory_selection_radar_2026-09-03.md",
+      "sourceCluster": "source-05",
+      "language": "en",
+      "query": "What ordered trace does the note propose capturing beyond text similarity to evaluate functional relevance?"
+    },
+    {
+      "id": "radar-neg-es",
+      "sourceRef": "docs/research_agent_memory_selection_radar_2026-09-03.md",
+      "sourceCluster": "source-05",
+      "language": "es",
+      "query": "¿Qué resultado medido demuestra que un controlador aprendido supera el enrutamiento determinista de MSSR?"
+    }
+  ]
+}

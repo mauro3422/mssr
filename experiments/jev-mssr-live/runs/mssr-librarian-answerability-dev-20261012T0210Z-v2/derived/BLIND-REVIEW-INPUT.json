@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "reviewInstructions": "For each anonymous question, judge source answerability, whether Jev selected/abstained appropriately, answer coverage (direct/partial/none), and overbreadth (low/medium/high). Ignore question IDs as labels. Do not use model confidence. This is an advisory blind review, not owner-gold.",
+  "sources": [
+    {
+      "sourceId": "S01",
+      "text": "# 0.2.104 — 2026-10-04\n\n## Contract\n\n- Summary: prevent common English/Spanish function words from alone generating Librarian search candidates.\n- Areas: Librarian retrieval and search quality\n- PROJECT_CONTEXT: reviewed-none\n- PROJECT_MEMORY: updated\n- PROJECT_STATE: updated\n\n## Bilingual query term filtering\n\n- Filter a bounded English/Spanish function-word set from query terms only; indexed Markdown and exact fetched source retain their original words.\n- Queries with no remaining content terms return no candidates. Remaining scores continue to measure lexical term overlap, not semantic relevance or calibrated confidence.\n- Add English and Spanish unrelated-query regressions plus an all-stopword regression while preserving accented/decomposed Spanish retrieval and `ñ`/`n` distinction.\n- A direct MCP smoke before the query fix projected 2/2 current sidecar declarations and completed Spanish/English search → exact fetch → evidence-pack checks; both fetched ranges matched their pack text and citation fingerprints. This proves tool composition for the observed MCP route, not active Bridge package identity.\n- A post-fix local build repeated the real sidecar projection/search/fetch/pack path, preserved the exact 7,728-character Spanish range, and returned zero candidates for the reproduced unrelated English query. No user labels, Jev provider call, threshold, host deployment, or npm publication was used.\n\n## Verification\n\n- `npm run build` — PASS.\n- `npm run test:librarian-contract` — PASS.\n- `npm run test:project-context-librarian` — PASS.\n- `npm run verify` — PASS, including full MSSR, cross-host conformance and skill audit suites.\n- `npm run release:gate` — PASS; a local package artifact was generated and remains unpublished. Its exact integrity receipt is stored under `.mssr/runtime/releases/0.2.104.json` and summarized in `.mssr/PROJECT_STATE.md`.\n"
+    },
+    {
+      "sourceId": "S02",
+      "text": "# 0.2.114 — 2026-10-10\n\n## Contract\n\n- Summary: disambiguate bounded Jev project-review summary counts while preserving the legacy numeric field.\n- Areas: semantic curation, MCP summary contract, observability\n- PROJECT_CONTEXT: updated\n- PROJECT_MEMORY: reviewed-none\n- PROJECT_STATE: updated\n\n## Behavior\n\n- `relationReviewRequired` counts pair judgments below the local relation threshold.\n- `blockReviewRequired` counts jobs containing at least one block routed to review.\n- `aggregateReviewRequired` counts jobs whose complete evaluator result requires review for either block or relation reasons.\n- Legacy `reviewRequired` remains an alias for `relationReviewRequired` for compatibility; it no longer stands in for the aggregate gate.\n- No thresholds, source authority, learning promotion, or canonical-write behavior change.\n\n## Verification\n\n- Add a focused regression covering accepted relation + block review and rejected relation without block review.\n- `npm run build`: passed; focused `npm run test:semantic-curation-mcp`: passed.\n- `npm run verify`: passed through `npm run release:gate`.\n- `npm run release:gate`: passed. The local artifact's size and SHA-256 are recorded in `.mssr/runtime/releases/0.2.114.json`; this does not publish or adopt it in Bridge.\n"
+    },
+    {
+      "sourceId": "S03",
+      "text": "# 0.2.115 — 2026-10-10\n\n## Contract\n\n- Summary: add opt-in exact contained-range compaction to cited Librarian evidence packs while preserving every omitted handle's provenance.\n- Areas: Librarian evidence pack, MCP contract, project context\n- PROJECT_CONTEXT: updated\n- PROJECT_MEMORY: reviewed-none\n- PROJECT_STATE: updated\n\n## Behavior\n\n- `dedupeContainedRanges` defaults to `false`; existing evidence-pack output and citations remain unchanged.\n- When enabled, MSSR first validates every supplied handle against current caller-supplied Markdown, then omits only strict contained ranges sharing the same trimmed owner, normalized source reference, and revision.\n- The retained parent text remains verbatim. `rangeCompaction.removed` maps each omitted handle to a retained citation and preserves its owner, source, revision, range, line, fingerprint, and privacy-class provenance.\n- Disjoint, equal, partially overlapping, cross-owner, cross-source, and cross-revision ranges are not compacted. Compaction does not summarize, establish truth, or prove that a parent answers a child facet.\n- This change grants no source authority, canonical-write behavior, or runtime adoption.\n\n## Verification\n\n- `npm run build`: passed.\n- `npm run test:librarian-evidence-pack`: passed, including default compatibility, strict nested compaction, byte-for-byte retained text, complete removed-handle provenance, order determinism, disjoint-range retention, and stale-handle rejection before compaction.\n- `npm run verify`: passed, including the full repository suite, cross-host conformance, and skill audit.\n- `npm run release:gate`: passed; receipt `.mssr/runtime/releases/0.2.115.json` records the final package size and hash. This does not publish or activate the package.\n"
+    },
+    {
+      "sourceId": "S04",
+      "text": "# 0.2.117 — 2026-10-10\n\n## Contract\n\n- Summary: prevent self-extraction recommendations for knowledge modules and preserve Jev/Librarian history in selectively loaded, hash-verified modules.\n- Areas: Project Context modularization, semantic evidence context, Jev selector history\n- PROJECT_CONTEXT: updated\n- PROJECT_MEMORY: updated\n- PROJECT_STATE: updated\n\n## Behavior\n\n- The read-only modularization planner no longer proposes moving a section when its source already equals the canonical suggested knowledge path. Budget pressure remains visible for review.\n- Split the exact Document Surface/Librarian contract from the semantic-evidence module while retaining the same seven term selectors in a separately budgeted module. The original parent module keeps its ID and selectors; its largest-target selection falls from 9,512 bytes to about 4,413 bytes.\n- Preserve the full Jev 0.2.95 and 0.2.97 selector-history sections in a focused reference module; `PROJECT_MEMORY` now points there and retains the concise durable contract.\n- No confidence calibration, source authority, or host runtime behavior changes.\n\n## Verification\n\n- `npm run test:project-context-loader`: passed, including exact source fingerprints, focused selector activation, and unrelated-intent exclusion.\n- `npm run test:project-context-modularization`: passed, including canonical-path self-extraction regression.\n- Full `npm run verify`: passed, including all repository tests, cross-host conformance, and skill audit.\n- `npm run release:gate`: passed; final artifact identity and hash are recorded in `.mssr/runtime/releases/0.2.117.json`. The gate packages the candidate and does not publish or activate it.\n"
+    },
+    {
+      "sourceId": "S05",
+      "text": "# Research radar — learned memory selection, relational recall, and portable memory control\n\nDate: 2026-09-03\nStatus: research note / design radar only\nOwner context: MSSR vNext Lite / clean activation evidence\n\n## Question being investigated\n\nCan the current MSSR skill/context routing problem eventually generalize into a model-agnostic memory/attention controller that learns **which knowledge becomes useful in which observable situation**, without forcing every host model to ingest all available memory first?\n\nThis note is not authorization to add embeddings, a vector database, a second model, RL, or new routing influence. It records relevant external work and what it does or does not imply for MSSR.\n\n## Current MSSR stance\n\nFor the next implementation pass, prefer:\n\n`structured state -> deterministic candidates -> host-gated decision -> Context Broker -> execution -> clean Evidence Ledger`\n\nKeep:\n\n- `observeOnly=true`;\n- `routingInfluence=false`;\n- embeddings/vector similarity deferred;\n- secondary model judge deferred;\n- learned ranking/RL deferred;\n- host/main reasoning model responsible for semantic judgement once the candidate set is small enough.\n\nThe reason is practical: selecting among 3-8 candidates does not justify another inference service if the model already executing the task can judge them cheaply from bounded metadata. A separate retriever/controller becomes more interesting only when the candidate universe is too large for the main model to inspect directly.\n\n---\n\n# External architecture map\n\n## 1. Let the main model control memory/context\n\n### Letta / MemGPT\n\nPrimary source:\n- https://github.com/letta-ai/letta\n\nLetta is model-agnostic and treats memory management as part of the agent runtime. Its MemGPT-derived model separates in-context/core memory from out-of-context archival/conversation memory, and the agent uses tools to edit/search/manage memory.\n\nWhy it matters to MSSR:\n\n- supports the idea that the **same reasoning model can decide what to retrieve** once retrieval/search tools exist;\n- avoids inserting another model only to make a small semantic decision;\n- resembles the desired `main model -> request bounded memory -> Context Broker` relationship.\n\nLimit:\n\n- agent-driven memory management can itself create extra reasoning/tool overhead;\n- it does not automatically solve whether a retrieved memory actually improved the downstream task;\n- retrieval quality and memory governance still need independent evaluation.\n\n### Self-RAG\n\nPrimary source:\n- https://github.com/AkariAsai/self-rag\n- paper: https://openreview.net/forum?id=hSyW5go0v8\n\nSelf-RAG trains the language model itself to retrieve on demand, skip retrieval when unnecessary, and critique retrieved/generated evidence using learned reflection tokens.\n\nWhy it matters:\n\n- direct proof that `retrieve now / do not retrieve now` can be a learned capability of the **reasoning model itself**;\n- supports the argument that an extra small model is not architecturally mandatory;\n- closest external precedent for treating retrieval timing as part of reasoning rather than fixed RAG plumbing.\n\nWhy it is not an immediate MSSR implementation pattern:\n\n- it requires a model that was specifically trained/fine-tuned for those reflection/retrieval behaviors;\n- closed models used by MauroPrime cannot simply be patched with Self-RAG weights;\n- MSSR needs a model-agnostic external contract first.\n\n### FLARE\n\nPrimary source:\n- https://github.com/jzbjyb/FLARE\n\nFLARE triggers retrieval during generation when predicted upcoming content contains low-confidence tokens. It is an older but useful example of **event-driven retrieval** rather than retrieving everything up front.\n\nMSSR lesson:\n\n- reevaluate dormant memory/skill candidates on meaningful deltas or uncertainty signals instead of every turn/tool call;\n- `WAIT -> ACCEPT` should have an observable trigger.\n\n---\n\n## 2. Use a specialized learned controller only when the economics justify it\n\n### Adaptive-RAG\n\nPrimary source:\n- https://github.com/starsuzi/Adaptive-RAG\n- paper: https://arxiv.org/abs/2403.14403\n\nAdaptive-RAG trains a smaller classifier to choose between no retrieval, single-step retrieval, and iterative retrieval based on query complexity.\n\nWhy it matters:\n\n- proves a small specialist can reduce wasted compute when retrieval strategies have materially different costs;\n- gives a clean future comparison for MSSR if the candidate universe becomes large enough.\n\nWhy not now:\n\n- current MSSR candidate sets are small;\n- an extra model introduces latency, another failure surface, calibration work, and another dataset requirement;\n- vNext Lite should first measure whether deterministic shortlist + main-model decision is already sufficient.\n\n### Memory-R1 (ACL 2026)\n\nPrimary source:\n- https://aclanthology.org/2026.acl-long.583/\n- preprint: https://arxiv.org/abs/2508.19828\n\nMemory-R1 is especially close to the long-term idea being discussed. It replaces a purely heuristic memory pipeline with learned memory behavior through reinforcement learning. It uses two specialized agents:\n\n- Memory Manager: structured memory operations such as `ADD`, `UPDATE`, `DELETE`, `NOOP`;\n- Answer Agent: pre-selects relevant memory and reasons over it.\n\nThe authors report that outcome-driven RL can learn useful memory-management behavior with relatively little task supervision and generalize across question types/backbones.\n\nWhy it matters to MSSR:\n\n- direct evidence that **memory management can be learned from downstream outcomes**, not only semantic similarity;\n- validates the future research direction `situation -> memory operation/selection -> outcome`;\n- gives a precedent for learning *when memory should change or be used*.\n\nWhy it should remain future work:\n\n- RL magnifies bad labels, confounded outcomes, reward hacking and dataset bias;\n- current MSSR evidence still has attribution/candidate-quality contamination;\n- the first priority is to create clean candidate/decision/application/outcome data before copying an RL architecture.\n\n---\n\n## 3. Relational and temporal memory: more than embeddings, but not yet utility learning\n\n### Graphiti / Zep\n\nPrimary source:\n- https://github.com/getzep/graphiti\n\nGraphiti builds temporal context graphs for agents. Facts retain temporal validity/provenance and can be retrieved through hybrid semantic, keyword and graph search. Relationships can evolve as episodes arrive rather than requiring a static snapshot.\n\nWhy it matters:\n\n- close to the idea that memory should encode **entities, relations, time, provenance and supersession**, not only text similarity;\n- relevant to MSSR Situation Model and `observed > declared > inferred > learned` evidence boundaries;\n- useful precedent for future knowledge units whose relevance comes through relation chains rather than lexical similarity.\n\nImportant distinction:\n\n- a context graph represents how facts relate;\n- it does not by itself learn that recalling fact B during state A causally improves the agent outcome.\n\nThat second problem is where MSSR's activation/outcome ledger could add a different kind of signal.\n\n### HippoRAG\n\nPrimary source:\n- https://github.com/OSU-NLP-Group/HippoRAG\n\nHippoRAG combines knowledge graphs and Personalized PageRank in a hippocampal-inspired retrieval architecture to integrate information across documents and support multi-hop recall.\n\nWhy it matters:\n\n- demonstrates a cheap graph-propagation route from cues to indirectly related knowledge;\n- useful conceptual precedent for `current cue -> connected knowledge` when surface text is not highly similar.\n\nLimit:\n\n- relation propagation/retrieval is still not the same as learned downstream utility;\n- a memory can be graph-close and still be irrelevant to the current goal.\n\n### A-MEM (NeurIPS 2025)\n\nPrimary sources:\n- https://github.com/WujiangXu/A-mem\n- system implementation: https://github.com/WujiangXu/A-mem-sys\n- paper: https://arxiv.org/abs/2502.12110\n\nA-MEM applies Zettelkasten-like dynamic memory organization. New memories receive structured attributes and are linked to historical memories; new information can also evolve the contextual representation of earlier memory.\n\nWhy it matters:\n\n- strong precedent for memory being an **evolving network**, not an append-only vector store;\n- resembles the user's idea that new experience changes which older knowledge has meaning now;\n- suggests future knowledge units may carry typed/structured links in addition to dense similarity.\n\nRisk to avoid:\n\n- automatic memory evolution can corrupt authority if generated relations/updates are allowed to rewrite canonical project knowledge without evidence/review;\n- MSSR should preserve explicit authority and provenance even if an adaptive memory graph is explored later.\n\n### Mem0 / Graph Memory\n\nPrimary sources:\n- https://github.com/mem0ai/mem0\n- graph-memory documentation in repository/platform docs\n\nCurrent Mem0 platform combines entity connections with semantic and keyword signals for retrieval. Its current graph memory links entities and memories and uses those relationships as ranking signals.\n\nUseful lesson:\n\n- hybrid retrieval is often more robust than a single vector score;\n- entity resolution can recover relationships embeddings alone may blur.\n\nImportant current OSS boundary:\n\n- Mem0's graph memory is now a platform feature rather than an equivalent self-hosted OSS graph path, so architecture descriptions must distinguish platform behavior from OSS package behavior.\n\n---\n\n## 4. A real \"neural memory module\" exists, but it is not a universal adapter\n\n### Titans: Learning to Memorize at Test Time\n\nPrimary source:\n- https://research.google/pubs/titans-learning-to-memorize-at-test-time/\n- paper: https://arxiv.org/abs/2501.00663\n\nTitans introduces a neural long-term memory module inside a model architecture. The memory is learned and updated at test time and is intended to complement attention as persistent memory.\n\nThis is the closest item in this radar to the intuitive idea of adding a **specialized neural memory component**.\n\nBut it is not equivalent to a universal LoRA/neuron that can be attached to arbitrary models:\n\n- it is part of the model architecture/training design;\n- closed GPT/Claude-family weights cannot simply load an external Titans memory module;\n- architecture-specific adapters such as LoRA are tied to compatible base-model internals/layers.\n\nMSSR implication:\n\nA portable MauroPrime memory intelligence should remain **outside** host model weights unless/until there is a standard model family under local control. External memory/selection contracts are much more portable across Sol, Codex, Claude, Qwen, local models, etc.\n\n---\n\n# The key distinction for MSSR\n\nMost memory systems optimize one or more of:\n\n- semantic similarity;\n- exact/keyword relevance;\n- entity relationships;\n- temporal validity;\n- query complexity;\n- model confidence;\n- memory update operations.\n\nThe potentially distinctive MSSR dataset is trying to capture something else:\n\n`observable situation -> candidate knowledge -> activation timing -> actual application -> downstream outcome/correction/cost`\n\nThis can eventually support a learned notion of **functional relevance**:\n\n> not merely \"these two texts mean similar things\", but \"knowledge of this kind tends to become useful when a state of this kind occurs\".\n\nThat relation may be directional and goal-dependent:\n\n`memory B useful in state A` does not imply `state A useful when retrieving memory B` in every context.\n\nPossible future relation labels/semantics include:\n\n- `EXPLAINS`;\n- `CAUSES`;\n- `PREVENTS`;\n- `REQUIRES`;\n- `CONTRADICTS`;\n- `INVALIDATES`;\n- `PRECEDES`;\n- `SOLVED_BY`;\n- `REMEMBER_WHEN`;\n- `AUTHORIZES` / `DOES_NOT_AUTHORIZE`.\n\nDo **not** create this ontology now. Preserve evidence so such relationships could later be derived/evaluated without destroying the original observations.\n\n---\n\n# Evaluation work that maps unusually well to MSSR\n\n## LongMemEval\n\nPrimary source:\n- https://github.com/xiaowu0162/LongMemEval\n\nClassic LongMemEval separates abilities such as information extraction, multi-session reasoning, knowledge update, temporal reasoning and abstention.\n\nUseful mainly as a baseline for memory retrieval/reading evaluation.\n\n## LongMemEval-V2 (2026)\n\nPrimary source:\n- https://github.com/xiaowu0162/LongMemEval-V2\n- paper: https://arxiv.org/abs/2605.12493\n\nThis is substantially closer to MauroPrime than ordinary chat-memory benchmarks. It evaluates whether memory lets agents become experienced colleagues in customized environments, including:\n\n- static state recall;\n- dynamic state tracking;\n- workflow knowledge;\n- environment-specific gotchas;\n- premise awareness (knowing when assumptions valid elsewhere are wrong here).\n\nThe benchmark can use histories up to hundreds of trajectories and very large token volumes, while evaluating both accuracy and latency.\n\nMSSR implication:\n\nIts future evaluation should include not just personal/chat recall but **environment experience**:\n\n- recurring project/runtime gotchas;\n- workflow knowledge;\n- local state transitions;\n- stale-premise detection;\n- whether recalled experience improves task outcome under a bounded latency/context budget.\n\nThis looks like a better external benchmark family for the proposed generalized knowledge-activation layer than LoCoMo alone.\n\n---\n\n# Community signals — useful radar, not authority\n\nRecent LocalLLaMA discussions repeatedly report three practical lessons:\n\n1. vector-only memory often retrieves something semantically similar rather than the exact operationally useful memory;\n2. raw/full conversation logs create noise and token cost;\n3. hybrid retrieval (exact/entity/temporal/semantic/graph signals) is generally preferred over one retrieval mechanism.\n\nRelevant discussions:\n- https://www.reddit.com/r/LocalLLaMA/comments/1r21ojm/weve_built_memory_into_4_different_agent_systems/\n- https://www.reddit.com/r/LocalLLaMA/comments/1r8cnwq/analyzed_8_agent_memory_systems_endtoend_heres/\n- https://www.reddit.com/r/LocalLLaMA/comments/1mon8it/woah_letta_vs_mem0_for_ai_memory_nerds/\n\nCommunity discussion also repeatedly warns that memory benchmarks are difficult and frequently measure recall while missing governance, supersession, uncertainty and sustained-use degradation. Treat vendor benchmark claims as design evidence, not final comparative truth.\n\n---\n\n# Architectural conclusion for MSSR\n\n## Now\n\nUse the main working model for semantic judgement after deterministic narrowing.\n\n`large knowledge universe -> cheap structured filtering -> 3-8 candidates -> host/main model decides what to request -> Context Broker materializes minimal units`\n\nNo second model is justified yet.\n\n## Later, if scale demands it\n\nWhen the memory universe is too large for the main model to inspect candidates cheaply, compare experimentally:\n\n1. deterministic/hybrid rules;\n2. embedding retrieval;\n3. graph/relational expansion;\n4. main-model reranking;\n5. a small learned ranker/controller;\n6. outcome-trained memory controller (Memory-R1-like research direction).\n\nDo not assume the learned controller wins. Benchmark latency, context cost, activation precision, missed useful memory, user correction rate and accepted outcome.\n\n## Portable \"memory neuron\" interpretation\n\nThe portable analogue of a neural memory cell should initially be an external service/contract, not a LoRA:\n\n`f(current structured state, candidate knowledge unit) -> relevance/usefulness/activation evidence`\n\nAny future learned implementation can sit behind this interface while the evidence/provenance contract remains stable across host models.\n\nThe long-term research question is whether this function can generalize from skills to:\n\n- project memory;\n- episodic traces;\n- tools;\n- workflows;\n- actions;\n- next-task selection.\n\nIf so, share the **activation/evidence ledger**, not necessarily one global policy. Skill, memory, tool and task selection have different hard constraints even if they share the abstract form `state -> candidate -> decision -> consequence`.\n\n---\n\n# Immediate tasks / no-regret data work\n\n1. Keep vNext Lite deterministic and host-gated.\n2. Record clean candidate -> decision -> transition -> materialization -> application -> outcome evidence.\n3. Add task-validity, model/surface/runtime epoch and artifact revision to cohort identity.\n4. Record enough provenance to reproduce what memory/skill revision was available.\n5. Keep old telemetry as diagnostic history; mark the clean evidence contract with a new schema/epoch if semantics change.\n6. Build a small internal memory-eval taxonomy inspired by LongMemEval-V2: workflow knowledge, environment gotchas, dynamic state, stale-premise awareness.\n7. Do not add vector DB/embeddings merely because the field commonly uses them; wait until the clean dataset demonstrates a retrieval recall problem deterministic indexing cannot solve.\n8. Do not train/fine-tune/RL from current historical attribution metrics.\n\n## Research success criterion\n\nThe useful future question is not:\n\n> Can MSSR retrieve something similar?\n\nIt is:\n\n> Can MSSR surface the smallest knowledge set that measurably improves the current agent's decision, at the right time, while preserving authority/provenance and avoiding unnecessary context cost?\n"
+    }
+  ],
+  "questions": [
+    {
+      "questionId": "Q01",
+      "sourceId": "S01",
+      "query": "What does bilingual term filtering change, and what remains unchanged in indexed and fetched source text?",
+      "selectorStatus": "selected",
+      "selectedHeading": "Bilingual query term filtering",
+      "selectedRange": {
+        "rangeKind": "block",
+        "startLine": 13,
+        "endLine": 13
+      },
+      "fetchedText": "- Filter a bounded English/Spanish function-word set from query terms only; indexed Markdown and exact fetched source retain their original words.",
+      "fetchValidationPassed": true,
+      "evidencePackValidated": true
+    },
+    {
+      "questionId": "Q02",
+      "sourceId": "S01",
+      "query": "¿Qué palabras funcionales japonesas agrega esta versión al filtro?",
+      "selectorStatus": "abstained",
+      "selectedHeading": null,
+      "selectedRange": null,
+      "fetchedText": null,
+      "fetchValidationPassed": false,
+      "evidencePackValidated": false
+    },
+    {
+      "questionId": "Q03",
+      "sourceId": "S02",
+      "query": "¿Qué cuenta aggregateReviewRequired en este contrato?",
+      "selectorStatus": "selected",
+      "selectedHeading": "Behavior",
+      "selectedRange": {
+        "rangeKind": "block",
+        "startLine": 15,
+        "endLine": 15
+      },
+      "fetchedText": "- `aggregateReviewRequired` counts jobs whose complete evaluator result requires review for either block or relation reasons.",
+      "fetchValidationPassed": true,
+      "evidencePackValidated": true
+    },
+    {
+      "questionId": "Q04",
+      "sourceId": "S02",
+      "query": "What numeric value does this changelog set for the local relation-review threshold?",
+      "selectorStatus": "abstained",
+      "selectedHeading": null,
+      "selectedRange": null,
+      "fetchedText": null,
+      "fetchValidationPassed": false,
+      "evidencePackValidated": false
+    },
+    {
+      "questionId": "Q05",
+      "sourceId": "S03",
+      "query": "Which provenance fields does rangeCompaction.removed preserve for each omitted handle?",
+      "selectorStatus": "selected",
+      "selectedHeading": "Behavior",
+      "selectedRange": {
+        "rangeKind": "block",
+        "startLine": 15,
+        "endLine": 15
+      },
+      "fetchedText": "- The retained parent text remains verbatim. `rangeCompaction.removed` maps each omitted handle to a retained citation and preserves its owner, source, revision, range, line, fingerprint, and privacy-class provenance.",
+      "fetchValidationPassed": true,
+      "evidencePackValidated": true
+    },
+    {
+      "questionId": "Q06",
+      "sourceId": "S03",
+      "query": "¿Qué proporción de compresión o límite de tokens apunta a alcanzar la compactación?",
+      "selectorStatus": "abstained",
+      "selectedHeading": null,
+      "selectedRange": null,
+      "fetchedText": null,
+      "fetchValidationPassed": false,
+      "evidencePackValidated": false
+    },
+    {
+      "questionId": "Q07",
+      "sourceId": "S04",
+      "query": "¿Dónde conserva el historial completo de Jev y qué relación queda entre ese módulo y PROJECT_MEMORY?",
+      "selectorStatus": "selected",
+      "selectedHeading": "Behavior",
+      "selectedRange": {
+        "rangeKind": "block",
+        "startLine": 15,
+        "endLine": 15
+      },
+      "fetchedText": "- Preserve the full Jev 0.2.95 and 0.2.97 selector-history sections in a focused reference module; `PROJECT_MEMORY` now points there and retains the concise durable contract.",
+      "fetchValidationPassed": true,
+      "evidencePackValidated": true
+    },
+    {
+      "questionId": "Q08",
+      "sourceId": "S04",
+      "query": "Which numeric Jev confidence threshold did this release set?",
+      "selectorStatus": "abstained",
+      "selectedHeading": null,
+      "selectedRange": null,
+      "fetchedText": null,
+      "fetchValidationPassed": false,
+      "evidencePackValidated": false
+    },
+    {
+      "questionId": "Q09",
+      "sourceId": "S05",
+      "query": "What ordered trace does the note propose capturing beyond text similarity to evaluate functional relevance?",
+      "selectorStatus": "selected",
+      "selectedHeading": "The key distinction for MSSR",
+      "selectedRange": {
+        "rangeKind": "section",
+        "startLine": 239,
+        "endLine": 279
+      },
+      "fetchedText": "# The key distinction for MSSR\n\nMost memory systems optimize one or more of:\n\n- semantic similarity;\n- exact/keyword relevance;\n- entity relationships;\n- temporal validity;\n- query complexity;\n- model confidence;\n- memory update operations.\n\nThe potentially distinctive MSSR dataset is trying to capture something else:\n\n`observable situation -> candidate knowledge -> activation timing -> actual application -> downstream outcome/correction/cost`\n\nThis can eventually support a learned notion of **functional relevance**:\n\n> not merely \"these two texts mean similar things\", but \"knowledge of this kind tends to become useful when a state of this kind occurs\".\n\nThat relation may be directional and goal-dependent:\n\n`memory B useful in state A` does not imply `state A useful when retrieving memory B` in every context.\n\nPossible future relation labels/semantics include:\n\n- `EXPLAINS`;\n- `CAUSES`;\n- `PREVENTS`;\n- `REQUIRES`;\n- `CONTRADICTS`;\n- `INVALIDATES`;\n- `PRECEDES`;\n- `SOLVED_BY`;\n- `REMEMBER_WHEN`;\n- `AUTHORIZES` / `DOES_NOT_AUTHORIZE`.\n\nDo **not** create this ontology now. Preserve evidence so such relationships could later be derived/evaluated without destroying the original observations.\n\n---\n\n",
+      "fetchValidationPassed": true,
+      "evidencePackValidated": true
+    },
+    {
+      "questionId": "Q10",
+      "sourceId": "S05",
+      "query": "¿Qué resultado medido demuestra que un controlador aprendido supera el enrutamiento determinista de MSSR?",
+      "selectorStatus": "abstained",
+      "selectedHeading": null,
+      "selectedRange": null,
+      "fetchedText": null,
+      "fetchValidationPassed": false,
+      "evidencePackValidated": false
+    }
+  ]
+}
