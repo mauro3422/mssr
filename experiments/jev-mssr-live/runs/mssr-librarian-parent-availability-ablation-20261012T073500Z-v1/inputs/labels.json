@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "source": "author",
+  "status": "source-derived exploratory labels; not independent gold and not a holdout",
+  "createdBeforeProviderCalls": true,
+  "labelsExposedToRequests": false,
+  "cases": [
+    {
+      "caseId": "Q01-full",
+      "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+      "answerability": "answerable",
+      "expectedHandleId": "6b1cf59789e53d70b6ab7b0578436fc9c3d5b01b555425bdc64e643544b9a969",
+      "expectedHeading": "Confidence and merge policy",
+      "expectedStartLine": 23,
+      "expectedEndLine": 38,
+      "expectedRangeChars": 1197,
+      "acceptableRanges": [
+        {
+          "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+          "expectedHeading": "Confidence and merge policy",
+          "startLine": 23,
+          "endLine": 38
+        }
+      ],
+      "labelBasis": "author-derived exact source range; not independent gold"
+    },
+    {
+      "caseId": "Q01-parent-removed",
+      "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+      "answerability": "answerable",
+      "expectedHandleId": "6b1cf59789e53d70b6ab7b0578436fc9c3d5b01b555425bdc64e643544b9a969",
+      "expectedHeading": "Confidence and merge policy",
+      "expectedStartLine": 23,
+      "expectedEndLine": 38,
+      "expectedRangeChars": 1197,
+      "acceptableRanges": [
+        {
+          "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+          "expectedHeading": "Confidence and merge policy",
+          "startLine": 23,
+          "endLine": 38
+        }
+      ],
+      "labelBasis": "author-derived exact source range; not independent gold"
+    },
+    {
+      "caseId": "Q02-full",
+      "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "answerability": "answerable",
+      "expectedHandleId": "12cf41a33e58e3f1299f940e4fd881111192baed0dc3a02d3b6899efca5671d4",
+      "expectedHeading": "Reduction, batching and semantic triage",
+      "expectedStartLine": 24,
+      "expectedEndLine": 31,
+      "expectedRangeChars": 2149,
+      "acceptableRanges": [
+        {
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "expectedHeading": "Reduction, batching and semantic triage",
+          "startLine": 24,
+          "endLine": 31
+        }
+      ],
+      "labelBasis": "author-derived exact source range; not independent gold"
+    },
+    {
+      "caseId": "Q02-parent-removed",
+      "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "answerability": "answerable",
+      "expectedHandleId": "12cf41a33e58e3f1299f940e4fd881111192baed0dc3a02d3b6899efca5671d4",
+      "expectedHeading": "Reduction, batching and semantic triage",
+      "expectedStartLine": 24,
+      "expectedEndLine": 31,
+      "expectedRangeChars": 2149,
+      "acceptableRanges": [
+        {
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "expectedHeading": "Reduction, batching and semantic triage",
+          "startLine": 24,
+          "endLine": 31
+        }
+      ],
+      "labelBasis": "author-derived exact source range; not independent gold"
+    }
+  ]
+}

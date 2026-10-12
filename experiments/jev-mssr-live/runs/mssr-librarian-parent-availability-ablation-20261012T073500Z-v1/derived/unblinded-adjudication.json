@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-parent-availability-ablation-20261012T073500Z-v1",
+  "derivation": "post-run mapping from opaque blind-review IDs to the frozen Run44 case order",
+  "frozenInputsChanged": false,
+  "cases": [
+    {
+      "caseId": "Q01-full",
+      "opaqueReviewId": "V-703",
+      "exactAcceptedRangeSelected": false,
+      "blindSemanticCoverage": "complete",
+      "blindOverbreadth": "high",
+      "selectedRangeChars": 3276,
+      "targetRangeChars": 1197,
+      "selectedToTargetRatio": 2.737,
+      "rawChoiceConfidence": 0.74
+    },
+    {
+      "caseId": "Q01-parent-removed",
+      "opaqueReviewId": "V-128",
+      "exactAcceptedRangeSelected": true,
+      "blindSemanticCoverage": "complete",
+      "blindOverbreadth": "low",
+      "selectedRangeChars": 1197,
+      "targetRangeChars": 1197,
+      "selectedToTargetRatio": 1,
+      "rawChoiceConfidence": 1
+    },
+    {
+      "caseId": "Q02-full",
+      "opaqueReviewId": "V-455",
+      "exactAcceptedRangeSelected": false,
+      "blindSemanticCoverage": "complete",
+      "blindOverbreadth": "high",
+      "selectedRangeChars": 3276,
+      "targetRangeChars": 2149,
+      "selectedToTargetRatio": 1.524,
+      "rawChoiceConfidence": 0.68
+    },
+    {
+      "caseId": "Q02-parent-removed",
+      "opaqueReviewId": "V-901",
+      "exactAcceptedRangeSelected": false,
+      "blindSemanticCoverage": "complete",
+      "blindOverbreadth": "high",
+      "selectedRangeChars": 3276,
+      "targetRangeChars": 2149,
+      "selectedToTargetRatio": 1.524,
+      "rawChoiceConfidence": 0.91
+    }
+  ],
+  "aggregate": {
+    "calls": 4,
+    "blindSemanticCoverageComplete": 4,
+    "blindOverbreadthHigh": 3,
+    "blindOverbreadthLow": 1,
+    "exactAcceptedRangeSelections": 1,
+    "explicitlyLabeledRelevantRangeSelections": 0,
+    "selectedOutsideAcceptedRanges": 3,
+    "outsideAcceptedRangeInterpretation": "ungraded for semantic usefulness; not automatically irrelevant",
+    "exactFetchFingerprintPasses": 4,
+    "evidencePackPasses": 4,
+    "answerabilityStatusDecisionsCorrect": 4,
+    "answerabilityNote": "All four cases were labeled answerable and selected. This does not mean all selected ranges matched the exact/relevant labels."
+  },
+  "traceability": {
+    "returnedProvider": "typesafe-jev",
+    "returnedModel": "jev-1.13.0",
+    "requestedModel": "jev-latest",
+    "providerRequestIdsReturned": 0,
+    "providerRequestIdField": "null in all four frozen records",
+    "otherEvidence": "Four complete records carry request fingerprints, event timestamps, returned provider/model, token usage, selected handles, and exact fetch/evidence-pack validations.",
+    "transportInvocationsObserved": null
+  },
+  "interpretationLimits": [
+    "Two paired queries over two previously exposed source pools; not independent samples.",
+    "Run44 reused candidate pools frozen from Run43 and did not rerun Librarian search.",
+    "Removing the target-containing parent also removed its additional context; this is a local paired contrast, not an isolated general causal effect.",
+    "Raw Choice confidence and evidence sufficiency remain uncalibrated.",
+    "Host paragraph composition, synthesis quality, production reliability, and source-disjoint generalization were not measured."
+  ]
+}

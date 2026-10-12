@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "suite": "jev-mssr-live",
+  "runId": "mssr-librarian-parent-availability-ablation-20261012T073500Z-v1",
+  "createdAt": "2026-10-12T07:38:26.642Z",
+  "status": "prepared",
+  "parentRunId": "mssr-librarian-sidecar-unindexed-policy-control-20261012T0550Z-v1",
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "0754d9d2ed14d6dd4e625a705f0f4d8e418abc25",
+    "workingTreeClean": false,
+    "changedPaths": [
+      "experiments/jev-mssr-live/runs/mssr-librarian-parent-availability-ablation-20261012T073500Z-v1/ (new controlled-run packet)"
+    ],
+    "sourceChangesOutsideRunPacket": [],
+    "bridgeRoot": "D:/Dev/bridge-mcp-mssr-0.2.112-query-variants",
+    "bridgeCommit": "8a24c9a0ae843200532c10e520bc3a12a5173156",
+    "bridgeWorkingTreeClean": true,
+    "bridgeVersion": "0.6.173",
+    "mssrVersion": "0.2.127",
+    "buildId": "Bridge 0.6.173 / MSSR 0.2.127",
+    "buildArtifacts": [
+      {
+        "path": "package.json",
+        "kind": "file",
+        "sha256": "323874c1bf07c0df3133d5a728e7b44a5112f20051a0b85a0001e1814786e6ef"
+      },
+      {
+        "path": "package-lock.json",
+        "kind": "file",
+        "sha256": "16141d5b1b118492f6975e246740ef2805c3b543a69309e4c20e1f8f3a49339f"
+      },
+      {
+        "path": "dist/tool-registry.js",
+        "kind": "file",
+        "sha256": "670a6cbdec428f7ad0bd6f7a13173c716fd013c3eb87a54d1c9bb38d7f626554"
+      },
+      {
+        "path": "dist/tools/mssr-semantic-evidence-tools.js",
+        "kind": "file",
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa"
+      },
+      {
+        "path": "dist",
+        "kind": "tree",
+        "sha256": "69c8397a26efb12fe81ef089d63b4501796ebaf41b1f5b2b7da8e48faca26693"
+      },
+      {
+        "path": "node_modules/@mauroprime/mssr/package.json",
+        "kind": "file",
+        "sha256": "9a57998657fb40e8fae0ec44efef08592f6a332c807d15a90792cdd4a27e4ea2"
+      },
+      {
+        "path": "node_modules/@mauroprime/mssr/dist",
+        "kind": "tree",
+        "sha256": "7b9027dd3917b42bda3aee61814987512f6301dd3fa6b167a307cb9a21ac9bf9"
+      },
+      {
+        "path": "node_modules/@typesafe-ai/sdk/package.json",
+        "kind": "file",
+        "sha256": "b94bd1d862b166be53b0b91a36a2af27a0b14e397ffea8f0c53cbfcc9718c508"
+      },
+      {
+        "path": "node_modules/@typesafe-ai/sdk/dist",
+        "kind": "tree",
+        "sha256": "261306c53163dcd853aa050cfa573602d8bb82de229db4e68426bb546ea777df"
+      },
+      {
+        "path": "scripts/read-windows-credential.ps1",
+        "kind": "file",
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e"
+      }
+    ]
+  },
+  "instrument": {
+    "runnerPath": "experiments/jev-mssr-live/runs/mssr-librarian-parent-availability-ablation-20261012T073500Z-v1/runner.mjs",
+    "runnerSha256": "e1c0288041024d281c62298288cf3f372e6f0a516d037a92a7eef9efa37dc15b",
+    "selectionRecordSha256": "847a1224278ed09941526aff7d781842a854f21b3007e4e00ae357e84faa5834",
+    "runnerSupportSha256": "6a9377ec0cdc0c1db4b4f939efa3881fa17facaca5f67fdf02cf6ad5ce123c9a",
+    "casesPath": "experiments/jev-mssr-live/runs/mssr-librarian-parent-availability-ablation-20261012T073500Z-v1/inputs/cases.json",
+    "casesSha256": "c5224dcd1a72c9339a172a94b16e7f4876a0162cf24ba9c8f7fcafa59c94bc69",
+    "upstreamCandidatePoolsPath": "experiments/jev-mssr-live/runs/mssr-librarian-parent-availability-ablation-20261012T073500Z-v1/inputs/run43-candidate-pools.json",
+    "upstreamCandidatePoolsSha256": "fc3d370343404cda74513c0b3fb3077cbfffc3607e14e674ba9d71de1a090174",
+    "lockfileSha256": "16141d5b1b118492f6975e246740ef2805c3b543a69309e4c20e1f8f3a49339f",
+    "runtime": "node v24.16.0",
+    "requestSchemaVersion": 1
+  },
+  "corpus": {
+    "projectRoot": "D:/Dev/mssr",
+    "snapshotPath": "experiments/jev-mssr-live/runs/mssr-librarian-parent-availability-ablation-20261012T073500Z-v1/sources/",
+    "sha256": "8df4c2b7bd5af37e3ce4f359496f80ae7f79a73660a302a61f49bddda2852a75",
+    "items": 2,
+    "sourceRevision": "0754d9d2ed14d6dd4e625a705f0f4d8e418abc25",
+    "redaction": "not-applicable",
+    "sources": [
+      {
+        "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+        "snapshotPath": "sources/mssr-jev-confidence-merge-policy.md",
+        "owner": "d:/dev/mssr",
+        "privacyClass": "project-metadata",
+        "sha256": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+        "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+        "redaction": "not-applicable",
+        "providerExposure": "exact candidate ranges only; no labels"
+      },
+      {
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "snapshotPath": "sources/semantic-evidence-plane.md",
+        "owner": "d:/dev/mssr",
+        "privacyClass": "project-metadata",
+        "sha256": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "redaction": "not-applicable",
+        "providerExposure": "exact candidate ranges only; no labels"
+      }
+    ],
+    "authorityArtifacts": [
+      {
+        "sourcePath": ".mssr/project-context.json",
+        "snapshotPath": "inputs/project-context.json",
+        "sha256": "3e9b70a028124c49ff06c18cbcda3d6f5ce4cd9daf2e3f71cb6ad52581fd2a28",
+        "use": "proves canonical module ownership and selector; not supplied to Jev"
+      }
+    ]
+  },
+  "provider": {
+    "mode": "live",
+    "provider": "typesafe-jev",
+    "endpointIdentity": "https://api.typesafe.ai",
+    "requestedModel": "jev-latest",
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "timeoutMs": 30000,
+    "maxRetries": 1,
+    "concurrency": 1,
+    "networkOptIn": true,
+    "networkOptInMethod": "explicit command-line --allow-network plus user authorization recorded in manifest",
+    "credentialSource": "Windows Credential Manager target TypeSafe:MSSR:JevLab; credential is read on demand and never recorded"
+  },
+  "labels": {
+    "source": "author",
+    "frozenAt": "2026-10-12T07:38:26.642Z",
+    "adjudication": "none",
+    "labelFile": "inputs/labels.json",
+    "labelFileSha256": "80225ef926e4e560606466a1c1a7da8b597bac2f3c571890236eee4bb3e43851",
+    "exposedToRequests": false,
+    "scope": "exact target handle/range only; semantic coverage is deferred to a blind independent review"
+  },
+  "split": {
+    "method": "none",
+    "trainIdsSha256": null,
+    "validationIdsSha256": null,
+    "holdoutIdsSha256": null,
+    "holdoutOpenedAt": null,
+    "holdoutUsedForTuning": true,
+    "note": "Development sources and candidate pools were already exposed in Run43; this is not a holdout."
+  },
+  "plan": {
+    "primaryMetric": "paired exact-target selection change with the target-containing parent available versus removed",
+    "secondaryMetrics": [
+      "selected range character ratio to target",
+      "paired confidence/Noul descriptions",
+      "exact fetch and evidence-pack integrity"
+    ],
+    "thresholds": {},
+    "expectedRequestCount": 4,
+    "independentUnit": "two paired queries over two already-exposed source pools; paired calls are not independent samples",
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30
+    },
+    "uncertaintyMethod": "not computed; report raw paired outcomes only because support is two pairs"
+  },
+  "experiment": {
+    "design": "Two atomic query pairs; each arm uses the same frozen 8-handle pool, except the parent-removed arm drops only the target-containing heading-1 parent and preserves relative order of the remaining seven handles.",
+    "estimand": "Local marginal effect of making that broad parent available alongside the fixed remaining handles for each query and source revision.",
+    "limitations": [
+      "Removing a parent also removes its additional context, so the comparison does not isolate overbreadth from useful sibling context.",
+      "The adapter renumbers opaque option IDs after candidate removal; record this as a paired-arm implementation difference.",
+      "Run43 already exposed these source pools and related queries; no holdout or independent gold.",
+      "Search is not rerun; Run44 evaluates Jev selection conditioned on Run43-frozen candidates.",
+      "Choice confidence and Noul are descriptive, not calibrated."
+    ]
+  }
+}

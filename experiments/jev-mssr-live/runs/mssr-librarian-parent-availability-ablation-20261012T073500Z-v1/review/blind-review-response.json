@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-parent-availability-ablation-20261012T073500Z-v1",
+  "reviewType": "post-run blind semantic coverage and overbreadth assessment",
+  "reviewedDate": "2026-10-12",
+  "reviewer": "independent low-Luna reviewer",
+  "method": {
+    "presentedIds": [
+      "V-455",
+      "V-128",
+      "V-901",
+      "V-703"
+    ],
+    "idsOpaqueAndShuffled": true,
+    "caseIdsAndSourceLabelsWithheld": true,
+    "input": "review/blind-review-input.json",
+    "postRun": true,
+    "ownerGold": false
+  },
+  "ratings": [
+    {
+      "opaqueId": "V-455",
+      "semanticCoverage": "complete",
+      "overbreadth": "high",
+      "rationale": "Includes the direct revision-comparison and atom/reference details, with unrelated confidence policy and run history."
+    },
+    {
+      "opaqueId": "V-128",
+      "semanticCoverage": "complete",
+      "overbreadth": "low",
+      "rationale": "Directly states that the 0.75 value is an exploratory gate and not a calibrated probability or production guarantee."
+    },
+    {
+      "opaqueId": "V-901",
+      "semanticCoverage": "complete",
+      "overbreadth": "high",
+      "rationale": "Contains the requested host re-read/compare requirements, plus unrelated confidence policy and run history."
+    },
+    {
+      "opaqueId": "V-703",
+      "semanticCoverage": "complete",
+      "overbreadth": "high",
+      "rationale": "Explains the threshold clearly but includes unrelated policy and historical material."
+    }
+  ],
+  "limits": [
+    "Post-hoc review of returned excerpts; not owner adjudication, frozen gold, a source-disjoint holdout, or calibration.",
+    "The reviewer judged semantic coverage and scope, not correctness of provider confidence."
+  ]
+}
