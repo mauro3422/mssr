@@ -31,3 +31,12 @@ The bounded evidence pipeline (exact fetch, fingerprint validation, verbatim pac
 4. Keep the Kairos documentation-disconnection and Bee .bridge authority drift visible; this run used explicit tracked files and did not modify those repositories.
 
 No canonical document, atom, threshold, or production behavior was modified.
+
+## Persistence incident (resolved)
+
+- **Date/status:** 2026-10-12, resolved during artifact persistence.
+- **Owner/layer:** This experiment run's Windows PowerShell artifact writer; not Jev or Bridge.
+- **Symptom/evidence:** One invocation carrying the full serialized result payload exceeded the Windows command-line length limit before the write completed.
+- **Cause:** The payload was too large to pass as a single command argument.
+- **Correction:** Compact records, write the payload in chunks, fix Markdown trailing whitespace found by `git diff --check`, then read back and verify all 21 SHA-256 entries.
+- **Verification/follow-up:** After recovery, all 21 package hashes validated and `git diff --check` was clean. For future large result sets, use file-based or chunked writes rather than one oversized command argument. No reusable project-wide rule or writer change is justified by this single event.
