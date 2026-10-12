@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-compact-answer-eval-20261012T123253Z-v1",
+  "kind": "mssr-librarian-host-composition-exploratory",
+  "createdAt": "2026-10-12T12:32:53Z",
+  "sourceRun": {
+    "runId": "mssr-librarian-publication-incident-facets-20261012T121314Z-v2",
+    "commit": "2834addc58f0815395d42064223d3e40e3888d6a",
+    "postCallChecksumPath": "experiments/jev-mssr-live/runs/mssr-librarian-publication-incident-facets-20261012T121314Z-v2/POSTCALL-SHA256SUMS.txt"
+  },
+  "scope": {
+    "newJevCalls": 0,
+    "compositionWriter": "one fresh GPT-6 Luna agent",
+    "reviewers": "two fresh GPT-6 Luna agents",
+    "inputCases": 2,
+    "sourceClusters": 2
+  },
+  "status": "composition output returned before this run archive; reviewer input frozen before blind review; exploratory, not prospective"
+}

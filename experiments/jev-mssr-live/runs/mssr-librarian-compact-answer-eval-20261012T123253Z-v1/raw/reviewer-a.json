@@ -1,0 +1,22 @@
+[
+  {
+    "caseId": "PUB-COMPOSITION",
+    "support": "full",
+    "factualIssues": [],
+    "missingMaterial": [],
+    "citationFit": {"rating": "good", "reason": "L9 and L5-L12 directly support when to restart Bridge and the post-restart checks."},
+    "brevity": "good",
+    "overallUsable": "yes",
+    "rationale": "Accurately preserves the restart condition and all required follow-up checks."
+  },
+  {
+    "caseId": "INCIDENT-COMPOSITION",
+    "support": "full",
+    "factualIssues": [],
+    "missingMaterial": [],
+    "citationFit": {"rating": "good", "reason": "L1-L12 supports the ledger locations, required incident fields, and privacy exclusions."},
+    "brevity": "good",
+    "overallUsable": "yes",
+    "rationale": "Covers each defect category and all required recording and privacy guidance."
+  }
+]

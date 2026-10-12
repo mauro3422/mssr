@@ -1,0 +1,14 @@
+[
+  {
+    "caseId": "PUB-COMPOSITION",
+    "question": "¿Cuándo corresponde reiniciar Bridge y qué hay que comprobar después?",
+    "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+    "packId": "PUB-POS"
+  },
+  {
+    "caseId": "INCIDENT-COMPOSITION",
+    "question": "¿Dónde se registra cada tipo de defecto (routing/fixtures, Bridge, proyecto, skills) y qué datos deben anotarse sin incluir material privado?",
+    "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+    "packId": "INCIDENT-POS"
+  }
+]

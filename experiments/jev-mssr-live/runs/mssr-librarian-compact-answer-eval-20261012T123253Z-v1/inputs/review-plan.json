@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "stage": "frozen before independent reviews, after writer response",
+  "prospectiveWriterScore": false,
+  "reviewersSee": [
+    "original question",
+    "verbatim evidence pack with citations",
+    "compact answer"
+  ],
+  "reviewersDoNotSee": [
+    "labels",
+    "metrics",
+    "baseline comparison",
+    "writer method"
+  ],
+  "axes": [
+    "answers the question",
+    "factual support from supplied pack",
+    "completeness of required answer",
+    "citation correctness and fit",
+    "conciseness without losing needed content"
+  ],
+  "responseFormat": "For each case return support judgment (full/partial/unsupported), any missing or unsupported claim, citation-fit assessment, and brevity assessment. Do not infer model calibration or general reliability from two cases.",
+  "sampleLimits": [
+    "two reused source clusters from Run 52",
+    "single Luna writer",
+    "fresh Luna reviewers",
+    "no owner-gold or human adjudication",
+    "post-hoc exploratory pilot; not a prospective quality score"
+  ]
+}

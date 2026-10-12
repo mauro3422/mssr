@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "agent": "compose_compact_answers",
+  "model": "gpt-6-luna",
+  "reasoningEffort": "low",
+  "status": "completed",
+  "response": "PUB: Reiniciá Bridge solo cuando un cambio de runtime, herramienta o esquema lo requiera, y después de que los commits estén guardados. Tras reiniciarlo, comprobá la versión del proceso, el catálogo de herramientas, las pruebas rápidas enfocadas y la verificación completa. [maintenance-publication.md, L9-L9; L5-L12]\n\nINCIDENT: Registrá defectos de routing y fixtures en `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`; de herramientas, transporte o ciclo de vida de Bridge en `D:\\Dev\\bridge-mcp\\docs\\INCIDENTS.md`; defectos exclusivos del proyecto en su documento de estado o incidentes; y defectos de procedimiento de una skill en el changelog de esa skill y, cuando corresponda, en el registro del sistema. Anotá fecha y estado, capa y responsable, síntoma, reproducción mínima o evidencia exacta, causa demostrada o «No resuelta», corrección, regresión y seguimiento. No incluyas prompts sin procesar, transcripciones, secretos ni razonamiento privado. [maintenance-incidents.md, L1-L12]"
+}

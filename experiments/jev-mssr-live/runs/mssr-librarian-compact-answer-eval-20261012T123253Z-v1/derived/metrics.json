@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-compact-answer-eval-20261012T123253Z-v1",
+  "measure": "descriptive character counts of exact fetched source text versus composed answer text; not token usage",
+  "aggregate": {
+    "sourceMetadataAndJSONEnvelopeIncluded": false,
+    "characterReductionIncludingCitationsPercent": 46.2,
+    "composedAnswerCharsIncludingCitations": 973,
+    "composedAnswerCharsExcludingCitationStrings": 894,
+    "exactFetchedSourceTextChars": 1809,
+    "citationStringsIncludedInPrimaryOutputCount": true,
+    "characterReductionExcludingCitationStringsPercent": 50.6
+  },
+  "byCase": [
+    {
+      "reviewersFullSupport": 2,
+      "answerCharsIncludingCitations": 312,
+      "reviewersUsable": 2,
+      "caseId": "PUB-COMPOSITION",
+      "exactFetchedSourceTextChars": 941,
+      "answerCharsExcludingCitationStrings": 268
+    },
+    {
+      "reviewersFullSupport": 2,
+      "answerCharsIncludingCitations": 661,
+      "reviewersUsable": 2,
+      "caseId": "INCIDENT-COMPOSITION",
+      "exactFetchedSourceTextChars": 868,
+      "answerCharsExcludingCitationStrings": 626
+    }
+  ],
+  "interpretation": "A small exploratory example shows that the host can compose shorter cited Spanish answers from exact packs. It does not establish semantic-compaction quality, token savings, general reliability, or a calibrated score."
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "caseId": "PUB-COMPOSITION",
+    "support": "full",
+    "factualIssues": [],
+    "missingMaterial": [],
+    "citationFit": {"rating": "good", "reason": "L9 supports when a restart is required and must wait until commits are durable; L5-L12 supports all four post-restart checks."},
+    "brevity": "good",
+    "usable": "yes",
+    "rationale": "Answers both when to restart and what to verify afterward. Guardados is a reasonable concise rendering of commits being durable."
+  },
+  {
+    "caseId": "INCIDENT-COMPOSITION",
+    "support": "full",
+    "factualIssues": [],
+    "missingMaterial": [],
+    "citationFit": {"rating": "good", "reason": "L1-L12 covers the listed canonical ledgers, required incident details, and material that must not be recorded."},
+    "brevity": "good",
+    "usable": "yes",
+    "rationale": "Preserves the routing for all four defect types and includes every required record field and privacy exclusion."
+  }
+]

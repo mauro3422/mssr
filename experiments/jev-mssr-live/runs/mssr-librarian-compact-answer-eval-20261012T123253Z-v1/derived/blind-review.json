@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "reviewMode": "blind independent model-assisted review",
+  "reviewers": [
+    {
+      "id": "reviewer-a",
+      "reasoningEffort": "low",
+      "model": "gpt-6-luna",
+      "evidence": "raw/reviewer-a.json"
+    },
+    {
+      "id": "reviewer-b",
+      "reasoningEffort": "low",
+      "model": "gpt-6-luna",
+      "evidence": "raw/reviewer-b.json"
+    }
+  ],
+  "cases": [
+    {
+      "brevityGood": 2,
+      "caseId": "PUB-COMPOSITION",
+      "usableYes": 2,
+      "citationFitGood": 2,
+      "factualIssues": 0,
+      "missingMaterial": 0,
+      "supportFull": 2,
+      "judgments": 2
+    },
+    {
+      "brevityGood": 2,
+      "caseId": "INCIDENT-COMPOSITION",
+      "usableYes": 2,
+      "citationFitGood": 2,
+      "factualIssues": 0,
+      "missingMaterial": 0,
+      "supportFull": 2,
+      "judgments": 2
+    }
+  ],
+  "agreement": "Both reviewers independently rated both answers fully supported, complete, concise, citation-fit good, and usable.",
+  "limitations": [
+    "Model-assisted agreement is not human adjudication or owner-gold.",
+    "Both reviewers used the same model family and reasoning effort.",
+    "Only two reused source clusters and one writer output were reviewed."
+  ]
+}
