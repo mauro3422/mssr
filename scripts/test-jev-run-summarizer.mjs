@@ -610,8 +610,8 @@ try {
     '  return {',
     '    has: (name) => names.has(name),',
     '    async call(name, args) {',
-    '      if (name === "mssr_librarian_search") return { sourceCount: 1, results: [{ title: "Sample", headingPath: ["Sample"], score: 1, handle }] };',
-    '      if (name === "mssr_librarian_jev_select") { const labelKeys = ["answerability", "expectedHeading", "expectedStartLine", "expectedEndLine", "acceptableRanges", "relevantRanges"]; const requestText = JSON.stringify(args); if (labelKeys.some((key) => key in args) || requestText.includes("LABEL_ONLY_SENTINEL") || requestText.includes("97831") || requestText.includes("unanswerable")) throw new Error("labels must not be sent to Jev"); if (args.query.includes("absent")) return { status: "abstained", choice: "none", provider: "fixture-mock", model: "fixture-no-network", providerConfidence: 0.11, confidenceCalibration: "uncalibrated", evidenceSufficiency: 0.13, noul: 0.65, usage: { input_tokens: 4, output_tokens: 1 }, selected: null }; failNextFetch = args.query.includes("fetch-failure"); const choice = args.query.includes("conflict") ? "none" : "fixture-handle-01"; return { status: "selected", choice, provider: "fixture-mock", model: "fixture-no-network", providerConfidence: 0.91, confidenceCalibration: "uncalibrated", evidenceSufficiency: 0.87, noul: 0.65, usage: { input_tokens: 4, output_tokens: 2 }, selected: { title: "Sample", headingPath: ["Sample"], handle } }; }',
+    '      if (name === "mssr_librarian_search") { if (args.query.query.includes("empty-search")) return { sourceCount: 1, results: [] }; return { sourceCount: 1, results: [{ title: "Sample", headingPath: ["Sample"], score: 1, handle }] }; }',
+    '      if (name === "mssr_librarian_jev_select") { if (args.query.includes("empty-search")) throw new Error("selector must not run when search returns no candidates"); const labelKeys = ["answerability", "expectedHeading", "expectedStartLine", "expectedEndLine", "acceptableRanges", "relevantRanges"]; const requestText = JSON.stringify(args); if (labelKeys.some((key) => key in args) || requestText.includes("LABEL_ONLY_SENTINEL") || requestText.includes("97831") || requestText.includes("unanswerable")) throw new Error("labels must not be sent to Jev"); if (args.query.includes("absent")) return { status: "abstained", choice: "none", provider: "fixture-mock", model: "fixture-no-network", providerConfidence: 0.11, confidenceCalibration: "uncalibrated", evidenceSufficiency: 0.13, noul: 0.65, usage: { input_tokens: 4, output_tokens: 1 }, selected: null }; failNextFetch = args.query.includes("fetch-failure"); const choice = args.query.includes("conflict") ? "none" : "fixture-handle-01"; return { status: "selected", choice, provider: "fixture-mock", model: "fixture-no-network", providerConfidence: 0.91, confidenceCalibration: "uncalibrated", evidenceSufficiency: 0.87, noul: 0.65, usage: { input_tokens: 4, output_tokens: 2 }, selected: { title: "Sample", headingPath: ["Sample"], handle } }; }',
     '      if (name === "mssr_librarian_fetch") { if (failNextFetch) { failNextFetch = false; throw new Error("fixture fetch failure"); } return { handle, text, fingerprint, projectOwner: owner, advisoryOnly: true, truthAuthority: false }; }',
     '      if (name === "mssr_librarian_evidence_pack") {',
     '        const citation = { display: "docs/one.md:L1-L3", handleId: handle.id, owner, sourceRef: handle.sourceRef, revision: handle.revision, rangeId: handle.rangeId, rangeKind: handle.rangeKind, startLine: 1, endLine: 3, fingerprint, privacyClass: handle.privacyClass };',
@@ -640,6 +640,7 @@ try {
       { id: "mock-conflicted", sourceRef: "docs/one.md", query: "Check this conflict fixture." },
       { id: "mock-fetch-failure", sourceRef: "docs/one.md", query: "Select the exact fixture despite a fetch-failure." },
       { id: "mock-contained-target", sourceRef: "docs/one.md", query: "Select the contained target range." },
+      { id: "mock-empty-search", sourceRef: "docs/one.md", query: "empty-search exact fixture evidence." },
     ],
   });
   const mockLabelsBytes = await writeJson(path.join(mockRun, "inputs/labels.json"), {
@@ -685,6 +686,14 @@ try {
         acceptableRanges: [{ sourceRef: "docs/one.md", expectedHeading: "Sample", startLine: 2, endLine: 3 }],
         relevantRanges: [{ sourceRef: "docs/one.md", expectedHeading: "Sample", startLine: 1, endLine: 3 }],
       },
+      {
+        caseId: "mock-empty-search",
+        sourceRef: "docs/one.md",
+        expectedHeading: "Sample",
+        expectedStartLine: 1,
+        expectedEndLine: 3,
+        acceptableRanges: [{ sourceRef: "docs/one.md", expectedHeading: "Sample", startLine: 1, endLine: 3 }],
+      },
     ],
   });
   const mockManifest = {
@@ -712,7 +721,7 @@ try {
       networkOptIn: true,
       networkOptInMethod: "explicit command-line --allow-network plus user authorization recorded in manifest",
     },
-    plan: { expectedRequestCount: 5, independentUnit: "fixture sourceRef only; no statistical claim" },
+    plan: { expectedRequestCount: 6, independentUnit: "fixture sourceRef only; no statistical claim" },
     instrument: {
       runnerSha256: digest(mockRunnerBytes),
       selectionRecordSha256: digest(mockSelectionBytes),
@@ -731,18 +740,18 @@ try {
   assert.equal(mockLiveRun.status, 0, mockLiveRun.stderr);
   const mockSummary = JSON.parse(mockLiveRun.stdout);
   assert.equal(mockSummary.status, "partial");
-  assert.equal(mockSummary.successfulRequests, 4);
+  assert.equal(mockSummary.successfulRequests, 5);
   assert.equal(mockSummary.failedRequests, 1);
   assert.equal(mockSummary.exactHeadingMatches, 2);
-  assert.equal(mockSummary.exactHeadingDenominator, 4);
+  assert.equal(mockSummary.exactHeadingDenominator, 5);
   assert.deepEqual(mockSummary.answerabilityMetrics.answerable, {
-    cases: 4,
+    cases: 5,
     correctAnswerabilityDecisions: 3,
     correctExactRangeSelections: 2,
     correctRelevantRangeSelections: 2,
     selectedOutsideLabeledRanges: 0,
     incorrectDecisions: 0,
-    failedOrUnknownDecisions: 1,
+    failedOrUnknownDecisions: 2,
     abstentions: 0,
   });
   assert.equal(mockSummary.answerabilityMetrics.unanswerable.correctAbstentions, 1);
@@ -751,7 +760,7 @@ try {
   assert.equal(mockSummary.searchExactLabeledRangeAt100, 3);
   assert.equal(mockSummary.searchTargetRangeContainedAt100, 4,
     "the live runner must count a broad candidate that fully contains the labeled target");
-  assert.equal(mockSummary.searchTargetRangeContainmentDenominator, 4);
+  assert.equal(mockSummary.searchTargetRangeContainmentDenominator, 5);
   assert.equal(mockSummary.searchTargetLinesContainedAt100, 4);
   assert.match(mockSummary.searchTargetRecallAt100Semantics, /LEGACY strict equality/u);
   const containedTargetRecord = mockSummary.records.find((item) => item.caseId === "mock-contained-target");
@@ -784,11 +793,17 @@ try {
   const mockConflictedRecord = JSON.parse(mockRecordLines[2]);
   const mockFetchFailureRecord = JSON.parse(mockRecordLines[3]);
   const mockContainedRecord = JSON.parse(mockRecordLines[4]);
+  const mockEmptySearchRecord = JSON.parse(mockRecordLines[5]);
   assert.equal(mockRecord.jev.evidenceSufficiency, 0.87);
   assert.equal(mockRecord.jev.choice, "fixture-handle-01");
   assert.equal(mockRecord.jev.noul, 0.65);
   assert.equal(mockRecord.fetch.passed, true);
   assert.equal(mockRecord.evidencePack.passed, true);
+  assert.equal(mockEmptySearchRecord.search.resultCount, 0);
+  assert.equal(mockEmptySearchRecord.jev.status, "not-run");
+  assert.equal(mockEmptySearchRecord.jev.candidateCount, 0);
+  assert.equal(mockEmptySearchRecord.jev.jevCallMade, false);
+  assert.equal(mockEmptySearchRecord.jev.reason, "no-search-candidates");
   assert.equal(mockAbstentionRecord.jev.choice, "none");
   assert.equal(mockAbstentionRecord.fetch, null, "a recorded abstention must not trigger exact fetch or evidence packing");
   assert.equal(mockConflictedRecord.jev.choice, "none");

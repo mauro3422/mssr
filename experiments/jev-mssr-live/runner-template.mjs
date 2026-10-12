@@ -129,13 +129,32 @@ for (const testCase of cases) {
     const searchResults = search.results ?? [];
 
     const candidateHandles = searchResults.map((item) => item.handle).filter(Boolean);
-    const selected = await registry.call("mssr_librarian_jev_select", {
-      projectRoot,
-      sourceRefs: [testCase.sourceRef],
-      query: testCase.query,
-      ...(candidateHandles.length > 0 ? { candidateHandles } : {}),
-      model: manifest.provider.requestedModel,
-    });
+    const selected = candidateHandles.length === 0
+      ? {
+        status: "not-run",
+        reason: "no-search-candidates",
+        candidateCount: 0,
+        jevCallMade: false,
+        selected: null,
+        choice: null,
+        choiceCalls: [],
+        provider: null,
+        model: null,
+        providerRequestId: null,
+        requestFingerprint: null,
+        elapsedMs: null,
+        usage: null,
+        advisoryOnly: true,
+        truthAuthority: false,
+        verification: "unverified",
+      }
+      : await registry.call("mssr_librarian_jev_select", {
+        projectRoot,
+        sourceRefs: [testCase.sourceRef],
+        query: testCase.query,
+        candidateHandles,
+        model: manifest.provider.requestedModel,
+      });
     record.search = {
       sourceCount: search.sourceCount,
       resultCount: searchResults.length,
@@ -158,6 +177,8 @@ for (const testCase of cases) {
       candidateSetFingerprint,
       providerRequestId: selected.providerRequestId ?? null,
       status: selected.status,
+      reason: selected.reason ?? null,
+      jevCallMade: selected.jevCallMade ?? true,
       provider: selected.provider ?? null,
       returnedModel: selected.model ?? null,
       ...serializeJevEvidenceMetrics(selected),
