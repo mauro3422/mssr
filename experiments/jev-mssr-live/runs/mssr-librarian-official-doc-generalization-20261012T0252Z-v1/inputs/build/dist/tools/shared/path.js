@@ -1,0 +1,279 @@
+import fs from "node:fs";
+import fsPromises from "node:fs/promises";
+import os from "node:os";
+import path from "node:path";
+const DEFAULT_DENIED_NAMES = [
+    ".env",
+    ".npmrc",
+    ".pypirc",
+    ".git-credentials",
+    "id_rsa",
+    "id_ed25519",
+    "credentials.json",
+    "service-account.json",
+    "token.json",
+    "client_secret.json",
+];
+function envList(value) {
+    return String(value ?? "")
+        .split(path.delimiter)
+        .map((item) => item.trim())
+        .filter(Boolean);
+}
+function normalizeForCompare(value) {
+    const resolved = path.resolve(value);
+    const volumeRoot = path.parse(resolved).root;
+    const normalized = resolved === volumeRoot ? resolved : resolved.replace(/[\\/]+$/, "");
+    return process.platform === "win32" ? normalized.toLowerCase() : normalized;
+}
+function isWithin(root, target) {
+    const relative = path.relative(root, target);
+    return relative === "" || (!relative.startsWith("..") && !path.isAbsolute(relative));
+}
+function canonicalizePotentialPath(target) {
+    let current = path.resolve(target);
+    const suffix = [];
+    while (!fs.existsSync(current)) {
+        const parent = path.dirname(current);
+        if (parent === current)
+            break;
+        suffix.unshift(path.basename(current));
+        current = parent;
+    }
+    try {
+        const realBase = fs.realpathSync.native(current);
+        return path.resolve(realBase, ...suffix);
+    }
+    catch {
+        return path.resolve(target);
+    }
+}
+function existingDirectoryCandidates(values) {
+    const unique = new Map();
+    for (const value of values) {
+        const resolved = path.resolve(value);
+        try {
+            if (!fs.statSync(resolved).isDirectory())
+                continue;
+        }
+        catch {
+            continue;
+        }
+        unique.set(normalizeForCompare(resolved), resolved);
+    }
+    return Array.from(unique.values());
+}
+function existingPathCandidates(values) {
+    const unique = new Map();
+    for (const value of values) {
+        const resolved = path.resolve(value);
+        try {
+            fs.statSync(resolved);
+        }
+        catch {
+            continue;
+        }
+        unique.set(normalizeForCompare(resolved), resolved);
+    }
+    return Array.from(unique.values());
+}
+function defaultAllowedRoots() {
+    const home = os.homedir();
+    return existingDirectoryCandidates([
+        path.resolve(process.cwd(), ".."),
+        path.resolve("D:\\"),
+        path.resolve(os.homedir(), ".codex", "skills"),
+        path.resolve("D:\\AI"),
+        path.resolve("D:\\ai-models"),
+        path.resolve("D:\\ai-runtime"),
+        os.tmpdir(),
+        path.join(home, "Videos"),
+        path.join(home, "Documents", "Proyectos"),
+        path.join(home, "Desktop", "Proyectos"),
+    ]);
+}
+function defaultReadOnlyRoots() {
+    const home = os.homedir();
+    return existingPathCandidates([
+        path.join(home, ".codex", "sessions"),
+        path.join(home, ".codex", "archived_sessions"),
+        path.join(home, ".codex", "history.jsonl"),
+        path.join(home, "AppData", "Local", "QuietDesk", "captures"),
+    ]);
+}
+function defaultDeniedPaths() {
+    const home = os.homedir();
+    const systemRoot = process.env.SystemRoot || process.env.WINDIR;
+    return [
+        path.join(home, ".ssh"),
+        path.join(home, ".gnupg"),
+        path.join(home, ".aws"),
+        path.join(home, ".azure"),
+        path.join(home, ".kube"),
+        path.join(home, ".docker"),
+        path.join(home, ".config", "gcloud"),
+        path.join(home, "AppData", "Roaming", "gcloud"),
+        path.join(home, "AppData", "Local", "Google", "Chrome", "User Data"),
+        path.join(home, "AppData", "Local", "Microsoft", "Edge", "User Data"),
+        path.join(home, "AppData", "Roaming", "Mozilla"),
+        path.join(home, "AppData", "Roaming", "Microsoft", "Credentials"),
+        path.join(home, "AppData", "Local", "Microsoft", "Credentials"),
+        ...(systemRoot ? [systemRoot] : []),
+    ].map((item) => path.resolve(item));
+}
+export function getPathPolicy(env = process.env) {
+    const configuredRoots = envList(env.BRIDGE_MCP_ALLOWED_ROOTS);
+    const configuredReadOnlyRoots = envList(env.BRIDGE_MCP_READONLY_ROOTS);
+    const configuredDeniedPaths = envList(env.BRIDGE_MCP_DENIED_PATHS);
+    const configuredDeniedNames = String(env.BRIDGE_MCP_DENIED_NAMES ?? "")
+        .split(",")
+        .map((item) => item.trim())
+        .filter(Boolean);
+    const allowedRoots = existingDirectoryCandidates(configuredRoots.length > 0 ? configuredRoots : defaultAllowedRoots());
+    const readOnlyRoots = existingPathCandidates(configuredReadOnlyRoots.length > 0 ? configuredReadOnlyRoots : defaultReadOnlyRoots());
+    const deniedPaths = [...defaultDeniedPaths(), ...configuredDeniedPaths.map((item) => path.resolve(item))];
+    const deniedNames = Array.from(new Set([...DEFAULT_DENIED_NAMES, ...configuredDeniedNames].map((item) => item.toLowerCase())));
+    return {
+        enabled: env.BRIDGE_MCP_PATH_POLICY_DISABLED !== "1",
+        source: configuredRoots.length > 0 ? "BRIDGE_MCP_ALLOWED_ROOTS" : "safe defaults",
+        readOnlySource: configuredReadOnlyRoots.length > 0 ? "BRIDGE_MCP_READONLY_ROOTS" : "safe defaults",
+        allowedRoots,
+        readOnlyRoots,
+        deniedPaths,
+        deniedNames,
+    };
+}
+function deniedNameInPath(target, deniedNames) {
+    const safeEnvironmentTemplates = new Set([".env.example", ".env.sample", ".env.template"]);
+    const parts = path.resolve(target).split(/[\\/]+/).map((part) => part.toLowerCase());
+    for (const part of parts) {
+        if (safeEnvironmentTemplates.has(part))
+            continue;
+        if (part === ".env" || part.startsWith(".env."))
+            return part;
+        if (deniedNames.includes(part))
+            return part;
+    }
+    return null;
+}
+async function canonicalizePotentialPathAsync(target) {
+    let current = path.resolve(target);
+    const suffix = [];
+    while (true) {
+        try {
+            const realBase = await fsPromises.realpath(current);
+            return path.resolve(realBase, ...suffix);
+        }
+        catch {
+            const parent = path.dirname(current);
+            if (parent === current)
+                return path.resolve(target);
+            suffix.unshift(path.basename(current));
+            current = parent;
+        }
+    }
+}
+export async function prepareToolPathPolicy(env = process.env) {
+    const policy = getPathPolicy(env);
+    if (!policy.enabled) {
+        return { policy, canonicalAllowedRoots: [], canonicalReadOnlyRoots: [], canonicalDeniedPaths: [] };
+    }
+    const [canonicalAllowedRoots, canonicalReadOnlyRoots, canonicalDeniedPaths] = await Promise.all([
+        Promise.all(policy.allowedRoots.map((root) => canonicalizePotentialPathAsync(root))),
+        Promise.all(policy.readOnlyRoots.map((root) => canonicalizePotentialPathAsync(root))),
+        Promise.all(policy.deniedPaths.map((item) => canonicalizePotentialPathAsync(item))),
+    ]);
+    return { policy, canonicalAllowedRoots, canonicalReadOnlyRoots, canonicalDeniedPaths };
+}
+export async function assertPathAllowedAsync(target, access = "read", prepared) {
+    const resolved = path.resolve(target);
+    const state = prepared ?? await prepareToolPathPolicy();
+    const { policy } = state;
+    if (!policy.enabled || access === "internal")
+        return resolved;
+    const canonical = await canonicalizePotentialPathAsync(resolved);
+    const allowedByRoots = (roots, canonicalRoots) => {
+        const resolvedAllowed = roots.some((root) => isWithin(normalizeForCompare(root), normalizeForCompare(resolved)));
+        const canonicalAllowed = canonicalRoots.some((root) => isWithin(normalizeForCompare(root), normalizeForCompare(canonical)));
+        return resolvedAllowed && canonicalAllowed;
+    };
+    const allowed = allowedByRoots(policy.allowedRoots, state.canonicalAllowedRoots)
+        || (access === "read" && allowedByRoots(policy.readOnlyRoots, state.canonicalReadOnlyRoots));
+    if (!allowed) {
+        const readOnlyHint = access === "read" && policy.readOnlyRoots.length > 0
+            ? ` Read-only roots: ${policy.readOnlyRoots.join(", ")}`
+            : "";
+        throw new Error(`Path is outside bridge-mcp allowed roots for ${access}: ${resolved}. Allowed roots: ${policy.allowedRoots.join(", ")}.${readOnlyHint}`);
+    }
+    const deniedIndex = policy.deniedPaths.findIndex((item, index) => isWithin(normalizeForCompare(item), normalizeForCompare(resolved))
+        || isWithin(normalizeForCompare(state.canonicalDeniedPaths[index] ?? item), normalizeForCompare(canonical)));
+    if (deniedIndex >= 0) {
+        throw new Error(`Path is denied by bridge-mcp policy: ${resolved} (matched ${policy.deniedPaths[deniedIndex]})`);
+    }
+    const deniedName = deniedNameInPath(resolved, policy.deniedNames) ?? deniedNameInPath(canonical, policy.deniedNames);
+    if (deniedName)
+        throw new Error(`Path contains a denied sensitive filename '${deniedName}': ${resolved}`);
+    return resolved;
+}
+export async function resolveToolPathAsync(inputPath, options = {}, prepared) {
+    if (!inputPath || typeof inputPath !== "string")
+        throw new Error("Path must be a non-empty string.");
+    const baseDir = options.baseDir ? path.resolve(options.baseDir) : process.cwd();
+    const resolved = path.resolve(baseDir, inputPath);
+    return assertPathAllowedAsync(resolved, options.access ?? "read", prepared);
+}
+export function assertPathAllowed(target, access = "read") {
+    const resolved = path.resolve(target);
+    const canonical = canonicalizePotentialPath(resolved);
+    const policy = getPathPolicy();
+    if (!policy.enabled || access === "internal")
+        return resolved;
+    const allowedByRoots = (roots) => {
+        const resolvedAllowed = roots.some((root) => isWithin(normalizeForCompare(root), normalizeForCompare(resolved)));
+        const canonicalAllowed = roots.some((root) => {
+            const canonicalRoot = canonicalizePotentialPath(root);
+            return isWithin(normalizeForCompare(canonicalRoot), normalizeForCompare(canonical));
+        });
+        return resolvedAllowed && canonicalAllowed;
+    };
+    const allowed = allowedByRoots(policy.allowedRoots)
+        || (access === "read" && allowedByRoots(policy.readOnlyRoots));
+    if (!allowed) {
+        const readOnlyHint = access === "read" && policy.readOnlyRoots.length > 0
+            ? ` Read-only roots: ${policy.readOnlyRoots.join(", ")}`
+            : "";
+        throw new Error(`Path is outside bridge-mcp allowed roots for ${access}: ${resolved}. Allowed roots: ${policy.allowedRoots.join(", ")}.${readOnlyHint}`);
+    }
+    const deniedPath = policy.deniedPaths.find((item) => {
+        const denied = canonicalizePotentialPath(item);
+        return isWithin(normalizeForCompare(item), normalizeForCompare(resolved))
+            || isWithin(normalizeForCompare(denied), normalizeForCompare(canonical));
+    });
+    if (deniedPath)
+        throw new Error(`Path is denied by bridge-mcp policy: ${resolved} (matched ${deniedPath})`);
+    const deniedName = deniedNameInPath(resolved, policy.deniedNames) ?? deniedNameInPath(canonical, policy.deniedNames);
+    if (deniedName)
+        throw new Error(`Path contains a denied sensitive filename '${deniedName}': ${resolved}`);
+    return resolved;
+}
+export function resolveToolPath(inputPath, options = {}) {
+    if (!inputPath || typeof inputPath !== "string")
+        throw new Error("Path must be a non-empty string.");
+    const baseDir = options.baseDir ? path.resolve(options.baseDir) : process.cwd();
+    const resolved = path.resolve(baseDir, inputPath);
+    return assertPathAllowed(resolved, options.access ?? "read");
+}
+export function pathPolicyStatus() {
+    const policy = getPathPolicy();
+    return {
+        ...policy,
+        cwd: process.cwd(),
+        tempRoot: os.tmpdir(),
+        notes: [
+            "The policy constrains paths and working directories used by explicit Bridge tools.",
+            "run_command and terminal tools still execute a trusted shell inside an allowed cwd; this is not an operating-system sandbox.",
+            "Set BRIDGE_MCP_ALLOWED_ROOTS using the platform path delimiter to replace the default writable/cwd allowed roots.",
+            "BRIDGE_MCP_READONLY_ROOTS adds paths that explicit read tools may inspect but write/cwd access may not use.",
+        ],
+    };
+}

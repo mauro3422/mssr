@@ -1,0 +1,9 @@
+# Public official-doc cohort review
+
+This run checks whether the MSSR Librarian pipeline generalizes to eight pinned public Markdown files from Microsoft TypeScript documentation, the Rust Book, Node.js documentation, and GitHub Docs. Each document has one answerable and one source-scoped unanswerable query. The two queries per document are linked; the primary clustering unit is the upstream repository family (four clusters, two files each).
+
+The positive answer claims were independently reviewed by a Luna reviewer and their exact line locations were rechecked against the downloaded snapshots. A separate Luna reviewer proposed and checked the unanswerable cases against only the scoped source. All eight raw snapshots were hash-verified against their pinned upstream revisions. Labels are model-assisted independent review, not human or owner-gold.
+
+The cohort is all English to focus on source-family generalization. Earlier MSSR experiments already exercised English/Spanish queries. The evaluation tests lexical candidate retrieval, Jev selection/abstention, exact fetch and evidence-pack integrity. It does not test atom metadata, synthesis preview, or host-written paragraph composition. The last is host-owned and must be evaluated separately.
+
+The run uses the verified isolated Bridge release module (Bridge 0.6.172 / MSSR 0.2.127 / Jev 1.13.0), not the active MCP connector. Run 34 separately checked active-connector parity on three cases. This 16-request run is exploratory: four repository clusters are below the protocol support floor of 30 independent units. No confidence calibration, production threshold, reliability, or superiority claim follows from it.

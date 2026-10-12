@@ -1,0 +1,91 @@
+{
+  "status": "dry-run",
+  "networkRequests": 0,
+  "requestedCalls": 16,
+  "requestedModel": "jev-1.13.0",
+  "sourceDocuments": 8,
+  "independentUnits": "four upstream repository families; two documents per family; positive/negative pair within each document is linked",
+  "cases": [
+    {
+      "id": "typescript-narrowing-pos",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/01-typescript-narrowing.md",
+      "query": "What common property with literal types lets TypeScript narrow a discriminated union?"
+    },
+    {
+      "id": "typescript-narrowing-neg",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/01-typescript-narrowing.md",
+      "query": "What is the maximum number of variants TypeScript can distinguish in a discriminated union?"
+    },
+    {
+      "id": "typescript-everyday-pos",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/02-typescript-everyday-types.md",
+      "query": "Which two equivalent syntaxes does the handbook give for a numeric array?"
+    },
+    {
+      "id": "typescript-everyday-neg",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/02-typescript-everyday-types.md",
+      "query": "In which TypeScript version were type aliases introduced?"
+    },
+    {
+      "id": "rust-refcell-pos",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/03-rust-refcell.md",
+      "query": "When does RefCell enforce borrowing rules, and what happens if they are broken?"
+    },
+    {
+      "id": "rust-refcell-neg",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/03-rust-refcell.md",
+      "query": "What exact percentage of runtime overhead does RefCell add compared with ordinary references?"
+    },
+    {
+      "id": "rust-mutex-pos",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/04-rust-mutex.md",
+      "query": "What two rules should be followed when using data protected by a Mutex?"
+    },
+    {
+      "id": "rust-mutex-neg",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/04-rust-mutex.md",
+      "query": "Does Mutex guarantee FIFO lock acquisition order?"
+    },
+    {
+      "id": "node-fs-pos",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/05-node-fs.md",
+      "query": "Why should streaming be preferred over fs.readFile when minimizing memory costs?"
+    },
+    {
+      "id": "node-fs-neg",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/05-node-fs.md",
+      "query": "How many milliseconds per million operations do fs callbacks save over promises?"
+    },
+    {
+      "id": "node-process-pos",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/06-node-process.md",
+      "query": "What should code set instead of calling process.exit() to let the process exit naturally?"
+    },
+    {
+      "id": "node-process-neg",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/06-node-process.md",
+      "query": "At what interval does process.cpuUsage internally update its counters?"
+    },
+    {
+      "id": "github-workflow-pos",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/07-github-workflow-syntax.md",
+      "query": "In what order are GITHUB_TOKEN defaults and workflow/job permissions adjusted, and what happens to write permissions for fork pull requests?"
+    },
+    {
+      "id": "github-workflow-neg",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/07-github-workflow-syntax.md",
+      "query": "What maximum time does GitHub guarantee for a queued workflow to start?"
+    },
+    {
+      "id": "github-labels-pos",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/08-github-managing-labels.md",
+      "query": "What default labels can organization owners customize for their repositories?"
+    },
+    {
+      "id": "github-labels-neg",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/08-github-managing-labels.md",
+      "query": "What is the maximum number of custom labels a repository can have?"
+    }
+  ],
+  "labelsParsed": false
+}

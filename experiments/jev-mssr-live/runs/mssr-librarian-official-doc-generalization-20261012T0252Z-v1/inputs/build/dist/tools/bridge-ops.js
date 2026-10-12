@@ -1,0 +1,431 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+import { createHash, randomUUID } from "node:crypto";
+import { z } from "zod";
+import { DEFAULT_RESTART_ACK_FILE, DEFAULT_RESTART_REQUEST_FILE, DEFAULT_TUNNEL_ADMIN_BASE_URL, SERVER_NAME, SERVER_VERSION, } from "../config.js";
+import { RUNTIME_BOOT_ID } from "../runtime-identity.js";
+import { fileExists, resolveToolPath, runShellCommand, summarizeCommand, tailText } from "./shared/process.js";
+import { gitStatus } from "./git-tools.js";
+import { terminalList } from "./process-tools.js";
+const tunnelFailureBaselines = new Map();
+function parsePrometheusLabels(raw = "") {
+    const labels = {};
+    const pattern = /([A-Za-z_][A-Za-z0-9_]*)="((?:\\.|[^"])*)"/g;
+    let match;
+    while ((match = pattern.exec(raw)) !== null) {
+        labels[match[1]] = match[2].replace(/\\"/g, '"').replace(/\\\\/g, "\\");
+    }
+    return labels;
+}
+export function parseTunnelMetricsSummary(text) {
+    const summary = {
+        processStartTimeSeconds: null,
+        endToEnd: { initialize: {}, toolsCall: {}, notificationsInitialized: {} },
+        localMcpPost: { noStatus: 0, statuses: {} },
+        controlPlane: {
+            commandsEnqueued: null,
+            commandsPolled: null,
+            queueLength: null,
+            queueCapacity: null,
+            workerOccupancy: null,
+            workerCapacity: null,
+            lastSuccessfulPollTimestampSeconds: null,
+        },
+        transportFailures: { tunnelService502: 0, localPostNoStatus: 0, countsMatch: true },
+    };
+    for (const rawLine of text.split(/\r?\n/)) {
+        const line = rawLine.trim();
+        if (!line || line.startsWith("#"))
+            continue;
+        const match = /^([A-Za-z_:][A-Za-z0-9_:]*)(?:\{([^}]*)\})?\s+([^\s]+)$/.exec(line);
+        if (!match)
+            continue;
+        const value = Number(match[3]);
+        if (!Number.isFinite(value))
+            continue;
+        const metric = match[1];
+        const labels = parsePrometheusLabels(match[2]);
+        if (metric === "process_start_time_seconds") {
+            summary.processStartTimeSeconds = value;
+            continue;
+        }
+        if (metric === "command_end_to_end_latency_milliseconds_count" && labels.latency_type === "enqueue_to_response") {
+            const status = labels.tunnel_service_status;
+            if (!status)
+                continue;
+            const target = labels.request_method === "initialize"
+                ? summary.endToEnd.initialize
+                : labels.request_method === "tools/call"
+                    ? summary.endToEnd.toolsCall
+                    : labels.request_method === "notifications/initialized"
+                        ? summary.endToEnd.notificationsInitialized
+                        : null;
+            if (target)
+                target[status] = (target[status] || 0) + value;
+            continue;
+        }
+        if (metric === "http_client_request_duration_seconds_count"
+            && labels.http_request_method === "POST"
+            && labels.http_route === "/mcp"
+            && labels.server_address === "127.0.0.1"
+            && labels.server_port === "3001") {
+            const status = labels.http_response_status_code;
+            if (status)
+                summary.localMcpPost.statuses[status] = (summary.localMcpPost.statuses[status] || 0) + value;
+            else
+                summary.localMcpPost.noStatus += value;
+            continue;
+        }
+        const controlPlaneKey = metric === "commands_enqueued_total" ? "commandsEnqueued"
+            : metric === "commands_polled_total" ? "commandsPolled"
+                : metric === "commands_queue_length" ? "queueLength"
+                    : metric === "commands_queue_capacity" ? "queueCapacity"
+                        : metric === "dispatcher_worker_pool_occupancy" ? "workerOccupancy"
+                            : metric === "dispatcher_worker_pool_capacity" ? "workerCapacity"
+                                : metric === "commands_poll_last_successful_timestamp_seconds" ? "lastSuccessfulPollTimestampSeconds"
+                                    : null;
+        if (controlPlaneKey)
+            summary.controlPlane[controlPlaneKey] = value;
+    }
+    const tunnelService502 = [
+        summary.endToEnd.initialize["502"] || 0,
+        summary.endToEnd.toolsCall["502"] || 0,
+        summary.endToEnd.notificationsInitialized["502"] || 0,
+    ].reduce((total, value) => total + value, 0);
+    summary.transportFailures = {
+        tunnelService502,
+        localPostNoStatus: summary.localMcpPost.noStatus,
+        countsMatch: tunnelService502 === summary.localMcpPost.noStatus,
+    };
+    return summary;
+}
+function withTunnelFailureBaseline(baseUrl, summary) {
+    const observedAt = new Date().toISOString();
+    const previousBaseline = tunnelFailureBaselines.get(baseUrl) || null;
+    const sameTunnelProcess = previousBaseline
+        && previousBaseline.processStartTimeSeconds === summary.processStartTimeSeconds;
+    const resetReason = !previousBaseline
+        ? "initial-sample"
+        : sameTunnelProcess
+            ? null
+            : "tunnel-restarted";
+    if (!sameTunnelProcess) {
+        tunnelFailureBaselines.set(baseUrl, {
+            processStartTimeSeconds: summary.processStartTimeSeconds,
+            capturedAt: observedAt,
+            tunnelService502: summary.transportFailures.tunnelService502,
+            localPostNoStatus: summary.transportFailures.localPostNoStatus,
+        });
+    }
+    const baseline = tunnelFailureBaselines.get(baseUrl);
+    return {
+        observedAt,
+        ...summary,
+        baseline: {
+            capturedAt: baseline.capturedAt,
+            resetReason,
+            sinceBaseline: {
+                tunnelService502: Math.max(0, summary.transportFailures.tunnelService502 - baseline.tunnelService502),
+                localPostNoStatus: Math.max(0, summary.transportFailures.localPostNoStatus - baseline.localPostNoStatus),
+            },
+        },
+    };
+}
+export async function tunnelHealth(baseUrl = DEFAULT_TUNNEL_ADMIN_BASE_URL) {
+    const fetchEndpoint = async (name) => {
+        const url = `${baseUrl}/${name}`;
+        try {
+            const response = await fetch(url);
+            const text = await response.text();
+            return { ok: response.ok, status: response.status, text: tailText(text, 2000) };
+        }
+        catch (error) {
+            return { ok: false, error: error instanceof Error ? error.message : String(error) };
+        }
+    };
+    const fetchMetrics = async () => {
+        try {
+            const response = await fetch(`${baseUrl}/metrics`);
+            if (!response.ok)
+                return { ok: false, status: response.status };
+            const text = await response.text();
+            return { ok: true, status: response.status, summary: withTunnelFailureBaseline(baseUrl, parseTunnelMetricsSummary(text)) };
+        }
+        catch (error) {
+            return { ok: false, error: error instanceof Error ? error.message : String(error) };
+        }
+    };
+    const [healthz, readyz, metrics] = await Promise.all([
+        fetchEndpoint("healthz"),
+        fetchEndpoint("readyz"),
+        fetchMetrics(),
+    ]);
+    return { baseUrl, healthz, readyz, metrics };
+}
+async function getRuntimeToolCatalog() {
+    try {
+        const { createDefaultToolRegistry } = await import("../tool-registry.js");
+        const registry = createDefaultToolRegistry({ localResources: null, resourceLinksEnabled: false });
+        const names = registry.tools.map((tool) => tool.name);
+        const payload = registry.tools.map((tool) => ({
+            name: tool.name,
+            description: tool.description,
+            inputSchema: tool.inputSchema,
+            annotations: tool.annotations,
+            _meta: tool._meta,
+        }));
+        const hash = createHash("sha256").update(JSON.stringify(payload)).digest("hex").slice(0, 16);
+        const fileParamTools = registry.tools
+            .filter((tool) => {
+            const fileParams = tool._meta?.["openai/fileParams"];
+            return Array.isArray(fileParams) && fileParams.includes("files");
+        })
+            .map((tool) => tool.name);
+        return {
+            available: true,
+            runtimeBootId: RUNTIME_BOOT_ID,
+            count: names.length,
+            hash,
+            modules: registry.modules,
+            names,
+            fileParamTools,
+            riskSummary: registry.riskSummary,
+            refreshHint: "If the connector exposes fewer tools or an older schema than this runtime catalog, the runtime may already be fresh while the host-side connector catalog is stale. Reconnect/reopen the connector when list-changed refresh is not honored.",
+        };
+    }
+    catch (error) {
+        return {
+            available: false,
+            error: error instanceof Error ? error.message : String(error),
+        };
+    }
+}
+async function compareConnectorCatalog(exposedToolNames) {
+    const catalog = await getRuntimeToolCatalog();
+    if (!catalog.available || !Array.isArray(catalog.names)) {
+        throw new Error(`Runtime tool catalog unavailable: ${"error" in catalog ? catalog.error : "unknown error"}`);
+    }
+    const runtimeNames = catalog.names;
+    const riskSummary = catalog.riskSummary;
+    if (!riskSummary)
+        throw new Error("Runtime tool catalog risk summary unavailable.");
+    const fileParamTools = Array.isArray(catalog.fileParamTools) ? catalog.fileParamTools : [];
+    const runtimeSet = new Set(runtimeNames);
+    const exposed = [...new Set(exposedToolNames.map((name) => name.trim()).filter(Boolean))].sort();
+    const recognized = exposed.filter((name) => runtimeSet.has(name));
+    const unrecognized = exposed.filter((name) => !runtimeSet.has(name));
+    const absentDirectly = runtimeNames.filter((name) => !recognized.includes(name));
+    const riskFor = (name) => {
+        if (riskSummary.readOnly.includes(name))
+            return "read-only";
+        if (riskSummary.destructive.includes(name))
+            return "destructive";
+        return "neutral";
+    };
+    const absentDirectDetails = absentDirectly.map((name) => {
+        const risk = riskFor(name);
+        const wrapper = risk === "read-only" ? "bridge_tool_query" : "bridge_tool_action";
+        const fileParamFallback = wrapper === "bridge_tool_action" && fileParamTools.includes(name);
+        const preserveOriginalBytes = name === "image_asset_import_files";
+        return {
+            name,
+            risk,
+            wrapper,
+            directExposure: false,
+            schemaLookupRequired: true,
+            schemaLookup: { toolName: "bridge_tool_schema", arguments: { toolName: name } },
+            fallback: wrapper === "bridge_tool_query"
+                ? { toolName: wrapper, arguments: { toolName: name, arguments: {} } }
+                : {
+                    toolName: wrapper,
+                    arguments: { toolName: name, confirmToolName: name, arguments: {} },
+                    ...(fileParamFallback ? { topLevelFileParam: "files" } : {}),
+                },
+            ...(fileParamFallback
+                ? {
+                    filePassthrough: {
+                        supportedBy: "bridge_tool_action",
+                        field: "files",
+                        metadata: "openai/fileParams",
+                        delegatedTarget: name,
+                        preserveOriginalBytes,
+                    },
+                }
+                : {}),
+            instruction: fileParamFallback
+                ? `The dedicated '${name}' schema is absent from this connector snapshot. If bridge_tool_action exposes top-level files, pass the ChatGPT-authorized files there and delegate to '${name}'; do not put files inside arguments or reconstruct them as Base64. If the current bridge_tool_action schema itself lacks files, the host-side connector catalog is stale: preserve the source file, reconnect/reopen the connector, and retry after the wrapper schema refreshes.`
+                : "Use this wrapper only because the dedicated connector schema is absent. Inspect bridge_tool_schema first unless a route response already supplied exact fallback arguments.",
+        };
+    });
+    const mssrCore = [
+        "skill_catalog",
+        "skill_recommend",
+        "skill_route_audit",
+        "skill_route_vocabulary",
+        "skill_route_plan",
+        "skill_bootstrap",
+        "skill_context_next",
+        "skill_load",
+        "mssr_context_proposal_review",
+        "mssr_observatory_query",
+        "mssr_trace_evidence",
+        "mssr_trace_record",
+        "mssr_trace_working_update",
+        "mssr_skill_maintenance_index",
+        "mssr_observatory_epoch_start",
+    ];
+    const mssrDirect = mssrCore.filter((name) => recognized.includes(name));
+    const mssrDelegatedReadOnly = mssrCore.filter((name) => !recognized.includes(name) && riskSummary.readOnly.includes(name));
+    const mssrDelegatedAction = mssrCore.filter((name) => !recognized.includes(name) && !riskSummary.readOnly.includes(name));
+    return {
+        observedAt: new Date().toISOString(),
+        runtime: { count: catalog.count, hash: catalog.hash },
+        connectorObservation: {
+            supplied: exposed.length,
+            recognized: recognized.length,
+            unrecognized,
+            directCoveragePercent: runtimeNames.length > 0 ? Math.round((recognized.length / runtimeNames.length) * 10_000) / 100 : null,
+        },
+        mssr: {
+            runtime: mssrCore.length,
+            direct: mssrDirect,
+            directCoveragePercent: Math.round((mssrDirect.length / mssrCore.length) * 10_000) / 100,
+            delegatedViaQuery: mssrDelegatedReadOnly,
+            delegatedViaAction: mssrDelegatedAction,
+        },
+        absentDirectly,
+        absentDirectDetails,
+        interpretation: {
+            boundary: "This compares a caller-supplied observable connector catalog with the current Bridge runtime catalog. Bridge cannot inspect or force the host's private catalog selection.",
+            wrapperReachabilityIsDirectExposure: false,
+            refreshHint: catalog.refreshHint,
+        },
+        privacy: {
+            rawPromptsStored: false,
+            rawArgumentsStoredInToolMetrics: false,
+            acceptedValues: "bounded tool names only",
+        },
+    };
+}
+function getRestartRequestPath(cwd) {
+    return path.resolve(cwd ? resolveToolPath(cwd) : process.cwd(), DEFAULT_RESTART_REQUEST_FILE);
+}
+function getRestartAckPath(cwd) {
+    return path.resolve(cwd ? resolveToolPath(cwd) : process.cwd(), DEFAULT_RESTART_ACK_FILE);
+}
+async function bridgeRequestRestart(reason, mode, cwd) {
+    const requestPath = getRestartRequestPath(cwd);
+    const tempPath = `${requestPath}.${process.pid}.${Date.now()}.tmp`;
+    const request = {
+        id: randomUUID(),
+        requestedAt: new Date().toISOString(),
+        reason,
+        mode,
+        server: { name: SERVER_NAME, version: SERVER_VERSION, pid: process.pid },
+        cwd: cwd ? resolveToolPath(cwd) : process.cwd(),
+    };
+    await fs.writeFile(tempPath, JSON.stringify(request, null, 2), "utf8");
+    await fs.rename(tempPath, requestPath);
+    return {
+        requested: true,
+        requestPath,
+        request,
+        note: "The MCP server only wrote a restart request file. The external watchdog must perform the actual restart.",
+        maintenanceNotice: {
+            type: "planned-restart",
+            requestId: request.id,
+            mode,
+            planned: true,
+            message: "A planned Bridge restart was requested. This MCP connection may disconnect briefly while the watchdog restarts the service.",
+            callerAction: "Wait until Bridge is ready before retrying an interrupted request.",
+            delivery: "This notice is returned in the same MCP response as the restart request; the transport may still close before the caller receives it.",
+            restartConfirmed: false,
+        },
+    };
+}
+export async function bridgeRestartStatus(cwd) {
+    const requestPath = getRestartRequestPath(cwd);
+    const ackPath = getRestartAckPath(cwd);
+    const readJsonIfExists = async (filePath) => {
+        if (!(await fileExists(filePath)))
+            return null;
+        const text = await fs.readFile(filePath, "utf8");
+        const parseText = text.replace(/^\uFEFF/, "");
+        try {
+            return JSON.parse(parseText);
+        }
+        catch {
+            return { parseError: true, text: tailText(text, 4000) };
+        }
+    };
+    return { requestPath, ackPath, pending: await fileExists(requestPath), request: await readJsonIfExists(requestPath), lastAck: await readJsonIfExists(ackPath) };
+}
+async function bridgeHealth(check, cwd) {
+    const root = cwd ? resolveToolPath(cwd) : process.cwd();
+    const out = { server: { name: SERVER_NAME, version: SERVER_VERSION, runtimeBootId: RUNTIME_BOOT_ID }, cwd: root };
+    if (check === "all" || check === "tunnel")
+        out.tunnel = await tunnelHealth();
+    if (check === "all" || check === "restart")
+        out.restart = await bridgeRestartStatus(root);
+    if (check === "all" || check === "catalog")
+        out.toolCatalog = await getRuntimeToolCatalog();
+    const tunnel = out.tunnel;
+    const restart = out.restart;
+    return { ok: (tunnel ? tunnel.healthz?.ok === true && tunnel.readyz?.ok === true : true) && (restart ? restart.pending !== true : true), check, ...out };
+}
+async function bridgeSelfCheck(cwd) {
+    const root = cwd ? resolveToolPath(cwd) : process.cwd();
+    const typecheck = await runShellCommand("npm run check", root, 120_000);
+    const build = await runShellCommand("npm run build", root, 120_000);
+    const status = await gitStatus(root);
+    const tunnel = await tunnelHealth();
+    const toolCatalog = await getRuntimeToolCatalog();
+    return {
+        ok: typecheck.code === 0 && build.code === 0,
+        server: { name: SERVER_NAME, version: SERVER_VERSION },
+        cwd: root,
+        node: process.version,
+        checks: { typecheck: summarizeCommand(typecheck), build: summarizeCommand(build) },
+        git: status,
+        tunnel,
+        activeTerminals: terminalList(),
+        toolCatalog,
+    };
+}
+export const bridgeOpsToolModule = {
+    name: "bridge-ops",
+    tools: [
+        { name: "tunnel_health", description: "Check tunnel-client health/readiness plus a bounded transport diagnostic summary from its local metrics, including MCP 502/no-status correlation and deltas since the first sample for the current tunnel process.", inputSchema: { type: "object", properties: { baseUrl: { type: "string", default: DEFAULT_TUNNEL_ADMIN_BASE_URL } }, additionalProperties: false } },
+        { name: "bridge_health", description: "Compact read-only bridge health query for tunnel diagnostics, restart status, runtime tool catalog, or all lightweight checks.", inputSchema: { type: "object", properties: { check: { type: "string", enum: ["all", "tunnel", "restart", "catalog"], default: "all" }, cwd: { type: "string" } }, additionalProperties: false } },
+        { name: "bridge_connector_catalog_compare", description: "Compare the exact dedicated tool names observable in the current connector with the live Bridge runtime catalog. Use this to distinguish direct schema exposure from wrapper reachability; Bridge cannot inspect or force the host catalog, so exposedToolNames must come from the caller's observable catalog search.", inputSchema: { type: "object", properties: { exposedToolNames: { type: "array", items: { type: "string", minLength: 1, maxLength: 120 }, minItems: 1, maxItems: 256 } }, required: ["exposedToolNames"], additionalProperties: false } },
+        { name: "bridge_self_check", description: "Run typecheck, build, Git status, configured tunnel health, and terminal inventory.", inputSchema: { type: "object", properties: { cwd: { type: "string" } }, additionalProperties: false } },
+        { name: "bridge_request_restart", description: "Request a planned bridge restart by writing a restart-request file for the external watchdog. The response includes a maintenance notice for the caller and reconnect guidance; it does not confirm delivery or restart. This tool does not restart or kill processes directly.", inputSchema: { type: "object", properties: { reason: { type: "string" }, mode: { type: "string", enum: ["http", "tunnel", "full"], default: "http" }, cwd: { type: "string" } }, required: ["reason"], additionalProperties: false } },
+        { name: "bridge_restart_status", description: "Return pending restart-request and last restart-ack information for the bridge watchdog.", inputSchema: { type: "object", properties: { cwd: { type: "string" } }, additionalProperties: false } },
+    ],
+    handlers: {
+        tunnel_health: async (args) => {
+            const parsed = z.object({ baseUrl: z.string().default(DEFAULT_TUNNEL_ADMIN_BASE_URL) }).parse(args);
+            return await tunnelHealth(parsed.baseUrl);
+        },
+        bridge_health: async (args) => {
+            const parsed = z.object({ check: z.enum(["all", "tunnel", "restart", "catalog"]).default("all"), cwd: z.string().optional() }).parse(args);
+            return await bridgeHealth(parsed.check, parsed.cwd);
+        },
+        bridge_connector_catalog_compare: async (args) => {
+            const parsed = z.object({ exposedToolNames: z.array(z.string().trim().min(1).max(120)).min(1).max(256) }).parse(args);
+            return await compareConnectorCatalog(parsed.exposedToolNames);
+        },
+        bridge_self_check: async (args) => {
+            const parsed = z.object({ cwd: z.string().optional() }).parse(args);
+            return await bridgeSelfCheck(parsed.cwd);
+        },
+        bridge_request_restart: async (args) => {
+            const parsed = z.object({ reason: z.string().min(1).max(500), mode: z.enum(["http", "tunnel", "full"]).default("http"), cwd: z.string().optional() }).parse(args);
+            return await bridgeRequestRestart(parsed.reason, parsed.mode, parsed.cwd);
+        },
+        bridge_restart_status: async (args) => {
+            const parsed = z.object({ cwd: z.string().optional() }).parse(args);
+            return await bridgeRestartStatus(parsed.cwd);
+        },
+    },
+};

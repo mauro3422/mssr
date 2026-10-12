@@ -1,0 +1,3269 @@
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { createHash, randomUUID } from "node:crypto";
+import { createRequire } from "node:module";
+import { Worker } from "node:worker_threads";
+import { analyzeMssrTelemetry, createMssrLearningDigest, getMssrTraceClosureState, mssrLearningDigestSchema, mssrSemanticSignature, persistMssrLearningDigestSemanticExperiences, mssrSkillDecisionSchema, evaluateMssrTraceTaskCompatibility, mssrTraceWorkingMemorySchema, mssrTelemetryEnvelopeSchema, structuredSkillIntentSchema, validateMssrCheckpointLifecycle, } from "@mauroprime/mssr";
+import { SERVER_NAME, SERVER_VERSION } from "./config.js";
+import { getPendingTraceToolRowsSince, getTraceToolEvidence, resolveObservedTraceContext } from "./metrics.js";
+import { closeObservabilityPersistenceForTests, enqueueObservabilityPersistence, getObservabilityPersistenceStatus, onObservabilityPersistenceAck, } from "./observability-persistence.js";
+import { normalizeModelIdentifier, RUNTIME_BOOT_ID } from "./runtime-identity.js";
+import { getMssrObservabilityEpoch, mssrObservabilityStatePath, resetMssrObservabilityEpochForTests, } from "./mssr-observability-epoch.js";
+export { MSSR_CHECKPOINT_TYPES, MSSR_OUTCOME_DIMENSION_STATUSES, MSSR_OUTCOME_EVIDENCE_KINDS, } from "@mauroprime/mssr";
+export const MSSR_CONTEXT_SOURCES = [
+    "current-conversation",
+    "personal-context",
+    "project-context",
+    "git-history",
+    "bridge-metrics",
+    "user-upload",
+    "codex-session",
+    "other",
+];
+const DELEGATED_QUERY_TOOL = "bridge_tool_query";
+const DELEGATED_ACTION_TOOL = "bridge_tool_action";
+const PREPARATION_TOOLS = new Set([
+    "project_context_load",
+    "workflow_guide_recommend",
+    "workflow_guide_load",
+    "skill_catalog",
+    "skill_recommend",
+    "skill_route_audit",
+    "skill_route_vocabulary",
+    "skill_route_plan",
+    "skill_bootstrap",
+    "skill_context_next",
+    "skill_load",
+    "mssr_observatory_query",
+    "mssr_trace_evidence",
+    "mssr_trace_record",
+    "bridge_connector_catalog_compare",
+    "bridge_tool_schema",
+    "bridge_tool_audit",
+    "bridge_metrics_status",
+    "bridge_metrics_query",
+    "bridge_metrics_recent",
+    "bridge_metrics_summary",
+    "bridge_notice_status",
+    "bridge_notice_history",
+    "bridge_notice_drain",
+]);
+const require = createRequire(import.meta.url);
+const observatoryEnabled = process.env.BRIDGE_MCP_METRICS_ENABLED !== "0";
+const metricsDir = path.resolve(process.env.BRIDGE_MCP_METRICS_DIR || path.join(process.cwd(), "data"));
+const logsDir = path.resolve(process.env.BRIDGE_MCP_LOG_DIR || path.join(process.cwd(), "logs"));
+const sqlitePath = path.resolve(process.env.BRIDGE_MCP_METRICS_SQLITE || path.join(metricsDir, "bridge-metrics.sqlite"));
+const jsonlPath = path.resolve(process.env.BRIDGE_MCP_MSSR_EVENTS_JSONL || path.join(logsDir, "mssr-events.jsonl"));
+let db;
+const recentMssrPersistenceTimings = [];
+function persistenceMs(value) {
+    return Math.round(value * 100) / 100;
+}
+function rememberMssrPersistenceTiming(timing) {
+    recentMssrPersistenceTimings.push(timing);
+    if (recentMssrPersistenceTimings.length > 20)
+        recentMssrPersistenceTimings.splice(0, recentMssrPersistenceTimings.length - 20);
+}
+let insertEvent = null;
+const recentMssrEventOverlay = [];
+const RECENT_MSSR_EVENT_OVERLAY_LIMIT = 2_000;
+const ephemeralTraceWorkingMemory = new Map();
+const skillMaintenanceProjectionPendingEventIds = new Set();
+function rememberRecentMssrEvent(event) {
+    recentMssrEventOverlay.push(event);
+    if (recentMssrEventOverlay.length > RECENT_MSSR_EVENT_OVERLAY_LIMIT) {
+        recentMssrEventOverlay.splice(0, recentMssrEventOverlay.length - RECENT_MSSR_EVENT_OVERLAY_LIMIT);
+    }
+}
+onObservabilityPersistenceAck((timing) => {
+    if (timing.kind !== "mssr" || !timing.ok)
+        return;
+    const index = recentMssrEventOverlay.findIndex((event) => event.id === timing.id);
+    if (index >= 0)
+        recentMssrEventOverlay.splice(index, 1);
+    if (skillMaintenanceProjectionPendingEventIds.delete(timing.id))
+        scheduleMssrSkillMaintenanceIndexRefresh();
+});
+function mergeStoredEvents(persisted, overlay, limit) {
+    const byId = new Map();
+    let order = 0;
+    for (const event of persisted)
+        byId.set(event.id, { event, order: order++ });
+    for (const event of overlay)
+        byId.set(event.id, { event, order: order++ });
+    return [...byId.values()]
+        .sort((a, b) => a.event.occurredAt.localeCompare(b.event.occurredAt) || a.order - b.order)
+        .map(({ event }) => event)
+        .slice(0, Math.max(1, Math.trunc(limit)));
+}
+function mergeRecentStoredEvents(persisted, overlay) {
+    const byId = new Map();
+    let order = 0;
+    for (const event of persisted)
+        byId.set(event.id, { event, order: order++ });
+    for (const event of overlay)
+        byId.set(event.id, { event, order: order++ });
+    return [...byId.values()]
+        .sort((a, b) => b.event.occurredAt.localeCompare(a.event.occurredAt) || b.order - a.order)
+        .map(({ event }) => event);
+}
+export function updateMssrTraceWorkingMemory(traceId, input) {
+    if (!validTraceId(traceId))
+        throw new Error("Invalid MSSR traceId for working memory.");
+    const parsed = mssrTraceWorkingMemorySchema.parse(input);
+    ephemeralTraceWorkingMemory.set(traceId, parsed);
+    return parsed;
+}
+export function readMssrTraceWorkingMemory(traceId) {
+    return ephemeralTraceWorkingMemory.get(traceId) ?? null;
+}
+export function purgeMssrTraceWorkingMemory(traceId) {
+    return ephemeralTraceWorkingMemory.delete(traceId);
+}
+function learningContextReason(value) {
+    if (value === "selected" || value === "required" || value === "dependency" || value === "intent-mismatch" || value === "budget-exceeded" || value === "ambiguous" || value === "host-policy")
+        return value;
+    if (value === "exclusive-group-tie" || value === "ambiguous-exclusive-group")
+        return "ambiguous";
+    return "other";
+}
+function readMssrStoredTraceEvents(traceId, limit = 2_000) {
+    if (!validTraceId(traceId))
+        return [];
+    const boundedLimit = Math.max(1, Math.min(2_000, Math.trunc(limit)));
+    const database = getDb();
+    const persisted = database
+        ? database.prepare(`
+        SELECT id, occurred_at, trace_id, event_type, caller, stage, classification_mode,
+               skill_name, required, ok, task_hash, details_json
+        FROM mssr_events
+        WHERE trace_id = ?
+        ORDER BY occurred_at ASC
+        LIMIT ?
+      `).all(traceId, boundedLimit).map(decodeRow)
+        : [];
+    const overlay = recentMssrEventOverlay.filter((event) => event.traceId === traceId);
+    return mergeStoredEvents(persisted, overlay, boundedLimit);
+}
+export function recordMssrProjectContextSelection(args) {
+    const decisions = args.decisions.slice(0, 96).flatMap((item) => {
+        const id = typeof item.id === "string" ? redactText(item.id, 160) : "";
+        if (!id)
+            return [];
+        return [{
+                id,
+                selected: item.selected === true,
+                reason: typeof item.reason === "string" ? redactText(item.reason, 80) : "other",
+            }];
+    });
+    return recordMssrEvent({
+        eventId: args.eventId,
+        traceId: args.traceId,
+        eventType: "project_context_selection",
+        caller: args.caller,
+        stage: args.stage,
+        ok: true,
+        details: {
+            projectName: redactText(args.projectName, 160),
+            decisions,
+        },
+    });
+}
+export function recordMssrLearningDigest(args) {
+    const digest = mssrLearningDigestSchema.parse(args.digest);
+    const durableDigest = JSON.parse(JSON.stringify(digest));
+    return recordMssrEvent({
+        traceId: args.traceId,
+        eventType: "learning_digest",
+        caller: args.caller,
+        stage: digest.finalStage,
+        ok: true,
+        details: { digest: durableDigest },
+    });
+}
+/**
+ * Distill durable operational learning from observable trace evidence plus the
+ * final evidence-backed subset of ephemeral working memory. The raw
+ * workingSummary, active hypotheses and arbitrary working decisions never enter
+ * this artifact.
+ */
+export function distillMssrLearningDigest(traceId) {
+    const events = readMssrStoredTraceEvents(traceId);
+    const routes = events.filter((event) => event.eventType === "route_planned");
+    const outcomeEvent = [...events].reverse().find((event) => event.eventType === "outcome");
+    const latestRoute = routes.at(-1);
+    const baseRoute = routes.find((event) => event.details.intent && typeof event.details.intent === "object") ?? routes[0];
+    if (!latestRoute || !baseRoute || !outcomeEvent)
+        return null;
+    const recommendedSkills = new Set();
+    for (const route of routes) {
+        for (const item of Array.isArray(route.details.activeSkills) ? route.details.activeSkills : []) {
+            if (item && typeof item === "object" && typeof item.name === "string")
+                recommendedSkills.add(String(item.name));
+        }
+    }
+    const loadedSkills = [...new Set(events
+            .filter((event) => event.eventType === "skill_loaded" && event.ok === true && event.skillName)
+            .map((event) => String(event.skillName)))].sort();
+    const decisionByKey = new Map();
+    for (const event of events.filter((item) => item.eventType === "skill_decision" && item.skillName)) {
+        const parsed = mssrSkillDecisionSchema.safeParse({
+            skillName: event.skillName,
+            decision: event.details.decision,
+            reasonCode: event.details.reasonCode,
+            reasonSummary: typeof event.details.reasonSummary === "string" && event.details.reasonSummary.trim() ? event.details.reasonSummary : undefined,
+            relatedSkillName: typeof event.details.relatedSkillName === "string" && event.details.relatedSkillName.trim() ? event.details.relatedSkillName : undefined,
+            stage: event.stage,
+        });
+        if (parsed.success)
+            decisionByKey.set(`${parsed.data.stage ?? "start"}|${parsed.data.skillName}`, parsed.data);
+    }
+    const transitions = new Map();
+    for (let index = 1; index < routes.length; index += 1) {
+        const previous = routes[index - 1];
+        const current = routes[index];
+        if (!previous.stage || !current.stage || previous.stage === current.stage)
+            continue;
+        for (const item of Array.isArray(current.details.activeSkills) ? current.details.activeSkills : []) {
+            if (!item || typeof item !== "object" || typeof item.name !== "string")
+                continue;
+            const transition = {
+                fromStage: previous.stage,
+                toStage: current.stage,
+                skillName: String(item.name),
+            };
+            transitions.set(`${transition.fromStage}->${transition.toStage}|${transition.skillName}`, transition);
+        }
+    }
+    const contextSelections = new Map();
+    for (const event of events.filter((item) => item.eventType === "skill_loaded" && item.skillName)) {
+        const decisions = Array.isArray(event.details.moduleDecisions) ? event.details.moduleDecisions : [];
+        if (decisions.length > 0) {
+            for (const item of decisions.slice(0, 96)) {
+                if (!item || typeof item !== "object")
+                    continue;
+                const value = item;
+                if (typeof value.id !== "string" || !value.id.trim())
+                    continue;
+                const selection = {
+                    scope: "skill",
+                    owner: String(event.skillName),
+                    module: value.id.trim(),
+                    selected: value.selected === true,
+                    reasonCode: learningContextReason(value.reason),
+                };
+                contextSelections.set(`skill|${selection.owner}|${selection.module}`, selection);
+            }
+        }
+        else {
+            for (const module of Array.isArray(event.details.selectedModules) ? event.details.selectedModules : []) {
+                if (typeof module !== "string" || !module.trim())
+                    continue;
+                const selection = { scope: "skill", owner: String(event.skillName), module: module.trim(), selected: true, reasonCode: "selected" };
+                contextSelections.set(`skill|${selection.owner}|${selection.module}`, selection);
+            }
+        }
+    }
+    for (const event of events.filter((item) => item.eventType === "project_context_selection")) {
+        const owner = typeof event.details.projectName === "string" && event.details.projectName.trim() ? event.details.projectName.trim() : "project";
+        for (const item of Array.isArray(event.details.decisions) ? event.details.decisions : []) {
+            if (!item || typeof item !== "object")
+                continue;
+            const value = item;
+            if (typeof value.id !== "string" || !value.id.trim())
+                continue;
+            const selection = {
+                scope: "project",
+                owner,
+                module: value.id.trim(),
+                selected: value.selected === true,
+                reasonCode: learningContextReason(value.reason),
+            };
+            contextSelections.set(`project|${selection.owner}|${selection.module}`, selection);
+        }
+    }
+    const workingMemory = readMssrTraceWorkingMemory(traceId);
+    const findings = (workingMemory?.hypotheses ?? []).flatMap((hypothesis) => {
+        if ((hypothesis.status !== "supported" && hypothesis.status !== "rejected") || !hypothesis.evidenceRef)
+            return [];
+        return [{
+                summary: redactText(hypothesis.summary, 220),
+                status: hypothesis.status,
+                evidenceRef: redactText(hypothesis.evidenceRef, 240),
+                signals: [],
+            }];
+    }).slice(0, 12);
+    const allSignals = [...new Set(events.flatMap((event) => Array.isArray(event.details.signals)
+            ? event.details.signals.filter((value) => typeof value === "string")
+            : []))];
+    const signals = allSignals.some((value) => value !== "nominal") ? allSignals.filter((value) => value !== "nominal") : allSignals;
+    const latestVerification = [...events].reverse().find((event) => event.eventType === "verification");
+    const latestPersistence = [...events].reverse().find((event) => event.eventType === "persistence");
+    const status = ["success", "partial", "failed", "skipped"].includes(String(outcomeEvent.details.status))
+        ? String(outcomeEvent.details.status)
+        : "partial";
+    const digest = createMssrLearningDigest({
+        semanticSignature: mssrSemanticSignature({ stage: baseRoute.stage ?? "start", intent: baseRoute.details.intent }),
+        finalStage: (latestRoute.stage ?? "start"),
+        signals: signals,
+        recommendedSkills: [...recommendedSkills].sort(),
+        loadedSkills,
+        skillDecisions: [...decisionByKey.values()],
+        skillTransitions: [...transitions.values()],
+        contextSelections: [...contextSelections.values()],
+        findings: findings,
+        outcome: {
+            status,
+            accepted: typeof outcomeEvent.details.accepted === "boolean" ? outcomeEvent.details.accepted : undefined,
+            score: typeof outcomeEvent.details.score === "number" ? outcomeEvent.details.score : undefined,
+            primarySkill: typeof outcomeEvent.details.primarySkill === "string" ? outcomeEvent.details.primarySkill : outcomeEvent.skillName,
+            supportingSkills: Array.isArray(outcomeEvent.details.supportingSkills) ? outcomeEvent.details.supportingSkills.filter((value) => typeof value === "string") : [],
+            verificationPassed: typeof outcomeEvent.details.verificationPassed === "boolean"
+                ? outcomeEvent.details.verificationPassed
+                : latestVerification?.details.verificationPassed === true || latestVerification?.ok === true,
+            persisted: typeof outcomeEvent.details.persisted === "boolean"
+                ? outcomeEvent.details.persisted
+                : latestPersistence?.details.persisted === true || latestPersistence?.ok === true,
+            userCorrections: typeof outcomeEvent.details.userCorrections === "number" ? outcomeEvent.details.userCorrections : 0,
+        },
+    });
+    return recordMssrLearningDigest({ traceId, caller: outcomeEvent.caller, digest });
+}
+/** Outcome retention boundary: attempt learning distillation, then always purge RAM. */
+export function finalizeMssrOutcomeLearning(traceId) {
+    let digestEvent = null;
+    let warning;
+    try {
+        digestEvent = distillMssrLearningDigest(traceId);
+    }
+    catch (error) {
+        warning = redactText(error instanceof Error ? error.message : String(error), 300);
+    }
+    const purged = purgeMssrTraceWorkingMemory(traceId);
+    return { digestEvent, warning, purged };
+}
+function resolveMssrSemanticExperienceTraceIdentity(traceId) {
+    const events = readMssrStoredTraceEvents(traceId);
+    let projectKey;
+    let workflowKey;
+    for (const event of [...events].reverse()) {
+        if (!workflowKey && typeof event.details.workflowKey === "string" && event.details.workflowKey.trim()) {
+            workflowKey = event.details.workflowKey.trim();
+        }
+        if (!projectKey) {
+            const direct = [event.details.projectName, event.details.project].find((value) => typeof value === "string" && value.trim());
+            if (typeof direct === "string")
+                projectKey = direct.trim();
+            if (!projectKey && typeof event.details.projectRoot === "string" && event.details.projectRoot.trim()) {
+                projectKey = path.basename(event.details.projectRoot.trim().replace(/[\\/]+$/, ""));
+            }
+        }
+        if (projectKey && workflowKey)
+            break;
+    }
+    return { projectKey: projectKey || SERVER_NAME, ...(workflowKey ? { workflowKey } : {}) };
+}
+export async function persistMssrOutcomeSemanticExperience(traceId, digestEvent) {
+    if (!digestEvent)
+        return { result: null };
+    const parsedDigest = mssrLearningDigestSchema.safeParse(digestEvent.details.digest);
+    if (!parsedDigest.success)
+        return { result: null, warning: "Outcome learning digest could not be parsed for Semantic Experience projection." };
+    try {
+        const identity = resolveMssrSemanticExperienceTraceIdentity(traceId);
+        const result = await persistMssrLearningDigestSemanticExperiences({
+            traceId,
+            projectKey: identity.projectKey,
+            ...(identity.workflowKey ? { workflowKey: identity.workflowKey } : {}),
+            digest: parsedDigest.data,
+        });
+        return { result };
+    }
+    catch (error) {
+        return { result: null, warning: redactText(error instanceof Error ? error.message : String(error), 300) };
+    }
+}
+export async function finalizeMssrOutcomeLearningWithSemanticExperience(traceId) {
+    const learning = finalizeMssrOutcomeLearning(traceId);
+    const semantic = await persistMssrOutcomeSemanticExperience(traceId, learning.digestEvent);
+    return {
+        ...learning,
+        semanticExperience: semantic.result,
+        ...(semantic.warning ? { semanticExperienceWarning: semantic.warning } : {}),
+    };
+}
+function ensureDirs() {
+    fs.mkdirSync(metricsDir, { recursive: true });
+    fs.mkdirSync(logsDir, { recursive: true });
+}
+function loadSqlite() {
+    try {
+        return require("node:sqlite");
+    }
+    catch {
+        return null;
+    }
+}
+function getDb() {
+    if (!observatoryEnabled)
+        return null;
+    if (db !== undefined)
+        return db;
+    const readOnly = process.env.BRIDGE_MCP_METRICS_READONLY === "1";
+    if (!readOnly)
+        ensureDirs();
+    const sqlite = loadSqlite();
+    if (!sqlite) {
+        db = null;
+        return null;
+    }
+    db = readOnly
+        ? new sqlite.DatabaseSync(sqlitePath, { readOnly: true })
+        : new sqlite.DatabaseSync(sqlitePath);
+    if (readOnly) {
+        db.exec("PRAGMA busy_timeout = 100; PRAGMA query_only = ON;");
+        return db;
+    }
+    db.exec(`
+    PRAGMA busy_timeout = 100;
+    PRAGMA journal_mode = WAL;
+    PRAGMA synchronous = NORMAL;
+    PRAGMA wal_autocheckpoint = 0;
+    CREATE TABLE IF NOT EXISTS mssr_events (
+      id TEXT PRIMARY KEY,
+      occurred_at TEXT NOT NULL,
+      trace_id TEXT NOT NULL,
+      event_type TEXT NOT NULL,
+      caller TEXT,
+      stage TEXT,
+      classification_mode TEXT,
+      skill_name TEXT,
+      required INTEGER,
+      ok INTEGER,
+      task_hash TEXT,
+      details_json TEXT NOT NULL,
+      server_name TEXT NOT NULL,
+      server_version TEXT NOT NULL,
+      pid INTEGER NOT NULL,
+      hostname TEXT NOT NULL,
+      platform TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_mssr_events_occurred_at ON mssr_events(occurred_at);
+    CREATE INDEX IF NOT EXISTS idx_mssr_events_trace ON mssr_events(trace_id, occurred_at);
+    CREATE INDEX IF NOT EXISTS idx_mssr_events_type ON mssr_events(event_type, occurred_at);
+    CREATE INDEX IF NOT EXISTS idx_mssr_events_skill ON mssr_events(skill_name, occurred_at);
+  `);
+    insertEvent = db.prepare(`
+    INSERT INTO mssr_events (
+      id, occurred_at, trace_id, event_type, caller, stage, classification_mode,
+      skill_name, required, ok, task_hash, details_json, server_name,
+      server_version, pid, hostname, platform
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+    return db;
+}
+/**
+ * Create the observatory schema in the writable host process before any
+ * read-only dashboard worker can open the same database on a cold start.
+ */
+export function initializeMssrObservatoryStorage() {
+    getDb();
+}
+function redactText(value, maxChars = 400) {
+    return value
+        .replace(/sk-[A-Za-z0-9_-]{12,}/g, "sk-REDACTED")
+        .replace(/(api[_-]?key|token|secret|password)\s*[:=]\s*[^\s,}\]]+/gi, "$1=REDACTED")
+        .slice(0, maxChars);
+}
+function sanitizeValue(value, depth = 0, arrayLimits = {}, arrayKey) {
+    if (depth > 5)
+        return "[depth-limit]";
+    if (typeof value === "string")
+        return redactText(value);
+    if (typeof value === "number" || typeof value === "boolean" || value === null)
+        return value;
+    if (Array.isArray(value))
+        return value.slice(0, arrayKey ? arrayLimits[arrayKey] ?? 60 : 60)
+            .map((item) => sanitizeValue(item, depth + 1, arrayLimits));
+    if (!value || typeof value !== "object")
+        return String(value ?? "");
+    const output = {};
+    for (const [key, child] of Object.entries(value).slice(0, 60)) {
+        if (/prompt|transcript|chain.?of.?thought|password|secret|api.?key|token|cursor/i.test(key))
+            continue;
+        output[key] = sanitizeValue(child, depth + 1, arrayLimits, key);
+    }
+    return output;
+}
+function safeDetails(details = {}, eventType) {
+    const arrayLimits = eventType === "learning_digest"
+        ? { contextSelections: 128 }
+        : eventType === "project_context_selection"
+            ? { decisions: 96 }
+            : {};
+    const maxChars = eventType === "learning_digest" ? 64_000 : eventType === "project_context_selection" ? 32_000 : 24_000;
+    const sanitized = sanitizeValue(details, 0, arrayLimits);
+    const encoded = JSON.stringify(sanitized);
+    if (encoded.length <= maxChars)
+        return sanitized;
+    if (eventType === "learning_digest" || eventType === "project_context_selection") {
+        throw new Error(`Bounded ${eventType} evidence exceeds its ${maxChars}-character persistence limit.`);
+    }
+    return { truncated: true, preview: redactText(encoded, 23_000) };
+}
+function writeJsonl(event) {
+    if (!observatoryEnabled)
+        return;
+    ensureDirs();
+    fs.appendFileSync(jsonlPath, `${JSON.stringify({ type: "mssr_event", ...event })}\n`, "utf8");
+}
+function validTraceId(value) {
+    return /^[A-Za-z0-9._:-]{6,128}$/.test(value);
+}
+function taskIdentityString(value, max) {
+    if (typeof value !== "string")
+        return null;
+    const trimmed = value.trim();
+    return trimmed ? trimmed.slice(0, max) : null;
+}
+function taskIdentityFromDetails(details) {
+    const parentTraceId = taskIdentityString(details?.parentTraceId, 128);
+    const supersedesTraceId = taskIdentityString(details?.supersedesTraceId, 128);
+    return {
+        taskKey: taskIdentityString(details?.taskKey, 160),
+        parentTraceId: parentTraceId && validTraceId(parentTraceId) ? parentTraceId : null,
+        supersedesTraceId: supersedesTraceId && validTraceId(supersedesTraceId) ? supersedesTraceId : null,
+    };
+}
+function traceTaskIdentity(events) {
+    let identity = {};
+    for (const event of events) {
+        if (event.eventType !== "route_planned")
+            continue;
+        const compatibility = evaluateMssrTraceTaskCompatibility(identity, taskIdentityFromDetails(event.details));
+        if (compatibility.compatible)
+            identity = compatibility.bound;
+    }
+    return identity;
+}
+export function resolveMssrTraceId(value) {
+    if (typeof value === "string" && validTraceId(value.trim()))
+        return value.trim();
+    return `mssr-${new Date().toISOString().replace(/[-:.TZ]/g, "").slice(0, 14)}-${randomUUID().slice(0, 12)}`;
+}
+export function hashMssrTask(task) {
+    const normalized = task.normalize("NFKC").trim().replace(/\s+/g, " ").toLowerCase();
+    return createHash("sha256").update(normalized).digest("hex");
+}
+export function recordMssrEvent(input) {
+    const epoch = getMssrObservabilityEpoch();
+    const event = {
+        id: input.eventId ?? `${Date.now().toString(36)}-${randomUUID().slice(0, 12)}`,
+        occurredAt: new Date().toISOString(),
+        traceId: resolveMssrTraceId(input.traceId),
+        eventType: redactText(input.eventType, 80),
+        caller: input.caller ? redactText(input.caller, 80) : undefined,
+        stage: input.stage ? redactText(input.stage, 80) : undefined,
+        classificationMode: input.classificationMode ? redactText(input.classificationMode, 80) : undefined,
+        skillName: input.skillName ? redactText(input.skillName, 160) : undefined,
+        required: input.required,
+        ok: input.ok,
+        taskHash: input.taskHash,
+        details: safeDetails({
+            ...(input.details ?? {}),
+            observabilityEpoch: epoch.activeEpoch,
+            runtimeBootId: RUNTIME_BOOT_ID,
+            contractVersion: epoch.contractVersion,
+        }, input.eventType),
+    };
+    rememberRecentMssrEvent(event);
+    // Initialize the read-side schema once, but never perform durable event I/O on
+    // the HTTP/MCP event loop. The worker is the only steady-state writer.
+    const database = getDb();
+    if (!database || !insertEvent)
+        return event;
+    const needsSkillMaintenanceProjection = event.eventType === "skill_decision"
+        && (event.details.reasonCode === "redundant" || event.details.reasonCode === "irrelevant-domain");
+    if (needsSkillMaintenanceProjection)
+        skillMaintenanceProjectionPendingEventIds.add(event.id);
+    const queued = enqueueObservabilityPersistence({
+        kind: "mssr",
+        id: event.id,
+        eventType: event.eventType,
+        sqlitePath,
+        jsonlPath,
+        jsonLine: JSON.stringify({ type: "mssr_event", ...event }),
+        values: [
+            event.id,
+            event.occurredAt,
+            event.traceId,
+            event.eventType,
+            event.caller ?? null,
+            event.stage ?? null,
+            event.classificationMode ?? null,
+            event.skillName ?? null,
+            event.required === undefined ? null : Number(event.required),
+            event.ok === undefined ? null : Number(event.ok),
+            event.taskHash ?? null,
+            JSON.stringify(event.details),
+            SERVER_NAME,
+            SERVER_VERSION,
+            process.pid,
+            os.hostname(),
+            os.platform(),
+        ],
+    });
+    if (!queued && needsSkillMaintenanceProjection)
+        skillMaintenanceProjectionPendingEventIds.delete(event.id);
+    return event;
+}
+function hasMssrEvent(eventId) {
+    if (recentMssrEventOverlay.some((event) => event.id === eventId))
+        return true;
+    const database = getDb();
+    if (!database)
+        return false;
+    return Boolean(database.prepare("SELECT id FROM mssr_events WHERE id = ? LIMIT 1").get(eventId));
+}
+function findMssrEventById(eventId) {
+    const overlay = recentMssrEventOverlay.find((event) => event.id === eventId);
+    if (overlay)
+        return overlay;
+    const database = getDb();
+    if (!database)
+        return null;
+    const row = database.prepare(`
+    SELECT id, occurred_at, trace_id, event_type, caller, stage, classification_mode,
+           skill_name, required, ok, task_hash, details_json
+    FROM mssr_events WHERE id = ? LIMIT 1
+  `).get(eventId);
+    return row ? decodeRow(row) : null;
+}
+/** Persist one authenticated, privacy-bounded event emitted by an external MSSR host adapter. */
+export function recordExternalMssrTelemetry(input) {
+    const envelope = mssrTelemetryEnvelopeSchema.parse(input);
+    if (hasMssrEvent(envelope.eventId)) {
+        const existing = findMssrEventById(envelope.eventId);
+        if (!existing)
+            throw new Error("External MSSR event deduplication readback failed.");
+        return { event: existing, duplicate: true };
+    }
+    if (envelope.event.kind === "route") {
+        const route = envelope.event.route;
+        return { duplicate: false, event: recordMssrEvent({
+                eventId: envelope.eventId,
+                traceId: envelope.traceId,
+                eventType: "route_planned",
+                caller: envelope.caller,
+                stage: route.stage,
+                classificationMode: route.classificationMode,
+                taskHash: envelope.event.taskHash,
+                ok: true,
+                details: {
+                    action: envelope.event.action,
+                    workflowKey: route.workflowKey ?? null,
+                    agentProfile: route.agentProfile,
+                    contextUsed: route.contextUsed,
+                    contextCharacters: route.contextCharacters,
+                    workflows: route.workflows,
+                    activeSkills: route.activeSkills,
+                    deferredSkills: route.deferredSkills,
+                    loadOrder: route.loadOrder,
+                    deferredLoadOrder: route.deferredLoadOrder,
+                    intent: boundedRouteIntent(route.intent),
+                    signals: route.signals,
+                    ambiguity: route.ambiguity,
+                    requiredPhases: route.requiredPhases,
+                    completedPhases: route.completedPhases,
+                    missingRequiredPhases: route.missingRequiredPhases,
+                    externalSource: envelope.source,
+                    emittedAt: envelope.emittedAt,
+                },
+            }) };
+    }
+    if (envelope.event.kind === "skill_load") {
+        const load = envelope.event;
+        return { duplicate: false, event: recordMssrEvent({
+                eventId: envelope.eventId,
+                traceId: envelope.traceId,
+                eventType: "skill_loaded",
+                caller: envelope.caller,
+                stage: load.stage,
+                skillName: load.skillName,
+                required: load.required,
+                ok: load.loaded,
+                details: {
+                    source: load.source,
+                    via: load.via,
+                    warning: load.warning,
+                    externalSource: envelope.source,
+                    emittedAt: envelope.emittedAt,
+                },
+            }) };
+    }
+    if (envelope.event.kind === "skill_decision") {
+        const decision = envelope.event.decision;
+        return { duplicate: false, event: recordMssrEvent({
+                eventId: envelope.eventId,
+                traceId: envelope.traceId,
+                eventType: "skill_decision",
+                caller: envelope.caller,
+                stage: decision.stage,
+                skillName: decision.skillName,
+                ok: true,
+                details: {
+                    decision: decision.decision,
+                    reasonCode: decision.reasonCode,
+                    reasonSummary: decision.reasonSummary ? redactText(decision.reasonSummary, 240) : undefined,
+                    relatedSkillName: decision.relatedSkillName,
+                    externalSource: envelope.source,
+                    emittedAt: envelope.emittedAt,
+                },
+            }) };
+    }
+    if (envelope.event.kind === "learning_digest") {
+        return { duplicate: false, event: recordMssrLearningDigest({
+                traceId: envelope.traceId,
+                caller: envelope.caller,
+                digest: envelope.event.digest,
+            }) };
+    }
+    if (envelope.event.kind === "context_assembly") {
+        const assembly = envelope.event;
+        return { duplicate: false, event: recordMssrContextAssembly({
+                eventId: envelope.eventId,
+                traceId: envelope.traceId,
+                caller: envelope.caller,
+                stage: assembly.stage,
+                mode: assembly.mode,
+                page: assembly.page,
+                requestedContextChars: assembly.requestedContextChars,
+                deliveredContextChars: assembly.deliveredContextChars,
+                estimatedCharsSaved: assembly.estimatedCharsSaved,
+                retainedContextCharsSaved: assembly.retainedContextCharsSaved,
+                requiredOverflowChars: assembly.requiredOverflowChars,
+                acceptedOverflowChars: assembly.acceptedOverflowChars,
+                remainingRequiredUnits: assembly.remainingRequiredUnits,
+                remainingAcceptedUnits: assembly.remainingAcceptedUnits,
+                requiredBudgetExceeded: assembly.requiredBudgetExceeded,
+                optionalContextOmitted: assembly.optionalContextOmitted,
+                continuationIssued: assembly.continuationIssued,
+                continuationConsumed: assembly.continuationConsumed,
+                chainCompleted: assembly.chainCompleted,
+            }) };
+    }
+    if (envelope.event.kind === "project_context_selection") {
+        const selection = envelope.event;
+        return { duplicate: false, event: recordMssrProjectContextSelection({
+                eventId: envelope.eventId,
+                traceId: envelope.traceId,
+                caller: envelope.caller,
+                stage: selection.stage,
+                projectName: selection.projectName,
+                decisions: selection.decisions,
+            }) };
+    }
+    const checkpoint = envelope.event.checkpoint;
+    const persisted = readPersistedMssrTraceState(envelope.traceId);
+    const violations = validateMssrCheckpointLifecycle(persisted ? {
+        stage: persisted.stage,
+        requiredSkills: persisted.requiredSkills,
+        selectedSkills: persisted.selectedSkills,
+        loadedSkills: persisted.loadedSkills,
+        requiredPhases: persisted.requiredPhases,
+        completedPhases: persisted.completedPhases,
+        routeCount: persisted.routeCount,
+        closed: persisted.closed,
+        maintenanceRequired: persisted.maintenanceRequired,
+        lifecycleRevision: persisted.lifecycleRevision,
+        closeRevision: persisted.closeRevision,
+        maintenanceRevision: persisted.maintenanceRevision,
+    } : null, checkpoint);
+    if (violations.some((item) => item.blocking)) {
+        throw Object.assign(new Error(`External MSSR checkpoint rejected: ${violations.map((item) => item.code).join(", ")}.`), { statusCode: 409 });
+    }
+    const stored = recordMssrCheckpoint({
+        ...checkpoint,
+        eventId: envelope.eventId,
+        traceId: envelope.traceId,
+        caller: envelope.caller,
+        externalSource: envelope.source,
+        emittedAt: envelope.emittedAt,
+    });
+    if (checkpoint.eventType === "outcome") {
+        const learning = finalizeMssrOutcomeLearning(envelope.traceId);
+        if (learning.digestEvent)
+            void persistMssrOutcomeSemanticExperience(envelope.traceId, learning.digestEvent);
+    }
+    return { event: stored, duplicate: false };
+}
+/** Correlate one host-observed MSSR route call only when exactly one lifecycle route occurred inside its bounded call window. */
+export function resolveExternalMssrRouteTrace(startedAt, endedAt, caller = "opencode-local") {
+    const database = getDb();
+    if (!database)
+        return undefined;
+    const startMs = Date.parse(startedAt);
+    const endMs = Date.parse(endedAt);
+    if (!Number.isFinite(startMs) || !Number.isFinite(endMs) || endMs < startMs || endMs - startMs > 24 * 60 * 60_000)
+        return undefined;
+    const lower = new Date(startMs - 1_000).toISOString();
+    const upper = new Date(endMs + 1_000).toISOString();
+    const rows = database.prepare(`
+    SELECT DISTINCT trace_id FROM mssr_events
+    WHERE caller = ? AND event_type = 'route_planned'
+      AND occurred_at >= ? AND occurred_at <= ?
+      AND trace_id NOT LIKE '__test_%'
+  `).all(caller, lower, upper);
+    return rows.length === 1 && typeof rows[0]?.trace_id === "string" ? rows[0].trace_id : undefined;
+}
+function routeSkills(value) {
+    if (!Array.isArray(value))
+        return [];
+    return value.flatMap((item) => {
+        if (!item || typeof item !== "object" || typeof item.name !== "string")
+            return [];
+        const record = item;
+        return [{
+                name: String(record.name),
+                source: typeof record.source === "string" ? record.source : undefined,
+                required: record.required === true,
+                score: typeof record.score === "number" ? record.score : undefined,
+            }];
+    });
+}
+function humanizeWorkflowKey(value) {
+    if (typeof value !== "string")
+        return "";
+    const normalized = value.trim().replace(/[._-]+/g, " ").replace(/\s+/g, " ");
+    return normalized ? normalized[0].toUpperCase() + normalized.slice(1) : "";
+}
+function generatedRouteIntentSummary(intent, workflowKey) {
+    const workflow = humanizeWorkflowKey(workflowKey);
+    const actions = intent.actions.slice(0, 3).join(", ");
+    const domains = intent.domains.slice(0, 2).join(", ");
+    const artifacts = intent.artifacts.slice(0, 2).join(", ");
+    const subject = workflow || domains || artifacts || "MSSR task";
+    const activity = actions || "continue work";
+    const context = domains && domains !== subject ? ` in ${domains}` : artifacts && artifacts !== subject ? ` on ${artifacts}` : "";
+    return redactText(`${subject}: ${activity}${context}.`, 240);
+}
+function boundedRouteIntent(value, workflowKey) {
+    const parsed = structuredSkillIntentSchema.safeParse(value);
+    if (!parsed.success)
+        return undefined;
+    const { summary, domains, actions, artifacts, needs, signals, risk, ambiguity } = parsed.data;
+    return {
+        summary: summary ? redactText(summary, 240) : generatedRouteIntentSummary({ domains, actions, artifacts }, workflowKey),
+        domains,
+        actions,
+        artifacts,
+        needs,
+        signals,
+        risk,
+        ambiguity,
+    };
+}
+function portableRouteIntent(value) {
+    const parsed = structuredSkillIntentSchema.safeParse(value);
+    if (!parsed.success)
+        return undefined;
+    const { summary: _summary, ...portable } = parsed.data;
+    return portable;
+}
+export function recordMssrRoute(args) {
+    const intent = args.route.intent && typeof args.route.intent === "object" ? args.route.intent : {};
+    const coverage = args.route.coverage && typeof args.route.coverage === "object" ? args.route.coverage : {};
+    const agentProfile = args.route.agentProfile && typeof args.route.agentProfile === "object"
+        ? args.route.agentProfile
+        : {};
+    return recordMssrEvent({
+        traceId: args.traceId,
+        eventType: "route_planned",
+        caller: typeof args.route.caller === "string" ? args.route.caller : undefined,
+        stage: typeof args.route.stage === "string" ? args.route.stage : undefined,
+        classificationMode: typeof args.route.classificationMode === "string" ? args.route.classificationMode : undefined,
+        taskHash: hashMssrTask(args.task),
+        ok: true,
+        details: {
+            action: args.action,
+            workflowKey: typeof args.route.workflowKey === "string" ? args.route.workflowKey : null,
+            taskKey: typeof args.route.taskKey === "string" ? args.route.taskKey : null,
+            parentTraceId: typeof args.route.parentTraceId === "string" ? args.route.parentTraceId : null,
+            supersedesTraceId: typeof args.route.supersedesTraceId === "string" ? args.route.supersedesTraceId : null,
+            agentProfile: {
+                model: normalizeModelIdentifier(agentProfile.model),
+                reasoningEffort: typeof agentProfile.reasoningEffort === "string" ? agentProfile.reasoningEffort : "unknown",
+            },
+            contextUsed: args.route.contextUsed === true,
+            contextCharacters: typeof args.route.contextCharacters === "number" ? args.route.contextCharacters : 0,
+            workflows: Array.isArray(args.route.workflows) ? args.route.workflows : [],
+            activeSkills: routeSkills(args.route.activeSkills),
+            deferredSkills: routeSkills(args.route.deferredSkills),
+            loadOrder: Array.isArray(args.route.loadOrder) ? args.route.loadOrder : [],
+            deferredLoadOrder: Array.isArray(args.route.deferredLoadOrder) ? args.route.deferredLoadOrder : [],
+            intent: boundedRouteIntent(intent, args.route.workflowKey),
+            signals: Array.isArray(intent.signals) ? intent.signals : [],
+            ambiguity: typeof intent.ambiguity === "string" ? intent.ambiguity : undefined,
+            requiredPhases: Array.isArray(coverage.requiredPhases) ? coverage.requiredPhases : [],
+            completedPhases: Array.isArray(coverage.completedPhases) ? coverage.completedPhases : [],
+            missingRequiredPhases: Array.isArray(coverage.missingRequiredPhases) ? coverage.missingRequiredPhases : [],
+        },
+    });
+}
+export function recordMssrSkillLoad(args) {
+    return recordMssrEvent({
+        traceId: args.traceId,
+        eventType: "skill_loaded",
+        stage: args.stage,
+        skillName: args.skillName,
+        required: args.required,
+        ok: args.loaded,
+        details: {
+            source: args.source,
+            via: args.via,
+            warning: args.warning,
+            contentMode: args.contentMode,
+            coreCharsLoaded: args.coreCharsLoaded,
+            moduleCharsLoaded: args.moduleCharsLoaded,
+            totalCharsLoaded: args.totalCharsLoaded,
+            fullSkillChars: args.fullSkillChars,
+            estimatedCharsSaved: args.estimatedCharsSaved,
+            selectedModules: args.selectedModules?.slice(0, 24),
+            moduleDecisions: args.moduleDecisions?.slice(0, 96).flatMap((item) => {
+                const id = typeof item.id === "string" ? redactText(item.id, 160) : "";
+                if (!id)
+                    return [];
+                return [{
+                        id,
+                        selected: item.selected === true,
+                        reason: typeof item.reason === "string" ? redactText(item.reason, 80) : "other",
+                    }];
+            }),
+            manifestStatus: args.manifestStatus,
+            budgetExceeded: args.budgetExceeded,
+            skipped: args.skipped,
+            skippedReason: args.skippedReason,
+            candidateChars: args.candidateChars,
+            ambiguousGroups: args.ambiguousGroups?.slice(0, 8).map((item) => ({
+                group: item.group,
+                candidates: item.candidates.slice(0, 8),
+                score: item.score,
+            })),
+            planningMode: args.planningMode,
+            allocationTiers: args.allocationTiers?.slice(0, 8),
+            duplicateCharsAvoided: args.duplicateCharsAvoided,
+        },
+    });
+}
+/**
+ * Record one privacy-safe, bootstrap-level context envelope observation.
+ *
+ * This is intentionally separate from per-skill `skill_loaded` rows: a
+ * bootstrap has one global budget/envelope, while a route can load many skills.
+ * Callers must not put cursor values, selected content, prompts, or transcripts
+ * in this event. Counts describe units only (for example skills or modules),
+ * never their procedural text.
+ */
+export function recordMssrContextAssembly(args) {
+    const boundedNumber = (value, maximum = 10_000_000) => (typeof value === "number" && Number.isFinite(value)
+        ? Math.min(maximum, Math.max(0, Math.trunc(value)))
+        : undefined);
+    const boundedUnits = (value) => boundedNumber(value, 10_000);
+    return recordMssrEvent({
+        eventId: args.eventId,
+        traceId: args.traceId,
+        eventType: "context_assembly",
+        caller: args.caller,
+        stage: args.stage,
+        ok: true,
+        details: {
+            mode: args.mode,
+            page: boundedNumber(args.page, 10_000),
+            requestedContextChars: boundedNumber(args.requestedContextChars),
+            deliveredContextChars: boundedNumber(args.deliveredContextChars),
+            estimatedCharsSaved: boundedNumber(args.estimatedCharsSaved),
+            retainedContextCharsSaved: boundedNumber(args.retainedContextCharsSaved),
+            responseChars: boundedNumber(args.responseChars),
+            envelopeChars: boundedNumber(args.envelopeChars),
+            requiredOverflowChars: boundedNumber(args.requiredOverflowChars),
+            acceptedOverflowChars: boundedNumber(args.acceptedOverflowChars),
+            remainingRequiredUnits: boundedUnits(args.remainingRequiredUnits),
+            remainingAcceptedUnits: boundedUnits(args.remainingAcceptedUnits),
+            requiredBudgetExceeded: args.requiredBudgetExceeded === true,
+            optionalContextOmitted: args.optionalContextOmitted === true,
+            continuationIssued: args.continuationIssued === true,
+            continuationConsumed: args.continuationConsumed === true,
+            chainCompleted: args.chainCompleted === true,
+        },
+    });
+}
+export function recordMssrSkillDecision(args) {
+    const decision = mssrSkillDecisionSchema.parse(args.decision);
+    return recordMssrEvent({
+        traceId: args.traceId,
+        eventType: "skill_decision",
+        caller: args.caller,
+        stage: decision.stage,
+        skillName: decision.skillName,
+        ok: true,
+        details: {
+            decision: decision.decision,
+            reasonCode: decision.reasonCode,
+            reasonSummary: decision.reasonSummary ? redactText(decision.reasonSummary, 240) : undefined,
+            relatedSkillName: decision.relatedSkillName,
+        },
+    });
+}
+export function recordMssrCheckpoint(args) {
+    const ok = args.status === undefined ? undefined : args.status === "success";
+    const primarySkill = args.primarySkill ?? args.skillName;
+    const supportingSkills = [...new Set((args.supportingSkills ?? []).filter((name) => name && name !== primarySkill))].slice(0, 24);
+    const score = typeof args.score === "number" && Number.isFinite(args.score)
+        ? Math.max(0, Math.min(1, args.score))
+        : undefined;
+    const leaseMs = args.eventType === "progress"
+        ? Math.min(15 * 60_000, Math.max(30_000, Math.floor(args.leaseMs ?? 5 * 60_000)))
+        : undefined;
+    const dimensions = (args.dimensions ?? []).slice(0, 12).map((item) => ({
+        name: redactText(item.name, 80),
+        status: item.status,
+        summary: item.summary ? redactText(item.summary, 200) : undefined,
+        evidenceRef: item.evidenceRef ? redactText(item.evidenceRef, 200) : undefined,
+    }));
+    return recordMssrEvent({
+        eventId: args.eventId,
+        traceId: args.traceId,
+        eventType: args.eventType,
+        caller: args.caller,
+        stage: args.stage,
+        skillName: primarySkill,
+        ok,
+        details: {
+            status: args.status,
+            completedPhases: args.completedPhases ?? [],
+            contextSources: args.contextSources ?? [],
+            userCorrections: args.userCorrections ?? 0,
+            verificationPassed: args.verificationPassed,
+            persisted: args.persisted,
+            primarySkill,
+            supportingSkills,
+            metricName: args.metricName ? redactText(args.metricName, 120) : undefined,
+            score,
+            accepted: args.accepted,
+            evidenceKind: args.evidenceKind,
+            evidenceRef: args.evidenceRef ? redactText(args.evidenceRef, 300) : undefined,
+            leaseMs,
+            dimensions,
+            summary: args.summary ? redactText(args.summary, 300) : undefined,
+            signals: args.signals ?? [],
+            agentProfile: {
+                model: normalizeModelIdentifier(args.model),
+                reasoningEffort: args.reasoningEffort ? redactText(args.reasoningEffort, 20) : "unknown",
+            },
+            externalSource: args.externalSource,
+            emittedAt: args.emittedAt,
+        },
+    });
+}
+function decodeRow(row) {
+    let details = {};
+    try {
+        details = typeof row.details_json === "string" ? JSON.parse(row.details_json) : {};
+    }
+    catch {
+        details = { parseError: true };
+    }
+    return {
+        id: String(row.id ?? ""),
+        occurredAt: String(row.occurred_at ?? ""),
+        traceId: String(row.trace_id ?? ""),
+        eventType: String(row.event_type ?? ""),
+        caller: typeof row.caller === "string" ? row.caller : undefined,
+        stage: typeof row.stage === "string" ? row.stage : undefined,
+        classificationMode: typeof row.classification_mode === "string" ? row.classification_mode : undefined,
+        skillName: typeof row.skill_name === "string" ? row.skill_name : undefined,
+        required: row.required === null || row.required === undefined ? undefined : Number(row.required) === 1,
+        ok: row.ok === null || row.ok === undefined ? undefined : Number(row.ok) === 1,
+        taskHash: typeof row.task_hash === "string" ? row.task_hash : undefined,
+        details,
+    };
+}
+export function readPersistedMssrTraceState(traceId) {
+    if (!validTraceId(traceId))
+        return null;
+    const events = readMssrStoredTraceEvents(traceId, 1000);
+    const routes = events.filter((event) => event.eventType === "route_planned");
+    if (routes.length === 0)
+        return null;
+    const latestRoute = routes[routes.length - 1];
+    const requiredSkills = new Set();
+    const selectedSkills = new Set();
+    const requiredPhases = new Set();
+    const completedPhases = new Set();
+    for (const route of routes) {
+        const active = Array.isArray(route.details.activeSkills) ? route.details.activeSkills : [];
+        for (const item of active) {
+            if (!item || typeof item !== "object" || typeof item.name !== "string")
+                continue;
+            const name = String(item.name);
+            selectedSkills.add(name);
+            if (item.required === true)
+                requiredSkills.add(name);
+        }
+        for (const phase of Array.isArray(route.details.requiredPhases) ? route.details.requiredPhases : []) {
+            if (typeof phase === "string")
+                requiredPhases.add(phase);
+        }
+        for (const phase of Array.isArray(route.details.completedPhases) ? route.details.completedPhases : []) {
+            if (typeof phase === "string")
+                completedPhases.add(phase);
+        }
+    }
+    let maintenanceRequired = false;
+    let lifecycleRevision = 0;
+    let closeRevision = 0;
+    let maintenanceRevision = 0;
+    for (const event of events) {
+        for (const phase of Array.isArray(event.details.completedPhases) ? event.details.completedPhases : []) {
+            if (typeof phase === "string")
+                completedPhases.add(phase);
+        }
+        if (event.eventType === "verification" && (event.ok === true || event.details.verificationPassed === true)) {
+            completedPhases.add("verification");
+        }
+        if (event.eventType === "persistence" && (event.ok === true || event.details.persisted === true)) {
+            completedPhases.add("persistence");
+        }
+        if (event.eventType === "route_planned") {
+            const requiredPhases = Array.isArray(event.details.requiredPhases) ? event.details.requiredPhases : [];
+            if (requiredPhases.includes("maintenance"))
+                maintenanceRequired = true;
+            if (lifecycleRevision === 0)
+                lifecycleRevision = 1;
+            else if (event.stage !== "close")
+                lifecycleRevision += 1;
+            if (event.stage === "close")
+                closeRevision = lifecycleRevision;
+            continue;
+        }
+        if (event.eventType === "persistence") {
+            lifecycleRevision = Math.max(1, lifecycleRevision) + 1;
+            continue;
+        }
+        if (event.eventType === "phase_completed"
+            && event.stage === "close"
+            && event.ok !== false
+            && Array.isArray(event.details.completedPhases)
+            && event.details.completedPhases.includes("maintenance")
+            && closeRevision === lifecycleRevision) {
+            maintenanceRevision = lifecycleRevision;
+        }
+    }
+    const loadedSkills = new Set(events
+        .filter((event) => event.eventType === "skill_loaded" && event.ok === true && event.skillName)
+        .map((event) => String(event.skillName)));
+    const latestOutcome = [...events].reverse().find((event) => event.eventType === "outcome");
+    const latestEvent = events[events.length - 1];
+    const profile = latestRoute.details.agentProfile && typeof latestRoute.details.agentProfile === "object"
+        ? latestRoute.details.agentProfile
+        : {};
+    const observedTraceContext = resolveObservedTraceContext(traceId);
+    const taskIdentity = traceTaskIdentity(events);
+    return {
+        traceId,
+        workflowKey: typeof latestRoute.details.workflowKey === "string"
+            ? latestRoute.details.workflowKey
+            : observedTraceContext.workflowKey ?? "unscoped",
+        stage: latestRoute.stage ?? "start",
+        taskHash: latestRoute.taskHash ?? "",
+        taskKey: taskIdentity.taskKey ?? null,
+        parentTraceId: taskIdentity.parentTraceId ?? null,
+        supersedesTraceId: taskIdentity.supersedesTraceId ?? null,
+        caller: latestRoute.caller ?? "other",
+        model: typeof profile.model === "string" ? profile.model : "unknown",
+        reasoningEffort: typeof profile.reasoningEffort === "string" ? profile.reasoningEffort : "unknown",
+        sessionKey: observedTraceContext.sessionKey ?? "unknown",
+        project: observedTraceContext.project ?? "unknown",
+        requiredSkills: [...requiredSkills].sort(),
+        selectedSkills: [...selectedSkills].sort(),
+        loadedSkills: [...loadedSkills].sort(),
+        requiredPhases: [...requiredPhases].sort(),
+        completedPhases: [...completedPhases].sort(),
+        routeCount: routes.length,
+        closed: Boolean(latestOutcome && Date.parse(latestOutcome.occurredAt) >= Date.parse(latestRoute.occurredAt)),
+        maintenanceRequired,
+        lifecycleRevision,
+        closeRevision,
+        maintenanceRevision,
+        updatedAt: Date.parse(latestEvent.occurredAt) || Date.now(),
+    };
+}
+export function findPersistedMssrTraceCandidates(args) {
+    const database = getDb();
+    const maxAgeMs = Math.max(60_000, Math.min(24 * 60 * 60 * 1_000, args.maxAgeMs ?? 2 * 60 * 60 * 1_000));
+    const limit = Math.max(1, Math.min(32, args.limit ?? 8));
+    const since = new Date(Date.now() - maxAgeMs).toISOString();
+    const caller = typeof args.caller === "string" ? args.caller.trim().toLowerCase() : "";
+    const sessionKey = typeof args.sessionKey === "string" ? args.sessionKey.trim().toLowerCase() : "";
+    const project = typeof args.project === "string" ? args.project.trim().toLowerCase() : "";
+    const workflowKey = typeof args.workflowKey === "string" ? args.workflowKey.trim().toLowerCase() : "";
+    const skillName = typeof args.skillName === "string" ? args.skillName.trim() : "";
+    const persistedRows = database ? database.prepare(`
+    SELECT trace_id, MAX(occurred_at) AS latest_route_at
+    FROM mssr_events
+    WHERE event_type = 'route_planned'
+      AND occurred_at >= ?
+    GROUP BY trace_id
+    ORDER BY latest_route_at DESC
+    LIMIT 64
+  `).all(since) : [];
+    const latestByTrace = new Map();
+    for (const row of persistedRows) {
+        if (typeof row.trace_id !== "string" || typeof row.latest_route_at !== "string")
+            continue;
+        latestByTrace.set(row.trace_id, row.latest_route_at);
+    }
+    for (const event of recentMssrEventOverlay) {
+        if (event.eventType !== "route_planned" || event.occurredAt < since)
+            continue;
+        const previous = latestByTrace.get(event.traceId);
+        if (!previous || event.occurredAt > previous)
+            latestByTrace.set(event.traceId, event.occurredAt);
+    }
+    const rows = [...latestByTrace.entries()]
+        .map(([trace_id, latest_route_at]) => ({ trace_id, latest_route_at }))
+        .sort((a, b) => b.latest_route_at.localeCompare(a.latest_route_at))
+        .slice(0, 64);
+    const candidates = [];
+    for (const row of rows) {
+        if (typeof row.trace_id !== "string")
+            continue;
+        const state = readPersistedMssrTraceState(row.trace_id);
+        if (!state || state.closed || Date.now() - state.updatedAt > maxAgeMs)
+            continue;
+        if (caller && caller !== "other" && state.caller !== caller)
+            continue;
+        if (sessionKey && sessionKey !== "unknown" && state.sessionKey !== sessionKey)
+            continue;
+        if (project && project !== "unknown" && state.project !== "unknown" && state.project !== project)
+            continue;
+        if (workflowKey && workflowKey !== "unknown" && workflowKey !== "unscoped"
+            && state.workflowKey !== "unknown" && state.workflowKey !== "unscoped"
+            && state.workflowKey !== workflowKey)
+            continue;
+        if (skillName && (!state.selectedSkills.includes(skillName) || state.loadedSkills.includes(skillName)))
+            continue;
+        candidates.push(state);
+        if (candidates.length >= limit)
+            break;
+    }
+    return candidates;
+}
+function rate(numerator, denominator) {
+    return denominator > 0 ? Math.round((numerator / denominator) * 10_000) / 100 : null;
+}
+function topCounts(values, limit = 12) {
+    const counts = new Map();
+    for (const value of values)
+        counts.set(value, (counts.get(value) ?? 0) + 1);
+    return [...counts.entries()]
+        .map(([name, count]) => ({ name, count }))
+        .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
+        .slice(0, limit);
+}
+function numericDetail(event, key) {
+    const value = event.details[key];
+    return typeof value === "number" && Number.isFinite(value) ? Math.max(0, value) : 0;
+}
+function summarizeContextAssembly(events) {
+    const loads = events.filter((event) => event.eventType === "skill_loaded"
+        && (typeof event.details.totalCharsLoaded === "number" || typeof event.details.fullSkillChars === "number"));
+    // Newer callers emit exactly one context_assembly event per bootstrap. Keep
+    // per-skill observations for historical compatibility, but never use them to
+    // infer bootstrap overflow once the authoritative aggregate exists.
+    const assemblies = events.filter((event) => event.eventType === "context_assembly");
+    const latestAssemblyByTrace = new Map();
+    for (const event of assemblies)
+        latestAssemblyByTrace.set(event.traceId, event);
+    const byTrace = new Map();
+    const bySkill = new Map();
+    let loadedChars = 0;
+    let fullChars = 0;
+    let savedChars = 0;
+    let fallbackLoads = 0;
+    let skippedLoads = 0;
+    let overflowLoads = 0;
+    let requiredOverflowLoads = 0;
+    let optionalOverflowLoads = 0;
+    let skippedForBudgetLoads = 0;
+    let duplicateCharsAvoided = 0;
+    let ambiguousGroups = 0;
+    const planningModes = [];
+    for (const event of loads) {
+        const loaded = numericDetail(event, "totalCharsLoaded");
+        const full = numericDetail(event, "fullSkillChars");
+        const saved = numericDetail(event, "estimatedCharsSaved");
+        const duplicate = numericDetail(event, "duplicateCharsAvoided");
+        const skipped = event.details.skipped === true;
+        const overflow = !latestAssemblyByTrace.has(event.traceId) && event.details.budgetExceeded === true;
+        const skippedForBudget = skipped && event.details.skippedReason === "optional-context-exceeds-budget";
+        const requiredOverflow = overflow && event.required === true && !skipped;
+        const optionalOverflow = overflow && event.required !== true && !skipped;
+        const fallback = event.details.manifestStatus === "missing" || event.details.manifestStatus === "invalid" || event.details.fallbackFull === true;
+        const mode = typeof event.details.contentMode === "string" ? event.details.contentMode : "unknown";
+        const planner = typeof event.details.planningMode === "string" ? event.details.planningMode : "legacy-sequential";
+        const ambiguous = Array.isArray(event.details.ambiguousGroups) ? event.details.ambiguousGroups.length : 0;
+        loadedChars += loaded;
+        fullChars += full;
+        savedChars += saved;
+        duplicateCharsAvoided += duplicate;
+        if (fallback)
+            fallbackLoads += 1;
+        if (skipped)
+            skippedLoads += 1;
+        if (overflow)
+            overflowLoads += 1;
+        if (requiredOverflow)
+            requiredOverflowLoads += 1;
+        if (optionalOverflow)
+            optionalOverflowLoads += 1;
+        if (skippedForBudget)
+            skippedForBudgetLoads += 1;
+        ambiguousGroups += ambiguous;
+        planningModes.push(planner);
+        const trace = byTrace.get(event.traceId) ?? {
+            traceId: event.traceId,
+            latestAt: event.occurredAt,
+            loadedChars: 0,
+            fullChars: 0,
+            savedChars: 0,
+            skippedLoads: 0,
+            overflowLoads: 0,
+            requiredOverflowLoads: 0,
+            optionalOverflowLoads: 0,
+            skippedForBudgetLoads: 0,
+            duplicateCharsAvoided: 0,
+            skillNames: new Set(),
+            planningModes: new Set(),
+            bootstrapObserved: false,
+            requestedContextChars: 0,
+            deliveredContextChars: 0,
+            responseChars: 0,
+            envelopeChars: 0,
+            requiredOverflowChars: 0,
+            acceptedOverflowChars: 0,
+            remainingRequiredUnits: 0,
+            remainingAcceptedUnits: 0,
+            continuationIssued: false,
+            continuationConsumed: false,
+            chainCompleted: false,
+        };
+        trace.latestAt = event.occurredAt > trace.latestAt ? event.occurredAt : trace.latestAt;
+        trace.loadedChars += loaded;
+        trace.fullChars += full;
+        trace.savedChars += saved;
+        trace.skippedLoads += skipped ? 1 : 0;
+        trace.overflowLoads += overflow ? 1 : 0;
+        trace.requiredOverflowLoads += requiredOverflow ? 1 : 0;
+        trace.optionalOverflowLoads += optionalOverflow ? 1 : 0;
+        trace.skippedForBudgetLoads += skippedForBudget ? 1 : 0;
+        trace.duplicateCharsAvoided += duplicate;
+        if (event.skillName)
+            trace.skillNames.add(event.skillName);
+        trace.planningModes.add(planner);
+        byTrace.set(event.traceId, trace);
+        const name = event.skillName || "unknown";
+        const skill = bySkill.get(name) ?? {
+            name,
+            loads: 0,
+            selectiveLoads: 0,
+            fullLoads: 0,
+            fallbackLoads: 0,
+            skippedLoads: 0,
+            overflowLoads: 0,
+            requiredOverflowLoads: 0,
+            optionalOverflowLoads: 0,
+            skippedForBudgetLoads: 0,
+            coreChars: 0,
+            loadedChars: 0,
+            fullChars: 0,
+            savedChars: 0,
+            duplicateCharsAvoided: 0,
+        };
+        skill.loads += 1;
+        skill.selectiveLoads += mode === "selective" ? 1 : 0;
+        skill.fullLoads += mode === "full" ? 1 : 0;
+        skill.fallbackLoads += fallback ? 1 : 0;
+        skill.skippedLoads += skipped ? 1 : 0;
+        skill.overflowLoads += overflow ? 1 : 0;
+        skill.requiredOverflowLoads += requiredOverflow ? 1 : 0;
+        skill.optionalOverflowLoads += optionalOverflow ? 1 : 0;
+        skill.skippedForBudgetLoads += skippedForBudget ? 1 : 0;
+        skill.coreChars += numericDetail(event, "coreCharsLoaded");
+        skill.loadedChars += loaded;
+        skill.fullChars += full;
+        skill.savedChars += saved;
+        skill.duplicateCharsAvoided += duplicate;
+        bySkill.set(name, skill);
+    }
+    let requestedContextChars = 0;
+    let deliveredContextChars = 0;
+    let responseChars = 0;
+    let envelopeChars = 0;
+    let requiredOverflowChars = 0;
+    let acceptedOverflowChars = 0;
+    let remainingRequiredUnits = 0;
+    let remainingAcceptedUnits = 0;
+    let continuationIssued = 0;
+    let continuationConsumed = 0;
+    let chainCompleted = 0;
+    for (const event of assemblies) {
+        requestedContextChars += numericDetail(event, "requestedContextChars");
+        deliveredContextChars += numericDetail(event, "deliveredContextChars");
+        responseChars += numericDetail(event, "responseChars");
+        envelopeChars += numericDetail(event, "envelopeChars");
+        requiredOverflowChars += numericDetail(event, "requiredOverflowChars");
+        acceptedOverflowChars += numericDetail(event, "acceptedOverflowChars");
+        remainingRequiredUnits += numericDetail(event, "remainingRequiredUnits");
+        remainingAcceptedUnits += numericDetail(event, "remainingAcceptedUnits");
+        if (event.details.continuationIssued === true)
+            continuationIssued += 1;
+        if (event.details.continuationConsumed === true)
+            continuationConsumed += 1;
+        if (event.details.chainCompleted === true)
+            chainCompleted += 1;
+    }
+    for (const [traceId, event] of latestAssemblyByTrace) {
+        const trace = byTrace.get(traceId) ?? {
+            traceId,
+            latestAt: event.occurredAt,
+            loadedChars: 0,
+            fullChars: 0,
+            savedChars: 0,
+            skippedLoads: 0,
+            overflowLoads: 0,
+            requiredOverflowLoads: 0,
+            optionalOverflowLoads: 0,
+            skippedForBudgetLoads: 0,
+            duplicateCharsAvoided: 0,
+            skillNames: new Set(),
+            planningModes: new Set(),
+            bootstrapObserved: false,
+            requestedContextChars: 0,
+            deliveredContextChars: 0,
+            responseChars: 0,
+            envelopeChars: 0,
+            requiredOverflowChars: 0,
+            acceptedOverflowChars: 0,
+            remainingRequiredUnits: 0,
+            remainingAcceptedUnits: 0,
+            continuationIssued: false,
+            continuationConsumed: false,
+            chainCompleted: false,
+        };
+        trace.latestAt = event.occurredAt > trace.latestAt ? event.occurredAt : trace.latestAt;
+        trace.bootstrapObserved = true;
+        trace.requestedContextChars = numericDetail(event, "requestedContextChars");
+        trace.deliveredContextChars = numericDetail(event, "deliveredContextChars");
+        trace.responseChars = numericDetail(event, "responseChars");
+        trace.envelopeChars = numericDetail(event, "envelopeChars");
+        trace.requiredOverflowChars = numericDetail(event, "requiredOverflowChars");
+        trace.acceptedOverflowChars = numericDetail(event, "acceptedOverflowChars");
+        trace.remainingRequiredUnits = numericDetail(event, "remainingRequiredUnits");
+        trace.remainingAcceptedUnits = numericDetail(event, "remainingAcceptedUnits");
+        trace.continuationIssued = event.details.continuationIssued === true;
+        trace.continuationConsumed = event.details.continuationConsumed === true;
+        trace.chainCompleted = event.details.chainCompleted === true;
+        byTrace.set(traceId, trace);
+    }
+    const skillPressure = [...bySkill.values()].map((skill) => {
+        const averageCoreChars = skill.loads > 0 ? Math.round(skill.coreChars / skill.loads) : 0;
+        const averageLoadedChars = skill.loads > 0 ? Math.round(skill.loadedChars / skill.loads) : 0;
+        const averageFullChars = skill.loads > 0 ? Math.round(skill.fullChars / skill.loads) : 0;
+        const savingsRate = rate(skill.savedChars, skill.fullChars);
+        const fallbackRate = skill.loads > 0 ? skill.fallbackLoads / skill.loads : 0;
+        const retainedRatio = skill.fullChars > 0 ? skill.loadedChars / skill.fullChars : 1;
+        const pressureScore = Math.round(skill.loads * Math.max(1, averageFullChars) * Math.max(0.1, fallbackRate + retainedRatio));
+        const recommendation = skill.fallbackLoads > 0
+            ? "add-context-manifest"
+            : averageCoreChars >= 4500 && skill.loads >= 2
+                ? "review-core"
+                : skill.skippedForBudgetLoads > 0
+                    ? "review-budget"
+                    : skill.requiredOverflowLoads > 0
+                        ? "review-required-context"
+                        : skill.optionalOverflowLoads > 0
+                            ? "review-optional-context"
+                            : "healthy-selective";
+        return {
+            ...skill,
+            averageCoreChars,
+            averageLoadedChars,
+            averageFullChars,
+            savingsRate,
+            pressureScore,
+            recommendation,
+        };
+    }).sort((a, b) => b.pressureScore - a.pressureScore || b.loads - a.loads || a.name.localeCompare(b.name));
+    return {
+        loadEvents: loads.length,
+        bootstrapEvents: assemblies.length,
+        bootstrapTelemetryTraces: latestAssemblyByTrace.size,
+        legacySkillLoadOnlyTraces: new Set(loads.filter((event) => !latestAssemblyByTrace.has(event.traceId)).map((event) => event.traceId)).size,
+        selectiveLoads: loads.filter((event) => event.details.contentMode === "selective").length,
+        fullLoads: loads.filter((event) => event.details.contentMode === "full").length,
+        fallbackLoads,
+        skippedLoads,
+        overflowLoads,
+        requiredOverflowLoads,
+        optionalOverflowLoads,
+        skippedForBudgetLoads,
+        ambiguousGroups,
+        loadedChars,
+        fullChars,
+        savedChars,
+        savingsRate: rate(savedChars, fullChars),
+        duplicateCharsAvoided,
+        requestedContextChars,
+        deliveredContextChars,
+        responseChars,
+        envelopeChars,
+        requiredOverflowChars,
+        acceptedOverflowChars,
+        remainingRequiredUnits,
+        remainingAcceptedUnits,
+        continuationIssued,
+        continuationConsumed,
+        chainCompleted,
+        planningModes: topCounts(planningModes, 8),
+        recentTraces: [...byTrace.values()]
+            .map((trace) => ({
+            traceId: trace.traceId,
+            latestAt: trace.latestAt,
+            loadedChars: trace.loadedChars,
+            fullChars: trace.fullChars,
+            savedChars: trace.savedChars,
+            savingsRate: rate(trace.savedChars, trace.fullChars),
+            skippedLoads: trace.skippedLoads,
+            overflowLoads: trace.overflowLoads,
+            requiredOverflowLoads: trace.requiredOverflowLoads,
+            optionalOverflowLoads: trace.optionalOverflowLoads,
+            skippedForBudgetLoads: trace.skippedForBudgetLoads,
+            duplicateCharsAvoided: trace.duplicateCharsAvoided,
+            bootstrapObserved: trace.bootstrapObserved,
+            requestedContextChars: trace.requestedContextChars,
+            deliveredContextChars: trace.deliveredContextChars,
+            responseChars: trace.responseChars,
+            envelopeChars: trace.envelopeChars,
+            requiredOverflowChars: trace.requiredOverflowChars,
+            acceptedOverflowChars: trace.acceptedOverflowChars,
+            remainingRequiredUnits: trace.remainingRequiredUnits,
+            remainingAcceptedUnits: trace.remainingAcceptedUnits,
+            continuationIssued: trace.continuationIssued,
+            continuationConsumed: trace.continuationConsumed,
+            chainCompleted: trace.chainCompleted,
+            skills: trace.skillNames.size,
+            planningModes: [...trace.planningModes],
+        }))
+            .sort((a, b) => b.latestAt.localeCompare(a.latestAt))
+            .slice(0, 12),
+        skillPressure: skillPressure.slice(0, 20),
+    };
+}
+function observatoryStatus() {
+    const database = getDb();
+    const epoch = getMssrObservabilityEpoch();
+    const totals = database?.prepare(`
+    SELECT COUNT(*) AS events, COUNT(DISTINCT trace_id) AS traces, MAX(occurred_at) AS latest
+    FROM mssr_events
+    WHERE trace_id NOT LIKE '__test_%'
+  `).get() ?? { events: 0, traces: 0, latest: null };
+    const persistedActiveEvents = database?.prepare(`
+    SELECT id, occurred_at, trace_id, event_type, caller, stage, classification_mode,
+           skill_name, required, ok, task_hash, details_json
+    FROM mssr_events
+    WHERE occurred_at >= ? AND trace_id NOT LIKE '__test_%'
+    ORDER BY occurred_at ASC
+  `).all(epoch.baselineAt).map(decodeRow)
+        .filter((event) => event.details.observabilityEpoch === epoch.activeEpoch) ?? [];
+    const overlayActiveEvents = recentMssrEventOverlay.filter((event) => event.occurredAt >= epoch.baselineAt
+        && !event.traceId.startsWith("__test_")
+        && event.details.observabilityEpoch === epoch.activeEpoch);
+    const activeEvents = mergeStoredEvents(persistedActiveEvents, overlayActiveEvents, Math.max(1, persistedActiveEvents.length + overlayActiveEvents.length));
+    const activeTotals = {
+        events: activeEvents.length,
+        traces: new Set(activeEvents.map((event) => event.traceId)).size,
+        latest: activeEvents.at(-1)?.occurredAt ?? null,
+    };
+    return {
+        enabled: observatoryEnabled,
+        sqliteAvailable: Boolean(database),
+        sqlitePath,
+        jsonlPath,
+        observability: {
+            defaultScope: "active",
+            contractVersion: epoch.contractVersion,
+            activeEpoch: epoch.activeEpoch,
+            baselineAt: epoch.baselineAt,
+            legacyScope: epoch.legacyScope,
+            statePath: mssrObservabilityStatePath,
+        },
+        privacy: {
+            rawPromptsStored: false,
+            transcriptsStored: false,
+            taskStorage: "sha256 fingerprint only",
+            details: "bounded structured metadata with sensitive-key filtering",
+        },
+        persistenceTiming: {
+            ...getObservabilityPersistenceStatus(),
+            recent: getObservabilityPersistenceStatus().recent.filter((item) => item.kind === "mssr").slice(-12),
+            recentOverlayEvents: recentMssrEventOverlay.length,
+            note: "Durable MSSR persistence runs in the shared observability worker; aggregate SQLite counts can lag the in-process overlay while writes are pending.",
+        },
+        totals,
+        activeTotals,
+    };
+}
+function portableIntentAnalysis(events) {
+    const projected = events.flatMap((event) => {
+        if (event.eventType === "route_planned") {
+            const profile = event.details.agentProfile && typeof event.details.agentProfile === "object"
+                ? event.details.agentProfile
+                : {};
+            return [{
+                    protocolVersion: "mssr-telemetry-v1",
+                    eventId: `analysis:${event.id}`,
+                    emittedAt: event.occurredAt,
+                    source: "mauroprime-bridge",
+                    traceId: event.traceId,
+                    caller: ["codex-local", "opencode-local", "chatgpt-web", "other"].includes(event.caller ?? "") ? event.caller : "other",
+                    event: {
+                        kind: "route",
+                        action: event.details.action === "bootstrap" ? "bootstrap" : "plan",
+                        taskHash: typeof event.taskHash === "string" && /^[a-f0-9]{64}$/.test(event.taskHash)
+                            ? event.taskHash
+                            : "0".repeat(64),
+                        route: {
+                            caller: ["codex-local", "opencode-local", "chatgpt-web", "other"].includes(event.caller ?? "") ? event.caller : "other",
+                            stage: event.stage,
+                            classificationMode: event.classificationMode ?? "unknown",
+                            workflowKey: typeof event.details.workflowKey === "string" ? event.details.workflowKey : null,
+                            agentProfile: {
+                                model: typeof profile.model === "string" ? profile.model : "unknown",
+                                reasoningEffort: typeof profile.reasoningEffort === "string" ? profile.reasoningEffort : "unknown",
+                            },
+                            contextUsed: event.details.contextUsed === true,
+                            contextCharacters: typeof event.details.contextCharacters === "number" ? event.details.contextCharacters : 0,
+                            workflows: Array.isArray(event.details.workflows) ? event.details.workflows : [],
+                            activeSkills: Array.isArray(event.details.activeSkills) ? event.details.activeSkills : [],
+                            deferredSkills: Array.isArray(event.details.deferredSkills) ? event.details.deferredSkills : [],
+                            loadOrder: Array.isArray(event.details.loadOrder) ? event.details.loadOrder : [],
+                            deferredLoadOrder: Array.isArray(event.details.deferredLoadOrder) ? event.details.deferredLoadOrder : [],
+                            intent: portableRouteIntent(event.details.intent),
+                            signals: Array.isArray(event.details.signals) ? event.details.signals : [],
+                            ambiguity: typeof event.details.ambiguity === "string" ? event.details.ambiguity : undefined,
+                            requiredPhases: Array.isArray(event.details.requiredPhases) ? event.details.requiredPhases : [],
+                            completedPhases: Array.isArray(event.details.completedPhases) ? event.details.completedPhases : [],
+                            missingRequiredPhases: Array.isArray(event.details.missingRequiredPhases) ? event.details.missingRequiredPhases : [],
+                        },
+                    },
+                }];
+        }
+        if (event.eventType === "skill_loaded" && event.skillName) {
+            return [{
+                    protocolVersion: "mssr-telemetry-v1",
+                    eventId: `analysis:${event.id}`,
+                    emittedAt: event.occurredAt,
+                    source: "mauroprime-bridge",
+                    traceId: event.traceId,
+                    caller: ["codex-local", "opencode-local", "chatgpt-web", "other"].includes(event.caller ?? "") ? event.caller : "other",
+                    event: {
+                        kind: "skill_load",
+                        skillName: event.skillName,
+                        source: typeof event.details.source === "string" ? event.details.source : undefined,
+                        stage: event.stage,
+                        required: event.required,
+                        loaded: event.ok === true,
+                        via: event.details.via === "skill_bootstrap" ? "skill_bootstrap" : "skill_load",
+                    },
+                }];
+        }
+        if (event.eventType === "skill_decision" && event.skillName) {
+            const parsedDecision = mssrSkillDecisionSchema.safeParse({
+                skillName: event.skillName,
+                decision: event.details.decision,
+                reasonCode: event.details.reasonCode,
+                reasonSummary: typeof event.details.reasonSummary === "string" && event.details.reasonSummary.trim() ? event.details.reasonSummary : undefined,
+                relatedSkillName: typeof event.details.relatedSkillName === "string" && event.details.relatedSkillName.trim() ? event.details.relatedSkillName : undefined,
+                stage: event.stage,
+            });
+            if (!parsedDecision.success)
+                return [];
+            return [{
+                    protocolVersion: "mssr-telemetry-v1",
+                    eventId: `analysis:${event.id}`,
+                    emittedAt: event.occurredAt,
+                    source: "mauroprime-bridge",
+                    traceId: event.traceId,
+                    caller: ["codex-local", "opencode-local", "chatgpt-web", "other"].includes(event.caller ?? "") ? event.caller : "other",
+                    event: { kind: "skill_decision", decision: parsedDecision.data },
+                }];
+        }
+        if (event.eventType === "learning_digest") {
+            const parsedDigest = mssrLearningDigestSchema.safeParse(event.details.digest);
+            if (!parsedDigest.success)
+                return [];
+            return [{
+                    protocolVersion: "mssr-telemetry-v1",
+                    eventId: `analysis:${event.id}`,
+                    emittedAt: event.occurredAt,
+                    source: "mauroprime-bridge",
+                    traceId: event.traceId,
+                    caller: ["codex-local", "opencode-local", "chatgpt-web", "other"].includes(event.caller ?? "") ? event.caller : "other",
+                    event: { kind: "learning_digest", digest: parsedDigest.data },
+                }];
+        }
+        return [];
+    });
+    const analysis = analyzeMssrTelemetry(projected);
+    return {
+        analyzedEvents: analysis.counters.validEvents,
+        invalidProjectionEvents: analysis.counters.invalidEvents,
+        intentDimensions: analysis.intentDimensions,
+        selectionFeedback: analysis.selectionFeedback,
+        maintenanceCandidates: analysis.maintenanceCandidates,
+        learning: analysis.learning,
+    };
+}
+function summary(days, scope) {
+    const database = getDb();
+    const epoch = getMssrObservabilityEpoch();
+    if (!database)
+        return { ...observatoryStatus(), scope, days, benchmark: null, top: {} };
+    const windowSince = new Date(Date.now() - days * 86_400_000).toISOString();
+    const since = scope === "active" && epoch.baselineAt > windowSince ? epoch.baselineAt : windowSince;
+    const persistedEvents = database.prepare(`
+    SELECT id, occurred_at, trace_id, event_type, caller, stage, classification_mode,
+           skill_name, required, ok, task_hash, details_json
+    FROM mssr_events
+    WHERE occurred_at >= ? AND trace_id NOT LIKE '__test_%'
+    ORDER BY occurred_at ASC
+  `).all(since).map(decodeRow);
+    const overlayEvents = recentMssrEventOverlay.filter((event) => event.occurredAt >= since && !event.traceId.startsWith("__test_"));
+    const decoded = mergeStoredEvents(persistedEvents, overlayEvents, Math.max(1, persistedEvents.length + overlayEvents.length));
+    const events = scope === "active"
+        ? decoded.filter((event) => event.details.observabilityEpoch === epoch.activeEpoch)
+        : decoded;
+    const intentAnalysis = portableIntentAnalysis(events);
+    const persistedToolCalls = database.prepare(`
+    SELECT id, trace_id, started_at, ended_at, duration_ms, tool, operation_subject,
+           observability_epoch, ok, caller, client_name, session_key,
+           model, reasoning_effort, host_agent, host_variant, host_parent_session_key
+    FROM tool_calls
+    WHERE started_at >= ? AND trace_id IS NOT NULL AND trace_id <> ''
+      AND trace_id NOT LIKE '__test_%'
+    ORDER BY started_at ASC
+  `).all(since);
+    const pendingToolCalls = getPendingTraceToolRowsSince(since);
+    const toolCallsById = new Map();
+    for (const row of persistedToolCalls)
+        toolCallsById.set(String(row.id ?? `${row.started_at}:${row.tool}`), row);
+    for (const row of pendingToolCalls)
+        toolCallsById.set(String(row.id ?? `${row.started_at}:${row.tool}`), row);
+    const decodedToolCalls = [...toolCallsById.values()]
+        .sort((a, b) => String(a.started_at ?? "").localeCompare(String(b.started_at ?? "")));
+    const toolCalls = scope === "active"
+        ? decodedToolCalls.filter((row) => row.observability_epoch === epoch.activeEpoch)
+        : decodedToolCalls;
+    const byTrace = new Map();
+    for (const event of events) {
+        const trace = byTrace.get(event.traceId) ?? [];
+        trace.push(event);
+        byTrace.set(event.traceId, trace);
+    }
+    const toolCallsByTrace = new Map();
+    for (const row of toolCalls) {
+        const traceId = typeof row.trace_id === "string" ? row.trace_id : "";
+        if (!traceId)
+            continue;
+        const traceCalls = toolCallsByTrace.get(traceId) ?? [];
+        traceCalls.push(row);
+        toolCallsByTrace.set(traceId, traceCalls);
+    }
+    const usable = (value) => (typeof value === "string" && value && value !== "unknown" ? value : undefined);
+    const hostIdentityByTrace = new Map();
+    const firstRouteByTrace = new Map();
+    const lastRouteByTrace = new Map();
+    const routeCountByTrace = new Map();
+    for (const [traceId, calls] of toolCallsByTrace) {
+        // Only the authenticated OpenCode plugin exposes these fields.  Rows that
+        // merely share a trace do not become host evidence by association alone.
+        const observed = calls.filter((call) => call.client_name === "opencode-cli");
+        if (!observed.length)
+            continue;
+        const identities = new Map();
+        const sessionKeys = new Set();
+        const parentSessionKeys = new Set();
+        for (const call of observed) {
+            const identity = {
+                model: normalizeModelIdentifier(call.model),
+                reasoningEffort: usable(call.reasoning_effort) ?? "unknown",
+                hostAgent: usable(call.host_agent) ?? "unknown",
+                hostVariant: usable(call.host_variant) ?? "unknown",
+            };
+            identities.set(JSON.stringify(identity), identity);
+            const sessionKey = usable(call.session_key);
+            if (sessionKey)
+                sessionKeys.add(sessionKey);
+            const parentSessionKey = usable(call.host_parent_session_key);
+            if (parentSessionKey)
+                parentSessionKeys.add(parentSessionKey);
+        }
+        if (identities.size === 1) {
+            const identity = [...identities.values()][0];
+            hostIdentityByTrace.set(traceId, {
+                state: "single", ...identity,
+                sessionKeys: [...sessionKeys].sort(),
+                parentSessionKeys: [...parentSessionKeys].sort(),
+            });
+        }
+        else {
+            // A single lifecycle result may legitimately span an agent handoff. Keep
+            // that ambiguity visible rather than choosing the newest host call.
+            hostIdentityByTrace.set(traceId, {
+                state: "mixed",
+                model: "multiple-observed",
+                reasoningEffort: "multiple-observed",
+                hostAgent: "multiple-observed",
+                hostVariant: "multiple-observed",
+                sessionKeys: [...sessionKeys].sort(),
+                parentSessionKeys: [...parentSessionKeys].sort(),
+            });
+        }
+    }
+    const lifecycleProfile = (route) => {
+        const explicit = route.details.agentProfile && typeof route.details.agentProfile === "object"
+            ? route.details.agentProfile
+            : {};
+        const observed = hostIdentityByTrace.get(route.traceId);
+        if (observed?.state === "single") {
+            return {
+                caller: route.caller || "other",
+                model: observed.model,
+                reasoningEffort: observed.reasoningEffort,
+                hostAgent: observed.hostAgent,
+                hostVariant: observed.hostVariant,
+                identitySource: "trace-correlated-host",
+                observedSessionCount: observed.sessionKeys.length,
+                observedParentSessionCount: observed.parentSessionKeys.length,
+            };
+        }
+        if (observed?.state === "mixed") {
+            return {
+                caller: route.caller || "other",
+                model: "multiple-observed",
+                reasoningEffort: "multiple-observed",
+                hostAgent: "multiple-observed",
+                hostVariant: "multiple-observed",
+                identitySource: "trace-host-mixed",
+                observedSessionCount: observed.sessionKeys.length,
+                observedParentSessionCount: observed.parentSessionKeys.length,
+            };
+        }
+        return {
+            caller: route.caller || "other",
+            model: normalizeModelIdentifier(explicit.model),
+            reasoningEffort: typeof explicit.reasoningEffort === "string" ? explicit.reasoningEffort : "unknown",
+            hostAgent: "unknown",
+            hostVariant: "unknown",
+            identitySource: "lifecycle-only",
+            observedSessionCount: 0,
+            observedParentSessionCount: 0,
+        };
+    };
+    const effectiveToolName = (row) => {
+        const outer = typeof row.tool === "string" ? row.tool : "unknown";
+        return (outer === DELEGATED_QUERY_TOOL || outer === DELEGATED_ACTION_TOOL)
+            && typeof row.operation_subject === "string"
+            && row.operation_subject
+            ? row.operation_subject
+            : outer;
+    };
+    const executionMetrics = (traceIds, profileRoutes) => {
+        let bridgeDirectToolCalls = 0;
+        let hostObservedToolCalls = 0;
+        let delegatedQueryCalls = 0;
+        let delegatedActionCalls = 0;
+        let discoveryDetours = 0;
+        const firstActionDelays = [];
+        const toolSpans = [];
+        for (const traceId of traceIds) {
+            const calls = toolCallsByTrace.get(traceId) ?? [];
+            for (const call of calls) {
+                if (call.client_name === "opencode-cli")
+                    hostObservedToolCalls += 1;
+                else if (call.tool === DELEGATED_QUERY_TOOL)
+                    delegatedQueryCalls += 1;
+                else if (call.tool === DELEGATED_ACTION_TOOL)
+                    delegatedActionCalls += 1;
+                else
+                    bridgeDirectToolCalls += 1;
+            }
+            const firstRoute = firstRouteByTrace.get(traceId);
+            const substantive = calls.filter((call) => !PREPARATION_TOOLS.has(effectiveToolName(call)));
+            const firstAction = substantive[0];
+            if (firstRoute && firstAction && typeof firstAction.started_at === "string") {
+                const delay = Date.parse(firstAction.started_at) - Date.parse(firstRoute.occurredAt);
+                if (Number.isFinite(delay) && delay >= 0)
+                    firstActionDelays.push(delay);
+            }
+            if (firstAction) {
+                const firstStarted = typeof firstAction.started_at === "string" ? Date.parse(firstAction.started_at) : NaN;
+                const last = substantive.at(-1);
+                const lastEnded = typeof last?.ended_at === "string"
+                    ? Date.parse(last.ended_at)
+                    : typeof last?.started_at === "string"
+                        ? Date.parse(last.started_at) + Number(last.duration_ms ?? 0)
+                        : NaN;
+                if (Number.isFinite(firstStarted) && Number.isFinite(lastEnded) && lastEnded >= firstStarted) {
+                    toolSpans.push(lastEnded - firstStarted);
+                }
+                const firstActionAt = typeof firstAction.started_at === "string" ? firstAction.started_at : "";
+                discoveryDetours += calls.filter((call) => (PREPARATION_TOOLS.has(effectiveToolName(call))
+                    && typeof call.started_at === "string"
+                    && call.started_at <= firstActionAt)).length;
+            }
+            else {
+                discoveryDetours += calls.filter((call) => PREPARATION_TOOLS.has(effectiveToolName(call))).length;
+            }
+        }
+        const delegatedCalls = delegatedQueryCalls + delegatedActionCalls;
+        const physicalCalls = bridgeDirectToolCalls + hostObservedToolCalls + delegatedCalls;
+        return {
+            // Compatibility alias: direct means Bridge-executed and excludes host
+            // telemetry. Lifecycle rows live in mssr_events and are never counted.
+            directToolCalls: bridgeDirectToolCalls,
+            bridgeDirectToolCalls,
+            hostObservedToolCalls,
+            physicalToolCalls: physicalCalls,
+            delegatedQueryCalls,
+            delegatedActionCalls,
+            delegatedToolCalls: delegatedCalls,
+            delegatedCallRate: rate(delegatedCalls, physicalCalls),
+            discoveryDetours,
+            averageDiscoveryDetours: traceIds.size > 0
+                ? Math.round((discoveryDetours / traceIds.size) * 100) / 100
+                : null,
+            tracesWithFirstAction: firstActionDelays.length,
+            averageFirstActionMs: firstActionDelays.length > 0
+                ? Math.round(firstActionDelays.reduce((total, value) => total + value, 0) / firstActionDelays.length)
+                : null,
+            averageToolSpanMs: toolSpans.length > 0
+                ? Math.round(toolSpans.reduce((total, value) => total + value, 0) / toolSpans.length)
+                : null,
+        };
+    };
+    const routes = events.filter((event) => event.eventType === "route_planned");
+    for (const route of routes) {
+        if (!firstRouteByTrace.has(route.traceId))
+            firstRouteByTrace.set(route.traceId, route);
+        lastRouteByTrace.set(route.traceId, route);
+        routeCountByTrace.set(route.traceId, (routeCountByTrace.get(route.traceId) ?? 0) + 1);
+    }
+    const loads = events.filter((event) => event.eventType === "skill_loaded");
+    const successfulLoads = loads.filter((event) => event.ok === true);
+    const contextAssembly = summarizeContextAssembly(events);
+    const traceIdsWithRoutes = new Set(routes.map((event) => event.traceId));
+    const traceIdsWithLoads = new Set(successfulLoads.map((event) => event.traceId));
+    const routeTracesWithLoads = [...traceIdsWithRoutes].filter((traceId) => traceIdsWithLoads.has(traceId)).length;
+    const replannedTraces = [...byTrace.values()].filter((trace) => trace.filter((event) => event.eventType === "route_planned").length > 1).length;
+    const expectedRequired = new Set();
+    const selectedSkillNames = [];
+    for (const route of routes) {
+        const active = Array.isArray(route.details.activeSkills) ? route.details.activeSkills : [];
+        for (const item of active) {
+            if (!item || typeof item !== "object" || typeof item.name !== "string")
+                continue;
+            const name = String(item.name);
+            selectedSkillNames.push(name);
+            if (item.required === true)
+                expectedRequired.add(`${route.traceId}\u0000${name}`);
+        }
+    }
+    const loadedKeys = new Set(successfulLoads.filter((event) => event.skillName).map((event) => `${event.traceId}\u0000${event.skillName}`));
+    const satisfiedRequired = [...expectedRequired].filter((key) => loadedKeys.has(key)).length;
+    const verificationTraces = new Set(events.filter((event) => event.eventType === "verification" && (event.ok === true || event.details.verificationPassed === true)).map((event) => event.traceId));
+    const persistenceTraces = new Set(events.filter((event) => event.eventType === "persistence" && (event.ok === true || event.details.persisted === true)).map((event) => event.traceId));
+    const outcomeEvents = events.filter((event) => event.eventType === "outcome");
+    const closureReminderEvents = events.filter((event) => event.eventType === "closure_reminder");
+    const intentNormalizedEvents = events.filter((event) => event.eventType === "intent_normalized");
+    const intentCorrectionEvents = events.filter((event) => event.eventType === "intent_correction_required");
+    const intentCorrectionTraceIds = new Set(intentCorrectionEvents.map((event) => event.traceId));
+    const intentCorrectionRecoveredTraceIds = new Set(intentCorrectionEvents.flatMap((correction) => (routes.some((route) => route.traceId === correction.traceId && route.occurredAt > correction.occurredAt)
+        ? [correction.traceId]
+        : [])));
+    const normalizedAliasIds = intentNormalizedEvents.flatMap((event) => (Array.isArray(event.details.aliasIds)
+        ? event.details.aliasIds.filter((item) => typeof item === "string")
+        : []));
+    const latestOutcomeByTrace = new Map();
+    for (const event of outcomeEvents)
+        latestOutcomeByTrace.set(event.traceId, event);
+    const latestOutcomes = [...latestOutcomeByTrace.values()];
+    const outcomeTraces = new Set(latestOutcomes.map((event) => event.traceId));
+    const primaryOutcomeEvents = latestOutcomes.filter((event) => Boolean(event.skillName));
+    const measuredAcceptanceOutcomes = primaryOutcomeEvents.filter((event) => typeof event.details.accepted === "boolean");
+    const acceptedOutcomes = measuredAcceptanceOutcomes.filter((event) => event.details.accepted === true);
+    const successfulOutcomes = primaryOutcomeEvents.filter((event) => event.details.status === "success" || event.ok === true);
+    const scoredOutcomes = primaryOutcomeEvents.filter((event) => typeof event.details.score === "number");
+    const outcomeSupportingSkills = [];
+    const outcomeBySkill = new Map();
+    for (const event of primaryOutcomeEvents) {
+        const skill = String(event.skillName);
+        const current = outcomeBySkill.get(skill) ?? {
+            outcomes: 0,
+            success: 0,
+            partial: 0,
+            failed: 0,
+            accepted: 0,
+            acceptanceMeasured: 0,
+            scoreTotal: 0,
+            scoreCount: 0,
+        };
+        current.outcomes += 1;
+        const status = String(event.details.status ?? (event.ok === true ? "success" : event.ok === false ? "failed" : "unknown"));
+        if (status === "success")
+            current.success += 1;
+        else if (status === "partial")
+            current.partial += 1;
+        else if (status === "failed")
+            current.failed += 1;
+        if (typeof event.details.accepted === "boolean") {
+            current.acceptanceMeasured += 1;
+            if (event.details.accepted === true)
+                current.accepted += 1;
+        }
+        if (typeof event.details.score === "number") {
+            current.scoreTotal += event.details.score;
+            current.scoreCount += 1;
+        }
+        if (Array.isArray(event.details.supportingSkills)) {
+            outcomeSupportingSkills.push(...event.details.supportingSkills.filter((item) => typeof item === "string"));
+        }
+        outcomeBySkill.set(skill, current);
+    }
+    const skillOutcomes = [...outcomeBySkill.entries()]
+        .map(([name, value]) => ({
+        name,
+        outcomes: value.outcomes,
+        successRate: rate(value.success, value.outcomes),
+        success: value.success,
+        partial: value.partial,
+        failed: value.failed,
+        acceptanceRate: rate(value.accepted, value.acceptanceMeasured),
+        accepted: value.accepted,
+        acceptanceMeasured: value.acceptanceMeasured,
+        averageScore: value.scoreCount > 0 ? Math.round((value.scoreTotal / value.scoreCount) * 10_000) / 10_000 : null,
+    }))
+        .sort((a, b) => b.outcomes - a.outcomes || a.name.localeCompare(b.name));
+    const contextSources = events.flatMap((event) => Array.isArray(event.details.contextSources) ? event.details.contextSources.filter((item) => typeof item === "string") : []);
+    const userCorrections = events.reduce((total, event) => total + (typeof event.details.userCorrections === "number" ? event.details.userCorrections : 0), 0);
+    const structuredRoutes = routes.filter((event) => event.classificationMode === "structured-semantic").length;
+    const orphanLoads = loads.filter((event) => !traceIdsWithRoutes.has(event.traceId)).length;
+    const historyString = (value) => (typeof value === "string" && value.trim() ? value.trim() : null);
+    const historyProject = (trace) => {
+        for (const event of [...trace].reverse()) {
+            if (event.eventType === "project_context_selection") {
+                const selected = historyString(event.details.projectName) || historyString(event.details.project);
+                if (selected)
+                    return selected;
+            }
+        }
+        for (const event of [...trace].reverse()) {
+            const direct = historyString(event.details.projectName) || historyString(event.details.project);
+            if (direct)
+                return direct;
+            const projectRoot = historyString(event.details.projectRoot);
+            if (projectRoot) {
+                const base = path.basename(projectRoot.replace(/[\\/]+$/, ""));
+                if (base)
+                    return base;
+            }
+        }
+        return null;
+    };
+    const historyWorkflowKey = (trace) => {
+        for (const event of [...trace].reverse()) {
+            const workflowKey = historyString(event.details.workflowKey);
+            if (workflowKey)
+                return workflowKey;
+        }
+        return null;
+    };
+    const historySyntheticWorkflow = (workflowKey) => Boolean(workflowKey && (workflowKey.startsWith("__test_")
+        || /(?:^|[-_.])fixture(?:$|[-_.])/i.test(workflowKey)
+        || /^routing-latency-(?:plan-)?regression$/i.test(workflowKey)));
+    const historySupportWorkflow = (workflowKey) => Boolean(workflowKey && (/^recent-work-recovery-/i.test(workflowKey)
+        || /^cross-project-recovery-/i.test(workflowKey)
+        || /-recovery-\d{8}$/i.test(workflowKey)));
+    const historySummary = (trace) => {
+        const latestRoute = [...trace].reverse().find((event) => event.eventType === "route_planned") ?? null;
+        const routeAt = latestRoute ? Date.parse(latestRoute.occurredAt) : 0;
+        const summaryTypes = new Set(["outcome", "persistence", "verification", "phase_completed", "replan"]);
+        for (const event of [...trace].reverse()) {
+            const summary = historyString(event.details.summary);
+            if (!summaryTypes.has(event.eventType) || !summary)
+                continue;
+            if (!routeAt || Date.parse(event.occurredAt) >= routeAt)
+                return redactText(summary, 260);
+        }
+        const intent = latestRoute?.details.intent && typeof latestRoute.details.intent === "object"
+            ? latestRoute.details.intent
+            : {};
+        const routeSummary = historyString(intent.summary);
+        return routeSummary ? redactText(routeSummary, 260) : null;
+    };
+    const historyLatestStringArray = (trace, key) => {
+        for (const event of [...trace].reverse()) {
+            const value = event.details[key];
+            if (!Array.isArray(value))
+                continue;
+            const strings = value.filter((item) => typeof item === "string" && item.trim().length > 0);
+            if (strings.length > 0)
+                return [...new Set(strings)];
+        }
+        return [];
+    };
+    const historyLatestEvidenceRef = (trace) => {
+        for (const event of [...trace].reverse()) {
+            const evidenceRef = historyString(event.details.evidenceRef);
+            if (evidenceRef)
+                return redactText(evidenceRef, 260);
+        }
+        return null;
+    };
+    const substantiveLifecycleTypes = new Set(["phase_completed", "verification", "persistence", "outcome", "friction", "replan"]);
+    const historyLocalDay = (value) => {
+        const date = new Date(value);
+        if (!Number.isFinite(date.getTime()))
+            return "unknown";
+        const year = String(date.getFullYear()).padStart(4, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+    };
+    const workTraceRows = [...byTrace.entries()].flatMap(([traceId, trace]) => {
+        const project = historyProject(trace);
+        if (!project)
+            return [];
+        const workflowKey = historyWorkflowKey(trace);
+        const synthetic = historySyntheticWorkflow(workflowKey);
+        const supportWorkflow = historySupportWorkflow(workflowKey);
+        const substantiveToolCalls = (toolCallsByTrace.get(traceId) ?? [])
+            .filter((call) => !PREPARATION_TOOLS.has(effectiveToolName(call))).length;
+        const substantiveLifecycle = trace.some((event) => substantiveLifecycleTypes.has(event.eventType));
+        const substantive = !synthetic && (substantiveLifecycle || substantiveToolCalls > 0);
+        const latest = trace.at(-1);
+        const latestRoute = [...trace].reverse().find((event) => event.eventType === "route_planned") ?? null;
+        const taskIdentity = traceTaskIdentity(trace);
+        const latestOutcome = [...trace].reverse().find((event) => event.eventType === "outcome") ?? null;
+        const latestClosureReminder = [...trace].reverse().find((event) => event.eventType === "closure_reminder") ?? null;
+        const latestMaterial = [...trace].reverse().find((event) => event.eventType === "route_planned" || substantiveLifecycleTypes.has(event.eventType)) ?? latestRoute;
+        const closed = Boolean(latestOutcome && (!latestRoute || latestOutcome.occurredAt >= latestRoute.occurredAt));
+        const closureReminderObserved = Boolean(latestClosureReminder
+            && (!latestOutcome || latestClosureReminder.occurredAt > latestOutcome.occurredAt)
+            && (!latestMaterial || latestClosureReminder.occurredAt >= latestMaterial.occurredAt));
+        return [{
+                traceId,
+                project,
+                workflowKey,
+                taskKey: taskIdentity.taskKey ?? null,
+                parentTraceId: taskIdentity.parentTraceId ?? null,
+                supersedesTraceId: taskIdentity.supersedesTraceId ?? null,
+                synthetic,
+                supportWorkflow,
+                substantive,
+                substantiveToolCalls,
+                firstAt: trace[0]?.occurredAt ?? latest.occurredAt,
+                latestAt: latest.occurredAt,
+                latestEventType: latest.eventType,
+                latestStage: latest.stage ?? null,
+                caller: latest.caller || latestRoute?.caller || null,
+                requiredPhases: historyLatestStringArray(trace, "requiredPhases"),
+                completedPhases: historyLatestStringArray(trace, "completedPhases"),
+                evidenceRef: historyLatestEvidenceRef(trace),
+                closed,
+                closureReminderObserved,
+                needsClosureReview: substantive && !closed && closureReminderObserved,
+                summary: historySummary(trace),
+            }];
+    });
+    const workDays = new Map();
+    for (const row of workTraceRows.filter((item) => item.substantive)) {
+        const trace = byTrace.get(row.traceId) ?? [];
+        const activeDays = new Set(trace.map((event) => historyLocalDay(event.occurredAt)).filter((day) => day !== "unknown"));
+        for (const date of activeDays) {
+            const current = workDays.get(date) ?? {
+                date,
+                traceIds: new Set(),
+                projects: new Set(),
+                workflowKeys: new Set(),
+                openTraceIds: new Set(),
+                humanOpenTraceIds: new Set(),
+                supportOpenTraceIds: new Set(),
+                closureReviewTraceIds: new Set(),
+                humanClosureReviewTraceIds: new Set(),
+                supportClosureReviewTraceIds: new Set(),
+                latestAt: row.latestAt,
+                latestSummaries: [],
+            };
+            current.traceIds.add(row.traceId);
+            current.projects.add(row.project);
+            if (row.workflowKey)
+                current.workflowKeys.add(row.workflowKey);
+            if (!row.closed) {
+                current.openTraceIds.add(row.traceId);
+                if (row.supportWorkflow)
+                    current.supportOpenTraceIds.add(row.traceId);
+                else
+                    current.humanOpenTraceIds.add(row.traceId);
+            }
+            if (row.needsClosureReview) {
+                current.closureReviewTraceIds.add(row.traceId);
+                if (row.supportWorkflow)
+                    current.supportClosureReviewTraceIds.add(row.traceId);
+                else
+                    current.humanClosureReviewTraceIds.add(row.traceId);
+            }
+            const eventsOnDay = trace.filter((event) => historyLocalDay(event.occurredAt) === date);
+            const latestOnDay = eventsOnDay.at(-1)?.occurredAt ?? row.latestAt;
+            if (latestOnDay > current.latestAt)
+                current.latestAt = latestOnDay;
+            if (!row.supportWorkflow && row.summary)
+                current.latestSummaries.push({ at: latestOnDay, project: row.project, summary: row.summary });
+            workDays.set(date, current);
+        }
+    }
+    const workProjects = new Map();
+    for (const row of workTraceRows) {
+        const key = row.project.toLowerCase();
+        const current = workProjects.get(key) ?? {
+            name: row.project,
+            latestAt: row.latestAt,
+            traceCount: 0,
+            substantiveTraceCount: 0,
+            closedTraceCount: 0,
+            substantiveToolCalls: 0,
+            workflowKeys: new Set(),
+            latestSummary: null,
+            latestSummaryAt: null,
+            latestTraceId: row.traceId,
+        };
+        current.traceCount += 1;
+        if (row.substantive)
+            current.substantiveTraceCount += 1;
+        if (row.closed)
+            current.closedTraceCount += 1;
+        current.substantiveToolCalls += row.substantiveToolCalls;
+        if (row.workflowKey && !row.synthetic)
+            current.workflowKeys.add(row.workflowKey);
+        if (row.latestAt > current.latestAt) {
+            current.latestAt = row.latestAt;
+            current.latestTraceId = row.traceId;
+        }
+        if (row.substantive && !row.supportWorkflow && row.summary && (!current.latestSummaryAt || row.latestAt >= current.latestSummaryAt)) {
+            current.latestSummary = row.summary;
+            current.latestSummaryAt = row.latestAt;
+        }
+        workProjects.set(key, current);
+    }
+    const workTasks = new Map();
+    for (const row of workTraceRows.filter((item) => item.substantive)) {
+        const explicitTaskKey = row.taskKey;
+        const legacyTaskKey = row.workflowKey
+            ? `${row.project.toLowerCase()}::${row.workflowKey}`
+            : `${row.project.toLowerCase()}::trace:${row.traceId}`;
+        const taskKey = explicitTaskKey ?? legacyTaskKey;
+        const taskKeySource = explicitTaskKey ? "explicit-mssr" : row.workflowKey ? "derived-project-workflow" : "trace-fallback";
+        const groupKey = explicitTaskKey ? `explicit:${explicitTaskKey}` : `legacy:${legacyTaskKey}`;
+        const current = workTasks.get(groupKey) ?? {
+            taskKey,
+            taskKeySource,
+            project: row.project,
+            projects: new Set(),
+            workflowKey: row.workflowKey,
+            workflowKeys: new Set(),
+            traceIds: [],
+            openTraceIds: [],
+            closedTraceIds: [],
+            parentTraceIds: new Set(),
+            supersedesTraceIds: new Set(),
+            supportWorkflow: row.supportWorkflow,
+            latest: row,
+        };
+        current.projects.add(row.project);
+        if (row.workflowKey)
+            current.workflowKeys.add(row.workflowKey);
+        current.traceIds.push(row.traceId);
+        if (row.closed)
+            current.closedTraceIds.push(row.traceId);
+        else
+            current.openTraceIds.push(row.traceId);
+        if (row.parentTraceId)
+            current.parentTraceIds.add(row.parentTraceId);
+        if (row.supersedesTraceId)
+            current.supersedesTraceIds.add(row.supersedesTraceId);
+        current.supportWorkflow = current.supportWorkflow && row.supportWorkflow;
+        if (row.latestAt > current.latest.latestAt) {
+            current.latest = row;
+            current.project = row.project;
+            current.workflowKey = row.workflowKey;
+        }
+        workTasks.set(groupKey, current);
+    }
+    const taskStates = [...workTasks.values()]
+        .map((task) => {
+        const latest = task.latest;
+        const currentWork = !latest.closed;
+        const closureDebtTraceIds = task.openTraceIds.filter((traceId) => latest.closed || traceId !== latest.traceId);
+        return {
+            taskKey: task.taskKey,
+            taskKeySource: task.taskKeySource,
+            project: task.project,
+            projects: [...task.projects],
+            workflowKey: task.workflowKey,
+            workflowKeys: [...task.workflowKeys],
+            traceIds: task.traceIds,
+            openTraceIds: task.openTraceIds,
+            closedTraceIds: task.closedTraceIds,
+            parentTraceIds: [...task.parentTraceIds],
+            supersedesTraceIds: [...task.supersedesTraceIds],
+            supportWorkflow: task.supportWorkflow,
+            currentWork,
+            latestTraceClosed: latest.closed,
+            closureDebtTraceCount: closureDebtTraceIds.length,
+            closureDebtTraceIds,
+            latestTraceId: latest.traceId,
+            latestAt: latest.latestAt,
+            latestSummary: latest.summary,
+            latestStage: latest.latestStage,
+            caller: latest.caller,
+            requiredPhases: latest.requiredPhases,
+            completedPhases: latest.completedPhases,
+            evidenceRef: latest.evidenceRef,
+            needsClosureReview: currentWork && latest.needsClosureReview,
+            closureReminderObserved: latest.closureReminderObserved,
+        };
+    })
+        .sort((left, right) => right.latestAt.localeCompare(left.latestAt))
+        .slice(0, 120);
+    const workHistory = {
+        scope,
+        days,
+        since,
+        traceCount: workTraceRows.length,
+        substantiveTraceCount: workTraceRows.filter((row) => row.substantive).length,
+        openSubstantiveTraceCount: workTraceRows.filter((row) => row.substantive && !row.closed).length,
+        humanOpenTraceCount: workTraceRows.filter((row) => row.substantive && !row.closed && !row.supportWorkflow).length,
+        supportOpenTraceCount: workTraceRows.filter((row) => row.substantive && !row.closed && row.supportWorkflow).length,
+        needsClosureReviewCount: workTraceRows.filter((row) => row.needsClosureReview).length,
+        humanNeedsClosureReviewCount: workTraceRows.filter((row) => row.needsClosureReview && !row.supportWorkflow).length,
+        humanCurrentTaskCount: taskStates.filter((task) => task.currentWork && !task.supportWorkflow).length,
+        humanClosureDebtTaskCount: taskStates.filter((task) => !task.currentWork && task.closureDebtTraceCount > 0 && !task.supportWorkflow).length,
+        humanClosureDebtTraceCount: taskStates.filter((task) => !task.supportWorkflow).reduce((total, task) => total + task.closureDebtTraceCount, 0),
+        taskStates,
+        projectCount: workProjects.size,
+        projects: [...workProjects.values()]
+            .map((project) => ({
+            name: project.name,
+            latestAt: project.latestAt,
+            traceCount: project.traceCount,
+            substantiveTraceCount: project.substantiveTraceCount,
+            closedTraceCount: project.closedTraceCount,
+            substantiveToolCalls: project.substantiveToolCalls,
+            workflowKeys: [...project.workflowKeys].slice(0, 12),
+            latestSummary: project.latestSummary,
+            latestTraceId: project.latestTraceId,
+        }))
+            .sort((left, right) => right.latestAt.localeCompare(left.latestAt) || right.substantiveTraceCount - left.substantiveTraceCount)
+            .slice(0, 40),
+        openTraces: workTraceRows
+            .filter((row) => row.substantive && !row.closed)
+            .sort((left, right) => right.latestAt.localeCompare(left.latestAt))
+            .slice(0, 60)
+            .map((row) => ({
+            traceId: row.traceId,
+            project: row.project,
+            workflowKey: row.workflowKey,
+            taskKey: row.taskKey,
+            parentTraceId: row.parentTraceId,
+            supersedesTraceId: row.supersedesTraceId,
+            supportWorkflow: row.supportWorkflow,
+            firstAt: row.firstAt,
+            latestAt: row.latestAt,
+            latestEventType: row.latestEventType,
+            latestStage: row.latestStage,
+            caller: row.caller,
+            requiredPhases: row.requiredPhases,
+            completedPhases: row.completedPhases,
+            evidenceRef: row.evidenceRef,
+            closureReminderObserved: row.closureReminderObserved,
+            needsClosureReview: row.needsClosureReview,
+            summary: row.summary,
+        })),
+        daily: [...workDays.values()]
+            .map((day) => ({
+            date: day.date,
+            latestAt: day.latestAt,
+            traceCount: day.traceIds.size,
+            projectCount: day.projects.size,
+            projects: [...day.projects].slice(0, 20),
+            workflowKeys: [...day.workflowKeys].slice(0, 24),
+            openTraceCount: day.openTraceIds.size,
+            humanOpenTraceCount: day.humanOpenTraceIds.size,
+            supportOpenTraceCount: day.supportOpenTraceIds.size,
+            needsClosureReviewCount: day.closureReviewTraceIds.size,
+            humanNeedsClosureReviewCount: day.humanClosureReviewTraceIds.size,
+            supportNeedsClosureReviewCount: day.supportClosureReviewTraceIds.size,
+            latestSummaries: [...day.latestSummaries]
+                .sort((left, right) => right.at.localeCompare(left.at))
+                .slice(0, 10)
+                .map(({ project, summary }) => ({ project, summary })),
+        }))
+            .sort((left, right) => right.date.localeCompare(left.date))
+            .slice(0, Math.min(31, Math.max(7, days + 1))),
+        note: "Project-time aggregate over complete MSSR events in the requested window. Daily buckets use the Bridge host local calendar. This is evidence of observed work, not an inferred task-completion ledger.",
+    };
+    const surfaceNames = new Set([...routes, ...outcomeEvents, ...closureReminderEvents, ...intentNormalizedEvents, ...intentCorrectionEvents]
+        .map((event) => event.caller || "other"));
+    const surfaceBenchmarks = [...surfaceNames]
+        .map((caller) => {
+        const surfaceRouteTraces = new Set(routes.filter((event) => (event.caller || "other") === caller).map((event) => event.traceId));
+        const surfaceOutcomeTraces = new Set(latestOutcomes.filter((event) => (event.caller || "other") === caller).map((event) => event.traceId));
+        const surfaceReminderTraces = new Set(closureReminderEvents.filter((event) => (event.caller || "other") === caller).map((event) => event.traceId));
+        const surfaceIntentNormalized = intentNormalizedEvents.filter((event) => (event.caller || "other") === caller);
+        const surfaceIntentCorrections = intentCorrectionEvents.filter((event) => (event.caller || "other") === caller);
+        const surfaceCorrectionTraceIds = new Set(surfaceIntentCorrections.map((event) => event.traceId));
+        return {
+            caller,
+            routedTraces: surfaceRouteTraces.size,
+            outcomeTraces: surfaceOutcomeTraces.size,
+            outcomeCoverage: rate(surfaceOutcomeTraces.size, surfaceRouteTraces.size),
+            closureReminderEvents: closureReminderEvents.filter((event) => (event.caller || "other") === caller).length,
+            closureReminderTraces: surfaceReminderTraces.size,
+            closureReminderRate: rate(surfaceReminderTraces.size, surfaceRouteTraces.size),
+            intentNormalizedEvents: surfaceIntentNormalized.length,
+            intentCorrectionRequiredEvents: surfaceIntentCorrections.length,
+            intentCorrectionRecoveredTraces: [...surfaceCorrectionTraceIds].filter((traceId) => intentCorrectionRecoveredTraceIds.has(traceId)).length,
+            intentCorrectionRecoveryRate: rate([...surfaceCorrectionTraceIds].filter((traceId) => intentCorrectionRecoveredTraceIds.has(traceId)).length, surfaceCorrectionTraceIds.size),
+        };
+    })
+        .sort((a, b) => b.routedTraces - a.routedTraces || a.caller.localeCompare(b.caller));
+    const profileKeys = new Set(routes.map((event) => {
+        const profile = lifecycleProfile(event);
+        return JSON.stringify([
+            profile.caller,
+            profile.model,
+            profile.reasoningEffort,
+            profile.hostAgent,
+            profile.hostVariant,
+            profile.identitySource,
+        ]);
+    }));
+    const agentProfiles = [...profileKeys].map((key) => {
+        const [caller, model, reasoningEffort, hostAgent, hostVariant, identitySource] = JSON.parse(key);
+        const profileRoutes = routes.filter((event) => {
+            const profile = lifecycleProfile(event);
+            return profile.caller === caller
+                && profile.model === model
+                && profile.reasoningEffort === reasoningEffort
+                && profile.hostAgent === hostAgent
+                && profile.hostVariant === hostVariant
+                && profile.identitySource === identitySource;
+        });
+        const profileTraceIds = new Set(profileRoutes.map((event) => event.traceId));
+        const observedSessionKeys = new Set(profileRoutes.flatMap((event) => (hostIdentityByTrace.get(event.traceId)?.sessionKeys ?? [])));
+        const observedParentSessionKeys = new Set(profileRoutes.flatMap((event) => (hostIdentityByTrace.get(event.traceId)?.parentSessionKeys ?? [])));
+        const profileLoads = successfulLoads.filter((event) => profileTraceIds.has(event.traceId));
+        const profileTraceIdsWithLoads = new Set(profileLoads.map((event) => event.traceId));
+        const profileRequired = new Set();
+        for (const route of profileRoutes) {
+            const active = Array.isArray(route.details.activeSkills) ? route.details.activeSkills : [];
+            for (const item of active) {
+                if (!item || typeof item !== "object" || typeof item.name !== "string")
+                    continue;
+                if (item.required === true) {
+                    profileRequired.add(`${route.traceId}\u0000${String(item.name)}`);
+                }
+            }
+        }
+        const profileLoadedKeys = new Set(profileLoads
+            .filter((event) => event.skillName)
+            .map((event) => `${event.traceId}\u0000${event.skillName}`));
+        const profileRequiredSatisfied = [...profileRequired].filter((item) => profileLoadedKeys.has(item)).length;
+        const profileOutcomeTraces = new Set(latestOutcomes.filter((event) => profileTraceIds.has(event.traceId)).map((event) => event.traceId));
+        const profilePrimaryOutcomes = primaryOutcomeEvents.filter((event) => profileTraceIds.has(event.traceId));
+        const profileSuccessfulOutcomes = profilePrimaryOutcomes.filter((event) => event.details.status === "success" || event.ok === true);
+        const profileMeasuredOutcomes = profilePrimaryOutcomes.filter((event) => typeof event.details.accepted === "boolean");
+        const profileAcceptedOutcomes = profileMeasuredOutcomes.filter((event) => event.details.accepted === true);
+        const profileScoredOutcomes = profilePrimaryOutcomes.filter((event) => typeof event.details.score === "number");
+        const profileReminderEvents = closureReminderEvents.filter((event) => profileTraceIds.has(event.traceId));
+        const profileEvents = events.filter((event) => profileTraceIds.has(event.traceId));
+        const completionDurations = latestOutcomes.flatMap((outcome) => {
+            if (!profileTraceIds.has(outcome.traceId))
+                return [];
+            const firstRoute = firstRouteByTrace.get(outcome.traceId);
+            if (!firstRoute)
+                return [];
+            const duration = Date.parse(outcome.occurredAt) - Date.parse(firstRoute.occurredAt);
+            return Number.isFinite(duration) && duration >= 0 ? [duration] : [];
+        });
+        const profileExecution = executionMetrics(profileTraceIds, profileRoutes);
+        const reminderIdleValues = profileReminderEvents.flatMap((event) => (typeof event.details.idleMs === "number" ? [event.details.idleMs] : []));
+        return {
+            caller,
+            model,
+            reasoningEffort,
+            hostAgent,
+            hostVariant,
+            identitySource,
+            observedSessionCount: observedSessionKeys.size,
+            observedParentSessionCount: observedParentSessionKeys.size,
+            routedTraces: profileTraceIds.size,
+            routeEvents: profileRoutes.length,
+            structuredRouteRate: rate(profileRoutes.filter((event) => event.classificationMode === "structured-semantic").length, profileRoutes.length),
+            routeLoadCoverage: rate([...profileTraceIds].filter((traceId) => profileTraceIdsWithLoads.has(traceId)).length, profileTraceIds.size),
+            requiredSkillLoadsExpected: profileRequired.size,
+            requiredSkillLoadsSatisfied: profileRequiredSatisfied,
+            requiredLoadCompliance: rate(profileRequiredSatisfied, profileRequired.size),
+            verificationCoverage: rate([...profileTraceIds].filter((traceId) => verificationTraces.has(traceId)).length, profileTraceIds.size),
+            persistenceCoverage: rate([...profileTraceIds].filter((traceId) => persistenceTraces.has(traceId)).length, profileTraceIds.size),
+            outcomeTraces: profileOutcomeTraces.size,
+            outcomeCoverage: rate(profileOutcomeTraces.size, profileTraceIds.size),
+            outcomeSuccessRate: rate(profileSuccessfulOutcomes.length, profilePrimaryOutcomes.length),
+            outcomeAcceptanceRate: rate(profileAcceptedOutcomes.length, profileMeasuredOutcomes.length),
+            averageOutcomeScore: profileScoredOutcomes.length > 0
+                ? Math.round((profileScoredOutcomes.reduce((total, event) => total + Number(event.details.score), 0) / profileScoredOutcomes.length) * 10_000) / 10_000
+                : null,
+            averageCompletionMs: completionDurations.length > 0
+                ? Math.round(completionDurations.reduce((total, duration) => total + duration, 0) / completionDurations.length)
+                : null,
+            replannedTraces: [...profileTraceIds].filter((traceId) => (routeCountByTrace.get(traceId) ?? 0) > 1).length,
+            closureReminderEvents: profileReminderEvents.length,
+            closureReminderRate: rate(new Set(profileReminderEvents.map((event) => event.traceId)).size, profileTraceIds.size),
+            averageReminderIdleMs: reminderIdleValues.length > 0
+                ? Math.round(reminderIdleValues.reduce((total, value) => total + value, 0) / reminderIdleValues.length)
+                : null,
+            userCorrections: profileEvents.reduce((total, event) => total + (typeof event.details.userCorrections === "number" ? event.details.userCorrections : 0), 0),
+            ...profileExecution,
+        };
+    }).sort((a, b) => b.routedTraces - a.routedTraces
+        || a.caller.localeCompare(b.caller)
+        || a.model.localeCompare(b.model)
+        || a.reasoningEffort.localeCompare(b.reasoningEffort)
+        || a.hostAgent.localeCompare(b.hostAgent));
+    const reasoningEffortBuckets = ["low", "high", "other", "unknown", "multiple-observed"];
+    const reasoningEffortBucketOf = (value) => {
+        if (value === "low" || value === "high" || value === "multiple-observed")
+            return value;
+        if (value === "unknown")
+            return "unknown";
+        return "other";
+    };
+    // Canonical per-trace assignment so a trace with multiple route events
+    // (replans) lands in exactly one bucket. Host-correlated identities are
+    // authoritative and already consistent across a trace (single/mixed); a
+    // lifecycle-only trace resolves to its last route event deterministically by
+    // existing event order (occurred_at ASC).
+    const canonicalBucketByTrace = new Map();
+    const canonicalRouteByTrace = new Map();
+    for (const traceId of traceIdsWithRoutes) {
+        const lastRoute = lastRouteByTrace.get(traceId);
+        if (!lastRoute)
+            continue;
+        const host = hostIdentityByTrace.get(traceId);
+        const explicitProfile = lastRoute.details.agentProfile && typeof lastRoute.details.agentProfile === "object"
+            ? lastRoute.details.agentProfile
+            : {};
+        const effort = host && host.state !== "not-observed"
+            ? lifecycleProfile(lastRoute).reasoningEffort
+            : typeof explicitProfile.reasoningEffort === "string"
+                ? String(explicitProfile.reasoningEffort)
+                : "unknown";
+        canonicalBucketByTrace.set(traceId, reasoningEffortBucketOf(effort));
+        canonicalRouteByTrace.set(traceId, lastRoute);
+    }
+    const reasoningEffortComparison = reasoningEffortBuckets.map((bucket) => {
+        const bucketTraceIds = new Set([...canonicalBucketByTrace.entries()]
+            .filter(([, assigned]) => assigned === bucket)
+            .map(([traceId]) => traceId));
+        const bucketRoutes = routes.filter((route) => bucketTraceIds.has(route.traceId));
+        const bucketExecution = executionMetrics(bucketTraceIds, bucketRoutes);
+        const bucketTracesWithLoads = new Set(successfulLoads.filter((event) => bucketTraceIds.has(event.traceId)).map((event) => event.traceId));
+        const bucketPrimaryOutcomes = primaryOutcomeEvents.filter((event) => bucketTraceIds.has(event.traceId));
+        const bucketSuccessfulOutcomes = bucketPrimaryOutcomes.filter((event) => event.details.status === "success" || event.ok === true);
+        const bucketOutcomeTraces = new Set(bucketPrimaryOutcomes.map((event) => event.traceId));
+        const identitySources = new Map();
+        for (const traceId of bucketTraceIds) {
+            const route = canonicalRouteByTrace.get(traceId);
+            const source = route ? lifecycleProfile(route).identitySource : "lifecycle-only";
+            identitySources.set(source, (identitySources.get(source) ?? 0) + 1);
+        }
+        return {
+            bucket,
+            traces: bucketTraceIds.size,
+            routeEvents: bucketRoutes.length,
+            identitySources: Object.fromEntries([...identitySources.entries()].sort()),
+            physicalToolCalls: bucketExecution.physicalToolCalls,
+            bridgeDirectToolCalls: bucketExecution.bridgeDirectToolCalls,
+            hostObservedToolCalls: bucketExecution.hostObservedToolCalls,
+            delegatedToolCalls: bucketExecution.delegatedToolCalls,
+            delegatedQueryCalls: bucketExecution.delegatedQueryCalls,
+            delegatedActionCalls: bucketExecution.delegatedActionCalls,
+            delegatedCallRate: rate(bucketExecution.delegatedToolCalls, bucketExecution.physicalToolCalls),
+            discoveryDetours: bucketExecution.discoveryDetours,
+            averageDiscoveryDetoursPerTrace: bucketExecution.averageDiscoveryDetours,
+            routeLoadCoverage: rate([...bucketTraceIds].filter((traceId) => bucketTracesWithLoads.has(traceId)).length, bucketTraceIds.size),
+            verificationCoverage: rate([...bucketTraceIds].filter((traceId) => verificationTraces.has(traceId)).length, bucketTraceIds.size),
+            persistenceCoverage: rate([...bucketTraceIds].filter((traceId) => persistenceTraces.has(traceId)).length, bucketTraceIds.size),
+            outcomeCoverage: rate(bucketOutcomeTraces.size, bucketTraceIds.size),
+            outcomeSuccessRate: rate(bucketSuccessfulOutcomes.length, bucketPrimaryOutcomes.length),
+        };
+    });
+    const overallExecution = executionMetrics(traceIdsWithRoutes, routes);
+    return {
+        ...observatoryStatus(),
+        scope,
+        days,
+        since,
+        eventCount: events.length,
+        traceCount: byTrace.size,
+        benchmark: {
+            routeEvents: routes.length,
+            structuredRoutes,
+            lexicalFallbackRoutes: routes.length - structuredRoutes,
+            structuredRouteRate: rate(structuredRoutes, routes.length),
+            tracesWithRoute: traceIdsWithRoutes.size,
+            tracesWithSuccessfulLoad: traceIdsWithLoads.size,
+            routedTraceLoadCoverage: rate(routeTracesWithLoads, traceIdsWithRoutes.size),
+            skillLoadCoverage: rate(routeTracesWithLoads, traceIdsWithRoutes.size),
+            correlatedRouteLoadCoverage: rate(routeTracesWithLoads, traceIdsWithRoutes.size),
+            requiredSkillLoadsExpected: expectedRequired.size,
+            requiredSkillLoadsSatisfied: satisfiedRequired,
+            requiredLoadCompliance: rate(satisfiedRequired, expectedRequired.size),
+            loadEvents: loads.length,
+            successfulLoadEvents: successfulLoads.length,
+            orphanLoadEvents: orphanLoads,
+            orphanLoadRate: rate(orphanLoads, loads.length),
+            replannedTraces,
+            verifiedTraces: verificationTraces.size,
+            verificationCoverage: rate(verificationTraces.size, traceIdsWithRoutes.size),
+            persistedTraces: persistenceTraces.size,
+            persistenceCoverage: rate(persistenceTraces.size, traceIdsWithRoutes.size),
+            outcomeTraces: outcomeTraces.size,
+            outcomeCoverage: rate(outcomeTraces.size, traceIdsWithRoutes.size),
+            attributedOutcomeTraces: primaryOutcomeEvents.length,
+            outcomeAttributionCoverage: rate(primaryOutcomeEvents.length, latestOutcomes.length),
+            successfulOutcomeTraces: successfulOutcomes.length,
+            outcomeSuccessRate: rate(successfulOutcomes.length, primaryOutcomeEvents.length),
+            acceptedOutcomeTraces: acceptedOutcomes.length,
+            measuredAcceptanceOutcomeTraces: measuredAcceptanceOutcomes.length,
+            outcomeAcceptanceRate: rate(acceptedOutcomes.length, measuredAcceptanceOutcomes.length),
+            scoredOutcomeTraces: scoredOutcomes.length,
+            averageOutcomeScore: scoredOutcomes.length > 0
+                ? Math.round((scoredOutcomes.reduce((total, event) => total + Number(event.details.score), 0) / scoredOutcomes.length) * 10_000) / 10_000
+                : null,
+            closureReminderEvents: closureReminderEvents.length,
+            closureReminderTraces: new Set(closureReminderEvents.map((event) => event.traceId)).size,
+            ...overallExecution,
+            intentNormalizedEvents: intentNormalizedEvents.length,
+            intentCorrectionRequiredEvents: intentCorrectionEvents.length,
+            intentCorrectionTraces: intentCorrectionTraceIds.size,
+            intentCorrectionRecoveredTraces: intentCorrectionRecoveredTraceIds.size,
+            intentCorrectionRecoveryRate: rate(intentCorrectionRecoveredTraceIds.size, intentCorrectionTraceIds.size),
+            userCorrections,
+        },
+        intentAnalysis,
+        contextAssembly,
+        workHistory,
+        surfaces: surfaceBenchmarks,
+        agentProfiles,
+        reasoningEffortComparison,
+        top: {
+            selectedSkills: topCounts(selectedSkillNames),
+            loadedSkills: topCounts(successfulLoads.flatMap((event) => event.skillName ? [event.skillName] : [])),
+            skillOutcomes,
+            outcomeSupportingSkills: topCounts(outcomeSupportingSkills),
+            callers: topCounts(routes.flatMap((event) => event.caller ? [event.caller] : [])),
+            stages: topCounts(routes.flatMap((event) => event.stage ? [event.stage] : [])),
+            contextSources: topCounts(contextSources),
+            normalizedIntentAliases: topCounts(normalizedAliasIds),
+        },
+    };
+}
+const COMPACT_OBSERVATORY_EVENT_BUDGET = 12_000;
+const COMPACT_OBSERVATORY_SUMMARY_BUDGET = 64_000;
+function compactObservatoryDetails(details) {
+    const compact = {};
+    const scalarKeys = [
+        "action", "workflowKey", "taskKey", "parentTraceId", "supersedesTraceId", "status",
+        "evidenceKind", "evidenceRef", "metricName", "score", "accepted", "verificationPassed",
+        "persisted", "requestedContextChars", "deliveredContextChars", "responseChars", "envelopeChars",
+        "remainingRequiredUnits", "remainingAcceptedUnits", "continuationIssued", "chainCompleted", "issueCount",
+    ];
+    for (const key of scalarKeys) {
+        const value = details[key];
+        if (typeof value === "string")
+            compact[key] = value.length > 240 ? `${value.slice(0, 237)}...` : value;
+        else if (typeof value === "number" || typeof value === "boolean")
+            compact[key] = value;
+    }
+    for (const key of ["requiredPhases", "completedPhases", "signals", "workflows", "aliasIds", "changedFields", "unresolvedFields", "issueCodes"]) {
+        const value = details[key];
+        if (Array.isArray(value))
+            compact[key] = value.filter((item) => typeof item === "string").slice(0, 12);
+    }
+    const summary = details.summary;
+    if (typeof summary === "string" && summary.trim())
+        compact.summary = summary.length > 300 ? `${summary.slice(0, 297)}...` : summary;
+    return compact;
+}
+function compactObservatoryEvent(event) {
+    const details = compactObservatoryDetails(event.details);
+    return {
+        id: event.id,
+        occurredAt: event.occurredAt,
+        traceId: event.traceId,
+        eventType: event.eventType,
+        ...(event.caller ? { caller: event.caller } : {}),
+        ...(event.stage ? { stage: event.stage } : {}),
+        ...(event.classificationMode ? { classificationMode: event.classificationMode } : {}),
+        ...(event.skillName ? { skillName: event.skillName } : {}),
+        ...(typeof event.required === "boolean" ? { required: event.required } : {}),
+        ...(typeof event.ok === "boolean" ? { ok: event.ok } : {}),
+        ...(Object.keys(details).length > 0 ? { details } : {}),
+    };
+}
+function boundedCompactObservatoryEvents(events, budgetChars = COMPACT_OBSERVATORY_EVENT_BUDGET) {
+    const selected = [];
+    let chars = 2;
+    for (const event of events) {
+        const compact = compactObservatoryEvent(event);
+        const eventChars = JSON.stringify(compact).length + (selected.length > 0 ? 1 : 0);
+        if (selected.length > 0 && chars + eventChars > budgetChars)
+            break;
+        selected.push(compact);
+        chars += eventChars;
+        if (chars >= budgetChars)
+            break;
+    }
+    return {
+        events: selected,
+        returnedCount: selected.length,
+        omittedCount: Math.max(0, events.length - selected.length),
+        truncated: selected.length < events.length,
+        approxChars: chars,
+        budgetChars,
+    };
+}
+function compactObservatorySummary(full) {
+    if (!("intentAnalysis" in full))
+        return full;
+    const learning = full.intentAnalysis.learning;
+    const compact = {
+        ...full,
+        intentAnalysis: {
+            ...full.intentAnalysis,
+            maintenanceCandidates: full.intentAnalysis.maintenanceCandidates.slice(0, 8).map((candidate) => ({
+                ...candidate,
+                traceIds: candidate.traceIds.slice(0, 4),
+            })),
+            learning: {
+                ...learning,
+                skillPriors: learning.skillPriors.slice(0, 12),
+                transitions: learning.transitions.slice(0, 12),
+                contextPriors: learning.contextPriors.slice(0, 12),
+            },
+        },
+        contextAssembly: {
+            ...full.contextAssembly,
+            recentTraces: full.contextAssembly.recentTraces.slice(0, 8),
+            skillPressure: full.contextAssembly.skillPressure.slice(0, 12),
+        },
+        workHistory: {
+            ...full.workHistory,
+            taskStates: full.workHistory.taskStates.slice(0, 20).map((task) => ({
+                ...task,
+                traceIds: task.traceIds.slice(0, 4),
+                openTraceIds: task.openTraceIds.slice(0, 4),
+                closedTraceIds: task.closedTraceIds.slice(0, 4),
+                parentTraceIds: task.parentTraceIds.slice(0, 4),
+                supersedesTraceIds: task.supersedesTraceIds.slice(0, 4),
+                closureDebtTraceIds: task.closureDebtTraceIds.slice(0, 4),
+            })),
+            projects: full.workHistory.projects.slice(0, 12).map((project) => ({
+                ...project,
+                workflowKeys: project.workflowKeys.slice(0, 8),
+            })),
+            openTraces: full.workHistory.openTraces.slice(0, 16),
+            daily: full.workHistory.daily.slice(0, 14),
+        },
+        surfaces: full.surfaces.slice(0, 12),
+        agentProfiles: full.agentProfiles.slice(0, 12),
+        reasoningEffortComparison: full.reasoningEffortComparison.slice(0, 8),
+        top: {
+            ...full.top,
+            selectedSkills: full.top.selectedSkills.slice(0, 12),
+            loadedSkills: full.top.loadedSkills.slice(0, 12),
+            skillOutcomes: full.top.skillOutcomes.slice(0, 12),
+            outcomeSupportingSkills: full.top.outcomeSupportingSkills.slice(0, 12),
+            callers: full.top.callers.slice(0, 8),
+            stages: full.top.stages.slice(0, 8),
+            contextSources: full.top.contextSources.slice(0, 8),
+            normalizedIntentAliases: full.top.normalizedIntentAliases.slice(0, 8),
+        },
+    };
+    let approxChars = JSON.stringify(compact).length;
+    if (approxChars > COMPACT_OBSERVATORY_SUMMARY_BUDGET) {
+        compact.intentAnalysis.learning.skillPriors = compact.intentAnalysis.learning.skillPriors.slice(0, 6);
+        compact.intentAnalysis.learning.transitions = compact.intentAnalysis.learning.transitions.slice(0, 6);
+        compact.intentAnalysis.learning.contextPriors = compact.intentAnalysis.learning.contextPriors.slice(0, 6);
+        compact.intentAnalysis.maintenanceCandidates = compact.intentAnalysis.maintenanceCandidates.slice(0, 6);
+        compact.contextAssembly.recentTraces = compact.contextAssembly.recentTraces.slice(0, 6);
+        compact.contextAssembly.skillPressure = compact.contextAssembly.skillPressure.slice(0, 8);
+        compact.workHistory.taskStates = compact.workHistory.taskStates.slice(0, 8);
+        compact.workHistory.projects = compact.workHistory.projects.slice(0, 8);
+        compact.workHistory.openTraces = compact.workHistory.openTraces.slice(0, 6);
+        compact.agentProfiles = compact.agentProfiles.slice(0, 8);
+        approxChars = JSON.stringify(compact).length;
+    }
+    if (approxChars > COMPACT_OBSERVATORY_SUMMARY_BUDGET - 2_000) {
+        compact.intentAnalysis.learning.skillPriors = compact.intentAnalysis.learning.skillPriors.slice(0, 3);
+        compact.intentAnalysis.learning.transitions = compact.intentAnalysis.learning.transitions.slice(0, 3);
+        compact.intentAnalysis.learning.contextPriors = compact.intentAnalysis.learning.contextPriors.slice(0, 3);
+        compact.intentAnalysis.maintenanceCandidates = compact.intentAnalysis.maintenanceCandidates.slice(0, 4);
+        compact.contextAssembly.recentTraces = compact.contextAssembly.recentTraces.slice(0, 4);
+        compact.contextAssembly.skillPressure = compact.contextAssembly.skillPressure.slice(0, 6);
+        compact.workHistory.taskStates = compact.workHistory.taskStates.slice(0, 5);
+        compact.workHistory.projects = compact.workHistory.projects.slice(0, 6);
+        compact.workHistory.openTraces = compact.workHistory.openTraces.slice(0, 4);
+        compact.agentProfiles = compact.agentProfiles.slice(0, 6);
+        compact.reasoningEffortComparison = compact.reasoningEffortComparison.slice(0, 6);
+        compact.top.skillOutcomes = compact.top.skillOutcomes.slice(0, 8);
+        approxChars = JSON.stringify(compact).length;
+    }
+    return {
+        ...compact,
+        truncation: {
+            fullAvailable: true,
+            approxChars,
+            budgetChars: COMPACT_OBSERVATORY_SUMMARY_BUDGET,
+            originalCounts: {
+                skillPriors: learning.skillPriors.length,
+                transitions: learning.transitions.length,
+                contextPriors: learning.contextPriors.length,
+                maintenanceCandidates: full.intentAnalysis.maintenanceCandidates.length,
+                recentTraces: full.contextAssembly.recentTraces.length,
+                skillPressure: full.contextAssembly.skillPressure.length,
+                taskStates: full.workHistory.taskStates.length,
+                projects: full.workHistory.projects.length,
+                openTraces: full.workHistory.openTraces.length,
+            },
+            returnedCounts: {
+                skillPriors: compact.intentAnalysis.learning.skillPriors.length,
+                transitions: compact.intentAnalysis.learning.transitions.length,
+                contextPriors: compact.intentAnalysis.learning.contextPriors.length,
+                maintenanceCandidates: compact.intentAnalysis.maintenanceCandidates.length,
+                recentTraces: compact.contextAssembly.recentTraces.length,
+                skillPressure: compact.contextAssembly.skillPressure.length,
+                taskStates: compact.workHistory.taskStates.length,
+                projects: compact.workHistory.projects.length,
+                openTraces: compact.workHistory.openTraces.length,
+            },
+        },
+    };
+}
+export function queryMssrObservatory(args) {
+    const kind = args.kind ?? "summary";
+    const detail = args.detail === "full" ? "full" : "compact";
+    const days = Math.max(1, Math.min(365, Math.trunc(args.days ?? 30)));
+    const limit = Math.max(1, Math.min(200, Math.trunc(args.limit ?? 50)));
+    const scope = args.scope === "all" ? "all" : "active";
+    const epoch = getMssrObservabilityEpoch();
+    if (kind === "status")
+        return { ...observatoryStatus(), scope, detail };
+    if (kind === "summary" || kind === "benchmark") {
+        const fullSummary = summary(days, scope);
+        return { ...(detail === "full" ? fullSummary : compactObservatorySummary(fullSummary)), detail };
+    }
+    const database = getDb();
+    if (kind === "trace") {
+        if (!args.traceId || !validTraceId(args.traceId))
+            throw new Error("traceId is required for kind=trace and must contain only letters, numbers, dot, underscore, colon, or hyphen.");
+        const decoded = readMssrStoredTraceEvents(args.traceId, limit);
+        const trace = scope === "active"
+            ? decoded.filter((event) => event.details.observabilityEpoch === epoch.activeEpoch)
+            : decoded;
+        if (detail === "full")
+            return { ...observatoryStatus(), scope, detail, traceId: args.traceId, trace };
+        const compact = boundedCompactObservatoryEvents(trace);
+        return {
+            ...observatoryStatus(),
+            scope,
+            detail,
+            traceId: args.traceId,
+            trace: compact.events,
+            truncation: {
+                requestedLimit: limit,
+                returnedCount: compact.returnedCount,
+                omittedCount: compact.omittedCount,
+                truncated: compact.truncated,
+                approxEventChars: compact.approxChars,
+                eventBudgetChars: compact.budgetChars,
+                fullAvailable: true,
+            },
+        };
+    }
+    const persisted = database
+        ? database.prepare(`
+        SELECT id, occurred_at, trace_id, event_type, caller, stage, classification_mode,
+               skill_name, required, ok, task_hash, details_json
+        FROM mssr_events
+        WHERE trace_id NOT LIKE '__test_%'
+        ORDER BY occurred_at DESC LIMIT ?
+      `).all(scope === "active" ? Math.min(1_000, limit * 10) : limit).map(decodeRow)
+        : [];
+    const overlay = recentMssrEventOverlay.filter((event) => !event.traceId.startsWith("__test_"));
+    const merged = mergeRecentStoredEvents(persisted, overlay);
+    const recent = (scope === "active"
+        ? merged.filter((event) => event.details.observabilityEpoch === epoch.activeEpoch)
+        : merged).slice(0, limit);
+    if (detail === "full")
+        return { ...observatoryStatus(), scope, detail, recent };
+    const compact = boundedCompactObservatoryEvents(recent);
+    return {
+        ...observatoryStatus(),
+        scope,
+        detail,
+        recent: compact.events,
+        truncation: {
+            requestedLimit: limit,
+            returnedCount: compact.returnedCount,
+            omittedCount: compact.omittedCount,
+            truncated: compact.truncated,
+            approxEventChars: compact.approxChars,
+            eventBudgetChars: compact.budgetChars,
+            fullAvailable: true,
+        },
+    };
+}
+const skillMaintenanceIndexDefaultDelayMs = Math.max(100, Math.min(60_000, Number(process.env.BRIDGE_MCP_SKILL_MAINTENANCE_DELAY_MS || 10_000) || 10_000));
+let skillMaintenanceIndexRefreshTimer = null;
+let skillMaintenanceIndexRefreshInFlight = false;
+let skillMaintenanceIndexRefreshDirty = false;
+let skillMaintenanceIndexRefreshCount = 0;
+let skillMaintenanceIndexRefreshFailureCount = 0;
+let skillMaintenanceIndexLastStartedAt = null;
+let skillMaintenanceIndexLastCompletedAt = null;
+let skillMaintenanceIndexLastDurationMs = null;
+let lastSkillMaintenanceIndexRefresh = null;
+function defaultMssrWorkspaceRoot() {
+    return path.resolve(process.env.MSSR_WORKSPACE_ROOT || path.dirname(process.cwd()));
+}
+export function refreshMssrSkillMaintenanceIndex(options = {}) {
+    const workspaceRoot = path.resolve(options.workspaceRoot ?? defaultMssrWorkspaceRoot());
+    const mssrRoot = path.join(workspaceRoot, ".mssr");
+    const manifestPath = path.join(mssrRoot, "project-context.json");
+    const filePath = path.join(mssrRoot, "runtime", "skill-maintenance-candidates.json");
+    if (!fs.existsSync(manifestPath)) {
+        return {
+            written: false,
+            reason: "workspace-mssr-uninitialized",
+            workspaceRoot,
+            filePath,
+            reviewOnly: true,
+        };
+    }
+    const scope = options.scope === "all" ? "all" : "active";
+    const days = Math.max(1, Math.min(365, Math.trunc(options.days ?? 30)));
+    const report = summary(days, scope);
+    const intentAnalysis = "intentAnalysis" in report ? report.intentAnalysis : null;
+    const candidates = (intentAnalysis?.maintenanceCandidates ?? [])
+        .filter((candidate) => candidate.kind === "skill-overlap" || candidate.kind === "skill-domain-mismatch")
+        .slice(0, 200);
+    const feedback = (intentAnalysis?.selectionFeedback ?? [])
+        .filter((item) => (item.reasonCounts?.redundant ?? 0) > 0 || (item.reasonCounts?.["irrelevant-domain"] ?? 0) > 0)
+        .map((item) => ({
+        skillName: item.skillName,
+        redundant: item.reasonCounts?.redundant ?? 0,
+        irrelevantDomain: item.reasonCounts?.["irrelevant-domain"] ?? 0,
+        total: item.total,
+        acceptanceRate: item.acceptanceRate,
+    }))
+        .sort((left, right) => (right.redundant + right.irrelevantDomain) - (left.redundant + left.irrelevantDomain)
+        || left.skillName.localeCompare(right.skillName))
+        .slice(0, 100);
+    const epoch = getMssrObservabilityEpoch();
+    const generatedAt = (options.now ?? new Date()).toISOString();
+    const projection = {
+        schemaVersion: 1,
+        generatedAt,
+        workspaceRoot,
+        source: {
+            kind: "mssr-observatory",
+            scope,
+            days,
+            activeEpoch: epoch.activeEpoch,
+            contractVersion: epoch.contractVersion,
+        },
+        reviewOnly: true,
+        authorityInfluence: false,
+        routingInfluence: false,
+        canonicalRewriteAllowed: false,
+        autoApplyAllowed: false,
+        candidateCount: candidates.length,
+        feedbackSkillCount: feedback.length,
+        candidates,
+        feedback,
+        policy: {
+            explicitRelatedSkillIsEvidenceNotEquivalence: true,
+            legacyCandidateSkillsAreHypothesesOnly: true,
+            allowedReviewedResolutions: [
+                "tighten-routing-gates",
+                "add-or-adjust-negative-intents",
+                "requires",
+                "complements",
+                "excludes",
+                "keep-distinct",
+                "owner-reviewed-merge-split-supersede-remove",
+            ],
+        },
+    };
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    const serialized = `${JSON.stringify(projection, null, 2)}\n`;
+    const temporaryPath = `${filePath}.${process.pid}.${Date.now()}.tmp`;
+    fs.writeFileSync(temporaryPath, serialized, "utf8");
+    fs.renameSync(temporaryPath, filePath);
+    const sha256 = createHash("sha256").update(serialized).digest("hex");
+    lastSkillMaintenanceIndexRefresh = { ok: true, at: generatedAt };
+    return {
+        written: true,
+        workspaceRoot,
+        filePath,
+        generatedAt,
+        sha256,
+        candidateCount: candidates.length,
+        feedbackSkillCount: feedback.length,
+        reviewOnly: true,
+        candidates,
+    };
+}
+function runMssrSkillMaintenanceIndexRefreshWorker() {
+    if (skillMaintenanceIndexRefreshInFlight || !skillMaintenanceIndexRefreshDirty)
+        return;
+    skillMaintenanceIndexRefreshInFlight = true;
+    skillMaintenanceIndexRefreshDirty = false;
+    skillMaintenanceIndexLastStartedAt = new Date().toISOString();
+    const startedAt = performance.now();
+    const worker = new Worker(new URL("./mssr-skill-maintenance-index-worker.js", import.meta.url), {
+        workerData: { workspaceRoot: defaultMssrWorkspaceRoot(), scope: "active", days: 30 },
+        execArgv: process.execArgv.filter((arg) => !arg.startsWith("--input-type")),
+    });
+    worker.unref();
+    let settled = false;
+    const finish = (ok, result, error) => {
+        if (settled)
+            return;
+        settled = true;
+        skillMaintenanceIndexRefreshInFlight = false;
+        skillMaintenanceIndexLastCompletedAt = new Date().toISOString();
+        skillMaintenanceIndexLastDurationMs = Math.round((performance.now() - startedAt) * 100) / 100;
+        if (ok) {
+            skillMaintenanceIndexRefreshCount += 1;
+            lastSkillMaintenanceIndexRefresh = { ok: true, at: skillMaintenanceIndexLastCompletedAt, ...(result ? { result } : {}) };
+        }
+        else {
+            skillMaintenanceIndexRefreshFailureCount += 1;
+            lastSkillMaintenanceIndexRefresh = { ok: false, at: skillMaintenanceIndexLastCompletedAt, error: (error ?? "skill maintenance index worker failed").slice(0, 240) };
+        }
+        void worker.terminate();
+        if (skillMaintenanceIndexRefreshDirty)
+            scheduleMssrSkillMaintenanceIndexRefresh();
+    };
+    worker.once("message", (message) => {
+        const payload = message && typeof message === "object" ? message : {};
+        if (payload.ok === true) {
+            const result = payload.result && typeof payload.result === "object" && !Array.isArray(payload.result)
+                ? payload.result
+                : undefined;
+            finish(true, result);
+            return;
+        }
+        finish(false, undefined, typeof payload.error === "string" ? payload.error : "skill maintenance index worker failed");
+    });
+    worker.once("error", (error) => finish(false, undefined, error.message));
+    worker.once("exit", (code) => {
+        if (!settled)
+            finish(false, undefined, `skill maintenance index worker exited without a result (code ${code})`);
+    });
+}
+export function scheduleMssrSkillMaintenanceIndexRefresh(delayMs = skillMaintenanceIndexDefaultDelayMs) {
+    if (process.env.BRIDGE_MCP_DISABLE_GLOBAL_SKILL_MAINTENANCE === "1")
+        return;
+    skillMaintenanceIndexRefreshDirty = true;
+    if (skillMaintenanceIndexRefreshInFlight)
+        return;
+    if (skillMaintenanceIndexRefreshTimer)
+        clearTimeout(skillMaintenanceIndexRefreshTimer);
+    const boundedDelay = Math.max(100, Math.min(60_000, Math.trunc(delayMs)));
+    skillMaintenanceIndexRefreshTimer = setTimeout(() => {
+        skillMaintenanceIndexRefreshTimer = null;
+        runMssrSkillMaintenanceIndexRefreshWorker();
+    }, boundedDelay);
+    skillMaintenanceIndexRefreshTimer.unref?.();
+}
+export function getMssrSkillMaintenanceIndexStatus() {
+    const workspaceRoot = defaultMssrWorkspaceRoot();
+    return {
+        mode: "background-worker",
+        pending: skillMaintenanceIndexRefreshTimer !== null || skillMaintenanceIndexRefreshInFlight || skillMaintenanceIndexRefreshDirty,
+        scheduled: skillMaintenanceIndexRefreshTimer !== null,
+        inFlight: skillMaintenanceIndexRefreshInFlight,
+        dirty: skillMaintenanceIndexRefreshDirty,
+        delayMs: skillMaintenanceIndexDefaultDelayMs,
+        refreshCount: skillMaintenanceIndexRefreshCount,
+        failureCount: skillMaintenanceIndexRefreshFailureCount,
+        lastStartedAt: skillMaintenanceIndexLastStartedAt,
+        lastCompletedAt: skillMaintenanceIndexLastCompletedAt,
+        lastDurationMs: skillMaintenanceIndexLastDurationMs,
+        pendingDurableEvidence: skillMaintenanceProjectionPendingEventIds.size,
+        lastRefresh: lastSkillMaintenanceIndexRefresh,
+        workspaceRoot,
+        filePath: path.join(workspaceRoot, ".mssr", "runtime", "skill-maintenance-candidates.json"),
+        reviewOnly: true,
+    };
+}
+export function getMssrTraceEvidence(traceId, limit = 500) {
+    if (!validTraceId(traceId)) {
+        throw new Error("traceId must contain only letters, numbers, dot, underscore, colon, or hyphen.");
+    }
+    const boundedLimit = Math.max(1, Math.min(2_000, Math.trunc(limit)));
+    const events = readMssrStoredTraceEvents(traceId, boundedLimit);
+    const state = readPersistedMssrTraceState(traceId);
+    const portableState = state ? {
+        stage: state.stage,
+        requiredSkills: state.requiredSkills,
+        selectedSkills: state.selectedSkills,
+        loadedSkills: state.loadedSkills,
+        requiredPhases: state.requiredPhases,
+        completedPhases: state.completedPhases,
+        routeCount: state.routeCount,
+        closed: state.closed,
+        maintenanceRequired: state.maintenanceRequired,
+        lifecycleRevision: state.lifecycleRevision,
+        closeRevision: state.closeRevision,
+        maintenanceRevision: state.maintenanceRevision,
+    } : null;
+    const closure = portableState ? getMssrTraceClosureState(portableState) : null;
+    const workingMemory = state?.closed ? null : readMssrTraceWorkingMemory(traceId);
+    const toolEvidence = getTraceToolEvidence(traceId, boundedLimit);
+    const latest = (type) => [...events].reverse().find((event) => event.eventType === type) ?? null;
+    const latestRoute = latest("route_planned");
+    const latestOutcome = latest("outcome");
+    const latestLearningDigest = latest("learning_digest");
+    const latestVerification = latest("verification");
+    const latestPersistence = latest("persistence");
+    const latestReminder = [...events].reverse().find((event) => event.eventType.includes("reminder") || event.eventType.includes("idle")) ?? null;
+    const missingRequiredSkills = state
+        ? state.requiredSkills.filter((skill) => !state.loadedSkills.includes(skill))
+        : [];
+    const outcomeStatus = latestOutcome && typeof latestOutcome.details.status === "string"
+        ? latestOutcome.details.status
+        : null;
+    const closureStatus = !latestRoute
+        ? "trace-not-found"
+        : latestOutcome && Date.parse(latestOutcome.occurredAt) >= Date.parse(latestRoute.occurredAt)
+            ? `closed-${outcomeStatus ?? (latestOutcome.ok === false ? "failed" : "recorded")}`
+            : missingRequiredSkills.length > 0
+                ? "open-missing-required-skills"
+                : latestReminder
+                    ? "open-idle-reminder"
+                    : "open-active";
+    const evidenceRefs = [...new Set(events.flatMap((event) => {
+            const value = event.details.evidenceRef;
+            return typeof value === "string" && value.trim() ? [value.trim()] : [];
+        }))];
+    const eventRuntimeBootIds = [...new Set(events.flatMap((event) => {
+            const value = event.details.runtimeBootId;
+            return typeof value === "string" && value ? [value] : [];
+        }))];
+    const workflowKeys = [...new Set([
+            ...(state?.workflowKey && state.workflowKey !== "unscoped" ? [state.workflowKey] : []),
+            ...toolEvidence.workflowKeys,
+        ])];
+    return {
+        traceId,
+        workflowKeys,
+        identity: {
+            taskHash: state?.taskHash ?? null,
+            taskKeys: toolEvidence.taskKeys,
+            sessionKeys: toolEvidence.sessionKeys,
+            caller: state?.caller ?? null,
+            project: state?.project ?? toolEvidence.projects[0] ?? null,
+            projects: toolEvidence.projects,
+        },
+        lifecycle: {
+            status: closureStatus,
+            stage: state?.stage ?? latestRoute?.stage ?? null,
+            routeCount: state?.routeCount ?? 0,
+            firstEventAt: events[0]?.occurredAt ?? toolEvidence.summary.firstStartedAt,
+            lastEventAt: events.at(-1)?.occurredAt ?? toolEvidence.summary.lastStartedAt,
+            requiredSkills: state?.requiredSkills ?? [],
+            selectedSkills: state?.selectedSkills ?? [],
+            loadedSkills: state?.loadedSkills ?? [],
+            missingRequiredSkills,
+            requiredPhases: state?.requiredPhases ?? [],
+            completedPhases: state?.completedPhases ?? [],
+            closure,
+            verification: latestVerification,
+            persistence: latestPersistence,
+            outcome: latestOutcome,
+            idleReminder: latestReminder,
+        },
+        workingMemory,
+        learningDigest: latestLearningDigest?.details.digest ?? null,
+        runtime: {
+            currentBootId: RUNTIME_BOOT_ID,
+            eventRuntimeBootIds,
+            toolRuntimeGenerations: toolEvidence.runtimeGenerations,
+        },
+        tools: {
+            summary: toolEvidence.summary,
+            counts: toolEvidence.toolCounts,
+            calls: toolEvidence.calls,
+            truncated: toolEvidence.truncated,
+        },
+        evidenceRefs,
+        events,
+        truncated: events.length >= boundedLimit || toolEvidence.truncated,
+        privacy: {
+            rawArgumentsStored: false,
+            rawPromptsStored: false,
+            transcriptsStored: false,
+            privateReasoningStored: false,
+            gitOutputsStored: false,
+            ephemeralWorkingMemory: "RAM-only while the trace is open; purged on outcome or Bridge restart and never written to observatory SQLite.",
+            durableLearningDigest: "On outcome, Bridge may persist only the strict learning-digest schema: semantic signature, observable skill/context selections, transitions, outcome metadata, and evidence-backed supported/rejected findings. workingSummary and active hypotheses are excluded.",
+            note: "Commit hashes, snapshot ids, restart ids and remote-ref checks are retained only when explicitly written as bounded evidenceRef values.",
+        },
+    };
+}
+export function closeMssrObservatoryForTests() {
+    closeObservabilityPersistenceForTests();
+    if (db)
+        db.close();
+    db = undefined;
+    insertEvent = null;
+    recentMssrEventOverlay.length = 0;
+    resetMssrObservabilityEpochForTests();
+}

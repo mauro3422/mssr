@@ -1,0 +1,1221 @@
+#!/usr/bin/env node
+import { randomUUID } from "node:crypto";
+import { fork } from "node:child_process";
+import { readFileSync } from "node:fs";
+import { mkdir, rename, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { createServer } from "node:http";
+import { fileURLToPath } from "node:url";
+import { createMcpHandler, isLegacyRequest } from "@modelcontextprotocol/server";
+import { toNodeHandler, toWebRequest } from "@modelcontextprotocol/node";
+import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
+import { createBridgeServer, createModernBridgeServer } from "./bridge-server.js";
+import { getBridgeHttpConfig, SERVER_NAME, SERVER_VERSION } from "./config.js";
+import { renderDashboardHtml } from "./dashboard.js";
+import { enrichHumanCockpitWithRuntimeTerminals } from "./dashboard-cockpit.js";
+import { closeRobloxMcpConnection } from "./integrations/roblox-mcp-client.js";
+import { getMetricsStatus } from "./metrics.js";
+import { emitBridgeNotice, peekBridgeNoticeHistory } from "./notices.js";
+import { authorizeMssrTelemetry, ensureMssrTelemetryToken, ingestMssrTelemetry } from "./mssr-telemetry-ingest.js";
+import { TOOL_AUDIT_VIEWS } from "./tool-audit.js";
+import { RUNTIME_BOOT_ID } from "./runtime-identity.js";
+import { getSkillHealthReport, startSkillHealthScheduler } from "./skill-health.js";
+import { getProjectHealthReport, startProjectHealthScheduler } from "./project-health.js";
+import { buildProjectHealthNoticeInputs, buildSkillHealthNoticeInputs } from "./operational-notices.js";
+import { getRuntimeHealthReport, observeBridgeRuntimeHealth, startRuntimeHealthScheduler } from "./runtime-health.js";
+import { getReleaseConsistencyReport, startReleaseConsistencyScheduler } from "./release-consistency.js";
+import { terminalList } from "./tools/process-tools.js";
+import { buildProjectSituationNoticeInputs, getProjectSituationReport, startProjectSituationScheduler } from "./project-situation.js";
+const config = getBridgeHttpConfig();
+const startedAt = new Date();
+const SESSION_IDLE_MS = getPositiveIntEnv("BRIDGE_MCP_HTTP_SESSION_IDLE_MS", 30 * 60 * 1000);
+const SESSION_CAPACITY_RECLAIM_IDLE_MS = getPositiveIntEnv("BRIDGE_MCP_HTTP_CAPACITY_RECLAIM_IDLE_MS", 15 * 1000);
+const ANONYMOUS_TRANSPORT_TTL_MS = getPositiveIntEnv("BRIDGE_MCP_HTTP_ANON_TTL_MS", 60 * 1000);
+const MAX_SESSIONS = getPositiveIntEnv("BRIDGE_MCP_HTTP_MAX_SESSIONS", 64);
+const SOFT_SESSION_LIMIT = Math.min(MAX_SESSIONS, getPositiveIntEnv("BRIDGE_MCP_HTTP_SOFT_SESSION_LIMIT", Math.min(16, MAX_SESSIONS)));
+const CLEANUP_INTERVAL_MS = getPositiveIntEnv("BRIDGE_MCP_HTTP_CLEANUP_INTERVAL_MS", 60 * 1000);
+const MAX_REQUEST_BODY_BYTES = getPositiveIntEnv("BRIDGE_MCP_HTTP_MAX_BODY_BYTES", 16 * 1024 * 1024);
+const DASHBOARD_CACHE_MS = getPositiveIntEnv("BRIDGE_MCP_DASHBOARD_CACHE_MS", 15 * 1000);
+const DASHBOARD_WORKER_TIMEOUT_MS = getPositiveIntEnv("BRIDGE_MCP_DASHBOARD_WORKER_TIMEOUT_MS", 120 * 1000);
+const DASHBOARD_WORKER_QUEUE_TIMEOUT_MS = getPositiveIntEnv("BRIDGE_MCP_DASHBOARD_WORKER_QUEUE_TIMEOUT_MS", 5 * 60 * 1000);
+const DASHBOARD_WORKER_STARTUP_TIMEOUT_MS = getPositiveIntEnv("BRIDGE_MCP_DASHBOARD_WORKER_STARTUP_TIMEOUT_MS", 30 * 1000);
+const DASHBOARD_SNAPSHOT_STATE_PATH = path.resolve(process.env.BRIDGE_MCP_DASHBOARD_SNAPSHOT_STATE
+    || path.join(process.env.BRIDGE_MCP_METRICS_DIR || path.join(process.cwd(), "data"), "dashboard-snapshot-cache.json"));
+const EVENT_LOOP_PROBE_INTERVAL_MS = getPositiveIntEnv("BRIDGE_MCP_HTTP_EVENT_LOOP_PROBE_MS", 100);
+const EVENT_LOOP_STALL_THRESHOLD_MS = getPositiveIntEnv("BRIDGE_MCP_HTTP_EVENT_LOOP_STALL_MS", 250);
+const HTTP_KEEP_ALIVE_TIMEOUT_MS = getPositiveIntEnv("BRIDGE_MCP_HTTP_KEEP_ALIVE_TIMEOUT_MS", 120_000);
+const HTTP_KEEP_ALIVE_TIMEOUT_BUFFER_MS = getPositiveIntEnv("BRIDGE_MCP_HTTP_KEEP_ALIVE_BUFFER_MS", 5_000);
+const HTTP_HEADERS_TIMEOUT_MS = Math.max(getPositiveIntEnv("BRIDGE_MCP_HTTP_HEADERS_TIMEOUT_MS", 130_000), HTTP_KEEP_ALIVE_TIMEOUT_MS + HTTP_KEEP_ALIVE_TIMEOUT_BUFFER_MS + 1_000);
+let ready = false;
+let closing = false;
+let observabilityStorageState = "not-started";
+let transportsCreating = 0;
+let legacyProtocolRequests = 0;
+let modernProtocolRequests = 0;
+let modernProtocolErrors = 0;
+let steadyStateSessionReclaims = 0;
+let hardCapacitySessionReclaims = 0;
+let sessionNotFoundResponses = 0;
+let lastSessionNotFoundAt = null;
+let eventLoopProbeLastTickMs = Date.now();
+let eventLoopMaxLagMs = 0;
+let eventLoopStallCount = 0;
+let lastEventLoopStallAt = null;
+let lastEventLoopStallLagMs = 0;
+let httpClientErrorCount = 0;
+let lastHttpClientErrorAt = null;
+let capacityAdmissionTail = Promise.resolve();
+let dashboardSnapshotCache = null;
+let dashboardSnapshotInFlight = null;
+let dashboardStorageInitialization = null;
+let dashboardStorageBootstrapProcess = null;
+let dashboardSnapshotWorkerProcess = null;
+let dashboardReadWorkerProcess = null;
+let dashboardWorkerSequence = 0;
+const dashboardWorkerRequests = new Map();
+const dashboardWorkerReadyPromises = new Map();
+const dashboardWorkerReadyWaiters = new Map();
+const modernMcpHandler = createMcpHandler(() => createModernBridgeServer(), {
+    legacy: "reject",
+    responseMode: "auto",
+    onerror: (error) => {
+        modernProtocolErrors += 1;
+        log("error", "Modern MCP handler error", {
+            protocolVersion: "2026-07-28",
+            error: error.message,
+        });
+    },
+});
+const modernNodeHandler = toNodeHandler(modernMcpHandler);
+const sessions = new Map();
+const anonymousTransports = new Map();
+function getPositiveIntEnv(name, fallback) {
+    const value = Number.parseInt(process.env[name] || "", 10);
+    return Number.isFinite(value) && value > 0 ? value : fallback;
+}
+function nowIso() {
+    return new Date().toISOString();
+}
+function withSseHeaderFlush(res) {
+    return new Proxy(res, {
+        get(target, property) {
+            if (property === "writeHead") {
+                return (statusCode, headers) => {
+                    const result = target.writeHead(statusCode, headers);
+                    const contentType = headers?.["content-type"] ?? target.getHeader("content-type");
+                    if (typeof contentType === "string" && contentType.toLowerCase().includes("text/event-stream")) {
+                        target.flushHeaders();
+                    }
+                    return result;
+                };
+            }
+            const value = Reflect.get(target, property, target);
+            return typeof value === "function" ? value.bind(target) : value;
+        },
+    });
+}
+const eventLoopProbeTimer = setInterval(() => {
+    const nowMs = Date.now();
+    const lagMs = Math.max(0, nowMs - eventLoopProbeLastTickMs - EVENT_LOOP_PROBE_INTERVAL_MS);
+    eventLoopProbeLastTickMs = nowMs;
+    eventLoopMaxLagMs = Math.max(eventLoopMaxLagMs, lagMs);
+    if (lagMs >= EVENT_LOOP_STALL_THRESHOLD_MS) {
+        eventLoopStallCount += 1;
+        lastEventLoopStallAt = new Date(nowMs).toISOString();
+        lastEventLoopStallLagMs = lagMs;
+    }
+}, EVENT_LOOP_PROBE_INTERVAL_MS);
+eventLoopProbeTimer.unref();
+function log(level, message, extra = {}) {
+    const event = { ts: nowIso(), level, component: "bridge-http", message, ...extra };
+    const line = JSON.stringify(event);
+    if (level === "error")
+        console.error(line);
+    else if (level === "warn")
+        console.warn(line);
+    else
+        console.error(line);
+}
+function sendText(res, statusCode, text) {
+    res.writeHead(statusCode, {
+        "content-type": "text/plain; charset=utf-8",
+        "cache-control": "no-store",
+    });
+    res.end(text);
+}
+function sendJson(res, statusCode, data) {
+    res.writeHead(statusCode, {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "no-store",
+    });
+    res.end(JSON.stringify(data, null, 2));
+}
+function sendHtml(res, statusCode, html) {
+    res.writeHead(statusCode, {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+    });
+    res.end(html);
+}
+async function readJsonBody(req, maxBytes = MAX_REQUEST_BODY_BYTES) {
+    const contentLength = Number.parseInt(String(req.headers["content-length"] || ""), 10);
+    if (Number.isFinite(contentLength) && contentLength > maxBytes) {
+        throw Object.assign(new Error(`Request body exceeds ${maxBytes} bytes.`), { statusCode: 413 });
+    }
+    const chunks = [];
+    let totalBytes = 0;
+    for await (const chunk of req) {
+        const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+        totalBytes += buffer.length;
+        if (totalBytes > maxBytes) {
+            throw Object.assign(new Error(`Request body exceeds ${maxBytes} bytes.`), { statusCode: 413 });
+        }
+        chunks.push(buffer);
+    }
+    if (totalBytes === 0)
+        return undefined;
+    try {
+        return JSON.parse(Buffer.concat(chunks).toString("utf8"));
+    }
+    catch {
+        throw Object.assign(new Error("Invalid JSON request body."), { statusCode: 400 });
+    }
+}
+function getLimit(url, fallback, max = 500) {
+    const raw = Number.parseInt(url.searchParams.get("limit") || "", 10);
+    return Number.isFinite(raw) && raw > 0 ? Math.min(raw, max) : fallback;
+}
+function getDays(url, fallback, max = 365) {
+    const raw = Number.parseInt(url.searchParams.get("days") || "", 10);
+    return Number.isFinite(raw) && raw > 0 ? Math.min(raw, max) : fallback;
+}
+function isMcpStreamRequest(req) {
+    return String(req.headers.accept || "").includes("text/event-stream");
+}
+function getMcpSessionId(req) {
+    const header = req.headers["mcp-session-id"];
+    if (Array.isArray(header))
+        return header[0];
+    if (typeof header === "string" && header.trim().length > 0)
+        return header.trim();
+    return undefined;
+}
+function getDashboardWorkerDiagnostics(workerKind) {
+    const child = getDashboardWorkerProcess(workerKind);
+    const pending = Array.from(dashboardWorkerRequests.values())
+        .filter((request) => request.workerKind === workerKind)
+        .map((request) => ({ requestType: request.requestType, acceptedByWorker: request.acceptedByWorker }));
+    return {
+        pid: child?.pid ?? null,
+        connected: Boolean(child?.connected && child.exitCode === null && !child.killed),
+        ready: Boolean(child && dashboardWorkerReadyPromises.has(workerKind) && !dashboardWorkerReadyWaiters.has(workerKind)),
+        pendingCount: pending.length,
+        pending,
+    };
+}
+function getStatus() {
+    const activeSessions = Array.from(sessions.values()).filter((record) => record.activeRequests > 0).length;
+    return {
+        server: { name: SERVER_NAME, version: SERVER_VERSION },
+        transport: "streamable-http-dual-era",
+        protocols: {
+            legacy: {
+                revisions: "2025-era negotiated by initialize",
+                sessionful: true,
+                requests: legacyProtocolRequests,
+            },
+            modern: {
+                revision: "2026-07-28",
+                sessionful: false,
+                requests: modernProtocolRequests,
+                errors: modernProtocolErrors,
+            },
+        },
+        mcpPath: config.mcpPath,
+        host: config.host,
+        port: config.port,
+        allowRemote: config.allowRemote,
+        ready: isHttpReady(),
+        closing,
+        observabilityStorage: { state: observabilityStorageState },
+        dashboardWorkers: {
+            snapshot: getDashboardWorkerDiagnostics("snapshot"),
+            read: getDashboardWorkerDiagnostics("read"),
+        },
+        sessions: sessions.size,
+        activeSessions,
+        idleSessions: sessions.size - activeSessions,
+        anonymousTransports: anonymousTransports.size,
+        transportsCreating,
+        sessionLifecycle: {
+            steadyStateReclaims: steadyStateSessionReclaims,
+            hardCapacityReclaims: hardCapacitySessionReclaims,
+            sessionNotFoundResponses,
+            lastSessionNotFoundAt,
+        },
+        runtimeDiagnostics: {
+            eventLoop: {
+                probeIntervalMs: EVENT_LOOP_PROBE_INTERVAL_MS,
+                stallThresholdMs: EVENT_LOOP_STALL_THRESHOLD_MS,
+                maxLagMs: eventLoopMaxLagMs,
+                stallCount: eventLoopStallCount,
+                lastStallAt: lastEventLoopStallAt,
+                lastStallLagMs: lastEventLoopStallLagMs,
+            },
+            http: {
+                clientErrors: httpClientErrorCount,
+                lastClientErrorAt: lastHttpClientErrorAt,
+            },
+        },
+        limits: {
+            maxSessions: MAX_SESSIONS,
+            softSessionLimit: SOFT_SESSION_LIMIT,
+            sessionIdleMs: SESSION_IDLE_MS,
+            capacityReclaimIdleMs: SESSION_CAPACITY_RECLAIM_IDLE_MS,
+            anonymousTransportTtlMs: ANONYMOUS_TRANSPORT_TTL_MS,
+            cleanupIntervalMs: CLEANUP_INTERVAL_MS,
+            maxRequestBodyBytes: MAX_REQUEST_BODY_BYTES,
+            httpKeepAliveTimeoutMs: HTTP_KEEP_ALIVE_TIMEOUT_MS,
+            httpKeepAliveTimeoutBufferMs: HTTP_KEEP_ALIVE_TIMEOUT_BUFFER_MS,
+            httpHeadersTimeoutMs: HTTP_HEADERS_TIMEOUT_MS,
+        },
+        startedAt: startedAt.toISOString(),
+        uptimeSeconds: Math.round(process.uptime()),
+        pid: process.pid,
+        runtimeBootId: RUNTIME_BOOT_ID,
+        node: process.version,
+    };
+}
+function restoreDashboardSnapshotCache() {
+    try {
+        const parsed = JSON.parse(readFileSync(DASHBOARD_SNAPSHOT_STATE_PATH, "utf8"));
+        if (parsed.schemaVersion !== 1 || !parsed.value || typeof parsed.value !== "object")
+            return;
+        const buildMs = typeof parsed.buildMs === "number" && Number.isFinite(parsed.buildMs) ? parsed.buildMs : 0;
+        dashboardSnapshotCache = {
+            expiresAtMs: 0,
+            buildMs,
+            value: parsed.value,
+        };
+    }
+    catch {
+        // First boot or an interrupted cache write: simply rebuild in the isolated worker.
+    }
+}
+async function persistDashboardSnapshotCache(value, buildMs) {
+    await mkdir(path.dirname(DASHBOARD_SNAPSHOT_STATE_PATH), { recursive: true });
+    const tempPath = `${DASHBOARD_SNAPSHOT_STATE_PATH}.${process.pid}.tmp`;
+    await writeFile(tempPath, JSON.stringify({
+        schemaVersion: 1,
+        savedAt: new Date().toISOString(),
+        buildMs,
+        value,
+    }), "utf8");
+    await rename(tempPath, DASHBOARD_SNAPSHOT_STATE_PATH);
+}
+function rejectDashboardWorkerRequests(workerKind, error) {
+    for (const [requestId, request] of dashboardWorkerRequests) {
+        if (request.workerKind !== workerKind)
+            continue;
+        clearTimeout(request.timeout);
+        request.reject(error);
+        dashboardWorkerRequests.delete(requestId);
+    }
+}
+function getDashboardWorkerProcess(workerKind) {
+    return workerKind === "snapshot" ? dashboardSnapshotWorkerProcess : dashboardReadWorkerProcess;
+}
+function setDashboardWorkerProcess(workerKind, child) {
+    if (workerKind === "snapshot")
+        dashboardSnapshotWorkerProcess = child;
+    else
+        dashboardReadWorkerProcess = child;
+}
+function stopDashboardWorker(workerKind, error) {
+    const child = getDashboardWorkerProcess(workerKind);
+    setDashboardWorkerProcess(workerKind, null);
+    const readyWaiter = dashboardWorkerReadyWaiters.get(workerKind);
+    if (readyWaiter) {
+        clearTimeout(readyWaiter.timeout);
+        dashboardWorkerReadyWaiters.delete(workerKind);
+        readyWaiter.reject(error ?? new Error(`dashboard ${workerKind} process stopped before becoming ready`));
+    }
+    dashboardWorkerReadyPromises.delete(workerKind);
+    if (error)
+        rejectDashboardWorkerRequests(workerKind, error);
+    if (!child)
+        return;
+    if (child.connected)
+        child.disconnect();
+    if (!child.killed)
+        child.kill();
+}
+function isHttpReady() {
+    return ready && !closing && observabilityStorageState !== "failed";
+}
+function startDashboardStorageInitialization() {
+    const workerPath = fileURLToPath(new URL("./observability-storage-bootstrap.js", import.meta.url));
+    const env = { ...process.env };
+    delete env.BRIDGE_MCP_METRICS_READONLY;
+    return new Promise((resolve, reject) => {
+        const child = fork(workerPath, [], {
+            stdio: ["ignore", "ignore", "ignore", "ipc"],
+            execArgv: process.execArgv.filter((arg) => arg !== "--input-type=module" && !arg.startsWith("--input-type=")),
+            env,
+        });
+        dashboardStorageBootstrapProcess = child;
+        let resultOk = false;
+        let resultError;
+        let settled = false;
+        const timeout = setTimeout(() => {
+            if (!child.killed)
+                child.kill();
+            finish(new Error("observability storage bootstrap exceeded 30000ms"));
+        }, 30_000);
+        timeout.unref();
+        const finish = (error) => {
+            if (settled)
+                return;
+            settled = true;
+            clearTimeout(timeout);
+            if (error)
+                reject(error);
+            else
+                resolve();
+        };
+        child.on("message", (message) => {
+            if (!message || typeof message !== "object")
+                return;
+            const payload = message;
+            if (payload.type !== "observability-storage-initialized")
+                return;
+            resultOk = payload.ok === true;
+            resultError = typeof payload.error === "string" ? payload.error.slice(0, 1_000) : undefined;
+        });
+        child.once("error", (error) => finish(error));
+        child.once("exit", (code, signal) => {
+            if (dashboardStorageBootstrapProcess === child)
+                dashboardStorageBootstrapProcess = null;
+            if (code === 0 && resultOk) {
+                finish();
+                return;
+            }
+            const detail = resultError ? `: ${resultError}` : "";
+            finish(new Error(`observability storage bootstrap exited (code ${code ?? "null"}, signal ${signal ?? "none"})${detail}`));
+        });
+    });
+}
+async function initializeObservabilityStorage() {
+    for (let attempt = 1; attempt <= 2; attempt += 1) {
+        try {
+            await startDashboardStorageInitialization();
+            return;
+        }
+        catch (error) {
+            const message = error instanceof Error ? error.message : String(error);
+            if (attempt >= 2 || !/(?:sqlite_busy|database is (?:busy|locked)|database table is locked)/i.test(message) || closing) {
+                throw error;
+            }
+            log("warn", "observability storage bootstrap hit transient SQLite contention; retrying once", { attempt });
+            await new Promise((resolve) => setTimeout(resolve, 200));
+        }
+    }
+}
+function stopDashboardStorageBootstrap() {
+    const child = dashboardStorageBootstrapProcess;
+    dashboardStorageBootstrapProcess = null;
+    if (child && !child.killed)
+        child.kill();
+}
+function ensureDashboardWorkerProcess(workerKind) {
+    const existing = getDashboardWorkerProcess(workerKind);
+    if (existing && existing.connected && existing.exitCode === null && !existing.killed) {
+        return { child: existing, ready: dashboardWorkerReadyPromises.get(workerKind) ?? Promise.resolve() };
+    }
+    const workerPath = fileURLToPath(new URL("./dashboard-mssr-worker.js", import.meta.url));
+    const child = fork(workerPath, [], {
+        stdio: ["ignore", "ignore", "ignore", "ipc"],
+        execArgv: process.execArgv.filter((arg) => arg !== "--input-type=module" && !arg.startsWith("--input-type=")),
+        env: { ...process.env, BRIDGE_MCP_METRICS_READONLY: "1" },
+    });
+    setDashboardWorkerProcess(workerKind, child);
+    let resolveReady;
+    let rejectReady;
+    const ready = new Promise((resolve, reject) => {
+        resolveReady = resolve;
+        rejectReady = reject;
+    });
+    dashboardWorkerReadyPromises.set(workerKind, ready);
+    const readyTimeout = setTimeout(() => {
+        stopDashboardWorker(workerKind, new Error(`dashboard ${workerKind} process did not become ready within ${DASHBOARD_WORKER_STARTUP_TIMEOUT_MS}ms`));
+    }, DASHBOARD_WORKER_STARTUP_TIMEOUT_MS);
+    dashboardWorkerReadyWaiters.set(workerKind, { resolve: resolveReady, reject: rejectReady, timeout: readyTimeout });
+    child.on("message", (message) => {
+        const payload = message && typeof message === "object" ? message : {};
+        if (payload.type === "dashboard-worker-ready") {
+            const waiter = dashboardWorkerReadyWaiters.get(workerKind);
+            if (waiter) {
+                clearTimeout(waiter.timeout);
+                dashboardWorkerReadyWaiters.delete(workerKind);
+                waiter.resolve();
+            }
+            return;
+        }
+        const requestId = typeof payload.requestId === "string" ? payload.requestId : null;
+        if (!requestId)
+            return;
+        const request = dashboardWorkerRequests.get(requestId);
+        if (!request)
+            return;
+        if (payload.type === "dashboard-worker-request-accepted") {
+            request.acceptedByWorker = true;
+            clearTimeout(request.timeout);
+            request.timeout = setTimeout(() => {
+                if (!dashboardWorkerRequests.has(requestId))
+                    return;
+                stopDashboardWorker(workerKind, new Error(`dashboard ${workerKind} process exceeded ${DASHBOARD_WORKER_TIMEOUT_MS}ms while executing ${request.requestType}`));
+            }, DASHBOARD_WORKER_TIMEOUT_MS);
+            return;
+        }
+        dashboardWorkerRequests.delete(requestId);
+        clearTimeout(request.timeout);
+        if (payload.ok === true && payload.value && typeof payload.value === "object") {
+            request.resolve(payload.value);
+            return;
+        }
+        request.reject(new Error(typeof payload.error === "string" ? payload.error : "dashboard snapshot process failed"));
+    });
+    child.once("error", (error) => {
+        if (getDashboardWorkerProcess(workerKind) === child)
+            stopDashboardWorker(workerKind, error);
+    });
+    child.once("exit", (code) => {
+        if (getDashboardWorkerProcess(workerKind) === child)
+            stopDashboardWorker(workerKind, new Error(`dashboard ${workerKind} process exited (code ${code})`));
+    });
+    return { child, ready };
+}
+function getDashboardWorkerSnapshot() {
+    if (!dashboardStorageInitialization) {
+        return Promise.reject(new Error("observability storage bootstrap has not started"));
+    }
+    return dashboardStorageInitialization.then(() => requestDashboardWorkerSnapshot());
+}
+async function awaitObservabilityStorageInitialization() {
+    if (!dashboardStorageInitialization) {
+        throw Object.assign(new Error("Observability storage is not initialized; request was not dispatched."), { statusCode: 503 });
+    }
+    try {
+        await dashboardStorageInitialization;
+    }
+    catch {
+        throw Object.assign(new Error("Observability storage is unavailable; request was not dispatched."), { statusCode: 503 });
+    }
+    if (observabilityStorageState !== "ready") {
+        throw Object.assign(new Error("Observability storage is unavailable; request was not dispatched."), { statusCode: 503 });
+    }
+}
+function requestDashboardWorkerValue(type, args = {}) {
+    const workerKind = type === "snapshot" ? "snapshot" : "read";
+    const worker = ensureDashboardWorkerProcess(workerKind);
+    return worker.ready.then(() => new Promise((resolve, reject) => {
+        const { child } = worker;
+        const requestId = `${RUNTIME_BOOT_ID}:${++dashboardWorkerSequence}`;
+        const timeout = setTimeout(() => {
+            if (!dashboardWorkerRequests.has(requestId))
+                return;
+            stopDashboardWorker(workerKind, new Error(`dashboard ${workerKind} worker queue exceeded ${DASHBOARD_WORKER_QUEUE_TIMEOUT_MS}ms before accepting ${type}`));
+        }, DASHBOARD_WORKER_QUEUE_TIMEOUT_MS);
+        dashboardWorkerRequests.set(requestId, { workerKind, requestType: type, acceptedByWorker: false, resolve, reject, timeout });
+        child.send({ type, requestId, ...args }, (error) => {
+            if (!error)
+                return;
+            if (dashboardWorkerRequests.has(requestId))
+                stopDashboardWorker(workerKind, error);
+        });
+    }));
+}
+async function requestDashboardMetricsValue(metricsKind, scope, limit) {
+    await awaitObservabilityStorageInitialization();
+    const value = await requestDashboardWorkerValue("metrics-api", {
+        metricsKind,
+        scope,
+        ...(limit === undefined ? {} : { limit }),
+    });
+    // Keep runtime identity and the live writer queue authoritative in the HTTP
+    // process; the read-only worker owns only the database aggregation.
+    return { ...value, ...getMetricsStatus() };
+}
+function requestDashboardWorkerSnapshot() {
+    return requestDashboardWorkerValue("snapshot");
+}
+function refreshDashboardSnapshot() {
+    if (dashboardSnapshotInFlight)
+        return dashboardSnapshotInFlight;
+    dashboardSnapshotInFlight = (async () => {
+        const refreshStartedAtMs = performance.now();
+        const generatedAt = new Date().toISOString();
+        const dashboardData = await getDashboardWorkerSnapshot();
+        const buildMs = Math.round((performance.now() - refreshStartedAtMs) * 100) / 100;
+        const noticeItems = peekBridgeNoticeHistory(20);
+        const value = {
+            generatedAt,
+            cache: { hit: false, stale: false, refreshing: false, ttlMs: DASHBOARD_CACHE_MS, buildMs },
+            status: getStatus(),
+            ...dashboardData,
+            toolNotices: {
+                delivery: "recent-history",
+                count: noticeItems.length,
+                items: noticeItems,
+                privacy: {
+                    rawArgumentsStored: false,
+                    rawPromptsStored: false,
+                    evidence: "ephemeral bounded notices with redacted details and suggested recovery actions",
+                },
+            },
+        };
+        dashboardSnapshotCache = { expiresAtMs: Date.now() + DASHBOARD_CACHE_MS, buildMs, value };
+        void persistDashboardSnapshotCache(value, buildMs).catch((error) => {
+            log("warn", "dashboard snapshot cache persistence failed", { error: error instanceof Error ? error.message : String(error) });
+        });
+        return value;
+    })().finally(() => {
+        dashboardSnapshotInFlight = null;
+    });
+    return dashboardSnapshotInFlight;
+}
+function withDashboardRuntimeOverlay(value) {
+    const cockpit = value.cockpit;
+    if (!cockpit || typeof cockpit !== "object")
+        return value;
+    try {
+        return {
+            ...value,
+            cockpit: enrichHumanCockpitWithRuntimeTerminals({
+                cockpit,
+                terminals: terminalList(),
+            }),
+        };
+    }
+    catch (error) {
+        log("warn", "dashboard runtime terminal overlay failed", { error: error instanceof Error ? error.message : String(error) });
+        return value;
+    }
+}
+async function getDashboardSnapshot() {
+    const now = Date.now();
+    if (dashboardSnapshotCache && dashboardSnapshotCache.expiresAtMs > now) {
+        return withDashboardRuntimeOverlay({ ...dashboardSnapshotCache.value, status: getStatus(), cache: { hit: true, stale: false, refreshing: false, ttlMs: DASHBOARD_CACHE_MS, buildMs: dashboardSnapshotCache.buildMs } });
+    }
+    if (dashboardSnapshotCache) {
+        const refreshing = !dashboardSnapshotInFlight;
+        if (refreshing) {
+            void refreshDashboardSnapshot().catch((error) => {
+                log("warn", "dashboard background refresh failed", { error: error instanceof Error ? error.message : String(error) });
+            });
+        }
+        return withDashboardRuntimeOverlay({
+            ...dashboardSnapshotCache.value,
+            status: getStatus(),
+            cache: { hit: true, stale: true, refreshing: refreshing || Boolean(dashboardSnapshotInFlight), ttlMs: DASHBOARD_CACHE_MS, buildMs: dashboardSnapshotCache.buildMs },
+        });
+    }
+    return withDashboardRuntimeOverlay(await refreshDashboardSnapshot());
+}
+async function closeTransport(transport, reason, sessionId) {
+    const effectiveSessionId = sessionId || transport.sessionId;
+    anonymousTransports.delete(transport);
+    if (effectiveSessionId)
+        sessions.delete(effectiveSessionId);
+    try {
+        await transport.close();
+    }
+    catch (error) {
+        log("warn", "MCP HTTP transport close failed", {
+            reason,
+            sessionId: effectiveSessionId,
+            error: error instanceof Error ? error.message : String(error),
+        });
+    }
+}
+function allocatedTransportCount() {
+    return sessions.size + anonymousTransports.size + transportsCreating;
+}
+async function reclaimInactiveSessions(targetAllocated, reason, requestId) {
+    let allocated = allocatedTransportCount();
+    if (allocated <= targetAllocated)
+        return allocated;
+    const now = Date.now();
+    const reclaimable = Array.from(sessions.entries())
+        .filter(([, record]) => record.activeRequests === 0 && now - record.lastSeenMs >= SESSION_CAPACITY_RECLAIM_IDLE_MS)
+        .sort((a, b) => a[1].lastSeenMs - b[1].lastSeenMs);
+    for (const [sessionId, record] of reclaimable) {
+        if (allocated <= targetAllocated)
+            break;
+        if (!sessions.has(sessionId))
+            continue;
+        const idleMs = now - record.lastSeenMs;
+        if (reason === "steady-state")
+            steadyStateSessionReclaims += 1;
+        else
+            hardCapacitySessionReclaims += 1;
+        log(reason === "steady-state" ? "info" : "warn", "Reclaiming inactive MCP HTTP session", {
+            reason,
+            requestId,
+            sessionId,
+            idleMs,
+            reclaimIdleMs: SESSION_CAPACITY_RECLAIM_IDLE_MS,
+            softSessionLimit: SOFT_SESSION_LIMIT,
+            maxSessions: MAX_SESSIONS,
+        });
+        await closeTransport(record.transport, reason === "steady-state" ? "steady-state-reclaim" : "capacity-reclaim", sessionId);
+        allocated = allocatedTransportCount();
+    }
+    return allocated;
+}
+async function cleanupTransports(reason = "periodic") {
+    const now = Date.now();
+    const closePromises = [];
+    for (const [sessionId, record] of sessions) {
+        if (record.activeRequests === 0 && now - record.lastSeenMs > SESSION_IDLE_MS) {
+            log("info", "Closing idle MCP HTTP session", { reason, sessionId, idleMs: now - record.lastSeenMs });
+            closePromises.push(closeTransport(record.transport, "idle-session", sessionId));
+        }
+    }
+    for (const [transport, createdAtMs] of anonymousTransports) {
+        if (transport.bridgeActiveRequests === 0 && now - createdAtMs > ANONYMOUS_TRANSPORT_TTL_MS) {
+            log("warn", "Closing stale anonymous MCP HTTP transport", { reason, ageMs: now - createdAtMs });
+            closePromises.push(closeTransport(transport, "stale-anonymous"));
+        }
+    }
+    await Promise.allSettled(closePromises);
+    if (allocatedTransportCount() > SOFT_SESSION_LIMIT) {
+        await reclaimInactiveSessions(SOFT_SESSION_LIMIT, "steady-state");
+    }
+}
+async function reclaimCapacity(requestId) {
+    await cleanupTransports("before-create");
+    let allocated = allocatedTransportCount();
+    // Keep the steady-state pool bounded without sacrificing the hard limit as
+    // burst headroom. Recent or active sessions are never reclaimed here.
+    if (allocated >= SOFT_SESSION_LIMIT) {
+        allocated = await reclaimInactiveSessions(Math.max(0, SOFT_SESSION_LIMIT - 1), "steady-state", requestId);
+    }
+    if (allocated < MAX_SESSIONS)
+        return allocated;
+    // The hard limit remains the last-resort safety boundary. If every session
+    // is active or inside the reconnect grace window, creation still fails 503.
+    return reclaimInactiveSessions(Math.max(0, MAX_SESSIONS - 1), "hard-capacity", requestId);
+}
+async function reserveTransportCapacity(requestId) {
+    let releaseAdmission;
+    const previousAdmission = capacityAdmissionTail;
+    capacityAdmissionTail = new Promise((resolve) => {
+        releaseAdmission = resolve;
+    });
+    await previousAdmission;
+    try {
+        const allocated = await reclaimCapacity(requestId);
+        if (allocated >= MAX_SESSIONS) {
+            throw Object.assign(new Error(`MCP session capacity reached (${MAX_SESSIONS}); all remaining sessions are active or too recent to reclaim.`), { statusCode: 503 });
+        }
+        // Reserve before releasing the admission gate so concurrent initializations
+        // observe this in-flight transport in their own capacity calculation.
+        transportsCreating += 1;
+    }
+    finally {
+        releaseAdmission();
+    }
+}
+async function createTransport(requestId) {
+    await reserveTransportCapacity(requestId);
+    try {
+        const mcpServer = createBridgeServer();
+        let transport;
+        transport = new WebStandardStreamableHTTPServerTransport({
+            sessionIdGenerator: () => randomUUID(),
+            onsessioninitialized: (sessionId) => {
+                const now = Date.now();
+                sessions.set(sessionId, {
+                    transport,
+                    createdAtMs: now,
+                    lastSeenMs: now,
+                    activeRequests: transport.bridgeActiveRequests,
+                });
+                anonymousTransports.delete(transport);
+                log("info", "MCP HTTP session initialized", { requestId, sessionId, sessions: sessions.size });
+            },
+        });
+        transport.bridgeActiveRequests = 0;
+        transport.bridgeNodeHandler = toNodeHandler({
+            fetch: (request, options) => transport.handleRequest(request, options),
+        });
+        transport.onclose = () => {
+            const sessionId = transport.sessionId;
+            anonymousTransports.delete(transport);
+            if (sessionId)
+                sessions.delete(sessionId);
+            log("info", "MCP HTTP transport closed", { requestId, sessionId, sessions: sessions.size });
+        };
+        anonymousTransports.set(transport, Date.now());
+        await mcpServer.connect(transport);
+        return transport;
+    }
+    finally {
+        transportsCreating -= 1;
+    }
+}
+async function handleMcpRequest(req, res, requestId, suppliedBody) {
+    const sessionId = getMcpSessionId(req);
+    let transport;
+    let createdForThisRequest = false;
+    let parsedBody;
+    if (req.method === "POST" && !suppliedBody) {
+        try {
+            parsedBody = await readJsonBody(req);
+        }
+        catch (error) {
+            const statusCode = typeof error === "object" && error && "statusCode" in error
+                ? Number(error.statusCode)
+                : 400;
+            sendJson(res, Number.isInteger(statusCode) ? statusCode : 400, {
+                error: statusCode === 413 ? "request_body_too_large" : "invalid_request_body",
+                requestId,
+                message: error instanceof Error ? error.message : String(error),
+            });
+            return;
+        }
+    }
+    else if (suppliedBody)
+        parsedBody = suppliedBody.parsed;
+    if (sessionId) {
+        const record = sessions.get(sessionId);
+        if (!record) {
+            sessionNotFoundResponses += 1;
+            lastSessionNotFoundAt = nowIso();
+            sendJson(res, 404, {
+                error: "mcp_session_not_found",
+                requestId,
+                sessionId,
+                message: "Unknown or expired MCP session. Start a new initialize request without MCP-Session-Id.",
+            });
+            return;
+        }
+        record.lastSeenMs = Date.now();
+        transport = record.transport;
+    }
+    else if (req.method === "POST") {
+        createdForThisRequest = true;
+        try {
+            transport = await createTransport(requestId);
+        }
+        catch (error) {
+            const statusCode = typeof error === "object" && error && "statusCode" in error
+                ? Number(error.statusCode)
+                : 500;
+            sendJson(res, Number.isInteger(statusCode) ? statusCode : 500, {
+                requestId,
+                error: statusCode === 503 ? "mcp_capacity_reached" : "mcp_transport_create_failed",
+                message: error instanceof Error ? error.message : String(error),
+            });
+            return;
+        }
+    }
+    else {
+        sendJson(res, 400, {
+            error: "mcp_session_required",
+            requestId,
+            message: "GET and DELETE MCP requests require an MCP-Session-Id header.",
+        });
+        return;
+    }
+    transport.bridgeActiveRequests += 1;
+    const activeSessionId = transport.sessionId;
+    if (activeSessionId) {
+        const activeRecord = sessions.get(activeSessionId);
+        if (activeRecord)
+            activeRecord.activeRequests = transport.bridgeActiveRequests;
+    }
+    try {
+        await transport.bridgeNodeHandler(req, withSseHeaderFlush(res), parsedBody);
+    }
+    catch (error) {
+        log("error", "MCP request failed", {
+            requestId,
+            method: req.method,
+            url: req.url,
+            sessionId,
+            transportSessionId: transport.sessionId,
+            error: error instanceof Error ? error.message : String(error),
+            stack: error instanceof Error ? error.stack : undefined,
+        });
+        if (!res.headersSent) {
+            const statusCode = typeof error === "object" && error && "statusCode" in error
+                ? Number(error.statusCode)
+                : 500;
+            sendJson(res, Number.isInteger(statusCode) ? statusCode : 500, {
+                requestId,
+                error: statusCode === 503 ? "mcp_capacity_reached" : "mcp_request_failed",
+                detail: error instanceof Error ? error.message : String(error),
+            });
+        }
+        else {
+            res.end();
+        }
+    }
+    finally {
+        transport.bridgeActiveRequests = Math.max(0, transport.bridgeActiveRequests - 1);
+        const finishedSessionId = transport.sessionId;
+        if (finishedSessionId) {
+            const finishedRecord = sessions.get(finishedSessionId);
+            if (finishedRecord?.transport === transport) {
+                finishedRecord.activeRequests = transport.bridgeActiveRequests;
+                finishedRecord.lastSeenMs = Date.now();
+            }
+        }
+        if (createdForThisRequest && !transport.sessionId && anonymousTransports.has(transport)) {
+            await closeTransport(transport, "uninitialized-request");
+        }
+    }
+}
+async function handleDualEraMcpRequest(req, res, requestId) {
+    await awaitObservabilityStorageInitialization();
+    let parsedBody;
+    if (req.method === "POST") {
+        try {
+            parsedBody = await readJsonBody(req);
+        }
+        catch (error) {
+            const statusCode = typeof error === "object" && error && "statusCode" in error
+                ? Number(error.statusCode)
+                : 400;
+            sendJson(res, Number.isInteger(statusCode) ? statusCode : 400, {
+                error: statusCode === 413 ? "request_body_too_large" : "invalid_request_body",
+                requestId,
+                message: error instanceof Error ? error.message : String(error),
+            });
+            return;
+        }
+    }
+    const webRequest = await toWebRequest(req, parsedBody);
+    const legacy = await isLegacyRequest(webRequest, parsedBody);
+    if (legacy) {
+        legacyProtocolRequests += 1;
+        await handleMcpRequest(req, res, requestId, { parsed: parsedBody });
+        return;
+    }
+    modernProtocolRequests += 1;
+    await modernNodeHandler(req, res, parsedBody);
+}
+async function main() {
+    ensureMssrTelemetryToken();
+    restoreDashboardSnapshotCache();
+    ready = true;
+    const cleanupTimer = setInterval(() => {
+        cleanupTransports().catch((error) => {
+            log("warn", "transport cleanup failed", { error: error instanceof Error ? error.message : String(error) });
+        });
+    }, CLEANUP_INTERVAL_MS);
+    cleanupTimer.unref();
+    const skillHealthScheduler = startSkillHealthScheduler({
+        onSnapshot: (snapshot, previous) => {
+            for (const notice of buildSkillHealthNoticeInputs(snapshot, previous))
+                emitBridgeNotice(notice);
+        },
+        onError: (error) => log("warn", "daily skill health audit failed", { error: error instanceof Error ? error.message : String(error) }),
+    });
+    const projectHealthScheduler = startProjectHealthScheduler({
+        onSnapshot: (snapshot, previous) => {
+            for (const notice of buildProjectHealthNoticeInputs(snapshot, previous))
+                emitBridgeNotice(notice);
+        },
+        onError: (error) => log("warn", "daily project context health audit failed", { error: error instanceof Error ? error.message : String(error) }),
+    });
+    const projectSituationScheduler = startProjectSituationScheduler({
+        onSnapshot: (snapshot, previous) => {
+            for (const notice of buildProjectSituationNoticeInputs(snapshot, previous))
+                emitBridgeNotice(notice);
+        },
+        onError: (error) => log("warn", "project situation audit failed", { error: error instanceof Error ? error.message : String(error) }),
+    });
+    const runtimeHealthScheduler = startRuntimeHealthScheduler({
+        observe: observeBridgeRuntimeHealth,
+        onNotice: (notice) => emitBridgeNotice(notice),
+        onError: (error) => log("warn", "runtime health audit failed", { error: error instanceof Error ? error.message : String(error) }),
+    });
+    const releaseConsistencyScheduler = startReleaseConsistencyScheduler({
+        onNotice: (notice) => emitBridgeNotice(notice),
+        onError: (error) => log("warn", "release consistency audit failed", { error: error instanceof Error ? error.message : String(error) }),
+    });
+    const httpServer = createServer(async (req, res) => {
+        const requestId = randomUUID();
+        res.setHeader("x-bridge-request-id", requestId);
+        try {
+            const url = new URL(req.url || "/", `http://${req.headers.host || `${config.host}:${config.port}`}`);
+            if (req.method === "GET" && url.pathname === "/healthz") {
+                sendText(res, 200, "live");
+                return;
+            }
+            if (req.method === "GET" && url.pathname === "/readyz") {
+                sendText(res, isHttpReady() ? 200 : 503, isHttpReady() ? "ready" : "not ready");
+                return;
+            }
+            if (req.method === "GET" && url.pathname === "/status") {
+                sendJson(res, isHttpReady() ? 200 : 503, getStatus());
+                return;
+            }
+            if (req.method === "GET" && url.pathname === "/dashboard") {
+                sendHtml(res, 200, renderDashboardHtml());
+                return;
+            }
+            if (req.method === "GET" && url.pathname === "/api/dashboard/snapshot") {
+                sendJson(res, 200, await getDashboardSnapshot());
+                return;
+            }
+            if (req.method === "GET" && url.pathname === "/api/mssr/summary") {
+                await awaitObservabilityStorageInitialization();
+                sendJson(res, 200, await requestDashboardWorkerValue("mssr-summary", {
+                    days: getDays(url, 30, 365),
+                    scope: url.searchParams.get("scope") === "all" ? "all" : "active",
+                }));
+                return;
+            }
+            if (req.method === "GET" && url.pathname === "/api/mssr/skill-health") {
+                sendJson(res, 200, await getSkillHealthReport());
+                return;
+            }
+            if (req.method === "GET" && url.pathname === "/api/mssr/project-health") {
+                sendJson(res, 200, await getProjectHealthReport());
+                return;
+            }
+            if (req.method === "GET" && url.pathname === "/api/mssr/project-situation") {
+                sendJson(res, 200, await getProjectSituationReport());
+                return;
+            }
+            if (req.method === "GET" && url.pathname === "/api/mssr/runtime-health") {
+                sendJson(res, 200, await getRuntimeHealthReport());
+                return;
+            }
+            if (req.method === "GET" && url.pathname === "/api/mssr/release-consistency") {
+                sendJson(res, 200, getReleaseConsistencyReport());
+                return;
+            }
+            if (req.method === "POST" && url.pathname === "/api/mssr/events") {
+                if (!authorizeMssrTelemetry(req.headers.authorization)) {
+                    sendJson(res, 401, { error: "mssr_telemetry_unauthorized", requestId });
+                    return;
+                }
+                const payload = await readJsonBody(req, 64 * 1024);
+                await awaitObservabilityStorageInitialization();
+                sendJson(res, 202, ingestMssrTelemetry(payload));
+                return;
+            }
+            if (req.method === "GET" && url.pathname === "/api/notices") {
+                const items = peekBridgeNoticeHistory(getLimit(url, 25, 100));
+                sendJson(res, 200, {
+                    delivery: "recent-history",
+                    count: items.length,
+                    items,
+                    privacy: {
+                        rawArgumentsStored: false,
+                        rawPromptsStored: false,
+                        evidence: "ephemeral bounded notices with redacted details and suggested recovery actions",
+                    },
+                });
+                return;
+            }
+            if (req.method === "GET" && url.pathname === "/api/tools/audit") {
+                const rawView = url.searchParams.get("view") || "all";
+                if (!TOOL_AUDIT_VIEWS.includes(rawView)) {
+                    throw Object.assign(new Error(`view must be one of: ${TOOL_AUDIT_VIEWS.join(", ")}.`), { statusCode: 400 });
+                }
+                await awaitObservabilityStorageInitialization();
+                const toolName = url.searchParams.get("toolName")?.trim() || undefined;
+                sendJson(res, 200, await requestDashboardWorkerValue("tool-audit", {
+                    view: rawView,
+                    toolName,
+                    scope: url.searchParams.get("scope") === "all" ? "all" : "active",
+                    days: getDays(url, 30, 365),
+                    limit: getLimit(url, 127, 200),
+                }));
+                return;
+            }
+            if (req.method === "GET" && url.pathname === "/api/metrics/status") {
+                await awaitObservabilityStorageInitialization();
+                sendJson(res, 200, getMetricsStatus());
+                return;
+            }
+            if (req.method === "GET" && url.pathname === "/api/metrics/overview") {
+                sendJson(res, 200, await requestDashboardMetricsValue("overview", url.searchParams.get("scope") === "all" ? "all" : "active"));
+                return;
+            }
+            if (req.method === "GET" && url.pathname === "/api/metrics/summary") {
+                sendJson(res, 200, await requestDashboardMetricsValue("summary", url.searchParams.get("scope") === "all" ? "all" : "active", getLimit(url, 50, 200)));
+                return;
+            }
+            if (req.method === "GET" && url.pathname === "/api/metrics/recent") {
+                sendJson(res, 200, await requestDashboardMetricsValue("recent", url.searchParams.get("scope") === "all" ? "all" : "active", getLimit(url, 25, 200)));
+                return;
+            }
+            if (req.method === "GET" && url.pathname === "/api/metrics/errors") {
+                sendJson(res, 200, await requestDashboardMetricsValue("errors", url.searchParams.get("scope") === "all" ? "all" : "active", getLimit(url, 25, 200)));
+                return;
+            }
+            if (req.method === "GET" && url.pathname === "/api/metrics/timeline") {
+                sendJson(res, 200, await requestDashboardMetricsValue("timeline", url.searchParams.get("scope") === "all" ? "all" : "active", getLimit(url, 500, 2000)));
+                return;
+            }
+            if (url.pathname === config.mcpPath) {
+                if (!["GET", "POST", "DELETE"].includes(req.method || "")) {
+                    sendJson(res, 405, {
+                        error: "method_not_allowed",
+                        requestId,
+                        allowedMethods: ["GET", "POST", "DELETE"],
+                    });
+                    return;
+                }
+                if (req.method === "GET" && !isMcpStreamRequest(req)) {
+                    sendJson(res, 405, {
+                        error: "method_not_allowed",
+                        requestId,
+                        message: "GET MCP streams require Accept: text/event-stream. Use POST for JSON-RPC requests.",
+                    });
+                    return;
+                }
+                await handleDualEraMcpRequest(req, res, requestId);
+                return;
+            }
+            sendJson(res, 404, {
+                error: "not_found",
+                requestId,
+                routes: ["GET /healthz", "GET /readyz", "GET /status", "GET /dashboard", "GET /api/dashboard/snapshot", "GET /api/mssr/summary", "GET /api/mssr/skill-health", "GET /api/mssr/project-health", "GET /api/mssr/project-situation", "GET /api/mssr/runtime-health", "GET /api/mssr/release-consistency", "GET /api/notices", "GET /api/tools/audit", "GET /api/metrics/*", "POST /api/mssr/events (Bearer token)", `${config.mcpPath} MCP Streamable HTTP`],
+            });
+        }
+        catch (error) {
+            const candidateStatus = error && typeof error === "object" && "statusCode" in error
+                ? Number(error.statusCode)
+                : 500;
+            const statusCode = Number.isInteger(candidateStatus) && candidateStatus >= 400 && candidateStatus <= 599 ? candidateStatus : 500;
+            log(statusCode >= 500 ? "error" : "warn", "request failed", {
+                requestId,
+                method: req.method,
+                url: req.url,
+                statusCode,
+                error: error instanceof Error ? error.message : String(error),
+                stack: error instanceof Error ? error.stack : undefined,
+            });
+            if (!res.headersSent) {
+                sendJson(res, statusCode, { requestId, error: error instanceof Error ? error.message : String(error) });
+            }
+            else {
+                res.end();
+            }
+        }
+    });
+    httpServer.keepAliveTimeout = HTTP_KEEP_ALIVE_TIMEOUT_MS;
+    httpServer.keepAliveTimeoutBuffer = HTTP_KEEP_ALIVE_TIMEOUT_BUFFER_MS;
+    httpServer.headersTimeout = HTTP_HEADERS_TIMEOUT_MS;
+    const shutdown = async (signal) => {
+        if (closing)
+            return;
+        closing = true;
+        ready = false;
+        observabilityStorageState = "stopped";
+        stopDashboardStorageBootstrap();
+        stopDashboardWorker("snapshot", new Error("bridge shutdown"));
+        stopDashboardWorker("read", new Error("bridge shutdown"));
+        clearInterval(cleanupTimer);
+        clearInterval(eventLoopProbeTimer);
+        skillHealthScheduler.stop();
+        projectHealthScheduler.stop();
+        projectSituationScheduler.stop();
+        runtimeHealthScheduler.stop();
+        releaseConsistencyScheduler.stop();
+        log("warn", "shutdown requested", { signal });
+        httpServer.close(async () => {
+            await Promise.allSettled([
+                ...Array.from(sessions.entries()).map(([sessionId, record]) => closeTransport(record.transport, "shutdown", sessionId)),
+                ...Array.from(anonymousTransports.keys()).map((transport) => closeTransport(transport, "shutdown")),
+                modernMcpHandler.close(),
+                closeRobloxMcpConnection(),
+            ]);
+            log("info", "shutdown complete", { signal });
+            process.exit(0);
+        });
+        setTimeout(() => {
+            log("error", "forced shutdown timeout exceeded", { signal });
+            process.exit(1);
+        }, 10_000).unref();
+    };
+    process.on("SIGINT", shutdown);
+    process.on("SIGTERM", shutdown);
+    process.on("uncaughtException", (error) => {
+        ready = false;
+        log("error", "uncaught exception", { error: error.message, stack: error.stack });
+        process.exit(1);
+    });
+    process.on("unhandledRejection", (reason) => {
+        ready = false;
+        log("error", "unhandled rejection", { reason: reason instanceof Error ? reason.message : String(reason) });
+        process.exit(1);
+    });
+    httpServer.on("clientError", (error, socket) => {
+        httpClientErrorCount += 1;
+        lastHttpClientErrorAt = nowIso();
+        log("warn", "client error", { error: error.message, clientErrorCount: httpClientErrorCount });
+        socket.end("HTTP/1.1 400 Bad Request\r\n\r\n");
+    });
+    httpServer.on("error", (error) => {
+        ready = false;
+        log("error", "HTTP server error", { error: error.message, code: error.code });
+        if (error.code === "EADDRINUSE") {
+            log("error", "port already in use", { host: config.host, port: config.port });
+        }
+        process.exit(1);
+    });
+    httpServer.listen(config.port, config.host, () => {
+        log("info", "HTTP MCP listening", {
+            server: { name: SERVER_NAME, version: SERVER_VERSION },
+            url: `http://${config.host}:${config.port}${config.mcpPath}`,
+            healthz: `http://${config.host}:${config.port}/healthz`,
+            readyz: `http://${config.host}:${config.port}/readyz`,
+            status: `http://${config.host}:${config.port}/status`,
+            limits: {
+                maxSessions: MAX_SESSIONS,
+                softSessionLimit: SOFT_SESSION_LIMIT,
+                sessionIdleMs: SESSION_IDLE_MS,
+                capacityReclaimIdleMs: SESSION_CAPACITY_RECLAIM_IDLE_MS,
+                anonymousTransportTtlMs: ANONYMOUS_TRANSPORT_TTL_MS,
+                httpKeepAliveTimeoutMs: HTTP_KEEP_ALIVE_TIMEOUT_MS,
+                httpKeepAliveTimeoutBufferMs: HTTP_KEEP_ALIVE_TIMEOUT_BUFFER_MS,
+                httpHeadersTimeoutMs: HTTP_HEADERS_TIMEOUT_MS,
+            },
+        });
+        observabilityStorageState = "initializing";
+        dashboardStorageInitialization = initializeObservabilityStorage();
+        void dashboardStorageInitialization.then(() => {
+            if (closing)
+                return;
+            observabilityStorageState = "ready";
+            // A persisted snapshot is served immediately as stale while an on-demand
+            // refresh runs. Avoid competing with early read APIs by eagerly rebuilding
+            // only on first boot, when no durable snapshot can be served.
+            if (!dashboardSnapshotCache) {
+                void refreshDashboardSnapshot().catch((error) => {
+                    log("warn", "dashboard warmup failed", { error: error instanceof Error ? error.message : String(error) });
+                });
+            }
+        }).catch((error) => {
+            if (closing)
+                return;
+            observabilityStorageState = "failed";
+            log("error", "observability storage initialization failed; database-backed routes are unavailable", {
+                error: error instanceof Error ? error.message : String(error),
+            });
+        });
+    });
+}
+main().catch((error) => {
+    log("error", "fatal startup error", { error: error instanceof Error ? error.message : String(error) });
+    process.exit(1);
+});

@@ -1,0 +1,765 @@
+import crypto from "node:crypto";
+import fs from "node:fs/promises";
+import path from "node:path";
+import { z } from "zod";
+import { SKILL_ACTIONS, SKILL_ARTIFACTS, SKILL_DOMAINS, SKILL_NEEDS, SKILL_RISKS, SKILL_SIGNALS, SKILL_STAGES, auditMssrProjectContextHealth, shouldLoadProjectChangeHistory, structuredSkillIntentSchema, } from "@mauroprime/mssr";
+import { assembleProjectContext } from "../project-context-assembler.js";
+import { resolveToolPath } from "./shared/process.js";
+import { BridgeTimingCollector } from "./shared/timing.js";
+import { findExistingSkillCoverage, isSkillCoverageMetaTask } from "./skill-catalog-tools.js";
+const GUIDE_SCHEMA_VERSION = 1;
+const MAX_GUIDES = 200;
+const MAX_GUIDE_TEXT_CHARS = 120_000;
+const MAX_PHASES = 24;
+const stableProjectContextWatchFingerprints = new Map();
+function presentProjectContextHealth(projectRoot, health) {
+    const key = path.resolve(projectRoot).toLowerCase();
+    if (health.level !== "watch") {
+        stableProjectContextWatchFingerprints.delete(key);
+        return health;
+    }
+    const fingerprint = crypto.createHash("sha256").update(JSON.stringify({
+        manifestStatus: health.manifestStatus,
+        moduleCount: health.moduleCount,
+        coreCount: health.coreCount,
+        findings: health.findings.map((finding) => ({
+            code: finding.code,
+            level: finding.level,
+            target: finding.target,
+            recommendation: finding.recommendation,
+        })),
+    }), "utf8").digest("hex").slice(0, 20);
+    const previous = stableProjectContextWatchFingerprints.get(key);
+    stableProjectContextWatchFingerprints.set(key, fingerprint);
+    if (previous !== fingerprint) {
+        return {
+            ...health,
+            presentation: {
+                stableWatchSuppressed: false,
+                fingerprint,
+                note: "WATCH is advisory. It will be compacted on subsequent project_context_load calls until its fingerprint changes or severity escalates.",
+            },
+        };
+    }
+    return {
+        ...health,
+        findings: [],
+        recommendations: [],
+        presentation: {
+            stableWatchSuppressed: true,
+            fingerprint,
+            suppressedFindingCount: health.findings.length,
+            note: "Unchanged advisory WATCH details suppressed. Use project_context_health for explicit full inspection.",
+        },
+    };
+}
+const slugSchema = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).min(2).max(80);
+const phaseNameSchema = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).min(2).max(80);
+const guideManifestSchema = z.object({
+    schemaVersion: z.literal(GUIDE_SCHEMA_VERSION),
+    name: slugSchema,
+    title: z.string().min(1).max(160),
+    description: z.string().min(1).max(1200),
+    activation: z.object({
+        keywords: z.array(z.string().min(1).max(100)).max(80).default([]),
+        phrases: z.array(z.string().min(1).max(240)).max(40).default([]),
+        negativeKeywords: z.array(z.string().min(1).max(100)).max(40).default([]),
+        examples: z.array(z.string().min(1).max(500)).max(30).default([]),
+    }),
+    entrypoint: z.string().min(1).max(240).default("GUIDE.md"),
+    phases: z.record(phaseNameSchema, z.string().min(1).max(240))
+        .refine((phases) => Object.keys(phases).length <= MAX_PHASES, {
+        message: `phases must contain at most ${MAX_PHASES} entries`,
+    })
+        .default({}),
+    recommendedTools: z.array(z.string().min(1).max(120)).max(80).default([]),
+    scopeNotes: z.string().max(1200).optional(),
+});
+function globalGuideRoot() {
+    return path.resolve(process.cwd(), "integrations", "workflow-guides");
+}
+function projectGuideRoot(projectRoot) {
+    const resolvedProjectRoot = resolveToolPath(projectRoot, { access: "read" });
+    return path.join(resolvedProjectRoot, ".bridge", "workflow-guides");
+}
+function normalizeText(value) {
+    return value
+        .normalize("NFD")
+        .replace(/\p{Diacritic}/gu, "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, " ")
+        .trim();
+}
+function tokenize(value) {
+    return new Set(normalizeText(value).split(/\s+/).filter((token) => token.length >= 2));
+}
+function containsNormalizedTerm(normalizedText, normalizedTerm) {
+    if (!normalizedText || !normalizedTerm)
+        return false;
+    return ` ${normalizedText} `.includes(` ${normalizedTerm} `);
+}
+function containsNegatedNormalizedTerm(normalizedText, normalizedTerm) {
+    if (!normalizedText || !normalizedTerm)
+        return false;
+    const paddedText = ` ${normalizedText} `;
+    const needle = ` ${normalizedTerm} `;
+    const index = paddedText.indexOf(needle);
+    if (index < 0)
+        return false;
+    const precedingTokens = paddedText.slice(Math.max(0, index - 72), index).trim().split(/\s+/).filter(Boolean).slice(-6);
+    const negators = new Set(["no", "sin", "evita", "evitar", "evite", "evites", "excluye", "excluir", "excepto", "without", "avoid", "exclude", "not"]);
+    return precedingTokens.some((token) => negators.has(token));
+}
+function ensureInside(root, candidate) {
+    const resolvedRoot = path.resolve(root);
+    const resolvedCandidate = path.resolve(candidate);
+    const prefix = resolvedRoot.endsWith(path.sep) ? resolvedRoot : `${resolvedRoot}${path.sep}`;
+    if (resolvedCandidate !== resolvedRoot && !resolvedCandidate.startsWith(prefix)) {
+        throw new Error(`Guide file escaped its root: ${resolvedCandidate}`);
+    }
+    return resolvedCandidate;
+}
+async function pathExists(filePath) {
+    try {
+        await fs.stat(filePath);
+        return true;
+    }
+    catch {
+        return false;
+    }
+}
+async function readBoundedText(filePath) {
+    const stat = await fs.stat(filePath);
+    if (!stat.isFile())
+        throw new Error(`Guide path is not a file: ${filePath}`);
+    if (stat.size > MAX_GUIDE_TEXT_CHARS * 4)
+        throw new Error(`Guide file is too large: ${filePath}`);
+    const text = await fs.readFile(filePath, "utf8");
+    if (text.length > MAX_GUIDE_TEXT_CHARS)
+        throw new Error(`Guide text exceeds ${MAX_GUIDE_TEXT_CHARS} characters: ${filePath}`);
+    return text;
+}
+async function readGuide(directory, scope) {
+    const manifestPath = path.join(directory, "guide.json");
+    if (!(await pathExists(manifestPath)))
+        return null;
+    const raw = JSON.parse(await readBoundedText(manifestPath));
+    const manifest = guideManifestSchema.parse(raw);
+    if (path.basename(directory) !== manifest.name) {
+        throw new Error(`Guide directory '${path.basename(directory)}' does not match manifest name '${manifest.name}'`);
+    }
+    return { scope, directory, manifestPath, manifest };
+}
+function guideErrorMessage(error) {
+    const message = error instanceof Error ? error.message : String(error);
+    return message.length <= 2_000 ? message : `${message.slice(0, 1_997)}...`;
+}
+async function discoverInRoot(root, scope) {
+    if (!(await pathExists(root)))
+        return { guides: [], warnings: [] };
+    const entries = await fs.readdir(root, { withFileTypes: true });
+    const guides = [];
+    const warnings = [];
+    for (const entry of entries.slice(0, MAX_GUIDES)) {
+        if (!entry.isDirectory())
+            continue;
+        const directory = path.join(root, entry.name);
+        try {
+            const guide = await readGuide(directory, scope);
+            if (guide)
+                guides.push(guide);
+        }
+        catch (error) {
+            warnings.push({
+                code: "invalid-guide-manifest",
+                scope,
+                guideName: entry.name,
+                directory,
+                manifestPath: path.join(directory, "guide.json"),
+                message: guideErrorMessage(error),
+            });
+        }
+    }
+    return { guides, warnings };
+}
+async function discoverGuides(projectRoot) {
+    const projectDiscovery = projectRoot
+        ? await discoverInRoot(projectGuideRoot(projectRoot), "project")
+        : { guides: [], warnings: [] };
+    const globalDiscovery = await discoverInRoot(globalGuideRoot(), "global");
+    const merged = new Map();
+    for (const guide of globalDiscovery.guides)
+        merged.set(guide.manifest.name, guide);
+    for (const warning of projectDiscovery.warnings)
+        merged.delete(warning.guideName);
+    for (const guide of projectDiscovery.guides)
+        merged.set(guide.manifest.name, guide);
+    return {
+        guides: [...merged.values()].sort((a, b) => a.manifest.name.localeCompare(b.manifest.name)),
+        warnings: [...globalDiscovery.warnings, ...projectDiscovery.warnings],
+    };
+}
+async function loadProjectContext(args, timing) {
+    const measure = (name, operation) => timing ? timing.measure(name, operation) : operation();
+    const projectRoot = resolveToolPath(args.projectRoot, { access: "read" });
+    const rootStat = await measure("project.root", () => fs.stat(projectRoot));
+    if (!rootStat.isDirectory())
+        throw new Error(`projectRoot is not a directory: ${projectRoot}`);
+    const documents = [];
+    const addDocument = async (kind, filePath) => {
+        if (!(await pathExists(filePath)))
+            return;
+        documents.push({ kind, path: filePath, text: await readBoundedText(filePath) });
+    };
+    if (args.includeAgents) {
+        await measure("project.agents", async () => {
+            const overridePath = path.join(projectRoot, "AGENTS.override.md");
+            const agentsPath = path.join(projectRoot, "AGENTS.md");
+            await addDocument("agents", await pathExists(overridePath) ? overridePath : agentsPath);
+        });
+    }
+    const projectContextAssembly = args.includeProjectContext
+        ? await measure("project.context.assemble", () => assembleProjectContext({
+            projectRoot,
+            intent: args.intent,
+            stage: args.stage,
+            maxContextChars: args.maxProjectContextChars,
+        }))
+        : null;
+    if (args.includeProjectContext && projectContextAssembly?.mode === "modular") {
+        for (const document of projectContextAssembly.documents) {
+            documents.push({
+                kind: `project-${document.kind}`,
+                path: document.path,
+                text: document.text,
+                id: document.id,
+                source: document.source,
+            });
+        }
+    }
+    const changeHistorySelection = shouldLoadProjectChangeHistory({ intent: args.intent, stage: args.stage });
+    const projectChangeHistory = {
+        selected: changeHistorySelection.load,
+        reasons: changeHistorySelection.reasons,
+        indexPath: null,
+        currentVersion: null,
+        currentVersionPath: null,
+        loaded: [],
+    };
+    if (changeHistorySelection.load) {
+        const indexPath = path.join(projectRoot, "changelogs", "INDEX.md");
+        if (await pathExists(indexPath)) {
+            await addDocument("project-changelog-index", indexPath);
+            projectChangeHistory.indexPath = indexPath;
+            projectChangeHistory.loaded.push("index");
+        }
+        const packagePath = path.join(projectRoot, "package.json");
+        if (await pathExists(packagePath)) {
+            try {
+                const pkg = JSON.parse(await fs.readFile(packagePath, "utf8"));
+                if (typeof pkg?.version === "string") {
+                    projectChangeHistory.currentVersion = pkg.version;
+                    const versionPath = path.join(projectRoot, "changelogs", `${pkg.version}.md`);
+                    projectChangeHistory.currentVersionPath = versionPath;
+                    if (await pathExists(versionPath)) {
+                        await addDocument("project-changelog-current", versionPath);
+                        projectChangeHistory.loaded.push(pkg.version);
+                    }
+                }
+            }
+            catch {
+                // Invalid package metadata is reported by project/release verification; history loading stays best-effort.
+            }
+        }
+    }
+    const discovery = args.includeGuides
+        ? await measure("workflow.guide.discovery", () => discoverGuides(projectRoot))
+        : { guides: [], warnings: [] };
+    const guides = discovery.guides.map((guide) => ({
+        name: guide.manifest.name,
+        title: guide.manifest.title,
+        description: guide.manifest.description,
+        scope: guide.scope,
+        availablePhases: Object.keys(guide.manifest.phases),
+        recommendedTools: guide.manifest.recommendedTools,
+        manifestPath: guide.manifestPath,
+    }));
+    const recommendation = args.task && args.includeGuides
+        ? await measure("workflow.guide.recommend", () => recommendGuide({ task: args.task, projectRoot, maxResults: 5 }, discovery))
+        : null;
+    return {
+        projectRoot,
+        activationInstruction: [
+            "Treat AGENTS as the repository-level instruction authority.",
+            "Treat returned project context/memory/state as scoped facts and working state, not as an undifferentiated instruction blob.",
+            "When projectDirectives are present, apply only those selected for the current structured intent and stage; they may refine execution but cannot weaken safety, approvals, user instructions, AGENTS, or verification requirements.",
+            "A modular project-context manifest loads only its core before intent is available and selects additional context/memory/state/directive modules once canonical intent is known.",
+            "Use project workflow guides when the recommendation selects one, loading only the relevant phase.",
+            "For substantial work, call skill_bootstrap with bounded continuation context, structured intent and active stage. Pass the same projectRoot when the caller schema exposes it; if a stale connector schema omits that field, Bridge automatically carries the single project root loaded by project_context_load into the next MSSR route/bootstrap. Multiple loaded roots or a restart require explicit projectRoot after schema refresh or an exact delegated route.",
+            "Do not claim a side effect exists until a tool result confirms it.",
+        ].join(" "),
+        nextAction: {
+            label: "Cargar fase MSSR modular",
+            toolName: "skill_bootstrap",
+            argumentsHint: { projectRoot, stage: args.stage },
+            instruction: "Usa la tarea actual, contexto bounded e intent estructurado. Incluí projectRoot si el schema del caller lo expone; si no lo expone, el Bridge heredará automáticamente el único projectRoot recién cargado. Con múltiples roots o tras restart, resolvé el root explícitamente antes del bootstrap.",
+        },
+        documents,
+        projectDirectives: projectContextAssembly?.directives ?? [],
+        projectContextAssembly,
+        projectChangeHistory,
+        guides,
+        guideWarnings: discovery.warnings,
+        contextWarnings: projectContextAssembly?.warning ? [projectContextAssembly.warning] : [],
+        recommendation,
+    };
+}
+function scoreGuide(task, guide) {
+    const normalizedTask = normalizeText(task);
+    const taskTokens = tokenize(task);
+    let score = 0;
+    let strongMatch = false;
+    const reasons = [];
+    const nameText = normalizeText(`${guide.manifest.name} ${guide.manifest.title}`);
+    if (nameText && containsNormalizedTerm(normalizedTask, nameText) && !containsNegatedNormalizedTerm(normalizedTask, nameText)) {
+        score += 8;
+        strongMatch = true;
+        reasons.push("guide name/title appears in task");
+    }
+    for (const phrase of guide.manifest.activation.phrases) {
+        const normalizedPhrase = normalizeText(phrase);
+        if (normalizedPhrase && containsNormalizedTerm(normalizedTask, normalizedPhrase) && !containsNegatedNormalizedTerm(normalizedTask, normalizedPhrase)) {
+            score += 6;
+            strongMatch = true;
+            reasons.push(`phrase:${phrase}`);
+        }
+    }
+    let compoundKeywordMatches = 0;
+    for (const keyword of guide.manifest.activation.keywords) {
+        const normalizedKeyword = normalizeText(keyword);
+        if (!normalizedKeyword)
+            continue;
+        const keywordTokens = normalizedKeyword.split(/\s+/);
+        const matched = keywordTokens.every((token) => taskTokens.has(token));
+        if (matched && !containsNegatedNormalizedTerm(normalizedTask, normalizedKeyword)) {
+            score += keywordTokens.length > 1 ? 3 : 2;
+            // A single short compound can be an auxiliary constraint (for example
+            // "dirty tree"). Two independent compounds, or one 3+ token keyword,
+            // are specific enough to count as strong activation evidence.
+            if (keywordTokens.length > 1)
+                compoundKeywordMatches += 1;
+            if (keywordTokens.length >= 3)
+                strongMatch = true;
+            reasons.push(`keyword:${keyword}`);
+        }
+    }
+    if (compoundKeywordMatches >= 2)
+        strongMatch = true;
+    for (const example of guide.manifest.activation.examples) {
+        const exampleTokens = tokenize(example);
+        if (exampleTokens.size === 0)
+            continue;
+        let overlap = 0;
+        for (const token of exampleTokens)
+            if (taskTokens.has(token))
+                overlap += 1;
+        const ratio = overlap / exampleTokens.size;
+        if (ratio >= 0.5) {
+            score += 4;
+            strongMatch = true;
+            reasons.push("similar to activation example");
+            break;
+        }
+        if (ratio >= 0.3) {
+            score += 2;
+            reasons.push("partially similar to activation example");
+            break;
+        }
+    }
+    for (const negative of guide.manifest.activation.negativeKeywords) {
+        const normalizedNegative = normalizeText(negative);
+        if (normalizedNegative && containsNormalizedTerm(normalizedTask, normalizedNegative)) {
+            score -= 6;
+            reasons.push(`negative:${negative}`);
+        }
+    }
+    return { score, strongMatch, reasons };
+}
+function reusablePattern(task) {
+    const normalized = normalizeText(task);
+    const signals = [
+        "siempre", "cada vez", "a futuro", "en el futuro", "repetir", "reutilizar", "plantilla",
+        "pipeline", "workflow", "skill", "guia", "guía", "automatizar", "loop", "proceso",
+        "pasos", "patron", "patrón", "cuando detecte", "rutina", "hook", "estandarizar",
+        "standardize", "every time", "from now on", "reusable", "repeatable",
+    ];
+    const matchedSignals = signals.filter((signal) => containsNormalizedTerm(normalized, normalizeText(signal)));
+    return {
+        detected: matchedSignals.length > 0,
+        score: matchedSignals.length,
+        signals: matchedSignals,
+    };
+}
+export async function recommendGuide(args, existingDiscovery, existingSkillCoverage) {
+    const discovery = existingDiscovery ?? await discoverGuides(args.projectRoot);
+    const guides = discovery.guides;
+    const ownershipMetaTask = isSkillCoverageMetaTask(args.task);
+    const ranked = ownershipMetaTask ? [] : guides
+        .map((guide) => {
+        const scored = scoreGuide(args.task, guide);
+        return {
+            name: guide.manifest.name,
+            title: guide.manifest.title,
+            description: guide.manifest.description,
+            scope: guide.scope,
+            score: scored.score,
+            strongMatch: scored.strongMatch,
+            reasons: scored.reasons,
+            recommendedTools: guide.manifest.recommendedTools,
+        };
+    })
+        .filter((item) => item.score > 0)
+        .sort((a, b) => b.score - a.score || (a.scope === "project" ? -1 : 1))
+        .slice(0, args.maxResults);
+    const pattern = reusablePattern(args.task);
+    const skillCoverage = existingSkillCoverage ?? await findExistingSkillCoverage(args.task, args.maxResults);
+    const bestDomainGuide = ranked.find((item) => item.name !== "workflow-guide-builder") ?? null;
+    const builderGuide = ranked.find((item) => item.name === "workflow-guide-builder") ?? null;
+    const bestSkill = skillCoverage.matches[0] ?? null;
+    const shouldLoadExisting = !ownershipMetaTask && Boolean(bestDomainGuide && bestDomainGuide.score >= 4 && bestDomainGuide.strongMatch);
+    const useExistingSkill = !ownershipMetaTask && !shouldLoadExisting && skillCoverage.covered;
+    const createNewRecommended = !ownershipMetaTask && !shouldLoadExisting && !useExistingSkill && pattern.detected;
+    return {
+        task: args.task,
+        searchedScopes: args.projectRoot ? ["project", "global"] : ["global"],
+        guideCount: guides.length,
+        guideWarnings: discovery.warnings,
+        reusablePattern: pattern,
+        existingSkillCoverage: skillCoverage,
+        matches: ranked,
+        recommendation: ownershipMetaTask
+            ? { action: "none", guide: null, skill: null, builderGuide: null, reason: "This task is diagnosing skill/workflow routing or coverage; named capabilities are evidence for the diagnosis, not ownership intent." }
+            : shouldLoadExisting
+                ? { action: "load_existing", guide: bestDomainGuide?.name, skill: null, builderGuide: null, reason: "A domain guide matched the task strongly." }
+                : useExistingSkill
+                    ? { action: "use_existing_skill", guide: null, skill: bestSkill?.name, builderGuide: null, reason: "An existing skill already owns this reusable procedure; do not create a duplicate workflow guide." }
+                    : createNewRecommended
+                        ? { action: "propose_new", guide: null, skill: null, builderGuide: builderGuide?.name ?? "workflow-guide-builder", reason: "The task looks repeatable and neither a domain guide nor an existing skill covers it strongly." }
+                        : { action: "none", guide: null, skill: null, builderGuide: null, reason: "No strong reusable-workflow signal, domain guide, or existing skill match was found." },
+    };
+}
+async function findGuide(name, projectRoot) {
+    const discovery = await discoverGuides(projectRoot);
+    const guide = discovery.guides.find((item) => item.manifest.name === name);
+    if (guide)
+        return guide;
+    const invalidGuide = discovery.warnings.find((warning) => warning.guideName === name);
+    if (invalidGuide) {
+        throw new Error(`Workflow guide '${name}' is invalid: ${invalidGuide.message}`);
+    }
+    throw new Error(`Workflow guide not found: ${name}`);
+}
+export async function loadGuide(args) {
+    const guide = await findGuide(args.name, args.projectRoot);
+    const entrypointPath = ensureInside(guide.directory, path.join(guide.directory, guide.manifest.entrypoint));
+    const entrypoint = await readBoundedText(entrypointPath);
+    let phaseDocument = null;
+    if (args.phase) {
+        const relativePath = guide.manifest.phases[args.phase];
+        if (!relativePath) {
+            throw new Error(`Guide '${args.name}' has no phase '${args.phase}'. Available: ${Object.keys(guide.manifest.phases).join(", ") || "none"}`);
+        }
+        const phasePath = ensureInside(guide.directory, path.join(guide.directory, relativePath));
+        phaseDocument = { phase: args.phase, path: phasePath, text: await readBoundedText(phasePath) };
+    }
+    let projectContext = null;
+    if (args.projectContextPath) {
+        const contextPath = resolveToolPath(args.projectContextPath, { access: "read" });
+        projectContext = { path: contextPath, text: await readBoundedText(contextPath) };
+    }
+    return {
+        guide: guide.manifest.name,
+        title: guide.manifest.title,
+        scope: guide.scope,
+        activationInstruction: [
+            "Treat the returned guide and optional phase document as active instructions for this task.",
+            "Use the recommended tools in the described order.",
+            "Project-specific context overrides generic examples but must not weaken safety or verification requirements.",
+            "Do not claim an artifact or side effect exists until a tool result confirms it.",
+        ].join(" "),
+        availablePhases: Object.keys(guide.manifest.phases),
+        recommendedTools: guide.manifest.recommendedTools,
+        manifest: args.includeManifest ? guide.manifest : undefined,
+        entrypoint: { path: entrypointPath, text: entrypoint },
+        phaseDocument,
+        projectContext,
+    };
+}
+function guideMarkdown(args) {
+    const phases = args.phases.length
+        ? args.phases.map((phase, index) => `${index + 1}. **${phase.name}** — ${phase.goal}`).join("\n")
+        : "1. **execute** — Follow the workflow goal and verify the result.";
+    return `# ${args.title}
+
+## Purpose
+
+${args.description}
+
+## Activation
+
+Use this guide only when its activation phrases or keywords clearly match the user's task. If the match is uncertain, explain the possible match instead of silently forcing the workflow.
+
+## Workflow
+
+${phases}
+
+## Tool policy
+
+Recommended tools:
+
+${args.recommendedTools.length ? args.recommendedTools.map((tool) => `- \`${tool}\``).join("\n") : "- Select the smallest safe tool set needed for the workflow."}
+
+## Verification
+
+- Record the last completed phase.
+- Verify every persisted file or external side effect through a tool result.
+- On failure, report the exact resumable state and the next action.
+- Do not end a multi-step workflow with an empty response.
+
+## Maintenance
+
+Update \`guide.json\` when activation patterns, phases, or recommended tools change.
+`;
+}
+async function createGuide(args) {
+    if (args.scope === "project" && !args.projectRoot)
+        throw new Error("projectRoot is required for project-scoped guides");
+    const root = args.scope === "global" ? globalGuideRoot() : projectGuideRoot(args.projectRoot);
+    const directory = path.join(root, args.name);
+    const existingGuide = await pathExists(directory);
+    if (existingGuide && !args.overwrite)
+        throw new Error(`Workflow guide already exists: ${directory}`);
+    const tempDirectory = path.join(root, `.tmp-${args.name}-${crypto.randomUUID()}`);
+    await fs.mkdir(path.join(tempDirectory, "phases"), { recursive: true });
+    const phases = {};
+    for (const phase of args.phases) {
+        const fileName = `phases/${phase.name}.md`;
+        phases[phase.name] = fileName;
+        const phaseText = `# ${phase.name}
+
+## Goal
+
+${phase.goal}
+
+## Instructions
+
+${phase.instructions?.trim() || "Follow the guide goal, use the declared tools, verify outputs, and record resumable state."}
+`;
+        await fs.writeFile(path.join(tempDirectory, ...fileName.split("/")), phaseText, "utf8");
+    }
+    const manifest = {
+        schemaVersion: GUIDE_SCHEMA_VERSION,
+        name: args.name,
+        title: args.title,
+        description: args.description,
+        activation: {
+            keywords: args.keywords,
+            phrases: args.triggerPhrases,
+            negativeKeywords: args.negativeKeywords,
+            examples: args.examples,
+        },
+        entrypoint: "GUIDE.md",
+        phases,
+        recommendedTools: args.recommendedTools,
+        scopeNotes: args.scope === "global"
+            ? "Global guide available to all projects connected through Mauro's Bridge MCP."
+            : "Project guide; overrides a global guide with the same name while this projectRoot is supplied.",
+    };
+    await fs.writeFile(path.join(tempDirectory, "guide.json"), JSON.stringify(manifest, null, 2), "utf8");
+    await fs.writeFile(path.join(tempDirectory, "GUIDE.md"), guideMarkdown(args), "utf8");
+    await fs.mkdir(root, { recursive: true });
+    if (existingGuide && args.overwrite)
+        await fs.rm(directory, { recursive: true, force: true });
+    await fs.rename(tempDirectory, directory);
+    return {
+        created: true,
+        scope: args.scope,
+        directory,
+        manifestPath: path.join(directory, "guide.json"),
+        entrypointPath: path.join(directory, "GUIDE.md"),
+        phases: Object.keys(phases),
+        manifest,
+    };
+}
+export const workflowGuideToolModule = {
+    name: "workflow-guides",
+    tools: [
+        {
+            name: "project_context_load",
+            description: "Use this once when beginning substantial work in a known repository, resuming a project, or when project-specific rules may affect the task. Loads AGENTS plus durable project context only through canonical .mssr/project-context.json. If the repository is not initialized or its manifest is invalid, project knowledge is omitted with an actionable warning; Bridge never falls back to .bridge or arbitrary PROJECT_* documents. With a valid manifest it loads bounded core context before intent and selects context/memory/state/directive modules by structured intent and stage through portable MSSR. Bridge-specific workflow guides remain a separate host-owned surface. Also returns workflow guides and an optional guide recommendation.",
+            inputSchema: {
+                type: "object",
+                properties: {
+                    projectRoot: { type: "string", description: "Repository or project root." },
+                    task: { type: "string", description: "Optional current user request used to recommend a workflow guide." },
+                    intent: {
+                        type: "object",
+                        description: "Optional canonical MSSR structured intent. When present, modular project-context modules are selected by the same semantic dimensions used for skill routing.",
+                        properties: {
+                            summary: { type: "string", maxLength: 600 },
+                            domains: { type: "array", items: { type: "string", enum: [...SKILL_DOMAINS] }, minItems: 1, maxItems: 8 },
+                            actions: { type: "array", items: { type: "string", enum: [...SKILL_ACTIONS] }, minItems: 1, maxItems: 12 },
+                            artifacts: { type: "array", items: { type: "string", enum: [...SKILL_ARTIFACTS] }, maxItems: 12 },
+                            needs: { type: "array", items: { type: "string", enum: [...SKILL_NEEDS] }, maxItems: 12 },
+                            signals: { type: "array", items: { type: "string", enum: [...SKILL_SIGNALS] }, minItems: 1, maxItems: 12 },
+                            risk: { type: "string", enum: [...SKILL_RISKS] },
+                            ambiguity: { type: "string", enum: ["low", "medium", "high"] },
+                        },
+                        required: ["domains", "actions"],
+                        additionalProperties: false,
+                    },
+                    stage: { type: "string", enum: [...SKILL_STAGES], default: "start", description: "Current MSSR lifecycle stage used to select project-context modules." },
+                    maxProjectContextChars: { type: "number", default: 12000, minimum: 2000, maximum: 80000, description: "Character budget for modular project core plus selected project modules. Required core is never silently truncated." },
+                    workflowKey: { type: "string", pattern: "^[a-z0-9][a-z0-9._-]{1,79}$", description: "Optional stable workflow id shared by related executions, for example mauroprime-system-loop. This is local control metadata, not a ChatGPT conversation id." },
+                    includeAgents: { type: "boolean", default: true },
+                    includeProjectContext: { type: "boolean", default: true },
+                    includeGuides: { type: "boolean", default: true },
+                },
+                required: ["projectRoot"],
+                additionalProperties: false,
+            },
+        },
+        {
+            name: "workflow_guide_recommend",
+            description: "Use this when a user describes a repeatable multi-step process, says it should happen every time or in future, asks for a skill/pipeline/template/hook, when an existing reusable workflow may apply, or when an uploaded audio/video should be listened to, transcribed, inspected, or interpreted through an existing media workflow. Search the existing guide/skill pipeline before inventing an ad-hoc fallback. Searches project/global guides and the existing Codex skill catalog. Prefer a strong guide, otherwise return use_existing_skill when a skill already owns the procedure; propose a new guide only when neither covers it.",
+            inputSchema: {
+                type: "object",
+                properties: {
+                    task: { type: "string", description: "The user's current request or workflow description." },
+                    projectRoot: { type: "string", description: "Optional project root; project guides override global guides." },
+                    maxResults: { type: "number", default: 5, minimum: 1, maximum: 20 },
+                },
+                required: ["task"],
+                additionalProperties: false,
+            },
+        },
+        {
+            name: "workflow_guide_load",
+            description: "Use this after workflow_guide_recommend selects a guide, or when the user explicitly names one. Loads the versioned guide prompt, an optional phase document, recommended tools, and optional project context so ChatGPT can follow it as active instructions.",
+            inputSchema: {
+                type: "object",
+                properties: {
+                    name: { type: "string", description: "Guide slug." },
+                    phase: { type: "string", description: "Optional phase key from the guide manifest." },
+                    projectRoot: { type: "string", description: "Optional project root used to discover project-specific guides first." },
+                    projectContextPath: { type: "string", description: "Optional allowed file containing project-specific brief or configuration." },
+                    includeManifest: { type: "boolean", default: true },
+                },
+                required: ["name"],
+                additionalProperties: false,
+            },
+        },
+        {
+            name: "workflow_guide_create",
+            description: "Use this only when the user asks to create/save a reusable skill-like workflow guide, or explicitly approves a recommendation to do so. Scaffolds a versioned global Bridge MCP guide or project-specific guide with activation triggers, phases, recommended tools, and resumable verification instructions.",
+            inputSchema: {
+                type: "object",
+                properties: {
+                    scope: { type: "string", enum: ["global", "project"], default: "project" },
+                    projectRoot: { type: "string" },
+                    name: { type: "string", pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+                    title: { type: "string" },
+                    description: { type: "string" },
+                    keywords: { type: "array", items: { type: "string" }, default: [] },
+                    triggerPhrases: { type: "array", items: { type: "string" }, default: [] },
+                    negativeKeywords: { type: "array", items: { type: "string" }, default: [] },
+                    examples: { type: "array", items: { type: "string" }, default: [] },
+                    phases: {
+                        type: "array",
+                        maxItems: MAX_PHASES,
+                        items: {
+                            type: "object",
+                            properties: {
+                                name: { type: "string", pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+                                goal: { type: "string" },
+                                instructions: { type: "string" },
+                            },
+                            required: ["name", "goal"],
+                            additionalProperties: false,
+                        },
+                        default: [],
+                    },
+                    recommendedTools: { type: "array", items: { type: "string" }, default: [] },
+                    overwrite: { type: "boolean", default: false },
+                },
+                required: ["name", "title", "description"],
+                additionalProperties: false,
+            },
+        },
+    ],
+    handlers: {
+        project_context_load: async (raw) => {
+            const timing = new BridgeTimingCollector("project_context_load");
+            const parsed = timing.measureSync("request.parse", () => z.object({
+                projectRoot: z.string().min(1),
+                task: z.string().min(1).max(10_000).optional(),
+                intent: structuredSkillIntentSchema.optional(),
+                stage: z.enum(SKILL_STAGES).default("start"),
+                maxProjectContextChars: z.number().int().min(2_000).max(80_000).default(12_000),
+                workflowKey: z.string().regex(/^[a-z0-9][a-z0-9._-]{1,79}$/).optional(),
+                includeAgents: z.boolean().default(true),
+                includeProjectContext: z.boolean().default(true),
+                includeGuides: z.boolean().default(true),
+            }).parse(raw));
+            const [context, projectContextHealth] = await Promise.all([
+                timing.measure("project.load", () => loadProjectContext(parsed, timing)),
+                timing.measure("project.health", () => auditMssrProjectContextHealth(path.resolve(parsed.projectRoot))),
+            ]);
+            return {
+                ...context,
+                projectContextHealth: presentProjectContextHealth(parsed.projectRoot, projectContextHealth),
+                workflowKey: parsed.workflowKey ?? null,
+                bridgeTiming: timing.finish(),
+            };
+        },
+        workflow_guide_recommend: async (raw) => {
+            const parsed = z.object({
+                task: z.string().min(1).max(10_000),
+                projectRoot: z.string().optional(),
+                maxResults: z.number().int().min(1).max(20).default(5),
+            }).parse(raw);
+            return await recommendGuide(parsed);
+        },
+        workflow_guide_load: async (raw) => {
+            const parsed = z.object({
+                name: slugSchema,
+                phase: phaseNameSchema.optional(),
+                projectRoot: z.string().optional(),
+                projectContextPath: z.string().optional(),
+                includeManifest: z.boolean().default(true),
+            }).parse(raw);
+            return await loadGuide(parsed);
+        },
+        workflow_guide_create: async (raw) => {
+            const parsed = z.object({
+                scope: z.enum(["global", "project"]).default("project"),
+                projectRoot: z.string().optional(),
+                name: slugSchema,
+                title: z.string().min(1).max(160),
+                description: z.string().min(1).max(1200),
+                keywords: z.array(z.string().min(1).max(100)).max(80).default([]),
+                triggerPhrases: z.array(z.string().min(1).max(240)).max(40).default([]),
+                negativeKeywords: z.array(z.string().min(1).max(100)).max(40).default([]),
+                examples: z.array(z.string().min(1).max(500)).max(30).default([]),
+                phases: z.array(z.object({
+                    name: phaseNameSchema,
+                    goal: z.string().min(1).max(1000),
+                    instructions: z.string().max(8000).optional(),
+                })).max(MAX_PHASES).default([]),
+                recommendedTools: z.array(z.string().min(1).max(120)).max(80).default([]),
+                overwrite: z.boolean().default(false),
+            }).parse(raw);
+            return await createGuide(parsed);
+        },
+    },
+};

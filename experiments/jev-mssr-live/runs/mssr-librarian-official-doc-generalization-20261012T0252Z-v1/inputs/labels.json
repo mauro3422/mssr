@@ -1,0 +1,256 @@
+{
+  "source": "independent-review",
+  "adjudication": "two separate Luna reviewers assessed answerability; an independent reviewer checked the positive claims; the coordinator revalidated all cited line positions against SHA-256-pinned raw Markdown; model-assisted, not human or owner-gold",
+  "frozenAt": "2026-10-12T03:06:18.291Z",
+  "cases": [
+    {
+      "caseId": "typescript-narrowing-pos",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/01-typescript-narrowing.md",
+      "answerability": "answerable",
+      "expectedHeading": "Discriminated unions",
+      "expectedStartLine": 658,
+      "expectedEndLine": 658,
+      "acceptableRanges": [
+        {
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/01-typescript-narrowing.md",
+          "expectedHeading": "Discriminated unions",
+          "startLine": 658,
+          "endLine": 658
+        }
+      ],
+      "rationale": "Line 658 directly defines the common property with literal types and its narrowing effect.",
+      "relevantRanges": [
+        {
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/01-typescript-narrowing.md",
+          "expectedHeading": "Discriminated unions",
+          "startLine": 658,
+          "endLine": 658
+        }
+      ]
+    },
+    {
+      "caseId": "typescript-narrowing-neg",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/01-typescript-narrowing.md",
+      "answerability": "unanswerable",
+      "rationale": "The document explains narrowing with examples but does not specify a maximum variant count."
+    },
+    {
+      "caseId": "typescript-everyday-pos",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/02-typescript-everyday-types.md",
+      "answerability": "answerable",
+      "expectedHeading": "Arrays",
+      "expectedStartLine": 31,
+      "expectedEndLine": 32,
+      "acceptableRanges": [
+        {
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/02-typescript-everyday-types.md",
+          "expectedHeading": "Arrays",
+          "startLine": 31,
+          "endLine": 32
+        }
+      ],
+      "rationale": "Lines 31-32 give number[] and Array<number> as equivalent numeric-array syntax.",
+      "relevantRanges": [
+        {
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/02-typescript-everyday-types.md",
+          "expectedHeading": "Arrays",
+          "startLine": 31,
+          "endLine": 32
+        }
+      ]
+    },
+    {
+      "caseId": "typescript-everyday-neg",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/02-typescript-everyday-types.md",
+      "answerability": "unanswerable",
+      "rationale": "The Type Aliases section defines the construct but does not give an introduction version."
+    },
+    {
+      "caseId": "rust-refcell-pos",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/03-rust-refcell.md",
+      "answerability": "answerable",
+      "expectedHeading": "Enforcing Borrowing Rules at Runtime",
+      "expectedStartLine": 34,
+      "expectedEndLine": 36,
+      "acceptableRanges": [
+        {
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/03-rust-refcell.md",
+          "expectedHeading": "Enforcing Borrowing Rules at Runtime",
+          "startLine": 34,
+          "endLine": 36
+        }
+      ],
+      "rationale": "Lines 34-36 say RefCell checks at runtime and panics and exits if borrowing rules are broken.",
+      "relevantRanges": [
+        {
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/03-rust-refcell.md",
+          "expectedHeading": "Enforcing Borrowing Rules at Runtime",
+          "startLine": 34,
+          "endLine": 36
+        }
+      ]
+    },
+    {
+      "caseId": "rust-refcell-neg",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/03-rust-refcell.md",
+      "answerability": "unanswerable",
+      "rationale": "The document describes a small runtime cost but gives no exact percentage."
+    },
+    {
+      "caseId": "rust-mutex-pos",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/04-rust-mutex.md",
+      "answerability": "answerable",
+      "expectedHeading": "Controlling Access with Mutexes",
+      "expectedStartLine": 37,
+      "expectedEndLine": 39,
+      "acceptableRanges": [
+        {
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/04-rust-mutex.md",
+          "expectedHeading": "Controlling Access with Mutexes",
+          "startLine": 37,
+          "endLine": 39
+        }
+      ],
+      "rationale": "Lines 37-39 list acquiring the lock before use and unlocking when done.",
+      "relevantRanges": [
+        {
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/04-rust-mutex.md",
+          "expectedHeading": "Controlling Access with Mutexes",
+          "startLine": 34,
+          "endLine": 39
+        }
+      ]
+    },
+    {
+      "caseId": "rust-mutex-neg",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/04-rust-mutex.md",
+      "answerability": "unanswerable",
+      "rationale": "The inspected source describes lock and guard behavior but does not promise FIFO fairness."
+    },
+    {
+      "caseId": "node-fs-pos",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/05-node-fs.md",
+      "answerability": "answerable",
+      "expectedHeading": "fs.readFile(path[, options], callback)",
+      "expectedStartLine": 4543,
+      "expectedEndLine": 4544,
+      "acceptableRanges": [
+        {
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/05-node-fs.md",
+          "expectedHeading": "fs.readFile(path[, options], callback)",
+          "startLine": 4543,
+          "endLine": 4544
+        }
+      ],
+      "rationale": "Lines 4543-4544 explain that fs.readFile buffers the whole file and recommend streaming to minimize memory cost.",
+      "relevantRanges": [
+        {
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/05-node-fs.md",
+          "expectedHeading": "fs.readFile(path[, options], callback)",
+          "startLine": 4543,
+          "endLine": 4544
+        }
+      ]
+    },
+    {
+      "caseId": "node-fs-neg",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/05-node-fs.md",
+      "answerability": "unanswerable",
+      "rationale": "The API documentation gives no such benchmark measurement."
+    },
+    {
+      "caseId": "node-process-pos",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/06-node-process.md",
+      "answerability": "answerable",
+      "expectedHeading": "process.exit([code])",
+      "expectedStartLine": 1821,
+      "expectedEndLine": 1823,
+      "acceptableRanges": [
+        {
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/06-node-process.md",
+          "expectedHeading": "process.exit([code])",
+          "startLine": 1821,
+          "endLine": 1823
+        }
+      ],
+      "rationale": "Lines 1821-1823 recommend setting process.exitCode and allowing natural exit.",
+      "relevantRanges": [
+        {
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/06-node-process.md",
+          "expectedHeading": "process.exit([code])",
+          "startLine": 1821,
+          "endLine": 1823
+        }
+      ]
+    },
+    {
+      "caseId": "node-process-neg",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/06-node-process.md",
+      "answerability": "unanswerable",
+      "rationale": "The process.cpuUsage documentation does not state an internal update interval."
+    },
+    {
+      "caseId": "github-workflow-pos",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/07-github-workflow-syntax.md",
+      "answerability": "answerable",
+      "expectedHeading": "How permissions are calculated for a workflow job",
+      "expectedStartLine": 354,
+      "expectedEndLine": 354,
+      "acceptableRanges": [
+        {
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/07-github-workflow-syntax.md",
+          "expectedHeading": "How permissions are calculated for a workflow job",
+          "startLine": 354,
+          "endLine": 354
+        }
+      ],
+      "rationale": "Line 354 states defaults first, then workflow-level and job-level changes, followed by write-to-read reduction for qualifying fork pull requests unless the send-write-tokens setting is enabled.",
+      "relevantRanges": [
+        {
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/07-github-workflow-syntax.md",
+          "expectedHeading": "How permissions are calculated for a workflow job",
+          "startLine": 354,
+          "endLine": 354
+        }
+      ]
+    },
+    {
+      "caseId": "github-workflow-neg",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/07-github-workflow-syntax.md",
+      "answerability": "unanswerable",
+      "rationale": "The workflow syntax reference does not provide a queue-start service guarantee."
+    },
+    {
+      "caseId": "github-labels-pos",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/08-github-managing-labels.md",
+      "answerability": "answerable",
+      "expectedHeading": "About default labels",
+      "expectedStartLine": 56,
+      "expectedEndLine": 56,
+      "acceptableRanges": [
+        {
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/08-github-managing-labels.md",
+          "expectedHeading": "About default labels",
+          "startLine": 56,
+          "endLine": 56
+        }
+      ],
+      "rationale": "Line 56 says organization owners can customize the default labels for repositories in their organization.",
+      "relevantRanges": [
+        {
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/08-github-managing-labels.md",
+          "expectedHeading": "About default labels",
+          "startLine": 56,
+          "endLine": 56
+        }
+      ]
+    },
+    {
+      "caseId": "github-labels-neg",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-official-doc-generalization-20261012T0252Z-v1/inputs/sources/08-github-managing-labels.md",
+      "answerability": "unanswerable",
+      "rationale": "The guide covers label creation and management but does not state a repository label quota."
+    }
+  ],
+  "scoringPolicy": "Answerable cases require a selected exact or explicitly relevant same-source range; unanswerable cases require abstention. Exact accepted range, broader relevant range, search recall, fetch validity, and evidence-pack validity are reported separately. Choice confidence and Noul are descriptive and uncalibrated."
+}

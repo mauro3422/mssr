@@ -1,0 +1,178 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+import { buildMssrSemanticClaimSituation, evaluateMssrConsistencyDecisionSupport, } from "@mauroprime/mssr";
+import { SERVER_VERSION } from "./config.js";
+import { createMssrConsistencyNoticeTracker } from "./mssr-consistency.js";
+const DEFAULT_INTERVAL_MS = 60_000;
+let latestReleaseConsistency = null;
+function bounded(value, max = 160) {
+    return typeof value === "string" && value.trim() ? value.trim().slice(0, max) : null;
+}
+function resolveBridgeCodeRoot(root) {
+    const configuredRoot = process.env.BRIDGE_MCP_CODE_ROOT?.trim();
+    return path.resolve(root ?? configuredRoot ?? process.cwd());
+}
+async function readText(filePath) {
+    try {
+        return { state: "observed", text: await fs.readFile(filePath, "utf8") };
+    }
+    catch {
+        return { state: "unavailable" };
+    }
+}
+async function readJson(filePath) {
+    const loaded = await readText(filePath);
+    if (loaded.state !== "observed")
+        return loaded;
+    try {
+        const parsed = JSON.parse(loaded.text);
+        return parsed && typeof parsed === "object" ? { state: "observed", value: parsed } : { state: "unknown" };
+    }
+    catch {
+        return { state: "unknown" };
+    }
+}
+function extractServerVersion(text) {
+    return bounded(text.match(/SERVER_VERSION\s*=\s*["']([^"']+)["']/)?.[1]);
+}
+function extractMssrDependencyVersion(value) {
+    const dependency = bounded(value, 240);
+    if (!dependency)
+        return null;
+    const tarball = dependency.match(/mauroprime-mssr-(\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?)\.tgz/i)?.[1];
+    if (tarball)
+        return bounded(tarball);
+    const exact = dependency.match(/^(?:\^|~)?(\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?)$/)?.[1];
+    return bounded(exact);
+}
+function observed(key, observer, role, authority, value, required = false) {
+    return {
+        key,
+        observer,
+        role,
+        authority,
+        state: value ? "observed" : "unknown",
+        ...(value ? { value } : {}),
+        ...(required ? { required: true } : {}),
+    };
+}
+function unavailable(key, observer, role, authority, required = false) {
+    return { key, observer, role, authority, state: "unavailable", ...(required ? { required: true } : {}) };
+}
+export async function collectBridgeReleaseConsistencyObservations(root = resolveBridgeCodeRoot(), runtimeVersion = SERVER_VERSION) {
+    const resolvedRoot = resolveBridgeCodeRoot(root);
+    const packagePath = path.join(resolvedRoot, "package.json");
+    const sourceConfigPath = path.join(resolvedRoot, "src", "config.ts");
+    const distConfigPath = path.join(resolvedRoot, "dist", "config.js");
+    const installedMssrPath = path.join(resolvedRoot, "node_modules", "@mauroprime", "mssr", "package.json");
+    const [packageJson, sourceConfig, distConfig, installedMssr] = await Promise.all([
+        readJson(packagePath),
+        readText(sourceConfigPath),
+        readText(distConfigPath),
+        readJson(installedMssrPath),
+    ]);
+    const observations = [];
+    if (packageJson.state === "observed") {
+        observations.push(observed("bridge.release-version", "package.json", "source", "canonical", bounded(packageJson.value.version), true));
+        observations.push(observed("bridge.mssr-package-version", "package.json#dependencies.@mauroprime/mssr", "source", "canonical", extractMssrDependencyVersion(packageJson.value.dependencies?.["@mauroprime/mssr"]), true));
+    }
+    else {
+        observations.push(unavailable("bridge.release-version", "package.json", "source", "canonical", true));
+        observations.push(unavailable("bridge.mssr-package-version", "package.json#dependencies.@mauroprime/mssr", "source", "canonical", true));
+    }
+    observations.push(sourceConfig.state === "observed"
+        ? observed("bridge.release-version", "src/config.ts", "source", "replica", extractServerVersion(sourceConfig.text), true)
+        : unavailable("bridge.release-version", "src/config.ts", "source", "replica", true));
+    observations.push(distConfig.state === "observed"
+        ? observed("bridge.release-version", "dist/config.js", "generated", "replica", extractServerVersion(distConfig.text), true)
+        : unavailable("bridge.release-version", "dist/config.js", "generated", "replica", true));
+    observations.push(observed("bridge.release-version", "live-runtime", "runtime", "replica", bounded(runtimeVersion), true));
+    observations.push(installedMssr.state === "observed"
+        ? observed("bridge.mssr-package-version", "node_modules/@mauroprime/mssr/package.json", "installed", "replica", bounded(installedMssr.value.version), true)
+        : unavailable("bridge.mssr-package-version", "node_modules/@mauroprime/mssr/package.json", "installed", "replica", true));
+    return observations;
+}
+function semanticClaimSourceForObservation(observation) {
+    if (observation.role === "generated")
+        return "generated";
+    if (observation.role === "installed")
+        return "installed";
+    if (observation.role === "runtime")
+        return "runtime";
+    return "source";
+}
+export async function collectBridgeReleaseSemanticSituationObservations(root = resolveBridgeCodeRoot(), runtimeVersion = SERVER_VERSION) {
+    const observations = await collectBridgeReleaseConsistencyObservations(root, runtimeVersion);
+    const claims = observations.map((observation) => ({
+        kind: observation.key === "bridge.release-version" ? "release-version" : "state-value",
+        subject: observation.key,
+        source: semanticClaimSourceForObservation(observation),
+        sourceRef: observation.observer,
+        authority: observation.authority,
+        state: observation.state,
+        ...(observation.value ? { value: observation.value } : {}),
+        required: observation.required === true,
+    }));
+    return buildMssrSemanticClaimSituation(claims);
+}
+export async function observeBridgeReleaseConsistency(options = {}) {
+    const root = resolveBridgeCodeRoot(options.root);
+    const boundary = options.boundary ?? "ordinary";
+    const observations = await collectBridgeReleaseConsistencyObservations(root, options.runtimeVersion ?? SERVER_VERSION);
+    const projection = evaluateMssrConsistencyDecisionSupport({ boundary, observations });
+    return {
+        observedAt: (options.now ?? new Date()).toISOString(),
+        boundary,
+        root,
+        observations,
+        projection,
+    };
+}
+export function getReleaseConsistencyReport() {
+    return { latest: latestReleaseConsistency };
+}
+export function startReleaseConsistencyScheduler(options = {}) {
+    const tracker = createMssrConsistencyNoticeTracker();
+    let running = false;
+    let firstSuccessfulObservation = true;
+    const root = resolveBridgeCodeRoot(options.root);
+    const observe = options.observe ?? ((boundary) => observeBridgeReleaseConsistency({
+        root,
+        runtimeVersion: options.runtimeVersion ?? SERVER_VERSION,
+        boundary,
+    }));
+    const runNow = async () => {
+        if (running)
+            return;
+        running = true;
+        try {
+            const boundary = firstSuccessfulObservation ? "post-restart" : "ordinary";
+            const snapshot = await observe(boundary);
+            latestReleaseConsistency = snapshot;
+            const result = tracker.observe({
+                subject: "bridge-release-consistency",
+                source: "mssr-release-consistency",
+                boundary: snapshot.boundary,
+                observations: snapshot.observations,
+                projectRoot: root,
+                details: {
+                    observedAt: snapshot.observedAt,
+                    producer: "bridge-release-consistency",
+                },
+                message: `Bridge release consistency ${snapshot.projection.level.toUpperCase()}: ${snapshot.projection.reasonCodes.join(", ") || "package/source/dist/runtime e instalación MSSR coherentes"}.`,
+                resolutionMessage: "Bridge release consistency volvió a un estado coherente; package/source/generated/installed/runtime ya no requieren atención C2c.",
+            });
+            if (result.notice)
+                options.onNotice?.(result.notice);
+            firstSuccessfulObservation = false;
+        }
+        finally {
+            running = false;
+        }
+    };
+    const handleError = (error) => options.onError?.(error);
+    const timer = setInterval(() => void runNow().catch(handleError), Math.max(10_000, options.intervalMs ?? DEFAULT_INTERVAL_MS));
+    timer.unref?.();
+    void runNow().catch(handleError);
+    return { stop: () => clearInterval(timer), runNow };
+}
