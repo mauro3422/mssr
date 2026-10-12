@@ -1,0 +1,1628 @@
+{
+  "results": [
+    {
+      "handle": {
+        "version": 1,
+        "id": "7eaf5d0f4a5355df8aad10c22ea210241d1fd3ec95a64b51b3b4414130cc3598",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 40,
+        "startOffset": 0,
+        "endOffset": 5166,
+        "fingerprint": "92628d518bca4ba29be7f663d71f72233ff71f1ce9306e32e7aff2c0f9664de7",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 5166,
+      "exactFetchable": true,
+      "score": 0.642857,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.642857,
+          "matchedTerms": [
+            "registra",
+            "bridge",
+            "cada",
+            "descarga",
+            "asset_import_files",
+            "destinos",
+            "limites",
+            "archivo",
+            "lote"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.166667,
+          "matchedTerms": [
+            "bridge",
+            "asset_import_files"
+          ]
+        }
+      ],
+      "title": "Bridge — Importación de assets desde ChatGPT",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT"
+      ],
+      "snippet": "# Bridge — Importación de assets desde ChatGPT ## Objetivo Convertir archivos generados o adjuntados en ChatGPT en archivos reales del host MauroPrime, sin enviar Base64 por el modelo ni dentro de Blender. La conversión/descarga depende de…",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT"
+        ],
+        "level": 1,
+        "parentId": null,
+        "startLine": 1,
+        "endLine": 40,
+        "chars": 5166,
+        "bytes": 5221,
+        "terms": [
+          "assets",
+          "bridge",
+          "chatgpt",
+          "desde",
+          "importacion",
+          "archivos",
+          "adjuntados",
+          "autorizado"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "cc08f0e062109489d625eacc3628afbc1aca78eb530787e8472a6c1776a76533",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 6,
+        "endLine": 13,
+        "startOffset": 349,
+        "endOffset": 1322,
+        "fingerprint": "544d0cbda8a0a29c0a99dab74429d9990558e792c5d0fe0dafc0bbca66e6bda4",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 973,
+      "exactFetchable": true,
+      "score": 0.571429,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.571429,
+          "matchedTerms": [
+            "registra",
+            "bridge",
+            "cada",
+            "descarga",
+            "asset_import_files",
+            "limites",
+            "archivo",
+            "lote"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.166667,
+          "matchedTerms": [
+            "bridge",
+            "asset_import_files"
+          ]
+        }
+      ],
+      "title": "Contrato implementado",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Contrato implementado"
+      ],
+      "snippet": "## Contrato implementado `asset_import_files` usa `_meta['openai/fileParams']=['files']` y recibe los archivos como `files` (objeto/s con `download_url`, `file_id`, y opcionalmente MIME y nombre). El host de ChatGPT resuelve la referencia …",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Contrato implementado"
+        ],
+        "level": 2,
+        "parentId": "heading-1",
+        "startLine": 6,
+        "endLine": 13,
+        "chars": 973,
+        "bytes": 977,
+        "terms": [
+          "contrato",
+          "implementado",
+          "files",
+          "mime",
+          "aporta",
+          "archivos",
+          "asset_import_files",
+          "autorizada"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "6371802352ab79c2648e0c14702fc8c9abc42559f565c7d3995cb1b0d54653a6",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 8,
+        "endLine": 8,
+        "startOffset": 375,
+        "endOffset": 750,
+        "fingerprint": "273fc2818a556eb1350075765c6b8736a768cdeb16e12fc53f48635a800e0be9",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 375,
+      "exactFetchable": true,
+      "score": 0.285714,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.285714,
+          "matchedTerms": [
+            "registra",
+            "bridge",
+            "descarga",
+            "asset_import_files"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.166667,
+          "matchedTerms": [
+            "bridge",
+            "asset_import_files"
+          ]
+        }
+      ],
+      "title": "Contrato implementado",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Contrato implementado"
+      ],
+      "snippet": "`asset_import_files` usa `_meta['openai/fileParams']=['files']` y recibe los archivos como `files` (objeto/s con `download_url`, `file_id`, y opcionalmente MIME y nombre). El host de ChatGPT resuelve la referencia autorizada y aporta una U…",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Contrato implementado"
+        ],
+        "blockKind": "prose",
+        "sectionId": "heading-3",
+        "startLine": 8,
+        "endLine": 8,
+        "chars": 375,
+        "bytes": 375,
+        "terms": [
+          "files",
+          "mime",
+          "aporta",
+          "archivos",
+          "asset_import_files",
+          "autorizada",
+          "bridge",
+          "chatgpt"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "fbc418d3d78c0d9c47d83501a23b158cd28209e244cad79eb372c56f9fcc890c",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "block-4",
+        "rangeKind": "block",
+        "startLine": 12,
+        "endLine": 12,
+        "startOffset": 1007,
+        "endOffset": 1320,
+        "fingerprint": "5ab6fd883f8be3885fbea348e51bf632e88860b0d4720ea81aa46a4328ef4ae4",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 313,
+      "exactFetchable": true,
+      "score": 0.285714,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.285714,
+          "matchedTerms": [
+            "bridge",
+            "limites",
+            "archivo",
+            "lote"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.083333,
+          "matchedTerms": [
+            "bridge"
+          ]
+        }
+      ],
+      "title": "Contrato implementado",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Contrato implementado"
+      ],
+      "snippet": "…midos, `.blend` y otros. No convierte, descomprime, ejecuta ni instala contenido. Límites actuales: 512 MiB por archivo, 8 archivos, 1 GiB por lote. Archivos mayores requieren extensión explícita del contrato (no afirmar soporte ilimitado…",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Contrato implementado"
+        ],
+        "blockKind": "prose",
+        "sectionId": "heading-3",
+        "startLine": 12,
+        "endLine": 12,
+        "chars": 313,
+        "bytes": 317,
+        "terms": [
+          "archivos",
+          "actuales",
+          "afirmar",
+          "arbitrarios",
+          "audio",
+          "blend",
+          "bytes",
+          "comprimidos"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "9bf7d0b9e9a3007b8424d6e5d6614bba9c1f45be73c5edeb8e9710e8102c3db2",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "startLine": 14,
+        "endLine": 21,
+        "startOffset": 1322,
+        "endOffset": 2194,
+        "fingerprint": "ce77f1a4d6298669ec808381b9af0aa9c0f281b126cf20e83372228aed12401c",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 872,
+      "exactFetchable": true,
+      "score": 0.285714,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.285714,
+          "matchedTerms": [
+            "bridge",
+            "asset_import_files",
+            "destinos",
+            "archivo"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.166667,
+          "matchedTerms": [
+            "bridge",
+            "asset_import_files"
+          ]
+        }
+      ],
+      "title": "Secuencia correcta para práctica Blender",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Secuencia correcta para práctica Blender"
+      ],
+      "snippet": "…ImageGen. Inspeccionarla visualmente. 2. En la llamada MCP `asset_import_files`, pasar la imagen como **archivo autorizado** (o elegirla como archivo desde ChatGPT); no pegar Base64 ni una ruta `/mnt/data` como URL de Windows. Destinos, p…",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Secuencia correcta para práctica Blender"
+        ],
+        "level": 2,
+        "parentId": "heading-1",
+        "startLine": 14,
+        "endLine": 21,
+        "chars": 872,
+        "bytes": 876,
+        "terms": [
+          "blender",
+          "correcta",
+          "practica",
+          "secuencia",
+          "data",
+          "imagen",
+          "abortar",
+          "abrir"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "f7d6def16703cf9c3fe8c55c0631f8ec06ec9fecda6c625615db36c8e4428b7a",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "block-5",
+        "rangeKind": "block",
+        "startLine": 16,
+        "endLine": 20,
+        "startOffset": 1367,
+        "endOffset": 2192,
+        "fingerprint": "173d6d63d5b6f33d2ec681bcb40e0bf9b38cfbfae91ac066ecda1c17c71dabd1",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 825,
+      "exactFetchable": true,
+      "score": 0.285714,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.285714,
+          "matchedTerms": [
+            "bridge",
+            "asset_import_files",
+            "destinos",
+            "archivo"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.166667,
+          "matchedTerms": [
+            "bridge",
+            "asset_import_files"
+          ]
+        }
+      ],
+      "title": "Secuencia correcta para práctica Blender",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Secuencia correcta para práctica Blender"
+      ],
+      "snippet": "…ImageGen. Inspeccionarla visualmente. 2. En la llamada MCP `asset_import_files`, pasar la imagen como **archivo autorizado** (o elegirla como archivo desde ChatGPT); no pegar Base64 ni una ruta `/mnt/data` como URL de Windows. Destinos, p…",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Secuencia correcta para práctica Blender"
+        ],
+        "blockKind": "list",
+        "sectionId": "heading-4",
+        "startLine": 16,
+        "endLine": 20,
+        "chars": 825,
+        "bytes": 828,
+        "terms": [
+          "data",
+          "imagen",
+          "abortar",
+          "abrir",
+          "accepted",
+          "analizar",
+          "anatomica",
+          "asset_import_files"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "bd3cc053cd1983cc3c8bf65e179bb2a5a44bd211184d40030a1311bc531db313",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "block-5/item-2",
+        "rangeKind": "block",
+        "startLine": 17,
+        "endLine": 17,
+        "startOffset": 1456,
+        "endOffset": 1753,
+        "fingerprint": "566a4ebe1617e6dfb31a71fb65fff7d5af7e9aa715f4d7b604abee41c886562b",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 297,
+      "exactFetchable": true,
+      "score": 0.285714,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.285714,
+          "matchedTerms": [
+            "bridge",
+            "asset_import_files",
+            "destinos",
+            "archivo"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.166667,
+          "matchedTerms": [
+            "bridge",
+            "asset_import_files"
+          ]
+        }
+      ],
+      "title": "Secuencia correcta para práctica Blender",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Secuencia correcta para práctica Blender"
+      ],
+      "snippet": "2. En la llamada MCP `asset_import_files`, pasar la imagen como **archivo autorizado** (o elegirla como archivo desde ChatGPT); no pegar Base64 ni una ruta `/mnt/data` como URL de Windows. Destinos, por ejemplo `D:\\\\Dev\\\\blender-mcp\\\\pract…",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Secuencia correcta para práctica Blender"
+        ],
+        "blockKind": "list-item",
+        "parentBlockId": "block-5",
+        "parentBlockFingerprint": "173d6d63d5b6f33d2ec681bcb40e0bf9b38cfbfae91ac066ecda1c17c71dabd1",
+        "listItemOrdinal": 2,
+        "sectionId": "heading-4",
+        "startLine": 17,
+        "endLine": 17,
+        "chars": 297,
+        "bytes": 297,
+        "terms": [
+          "en",
+          "la",
+          "llamada",
+          "mcp",
+          "asset_import_files",
+          "pasar",
+          "imagen",
+          "como",
+          "archivo",
+          "autorizado",
+          "elegirla",
+          "desde",
+          "chatgpt",
+          "no",
+          "pegar",
+          "base64",
+          "ni",
+          "una",
+          "ruta",
+          "mnt",
+          "data",
+          "url",
+          "de",
+          "windows",
+          "destinos",
+          "por",
+          "ejemplo",
+          "dev",
+          "blender-mcp",
+          "practice",
+          "references",
+          "mano_20261008",
+          "mano_anatomia_fuente",
+          "png"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "bd5cc1b216e2a5b9cc8c462df2c64ef795f36d7bff7642251d59fce3a228e31a",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "heading-6",
+        "rangeKind": "section",
+        "startLine": 28,
+        "endLine": 35,
+        "startOffset": 2963,
+        "endOffset": 3963,
+        "fingerprint": "365aa559c5625ed1eba89eb5c7a55c6ad1f7cf5fea8a7b03c2b953cb49d47f60",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 1000,
+      "exactFetchable": true,
+      "score": 0.285714,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.285714,
+          "matchedTerms": [
+            "bridge",
+            "descarga",
+            "limites",
+            "archivo"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.083333,
+          "matchedTerms": [
+            "bridge"
+          ]
+        }
+      ],
+      "title": "Seguridad y límites",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Seguridad y límites"
+      ],
+      "snippet": "## Seguridad y límites - Acepta únicamente URLs HTTPS en hosts de descarga autorizados (`files.oaiusercontent.com` por defecto); lista configurable a través de `BRIDGE_ASSET_FILE_HOSTS`. URLs IP/localhost, credenciales en URL, puertos inse…",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Seguridad y límites"
+        ],
+        "level": 2,
+        "parentId": "heading-1",
+        "startLine": 28,
+        "endLine": 35,
+        "chars": 1000,
+        "bytes": 1009,
+        "terms": [
+          "limites",
+          "seguridad",
+          "archivos",
+          "credenciales",
+          "files",
+          "hosts",
+          "lista",
+          "urls"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "fc708aecd93c2d9feba5bf46f3b2b2ed7a2a6545c6af03e82f77596abe61deca",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "block-8",
+        "rangeKind": "block",
+        "startLine": 30,
+        "endLine": 34,
+        "startOffset": 2987,
+        "endOffset": 3961,
+        "fingerprint": "06763e09ddc276d67497f90078528e9dd6c5c4abf1ac67bc61bfc4675d0ecece",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 974,
+      "exactFetchable": true,
+      "score": 0.285714,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.285714,
+          "matchedTerms": [
+            "bridge",
+            "descarga",
+            "limites",
+            "archivo"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.083333,
+          "matchedTerms": [
+            "bridge"
+          ]
+        }
+      ],
+      "title": "Seguridad y límites",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Seguridad y límites"
+      ],
+      "snippet": "- Acepta únicamente URLs HTTPS en hosts de descarga autorizados (`files.oaiusercontent.com` por defecto); lista configurable a través de `BRIDGE_ASSET_FILE_HOSTS`. URLs IP/localhost, credenciales en URL, puertos inseguros y redirecciones q…",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Seguridad y límites"
+        ],
+        "blockKind": "list",
+        "sectionId": "heading-6",
+        "startLine": 30,
+        "endLine": 34,
+        "chars": 974,
+        "bytes": 982,
+        "terms": [
+          "archivos",
+          "credenciales",
+          "files",
+          "hosts",
+          "lista",
+          "urls",
+          "acepta",
+          "adecuados"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "00015fe88e5624fb4f14a8f8305b9f97f1feda5d04ffc2a9fef69cc102fd1865",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "heading-7",
+        "rangeKind": "section",
+        "startLine": 36,
+        "endLine": 40,
+        "startOffset": 3963,
+        "endOffset": 5166,
+        "fingerprint": "5ca4fa6251c7016d7937830b0dc518c46043335f4600b226c3467a09fa1ac5d1",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 1203,
+      "exactFetchable": true,
+      "score": 0.285714,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.285714,
+          "matchedTerms": [
+            "bridge",
+            "asset_import_files",
+            "limites",
+            "archivo"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.166667,
+          "matchedTerms": [
+            "bridge",
+            "asset_import_files"
+          ]
+        }
+      ],
+      "title": "Comprobación",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Comprobación"
+      ],
+      "snippet": "…e scripts/test-asset-file-import.mjs` verifica contratos de archivo, importación exacta PNG/WAV/MP4, hashes, límites, bloqueo de sobreescritura y URLs inseguras. Estado de activación: **código y tests locales, NO instalado en el proceso p…",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Comprobación"
+        ],
+        "level": 2,
+        "parentId": "heading-1",
+        "startLine": 36,
+        "endLine": 40,
+        "chars": 1203,
+        "bytes": 1223,
+        "terms": [
+          "comprobacion",
+          "npm",
+          "run",
+          "bloqueo",
+          "build",
+          "check",
+          "contratos",
+          "exacta"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "0ee5ba316168f1f8d5574b37c056ed23528ed3576c9d7e97eb09c51da77de5bf",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "startLine": 3,
+        "endLine": 5,
+        "startOffset": 48,
+        "endOffset": 349,
+        "fingerprint": "fe9066679dec7c6b10d9cadc827ab5712ee81390e06eb7d1fa9888ae7e4197ad",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 301,
+      "exactFetchable": true,
+      "score": 0.214286,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.214286,
+          "matchedTerms": [
+            "bridge",
+            "descarga",
+            "archivo"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.083333,
+          "matchedTerms": [
+            "bridge"
+          ]
+        }
+      ],
+      "title": "Objetivo",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Objetivo"
+      ],
+      "snippet": "## Objetivo Convertir archivos generados o adjuntados en ChatGPT en archivos reales del host MauroPrime, sin enviar Base64 por el modelo ni dentro de Blender. La conversión/descarga depende de un **parámetro MCP de archivo autorizado por O…",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Objetivo"
+        ],
+        "level": 2,
+        "parentId": "heading-1",
+        "startLine": 3,
+        "endLine": 5,
+        "chars": 301,
+        "bytes": 303,
+        "terms": [
+          "objetivo",
+          "archivos",
+          "adjuntados",
+          "autorizado",
+          "base64",
+          "blender",
+          "chatgpt",
+          "conversion"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "62e67bcbc6ec293196f332e7848f7ed824b5baa90b9e5377cc7818c447db88b8",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "block-1",
+        "rangeKind": "block",
+        "startLine": 4,
+        "endLine": 4,
+        "startOffset": 60,
+        "endOffset": 347,
+        "fingerprint": "20adcbc3255c05fbe9ccfb11167ce47fe5060a7c8ea2c9753e0e5d08ce27ee91",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 287,
+      "exactFetchable": true,
+      "score": 0.214286,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.214286,
+          "matchedTerms": [
+            "bridge",
+            "descarga",
+            "archivo"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.083333,
+          "matchedTerms": [
+            "bridge"
+          ]
+        }
+      ],
+      "title": "Objetivo",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Objetivo"
+      ],
+      "snippet": "Convertir archivos generados o adjuntados en ChatGPT en archivos reales del host MauroPrime, sin enviar Base64 por el modelo ni dentro de Blender. La conversión/descarga depende de un **parámetro MCP de archivo autorizado por OpenAI**, no …",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Objetivo"
+        ],
+        "blockKind": "prose",
+        "sectionId": "heading-2",
+        "startLine": 4,
+        "endLine": 4,
+        "chars": 287,
+        "bytes": 289,
+        "terms": [
+          "archivos",
+          "adjuntados",
+          "autorizado",
+          "base64",
+          "blender",
+          "chatgpt",
+          "conversion",
+          "convertir"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "a426453eddf5d1a3af3995beb456db496a2267fb51b12e81814731f372e13239",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "startLine": 22,
+        "endLine": 27,
+        "startOffset": 2194,
+        "endOffset": 2963,
+        "fingerprint": "aa0b8c6ca730ecf6be9285ca453ab3c47b5fc37410e6ec5d567f69640e57f833",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 769,
+      "exactFetchable": true,
+      "score": 0.214286,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.214286,
+          "matchedTerms": [
+            "bridge",
+            "asset_import_files",
+            "archivo"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.166667,
+          "matchedTerms": [
+            "bridge",
+            "asset_import_files"
+          ]
+        }
+      ],
+      "title": "Por qué antes no funcionaba",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Por qué antes no funcionaba"
+      ],
+      "snippet": "## Por qué antes no funcionaba `image_asset_import_files` YA existía en el Bridge de imágenes; el conector visible en la conversación exponía `bridge_tool_action` **sin su parámetro superior `files`**, aunque el registro MCP vivo sí lo dec…",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Por qué antes no funcionaba"
+        ],
+        "level": 2,
+        "parentId": "heading-1",
+        "startLine": 22,
+        "endLine": 27,
+        "chars": 769,
+        "bytes": 782,
+        "terms": [
+          "antes",
+          "funcionaba",
+          "aunque",
+          "bridge",
+          "bridge_tool_action",
+          "chatgpt",
+          "conector",
+          "conversacion"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "8344d3be7af1cb1d60c992245f89a75989e0f98955c7c4828f191b359c973989",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "block-7",
+        "rangeKind": "block",
+        "startLine": 26,
+        "endLine": 26,
+        "startOffset": 2551,
+        "endOffset": 2961,
+        "fingerprint": "8c5b29fc293c1ba4e90f8352fc43a29eab92375f02717a7d7fdb65fc87e3afc5",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 410,
+      "exactFetchable": true,
+      "score": 0.214286,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.214286,
+          "matchedTerms": [
+            "bridge",
+            "asset_import_files",
+            "archivo"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.166667,
+          "matchedTerms": [
+            "bridge",
+            "asset_import_files"
+          ]
+        }
+      ],
+      "title": "Por qué antes no funcionaba",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Por qué antes no funcionaba"
+      ],
+      "snippet": "Con esta versión se incluye una tool dedicada `asset_import_files` para cualquier formato, pero requiere que el catálogo del conector de ChatGPT **se actualice** y que el host le suministre un archivo real. Reiniciar únicamente el proceso …",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Por qué antes no funcionaba"
+        ],
+        "blockKind": "prose",
+        "sectionId": "heading-5",
+        "startLine": 26,
+        "endLine": 26,
+        "chars": 410,
+        "bytes": 415,
+        "terms": [
+          "catalogo",
+          "actualice",
+          "actualizar",
+          "anidados",
+          "app",
+          "asset_import_files",
+          "bridge",
+          "cacheado"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "ad173b35a42e3b097c61c6d566fab08eb8eff27246ee0ed4967f5aac5cf3e594",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "block-8/item-1",
+        "rangeKind": "block",
+        "startLine": 30,
+        "endLine": 30,
+        "startOffset": 2987,
+        "endOffset": 3312,
+        "fingerprint": "db3dadacb5d52d73eb5176ca407348323cfbd38f12ce124ed310332ba3152391",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 325,
+      "exactFetchable": true,
+      "score": 0.214286,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.214286,
+          "matchedTerms": [
+            "bridge",
+            "descarga",
+            "limites"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.083333,
+          "matchedTerms": [
+            "bridge"
+          ]
+        }
+      ],
+      "title": "Seguridad y límites",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Seguridad y límites"
+      ],
+      "snippet": "- Acepta únicamente URLs HTTPS en hosts de descarga autorizados (`files.oaiusercontent.com` por defecto); lista configurable a través de `BRIDGE_ASSET_FILE_HOSTS`. URLs IP/localhost, credenciales en URL, puertos inseguros y redirecciones q…",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Seguridad y límites"
+        ],
+        "blockKind": "list-item",
+        "parentBlockId": "block-8",
+        "parentBlockFingerprint": "06763e09ddc276d67497f90078528e9dd6c5c4abf1ac67bc61bfc4675d0ecece",
+        "listItemOrdinal": 1,
+        "sectionId": "heading-6",
+        "startLine": 30,
+        "endLine": 30,
+        "chars": 325,
+        "bytes": 329,
+        "terms": [
+          "acepta",
+          "unicamente",
+          "urls",
+          "https",
+          "en",
+          "hosts",
+          "de",
+          "descarga",
+          "autorizados",
+          "files",
+          "oaiusercontent",
+          "com",
+          "por",
+          "defecto",
+          "lista",
+          "configurable",
+          "traves",
+          "bridge_asset_file_hosts",
+          "ip",
+          "localhost",
+          "credenciales",
+          "url",
+          "puertos",
+          "inseguros",
+          "redirecciones",
+          "quedan",
+          "bloqueadas",
+          "servidor",
+          "local",
+          "prueba",
+          "solo",
+          "node_env",
+          "test",
+          "con",
+          "flag",
+          "explicito"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "0016da2b96d5009ce46b997589045c6303c418ed7bec2a3a4f592a23b1aca166",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "block-8/item-3",
+        "rangeKind": "block",
+        "startLine": 32,
+        "endLine": 32,
+        "startOffset": 3505,
+        "endOffset": 3692,
+        "fingerprint": "7fa20c3e00c3ac7a7498765775a7b1e8b21cf748d1421eb6816284c6e771288c",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 187,
+      "exactFetchable": true,
+      "score": 0.214286,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.214286,
+          "matchedTerms": [
+            "bridge",
+            "limites",
+            "archivo"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.083333,
+          "matchedTerms": [
+            "bridge"
+          ]
+        }
+      ],
+      "title": "Seguridad y límites",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Seguridad y límites"
+      ],
+      "snippet": "- Transmite con presupuesto de bytes/tiempo y compara SHA real; prepara en archivo temporal adyacente, hace commit sin reemplazar mediante hardlink y limpia archivos parciales ante error.",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Seguridad y límites"
+        ],
+        "blockKind": "list-item",
+        "parentBlockId": "block-8",
+        "parentBlockFingerprint": "06763e09ddc276d67497f90078528e9dd6c5c4abf1ac67bc61bfc4675d0ecece",
+        "listItemOrdinal": 3,
+        "sectionId": "heading-6",
+        "startLine": 32,
+        "endLine": 32,
+        "chars": 187,
+        "bytes": 187,
+        "terms": [
+          "transmite",
+          "con",
+          "presupuesto",
+          "de",
+          "bytes",
+          "tiempo",
+          "compara",
+          "sha",
+          "real",
+          "prepara",
+          "en",
+          "archivo",
+          "temporal",
+          "adyacente",
+          "hace",
+          "commit",
+          "sin",
+          "reemplazar",
+          "mediante",
+          "hardlink",
+          "limpia",
+          "archivos",
+          "parciales",
+          "ante",
+          "error"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "8d351f0ebf9375c22e5100241af669887b7e59d98759d9c4abccec7588f6a790",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "block-9",
+        "rangeKind": "block",
+        "startLine": 38,
+        "endLine": 38,
+        "startOffset": 3980,
+        "endOffset": 4179,
+        "fingerprint": "08e6229082671052bf53db8de291ed593a5fe15ffd024ec518a9eae6a79803a4",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 199,
+      "exactFetchable": true,
+      "score": 0.214286,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.214286,
+          "matchedTerms": [
+            "bridge",
+            "limites",
+            "archivo"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.083333,
+          "matchedTerms": [
+            "bridge"
+          ]
+        }
+      ],
+      "title": "Comprobación",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Comprobación"
+      ],
+      "snippet": "`npm run check && npm run build && node scripts/test-asset-file-import.mjs` verifica contratos de archivo, importación exacta PNG/WAV/MP4, hashes, límites, bloqueo de sobreescritura y URLs inseguras.",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Comprobación"
+        ],
+        "blockKind": "prose",
+        "sectionId": "heading-7",
+        "startLine": 38,
+        "endLine": 38,
+        "chars": 199,
+        "bytes": 201,
+        "terms": [
+          "npm",
+          "run",
+          "bloqueo",
+          "build",
+          "check",
+          "contratos",
+          "exacta",
+          "hashes"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "275b7b6a6e2330965d480764ac6a4eb0f3251a52f13a9011602d3b8b7c34b561",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "block-3",
+        "rangeKind": "block",
+        "startLine": 10,
+        "endLine": 10,
+        "startOffset": 752,
+        "endOffset": 1005,
+        "fingerprint": "edd33014f46e146cd86f41860fde38b9d567818f1dff1cfdd3b2d6d1264165f8",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 253,
+      "exactFetchable": true,
+      "score": 0.142857,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.142857,
+          "matchedTerms": [
+            "bridge",
+            "cada"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.083333,
+          "matchedTerms": [
+            "bridge"
+          ]
+        }
+      ],
+      "title": "Contrato implementado",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Contrato implementado"
+      ],
+      "snippet": "Cada destino debe declararse en `targets[].outputPath`. No se admiten sobreescrituras ni ubicaciones fuera de `resolveToolPath(access=write)`. Puede incluir `expectedSha256` y `expectedBytes`. `manifestPath` permite guardar JSON con los da…",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Contrato implementado"
+        ],
+        "blockKind": "prose",
+        "sectionId": "heading-3",
+        "startLine": 10,
+        "endLine": 10,
+        "chars": 253,
+        "bytes": 253,
+        "terms": [
+          "access",
+          "admiten",
+          "datos",
+          "debe",
+          "declararse",
+          "destino",
+          "expectedbytes",
+          "expectedsha256"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "422836f69c9e4ad3452ccdccac5f087a450518ed5da172982db6d21002c72649",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "block-8/item-2",
+        "rangeKind": "block",
+        "startLine": 31,
+        "endLine": 31,
+        "startOffset": 3313,
+        "endOffset": 3504,
+        "fingerprint": "07926cd889ddf60094b8e3361b58dafb12822c3a4613f0204508d5146bde3ad8",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 191,
+      "exactFetchable": true,
+      "score": 0.142857,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.142857,
+          "matchedTerms": [
+            "bridge",
+            "limites"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.083333,
+          "matchedTerms": [
+            "bridge"
+          ]
+        }
+      ],
+      "title": "Seguridad y límites",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Seguridad y límites"
+      ],
+      "snippet": "- Comprueba DNS antes de descargar; permite la lista corta de hosts suministradores confiables. Los enlaces temporales se consumen durante una sola ejecución y no se guardan en el manifiesto.",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Seguridad y límites"
+        ],
+        "blockKind": "list-item",
+        "parentBlockId": "block-8",
+        "parentBlockFingerprint": "06763e09ddc276d67497f90078528e9dd6c5c4abf1ac67bc61bfc4675d0ecece",
+        "listItemOrdinal": 2,
+        "sectionId": "heading-6",
+        "startLine": 31,
+        "endLine": 31,
+        "chars": 191,
+        "bytes": 192,
+        "terms": [
+          "comprueba",
+          "dns",
+          "antes",
+          "de",
+          "descargar",
+          "permite",
+          "la",
+          "lista",
+          "corta",
+          "hosts",
+          "suministradores",
+          "confiables",
+          "los",
+          "enlaces",
+          "temporales",
+          "se",
+          "consumen",
+          "durante",
+          "una",
+          "sola",
+          "ejecucion",
+          "no",
+          "guardan",
+          "en",
+          "el",
+          "manifiesto"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "a0baa2e6e45a1c78b9a60d33be9cb4caa8b78bac6b50706a4476f30929897884",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "block-8/item-4",
+        "rangeKind": "block",
+        "startLine": 33,
+        "endLine": 33,
+        "startOffset": 3693,
+        "endOffset": 3889,
+        "fingerprint": "73ff9f96056ea3d1ea996faa34b3f9f95538c587cc210c6d8daeb37fc4bd1d1e",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 196,
+      "exactFetchable": true,
+      "score": 0.142857,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.142857,
+          "matchedTerms": [
+            "bridge",
+            "limites"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.083333,
+          "matchedTerms": [
+            "bridge"
+          ]
+        }
+      ],
+      "title": "Seguridad y límites",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Seguridad y límites"
+      ],
+      "snippet": "- Copiar archivos NO equivale a ejecutar instaladores. La instalación de software debe usar una herramienta diferente, permisos/confirmaciones adecuados, checksum/firma y una ruta de recuperación.",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Seguridad y límites"
+        ],
+        "blockKind": "list-item",
+        "parentBlockId": "block-8",
+        "parentBlockFingerprint": "06763e09ddc276d67497f90078528e9dd6c5c4abf1ac67bc61bfc4675d0ecece",
+        "listItemOrdinal": 4,
+        "sectionId": "heading-6",
+        "startLine": 33,
+        "endLine": 33,
+        "chars": 196,
+        "bytes": 198,
+        "terms": [
+          "copiar",
+          "archivos",
+          "no",
+          "equivale",
+          "ejecutar",
+          "instaladores",
+          "la",
+          "instalacion",
+          "de",
+          "software",
+          "debe",
+          "usar",
+          "una",
+          "herramienta",
+          "diferente",
+          "permisos",
+          "confirmaciones",
+          "adecuados",
+          "checksum",
+          "firma",
+          "ruta",
+          "recuperacion"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    }
+  ],
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "truncated": true
+}

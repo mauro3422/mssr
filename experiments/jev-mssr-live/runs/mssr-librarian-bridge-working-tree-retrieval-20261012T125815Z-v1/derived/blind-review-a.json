@@ -1,0 +1,49 @@
+{
+  "reviewer": "run55_blind_review_a",
+  "model": "gpt-6-luna",
+  "labelsProvided": false,
+  "results": [
+    {
+      "case": "ASSET-IMPORT-CONTRACT",
+      "support": "full",
+      "factualIssues": [],
+      "missingMaterial": [
+        "Los metadatos registrados por descarga y los límites por archivo y lote; la respuesta indica que el fragmento no los especifica."
+      ],
+      "citationAssessment": "exact",
+      "brevity": "good",
+      "usability": "yes",
+      "reason": "Describe fielmente los requisitos visibles para destinos y señala los datos que el fragmento no cubre."
+    },
+    {
+      "case": "NOTICE-DELIVERY-PATH",
+      "support": "full",
+      "factualIssues": [],
+      "missingMaterial": [],
+      "citationAssessment": "exact",
+      "brevity": "good",
+      "usability": "yes",
+      "reason": "Resume el flujo y los límites de entrega expresamente descritos."
+    },
+    {
+      "case": "SITUATION-WATCHER-CHANNELS",
+      "support": "full",
+      "factualIssues": [],
+      "missingMaterial": [],
+      "citationAssessment": "exact",
+      "brevity": "good",
+      "usability": "yes",
+      "reason": "Incluye ambos canales, el destino de los snapshots y todas las exclusiones mencionadas."
+    },
+    {
+      "case": "RECOMMENDATION-AUTHORITY",
+      "support": "full",
+      "factualIssues": [],
+      "missingMaterial": [],
+      "citationAssessment": "exact",
+      "brevity": "good",
+      "usability": "yes",
+      "reason": "Responde directamente quién ordena, qué puede exponerse y cómo tratar lo deferred."
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "captureStatus": "post-run persistence of outputs reported by the writer agent; labels were not provided",
+  "producer": "Luna writer agent",
+  "cases": [
+    {
+      "caseId": "ASSET-IMPORT-CONTRACT",
+      "answer": "Cada destino debe declararse en `targets[].outputPath`. No se admiten sobreescrituras ni ubicaciones fuera de `resolveToolPath(access=write)`. La solicitud puede incluir `expectedSha256` y `expectedBytes`; `manifestPath` permite guardar JSON con los datos guardados. La evidencia seleccionada no especifica los metadatos por descarga ni los límites por archivo y lote.",
+      "citation": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b:L10-L10"
+    },
+    {
+      "caseId": "NOTICE-DELIVERY-PATH",
+      "answer": "El aviso pasa de la observación del host/proyecto a una decisión de transición MSSR portable; el adaptador de Bridge crea `BridgeNoticeInput` y llama a `emitBridgeNotice()`. El aviso queda en una cola acotada y en el historial reciente; una respuesta MCP observable posterior entrega los avisos pendientes para que el agente los evalúe. La entrega no puede interrumpir una llamada de herramienta activa y opaca ni debe describirse como inserción espontánea del servidor de ChatGPT.",
+      "citation": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md#blob=e547af24b73cfd75d222f30ea572e1dfb288909f:L24-L37"
+    },
+    {
+      "caseId": "SITUATION-WATCHER-CHANNELS",
+      "answer": "Se distinguen C2e, derivado de recibos solo cuando estos están activos y vigentes, y C2e-D, observado explícitamente e independiente de recibos. El watcher envía snapshots solo de metadatos al destino configurado, y excluye cuerpos de prompts/respuestas, secretos y contenido de archivos.",
+      "citation": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f:L26-L33"
+    },
+    {
+      "caseId": "RECOMMENDATION-AUTHORITY",
+      "answer": "C2d conserva la autoridad sobre el orden de recomendaciones. Solo las recomendaciones con estado `ready` se exponen como acciones; las `deferred` quedan como evidencia y no se promueven a acciones.",
+      "citation": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f:L51-L51"
+    }
+  ]
+}

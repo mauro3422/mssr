@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "caseProtocol": [
+    "Freeze source snapshots, queries and provisional labels before provider calls.",
+    "Run deterministic search with explicit Spanish primary query and English alternate query; no atoms or extra catalog metadata.",
+    "Pass top returned exact handles plus the exact same snapshots to one Jev selection per case.",
+    "Re-read selected handle using exact fetch; build cited evidence pack.",
+    "Compose one short Spanish response per case from only its cited pack; two blind Luna reviewers assess independently.",
+    "Report counts and failures by pipeline stage; do not convert provider scores to confidence thresholds."
+  ],
+  "independentUnit": "source document cluster; multiple questions on one source stay grouped",
+  "providerConcurrency": 4,
+  "protectedHoldout": false,
+  "negativesIncluded": false,
+  "ownerGold": false,
+  "thresholdsTuned": false,
+  "findingsScope": "diagnostic only; no runtime, threshold, canonical source, or release changes"
+}

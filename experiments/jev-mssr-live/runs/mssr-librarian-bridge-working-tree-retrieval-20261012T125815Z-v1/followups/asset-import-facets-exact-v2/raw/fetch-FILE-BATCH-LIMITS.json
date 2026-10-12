@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"fbc418d3d78c0d9c47d83501a23b158cd28209e244cad79eb372c56f9fcc890c\",\n    \"owner\": \"D:/Dev/bridge-mcp\",\n    \"sourceRef\": \"bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b\",\n    \"revision\": \"8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48\",\n    \"rangeId\": \"block-4\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 12,\n    \"endLine\": 12,\n    \"startOffset\": 1007,\n    \"endOffset\": 1320,\n    \"fingerprint\": \"5ab6fd883f8be3885fbea348e51bf632e88860b0d4720ea81aa46a4328ef4ae4\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"Formatos: bytes arbitrarios de imágenes, audio, video, documentos, comprimidos, `.blend` y otros. No convierte, descomprime, ejecuta ni instala contenido. Límites actuales: 512 MiB por archivo, 8 archivos, 1 GiB por lote. Archivos mayores requieren extensión explícita del contrato (no afirmar soporte ilimitado).\",\n  \"fingerprint\": \"5ab6fd883f8be3885fbea348e51bf632e88860b0d4720ea81aa46a4328ef4ae4\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false\n}"
+    }
+  ]
+}

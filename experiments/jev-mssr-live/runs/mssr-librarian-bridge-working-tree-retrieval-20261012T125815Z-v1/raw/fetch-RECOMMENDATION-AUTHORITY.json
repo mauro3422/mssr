@@ -1,0 +1,21 @@
+{
+  "handle": {
+    "version": 1,
+    "id": "2e63cc01909c9b0271c46c4e8ec8c7f0a7c286d196b1d7887e35c20057291e84",
+    "owner": "D:/Dev/bridge-mcp",
+    "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+    "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+    "rangeId": "block-13",
+    "rangeKind": "block",
+    "startLine": 51,
+    "endLine": 51,
+    "startOffset": 2992,
+    "endOffset": 3186,
+    "fingerprint": "e9b7d224eabe3bcc5361366dd5d5fb19f3ef23432b67d20c12074ce5316d0e4f",
+    "privacyClass": "project-metadata"
+  },
+  "text": "C2d remains the sole owner of recommendation order. Bridge may turn only `ready` recommendations into notice actions. `deferred` items remain evidence and cannot be promoted by host convenience.",
+  "fingerprint": "e9b7d224eabe3bcc5361366dd5d5fb19f3ef23432b67d20c12074ce5316d0e4f",
+  "advisoryOnly": true,
+  "truthAuthority": false
+}

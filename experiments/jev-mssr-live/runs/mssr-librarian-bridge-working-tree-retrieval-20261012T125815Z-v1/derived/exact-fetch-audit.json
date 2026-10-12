@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "results": [
+    {
+      "caseId": "ASSET-IMPORT-CONTRACT",
+      "status": "fetched",
+      "selectedRange": [
+        10,
+        10
+      ],
+      "frozenTargetLines": [
+        8,
+        12
+      ],
+      "targetLineOverlap": 1,
+      "exactSliceMatch": true,
+      "returnedFingerprintMatchesHandle": true,
+      "packCitationCount": 1,
+      "packExactTextMatchesFetch": true,
+      "packCitationFingerprint": "edd33014f46e146cd86f41860fde38b9d567818f1dff1cfdd3b2d6d1264165f8",
+      "sourceRevision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+      "exactFetchedChars": 253
+    },
+    {
+      "caseId": "NOTICE-DELIVERY-PATH",
+      "status": "fetched",
+      "selectedRange": [
+        24,
+        37
+      ],
+      "frozenTargetLines": [
+        26,
+        36
+      ],
+      "targetLineOverlap": 11,
+      "exactSliceMatch": true,
+      "returnedFingerprintMatchesHandle": true,
+      "packCitationCount": 1,
+      "packExactTextMatchesFetch": true,
+      "packCitationFingerprint": "869214f2b3f98d51b8857a242bcfc0eb7fcbe2c479917b1447af8d513d8d02e0",
+      "sourceRevision": "f0776b2a0c138b27af7d1e55bdde2e6a5c0bf9e9bd66e7a25e9f3183b2265b10",
+      "exactFetchedChars": 456
+    },
+    {
+      "caseId": "SITUATION-WATCHER-CHANNELS",
+      "status": "fetched",
+      "selectedRange": [
+        26,
+        33
+      ],
+      "frozenTargetLines": [
+        28,
+        30
+      ],
+      "targetLineOverlap": 3,
+      "exactSliceMatch": true,
+      "returnedFingerprintMatchesHandle": true,
+      "packCitationCount": 1,
+      "packExactTextMatchesFetch": true,
+      "packCitationFingerprint": "d4b5a3f5a5c5e72bd25bf6d2b76b58f4625540c112a7515e0989f0b6aec348b2",
+      "sourceRevision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+      "exactFetchedChars": 1122
+    },
+    {
+      "caseId": "RECOMMENDATION-AUTHORITY",
+      "status": "fetched",
+      "selectedRange": [
+        51,
+        51
+      ],
+      "frozenTargetLines": [
+        51,
+        53
+      ],
+      "targetLineOverlap": 1,
+      "exactSliceMatch": true,
+      "returnedFingerprintMatchesHandle": true,
+      "packCitationCount": 1,
+      "packExactTextMatchesFetch": true,
+      "packCitationFingerprint": "e9b7d224eabe3bcc5361366dd5d5fb19f3ef23432b67d20c12074ce5316d0e4f",
+      "sourceRevision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+      "exactFetchedChars": 194
+    }
+  ],
+  "summary": {
+    "fetches": 4,
+    "exactSliceMatches": 4,
+    "packTextParity": 4,
+    "semanticAuthority": false
+  }
+}

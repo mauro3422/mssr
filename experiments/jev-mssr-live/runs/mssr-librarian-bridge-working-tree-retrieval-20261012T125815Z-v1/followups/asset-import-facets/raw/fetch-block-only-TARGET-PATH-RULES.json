@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"0c15a9d05daedada6d1a9be90ec786f0fd1109f32145dda5699a57999a2f0ed5\",\n    \"owner\": \"D:/Dev/bridge-mcp\",\n    \"sourceRef\": \"bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b\",\n    \"revision\": \"707fb9a59d40a85bf4a3c5a474214ddbd879f06bd979749ba16af60babd3dbdd\",\n    \"rangeId\": \"block-3\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 10,\n    \"endLine\": 10,\n    \"startOffset\": 752,\n    \"endOffset\": 1005,\n    \"fingerprint\": \"edd33014f46e146cd86f41860fde38b9d567818f1dff1cfdd3b2d6d1264165f8\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"Cada destino debe declararse en `targets[].outputPath`. No se admiten sobreescrituras ni ubicaciones fuera de `resolveToolPath(access=write)`. Puede incluir `expectedSha256` y `expectedBytes`. `manifestPath` permite guardar JSON con los datos guardados.\",\n  \"fingerprint\": \"edd33014f46e146cd86f41860fde38b9d567818f1dff1cfdd3b2d6d1264165f8\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false\n}"
+    }
+  ]
+}

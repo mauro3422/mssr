@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "kind": "mssr-librarian-evidence-pack",
+  "assembly": "verbatim-source-ranges",
+  "paragraphs": [
+    {
+      "ordinal": 1,
+      "exactText": "## Delivery path\n\n```text\nhost/project observation\n  -> portable MSSR transition decision\n  -> Bridge adapter builds BridgeNoticeInput\n  -> emitBridgeNotice()\n  -> bounded queue + recent history\n  -> later normal MCP response drains pending notices\n  -> agent observes and decides\n```\n\nDelivery is piggybacked on a later observable MCP boundary. It cannot interrupt an opaque active tool call and must not be described as unsolicited ChatGPT server push.\n\n",
+      "citation": {
+        "display": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md#blob=e547af24b73cfd75d222f30ea572e1dfb288909f:L24-L37",
+        "handleId": "e6e81a88241646a70d8bcab9a5d6a8f31fafb79e27a728dba1d143a24b231cc5",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md#blob=e547af24b73cfd75d222f30ea572e1dfb288909f",
+        "revision": "f0776b2a0c138b27af7d1e55bdde2e6a5c0bf9e9bd66e7a25e9f3183b2265b10",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 24,
+        "endLine": 37,
+        "fingerprint": "869214f2b3f98d51b8857a242bcfc0eb7fcbe2c479917b1447af8d513d8d02e0",
+        "privacyClass": "project-metadata"
+      }
+    }
+  ],
+  "totalFetchedChars": 456,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "canonicalRewriteAllowed": false,
+  "ownerAndPrivacyAreCallerAsserted": true
+}

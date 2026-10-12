@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-bridge-working-tree-retrieval-20261012T125815Z-v1",
+  "classification": "prospective source-new diagnostic; not owner-gold, protected holdout, reliability estimate, or confidence calibration",
+  "primary": {
+    "queryCount": 4,
+    "sourceDocumentClusters": 3,
+    "positiveOnly": true,
+    "labelsOwnerValidated": false,
+    "searchCandidateRecallAt20": "4/4 by overlap with provisional source ranges",
+    "jevSelections": "4/4 selected",
+    "exactFetchAndFingerprintIntegrity": "4/4",
+    "evidencePackCitationIntegrity": "4/4; one exact citation per case",
+    "cases": [
+      {
+        "caseId": "ASSET-IMPORT-CONTRACT",
+        "selectedRange": "block-3",
+        "lines": [
+          10,
+          10
+        ],
+        "chars": 253,
+        "targetFactGroupsCovered": 1,
+        "targetFactGroupsRequested": 3,
+        "answerAdjudication": "partial",
+        "choice": 0.62,
+        "noul": 0.4,
+        "inputTokens": 5064,
+        "outputTokens": 247,
+        "elapsedMs": 433.3
+      },
+      {
+        "caseId": "NOTICE-DELIVERY-PATH",
+        "selectedRange": "heading-3",
+        "lines": [
+          24,
+          37
+        ],
+        "chars": 456,
+        "answerAdjudication": "full",
+        "choice": 0.38,
+        "noul": 0.44,
+        "inputTokens": 4892,
+        "outputTokens": 247,
+        "elapsedMs": 282.1
+      },
+      {
+        "caseId": "SITUATION-WATCHER-CHANNELS",
+        "selectedRange": "heading-3",
+        "lines": [
+          26,
+          33
+        ],
+        "chars": 1122,
+        "answerAdjudication": "full; host-side wording later tightened to name data/project-situation.json and the environment override",
+        "choice": 0.42,
+        "noul": 0.74,
+        "inputTokens": 4760,
+        "outputTokens": 247,
+        "elapsedMs": 324.8
+      },
+      {
+        "caseId": "RECOMMENDATION-AUTHORITY",
+        "selectedRange": "block-13",
+        "lines": [
+          51,
+          51
+        ],
+        "chars": 194,
+        "answerAdjudication": "full; L53 excluded because query does not ask for that fact",
+        "choice": 0.63,
+        "noul": 0.92,
+        "inputTokens": 4843,
+        "outputTokens": 247,
+        "elapsedMs": 287.6
+      }
+    ],
+    "totals": {
+      "jevCalls": 4,
+      "inputTokens": 19559,
+      "outputTokens": 988,
+      "averageReportedElapsedMs": 332,
+      "exactFetchedChars": 2025
+    },
+    "blindReview": {
+      "reviewers": 2,
+      "modelFamily": "gpt-6-luna",
+      "adjudication": "3 full, 1 partial",
+      "note": "Reviewer A called Asset full while also listing the two unanswered requested facets; reviewer B called it partial. Manual adjudication is partial because the question explicitly asks for those omitted facts."
+    },
+    "rawScores": "Choice and Noul are descriptive and uncalibrated."
+  },
+  "exactFacetFollowup": {
+    "path": "followups/asset-import-facets-exact-v2/",
+    "sourceRevision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+    "verifiedSnapshotBytes": 5221,
+    "verifiedSnapshotLines": 40,
+    "queryClusterCount": 1,
+    "facets": 3,
+    "localSearch": {
+      "providerCalls": 0,
+      "top20TargetRecall": "3/3",
+      "exactTargetBlockRank": [
+        3,
+        3,
+        3
+      ]
+    },
+    "candidateRepresentation": "all block-kind handles from each frozen top-20 search; no label-guided filtering",
+    "candidateCounts": [
+      13,
+      14,
+      13
+    ],
+    "jevSelection": {
+      "calls": 3,
+      "selectedExactTargetBlocks": "3/3",
+      "inputTokens": 10398,
+      "outputTokens": 541,
+      "averageReportedElapsedMs": 323.6,
+      "choice": [
+        1,
+        0.67,
+        1
+      ],
+      "noul": [
+        0.82,
+        0.74,
+        0.96
+      ]
+    },
+    "exactFetch": {
+      "success": "3/3",
+      "textEqualsFrozenOffsets": "3/3",
+      "fingerprintAndRevisionMatches": "3/3"
+    },
+    "evidencePack": {
+      "citations": 3,
+      "exactCharacters": 941,
+      "verbatim": true
+    },
+    "composition": {
+      "producer": "Luna writer agent",
+      "blindReview": "2/2 full, no factual issues or omissions, exact citations"
+    },
+    "interpretation": "Query decomposition plus a block-only candidate representation recovered the three exact facets for this linked diagnostic. The repeated facets share one source cluster; this is not three independent benchmark units. Jev selected evidence; the host-side writer assembled the paragraph."
+  },
+  "excludedAttempt": {
+    "path": "followups/asset-import-facets/",
+    "jevCalls": 6,
+    "reason": "Captured PowerShell stdout added one LF; supplied text became 41 lines / revision 707fb9..., not the frozen 40-line / SHA 8e2478... source.",
+    "scoreContribution": 0,
+    "rawPreserved": true
+  },
+  "limits": [
+    "No negative/unanswerable cases in this cohort.",
+    "Source-derived labels are provisional and not owner-validated.",
+    "No production/runtime, threshold, or metadata/atom change.",
+    "Exact evidence-pack construction is verbatim assembly, not semantic compaction.",
+    "The final prose was composed by a Luna writer agent, not generated by Jev."
+  ]
+}

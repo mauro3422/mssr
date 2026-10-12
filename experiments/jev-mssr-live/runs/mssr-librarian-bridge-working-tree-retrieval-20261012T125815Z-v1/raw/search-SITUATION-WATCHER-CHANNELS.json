@@ -1,0 +1,1447 @@
+{
+  "results": [
+    {
+      "handle": {
+        "version": 1,
+        "id": "8452669ff231d73ad7c2d515aeb0f9ca81e502958edfa3a611cb07be120b848d",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 65,
+        "startOffset": 0,
+        "endOffset": 4342,
+        "fingerprint": "e099d5acbf1b4567a118cd6631d9fb3575d778c25c9b6b10442351938c763ada",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 4342,
+      "exactFetchable": true,
+      "score": 0.333333,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.333333,
+          "matchedTerms": [
+            "watcher",
+            "c2c",
+            "c2d"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.6,
+          "matchedTerms": [
+            "two",
+            "channels",
+            "watcher",
+            "c2c",
+            "c2d",
+            "it"
+          ]
+        }
+      ],
+      "title": "Situation Model adapter",
+      "headingPath": [
+        "Situation Model adapter"
+      ],
+      "snippet": "…ent canonical repository revisions ↓ MSSR Situation Model ↓ C2c consistency diagnosis ↓ C2d evidence-first planning ↓ existing bridgeNotices transport ``` This applies to any host that consumes the same Context Plane contract: ChatGPT Web…",
+      "metadata": {
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "headingPath": [
+          "Situation Model adapter"
+        ],
+        "level": 1,
+        "parentId": null,
+        "startLine": 1,
+        "endLine": 65,
+        "chars": 4342,
+        "bytes": 4350,
+        "terms": [
+          "adapter",
+          "model",
+          "situation",
+          "mssr",
+          "bridge",
+          "c2e-d",
+          "claim",
+          "consumes"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "a21b276f9884f3710c874d9941b6cc0b67fdf60fcf85ce5c1bff12b79399737c",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 26,
+        "endLine": 33,
+        "startOffset": 1159,
+        "endOffset": 2281,
+        "fingerprint": "d4b5a3f5a5c5e72bd25bf6d2b76b58f4625540c112a7515e0989f0b6aec348b2",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 1122,
+      "exactFetchable": true,
+      "score": 0.333333,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.333333,
+          "matchedTerms": [
+            "watcher",
+            "c2c",
+            "c2d"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.5,
+          "matchedTerms": [
+            "two",
+            "channels",
+            "watcher",
+            "c2c",
+            "c2d"
+          ]
+        }
+      ],
+      "title": "Watcher contract",
+      "headingPath": [
+        "Situation Model adapter",
+        "Watcher contract"
+      ],
+      "snippet": "## Watcher contract `src/project-situation.ts` discovers the managed workspace and composes two bounded evidence channels. Receipt-derived C2e observations are collected only when operationally active Context Plane delivery receipts still …",
+      "metadata": {
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "headingPath": [
+          "Situation Model adapter",
+          "Watcher contract"
+        ],
+        "level": 2,
+        "parentId": "heading-1",
+        "startLine": 26,
+        "endLine": 33,
+        "chars": 1122,
+        "bytes": 1122,
+        "terms": [
+          "contract",
+          "watcher",
+          "channels",
+          "only",
+          "src",
+          "active",
+          "auto-produces",
+          "both"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "b1f6d62705eae88b4eaf7e2310861ad39cf117eb8206e6256ae03d34068c80e9",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "rangeId": "block-5",
+        "rangeKind": "block",
+        "startLine": 28,
+        "endLine": 28,
+        "startOffset": 1180,
+        "endOffset": 1711,
+        "fingerprint": "d359a30e3a95435f9b8f3c0780a886c8ce3571fa6f164e4b15ad3f672cf0be97",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 531,
+      "exactFetchable": true,
+      "score": 0.333333,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.333333,
+          "matchedTerms": [
+            "watcher",
+            "c2c",
+            "c2d"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.5,
+          "matchedTerms": [
+            "two",
+            "channels",
+            "watcher",
+            "c2c",
+            "c2d"
+          ]
+        }
+      ],
+      "title": "Watcher contract",
+      "headingPath": [
+        "Situation Model adapter",
+        "Watcher contract"
+      ],
+      "snippet": "…e independent of receipt presence; Bridge currently auto-produces them only for its own release/install/runtime contract by reusing `src/release-consistency.ts`. Both channels enter the same portable MSSR Situation Model/C2c/C2d evaluatio…",
+      "metadata": {
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "headingPath": [
+          "Situation Model adapter",
+          "Watcher contract"
+        ],
+        "blockKind": "prose",
+        "sectionId": "heading-3",
+        "startLine": 28,
+        "endLine": 28,
+        "chars": 531,
+        "bytes": 531,
+        "terms": [
+          "channels",
+          "only",
+          "src",
+          "active",
+          "auto-produces",
+          "both",
+          "bounded",
+          "bridge"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "be4ae2719e963851dd5e0977446e15a75aa1bdff8d80c5fcbbb1aa4f18a00450",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md#blob=e547af24b73cfd75d222f30ea572e1dfb288909f",
+        "revision": "f0776b2a0c138b27af7d1e55bdde2e6a5c0bf9e9bd66e7a25e9f3183b2265b10",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 182,
+        "startOffset": 0,
+        "endOffset": 12968,
+        "fingerprint": "d6d5e8b4f109249ef5b299d1bb19056aee27056815ed6346b82c7bcb32e6ac05",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 12968,
+      "exactFetchable": true,
+      "score": 0.222222,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.222222,
+          "matchedTerms": [
+            "watcher",
+            "snapshot"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.5,
+          "matchedTerms": [
+            "two",
+            "watcher",
+            "it",
+            "snapshot",
+            "exclude"
+          ]
+        }
+      ],
+      "title": "Bridge adapter — MauroPrime Operational Notice Plane",
+      "headingPath": [
+        "Bridge adapter — MauroPrime Operational Notice Plane"
+      ],
+      "snippet": "… as Skill Health, Project Context Health and runtime-health snapshots; portable lifecycle/maintenance/freshness/infrastructure/provider identities come from packaged MSSR; - adaptation to `BridgeNoticeInput`; - `emitBridgeNotice()` queuei…",
+      "metadata": {
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md#blob=e547af24b73cfd75d222f30ea572e1dfb288909f",
+        "revision": "f0776b2a0c138b27af7d1e55bdde2e6a5c0bf9e9bd66e7a25e9f3183b2265b10",
+        "headingPath": [
+          "Bridge adapter — MauroPrime Operational Notice Plane"
+        ],
+        "level": 1,
+        "parentId": null,
+        "startLine": 1,
+        "endLine": 182,
+        "chars": 12968,
+        "bytes": 12984,
+        "terms": [
+          "adapter",
+          "bridge",
+          "mauroprime",
+          "notice",
+          "operational",
+          "plane",
+          "attention",
+          "decides"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "5768a7078f1e51787ce5b4094a8896b87f114c4a27e5f59476761b46163f3c30",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "startLine": 5,
+        "endLine": 25,
+        "startOffset": 208,
+        "endOffset": 1159,
+        "fingerprint": "04f90eaa1a68e2a5ebcd93c7078b2a89695f48847384acb9daeb4b71f32c94e6",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 951,
+      "exactFetchable": true,
+      "score": 0.222222,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.222222,
+          "matchedTerms": [
+            "c2c",
+            "c2d"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.2,
+          "matchedTerms": [
+            "c2c",
+            "c2d"
+          ]
+        }
+      ],
+      "title": "Purpose",
+      "headingPath": [
+        "Situation Model adapter",
+        "Purpose"
+      ],
+      "snippet": "…ent canonical repository revisions ↓ MSSR Situation Model ↓ C2c consistency diagnosis ↓ C2d evidence-first planning ↓ existing bridgeNotices transport ``` This applies to any host that consumes the same Context Plane contract: ChatGPT Web…",
+      "metadata": {
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "headingPath": [
+          "Situation Model adapter",
+          "Purpose"
+        ],
+        "level": 2,
+        "parentId": "heading-1",
+        "startLine": 5,
+        "endLine": 25,
+        "chars": 951,
+        "bytes": 959,
+        "terms": [
+          "purpose",
+          "claims",
+          "facts",
+          "also",
+          "bounded",
+          "bridge",
+          "can",
+          "canonical"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "390114e5fbdbaa57a98b2af5a569d4ec225dd5254d877b665b0c9d1cf961cd48",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "rangeId": "block-3",
+        "rangeKind": "block",
+        "startLine": 9,
+        "endLine": 22,
+        "startOffset": 591,
+        "endOffset": 973,
+        "fingerprint": "3a20153198ed40f9582b7c5a873514b0fc842061c60a78ab5420638431562ca5",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 382,
+      "exactFetchable": true,
+      "score": 0.222222,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.222222,
+          "matchedTerms": [
+            "c2c",
+            "c2d"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.2,
+          "matchedTerms": [
+            "c2c",
+            "c2d"
+          ]
+        }
+      ],
+      "title": "Purpose",
+      "headingPath": [
+        "Situation Model adapter",
+        "Purpose"
+      ],
+      "snippet": "…NTEXT / PROJECT_MEMORY / PROJECT_STATE ADRs / changelogs / incidents / receipts + current canonical repository revisions ↓ MSSR Situation Model ↓ C2c consistency diagnosis ↓ C2d evidence-first planning ↓ existing bridgeNotices transport `…",
+      "metadata": {
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "headingPath": [
+          "Situation Model adapter",
+          "Purpose"
+        ],
+        "blockKind": "code",
+        "sectionId": "heading-2",
+        "startLine": 9,
+        "endLine": 22,
+        "chars": 382,
+        "bytes": 390,
+        "terms": []
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "0f763173d446d8e867bc20475595280fcfff387b89e6e7e137df4f2cc47124d8",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md#blob=e547af24b73cfd75d222f30ea572e1dfb288909f",
+        "revision": "f0776b2a0c138b27af7d1e55bdde2e6a5c0bf9e9bd66e7a25e9f3183b2265b10",
+        "rangeId": "heading-6",
+        "rangeKind": "section",
+        "startLine": 72,
+        "endLine": 85,
+        "startOffset": 4401,
+        "endOffset": 6798,
+        "fingerprint": "6c3a928445adab24f9ec4be6f15b71658ddf6fd1c4fc5c6aedd545a3a4ab9a02",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 2397,
+      "exactFetchable": true,
+      "score": 0.111111,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.111111,
+          "matchedTerms": [
+            "watcher"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.3,
+          "matchedTerms": [
+            "two",
+            "watcher",
+            "it"
+          ]
+        }
+      ],
+      "title": "Contextual delivery policy — 0.6.134",
+      "headingPath": [
+        "Bridge adapter — MauroPrime Operational Notice Plane",
+        "Contextual delivery policy — 0.6.134"
+      ],
+      "snippet": "…ifecycle rules, preventing historical `started/resolved/resumed` wrappers from becoming fresh pending attention after restart. This is a host delivery policy only; it adds no second queue, semantic watcher, scheduler, or mutation authorit…",
+      "metadata": {
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md#blob=e547af24b73cfd75d222f30ea572e1dfb288909f",
+        "revision": "f0776b2a0c138b27af7d1e55bdde2e6a5c0bf9e9bd66e7a25e9f3183b2265b10",
+        "headingPath": [
+          "Bridge adapter — MauroPrime Operational Notice Plane",
+          "Contextual delivery policy — 0.6.134"
+        ],
+        "level": 2,
+        "parentId": "heading-1",
+        "startLine": 72,
+        "endLine": 85,
+        "chars": 2397,
+        "bytes": 2399,
+        "terms": [
+          "contextual",
+          "delivery",
+          "policy",
+          "attention",
+          "global",
+          "24-hour",
+          "audit",
+          "bounded"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "fadb507a3a1bc6cd74f3f45b520a956a081f39199e366963516255a79b5c6049",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "rangeId": "block-6",
+        "rangeKind": "block",
+        "startLine": 30,
+        "endLine": 30,
+        "startOffset": 1713,
+        "endOffset": 2022,
+        "fingerprint": "703e03683989553d360efd3f561de156829770d35669ca8ce4b24ae3aacf17aa",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 309,
+      "exactFetchable": true,
+      "score": 0.111111,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.111111,
+          "matchedTerms": [
+            "watcher"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.1,
+          "matchedTerms": [
+            "watcher"
+          ]
+        }
+      ],
+      "title": "Watcher contract",
+      "headingPath": [
+        "Situation Model adapter",
+        "Watcher contract"
+      ],
+      "snippet": "The watcher persists metadata-only snapshots under ignored `data/project-situation.json` (or `BRIDGE_MCP_PROJECT_SITUATION_PATH`) so stable REVIEW does not reopen after a Bridge restart. No raw PROJECT_MEMORY body, prompt, transcript, priv…",
+      "metadata": {
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "headingPath": [
+          "Situation Model adapter",
+          "Watcher contract"
+        ],
+        "blockKind": "prose",
+        "sectionId": "heading-3",
+        "startLine": 30,
+        "endLine": 30,
+        "chars": 309,
+        "bytes": 309,
+        "terms": [
+          "after",
+          "arbitrary",
+          "body",
+          "bridge",
+          "bridge_mcp_project_situation_path",
+          "content",
+          "data",
+          "document"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "7eaf5d0f4a5355df8aad10c22ea210241d1fd3ec95a64b51b3b4414130cc3598",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 40,
+        "startOffset": 0,
+        "endOffset": 5166,
+        "fingerprint": "92628d518bca4ba29be7f663d71f72233ff71f1ce9306e32e7aff2c0f9664de7",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 5166,
+      "exactFetchable": true,
+      "score": 0.111111,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.111111,
+          "matchedTerms": [
+            "dos"
+          ]
+        }
+      ],
+      "title": "Bridge — Importación de assets desde ChatGPT",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT"
+      ],
+      "snippet": "…e assets desde ChatGPT ## Objetivo Convertir archivos generados o adjuntados en ChatGPT en archivos reales del host MauroPrime, sin enviar Base64 por el modelo ni dentro de Blender. La conversión/descarga depende de un **parámetro MCP de …",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT"
+        ],
+        "level": 1,
+        "parentId": null,
+        "startLine": 1,
+        "endLine": 40,
+        "chars": 5166,
+        "bytes": 5221,
+        "terms": [
+          "assets",
+          "bridge",
+          "chatgpt",
+          "desde",
+          "importacion",
+          "archivos",
+          "adjuntados",
+          "autorizado"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "85d0a99e302c47dbb59a846209473ca219bfce3f5f29d0c1eadbd9c504d3f70e",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md#blob=e547af24b73cfd75d222f30ea572e1dfb288909f",
+        "revision": "f0776b2a0c138b27af7d1e55bdde2e6a5c0bf9e9bd66e7a25e9f3183b2265b10",
+        "rangeId": "block-18",
+        "rangeKind": "block",
+        "startLine": 84,
+        "endLine": 84,
+        "startOffset": 6683,
+        "endOffset": 6796,
+        "fingerprint": "71613b3871cf0936720180846d9174c13354029aba46b517b9eca7175aac9058",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 113,
+      "exactFetchable": true,
+      "score": 0.111111,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.111111,
+          "matchedTerms": [
+            "watcher"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.2,
+          "matchedTerms": [
+            "watcher",
+            "it"
+          ]
+        }
+      ],
+      "title": "Contextual delivery policy — 0.6.134",
+      "headingPath": [
+        "Bridge adapter — MauroPrime Operational Notice Plane",
+        "Contextual delivery policy — 0.6.134"
+      ],
+      "snippet": "This is a host delivery policy only; it adds no second queue, semantic watcher, scheduler, or mutation authority.",
+      "metadata": {
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md#blob=e547af24b73cfd75d222f30ea572e1dfb288909f",
+        "revision": "f0776b2a0c138b27af7d1e55bdde2e6a5c0bf9e9bd66e7a25e9f3183b2265b10",
+        "headingPath": [
+          "Bridge adapter — MauroPrime Operational Notice Plane",
+          "Contextual delivery policy — 0.6.134"
+        ],
+        "blockKind": "prose",
+        "sectionId": "heading-6",
+        "startLine": 84,
+        "endLine": 84,
+        "chars": 113,
+        "bytes": 113,
+        "terms": [
+          "adds",
+          "authority",
+          "delivery",
+          "host",
+          "mutation",
+          "only",
+          "policy",
+          "queue"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "670916c672bfc6f219b982f693219277edc88fc0ef6bbac2045e8f0c7a1c4810",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "rangeId": "block-7",
+        "rangeKind": "block",
+        "startLine": 32,
+        "endLine": 32,
+        "startOffset": 2024,
+        "endOffset": 2279,
+        "fingerprint": "ed4cc1891cfd2e9fafc623639d459e5a6a3654b31f4c0775c896163e526124c2",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 255,
+      "exactFetchable": true,
+      "score": 0.111111,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.111111,
+          "matchedTerms": [
+            "watcher"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.1,
+          "matchedTerms": [
+            "watcher"
+          ]
+        }
+      ],
+      "title": "Watcher contract",
+      "headingPath": [
+        "Situation Model adapter",
+        "Watcher contract"
+      ],
+      "snippet": "A current/newer delivery supersedes older receipts for the same authority. Re-selecting an existing Context Message refreshes its durable `sources`, `traceId`, and `nextGate` in MSSR 0.2.26, so a real context refresh can emit `resolved` an…",
+      "metadata": {
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "headingPath": [
+          "Situation Model adapter",
+          "Watcher contract"
+        ],
+        "blockKind": "prose",
+        "sectionId": "heading-3",
+        "startLine": 32,
+        "endLine": 32,
+        "chars": 255,
+        "bytes": 255,
+        "terms": [
+          "context",
+          "resolved",
+          "authority",
+          "can",
+          "delivery",
+          "durable",
+          "emit",
+          "existing"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "00015fe88e5624fb4f14a8f8305b9f97f1feda5d04ffc2a9fef69cc102fd1865",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "heading-7",
+        "rangeKind": "section",
+        "startLine": 36,
+        "endLine": 40,
+        "startOffset": 3963,
+        "endOffset": 5166,
+        "fingerprint": "5ca4fa6251c7016d7937830b0dc518c46043335f4600b226c3467a09fa1ac5d1",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 1203,
+      "exactFetchable": true,
+      "score": 0.111111,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.111111,
+          "matchedTerms": [
+            "dos"
+          ]
+        }
+      ],
+      "title": "Comprobación",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Comprobación"
+      ],
+      "snippet": "…top-level `files`, aunque el wrapper vivo sí: pasar `files` al conector antiguo fue rechazado antes de llegar al servidor. No afirmar que la importación de los dos PNG al disco `D:` ocurrió hasta `binary_file_info`+SHA de lectura posterio…",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Comprobación"
+        ],
+        "level": 2,
+        "parentId": "heading-1",
+        "startLine": 36,
+        "endLine": 40,
+        "chars": 1203,
+        "bytes": 1223,
+        "terms": [
+          "comprobacion",
+          "npm",
+          "run",
+          "bloqueo",
+          "build",
+          "check",
+          "contratos",
+          "exacta"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "be8ffe5dff607ec59c0ba15792805bbe79c85ab7297957e93c74ade9e7314862",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md#blob=e547af24b73cfd75d222f30ea572e1dfb288909f",
+        "revision": "f0776b2a0c138b27af7d1e55bdde2e6a5c0bf9e9bd66e7a25e9f3183b2265b10",
+        "rangeId": "heading-7",
+        "rangeKind": "section",
+        "startLine": 86,
+        "endLine": 125,
+        "startOffset": 6798,
+        "endOffset": 7811,
+        "fingerprint": "4cb3a552e6a0633369b9872fd9c300c4ecd7d48269fce314549d84b55747b525",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 1013,
+      "exactFetchable": true,
+      "score": 0.111111,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.111111,
+          "matchedTerms": [
+            "snapshot"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.3,
+          "matchedTerms": [
+            "two",
+            "it",
+            "snapshot"
+          ]
+        }
+      ],
+      "title": "First producer slice — 0.6.99",
+      "headingPath": [
+        "Bridge adapter — MauroPrime Operational Notice Plane",
+        "First producer slice — 0.6.99"
+      ],
+      "snippet": "…er executes it. Both schedulers expose the immediately previous persisted snapshot to the adapter. This is necessary because pending-queue dedupe alone cannot suppress the same daily REVIEW after yesterday's notice has already been draine…",
+      "metadata": {
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md#blob=e547af24b73cfd75d222f30ea572e1dfb288909f",
+        "revision": "f0776b2a0c138b27af7d1e55bdde2e6a5c0bf9e9bd66e7a25e9f3183b2265b10",
+        "headingPath": [
+          "Bridge adapter — MauroPrime Operational Notice Plane",
+          "First producer slice — 0.6.99"
+        ],
+        "level": 2,
+        "parentId": "heading-1",
+        "startLine": 86,
+        "endLine": 125,
+        "chars": 1013,
+        "bytes": 1015,
+        "terms": [
+          "first",
+          "producer",
+          "slice",
+          "adapts",
+          "daily",
+          "existing",
+          "metadata-only",
+          "operational-notices"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "ec2ff01378ecd59cb8941aaefb16fd51a3c3e82955897042e89fb525aeffa0fe",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "startLine": 49,
+        "endLine": 54,
+        "startOffset": 2964,
+        "endOffset": 3382,
+        "fingerprint": "40ba2df5958b3a4f616368941dce482393a154054fea2f283a7986fec73ad9d6",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 418,
+      "exactFetchable": true,
+      "score": 0.111111,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.111111,
+          "matchedTerms": [
+            "c2d"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.1,
+          "matchedTerms": [
+            "c2d"
+          ]
+        }
+      ],
+      "title": "Recommendation boundary",
+      "headingPath": [
+        "Situation Model adapter",
+        "Recommendation boundary"
+      ],
+      "snippet": "## Recommendation boundary C2d remains the sole owner of recommendation order. Bridge may turn only `ready` recommendations into notice actions. `deferred` items remain evidence and cannot be promoted by host convenience. For a stale proje…",
+      "metadata": {
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "headingPath": [
+          "Situation Model adapter",
+          "Recommendation boundary"
+        ],
+        "level": 2,
+        "parentId": "heading-1",
+        "startLine": 49,
+        "endLine": 54,
+        "chars": 418,
+        "bytes": 418,
+        "terms": [
+          "boundary",
+          "recommendation",
+          "actions",
+          "bridge",
+          "c2d",
+          "cannot",
+          "convenience",
+          "deferred"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "eac715f70f8ad7e920482397b243990ec4f07c167ee0c5f7ab3b8c19b8ae4c9b",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "rangeId": "block-10",
+        "rangeKind": "block",
+        "startLine": 40,
+        "endLine": 40,
+        "startOffset": 4181,
+        "endOffset": 5165,
+        "fingerprint": "b73345ef8182d3e0329d9e64be00315c10cff510835e09ab9efe6ee719a48cc4",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 984,
+      "exactFetchable": true,
+      "score": 0.111111,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.111111,
+          "matchedTerms": [
+            "dos"
+          ]
+        }
+      ],
+      "title": "Comprobación",
+      "headingPath": [
+        "Bridge — Importación de assets desde ChatGPT",
+        "Comprobación"
+      ],
+      "snippet": "…top-level `files`, aunque el wrapper vivo sí: pasar `files` al conector antiguo fue rechazado antes de llegar al servidor. No afirmar que la importación de los dos PNG al disco `D:` ocurrió hasta `binary_file_info`+SHA de lectura posterio…",
+      "metadata": {
+        "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+        "revision": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+        "headingPath": [
+          "Bridge — Importación de assets desde ChatGPT",
+          "Comprobación"
+        ],
+        "blockKind": "prose",
+        "sectionId": "heading-7",
+        "startLine": 40,
+        "endLine": 40,
+        "chars": 984,
+        "bytes": 1001,
+        "terms": [
+          "arbol",
+          "files",
+          "proceso",
+          "vivo",
+          "antiguo",
+          "tests",
+          "wrapper",
+          "2026-10-08"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "fd5df073660a2fea32c4c42702967c2330891297b461d50ec117ebc3d5c9370a",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md#blob=e547af24b73cfd75d222f30ea572e1dfb288909f",
+        "revision": "f0776b2a0c138b27af7d1e55bdde2e6a5c0bf9e9bd66e7a25e9f3183b2265b10",
+        "rangeId": "heading-9",
+        "rangeKind": "section",
+        "startLine": 107,
+        "endLine": 125,
+        "startOffset": 7239,
+        "endOffset": 7811,
+        "fingerprint": "646ee5d9cc991aa37aae363f2711017421790751b9b944f61b461e8e1ddfa8c9",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 572,
+      "exactFetchable": true,
+      "score": 0.111111,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.111111,
+          "matchedTerms": [
+            "snapshot"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.2,
+          "matchedTerms": [
+            "it",
+            "snapshot"
+          ]
+        }
+      ],
+      "title": "Project Context Health",
+      "headingPath": [
+        "Bridge adapter — MauroPrime Operational Notice Plane",
+        "First producer slice — 0.6.99",
+        "Project Context Health"
+      ],
+      "snippet": "…er executes it. Both schedulers expose the immediately previous persisted snapshot to the adapter. This is necessary because pending-queue dedupe alone cannot suppress the same daily REVIEW after yesterday's notice has already been draine…",
+      "metadata": {
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md#blob=e547af24b73cfd75d222f30ea572e1dfb288909f",
+        "revision": "f0776b2a0c138b27af7d1e55bdde2e6a5c0bf9e9bd66e7a25e9f3183b2265b10",
+        "headingPath": [
+          "Bridge adapter — MauroPrime Operational Notice Plane",
+          "First producer slice — 0.6.99",
+          "Project Context Health"
+        ],
+        "level": 3,
+        "parentId": "heading-7",
+        "startLine": 107,
+        "endLine": 125,
+        "chars": 572,
+        "bytes": 572,
+        "terms": [
+          "context",
+          "health",
+          "fingerprint",
+          "inputs"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "2e63cc01909c9b0271c46c4e8ec8c7f0a7c286d196b1d7887e35c20057291e84",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "rangeId": "block-13",
+        "rangeKind": "block",
+        "startLine": 51,
+        "endLine": 51,
+        "startOffset": 2992,
+        "endOffset": 3186,
+        "fingerprint": "e9b7d224eabe3bcc5361366dd5d5fb19f3ef23432b67d20c12074ce5316d0e4f",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 194,
+      "exactFetchable": true,
+      "score": 0.111111,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.111111,
+          "matchedTerms": [
+            "c2d"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.1,
+          "matchedTerms": [
+            "c2d"
+          ]
+        }
+      ],
+      "title": "Recommendation boundary",
+      "headingPath": [
+        "Situation Model adapter",
+        "Recommendation boundary"
+      ],
+      "snippet": "C2d remains the sole owner of recommendation order. Bridge may turn only `ready` recommendations into notice actions. `deferred` items remain evidence and cannot be promoted by host convenience.",
+      "metadata": {
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "headingPath": [
+          "Situation Model adapter",
+          "Recommendation boundary"
+        ],
+        "blockKind": "prose",
+        "sectionId": "heading-5",
+        "startLine": 51,
+        "endLine": 51,
+        "chars": 194,
+        "bytes": 194,
+        "terms": [
+          "actions",
+          "bridge",
+          "c2d",
+          "cannot",
+          "convenience",
+          "deferred",
+          "evidence",
+          "host"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "32c86e1829071c5052158bfea82545e61bb855478d648dca214e6d0e1e125244",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md#blob=e547af24b73cfd75d222f30ea572e1dfb288909f",
+        "revision": "f0776b2a0c138b27af7d1e55bdde2e6a5c0bf9e9bd66e7a25e9f3183b2265b10",
+        "rangeId": "block-30",
+        "rangeKind": "block",
+        "startLine": 124,
+        "endLine": 124,
+        "startOffset": 7585,
+        "endOffset": 7809,
+        "fingerprint": "0614fcdafa6b0cc480f1ea2b634582a69c2256f891d1a99a606f907c37b6c1b4",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 224,
+      "exactFetchable": true,
+      "score": 0.111111,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.111111,
+          "matchedTerms": [
+            "snapshot"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.1,
+          "matchedTerms": [
+            "snapshot"
+          ]
+        }
+      ],
+      "title": "Project Context Health",
+      "headingPath": [
+        "Bridge adapter — MauroPrime Operational Notice Plane",
+        "First producer slice — 0.6.99",
+        "Project Context Health"
+      ],
+      "snippet": "Both schedulers expose the immediately previous persisted snapshot to the adapter. This is necessary because pending-queue dedupe alone cannot suppress the same daily REVIEW after yesterday's notice has already been drained.",
+      "metadata": {
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md#blob=e547af24b73cfd75d222f30ea572e1dfb288909f",
+        "revision": "f0776b2a0c138b27af7d1e55bdde2e6a5c0bf9e9bd66e7a25e9f3183b2265b10",
+        "headingPath": [
+          "Bridge adapter — MauroPrime Operational Notice Plane",
+          "First producer slice — 0.6.99",
+          "Project Context Health"
+        ],
+        "blockKind": "prose",
+        "sectionId": "heading-9",
+        "startLine": 124,
+        "endLine": 124,
+        "chars": 224,
+        "bytes": 224,
+        "terms": [
+          "adapter",
+          "after",
+          "alone",
+          "already",
+          "because",
+          "been",
+          "both",
+          "cannot"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "33d92123cfb3ed545cb41219cf4fd978669b5b7bd4e2e86d5bbbf59ade32d72c",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "rangeId": "heading-6",
+        "rangeKind": "section",
+        "startLine": 55,
+        "endLine": 60,
+        "startOffset": 3382,
+        "endOffset": 4099,
+        "fingerprint": "770a67e23f04a39bfe511bde2d43cbfd54f0c3ee05bbffbb69ab0b2c82619f5f",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 717,
+      "exactFetchable": true,
+      "score": 0.111111,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.111111,
+          "matchedTerms": [
+            "watcher"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.2,
+          "matchedTerms": [
+            "watcher",
+            "it"
+          ]
+        }
+      ],
+      "title": "Evidence reliability",
+      "headingPath": [
+        "Situation Model adapter",
+        "Evidence reliability"
+      ],
+      "snippet": "…become canonical merely because its confidence is high. The watcher remains evidence-first and never parses arbitrary free-form memory prose into truth. From 0.6.135, Bridge's release-consistency observer is the first production C2e-D pro…",
+      "metadata": {
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "headingPath": [
+          "Situation Model adapter",
+          "Evidence reliability"
+        ],
+        "level": 2,
+        "parentId": "heading-1",
+        "startLine": 55,
+        "endLine": 60,
+        "chars": 717,
+        "bytes": 717,
+        "terms": [
+          "evidence",
+          "reliability",
+          "inferred",
+          "learned",
+          "because",
+          "become",
+          "c2e",
+          "cannot"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "4aa73a629b9ea867bec1d218577cf4b902b85d49dd526b525f764b4663759ec0",
+        "owner": "D:/Dev/bridge-mcp",
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "rangeId": "block-16",
+        "rangeKind": "block",
+        "startLine": 59,
+        "endLine": 59,
+        "startOffset": 3625,
+        "endOffset": 4097,
+        "fingerprint": "25880490fd08598b713f0487f8842d47a1b79062cbcc053120a7397ba887c9cb",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 472,
+      "exactFetchable": true,
+      "score": 0.111111,
+      "scoreQueryIndex": 0,
+      "queryMatches": [
+        {
+          "queryIndex": 0,
+          "score": 0.111111,
+          "matchedTerms": [
+            "watcher"
+          ]
+        },
+        {
+          "queryIndex": 1,
+          "score": 0.2,
+          "matchedTerms": [
+            "watcher",
+            "it"
+          ]
+        }
+      ],
+      "title": "Evidence reliability",
+      "headingPath": [
+        "Situation Model adapter",
+        "Evidence reliability"
+      ],
+      "snippet": "The watcher remains evidence-first and never parses arbitrary free-form memory prose into truth. From 0.6.135, Bridge's release-consistency observer is the first production C2e-D producer: it maps already-structured package/source/generate…",
+      "metadata": {
+        "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+        "revision": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+        "headingPath": [
+          "Situation Model adapter",
+          "Evidence reliability"
+        ],
+        "blockKind": "prose",
+        "sectionId": "heading-6",
+        "startLine": 59,
+        "endLine": 59,
+        "chars": 472,
+        "bytes": 472,
+        "terms": [
+          "producer",
+          "prose",
+          "adding",
+          "alone",
+          "already-structured",
+          "another",
+          "arbitrary",
+          "assert"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    }
+  ],
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "truncated": true
+}

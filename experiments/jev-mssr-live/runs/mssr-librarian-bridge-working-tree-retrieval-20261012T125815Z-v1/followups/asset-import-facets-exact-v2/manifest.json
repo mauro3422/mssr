@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "followupId": "asset-import-facets-exact-20261012T131740Z-v1",
+  "frozenAtUtc": "2026-10-12T13:17:40Z",
+  "linkedRunId": "mssr-librarian-bridge-working-tree-retrieval-20261012T125815Z-v1",
+  "classification": "linked diagnostic repetition; not an independent benchmark unit, not owner-gold, not a holdout",
+  "purpose": "Verify whether three decomposed facets can select/fetch their exact source blocks and compose a complete cited answer, using byte-identical frozen source text.",
+  "sourceRepository": "D:/Dev/bridge-mcp",
+  "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+  "expectedSourceSha256": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+  "providerPlan": {
+    "searchCalls": 3,
+    "jevChoiceCalls": 3,
+    "fetchCalls": 3,
+    "evidencePackCalls": 1,
+    "labelsSentToProvider": false
+  },
+  "decisionBoundary": {
+    "confidenceCalibration": false,
+    "semanticAuthority": false,
+    "sourceAuthority": "frozen snapshot only"
+  }
+}

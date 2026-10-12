@@ -1,0 +1,50 @@
+[
+  {
+    "caseId": "ASSET-IMPORT-CONTRACT",
+    "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+    "query": "¿Qué metadatos registra Bridge por cada descarga de asset_import_files, qué requisitos tienen los destinos y cuáles son los límites por archivo y lote?",
+    "queryVariants": [
+      "What metadata does Bridge record for each asset_import_files download, what requirements apply to each target, and what are the per-file and batch limits?"
+    ],
+    "expectedLines": [
+      8,
+      12
+    ]
+  },
+  {
+    "caseId": "NOTICE-DELIVERY-PATH",
+    "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md#blob=e547af24b73cfd75d222f30ea572e1dfb288909f",
+    "query": "¿Cómo llega un aviso portable del MSSR hasta el agente a través de Bridge y qué límites de entrega declara el adaptador?",
+    "queryVariants": [
+      "How does a portable MSSR notice reach the agent through Bridge, and what delivery limits does the adapter declare?"
+    ],
+    "expectedLines": [
+      26,
+      36
+    ]
+  },
+  {
+    "caseId": "SITUATION-WATCHER-CHANNELS",
+    "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+    "query": "¿Qué dos canales combina el watcher para C2c/C2d, qué guarda y qué excluye de su snapshot?",
+    "queryVariants": [
+      "Which two channels does the watcher combine for C2c/C2d, what does it persist, and what does the snapshot exclude?"
+    ],
+    "expectedLines": [
+      28,
+      30
+    ]
+  },
+  {
+    "caseId": "RECOMMENDATION-AUTHORITY",
+    "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+    "query": "¿Quién define el orden de recomendaciones, cuándo puede Bridge exponer acciones y qué debe hacer con las recomendaciones deferred?",
+    "queryVariants": [
+      "Who determines recommendation order, when may Bridge expose actions, and how must it treat deferred recommendations?"
+    ],
+    "expectedLines": [
+      51,
+      53
+    ]
+  }
+]

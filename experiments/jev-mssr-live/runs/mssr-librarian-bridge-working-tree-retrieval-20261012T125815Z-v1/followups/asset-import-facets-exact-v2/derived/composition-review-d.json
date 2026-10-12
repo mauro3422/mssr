@@ -1,0 +1,13 @@
+{
+  "reviewer": "run55_compound_review_d",
+  "model": "gpt-6-luna",
+  "labelsProvided": false,
+  "result": {
+    "support": "full",
+    "factualIssues": [],
+    "omissions": [],
+    "citationFit": "adequate",
+    "brevity": "good",
+    "usability": "high"
+  }
+}

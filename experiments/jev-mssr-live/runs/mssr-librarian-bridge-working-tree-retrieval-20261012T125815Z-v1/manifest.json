@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-bridge-working-tree-retrieval-20261012T125815Z-v1",
+  "createdAtUtc": "2026-10-12T12:58:15Z",
+  "runClass": "prospective cross-project source-new diagnostic; not owner-gold or protected holdout",
+  "question": "Does the caller-supplied MSSR Librarian pipeline retrieve and select useful exact Bridge evidence for Spanish questions over real English/Spanish working-tree documents, preserve exact provenance, and support a concise cited answer?",
+  "sourceRepository": {
+    "root": "D:/Dev/bridge-mcp",
+    "branch": "codex/jev-bridge-adoption-20260930",
+    "head": "3b2f63cf56771be486db1575958096a3950d9fc9",
+    "sourceFiles": [
+      "1 untracked working-tree file",
+      "2 tracked clean files"
+    ]
+  },
+  "mssrRepository": {
+    "root": "D:/Dev/mssr",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "head": "33b6950f8f3b9e7b831a79a6d6b52717c158b0f7",
+    "preexistingDirtyPaths": [
+      ".mssr/project-context-segments.json",
+      ".mssr/project-context.json",
+      "scripts/test-project-context-loader.mjs"
+    ],
+    "excludedFromRunCommit": true
+  },
+  "sources": [
+    {
+      "owner": "D:/Dev/bridge-mcp",
+      "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+      "sourcePath": "docs/ASSET_FILE_INGEST.md",
+      "sourceStatus": "untracked-working-tree",
+      "sourceHead": "3b2f63cf56771be486db1575958096a3950d9fc9",
+      "workingTreeBlob": "a830c19c02f282205de7de204d95b17e67f0ef5b",
+      "sha256": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+      "privacyClass": "project-metadata",
+      "snapshot": "inputs/sources/ASSET_FILE_INGEST.md",
+      "targetCase": "ASSET-IMPORT-CONTRACT",
+      "targetLines": [
+        8,
+        12
+      ]
+    },
+    {
+      "owner": "D:/Dev/bridge-mcp",
+      "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md#blob=e547af24b73cfd75d222f30ea572e1dfb288909f",
+      "sourcePath": "docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md",
+      "sourceStatus": "tracked-clean",
+      "sourceHead": "3b2f63cf56771be486db1575958096a3950d9fc9",
+      "workingTreeBlob": "e547af24b73cfd75d222f30ea572e1dfb288909f",
+      "sha256": "f0776b2a0c138b27af7d1e55bdde2e6a5c0bf9e9bd66e7a25e9f3183b2265b10",
+      "privacyClass": "project-metadata",
+      "snapshot": "inputs/sources/OPERATIONAL_NOTICE_PLANE_ADAPTER.md",
+      "targetCase": "NOTICE-DELIVERY-PATH",
+      "targetLines": [
+        26,
+        36
+      ]
+    },
+    {
+      "owner": "D:/Dev/bridge-mcp",
+      "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+      "sourcePath": "docs/SITUATION_MODEL_ADAPTER.md",
+      "sourceStatus": "tracked-clean",
+      "sourceHead": "3b2f63cf56771be486db1575958096a3950d9fc9",
+      "workingTreeBlob": "66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+      "sha256": "b69e71a0fccda015f9100ac7f8184e0325f153cb4cb7db2367bb91cf08bd6ceb",
+      "privacyClass": "project-metadata",
+      "snapshot": "inputs/sources/SITUATION_MODEL_ADAPTER.md",
+      "targetCase": "SITUATION-WATCHER-CHANNELS",
+      "targetLines": [
+        28,
+        30
+      ]
+    }
+  ],
+  "providerPlan": {
+    "calls": "4 Jev Choice/Noul selections, one per query; labels are excluded",
+    "model": "Jev default as exposed by connected tool",
+    "budget": "4 independent semantic jobs; one per query",
+    "rawVendorBytes": "not exposed by MCP wrapper unless returned directly"
+  },
+  "decisionBoundary": {
+    "hostOwnsSourceRead": true,
+    "JevSeesOnlyFrozenMarkdownAndQuery": true,
+    "labelsSentToProvider": false,
+    "exactFetchRequired": true,
+    "confidenceCalibrated": false,
+    "semanticAuthority": false
+  },
+  "metrics": [
+    "search candidate recall at top 20 by frozen target-line overlap",
+    "rank of first range covering expected target lines",
+    "Jev range coverage and exact fetch success",
+    "evidence-pack citation and fingerprint integrity",
+    "blind answer support, completeness, citation fit and brevity",
+    "latency and reported provider scores, descriptive only"
+  ]
+}

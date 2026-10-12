@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "labelStatus": "source-derived provisional labels; not owner-validated and not gold",
+  "blindToJev": true,
+  "labels": [
+    {
+      "caseId": "ASSET-IMPORT-CONTRACT",
+      "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+      "expectedLines": [
+        8,
+        12
+      ],
+      "requiredFacts": [
+        "Download records SHA-256, byte length, detected MIME and provenance.",
+        "Every target declares outputPath; overwrite and writes outside the write policy are disallowed.",
+        "Limits are 512 MiB per file, 8 files and 1 GiB per batch; the tool does not convert, unpack, execute or install."
+      ],
+      "fullSupportRule": "Answer all three fact groups and do not imply conversion, execution, overwrite, or unlimited support."
+    },
+    {
+      "caseId": "NOTICE-DELIVERY-PATH",
+      "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/OPERATIONAL_NOTICE_PLANE_ADAPTER.md#blob=e547af24b73cfd75d222f30ea572e1dfb288909f",
+      "expectedLines": [
+        26,
+        36
+      ],
+      "requiredFacts": [
+        "A host observation feeds a portable MSSR transition, then Bridge adapts and emits it into bounded queue/history.",
+        "A later ordinary MCP response drains the notice for the agent.",
+        "Delivery cannot interrupt an opaque active call and is not unsolicited server push."
+      ],
+      "fullSupportRule": "Preserve queue/drain order and both delivery limitations."
+    },
+    {
+      "caseId": "SITUATION-WATCHER-CHANNELS",
+      "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+      "expectedLines": [
+        28,
+        30
+      ],
+      "requiredFacts": [
+        "Receipt-derived C2e observations require active receipts pointing to current canonical candidates.",
+        "Explicit C2e-D claims are independent of receipts and currently limited to Bridge release/install/runtime facts.",
+        "Both channels enter the same MSSR Situation Model/C2c/C2d evaluation.",
+        "Persisted snapshots contain metadata only and exclude raw memory, prompts, transcripts, private reasoning and arbitrary document content."
+      ],
+      "fullSupportRule": "Distinguish receipt-derived observations from explicit claims and state metadata-only persistence boundary."
+    },
+    {
+      "caseId": "RECOMMENDATION-AUTHORITY",
+      "sourceRef": "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f",
+      "expectedLines": [
+        51,
+        53
+      ],
+      "requiredFacts": [
+        "C2d alone owns recommendation ordering.",
+        "Only ready recommendations may become Bridge notice actions.",
+        "Deferred recommendations remain evidence and cannot be promoted by host convenience.",
+        "A stale-context action may be shown as advisory, never automatically executed."
+      ],
+      "fullSupportRule": "Name the order owner, ready/deferred boundary, and nonautomatic advisory action."
+    }
+  ]
+}

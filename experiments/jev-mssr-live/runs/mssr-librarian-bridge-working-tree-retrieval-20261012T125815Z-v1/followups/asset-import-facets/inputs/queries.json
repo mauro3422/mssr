@@ -1,0 +1,35 @@
+[
+  {
+    "caseId": "DOWNLOAD-METADATA",
+    "query": "¿Qué datos de cada descarga registra Bridge además de guardarlos en disco?",
+    "queryVariants": [
+      "Which per-download facts does Bridge record in addition to saving the file?"
+    ],
+    "expectedLines": [
+      10,
+      10
+    ]
+  },
+  {
+    "caseId": "TARGET-PATH-RULES",
+    "query": "¿Qué reglas debe cumplir cada destino y cómo maneja Bridge los archivos existentes?",
+    "queryVariants": [
+      "What requirements apply to each destination and how does Bridge handle existing files?"
+    ],
+    "expectedLines": [
+      10,
+      10
+    ]
+  },
+  {
+    "caseId": "FILE-BATCH-LIMITS",
+    "query": "¿Cuáles son los límites actuales por archivo, cantidad de archivos y tamaño total del lote?",
+    "queryVariants": [
+      "What are the current per-file, file-count, and total batch-size limits?"
+    ],
+    "expectedLines": [
+      12,
+      12
+    ]
+  }
+]

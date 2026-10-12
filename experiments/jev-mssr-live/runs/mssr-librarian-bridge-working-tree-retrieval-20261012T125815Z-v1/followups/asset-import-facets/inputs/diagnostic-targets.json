@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "authority": "analyst-derived from exact frozen source lines; provisional, not owner-validated",
+  "cases": [
+    {
+      "caseId": "DOWNLOAD-METADATA",
+      "expectedLines": [
+        10,
+        10
+      ]
+    },
+    {
+      "caseId": "TARGET-PATH-RULES",
+      "expectedLines": [
+        10,
+        10
+      ]
+    },
+    {
+      "caseId": "FILE-BATCH-LIMITS",
+      "expectedLines": [
+        12,
+        12
+      ]
+    }
+  ],
+  "notSentToProvider": true
+}

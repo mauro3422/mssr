@@ -1,0 +1,6 @@
+{
+  "caseId": "ASSET-IMPORT-COMPOUND-FACETS",
+  "answer": "Bridge registra por cada descarga de `asset_import_files` el SHA-256, la longitud, el MIME detectado y la procedencia. [evidencia L8](bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b:L8-L8)\n\nCada destino debe declararse en `targets[].outputPath`; no se admiten sobreescrituras ni rutas fuera de `resolveToolPath(access=write)`. Se pueden indicar `expectedSha256` y `expectedBytes`, y `manifestPath` permite guardar un JSON con los datos guardados. [evidencia L10](bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b:L10-L10)\n\nLos límites son 512 MiB por archivo, 8 archivos y 1 GiB por lote. [evidencia L12](bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b:L12-L12)",
+  "provider": "Luna writer agent",
+  "labelsProvided": false
+}

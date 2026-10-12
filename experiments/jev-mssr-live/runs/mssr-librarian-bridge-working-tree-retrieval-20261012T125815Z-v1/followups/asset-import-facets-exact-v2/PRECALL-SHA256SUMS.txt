@@ -1,0 +1,4 @@
+f209e247507f1c98234c59917f453f22f4d8db9436e5a5a7bc96b09e10134323  .\experiments\jev-mssr-live\runs\mssr-librarian-bridge-working-tree-retrieval-20261012T125815Z-v1\followups\asset-import-facets-exact-v2\manifest.json
+50a13918621d785d64d55e2401be49c85b9f1c15a54bf8694bf44bb90690a037  .\experiments\jev-mssr-live\runs\mssr-librarian-bridge-working-tree-retrieval-20261012T125815Z-v1\followups\asset-import-facets-exact-v2\inputs\diagnostic-targets.json
+0d8e81a332a1c19dd581d94b8c8fb1f51fa7bfb27f39f5e679bf32bfbe7c95c2  .\experiments\jev-mssr-live\runs\mssr-librarian-bridge-working-tree-retrieval-20261012T125815Z-v1\followups\asset-import-facets-exact-v2\inputs\queries.json
+8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48  .\experiments\jev-mssr-live\runs\mssr-librarian-bridge-working-tree-retrieval-20261012T125815Z-v1\followups\asset-import-facets-exact-v2\inputs\sources\ASSET_FILE_INGEST.md

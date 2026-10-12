@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "followupId": "asset-import-facets-20261012T130906Z-v1",
+  "frozenAtUtc": "2026-10-12T13:09:06Z",
+  "linkedRunId": "mssr-librarian-bridge-working-tree-retrieval-20261012T125815Z-v1",
+  "classification": "linked diagnostic repetition; not an independent benchmark unit, not owner-gold, not a holdout",
+  "purpose": "Test whether decomposing one compound asset-import question into three facet queries yields exact evidence coverage and a complete cited synthesis.",
+  "sourceSnapshot": "../../inputs/sources/ASSET_FILE_INGEST.md",
+  "sourceSha256": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48",
+  "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+  "providerPlan": {
+    "searchCalls": 3,
+    "jevChoiceCalls": 3,
+    "fetchCalls": 3,
+    "evidencePackCalls": 1,
+    "labelsSentToProvider": false
+  },
+  "constraints": [
+    "Keep Run55 frozen inputs and raw provider records unchanged.",
+    "Use only the frozen source snapshot.",
+    "Treat Choice and Noul as descriptive, uncalibrated signals.",
+    "Do not pool facet repeats into independent sample counts."
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "followupId": "asset-import-facets-exact-20261012T131740Z-v1",
+  "classification": "linked single-source diagnostic; not owner-gold/holdout/calibration",
+  "source": {
+    "bytes": 5221,
+    "lines": 40,
+    "sha256": "8e2478f18ce30c41a8d2352189079053676253f48da7446e79e8e1430e42ad48"
+  },
+  "cases": [
+    {
+      "caseId": "DOWNLOAD-METADATA",
+      "targetLine": 8,
+      "top20Rank": 3,
+      "blockCandidates": 13,
+      "selectedRange": "block-2",
+      "selectedLine": 8,
+      "selectedChars": 375,
+      "choice": 1,
+      "noul": 0.82,
+      "inputTokens": 3421,
+      "outputTokens": 177,
+      "elapsedMs": 376.5,
+      "fetchExact": true
+    },
+    {
+      "caseId": "TARGET-PATH-RULES",
+      "targetLine": 10,
+      "top20Rank": 3,
+      "blockCandidates": 14,
+      "selectedRange": "block-3",
+      "selectedLine": 10,
+      "selectedChars": 253,
+      "choice": 0.67,
+      "noul": 0.74,
+      "inputTokens": 3597,
+      "outputTokens": 187,
+      "elapsedMs": 273.3,
+      "fetchExact": true
+    },
+    {
+      "caseId": "FILE-BATCH-LIMITS",
+      "targetLine": 12,
+      "top20Rank": 3,
+      "blockCandidates": 13,
+      "selectedRange": "block-4",
+      "selectedLine": 12,
+      "selectedChars": 313,
+      "choice": 1,
+      "noul": 0.96,
+      "inputTokens": 3380,
+      "outputTokens": 177,
+      "elapsedMs": 320.9,
+      "fetchExact": true
+    }
+  ],
+  "totals": {
+    "searchCalls": 3,
+    "jevCalls": 3,
+    "exactFetches": 3,
+    "evidencePackCitations": 3,
+    "inputTokens": 10398,
+    "outputTokens": 541,
+    "averageLatencyMs": 323.6,
+    "packedChars": 941
+  },
+  "answerReview": {
+    "writer": "gpt-6-luna agent",
+    "reviewers": [
+      "run55_compound_review_c",
+      "run55_compound_review_d"
+    ],
+    "reviewerModel": "gpt-6-luna",
+    "support": "full",
+    "factualIssues": [],
+    "omissions": [],
+    "citationFit": "adequate"
+  },
+  "caveats": [
+    "one source cluster, linked repeat",
+    "source-line labels provisional",
+    "raw Choice/Noul uncalibrated",
+    "evidence pack is verbatim assembly, not semantic compaction",
+    "paragraph composed by Luna writer, not Jev"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "caseId": "SITUATION-WATCHER-CHANNELS",
+  "previousAnswerPreserved": true,
+  "revisedAnswer": "El watcher reúne observaciones C2e derivadas de recibos activos del Context Plane que todavía apuntan a candidatos canónicos vigentes y afirmaciones explícitas C2e-D independientes de los recibos; ambas alimentan la evaluación portable MSSR C2c/C2d. Guarda snapshots solo de metadatos en `data/project-situation.json` o en la ruta configurada por `BRIDGE_MCP_PROJECT_SITUATION_PATH`. Excluye cuerpos de PROJECT_MEMORY, prompts, transcripciones, razonamiento privado y contenido arbitrario de documentos.",
+  "citations": [
+    "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f:L28-L28",
+    "bridge-git/3b2f63cf56771be486db1575958096a3950d9fc9/docs/SITUATION_MODEL_ADAPTER.md#blob=66aaacc93210fcc2ad3dbcb84ef8df65490fb11f:L30-L30"
+  ],
+  "reason": "La primera respuesta decía solo “destino configurado”; esta versión nombra la ruta por defecto y el override exacto del host."
+}

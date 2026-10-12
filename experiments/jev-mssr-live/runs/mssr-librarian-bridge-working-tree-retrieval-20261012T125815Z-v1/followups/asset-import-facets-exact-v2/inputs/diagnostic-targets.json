@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "labelStatus": "source-line provisional facet targets; not owner-validated, not gold",
+  "blindToJev": true,
+  "labels": [
+    {
+      "caseId": "DOWNLOAD-METADATA",
+      "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+      "expectedLines": [
+        8,
+        8
+      ]
+    },
+    {
+      "caseId": "TARGET-PATH-RULES",
+      "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+      "expectedLines": [
+        10,
+        10
+      ]
+    },
+    {
+      "caseId": "FILE-BATCH-LIMITS",
+      "sourceRef": "bridge-working-tree/3b2f63cf56771be486db1575958096a3950d9fc9/docs/ASSET_FILE_INGEST.md#blob=a830c19c02f282205de7de204d95b17e67f0ef5b",
+      "expectedLines": [
+        12,
+        12
+      ]
+    }
+  ]
+}

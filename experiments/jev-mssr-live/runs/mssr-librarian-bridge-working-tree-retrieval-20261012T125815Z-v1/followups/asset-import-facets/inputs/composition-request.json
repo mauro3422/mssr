@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "captureStatus": "post-composition transcription of the exact delegated request",
+  "audience": "run55_writer Luna",
+  "labelsIncluded": false,
+  "policy": "Compose a concise Spanish answer to the original compound question using only the exact union evidence pack; preserve three separate citations; no other documents or evaluation labels.",
+  "caseId": "ASSET-IMPORT-COMPOUND-FACETS",
+  "question": "¿Qué metadatos registra Bridge por cada descarga de asset_import_files, qué requisitos tienen los destinos y cuáles son los límites por archivo y lote?",
+  "evidenceHandles": [
+    {
+      "rangeId": "block-2",
+      "lines": [
+        8,
+        8
+      ],
+      "fingerprint": "273fc2818a556eb1350075765c6b8736a768cdeb16e12fc53f48635a800e0be9"
+    },
+    {
+      "rangeId": "block-3",
+      "lines": [
+        10,
+        10
+      ],
+      "fingerprint": "edd33014f46e146cd86f41860fde38b9d567818f1dff1cfdd3b2d6d1264165f8"
+    },
+    {
+      "rangeId": "block-4",
+      "lines": [
+        12,
+        12
+      ],
+      "fingerprint": "5ab6fd883f8be3885fbea348e51bf632e88860b0d4720ea81aa46a4328ef4ae4"
+    }
+  ],
+  "exactFetchIntegrity": {
+    "selectedFetched": 3,
+    "fingerprintMatches": 3,
+    "evidencePackCitations": 3,
+    "exactTextBytesUnmodified": true
+  }
+}
