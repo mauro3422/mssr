@@ -5,7 +5,7 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { serializeJevEvidenceMetrics } from "../experiments/jev-mssr-live/selection-record.mjs";
+import { serializeJevEvidenceMetrics, serializeJevSelectionDiagnostics } from "../experiments/jev-mssr-live/selection-record.mjs";
 import {
   acquireExclusiveRunLock,
   validateEvidencePack,
@@ -52,6 +52,39 @@ assert.deepEqual(capturedJevMetrics, {
 });
 assert.equal(serializeJevEvidenceMetrics({ sufficiency: 0.88, noul: 0.77 }).evidenceSufficiency, null,
   "unknown aliases must not impersonate canonical evidenceSufficiency");
+const hierarchicalDiagnostics = serializeJevSelectionDiagnostics({
+  selectionMode: "hierarchical",
+  selectionPasses: 2,
+  providerCalls: 3,
+  finalistCount: 4,
+  candidateRangeDiagnostics: { offered: 261, eligible: 260, oversizedOmitted: 1, maxFetchChars: 20_000, lengthUnit: "utf16-code-units" },
+  rangeOverlapDiagnostics: { overlappingPairCount: 4, mutationApplied: false },
+  batchAssessments: [{ batch: 1, candidateCount: 254, retainedFinalistCount: 2, retainedFinalists: [{ optionId: "h001", sourceRef: "docs/a.md", rangeId: "a-1" }] }],
+  providersUsed: ["jev-provider"],
+  modelsUsed: ["jev-model"],
+});
+assert.deepEqual(hierarchicalDiagnostics, {
+  selectionMode: "hierarchical",
+  selectionPasses: 2,
+  providerCalls: 3,
+  finalistCount: 4,
+  candidateRangeDiagnostics: { offered: 261, eligible: 260, oversizedOmitted: 1, maxFetchChars: 20_000, lengthUnit: "utf16-code-units" },
+  rangeOverlapDiagnostics: { overlappingPairCount: 4, mutationApplied: false },
+  batchAssessments: [{ batch: 1, candidateCount: 254, retainedFinalistCount: 2, retainedFinalists: [{ optionId: "h001", sourceRef: "docs/a.md", rangeId: "a-1" }] }],
+  providersUsed: ["jev-provider"],
+  modelsUsed: ["jev-model"],
+});
+assert.deepEqual(serializeJevSelectionDiagnostics({ jevCallMade: false }), {
+  selectionMode: "not-run",
+  selectionPasses: 0,
+  providerCalls: 0,
+  finalistCount: 0,
+  candidateRangeDiagnostics: null,
+  rangeOverlapDiagnostics: null,
+  batchAssessments: [],
+  providersUsed: [],
+  modelsUsed: [],
+}, "a no-call response must report zero provider calls without inventing selector diagnostics");
 
 try {
   const fixtureText = "\nExact fixture evidence.\n";
@@ -611,7 +644,7 @@ try {
     '    has: (name) => names.has(name),',
     '    async call(name, args) {',
     '      if (name === "mssr_librarian_search") { if (args.query.query.includes("empty-search")) return { sourceCount: 1, results: [] }; return { sourceCount: 1, results: [{ title: "Sample", headingPath: ["Sample"], score: 1, handle }] }; }',
-    '      if (name === "mssr_librarian_jev_select") { if (args.query.includes("empty-search")) throw new Error("selector must not run when search returns no candidates"); const labelKeys = ["answerability", "expectedHeading", "expectedStartLine", "expectedEndLine", "acceptableRanges", "relevantRanges"]; const requestText = JSON.stringify(args); if (labelKeys.some((key) => key in args) || requestText.includes("LABEL_ONLY_SENTINEL") || requestText.includes("97831") || requestText.includes("unanswerable")) throw new Error("labels must not be sent to Jev"); if (args.query.includes("absent")) return { status: "abstained", choice: "none", provider: "fixture-mock", model: "fixture-no-network", providerConfidence: 0.11, confidenceCalibration: "uncalibrated", evidenceSufficiency: 0.13, noul: 0.65, usage: { input_tokens: 4, output_tokens: 1 }, selected: null }; failNextFetch = args.query.includes("fetch-failure"); const choice = args.query.includes("conflict") ? "none" : "fixture-handle-01"; return { status: "selected", choice, provider: "fixture-mock", model: "fixture-no-network", providerConfidence: 0.91, confidenceCalibration: "uncalibrated", evidenceSufficiency: 0.87, noul: 0.65, usage: { input_tokens: 4, output_tokens: 2 }, selected: { title: "Sample", headingPath: ["Sample"], handle } }; }',
+    '      if (name === "mssr_librarian_jev_select") { if (args.query.includes("empty-search")) throw new Error("selector must not run when search returns no candidates"); const labelKeys = ["answerability", "expectedHeading", "expectedStartLine", "expectedEndLine", "acceptableRanges", "relevantRanges"]; const requestText = JSON.stringify(args); if (labelKeys.some((key) => key in args) || requestText.includes("LABEL_ONLY_SENTINEL") || requestText.includes("97831") || requestText.includes("unanswerable")) throw new Error("labels must not be sent to Jev"); if (args.query.includes("absent")) return { status: "abstained", choice: "none", provider: "fixture-mock", model: "fixture-no-network", providerConfidence: 0.11, confidenceCalibration: "uncalibrated", evidenceSufficiency: 0.13, noul: 0.65, usage: { input_tokens: 4, output_tokens: 1 }, selected: null }; failNextFetch = args.query.includes("fetch-failure"); const choice = args.query.includes("conflict") ? "none" : "fixture-handle-01"; return { status: "selected", choice, provider: "fixture-mock", model: "fixture-no-network", providerConfidence: 0.91, confidenceCalibration: "uncalibrated", evidenceSufficiency: 0.87, noul: 0.65, usage: { input_tokens: 4, output_tokens: 2 }, candidateCount: 1, selectionMode: "single-pass", selectionPasses: 1, providerCalls: 1, finalistCount: 1, candidateRangeDiagnostics: { offered: 1, eligible: 1, oversizedOmitted: 0, maxFetchChars: 20000, lengthUnit: "utf16-code-units" }, rangeOverlapDiagnostics: { sameSourceRevisionPairs: 0, overlappingPairCount: 0, nestedPairCount: 0, exactRangePairCount: 0, partialOverlapPairCount: 0, pairs: [], truncated: false, mutationApplied: false }, batchAssessments: [], providersUsed: ["fixture-mock"], modelsUsed: ["fixture-no-network"], selected: { title: "Sample", headingPath: ["Sample"], handle } }; }',
     '      if (name === "mssr_librarian_fetch") { if (failNextFetch) { failNextFetch = false; throw new Error("fixture fetch failure"); } return { handle, text, fingerprint, projectOwner: owner, advisoryOnly: true, truthAuthority: false }; }',
     '      if (name === "mssr_librarian_evidence_pack") {',
     '        const citation = { display: "docs/one.md:L1-L3", handleId: handle.id, owner, sourceRef: handle.sourceRef, revision: handle.revision, rangeId: handle.rangeId, rangeKind: handle.rangeKind, startLine: 1, endLine: 3, fingerprint, privacyClass: handle.privacyClass };',
@@ -797,6 +830,22 @@ try {
   assert.equal(mockRecord.jev.evidenceSufficiency, 0.87);
   assert.equal(mockRecord.jev.choice, "fixture-handle-01");
   assert.equal(mockRecord.jev.noul, 0.65);
+  assert.equal(mockRecord.jev.selectionMode, "single-pass");
+  assert.equal(mockRecord.jev.selectionPasses, 1);
+  assert.equal(mockRecord.jev.providerCalls, 1,
+    "selection-internal provider calls must be recorded separately from benchmark cases");
+  assert.equal(mockRecord.jev.finalistCount, 1);
+  assert.deepEqual(mockRecord.jev.candidateRangeDiagnostics, {
+    offered: 1,
+    eligible: 1,
+    oversizedOmitted: 0,
+    maxFetchChars: 20000,
+    lengthUnit: "utf16-code-units",
+  });
+  assert.equal(mockRecord.jev.rangeOverlapDiagnostics.mutationApplied, false);
+  assert.deepEqual(mockRecord.jev.batchAssessments, []);
+  assert.deepEqual(mockRecord.jev.providersUsed, ["fixture-mock"]);
+  assert.deepEqual(mockRecord.jev.modelsUsed, ["fixture-no-network"]);
   assert.equal(mockRecord.fetch.passed, true);
   assert.equal(mockRecord.evidencePack.passed, true);
   assert.equal(mockEmptySearchRecord.search.resultCount, 0);
@@ -804,6 +853,9 @@ try {
   assert.equal(mockEmptySearchRecord.jev.candidateCount, 0);
   assert.equal(mockEmptySearchRecord.jev.jevCallMade, false);
   assert.equal(mockEmptySearchRecord.jev.reason, "no-search-candidates");
+  assert.equal(mockEmptySearchRecord.jev.selectionMode, "not-run");
+  assert.equal(mockEmptySearchRecord.jev.selectionPasses, 0);
+  assert.equal(mockEmptySearchRecord.jev.providerCalls, 0);
   assert.equal(mockAbstentionRecord.jev.choice, "none");
   assert.equal(mockAbstentionRecord.fetch, null, "a recorded abstention must not trigger exact fetch or evidence packing");
   assert.equal(mockConflictedRecord.jev.choice, "none");

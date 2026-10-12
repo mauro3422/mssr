@@ -5,7 +5,7 @@ import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { serializeJevEvidenceMetrics } from "./selection-record.mjs";
+import { serializeJevEvidenceMetrics, serializeJevSelectionDiagnostics } from "./selection-record.mjs";
 import { acquireExclusiveRunLock, validateEvidencePack, validateFetchResult, validateLabelHeadingPaths, validateRunInputs } from "./runner-support.mjs";
 
 async function main() {
@@ -135,6 +135,13 @@ for (const testCase of cases) {
         reason: "no-search-candidates",
         candidateCount: 0,
         jevCallMade: false,
+        selectionMode: "not-run",
+        selectionPasses: 0,
+        providerCalls: 0,
+        finalistCount: 0,
+        candidateRangeDiagnostics: null,
+        rangeOverlapDiagnostics: null,
+        batchAssessments: [],
         selected: null,
         choice: null,
         choiceCalls: [],
@@ -182,6 +189,7 @@ for (const testCase of cases) {
       provider: selected.provider ?? null,
       returnedModel: selected.model ?? null,
       ...serializeJevEvidenceMetrics(selected),
+      ...serializeJevSelectionDiagnostics(selected),
       requestFingerprint: selected.requestFingerprint ?? null,
       elapsedMs: selected.elapsedMs ?? null,
       usage: selected.usage ?? null,
