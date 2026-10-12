@@ -1,0 +1,41 @@
+{
+  "caseId": "GDA-01-EN",
+  "traceId": "mssr-20261012-jev-cohort-godot-atlas",
+  "handleId": "47bb64c2bb9e0c97184d7e22b9e06b0f971e18a760127c2c4c076d5ad816e668",
+  "tool": "mssr_librarian_evidence_pack",
+  "envelope": {
+    "delegatedTool": "mssr_librarian_evidence_pack",
+    "classification": "read-only",
+    "result": {
+      "projectOwner": "d:/dev/godotatlas",
+      "sourceCount": 1,
+      "schemaVersion": 1,
+      "kind": "mssr-librarian-evidence-pack",
+      "assembly": "verbatim-source-ranges",
+      "paragraphs": [
+        {
+          "ordinal": 1,
+          "exactText": "## Interaction state machine\n\n```text\nIDLE\n  begin_move\n    -> MOVING\n\nMOVING\n  position_changed\n    -> QUEUED      (only the first request; later changes coalesce)\n\nQUEUED\n  deferred callback while still moving\n    -> REFRESHING\n  mouse-up first\n    -> IDLE + one final synchronous refresh\n\nREFRESHING\n  publish complete route snapshot\n    -> MOVING\n  mouse-up while refresh owns publication\n    -> IDLE without duplicate final publication\n```\n\nThe adapter must keep the previously complete route cache visible until Godot has finished native endpoint bookkeeping for the callback that moved the card. New route geometry is then published atomically.\n\n",
+          "citation": {
+            "display": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md:L62-L87",
+            "handleId": "47bb64c2bb9e0c97184d7e22b9e06b0f971e18a760127c2c4c076d5ad816e668",
+            "owner": "d:/dev/godotatlas",
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "rangeId": "heading-6",
+            "rangeKind": "section",
+            "startLine": 62,
+            "endLine": 87,
+            "fingerprint": "c1d7cb754407783432efda796e9e1a8389776ba9853435f136e3a34a5ca30672",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "totalFetchedChars": 653,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "canonicalRewriteAllowed": false,
+      "ownerAndPrivacyAreCallerAsserted": true
+    }
+  }
+}

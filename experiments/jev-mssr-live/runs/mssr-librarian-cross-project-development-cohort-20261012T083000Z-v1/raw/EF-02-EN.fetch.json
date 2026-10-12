@@ -1,0 +1,26 @@
+{
+  "caseId": "EF-02-EN",
+  "tool": "mssr_librarian_fetch",
+  "connectorPath": "portable MSSR MCP against frozen local snapshot",
+  "result": {
+    "handle": {
+      "version": 1,
+      "id": "54cd4fb1383dcde2059344e4bebb3c4009b1b31b9d06d62649c7e6ac266af9de",
+      "owner": "d:/dev/elemental-frontier",
+      "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+      "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+      "rangeId": "heading-5",
+      "rangeKind": "section",
+      "startLine": 33,
+      "endLine": 48,
+      "startOffset": 954,
+      "endOffset": 1224,
+      "fingerprint": "3e03166c84092b1d39fef0e2975817f26e1b18172701ae9d1baa2cc8cb4d7ab2",
+      "privacyClass": "project-metadata"
+    },
+    "text": "### Tiempo\n\nCon vídeo de tasa conocida:\n\n`milisegundos = frames / FPS * 1000`\n\nMarcas principales:\n\n- input;\n- primer frame de respuesta;\n- primer frame activo/hit;\n- último frame activo;\n- retorno a control neutral.\n\nDe ahí salen startup, active, recovery y duración.\n\n",
+    "fingerprint": "3e03166c84092b1d39fef0e2975817f26e1b18172701ae9d1baa2cc8cb4d7ab2",
+    "advisoryOnly": true,
+    "truthAuthority": false
+  }
+}

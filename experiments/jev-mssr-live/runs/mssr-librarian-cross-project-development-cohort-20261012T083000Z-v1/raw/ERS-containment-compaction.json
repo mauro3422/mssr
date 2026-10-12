@@ -1,0 +1,127 @@
+{
+  "control": "strict containment compaction; deterministic text-volume control only",
+  "traceId": "mssr-20261012-jev-cohort-electronics-repair-simulator",
+  "parent": {
+    "id": "bf19fb236fd93ae7f9bcbd50855144e5808704f9d874ff13d57ffdd8d0be040f",
+    "rangeId": "heading-3",
+    "lines": [
+      24,
+      70
+    ]
+  },
+  "child": {
+    "id": "01cc93da7a9122ddf2c5f13c214b846c1f2ef4c48319d23363cf15bb3f1c7559",
+    "rangeId": "heading-5",
+    "lines": [
+      43,
+      56
+    ]
+  },
+  "withoutDedupe": {
+    "delegatedTool": "mssr_librarian_evidence_pack",
+    "classification": "read-only",
+    "result": {
+      "projectOwner": "d:/dev/electronics-repair-simulator",
+      "sourceCount": 1,
+      "schemaVersion": 1,
+      "kind": "mssr-librarian-evidence-pack",
+      "assembly": "verbatim-source-ranges",
+      "paragraphs": [
+        {
+          "ordinal": 1,
+          "exactText": "## Layer model\n\nUse three explicit layers instead of building every device as one monolithic mesh.\n\n### Layer 1 — atomic component\n\nSmall reusable pieces with their own stable local interface:\n\n- PCB carriers;\n- processors / IC packages;\n- resistors, capacitors, diodes and transistors;\n- fuses and regulators;\n- switches and potentiometers;\n- headers, wire connectors, terminal blocks and test jacks;\n- buzzers, LEDs and inductors;\n- existing reusable fasteners, battery cells and battery contacts.\n\nAtomic components should remain independent from the device shell and should normally be instanced at scale `1,1,1`.\n\n### Layer 2 — functional module\n\nA bounded assembly that combines atomic components for one purpose, for example:\n\n- mainboard;\n- display daughterboard;\n- power/input board;\n- LED board;\n- driver board;\n- selector/contact module;\n- connector board.\n\nA module owns the placement of its atomics, but those atomics retain source lineage and detachable identities when the repair loop may expose them.\n\n### Layer 3 — serviceable assembly\n\nThe device-specific interior and shell contract:\n\n- covers;\n- screw interfaces;\n- PCB/module mount points;\n- battery cradle/contact placement;\n- cable routing;\n- optical/mechanical interfaces;\n- removal order.\n\nThe serviceable assembly decides which reusable pieces are instantiated and which device-specific geometry must be derived or created.\n\n",
+          "citation": {
+            "display": "docs/ELECTRONICS_MODULAR_SYSTEM.md:L24-L70",
+            "handleId": "bf19fb236fd93ae7f9bcbd50855144e5808704f9d874ff13d57ffdd8d0be040f",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "heading-3",
+            "rangeKind": "section",
+            "startLine": 24,
+            "endLine": 70,
+            "fingerprint": "ef5c68b1e1f4235ac16cfeb314488d4a042f564a7d4b6eae8c40e60c106fff31",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "ordinal": 2,
+          "exactText": "### Layer 2 — functional module\n\nA bounded assembly that combines atomic components for one purpose, for example:\n\n- mainboard;\n- display daughterboard;\n- power/input board;\n- LED board;\n- driver board;\n- selector/contact module;\n- connector board.\n\nA module owns the placement of its atomics, but those atomics retain source lineage and detachable identities when the repair loop may expose them.\n\n",
+          "citation": {
+            "display": "docs/ELECTRONICS_MODULAR_SYSTEM.md:L43-L56",
+            "handleId": "01cc93da7a9122ddf2c5f13c214b846c1f2ef4c48319d23363cf15bb3f1c7559",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "heading-5",
+            "rangeKind": "section",
+            "startLine": 43,
+            "endLine": 56,
+            "fingerprint": "d93fcd981c078a66be33ebc11d571b786aad677801772f751f319d373a6cde0a",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "totalFetchedChars": 1800,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "canonicalRewriteAllowed": false,
+      "ownerAndPrivacyAreCallerAsserted": true
+    }
+  },
+  "withDedupe": {
+    "delegatedTool": "mssr_librarian_evidence_pack",
+    "classification": "read-only",
+    "result": {
+      "projectOwner": "d:/dev/electronics-repair-simulator",
+      "sourceCount": 1,
+      "schemaVersion": 1,
+      "kind": "mssr-librarian-evidence-pack",
+      "assembly": "verbatim-source-ranges",
+      "paragraphs": [
+        {
+          "ordinal": 1,
+          "exactText": "## Layer model\n\nUse three explicit layers instead of building every device as one monolithic mesh.\n\n### Layer 1 — atomic component\n\nSmall reusable pieces with their own stable local interface:\n\n- PCB carriers;\n- processors / IC packages;\n- resistors, capacitors, diodes and transistors;\n- fuses and regulators;\n- switches and potentiometers;\n- headers, wire connectors, terminal blocks and test jacks;\n- buzzers, LEDs and inductors;\n- existing reusable fasteners, battery cells and battery contacts.\n\nAtomic components should remain independent from the device shell and should normally be instanced at scale `1,1,1`.\n\n### Layer 2 — functional module\n\nA bounded assembly that combines atomic components for one purpose, for example:\n\n- mainboard;\n- display daughterboard;\n- power/input board;\n- LED board;\n- driver board;\n- selector/contact module;\n- connector board.\n\nA module owns the placement of its atomics, but those atomics retain source lineage and detachable identities when the repair loop may expose them.\n\n### Layer 3 — serviceable assembly\n\nThe device-specific interior and shell contract:\n\n- covers;\n- screw interfaces;\n- PCB/module mount points;\n- battery cradle/contact placement;\n- cable routing;\n- optical/mechanical interfaces;\n- removal order.\n\nThe serviceable assembly decides which reusable pieces are instantiated and which device-specific geometry must be derived or created.\n\n",
+          "citation": {
+            "display": "docs/ELECTRONICS_MODULAR_SYSTEM.md:L24-L70",
+            "handleId": "bf19fb236fd93ae7f9bcbd50855144e5808704f9d874ff13d57ffdd8d0be040f",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "heading-3",
+            "rangeKind": "section",
+            "startLine": 24,
+            "endLine": 70,
+            "fingerprint": "ef5c68b1e1f4235ac16cfeb314488d4a042f564a7d4b6eae8c40e60c106fff31",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "totalFetchedChars": 1401,
+      "rangeCompaction": {
+        "policy": "strict-contained-range-deduplication",
+        "inputHandleCount": 2,
+        "retainedHandleCount": 1,
+        "removed": [
+          {
+            "handleId": "01cc93da7a9122ddf2c5f13c214b846c1f2ef4c48319d23363cf15bb3f1c7559",
+            "coveredByHandleId": "bf19fb236fd93ae7f9bcbd50855144e5808704f9d874ff13d57ffdd8d0be040f",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "heading-5",
+            "rangeKind": "section",
+            "startLine": 43,
+            "endLine": 56,
+            "fingerprint": "d93fcd981c078a66be33ebc11d571b786aad677801772f751f319d373a6cde0a",
+            "privacyClass": "project-metadata"
+          }
+        ]
+      },
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "canonicalRewriteAllowed": false,
+      "ownerAndPrivacyAreCallerAsserted": true
+    }
+  }
+}

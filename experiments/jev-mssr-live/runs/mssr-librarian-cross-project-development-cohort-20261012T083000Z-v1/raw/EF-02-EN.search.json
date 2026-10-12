@@ -1,0 +1,562 @@
+{
+  "caseId": "EF-02-EN",
+  "query": "What formula converts a measured frame count into milliseconds, and which timing marks are recorded?",
+  "connectorPath": "portable MSSR MCP",
+  "tool": "mssr_librarian_search",
+  "result": {
+    "results": [
+      {
+        "handle": {
+          "version": 1,
+          "id": "569da5ea67aacf6beee4b585e89e71866a6fc0c921b0fd37576bce47a6175b36",
+          "owner": "d:/dev/elemental-frontier",
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 92,
+          "startOffset": 0,
+          "endOffset": 2398,
+          "fingerprint": "a0f552c6bb69d38d60a217c204337f5a1fe95947b0b13de85884cbdefa66a8d2",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 2398,
+        "exactFetchable": true,
+        "score": 0.222222,
+        "title": "Combat Lab Test Protocol",
+        "headingPath": [
+          "Combat Lab Test Protocol"
+        ],
+        "snippet": "…### Tiempo Con vídeo de tasa conocida: `milisegundos = frames / FPS * 1000` Marcas principales: - input; - primer frame de respuesta; - primer frame activo/hit; - último frame activo; - retorno a control neutral. De ah…",
+        "metadata": {
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "headingPath": [
+            "Combat Lab Test Protocol"
+          ],
+          "level": 1,
+          "parentId": null,
+          "startLine": 1,
+          "endLine": 92,
+          "chars": 2398,
+          "bytes": 2437,
+          "terms": [
+            "combat",
+            "lab",
+            "protocol",
+            "test",
+            "bien",
+            "convertir",
+            "eliminar",
+            "humano"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "6bf955b0308f8112b80dba32c398140a69e14fe6d55030a3e43b527af97ead77",
+          "owner": "d:/dev/elemental-frontier",
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "rangeId": "heading-4",
+          "rangeKind": "section",
+          "startLine": 31,
+          "endLine": 62,
+          "startOffset": 941,
+          "endOffset": 1582,
+          "fingerprint": "d1ca1ecf4248b90d0ad706f7c64e864c468f7f8c41e5c3648edf5ceb4650e2f3",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 641,
+        "exactFetchable": true,
+        "score": 0.111111,
+        "title": "Medición",
+        "headingPath": [
+          "Combat Lab Test Protocol",
+          "Medición"
+        ],
+        "snippet": "…### Tiempo Con vídeo de tasa conocida: `milisegundos = frames / FPS * 1000` Marcas principales: - input; - primer frame de respuesta; - primer frame activo/hit; - último frame activo; - retorno a control neutral. De ah…",
+        "metadata": {
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "headingPath": [
+            "Combat Lab Test Protocol",
+            "Medición"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 31,
+          "endLine": 62,
+          "chars": 641,
+          "bytes": 651,
+          "terms": [
+            "medicion",
+            "conocida",
+            "tasa",
+            "video"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "54cd4fb1383dcde2059344e4bebb3c4009b1b31b9d06d62649c7e6ac266af9de",
+          "owner": "d:/dev/elemental-frontier",
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "rangeId": "heading-5",
+          "rangeKind": "section",
+          "startLine": 33,
+          "endLine": 48,
+          "startOffset": 954,
+          "endOffset": 1224,
+          "fingerprint": "3e03166c84092b1d39fef0e2975817f26e1b18172701ae9d1baa2cc8cb4d7ab2",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 270,
+        "exactFetchable": true,
+        "score": 0.111111,
+        "title": "Tiempo",
+        "headingPath": [
+          "Combat Lab Test Protocol",
+          "Medición",
+          "Tiempo"
+        ],
+        "snippet": "### Tiempo Con vídeo de tasa conocida: `milisegundos = frames / FPS * 1000` Marcas principales: - input; - primer frame de respuesta; - primer frame activo/hit; - último frame activo; - retorno a control neutral. De ahí…",
+        "metadata": {
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "headingPath": [
+            "Combat Lab Test Protocol",
+            "Medición",
+            "Tiempo"
+          ],
+          "level": 3,
+          "parentId": "heading-4",
+          "startLine": 33,
+          "endLine": 48,
+          "chars": 270,
+          "bytes": 274,
+          "terms": [
+            "tiempo",
+            "conocida",
+            "tasa",
+            "video"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "21d5da4437eed71fd7805438191ecef3c8a7b8f1cdbb9b4668bc53484e3b1679",
+          "owner": "d:/dev/elemental-frontier",
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "rangeId": "block-10",
+          "rangeKind": "block",
+          "startLine": 41,
+          "endLine": 45,
+          "startOffset": 1054,
+          "endOffset": 1170,
+          "fingerprint": "b74b7591290505796669e7f874ab2fa122c870be552cedc3c068aeb6e4168c3a",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 116,
+        "exactFetchable": true,
+        "score": 0.111111,
+        "title": "Tiempo",
+        "headingPath": [
+          "Combat Lab Test Protocol",
+          "Medición",
+          "Tiempo"
+        ],
+        "snippet": "- input; - primer frame de respuesta; - primer frame activo/hit; - último frame activo; - retorno a control neutral.",
+        "metadata": {
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "headingPath": [
+            "Combat Lab Test Protocol",
+            "Medición",
+            "Tiempo"
+          ],
+          "blockKind": "list",
+          "sectionId": "heading-5",
+          "startLine": 41,
+          "endLine": 45,
+          "chars": 116,
+          "bytes": 117,
+          "terms": [
+            "frame",
+            "activo",
+            "primer",
+            "control",
+            "hit",
+            "input",
+            "neutral",
+            "respuesta"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "58baeccc89aafaa75b7c00dd31e56c2e8913cb81325ba9c9290a744d93b63fbd",
+          "owner": "d:/dev/elemental-frontier",
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "rangeId": "block-10/item-2",
+          "rangeKind": "block",
+          "startLine": 42,
+          "endLine": 42,
+          "startOffset": 1063,
+          "endOffset": 1091,
+          "fingerprint": "f771c565e80e050a1ad34984c412a74d56d10fba02e113878066cd4c12f6ad49",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 28,
+        "exactFetchable": true,
+        "score": 0.111111,
+        "title": "Tiempo",
+        "headingPath": [
+          "Combat Lab Test Protocol",
+          "Medición",
+          "Tiempo"
+        ],
+        "snippet": "- primer frame de respuesta;",
+        "metadata": {
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "headingPath": [
+            "Combat Lab Test Protocol",
+            "Medición",
+            "Tiempo"
+          ],
+          "blockKind": "list-item",
+          "parentBlockId": "block-10",
+          "parentBlockFingerprint": "b74b7591290505796669e7f874ab2fa122c870be552cedc3c068aeb6e4168c3a",
+          "listItemOrdinal": 2,
+          "sectionId": "heading-5",
+          "startLine": 42,
+          "endLine": 42,
+          "chars": 28,
+          "bytes": 28,
+          "terms": [
+            "primer",
+            "frame",
+            "de",
+            "respuesta"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "7a5ec109f515ba07573d9e1abf01653445eb341306c165e5320f173efa92face",
+          "owner": "d:/dev/elemental-frontier",
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "rangeId": "block-10/item-3",
+          "rangeKind": "block",
+          "startLine": 43,
+          "endLine": 43,
+          "startOffset": 1092,
+          "endOffset": 1118,
+          "fingerprint": "60ac7be6e0cce23bbe8423c4005cd7cb8ef505e095520bb2146fb602ec14cbba",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 26,
+        "exactFetchable": true,
+        "score": 0.111111,
+        "title": "Tiempo",
+        "headingPath": [
+          "Combat Lab Test Protocol",
+          "Medición",
+          "Tiempo"
+        ],
+        "snippet": "- primer frame activo/hit;",
+        "metadata": {
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "headingPath": [
+            "Combat Lab Test Protocol",
+            "Medición",
+            "Tiempo"
+          ],
+          "blockKind": "list-item",
+          "parentBlockId": "block-10",
+          "parentBlockFingerprint": "b74b7591290505796669e7f874ab2fa122c870be552cedc3c068aeb6e4168c3a",
+          "listItemOrdinal": 3,
+          "sectionId": "heading-5",
+          "startLine": 43,
+          "endLine": 43,
+          "chars": 26,
+          "bytes": 26,
+          "terms": [
+            "primer",
+            "frame",
+            "activo",
+            "hit"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "f3b6f446eb847fefcc0220a5b25b4e20571697b75973d6608dcd8769434e956e",
+          "owner": "d:/dev/elemental-frontier",
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "rangeId": "block-10/item-4",
+          "rangeKind": "block",
+          "startLine": 44,
+          "endLine": 44,
+          "startOffset": 1119,
+          "endOffset": 1141,
+          "fingerprint": "7e48b66cec0e32cf71b4278d84f17ab39e5ba291b80a425f09e67cf48b10b43f",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 22,
+        "exactFetchable": true,
+        "score": 0.111111,
+        "title": "Tiempo",
+        "headingPath": [
+          "Combat Lab Test Protocol",
+          "Medición",
+          "Tiempo"
+        ],
+        "snippet": "- último frame activo;",
+        "metadata": {
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "headingPath": [
+            "Combat Lab Test Protocol",
+            "Medición",
+            "Tiempo"
+          ],
+          "blockKind": "list-item",
+          "parentBlockId": "block-10",
+          "parentBlockFingerprint": "b74b7591290505796669e7f874ab2fa122c870be552cedc3c068aeb6e4168c3a",
+          "listItemOrdinal": 4,
+          "sectionId": "heading-5",
+          "startLine": 44,
+          "endLine": 44,
+          "chars": 22,
+          "bytes": 23,
+          "terms": [
+            "ultimo",
+            "frame",
+            "activo"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "c9c9b6c25512c3aa1bee48b8f9b6fc98fc9187d19fb4d6f6f5cb56266ec3846c",
+          "owner": "d:/dev/elemental-frontier",
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "rangeId": "heading-9",
+          "rangeKind": "section",
+          "startLine": 72,
+          "endLine": 81,
+          "startOffset": 1817,
+          "endOffset": 2107,
+          "fingerprint": "9f4ca979e809ecd217311ee58cb62915d69d0204f099e6d36da8b37da9f9103f",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 290,
+        "exactFetchable": true,
+        "score": 0.111111,
+        "title": "Prueba contra rival",
+        "headingPath": [
+          "Combat Lab Test Protocol",
+          "Prueba contra rival"
+        ],
+        "snippet": "…mismo movimiento; 2. defensor mira al atacante, no al HUD; 3. registrar cuándo entiende qué ataque viene; 4. intentar esquiva/bloqueo; 5. identificar qué pista lo hizo legible: pose, VFX, sonido, desplazamiento o timin…",
+        "metadata": {
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "headingPath": [
+            "Combat Lab Test Protocol",
+            "Prueba contra rival"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 72,
+          "endLine": 81,
+          "chars": 290,
+          "bytes": 293,
+          "terms": [
+            "contra",
+            "prueba",
+            "rival",
+            "ataques",
+            "combat"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "dc8fec361034f09de8725cd5a2b9351f6216f1a665b7a3ce263edcb37569859f",
+          "owner": "d:/dev/elemental-frontier",
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "rangeId": "block-20",
+          "rangeKind": "block",
+          "startLine": 76,
+          "endLine": 80,
+          "startOffset": 1863,
+          "endOffset": 2105,
+          "fingerprint": "07d7825c09cc4d7385e245a5069f8d850e679bde33b2048b72f68019f6aa67b2",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 242,
+        "exactFetchable": true,
+        "score": 0.111111,
+        "title": "Prueba contra rival",
+        "headingPath": [
+          "Combat Lab Test Protocol",
+          "Prueba contra rival"
+        ],
+        "snippet": "…mismo movimiento; 2. defensor mira al atacante, no al HUD; 3. registrar cuándo entiende qué ataque viene; 4. intentar esquiva/bloqueo; 5. identificar qué pista lo hizo legible: pose, VFX, sonido, desplazamiento o timin…",
+        "metadata": {
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "headingPath": [
+            "Combat Lab Test Protocol",
+            "Prueba contra rival"
+          ],
+          "blockKind": "list",
+          "sectionId": "heading-9",
+          "startLine": 76,
+          "endLine": 80,
+          "chars": 242,
+          "bytes": 245,
+          "terms": [
+            "atacante",
+            "ataque",
+            "bloqueo",
+            "defensor",
+            "desplazamiento",
+            "entiende",
+            "esquiva",
+            "hizo"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "d443c86abc9edc2ecfbcba17cae5565858521b44f1316b8edb9a26953435df28",
+          "owner": "d:/dev/elemental-frontier",
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "rangeId": "block-20/item-5",
+          "rangeKind": "block",
+          "startLine": 80,
+          "endLine": 80,
+          "startOffset": 2020,
+          "endOffset": 2105,
+          "fingerprint": "d96a1c6cdbf9a79a2fa2932b6a4ceda23bdad6c4cbcb3c65aef96acfd1d18eb1",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 85,
+        "exactFetchable": true,
+        "score": 0.111111,
+        "title": "Prueba contra rival",
+        "headingPath": [
+          "Combat Lab Test Protocol",
+          "Prueba contra rival"
+        ],
+        "snippet": "5. identificar qué pista lo hizo legible: pose, VFX, sonido, desplazamiento o timing.",
+        "metadata": {
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+          "headingPath": [
+            "Combat Lab Test Protocol",
+            "Prueba contra rival"
+          ],
+          "blockKind": "list-item",
+          "parentBlockId": "block-20",
+          "parentBlockFingerprint": "07d7825c09cc4d7385e245a5069f8d850e679bde33b2048b72f68019f6aa67b2",
+          "listItemOrdinal": 5,
+          "sectionId": "heading-9",
+          "startLine": 80,
+          "endLine": 80,
+          "chars": 85,
+          "bytes": 86,
+          "terms": [
+            "identificar",
+            "que",
+            "pista",
+            "lo",
+            "hizo",
+            "legible",
+            "pose",
+            "vfx",
+            "sonido",
+            "desplazamiento",
+            "timing"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      }
+    ],
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "truncated": false
+  }
+}

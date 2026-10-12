@@ -1,0 +1,607 @@
+{
+  "caseId": "KODE-02-EN",
+  "query": "Which Kode transport is mapped to @ai-sdk/openai and to @ai-sdk/openai-compatible?",
+  "traceId": "mssr-20261012-jev-cohort-kode",
+  "tool": "mssr_librarian_search",
+  "envelope": {
+    "delegatedTool": "mssr_librarian_search",
+    "classification": "read-only",
+    "result": {
+      "projectOwner": "d:/dev/kode",
+      "sourceCount": 1,
+      "results": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "889f17fe535cde46f72edd2fbfb9deeae34fe8b7400e441f9bdcf053f0340488",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 360,
+            "startOffset": 0,
+            "endOffset": 16841,
+            "fingerprint": "b5075a063deeb44f20d7a8af333247b46e6aa0a7c4102522a5666e0ab2babf91",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 16841,
+          "exactFetchable": true,
+          "score": 0.833333,
+          "title": "Kode ↔ OpenCode Provider Contract",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract"
+          ],
+          "snippet": "# Kode ↔ OpenCode Provider Contract Last reviewed against upstream docs: **2026-09-13** This document separates three kinds of truth that must not be mixed: 1. **OpenCode upstream facts** — current public provider/model…",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract"
+            ],
+            "level": 1,
+            "parentId": null,
+            "startLine": 1,
+            "endLine": 360,
+            "chars": 16841,
+            "bytes": 16917,
+            "terms": [
+              "contract",
+              "kode",
+              "opencode",
+              "provider",
+              "2026-09-13",
+              "against",
+              "docs",
+              "last"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "78e872e763cf353190e9691b603c09e76f5c05fc5648ab946e23773414cec580",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 13,
+            "endLine": 43,
+            "startOffset": 571,
+            "endOffset": 2206,
+            "fingerprint": "3c54c224087628b2c99992a383ebef824b083dcc38ead9165c47bb67eb7f803f",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 1635,
+          "exactFetchable": true,
+          "score": 0.833333,
+          "title": "1. Official upstream sources",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "1. Official upstream sources"
+          ],
+          "snippet": "…s://models.dev/> - Models.dev registry API consumed by Kode: <https://models.dev/api.json> - OpenCode repository: <https://github.com/sst/opencode> When upstream docs and Kode code disagree, treat that as a compatibili…",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "1. Official upstream sources"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 13,
+            "endLine": 43,
+            "chars": 1635,
+            "bytes": 1643,
+            "terms": [
+              "official",
+              "sources",
+              "upstream",
+              "integration",
+              "primary",
+              "used"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "98923a0d60dd1d9f88503603db833727f47f92cc5499083d09f5acbdce6df3e4",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "heading-3",
+            "rangeKind": "section",
+            "startLine": 29,
+            "endLine": 43,
+            "startOffset": 1284,
+            "endOffset": 2206,
+            "fingerprint": "790d7f2de73015e7c9d1a1acbbf49c9eacb40a8ae3fd6e0fdc89122420b2550b",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 922,
+          "exactFetchable": true,
+          "score": 0.833333,
+          "title": "Current upstream facts relevant to Kode",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "1. Official upstream sources",
+            "Current upstream facts relevant to Kode"
+          ],
+          "snippet": "### Current upstream facts relevant to Kode As of this review: - OpenCode uses AI SDK/provider integrations and Models.dev metadata to expose many providers/models. - OpenCode model identities use provider + model IDs; …",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "1. Official upstream sources",
+              "Current upstream facts relevant to Kode"
+            ],
+            "level": 3,
+            "parentId": "heading-2",
+            "startLine": 29,
+            "endLine": 43,
+            "chars": 922,
+            "bytes": 930,
+            "terms": [
+              "facts",
+              "kode",
+              "relevant",
+              "upstream",
+              "review"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "05444b6c62b612c41b540a13cc1901dbc6347c4bc7b67719a31645e1b5cbd426",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "heading-13",
+            "rangeKind": "section",
+            "startLine": 159,
+            "endLine": 208,
+            "startOffset": 7570,
+            "endOffset": 9689,
+            "fingerprint": "45442bce637a9b1d92ba9c57ab390001d1786c229aa058f2c7b223ffed5262e8",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 2119,
+          "exactFetchable": true,
+          "score": 0.833333,
+          "title": "6. The transport laws",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "6. The transport laws"
+          ],
+          "snippet": "## 6. The transport laws These are durable integration rules and should be treated as regression invariants. ### Law 1 — FREE/Go/Zen does not choose the wire protocol Never write logic equivalent to: `if free => chat/co…",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "6. The transport laws"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 159,
+            "endLine": 208,
+            "chars": 2119,
+            "bytes": 2135,
+            "terms": [
+              "laws",
+              "transport",
+              "durable",
+              "integration",
+              "invariants",
+              "regression",
+              "rules",
+              "these"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "f9ae821482b91c3c4893198355dc154eea2c2e1dc5b9c2c8c9fdd0972056135f",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "heading-16",
+            "rangeKind": "section",
+            "startLine": 179,
+            "endLine": 190,
+            "startOffset": 8192,
+            "endOffset": 8657,
+            "fingerprint": "4e72f7cbae38ac0a6268423b4ffd2a71176ca3f35c050ab858af6179132d274f",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 465,
+          "exactFetchable": true,
+          "score": 0.833333,
+          "title": "Law 3 — known package mapping is explicit",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "6. The transport laws",
+            "Law 3 — known package mapping is explicit"
+          ],
+          "snippet": "### Law 3 — known package mapping is explicit Current Kode mapping: | AI SDK package | Kode transport | | --- | --- | | `@ai-sdk/openai` | Responses | | `@ai-sdk/openai-compatible` | Chat Completions | | other explicit …",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "6. The transport laws",
+              "Law 3 — known package mapping is explicit"
+            ],
+            "level": 3,
+            "parentId": "heading-13",
+            "startLine": 179,
+            "endLine": 190,
+            "chars": 465,
+            "bytes": 469,
+            "terms": [
+              "explicit",
+              "known",
+              "law",
+              "mapping",
+              "package",
+              "kode"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "e429a97235ee9c53cf31e67e86f2707632984cadacba5071f18e1ae8fdf0c661",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "block-50",
+            "rangeKind": "block",
+            "startLine": 183,
+            "endLine": 187,
+            "startOffset": 8262,
+            "endOffset": 8449,
+            "fingerprint": "d062a6fd79c4a7792f00c182e49c1dc6cc1d60583df789f85260ba42f7f95a30",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 187,
+          "exactFetchable": true,
+          "score": 0.833333,
+          "title": "Law 3 — known package mapping is explicit",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "6. The transport laws",
+            "Law 3 — known package mapping is explicit"
+          ],
+          "snippet": "| AI SDK package | Kode transport | | --- | --- | | `@ai-sdk/openai` | Responses | | `@ai-sdk/openai-compatible` | Chat Completions | | other explicit package | unsupported → omit model |",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "6. The transport laws",
+              "Law 3 — known package mapping is explicit"
+            ],
+            "blockKind": "table",
+            "sectionId": "heading-16",
+            "startLine": 183,
+            "endLine": 187,
+            "chars": 187,
+            "bytes": 189,
+            "terms": [
+              "ai-sdk",
+              "package",
+              "chat",
+              "completions",
+              "explicit",
+              "kode",
+              "model",
+              "omit"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "148771ef9c4f1beb4909a0634a0ab47314734a3ef1ca52765adaeaa907a451ce",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "heading-22",
+            "rangeKind": "section",
+            "startLine": 225,
+            "endLine": 253,
+            "startOffset": 10274,
+            "endOffset": 11196,
+            "fingerprint": "36441124c7e0e6f4deabcc9abe8cd922de4c9ab92ba7b78d9165364d01377f39",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 922,
+          "exactFetchable": true,
+          "score": 0.833333,
+          "title": "8. Known model examples — evidence, not permanent routing tables",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "8. Known model examples — evidence, not permanent routing tables"
+          ],
+          "snippet": "…ee`; - endpoint: Chat Completions; - AI SDK package: `@ai-sdk/openai-compatible`. Kode real direct smoke previously returned HTTP 200 and streamed `KODE_FREE_DIRECT_OK`. ### Muse Spark 1.3 Contributor Free Current offi…",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "8. Known model examples — evidence, not permanent routing tables"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 225,
+            "endLine": 253,
+            "chars": 922,
+            "bytes": 932,
+            "terms": [
+              "evidence",
+              "examples",
+              "known",
+              "model",
+              "permanent",
+              "routing",
+              "tables",
+              "docs"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "ba71a8bb08608c68fd6839d1cb50440749fc628892c267ac71d2df9587a40318",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "block-9",
+            "rangeKind": "block",
+            "startLine": 33,
+            "endLine": 40,
+            "startOffset": 1349,
+            "endOffset": 2094,
+            "fingerprint": "85b8d5a7742165c223edf839c312ec48421a2a6f5403e946acd79a3e8c15c195",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 745,
+          "exactFetchable": true,
+          "score": 0.666667,
+          "title": "Current upstream facts relevant to Kode",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "1. Official upstream sources",
+            "Current upstream facts relevant to Kode"
+          ],
+          "snippet": "…e` → `https://opencode.ai/zen/v1/chat/completions` → `@ai-sdk/openai-compatible`; - `muse-spark-1.3-contributor-free` → `https://opencode.ai/zen/v1/responses` → `@ai-sdk/openai`. - Current Go tables likewise mix Respon…",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "1. Official upstream sources",
+              "Current upstream facts relevant to Kode"
+            ],
+            "blockKind": "list",
+            "sectionId": "heading-3",
+            "startLine": 33,
+            "endLine": 40,
+            "chars": 745,
+            "bytes": 753,
+            "terms": [
+              "model",
+              "opencode",
+              "zen",
+              "models",
+              "https",
+              "endpoint",
+              "provider",
+              "ai-sdk"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "53807de51deb3dfd213def10260bd85e65b0a43010235a32b0e6eefed9745cc1",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "block-9/item-5",
+            "rangeKind": "block",
+            "startLine": 37,
+            "endLine": 39,
+            "startOffset": 1685,
+            "endOffset": 1989,
+            "fingerprint": "a3e50e07307183bc954cd7115088e2213f2ec9d1ee9ed33b179ced94c427f69c",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 304,
+          "exactFetchable": true,
+          "score": 0.666667,
+          "title": "Current upstream facts relevant to Kode",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "1. Official upstream sources",
+            "Current upstream facts relevant to Kode"
+          ],
+          "snippet": "…e official table include: - `mimo-v2.5-free` → `https://opencode.ai/zen/v1/chat/completions` → `@ai-sdk/openai-compatible`; - `muse-spark-1.3-contributor-free` → `https://opencode.ai/zen/v1/responses` → `@ai-sdk/openai…",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "1. Official upstream sources",
+              "Current upstream facts relevant to Kode"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-9",
+            "parentBlockFingerprint": "85b8d5a7742165c223edf839c312ec48421a2a6f5403e946acd79a3e8c15c195",
+            "listItemOrdinal": 5,
+            "sectionId": "heading-3",
+            "startLine": 37,
+            "endLine": 39,
+            "chars": 304,
+            "bytes": 312,
+            "terms": [
+              "current",
+              "zen",
+              "endpoint",
+              "tables",
+              "explicitly",
+              "mix",
+              "transports",
+              "by",
+              "model",
+              "examples",
+              "in",
+              "the",
+              "official",
+              "table",
+              "include",
+              "mimo-v2",
+              "5-free",
+              "https",
+              "opencode",
+              "ai",
+              "v1",
+              "chat",
+              "completions",
+              "ai-sdk",
+              "openai-compatible",
+              "muse-spark-1",
+              "3-contributor-free",
+              "responses",
+              "openai"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "5070c15e78de2c97377912f1f7e10585f960ae121abcc6679cb5faf9e5154e39",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "heading-24",
+            "rangeKind": "section",
+            "startLine": 237,
+            "endLine": 253,
+            "startOffset": 10602,
+            "endOffset": 11196,
+            "fingerprint": "1871685e23e296d4a40e2d34ef23d9da736a08f929c4789c488e2d1d2b91662a",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 594,
+          "exactFetchable": true,
+          "score": 0.666667,
+          "title": "Muse Spark 1.3 Contributor Free",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "8. Known model examples — evidence, not permanent routing tables",
+            "Muse Spark 1.3 Contributor Free"
+          ],
+          "snippet": "…utor-free`; - endpoint: Responses; - AI SDK package: `@ai-sdk/openai`. Observed failure that produced the transport fix: - same key/model sent to `/chat/completions` → HTTP 500; - same key/model/session sent to `/respo…",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "8. Known model examples — evidence, not permanent routing tables",
+              "Muse Spark 1.3 Contributor Free"
+            ],
+            "level": 3,
+            "parentId": "heading-22",
+            "startLine": 237,
+            "endLine": 253,
+            "chars": 594,
+            "bytes": 602,
+            "terms": [
+              "contributor",
+              "free",
+              "muse",
+              "spark",
+              "docs",
+              "list",
+              "official",
+              "opencode"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        }
+      ],
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "truncated": true
+    },
+    "bridgeNotices": {
+      "delivery": "automatic-drain",
+      "scope": "contextual",
+      "count": 0,
+      "remainingPending": 1,
+      "relevantPending": 0,
+      "otherPending": 1,
+      "globalPending": 0,
+      "globalHistoryTool": "bridge_notice_history",
+      "items": []
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "caseId": "EF-01-ES",
+  "connectorPath": "portable MSSR MCP against frozen local snapshot",
+  "result": {
+    "handle": {
+      "version": 1,
+      "id": "e0a1f1816328dfb6dba8b4824f63127eb46983c882108a90fa0320a9bf28bcc7",
+      "owner": "d:/dev/elemental-frontier",
+      "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+      "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+      "rangeId": "block-5",
+      "rangeKind": "block",
+      "startLine": 19,
+      "endLine": 27,
+      "startOffset": 479,
+      "endOffset": 830,
+      "fingerprint": "f039e1d71fa6927f90f2a0e063540ba66496eae7c1feb41cbe25137543ceb5f0",
+      "privacyClass": "project-metadata"
+    },
+    "text": "- mismo perfil de vídeo/FPS;\n- mismo FOV y sensibilidad;\n- misma perspectiva cuando se compare animación;\n- mismo tramo de arena;\n- misma dirección inicial;\n- misma condición sprint/suelo/aire;\n- sin shaders salvo prueba específica;\n- preferir singleplayer/local para eliminar ping;\n- repetir cada medición al menos 5 veces si el dato es cuantitativo.",
+    "fingerprint": "f039e1d71fa6927f90f2a0e063540ba66496eae7c1feb41cbe25137543ceb5f0",
+    "advisoryOnly": true,
+    "truthAuthority": false
+  }
+}

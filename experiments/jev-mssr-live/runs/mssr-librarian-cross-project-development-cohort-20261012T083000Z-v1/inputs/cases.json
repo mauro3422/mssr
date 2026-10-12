@@ -1,0 +1,24 @@
+{
+  "schema": "jev-mssr-source-disjoint-development-cases-v1",
+  "cases": [
+    {"id":"GDA-01-EN","sourceId":"godot-atlas","family":"godot-atlas","language":"en","facet":"interaction-transition","query":"If mouse-up happens before the deferred refresh callback while a card is being moved, what transition and final-refresh behavior follows?"},
+    {"id":"GDA-01-ES","sourceId":"godot-atlas","family":"godot-atlas","language":"es","facet":"interaction-transition","query":"Si se suelta el mouse antes del callback de actualización diferida mientras se mueve una tarjeta, ¿qué transición y comportamiento de actualización final corresponde?"},
+    {"id":"GDA-02-EN","sourceId":"godot-atlas","family":"godot-atlas","language":"en","facet":"publication-invariants","query":"Which invariants keep route publication atomic and coalesce repeated drag changes into deferred refresh work?"},
+    {"id":"GDA-NEG-01","sourceId":"godot-atlas","family":"godot-atlas","language":"en","facet":"nearby-negative","query":"How many request-buffer slots are allocated in memory for queued drag changes?"},
+
+    {"id":"KODE-01-EN","sourceId":"kode","family":"kode-provider","language":"en","facet":"model-package-precedence","query":"When a model has an explicit SDK package in provider metadata, what takes precedence over the provider-level default?"},
+    {"id":"KODE-01-ES","sourceId":"kode","family":"kode-provider","language":"es","facet":"model-package-precedence","query":"Cuando los metadatos del proveedor especifican un paquete SDK para el modelo, ¿qué tiene prioridad sobre el valor predeterminado del proveedor?"},
+    {"id":"KODE-02-EN","sourceId":"kode","family":"kode-provider","language":"en","facet":"transport-mapping","query":"Which Kode transport is mapped to @ai-sdk/openai and to @ai-sdk/openai-compatible?"},
+    {"id":"KODE-NEG-01","sourceId":"kode","family":"kode-provider","language":"en","facet":"nearby-negative","query":"How many FREE models are available from the provider right now?"},
+
+    {"id":"EF-01-EN","sourceId":"elemental-frontier","family":"elemental-frontier","language":"en","facet":"comparison-controls","query":"Which settings must remain the same for direct comparisons, and how many times should quantitative measurements be repeated?"},
+    {"id":"EF-01-ES","sourceId":"elemental-frontier","family":"elemental-frontier","language":"es","facet":"comparison-controls","query":"¿Qué ajustes deben mantenerse iguales en las comparaciones directas y cuántas veces se repite una medición cuantitativa?"},
+    {"id":"EF-02-EN","sourceId":"elemental-frontier","family":"elemental-frontier","language":"en","facet":"timing-measurement","query":"What formula converts a measured frame count into milliseconds, and which timing marks are recorded?"},
+    {"id":"EF-NEG-01","sourceId":"elemental-frontier","family":"elemental-frontier","language":"en","facet":"nearby-negative","query":"What exact fixed FPS must every comparison video use?"},
+
+    {"id":"ERS-01-EN","sourceId":"electronics-repair-simulator","family":"electronics-repair-simulator","language":"en","facet":"layer-model","query":"What are the three explicit device-modeling layers, and which layer owns placement of atomic components?"},
+    {"id":"ERS-01-ES","sourceId":"electronics-repair-simulator","family":"electronics-repair-simulator","language":"es","facet":"layer-model","query":"¿Cuáles son las tres capas explícitas del modelado del dispositivo y cuál es responsable de ubicar los componentes atómicos?"},
+    {"id":"ERS-02-EN","sourceId":"electronics-repair-simulator","family":"electronics-repair-simulator","language":"en","facet":"metadata-contract","query":"Which metadata fields should reusable components preserve, what additional facts go in device/module manifests, and what properties must geometry metadata not claim?"},
+    {"id":"ERS-NEG-01","sourceId":"electronics-repair-simulator","family":"electronics-repair-simulator","language":"en","facet":"nearby-negative","query":"What nominal voltage rating and current tolerance must the battery cell meet?"}
+  ]
+}

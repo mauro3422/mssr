@@ -1,0 +1,106 @@
+{
+  "schema": "jev-mssr-cross-project-development-cohort-manifest-v1",
+  "runId": "mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1",
+  "preparedAt": "2026-10-12T08:30:00Z",
+  "status": "completed; development diagnostic only",
+  "completedAt": "2026-10-12T09:01:19.017Z",
+  "purpose": "Measure distinct Librarian retrieval, Jev selection/abstention, exact fetch, evidence-pack integrity, deterministic containment compaction, and host composition stages on real project documents.",
+  "limits": {
+    "certifiedHoldout": false,
+    "sourceExposure": "Titles, target phrases and source bodies were not found in the local Runs 1-44 ledger; exposure outside that ledger cannot be ruled out.",
+    "labelSource": "Two analyst passes against frozen source snapshots; no source owner adjudication.",
+    "productionCalibration": false,
+    "providerLabelsExposed": false,
+    "sourceCorpusCount": 4,
+    "semanticFacets": 12,
+    "caseIds": 16,
+    "bilingualPairs": 4,
+    "independenceUnit": "source family and semantic facet, not individual bilingual query ID"
+  },
+  "runtime": {
+    "bridgeVersionBeforeCalls": "0.6.173",
+    "mssrVersionBeforeCalls": "0.2.127",
+    "jevProvider": "typesafe-jev",
+    "jevVersion": "jev-1.13.0",
+    "metadataMode": "off",
+    "queryVariants": "none",
+    "sourceSelection": "one explicitly named Markdown file per project root",
+    "candidatePool": "only search handles returned for the same query; no post-result additions"
+  },
+  "labels": {
+    "path": "inputs/labels.json",
+    "status": "frozen before provider calls",
+    "ownerAdjudication": "none",
+    "supportingSpanMethod": "1-based source line spans independently checked by a second analyst; acceptable ranges preserve section-level compatibility while supporting spans permit coverage and overbreadth review.",
+    "negativeLabelsIndependentlyReviewed": true
+  },
+  "sources": [
+    {
+      "sourceId": "godot-atlas",
+      "family": "godot-atlas",
+      "projectRoot": "D:/Dev/GodotAtlas",
+      "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+      "snapshot": "sources/godot-atlas.md",
+      "snapshotSha256": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+      "bytes": 8650,
+      "head": "b033a41d4ee275e6ebc1dac1713a6cca2334bb4a",
+      "branch": "main",
+      "worktreeChangedPathCountAtFreeze": 1,
+      "targetFileCleanAtFreeze": true
+    },
+    {
+      "sourceId": "kode",
+      "family": "kode-provider",
+      "projectRoot": "D:/Dev/kode",
+      "sourceRef": "docs/OPENCODE_PROVIDER.md",
+      "snapshot": "sources/kode.md",
+      "snapshotSha256": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+      "bytes": 16917,
+      "head": "674fdbd2b4227b0582cf9a606e1f383a1a417941",
+      "branch": "integrate/kode-2026-09-28",
+      "worktreeChangedPathCountAtFreeze": 1,
+      "targetFileCleanAtFreeze": true
+    },
+    {
+      "sourceId": "elemental-frontier",
+      "family": "elemental-frontier",
+      "projectRoot": "D:/Dev/elemental-frontier",
+      "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+      "snapshot": "sources/elemental-frontier.md",
+      "snapshotSha256": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+      "bytes": 2436,
+      "head": "9c6b160cfbb7fa422f2411307eec7e576b4153fd",
+      "branch": "main",
+      "worktreeChangedPathCountAtFreeze": 0,
+      "targetFileCleanAtFreeze": true
+    },
+    {
+      "sourceId": "electronics-repair-simulator",
+      "family": "electronics-repair-simulator",
+      "projectRoot": "D:/Dev/electronics-repair-simulator",
+      "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+      "snapshot": "sources/electronics-repair-simulator.md",
+      "snapshotSha256": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+      "bytes": 14150,
+      "head": "5dbb2ba990d0bb8e0a94bf53984c2f56708eb61a",
+      "branch": "main",
+      "worktreeChangedPathCountAtFreeze": 29,
+      "targetFileCleanAtFreeze": true
+    }
+  ],
+  "evaluators": {
+    "search": "deterministic, exact source-file scope, metadata off",
+    "jev": "real live TypeSafe Jev; Bridge adapter for GodotAtlas, Kode, and Electronics Repair Simulator; portable MSSR path for Elemental Frontier after Bridge project-identity health was review-gated; labels withheld",
+    "fetch": "exact selected handle revalidation against current source revision",
+    "evidencePack": "cited immutable source ranges with provenance",
+    "compaction": "deterministic nested-range containment only; not semantic synthesis",
+    "composition": "host-authored cited paragraph followed by independent blind review"
+  },
+  "outputs": {
+    "report": "RUN-REPORT.md",
+    "aggregate": "derived/aggregate.json",
+    "aggregateScript": "scripts/aggregate-run.mjs",
+    "blindCompositionReview": "derived/blind-composition-review.json",
+    "frozenEvidenceChecksums": "derived/frozen-evidence-sha256.json"
+  }
+}

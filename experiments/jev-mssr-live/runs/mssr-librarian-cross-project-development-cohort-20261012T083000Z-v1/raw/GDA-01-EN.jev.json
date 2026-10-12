@@ -1,0 +1,383 @@
+{
+  "caseId": "GDA-01-EN",
+  "query": "If mouse-up happens before the deferred refresh callback while a card is being moved, what transition and final-refresh behavior follows?",
+  "traceId": "mssr-20261012-jev-cohort-godot-atlas",
+  "tool": "mssr_librarian_jev_select",
+  "candidateHandleCount": 10,
+  "candidateHandleIds": [
+    "f117811ef82979b983756e7b0532822fac4f34a1cbc10edfeb9b98a747ec3633",
+    "47bb64c2bb9e0c97184d7e22b9e06b0f971e18a760127c2c4c076d5ad816e668",
+    "80c3fb7f6dc4ac22828ca1147021c2bc8c861a5502e38a3903b902c81d44aa85",
+    "3216d01915d9c4e54183abb0f8f412481f6113d37c5f98866ab9aba4704ad66a",
+    "2426fc7f0a1f277018691a18954d05612293020f186631c9b79ef96a2fbaf06e",
+    "e7eab66d3a22eb3a378a9c0b278cf7f6130d68c913823d9a67b4b6a4337a46ba",
+    "7e5ff3e2b592f726ae629eaa6b8b27e783861f9aba7fcd318168c1b49d3f5050",
+    "8261c358740a041428e659dbcc389106383e6deb783f0dd8075839c43cdc37c4",
+    "6121a8bc9398d8f8262322b6e4208465ef5e2999de7b661293af85d649632052",
+    "175fc27b024516d1f35caa774c540f937c5b41b8d5dea3822cdeaa53d21fc008"
+  ],
+  "envelope": {
+    "delegatedTool": "mssr_librarian_jev_select",
+    "classification": "neutral",
+    "result": {
+      "projectOwner": "d:/dev/godotatlas",
+      "sourceCount": 1,
+      "status": "selected",
+      "candidateCount": 10,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "verification": "unverified",
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "exactFetchRequired": true,
+      "autoApplyAllowed": false,
+      "candidateRangeDiagnostics": {
+        "offered": 10,
+        "eligible": 10,
+        "oversizedOmitted": 0,
+        "maxFetchChars": 20000,
+        "lengthUnit": "utf16-code-units"
+      },
+      "rangeOverlapDiagnostics": {
+        "sameSourceRevisionPairs": 45,
+        "overlappingPairCount": 14,
+        "nestedPairCount": 14,
+        "exactRangePairCount": 0,
+        "partialOverlapPairCount": 0,
+        "pairs": [
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              150
+            ],
+            "rightOptionId": "h002",
+            "rightRangeId": "heading-6",
+            "rightRangeKind": "section",
+            "rightLines": [
+              62,
+              87
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 653
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              150
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-7",
+            "rightRangeKind": "block",
+            "rightLines": [
+              64,
+              84
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 414
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              150
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "heading-5",
+            "rightRangeKind": "section",
+            "rightLines": [
+              52,
+              61
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 1127
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              150
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "block-6",
+            "rightRangeKind": "block",
+            "rightLines": [
+              54,
+              60
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 1091
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              150
+            ],
+            "rightOptionId": "h006",
+            "rightRangeId": "heading-7",
+            "rightRangeKind": "section",
+            "rightLines": [
+              88,
+              98
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 1180
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              150
+            ],
+            "rightOptionId": "h007",
+            "rightRangeId": "block-9",
+            "rightRangeKind": "block",
+            "rightLines": [
+              90,
+              97
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 1158
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              150
+            ],
+            "rightOptionId": "h008",
+            "rightRangeId": "heading-4",
+            "rightRangeKind": "section",
+            "rightLines": [
+              17,
+              51
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 1275
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              150
+            ],
+            "rightOptionId": "h009",
+            "rightRangeId": "block-4",
+            "rightRangeKind": "block",
+            "rightLines": [
+              19,
+              48
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 1081
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              150
+            ],
+            "rightOptionId": "h010",
+            "rightRangeId": "block-8",
+            "rightRangeKind": "block",
+            "rightLines": [
+              86,
+              86
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 205
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-6",
+            "leftRangeKind": "section",
+            "leftLines": [
+              62,
+              87
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-7",
+            "rightRangeKind": "block",
+            "rightLines": [
+              64,
+              84
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 414
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-6",
+            "leftRangeKind": "section",
+            "leftLines": [
+              62,
+              87
+            ],
+            "rightOptionId": "h010",
+            "rightRangeId": "block-8",
+            "rightRangeKind": "block",
+            "rightLines": [
+              86,
+              86
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 205
+          },
+          {
+            "leftOptionId": "h004",
+            "leftRangeId": "heading-5",
+            "leftRangeKind": "section",
+            "leftLines": [
+              52,
+              61
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "block-6",
+            "rightRangeKind": "block",
+            "rightLines": [
+              54,
+              60
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 1091
+          },
+          {
+            "leftOptionId": "h006",
+            "leftRangeId": "heading-7",
+            "leftRangeKind": "section",
+            "leftLines": [
+              88,
+              98
+            ],
+            "rightOptionId": "h007",
+            "rightRangeId": "block-9",
+            "rightRangeKind": "block",
+            "rightLines": [
+              90,
+              97
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 1158
+          },
+          {
+            "leftOptionId": "h008",
+            "leftRangeId": "heading-4",
+            "leftRangeKind": "section",
+            "leftLines": [
+              17,
+              51
+            ],
+            "rightOptionId": "h009",
+            "rightRangeId": "block-4",
+            "rightRangeKind": "block",
+            "rightLines": [
+              19,
+              48
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 1081
+          }
+        ],
+        "truncated": false,
+        "mutationApplied": false
+      },
+      "finalistCount": 10,
+      "selectionMode": "single-pass",
+      "selectionPasses": 1,
+      "providerCalls": 1,
+      "providerConfidence": 0.54,
+      "evidenceSufficiency": 0.94,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 1893,
+        "output_tokens": 147
+      },
+      "requestFingerprint": "353f1aefbece8e2637c2e818f39a4ac8b1b65e4fb7de00efbf16ad756fff504a",
+      "elapsedMs": 838.1,
+      "jevCallMade": true,
+      "selected": {
+        "optionId": "h002",
+        "title": "Interaction state machine",
+        "headingPath": [
+          "Atlas Routing Architecture",
+          "Interaction state machine"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "47bb64c2bb9e0c97184d7e22b9e06b0f971e18a760127c2c4c076d5ad816e668",
+          "owner": "d:/dev/godotatlas",
+          "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+          "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+          "rangeId": "heading-6",
+          "rangeKind": "section",
+          "startLine": 62,
+          "endLine": 87,
+          "startOffset": 3200,
+          "endOffset": 3853,
+          "fingerprint": "c1d7cb754407783432efda796e9e1a8389776ba9853435f136e3a34a5ca30672",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "h005",
+            "h006",
+            "h007",
+            "h008",
+            "h009",
+            "h010",
+            "none"
+          ],
+          "selectedOptionId": "h002",
+          "confidence": 0.54,
+          "probabilities": {
+            "h001": 0,
+            "h002": 0.58,
+            "h003": 0.42,
+            "h004": 0,
+            "h005": 0,
+            "h006": 0,
+            "h007": 0,
+            "h008": 0,
+            "h009": 0,
+            "h010": 0,
+            "none": 0
+          }
+        }
+      ]
+    }
+  }
+}

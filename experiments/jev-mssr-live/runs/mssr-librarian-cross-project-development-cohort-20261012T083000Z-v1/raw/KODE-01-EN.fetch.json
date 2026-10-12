@@ -1,0 +1,43 @@
+{
+  "caseId": "KODE-01-EN",
+  "traceId": "mssr-20261012-jev-cohort-kode",
+  "handleId": "d89706ed1d0f319add11ff7699f377c2d6f95a908772dd8c0740b63abe2b0170",
+  "tool": "mssr_librarian_fetch",
+  "envelope": {
+    "delegatedTool": "mssr_librarian_fetch",
+    "classification": "read-only",
+    "result": {
+      "projectOwner": "d:/dev/kode",
+      "handle": {
+        "version": 1,
+        "id": "d89706ed1d0f319add11ff7699f377c2d6f95a908772dd8c0740b63abe2b0170",
+        "owner": "d:/dev/kode",
+        "sourceRef": "docs/OPENCODE_PROVIDER.md",
+        "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+        "rangeId": "block-47",
+        "rangeKind": "block",
+        "startLine": 175,
+        "endLine": 175,
+        "startOffset": 7982,
+        "endOffset": 8103,
+        "fingerprint": "68e472fe91b32d2727b44ea275326175ec18c8c9f9b3038a6be564bc4bb6ae3d",
+        "privacyClass": "project-metadata"
+      },
+      "text": "If Models.dev/provider metadata includes an SDK package for the individual model, use it before a provider-level default.",
+      "fingerprint": "68e472fe91b32d2727b44ea275326175ec18c8c9f9b3038a6be564bc4bb6ae3d",
+      "advisoryOnly": true,
+      "truthAuthority": false
+    },
+    "bridgeNotices": {
+      "delivery": "automatic-drain",
+      "scope": "contextual",
+      "count": 0,
+      "remainingPending": 1,
+      "relevantPending": 0,
+      "otherPending": 1,
+      "globalPending": 0,
+      "globalHistoryTool": "bridge_notice_history",
+      "items": []
+    }
+  }
+}

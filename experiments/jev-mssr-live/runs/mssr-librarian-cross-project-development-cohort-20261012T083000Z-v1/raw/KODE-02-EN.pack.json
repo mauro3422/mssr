@@ -1,0 +1,52 @@
+{
+  "caseId": "KODE-02-EN",
+  "traceId": "mssr-20261012-jev-cohort-kode",
+  "handleId": "e429a97235ee9c53cf31e67e86f2707632984cadacba5071f18e1ae8fdf0c661",
+  "tool": "mssr_librarian_evidence_pack",
+  "envelope": {
+    "delegatedTool": "mssr_librarian_evidence_pack",
+    "classification": "read-only",
+    "result": {
+      "projectOwner": "d:/dev/kode",
+      "sourceCount": 1,
+      "schemaVersion": 1,
+      "kind": "mssr-librarian-evidence-pack",
+      "assembly": "verbatim-source-ranges",
+      "paragraphs": [
+        {
+          "ordinal": 1,
+          "exactText": "| AI SDK package | Kode transport |\n| --- | --- |\n| `@ai-sdk/openai` | Responses |\n| `@ai-sdk/openai-compatible` | Chat Completions |\n| other explicit package | unsupported → omit model |",
+          "citation": {
+            "display": "docs/OPENCODE_PROVIDER.md:L183-L187",
+            "handleId": "e429a97235ee9c53cf31e67e86f2707632984cadacba5071f18e1ae8fdf0c661",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "block-50",
+            "rangeKind": "block",
+            "startLine": 183,
+            "endLine": 187,
+            "fingerprint": "d062a6fd79c4a7792f00c182e49c1dc6cc1d60583df789f85260ba42f7f95a30",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "totalFetchedChars": 187,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "canonicalRewriteAllowed": false,
+      "ownerAndPrivacyAreCallerAsserted": true
+    },
+    "bridgeNotices": {
+      "delivery": "automatic-drain",
+      "scope": "contextual",
+      "count": 0,
+      "remainingPending": 1,
+      "relevantPending": 0,
+      "otherPending": 1,
+      "globalPending": 0,
+      "globalHistoryTool": "bridge_notice_history",
+      "items": []
+    }
+  }
+}

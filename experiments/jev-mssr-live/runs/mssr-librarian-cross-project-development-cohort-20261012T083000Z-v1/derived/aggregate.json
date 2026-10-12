@@ -1,0 +1,1342 @@
+{
+  "schema": "mssr-jev-cross-project-development-cohort-aggregate-v1",
+  "runId": "mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1",
+  "generatedAt": "2026-10-12T09:04:39.433Z",
+  "classification": "development diagnostic only; not holdout, production reliability, or confidence calibration",
+  "dataset": {
+    "cases": 16,
+    "answerableCases": 12,
+    "negativeCases": 4,
+    "semanticFacets": 12,
+    "answerableFacets": 8,
+    "negativeFacets": 4,
+    "bilingualPairs": 4,
+    "labelsExposedToProvider": false,
+    "labelsOwnerAdjudication": "none",
+    "sourceFamilyCount": 4,
+    "frozenEvidenceFiles": 53,
+    "frozenEvidenceBytes": 548876,
+    "frozenEvidenceIndex": "derived/frozen-evidence-sha256.json",
+    "frozenEvidenceInventorySha256": "9702783e0fc5f469a7f0a8ea73f61b36105482b7b1dfeac5b739044a4fdb0a64",
+    "sourceSnapshotIntegrity": [
+      {
+        "sourceId": "godot-atlas",
+        "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+        "expectedSha256": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+        "actualSha256": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+        "bytes": 8650,
+        "passed": true
+      },
+      {
+        "sourceId": "kode",
+        "sourceRef": "docs/OPENCODE_PROVIDER.md",
+        "expectedSha256": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+        "actualSha256": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+        "bytes": 16917,
+        "passed": true
+      },
+      {
+        "sourceId": "elemental-frontier",
+        "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+        "expectedSha256": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+        "actualSha256": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+        "bytes": 2436,
+        "passed": true
+      },
+      {
+        "sourceId": "electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "expectedSha256": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "actualSha256": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "bytes": 14150,
+        "passed": true
+      }
+    ]
+  },
+  "runtime": {
+    "bridgeVersion": "0.6.173",
+    "mssrVersion": "0.2.127",
+    "providerModels": [
+      "typesafe-jev/jev-1.13.0"
+    ],
+    "queryMetadataMode": "off",
+    "queryVariants": "none"
+  },
+  "receiptIntegrity": {
+    "searchCases": 16,
+    "providerCalls": 14,
+    "providerToolCallCount": 14,
+    "selectedCases": 8,
+    "frozenCandidatePoolBinding": {
+      "count": 14,
+      "total": 14,
+      "percent": 100
+    },
+    "exactFetchPassed": {
+      "count": 8,
+      "total": 8,
+      "percent": 100
+    },
+    "evidencePackPassed": {
+      "count": 8,
+      "total": 8,
+      "percent": 100
+    },
+    "selectedHandlesInFrozenCandidatePool": {
+      "count": 8,
+      "total": 8,
+      "percent": 100
+    },
+    "packCitationCount": 8
+  },
+  "search": {
+    "positiveTargetCandidateRecall": {
+      "count": 9,
+      "total": 12,
+      "percent": 75
+    },
+    "targetAt1": {
+      "count": 0,
+      "total": 12,
+      "percent": 0
+    },
+    "targetAt5": {
+      "count": 9,
+      "total": 12,
+      "percent": 75
+    },
+    "targetAt10": {
+      "count": 9,
+      "total": 12,
+      "percent": 75
+    },
+    "meanCandidatePoolSize": 8.25,
+    "candidatePoolSizeRange": [
+      0,
+      10
+    ],
+    "negativeCasesWithSearchCandidates": {
+      "count": 4,
+      "total": 4,
+      "percent": 100
+    },
+    "targetRanks": [
+      {
+        "caseId": "GDA-01-EN",
+        "rank": 2
+      },
+      {
+        "caseId": "GDA-01-ES",
+        "rank": 2
+      },
+      {
+        "caseId": "GDA-02-EN",
+        "rank": 3
+      },
+      {
+        "caseId": "KODE-01-EN",
+        "rank": 3
+      },
+      {
+        "caseId": "KODE-02-EN",
+        "rank": 5
+      },
+      {
+        "caseId": "EF-01-ES",
+        "rank": 2
+      },
+      {
+        "caseId": "EF-02-EN",
+        "rank": 3
+      },
+      {
+        "caseId": "ERS-01-EN",
+        "rank": 2
+      },
+      {
+        "caseId": "ERS-02-EN",
+        "rank": 2
+      }
+    ]
+  },
+  "decision": {
+    "positiveSelected": {
+      "count": 8,
+      "total": 12,
+      "percent": 66.7
+    },
+    "positiveProviderAbstentions": {
+      "count": 2,
+      "total": 12,
+      "percent": 16.7
+    },
+    "positiveProviderAbstentionsGivenCall": {
+      "count": 2,
+      "total": 10,
+      "percent": 20
+    },
+    "positiveSelectionsGivenCall": {
+      "count": 8,
+      "total": 10,
+      "percent": 80
+    },
+    "positiveJevCalls": 10,
+    "positiveNoCandidatesNoJevCall": {
+      "count": 2,
+      "total": 12,
+      "percent": 16.7
+    },
+    "selectedWithinExpectedHeadingSubtree": {
+      "count": 8,
+      "total": 8,
+      "percent": 100
+    },
+    "selectedFullAcceptedRange": {
+      "count": 3,
+      "total": 8,
+      "percent": 37.5
+    },
+    "selectedFullSupportingSpanCoverage": {
+      "count": 5,
+      "total": 8,
+      "percent": 62.5
+    },
+    "selectedSupportCoverageMeanPercent": 80.9,
+    "negativeJevAbstention": {
+      "count": 4,
+      "total": 4,
+      "percent": 100
+    },
+    "rawProviderConfidenceDescriptiveOnly": {
+      "selectedPositive": {
+        "n": 8,
+        "min": 0.45,
+        "max": 1,
+        "mean": 0.759
+      },
+      "abstainedPositive": {
+        "n": 2,
+        "min": 0.59,
+        "max": 0.69,
+        "mean": 0.64
+      },
+      "negativeAbstention": {
+        "n": 4,
+        "min": 0.82,
+        "max": 0.99,
+        "mean": 0.943
+      }
+    },
+    "providerTokens": {
+      "input": 24078,
+      "output": 1960,
+      "jevToolCallsWithUsage": 14,
+      "elapsedMsMedian": 679.3,
+      "elapsedMsRange": [
+        275.3,
+        959.3
+      ]
+    },
+    "bilingualPairDispositionAgreement": {
+      "count": 1,
+      "total": 4,
+      "percent": 25
+    },
+    "bilingualPairs": [
+      {
+        "sourceId": "godot-atlas",
+        "facet": "interaction-transition",
+        "cases": [
+          {
+            "caseId": "GDA-01-EN",
+            "language": "en",
+            "targetInSearchPool": true,
+            "decision": "selected",
+            "selectedRangeId": "heading-6"
+          },
+          {
+            "caseId": "GDA-01-ES",
+            "language": "es",
+            "targetInSearchPool": true,
+            "decision": "selected",
+            "selectedRangeId": "heading-6"
+          }
+        ],
+        "sameDecisionDisposition": true,
+        "bothHaveTargetInPool": true
+      },
+      {
+        "sourceId": "kode",
+        "facet": "model-package-precedence",
+        "cases": [
+          {
+            "caseId": "KODE-01-EN",
+            "language": "en",
+            "targetInSearchPool": true,
+            "decision": "selected",
+            "selectedRangeId": "block-47"
+          },
+          {
+            "caseId": "KODE-01-ES",
+            "language": "es",
+            "targetInSearchPool": false,
+            "decision": "abstained",
+            "selectedRangeId": null
+          }
+        ],
+        "sameDecisionDisposition": false,
+        "bothHaveTargetInPool": false
+      },
+      {
+        "sourceId": "elemental-frontier",
+        "facet": "comparison-controls",
+        "cases": [
+          {
+            "caseId": "EF-01-EN",
+            "language": "en",
+            "targetInSearchPool": false,
+            "decision": "no-candidates",
+            "selectedRangeId": null
+          },
+          {
+            "caseId": "EF-01-ES",
+            "language": "es",
+            "targetInSearchPool": true,
+            "decision": "selected",
+            "selectedRangeId": "block-5"
+          }
+        ],
+        "sameDecisionDisposition": false,
+        "bothHaveTargetInPool": false
+      },
+      {
+        "sourceId": "electronics-repair-simulator",
+        "facet": "layer-model",
+        "cases": [
+          {
+            "caseId": "ERS-01-EN",
+            "language": "en",
+            "targetInSearchPool": true,
+            "decision": "selected",
+            "selectedRangeId": "heading-5"
+          },
+          {
+            "caseId": "ERS-01-ES",
+            "language": "es",
+            "targetInSearchPool": false,
+            "decision": "no-candidates",
+            "selectedRangeId": null
+          }
+        ],
+        "sameDecisionDisposition": false,
+        "bothHaveTargetInPool": false
+      }
+    ]
+  },
+  "compaction": {
+    "control": "strict containment compaction; deterministic text-volume control only",
+    "sourceId": "electronics-repair-simulator",
+    "parentRangeId": "heading-3",
+    "childRangeId": "heading-5",
+    "withoutDedupeChars": 1800,
+    "withDedupeChars": 1401,
+    "savedChars": 399,
+    "savedPercent": 22.2,
+    "citationsWithoutDedupe": 2,
+    "citationsWithDedupe": 1,
+    "removedContainedChild": true,
+    "interpretation": "Deterministic removal of one strictly contained exact range; text-volume reduction only, not semantic summarization."
+  },
+  "compositionReview": {
+    "schema": "jev-mssr-blind-composition-review-v1",
+    "reviewedAt": "2026-10-12",
+    "reviewer": "independent fresh Luna agent; blind to expected headings/ranges and negative labels",
+    "reviewScope": "Four host-authored cited paragraphs assembled from exact fetched evidence",
+    "sourceEvidence": "Reviewer received each question, fetched text and draft response; labels were withheld.",
+    "draftBodiesPersistedWithRawReceipts": false,
+    "summary": "Tres párrafos tuvieron cobertura alta, buen soporte y poca sobreextensión. El párrafo de Electronics Repair Simulator tuvo cobertura baja pero delimitada honestamente porque el extracto seleccionado solo contenía la Capa 2; los cuatro estaban respaldados literalmente y no incluían afirmaciones sin soporte.",
+    "cases": [
+      {
+        "family": "GodotAtlas",
+        "coverage": "alta",
+        "literalSupport": "alto",
+        "overbreadth": "baja",
+        "unsupportedClaims": "ninguna",
+        "notes": "Cubre la transición, la actualización final, la publicación atómica y la coalescencia."
+      },
+      {
+        "family": "Kode",
+        "coverage": "alta",
+        "literalSupport": "alto",
+        "overbreadth": "baja",
+        "unsupportedClaims": "ninguna",
+        "notes": "La frase que marca detalles omitidos como no sustentados es fiel al extracto recibido."
+      },
+      {
+        "family": "Elemental Frontier",
+        "coverage": "alta",
+        "literalSupport": "alto",
+        "overbreadth": "baja",
+        "unsupportedClaims": "ninguna",
+        "notes": "Cubre las condiciones comunes, las repeticiones, la fórmula de tiempo y las marcas temporales."
+      },
+      {
+        "family": "Electronics Repair Simulator",
+        "coverage": "baja pero delimitada",
+        "literalSupport": "alto",
+        "overbreadth": "baja",
+        "unsupportedClaims": "ninguna",
+        "notes": "Identifica la Capa 2 y su responsabilidad, y aclara que el extracto no enumera las tres capas."
+      }
+    ],
+    "limitation": "The exact reviewed paragraph bodies were not saved beside the raw cohort receipts, so this review verdict cannot be replayed text-for-text from the run package."
+  },
+  "perSource": [
+    {
+      "sourceId": "godot-atlas",
+      "cases": 4,
+      "answerableCases": 3,
+      "negativeCases": 1,
+      "targetCandidateRecall": {
+        "count": 3,
+        "total": 3,
+        "percent": 100
+      },
+      "targetAt1": {
+        "count": 0,
+        "total": 3,
+        "percent": 0
+      },
+      "targetAt5": {
+        "count": 3,
+        "total": 3,
+        "percent": 100
+      },
+      "targetAt10": {
+        "count": 3,
+        "total": 3,
+        "percent": 100
+      },
+      "positiveSelections": {
+        "count": 3,
+        "total": 3,
+        "percent": 100
+      },
+      "negativeAbstentions": {
+        "count": 1,
+        "total": 1,
+        "percent": 100
+      }
+    },
+    {
+      "sourceId": "kode",
+      "cases": 4,
+      "answerableCases": 3,
+      "negativeCases": 1,
+      "targetCandidateRecall": {
+        "count": 2,
+        "total": 3,
+        "percent": 66.7
+      },
+      "targetAt1": {
+        "count": 0,
+        "total": 3,
+        "percent": 0
+      },
+      "targetAt5": {
+        "count": 2,
+        "total": 3,
+        "percent": 66.7
+      },
+      "targetAt10": {
+        "count": 2,
+        "total": 3,
+        "percent": 66.7
+      },
+      "positiveSelections": {
+        "count": 2,
+        "total": 3,
+        "percent": 66.7
+      },
+      "negativeAbstentions": {
+        "count": 1,
+        "total": 1,
+        "percent": 100
+      }
+    },
+    {
+      "sourceId": "elemental-frontier",
+      "cases": 4,
+      "answerableCases": 3,
+      "negativeCases": 1,
+      "targetCandidateRecall": {
+        "count": 2,
+        "total": 3,
+        "percent": 66.7
+      },
+      "targetAt1": {
+        "count": 0,
+        "total": 3,
+        "percent": 0
+      },
+      "targetAt5": {
+        "count": 2,
+        "total": 3,
+        "percent": 66.7
+      },
+      "targetAt10": {
+        "count": 2,
+        "total": 3,
+        "percent": 66.7
+      },
+      "positiveSelections": {
+        "count": 2,
+        "total": 3,
+        "percent": 66.7
+      },
+      "negativeAbstentions": {
+        "count": 1,
+        "total": 1,
+        "percent": 100
+      }
+    },
+    {
+      "sourceId": "electronics-repair-simulator",
+      "cases": 4,
+      "answerableCases": 3,
+      "negativeCases": 1,
+      "targetCandidateRecall": {
+        "count": 2,
+        "total": 3,
+        "percent": 66.7
+      },
+      "targetAt1": {
+        "count": 0,
+        "total": 3,
+        "percent": 0
+      },
+      "targetAt5": {
+        "count": 2,
+        "total": 3,
+        "percent": 66.7
+      },
+      "targetAt10": {
+        "count": 2,
+        "total": 3,
+        "percent": 66.7
+      },
+      "positiveSelections": {
+        "count": 1,
+        "total": 3,
+        "percent": 33.3
+      },
+      "negativeAbstentions": {
+        "count": 1,
+        "total": 1,
+        "percent": 100
+      }
+    }
+  ],
+  "cases": [
+    {
+      "caseId": "GDA-01-EN",
+      "sourceId": "godot-atlas",
+      "family": "godot-atlas",
+      "facet": "interaction-transition",
+      "language": "en",
+      "answerability": "answerable",
+      "expectedDisposition": "select",
+      "search": {
+        "candidateCount": 10,
+        "truncated": true,
+        "exactAcceptedRangeRank": 2,
+        "fullSupportSpanRank": 1,
+        "targetAt1": false,
+        "targetAt5": true,
+        "targetAt10": true
+      },
+      "jev": {
+        "status": "selected",
+        "decision": "selected",
+        "selectedRange": {
+          "id": "47bb64c2bb9e0c97184d7e22b9e06b0f971e18a760127c2c4c076d5ad816e668",
+          "rangeId": "heading-6",
+          "rangeKind": "section",
+          "startLine": 62,
+          "endLine": 87,
+          "title": "Interaction state machine",
+          "headingPath": [
+            "Atlas Routing Architecture",
+            "Interaction state machine"
+          ]
+        },
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 0.54,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "candidateCount": 10,
+        "candidatePoolMatchesFrozenSearch": true,
+        "providerCalls": 1,
+        "elapsedMs": 838.1,
+        "inputTokens": 1893,
+        "outputTokens": 147,
+        "selectedInCandidatePool": true,
+        "selectedUnderExpectedSection": true,
+        "selectedWithinFullAcceptedRange": true,
+        "supportingLinesCovered": 6,
+        "supportingLinesTotal": 6,
+        "supportingCoveragePercent": 100,
+        "exactFetchPassed": true,
+        "evidencePackPassed": true,
+        "fetchedChars": 653,
+        "packedChars": 653,
+        "citations": 1
+      }
+    },
+    {
+      "caseId": "GDA-01-ES",
+      "sourceId": "godot-atlas",
+      "family": "godot-atlas",
+      "facet": "interaction-transition",
+      "language": "es",
+      "answerability": "answerable",
+      "expectedDisposition": "select",
+      "search": {
+        "candidateCount": 4,
+        "truncated": false,
+        "exactAcceptedRangeRank": 2,
+        "fullSupportSpanRank": 1,
+        "targetAt1": false,
+        "targetAt5": true,
+        "targetAt10": true
+      },
+      "jev": {
+        "status": "selected",
+        "decision": "selected",
+        "selectedRange": {
+          "id": "47bb64c2bb9e0c97184d7e22b9e06b0f971e18a760127c2c4c076d5ad816e668",
+          "rangeId": "heading-6",
+          "rangeKind": "section",
+          "startLine": 62,
+          "endLine": 87,
+          "title": "Interaction state machine",
+          "headingPath": [
+            "Atlas Routing Architecture",
+            "Interaction state machine"
+          ]
+        },
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 0.94,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "candidateCount": 4,
+        "candidatePoolMatchesFrozenSearch": true,
+        "providerCalls": 1,
+        "elapsedMs": 687.6,
+        "inputTokens": 1077,
+        "outputTokens": 87,
+        "selectedInCandidatePool": true,
+        "selectedUnderExpectedSection": true,
+        "selectedWithinFullAcceptedRange": true,
+        "supportingLinesCovered": 6,
+        "supportingLinesTotal": 6,
+        "supportingCoveragePercent": 100,
+        "exactFetchPassed": true,
+        "evidencePackPassed": true,
+        "fetchedChars": 653,
+        "packedChars": 653,
+        "citations": 1
+      }
+    },
+    {
+      "caseId": "GDA-02-EN",
+      "sourceId": "godot-atlas",
+      "family": "godot-atlas",
+      "facet": "publication-invariants",
+      "language": "en",
+      "answerability": "answerable",
+      "expectedDisposition": "select",
+      "search": {
+        "candidateCount": 10,
+        "truncated": true,
+        "exactAcceptedRangeRank": 3,
+        "fullSupportSpanRank": 1,
+        "targetAt1": false,
+        "targetAt5": true,
+        "targetAt10": true
+      },
+      "jev": {
+        "status": "selected",
+        "decision": "selected",
+        "selectedRange": {
+          "id": "7e5ff3e2b592f726ae629eaa6b8b27e783861f9aba7fcd318168c1b49d3f5050",
+          "rangeId": "block-9",
+          "rangeKind": "block",
+          "startLine": 90,
+          "endLine": 97,
+          "title": "Core invariants",
+          "headingPath": [
+            "Atlas Routing Architecture",
+            "Core invariants"
+          ]
+        },
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 0.74,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "candidateCount": 10,
+        "candidatePoolMatchesFrozenSearch": true,
+        "providerCalls": 1,
+        "elapsedMs": 687.6,
+        "inputTokens": 1906,
+        "outputTokens": 147,
+        "selectedInCandidatePool": true,
+        "selectedUnderExpectedSection": true,
+        "selectedWithinFullAcceptedRange": false,
+        "supportingLinesCovered": 4,
+        "supportingLinesTotal": 4,
+        "supportingCoveragePercent": 100,
+        "exactFetchPassed": true,
+        "evidencePackPassed": true,
+        "fetchedChars": 1158,
+        "packedChars": 1158,
+        "citations": 1
+      }
+    },
+    {
+      "caseId": "GDA-NEG-01",
+      "sourceId": "godot-atlas",
+      "family": "godot-atlas",
+      "facet": "nearby-negative",
+      "language": "en",
+      "answerability": "unanswerable-in-source",
+      "expectedDisposition": "abstain",
+      "search": {
+        "candidateCount": 10,
+        "truncated": true,
+        "exactAcceptedRangeRank": null,
+        "fullSupportSpanRank": null,
+        "targetAt1": false,
+        "targetAt5": false,
+        "targetAt10": false
+      },
+      "jev": {
+        "status": "abstained",
+        "decision": "abstained",
+        "selectedRange": null,
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 0.82,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "candidateCount": 10,
+        "candidatePoolMatchesFrozenSearch": true,
+        "providerCalls": 1,
+        "elapsedMs": 635.9,
+        "inputTokens": 1850,
+        "outputTokens": 144,
+        "selectedInCandidatePool": false,
+        "selectedUnderExpectedSection": false,
+        "selectedWithinFullAcceptedRange": false,
+        "supportingLinesCovered": null,
+        "supportingLinesTotal": null,
+        "supportingCoveragePercent": null,
+        "exactFetchPassed": null,
+        "evidencePackPassed": null,
+        "fetchedChars": null,
+        "packedChars": null,
+        "citations": 0
+      }
+    },
+    {
+      "caseId": "KODE-01-EN",
+      "sourceId": "kode",
+      "family": "kode-provider",
+      "facet": "model-package-precedence",
+      "language": "en",
+      "answerability": "answerable",
+      "expectedDisposition": "select",
+      "search": {
+        "candidateCount": 10,
+        "truncated": true,
+        "exactAcceptedRangeRank": 3,
+        "fullSupportSpanRank": 1,
+        "targetAt1": false,
+        "targetAt5": true,
+        "targetAt10": true
+      },
+      "jev": {
+        "status": "selected",
+        "decision": "selected",
+        "selectedRange": {
+          "id": "d89706ed1d0f319add11ff7699f377c2d6f95a908772dd8c0740b63abe2b0170",
+          "rangeId": "block-47",
+          "rangeKind": "block",
+          "startLine": 175,
+          "endLine": 175,
+          "title": "Law 2 — model-level package metadata wins",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "6. The transport laws",
+            "Law 2 — model-level package metadata wins"
+          ]
+        },
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 0.6,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "candidateCount": 10,
+        "candidatePoolMatchesFrozenSearch": true,
+        "providerCalls": 1,
+        "elapsedMs": 744.3,
+        "inputTokens": 1823,
+        "outputTokens": 147,
+        "selectedInCandidatePool": true,
+        "selectedUnderExpectedSection": true,
+        "selectedWithinFullAcceptedRange": false,
+        "supportingLinesCovered": 1,
+        "supportingLinesTotal": 3,
+        "supportingCoveragePercent": 33.3,
+        "exactFetchPassed": true,
+        "evidencePackPassed": true,
+        "fetchedChars": 121,
+        "packedChars": 121,
+        "citations": 1
+      }
+    },
+    {
+      "caseId": "KODE-01-ES",
+      "sourceId": "kode",
+      "family": "kode-provider",
+      "facet": "model-package-precedence",
+      "language": "es",
+      "answerability": "answerable",
+      "expectedDisposition": "select",
+      "search": {
+        "candidateCount": 10,
+        "truncated": true,
+        "exactAcceptedRangeRank": null,
+        "fullSupportSpanRank": 1,
+        "targetAt1": false,
+        "targetAt5": false,
+        "targetAt10": false
+      },
+      "jev": {
+        "status": "abstained",
+        "decision": "abstained",
+        "selectedRange": null,
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 0.59,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "candidateCount": 10,
+        "candidatePoolMatchesFrozenSearch": true,
+        "providerCalls": 1,
+        "elapsedMs": 696.3,
+        "inputTokens": 1807,
+        "outputTokens": 144,
+        "selectedInCandidatePool": false,
+        "selectedUnderExpectedSection": false,
+        "selectedWithinFullAcceptedRange": false,
+        "supportingLinesCovered": null,
+        "supportingLinesTotal": null,
+        "supportingCoveragePercent": null,
+        "exactFetchPassed": null,
+        "evidencePackPassed": null,
+        "fetchedChars": null,
+        "packedChars": null,
+        "citations": 0
+      }
+    },
+    {
+      "caseId": "KODE-02-EN",
+      "sourceId": "kode",
+      "family": "kode-provider",
+      "facet": "transport-mapping",
+      "language": "en",
+      "answerability": "answerable",
+      "expectedDisposition": "select",
+      "search": {
+        "candidateCount": 10,
+        "truncated": true,
+        "exactAcceptedRangeRank": 5,
+        "fullSupportSpanRank": 1,
+        "targetAt1": false,
+        "targetAt5": true,
+        "targetAt10": true
+      },
+      "jev": {
+        "status": "selected",
+        "decision": "selected",
+        "selectedRange": {
+          "id": "e429a97235ee9c53cf31e67e86f2707632984cadacba5071f18e1ae8fdf0c661",
+          "rangeId": "block-50",
+          "rangeKind": "block",
+          "startLine": 183,
+          "endLine": 187,
+          "title": "Law 3 — known package mapping is explicit",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "6. The transport laws",
+            "Law 3 — known package mapping is explicit"
+          ]
+        },
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 0.92,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "candidateCount": 10,
+        "candidatePoolMatchesFrozenSearch": true,
+        "providerCalls": 1,
+        "elapsedMs": 638,
+        "inputTokens": 2078,
+        "outputTokens": 147,
+        "selectedInCandidatePool": true,
+        "selectedUnderExpectedSection": true,
+        "selectedWithinFullAcceptedRange": false,
+        "supportingLinesCovered": 5,
+        "supportingLinesTotal": 5,
+        "supportingCoveragePercent": 100,
+        "exactFetchPassed": true,
+        "evidencePackPassed": true,
+        "fetchedChars": 187,
+        "packedChars": 187,
+        "citations": 1
+      }
+    },
+    {
+      "caseId": "KODE-NEG-01",
+      "sourceId": "kode",
+      "family": "kode-provider",
+      "facet": "nearby-negative",
+      "language": "en",
+      "answerability": "unanswerable-in-source",
+      "expectedDisposition": "abstain",
+      "search": {
+        "candidateCount": 10,
+        "truncated": true,
+        "exactAcceptedRangeRank": null,
+        "fullSupportSpanRank": null,
+        "targetAt1": false,
+        "targetAt5": false,
+        "targetAt10": false
+      },
+      "jev": {
+        "status": "abstained",
+        "decision": "abstained",
+        "selectedRange": null,
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 0.99,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "candidateCount": 10,
+        "candidatePoolMatchesFrozenSearch": true,
+        "providerCalls": 1,
+        "elapsedMs": 670.9,
+        "inputTokens": 1607,
+        "outputTokens": 144,
+        "selectedInCandidatePool": false,
+        "selectedUnderExpectedSection": false,
+        "selectedWithinFullAcceptedRange": false,
+        "supportingLinesCovered": null,
+        "supportingLinesTotal": null,
+        "supportingCoveragePercent": null,
+        "exactFetchPassed": null,
+        "evidencePackPassed": null,
+        "fetchedChars": null,
+        "packedChars": null,
+        "citations": 0
+      }
+    },
+    {
+      "caseId": "EF-01-EN",
+      "sourceId": "elemental-frontier",
+      "family": "elemental-frontier",
+      "facet": "comparison-controls",
+      "language": "en",
+      "answerability": "answerable",
+      "expectedDisposition": "select",
+      "search": {
+        "candidateCount": 0,
+        "truncated": false,
+        "exactAcceptedRangeRank": null,
+        "fullSupportSpanRank": null,
+        "targetAt1": false,
+        "targetAt5": false,
+        "targetAt10": false
+      },
+      "jev": {
+        "status": null,
+        "decision": "no-candidates",
+        "selectedRange": null,
+        "provider": null,
+        "model": null,
+        "providerConfidence": null,
+        "candidateCount": 0,
+        "candidatePoolMatchesFrozenSearch": null,
+        "providerCalls": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "selectedInCandidatePool": false,
+        "selectedUnderExpectedSection": false,
+        "selectedWithinFullAcceptedRange": false,
+        "supportingLinesCovered": null,
+        "supportingLinesTotal": null,
+        "supportingCoveragePercent": null,
+        "exactFetchPassed": null,
+        "evidencePackPassed": null
+      }
+    },
+    {
+      "caseId": "EF-01-ES",
+      "sourceId": "elemental-frontier",
+      "family": "elemental-frontier",
+      "facet": "comparison-controls",
+      "language": "es",
+      "answerability": "answerable",
+      "expectedDisposition": "select",
+      "search": {
+        "candidateCount": 10,
+        "truncated": true,
+        "exactAcceptedRangeRank": 2,
+        "fullSupportSpanRank": 1,
+        "targetAt1": false,
+        "targetAt5": true,
+        "targetAt10": true
+      },
+      "jev": {
+        "status": "selected",
+        "decision": "selected",
+        "selectedRange": {
+          "id": "e0a1f1816328dfb6dba8b4824f63127eb46983c882108a90fa0320a9bf28bcc7",
+          "rangeId": "block-5",
+          "rangeKind": "block",
+          "startLine": 19,
+          "endLine": 27,
+          "title": "Condiciones comunes",
+          "headingPath": [
+            "Combat Lab Test Protocol",
+            "Condiciones comunes"
+          ]
+        },
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 0.88,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "candidateCount": 10,
+        "candidatePoolMatchesFrozenSearch": true,
+        "providerCalls": 1,
+        "elapsedMs": 421.7,
+        "inputTokens": 1670,
+        "outputTokens": 147,
+        "selectedInCandidatePool": true,
+        "selectedUnderExpectedSection": true,
+        "selectedWithinFullAcceptedRange": false,
+        "supportingLinesCovered": 9,
+        "supportingLinesTotal": 11,
+        "supportingCoveragePercent": 81.8,
+        "exactFetchPassed": true,
+        "evidencePackPassed": true,
+        "fetchedChars": 351,
+        "packedChars": 351,
+        "citations": 1
+      }
+    },
+    {
+      "caseId": "EF-02-EN",
+      "sourceId": "elemental-frontier",
+      "family": "elemental-frontier",
+      "facet": "timing-measurement",
+      "language": "en",
+      "answerability": "answerable",
+      "expectedDisposition": "select",
+      "search": {
+        "candidateCount": 10,
+        "truncated": false,
+        "exactAcceptedRangeRank": 3,
+        "fullSupportSpanRank": 1,
+        "targetAt1": false,
+        "targetAt5": true,
+        "targetAt10": true
+      },
+      "jev": {
+        "status": "selected",
+        "decision": "selected",
+        "selectedRange": {
+          "id": "54cd4fb1383dcde2059344e4bebb3c4009b1b31b9d06d62649c7e6ac266af9de",
+          "rangeId": "heading-5",
+          "rangeKind": "section",
+          "startLine": 33,
+          "endLine": 48,
+          "title": "Tiempo",
+          "headingPath": [
+            "Combat Lab Test Protocol",
+            "Medición",
+            "Tiempo"
+          ]
+        },
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 1,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "candidateCount": 10,
+        "candidatePoolMatchesFrozenSearch": true,
+        "providerCalls": 1,
+        "elapsedMs": 364.6,
+        "inputTokens": 1678,
+        "outputTokens": 147,
+        "selectedInCandidatePool": true,
+        "selectedUnderExpectedSection": true,
+        "selectedWithinFullAcceptedRange": true,
+        "supportingLinesCovered": 13,
+        "supportingLinesTotal": 13,
+        "supportingCoveragePercent": 100,
+        "exactFetchPassed": true,
+        "evidencePackPassed": true,
+        "fetchedChars": 270,
+        "packedChars": 270,
+        "citations": 1
+      }
+    },
+    {
+      "caseId": "EF-NEG-01",
+      "sourceId": "elemental-frontier",
+      "family": "elemental-frontier",
+      "facet": "nearby-negative",
+      "language": "en",
+      "answerability": "unanswerable-in-source",
+      "expectedDisposition": "abstain",
+      "search": {
+        "candidateCount": 8,
+        "truncated": false,
+        "exactAcceptedRangeRank": null,
+        "fullSupportSpanRank": null,
+        "targetAt1": false,
+        "targetAt5": false,
+        "targetAt10": false
+      },
+      "jev": {
+        "status": "abstained",
+        "decision": "abstained",
+        "selectedRange": null,
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 0.97,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "candidateCount": 8,
+        "candidatePoolMatchesFrozenSearch": true,
+        "providerCalls": 1,
+        "elapsedMs": 275.3,
+        "inputTokens": 1466,
+        "outputTokens": 124,
+        "selectedInCandidatePool": false,
+        "selectedUnderExpectedSection": false,
+        "selectedWithinFullAcceptedRange": false,
+        "supportingLinesCovered": null,
+        "supportingLinesTotal": null,
+        "supportingCoveragePercent": null,
+        "exactFetchPassed": null,
+        "evidencePackPassed": null,
+        "fetchedChars": null,
+        "packedChars": null,
+        "citations": 0
+      }
+    },
+    {
+      "caseId": "ERS-01-EN",
+      "sourceId": "electronics-repair-simulator",
+      "family": "electronics-repair-simulator",
+      "facet": "layer-model",
+      "language": "en",
+      "answerability": "answerable",
+      "expectedDisposition": "select",
+      "search": {
+        "candidateCount": 10,
+        "truncated": true,
+        "exactAcceptedRangeRank": 2,
+        "fullSupportSpanRank": 1,
+        "targetAt1": false,
+        "targetAt5": true,
+        "targetAt10": true
+      },
+      "jev": {
+        "status": "selected",
+        "decision": "selected",
+        "selectedRange": {
+          "id": "01cc93da7a9122ddf2c5f13c214b846c1f2ef4c48319d23363cf15bb3f1c7559",
+          "rangeId": "heading-5",
+          "rangeKind": "section",
+          "startLine": 43,
+          "endLine": 56,
+          "title": "Layer 2 — functional module",
+          "headingPath": [
+            "Electronics Modular System",
+            "Layer model",
+            "Layer 2 — functional module"
+          ]
+        },
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 0.45,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "candidateCount": 10,
+        "candidatePoolMatchesFrozenSearch": true,
+        "providerCalls": 1,
+        "elapsedMs": 739.7,
+        "inputTokens": 1747,
+        "outputTokens": 147,
+        "selectedInCandidatePool": true,
+        "selectedUnderExpectedSection": true,
+        "selectedWithinFullAcceptedRange": false,
+        "supportingLinesCovered": 14,
+        "supportingLinesTotal": 44,
+        "supportingCoveragePercent": 31.8,
+        "exactFetchPassed": true,
+        "evidencePackPassed": true,
+        "fetchedChars": 399,
+        "packedChars": 399,
+        "citations": 1
+      }
+    },
+    {
+      "caseId": "ERS-01-ES",
+      "sourceId": "electronics-repair-simulator",
+      "family": "electronics-repair-simulator",
+      "facet": "layer-model",
+      "language": "es",
+      "answerability": "answerable",
+      "expectedDisposition": "select",
+      "search": {
+        "candidateCount": 0,
+        "truncated": false,
+        "exactAcceptedRangeRank": null,
+        "fullSupportSpanRank": null,
+        "targetAt1": false,
+        "targetAt5": false,
+        "targetAt10": false
+      },
+      "jev": {
+        "status": null,
+        "decision": "no-candidates",
+        "selectedRange": null,
+        "provider": null,
+        "model": null,
+        "providerConfidence": null,
+        "candidateCount": 0,
+        "candidatePoolMatchesFrozenSearch": null,
+        "providerCalls": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "selectedInCandidatePool": false,
+        "selectedUnderExpectedSection": false,
+        "selectedWithinFullAcceptedRange": false,
+        "supportingLinesCovered": null,
+        "supportingLinesTotal": null,
+        "supportingCoveragePercent": null,
+        "exactFetchPassed": null,
+        "evidencePackPassed": null
+      }
+    },
+    {
+      "caseId": "ERS-02-EN",
+      "sourceId": "electronics-repair-simulator",
+      "family": "electronics-repair-simulator",
+      "facet": "metadata-contract",
+      "language": "en",
+      "answerability": "answerable",
+      "expectedDisposition": "select",
+      "search": {
+        "candidateCount": 10,
+        "truncated": true,
+        "exactAcceptedRangeRank": 2,
+        "fullSupportSpanRank": 1,
+        "targetAt1": false,
+        "targetAt5": true,
+        "targetAt10": true
+      },
+      "jev": {
+        "status": "abstained",
+        "decision": "abstained",
+        "selectedRange": null,
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 0.69,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "candidateCount": 10,
+        "candidatePoolMatchesFrozenSearch": true,
+        "providerCalls": 1,
+        "elapsedMs": 959.3,
+        "inputTokens": 1740,
+        "outputTokens": 144,
+        "selectedInCandidatePool": false,
+        "selectedUnderExpectedSection": false,
+        "selectedWithinFullAcceptedRange": false,
+        "supportingLinesCovered": null,
+        "supportingLinesTotal": null,
+        "supportingCoveragePercent": null,
+        "exactFetchPassed": null,
+        "evidencePackPassed": null,
+        "fetchedChars": null,
+        "packedChars": null,
+        "citations": 0
+      }
+    },
+    {
+      "caseId": "ERS-NEG-01",
+      "sourceId": "electronics-repair-simulator",
+      "family": "electronics-repair-simulator",
+      "facet": "nearby-negative",
+      "language": "en",
+      "answerability": "unanswerable-in-source",
+      "expectedDisposition": "abstain",
+      "search": {
+        "candidateCount": 10,
+        "truncated": true,
+        "exactAcceptedRangeRank": null,
+        "fullSupportSpanRank": null,
+        "targetAt1": false,
+        "targetAt5": false,
+        "targetAt10": false
+      },
+      "jev": {
+        "status": "abstained",
+        "decision": "abstained",
+        "selectedRange": null,
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 0.99,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "candidateCount": 10,
+        "candidatePoolMatchesFrozenSearch": true,
+        "providerCalls": 1,
+        "elapsedMs": 644.2,
+        "inputTokens": 1736,
+        "outputTokens": 144,
+        "selectedInCandidatePool": false,
+        "selectedUnderExpectedSection": false,
+        "selectedWithinFullAcceptedRange": false,
+        "supportingLinesCovered": null,
+        "supportingLinesTotal": null,
+        "supportingCoveragePercent": null,
+        "exactFetchPassed": null,
+        "evidencePackPassed": null,
+        "fetchedChars": null,
+        "packedChars": null,
+        "citations": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,578 @@
+{
+  "caseId": "GDA-NEG-01",
+  "query": "How many request-buffer slots are allocated in memory for queued drag changes?",
+  "traceId": "mssr-20261012-jev-cohort-godot-atlas",
+  "tool": "mssr_librarian_search",
+  "envelope": {
+    "delegatedTool": "mssr_librarian_search",
+    "classification": "read-only",
+    "result": {
+      "projectOwner": "d:/dev/godotatlas",
+      "sourceCount": 1,
+      "results": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "f117811ef82979b983756e7b0532822fac4f34a1cbc10edfeb9b98a747ec3633",
+            "owner": "d:/dev/godotatlas",
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 150,
+            "startOffset": 0,
+            "endOffset": 8642,
+            "fingerprint": "369f4c788a4fb86ded7465428aa00712ae8f9e2799785ef907faf26db779ed7b",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 8642,
+          "exactFetchable": true,
+          "score": 0.428571,
+          "title": "Atlas Routing Architecture",
+          "headingPath": [
+            "Atlas Routing Architecture"
+          ],
+          "snippet": "… AtlasRouteInteractionLifecycle + AtlasRouteCacheReuse drag refresh state + deterministic nearby-route reuse/endpoint warp | v AtlasGraphEdit Godot adapter: live descriptors/cache dictionary, signals, deferred scheduli…",
+          "metadata": {
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "headingPath": [
+              "Atlas Routing Architecture"
+            ],
+            "level": 1,
+            "parentId": null,
+            "startLine": 1,
+            "endLine": 150,
+            "chars": 8642,
+            "bytes": 8650,
+            "terms": [
+              "architecture",
+              "atlas",
+              "routing",
+              "added",
+              "allowing",
+              "atlasgraphedit",
+              "behavior",
+              "connection"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "47bb64c2bb9e0c97184d7e22b9e06b0f971e18a760127c2c4c076d5ad816e668",
+            "owner": "d:/dev/godotatlas",
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "rangeId": "heading-6",
+            "rangeKind": "section",
+            "startLine": 62,
+            "endLine": 87,
+            "startOffset": 3200,
+            "endOffset": 3853,
+            "fingerprint": "c1d7cb754407783432efda796e9e1a8389776ba9853435f136e3a34a5ca30672",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 653,
+          "exactFetchable": true,
+          "score": 0.285714,
+          "title": "Interaction state machine",
+          "headingPath": [
+            "Atlas Routing Architecture",
+            "Interaction state machine"
+          ],
+          "snippet": "…t IDLE begin_move -> MOVING MOVING position_changed -> QUEUED (only the first request; later changes coalesce) QUEUED deferred callback while still moving -> REFRESHING mouse-up first -> IDLE + one final synchronous re…",
+          "metadata": {
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "headingPath": [
+              "Atlas Routing Architecture",
+              "Interaction state machine"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 62,
+            "endLine": 87,
+            "chars": 653,
+            "bytes": 653,
+            "terms": [
+              "interaction",
+              "machine",
+              "state",
+              "route",
+              "adapter",
+              "atomically",
+              "bookkeeping",
+              "cache"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "80c3fb7f6dc4ac22828ca1147021c2bc8c861a5502e38a3903b902c81d44aa85",
+            "owner": "d:/dev/godotatlas",
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "rangeId": "block-7",
+            "rangeKind": "block",
+            "startLine": 64,
+            "endLine": 84,
+            "startOffset": 3230,
+            "endOffset": 3644,
+            "fingerprint": "c14f24ba1c2362e6cb013f1518e228aff7d9d6716d4a0ce7ed7522c0a21ad3ec",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 414,
+          "exactFetchable": true,
+          "score": 0.285714,
+          "title": "Interaction state machine",
+          "headingPath": [
+            "Atlas Routing Architecture",
+            "Interaction state machine"
+          ],
+          "snippet": "…t IDLE begin_move -> MOVING MOVING position_changed -> QUEUED (only the first request; later changes coalesce) QUEUED deferred callback while still moving -> REFRESHING mouse-up first -> IDLE + one final synchronous re…",
+          "metadata": {
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "headingPath": [
+              "Atlas Routing Architecture",
+              "Interaction state machine"
+            ],
+            "blockKind": "code",
+            "sectionId": "heading-6",
+            "startLine": 64,
+            "endLine": 84,
+            "chars": 414,
+            "bytes": 414,
+            "terms": []
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "8261c358740a041428e659dbcc389106383e6deb783f0dd8075839c43cdc37c4",
+            "owner": "d:/dev/godotatlas",
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "rangeId": "heading-4",
+            "rangeKind": "section",
+            "startLine": 17,
+            "endLine": 51,
+            "startOffset": 798,
+            "endOffset": 2073,
+            "fingerprint": "a8c6ef304bf262a6021b7913e5cc9447dad5ecdfe4cfc73cb2c76cac2310ee38",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 1275,
+          "exactFetchable": true,
+          "score": 0.142857,
+          "title": "Layers and owners",
+          "headingPath": [
+            "Atlas Routing Architecture",
+            "Layers and owners"
+          ],
+          "snippet": "… AtlasRouteInteractionLifecycle + AtlasRouteCacheReuse drag refresh state + deterministic nearby-route reuse/endpoint warp | v AtlasGraphEdit Godot adapter: live descriptors/cache dictionary, signals, deferred scheduli…",
+          "metadata": {
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "headingPath": [
+              "Atlas Routing Architecture",
+              "Layers and owners"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 17,
+            "endLine": 51,
+            "chars": 1275,
+            "bytes": 1275,
+            "terms": [
+              "layers",
+              "owners",
+              "atlasgraphedit",
+              "but",
+              "can",
+              "editor",
+              "express",
+              "lifecycle"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "6121a8bc9398d8f8262322b6e4208465ef5e2999de7b661293af85d649632052",
+            "owner": "d:/dev/godotatlas",
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "rangeId": "block-4",
+            "rangeKind": "block",
+            "startLine": 19,
+            "endLine": 48,
+            "startOffset": 820,
+            "endOffset": 1901,
+            "fingerprint": "1279e9d06780670b7afa2f9bd0ad42fa66b1ffc05992080b97a29950d219e6df",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 1081,
+          "exactFetchable": true,
+          "score": 0.142857,
+          "title": "Layers and owners",
+          "headingPath": [
+            "Atlas Routing Architecture",
+            "Layers and owners"
+          ],
+          "snippet": "… AtlasRouteInteractionLifecycle + AtlasRouteCacheReuse drag refresh state + deterministic nearby-route reuse/endpoint warp | v AtlasGraphEdit Godot adapter: live descriptors/cache dictionary, signals, deferred scheduli…",
+          "metadata": {
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "headingPath": [
+              "Atlas Routing Architecture",
+              "Layers and owners"
+            ],
+            "blockKind": "code",
+            "sectionId": "heading-4",
+            "startLine": 19,
+            "endLine": 48,
+            "chars": 1081,
+            "bytes": 1081,
+            "terms": []
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "e7eab66d3a22eb3a378a9c0b278cf7f6130d68c913823d9a67b4b6a4337a46ba",
+            "owner": "d:/dev/godotatlas",
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "rangeId": "heading-7",
+            "rangeKind": "section",
+            "startLine": 88,
+            "endLine": 98,
+            "startOffset": 3853,
+            "endOffset": 5033,
+            "fingerprint": "093db58703f9d2fcce7f58f0fadf3f530bb8806d4e283ddafb5dd1113c7be780",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 1180,
+          "exactFetchable": true,
+          "score": 0.142857,
+          "title": "Core invariants",
+          "headingPath": [
+            "Atlas Routing Architecture",
+            "Core invariants"
+          ],
+          "snippet": "…on geometry is invalidated in the same lifecycle. 4. **Drag continuity:** a same-callback native request for old endpoints still resolves the previous exact route; the deferred drag-frame refresh publishes the candidat…",
+          "metadata": {
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "headingPath": [
+              "Atlas Routing Architecture",
+              "Core invariants"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 88,
+            "endLine": 98,
+            "chars": 1180,
+            "bytes": 1180,
+            "terms": [
+              "core",
+              "invariants",
+              "route",
+              "geometry",
+              "native",
+              "never",
+              "set",
+              "cards"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "7e5ff3e2b592f726ae629eaa6b8b27e783861f9aba7fcd318168c1b49d3f5050",
+            "owner": "d:/dev/godotatlas",
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "rangeId": "block-9",
+            "rangeKind": "block",
+            "startLine": 90,
+            "endLine": 97,
+            "startOffset": 3873,
+            "endOffset": 5031,
+            "fingerprint": "a2a6547baf32df842f46f193a4f984df3766e24626368c872aa83151a88e2491",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 1158,
+          "exactFetchable": true,
+          "score": 0.142857,
+          "title": "Core invariants",
+          "headingPath": [
+            "Atlas Routing Architecture",
+            "Core invariants"
+          ],
+          "snippet": "…on geometry is invalidated in the same lifecycle. 4. **Drag continuity:** a same-callback native request for old endpoints still resolves the previous exact route; the deferred drag-frame refresh publishes the candidat…",
+          "metadata": {
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "headingPath": [
+              "Atlas Routing Architecture",
+              "Core invariants"
+            ],
+            "blockKind": "list",
+            "sectionId": "heading-7",
+            "startLine": 90,
+            "endLine": 97,
+            "chars": 1158,
+            "bytes": 1158,
+            "terms": [
+              "route",
+              "geometry",
+              "native",
+              "never",
+              "set",
+              "cards",
+              "complete",
+              "constraints"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "90a0044e4816be815c283d7641450631f7d3d56da5db226798f7579cf90d9ed4",
+            "owner": "d:/dev/godotatlas",
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "rangeId": "block-9/item-4",
+            "rangeKind": "block",
+            "startLine": 93,
+            "endLine": 93,
+            "startOffset": 4266,
+            "endOffset": 4492,
+            "fingerprint": "50ac2a7c12f930a804e8e70d94f99d72e1f54097bca7c5b85ea5b00ec4b4081c",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 226,
+          "exactFetchable": true,
+          "score": 0.142857,
+          "title": "Core invariants",
+          "headingPath": [
+            "Atlas Routing Architecture",
+            "Core invariants"
+          ],
+          "snippet": "4. **Drag continuity:** a same-callback native request for old endpoints still resolves the previous exact route; the deferred drag-frame refresh publishes the candidate geometry; mouse-up with unchanged geometry preser…",
+          "metadata": {
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "headingPath": [
+              "Atlas Routing Architecture",
+              "Core invariants"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-9",
+            "parentBlockFingerprint": "a2a6547baf32df842f46f193a4f984df3766e24626368c872aa83151a88e2491",
+            "listItemOrdinal": 4,
+            "sectionId": "heading-7",
+            "startLine": 93,
+            "endLine": 93,
+            "chars": 226,
+            "bytes": 226,
+            "terms": [
+              "drag",
+              "continuity",
+              "same-callback",
+              "native",
+              "request",
+              "for",
+              "old",
+              "endpoints",
+              "still",
+              "resolves",
+              "the",
+              "previous",
+              "exact",
+              "route",
+              "deferred",
+              "drag-frame",
+              "refresh",
+              "publishes",
+              "candidate",
+              "geometry",
+              "mouse-up",
+              "with",
+              "unchanged",
+              "preserves",
+              "it"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "4263d5bafe3860da050eb537e9254756e676ecdd26a15ed7b7520c928847ec9f",
+            "owner": "d:/dev/godotatlas",
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "rangeId": "block-9/item-5",
+            "rangeKind": "block",
+            "startLine": 94,
+            "endLine": 94,
+            "startOffset": 4493,
+            "endOffset": 4601,
+            "fingerprint": "5d167550628e7b9ffdfff1d247dcb90188a58649d6dbed46d38edde5b43133b6",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 108,
+          "exactFetchable": true,
+          "score": 0.142857,
+          "title": "Core invariants",
+          "headingPath": [
+            "Atlas Routing Architecture",
+            "Core invariants"
+          ],
+          "snippet": "5. **Coalescing:** many position signals inside one pending drag frame request at most one deferred rebuild.",
+          "metadata": {
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "headingPath": [
+              "Atlas Routing Architecture",
+              "Core invariants"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-9",
+            "parentBlockFingerprint": "a2a6547baf32df842f46f193a4f984df3766e24626368c872aa83151a88e2491",
+            "listItemOrdinal": 5,
+            "sectionId": "heading-7",
+            "startLine": 94,
+            "endLine": 94,
+            "chars": 108,
+            "bytes": 108,
+            "terms": [
+              "coalescing",
+              "many",
+              "position",
+              "signals",
+              "inside",
+              "one",
+              "pending",
+              "drag",
+              "frame",
+              "request",
+              "at",
+              "most",
+              "deferred",
+              "rebuild"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "3334ee423df2c71c63fe43209bfe9fb61681c733a9d4b3e4d01c7b2396acd050",
+            "owner": "d:/dev/godotatlas",
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "rangeId": "heading-9",
+            "rangeKind": "section",
+            "startLine": 122,
+            "endLine": 139,
+            "startOffset": 6079,
+            "endOffset": 6731,
+            "fingerprint": "81fcd3c0f7e065ecf20e26be3904a10d0cae00ca836711725eba830e22692844",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 652,
+          "exactFetchable": true,
+          "score": 0.142857,
+          "title": "Test tiers",
+          "headingPath": [
+            "Atlas Routing Architecture",
+            "Test tiers"
+          ],
+          "snippet": "…t coordinate transforms, native invalidation, deferred drag timing and adapter compatibility. ### Tier 3 — Layout Lab fixtures A/B/C/D and future fixtures prove accepted layout + routing properties together on real Gra…",
+          "metadata": {
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "headingPath": [
+              "Atlas Routing Architecture",
+              "Test tiers"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 122,
+            "endLine": 139,
+            "chars": 652,
+            "bytes": 660,
+            "terms": [
+              "test",
+              "tiers",
+              "construction",
+              "deterministic",
+              "editor",
+              "fast",
+              "geometry",
+              "lifecycle"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        }
+      ],
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "truncated": true
+    }
+  }
+}

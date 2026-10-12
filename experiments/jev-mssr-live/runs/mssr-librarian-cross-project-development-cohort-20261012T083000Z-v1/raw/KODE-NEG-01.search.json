@@ -1,0 +1,609 @@
+{
+  "caseId": "KODE-NEG-01",
+  "query": "How many FREE models are available from the provider right now?",
+  "traceId": "mssr-20261012-jev-cohort-kode",
+  "tool": "mssr_librarian_search",
+  "envelope": {
+    "delegatedTool": "mssr_librarian_search",
+    "classification": "read-only",
+    "result": {
+      "projectOwner": "d:/dev/kode",
+      "sourceCount": 1,
+      "results": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "889f17fe535cde46f72edd2fbfb9deeae34fe8b7400e441f9bdcf053f0340488",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 360,
+            "startOffset": 0,
+            "endOffset": 16841,
+            "fingerprint": "b5075a063deeb44f20d7a8af333247b46e6aa0a7c4102522a5666e0ab2babf91",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 16841,
+          "exactFetchable": true,
+          "score": 0.666667,
+          "title": "Kode ↔ OpenCode Provider Contract",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract"
+          ],
+          "snippet": "# Kode ↔ OpenCode Provider Contract Last reviewed against upstream docs: **2026-09-13** This document separates three kinds of truth that must not be mixed: 1. **OpenCode upstream facts** — current public provider/model…",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract"
+            ],
+            "level": 1,
+            "parentId": null,
+            "startLine": 1,
+            "endLine": 360,
+            "chars": 16841,
+            "bytes": 16917,
+            "terms": [
+              "contract",
+              "kode",
+              "opencode",
+              "provider",
+              "2026-09-13",
+              "against",
+              "docs",
+              "last"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "40a73a9d5d3eda61a75445d04577118cf2d12b1eea50a5213b22ba1a468bb664",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "heading-4",
+            "rangeKind": "section",
+            "startLine": 44,
+            "endLine": 59,
+            "startOffset": 2206,
+            "endOffset": 3439,
+            "fingerprint": "b4cc377716c36897ac3135c88d0b8c795acce5c3d9acf3b51fbc39c0964f88d3",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 1233,
+          "exactFetchable": true,
+          "score": 0.5,
+          "title": "2. Privacy warning for free models",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "2. Privacy warning for free models"
+          ],
+          "snippet": "## 2. Privacy warning for free models Do not equate `FREE` with a uniform privacy contract. OpenCode's current Zen privacy documentation says its general providers follow zero-retention/no-training policies with named e…",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "2. Privacy warning for free models"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 44,
+            "endLine": 59,
+            "chars": 1233,
+            "bytes": 1241,
+            "terms": [
+              "free",
+              "models",
+              "privacy",
+              "warning",
+              "contract",
+              "equate",
+              "uniform"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "6c303931f7dfe2abba259e4dee01721f14eb40887d50308cdd4554d50fd952bc",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "block-11",
+            "rangeKind": "block",
+            "startLine": 46,
+            "endLine": 46,
+            "startOffset": 2245,
+            "endOffset": 2298,
+            "fingerprint": "a06ad8d1bd83c38b2ea354bd5389562bf250c07597d6eda236f0c18b37b04581",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 53,
+          "exactFetchable": true,
+          "score": 0.5,
+          "title": "2. Privacy warning for free models",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "2. Privacy warning for free models"
+          ],
+          "snippet": "Do not equate `FREE` with a uniform privacy contract.",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "2. Privacy warning for free models"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-4",
+            "startLine": 46,
+            "endLine": 46,
+            "chars": 53,
+            "bytes": 53,
+            "terms": [
+              "contract",
+              "equate",
+              "free",
+              "privacy",
+              "uniform"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "484732b076dfbccbb22154a53553040eeb38ce1990912575369e3d941d44a091",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "block-12",
+            "rangeKind": "block",
+            "startLine": 48,
+            "endLine": 48,
+            "startOffset": 2300,
+            "endOffset": 2775,
+            "fingerprint": "f794c02421994f2947878e5b1b172626c7773a8a014372d33e6e4bfceb12dc9d",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 475,
+          "exactFetchable": true,
+          "score": 0.5,
+          "title": "2. Privacy warning for free models",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "2. Privacy warning for free models"
+          ],
+          "snippet": "…e's current Zen privacy documentation says its general providers follow zero-retention/no-training policies with named exceptions. The exceptions currently include multiple free endpoints, and OpenCode specifically war…",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "2. Privacy warning for free models"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-4",
+            "startLine": 48,
+            "endLine": 48,
+            "chars": 475,
+            "bytes": 475,
+            "terms": [
+              "free",
+              "documentation",
+              "exceptions",
+              "opencode",
+              "access",
+              "also",
+              "completions",
+              "contributor"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "687e2aef3f410c0549dab979d903995c3960a7a367db05ae6eff1fa9ad6ddfc1",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "block-13",
+            "rangeKind": "block",
+            "startLine": 50,
+            "endLine": 50,
+            "startOffset": 2777,
+            "endOffset": 2799,
+            "fingerprint": "796eec1eb58a91278dbf82a514474cbd847539bc56eb3409d34ff471c9100a75",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 22,
+          "exactFetchable": true,
+          "score": 0.5,
+          "title": "2. Privacy warning for free models",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "2. Privacy warning for free models"
+          ],
+          "snippet": "Implications for Kode:",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "2. Privacy warning for free models"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-4",
+            "startLine": 50,
+            "endLine": 50,
+            "chars": 22,
+            "bytes": 22,
+            "terms": [
+              "implications",
+              "kode"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "58d8ac5e881d99716045f07c6c21cfb39a7e8416a5db18e839abbc4e67a2dbeb",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "block-14/item-1",
+            "rangeKind": "block",
+            "startLine": 52,
+            "endLine": 52,
+            "startOffset": 2801,
+            "endOffset": 2870,
+            "fingerprint": "043cc41dc0dd67e9393716ccb2b4cc54c3665938d2f8a88024a8502584d8cf38",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 69,
+          "exactFetchable": true,
+          "score": 0.5,
+          "title": "2. Privacy warning for free models",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "2. Privacy warning for free models"
+          ],
+          "snippet": "- `FREE` is a price/tier presentation label, not a privacy guarantee.",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "2. Privacy warning for free models"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-14",
+            "parentBlockFingerprint": "43135f7e0c3fd6ee736b2893423091233987e450d6c990583e8a88cb5a38c5a4",
+            "listItemOrdinal": 1,
+            "sectionId": "heading-4",
+            "startLine": 52,
+            "endLine": 52,
+            "chars": 69,
+            "bytes": 69,
+            "terms": [
+              "free",
+              "is",
+              "price",
+              "tier",
+              "presentation",
+              "label",
+              "not",
+              "privacy",
+              "guarantee"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "977ad672656993590c0ca64a0afec247a57dfdad5b1faf340d3ac3c677ae4456",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "block-14",
+            "rangeKind": "block",
+            "startLine": 52,
+            "endLine": 56,
+            "startOffset": 2801,
+            "endOffset": 3310,
+            "fingerprint": "43135f7e0c3fd6ee736b2893423091233987e450d6c990583e8a88cb5a38c5a4",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 509,
+          "exactFetchable": true,
+          "score": 0.5,
+          "title": "2. Privacy warning for free models",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "2. Privacy warning for free models"
+          ],
+          "snippet": "- `FREE` is a price/tier presentation label, not a privacy guarantee. - Do not add UI copy such as “private because free” or “zero retention” globally. - If Kode later displays privacy badges, they must come from curren…",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "2. Privacy warning for free models"
+            ],
+            "blockKind": "list",
+            "sectionId": "heading-4",
+            "startLine": 52,
+            "endLine": 56,
+            "chars": 509,
+            "bytes": 517,
+            "terms": [
+              "because",
+              "free",
+              "model",
+              "policy",
+              "privacy",
+              "risk",
+              "add",
+              "appears"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "359805cddd7d8e60a84b94a9d61d9e0ecea0cede85d0225c9dfb158a2ae5e20b",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "block-14/item-2",
+            "rangeKind": "block",
+            "startLine": 53,
+            "endLine": 53,
+            "startOffset": 2871,
+            "endOffset": 2952,
+            "fingerprint": "9d159e82d28362523e941b4a7bf46c2f68b061ec9bf2e56923db40e12154750b",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 81,
+          "exactFetchable": true,
+          "score": 0.5,
+          "title": "2. Privacy warning for free models",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "2. Privacy warning for free models"
+          ],
+          "snippet": "- Do not add UI copy such as “private because free” or “zero retention” globally.",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "2. Privacy warning for free models"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-14",
+            "parentBlockFingerprint": "43135f7e0c3fd6ee736b2893423091233987e450d6c990583e8a88cb5a38c5a4",
+            "listItemOrdinal": 2,
+            "sectionId": "heading-4",
+            "startLine": 53,
+            "endLine": 53,
+            "chars": 81,
+            "bytes": 89,
+            "terms": [
+              "do",
+              "not",
+              "add",
+              "ui",
+              "copy",
+              "such",
+              "as",
+              "private",
+              "because",
+              "free",
+              "or",
+              "zero",
+              "retention",
+              "globally"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "79ab48c26ba79cd5255156f6506d8c027b2ac24aa3b1913786a7b8f206d7e27f",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "block-14/item-3",
+            "rangeKind": "block",
+            "startLine": 54,
+            "endLine": 54,
+            "startOffset": 2953,
+            "endOffset": 3101,
+            "fingerprint": "35e0a695bb165fa125f8ed3d8da8fe4ba3aa14b90741cb9e91b6c53f3b587e76",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 148,
+          "exactFetchable": true,
+          "score": 0.5,
+          "title": "2. Privacy warning for free models",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "2. Privacy warning for free models"
+          ],
+          "snippet": "- If Kode later displays privacy badges, they must come from current provider/model policy metadata or a separately maintained audited policy layer.",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "2. Privacy warning for free models"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-14",
+            "parentBlockFingerprint": "43135f7e0c3fd6ee736b2893423091233987e450d6c990583e8a88cb5a38c5a4",
+            "listItemOrdinal": 3,
+            "sectionId": "heading-4",
+            "startLine": 54,
+            "endLine": 54,
+            "chars": 148,
+            "bytes": 148,
+            "terms": [
+              "if",
+              "kode",
+              "later",
+              "displays",
+              "privacy",
+              "badges",
+              "they",
+              "must",
+              "come",
+              "from",
+              "current",
+              "provider",
+              "model",
+              "policy",
+              "metadata",
+              "or",
+              "separately",
+              "maintained",
+              "audited",
+              "layer"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "979262e0f5b78c711f01f988819bb82b58dc1003e9240c88334d9de997b45156",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "block-14/item-4",
+            "rangeKind": "block",
+            "startLine": 55,
+            "endLine": 55,
+            "startOffset": 3102,
+            "endOffset": 3216,
+            "fingerprint": "7300cce48c63731c2ffb5c0e3296b03b522bbdf95b0e8d07d52fd95d264c0ed7",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 114,
+          "exactFetchable": true,
+          "score": 0.5,
+          "title": "2. Privacy warning for free models",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "2. Privacy warning for free models"
+          ],
+          "snippet": "- Sensitive/confidential code should not be assumed safe to send merely because the model appears in OpenCode Zen.",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "2. Privacy warning for free models"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-14",
+            "parentBlockFingerprint": "43135f7e0c3fd6ee736b2893423091233987e450d6c990583e8a88cb5a38c5a4",
+            "listItemOrdinal": 4,
+            "sectionId": "heading-4",
+            "startLine": 55,
+            "endLine": 55,
+            "chars": 114,
+            "bytes": 114,
+            "terms": [
+              "sensitive",
+              "confidential",
+              "code",
+              "should",
+              "not",
+              "be",
+              "assumed",
+              "safe",
+              "to",
+              "send",
+              "merely",
+              "because",
+              "the",
+              "model",
+              "appears",
+              "in",
+              "opencode",
+              "zen"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        }
+      ],
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "truncated": true
+    },
+    "bridgeNotices": {
+      "delivery": "automatic-drain",
+      "scope": "contextual",
+      "count": 0,
+      "remainingPending": 1,
+      "relevantPending": 0,
+      "otherPending": 1,
+      "globalPending": 0,
+      "globalHistoryTool": "bridge_notice_history",
+      "items": []
+    }
+  }
+}

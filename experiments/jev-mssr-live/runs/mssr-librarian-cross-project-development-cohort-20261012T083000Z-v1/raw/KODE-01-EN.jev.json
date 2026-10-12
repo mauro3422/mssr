@@ -1,0 +1,485 @@
+{
+  "caseId": "KODE-01-EN",
+  "query": "When a model has an explicit SDK package in provider metadata, what takes precedence over the provider-level default?",
+  "traceId": "mssr-20261012-jev-cohort-kode",
+  "tool": "mssr_librarian_jev_select",
+  "candidateHandleCount": 10,
+  "candidateHandleIds": [
+    "889f17fe535cde46f72edd2fbfb9deeae34fe8b7400e441f9bdcf053f0340488",
+    "05444b6c62b612c41b540a13cc1901dbc6347c4bc7b67719a31645e1b5cbd426",
+    "6a0de26bd5f1b01ceb80bcf4ee3e974511b0122a80a2d5339ac4f3a761001446",
+    "d89706ed1d0f319add11ff7699f377c2d6f95a908772dd8c0740b63abe2b0170",
+    "f9ae821482b91c3c4893198355dc154eea2c2e1dc5b9c2c8c9fdd0972056135f",
+    "f297b350be4f55c90f198a257c10db318c2ab767dde1e7fb31de7733a8d4be4d",
+    "2aff7cee8ced6e359c0b74df2c54f139223503cd39c64e9416048de2822f242f",
+    "e429a97235ee9c53cf31e67e86f2707632984cadacba5071f18e1ae8fdf0c661",
+    "5ba91e88ff1028a81ae905dedfa83732bf66371ead1b101205856768316c56f9",
+    "e0a00a6300943315a3f9902c7c88037b8d5c631cecc859a9b9bb09cd19839728"
+  ],
+  "envelope": {
+    "delegatedTool": "mssr_librarian_jev_select",
+    "classification": "neutral",
+    "result": {
+      "projectOwner": "d:/dev/kode",
+      "sourceCount": 1,
+      "status": "selected",
+      "candidateCount": 10,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "verification": "unverified",
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "exactFetchRequired": true,
+      "autoApplyAllowed": false,
+      "candidateRangeDiagnostics": {
+        "offered": 10,
+        "eligible": 10,
+        "oversizedOmitted": 0,
+        "maxFetchChars": 20000,
+        "lengthUnit": "utf16-code-units"
+      },
+      "rangeOverlapDiagnostics": {
+        "sameSourceRevisionPairs": 45,
+        "overlappingPairCount": 19,
+        "nestedPairCount": 19,
+        "exactRangePairCount": 0,
+        "partialOverlapPairCount": 0,
+        "pairs": [
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              360
+            ],
+            "rightOptionId": "h002",
+            "rightRangeId": "heading-13",
+            "rightRangeKind": "section",
+            "rightLines": [
+              159,
+              208
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 2119
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              360
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "heading-15",
+            "rightRangeKind": "section",
+            "rightLines": [
+              173,
+              178
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 257
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              360
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-47",
+            "rightRangeKind": "block",
+            "rightLines": [
+              175,
+              175
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 121
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              360
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "heading-16",
+            "rightRangeKind": "section",
+            "rightLines": [
+              179,
+              190
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 465
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              360
+            ],
+            "rightOptionId": "h006",
+            "rightRangeId": "heading-11",
+            "rightRangeKind": "section",
+            "rightLines": [
+              136,
+              158
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 1049
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              360
+            ],
+            "rightOptionId": "h007",
+            "rightRangeId": "block-38",
+            "rightRangeKind": "block",
+            "rightLines": [
+              142,
+              149
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 487
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              360
+            ],
+            "rightOptionId": "h008",
+            "rightRangeId": "block-50",
+            "rightRangeKind": "block",
+            "rightLines": [
+              183,
+              187
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 187
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              360
+            ],
+            "rightOptionId": "h009",
+            "rightRangeId": "heading-17",
+            "rightRangeKind": "section",
+            "rightLines": [
+              191,
+              194
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 201
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              360
+            ],
+            "rightOptionId": "h010",
+            "rightRangeId": "block-52",
+            "rightRangeKind": "block",
+            "rightLines": [
+              193,
+              193
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 137
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-13",
+            "leftRangeKind": "section",
+            "leftLines": [
+              159,
+              208
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "heading-15",
+            "rightRangeKind": "section",
+            "rightLines": [
+              173,
+              178
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 257
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-13",
+            "leftRangeKind": "section",
+            "leftLines": [
+              159,
+              208
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-47",
+            "rightRangeKind": "block",
+            "rightLines": [
+              175,
+              175
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 121
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-13",
+            "leftRangeKind": "section",
+            "leftLines": [
+              159,
+              208
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "heading-16",
+            "rightRangeKind": "section",
+            "rightLines": [
+              179,
+              190
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 465
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-13",
+            "leftRangeKind": "section",
+            "leftLines": [
+              159,
+              208
+            ],
+            "rightOptionId": "h008",
+            "rightRangeId": "block-50",
+            "rightRangeKind": "block",
+            "rightLines": [
+              183,
+              187
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 187
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-13",
+            "leftRangeKind": "section",
+            "leftLines": [
+              159,
+              208
+            ],
+            "rightOptionId": "h009",
+            "rightRangeId": "heading-17",
+            "rightRangeKind": "section",
+            "rightLines": [
+              191,
+              194
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 201
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-13",
+            "leftRangeKind": "section",
+            "leftLines": [
+              159,
+              208
+            ],
+            "rightOptionId": "h010",
+            "rightRangeId": "block-52",
+            "rightRangeKind": "block",
+            "rightLines": [
+              193,
+              193
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 137
+          },
+          {
+            "leftOptionId": "h003",
+            "leftRangeId": "heading-15",
+            "leftRangeKind": "section",
+            "leftLines": [
+              173,
+              178
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-47",
+            "rightRangeKind": "block",
+            "rightLines": [
+              175,
+              175
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 121
+          },
+          {
+            "leftOptionId": "h005",
+            "leftRangeId": "heading-16",
+            "leftRangeKind": "section",
+            "leftLines": [
+              179,
+              190
+            ],
+            "rightOptionId": "h008",
+            "rightRangeId": "block-50",
+            "rightRangeKind": "block",
+            "rightLines": [
+              183,
+              187
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 187
+          },
+          {
+            "leftOptionId": "h006",
+            "leftRangeId": "heading-11",
+            "leftRangeKind": "section",
+            "leftLines": [
+              136,
+              158
+            ],
+            "rightOptionId": "h007",
+            "rightRangeId": "block-38",
+            "rightRangeKind": "block",
+            "rightLines": [
+              142,
+              149
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 487
+          },
+          {
+            "leftOptionId": "h009",
+            "leftRangeId": "heading-17",
+            "leftRangeKind": "section",
+            "leftLines": [
+              191,
+              194
+            ],
+            "rightOptionId": "h010",
+            "rightRangeId": "block-52",
+            "rightRangeKind": "block",
+            "rightLines": [
+              193,
+              193
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 137
+          }
+        ],
+        "truncated": false,
+        "mutationApplied": false
+      },
+      "finalistCount": 10,
+      "selectionMode": "single-pass",
+      "selectionPasses": 1,
+      "providerCalls": 1,
+      "providerConfidence": 0.6,
+      "evidenceSufficiency": 0.96,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 1823,
+        "output_tokens": 147
+      },
+      "requestFingerprint": "a43a35ad69033da14b2ef5c34c92d34c0146d168f6539d345d5f631d26a01f0c",
+      "elapsedMs": 744.3,
+      "jevCallMade": true,
+      "selected": {
+        "optionId": "h004",
+        "title": "Law 2 — model-level package metadata wins",
+        "headingPath": [
+          "Kode ↔ OpenCode Provider Contract",
+          "6. The transport laws",
+          "Law 2 — model-level package metadata wins"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "d89706ed1d0f319add11ff7699f377c2d6f95a908772dd8c0740b63abe2b0170",
+          "owner": "d:/dev/kode",
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "rangeId": "block-47",
+          "rangeKind": "block",
+          "startLine": 175,
+          "endLine": 175,
+          "startOffset": 7982,
+          "endOffset": 8103,
+          "fingerprint": "68e472fe91b32d2727b44ea275326175ec18c8c9f9b3038a6be564bc4bb6ae3d",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "h005",
+            "h006",
+            "h007",
+            "h008",
+            "h009",
+            "h010",
+            "none"
+          ],
+          "selectedOptionId": "h004",
+          "confidence": 0.6,
+          "probabilities": {
+            "h001": 0,
+            "h002": 0.15,
+            "h003": 0.21,
+            "h004": 0.64,
+            "h005": 0,
+            "h006": 0,
+            "h007": 0,
+            "h008": 0,
+            "h009": 0,
+            "h010": 0,
+            "none": 0
+          }
+        }
+      ]
+    },
+    "bridgeNotices": {
+      "delivery": "automatic-drain",
+      "scope": "contextual",
+      "count": 0,
+      "remainingPending": 1,
+      "relevantPending": 0,
+      "otherPending": 1,
+      "globalPending": 0,
+      "globalHistoryTool": "bridge_notice_history",
+      "items": []
+    }
+  }
+}

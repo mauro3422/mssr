@@ -1,0 +1,228 @@
+{
+  "caseId": "GDA-01-ES",
+  "query": "Si se suelta el mouse antes del callback de actualización diferida mientras se mueve una tarjeta, ¿qué transición y comportamiento de actualización final corresponde?",
+  "traceId": "mssr-20261012-jev-cohort-godot-atlas",
+  "tool": "mssr_librarian_search",
+  "envelope": {
+    "delegatedTool": "mssr_librarian_search",
+    "classification": "read-only",
+    "result": {
+      "projectOwner": "d:/dev/godotatlas",
+      "sourceCount": 1,
+      "results": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "f117811ef82979b983756e7b0532822fac4f34a1cbc10edfeb9b98a747ec3633",
+            "owner": "d:/dev/godotatlas",
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 150,
+            "startOffset": 0,
+            "endOffset": 8642,
+            "fingerprint": "369f4c788a4fb86ded7465428aa00712ae8f9e2799785ef907faf26db779ed7b",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 8642,
+          "exactFetchable": true,
+          "score": 0.142857,
+          "title": "Atlas Routing Architecture",
+          "headingPath": [
+            "Atlas Routing Architecture"
+          ],
+          "snippet": "…er or renderer. - No routing policy hidden inside draw callbacks. - No route fix that compensates for structurally invalid placement. - No global rewrite when one fixture exposes one missing property. - No test that fr…",
+          "metadata": {
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "headingPath": [
+              "Atlas Routing Architecture"
+            ],
+            "level": 1,
+            "parentId": null,
+            "startLine": 1,
+            "endLine": 150,
+            "chars": 8642,
+            "bytes": 8650,
+            "terms": [
+              "architecture",
+              "atlas",
+              "routing",
+              "added",
+              "allowing",
+              "atlasgraphedit",
+              "behavior",
+              "connection"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "47bb64c2bb9e0c97184d7e22b9e06b0f971e18a760127c2c4c076d5ad816e668",
+            "owner": "d:/dev/godotatlas",
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "rangeId": "heading-6",
+            "rangeKind": "section",
+            "startLine": 62,
+            "endLine": 87,
+            "startOffset": 3200,
+            "endOffset": 3853,
+            "fingerprint": "c1d7cb754407783432efda796e9e1a8389776ba9853435f136e3a34a5ca30672",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 653,
+          "exactFetchable": true,
+          "score": 0.142857,
+          "title": "Interaction state machine",
+          "headingPath": [
+            "Atlas Routing Architecture",
+            "Interaction state machine"
+          ],
+          "snippet": "…first request; later changes coalesce) QUEUED deferred callback while still moving -> REFRESHING mouse-up first -> IDLE + one final synchronous refresh REFRESHING publish complete route snapshot -> MOVING mouse-up whil…",
+          "metadata": {
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "headingPath": [
+              "Atlas Routing Architecture",
+              "Interaction state machine"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 62,
+            "endLine": 87,
+            "chars": 653,
+            "bytes": 653,
+            "terms": [
+              "interaction",
+              "machine",
+              "state",
+              "route",
+              "adapter",
+              "atomically",
+              "bookkeeping",
+              "cache"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "80c3fb7f6dc4ac22828ca1147021c2bc8c861a5502e38a3903b902c81d44aa85",
+            "owner": "d:/dev/godotatlas",
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "rangeId": "block-7",
+            "rangeKind": "block",
+            "startLine": 64,
+            "endLine": 84,
+            "startOffset": 3230,
+            "endOffset": 3644,
+            "fingerprint": "c14f24ba1c2362e6cb013f1518e228aff7d9d6716d4a0ce7ed7522c0a21ad3ec",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 414,
+          "exactFetchable": true,
+          "score": 0.142857,
+          "title": "Interaction state machine",
+          "headingPath": [
+            "Atlas Routing Architecture",
+            "Interaction state machine"
+          ],
+          "snippet": "…first request; later changes coalesce) QUEUED deferred callback while still moving -> REFRESHING mouse-up first -> IDLE + one final synchronous refresh REFRESHING publish complete route snapshot -> MOVING mouse-up whil…",
+          "metadata": {
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "headingPath": [
+              "Atlas Routing Architecture",
+              "Interaction state machine"
+            ],
+            "blockKind": "code",
+            "sectionId": "heading-6",
+            "startLine": 64,
+            "endLine": 84,
+            "chars": 414,
+            "bytes": 414,
+            "terms": []
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "175fc27b024516d1f35caa774c540f937c5b41b8d5dea3822cdeaa53d21fc008",
+            "owner": "d:/dev/godotatlas",
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "rangeId": "block-8",
+            "rangeKind": "block",
+            "startLine": 86,
+            "endLine": 86,
+            "startOffset": 3646,
+            "endOffset": 3851,
+            "fingerprint": "8f296ed89aa44db23417f48b5dea5aa707c7eb88fcad2c96ea9ab72501477d4a",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 205,
+          "exactFetchable": true,
+          "score": 0.071429,
+          "title": "Interaction state machine",
+          "headingPath": [
+            "Atlas Routing Architecture",
+            "Interaction state machine"
+          ],
+          "snippet": "The adapter must keep the previously complete route cache visible until Godot has finished native endpoint bookkeeping for the callback that moved the card. New route geometry is then published atomically.",
+          "metadata": {
+            "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+            "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+            "headingPath": [
+              "Atlas Routing Architecture",
+              "Interaction state machine"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-6",
+            "startLine": 86,
+            "endLine": 86,
+            "chars": 205,
+            "bytes": 205,
+            "terms": [
+              "route",
+              "adapter",
+              "atomically",
+              "bookkeeping",
+              "cache",
+              "callback",
+              "card",
+              "complete"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        }
+      ],
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "truncated": false
+    }
+  }
+}

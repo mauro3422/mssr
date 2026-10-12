@@ -1,0 +1,539 @@
+{
+  "caseId": "ERS-01-EN",
+  "query": "What are the three explicit device-modeling layers, and which layer owns placement of atomic components?",
+  "traceId": "mssr-20261012-jev-cohort-electronics-repair-simulator",
+  "tool": "mssr_librarian_jev_select",
+  "candidateHandleCount": 10,
+  "candidateHandleIds": [
+    "4322c931bc80a9271428cd3243a6c48d6fb4733d112ef28af37630761789acc2",
+    "bf19fb236fd93ae7f9bcbd50855144e5808704f9d874ff13d57ffdd8d0be040f",
+    "01cc93da7a9122ddf2c5f13c214b846c1f2ef4c48319d23363cf15bb3f1c7559",
+    "737b711ad6629c9d258ff3dabe6f351769a428a3dbca3c7c934503f03cf14f9a",
+    "bb3ab88c78175b182c6b8f8c31ef92d10dfa1f4ac80710007a0dbf1265b6c2ac",
+    "5fc4f865a5274bacd95a93102d9b9a3a2db6e3fbc5c6ad9271d00232a3dc4516",
+    "de536ba73689b7a02a527dd35d76aac9b6d411be85988b50f960294080aa21a1",
+    "8fc026e6912cf0fe6a43d2da25673c723a2c22ae20ce36a88daf466a073e2098",
+    "81bd73342370565be3e5f3f179e5519beac55a988bec3fbf11c32fc889797e4b",
+    "16b4b461b61ac2c3014d33b892f526480e0d13062813eb18ab81ce02d8a67562"
+  ],
+  "envelope": {
+    "delegatedTool": "mssr_librarian_jev_select",
+    "classification": "neutral",
+    "result": {
+      "projectOwner": "d:/dev/electronics-repair-simulator",
+      "sourceCount": 1,
+      "status": "selected",
+      "candidateCount": 10,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "verification": "unverified",
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "exactFetchRequired": true,
+      "autoApplyAllowed": false,
+      "candidateRangeDiagnostics": {
+        "offered": 10,
+        "eligible": 10,
+        "oversizedOmitted": 0,
+        "maxFetchChars": 20000,
+        "lengthUnit": "utf16-code-units"
+      },
+      "rangeOverlapDiagnostics": {
+        "sameSourceRevisionPairs": 45,
+        "overlappingPairCount": 22,
+        "nestedPairCount": 22,
+        "exactRangePairCount": 0,
+        "partialOverlapPairCount": 0,
+        "pairs": [
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              384
+            ],
+            "rightOptionId": "h002",
+            "rightRangeId": "heading-3",
+            "rightRangeKind": "section",
+            "rightLines": [
+              24,
+              70
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 1401
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              384
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "heading-5",
+            "rightRangeKind": "section",
+            "rightLines": [
+              43,
+              56
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 399
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              384
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-7",
+            "rightRangeKind": "block",
+            "rightLines": [
+              26,
+              26
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 82
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              384
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "heading-4",
+            "rightRangeKind": "section",
+            "rightLines": [
+              28,
+              42
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 519
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              384
+            ],
+            "rightOptionId": "h006",
+            "rightRangeId": "block-10",
+            "rightRangeKind": "block",
+            "rightLines": [
+              41,
+              41
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 116
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              384
+            ],
+            "rightOptionId": "h007",
+            "rightRangeId": "block-11",
+            "rightRangeKind": "block",
+            "rightLines": [
+              45,
+              45
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 80
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              384
+            ],
+            "rightOptionId": "h008",
+            "rightRangeId": "block-13",
+            "rightRangeKind": "block",
+            "rightLines": [
+              55,
+              55
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 147
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              384
+            ],
+            "rightOptionId": "h009",
+            "rightRangeId": "block-8",
+            "rightRangeKind": "block",
+            "rightLines": [
+              30,
+              30
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 60
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              384
+            ],
+            "rightOptionId": "h010",
+            "rightRangeId": "block-9",
+            "rightRangeKind": "block",
+            "rightLines": [
+              32,
+              39
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 305
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-3",
+            "leftRangeKind": "section",
+            "leftLines": [
+              24,
+              70
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "heading-5",
+            "rightRangeKind": "section",
+            "rightLines": [
+              43,
+              56
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 399
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-3",
+            "leftRangeKind": "section",
+            "leftLines": [
+              24,
+              70
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-7",
+            "rightRangeKind": "block",
+            "rightLines": [
+              26,
+              26
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 82
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-3",
+            "leftRangeKind": "section",
+            "leftLines": [
+              24,
+              70
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "heading-4",
+            "rightRangeKind": "section",
+            "rightLines": [
+              28,
+              42
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 519
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-3",
+            "leftRangeKind": "section",
+            "leftLines": [
+              24,
+              70
+            ],
+            "rightOptionId": "h006",
+            "rightRangeId": "block-10",
+            "rightRangeKind": "block",
+            "rightLines": [
+              41,
+              41
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 116
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-3",
+            "leftRangeKind": "section",
+            "leftLines": [
+              24,
+              70
+            ],
+            "rightOptionId": "h007",
+            "rightRangeId": "block-11",
+            "rightRangeKind": "block",
+            "rightLines": [
+              45,
+              45
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 80
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-3",
+            "leftRangeKind": "section",
+            "leftLines": [
+              24,
+              70
+            ],
+            "rightOptionId": "h008",
+            "rightRangeId": "block-13",
+            "rightRangeKind": "block",
+            "rightLines": [
+              55,
+              55
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 147
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-3",
+            "leftRangeKind": "section",
+            "leftLines": [
+              24,
+              70
+            ],
+            "rightOptionId": "h009",
+            "rightRangeId": "block-8",
+            "rightRangeKind": "block",
+            "rightLines": [
+              30,
+              30
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 60
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-3",
+            "leftRangeKind": "section",
+            "leftLines": [
+              24,
+              70
+            ],
+            "rightOptionId": "h010",
+            "rightRangeId": "block-9",
+            "rightRangeKind": "block",
+            "rightLines": [
+              32,
+              39
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 305
+          },
+          {
+            "leftOptionId": "h003",
+            "leftRangeId": "heading-5",
+            "leftRangeKind": "section",
+            "leftLines": [
+              43,
+              56
+            ],
+            "rightOptionId": "h007",
+            "rightRangeId": "block-11",
+            "rightRangeKind": "block",
+            "rightLines": [
+              45,
+              45
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 80
+          },
+          {
+            "leftOptionId": "h003",
+            "leftRangeId": "heading-5",
+            "leftRangeKind": "section",
+            "leftLines": [
+              43,
+              56
+            ],
+            "rightOptionId": "h008",
+            "rightRangeId": "block-13",
+            "rightRangeKind": "block",
+            "rightLines": [
+              55,
+              55
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 147
+          },
+          {
+            "leftOptionId": "h005",
+            "leftRangeId": "heading-4",
+            "leftRangeKind": "section",
+            "leftLines": [
+              28,
+              42
+            ],
+            "rightOptionId": "h006",
+            "rightRangeId": "block-10",
+            "rightRangeKind": "block",
+            "rightLines": [
+              41,
+              41
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 116
+          },
+          {
+            "leftOptionId": "h005",
+            "leftRangeId": "heading-4",
+            "leftRangeKind": "section",
+            "leftLines": [
+              28,
+              42
+            ],
+            "rightOptionId": "h009",
+            "rightRangeId": "block-8",
+            "rightRangeKind": "block",
+            "rightLines": [
+              30,
+              30
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 60
+          },
+          {
+            "leftOptionId": "h005",
+            "leftRangeId": "heading-4",
+            "leftRangeKind": "section",
+            "leftLines": [
+              28,
+              42
+            ],
+            "rightOptionId": "h010",
+            "rightRangeId": "block-9",
+            "rightRangeKind": "block",
+            "rightLines": [
+              32,
+              39
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 305
+          }
+        ],
+        "truncated": false,
+        "mutationApplied": false
+      },
+      "finalistCount": 10,
+      "selectionMode": "single-pass",
+      "selectionPasses": 1,
+      "providerCalls": 1,
+      "providerConfidence": 0.45,
+      "evidenceSufficiency": 0.42,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 1747,
+        "output_tokens": 147
+      },
+      "requestFingerprint": "24f66e1583dbbccbd7b1558a7ef7a1d393fb2cd1e04b7f9697ea76567cb052cd",
+      "elapsedMs": 739.7,
+      "jevCallMade": true,
+      "selected": {
+        "optionId": "h003",
+        "title": "Layer 2 — functional module",
+        "headingPath": [
+          "Electronics Modular System",
+          "Layer model",
+          "Layer 2 — functional module"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "01cc93da7a9122ddf2c5f13c214b846c1f2ef4c48319d23363cf15bb3f1c7559",
+          "owner": "d:/dev/electronics-repair-simulator",
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "rangeId": "heading-5",
+          "rangeKind": "section",
+          "startLine": 43,
+          "endLine": 56,
+          "startOffset": 1803,
+          "endOffset": 2202,
+          "fingerprint": "d93fcd981c078a66be33ebc11d571b786aad677801772f751f319d373a6cde0a",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "h005",
+            "h006",
+            "h007",
+            "h008",
+            "h009",
+            "h010",
+            "none"
+          ],
+          "selectedOptionId": "h003",
+          "confidence": 0.45,
+          "probabilities": {
+            "h001": 0.04,
+            "h002": 0.01,
+            "h003": 0.5,
+            "h004": 0.01,
+            "h005": 0,
+            "h006": 0,
+            "h007": 0,
+            "h008": 0.14,
+            "h009": 0,
+            "h010": 0,
+            "none": 0.3
+          }
+        }
+      ]
+    },
+    "bridgeNotices": {
+      "delivery": "automatic-drain",
+      "scope": "contextual",
+      "count": 0,
+      "remainingPending": 1,
+      "relevantPending": 0,
+      "otherPending": 1,
+      "globalPending": 0,
+      "globalHistoryTool": "bridge_notice_history",
+      "items": []
+    }
+  }
+}

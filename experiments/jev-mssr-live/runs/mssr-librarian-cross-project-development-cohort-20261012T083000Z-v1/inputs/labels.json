@@ -1,0 +1,27 @@
+{
+  "schema": "jev-mssr-source-derived-labels-v1",
+  "labelSource": "analyst, exact source review before provider calls",
+  "ownerAdjudication": "none",
+  "exposedToProvider": false,
+  "cases": [
+    {"caseId":"GDA-01-EN","sourceId":"godot-atlas","answerability":"answerable","expectedDisposition":"select","acceptableRanges":[{"sourceRef":"docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md","expectedHeading":"## Interaction state machine","startLine":62,"endLine":86}],"supportingSpans":[{"startLine":73,"endLine":78}]},
+    {"caseId":"GDA-01-ES","sourceId":"godot-atlas","answerability":"answerable","expectedDisposition":"select","acceptableRanges":[{"sourceRef":"docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md","expectedHeading":"## Interaction state machine","startLine":62,"endLine":86}],"supportingSpans":[{"startLine":73,"endLine":78}]},
+    {"caseId":"GDA-02-EN","sourceId":"godot-atlas","answerability":"answerable","expectedDisposition":"select","acceptableRanges":[{"sourceRef":"docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md","expectedHeading":"## Core invariants","startLine":88,"endLine":97}],"supportingSpans":[{"startLine":91,"endLine":94}]},
+    {"caseId":"GDA-NEG-01","sourceId":"godot-atlas","answerability":"unanswerable-in-source","expectedDisposition":"abstain","rationale":"The source specifies at most one deferred rebuild for a pending drag frame, but no in-memory request-buffer allocation capacity."},
+
+    {"caseId":"KODE-01-EN","sourceId":"kode","answerability":"answerable","expectedDisposition":"select","acceptableRanges":[{"sourceRef":"docs/OPENCODE_PROVIDER.md","expectedHeading":"### Law 2 — model-level package metadata wins","startLine":173,"endLine":177}],"supportingSpans":[{"startLine":175,"endLine":177}]},
+    {"caseId":"KODE-01-ES","sourceId":"kode","answerability":"answerable","expectedDisposition":"select","acceptableRanges":[{"sourceRef":"docs/OPENCODE_PROVIDER.md","expectedHeading":"### Law 2 — model-level package metadata wins","startLine":173,"endLine":177}],"supportingSpans":[{"startLine":175,"endLine":177}]},
+    {"caseId":"KODE-02-EN","sourceId":"kode","answerability":"answerable","expectedDisposition":"select","acceptableRanges":[{"sourceRef":"docs/OPENCODE_PROVIDER.md","expectedHeading":"### Law 3 — known package mapping is explicit","startLine":179,"endLine":189}],"supportingSpans":[{"startLine":183,"endLine":187}]},
+    {"caseId":"KODE-NEG-01","sourceId":"kode","answerability":"unanswerable-in-source","expectedDisposition":"abstain","rationale":"The source says provider availability is live and can change; it gives no current account/provider model count."},
+
+    {"caseId":"EF-01-EN","sourceId":"elemental-frontier","answerability":"answerable","expectedDisposition":"select","acceptableRanges":[{"sourceRef":"combat-lab/TEST_PROTOCOL.md","expectedHeading":"## Condiciones comunes","startLine":15,"endLine":29}],"supportingSpans":[{"startLine":17,"endLine":27}]},
+    {"caseId":"EF-01-ES","sourceId":"elemental-frontier","answerability":"answerable","expectedDisposition":"select","acceptableRanges":[{"sourceRef":"combat-lab/TEST_PROTOCOL.md","expectedHeading":"## Condiciones comunes","startLine":15,"endLine":29}],"supportingSpans":[{"startLine":17,"endLine":27}]},
+    {"caseId":"EF-02-EN","sourceId":"elemental-frontier","answerability":"answerable","expectedDisposition":"select","acceptableRanges":[{"sourceRef":"combat-lab/TEST_PROTOCOL.md","expectedHeading":"### Tiempo","startLine":33,"endLine":47}],"supportingSpans":[{"startLine":35,"endLine":47}]},
+    {"caseId":"EF-NEG-01","sourceId":"elemental-frontier","answerability":"unanswerable-in-source","expectedDisposition":"abstain","rationale":"The protocol requires using the same video/FPS profile but does not prescribe one fixed numeric FPS."},
+
+    {"caseId":"ERS-01-EN","sourceId":"electronics-repair-simulator","answerability":"answerable","expectedDisposition":"select","acceptableRanges":[{"sourceRef":"docs/ELECTRONICS_MODULAR_SYSTEM.md","expectedHeading":"## Layer model","startLine":24,"endLine":69}],"supportingSpans":[{"startLine":26,"endLine":69}]},
+    {"caseId":"ERS-01-ES","sourceId":"electronics-repair-simulator","answerability":"answerable","expectedDisposition":"select","acceptableRanges":[{"sourceRef":"docs/ELECTRONICS_MODULAR_SYSTEM.md","expectedHeading":"## Layer model","startLine":24,"endLine":69}],"supportingSpans":[{"startLine":26,"endLine":69}]},
+    {"caseId":"ERS-02-EN","sourceId":"electronics-repair-simulator","answerability":"answerable","expectedDisposition":"select","acceptableRanges":[{"sourceRef":"docs/ELECTRONICS_MODULAR_SYSTEM.md","expectedHeading":"## Mandatory metadata contract","startLine":71,"endLine":102}],"supportingSpans":[{"startLine":73,"endLine":102}]},
+    {"caseId":"ERS-NEG-01","sourceId":"electronics-repair-simulator","answerability":"unanswerable-in-source","expectedDisposition":"abstain","rationale":"The source explicitly says geometry metadata must not claim electrical ratings or manufacturing tolerances without a system layer that owns those facts."}
+  ]
+}

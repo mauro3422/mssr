@@ -1,0 +1,525 @@
+{
+  "caseId": "EF-02-EN",
+  "query": "What formula converts a measured frame count into milliseconds, and which timing marks are recorded?",
+  "connectorPath": "portable MSSR MCP with live default TypeSafe Jev provider",
+  "tool": "mssr_librarian_jev_select",
+  "candidateHandleCount": 10,
+  "candidateHandleIds": [
+    "569da5ea67aacf6beee4b585e89e71866a6fc0c921b0fd37576bce47a6175b36",
+    "6bf955b0308f8112b80dba32c398140a69e14fe6d55030a3e43b527af97ead77",
+    "54cd4fb1383dcde2059344e4bebb3c4009b1b31b9d06d62649c7e6ac266af9de",
+    "21d5da4437eed71fd7805438191ecef3c8a7b8f1cdbb9b4668bc53484e3b1679",
+    "58baeccc89aafaa75b7c00dd31e56c2e8913cb81325ba9c9290a744d93b63fbd",
+    "7a5ec109f515ba07573d9e1abf01653445eb341306c165e5320f173efa92face",
+    "f3b6f446eb847fefcc0220a5b25b4e20571697b75973d6608dcd8769434e956e",
+    "c9c9b6c25512c3aa1bee48b8f9b6fc98fc9187d19fb4d6f6f5cb56266ec3846c",
+    "dc8fec361034f09de8725cd5a2b9351f6216f1a665b7a3ce263edcb37569859f",
+    "d443c86abc9edc2ecfbcba17cae5565858521b44f1316b8edb9a26953435df28"
+  ],
+  "result": {
+    "status": "selected",
+    "candidateCount": 10,
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "verification": "unverified",
+    "confidenceCalibration": "uncalibrated-provider-score",
+    "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+    "exactFetchRequired": true,
+    "autoApplyAllowed": false,
+    "candidateRangeDiagnostics": {
+      "offered": 10,
+      "eligible": 10,
+      "oversizedOmitted": 0,
+      "maxFetchChars": 20000,
+      "lengthUnit": "utf16-code-units"
+    },
+    "rangeOverlapDiagnostics": {
+      "sameSourceRevisionPairs": 45,
+      "overlappingPairCount": 24,
+      "nestedPairCount": 24,
+      "exactRangePairCount": 0,
+      "partialOverlapPairCount": 0,
+      "pairs": [
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            92
+          ],
+          "rightOptionId": "h002",
+          "rightRangeId": "heading-4",
+          "rightRangeKind": "section",
+          "rightLines": [
+            31,
+            62
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 641
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            92
+          ],
+          "rightOptionId": "h003",
+          "rightRangeId": "heading-5",
+          "rightRangeKind": "section",
+          "rightLines": [
+            33,
+            48
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 270
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            92
+          ],
+          "rightOptionId": "h004",
+          "rightRangeId": "block-10",
+          "rightRangeKind": "block",
+          "rightLines": [
+            41,
+            45
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 116
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            92
+          ],
+          "rightOptionId": "h005",
+          "rightRangeId": "block-10/item-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            42,
+            42
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 28
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            92
+          ],
+          "rightOptionId": "h006",
+          "rightRangeId": "block-10/item-3",
+          "rightRangeKind": "block",
+          "rightLines": [
+            43,
+            43
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 26
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            92
+          ],
+          "rightOptionId": "h007",
+          "rightRangeId": "block-10/item-4",
+          "rightRangeKind": "block",
+          "rightLines": [
+            44,
+            44
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 22
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            92
+          ],
+          "rightOptionId": "h008",
+          "rightRangeId": "heading-9",
+          "rightRangeKind": "section",
+          "rightLines": [
+            72,
+            81
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 290
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            92
+          ],
+          "rightOptionId": "h009",
+          "rightRangeId": "block-20",
+          "rightRangeKind": "block",
+          "rightLines": [
+            76,
+            80
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 242
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            92
+          ],
+          "rightOptionId": "h010",
+          "rightRangeId": "block-20/item-5",
+          "rightRangeKind": "block",
+          "rightLines": [
+            80,
+            80
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 85
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "heading-4",
+          "leftRangeKind": "section",
+          "leftLines": [
+            31,
+            62
+          ],
+          "rightOptionId": "h003",
+          "rightRangeId": "heading-5",
+          "rightRangeKind": "section",
+          "rightLines": [
+            33,
+            48
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 270
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "heading-4",
+          "leftRangeKind": "section",
+          "leftLines": [
+            31,
+            62
+          ],
+          "rightOptionId": "h004",
+          "rightRangeId": "block-10",
+          "rightRangeKind": "block",
+          "rightLines": [
+            41,
+            45
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 116
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "heading-4",
+          "leftRangeKind": "section",
+          "leftLines": [
+            31,
+            62
+          ],
+          "rightOptionId": "h005",
+          "rightRangeId": "block-10/item-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            42,
+            42
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 28
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "heading-4",
+          "leftRangeKind": "section",
+          "leftLines": [
+            31,
+            62
+          ],
+          "rightOptionId": "h006",
+          "rightRangeId": "block-10/item-3",
+          "rightRangeKind": "block",
+          "rightLines": [
+            43,
+            43
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 26
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "heading-4",
+          "leftRangeKind": "section",
+          "leftLines": [
+            31,
+            62
+          ],
+          "rightOptionId": "h007",
+          "rightRangeId": "block-10/item-4",
+          "rightRangeKind": "block",
+          "rightLines": [
+            44,
+            44
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 22
+        },
+        {
+          "leftOptionId": "h003",
+          "leftRangeId": "heading-5",
+          "leftRangeKind": "section",
+          "leftLines": [
+            33,
+            48
+          ],
+          "rightOptionId": "h004",
+          "rightRangeId": "block-10",
+          "rightRangeKind": "block",
+          "rightLines": [
+            41,
+            45
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 116
+        },
+        {
+          "leftOptionId": "h003",
+          "leftRangeId": "heading-5",
+          "leftRangeKind": "section",
+          "leftLines": [
+            33,
+            48
+          ],
+          "rightOptionId": "h005",
+          "rightRangeId": "block-10/item-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            42,
+            42
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 28
+        },
+        {
+          "leftOptionId": "h003",
+          "leftRangeId": "heading-5",
+          "leftRangeKind": "section",
+          "leftLines": [
+            33,
+            48
+          ],
+          "rightOptionId": "h006",
+          "rightRangeId": "block-10/item-3",
+          "rightRangeKind": "block",
+          "rightLines": [
+            43,
+            43
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 26
+        },
+        {
+          "leftOptionId": "h003",
+          "leftRangeId": "heading-5",
+          "leftRangeKind": "section",
+          "leftLines": [
+            33,
+            48
+          ],
+          "rightOptionId": "h007",
+          "rightRangeId": "block-10/item-4",
+          "rightRangeKind": "block",
+          "rightLines": [
+            44,
+            44
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 22
+        },
+        {
+          "leftOptionId": "h004",
+          "leftRangeId": "block-10",
+          "leftRangeKind": "block",
+          "leftLines": [
+            41,
+            45
+          ],
+          "rightOptionId": "h005",
+          "rightRangeId": "block-10/item-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            42,
+            42
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 28
+        },
+        {
+          "leftOptionId": "h004",
+          "leftRangeId": "block-10",
+          "leftRangeKind": "block",
+          "leftLines": [
+            41,
+            45
+          ],
+          "rightOptionId": "h006",
+          "rightRangeId": "block-10/item-3",
+          "rightRangeKind": "block",
+          "rightLines": [
+            43,
+            43
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 26
+        },
+        {
+          "leftOptionId": "h004",
+          "leftRangeId": "block-10",
+          "leftRangeKind": "block",
+          "leftLines": [
+            41,
+            45
+          ],
+          "rightOptionId": "h007",
+          "rightRangeId": "block-10/item-4",
+          "rightRangeKind": "block",
+          "rightLines": [
+            44,
+            44
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 22
+        },
+        {
+          "leftOptionId": "h008",
+          "leftRangeId": "heading-9",
+          "leftRangeKind": "section",
+          "leftLines": [
+            72,
+            81
+          ],
+          "rightOptionId": "h009",
+          "rightRangeId": "block-20",
+          "rightRangeKind": "block",
+          "rightLines": [
+            76,
+            80
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 242
+        },
+        {
+          "leftOptionId": "h008",
+          "leftRangeId": "heading-9",
+          "leftRangeKind": "section",
+          "leftLines": [
+            72,
+            81
+          ],
+          "rightOptionId": "h010",
+          "rightRangeId": "block-20/item-5",
+          "rightRangeKind": "block",
+          "rightLines": [
+            80,
+            80
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 85
+        },
+        {
+          "leftOptionId": "h009",
+          "leftRangeId": "block-20",
+          "leftRangeKind": "block",
+          "leftLines": [
+            76,
+            80
+          ],
+          "rightOptionId": "h010",
+          "rightRangeId": "block-20/item-5",
+          "rightRangeKind": "block",
+          "rightLines": [
+            80,
+            80
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 85
+        }
+      ],
+      "truncated": false,
+      "mutationApplied": false
+    },
+    "finalistCount": 10,
+    "selectionMode": "single-pass",
+    "selectionPasses": 1,
+    "providerCalls": 1,
+    "providerConfidence": 1,
+    "evidenceSufficiency": 0.96,
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "providersUsed": [
+      "typesafe-jev"
+    ],
+    "modelsUsed": [
+      "jev-1.13.0"
+    ],
+    "usage": {
+      "input_tokens": 1678,
+      "output_tokens": 147
+    },
+    "requestFingerprint": "8c324cd01ea09c79bf6fbb731e4665cc956ded4e1f69a7547ee00f84bf247156",
+    "elapsedMs": 364.6,
+    "jevCallMade": true,
+    "selected": {
+      "optionId": "h003",
+      "title": "Tiempo",
+      "headingPath": [
+        "Combat Lab Test Protocol",
+        "Medición",
+        "Tiempo"
+      ],
+      "handle": {
+        "version": 1,
+        "id": "54cd4fb1383dcde2059344e4bebb3c4009b1b31b9d06d62649c7e6ac266af9de",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+        "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "startLine": 33,
+        "endLine": 48,
+        "startOffset": 954,
+        "endOffset": 1224,
+        "fingerprint": "3e03166c84092b1d39fef0e2975817f26e1b18172701ae9d1baa2cc8cb4d7ab2",
+        "privacyClass": "project-metadata"
+      }
+    }
+  }
+}

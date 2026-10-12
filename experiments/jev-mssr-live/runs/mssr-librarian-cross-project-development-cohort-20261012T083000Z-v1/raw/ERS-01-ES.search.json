@@ -1,0 +1,29 @@
+{
+  "caseId": "ERS-01-ES",
+  "query": "¿Cuáles son las tres capas explícitas del modelado del dispositivo y cuál es responsable de ubicar los componentes atómicos?",
+  "traceId": "mssr-20261012-jev-cohort-electronics-repair-simulator",
+  "tool": "mssr_librarian_search",
+  "envelope": {
+    "delegatedTool": "mssr_librarian_search",
+    "classification": "read-only",
+    "result": {
+      "projectOwner": "d:/dev/electronics-repair-simulator",
+      "sourceCount": 1,
+      "results": [],
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "truncated": false
+    },
+    "bridgeNotices": {
+      "delivery": "automatic-drain",
+      "scope": "contextual",
+      "count": 0,
+      "remainingPending": 1,
+      "relevantPending": 0,
+      "otherPending": 1,
+      "globalPending": 0,
+      "globalHistoryTool": "bridge_notice_history",
+      "items": []
+    }
+  }
+}

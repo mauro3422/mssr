@@ -1,0 +1,44 @@
+{
+  "schema": "jev-mssr-blind-composition-review-v1",
+  "reviewedAt": "2026-10-12",
+  "reviewer": "independent fresh Luna agent; blind to expected headings/ranges and negative labels",
+  "reviewScope": "Four host-authored cited paragraphs assembled from exact fetched evidence",
+  "sourceEvidence": "Reviewer received each question, fetched text and draft response; labels were withheld.",
+  "draftBodiesPersistedWithRawReceipts": false,
+  "summary": "Tres párrafos tuvieron cobertura alta, buen soporte y poca sobreextensión. El párrafo de Electronics Repair Simulator tuvo cobertura baja pero delimitada honestamente porque el extracto seleccionado solo contenía la Capa 2; los cuatro estaban respaldados literalmente y no incluían afirmaciones sin soporte.",
+  "cases": [
+    {
+      "family": "GodotAtlas",
+      "coverage": "alta",
+      "literalSupport": "alto",
+      "overbreadth": "baja",
+      "unsupportedClaims": "ninguna",
+      "notes": "Cubre la transición, la actualización final, la publicación atómica y la coalescencia."
+    },
+    {
+      "family": "Kode",
+      "coverage": "alta",
+      "literalSupport": "alto",
+      "overbreadth": "baja",
+      "unsupportedClaims": "ninguna",
+      "notes": "La frase que marca detalles omitidos como no sustentados es fiel al extracto recibido."
+    },
+    {
+      "family": "Elemental Frontier",
+      "coverage": "alta",
+      "literalSupport": "alto",
+      "overbreadth": "baja",
+      "unsupportedClaims": "ninguna",
+      "notes": "Cubre las condiciones comunes, las repeticiones, la fórmula de tiempo y las marcas temporales."
+    },
+    {
+      "family": "Electronics Repair Simulator",
+      "coverage": "baja pero delimitada",
+      "literalSupport": "alto",
+      "overbreadth": "baja",
+      "unsupportedClaims": "ninguna",
+      "notes": "Identifica la Capa 2 y su responsabilidad, y aclara que el extracto no enumera las tres capas."
+    }
+  ],
+  "limitation": "The exact reviewed paragraph bodies were not saved beside the raw cohort receipts, so this review verdict cannot be replayed text-for-text from the run package."
+}

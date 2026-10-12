@@ -1,0 +1,589 @@
+{
+  "caseId": "ERS-01-EN",
+  "query": "What are the three explicit device-modeling layers, and which layer owns placement of atomic components?",
+  "traceId": "mssr-20261012-jev-cohort-electronics-repair-simulator",
+  "tool": "mssr_librarian_search",
+  "envelope": {
+    "delegatedTool": "mssr_librarian_search",
+    "classification": "read-only",
+    "result": {
+      "projectOwner": "d:/dev/electronics-repair-simulator",
+      "sourceCount": 1,
+      "results": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "4322c931bc80a9271428cd3243a6c48d6fb4733d112ef28af37630761789acc2",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 384,
+            "startOffset": 0,
+            "endOffset": 14127,
+            "fingerprint": "ba2a3c79027433fdbb263f518b93cdbca1baff23ee7cb9f77853731a0d6b3076",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 14127,
+          "exactFetchable": true,
+          "score": 0.888889,
+          "title": "Electronics Modular System",
+          "headingPath": [
+            "Electronics Modular System"
+          ],
+          "snippet": "…from the actual Blender assembled/exploded sources. ## Layer model Use three explicit layers instead of building every device as one monolithic mesh. ### Layer 1 — atomic component Small reusable pieces with their own …",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System"
+            ],
+            "level": 1,
+            "parentId": null,
+            "startLine": 1,
+            "endLine": 384,
+            "chars": 14127,
+            "bytes": 14150,
+            "terms": [
+              "electronics",
+              "modular",
+              "2026-08-08",
+              "last",
+              "updated"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "bf19fb236fd93ae7f9bcbd50855144e5808704f9d874ff13d57ffdd8d0be040f",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "heading-3",
+            "rangeKind": "section",
+            "startLine": 24,
+            "endLine": 70,
+            "startOffset": 1184,
+            "endOffset": 2585,
+            "fingerprint": "ef5c68b1e1f4235ac16cfeb314488d4a042f564a7d4b6eae8c40e60c106fff31",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 1401,
+          "exactFetchable": true,
+          "score": 0.888889,
+          "title": "Layer model",
+          "headingPath": [
+            "Electronics Modular System",
+            "Layer model"
+          ],
+          "snippet": "## Layer model Use three explicit layers instead of building every device as one monolithic mesh. ### Layer 1 — atomic component Small reusable pieces with their own stable local interface: - PCB carriers; - processors …",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System",
+              "Layer model"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 24,
+            "endLine": 70,
+            "chars": 1401,
+            "bytes": 1407,
+            "terms": [
+              "layer",
+              "model",
+              "building",
+              "device",
+              "every",
+              "explicit",
+              "instead",
+              "layers"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "01cc93da7a9122ddf2c5f13c214b846c1f2ef4c48319d23363cf15bb3f1c7559",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "heading-5",
+            "rangeKind": "section",
+            "startLine": 43,
+            "endLine": 56,
+            "startOffset": 1803,
+            "endOffset": 2202,
+            "fingerprint": "d93fcd981c078a66be33ebc11d571b786aad677801772f751f319d373a6cde0a",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 399,
+          "exactFetchable": true,
+          "score": 0.555556,
+          "title": "Layer 2 — functional module",
+          "headingPath": [
+            "Electronics Modular System",
+            "Layer model",
+            "Layer 2 — functional module"
+          ],
+          "snippet": "### Layer 2 — functional module A bounded assembly that combines atomic components for one purpose, for example: - mainboard; - display daughterboard; - power/input board; - LED board; - driver board; - selector/contact…",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System",
+              "Layer model",
+              "Layer 2 — functional module"
+            ],
+            "level": 3,
+            "parentId": "heading-3",
+            "startLine": 43,
+            "endLine": 56,
+            "chars": 399,
+            "bytes": 401,
+            "terms": [
+              "functional",
+              "layer",
+              "module",
+              "assembly",
+              "atomic",
+              "bounded",
+              "combines",
+              "components"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "737b711ad6629c9d258ff3dabe6f351769a428a3dbca3c7c934503f03cf14f9a",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "block-7",
+            "rangeKind": "block",
+            "startLine": 26,
+            "endLine": 26,
+            "startOffset": 1200,
+            "endOffset": 1282,
+            "fingerprint": "8ded225f25a445ce24012ee245c9ed2fb5067204150e46ff939278c4eaa29a00",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 82,
+          "exactFetchable": true,
+          "score": 0.444444,
+          "title": "Layer model",
+          "headingPath": [
+            "Electronics Modular System",
+            "Layer model"
+          ],
+          "snippet": "Use three explicit layers instead of building every device as one monolithic mesh.",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System",
+              "Layer model"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-3",
+            "startLine": 26,
+            "endLine": 26,
+            "chars": 82,
+            "bytes": 82,
+            "terms": [
+              "building",
+              "device",
+              "every",
+              "explicit",
+              "instead",
+              "layers",
+              "mesh",
+              "monolithic"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "bb3ab88c78175b182c6b8f8c31ef92d10dfa1f4ac80710007a0dbf1265b6c2ac",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "heading-4",
+            "rangeKind": "section",
+            "startLine": 28,
+            "endLine": 42,
+            "startOffset": 1284,
+            "endOffset": 1803,
+            "fingerprint": "5f919b498796bea576d33e9a24f05b8b5f2fe8c3b258c90cdd36b2e59730bd59",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 519,
+          "exactFetchable": true,
+          "score": 0.333333,
+          "title": "Layer 1 — atomic component",
+          "headingPath": [
+            "Electronics Modular System",
+            "Layer model",
+            "Layer 1 — atomic component"
+          ],
+          "snippet": "### Layer 1 — atomic component Small reusable pieces with their own stable local interface: - PCB carriers; - processors / IC packages; - resistors, capacitors, diodes and transistors; - fuses and regulators; - switches…",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System",
+              "Layer model",
+              "Layer 1 — atomic component"
+            ],
+            "level": 3,
+            "parentId": "heading-3",
+            "startLine": 28,
+            "endLine": 42,
+            "chars": 519,
+            "bytes": 521,
+            "terms": [
+              "atomic",
+              "component",
+              "layer",
+              "interface",
+              "local",
+              "own",
+              "pieces",
+              "reusable"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "5fc4f865a5274bacd95a93102d9b9a3a2db6e3fbc5c6ad9271d00232a3dc4516",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "block-10",
+            "rangeKind": "block",
+            "startLine": 41,
+            "endLine": 41,
+            "startOffset": 1685,
+            "endOffset": 1801,
+            "fingerprint": "ffb77744617bc89196a6397250d632c9043a063ab94957c7ee3bb7f811949605",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 116,
+          "exactFetchable": true,
+          "score": 0.333333,
+          "title": "Layer 1 — atomic component",
+          "headingPath": [
+            "Electronics Modular System",
+            "Layer model",
+            "Layer 1 — atomic component"
+          ],
+          "snippet": "Atomic components should remain independent from the device shell and should normally be instanced at scale `1,1,1`.",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System",
+              "Layer model",
+              "Layer 1 — atomic component"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-4",
+            "startLine": 41,
+            "endLine": 41,
+            "chars": 116,
+            "bytes": 116,
+            "terms": [
+              "atomic",
+              "components",
+              "device",
+              "independent",
+              "instanced",
+              "normally",
+              "remain",
+              "scale"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "de536ba73689b7a02a527dd35d76aac9b6d411be85988b50f960294080aa21a1",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "block-11",
+            "rangeKind": "block",
+            "startLine": 45,
+            "endLine": 45,
+            "startOffset": 1836,
+            "endOffset": 1916,
+            "fingerprint": "fe9fde89fe885d408e27457e488ffb0f38bbcd277cfc9ef8153aaf9295140bb4",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 80,
+          "exactFetchable": true,
+          "score": 0.333333,
+          "title": "Layer 2 — functional module",
+          "headingPath": [
+            "Electronics Modular System",
+            "Layer model",
+            "Layer 2 — functional module"
+          ],
+          "snippet": "A bounded assembly that combines atomic components for one purpose, for example:",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System",
+              "Layer model",
+              "Layer 2 — functional module"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-5",
+            "startLine": 45,
+            "endLine": 45,
+            "chars": 80,
+            "bytes": 80,
+            "terms": [
+              "assembly",
+              "atomic",
+              "bounded",
+              "combines",
+              "components",
+              "example",
+              "one",
+              "purpose"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "8fc026e6912cf0fe6a43d2da25673c723a2c22ae20ce36a88daf466a073e2098",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "block-13",
+            "rangeKind": "block",
+            "startLine": 55,
+            "endLine": 55,
+            "startOffset": 2053,
+            "endOffset": 2200,
+            "fingerprint": "0f170c53bb8cac2ea60ebaf8d4a79b6158a9ff04452b61cf6cb8e7298bab144c",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 147,
+          "exactFetchable": true,
+          "score": 0.333333,
+          "title": "Layer 2 — functional module",
+          "headingPath": [
+            "Electronics Modular System",
+            "Layer model",
+            "Layer 2 — functional module"
+          ],
+          "snippet": "A module owns the placement of its atomics, but those atomics retain source lineage and detachable identities when the repair loop may expose them.",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System",
+              "Layer model",
+              "Layer 2 — functional module"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-5",
+            "startLine": 55,
+            "endLine": 55,
+            "chars": 147,
+            "bytes": 147,
+            "terms": [
+              "atomics",
+              "but",
+              "detachable",
+              "expose",
+              "identities",
+              "lineage",
+              "loop",
+              "may"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "81bd73342370565be3e5f3f179e5519beac55a988bec3fbf11c32fc889797e4b",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "block-8",
+            "rangeKind": "block",
+            "startLine": 30,
+            "endLine": 30,
+            "startOffset": 1316,
+            "endOffset": 1376,
+            "fingerprint": "2f933a99a9b7bfbd743c33cda58f4d3d36ddca81ce22f3b27781983e707b4b22",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 60,
+          "exactFetchable": true,
+          "score": 0.222222,
+          "title": "Layer 1 — atomic component",
+          "headingPath": [
+            "Electronics Modular System",
+            "Layer model",
+            "Layer 1 — atomic component"
+          ],
+          "snippet": "Small reusable pieces with their own stable local interface:",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System",
+              "Layer model",
+              "Layer 1 — atomic component"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-4",
+            "startLine": 30,
+            "endLine": 30,
+            "chars": 60,
+            "bytes": 60,
+            "terms": [
+              "interface",
+              "local",
+              "own",
+              "pieces",
+              "reusable",
+              "small",
+              "stable",
+              "their"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "16b4b461b61ac2c3014d33b892f526480e0d13062813eb18ab81ce02d8a67562",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "block-9",
+            "rangeKind": "block",
+            "startLine": 32,
+            "endLine": 39,
+            "startOffset": 1378,
+            "endOffset": 1683,
+            "fingerprint": "8f1c978735875ff712455ca6d81943fc4f1d8e78c1ac9d2237225a7de87cb560",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 305,
+          "exactFetchable": true,
+          "score": 0.222222,
+          "title": "Layer 1 — atomic component",
+          "headingPath": [
+            "Electronics Modular System",
+            "Layer model",
+            "Layer 1 — atomic component"
+          ],
+          "snippet": "- PCB carriers; - processors / IC packages; - resistors, capacitors, diodes and transistors; - fuses and regulators; - switches and potentiometers; - headers, wire connectors, terminal blocks and test jacks; - buzzers, …",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System",
+              "Layer model",
+              "Layer 1 — atomic component"
+            ],
+            "blockKind": "list",
+            "sectionId": "heading-4",
+            "startLine": 32,
+            "endLine": 39,
+            "chars": 305,
+            "bytes": 305,
+            "terms": [
+              "battery",
+              "blocks",
+              "buzzers",
+              "capacitors",
+              "carriers",
+              "cells",
+              "connectors",
+              "contacts"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        }
+      ],
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "truncated": true
+    },
+    "bridgeNotices": {
+      "delivery": "automatic-drain",
+      "scope": "contextual",
+      "count": 0,
+      "remainingPending": 1,
+      "relevantPending": 0,
+      "otherPending": 1,
+      "globalPending": 0,
+      "globalHistoryTool": "bridge_notice_history",
+      "items": []
+    }
+  }
+}

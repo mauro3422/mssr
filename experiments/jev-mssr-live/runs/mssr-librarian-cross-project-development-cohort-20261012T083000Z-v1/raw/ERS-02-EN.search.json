@@ -1,0 +1,572 @@
+{
+  "caseId": "ERS-02-EN",
+  "query": "Which metadata fields should reusable components preserve, what additional facts go in device/module manifests, and what properties must geometry metadata not claim?",
+  "traceId": "mssr-20261012-jev-cohort-electronics-repair-simulator",
+  "tool": "mssr_librarian_search",
+  "envelope": {
+    "delegatedTool": "mssr_librarian_search",
+    "classification": "read-only",
+    "result": {
+      "projectOwner": "d:/dev/electronics-repair-simulator",
+      "sourceCount": 1,
+      "results": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "4322c931bc80a9271428cd3243a6c48d6fb4733d112ef28af37630761789acc2",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 384,
+            "startOffset": 0,
+            "endOffset": 14127,
+            "fingerprint": "ba2a3c79027433fdbb263f518b93cdbca1baff23ee7cb9f77853731a0d6b3076",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 14127,
+          "exactFetchable": true,
+          "score": 0.764706,
+          "title": "Electronics Modular System",
+          "headingPath": [
+            "Electronics Modular System"
+          ],
+          "snippet": "… System Last updated: 2026-08-08 ## Purpose Define the reusable internal-electronics asset architecture for Electronics Repair Simulator without coupling component geometry to gameplay code or to one specific device sh…",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System"
+            ],
+            "level": 1,
+            "parentId": null,
+            "startLine": 1,
+            "endLine": 384,
+            "chars": 14127,
+            "bytes": 14150,
+            "terms": [
+              "electronics",
+              "modular",
+              "2026-08-08",
+              "last",
+              "updated"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "9ea04ec6bf87d7cd734ca496336a80174d08d5608d815601d8884849357b6849",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "heading-7",
+            "rangeKind": "section",
+            "startLine": 71,
+            "endLine": 103,
+            "startOffset": 2585,
+            "endOffset": 3336,
+            "fingerprint": "a5d543a9fcacd1fad7223a4a521a79e7e2112e5aa8ea81c11f4388ffe76974f6",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 751,
+          "exactFetchable": true,
+          "score": 0.705882,
+          "title": "Mandatory metadata contract",
+          "headingPath": [
+            "Electronics Modular System",
+            "Mandatory metadata contract"
+          ],
+          "snippet": "## Mandatory metadata contract Every new reusable component or serviceable part should preserve, as applicable: ```text asset_id source_revision stage asset_role family_id variant_id detachable reusable source_lineage /…",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System",
+              "Mandatory metadata contract"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 71,
+            "endLine": 103,
+            "chars": 751,
+            "bytes": 751,
+            "terms": [
+              "contract",
+              "mandatory",
+              "metadata",
+              "applicable",
+              "component",
+              "every",
+              "new",
+              "part"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "bf19fb236fd93ae7f9bcbd50855144e5808704f9d874ff13d57ffdd8d0be040f",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "heading-3",
+            "rangeKind": "section",
+            "startLine": 24,
+            "endLine": 70,
+            "startOffset": 1184,
+            "endOffset": 2585,
+            "fingerprint": "ef5c68b1e1f4235ac16cfeb314488d4a042f564a7d4b6eae8c40e60c106fff31",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 1401,
+          "exactFetchable": true,
+          "score": 0.411765,
+          "title": "Layer model",
+          "headingPath": [
+            "Electronics Modular System",
+            "Layer model"
+          ],
+          "snippet": "…el Use three explicit layers instead of building every device as one monolithic mesh. ### Layer 1 — atomic component Small reusable pieces with their own stable local interface: - PCB carriers; - processors / IC packag…",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System",
+              "Layer model"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 24,
+            "endLine": 70,
+            "chars": 1401,
+            "bytes": 1407,
+            "terms": [
+              "layer",
+              "model",
+              "building",
+              "device",
+              "every",
+              "explicit",
+              "instead",
+              "layers"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "635241b0b1ac92e21e5bd5a466f4bf5ce0b6ee19222c92c156dbefb481ac2034",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "block-21",
+            "rangeKind": "block",
+            "startLine": 102,
+            "endLine": 102,
+            "startOffset": 3112,
+            "endOffset": 3334,
+            "fingerprint": "57d71fd9d56b2c1c0b925cc4b3b2f7726bdbb354d86e70d8ab38046d4ba16407",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 222,
+          "exactFetchable": true,
+          "score": 0.352941,
+          "title": "Mandatory metadata contract",
+          "headingPath": [
+            "Electronics Modular System",
+            "Mandatory metadata contract"
+          ],
+          "snippet": "Geometry metadata describes interfaces. It must not claim electrical simulation, real component ratings, manufacturing tolerances or brand-specific behavior unless a later gameplay/system layer explicitly owns those fac…",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System",
+              "Mandatory metadata contract"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-7",
+            "startLine": 102,
+            "endLine": 102,
+            "chars": 222,
+            "bytes": 222,
+            "terms": [
+              "behavior",
+              "brand-specific",
+              "claim",
+              "component",
+              "describes",
+              "electrical",
+              "explicitly",
+              "facts"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "a7d7280ed67ab1ea732e9ca011cd10287a892cdb662040a6edcae1b5a4a4f805",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "block-19",
+            "rangeKind": "block",
+            "startLine": 89,
+            "endLine": 89,
+            "startOffset": 2863,
+            "endOffset": 2914,
+            "fingerprint": "677a088c6f713da6caf723fdece23fab6cd2a0596932f5413b47119d31e8573f",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 51,
+          "exactFetchable": true,
+          "score": 0.294118,
+          "title": "Mandatory metadata contract",
+          "headingPath": [
+            "Electronics Modular System",
+            "Mandatory metadata contract"
+          ],
+          "snippet": "Device/module manifests should additionally record:",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System",
+              "Mandatory metadata contract"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-7",
+            "startLine": 89,
+            "endLine": 89,
+            "chars": 51,
+            "bytes": 51,
+            "terms": [
+              "additionally",
+              "device",
+              "manifests",
+              "module",
+              "record"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "2b237a7f94ddd1375c429120c0ac7fa3a1c8adc1f3fedd014045ecf4bfaff635",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 5,
+            "endLine": 23,
+            "startOffset": 56,
+            "endOffset": 1184,
+            "fingerprint": "d7f82b4c366c94876d943639190aefc284139ce43d5330eb6316b2537a136a9e",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 1128,
+          "exactFetchable": true,
+          "score": 0.235294,
+          "title": "Purpose",
+          "headingPath": [
+            "Electronics Modular System",
+            "Purpose"
+          ],
+          "snippet": "## Purpose Define the reusable internal-electronics asset architecture for Electronics Repair Simulator without coupling component geometry to gameplay code or to one specific device shell. Current source foundation and…",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System",
+              "Purpose"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 5,
+            "endLine": 23,
+            "chars": 1128,
+            "bytes": 1128,
+            "terms": [
+              "purpose",
+              "architecture",
+              "asset",
+              "code",
+              "component",
+              "coupling",
+              "define",
+              "device"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "bb3ab88c78175b182c6b8f8c31ef92d10dfa1f4ac80710007a0dbf1265b6c2ac",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "heading-4",
+            "rangeKind": "section",
+            "startLine": 28,
+            "endLine": 42,
+            "startOffset": 1284,
+            "endOffset": 1803,
+            "fingerprint": "5f919b498796bea576d33e9a24f05b8b5f2fe8c3b258c90cdd36b2e59730bd59",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 519,
+          "exactFetchable": true,
+          "score": 0.235294,
+          "title": "Layer 1 — atomic component",
+          "headingPath": [
+            "Electronics Modular System",
+            "Layer model",
+            "Layer 1 — atomic component"
+          ],
+          "snippet": "### Layer 1 — atomic component Small reusable pieces with their own stable local interface: - PCB carriers; - processors / IC packages; - resistors, capacitors, diodes and transistors; - fuses and regulators; - switches…",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System",
+              "Layer model",
+              "Layer 1 — atomic component"
+            ],
+            "level": 3,
+            "parentId": "heading-3",
+            "startLine": 28,
+            "endLine": 42,
+            "chars": 519,
+            "bytes": 521,
+            "terms": [
+              "atomic",
+              "component",
+              "layer",
+              "interface",
+              "local",
+              "own",
+              "pieces",
+              "reusable"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "f9305df9fb20c8416db886b8955eb38a22951663cb06898bfca63615f5c81f0e",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "heading-6",
+            "rangeKind": "section",
+            "startLine": 57,
+            "endLine": 70,
+            "startOffset": 2202,
+            "endOffset": 2585,
+            "fingerprint": "61cf1b5196f951ee636dfba48a05cccd428b7b755f52f54fafe967f2acbbb887",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 383,
+          "exactFetchable": true,
+          "score": 0.235294,
+          "title": "Layer 3 — serviceable assembly",
+          "headingPath": [
+            "Electronics Modular System",
+            "Layer model",
+            "Layer 3 — serviceable assembly"
+          ],
+          "snippet": "…nd shell contract: - covers; - screw interfaces; - PCB/module mount points; - battery cradle/contact placement; - cable routing; - optical/mechanical interfaces; - removal order. The serviceable assembly decides which …",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System",
+              "Layer model",
+              "Layer 3 — serviceable assembly"
+            ],
+            "level": 3,
+            "parentId": "heading-3",
+            "startLine": 57,
+            "endLine": 70,
+            "chars": 383,
+            "bytes": 385,
+            "terms": [
+              "assembly",
+              "layer",
+              "serviceable",
+              "contract",
+              "device-specific",
+              "interior",
+              "shell"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "1e7a53feb4cd13c90e80a8b77b8c93fc27f7748c0863bf6eb2177e525582d7f5",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "block-17",
+            "rangeKind": "block",
+            "startLine": 73,
+            "endLine": 73,
+            "startOffset": 2617,
+            "endOffset": 2697,
+            "fingerprint": "3c09974dcf7a502fbdfe63359ae545b29d433f9ca471f8f728f1241b70a07cfd",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 80,
+          "exactFetchable": true,
+          "score": 0.235294,
+          "title": "Mandatory metadata contract",
+          "headingPath": [
+            "Electronics Modular System",
+            "Mandatory metadata contract"
+          ],
+          "snippet": "Every new reusable component or serviceable part should preserve, as applicable:",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System",
+              "Mandatory metadata contract"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-7",
+            "startLine": 73,
+            "endLine": 73,
+            "chars": 80,
+            "bytes": 80,
+            "terms": [
+              "applicable",
+              "component",
+              "every",
+              "new",
+              "part",
+              "preserve",
+              "reusable",
+              "serviceable"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "f8d841d0792b9a7e20cf4825ec54f33f9cf604e92c6d9ef4ff7f03fc2158e3ca",
+            "owner": "d:/dev/electronics-repair-simulator",
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "rangeId": "heading-10",
+            "rangeKind": "section",
+            "startLine": 152,
+            "endLine": 219,
+            "startOffset": 4522,
+            "endOffset": 6346,
+            "fingerprint": "9bb0b3f81ec918e624fa90e13a3322a3056e2b8b32b95b46786f77d3cddf6c92",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 1824,
+          "exactFetchable": true,
+          "score": 0.235294,
+          "title": "Current canonical component matrix",
+          "headingPath": [
+            "Electronics Modular System",
+            "Current canonical component matrix"
+          ],
+          "snippet": "…nent matrix Machine-readable authority: ```text assets/components/electronics_modular_library/electronics_modular_library_v001/catalog.json ``` Current B001 contains 34 variants across 19 families. ### PCB carriers | V…",
+          "metadata": {
+            "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+            "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+            "headingPath": [
+              "Electronics Modular System",
+              "Current canonical component matrix"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 152,
+            "endLine": 219,
+            "chars": 1824,
+            "bytes": 1836,
+            "terms": [
+              "canonical",
+              "component",
+              "matrix",
+              "authority",
+              "machine-readable"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        }
+      ],
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "truncated": true
+    },
+    "bridgeNotices": {
+      "delivery": "automatic-drain",
+      "scope": "contextual",
+      "count": 0,
+      "remainingPending": 1,
+      "relevantPending": 0,
+      "otherPending": 1,
+      "globalPending": 0,
+      "globalHistoryTool": "bridge_notice_history",
+      "items": []
+    }
+  }
+}

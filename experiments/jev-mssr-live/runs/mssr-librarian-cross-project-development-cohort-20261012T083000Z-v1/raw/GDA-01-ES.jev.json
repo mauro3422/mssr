@@ -1,0 +1,203 @@
+{
+  "caseId": "GDA-01-ES",
+  "query": "Si se suelta el mouse antes del callback de actualización diferida mientras se mueve una tarjeta, ¿qué transición y comportamiento de actualización final corresponde?",
+  "traceId": "mssr-20261012-jev-cohort-godot-atlas",
+  "tool": "mssr_librarian_jev_select",
+  "candidateHandleCount": 4,
+  "candidateHandleIds": [
+    "f117811ef82979b983756e7b0532822fac4f34a1cbc10edfeb9b98a747ec3633",
+    "47bb64c2bb9e0c97184d7e22b9e06b0f971e18a760127c2c4c076d5ad816e668",
+    "80c3fb7f6dc4ac22828ca1147021c2bc8c861a5502e38a3903b902c81d44aa85",
+    "175fc27b024516d1f35caa774c540f937c5b41b8d5dea3822cdeaa53d21fc008"
+  ],
+  "envelope": {
+    "delegatedTool": "mssr_librarian_jev_select",
+    "classification": "neutral",
+    "result": {
+      "projectOwner": "d:/dev/godotatlas",
+      "sourceCount": 1,
+      "status": "selected",
+      "candidateCount": 4,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "verification": "unverified",
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "exactFetchRequired": true,
+      "autoApplyAllowed": false,
+      "candidateRangeDiagnostics": {
+        "offered": 4,
+        "eligible": 4,
+        "oversizedOmitted": 0,
+        "maxFetchChars": 20000,
+        "lengthUnit": "utf16-code-units"
+      },
+      "rangeOverlapDiagnostics": {
+        "sameSourceRevisionPairs": 6,
+        "overlappingPairCount": 5,
+        "nestedPairCount": 5,
+        "exactRangePairCount": 0,
+        "partialOverlapPairCount": 0,
+        "pairs": [
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              150
+            ],
+            "rightOptionId": "h002",
+            "rightRangeId": "heading-6",
+            "rightRangeKind": "section",
+            "rightLines": [
+              62,
+              87
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 653
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              150
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-7",
+            "rightRangeKind": "block",
+            "rightLines": [
+              64,
+              84
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 414
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              150
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-8",
+            "rightRangeKind": "block",
+            "rightLines": [
+              86,
+              86
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 205
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-6",
+            "leftRangeKind": "section",
+            "leftLines": [
+              62,
+              87
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-7",
+            "rightRangeKind": "block",
+            "rightLines": [
+              64,
+              84
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 414
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-6",
+            "leftRangeKind": "section",
+            "leftLines": [
+              62,
+              87
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-8",
+            "rightRangeKind": "block",
+            "rightLines": [
+              86,
+              86
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 205
+          }
+        ],
+        "truncated": false,
+        "mutationApplied": false
+      },
+      "finalistCount": 4,
+      "selectionMode": "single-pass",
+      "selectionPasses": 1,
+      "providerCalls": 1,
+      "providerConfidence": 0.94,
+      "evidenceSufficiency": 0.86,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 1077,
+        "output_tokens": 87
+      },
+      "requestFingerprint": "11f1ecf9fcd8c63ba2979bc32f26e47d8dddd9e3dff17026980df051c3a2c597",
+      "elapsedMs": 687.6,
+      "jevCallMade": true,
+      "selected": {
+        "optionId": "h002",
+        "title": "Interaction state machine",
+        "headingPath": [
+          "Atlas Routing Architecture",
+          "Interaction state machine"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "47bb64c2bb9e0c97184d7e22b9e06b0f971e18a760127c2c4c076d5ad816e668",
+          "owner": "d:/dev/godotatlas",
+          "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+          "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+          "rangeId": "heading-6",
+          "rangeKind": "section",
+          "startLine": 62,
+          "endLine": 87,
+          "startOffset": 3200,
+          "endOffset": 3853,
+          "fingerprint": "c1d7cb754407783432efda796e9e1a8389776ba9853435f136e3a34a5ca30672",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "none"
+          ],
+          "selectedOptionId": "h002",
+          "confidence": 0.94,
+          "probabilities": {
+            "h001": 0,
+            "h002": 0.95,
+            "h003": 0.05,
+            "h004": 0,
+            "none": 0
+          }
+        }
+      ]
+    }
+  }
+}

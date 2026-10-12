@@ -1,0 +1,12 @@
+{
+  "caseId": "EF-01-EN",
+  "query": "Which settings must remain the same for direct comparisons, and how many times should quantitative measurements be repeated?",
+  "connectorPath": "portable MSSR MCP (Bridge project-context health REVIEW prevents source-scoped Bridge continuation; no external project authority modified)",
+  "tool": "mssr_librarian_search",
+  "result": {
+    "results": [],
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "truncated": false
+  }
+}

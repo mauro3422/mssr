@@ -1,0 +1,452 @@
+{
+  "caseId": "EF-01-ES",
+  "query": "¿Qué ajustes deben mantenerse iguales en las comparaciones directas y cuántas veces se repite una medición cuantitativa?",
+  "connectorPath": "portable MSSR MCP with live default TypeSafe Jev provider",
+  "tool": "mssr_librarian_jev_select",
+  "candidateHandleCount": 10,
+  "candidateHandleIds": [
+    "569da5ea67aacf6beee4b585e89e71866a6fc0c921b0fd37576bce47a6175b36",
+    "36fe8e7328383ef70e2c8212414f8682531605207db76a89a742a43928a3d09e",
+    "f38dd007c5a1d08142d16f6ca28af9a7185e8abbe68a73eb0135e5dbc7ffb002",
+    "e0a1f1816328dfb6dba8b4824f63127eb46983c882108a90fa0320a9bf28bcc7",
+    "2983b7c1ab2d9495b074832a707d873f93713b9fb00db22f7fbcc9c983d8dc31",
+    "6bf955b0308f8112b80dba32c398140a69e14fe6d55030a3e43b527af97ead77",
+    "54cd4fb1383dcde2059344e4bebb3c4009b1b31b9d06d62649c7e6ac266af9de",
+    "a4339d41c2e7fea1cc495a7f60ecd90d44b065aee3eb1fca90fdd150fdaece2c",
+    "b6147ac7a433b7962f1e0f3dc3da7529e7bb196afafc4cdba5885956838a43f3",
+    "9a561d271ead6c2050226fec7c3395a2a09d67eb2e6284802c34cf0eb962972f"
+  ],
+  "result": {
+    "status": "selected",
+    "candidateCount": 10,
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "verification": "unverified",
+    "confidenceCalibration": "uncalibrated-provider-score",
+    "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+    "exactFetchRequired": true,
+    "autoApplyAllowed": false,
+    "candidateRangeDiagnostics": {
+      "offered": 10,
+      "eligible": 10,
+      "oversizedOmitted": 0,
+      "maxFetchChars": 20000,
+      "lengthUnit": "utf16-code-units"
+    },
+    "rangeOverlapDiagnostics": {
+      "sameSourceRevisionPairs": 45,
+      "overlappingPairCount": 20,
+      "nestedPairCount": 20,
+      "exactRangePairCount": 0,
+      "partialOverlapPairCount": 0,
+      "pairs": [
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            92
+          ],
+          "rightOptionId": "h002",
+          "rightRangeId": "heading-3",
+          "rightRangeKind": "section",
+          "rightLines": [
+            15,
+            30
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 516
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            92
+          ],
+          "rightOptionId": "h003",
+          "rightRangeId": "block-4",
+          "rightRangeKind": "block",
+          "rightLines": [
+            17,
+            17
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 28
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            92
+          ],
+          "rightOptionId": "h004",
+          "rightRangeId": "block-5",
+          "rightRangeKind": "block",
+          "rightLines": [
+            19,
+            27
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 351
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            92
+          ],
+          "rightOptionId": "h005",
+          "rightRangeId": "block-5/item-9",
+          "rightRangeKind": "block",
+          "rightLines": [
+            27,
+            27
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 68
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            92
+          ],
+          "rightOptionId": "h006",
+          "rightRangeId": "heading-4",
+          "rightRangeKind": "section",
+          "rightLines": [
+            31,
+            62
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 641
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            92
+          ],
+          "rightOptionId": "h007",
+          "rightRangeId": "heading-5",
+          "rightRangeKind": "section",
+          "rightLines": [
+            33,
+            48
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 270
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            92
+          ],
+          "rightOptionId": "h008",
+          "rightRangeId": "block-7",
+          "rightRangeKind": "block",
+          "rightLines": [
+            35,
+            35
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 27
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            92
+          ],
+          "rightOptionId": "h009",
+          "rightRangeId": "block-8",
+          "rightRangeKind": "block",
+          "rightLines": [
+            37,
+            37
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 36
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            92
+          ],
+          "rightOptionId": "h010",
+          "rightRangeId": "block-9",
+          "rightRangeKind": "block",
+          "rightLines": [
+            39,
+            39
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 19
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "heading-3",
+          "leftRangeKind": "section",
+          "leftLines": [
+            15,
+            30
+          ],
+          "rightOptionId": "h003",
+          "rightRangeId": "block-4",
+          "rightRangeKind": "block",
+          "rightLines": [
+            17,
+            17
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 28
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "heading-3",
+          "leftRangeKind": "section",
+          "leftLines": [
+            15,
+            30
+          ],
+          "rightOptionId": "h004",
+          "rightRangeId": "block-5",
+          "rightRangeKind": "block",
+          "rightLines": [
+            19,
+            27
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 351
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "heading-3",
+          "leftRangeKind": "section",
+          "leftLines": [
+            15,
+            30
+          ],
+          "rightOptionId": "h005",
+          "rightRangeId": "block-5/item-9",
+          "rightRangeKind": "block",
+          "rightLines": [
+            27,
+            27
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 68
+        },
+        {
+          "leftOptionId": "h004",
+          "leftRangeId": "block-5",
+          "leftRangeKind": "block",
+          "leftLines": [
+            19,
+            27
+          ],
+          "rightOptionId": "h005",
+          "rightRangeId": "block-5/item-9",
+          "rightRangeKind": "block",
+          "rightLines": [
+            27,
+            27
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 68
+        },
+        {
+          "leftOptionId": "h006",
+          "leftRangeId": "heading-4",
+          "leftRangeKind": "section",
+          "leftLines": [
+            31,
+            62
+          ],
+          "rightOptionId": "h007",
+          "rightRangeId": "heading-5",
+          "rightRangeKind": "section",
+          "rightLines": [
+            33,
+            48
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 270
+        },
+        {
+          "leftOptionId": "h006",
+          "leftRangeId": "heading-4",
+          "leftRangeKind": "section",
+          "leftLines": [
+            31,
+            62
+          ],
+          "rightOptionId": "h008",
+          "rightRangeId": "block-7",
+          "rightRangeKind": "block",
+          "rightLines": [
+            35,
+            35
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 27
+        },
+        {
+          "leftOptionId": "h006",
+          "leftRangeId": "heading-4",
+          "leftRangeKind": "section",
+          "leftLines": [
+            31,
+            62
+          ],
+          "rightOptionId": "h009",
+          "rightRangeId": "block-8",
+          "rightRangeKind": "block",
+          "rightLines": [
+            37,
+            37
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 36
+        },
+        {
+          "leftOptionId": "h006",
+          "leftRangeId": "heading-4",
+          "leftRangeKind": "section",
+          "leftLines": [
+            31,
+            62
+          ],
+          "rightOptionId": "h010",
+          "rightRangeId": "block-9",
+          "rightRangeKind": "block",
+          "rightLines": [
+            39,
+            39
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 19
+        },
+        {
+          "leftOptionId": "h007",
+          "leftRangeId": "heading-5",
+          "leftRangeKind": "section",
+          "leftLines": [
+            33,
+            48
+          ],
+          "rightOptionId": "h008",
+          "rightRangeId": "block-7",
+          "rightRangeKind": "block",
+          "rightLines": [
+            35,
+            35
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 27
+        },
+        {
+          "leftOptionId": "h007",
+          "leftRangeId": "heading-5",
+          "leftRangeKind": "section",
+          "leftLines": [
+            33,
+            48
+          ],
+          "rightOptionId": "h009",
+          "rightRangeId": "block-8",
+          "rightRangeKind": "block",
+          "rightLines": [
+            37,
+            37
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 36
+        },
+        {
+          "leftOptionId": "h007",
+          "leftRangeId": "heading-5",
+          "leftRangeKind": "section",
+          "leftLines": [
+            33,
+            48
+          ],
+          "rightOptionId": "h010",
+          "rightRangeId": "block-9",
+          "rightRangeKind": "block",
+          "rightLines": [
+            39,
+            39
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 19
+        }
+      ],
+      "truncated": false,
+      "mutationApplied": false
+    },
+    "finalistCount": 10,
+    "selectionMode": "single-pass",
+    "selectionPasses": 1,
+    "providerCalls": 1,
+    "providerConfidence": 0.88,
+    "evidenceSufficiency": 0.94,
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "providersUsed": [
+      "typesafe-jev"
+    ],
+    "modelsUsed": [
+      "jev-1.13.0"
+    ],
+    "usage": {
+      "input_tokens": 1670,
+      "output_tokens": 147
+    },
+    "requestFingerprint": "10cecce5582fa0a5be3615efd8c26860d99db72021cf7b922aae64e08b2cfd18",
+    "elapsedMs": 421.7,
+    "jevCallMade": true,
+    "selected": {
+      "optionId": "h004",
+      "title": "Condiciones comunes",
+      "headingPath": [
+        "Combat Lab Test Protocol",
+        "Condiciones comunes"
+      ],
+      "handle": {
+        "version": 1,
+        "id": "e0a1f1816328dfb6dba8b4824f63127eb46983c882108a90fa0320a9bf28bcc7",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+        "revision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+        "rangeId": "block-5",
+        "rangeKind": "block",
+        "startLine": 19,
+        "endLine": 27,
+        "startOffset": 479,
+        "endOffset": 830,
+        "fingerprint": "f039e1d71fa6927f90f2a0e063540ba66496eae7c1feb41cbe25137543ceb5f0",
+        "privacyClass": "project-metadata"
+      }
+    }
+  }
+}

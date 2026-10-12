@@ -1,0 +1,588 @@
+{
+  "caseId": "KODE-01-EN",
+  "query": "When a model has an explicit SDK package in provider metadata, what takes precedence over the provider-level default?",
+  "traceId": "mssr-20261012-jev-cohort-kode",
+  "tool": "mssr_librarian_search",
+  "envelope": {
+    "delegatedTool": "mssr_librarian_search",
+    "classification": "read-only",
+    "result": {
+      "projectOwner": "d:/dev/kode",
+      "sourceCount": 1,
+      "results": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "889f17fe535cde46f72edd2fbfb9deeae34fe8b7400e441f9bdcf053f0340488",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 360,
+            "startOffset": 0,
+            "endOffset": 16841,
+            "fingerprint": "b5075a063deeb44f20d7a8af333247b46e6aa0a7c4102522a5666e0ab2babf91",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 16841,
+          "exactFetchable": true,
+          "score": 0.818182,
+          "title": "Kode ↔ OpenCode Provider Contract",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract"
+          ],
+          "snippet": "# Kode ↔ OpenCode Provider Contract Last reviewed against upstream docs: **2026-09-13** This document separates three kinds of truth that must not be mixed: 1. **OpenCode upstream facts** — current public provider/model…",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract"
+            ],
+            "level": 1,
+            "parentId": null,
+            "startLine": 1,
+            "endLine": 360,
+            "chars": 16841,
+            "bytes": 16917,
+            "terms": [
+              "contract",
+              "kode",
+              "opencode",
+              "provider",
+              "2026-09-13",
+              "against",
+              "docs",
+              "last"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "05444b6c62b612c41b540a13cc1901dbc6347c4bc7b67719a31645e1b5cbd426",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "heading-13",
+            "rangeKind": "section",
+            "startLine": 159,
+            "endLine": 208,
+            "startOffset": 7570,
+            "endOffset": 9689,
+            "fingerprint": "45442bce637a9b1d92ba9c57ab390001d1786c229aa058f2c7b223ffed5262e8",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 2119,
+          "exactFetchable": true,
+          "score": 0.818182,
+          "title": "6. The transport laws",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "6. The transport laws"
+          ],
+          "snippet": "…r describes grouping/cost/access. Transport comes from model/provider metadata. ### Law 2 — model-level package metadata wins If Models.dev/provider metadata includes an SDK package for the individual model, use it bef…",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "6. The transport laws"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 159,
+            "endLine": 208,
+            "chars": 2119,
+            "bytes": 2135,
+            "terms": [
+              "laws",
+              "transport",
+              "durable",
+              "integration",
+              "invariants",
+              "regression",
+              "rules",
+              "these"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "6a0de26bd5f1b01ceb80bcf4ee3e974511b0122a80a2d5339ac4f3a761001446",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "heading-15",
+            "rangeKind": "section",
+            "startLine": 173,
+            "endLine": 178,
+            "startOffset": 7935,
+            "endOffset": 8192,
+            "fingerprint": "7ae85b327d74c85118334f7eda8f4b0348ba2e3bc7712ddbea207c5930f2c569",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 257,
+          "exactFetchable": true,
+          "score": 0.636364,
+          "title": "Law 2 — model-level package metadata wins",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "6. The transport laws",
+            "Law 2 — model-level package metadata wins"
+          ],
+          "snippet": "### Law 2 — model-level package metadata wins If Models.dev/provider metadata includes an SDK package for the individual model, use it before a provider-level default. This matters because one OpenCode provider exposes …",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "6. The transport laws",
+              "Law 2 — model-level package metadata wins"
+            ],
+            "level": 3,
+            "parentId": "heading-13",
+            "startLine": 173,
+            "endLine": 178,
+            "chars": 257,
+            "bytes": 259,
+            "terms": [
+              "law",
+              "metadata",
+              "model-level",
+              "package",
+              "wins",
+              "before",
+              "default",
+              "dev"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "d89706ed1d0f319add11ff7699f377c2d6f95a908772dd8c0740b63abe2b0170",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "block-47",
+            "rangeKind": "block",
+            "startLine": 175,
+            "endLine": 175,
+            "startOffset": 7982,
+            "endOffset": 8103,
+            "fingerprint": "68e472fe91b32d2727b44ea275326175ec18c8c9f9b3038a6be564bc4bb6ae3d",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 121,
+          "exactFetchable": true,
+          "score": 0.636364,
+          "title": "Law 2 — model-level package metadata wins",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "6. The transport laws",
+            "Law 2 — model-level package metadata wins"
+          ],
+          "snippet": "If Models.dev/provider metadata includes an SDK package for the individual model, use it before a provider-level default.",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "6. The transport laws",
+              "Law 2 — model-level package metadata wins"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-15",
+            "startLine": 175,
+            "endLine": 175,
+            "chars": 121,
+            "bytes": 121,
+            "terms": [
+              "before",
+              "default",
+              "dev",
+              "includes",
+              "individual",
+              "metadata",
+              "model",
+              "models"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "f9ae821482b91c3c4893198355dc154eea2c2e1dc5b9c2c8c9fdd0972056135f",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "heading-16",
+            "rangeKind": "section",
+            "startLine": 179,
+            "endLine": 190,
+            "startOffset": 8192,
+            "endOffset": 8657,
+            "fingerprint": "4e72f7cbae38ac0a6268423b4ffd2a71176ca3f35c050ab858af6179132d274f",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 465,
+          "exactFetchable": true,
+          "score": 0.545455,
+          "title": "Law 3 — known package mapping is explicit",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "6. The transport laws",
+            "Law 3 — known package mapping is explicit"
+          ],
+          "snippet": "### Law 3 — known package mapping is explicit Current Kode mapping: | AI SDK package | Kode transport | | --- | --- | | `@ai-sdk/openai` | Responses | | `@ai-sdk/openai-compatible` | Chat Completions | | other explicit …",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "6. The transport laws",
+              "Law 3 — known package mapping is explicit"
+            ],
+            "level": 3,
+            "parentId": "heading-13",
+            "startLine": 179,
+            "endLine": 190,
+            "chars": 465,
+            "bytes": 469,
+            "terms": [
+              "explicit",
+              "known",
+              "law",
+              "mapping",
+              "package",
+              "kode"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "f297b350be4f55c90f198a257c10db318c2ab767dde1e7fb31de7733a8d4be4d",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "heading-11",
+            "rangeKind": "section",
+            "startLine": 136,
+            "endLine": 158,
+            "startOffset": 6521,
+            "endOffset": 7570,
+            "fingerprint": "4d9f15776768bf6da086187b54cdb27cafb9d076b0cbefd5fc015d45de38bc89",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 1049,
+          "exactFetchable": true,
+          "score": 0.454545,
+          "title": "5. Catalog discovery",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "5. Catalog discovery"
+          ],
+          "snippet": "…Kode does not maintain a permanent hard-coded OpenCode model catalog. The current flow is: 1. Resolve configured provider ids. 2. Fetch live model ids from each provider's `/models` endpoint. 3. Fetch Models.dev metada…",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "5. Catalog discovery"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 136,
+            "endLine": 158,
+            "chars": 1049,
+            "bytes": 1051,
+            "terms": [
+              "catalog",
+              "discovery",
+              "does",
+              "hard-coded",
+              "kode",
+              "maintain",
+              "model",
+              "opencode"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "2aff7cee8ced6e359c0b74df2c54f139223503cd39c64e9416048de2822f242f",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "block-38",
+            "rangeKind": "block",
+            "startLine": 142,
+            "endLine": 149,
+            "startOffset": 6639,
+            "endOffset": 7126,
+            "fingerprint": "e5ab9610f20e9985b3eaa38a5171f8ce670df7c5036a1c9479b9452ba7e79737",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 487,
+          "exactFetchable": true,
+          "score": 0.454545,
+          "title": "5. Catalog discovery",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "5. Catalog discovery"
+          ],
+          "snippet": "1. Resolve configured provider ids. 2. Fetch live model ids from each provider's `/models` endpoint. 3. Fetch Models.dev metadata from `https://models.dev/api.json`. 4. Enrich each live model with label, cost/tier, limi…",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "5. Catalog discovery"
+            ],
+            "blockKind": "list",
+            "sectionId": "heading-11",
+            "startLine": 142,
+            "endLine": 149,
+            "chars": 487,
+            "bytes": 489,
+            "terms": [
+              "models",
+              "provider",
+              "model",
+              "dev",
+              "each",
+              "fetch",
+              "ids",
+              "kode"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "e429a97235ee9c53cf31e67e86f2707632984cadacba5071f18e1ae8fdf0c661",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "block-50",
+            "rangeKind": "block",
+            "startLine": 183,
+            "endLine": 187,
+            "startOffset": 8262,
+            "endOffset": 8449,
+            "fingerprint": "d062a6fd79c4a7792f00c182e49c1dc6cc1d60583df789f85260ba42f7f95a30",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 187,
+          "exactFetchable": true,
+          "score": 0.454545,
+          "title": "Law 3 — known package mapping is explicit",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "6. The transport laws",
+            "Law 3 — known package mapping is explicit"
+          ],
+          "snippet": "| AI SDK package | Kode transport | | --- | --- | | `@ai-sdk/openai` | Responses | | `@ai-sdk/openai-compatible` | Chat Completions | | other explicit package | unsupported → omit model |",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "6. The transport laws",
+              "Law 3 — known package mapping is explicit"
+            ],
+            "blockKind": "table",
+            "sectionId": "heading-16",
+            "startLine": 183,
+            "endLine": 187,
+            "chars": 187,
+            "bytes": 189,
+            "terms": [
+              "ai-sdk",
+              "package",
+              "chat",
+              "completions",
+              "explicit",
+              "kode",
+              "model",
+              "omit"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "5ba91e88ff1028a81ae905dedfa83732bf66371ead1b101205856768316c56f9",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "heading-17",
+            "rangeKind": "section",
+            "startLine": 191,
+            "endLine": 194,
+            "startOffset": 8657,
+            "endOffset": 8858,
+            "fingerprint": "6099aeaf409e7528ad734483badbbbace6b154af786bd07456ba72325d166cf9",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 201,
+          "exactFetchable": true,
+          "score": 0.454545,
+          "title": "Law 4 — unknown explicit metadata is safer than guessing",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "6. The transport laws",
+            "Law 4 — unknown explicit metadata is safer than guessing"
+          ],
+          "snippet": "### Law 4 — unknown explicit metadata is safer than guessing If upstream explicitly identifies a package Kode does not support, that is stronger evidence than a model-name heuristic. Omit the model.",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "6. The transport laws",
+              "Law 4 — unknown explicit metadata is safer than guessing"
+            ],
+            "level": 3,
+            "parentId": "heading-13",
+            "startLine": 191,
+            "endLine": 194,
+            "chars": 201,
+            "bytes": 203,
+            "terms": [
+              "explicit",
+              "guessing",
+              "law",
+              "metadata",
+              "safer",
+              "unknown",
+              "does",
+              "evidence"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "e0a00a6300943315a3f9902c7c88037b8d5c631cecc859a9b9bb09cd19839728",
+            "owner": "d:/dev/kode",
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "rangeId": "block-52",
+            "rangeKind": "block",
+            "startLine": 193,
+            "endLine": 193,
+            "startOffset": 8719,
+            "endOffset": 8856,
+            "fingerprint": "d4289c2833eee29295ddf88fabe9f4c6aabe1d86499b398bd7d096116b84125e",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 137,
+          "exactFetchable": true,
+          "score": 0.454545,
+          "title": "Law 4 — unknown explicit metadata is safer than guessing",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "6. The transport laws",
+            "Law 4 — unknown explicit metadata is safer than guessing"
+          ],
+          "snippet": "If upstream explicitly identifies a package Kode does not support, that is stronger evidence than a model-name heuristic. Omit the model.",
+          "metadata": {
+            "sourceRef": "docs/OPENCODE_PROVIDER.md",
+            "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+            "headingPath": [
+              "Kode ↔ OpenCode Provider Contract",
+              "6. The transport laws",
+              "Law 4 — unknown explicit metadata is safer than guessing"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-17",
+            "startLine": 193,
+            "endLine": 193,
+            "chars": 137,
+            "bytes": 137,
+            "terms": [
+              "does",
+              "evidence",
+              "explicitly",
+              "heuristic",
+              "identifies",
+              "kode",
+              "model",
+              "model-name"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        }
+      ],
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "truncated": true
+    },
+    "bridgeNotices": {
+      "delivery": "automatic-drain",
+      "scope": "contextual",
+      "count": 0,
+      "remainingPending": 1,
+      "relevantPending": 0,
+      "otherPending": 1,
+      "globalPending": 0,
+      "globalHistoryTool": "bridge_notice_history",
+      "items": []
+    }
+  }
+}

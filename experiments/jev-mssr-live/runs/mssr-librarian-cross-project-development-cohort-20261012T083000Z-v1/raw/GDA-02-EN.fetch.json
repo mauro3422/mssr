@@ -1,0 +1,32 @@
+{
+  "caseId": "GDA-02-EN",
+  "traceId": "mssr-20261012-jev-cohort-godot-atlas",
+  "handleId": "7e5ff3e2b592f726ae629eaa6b8b27e783861f9aba7fcd318168c1b49d3f5050",
+  "tool": "mssr_librarian_fetch",
+  "envelope": {
+    "delegatedTool": "mssr_librarian_fetch",
+    "classification": "read-only",
+    "result": {
+      "projectOwner": "d:/dev/godotatlas",
+      "handle": {
+        "version": 1,
+        "id": "7e5ff3e2b592f726ae629eaa6b8b27e783861f9aba7fcd318168c1b49d3f5050",
+        "owner": "d:/dev/godotatlas",
+        "sourceRef": "docs/contracts/ATLAS_ROUTING_ARCHITECTURE.md",
+        "revision": "c939657d88a803449e538fd3066fb668203f4c8b0487af98630f6156ac173c49",
+        "rangeId": "block-9",
+        "rangeKind": "block",
+        "startLine": 90,
+        "endLine": 97,
+        "startOffset": 3873,
+        "endOffset": 5031,
+        "fingerprint": "a2a6547baf32df842f46f193a4f984df3766e24626368c872aa83151a88e2491",
+        "privacyClass": "project-metadata"
+      },
+      "text": "1. **Graph-world determinism:** zoom/pan never change route topology for unchanged graph geometry.\n2. **Atomic publication:** drawing sees either the previous complete route set or the next complete route set, never a partially rebuilt mixture.\n3. **Native synchronization:** after Atlas publishes/restores a route set, Godot's native connection geometry is invalidated in the same lifecycle.\n4. **Drag continuity:** a same-callback native request for old endpoints still resolves the previous exact route; the deferred drag-frame refresh publishes the candidate geometry; mouse-up with unchanged geometry preserves it.\n5. **Coalescing:** many position signals inside one pending drag frame request at most one deferred rebuild.\n6. **Endpoint validity before path search:** a router is not asked to hide an attachment that already folds back into a card.\n7. **Hard vs soft constraints:** cards/invalid endpoint flow are hard constraints. Future route crossings, overlap, local congestion and route-change hysteresis are quality costs unless a fixture proves otherwise.\n8. **Placement authority:** routing never moves cards or legitimizes a bad branch layout.",
+      "fingerprint": "a2a6547baf32df842f46f193a4f984df3766e24626368c872aa83151a88e2491",
+      "advisoryOnly": true,
+      "truthAuthority": false
+    }
+  }
+}

@@ -1,0 +1,372 @@
+{
+  "caseId": "ERS-02-EN",
+  "query": "Which metadata fields should reusable components preserve, what additional facts go in device/module manifests, and what properties must geometry metadata not claim?",
+  "traceId": "mssr-20261012-jev-cohort-electronics-repair-simulator",
+  "tool": "mssr_librarian_jev_select",
+  "candidateHandleCount": 10,
+  "candidateHandleIds": [
+    "4322c931bc80a9271428cd3243a6c48d6fb4733d112ef28af37630761789acc2",
+    "9ea04ec6bf87d7cd734ca496336a80174d08d5608d815601d8884849357b6849",
+    "bf19fb236fd93ae7f9bcbd50855144e5808704f9d874ff13d57ffdd8d0be040f",
+    "635241b0b1ac92e21e5bd5a466f4bf5ce0b6ee19222c92c156dbefb481ac2034",
+    "a7d7280ed67ab1ea732e9ca011cd10287a892cdb662040a6edcae1b5a4a4f805",
+    "2b237a7f94ddd1375c429120c0ac7fa3a1c8adc1f3fedd014045ecf4bfaff635",
+    "bb3ab88c78175b182c6b8f8c31ef92d10dfa1f4ac80710007a0dbf1265b6c2ac",
+    "f9305df9fb20c8416db886b8955eb38a22951663cb06898bfca63615f5c81f0e",
+    "1e7a53feb4cd13c90e80a8b77b8c93fc27f7748c0863bf6eb2177e525582d7f5",
+    "f8d841d0792b9a7e20cf4825ec54f33f9cf604e92c6d9ef4ff7f03fc2158e3ca"
+  ],
+  "envelope": {
+    "delegatedTool": "mssr_librarian_jev_select",
+    "classification": "neutral",
+    "result": {
+      "projectOwner": "d:/dev/electronics-repair-simulator",
+      "sourceCount": 1,
+      "status": "abstained",
+      "candidateCount": 10,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "verification": "unverified",
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "exactFetchRequired": true,
+      "autoApplyAllowed": false,
+      "candidateRangeDiagnostics": {
+        "offered": 10,
+        "eligible": 10,
+        "oversizedOmitted": 0,
+        "maxFetchChars": 20000,
+        "lengthUnit": "utf16-code-units"
+      },
+      "rangeOverlapDiagnostics": {
+        "sameSourceRevisionPairs": 45,
+        "overlappingPairCount": 14,
+        "nestedPairCount": 14,
+        "exactRangePairCount": 0,
+        "partialOverlapPairCount": 0,
+        "pairs": [
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              384
+            ],
+            "rightOptionId": "h002",
+            "rightRangeId": "heading-7",
+            "rightRangeKind": "section",
+            "rightLines": [
+              71,
+              103
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 751
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              384
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "heading-3",
+            "rightRangeKind": "section",
+            "rightLines": [
+              24,
+              70
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 1401
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              384
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-21",
+            "rightRangeKind": "block",
+            "rightLines": [
+              102,
+              102
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 222
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              384
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "block-19",
+            "rightRangeKind": "block",
+            "rightLines": [
+              89,
+              89
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 51
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              384
+            ],
+            "rightOptionId": "h006",
+            "rightRangeId": "heading-2",
+            "rightRangeKind": "section",
+            "rightLines": [
+              5,
+              23
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 1128
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              384
+            ],
+            "rightOptionId": "h007",
+            "rightRangeId": "heading-4",
+            "rightRangeKind": "section",
+            "rightLines": [
+              28,
+              42
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 519
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              384
+            ],
+            "rightOptionId": "h008",
+            "rightRangeId": "heading-6",
+            "rightRangeKind": "section",
+            "rightLines": [
+              57,
+              70
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 383
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              384
+            ],
+            "rightOptionId": "h009",
+            "rightRangeId": "block-17",
+            "rightRangeKind": "block",
+            "rightLines": [
+              73,
+              73
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 80
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              384
+            ],
+            "rightOptionId": "h010",
+            "rightRangeId": "heading-10",
+            "rightRangeKind": "section",
+            "rightLines": [
+              152,
+              219
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 1824
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-7",
+            "leftRangeKind": "section",
+            "leftLines": [
+              71,
+              103
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-21",
+            "rightRangeKind": "block",
+            "rightLines": [
+              102,
+              102
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 222
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-7",
+            "leftRangeKind": "section",
+            "leftLines": [
+              71,
+              103
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "block-19",
+            "rightRangeKind": "block",
+            "rightLines": [
+              89,
+              89
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 51
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "heading-7",
+            "leftRangeKind": "section",
+            "leftLines": [
+              71,
+              103
+            ],
+            "rightOptionId": "h009",
+            "rightRangeId": "block-17",
+            "rightRangeKind": "block",
+            "rightLines": [
+              73,
+              73
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 80
+          },
+          {
+            "leftOptionId": "h003",
+            "leftRangeId": "heading-3",
+            "leftRangeKind": "section",
+            "leftLines": [
+              24,
+              70
+            ],
+            "rightOptionId": "h007",
+            "rightRangeId": "heading-4",
+            "rightRangeKind": "section",
+            "rightLines": [
+              28,
+              42
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 519
+          },
+          {
+            "leftOptionId": "h003",
+            "leftRangeId": "heading-3",
+            "leftRangeKind": "section",
+            "leftLines": [
+              24,
+              70
+            ],
+            "rightOptionId": "h008",
+            "rightRangeId": "heading-6",
+            "rightRangeKind": "section",
+            "rightLines": [
+              57,
+              70
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 383
+          }
+        ],
+        "truncated": false,
+        "mutationApplied": false
+      },
+      "finalistCount": 10,
+      "selectionMode": "single-pass",
+      "selectionPasses": 1,
+      "providerCalls": 1,
+      "providerConfidence": 0.69,
+      "evidenceSufficiency": 0.51,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 1740,
+        "output_tokens": 144
+      },
+      "requestFingerprint": "617a7ce606477c8df28bc945b42f159c1fcc765bc100685ba5c8a50c6a2c2383",
+      "elapsedMs": 959.3,
+      "jevCallMade": true,
+      "selected": null,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "h005",
+            "h006",
+            "h007",
+            "h008",
+            "h009",
+            "h010",
+            "none"
+          ],
+          "selectedOptionId": "none",
+          "confidence": 0.69,
+          "probabilities": {
+            "h001": 0,
+            "h002": 0.11,
+            "h003": 0,
+            "h004": 0.03,
+            "h005": 0.01,
+            "h006": 0,
+            "h007": 0,
+            "h008": 0,
+            "h009": 0.13,
+            "h010": 0,
+            "none": 0.72
+          }
+        }
+      ]
+    },
+    "bridgeNotices": {
+      "delivery": "automatic-drain",
+      "scope": "contextual",
+      "count": 0,
+      "remainingPending": 1,
+      "relevantPending": 0,
+      "otherPending": 1,
+      "globalPending": 0,
+      "globalHistoryTool": "bridge_notice_history",
+      "items": []
+    }
+  }
+}
