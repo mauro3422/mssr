@@ -35,6 +35,22 @@ confidence-calibration evidence.
   preserved), evidence-pack citations, and exclusive run locking. Snapshot
   comparison is the primary exact-fetch check; a matching digest alone is not
   treated as proof that returned text came from the frozen source range.
+- The reusable runner defaults to `runtime.metadataMode: "off"`; an individual
+  frozen case may override it with `metadataMode` and an exact scalar `metadata`
+  filter (string, finite number, or boolean). Supported modes are `off`,
+  `project-context-single-section`, and
+  `project-context-librarian-sidecar`. Any non-off Project Context metadata
+  packet must freeze all four controls in `corpus.metadataControlFiles`: the base
+  manifest and Librarian sidecar, plus explicit `present`/`absent` states for
+  segments and refs. Present controls need exact SHA-256 values and byte-for-byte
+  snapshots under `inputs/metadata/`; absent controls use `sha256: null` and
+  `snapshotPath: null`. The runner checks these against the live project before
+  and after execution, includes metadata mode/filter in each request fingerprint,
+  and preserves returned `metadataProjectionMatches` in search records. A zero
+  projection-match count is recorded as such; it is not evidence that metadata
+  helped. Source refs remain explicit and host-owned—this does not add crawling
+  or automatic source discovery. Historical packets and their copied runners
+  are not rewritten.
 - Scoring keeps precise `acceptableRanges` separate from optional broader
   `relevantRanges`. An exact-range match is reported independently; a broader
   source section can count as a relevant answer only when its exact lines were

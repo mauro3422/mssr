@@ -6,7 +6,15 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { serializeJevEvidenceMetrics, serializeJevSelectionDiagnostics } from "./selection-record.mjs";
-import { acquireExclusiveRunLock, validateEvidencePack, validateFetchResult, validateLabelHeadingPaths, validateRunInputs } from "./runner-support.mjs";
+import {
+  acquireExclusiveRunLock,
+  resolveMetadataRunConfig,
+  validateEvidencePack,
+  validateFetchResult,
+  validateLabelHeadingPaths,
+  validateProjectContextMetadataControls,
+  validateRunInputs,
+} from "./runner-support.mjs";
 
 async function main() {
 const runDir = path.dirname(fileURLToPath(import.meta.url));
@@ -17,6 +25,13 @@ const allowNetwork = process.argv.includes("--allow-network");
 const cases = JSON.parse(await fs.readFile(path.join(runDir, "inputs/cases.json"), "utf8")).cases;
 const bridgeRoot = manifest.source.bridgeRoot;
 const projectRoot = manifest.corpus.projectRoot;
+const metadataConfig = resolveMetadataRunConfig(manifest, cases);
+const frozenMetadataControls = await validateProjectContextMetadataControls({
+  manifest,
+  runDir,
+  projectRoot,
+  required: metadataConfig.requiresProjectContextControls,
+});
 const hash = (data) => createHash("sha256").update(data).digest("hex");
 const hashFile = async (file) => hash(await fs.readFile(file));
 const json = (value) => JSON.stringify(value) + "\n";
@@ -48,9 +63,16 @@ if (!allowNetwork) {
     networkRequests: 0,
     requestedCalls: cases.length,
     requestedModel: manifest.provider.requestedModel,
+    metadataControlFiles: frozenMetadataControls,
     sourceDocuments: manifest.corpus.sources.length,
     independentUnits: manifest.plan.independentUnit,
-    cases: cases.map(({ id, sourceRef, query }) => ({ id, sourceRef, query })),
+    cases: cases.map(({ id, sourceRef, query }) => ({
+      id,
+      sourceRef,
+      query,
+      metadataMode: metadataConfig.byCaseId.get(id).metadataMode,
+      metadata: metadataConfig.byCaseId.get(id).metadata,
+    })),
     labelsParsed: false,
   }, null, 2));
   return;
@@ -83,11 +105,15 @@ assert.ok(registry.has("mssr_librarian_evidence_pack"));
 const appendJsonl = async (file, value) => fs.appendFile(path.join(runDir, file), json(value), "utf8");
 const records = [];
 for (const testCase of cases) {
+  const metadataForCase = metadataConfig.byCaseId.get(testCase.id);
   const request = {
     caseId: testCase.id,
     sourceRefs: [testCase.sourceRef],
     query: testCase.query,
-    metadataMode: "off",
+    metadataMode: metadataForCase.metadataMode,
+    metadata: metadataForCase.metadata,
+    maxResults: 100,
+    maxSnippetChars: 240,
     requestedModel: manifest.provider.requestedModel,
   };
   const requestFingerprint = hash(Buffer.from(JSON.stringify(request), "utf8"));
@@ -109,6 +135,8 @@ for (const testCase of cases) {
     sourceRef: testCase.sourceRef,
     sourceSha256: manifest.corpus.sources.find((source) => source.sourceRef === testCase.sourceRef).sha256,
     query: testCase.query,
+    metadataMode: metadataForCase.metadataMode,
+    metadataFilter: metadataForCase.metadata,
     requestedProvider: manifest.provider.provider,
     requestedModel: manifest.provider.requestedModel,
     status: "failed",
@@ -123,8 +151,13 @@ for (const testCase of cases) {
     const search = await registry.call("mssr_librarian_search", {
       projectRoot,
       sourceRefs: [testCase.sourceRef],
-      metadataMode: "off",
-      query: { query: testCase.query, maxResults: 100, maxSnippetChars: 240 },
+      metadataMode: metadataForCase.metadataMode,
+      query: {
+        query: testCase.query,
+        maxResults: 100,
+        maxSnippetChars: 240,
+        ...(metadataForCase.metadata ? { metadata: metadataForCase.metadata } : {}),
+      },
     });
     const searchResults = search.results ?? [];
 
@@ -170,13 +203,17 @@ for (const testCase of cases) {
         title: item.title ?? null,
         headingPath: item.headingPath ?? null,
         lexicalScore: item.score ?? null,
+        metadataProjectionMatches: item.metadataProjectionMatches ?? [],
         handle: item.handle ?? null,
       })),
+      metadataProjectionMatchCount: searchResults.reduce((sum, item) => sum + (item.metadataProjectionMatches?.length ?? 0), 0),
     };
     const candidateSetFingerprint = hash(Buffer.from(JSON.stringify({
       sourceRef: testCase.sourceRef,
       sourceSha256: record.sourceSha256,
       query: testCase.query,
+      metadataMode: metadataForCase.metadataMode,
+      metadata: metadataForCase.metadata,
       requestedModel: manifest.provider.requestedModel,
       candidateHandles,
     }), "utf8"));
@@ -283,6 +320,13 @@ for (const testCase of cases) {
 for (const source of manifest.corpus.sources) {
   assert.equal(await hashFile(path.join(projectRoot, ...source.sourceRef.split("/"))), source.sha256, "source changed during run: " + source.sourceRef);
 }
+const finalMetadataControls = await validateProjectContextMetadataControls({
+  manifest,
+  runDir,
+  projectRoot,
+  required: metadataConfig.requiresProjectContextControls,
+});
+assert.deepEqual(finalMetadataControls, frozenMetadataControls, "Project Context metadata controls changed during run");
 const labelByCase = new Map(labels.cases.map((label) => [label.caseId, label]));
 const scored = records.map((record) => {
   const label = labelByCase.get(record.caseId);
@@ -509,6 +553,8 @@ const summary = {
     bridgeVersion: manifest.source.bridgeVersion,
     mssrVersion: manifest.source.mssrVersion,
     requestedModel: manifest.provider.requestedModel,
+    metadataModes: [...new Set(cases.map((item) => metadataConfig.byCaseId.get(item.id).metadataMode))],
+    metadataControlFiles: frozenMetadataControls,
     returnedModel: records.find((record) => record.returnedModel)?.returnedModel ?? null,
   },
 };
@@ -527,6 +573,8 @@ await fs.writeFile(path.join(runDir, "run-completion.json"), json({
   argvContainsAllowNetwork: allowNetwork,
   jevRequestIdsReturned: records.filter((record) => Boolean(record.jev?.providerRequestId)).length,
   providerTransportInvocationsObserved: null,
+  metadataModes: [...new Set(cases.map((item) => metadataConfig.byCaseId.get(item.id).metadataMode))],
+  metadataControlFiles: frozenMetadataControls,
 }), "utf8");
 const fileList = [];
 async function walk(dir) {

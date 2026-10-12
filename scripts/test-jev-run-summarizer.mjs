@@ -8,9 +8,11 @@ import { fileURLToPath } from "node:url";
 import { serializeJevEvidenceMetrics, serializeJevSelectionDiagnostics } from "../experiments/jev-mssr-live/selection-record.mjs";
 import {
   acquireExclusiveRunLock,
+  resolveMetadataRunConfig,
   validateEvidencePack,
   validateFetchResult,
   validateLabelHeadingPaths,
+  validateProjectContextMetadataControls,
   validateRunInputs,
 } from "../experiments/jev-mssr-live/runner-support.mjs";
 
@@ -18,6 +20,22 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const summarizer = path.join(root, "experiments/jev-mssr-live/summarize-run.mjs");
 const scratch = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-jev-summary-test-"));
 const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
+assert.throws(() => resolveMetadataRunConfig({ runtime: { metadataMode: "off" } }, [
+  { id: "bad-off-filter", metadata: { domain: "architecture" } },
+]), /cannot apply metadata filters when metadataMode is off/u);
+assert.throws(() => resolveMetadataRunConfig({}, [
+  { id: "bad-empty-filter", metadata: {} },
+]), /metadata cannot be empty/u);
+await assert.rejects(validateProjectContextMetadataControls({
+  manifest: { corpus: {} },
+  runDir: os.tmpdir(),
+  projectRoot: os.tmpdir(),
+  required: true,
+}), /require frozen metadataControlFiles/u);
+assert.equal(resolveMetadataRunConfig({ runtime: { metadataMode: "project-context-single-section" } }, [
+  { id: "single-section-case" },
+]).requiresProjectContextControls, true,
+"all Project Context metadata modes must freeze their shared control files");
 const writeJson = async (target, value) => {
   const bytes = Buffer.from(`${JSON.stringify(value, null, 2)}\n`);
   await fs.mkdir(path.dirname(target), { recursive: true });
@@ -619,10 +637,26 @@ try {
   const mockSourceBytes = Buffer.from(mockSourceText, "utf8");
   const mockRunnerPath = path.join(mockRun, "runner.mjs");
   await fs.mkdir(path.join(mockProject, "docs"), { recursive: true });
+  await fs.mkdir(path.join(mockProject, ".mssr"), { recursive: true });
   await fs.mkdir(path.join(mockRun, "inputs/sources"), { recursive: true });
+  await fs.mkdir(path.join(mockRun, "inputs/metadata"), { recursive: true });
   await fs.mkdir(path.join(mockBridge, "dist/tools"), { recursive: true });
   await fs.writeFile(path.join(mockProject, "docs/one.md"), mockSourceBytes);
   await fs.writeFile(path.join(mockRun, "inputs/sources/source-01.md"), mockSourceBytes);
+  const mockMetadataControlFiles = [];
+  for (const [controlPath, content, snapshotPath] of [
+    [".mssr/project-context.json", '{"schemaVersion":1,"modules":[]}\n', "inputs/metadata/project-context.json"],
+    [".mssr/project-context-librarian.json", '{"schemaVersion":1,"entries":[]}\n', "inputs/metadata/project-context-librarian.json"],
+  ]) {
+    const bytes = Buffer.from(content, "utf8");
+    await fs.writeFile(path.join(mockProject, ...controlPath.split("/")), bytes);
+    await fs.writeFile(path.join(mockRun, snapshotPath), bytes);
+    mockMetadataControlFiles.push({ path: controlPath, state: "present", sha256: digest(bytes), snapshotPath });
+  }
+  mockMetadataControlFiles.push(
+    { path: ".mssr/project-context-segments.json", state: "absent", sha256: null, snapshotPath: null },
+    { path: ".mssr/project-context-refs.json", state: "absent", sha256: null, snapshotPath: null },
+  );
   await writeJson(path.join(mockBridge, "package.json"), { type: "module" });
   const mockRegistrySource = [
     "export function createToolRegistry(modules) {",
@@ -643,7 +677,7 @@ try {
     '  return {',
     '    has: (name) => names.has(name),',
     '    async call(name, args) {',
-    '      if (name === "mssr_librarian_search") { if (args.query.query.includes("empty-search")) return { sourceCount: 1, results: [] }; return { sourceCount: 1, results: [{ title: "Sample", headingPath: ["Sample"], score: 1, handle }] }; }',
+    '      if (name === "mssr_librarian_search") { if (args.metadataMode === "project-context-librarian-sidecar" && args.query.metadata?.domain !== "architecture") throw new Error("sidecar treatment must pass the exact frozen metadata filter"); if (args.metadataMode === "off" && args.query.metadata !== undefined) throw new Error("metadata filter must not leak into the off control"); if (args.query.query.includes("empty-search")) return { sourceCount: 1, results: [] }; const projection = args.metadataMode === "project-context-librarian-sidecar" ? [{ schemaVersion: 1, projectionFingerprint: "a".repeat(64), atomId: "fixture-atom", recordFingerprint: "b".repeat(64), provenanceIsCallerAsserted: true, matches: [], filterMatches: [{ field: "domain", value: "architecture" }] }] : []; return { sourceCount: 1, results: [{ title: "Sample", headingPath: ["Sample"], score: 1, handle, metadataProjectionMatches: projection }] }; }',
     '      if (name === "mssr_librarian_jev_select") { if (args.query.includes("empty-search")) throw new Error("selector must not run when search returns no candidates"); const labelKeys = ["answerability", "expectedHeading", "expectedStartLine", "expectedEndLine", "acceptableRanges", "relevantRanges"]; const requestText = JSON.stringify(args); if (labelKeys.some((key) => key in args) || requestText.includes("LABEL_ONLY_SENTINEL") || requestText.includes("97831") || requestText.includes("unanswerable")) throw new Error("labels must not be sent to Jev"); if (args.query.includes("absent")) return { status: "abstained", choice: "none", provider: "fixture-mock", model: "fixture-no-network", providerConfidence: 0.11, confidenceCalibration: "uncalibrated", evidenceSufficiency: 0.13, noul: 0.65, usage: { input_tokens: 4, output_tokens: 1 }, selected: null }; failNextFetch = args.query.includes("fetch-failure"); const choice = args.query.includes("conflict") ? "none" : "fixture-handle-01"; return { status: "selected", choice, provider: "fixture-mock", model: "fixture-no-network", providerConfidence: 0.91, confidenceCalibration: "uncalibrated", evidenceSufficiency: 0.87, noul: 0.65, usage: { input_tokens: 4, output_tokens: 2 }, candidateCount: 1, selectionMode: "single-pass", selectionPasses: 1, providerCalls: 1, finalistCount: 1, candidateRangeDiagnostics: { offered: 1, eligible: 1, oversizedOmitted: 0, maxFetchChars: 20000, lengthUnit: "utf16-code-units" }, rangeOverlapDiagnostics: { sameSourceRevisionPairs: 0, overlappingPairCount: 0, nestedPairCount: 0, exactRangePairCount: 0, partialOverlapPairCount: 0, pairs: [], truncated: false, mutationApplied: false }, batchAssessments: [], providersUsed: ["fixture-mock"], modelsUsed: ["fixture-no-network"], selected: { title: "Sample", headingPath: ["Sample"], handle } }; }',
     '      if (name === "mssr_librarian_fetch") { if (failNextFetch) { failNextFetch = false; throw new Error("fixture fetch failure"); } return { handle, text, fingerprint, projectOwner: owner, advisoryOnly: true, truthAuthority: false }; }',
     '      if (name === "mssr_librarian_evidence_pack") {',
@@ -668,7 +702,7 @@ try {
   const mockCasesBytes = await writeJson(path.join(mockRun, "inputs/cases.json"), {
     schemaVersion: 1,
     cases: [
-      { id: "mock-case-01", sourceRef: "docs/one.md", query: "What is the exact fixture evidence?" },
+      { id: "mock-case-01", sourceRef: "docs/one.md", query: "What is the exact fixture evidence?", metadataMode: "project-context-librarian-sidecar", metadata: { domain: "architecture" } },
       { id: "mock-unanswerable", sourceRef: "docs/one.md", query: "What absent fact is not in this fixture?" },
       { id: "mock-conflicted", sourceRef: "docs/one.md", query: "Check this conflict fixture." },
       { id: "mock-fetch-failure", sourceRef: "docs/one.md", query: "Select the exact fixture despite a fetch-failure." },
@@ -746,7 +780,9 @@ try {
     corpus: {
       projectRoot: mockProject,
       sources: [{ sourceRef: "docs/one.md", sha256: digest(mockSourceBytes), snapshotPath: "inputs/sources/source-01.md" }],
+      metadataControlFiles: mockMetadataControlFiles,
     },
+    runtime: { metadataMode: "off" },
     provider: {
       provider: "fixture-mock",
       requestedModel: "fixture-no-network",
@@ -764,6 +800,34 @@ try {
     labels: { adjudication: "fixture-only", labelFileSha256: digest(mockLabelsBytes) },
   };
   await writeJson(path.join(mockRun, "manifest.json"), mockManifest);
+  const mockDryRun = spawnSync(process.execPath, [mockRunnerPath], {
+    cwd: mockRun,
+    encoding: "utf8",
+    windowsHide: true,
+    env: { ...process.env, MSSR_TEST_OWNER: mockProject },
+  });
+  assert.equal(mockDryRun.status, 0, mockDryRun.stderr);
+  const mockDryRunSummary = JSON.parse(mockDryRun.stdout);
+  assert.equal(mockDryRunSummary.labelsParsed, false);
+  assert.equal(mockDryRunSummary.cases[0].metadataMode, "project-context-librarian-sidecar");
+  assert.deepEqual(mockDryRunSummary.cases[0].metadata, { domain: "architecture" });
+  assert.deepEqual(mockDryRunSummary.metadataControlFiles.map((item) => item.state), ["present", "present", "absent", "absent"]);
+
+  const librarianControlPath = path.join(mockProject, ".mssr/project-context-librarian.json");
+  const originalLibrarianControl = await fs.readFile(librarianControlPath);
+  await fs.writeFile(librarianControlPath, Buffer.from('{"schemaVersion":1,"entries":["changed"]}\n', "utf8"));
+  const staleMetadataRun = spawnSync(process.execPath, [mockRunnerPath, "--allow-network"], {
+    cwd: mockRun,
+    encoding: "utf8",
+    windowsHide: true,
+    env: { ...process.env, MSSR_TEST_OWNER: mockProject },
+  });
+  assert.notEqual(staleMetadataRun.status, 0, "a stale Project Context sidecar must fail before live calls");
+  assert.match(staleMetadataRun.stderr, /changed since freeze/u);
+  await assert.rejects(fs.access(path.join(mockRun, "request-events.jsonl")),
+    "stale metadata controls must fail before recording a provider request");
+  await fs.writeFile(librarianControlPath, originalLibrarianControl);
+
   const mockLiveRun = spawnSync(process.execPath, [mockRunnerPath, "--allow-network"], {
     cwd: mockRun,
     encoding: "utf8",
@@ -828,6 +892,12 @@ try {
   const mockContainedRecord = JSON.parse(mockRecordLines[4]);
   const mockEmptySearchRecord = JSON.parse(mockRecordLines[5]);
   assert.equal(mockRecord.jev.evidenceSufficiency, 0.87);
+  assert.equal(mockRecord.metadataMode, "project-context-librarian-sidecar");
+  assert.deepEqual(mockRecord.metadataFilter, { domain: "architecture" });
+  assert.equal(mockRecord.search.metadataProjectionMatchCount, 1,
+    "the runner must preserve evidence that the sidecar projection participated in retrieval");
+  assert.deepEqual(mockRecord.search.results[0].metadataProjectionMatches[0].filterMatches,
+    [{ field: "domain", value: "architecture" }]);
   assert.equal(mockRecord.jev.choice, "fixture-handle-01");
   assert.equal(mockRecord.jev.noul, 0.65);
   assert.equal(mockRecord.jev.selectionMode, "single-pass");
@@ -872,6 +942,8 @@ try {
   assert.equal(mockCompletion.jevRequestIdsReturned, 0, "fake provider flow must not claim returned Jev request IDs");
   assert.equal(mockCompletion.providerTransportInvocationsObserved, null,
     "runner cannot observe network transport calls below the Bridge adapter");
+  assert.deepEqual(mockCompletion.metadataModes, ["project-context-librarian-sidecar", "off"]);
+  assert.deepEqual(mockCompletion.metadataControlFiles.map((item) => item.state), ["present", "present", "absent", "absent"]);
   assert.equal("networkOptInUsed" in mockCompletion, false,
     "authorization must not be mislabeled as observed network use");
   await assert.rejects(fs.access(path.join(mockRun, ".runner.lock")), "mock live path must release its exclusive packet lock");

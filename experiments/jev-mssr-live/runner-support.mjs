@@ -5,10 +5,114 @@ import { createHash } from "node:crypto";
 
 const isSha256 = (value) => typeof value === "string" && /^[0-9a-f]{64}$/u.test(value);
 const sha256Text = (value) => createHash("sha256").update(Buffer.from(value, "utf8")).digest("hex");
+const sha256Bytes = (value) => createHash("sha256").update(value).digest("hex");
 const rangeFingerprintPayload = (rangeKind, text) => rangeKind === "section" ? text.trim() : text;
 const ownerKey = (value) => typeof value === "string"
   ? path.normalize(value.trim()).replace(/[\\/]+$/u, "").toLocaleLowerCase("en-US")
   : "";
+
+export const PROJECT_CONTEXT_METADATA_MODES = Object.freeze([
+  "off",
+  "project-context-single-section",
+  "project-context-librarian-sidecar",
+]);
+
+export const PROJECT_CONTEXT_METADATA_CONTROL_PATHS = Object.freeze([
+  ".mssr/project-context.json",
+  ".mssr/project-context-librarian.json",
+  ".mssr/project-context-segments.json",
+  ".mssr/project-context-refs.json",
+]);
+
+export function resolveMetadataRunConfig(manifest, cases) {
+  const defaultMode = manifest.runtime?.metadataMode ?? "off";
+  assert.ok(PROJECT_CONTEXT_METADATA_MODES.includes(defaultMode), `unsupported runtime metadataMode: ${defaultMode}`);
+  assert.ok(Array.isArray(cases), "cases.json must contain a cases array");
+  const byCaseId = new Map();
+  let requiresProjectContextControls = false;
+
+  for (const item of cases) {
+    const mode = item.metadataMode ?? defaultMode;
+    assert.ok(PROJECT_CONTEXT_METADATA_MODES.includes(mode), `case ${item.id} has unsupported metadataMode: ${mode}`);
+    const metadata = item.metadata;
+    if (metadata !== undefined) {
+      assert.ok(metadata && typeof metadata === "object" && !Array.isArray(metadata), `case ${item.id} metadata must be an object`);
+      const entries = Object.entries(metadata);
+      assert.ok(entries.length > 0, `case ${item.id} metadata cannot be empty`);
+      assert.notEqual(mode, "off", `case ${item.id} cannot apply metadata filters when metadataMode is off`);
+      for (const [key, value] of entries) {
+        assert.ok(typeof key === "string" && key.trim().length > 0, `case ${item.id} metadata keys must be non-empty strings`);
+        assert.ok(typeof value === "string" || (typeof value === "number" && Number.isFinite(value)) || typeof value === "boolean",
+          `case ${item.id} metadata values must be strings, finite numbers, or booleans`);
+        if (typeof value === "string") assert.ok(value.length <= 240, `case ${item.id} metadata value exceeds 240 characters`);
+      }
+    }
+    if (mode !== "off") requiresProjectContextControls = true;
+    byCaseId.set(item.id, { metadataMode: mode, metadata: metadata ?? null });
+  }
+  return { byCaseId, requiresProjectContextControls };
+}
+
+async function optionalFileBytes(filePath) {
+  try {
+    return await fs.readFile(filePath);
+  } catch (error) {
+    if (error?.code === "ENOENT") return null;
+    throw error;
+  }
+}
+
+export async function validateProjectContextMetadataControls({ manifest, runDir, projectRoot, required = false }) {
+  const entries = manifest.corpus?.metadataControlFiles;
+  if (entries === undefined) {
+    assert.ok(!required, "Project Context metadata runs require frozen metadataControlFiles for all four control paths");
+    return [];
+  }
+  assert.ok(Array.isArray(entries), "corpus.metadataControlFiles must be an array");
+  assert.equal(entries.length, PROJECT_CONTEXT_METADATA_CONTROL_PATHS.length,
+    "metadataControlFiles must explicitly freeze all four Project Context control paths");
+  const byPath = new Map();
+  for (const entry of entries) {
+    assert.ok(entry && typeof entry === "object", "metadata control entry must be an object");
+    assert.ok(PROJECT_CONTEXT_METADATA_CONTROL_PATHS.includes(entry.path), `unsupported Project Context metadata control path: ${entry.path}`);
+    assert.ok(!byPath.has(entry.path), `duplicate Project Context metadata control path: ${entry.path}`);
+    byPath.set(entry.path, entry);
+  }
+  for (const controlPath of PROJECT_CONTEXT_METADATA_CONTROL_PATHS) {
+    assert.ok(byPath.has(controlPath), `missing explicit Project Context metadata control state: ${controlPath}`);
+  }
+
+  const frozen = [];
+  for (const controlPath of PROJECT_CONTEXT_METADATA_CONTROL_PATHS) {
+    const entry = byPath.get(controlPath);
+    const actualBytes = await optionalFileBytes(path.join(projectRoot, ...controlPath.split("/")));
+    if (entry.state === "absent") {
+      assert.equal(entry.sha256, null, `${controlPath} absent state must use sha256: null`);
+      assert.equal(entry.snapshotPath, null, `${controlPath} absent state must use snapshotPath: null`);
+      assert.equal(actualBytes, null, `${controlPath} was absent at freeze but now exists`);
+      frozen.push({ path: controlPath, state: "absent", sha256: null });
+      continue;
+    }
+
+    assert.equal(entry.state, "present", `${controlPath} state must be present or absent`);
+    assert.ok(isSha256(entry.sha256), `${controlPath} present state needs a SHA-256 digest`);
+    assert.ok(typeof entry.snapshotPath === "string" && entry.snapshotPath.startsWith("inputs/metadata/"),
+      `${controlPath} snapshotPath must be inside inputs/metadata/`);
+    const snapshotFile = path.resolve(runDir, entry.snapshotPath);
+    const metadataRoot = path.resolve(runDir, "inputs/metadata");
+    const metadataRootReal = await fs.realpath(metadataRoot);
+    const snapshotFileReal = await fs.realpath(snapshotFile);
+    const relativeSnapshot = path.relative(metadataRootReal, snapshotFileReal);
+    assert.ok(relativeSnapshot && !relativeSnapshot.startsWith(`..${path.sep}`) && relativeSnapshot !== ".." && !path.isAbsolute(relativeSnapshot),
+      `${controlPath} snapshotPath escapes inputs/metadata`);
+    const snapshotBytes = await fs.readFile(snapshotFile);
+    assert.equal(sha256Bytes(snapshotBytes), entry.sha256, `${controlPath} frozen snapshot changed`);
+    assert.ok(actualBytes !== null, `${controlPath} was present at freeze but is now absent`);
+    assert.equal(sha256Bytes(actualBytes), entry.sha256, `${controlPath} changed since freeze`);
+    frozen.push({ path: controlPath, state: "present", sha256: entry.sha256 });
+  }
+  return frozen;
+}
 
 export function validateRunInputs(cases, labels, sourceRefs) {
   assert.ok(Array.isArray(cases) && cases.length > 0, "cases.json must contain at least one case");
