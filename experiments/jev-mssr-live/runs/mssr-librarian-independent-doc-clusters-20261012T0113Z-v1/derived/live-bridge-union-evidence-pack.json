@@ -1,0 +1,65 @@
+{
+  "projectOwner": "d:/dev/mssr",
+  "sourceCount": 3,
+  "schemaVersion": 1,
+  "kind": "mssr-librarian-evidence-pack",
+  "assembly": "verbatim-source-ranges",
+  "paragraphs": [
+    {
+      "ordinal": 1,
+      "exactText": "Adapters translate host-specific discovery and delivery to the shared contract.\nMauroPrime Bridge is an adapter and transport owner, not the semantic owner of a\nrepository or of MSSR routing. Codex-local, OpenCode-local, Bridge, and other\nhosts can therefore share portable routing metadata without being forced through\na single execution bridge.",
+      "citation": {
+        "display": "docs/ARCHITECTURE.md:L71-L75",
+        "handleId": "385adf2a5d4f0d9868751967422853764bfdb1eee3480e721224a5989c6f3589",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "revision": "eb32c84a89f29e2b66db490c279c6f418b6d57462cbe770424bb502baccfc285",
+        "rangeId": "block-11",
+        "rangeKind": "block",
+        "startLine": 71,
+        "endLine": 75,
+        "fingerprint": "ca35698e36a29566b98f24f089de24c4f4481cb8ca786f652e7c54990e70c10c",
+        "privacyClass": "project-metadata"
+      }
+    },
+    {
+      "ordinal": 2,
+      "exactText": "Each notice should contain a bounded code, severity, source, timestamp, dedupe key, short message, optional evidence reference, and suggested next action. A notice may trigger a replan or context request, but never authorizes a destructive action.",
+      "citation": {
+        "display": "docs/ROUTING_EVIDENCE_OBSERVATORY.md:L131-L131",
+        "handleId": "fa7eda70787ce52cdcfef8c96cce2c192960c51e043894199d920aa27663f01e",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "docs/ROUTING_EVIDENCE_OBSERVATORY.md",
+        "revision": "154d4e173bde2244d7beada1827299ade54484c0a2745d455b9297d76b87ebae",
+        "rangeId": "block-30",
+        "rangeKind": "block",
+        "startLine": 131,
+        "endLine": 131,
+        "fingerprint": "aa8fb8ca8736d300bbed18d676df11fe0640a9c4a05aac32dbb2cbbab5226384",
+        "privacyClass": "project-metadata"
+      }
+    },
+    {
+      "ordinal": 3,
+      "exactText": "- Made `skill_recommend` a compatibility facade over `planSkillRoute`, accepting structured intent, context, caller, stage, completed phases and trace id.",
+      "citation": {
+        "display": "docs/skill-routing/INCIDENTS.md:L477-L477",
+        "handleId": "8c62f3064533f90ba957d5161c62ecfb65910e0bef7ed045d5ee29ad7378ee8e",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "docs/skill-routing/INCIDENTS.md",
+        "revision": "19a72f47b656ff4ae210c2f2cfcfeb8bdb809b7eaf63ed9985ffffd217c782f9",
+        "rangeId": "block-82/item-1",
+        "rangeKind": "block",
+        "startLine": 477,
+        "endLine": 477,
+        "fingerprint": "686e677904e4da1b69b757b9545797c0cfe2e0e3d68128189efbb77ed8582f12",
+        "privacyClass": "project-metadata"
+      }
+    }
+  ],
+  "totalFetchedChars": 747,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "canonicalRewriteAllowed": false,
+  "ownerAndPrivacyAreCallerAsserted": true
+}

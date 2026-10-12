@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "design": "Three source-disjoint current MSSR documents, one frozen query per document, real Jev exact-range selection, exact fetch/fingerprint validation, and one evidence pack per selected handle. A separate provider-off union and host paragraph may be composed only from selected validated handles.",
+  "priorExposure": {
+    "inspectedRunDirectories": 54,
+    "explicitSourceRefMatches": 0,
+    "byteIdenticalArchivedCopies": 0,
+    "residual": "Indirect exposure through summaries, conversations, or non-identical excerpts cannot be ruled out."
+  },
+  "questions": {
+    "bridgeSemanticOwnership": "What role does Bridge have relative to MSSR routing and other hosts?",
+    "noticeAuthorityContract": "What bounded fields and allowed/forbidden actions define a notice?",
+    "recommendationCorrection": "What exact change returned skill_recommend to deterministic route planning?"
+  },
+  "primaryMetrics": [
+    "expected target present in deterministic search results",
+    "Jev selected the exact accepted range",
+    "exact fetch and current fingerprint validation",
+    "individual evidence-pack validation",
+    "union retention of only selected validated ranges",
+    "blind answer coverage and overbreadth",
+    "raw Choice/evidence-sufficiency and token usage, descriptive only"
+  ],
+  "independentUnit": "Three distinct current MSSR documents, one query per document; source-cluster count is descriptive and does not establish statistical independence.",
+  "minimumSupport": {
+    "overall": 30,
+    "interpretation": "Reporting floor; three document-disjoint exploratory cases do not meet it."
+  },
+  "uncertaintyMethod": "Raw counts only; no inferential claim, no threshold tuning, and no calibration.",
+  "noThresholdTuning": true,
+  "unionPolicy": "Use only handles selected by Jev and exact-fetch/fingerprint validated. If any case is missing or invalid, report the union as incomplete and do not substitute an expected range.",
+  "blindReview": {
+    "reviewer": "separate Luna after run",
+    "input": "Anonymized queries, exact selected text, citations, union and host paragraph; omit labels, source identifiers, scores, and statuses.",
+    "labels": [
+      "direct",
+      "partial",
+      "unsupported",
+      "overbroad",
+      "ambiguous"
+    ]
+  },
+  "excludedClaims": [
+    "owner-gold accuracy",
+    "protected holdout generalization",
+    "confidence calibration",
+    "production adoption",
+    "automatic query decomposition",
+    "Jev-generated prose",
+    "statistical independence"
+  ]
+}

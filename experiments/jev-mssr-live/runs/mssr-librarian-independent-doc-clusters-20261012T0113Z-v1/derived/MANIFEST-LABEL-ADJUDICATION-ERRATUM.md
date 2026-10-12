@@ -1,0 +1,5 @@
+# Manifest label declaration erratum
+
+The frozen `manifest.json` declares the adjudication file path and SHA-256 under `labels`, but does not repeat the adjudication status/description at the manifest level. The frozen `summary.json` consequently says “Label/adjudication status: not declared; see manifest.” That runner summary wording is incomplete: `inputs/labels.json` contains a prospective adjudication statement and its digest matches the manifest's `labelFileSha256` (`4dabef634ff54e5062106b5586fa6bbaefcf072a823dc635b04f15204db3c87a`).
+
+The labels state that the three source documents were absent as explicit `sourceRef`s and byte-identical archived Markdown in 54 preceding run directories, while acknowledging possible indirect exposure and explicitly rejecting owner-gold/protected-holdout status. The label file is the authoritative declaration. The frozen manifest and summary are intentionally not rewritten; this append-only erratum supplements their recording gap.

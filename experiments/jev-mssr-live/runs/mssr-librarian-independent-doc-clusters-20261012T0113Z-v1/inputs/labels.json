@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "adjudication": "Prospective source-derived targets frozen before live calls. The three current MSSR documents were absent as explicit sourceRefs and byte-identical archived Markdown in 54 prior run directories. Residual indirect exposure remains possible; this is exploratory document-disjoint evidence, not owner-gold or protected holdout.",
+  "cases": [
+    {
+      "caseId": "bridge-semantic-ownership",
+      "sourceRef": "docs/ARCHITECTURE.md",
+      "expectedHeading": "Components",
+      "expectedStartLine": 71,
+      "expectedEndLine": 75,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "expectedHeading": "Components",
+          "startLine": 71,
+          "endLine": 75
+        }
+      ]
+    },
+    {
+      "caseId": "notice-authority-contract",
+      "sourceRef": "docs/ROUTING_EVIDENCE_OBSERVATORY.md",
+      "expectedHeading": "Context messages, inboxes, and receipts",
+      "expectedStartLine": 131,
+      "expectedEndLine": 131,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/ROUTING_EVIDENCE_OBSERVATORY.md",
+          "expectedHeading": "Context messages, inboxes, and receipts",
+          "startLine": 131,
+          "endLine": 131
+        }
+      ]
+    },
+    {
+      "caseId": "recommendation-route-correction",
+      "sourceRef": "docs/skill-routing/INCIDENTS.md",
+      "expectedHeading": "Correction",
+      "expectedStartLine": 477,
+      "expectedEndLine": 477,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/skill-routing/INCIDENTS.md",
+          "expectedHeading": "Correction",
+          "startLine": 477,
+          "endLine": 477
+        }
+      ]
+    }
+  ]
+}

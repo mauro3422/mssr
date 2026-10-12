@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "bridge-semantic-ownership",
+      "sourceRef": "docs/ARCHITECTURE.md",
+      "query": "What is MauroPrime Bridge's role relative to MSSR routing ownership, and what benefit does that create for other hosts?"
+    },
+    {
+      "id": "notice-authority-contract",
+      "sourceRef": "docs/ROUTING_EVIDENCE_OBSERVATORY.md",
+      "query": "Which bounded fields must a context notice carry, what may it trigger, and what action does it never authorize?"
+    },
+    {
+      "id": "recommendation-route-correction",
+      "sourceRef": "docs/skill-routing/INCIDENTS.md",
+      "query": "What change made skill_recommend a compatibility facade over deterministic planSkillRoute?"
+    }
+  ]
+}

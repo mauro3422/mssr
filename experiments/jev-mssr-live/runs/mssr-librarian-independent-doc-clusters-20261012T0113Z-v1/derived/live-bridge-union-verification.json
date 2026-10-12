@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-12T01:22:46.831Z",
+  "bridge": {
+    "version": "0.6.172",
+    "runtimeBootId": "ced583a2-8431-486a-bdb4-0f7d24928ff2"
+  },
+  "inputHandles": [
+    {
+      "id": "385adf2a5d4f0d9868751967422853764bfdb1eee3480e721224a5989c6f3589",
+      "sourceRef": "docs/ARCHITECTURE.md",
+      "revision": "eb32c84a89f29e2b66db490c279c6f418b6d57462cbe770424bb502baccfc285",
+      "startLine": 71,
+      "endLine": 75,
+      "fingerprint": "ca35698e36a29566b98f24f089de24c4f4481cb8ca786f652e7c54990e70c10c"
+    },
+    {
+      "id": "fa7eda70787ce52cdcfef8c96cce2c192960c51e043894199d920aa27663f01e",
+      "sourceRef": "docs/ROUTING_EVIDENCE_OBSERVATORY.md",
+      "revision": "154d4e173bde2244d7beada1827299ade54484c0a2745d455b9297d76b87ebae",
+      "startLine": 131,
+      "endLine": 131,
+      "fingerprint": "aa8fb8ca8736d300bbed18d676df11fe0640a9c4a05aac32dbb2cbbab5226384"
+    },
+    {
+      "id": "8c62f3064533f90ba957d5161c62ecfb65910e0bef7ed045d5ee29ad7378ee8e",
+      "sourceRef": "docs/skill-routing/INCIDENTS.md",
+      "revision": "19a72f47b656ff4ae210c2f2cfcfeb8bdb809b7eaf63ed9985ffffd217c782f9",
+      "startLine": 477,
+      "endLine": 477,
+      "fingerprint": "686e677904e4da1b69b757b9545797c0cfe2e0e3d68128189efbb77ed8582f12"
+    }
+  ],
+  "sourceRefs": [
+    "docs/ARCHITECTURE.md",
+    "docs/ROUTING_EVIDENCE_OBSERVATORY.md",
+    "docs/skill-routing/INCIDENTS.md"
+  ],
+  "checks": {
+    "kind": true,
+    "paragraphCountMatches": true,
+    "allSelectedHandlesRetained": true,
+    "allTextsMatchExactFetch": true,
+    "allFingerprintsMatchSelected": true,
+    "allSourcesMatchHandles": true,
+    "advisoryOnly": true,
+    "truthAuthorityFalse": true,
+    "canonicalRewriteDisallowed": true
+  },
+  "passed": true,
+  "paragraphCount": 3,
+  "totalFetchedChars": 747,
+  "claim": "Provider-off union of only the three live Bridge Jev selections; exact text/citation/fingerprint validation is bounded to these selected handles."
+}
