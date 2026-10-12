@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "source": "two independent blind source-only Luna reviews",
+  "adjudication": "Reviewers received the exact source and queries before Jev calls. Labels are scoped to the frozen Markdown file, were not exposed to Jev, and are not repository-owner gold.",
+  "cases": [
+    {
+      "caseId": "ternary-v1-iterations-positive",
+      "sourceRef": "models/README.md",
+      "answerability": "answerable",
+      "expectedHeading": "Training",
+      "expectedStartLine": 24,
+      "expectedEndLine": 24,
+      "acceptableRanges": [
+        {
+          "sourceRef": "models/README.md",
+          "expectedHeading": "Training",
+          "startLine": 24,
+          "endLine": 24
+        }
+      ],
+      "evidence": "La tabla Training informa 5000 iteraciones."
+    },
+    {
+      "caseId": "ternary-human-coherence-negative",
+      "sourceRef": "models/README.md",
+      "answerability": "unanswerable",
+      "evidence": "El archivo no informa porcentajes ni evaluadores humanos; la sección de calidad describe el texto cualitativamente."
+    }
+  ]
+}

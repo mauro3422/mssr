@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "source": "two independent blind source-only Luna reviews",
+  "adjudication": "Reviewers received the exact source and queries before Jev calls. Labels are scoped to the frozen Markdown file, were not exposed to Jev, and are not repository-owner gold.",
+  "cases": [
+    {
+      "caseId": "mannequin-acceptance-artifacts-positive",
+      "sourceRef": "docs/ANIMATION_PIPELINE.md",
+      "answerability": "answerable",
+      "expectedHeading": "8. Accept mannequin motion",
+      "expectedStartLine": 163,
+      "expectedEndLine": 171,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/ANIMATION_PIPELINE.md",
+          "expectedHeading": "8. Accept mannequin motion",
+          "startLine": 163,
+          "endLine": 171
+        }
+      ],
+      "evidence": "Guardar identidad de Action, linaje, paquete de referencia, manifiesto de poses, imágenes/manifiestos de revisión, defectos medidos y limitaciones aceptadas."
+    },
+    {
+      "caseId": "mannequin-blender-version-negative",
+      "sourceRef": "docs/ANIMATION_PIPELINE.md",
+      "answerability": "unanswerable",
+      "evidence": "El documento menciona Blender y el MCP, pero no exige una versión mínima de Blender."
+    }
+  ]
+}

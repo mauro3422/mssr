@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "source": "two independent blind source-only Luna reviews",
+  "adjudication": "Supplemental post-hoc project replacement; queries reviewed independently against exact frozen file before live Jev calls. File-scoped only, not repository-owner gold. This run is not part of the originally preregistered four-project cohort.",
+  "cases": [
+    {
+      "caseId": "mauroasset-preview-formats-positive",
+      "sourceRef": "README.md",
+      "answerability": "answerable",
+      "expectedHeading": "Safety contract",
+      "expectedStartLine": 44,
+      "expectedEndLine": 44,
+      "acceptableRanges": [
+        {
+          "sourceRef": "README.md",
+          "expectedHeading": "Safety contract",
+          "startLine": 44,
+          "endLine": 44
+        }
+      ],
+      "relevantRanges": [
+        {
+          "sourceRef": "README.md",
+          "expectedHeading": "Safety contract",
+          "startLine": 42,
+          "endLine": 46
+        }
+      ],
+      "evidence": "README.md declara en la línea 44 que solo se permiten derivados PNG/JPEG/WebP para dist/previews."
+    },
+    {
+      "caseId": "mauroasset-preview-resolution-negative",
+      "sourceRef": "README.md",
+      "answerability": "unanswerable",
+      "evidence": "El archivo no establece una resolución mínima en píxeles para aprobar un preview."
+    }
+  ]
+}

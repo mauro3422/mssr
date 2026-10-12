@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "cohortId": "mssr-librarian-spanish-crossproject-pilot-20261012T221515Z-v1",
+  "createdAt": "2026-10-12T22:15:55.179Z",
+  "status": "passed",
+  "networkRequests": 0,
+  "projects": [
+    {
+      "projectId": "llm-rig",
+      "runId": "mssr-librarian-spanish-crossproject-pilot-20261012T221515Z-v1-llm-rig",
+      "caseCount": 2,
+      "sourceRef": "README.md",
+      "sourceSha256": "e90aa0465c4e230c87ae426ba82faa4adae7192e1291e448842effa7e22bc6cf",
+      "sourceHead": "8f858b7c783911172ec5ef227f8f764757f9aa32",
+      "labelsParsedAndValidated": true,
+      "headingPathsValidated": true,
+      "metadataMode": "off",
+      "bridgeBuildArtifactsValidated": 5,
+      "networkRequests": 0
+    },
+    {
+      "projectId": "ternary",
+      "runId": "mssr-librarian-spanish-crossproject-pilot-20261012T221515Z-v1-ternary",
+      "caseCount": 2,
+      "sourceRef": "models/README.md",
+      "sourceSha256": "4957d83ec98416087d1a19064e9e53511637c7ff3256355b41271660526db26a",
+      "sourceHead": "fa9e2db3a7b9f72ab78ba92b84e894103ee03cd7",
+      "labelsParsedAndValidated": true,
+      "headingPathsValidated": true,
+      "metadataMode": "off",
+      "bridgeBuildArtifactsValidated": 5,
+      "networkRequests": 0
+    },
+    {
+      "projectId": "codecraft",
+      "runId": "mssr-librarian-spanish-crossproject-pilot-20261012T221515Z-v1-codecraft",
+      "caseCount": 2,
+      "sourceRef": "README.md",
+      "sourceSha256": "1977b98c9cb5fe538eee553eb0ddc6a0a21d74786b2241c1fb22ee497bf67456",
+      "sourceHead": "7607175d4b7977fed08c4ee7b39da93395aa4bc3",
+      "labelsParsedAndValidated": true,
+      "headingPathsValidated": true,
+      "metadataMode": "off",
+      "bridgeBuildArtifactsValidated": 5,
+      "networkRequests": 0
+    },
+    {
+      "projectId": "mannequin-animation-lab",
+      "runId": "mssr-librarian-spanish-crossproject-pilot-20261012T221515Z-v1-mannequin-animation-lab",
+      "caseCount": 2,
+      "sourceRef": "docs/ANIMATION_PIPELINE.md",
+      "sourceSha256": "77978c4436c52a9d9e80e43f670f9ff60e1c20c3219777041a0f0b1984bf8556",
+      "sourceHead": "baaab2da4411db548fca9415016c1ce00803e2d4",
+      "labelsParsedAndValidated": true,
+      "headingPathsValidated": true,
+      "metadataMode": "off",
+      "bridgeBuildArtifactsValidated": 5,
+      "networkRequests": 0
+    }
+  ]
+}

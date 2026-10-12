@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "cohortId": "mssr-librarian-spanish-crossproject-pilot-20261012T221515Z-v1",
+  "createdAt": "2026-10-12T22:15:15.866Z",
+  "status": "preflight-passed",
+  "goal": "Prospective Spanish source-disjoint pilot for the real MSSR Librarian search → live Jev select → exact fetch → evidence-pack path.",
+  "plan": {
+    "expectedRequests": 8,
+    "independentUnits": 4,
+    "queriesPerProject": 2,
+    "positiveCases": 4,
+    "sourceScopedNegativeCases": 4,
+    "metadataMode": "off",
+    "noThresholdTuning": true,
+    "uncertaintyMethod": "descriptive counts only; N=4 independent repository clusters, far below the declared support floor of 30",
+    "primaryMetrics": [
+      "search candidate coverage",
+      "Jev selected/abstained disposition",
+      "exact fetch and evidence-pack integrity"
+    ],
+    "secondaryMetrics": [
+      "selected-range overlap and overbreadth",
+      "raw uncalibrated Choice confidence",
+      "provider latency and token usage"
+    ]
+  },
+  "corpus": {
+    "sources": [
+      {
+        "projectId": "llm-rig",
+        "projectRoot": "D:\\Dev\\LLM-Rig",
+        "sourceRef": "README.md",
+        "snapshotPath": "inputs/sources/llm-rig-readme.md",
+        "sha256": "e90aa0465c4e230c87ae426ba82faa4adae7192e1291e448842effa7e22bc6cf",
+        "gitHead": "8f858b7c783911172ec5ef227f8f764757f9aa32",
+        "branch": "main",
+        "targetFileCleanAtFreeze": true,
+        "workingTreeCleanAtFreeze": false,
+        "workingTreeChangedPathCount": 2
+      },
+      {
+        "projectId": "ternary",
+        "projectRoot": "D:\\Dev\\ternary",
+        "sourceRef": "models/README.md",
+        "snapshotPath": "inputs/sources/ternary-models-readme.md",
+        "sha256": "4957d83ec98416087d1a19064e9e53511637c7ff3256355b41271660526db26a",
+        "gitHead": "fa9e2db3a7b9f72ab78ba92b84e894103ee03cd7",
+        "branch": "master",
+        "targetFileCleanAtFreeze": true,
+        "workingTreeCleanAtFreeze": false,
+        "workingTreeChangedPathCount": 1
+      },
+      {
+        "projectId": "codecraft",
+        "projectRoot": "D:\\Dev\\codecraft",
+        "sourceRef": "README.md",
+        "snapshotPath": "inputs/sources/codecraft-readme.md",
+        "sha256": "1977b98c9cb5fe538eee553eb0ddc6a0a21d74786b2241c1fb22ee497bf67456",
+        "gitHead": "7607175d4b7977fed08c4ee7b39da93395aa4bc3",
+        "branch": "main",
+        "targetFileCleanAtFreeze": true,
+        "workingTreeCleanAtFreeze": false,
+        "workingTreeChangedPathCount": 28
+      },
+      {
+        "projectId": "mannequin-animation-lab",
+        "projectRoot": "D:\\Dev\\mannequin-animation-lab",
+        "sourceRef": "docs/ANIMATION_PIPELINE.md",
+        "snapshotPath": "inputs/sources/mannequin-animation-pipeline.md",
+        "sha256": "77978c4436c52a9d9e80e43f670f9ff60e1c20c3219777041a0f0b1984bf8556",
+        "gitHead": "baaab2da4411db548fca9415016c1ce00803e2d4",
+        "branch": "master",
+        "targetFileCleanAtFreeze": true,
+        "workingTreeCleanAtFreeze": false,
+        "workingTreeChangedPathCount": 3
+      }
+    ],
+    "localHistoricalRunManifestAudit": {
+      "status": "no-matches",
+      "matchingManifestCount": 0,
+      "scannedRoot": "experiments/jev-mssr-live/runs/**/manifest.json",
+      "scopeLimit": "Does not prove Jev has never seen public documents or material outside the local run ledger; not a certified holdout."
+    }
+  },
+  "labelProtocol": {
+    "source": "two independent blind source-only Luna reviews",
+    "repositoryOwnerAdjudication": "none",
+    "labelsExposedToJev": false,
+    "positiveCasesWereNarrowedToSingleQuestions": true
+  },
+  "projects": [
+    {
+      "projectId": "llm-rig",
+      "runId": "mssr-librarian-spanish-crossproject-pilot-20261012T221515Z-v1-llm-rig",
+      "path": "projects/llm-rig"
+    },
+    {
+      "projectId": "ternary",
+      "runId": "mssr-librarian-spanish-crossproject-pilot-20261012T221515Z-v1-ternary",
+      "path": "projects/ternary"
+    },
+    {
+      "projectId": "codecraft",
+      "runId": "mssr-librarian-spanish-crossproject-pilot-20261012T221515Z-v1-codecraft",
+      "path": "projects/codecraft"
+    },
+    {
+      "projectId": "mannequin-animation-lab",
+      "runId": "mssr-librarian-spanish-crossproject-pilot-20261012T221515Z-v1-mannequin-animation-lab",
+      "path": "projects/mannequin-animation-lab"
+    }
+  ],
+  "provider": {
+    "requestedModel": "jev-1.13.0",
+    "bridgeVersion": "0.6.175",
+    "bridgeCommit": "999a8a218405c02a4f4bf9d408ec44074724f694",
+    "concurrency": 1
+  },
+  "notes": [
+    "Each child runner preserves the repository-specific projectRoot, so duplicate README.md basenames do not collapse source identity.",
+    "The two cases within each project are clustered repeated observations; denominators are four independent project clusters, not eight independent projects.",
+    "LLM-Rig, ternary, and mannequin-animation-lab have unrelated root-tree changes; their exact target files are clean at the recorded HEAD. Codecraft has extensive unrelated working-tree changes; its target README remains clean and exactly matches HEAD. No source project files were modified.",
+    "The baseline explicitly disables Project Context atoms, metadata filters, query variants, contradictions, and source discovery; results must not be attributed to those layers.",
+    "Live calls use the clean frozen Bridge release-module adapter because the active MSSR stdio registry remains degraded. Bridge HTTP is healthy; no Bridge restart is requested by this experiment."
+  ],
+  "preflight": {
+    "scriptPath": "preflight.mjs",
+    "scriptSha256": "8bced975de5a0c4fc6ba1ae3682320290b8e7267e2e0898e9c2fef12de0b7122",
+    "reportPath": "preflight-report.json",
+    "reportSha256": "9f55b721b6c0da5b3a4322d181a3f8daeb842236cb475827e1dd70f56a978b3f",
+    "networkRequests": 0
+  }
+}

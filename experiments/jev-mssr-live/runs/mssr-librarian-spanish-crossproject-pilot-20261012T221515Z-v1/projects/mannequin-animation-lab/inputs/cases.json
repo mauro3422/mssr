@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "mannequin-acceptance-artifacts-positive",
+      "query": "¿Qué evidencias deben guardarse al aceptar una animación de mannequin?",
+      "answerabilityCategory": "answerable",
+      "projectId": "mannequin-animation-lab",
+      "sourceRef": "docs/ANIMATION_PIPELINE.md"
+    },
+    {
+      "id": "mannequin-blender-version-negative",
+      "query": "¿Qué versión mínima de Blender exige este pipeline?",
+      "answerabilityCategory": "unanswerable",
+      "projectId": "mannequin-animation-lab",
+      "sourceRef": "docs/ANIMATION_PIPELINE.md"
+    }
+  ]
+}

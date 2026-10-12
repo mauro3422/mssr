@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "ternary-v1-iterations-positive",
+      "query": "¿Cuántas iteraciones se usaron para entrenar v1?",
+      "answerabilityCategory": "answerable",
+      "projectId": "ternary",
+      "sourceRef": "models/README.md"
+    },
+    {
+      "id": "ternary-human-coherence-negative",
+      "query": "¿Qué porcentaje de evaluadores humanos consideró coherente el texto generado?",
+      "answerabilityCategory": "unanswerable",
+      "projectId": "ternary",
+      "sourceRef": "models/README.md"
+    }
+  ]
+}

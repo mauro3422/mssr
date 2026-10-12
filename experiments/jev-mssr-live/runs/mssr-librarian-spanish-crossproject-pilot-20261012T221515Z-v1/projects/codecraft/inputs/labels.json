@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "source": "two independent blind source-only Luna reviews",
+  "adjudication": "Reviewers received the exact source and queries before Jev calls. Labels are scoped to the frozen Markdown file, were not exposed to Jev, and are not repository-owner gold.",
+  "cases": [
+    {
+      "caseId": "codecraft-model-request-state-positive",
+      "sourceRef": "README.md",
+      "answerability": "answerable",
+      "expectedHeading": "Current status",
+      "expectedStartLine": 11,
+      "expectedEndLine": 11,
+      "acceptableRanges": [
+        {
+          "sourceRef": "README.md",
+          "expectedHeading": "Current status",
+          "startLine": 11,
+          "endLine": 11
+        }
+      ],
+      "evidence": "La línea 11 dice expresamente que todavía no se hizo ninguna solicitud al modelo."
+    },
+    {
+      "caseId": "codecraft-responses-model-id-negative",
+      "sourceRef": "README.md",
+      "answerability": "unanswerable",
+      "evidence": "La línea 11 menciona un bucle de Responses API, pero el README no declara identificador de modelo."
+    }
+  ]
+}

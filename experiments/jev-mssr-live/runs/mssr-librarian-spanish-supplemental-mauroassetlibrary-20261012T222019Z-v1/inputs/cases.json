@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "mauroasset-preview-formats-positive",
+      "query": "¿Qué formatos de imagen se permiten copiar a dist/previews/?",
+      "answerabilityCategory": "answerable",
+      "projectId": "mauro-asset-library",
+      "sourceRef": "README.md"
+    },
+    {
+      "id": "mauroasset-preview-resolution-negative",
+      "query": "¿Qué resolución mínima en píxeles exige la verificación para aprobar un preview?",
+      "answerabilityCategory": "unanswerable",
+      "projectId": "mauro-asset-library",
+      "sourceRef": "README.md"
+    }
+  ]
+}

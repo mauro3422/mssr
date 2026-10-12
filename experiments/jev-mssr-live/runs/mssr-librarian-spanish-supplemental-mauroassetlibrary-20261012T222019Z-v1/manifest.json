@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-spanish-supplemental-mauroassetlibrary-20261012T222019Z-v1",
+  "createdAt": "2026-10-12T22:21:21.6720104Z",
+  "status": "prepared",
+  "goal": "Supplemental, post-hoc replacement for the original cohort's Codecraft project, which failed before any Jev call because it lacked canonical MSSR initialization.",
+  "plan": {
+    "expectedRequestCount": 2,
+    "independentUnit": "one distinct project repository; its positive and negative query form one cluster, not two independent samples",
+    "primaryMetric": "Source-scoped search candidate coverage and live Jev select/abstain disposition; exact fetched range/evidence-pack integrity.",
+    "secondaryMetrics": [
+      "target range presence in top-k search",
+      "selected range line overlap and overbreadth",
+      "raw Choice confidence as uncalibrated descriptive output",
+      "latency and reported token usage"
+    ],
+    "uncertaintyMethod": "descriptive counts only; this packet contributes one independent project cluster and cannot support reliability or calibration claims",
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30
+    },
+    "noThresholdTuning": true,
+    "metadataScope": "metadataMode=off; one explicit sourceRef per case; no atom metadata, query variants, contradiction review, or automatic source discovery",
+    "emptyPoolRule": "if search returns no handles, record no-candidate and do not call Jev; this is not a correct abstention",
+    "sourceLabelScope": "exact file only; not owner-adjudicated",
+    "thresholds": {}
+  },
+  "runtime": {
+    "metadataMode": "off"
+  },
+  "corpus": {
+    "projectRoot": "D:\\Dev\\MauroAssetLibrary",
+    "projectClusters": 1,
+    "sourceRevision": "Exact source SHA-256, repository HEAD/branch, target-file cleanliness, and frozen snapshot recorded.",
+    "holdoutStatus": "No matching local run-ledger exposure found; not a certified holdout and public-document exposure cannot be ruled out.",
+    "labelSource": "two independent blind source-only Luna reviews",
+    "labelsExposedToProvider": false,
+    "sources": [
+      {
+        "projectId": "mauro-asset-library",
+        "projectRoot": "D:\\Dev\\MauroAssetLibrary",
+        "sourceRef": "README.md",
+        "snapshotPath": "inputs/sources/mauroassetlibrary-readme.md",
+        "sha256": "65057f986eacce214170a243f9a89f4b2e7d2f16482d06aa2fb108701643efa6",
+        "gitHead": "cebcccb54138d44b5388455df51e0334082ce758",
+        "branch": "master",
+        "targetFileCleanAtFreeze": true,
+        "workingTreeCleanAtFreeze": false,
+        "workingTreeChangedPathCount": 6
+      }
+    ]
+  },
+  "labels": {
+    "path": "inputs/labels.json",
+    "labelFile": "inputs/labels.json",
+    "labelFileSha256": "cb127bb328e327b6891f79a563842d037116b8e2cdbeffc16624cf0c86c68045",
+    "source": "two independent blind source-only Luna reviews",
+    "adjudication": "Reviewers independently read the exact frozen README and queries before any live call; labels are file-scoped, not repository-owner gold.",
+    "exposedToRequests": false,
+    "frozenAt": "2026-10-12T22:21:21.6720104Z"
+  },
+  "instrument": {
+    "casesPath": "inputs/cases.json",
+    "casesSha256": "3a1a61b365bd17606280e48ecbbb7f476cf48beb6d02aebb3751797e055555c6",
+    "labelFile": "inputs/labels.json",
+    "labelFileSha256": "cb127bb328e327b6891f79a563842d037116b8e2cdbeffc16624cf0c86c68045",
+    "runnerPath": "runner.mjs",
+    "runnerSha256": "eabb3ff64985c759ad9700ee9a6a8e224adf319d2af317e73449916419334018",
+    "runnerSupportPath": "runner-support.mjs",
+    "runnerSupportSha256": "aedfa2e9a62ae0041efa311b234963dc3ad933c7f76141c9e90fed9854b980f2",
+    "selectionRecordPath": "selection-record.mjs",
+    "selectionRecordSha256": "3ae324e36f40d463e802439e652256138d6b50500be2d8207e6a9e035793dbce",
+    "runtime": "v24.16.0",
+    "lockfileSha256": null,
+    "requestSchemaVersion": 1
+  },
+  "provider": {
+    "mode": "live",
+    "provider": "TypeSafe Jev through frozen Bridge 0.6.175 release-module provider adapter",
+    "requestedModel": "jev-1.13.0",
+    "endpointIdentity": "api.typesafe.ai/v1/systemone",
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "credentialSource": "Windows Credential Manager; secret value not persisted",
+    "networkOptIn": true,
+    "networkOptInMethod": "explicit command-line --allow-network plus user authorization recorded in manifest",
+    "concurrency": 1,
+    "maxRetries": 1,
+    "timeoutMs": 30000,
+    "rawVendorResponsePersisted": false,
+    "providerRequestIdsAvailable": "unknown"
+  },
+  "source": {
+    "repository": "Bridge",
+    "bridgeRoot": "D:\\Dev\\bridge-mcp-mssr-0.2.112-query-variants",
+    "bridgeVersion": "0.6.175",
+    "gitCommit": "999a8a218405c02a4f4bf9d408ec44074724f694",
+    "branch": "codex/bridge-0.6.173-activation-readback",
+    "workingTreeClean": true,
+    "codeSnapshotCleanAtFreeze": true,
+    "providerAdapter": "createMssrJevBridgeDecisionProvider and createMssrSemanticEvidenceToolModule from frozen Bridge release build",
+    "buildArtifacts": [
+      {
+        "path": "dist/tool-registry.js",
+        "sha256": "670a6cbdec428f7ad0bd6f7a13173c716fd013c3eb87a54d1c9bb38d7f626554"
+      },
+      {
+        "path": "dist/tools/mssr-semantic-evidence-tools.js",
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa"
+      },
+      {
+        "path": "node_modules/@mauroprime/mssr/package.json",
+        "sha256": "9a57998657fb40e8fae0ec44efef08592f6a332c807d15a90792cdd4a27e4ea2"
+      },
+      {
+        "path": "scripts/read-windows-credential.ps1",
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e"
+      },
+      {
+        "path": "vendor/mauroprime-mssr-0.2.127.tgz",
+        "sha256": "70e79ae6e472517501ffdd38c4b0eaad740652c7d570b600bf17f90023703bfc"
+      }
+    ]
+  },
+  "safety": {
+    "readOnly": true,
+    "canonicalWrites": false,
+    "automaticThresholdChanges": false,
+    "rawPromptOrSecretPersisted": false
+  },
+  "projectContextPreflight": {
+    "path": ".mssr/project-context.json",
+    "healthLevel": "ok",
+    "manifestStatus": "valid",
+    "sha256": "83fcc28859f3da75bf1f8f0af6051a185ef52e28cd5ac6106613a91ef22e1447",
+    "purpose": "Experiment-specific required gate: Librarian needs canonical project initialization even with metadata mode off."
+  },
+  "preflight": {
+    "scriptPath": "preflight.mjs",
+    "scriptSha256": "f114652465ab15d5edc69b3b71a668516d9b8afa9e359fefb199892f6e0984bd",
+    "reportPath": "preflight-report.json",
+    "reportSha256": "2d31369e527d94cace28a5a1255e395e30f960847fcceab27aed7db2a0189ade",
+    "networkRequests": 0
+  }
+}

@@ -51,6 +51,13 @@ confidence-calibration evidence.
   helped. Source refs remain explicit and host-owned—this does not add crawling
   or automatic source discovery. Historical packets and their copied runners
   are not rewritten.
+- Every new runner invocation, including metadata-off dry runs, now requires a
+  parseable canonical `.mssr/project-context.json` v1 envelope before any Jev
+  request. The preflight records its SHA-256 in the dry-run, request fingerprint,
+  request-start event and completion summary. It checks presence and the
+  top-level v1 shape; the Librarian remains the authority for full schema and
+  source validation. This gate prevents missing project initialization from
+  being misreported as a Jev abstention or provider result.
 - Scoring keeps precise `acceptableRanges` separate from optional broader
   `relevantRanges`. An exact-range match is reported independently; a broader
   source section can count as a relevant answer only when its exact lines were
@@ -328,3 +335,13 @@ El registro de la plantilla también conserva el modo y número de pasadas de se
 ## Smoke live de contradicción y preview reversible (2026-10-12)
 
 [`mssr-semantic-relation-widgetforge-source-conflict-20261012T1945Z-v1`](runs/mssr-semantic-relation-widgetforge-source-conflict-20261012T1945Z-v1/) — un par de afirmaciones de WidgetForge/TODO.md, con búsqueda/fetch de dos rangos exactos, una llamada Jev de relación y un preview de síntesis. Jev devolvió `contradicts` con score raw 0,95, coincidente con la etiqueta source-derived; el evaluador determinista mantuvo `review` y el preview indicó `applyAllowed=false` y `canonicalRewriteAllowed=false`. Es un único par conocido, no gold del dueño ni una estimación de precisión/recall. No se modificó la fuente ni el umbral. La telemetría del wrapper confirma el resultado MCP, pero no expone invocaciones de transporte del proveedor ni hay replay runner.
+
+## Run 62: consultas españolas cross-project y gate de inicialización (2026-10-12)
+
+La cohorte original [`mssr-librarian-spanish-crossproject-pilot-20261012T221515Z-v1`](runs/mssr-librarian-spanish-crossproject-pilot-20261012T221515Z-v1/) congeló cuatro proyectos y ocho casos. LLM-Rig, Ternary y Mannequin completaron sus seis llamadas reales a Jev; Codecraft falló dos casos **antes de Jev** porque no tenía `.mssr/project-context.json`. La revisión del runner halló que el preflight solo exigía controles Project Context cuando los metadatos estaban activos, aunque `mssr_librarian_search` requiere inicialización del proyecto también con `metadataMode: off`.
+
+El paquete separado [`mssr-librarian-spanish-supplemental-mauroassetlibrary-20261012T222019Z-v1`](runs/mssr-librarian-spanish-supplemental-mauroassetlibrary-20261012T222019Z-v1/) sustituyó el cluster bloqueado sin alterar la cohorte congelada. MauroAssetLibrary tenía salud MSSR `ok`; un preflight suplementario verificó manifiesto canónico, fuente y cinco artefactos Bridge antes del dry-run y las dos llamadas Jev. En conjunto hubo cuatro clusters exitosos de cuatro proyectos (tres de la cohorte original y un suplemento post-hoc), cuatro selecciones positivas, cuatro abstenciones negativas, cuatro fetches exactos y cuatro evidence packs íntegros. Dos revisores Luna ciegos a rangos y scores juzgaron completos los tres fragmentos positivos originales; no son etiquetas de dueños.
+
+Tokens informados: 35.635 de entrada y 3.344 de salida. Los dos negativos que expusieron 100 candidatos consumieron 21.124 tokens de entrada; conviene medir después límites de candidatos sin mezclar ese cambio con esta corrida. Confianza Choice positiva: 0,51–0,94; suficiencia reportada: 0,94–0,97. En las abstenciones la confianza raw fue 0,98–1,00 y la suficiencia 0,02–0,06. Todo eso es descriptivo, no calibración. Las selecciones LLM-Rig, Ternary y Mannequin fueron fragmentos algo distintos de los rangos mínimos anotados; los extractos sí respondieron según ambos revisores ciegos. El piloto tuvo `metadataMode: off`: no evalúa EvidenceAtoms, sidecars, variantes de consulta, contradicciones, unión de fuentes, composición/compactación ni la integración del catálogo MCP activo. El holdout local no está certificado y las etiquetas siguen siendo source-only, no owner-gold.
+
+El runner reutilizable ahora exige un manifiesto `.mssr/project-context.json` v1 estructuralmente válido aun con metadatos apagados, incorpora su SHA-256 a fingerprints y recibos, y tiene una regresión que cubre tanto dry-run como modo live sin invocar Jev ante manifiesto ausente. Verificación: `npm run test:jev-live-runner-preflight` y `npm run test:jev-run-summarizer` pasan. Los cinco `SHA256SUMS` de paquetes congelados se verificaron sin discrepancias. Se preservan el fallo pre-Jev y el suplemento como resultados separados; no se cambió runtime ni umbrales.

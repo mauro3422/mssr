@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "source": "two independent blind source-only Luna reviews",
+  "adjudication": "Reviewers received the exact source and queries before Jev calls. Labels are scoped to the frozen Markdown file, were not exposed to Jev, and are not repository-owner gold.",
+  "cases": [
+    {
+      "caseId": "llm-memory-states-positive",
+      "sourceRef": "README.md",
+      "answerability": "answerable",
+      "expectedHeading": "Memoria disponible y margen",
+      "expectedStartLine": 217,
+      "expectedEndLine": 221,
+      "acceptableRanges": [
+        {
+          "sourceRef": "README.md",
+          "expectedHeading": "Memoria disponible y margen",
+          "startLine": 217,
+          "endLine": 221
+        }
+      ],
+      "evidence": "Tres estados: línea base antes de cargar el modelo; mínimo disponible durante la ejecución; recuperación después de descargarlo."
+    },
+    {
+      "caseId": "llm-cuda-version-negative",
+      "sourceRef": "README.md",
+      "answerability": "unanswerable",
+      "evidence": "El archivo no declara una versión de CUDA. La búsqueda de términos en el archivo no encontró CUDA; solo aparecen referencias generales a GPU."
+    }
+  ]
+}

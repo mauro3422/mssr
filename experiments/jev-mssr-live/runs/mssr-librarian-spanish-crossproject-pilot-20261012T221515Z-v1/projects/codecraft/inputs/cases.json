@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "codecraft-model-request-state-positive",
+      "query": "¿Se había realizado ya una solicitud al modelo?",
+      "answerabilityCategory": "answerable",
+      "projectId": "codecraft",
+      "sourceRef": "README.md"
+    },
+    {
+      "id": "codecraft-responses-model-id-negative",
+      "query": "¿Qué identificador de modelo de Responses API está configurado para Foreman?",
+      "answerabilityCategory": "unanswerable",
+      "projectId": "codecraft",
+      "sourceRef": "README.md"
+    }
+  ]
+}

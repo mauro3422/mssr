@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "llm-memory-states-positive",
+      "query": "¿Qué tres estados temporales registrará la medición futura de memoria?",
+      "answerabilityCategory": "answerable",
+      "projectId": "llm-rig",
+      "sourceRef": "README.md"
+    },
+    {
+      "id": "llm-cuda-version-negative",
+      "query": "¿Qué versión de CUDA exige el README para ejecutar el sistema?",
+      "answerabilityCategory": "unanswerable",
+      "projectId": "llm-rig",
+      "sourceRef": "README.md"
+    }
+  ]
+}

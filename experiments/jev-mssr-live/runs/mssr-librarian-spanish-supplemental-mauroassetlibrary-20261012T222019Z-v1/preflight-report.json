@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-spanish-supplemental-mauroassetlibrary-20261012T222019Z-v1",
+  "status": "passed",
+  "createdAt": "2026-10-12T22:21:35.637Z",
+  "networkRequests": 0,
+  "canonicalProjectContext": {
+    "path": ".mssr/project-context.json",
+    "status": "valid",
+    "sha256": "83fcc28859f3da75bf1f8f0af6051a185ef52e28cd5ac6106613a91ef22e1447"
+  },
+  "source": {
+    "sourceRef": "README.md",
+    "sha256": "65057f986eacce214170a243f9a89f4b2e7d2f16482d06aa2fb108701643efa6",
+    "gitHead": "cebcccb54138d44b5388455df51e0334082ce758",
+    "branch": "master",
+    "targetFileClean": true
+  },
+  "cases": 2,
+  "labelsParsedAndHeadingPathsValidated": true,
+  "bridgeBuildArtifactsValidated": 5,
+  "metadataMode": "off"
+}
