@@ -1,0 +1,323 @@
+{
+  "schema": "mssr-fixed-pool-language-selection-aggregate-v1",
+  "runId": "mssr-librarian-fixed-pool-language-selection-20261012T095300Z-v1",
+  "baselineRunId": "mssr-librarian-cross-language-query-recovery-20261012T091600Z-v1",
+  "status": "completed-development-diagnostic",
+  "protocol": {
+    "independentVariable": "query language only",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "actualProviderCalls": 6,
+    "frozenPreCallManifestUnmodified": true,
+    "labelsExposedToProvider": false,
+    "labelsOwnerAdjudicated": false,
+    "sourceFamilies": 2,
+    "cases": 3,
+    "positivePairs": 2,
+    "negativePairs": 1,
+    "holdout": false,
+    "adapter": "portable MSSR; this is not a Bridge-path integration test",
+    "bridgeGate": "EF Bridge project-context selection exceeded its configured byte budget before Jev; all six arms used the same portable adapter."
+  },
+  "postCallAmendments": [
+    "The frozen manifest is preserved as written. Its ERS route field names Bridge 0.6.173 and a child trace, but no Jev calls ran through that route; all six calls used portable MSSR after the EF Bridge context gate blocked before provider work, keeping the adapter constant across pairs.",
+    "The frozen manifest and pre-call lock retain providerCallsCompleted=0 by design. The six observed calls are recorded here and in the raw receipts; no frozen pre-call file was rewritten."
+  ],
+  "frozenInputs": {
+    "preCallLockValid": true,
+    "manifestPlannedProviderCalls": 6,
+    "manifestPreCallCompletedCalls": 0,
+    "sourceIntegrity": [
+      {
+        "sourceId": "elemental-frontier",
+        "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+        "bytes": 2436,
+        "expectedSha256": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+        "actualSha256": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+        "passed": true
+      },
+      {
+        "sourceId": "electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "bytes": 14150,
+        "expectedSha256": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "actualSha256": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "passed": true
+      }
+    ],
+    "allPairCandidateOrdersIdentical": true,
+    "labelsFileNotProviderInput": true
+  },
+  "calls": [
+    {
+      "file": "raw/EF-01-EN.primary.jev.json",
+      "caseId": "EF-01-EN",
+      "arm": "primary",
+      "queryLanguage": "en",
+      "disposition": "abstained",
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "candidateCount": 5,
+      "orderedPoolSha256": "1811ff34257d76df254ec6b690bc17680991572b9376f7e33c82872d13357e30",
+      "confidence": 0.72,
+      "evidenceSufficiency": 0.95,
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "tokens": {
+        "input_tokens": 1109,
+        "output_tokens": 94
+      },
+      "elapsedMs": 319.9,
+      "selected": null
+    },
+    {
+      "file": "raw/EF-01-EN.variant.jev.json",
+      "caseId": "EF-01-EN",
+      "arm": "variant",
+      "queryLanguage": "es",
+      "disposition": "selected",
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "candidateCount": 5,
+      "orderedPoolSha256": "1811ff34257d76df254ec6b690bc17680991572b9376f7e33c82872d13357e30",
+      "confidence": 0.95,
+      "evidenceSufficiency": 0.94,
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "tokens": {
+        "input_tokens": 1128,
+        "output_tokens": 97
+      },
+      "elapsedMs": 313.6,
+      "selected": {
+        "id": "07f340bc077acb8854a8f6d9fd36636f818014fa71b072d3132319a639c43f34",
+        "rangeId": "block-5",
+        "fingerprint": "f039e1d71fa6927f90f2a0e063540ba66496eae7c1feb41cbe25137543ceb5f0",
+        "title": "Condiciones comunes",
+        "startLine": 19,
+        "endLine": 27
+      }
+    },
+    {
+      "file": "raw/ERS-01-ES.primary.jev.json",
+      "caseId": "ERS-01-ES",
+      "arm": "primary",
+      "queryLanguage": "es",
+      "disposition": "abstained",
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "candidateCount": 10,
+      "orderedPoolSha256": "361311e6d4129ec80d9e01d9abda6e85543d762bba899921e5adb64df8fb01ac",
+      "confidence": 0.47,
+      "evidenceSufficiency": 0.43,
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "tokens": {
+        "input_tokens": 1754,
+        "output_tokens": 144
+      },
+      "elapsedMs": 307.4,
+      "selected": null
+    },
+    {
+      "file": "raw/ERS-01-ES.variant.jev.json",
+      "caseId": "ERS-01-ES",
+      "arm": "variant",
+      "queryLanguage": "en",
+      "disposition": "selected",
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "candidateCount": 10,
+      "orderedPoolSha256": "361311e6d4129ec80d9e01d9abda6e85543d762bba899921e5adb64df8fb01ac",
+      "confidence": 0.52,
+      "evidenceSufficiency": 0.68,
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "tokens": {
+        "input_tokens": 1743,
+        "output_tokens": 147
+      },
+      "elapsedMs": 268.8,
+      "selected": {
+        "id": "01cc93da7a9122ddf2c5f13c214b846c1f2ef4c48319d23363cf15bb3f1c7559",
+        "rangeId": "heading-5",
+        "fingerprint": "d93fcd981c078a66be33ebc11d571b786aad677801772f751f319d373a6cde0a",
+        "title": "Layer 2 — functional module",
+        "startLine": 43,
+        "endLine": 56
+      }
+    },
+    {
+      "file": "raw/EF-NEG-01.primary.jev.json",
+      "caseId": "EF-NEG-01",
+      "arm": "primary",
+      "queryLanguage": "en",
+      "disposition": "abstained",
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "candidateCount": 10,
+      "orderedPoolSha256": "079274e2d58ba042795e505c1018086751542c0a8ea3542af518c061b7e0b642",
+      "confidence": 0.97,
+      "evidenceSufficiency": 0.07,
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "tokens": {
+        "input_tokens": 1693,
+        "output_tokens": 144
+      },
+      "elapsedMs": 295,
+      "selected": null
+    },
+    {
+      "file": "raw/EF-NEG-01.variant.jev.json",
+      "caseId": "EF-NEG-01",
+      "arm": "variant",
+      "queryLanguage": "es",
+      "disposition": "abstained",
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "candidateCount": 10,
+      "orderedPoolSha256": "079274e2d58ba042795e505c1018086751542c0a8ea3542af518c061b7e0b642",
+      "confidence": 0.89,
+      "evidenceSufficiency": 0.09,
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "tokens": {
+        "input_tokens": 1699,
+        "output_tokens": 144
+      },
+      "elapsedMs": 284.9,
+      "selected": null
+    }
+  ],
+  "fetches": {
+    "exactFetchesPassed": 2,
+    "exactFetchesAttempted": 3,
+    "initialNormalizedTextAttempt": "rejected-as-stale; current file bytes matched the frozen SHA; byte-preserving retry passed, so the rejection is recorded as input-serialization friction.",
+    "receipts": [
+      {
+        "file": "raw/EF-01-EN.variant.fetch.json",
+        "caseId": "EF-01-EN",
+        "status": "passed",
+        "rangeId": "block-5",
+        "fingerprint": "f039e1d71fa6927f90f2a0e063540ba66496eae7c1feb41cbe25137543ceb5f0",
+        "fetchedChars": 351
+      },
+      {
+        "file": "raw/ERS-01-ES.variant.fetch-byte-preserved.json",
+        "caseId": "ERS-01-ES",
+        "status": "passed",
+        "rangeId": "heading-5",
+        "fingerprint": "d93fcd981c078a66be33ebc11d571b786aad677801772f751f319d373a6cde0a",
+        "fetchedChars": 399
+      }
+    ]
+  },
+  "independentBlindReview": {
+    "artifact": "derived/blind-review.json",
+    "reviewerType": "independent fresh-context subagent; gpt-6-luna was requested, actual host model metadata unavailable",
+    "labelsAndPriorAdjudicationShown": false,
+    "completeAnswers": 0,
+    "partialAnswers": 2
+  },
+  "cases": [
+    {
+      "caseId": "EF-01-EN",
+      "label": {
+        "supportingSpans": [
+          {
+            "startLine": 17,
+            "endLine": 27
+          }
+        ],
+        "answerability": "answerable",
+        "caseId": "EF-01-EN",
+        "targetHeading": "## Condiciones comunes",
+        "targetRangeId": "heading-3",
+        "expectedDisposition": "select"
+      },
+      "primaryDisposition": "abstained",
+      "variantDisposition": "selected",
+      "assessment": "partial-with-reviewer-disagreement",
+      "basis": "The exact fetched list gives the settings and at-least-five repeat count, but omits the source framing line. A fresh-context blind reviewer marked it partial because the excerpt alone does not establish the scope/exhaustiveness of the list; a prior-context reviewer called it complete and is excluded from blind scoring.",
+      "supportSpanFullyCovered": false
+    },
+    {
+      "caseId": "ERS-01-ES",
+      "label": {
+        "supportingSpans": [
+          {
+            "startLine": 26,
+            "endLine": 69
+          }
+        ],
+        "answerability": "answerable",
+        "caseId": "ERS-01-ES",
+        "targetHeading": "## Layer model",
+        "targetRangeId": "heading-3",
+        "expectedDisposition": "select"
+      },
+      "primaryDisposition": "abstained",
+      "variantDisposition": "selected",
+      "assessment": "partial-answer",
+      "basis": "The selected/fetched range is only Layer 2; the question asks for all three layers and which layer positions atomics.",
+      "supportSpanFullyCovered": false
+    },
+    {
+      "caseId": "EF-NEG-01",
+      "label": {
+        "supportingSpans": null,
+        "answerability": "unanswerable-in-source",
+        "caseId": "EF-NEG-01",
+        "targetHeading": null,
+        "targetRangeId": null,
+        "expectedDisposition": "abstain"
+      },
+      "primaryDisposition": "abstained",
+      "variantDisposition": "abstained",
+      "assessment": "analyst-labeled-negative-abstained",
+      "basis": "Both arms abstained on the frozen unanswerable-in-source control; labels are not owner-adjudicated.",
+      "supportSpanFullyCovered": null
+    }
+  ],
+  "findings": {
+    "positivePrimarySelections": 0,
+    "positiveVariantSelections": 2,
+    "positiveTranslatedSelectionsFullyCoveredSupport": 0,
+    "positiveTranslatedSelectionsBlindComplete": 0,
+    "positiveTranslatedSelectionsBlindPartial": 2,
+    "negativeAbstentions": 2,
+    "positivePairTransitions": [
+      {
+        "caseId": "EF-01-EN",
+        "from": "abstained",
+        "to": "selected",
+        "assessment": "partial-with-reviewer-disagreement"
+      },
+      {
+        "caseId": "ERS-01-ES",
+        "from": "abstained",
+        "to": "selected",
+        "assessment": "partial-answer"
+      }
+    ],
+    "scoresAreCalibratedProbabilities": false,
+    "thresholdOrRuntimeChanged": false,
+    "productionReliabilityClaim": false
+  },
+  "usage": {
+    "inputTokens": 9126,
+    "outputTokens": 770,
+    "totalTokens": 9896,
+    "elapsedMs": 1789.6
+  },
+  "limits": [
+    "Only three development cases from two previously exposed source families; one negative pair.",
+    "Labels are analyst-derived, not owner-adjudicated; no source-disjoint holdout.",
+    "Changing language also makes the query language match the source language; this is a narrow paired diagnostic, not general multilingual quality evidence.",
+    "Both positive translations changed abstention to a nested-range selection, but exact fetched evidence was incomplete for the full support/question scope in both cases.",
+    "Provider confidence and evidence sufficiency are raw uncalibrated values.",
+    "No atom metadata, contradiction graph, search rerun, union, semantic compaction or paragraph composition was tested.",
+    "No threshold, routing policy, canonical source or runtime behavior changed."
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "design": {
+    "independentVariable": "query language only",
+    "heldConstant": [
+      "project root",
+      "source ref",
+      "source SHA-256",
+      "candidate handle IDs and order",
+      "privacy class"
+    ],
+    "excluded": [
+      "search rerun",
+      "metadata/atoms",
+      "contradiction graph",
+      "composition",
+      "threshold changes",
+      "runtime changes"
+    ]
+  },
+  "limits": {
+    "confidenceCalibration": false,
+    "sourceFamilies": 2,
+    "providerLabelsExposed": false,
+    "caseCount": 3,
+    "ownerAdjudication": "none",
+    "negativePairs": 1,
+    "positivePairs": 2,
+    "holdout": false
+  },
+  "status": "pre-call frozen; waiting for live Jev calls",
+  "createdAt": "2026-10-12T09:53:00Z",
+  "schema": "mssr-fixed-pool-language-selection-manifest-v1",
+  "sources": [
+    {
+      "id": "elemental-frontier",
+      "projectRoot": "D:/Dev/elemental-frontier",
+      "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+      "sha256": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+      "route": "portable MSSR on frozen snapshot; Bridge core gate blocked; same-snapshot primary-only control added after historical revision discrepancy"
+    },
+    {
+      "id": "electronics-repair-simulator",
+      "projectRoot": "D:/Dev/electronics-repair-simulator",
+      "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+      "sha256": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+      "route": "Bridge 0.6.173, child trace mssr-20261012-jev-cross-language-ers"
+    }
+  ],
+  "runId": "mssr-librarian-fixed-pool-language-selection-20261012T095300Z-v1",
+  "baselineRunId": "mssr-librarian-cross-language-query-recovery-20261012T091600Z-v1",
+  "runtime": {
+    "searchMetadataMode": "off",
+    "bridgeVersion": "0.6.173",
+    "mssrVersion": "0.2.127",
+    "jevVersion": "jev-1.13.0",
+    "jeVMode": "one live Choice per query; no auto-translation",
+    "jevProvider": "typesafe-jev",
+    "providerCallsCompleted": 0,
+    "providerCalls": 6
+  }
+}

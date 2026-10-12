@@ -1,0 +1,44 @@
+{
+  "executionRule": "One query per Jev call; no queryVariants field; same source revision and exact ordered candidateHandles within each pair.",
+  "sourceRunId": "mssr-librarian-cross-language-query-recovery-20261012T091600Z-v1",
+  "translationProtocol": "Reuse exact blind variants frozen in Run46; labels were not shown to the translator.",
+  "cases": [
+    {
+      "variantLanguage": "es",
+      "sourceId": "elemental-frontier",
+      "primaryQuery": "Which settings must remain the same for direct comparisons, and how many times should quantitative measurements be repeated?",
+      "caseId": "EF-01-EN",
+      "executionOrder": [
+        "primary",
+        "variant"
+      ],
+      "primaryLanguage": "en",
+      "variantQuery": "¿Qué ajustes deben permanecer iguales para las comparaciones directas y cuántas veces deben repetirse las mediciones cuantitativas?"
+    },
+    {
+      "variantLanguage": "en",
+      "sourceId": "electronics-repair-simulator",
+      "primaryQuery": "¿Cuáles son las tres capas explícitas del modelado del dispositivo y cuál es responsable de ubicar los componentes atómicos?",
+      "caseId": "ERS-01-ES",
+      "executionOrder": [
+        "variant",
+        "primary"
+      ],
+      "primaryLanguage": "es",
+      "variantQuery": "What are the three explicit layers of device modeling, and which one is responsible for positioning the atomic components?"
+    },
+    {
+      "variantLanguage": "es",
+      "sourceId": "elemental-frontier",
+      "primaryQuery": "What exact fixed FPS must every comparison video use?",
+      "caseId": "EF-NEG-01",
+      "executionOrder": [
+        "primary",
+        "variant"
+      ],
+      "primaryLanguage": "en",
+      "variantQuery": "¿Qué FPS fijo exacto debe usar cada video de comparación?"
+    }
+  ],
+  "schema": "mssr-fixed-pool-query-language-pairs-v1"
+}

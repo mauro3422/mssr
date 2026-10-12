@@ -1,0 +1,29 @@
+{
+  "schema": "mssr-fixed-pool-selected-handle-fetch-v1",
+  "runId": "mssr-librarian-fixed-pool-language-selection-20261012T095300Z-v1",
+  "caseId": "EF-01-EN",
+  "arm": "variant",
+  "request": {
+    "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+    "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+    "handle": {
+      "version": 1,
+      "id": "07f340bc077acb8854a8f6d9fd36636f818014fa71b072d3132319a639c43f34",
+      "owner": "d:/dev/elemental-frontier",
+      "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+      "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+      "rangeId": "block-5",
+      "rangeKind": "block",
+      "startLine": 19,
+      "endLine": 27,
+      "startOffset": 479,
+      "endOffset": 830,
+      "fingerprint": "f039e1d71fa6927f90f2a0e063540ba66496eae7c1feb41cbe25137543ceb5f0",
+      "privacyClass": "project-metadata"
+    }
+  },
+  "response": {
+    "isError": false,
+    "text": "{\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"07f340bc077acb8854a8f6d9fd36636f818014fa71b072d3132319a639c43f34\",\n    \"owner\": \"d:/dev/elemental-frontier\",\n    \"sourceRef\": \"combat-lab/TEST_PROTOCOL.md\",\n    \"revision\": \"07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe\",\n    \"rangeId\": \"block-5\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 19,\n    \"endLine\": 27,\n    \"startOffset\": 479,\n    \"endOffset\": 830,\n    \"fingerprint\": \"f039e1d71fa6927f90f2a0e063540ba66496eae7c1feb41cbe25137543ceb5f0\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"- mismo perfil de vídeo/FPS;\\n- mismo FOV y sensibilidad;\\n- misma perspectiva cuando se compare animación;\\n- mismo tramo de arena;\\n- misma dirección inicial;\\n- misma condición sprint/suelo/aire;\\n- sin shaders salvo prueba específica;\\n- preferir singleplayer/local para eliminar ping;\\n- repetir cada medición al menos 5 veces si el dato es cuantitativo.\",\n  \"fingerprint\": \"f039e1d71fa6927f90f2a0e063540ba66496eae7c1feb41cbe25137543ceb5f0\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false\n}"
+  }
+}

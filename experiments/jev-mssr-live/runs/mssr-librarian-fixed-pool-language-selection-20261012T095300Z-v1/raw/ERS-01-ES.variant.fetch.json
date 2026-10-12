@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Evidence handle is stale for the caller-provided source revision."
+    }
+  ],
+  "isError": true
+}

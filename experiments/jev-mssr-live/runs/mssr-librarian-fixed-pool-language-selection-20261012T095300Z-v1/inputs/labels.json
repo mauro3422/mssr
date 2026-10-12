@@ -1,0 +1,41 @@
+{
+  "exposedToProvider": false,
+  "labelSource": "Run45 analyst source-derived labels, unchanged; not owner adjudicated.",
+  "cases": [
+    {
+      "supportingSpans": [
+        {
+          "startLine": 17,
+          "endLine": 27
+        }
+      ],
+      "answerability": "answerable",
+      "caseId": "EF-01-EN",
+      "targetHeading": "## Condiciones comunes",
+      "targetRangeId": "heading-3",
+      "expectedDisposition": "select"
+    },
+    {
+      "supportingSpans": [
+        {
+          "startLine": 26,
+          "endLine": 69
+        }
+      ],
+      "answerability": "answerable",
+      "caseId": "ERS-01-ES",
+      "targetHeading": "## Layer model",
+      "targetRangeId": "heading-3",
+      "expectedDisposition": "select"
+    },
+    {
+      "supportingSpans": null,
+      "answerability": "unanswerable-in-source",
+      "caseId": "EF-NEG-01",
+      "targetHeading": null,
+      "targetRangeId": null,
+      "expectedDisposition": "abstain"
+    }
+  ],
+  "schema": "mssr-fixed-pool-language-labels-v1"
+}

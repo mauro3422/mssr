@@ -1,0 +1,30 @@
+{
+  "schema": "mssr-librarian-blind-range-review-v1",
+  "runId": "mssr-librarian-fixed-pool-language-selection-20261012T095300Z-v1",
+  "reviewMode": "independent fresh-context review, query-and-exact-fetch only",
+  "reviewer": {
+    "type": "independent fresh-context subagent",
+    "requestedModel": "gpt-6-luna",
+    "actualModelConfirmedByHost": false
+  },
+  "labelsOrPriorAdjudicationShown": false,
+  "cases": [
+    {
+      "caseId": "EF-01-EN",
+      "assessment": "partial",
+      "supports": "The list states settings to hold constant and that quantitative measurements should be repeated at least five times.",
+      "missing": "The fetch begins after the source's framing sentence. From the excerpt alone, the reviewer could not establish the scope/exhaustiveness of the list for direct comparisons."
+    },
+    {
+      "caseId": "ERS-01-ES",
+      "assessment": "partial",
+      "supports": "Identifies Layer 2 as the functional module and says the module owns placement of atomic components.",
+      "missing": "Does not enumerate Layers 1 and 3, which the question explicitly requests."
+    }
+  ],
+  "excludedPriorReview": {
+    "assessment": "EF complete; ERS partial",
+    "reasonExcluded": "The reused reviewer inherited earlier conversation context that could include prior case evidence, so its EF rating is retained as a disagreement note but not counted as blinded."
+  },
+  "scope": "This review assesses whether the exact fetched passage supports its paired query. It does not adjudicate source ownership, benchmark labels, calibration, or reliability."
+}

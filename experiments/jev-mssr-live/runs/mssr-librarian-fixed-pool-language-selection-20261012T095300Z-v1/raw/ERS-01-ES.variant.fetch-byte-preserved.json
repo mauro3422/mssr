@@ -1,0 +1,12 @@
+{
+  "expectedSha256": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+  "exactSourceShaVerifiedBy": "Get-FileHash SHA256",
+  "fetch": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"01cc93da7a9122ddf2c5f13c214b846c1f2ef4c48319d23363cf15bb3f1c7559\",\n    \"owner\": \"d:/dev/electronics-repair-simulator\",\n    \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n    \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n    \"rangeId\": \"heading-5\",\n    \"rangeKind\": \"section\",\n    \"startLine\": 43,\n    \"endLine\": 56,\n    \"startOffset\": 1803,\n    \"endOffset\": 2202,\n    \"fingerprint\": \"d93fcd981c078a66be33ebc11d571b786aad677801772f751f319d373a6cde0a\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"### Layer 2 — functional module\\n\\nA bounded assembly that combines atomic components for one purpose, for example:\\n\\n- mainboard;\\n- display daughterboard;\\n- power/input board;\\n- LED board;\\n- driver board;\\n- selector/contact module;\\n- connector board.\\n\\nA module owns the placement of its atomics, but those atomics retain source lineage and detachable identities when the repair loop may expose them.\\n\\n\",\n  \"fingerprint\": \"d93fcd981c078a66be33ebc11d571b786aad677801772f751f319d373a6cde0a\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false\n}"
+      }
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "mssr-run-precall-lock-v1",
+  "runId": "mssr-librarian-fixed-pool-language-selection-20261012T095300Z-v1",
+  "lockedAt": "2026-10-12T09:59:09.009Z",
+  "providerCallsCompleted": 0,
+  "validations": [
+    {
+      "caseId": "EF-01-EN",
+      "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+      "sourceSha256": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+      "candidateCount": 5,
+      "orderedPoolSha256": "1811ff34257d76df254ec6b690bc17680991572b9376f7e33c82872d13357e30",
+      "targetPresent": true
+    },
+    {
+      "caseId": "ERS-01-ES",
+      "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+      "sourceSha256": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+      "candidateCount": 10,
+      "orderedPoolSha256": "361311e6d4129ec80d9e01d9abda6e85543d762bba899921e5adb64df8fb01ac",
+      "targetPresent": true
+    },
+    {
+      "caseId": "EF-NEG-01",
+      "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+      "sourceSha256": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+      "candidateCount": 10,
+      "orderedPoolSha256": "079274e2d58ba042795e505c1018086751542c0a8ea3542af518c061b7e0b642",
+      "targetPresent": false
+    }
+  ],
+  "inventory": [
+    {
+      "path": "RUN-PLAN.md",
+      "bytes": 2475,
+      "sha256": "d2d8774e4ee577f4cd82631df46c523f963520680df6f3e5f487cb031783de48"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 2074,
+      "sha256": "909e76945e8fd9be6fc1a74be91bdd0e5e5c040438f2f050f64a206487ebf8a8"
+    },
+    {
+      "path": "inputs/query-pairs.json",
+      "bytes": 1891,
+      "sha256": "9af7b53f4f17986d8eaa63904cafb2183bee5e780db502adc8bee37b65bb39a2"
+    },
+    {
+      "path": "inputs/frozen-pools.json",
+      "bytes": 19809,
+      "sha256": "0ec2a3f8e9cacf0aaec851e63eeed00b4075c7d8f162b8dbac673c863f97e312"
+    },
+    {
+      "path": "inputs/labels.json",
+      "bytes": 1058,
+      "sha256": "bbda1fe2ed8e767f95cd8057def70573be905a299787525421e7be99e9e16174"
+    },
+    {
+      "path": "scripts/verify-precall.mjs",
+      "bytes": 4770,
+      "sha256": "8b30947db9eb704131b04fe0c8fddf7293f2e1fda841c0ecc63edd3eb1c9c7ee"
+    }
+  ]
+}
