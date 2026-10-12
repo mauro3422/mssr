@@ -1,0 +1,81 @@
+{
+  "schema": "jev-mssr-live-compound-facets-exploratory-v1",
+  "runId": "mssr-librarian-compound-facets-20261012T120410Z-v1",
+  "preparedAt": "2026-10-12T12:04:10Z",
+  "status": "prepared; treatment search and labels frozen before Jev calls",
+  "purpose": "Compare one-range selection on composite baseline queries with facet-specific Jev selections combined into exact multi-citation evidence packs.",
+  "baselineRun": "mssr-librarian-fresh-skill-refs-20261012T115056Z-v1",
+  "limits": {
+    "certifiedHoldout": false,
+    "ownerGold": false,
+    "productionCalibration": false,
+    "labelSource": "single analyst reviewed exact source lines before calls",
+    "providerLabelsExposed": false,
+    "sourceDocumentClusters": 2,
+    "projects": 1,
+    "requests": 4,
+    "scope": "treatment-only follow-up for two composite positive queries; not a standalone benchmark"
+  },
+  "protocol": {
+    "baseline": "Run v1 original ROUTE-POS and LIFECYCLE-POS one-range result",
+    "treatment": "Two facet prompts per composite query, one live Jev choice each; fetch exact selections; package two ranges per original query into cited evidence pack",
+    "thresholdChanges": "none",
+    "queriesFrozenBeforeProvider": true,
+    "sourceScope": "only two explicitly selected MSSR skill-reference files"
+  },
+  "runtime": {
+    "bridgeVersion": "0.6.173",
+    "runtimeBootId": "9b1323c6-9499-4700-81d0-6b14de9d6e41",
+    "catalogHash": "c37f43b2b6b63ba4",
+    "toolCount": 189,
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "actualInvocation": "connected MauroPrime_Bridge MCP; searches captured before sequential Jev calls",
+    "sourceAttestation": "local Bridge checkout reports 0.6.144 at 3b2f63c and is dirty; source/build identity not certified"
+  },
+  "repository": {
+    "root": "D:\\Dev\\mssr",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "baselineHead": "8548ac20fecaf7ab26a4a46f9adc3f87dd5f121f",
+    "preexistingDirtyPaths": [
+      ".mssr/project-context-segments.json",
+      ".mssr/project-context.json",
+      "scripts/test-project-context-loader.mjs"
+    ]
+  },
+  "sourceSnapshots": [
+    {
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+      "path": "inputs/sources/source-01.md",
+      "sha256": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+      "bytes": 761
+    },
+    {
+      "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+      "path": "inputs/sources/source-02.md",
+      "sha256": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+      "bytes": 2333
+    }
+  ],
+  "inputs": {
+    "cases": {
+      "path": "inputs/cases.json",
+      "sha256": "cf55ecdc1d8701973c6d2aa4c7c9c2f5d693df973f31dd63243264e0fe404328"
+    },
+    "labels": {
+      "path": "inputs/labels.json",
+      "sha256": "65f06e6451a14fb96f84a9129bd145a5292f9a0e8d499341921db722bc81d44b"
+    },
+    "candidatePools": {
+      "path": "inputs/frozen-candidate-pools.json",
+      "sha256": "7a53b4e1602a82d7a95ee3ca82b71ba8cef1ab2fa6f777ac4edf3c2005d956b8"
+    },
+    "searchResults": {
+      "path": "raw/search-results.json",
+      "sha256": "a7956adcaafe905a34984a5cff283952a511d44f9c31771ea3a22aa3aa1cfeb5",
+      "callCount": 4,
+      "candidateCount": 38,
+      "capturedBeforeProviderCalls": true
+    }
+  }
+}

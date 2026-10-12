@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-compound-facets-20261012T120410Z-v1",
+  "scope": {
+    "requests": 4,
+    "sourceDocumentClusters": 2,
+    "projects": 1,
+    "gold": "single analyst; not adjudicated",
+    "holdout": "exploratory; not certified"
+  },
+  "providerExecution": {
+    "liveJeVCalls": 4,
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "totalCandidateResults": 38,
+    "totalInputTokens": 6421,
+    "totalOutputTokens": 568,
+    "meanElapsedMs": 764.725,
+    "elapsedValuesDescriptiveOnly": true
+  },
+  "retrieval": {
+    "facetsIntersectingLabelledSupport": 4,
+    "totalFacets": 4,
+    "facetsCoveringAllLabelledLines": 3,
+    "partialFacet": "ROUTE-GATES selected L10; labelled span L9-L10"
+  },
+  "exactEvidence": {
+    "exactFetchesMatchingSelection": 4,
+    "totalFetches": 4,
+    "evidencePacks": 2,
+    "citationsPerPack": [
+      2,
+      2
+    ],
+    "allCitationsBoundToSelectedHandles": true
+  },
+  "blindReview": {
+    "independentReviewers": 2,
+    "fullRatings": 4,
+    "totalRatings": 4,
+    "bothCompoundPacksRatedFullByBoth": true,
+    "semanticTruthIndependentlyAudited": false
+  },
+  "baselineComparison": {
+    "baselineRun": "mssr-librarian-fresh-skill-refs-20261012T115056Z-v1",
+    "baselineFacetHits": 2,
+    "totalFacets": 4,
+    "treatmentFacetHits": 4,
+    "totalFacetsTreatment": 4,
+    "interpretation": "Facet treatment found the fixture and close facets omitted by the prior one-range composite selections; ROUTE-GATES remains line-partial."
+  },
+  "cost": {
+    "baselineTwoCallsInputTokens": 3105,
+    "baselineTwoCallsOutputTokens": 274,
+    "treatmentFourCallsInputTokens": 6421,
+    "treatmentFourCallsOutputTokens": 568,
+    "inputTokenRatioApprox": 2.07,
+    "interpretation": "More calls and tokens for four facet queries; descriptive, not a same-call-count comparison."
+  },
+  "confidencePolicy": "All Jev confidence and evidence-sufficiency values remain uncalibrated. No threshold or production policy changed."
+}

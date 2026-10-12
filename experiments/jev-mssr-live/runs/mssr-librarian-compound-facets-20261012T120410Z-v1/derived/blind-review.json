@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-compound-facets-20261012T120410Z-v1",
+  "protocol": "Two independent Luna reviewers saw only the original compound questions, exact evidence-pack citations, and excerpts; they did not see labels, scores, metrics, or each other's reviews.",
+  "reviewers": [
+    {
+      "id": "blind_facet_pack_a",
+      "modelFamily": "Luna",
+      "cases": [
+        {
+          "caseId": "ROUTE-POS",
+          "rating": "full",
+          "note": "Names the three fixture types, route audit, representative plans, and full gate; cited excerpts support the answer."
+        },
+        {
+          "caseId": "LIFECYCLE-POS",
+          "rating": "full",
+          "note": "Covers new owner trace, bounded handoff evidence, explicit traceId conditions, evidenced verification/persistence, close replan, checkpoint, closure state, and outcome; citations support the answer."
+        }
+      ]
+    },
+    {
+      "id": "blind_facet_pack_b",
+      "modelFamily": "Luna",
+      "cases": [
+        {
+          "caseId": "ROUTE-POS",
+          "rating": "full",
+          "note": "Includes positive, nearby-negative, and continuation fixtures plus the requested checks and full gate."
+        },
+        {
+          "caseId": "LIFECYCLE-POS",
+          "rating": "full",
+          "note": "Includes new owner trace and bounded evidence, then close checklist, replan, checkpoint, closure state, and outcome."
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "fullRatings": 4,
+    "totalRatings": 4,
+    "citationFitAcceptedByBoth": true,
+    "procedureTruthIndependentlyAudited": false,
+    "statisticalInference": false
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "source": "single analyst exact source review before provider calls",
+  "adjudication": "none; not owner-gold",
+  "exposedToProvider": false,
+  "labels": [
+    {
+      "caseId": "ROUTE-FIXTURES",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+      "answerability": "answerable",
+      "supportingSpans": [
+        {
+          "startLine": 8,
+          "endLine": 8
+        }
+      ],
+      "analystNote": "Exact source line names positive, nearby negative, and continuation fixtures."
+    },
+    {
+      "caseId": "ROUTE-GATES",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+      "answerability": "answerable",
+      "supportingSpans": [
+        {
+          "startLine": 9,
+          "endLine": 10
+        }
+      ],
+      "analystNote": "Source lines name active/deferred verification, skill_route_audit, representative route plans, and the full MSSR gate."
+    },
+    {
+      "caseId": "LIFECYCLE-OWNER",
+      "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+      "answerability": "answerable",
+      "supportingSpans": [
+        {
+          "startLine": 12,
+          "endLine": 13
+        }
+      ],
+      "analystNote": "Exact source says crossing repositories needs a new owner trace with bounded handoff evidence."
+    },
+    {
+      "caseId": "LIFECYCLE-CLOSE",
+      "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+      "answerability": "answerable",
+      "supportingSpans": [
+        {
+          "startLine": 17,
+          "endLine": 25
+        }
+      ],
+      "analystNote": "Exact close steps: evidenced verification/persistence, close replan, close guidance and phase checkpoint, inspect closure, record outcome."
+    }
+  ]
+}

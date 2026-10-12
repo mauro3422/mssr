@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-compound-facets-20261012T120410Z-v1",
+  "cases": [
+    {
+      "caseId": "ROUTE-FIXTURES",
+      "parentCaseId": "ROUTE-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+      "facet": "fixture-types",
+      "query": "Which three fixture types should be added for a routing or activation change?",
+      "label": {
+        "answerability": "answerable",
+        "supportingSpans": [
+          {
+            "startLine": 8,
+            "endLine": 8
+          }
+        ],
+        "labelSource": "single analyst; not owner-gold"
+      },
+      "search": {
+        "candidateCount": 7,
+        "capturedBeforeJev": true
+      },
+      "jev": {
+        "status": "selected",
+        "selectedRange": {
+          "rangeId": "block-2/item-4",
+          "rangeKind": "block",
+          "startLine": 8,
+          "endLine": 8,
+          "handleId": "9fb6f03d98d2bdec9691298cbccef16fc4af17e0ae8baf151a4d747ec1ef0f58",
+          "fingerprint": "50435902493050985ca9aba65761f26cfa02350a630b02361204b7955437cf68"
+        },
+        "providerConfidence": 0.99,
+        "evidenceSufficiency": 0.94,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "usage": {
+          "input_tokens": 1232,
+          "output_tokens": 117
+        },
+        "elapsedMs": 791.6
+      },
+      "exactFetch": {
+        "textPresent": true,
+        "handleMatchesSelection": true,
+        "fingerprintMatches": true
+      },
+      "facetCoverage": {
+        "coveredLabelledLines": 1,
+        "totalLabelledLines": 1,
+        "allLabelledLinesCovered": true,
+        "anyLabelledLineCovered": true
+      },
+      "packCitation": {
+        "display": "skills/skill-maintenance-loop/references/maintenance-routing.md:L8-L8",
+        "handleMatchesSelection": true,
+        "exactTextMatchesFetch": true
+      }
+    },
+    {
+      "caseId": "ROUTE-GATES",
+      "parentCaseId": "ROUTE-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+      "facet": "verification-gates",
+      "query": "Which checks and full verification gates should be run after routing or activation changes?",
+      "label": {
+        "answerability": "answerable",
+        "supportingSpans": [
+          {
+            "startLine": 9,
+            "endLine": 10
+          }
+        ],
+        "labelSource": "single analyst; not owner-gold"
+      },
+      "search": {
+        "candidateCount": 7,
+        "capturedBeforeJev": true
+      },
+      "jev": {
+        "status": "selected",
+        "selectedRange": {
+          "rangeId": "block-2/item-6",
+          "rangeKind": "block",
+          "startLine": 10,
+          "endLine": 10,
+          "handleId": "b4c47405ace1bb5457b2c93d720bf29b99e10ccb1c9c32edea48b148283eb8ac",
+          "fingerprint": "7a740d67807c7c7510fc1ad677f6af79c6737d8dbb7abc43e3d464877a7a957a"
+        },
+        "providerConfidence": 0.41,
+        "evidenceSufficiency": 0.73,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "usage": {
+          "input_tokens": 1232,
+          "output_tokens": 117
+        },
+        "elapsedMs": 658.2
+      },
+      "exactFetch": {
+        "textPresent": true,
+        "handleMatchesSelection": true,
+        "fingerprintMatches": true
+      },
+      "facetCoverage": {
+        "coveredLabelledLines": 1,
+        "totalLabelledLines": 2,
+        "allLabelledLinesCovered": false,
+        "anyLabelledLineCovered": true
+      },
+      "packCitation": {
+        "display": "skills/skill-maintenance-loop/references/maintenance-routing.md:L10-L10",
+        "handleMatchesSelection": true,
+        "exactTextMatchesFetch": true
+      }
+    },
+    {
+      "caseId": "LIFECYCLE-OWNER",
+      "parentCaseId": "LIFECYCLE-POS",
+      "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+      "facet": "cross-repository-ownership",
+      "query": "When a task crosses repositories, what trace ownership change is required and what evidence should accompany it?",
+      "label": {
+        "answerability": "answerable",
+        "supportingSpans": [
+          {
+            "startLine": 12,
+            "endLine": 13
+          }
+        ],
+        "labelSource": "single analyst; not owner-gold"
+      },
+      "search": {
+        "candidateCount": 12,
+        "capturedBeforeJev": true
+      },
+      "jev": {
+        "status": "selected",
+        "selectedRange": {
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "startLine": 10,
+          "endLine": 13,
+          "handleId": "c20ca8c968e54c0640d825fd0f1197b7513d1a6acde077fbb3cd258f00573fd6",
+          "fingerprint": "b135726652194045a088c0b549eb9fa014a0036af8867de826e43d2242f39bd8"
+        },
+        "providerConfidence": 0.99,
+        "evidenceSufficiency": 0.76,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "usage": {
+          "input_tokens": 1982,
+          "output_tokens": 167
+        },
+        "elapsedMs": 926.2
+      },
+      "exactFetch": {
+        "textPresent": true,
+        "handleMatchesSelection": true,
+        "fingerprintMatches": true
+      },
+      "facetCoverage": {
+        "coveredLabelledLines": 2,
+        "totalLabelledLines": 2,
+        "allLabelledLinesCovered": true,
+        "anyLabelledLineCovered": true
+      },
+      "packCitation": {
+        "display": "skills/mssr-agent-routing/references/context-and-lifecycle.md:L10-L13",
+        "handleMatchesSelection": true,
+        "exactTextMatchesFetch": true
+      }
+    },
+    {
+      "caseId": "LIFECYCLE-CLOSE",
+      "parentCaseId": "LIFECYCLE-POS",
+      "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+      "facet": "close-recording",
+      "query": "What needs to be recorded and checked before closing the current trace?",
+      "label": {
+        "answerability": "answerable",
+        "supportingSpans": [
+          {
+            "startLine": 17,
+            "endLine": 25
+          }
+        ],
+        "labelSource": "single analyst; not owner-gold"
+      },
+      "search": {
+        "candidateCount": 12,
+        "capturedBeforeJev": true
+      },
+      "jev": {
+        "status": "selected",
+        "selectedRange": {
+          "rangeId": "block-4",
+          "rangeKind": "block",
+          "startLine": 17,
+          "endLine": 25,
+          "handleId": "3e68347ac87dc88f208f86793625f76b8ab5eda7e417be006822529f844ce01b",
+          "fingerprint": "205c105bf5cc7312ff6cbbdf527f73ecd93d89788b99434eadcac7c33408127c"
+        },
+        "providerConfidence": 0.49,
+        "evidenceSufficiency": 0.86,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "usage": {
+          "input_tokens": 1975,
+          "output_tokens": 167
+        },
+        "elapsedMs": 682.9
+      },
+      "exactFetch": {
+        "textPresent": true,
+        "handleMatchesSelection": true,
+        "fingerprintMatches": true
+      },
+      "facetCoverage": {
+        "coveredLabelledLines": 9,
+        "totalLabelledLines": 9,
+        "allLabelledLinesCovered": true,
+        "anyLabelledLineCovered": true
+      },
+      "packCitation": {
+        "display": "skills/mssr-agent-routing/references/context-and-lifecycle.md:L17-L25",
+        "handleMatchesSelection": true,
+        "exactTextMatchesFetch": true
+      }
+    }
+  ]
+}

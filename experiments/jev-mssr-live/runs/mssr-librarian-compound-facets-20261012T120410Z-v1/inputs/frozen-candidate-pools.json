@@ -1,0 +1,2261 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-compound-facets-20261012T120410Z-v1",
+  "capturedBeforeProviderCalls": true,
+  "cases": [
+    {
+      "caseId": "ROUTE-FIXTURES",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+      "query": "Which three fixture types should be added for a routing or activation change?",
+      "candidateCount": 7,
+      "candidates": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "fe9cd7fe6f09c40d111ccfd7ae979a95b7787731bd721d01ebe0dce3ca8308c2",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 11,
+            "startOffset": 0,
+            "endOffset": 761,
+            "fingerprint": "95d9bd1490956062febaf956f3660db8505410e2f9355e4497ed34ec725c9a76",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 761,
+          "exactFetchable": true,
+          "score": 0.375,
+          "title": "Routing-edit",
+          "headingPath": [
+            "Routing-edit"
+          ],
+          "snippet": "# Routing-edit Read when activation, phase, dependency, exclusion or composition changes. 1. Read the current skill completely and identify the Git source of truth. 2. Use `skill-routing-maintainer`; inspect vocabulary …",
+          "metadata": {
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "headingPath": [
+              "Routing-edit"
+            ],
+            "level": 1,
+            "parentId": null,
+            "startLine": 1,
+            "endLine": 11,
+            "chars": 761,
+            "bytes": 761,
+            "terms": [
+              "routing-edit",
+              "activation",
+              "changes",
+              "composition",
+              "dependency",
+              "exclusion",
+              "phase",
+              "read"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "ccb07b475b7a10410e0dd58724d2ac075999839db929d04e9cb64f56b21991ff",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 11,
+            "startOffset": 92,
+            "endOffset": 760,
+            "fingerprint": "11422585781563f04ed21be4c6dd7c36bc4c9a58193316a14718265e3c714b47",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 668,
+          "exactFetchable": true,
+          "score": 0.25,
+          "title": "Routing-edit",
+          "headingPath": [
+            "Routing-edit"
+          ],
+          "snippet": "…ly and identify the Git source of truth. 2. Use `skill-routing-maintainer`; inspect vocabulary before writing structured metadata. 3. Update the versioned routing contract, never generated dashboard copies. 4. Add a po…",
+          "metadata": {
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "headingPath": [
+              "Routing-edit"
+            ],
+            "blockKind": "list",
+            "sectionId": "heading-1",
+            "startLine": 5,
+            "endLine": 11,
+            "chars": 668,
+            "bytes": 668,
+            "terms": [
+              "fixture",
+              "routing",
+              "contract",
+              "deferred",
+              "false",
+              "negative",
+              "positive",
+              "skill"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "699b95c00ba1f28ecbef73f58ea4990273763fac70d51aa493415ce57241a640",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 16,
+            "endOffset": 90,
+            "fingerprint": "66003f370a8385bfe02b7ca876938a21669b535ef99ce353795364abd8b62178",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 74,
+          "exactFetchable": true,
+          "score": 0.125,
+          "title": "Routing-edit",
+          "headingPath": [
+            "Routing-edit"
+          ],
+          "snippet": "Read when activation, phase, dependency, exclusion or composition changes.",
+          "metadata": {
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "headingPath": [
+              "Routing-edit"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-1",
+            "startLine": 3,
+            "endLine": 3,
+            "chars": 74,
+            "bytes": 74,
+            "terms": [
+              "activation",
+              "changes",
+              "composition",
+              "dependency",
+              "exclusion",
+              "phase",
+              "read"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "ec4af6ea0a9a5773d5c47f0ca6ddecb6b6426a5da138e7062dfb41ff13802444",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "rangeId": "block-2/item-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 257,
+            "endOffset": 332,
+            "fingerprint": "bd47dc050a82379610659ec07202f28ff8f7e7e3fdc8939b7a31cfdecec0718e",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 75,
+          "exactFetchable": true,
+          "score": 0.125,
+          "title": "Routing-edit",
+          "headingPath": [
+            "Routing-edit"
+          ],
+          "snippet": "3. Update the versioned routing contract, never generated dashboard copies.",
+          "metadata": {
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "headingPath": [
+              "Routing-edit"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-2",
+            "parentBlockFingerprint": "11422585781563f04ed21be4c6dd7c36bc4c9a58193316a14718265e3c714b47",
+            "listItemOrdinal": 3,
+            "sectionId": "heading-1",
+            "startLine": 7,
+            "endLine": 7,
+            "chars": 75,
+            "bytes": 75,
+            "terms": [
+              "update",
+              "the",
+              "versioned",
+              "routing",
+              "contract",
+              "never",
+              "generated",
+              "dashboard",
+              "copies"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "9fb6f03d98d2bdec9691298cbccef16fc4af17e0ae8baf151a4d747ec1ef0f58",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "rangeId": "block-2/item-4",
+            "rangeKind": "block",
+            "startLine": 8,
+            "endLine": 8,
+            "startOffset": 333,
+            "endOffset": 433,
+            "fingerprint": "50435902493050985ca9aba65761f26cfa02350a630b02361204b7955437cf68",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 100,
+          "exactFetchable": true,
+          "score": 0.125,
+          "title": "Routing-edit",
+          "headingPath": [
+            "Routing-edit"
+          ],
+          "snippet": "4. Add a positive fixture, nearby negative fixture and continuation fixture for resumable workflows.",
+          "metadata": {
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "headingPath": [
+              "Routing-edit"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-2",
+            "parentBlockFingerprint": "11422585781563f04ed21be4c6dd7c36bc4c9a58193316a14718265e3c714b47",
+            "listItemOrdinal": 4,
+            "sectionId": "heading-1",
+            "startLine": 8,
+            "endLine": 8,
+            "chars": 100,
+            "bytes": 100,
+            "terms": [
+              "add",
+              "positive",
+              "fixture",
+              "nearby",
+              "negative",
+              "and",
+              "continuation",
+              "for",
+              "resumable",
+              "workflows"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "084be522a633854f890e096466c0a15110c62359117951430804185d8adc0185",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "rangeId": "block-2/item-5",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "startOffset": 434,
+            "endOffset": 528,
+            "fingerprint": "4221d099f99cfce5fdaa58a9a72de3ea5e8c4d2b78cfc2c983ea5f0962084350",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 94,
+          "exactFetchable": true,
+          "score": 0.125,
+          "title": "Routing-edit",
+          "headingPath": [
+            "Routing-edit"
+          ],
+          "snippet": "5. Verify active and deferred skills; a useless deferred skill is still routing contamination.",
+          "metadata": {
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "headingPath": [
+              "Routing-edit"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-2",
+            "parentBlockFingerprint": "11422585781563f04ed21be4c6dd7c36bc4c9a58193316a14718265e3c714b47",
+            "listItemOrdinal": 5,
+            "sectionId": "heading-1",
+            "startLine": 9,
+            "endLine": 9,
+            "chars": 94,
+            "bytes": 94,
+            "terms": [
+              "verify",
+              "active",
+              "and",
+              "deferred",
+              "skills",
+              "useless",
+              "skill",
+              "is",
+              "still",
+              "routing",
+              "contamination"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "4dfbc63883ccf719ebfb56fb986b1cae626c7cb09510bff349984d274579fc96",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "rangeId": "block-2/item-7",
+            "rangeKind": "block",
+            "startLine": 11,
+            "endLine": 11,
+            "startOffset": 626,
+            "endOffset": 760,
+            "fingerprint": "086b8f42f676ae34932b3bcc5f971a34ce904ef7e7051ba82ca59009958e0e0d",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 134,
+          "exactFetchable": true,
+          "score": 0.125,
+          "title": "Routing-edit",
+          "headingPath": [
+            "Routing-edit"
+          ],
+          "snippet": "7. Record the observable incident in the canonical routing ledger when correcting a false positive, false negative or contract defect.",
+          "metadata": {
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "headingPath": [
+              "Routing-edit"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-2",
+            "parentBlockFingerprint": "11422585781563f04ed21be4c6dd7c36bc4c9a58193316a14718265e3c714b47",
+            "listItemOrdinal": 7,
+            "sectionId": "heading-1",
+            "startLine": 11,
+            "endLine": 11,
+            "chars": 134,
+            "bytes": 134,
+            "terms": [
+              "record",
+              "the",
+              "observable",
+              "incident",
+              "in",
+              "canonical",
+              "routing",
+              "ledger",
+              "when",
+              "correcting",
+              "false",
+              "positive",
+              "negative",
+              "or",
+              "contract",
+              "defect"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        }
+      ]
+    },
+    {
+      "caseId": "ROUTE-GATES",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+      "query": "Which checks and full verification gates should be run after routing or activation changes?",
+      "candidateCount": 7,
+      "candidates": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "fe9cd7fe6f09c40d111ccfd7ae979a95b7787731bd721d01ebe0dce3ca8308c2",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 11,
+            "startOffset": 0,
+            "endOffset": 761,
+            "fingerprint": "95d9bd1490956062febaf956f3660db8505410e2f9355e4497ed34ec725c9a76",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 761,
+          "exactFetchable": true,
+          "score": 0.666667,
+          "title": "Routing-edit",
+          "headingPath": [
+            "Routing-edit"
+          ],
+          "snippet": "# Routing-edit Read when activation, phase, dependency, exclusion or composition changes. 1. Read the current skill completely and identify the Git source of truth. 2. Use `skill-routing-maintainer`; inspect vocabulary …",
+          "metadata": {
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "headingPath": [
+              "Routing-edit"
+            ],
+            "level": 1,
+            "parentId": null,
+            "startLine": 1,
+            "endLine": 11,
+            "chars": 761,
+            "bytes": 761,
+            "terms": [
+              "routing-edit",
+              "activation",
+              "changes",
+              "composition",
+              "dependency",
+              "exclusion",
+              "phase",
+              "read"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "ccb07b475b7a10410e0dd58724d2ac075999839db929d04e9cb64f56b21991ff",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 11,
+            "startOffset": 92,
+            "endOffset": 760,
+            "fingerprint": "11422585781563f04ed21be4c6dd7c36bc4c9a58193316a14718265e3c714b47",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 668,
+          "exactFetchable": true,
+          "score": 0.444444,
+          "title": "Routing-edit",
+          "headingPath": [
+            "Routing-edit"
+          ],
+          "snippet": "…ly and identify the Git source of truth. 2. Use `skill-routing-maintainer`; inspect vocabulary before writing structured metadata. 3. Update the versioned routing contract, never generated dashboard copies. 4. Add a po…",
+          "metadata": {
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "headingPath": [
+              "Routing-edit"
+            ],
+            "blockKind": "list",
+            "sectionId": "heading-1",
+            "startLine": 5,
+            "endLine": 11,
+            "chars": 668,
+            "bytes": 668,
+            "terms": [
+              "fixture",
+              "routing",
+              "contract",
+              "deferred",
+              "false",
+              "negative",
+              "positive",
+              "skill"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "b4c47405ace1bb5457b2c93d720bf29b99e10ccb1c9c32edea48b148283eb8ac",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "rangeId": "block-2/item-6",
+            "rangeKind": "block",
+            "startLine": 10,
+            "endLine": 10,
+            "startOffset": 529,
+            "endOffset": 625,
+            "fingerprint": "7a740d67807c7c7510fc1ad677f6af79c6737d8dbb7abc43e3d464877a7a957a",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 96,
+          "exactFetchable": true,
+          "score": 0.333333,
+          "title": "Routing-edit",
+          "headingPath": [
+            "Routing-edit"
+          ],
+          "snippet": "6. Run `skill_route_audit`, representative real route plans and the full MSSR verification gate.",
+          "metadata": {
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "headingPath": [
+              "Routing-edit"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-2",
+            "parentBlockFingerprint": "11422585781563f04ed21be4c6dd7c36bc4c9a58193316a14718265e3c714b47",
+            "listItemOrdinal": 6,
+            "sectionId": "heading-1",
+            "startLine": 10,
+            "endLine": 10,
+            "chars": 96,
+            "bytes": 96,
+            "terms": [
+              "run",
+              "skill_route_audit",
+              "representative",
+              "real",
+              "route",
+              "plans",
+              "and",
+              "the",
+              "full",
+              "mssr",
+              "verification",
+              "gate"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "699b95c00ba1f28ecbef73f58ea4990273763fac70d51aa493415ce57241a640",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 16,
+            "endOffset": 90,
+            "fingerprint": "66003f370a8385bfe02b7ca876938a21669b535ef99ce353795364abd8b62178",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 74,
+          "exactFetchable": true,
+          "score": 0.222222,
+          "title": "Routing-edit",
+          "headingPath": [
+            "Routing-edit"
+          ],
+          "snippet": "Read when activation, phase, dependency, exclusion or composition changes.",
+          "metadata": {
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "headingPath": [
+              "Routing-edit"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-1",
+            "startLine": 3,
+            "endLine": 3,
+            "chars": 74,
+            "bytes": 74,
+            "terms": [
+              "activation",
+              "changes",
+              "composition",
+              "dependency",
+              "exclusion",
+              "phase",
+              "read"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "ec4af6ea0a9a5773d5c47f0ca6ddecb6b6426a5da138e7062dfb41ff13802444",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "rangeId": "block-2/item-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 257,
+            "endOffset": 332,
+            "fingerprint": "bd47dc050a82379610659ec07202f28ff8f7e7e3fdc8939b7a31cfdecec0718e",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 75,
+          "exactFetchable": true,
+          "score": 0.111111,
+          "title": "Routing-edit",
+          "headingPath": [
+            "Routing-edit"
+          ],
+          "snippet": "3. Update the versioned routing contract, never generated dashboard copies.",
+          "metadata": {
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "headingPath": [
+              "Routing-edit"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-2",
+            "parentBlockFingerprint": "11422585781563f04ed21be4c6dd7c36bc4c9a58193316a14718265e3c714b47",
+            "listItemOrdinal": 3,
+            "sectionId": "heading-1",
+            "startLine": 7,
+            "endLine": 7,
+            "chars": 75,
+            "bytes": 75,
+            "terms": [
+              "update",
+              "the",
+              "versioned",
+              "routing",
+              "contract",
+              "never",
+              "generated",
+              "dashboard",
+              "copies"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "084be522a633854f890e096466c0a15110c62359117951430804185d8adc0185",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "rangeId": "block-2/item-5",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "startOffset": 434,
+            "endOffset": 528,
+            "fingerprint": "4221d099f99cfce5fdaa58a9a72de3ea5e8c4d2b78cfc2c983ea5f0962084350",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 94,
+          "exactFetchable": true,
+          "score": 0.111111,
+          "title": "Routing-edit",
+          "headingPath": [
+            "Routing-edit"
+          ],
+          "snippet": "5. Verify active and deferred skills; a useless deferred skill is still routing contamination.",
+          "metadata": {
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "headingPath": [
+              "Routing-edit"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-2",
+            "parentBlockFingerprint": "11422585781563f04ed21be4c6dd7c36bc4c9a58193316a14718265e3c714b47",
+            "listItemOrdinal": 5,
+            "sectionId": "heading-1",
+            "startLine": 9,
+            "endLine": 9,
+            "chars": 94,
+            "bytes": 94,
+            "terms": [
+              "verify",
+              "active",
+              "and",
+              "deferred",
+              "skills",
+              "useless",
+              "skill",
+              "is",
+              "still",
+              "routing",
+              "contamination"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "4dfbc63883ccf719ebfb56fb986b1cae626c7cb09510bff349984d274579fc96",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "rangeId": "block-2/item-7",
+            "rangeKind": "block",
+            "startLine": 11,
+            "endLine": 11,
+            "startOffset": 626,
+            "endOffset": 760,
+            "fingerprint": "086b8f42f676ae34932b3bcc5f971a34ce904ef7e7051ba82ca59009958e0e0d",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 134,
+          "exactFetchable": true,
+          "score": 0.111111,
+          "title": "Routing-edit",
+          "headingPath": [
+            "Routing-edit"
+          ],
+          "snippet": "7. Record the observable incident in the canonical routing ledger when correcting a false positive, false negative or contract defect.",
+          "metadata": {
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+            "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+            "headingPath": [
+              "Routing-edit"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-2",
+            "parentBlockFingerprint": "11422585781563f04ed21be4c6dd7c36bc4c9a58193316a14718265e3c714b47",
+            "listItemOrdinal": 7,
+            "sectionId": "heading-1",
+            "startLine": 11,
+            "endLine": 11,
+            "chars": 134,
+            "bytes": 134,
+            "terms": [
+              "record",
+              "the",
+              "observable",
+              "incident",
+              "in",
+              "canonical",
+              "routing",
+              "ledger",
+              "when",
+              "correcting",
+              "false",
+              "positive",
+              "negative",
+              "or",
+              "contract",
+              "defect"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        }
+      ]
+    },
+    {
+      "caseId": "LIFECYCLE-OWNER",
+      "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+      "query": "When a task crosses repositories, what trace ownership change is required and what evidence should accompany it?",
+      "candidateCount": 12,
+      "candidates": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "2f994561d694490102af24325440af63daea22d58a02f6ac66443cc2f330f18d",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 41,
+            "startOffset": 0,
+            "endOffset": 2333,
+            "fingerprint": "3424a6aef850e4049061a5b621865cc94dde1063859c6ad9d343c710591487e6",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 2333,
+          "exactFetchable": true,
+          "score": 0.727273,
+          "title": "Context and lifecycle",
+          "headingPath": [
+            "Context and lifecycle"
+          ],
+          "snippet": "…d when consuming selected context messages, carrying a trace, checkpointing, or recording an outcome. Apply the core's provenance check once per evidence revision. Deduplicate piggyback and inbox deliveries by portable…",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle"
+            ],
+            "level": 1,
+            "parentId": null,
+            "startLine": 1,
+            "endLine": 41,
+            "chars": 2333,
+            "bytes": 2333,
+            "terms": [
+              "context",
+              "lifecycle",
+              "carrying",
+              "checkpointing",
+              "consuming",
+              "messages",
+              "outcome",
+              "read"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "ed432630f81316824e5fbeac76ea8f93524afb4b766a3de24e2fe1c6fa3e903e",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 15,
+            "endLine": 41,
+            "startOffset": 629,
+            "endOffset": 2333,
+            "fingerprint": "5be78f37e47500944778eafee14fc9b2370225b445b3f85b90e77459de6e7865",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 1704,
+          "exactFetchable": true,
+          "score": 0.545455,
+          "title": "Finish the current trace",
+          "headingPath": [
+            "Context and lifecycle",
+            "Finish the current trace"
+          ],
+          "snippet": "## Finish the current trace 1. Record verification and persistence only when applicable and evidenced. 2. Re-plan the same trace at `stage=close` after the last material work. 3. Finish required close guidance. Record `…",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle",
+              "Finish the current trace"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 15,
+            "endLine": 41,
+            "chars": 1704,
+            "bytes": 1704,
+            "terms": [
+              "finish",
+              "trace",
+              "record",
+              "applicable",
+              "close",
+              "complete",
+              "eventtype",
+              "outcome"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "c20ca8c968e54c0640d825fd0f1197b7513d1a6acde077fbb3cd258f00573fd6",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 10,
+            "endLine": 13,
+            "startOffset": 357,
+            "endOffset": 627,
+            "fingerprint": "b135726652194045a088c0b549eb9fa014a0036af8867de826e43d2242f39bd8",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 270,
+          "exactFetchable": true,
+          "score": 0.363636,
+          "title": "Context and lifecycle",
+          "headingPath": [
+            "Context and lifecycle"
+          ],
+          "snippet": "Carry a trace through meaningful replans. Use explicit `traceId` after restart, across processes, for ambiguity, or deliberate historical selection. Project ownership is part of trace identity; crossing repositories nee…",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-1",
+            "startLine": 10,
+            "endLine": 13,
+            "chars": 270,
+            "bytes": 270,
+            "terms": [
+              "trace",
+              "across",
+              "after",
+              "ambiguity",
+              "bounded",
+              "carry",
+              "crossing",
+              "deliberate"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "73afee0708f9c68020cd031384873f35938298e107e1fb9a519f8f0da5ac018b",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-6",
+            "rangeKind": "block",
+            "startLine": 33,
+            "endLine": 41,
+            "startOffset": 1661,
+            "endOffset": 2332,
+            "fingerprint": "7b4aa9c180c7427a3503a2baee8cd290ae5473360d1e0300ba4595bba9f398b2",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 671,
+          "exactFetchable": true,
+          "score": 0.363636,
+          "title": "Finish the current trace",
+          "headingPath": [
+            "Context and lifecycle",
+            "Finish the current trace"
+          ],
+          "snippet": "…euse procedural guidance only when the host can attest it is still present in the current uncompacted context. When the host exposes R3 retention receipts, carry the exact stable unit `id` plus content `fingerprint`; n…",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle",
+              "Finish the current trace"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-2",
+            "startLine": 33,
+            "endLine": 41,
+            "chars": 671,
+            "bytes": 671,
+            "terms": [
+              "retention",
+              "host",
+              "progress",
+              "receipts",
+              "after",
+              "any",
+              "assumptions",
+              "attest"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "3e68347ac87dc88f208f86793625f76b8ab5eda7e417be006822529f844ce01b",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-4",
+            "rangeKind": "block",
+            "startLine": 17,
+            "endLine": 25,
+            "startOffset": 658,
+            "endOffset": 1336,
+            "fingerprint": "205c105bf5cc7312ff6cbbdf527f73ecd93d89788b99434eadcac7c33408127c",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 678,
+          "exactFetchable": true,
+          "score": 0.272727,
+          "title": "Finish the current trace",
+          "headingPath": [
+            "Context and lifecycle",
+            "Finish the current trace"
+          ],
+          "snippet": "… verification and persistence only when applicable and evidenced. 2. Re-plan the same trace at `stage=close` after the last material work. 3. Finish required close guidance. Record `eventType=phase_completed` with `com…",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle",
+              "Finish the current trace"
+            ],
+            "blockKind": "list",
+            "sectionId": "heading-2",
+            "startLine": 17,
+            "endLine": 25,
+            "chars": 678,
+            "bytes": 678,
+            "terms": [
+              "record",
+              "applicable",
+              "close",
+              "complete",
+              "eventtype",
+              "outcome",
+              "phases",
+              "required"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "a9f84e4ca8804ea07ddbc90c5b4525b47b3f25d82309778d114292cfbb2c1234",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-4/item-3",
+            "rangeKind": "block",
+            "startLine": 19,
+            "endLine": 22,
+            "startOffset": 806,
+            "endOffset": 1109,
+            "fingerprint": "ef038a4a3fab8b25f80946cd9351d2fc78819aaf2fece06fe7a0b7cedc66fb5a",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 303,
+          "exactFetchable": true,
+          "score": 0.181818,
+          "title": "Finish the current trace",
+          "headingPath": [
+            "Context and lifecycle",
+            "Finish the current trace"
+          ],
+          "snippet": "3. Finish required close guidance. Record `eventType=phase_completed` with `completedPhases` containing the phases actually completed, including `maintenance` when required. Listing phases on an outcome is not a substit…",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle",
+              "Finish the current trace"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-4",
+            "parentBlockFingerprint": "205c105bf5cc7312ff6cbbdf527f73ecd93d89788b99434eadcac7c33408127c",
+            "listItemOrdinal": 3,
+            "sectionId": "heading-2",
+            "startLine": 19,
+            "endLine": 22,
+            "chars": 303,
+            "bytes": 303,
+            "terms": [
+              "finish",
+              "required",
+              "close",
+              "guidance",
+              "record",
+              "eventtype",
+              "phase_completed",
+              "with",
+              "completedphases",
+              "containing",
+              "the",
+              "phases",
+              "actually",
+              "completed",
+              "including",
+              "maintenance",
+              "when",
+              "listing",
+              "on",
+              "an",
+              "outcome",
+              "is",
+              "not",
+              "substitute",
+              "for",
+              "this",
+              "checkpoint",
+              "loading",
+              "skill",
+              "alone",
+              "does",
+              "complete",
+              "its",
+              "phase"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "f39e183ca04d545a5fabe429c09c89831e1bd577fbb20f2ffe70552d04cd0a64",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-4/item-4",
+            "rangeKind": "block",
+            "startLine": 23,
+            "endLine": 25,
+            "startOffset": 1110,
+            "endOffset": 1336,
+            "fingerprint": "0f472ccd0b1dac074346fc0f8c966518f6b51682881ec6053d4c31ac9eb9d1f1",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 226,
+          "exactFetchable": true,
+          "score": 0.181818,
+          "title": "Finish the current trace",
+          "headingPath": [
+            "Context and lifecycle",
+            "Finish the current trace"
+          ],
+          "snippet": "4. Inspect the host's closure state/next action. Once applicable gates are complete, record `eventType=outcome` with one `primarySkill`, supporting skills, truthful status and bounded evidence. Use current schema limits.",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle",
+              "Finish the current trace"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-4",
+            "parentBlockFingerprint": "205c105bf5cc7312ff6cbbdf527f73ecd93d89788b99434eadcac7c33408127c",
+            "listItemOrdinal": 4,
+            "sectionId": "heading-2",
+            "startLine": 23,
+            "endLine": 25,
+            "chars": 226,
+            "bytes": 226,
+            "terms": [
+              "inspect",
+              "the",
+              "host",
+              "closure",
+              "state",
+              "next",
+              "action",
+              "once",
+              "applicable",
+              "gates",
+              "are",
+              "complete",
+              "record",
+              "eventtype",
+              "outcome",
+              "with",
+              "one",
+              "primaryskill",
+              "supporting",
+              "skills",
+              "truthful",
+              "status",
+              "and",
+              "bounded",
+              "evidence",
+              "use",
+              "current",
+              "schema",
+              "limits"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "2cdda804f1c5522df59af5981aa9b6ecb4ef4873f6d22ab77c224707d1c7e4be",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-5",
+            "rangeKind": "block",
+            "startLine": 27,
+            "endLine": 31,
+            "startOffset": 1338,
+            "endOffset": 1659,
+            "fingerprint": "4e5a1e2b9ac9f7778558ea2ed4ed580c34fa8d6eca09b6399aa500a7f97b92b0",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 321,
+          "exactFetchable": true,
+          "score": 0.181818,
+          "title": "Finish the current trace",
+          "headingPath": [
+            "Context and lifecycle",
+            "Finish the current trace"
+          ],
+          "snippet": "If rejected, follow the reported missing gate on this trace; do not loop over identical close plans or invent persistence for a read-only task. Keep a real unresolved blocker explicit. Retries replace the effective outc…",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle",
+              "Finish the current trace"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-2",
+            "startLine": 27,
+            "endLine": 31,
+            "chars": 321,
+            "bytes": 321,
+            "terms": [
+              "task",
+              "trace",
+              "activity",
+              "another",
+              "blocker",
+              "close",
+              "completion",
+              "creating"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "7dc55294e84ab5ffd80182df7ba96bbd97398295c8c068e010e8f272e41d4a92",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 4,
+            "startOffset": 25,
+            "endOffset": 129,
+            "fingerprint": "341fc455f24d5260bbc79fb6649f3d6f164559a07ec9caf1a824258ed6cb0078",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 104,
+          "exactFetchable": true,
+          "score": 0.090909,
+          "title": "Context and lifecycle",
+          "headingPath": [
+            "Context and lifecycle"
+          ],
+          "snippet": "Read when consuming selected context messages, carrying a trace, checkpointing, or recording an outcome.",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-1",
+            "startLine": 3,
+            "endLine": 4,
+            "chars": 104,
+            "bytes": 104,
+            "terms": [
+              "carrying",
+              "checkpointing",
+              "consuming",
+              "context",
+              "messages",
+              "outcome",
+              "read",
+              "recording"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "c7450395e1182566cfdec10eff2bc6f1722f5c87bac85d252e95de0e4e247aa9",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 6,
+            "endLine": 8,
+            "startOffset": 131,
+            "endOffset": 355,
+            "fingerprint": "e3779cf6469af5bddb3166469e65dbafeca91a36e0a15adaa0a07217bd9fd7d7",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 224,
+          "exactFetchable": true,
+          "score": 0.090909,
+          "title": "Context and lifecycle",
+          "headingPath": [
+            "Context and lifecycle"
+          ],
+          "snippet": "Apply the core's provenance check once per evidence revision. Deduplicate piggyback and inbox deliveries by portable identity. A delivery receipt proves delivery, not current project truth or retention after host compac…",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-1",
+            "startLine": 6,
+            "endLine": 8,
+            "chars": 224,
+            "bytes": 224,
+            "terms": [
+              "delivery",
+              "after",
+              "apply",
+              "check",
+              "compaction",
+              "core",
+              "deduplicate",
+              "deliveries"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "55bbe71d2021e1f83d8ecfe37ddf9fb4e430903253dc1ed81aa1f2a9fc663c22",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-4/item-1",
+            "rangeKind": "block",
+            "startLine": 17,
+            "endLine": 17,
+            "startOffset": 658,
+            "endOffset": 732,
+            "fingerprint": "56b49210e0b4e06e0893f0acc8c7ccf379c69b47b7d609b8a101623d58f6e739",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 74,
+          "exactFetchable": true,
+          "score": 0.090909,
+          "title": "Finish the current trace",
+          "headingPath": [
+            "Context and lifecycle",
+            "Finish the current trace"
+          ],
+          "snippet": "1. Record verification and persistence only when applicable and evidenced.",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle",
+              "Finish the current trace"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-4",
+            "parentBlockFingerprint": "205c105bf5cc7312ff6cbbdf527f73ecd93d89788b99434eadcac7c33408127c",
+            "listItemOrdinal": 1,
+            "sectionId": "heading-2",
+            "startLine": 17,
+            "endLine": 17,
+            "chars": 74,
+            "bytes": 74,
+            "terms": [
+              "record",
+              "verification",
+              "and",
+              "persistence",
+              "only",
+              "when",
+              "applicable",
+              "evidenced"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "13321fc029cd5540cbe8ef92c8a63bdeb2f50e47f581e979b109f52f6faa6d7e",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-4/item-2",
+            "rangeKind": "block",
+            "startLine": 18,
+            "endLine": 18,
+            "startOffset": 733,
+            "endOffset": 805,
+            "fingerprint": "09eb83e8c22d43e956a25e31e6470f83d7d8806652d7bbba27f15374bc5d617e",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 72,
+          "exactFetchable": true,
+          "score": 0.090909,
+          "title": "Finish the current trace",
+          "headingPath": [
+            "Context and lifecycle",
+            "Finish the current trace"
+          ],
+          "snippet": "2. Re-plan the same trace at `stage=close` after the last material work.",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle",
+              "Finish the current trace"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-4",
+            "parentBlockFingerprint": "205c105bf5cc7312ff6cbbdf527f73ecd93d89788b99434eadcac7c33408127c",
+            "listItemOrdinal": 2,
+            "sectionId": "heading-2",
+            "startLine": 18,
+            "endLine": 18,
+            "chars": 72,
+            "bytes": 72,
+            "terms": [
+              "re-plan",
+              "the",
+              "same",
+              "trace",
+              "at",
+              "stage",
+              "close",
+              "after",
+              "last",
+              "material",
+              "work"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        }
+      ]
+    },
+    {
+      "caseId": "LIFECYCLE-CLOSE",
+      "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+      "query": "What needs to be recorded and checked before closing the current trace?",
+      "candidateCount": 12,
+      "candidates": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "2f994561d694490102af24325440af63daea22d58a02f6ac66443cc2f330f18d",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 41,
+            "startOffset": 0,
+            "endOffset": 2333,
+            "fingerprint": "3424a6aef850e4049061a5b621865cc94dde1063859c6ad9d343c710591487e6",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 2333,
+          "exactFetchable": true,
+          "score": 0.5,
+          "title": "Context and lifecycle",
+          "headingPath": [
+            "Context and lifecycle"
+          ],
+          "snippet": "…d when consuming selected context messages, carrying a trace, checkpointing, or recording an outcome. Apply the core's provenance check once per evidence revision. Deduplicate piggyback and inbox deliveries by portable…",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle"
+            ],
+            "level": 1,
+            "parentId": null,
+            "startLine": 1,
+            "endLine": 41,
+            "chars": 2333,
+            "bytes": 2333,
+            "terms": [
+              "context",
+              "lifecycle",
+              "carrying",
+              "checkpointing",
+              "consuming",
+              "messages",
+              "outcome",
+              "read"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "c20ca8c968e54c0640d825fd0f1197b7513d1a6acde077fbb3cd258f00573fd6",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 10,
+            "endLine": 13,
+            "startOffset": 357,
+            "endOffset": 627,
+            "fingerprint": "b135726652194045a088c0b549eb9fa014a0036af8867de826e43d2242f39bd8",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 270,
+          "exactFetchable": true,
+          "score": 0.333333,
+          "title": "Context and lifecycle",
+          "headingPath": [
+            "Context and lifecycle"
+          ],
+          "snippet": "Carry a trace through meaningful replans. Use explicit `traceId` after restart, across processes, for ambiguity, or deliberate historical selection. Project ownership is part of trace identity; crossing repositories nee…",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-1",
+            "startLine": 10,
+            "endLine": 13,
+            "chars": 270,
+            "bytes": 270,
+            "terms": [
+              "trace",
+              "across",
+              "after",
+              "ambiguity",
+              "bounded",
+              "carry",
+              "crossing",
+              "deliberate"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "ed432630f81316824e5fbeac76ea8f93524afb4b766a3de24e2fe1c6fa3e903e",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 15,
+            "endLine": 41,
+            "startOffset": 629,
+            "endOffset": 2333,
+            "fingerprint": "5be78f37e47500944778eafee14fc9b2370225b445b3f85b90e77459de6e7865",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 1704,
+          "exactFetchable": true,
+          "score": 0.333333,
+          "title": "Finish the current trace",
+          "headingPath": [
+            "Context and lifecycle",
+            "Finish the current trace"
+          ],
+          "snippet": "## Finish the current trace 1. Record verification and persistence only when applicable and evidenced. 2. Re-plan the same trace at `stage=close` after the last material work. 3. Finish required close guidance. Record `…",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle",
+              "Finish the current trace"
+            ],
+            "level": 2,
+            "parentId": "heading-1",
+            "startLine": 15,
+            "endLine": 41,
+            "chars": 1704,
+            "bytes": 1704,
+            "terms": [
+              "finish",
+              "trace",
+              "record",
+              "applicable",
+              "close",
+              "complete",
+              "eventtype",
+              "outcome"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "3e68347ac87dc88f208f86793625f76b8ab5eda7e417be006822529f844ce01b",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-4",
+            "rangeKind": "block",
+            "startLine": 17,
+            "endLine": 25,
+            "startOffset": 658,
+            "endOffset": 1336,
+            "fingerprint": "205c105bf5cc7312ff6cbbdf527f73ecd93d89788b99434eadcac7c33408127c",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 678,
+          "exactFetchable": true,
+          "score": 0.333333,
+          "title": "Finish the current trace",
+          "headingPath": [
+            "Context and lifecycle",
+            "Finish the current trace"
+          ],
+          "snippet": "…nly when applicable and evidenced. 2. Re-plan the same trace at `stage=close` after the last material work. 3. Finish required close guidance. Record `eventType=phase_completed` with `completedPhases` containing the ph…",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle",
+              "Finish the current trace"
+            ],
+            "blockKind": "list",
+            "sectionId": "heading-2",
+            "startLine": 17,
+            "endLine": 25,
+            "chars": 678,
+            "bytes": 678,
+            "terms": [
+              "record",
+              "applicable",
+              "close",
+              "complete",
+              "eventtype",
+              "outcome",
+              "phases",
+              "required"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "55bbe71d2021e1f83d8ecfe37ddf9fb4e430903253dc1ed81aa1f2a9fc663c22",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-4/item-1",
+            "rangeKind": "block",
+            "startLine": 17,
+            "endLine": 17,
+            "startOffset": 658,
+            "endOffset": 732,
+            "fingerprint": "56b49210e0b4e06e0893f0acc8c7ccf379c69b47b7d609b8a101623d58f6e739",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 74,
+          "exactFetchable": true,
+          "score": 0.333333,
+          "title": "Finish the current trace",
+          "headingPath": [
+            "Context and lifecycle",
+            "Finish the current trace"
+          ],
+          "snippet": "1. Record verification and persistence only when applicable and evidenced.",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle",
+              "Finish the current trace"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-4",
+            "parentBlockFingerprint": "205c105bf5cc7312ff6cbbdf527f73ecd93d89788b99434eadcac7c33408127c",
+            "listItemOrdinal": 1,
+            "sectionId": "heading-2",
+            "startLine": 17,
+            "endLine": 17,
+            "chars": 74,
+            "bytes": 74,
+            "terms": [
+              "record",
+              "verification",
+              "and",
+              "persistence",
+              "only",
+              "when",
+              "applicable",
+              "evidenced"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "13321fc029cd5540cbe8ef92c8a63bdeb2f50e47f581e979b109f52f6faa6d7e",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-4/item-2",
+            "rangeKind": "block",
+            "startLine": 18,
+            "endLine": 18,
+            "startOffset": 733,
+            "endOffset": 805,
+            "fingerprint": "09eb83e8c22d43e956a25e31e6470f83d7d8806652d7bbba27f15374bc5d617e",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 72,
+          "exactFetchable": true,
+          "score": 0.333333,
+          "title": "Finish the current trace",
+          "headingPath": [
+            "Context and lifecycle",
+            "Finish the current trace"
+          ],
+          "snippet": "2. Re-plan the same trace at `stage=close` after the last material work.",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle",
+              "Finish the current trace"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-4",
+            "parentBlockFingerprint": "205c105bf5cc7312ff6cbbdf527f73ecd93d89788b99434eadcac7c33408127c",
+            "listItemOrdinal": 2,
+            "sectionId": "heading-2",
+            "startLine": 18,
+            "endLine": 18,
+            "chars": 72,
+            "bytes": 72,
+            "terms": [
+              "re-plan",
+              "the",
+              "same",
+              "trace",
+              "at",
+              "stage",
+              "close",
+              "after",
+              "last",
+              "material",
+              "work"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "a9f84e4ca8804ea07ddbc90c5b4525b47b3f25d82309778d114292cfbb2c1234",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-4/item-3",
+            "rangeKind": "block",
+            "startLine": 19,
+            "endLine": 22,
+            "startOffset": 806,
+            "endOffset": 1109,
+            "fingerprint": "ef038a4a3fab8b25f80946cd9351d2fc78819aaf2fece06fe7a0b7cedc66fb5a",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 303,
+          "exactFetchable": true,
+          "score": 0.333333,
+          "title": "Finish the current trace",
+          "headingPath": [
+            "Context and lifecycle",
+            "Finish the current trace"
+          ],
+          "snippet": "3. Finish required close guidance. Record `eventType=phase_completed` with `completedPhases` containing the phases actually completed, including `maintenance` when required. Listing phases on an outcome is not a substit…",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle",
+              "Finish the current trace"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-4",
+            "parentBlockFingerprint": "205c105bf5cc7312ff6cbbdf527f73ecd93d89788b99434eadcac7c33408127c",
+            "listItemOrdinal": 3,
+            "sectionId": "heading-2",
+            "startLine": 19,
+            "endLine": 22,
+            "chars": 303,
+            "bytes": 303,
+            "terms": [
+              "finish",
+              "required",
+              "close",
+              "guidance",
+              "record",
+              "eventtype",
+              "phase_completed",
+              "with",
+              "completedphases",
+              "containing",
+              "the",
+              "phases",
+              "actually",
+              "completed",
+              "including",
+              "maintenance",
+              "when",
+              "listing",
+              "on",
+              "an",
+              "outcome",
+              "is",
+              "not",
+              "substitute",
+              "for",
+              "this",
+              "checkpoint",
+              "loading",
+              "skill",
+              "alone",
+              "does",
+              "complete",
+              "its",
+              "phase"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "f39e183ca04d545a5fabe429c09c89831e1bd577fbb20f2ffe70552d04cd0a64",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-4/item-4",
+            "rangeKind": "block",
+            "startLine": 23,
+            "endLine": 25,
+            "startOffset": 1110,
+            "endOffset": 1336,
+            "fingerprint": "0f472ccd0b1dac074346fc0f8c966518f6b51682881ec6053d4c31ac9eb9d1f1",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 226,
+          "exactFetchable": true,
+          "score": 0.333333,
+          "title": "Finish the current trace",
+          "headingPath": [
+            "Context and lifecycle",
+            "Finish the current trace"
+          ],
+          "snippet": "4. Inspect the host's closure state/next action. Once applicable gates are complete, record `eventType=outcome` with one `primarySkill`, supporting skills, truthful status and bounded evidence. Use current schema limits.",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle",
+              "Finish the current trace"
+            ],
+            "blockKind": "list-item",
+            "parentBlockId": "block-4",
+            "parentBlockFingerprint": "205c105bf5cc7312ff6cbbdf527f73ecd93d89788b99434eadcac7c33408127c",
+            "listItemOrdinal": 4,
+            "sectionId": "heading-2",
+            "startLine": 23,
+            "endLine": 25,
+            "chars": 226,
+            "bytes": 226,
+            "terms": [
+              "inspect",
+              "the",
+              "host",
+              "closure",
+              "state",
+              "next",
+              "action",
+              "once",
+              "applicable",
+              "gates",
+              "are",
+              "complete",
+              "record",
+              "eventtype",
+              "outcome",
+              "with",
+              "one",
+              "primaryskill",
+              "supporting",
+              "skills",
+              "truthful",
+              "status",
+              "and",
+              "bounded",
+              "evidence",
+              "use",
+              "current",
+              "schema",
+              "limits"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "2cdda804f1c5522df59af5981aa9b6ecb4ef4873f6d22ab77c224707d1c7e4be",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-5",
+            "rangeKind": "block",
+            "startLine": 27,
+            "endLine": 31,
+            "startOffset": 1338,
+            "endOffset": 1659,
+            "fingerprint": "4e5a1e2b9ac9f7778558ea2ed4ed580c34fa8d6eca09b6399aa500a7f97b92b0",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 321,
+          "exactFetchable": true,
+          "score": 0.333333,
+          "title": "Finish the current trace",
+          "headingPath": [
+            "Context and lifecycle",
+            "Finish the current trace"
+          ],
+          "snippet": "If rejected, follow the reported missing gate on this trace; do not loop over identical close plans or invent persistence for a read-only task. Keep a real unresolved blocker explicit. Retries replace the effective outc…",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle",
+              "Finish the current trace"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-2",
+            "startLine": 27,
+            "endLine": 31,
+            "chars": 321,
+            "bytes": 321,
+            "terms": [
+              "task",
+              "trace",
+              "activity",
+              "another",
+              "blocker",
+              "close",
+              "completion",
+              "creating"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "73afee0708f9c68020cd031384873f35938298e107e1fb9a519f8f0da5ac018b",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-6",
+            "rangeKind": "block",
+            "startLine": 33,
+            "endLine": 41,
+            "startOffset": 1661,
+            "endOffset": 2332,
+            "fingerprint": "7b4aa9c180c7427a3503a2baee8cd290ae5473360d1e0300ba4595bba9f398b2",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 671,
+          "exactFetchable": true,
+          "score": 0.333333,
+          "title": "Finish the current trace",
+          "headingPath": [
+            "Context and lifecycle",
+            "Finish the current trace"
+          ],
+          "snippet": "…ly when the host can attest it is still present in the current uncompacted context. When the host exposes R3 retention receipts, carry the exact stable unit `id` plus content `fingerprint`; never infer retention from a…",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle",
+              "Finish the current trace"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-2",
+            "startLine": 33,
+            "endLine": 41,
+            "chars": 671,
+            "bytes": 671,
+            "terms": [
+              "retention",
+              "host",
+              "progress",
+              "receipts",
+              "after",
+              "any",
+              "assumptions",
+              "attest"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "7dc55294e84ab5ffd80182df7ba96bbd97398295c8c068e010e8f272e41d4a92",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 4,
+            "startOffset": 25,
+            "endOffset": 129,
+            "fingerprint": "341fc455f24d5260bbc79fb6649f3d6f164559a07ec9caf1a824258ed6cb0078",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 104,
+          "exactFetchable": true,
+          "score": 0.166667,
+          "title": "Context and lifecycle",
+          "headingPath": [
+            "Context and lifecycle"
+          ],
+          "snippet": "Read when consuming selected context messages, carrying a trace, checkpointing, or recording an outcome.",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-1",
+            "startLine": 3,
+            "endLine": 4,
+            "chars": 104,
+            "bytes": 104,
+            "terms": [
+              "carrying",
+              "checkpointing",
+              "consuming",
+              "context",
+              "messages",
+              "outcome",
+              "read",
+              "recording"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "c7450395e1182566cfdec10eff2bc6f1722f5c87bac85d252e95de0e4e247aa9",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 6,
+            "endLine": 8,
+            "startOffset": 131,
+            "endOffset": 355,
+            "fingerprint": "e3779cf6469af5bddb3166469e65dbafeca91a36e0a15adaa0a07217bd9fd7d7",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 224,
+          "exactFetchable": true,
+          "score": 0.166667,
+          "title": "Context and lifecycle",
+          "headingPath": [
+            "Context and lifecycle"
+          ],
+          "snippet": "…y the core's provenance check once per evidence revision. Deduplicate piggyback and inbox deliveries by portable identity. A delivery receipt proves delivery, not current project truth or retention after host compactio…",
+          "metadata": {
+            "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+            "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+            "headingPath": [
+              "Context and lifecycle"
+            ],
+            "blockKind": "prose",
+            "sectionId": "heading-1",
+            "startLine": 6,
+            "endLine": 8,
+            "chars": 224,
+            "bytes": 224,
+            "terms": [
+              "delivery",
+              "after",
+              "apply",
+              "check",
+              "compaction",
+              "core",
+              "deduplicate",
+              "deliveries"
+            ]
+          },
+          "evidenceTier": "candidate",
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "ownerAndPrivacyAreCallerAsserted": true,
+          "catalogProvenanceIsCallerAsserted": true
+        }
+      ]
+    }
+  ]
+}

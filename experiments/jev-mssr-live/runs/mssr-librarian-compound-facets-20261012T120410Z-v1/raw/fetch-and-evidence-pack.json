@@ -1,0 +1,140 @@
+{
+  "fetches": [
+    {
+      "caseId": "ROUTE-FIXTURES",
+      "handle": {
+        "version": 1,
+        "id": "9fb6f03d98d2bdec9691298cbccef16fc4af17e0ae8baf151a4d747ec1ef0f58",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+        "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+        "rangeId": "block-2/item-4",
+        "rangeKind": "block",
+        "startLine": 8,
+        "endLine": 8,
+        "startOffset": 333,
+        "endOffset": 433,
+        "fingerprint": "50435902493050985ca9aba65761f26cfa02350a630b02361204b7955437cf68",
+        "privacyClass": "project-metadata"
+      },
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"9fb6f03d98d2bdec9691298cbccef16fc4af17e0ae8baf151a4d747ec1ef0f58\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-routing.md\",\n    \"revision\": \"f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2\",\n    \"rangeId\": \"block-2/item-4\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 8,\n    \"endLine\": 8,\n    \"startOffset\": 333,\n    \"endOffset\": 433,\n    \"fingerprint\": \"50435902493050985ca9aba65761f26cfa02350a630b02361204b7955437cf68\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"4. Add a positive fixture, nearby negative fixture and continuation fixture for resumable workflows.\",\n  \"fingerprint\": \"50435902493050985ca9aba65761f26cfa02350a630b02361204b7955437cf68\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "ROUTE-GATES",
+      "handle": {
+        "version": 1,
+        "id": "b4c47405ace1bb5457b2c93d720bf29b99e10ccb1c9c32edea48b148283eb8ac",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+        "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+        "rangeId": "block-2/item-6",
+        "rangeKind": "block",
+        "startLine": 10,
+        "endLine": 10,
+        "startOffset": 529,
+        "endOffset": 625,
+        "fingerprint": "7a740d67807c7c7510fc1ad677f6af79c6737d8dbb7abc43e3d464877a7a957a",
+        "privacyClass": "project-metadata"
+      },
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"b4c47405ace1bb5457b2c93d720bf29b99e10ccb1c9c32edea48b148283eb8ac\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-routing.md\",\n    \"revision\": \"f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2\",\n    \"rangeId\": \"block-2/item-6\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 10,\n    \"endLine\": 10,\n    \"startOffset\": 529,\n    \"endOffset\": 625,\n    \"fingerprint\": \"7a740d67807c7c7510fc1ad677f6af79c6737d8dbb7abc43e3d464877a7a957a\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"6. Run `skill_route_audit`, representative real route plans and the full MSSR verification gate.\",\n  \"fingerprint\": \"7a740d67807c7c7510fc1ad677f6af79c6737d8dbb7abc43e3d464877a7a957a\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "LIFECYCLE-OWNER",
+      "handle": {
+        "version": 1,
+        "id": "c20ca8c968e54c0640d825fd0f1197b7513d1a6acde077fbb3cd258f00573fd6",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+        "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+        "rangeId": "block-3",
+        "rangeKind": "block",
+        "startLine": 10,
+        "endLine": 13,
+        "startOffset": 357,
+        "endOffset": 627,
+        "fingerprint": "b135726652194045a088c0b549eb9fa014a0036af8867de826e43d2242f39bd8",
+        "privacyClass": "project-metadata"
+      },
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"c20ca8c968e54c0640d825fd0f1197b7513d1a6acde077fbb3cd258f00573fd6\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/mssr-agent-routing/references/context-and-lifecycle.md\",\n    \"revision\": \"a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90\",\n    \"rangeId\": \"block-3\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 10,\n    \"endLine\": 13,\n    \"startOffset\": 357,\n    \"endOffset\": 627,\n    \"fingerprint\": \"b135726652194045a088c0b549eb9fa014a0036af8867de826e43d2242f39bd8\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"Carry a trace through meaningful replans. Use explicit `traceId` after restart,\\nacross processes, for ambiguity, or deliberate historical selection. Project\\nownership is part of trace identity; crossing repositories needs a new owner\\ntrace with bounded handoff evidence.\",\n  \"fingerprint\": \"b135726652194045a088c0b549eb9fa014a0036af8867de826e43d2242f39bd8\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "LIFECYCLE-CLOSE",
+      "handle": {
+        "version": 1,
+        "id": "3e68347ac87dc88f208f86793625f76b8ab5eda7e417be006822529f844ce01b",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+        "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+        "rangeId": "block-4",
+        "rangeKind": "block",
+        "startLine": 17,
+        "endLine": 25,
+        "startOffset": 658,
+        "endOffset": 1336,
+        "fingerprint": "205c105bf5cc7312ff6cbbdf527f73ecd93d89788b99434eadcac7c33408127c",
+        "privacyClass": "project-metadata"
+      },
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"3e68347ac87dc88f208f86793625f76b8ab5eda7e417be006822529f844ce01b\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/mssr-agent-routing/references/context-and-lifecycle.md\",\n    \"revision\": \"a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90\",\n    \"rangeId\": \"block-4\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 17,\n    \"endLine\": 25,\n    \"startOffset\": 658,\n    \"endOffset\": 1336,\n    \"fingerprint\": \"205c105bf5cc7312ff6cbbdf527f73ecd93d89788b99434eadcac7c33408127c\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"1. Record verification and persistence only when applicable and evidenced.\\n2. Re-plan the same trace at `stage=close` after the last material work.\\n3. Finish required close guidance. Record `eventType=phase_completed` with\\n   `completedPhases` containing the phases actually completed, including\\n   `maintenance` when required. Listing phases on an outcome is not a substitute\\n   for this checkpoint. Loading a skill alone does not complete its phase.\\n4. Inspect the host's closure state/next action. Once applicable gates are\\n   complete, record `eventType=outcome` with one `primarySkill`, supporting skills,\\n   truthful status and bounded evidence. Use current schema limits.\",\n  \"fingerprint\": \"205c105bf5cc7312ff6cbbdf527f73ecd93d89788b99434eadcac7c33408127c\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+          }
+        ]
+      }
+    }
+  ],
+  "evidencePacks": [
+    {
+      "parentCaseId": "ROUTE-POS",
+      "facetCaseIds": [
+        "ROUTE-FIXTURES",
+        "ROUTE-GATES"
+      ],
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"sourceCount\": 1,\n  \"schemaVersion\": 1,\n  \"kind\": \"mssr-librarian-evidence-pack\",\n  \"assembly\": \"verbatim-source-ranges\",\n  \"paragraphs\": [\n    {\n      \"ordinal\": 1,\n      \"exactText\": \"4. Add a positive fixture, nearby negative fixture and continuation fixture for resumable workflows.\",\n      \"citation\": {\n        \"display\": \"skills/skill-maintenance-loop/references/maintenance-routing.md:L8-L8\",\n        \"handleId\": \"9fb6f03d98d2bdec9691298cbccef16fc4af17e0ae8baf151a4d747ec1ef0f58\",\n        \"owner\": \"d:/dev/mssr\",\n        \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-routing.md\",\n        \"revision\": \"f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2\",\n        \"rangeId\": \"block-2/item-4\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 8,\n        \"endLine\": 8,\n        \"fingerprint\": \"50435902493050985ca9aba65761f26cfa02350a630b02361204b7955437cf68\",\n        \"privacyClass\": \"project-metadata\"\n      }\n    },\n    {\n      \"ordinal\": 2,\n      \"exactText\": \"6. Run `skill_route_audit`, representative real route plans and the full MSSR verification gate.\",\n      \"citation\": {\n        \"display\": \"skills/skill-maintenance-loop/references/maintenance-routing.md:L10-L10\",\n        \"handleId\": \"b4c47405ace1bb5457b2c93d720bf29b99e10ccb1c9c32edea48b148283eb8ac\",\n        \"owner\": \"d:/dev/mssr\",\n        \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-routing.md\",\n        \"revision\": \"f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2\",\n        \"rangeId\": \"block-2/item-6\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 10,\n        \"endLine\": 10,\n        \"fingerprint\": \"7a740d67807c7c7510fc1ad677f6af79c6737d8dbb7abc43e3d464877a7a957a\",\n        \"privacyClass\": \"project-metadata\"\n      }\n    }\n  ],\n  \"totalFetchedChars\": 196,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"canonicalRewriteAllowed\": false,\n  \"ownerAndPrivacyAreCallerAsserted\": true,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+          }
+        ]
+      }
+    },
+    {
+      "parentCaseId": "LIFECYCLE-POS",
+      "facetCaseIds": [
+        "LIFECYCLE-OWNER",
+        "LIFECYCLE-CLOSE"
+      ],
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"sourceCount\": 1,\n  \"schemaVersion\": 1,\n  \"kind\": \"mssr-librarian-evidence-pack\",\n  \"assembly\": \"verbatim-source-ranges\",\n  \"paragraphs\": [\n    {\n      \"ordinal\": 1,\n      \"exactText\": \"Carry a trace through meaningful replans. Use explicit `traceId` after restart,\\nacross processes, for ambiguity, or deliberate historical selection. Project\\nownership is part of trace identity; crossing repositories needs a new owner\\ntrace with bounded handoff evidence.\",\n      \"citation\": {\n        \"display\": \"skills/mssr-agent-routing/references/context-and-lifecycle.md:L10-L13\",\n        \"handleId\": \"c20ca8c968e54c0640d825fd0f1197b7513d1a6acde077fbb3cd258f00573fd6\",\n        \"owner\": \"d:/dev/mssr\",\n        \"sourceRef\": \"skills/mssr-agent-routing/references/context-and-lifecycle.md\",\n        \"revision\": \"a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90\",\n        \"rangeId\": \"block-3\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 10,\n        \"endLine\": 13,\n        \"fingerprint\": \"b135726652194045a088c0b549eb9fa014a0036af8867de826e43d2242f39bd8\",\n        \"privacyClass\": \"project-metadata\"\n      }\n    },\n    {\n      \"ordinal\": 2,\n      \"exactText\": \"1. Record verification and persistence only when applicable and evidenced.\\n2. Re-plan the same trace at `stage=close` after the last material work.\\n3. Finish required close guidance. Record `eventType=phase_completed` with\\n   `completedPhases` containing the phases actually completed, including\\n   `maintenance` when required. Listing phases on an outcome is not a substitute\\n   for this checkpoint. Loading a skill alone does not complete its phase.\\n4. Inspect the host's closure state/next action. Once applicable gates are\\n   complete, record `eventType=outcome` with one `primarySkill`, supporting skills,\\n   truthful status and bounded evidence. Use current schema limits.\",\n      \"citation\": {\n        \"display\": \"skills/mssr-agent-routing/references/context-and-lifecycle.md:L17-L25\",\n        \"handleId\": \"3e68347ac87dc88f208f86793625f76b8ab5eda7e417be006822529f844ce01b\",\n        \"owner\": \"d:/dev/mssr\",\n        \"sourceRef\": \"skills/mssr-agent-routing/references/context-and-lifecycle.md\",\n        \"revision\": \"a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90\",\n        \"rangeId\": \"block-4\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 17,\n        \"endLine\": 25,\n        \"fingerprint\": \"205c105bf5cc7312ff6cbbdf527f73ecd93d89788b99434eadcac7c33408127c\",\n        \"privacyClass\": \"project-metadata\"\n      }\n    }\n  ],\n  \"totalFetchedChars\": 948,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"canonicalRewriteAllowed\": false,\n  \"ownerAndPrivacyAreCallerAsserted\": true,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+          }
+        ]
+      }
+    }
+  ]
+}

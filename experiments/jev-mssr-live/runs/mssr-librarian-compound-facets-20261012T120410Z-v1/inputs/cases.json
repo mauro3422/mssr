@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "baselineRun": "mssr-librarian-fresh-skill-refs-20261012T115056Z-v1",
+  "protocol": "four facet-specific English prompts; no variants; lexical metadata off",
+  "cases": [
+    {
+      "id": "ROUTE-FIXTURES",
+      "parentCaseId": "ROUTE-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+      "sourceCluster": "source-02",
+      "facet": "fixture-types",
+      "language": "en",
+      "query": "Which three fixture types should be added for a routing or activation change?"
+    },
+    {
+      "id": "ROUTE-GATES",
+      "parentCaseId": "ROUTE-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+      "sourceCluster": "source-02",
+      "facet": "verification-gates",
+      "language": "en",
+      "query": "Which checks and full verification gates should be run after routing or activation changes?"
+    },
+    {
+      "id": "LIFECYCLE-OWNER",
+      "parentCaseId": "LIFECYCLE-POS",
+      "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+      "sourceCluster": "source-04",
+      "facet": "cross-repository-ownership",
+      "language": "en",
+      "query": "When a task crosses repositories, what trace ownership change is required and what evidence should accompany it?"
+    },
+    {
+      "id": "LIFECYCLE-CLOSE",
+      "parentCaseId": "LIFECYCLE-POS",
+      "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+      "sourceCluster": "source-04",
+      "facet": "close-recording",
+      "language": "en",
+      "query": "What needs to be recorded and checked before closing the current trace?"
+    }
+  ]
+}
