@@ -27,6 +27,9 @@ Retirar el parent del objetivo ayudó a Q01: Jev pasó del parent amplio al bloq
 
 Los cuatro registros devolvieron modelo y proveedor, timestamps, huellas de petición, uso de tokens y salidas completas, pero `providerRequestId` es `null` en las cuatro respuestas; `run-completion.json` cuenta cero IDs y deja `providerTransportInvocationsObserved` como `null`. La evidencia respalda cuatro respuestas registradas del adaptador con identidad `typesafe-jev` / `jev-1.13.0`, pero no tenemos IDs remotos por llamada ni una medición independiente del transporte.
 
+## Corrección de nombre de métrica
+
+El resumen congelado llama `exactHeadingMatches` al conteo 1/4 y los registros llaman `exactHeadingMatch` al booleano por caso. El runner usa ambos nombres como alias de match del **rango aceptado completo** (fuente, heading y líneas exactas), no de coincidencia del título. Q01-full tiene el mismo título que la etiqueta, pero seleccionó el parent de 54 líneas en lugar del bloque de 16; por eso no cuenta como match exacto. El valor 1/4 es correcto como exactitud de rango y no se recalculan datos. Ver la [errata de métrica](SUMMARY-ERRATUM.md).
 ## Integridad y límites
 
 Los artefactos congelados originales no se modificaron. Los 15 hashes que ya estaban listados coincidieron y el SHA-256 de `manifest.json` coincidió con `run-completion.json`. El índice original había omitido `review/blind-review-input.json`; el `SHA256SUMS` final se regeneró para cubrir todos los archivos del paquete, excepto el propio índice. El escaneo de patrones comunes de credenciales no encontró coincidencias.
