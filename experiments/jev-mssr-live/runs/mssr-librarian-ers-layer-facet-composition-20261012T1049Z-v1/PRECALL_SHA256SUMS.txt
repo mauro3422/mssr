@@ -1,0 +1,17 @@
+{
+  "files": [
+    "2da9ab556be486ea1310006cd629f4764de9c34dc58ffa14c61d997bfe087618  inputs/cases.json",
+    "79cee857d374c998baa90bdc2a05be147ea6e15c9d5c94bc8051b65025a3295d  inputs/frozen-candidates.json",
+    "309913cc0230a39616e8f4440912dacab43aa03a793bbe689b2f3199ce5af244  labels/expected-facets.self-reviewed.json",
+    "58fd99cd074a86280743ec414a5c58f9a1e475541f71bf7d8abb08880f68708d  manifest.json",
+    "ccab126255e81c94cb1ee6e44103886e2c11ceb1606454d9c1f155ef4f2a07cf  raw/L1.search.normalized.json",
+    "64805224a6c85ce9e660a316d1f418b8bc6074c43f935241f876d832314d681a  raw/L2.search.normalized.json",
+    "af7dee7e04fdd0312c4fad164d06053c7fe63b0694d1b1911dfd7d6b5e8ace23  raw/L3.search.normalized.json",
+    "c8b7dc3f1926b5ac5ef52b5b4fcf055ae7dd90b98cda63f4b43286e408d43bc9  README.md"
+  ],
+  "frozenAtUtc": "2026-10-12T10:53:41.5704632Z",
+  "sourceSha256": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+  "providerCallsCompleted": 0,
+  "sourceFile": "D:\\Dev\\electronics-repair-simulator\\docs\\ELECTRONICS_MODULAR_SYSTEM.md",
+  "externalJevCallsAuthorizedForRun": 3
+}

@@ -1733,3 +1733,41 @@ intent; Project Context health and modularization tests pass.
 **Follow-up:** Keep future connected runs in dated, selectively indexed
 references and retain the confidence caveats in the stable benchmark-history
 module. No Jev score or production threshold changed.
+
+## MSSR-057 — Required skill activation needed lifecycle recovery
+
+**Date/status:** 2026-10-12 · Recovered; no product-code change.
+
+**Layer/owner:** Host lifecycle and trace-linked skill activation; this routing
+incident ledger is the canonical MSSR owner.
+
+**Symptom and evidence:** During the Run48 continuation, Bridge delivered
+`mssr-required-skill-not-loaded` for the active trace at the implement-to-verify
+boundary, naming `shared-skill-governance`. Later, a persistence bootstrap
+rejected an explicit `accepted` host decision for `git-change-publication`:
+Bridge classified it as a required workflow obligation that must not be
+host-gated. No Git operation ran during the rejected call. The coalesced error
+notice reported 13 occurrences of that exact schema error; this task reproduced
+one. Both notices were advisory and neither authorized a change.
+
+**Cause:** Two host lifecycle mistakes: the prior phase lacked a Bridge-recorded
+required skill load, and a later bootstrap attempted to host-gate a skill that
+the workflow declares required. Reading a skill file directly does not
+establish a trace-linked activation event. The evidence does not show a router
+or provider defect.
+
+**Correction:** Replanned the same trace and bootstrapped the verify stage.
+After the persistence validation error, replanned and bootstrapped again with
+the required publication skill left to the workflow loader; persistence
+bootstrap then returned `status=complete` and `mustContinue=false`. Loaded
+`skill-maintenance-loop` for close review. No routing metadata, skill, or
+fixture was changed.
+
+**Regression and follow-up:** The current trace resumed only after the verify
+and persistence bootstraps returned `status=complete` and `mustContinue=false`;
+the persistence response marked `git-change-publication` as required and
+loaded. On future substantial phase changes, apply the route's bootstrap action
+and confirm required loads before dependent work. Do not submit `accepted` for a
+workflow-required skill in host-gated decisions. If either warning recurs after
+that sequence, reproduce it with exact route/load events before changing
+routing code.

@@ -1,0 +1,83 @@
+{
+  "projectOwner": "d:/dev/electronics-repair-simulator",
+  "sourceCount": 1,
+  "schemaVersion": 1,
+  "kind": "mssr-librarian-evidence-pack",
+  "assembly": "verbatim-source-ranges",
+  "paragraphs": [
+    {
+      "ordinal": 1,
+      "exactText": "### Layer 1 — atomic component\n\nSmall reusable pieces with their own stable local interface:\n\n- PCB carriers;\n- processors / IC packages;\n- resistors, capacitors, diodes and transistors;\n- fuses and regulators;\n- switches and potentiometers;\n- headers, wire connectors, terminal blocks and test jacks;\n- buzzers, LEDs and inductors;\n- existing reusable fasteners, battery cells and battery contacts.\n\nAtomic components should remain independent from the device shell and should normally be instanced at scale `1,1,1`.\n\n",
+      "citation": {
+        "display": "docs/ELECTRONICS_MODULAR_SYSTEM.md:L28-L42",
+        "handleId": "bb3ab88c78175b182c6b8f8c31ef92d10dfa1f4ac80710007a0dbf1265b6c2ac",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "startLine": 28,
+        "endLine": 42,
+        "fingerprint": "5f919b498796bea576d33e9a24f05b8b5f2fe8c3b258c90cdd36b2e59730bd59",
+        "privacyClass": "project-metadata"
+      }
+    },
+    {
+      "ordinal": 2,
+      "exactText": "A module owns the placement of its atomics, but those atomics retain source lineage and detachable identities when the repair loop may expose them.",
+      "citation": {
+        "display": "docs/ELECTRONICS_MODULAR_SYSTEM.md:L55-L55",
+        "handleId": "8fc026e6912cf0fe6a43d2da25673c723a2c22ae20ce36a88daf466a073e2098",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-13",
+        "rangeKind": "block",
+        "startLine": 55,
+        "endLine": 55,
+        "fingerprint": "0f170c53bb8cac2ea60ebaf8d4a79b6158a9ff04452b61cf6cb8e7298bab144c",
+        "privacyClass": "project-metadata"
+      }
+    },
+    {
+      "ordinal": 3,
+      "exactText": "### Layer 3 — serviceable assembly\n\nThe device-specific interior and shell contract:\n\n- covers;\n- screw interfaces;\n- PCB/module mount points;\n- battery cradle/contact placement;\n- cable routing;\n- optical/mechanical interfaces;\n- removal order.\n\nThe serviceable assembly decides which reusable pieces are instantiated and which device-specific geometry must be derived or created.\n\n",
+      "citation": {
+        "display": "docs/ELECTRONICS_MODULAR_SYSTEM.md:L57-L70",
+        "handleId": "f9305df9fb20c8416db886b8955eb38a22951663cb06898bfca63615f5c81f0e",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-6",
+        "rangeKind": "section",
+        "startLine": 57,
+        "endLine": 70,
+        "fingerprint": "61cf1b5196f951ee636dfba48a05cccd428b7b755f52f54fafe967f2acbbb887",
+        "privacyClass": "project-metadata"
+      }
+    },
+    {
+      "ordinal": 4,
+      "exactText": "A bounded assembly that combines atomic components for one purpose, for example:",
+      "citation": {
+        "display": "docs/ELECTRONICS_MODULAR_SYSTEM.md:L45-L45",
+        "handleId": "de536ba73689b7a02a527dd35d76aac9b6d411be85988b50f960294080aa21a1",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-11",
+        "rangeKind": "block",
+        "startLine": 45,
+        "endLine": 45,
+        "fingerprint": "fe9fde89fe885d408e27457e488ffb0f38bbcd277cfc9ef8153aaf9295140bb4",
+        "privacyClass": "project-metadata"
+      }
+    }
+  ],
+  "totalFetchedChars": 1129,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "canonicalRewriteAllowed": false,
+  "ownerAndPrivacyAreCallerAsserted": true
+}
+

@@ -1,0 +1,690 @@
+{
+  "projectOwner": "d:/dev/electronics-repair-simulator",
+  "sourceCount": 1,
+  "status": "selected",
+  "candidateCount": 12,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "verification": "unverified",
+  "confidenceCalibration": "uncalibrated-provider-score",
+  "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+  "exactFetchRequired": true,
+  "autoApplyAllowed": false,
+  "candidateRangeDiagnostics": {
+    "offered": 12,
+    "eligible": 12,
+    "oversizedOmitted": 0,
+    "maxFetchChars": 20000,
+    "lengthUnit": "utf16-code-units"
+  },
+  "rangeOverlapDiagnostics": {
+    "sameSourceRevisionPairs": 66,
+    "overlappingPairCount": 36,
+    "nestedPairCount": 36,
+    "exactRangePairCount": 0,
+    "partialOverlapPairCount": 0,
+    "pairs": [
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          384
+        ],
+        "rightOptionId": "h002",
+        "rightRangeId": "heading-3",
+        "rightRangeKind": "section",
+        "rightLines": [
+          24,
+          70
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 1401
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          384
+        ],
+        "rightOptionId": "h003",
+        "rightRangeId": "heading-4",
+        "rightRangeKind": "section",
+        "rightLines": [
+          28,
+          42
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 519
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          384
+        ],
+        "rightOptionId": "h004",
+        "rightRangeId": "block-8",
+        "rightRangeKind": "block",
+        "rightLines": [
+          30,
+          30
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 60
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          384
+        ],
+        "rightOptionId": "h005",
+        "rightRangeId": "block-9",
+        "rightRangeKind": "block",
+        "rightLines": [
+          32,
+          39
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 305
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          384
+        ],
+        "rightOptionId": "h006",
+        "rightRangeId": "block-9/item-8",
+        "rightRangeKind": "block",
+        "rightLines": [
+          39,
+          39
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 66
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          384
+        ],
+        "rightOptionId": "h007",
+        "rightRangeId": "block-10",
+        "rightRangeKind": "block",
+        "rightLines": [
+          41,
+          41
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 116
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          384
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-9/item-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          32,
+          32
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 15
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          384
+        ],
+        "rightOptionId": "h009",
+        "rightRangeId": "block-9/item-2",
+        "rightRangeKind": "block",
+        "rightLines": [
+          33,
+          33
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 27
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          384
+        ],
+        "rightOptionId": "h010",
+        "rightRangeId": "block-9/item-3",
+        "rightRangeKind": "block",
+        "rightLines": [
+          34,
+          34
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 48
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          384
+        ],
+        "rightOptionId": "h011",
+        "rightRangeId": "block-9/item-4",
+        "rightRangeKind": "block",
+        "rightLines": [
+          35,
+          35
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 23
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          384
+        ],
+        "rightOptionId": "h012",
+        "rightRangeId": "block-9/item-5",
+        "rightRangeKind": "block",
+        "rightLines": [
+          36,
+          36
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 30
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-3",
+        "leftRangeKind": "section",
+        "leftLines": [
+          24,
+          70
+        ],
+        "rightOptionId": "h003",
+        "rightRangeId": "heading-4",
+        "rightRangeKind": "section",
+        "rightLines": [
+          28,
+          42
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 519
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-3",
+        "leftRangeKind": "section",
+        "leftLines": [
+          24,
+          70
+        ],
+        "rightOptionId": "h004",
+        "rightRangeId": "block-8",
+        "rightRangeKind": "block",
+        "rightLines": [
+          30,
+          30
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 60
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-3",
+        "leftRangeKind": "section",
+        "leftLines": [
+          24,
+          70
+        ],
+        "rightOptionId": "h005",
+        "rightRangeId": "block-9",
+        "rightRangeKind": "block",
+        "rightLines": [
+          32,
+          39
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 305
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-3",
+        "leftRangeKind": "section",
+        "leftLines": [
+          24,
+          70
+        ],
+        "rightOptionId": "h006",
+        "rightRangeId": "block-9/item-8",
+        "rightRangeKind": "block",
+        "rightLines": [
+          39,
+          39
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 66
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-3",
+        "leftRangeKind": "section",
+        "leftLines": [
+          24,
+          70
+        ],
+        "rightOptionId": "h007",
+        "rightRangeId": "block-10",
+        "rightRangeKind": "block",
+        "rightLines": [
+          41,
+          41
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 116
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-3",
+        "leftRangeKind": "section",
+        "leftLines": [
+          24,
+          70
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-9/item-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          32,
+          32
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 15
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-3",
+        "leftRangeKind": "section",
+        "leftLines": [
+          24,
+          70
+        ],
+        "rightOptionId": "h009",
+        "rightRangeId": "block-9/item-2",
+        "rightRangeKind": "block",
+        "rightLines": [
+          33,
+          33
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 27
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-3",
+        "leftRangeKind": "section",
+        "leftLines": [
+          24,
+          70
+        ],
+        "rightOptionId": "h010",
+        "rightRangeId": "block-9/item-3",
+        "rightRangeKind": "block",
+        "rightLines": [
+          34,
+          34
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 48
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-3",
+        "leftRangeKind": "section",
+        "leftLines": [
+          24,
+          70
+        ],
+        "rightOptionId": "h011",
+        "rightRangeId": "block-9/item-4",
+        "rightRangeKind": "block",
+        "rightLines": [
+          35,
+          35
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 23
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-3",
+        "leftRangeKind": "section",
+        "leftLines": [
+          24,
+          70
+        ],
+        "rightOptionId": "h012",
+        "rightRangeId": "block-9/item-5",
+        "rightRangeKind": "block",
+        "rightLines": [
+          36,
+          36
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 30
+      },
+      {
+        "leftOptionId": "h003",
+        "leftRangeId": "heading-4",
+        "leftRangeKind": "section",
+        "leftLines": [
+          28,
+          42
+        ],
+        "rightOptionId": "h004",
+        "rightRangeId": "block-8",
+        "rightRangeKind": "block",
+        "rightLines": [
+          30,
+          30
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 60
+      },
+      {
+        "leftOptionId": "h003",
+        "leftRangeId": "heading-4",
+        "leftRangeKind": "section",
+        "leftLines": [
+          28,
+          42
+        ],
+        "rightOptionId": "h005",
+        "rightRangeId": "block-9",
+        "rightRangeKind": "block",
+        "rightLines": [
+          32,
+          39
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 305
+      },
+      {
+        "leftOptionId": "h003",
+        "leftRangeId": "heading-4",
+        "leftRangeKind": "section",
+        "leftLines": [
+          28,
+          42
+        ],
+        "rightOptionId": "h006",
+        "rightRangeId": "block-9/item-8",
+        "rightRangeKind": "block",
+        "rightLines": [
+          39,
+          39
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 66
+      },
+      {
+        "leftOptionId": "h003",
+        "leftRangeId": "heading-4",
+        "leftRangeKind": "section",
+        "leftLines": [
+          28,
+          42
+        ],
+        "rightOptionId": "h007",
+        "rightRangeId": "block-10",
+        "rightRangeKind": "block",
+        "rightLines": [
+          41,
+          41
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 116
+      },
+      {
+        "leftOptionId": "h003",
+        "leftRangeId": "heading-4",
+        "leftRangeKind": "section",
+        "leftLines": [
+          28,
+          42
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-9/item-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          32,
+          32
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 15
+      },
+      {
+        "leftOptionId": "h003",
+        "leftRangeId": "heading-4",
+        "leftRangeKind": "section",
+        "leftLines": [
+          28,
+          42
+        ],
+        "rightOptionId": "h009",
+        "rightRangeId": "block-9/item-2",
+        "rightRangeKind": "block",
+        "rightLines": [
+          33,
+          33
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 27
+      },
+      {
+        "leftOptionId": "h003",
+        "leftRangeId": "heading-4",
+        "leftRangeKind": "section",
+        "leftLines": [
+          28,
+          42
+        ],
+        "rightOptionId": "h010",
+        "rightRangeId": "block-9/item-3",
+        "rightRangeKind": "block",
+        "rightLines": [
+          34,
+          34
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 48
+      },
+      {
+        "leftOptionId": "h003",
+        "leftRangeId": "heading-4",
+        "leftRangeKind": "section",
+        "leftLines": [
+          28,
+          42
+        ],
+        "rightOptionId": "h011",
+        "rightRangeId": "block-9/item-4",
+        "rightRangeKind": "block",
+        "rightLines": [
+          35,
+          35
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 23
+      },
+      {
+        "leftOptionId": "h003",
+        "leftRangeId": "heading-4",
+        "leftRangeKind": "section",
+        "leftLines": [
+          28,
+          42
+        ],
+        "rightOptionId": "h012",
+        "rightRangeId": "block-9/item-5",
+        "rightRangeKind": "block",
+        "rightLines": [
+          36,
+          36
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 30
+      },
+      {
+        "leftOptionId": "h005",
+        "leftRangeId": "block-9",
+        "leftRangeKind": "block",
+        "leftLines": [
+          32,
+          39
+        ],
+        "rightOptionId": "h006",
+        "rightRangeId": "block-9/item-8",
+        "rightRangeKind": "block",
+        "rightLines": [
+          39,
+          39
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 66
+      },
+      {
+        "leftOptionId": "h005",
+        "leftRangeId": "block-9",
+        "leftRangeKind": "block",
+        "leftLines": [
+          32,
+          39
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-9/item-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          32,
+          32
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 15
+      }
+    ],
+    "truncated": true,
+    "mutationApplied": false
+  },
+  "finalistCount": 12,
+  "selectionMode": "single-pass",
+  "selectionPasses": 1,
+  "providerCalls": 1,
+  "providerConfidence": 0.46,
+  "evidenceSufficiency": 0.83,
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "providersUsed": [
+    "typesafe-jev"
+  ],
+  "modelsUsed": [
+    "jev-1.13.0"
+  ],
+  "usage": {
+    "input_tokens": 1843,
+    "output_tokens": 167
+  },
+  "requestFingerprint": "771e1fce23ca51b7f036e1b59075940a51e57d610e3b4fe8be228991fa6a0c72",
+  "elapsedMs": 1879.3,
+  "jevCallMade": true,
+  "selected": {
+    "optionId": "h003",
+    "title": "Layer 1 — atomic component",
+    "headingPath": [
+      "Electronics Modular System",
+      "Layer model",
+      "Layer 1 — atomic component"
+    ],
+    "handle": {
+      "version": 1,
+      "id": "bb3ab88c78175b182c6b8f8c31ef92d10dfa1f4ac80710007a0dbf1265b6c2ac",
+      "owner": "d:/dev/electronics-repair-simulator",
+      "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+      "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+      "rangeId": "heading-4",
+      "rangeKind": "section",
+      "startLine": 28,
+      "endLine": 42,
+      "startOffset": 1284,
+      "endOffset": 1803,
+      "fingerprint": "5f919b498796bea576d33e9a24f05b8b5f2fe8c3b258c90cdd36b2e59730bd59",
+      "privacyClass": "project-metadata"
+    }
+  },
+  "choiceCalls": [
+    {
+      "questionKey": "selection",
+      "offeredOptionIds": [
+        "h001",
+        "h002",
+        "h003",
+        "h004",
+        "h005",
+        "h006",
+        "h007",
+        "h008",
+        "h009",
+        "h010",
+        "h011",
+        "h012",
+        "none"
+      ],
+      "selectedOptionId": "h003",
+      "confidence": 0.46,
+      "probabilities": {
+        "h001": 0,
+        "h002": 0.04,
+        "h003": 0.5,
+        "h004": 0.01,
+        "h005": 0.23,
+        "h006": 0,
+        "h007": 0.21,
+        "h008": 0,
+        "h009": 0,
+        "h010": 0,
+        "h011": 0,
+        "h012": 0,
+        "none": 0.01
+      }
+    }
+  ]
+}
+

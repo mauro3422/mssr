@@ -1,0 +1,23 @@
+{
+  "projectOwner": "d:/dev/electronics-repair-simulator",
+  "handle": {
+    "version": 1,
+    "id": "f9305df9fb20c8416db886b8955eb38a22951663cb06898bfca63615f5c81f0e",
+    "owner": "d:/dev/electronics-repair-simulator",
+    "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+    "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+    "rangeId": "heading-6",
+    "rangeKind": "section",
+    "startLine": 57,
+    "endLine": 70,
+    "startOffset": 2202,
+    "endOffset": 2585,
+    "fingerprint": "61cf1b5196f951ee636dfba48a05cccd428b7b755f52f54fafe967f2acbbb887",
+    "privacyClass": "project-metadata"
+  },
+  "text": "### Layer 3 — serviceable assembly\n\nThe device-specific interior and shell contract:\n\n- covers;\n- screw interfaces;\n- PCB/module mount points;\n- battery cradle/contact placement;\n- cable routing;\n- optical/mechanical interfaces;\n- removal order.\n\nThe serviceable assembly decides which reusable pieces are instantiated and which device-specific geometry must be derived or created.\n\n",
+  "fingerprint": "61cf1b5196f951ee636dfba48a05cccd428b7b755f52f54fafe967f2acbbb887",
+  "advisoryOnly": true,
+  "truthAuthority": false
+}
+

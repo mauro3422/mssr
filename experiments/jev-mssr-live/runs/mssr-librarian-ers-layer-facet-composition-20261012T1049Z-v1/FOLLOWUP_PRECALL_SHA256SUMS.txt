@@ -1,0 +1,11 @@
+{
+  "candidateCount": 12,
+  "files": [
+    "e667ffea5f996e18f71a8b3c8c9ee946692e089213873ef94f8333281b8dfd2f  inputs/adaptive-followup-L2-definition.json",
+    "c2225f07f6a5e450473c5c2f0762b6bf1651ec7b3adda19e08085f59e43eecfd  raw/adaptive-L2-definition.search.normalized.json"
+  ],
+  "followupQuery": "What is a bounded functional module and what does it combine for one purpose?",
+  "frozenAtUtc": "2026-10-12T10:55:28.5495278Z",
+  "sourceSha256": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+  "providerCallsCompletedForFollowup": 0
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "originalCompoundQuestion": "What are the three explicit device-modeling layers, and which layer owns placement of atomic components?",
+  "cases": [
+    {
+      "id": "ERS-L1-EN",
+      "facet": "layer-1",
+      "query": "Describe Layer 1 — atomic component: what parts are reusable and independent?",
+      "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+      "language": "en"
+    },
+    {
+      "id": "ERS-L2-EN",
+      "facet": "layer-2",
+      "query": "What does Layer 2 functional module combine, and which layer owns placement of atomic components?",
+      "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+      "language": "en"
+    },
+    {
+      "id": "ERS-L3-EN",
+      "facet": "layer-3",
+      "query": "What defines Layer 3 serviceable assembly, its device-specific geometry and responsibilities?",
+      "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+      "language": "en"
+    }
+  ]
+}
+

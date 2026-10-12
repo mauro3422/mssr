@@ -1,0 +1,23 @@
+{
+  "projectOwner": "d:/dev/electronics-repair-simulator",
+  "handle": {
+    "version": 1,
+    "id": "bb3ab88c78175b182c6b8f8c31ef92d10dfa1f4ac80710007a0dbf1265b6c2ac",
+    "owner": "d:/dev/electronics-repair-simulator",
+    "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+    "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+    "rangeId": "heading-4",
+    "rangeKind": "section",
+    "startLine": 28,
+    "endLine": 42,
+    "startOffset": 1284,
+    "endOffset": 1803,
+    "fingerprint": "5f919b498796bea576d33e9a24f05b8b5f2fe8c3b258c90cdd36b2e59730bd59",
+    "privacyClass": "project-metadata"
+  },
+  "text": "### Layer 1 — atomic component\n\nSmall reusable pieces with their own stable local interface:\n\n- PCB carriers;\n- processors / IC packages;\n- resistors, capacitors, diodes and transistors;\n- fuses and regulators;\n- switches and potentiometers;\n- headers, wire connectors, terminal blocks and test jacks;\n- buzzers, LEDs and inductors;\n- existing reusable fasteners, battery cells and battery contacts.\n\nAtomic components should remain independent from the device shell and should normally be instanced at scale `1,1,1`.\n\n",
+  "fingerprint": "5f919b498796bea576d33e9a24f05b8b5f2fe8c3b258c90cdd36b2e59730bd59",
+  "advisoryOnly": true,
+  "truthAuthority": false
+}
+

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "ownerAdjudicated": false,
+  "labelSource": "manual reading of the exact source revision identified in the manifest; development-only expected coverage",
+  "sourceSha256": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+  "originalCompoundQuestion": "What are the three explicit device-modeling layers, and which layer owns placement of atomic components?",
+  "facets": [
+    {
+      "caseId": "ERS-L1-EN",
+      "expectedRange": {
+        "rangeId": "heading-4",
+        "startLine": 28,
+        "endLine": 42
+      },
+      "requiredClaims": [
+        "Layer 1 is the atomic-component layer.",
+        "Atomic components are small reusable pieces with stable local interfaces.",
+        "They are independent from the device shell."
+      ]
+    },
+    {
+      "caseId": "ERS-L2-EN",
+      "expectedRange": {
+        "rangeId": "heading-5",
+        "startLine": 43,
+        "endLine": 56
+      },
+      "requiredClaims": [
+        "Layer 2 is a bounded functional module combining atomics for one purpose.",
+        "The module owns placement of its atomic components.",
+        "Atomics retain lineage and detachable identities when the repair loop may expose them."
+      ]
+    },
+    {
+      "caseId": "ERS-L3-EN",
+      "expectedRange": {
+        "rangeId": "heading-6",
+        "startLine": 57,
+        "endLine": 70
+      },
+      "requiredClaims": [
+        "Layer 3 is the device-specific interior and shell contract.",
+        "It owns serviceability concerns such as mounts, routing and removal order.",
+        "It decides which reusable pieces to instantiate and which device-specific geometry to create."
+      ]
+    }
+  ]
+}
+

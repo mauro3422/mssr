@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-ers-layer-facet-composition-20261012T1049Z-v1",
+  "createdAt": "2026-10-12T10:52:06Z",
+  "classification": "development-replay-exposed-overlapping",
+  "purpose": "Debug compound-query evidence coverage by decomposing one exposed three-layer question into bounded facet decisions, then exact-fetching and composing a cited paragraph.",
+  "independentHoldout": false,
+  "ownerAdjudicatedGold": false,
+  "thresholdCalibration": false,
+  "productionReadinessClaim": false,
+  "baseline": {
+    "runId": "mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1",
+    "caseId": "ERS-01-EN",
+    "finding": "Single broad selection chose Layer 2 only; blind review partial (other two layers omitted)."
+  },
+  "source": {
+    "accessProjectRoot": "D:/Dev/electronics-repair-simulator",
+    "canonicalRootDeclaredByProject": "C:/Dev/electronics-repair-simulator",
+    "owner": "d:/dev/electronics-repair-simulator",
+    "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+    "privacyClass": "project-metadata",
+    "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+    "sha256": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+    "repoBranch": "main",
+    "repoCommit": "5dbb2ba990d0bb8e0a94bf53984c2f56708eb61a",
+    "sourceFileCleanAtPreflight": true
+  },
+  "mssr": {
+    "repo": "D:/Dev/mssr",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "baseCommit": "59bec70da85303810e4ee9196737ee76127c6ede"
+  },
+  "procedure": {
+    "searchTool": "mssr_librarian_search (Bridge)",
+    "metadataMode": "off",
+    "maxResults": 100,
+    "maxSnippetChars": 240,
+    "rankedPoolCap": 12,
+    "rankRule": "Take first 12 handles in deterministic search score order; preserve tool order for ties; no manual target-specific filtering.",
+    "selectionTool": "mssr_librarian_jev_select (Bridge)",
+    "model": "jev-1.13.0",
+    "exactFetchTool": "mssr_librarian_fetch (Bridge)",
+    "evidencePackTool": "mssr_librarian_evidence_pack (Bridge)",
+    "plannedJevCalls": 3,
+    "providerCallsCompleted": 4,
+    "runtimeOrThresholdChanges": false,
+    "adaptiveFollowupTriggered": true,
+    "adaptiveFollowupReason": "Layer 2 selected only the placement sentence; the required module-definition facet remained uncovered despite descriptive Noul 0.88.",
+    "adaptiveFollowupCallsPlanned": 1,
+    "adaptiveFollowupCallsCompleted": 1,
+    "totalJevProviderCalls": 4,
+    "totalInputTokens": 7483,
+    "totalOutputTokens": 668
+  },
+  "facets": [
+    {
+      "id": "ERS-L1-EN",
+      "facet": "layer-1",
+      "query": "Describe Layer 1 — atomic component: what parts are reusable and independent?"
+    },
+    {
+      "id": "ERS-L2-EN",
+      "facet": "layer-2",
+      "query": "What does Layer 2 functional module combine, and which layer owns placement of atomic components?"
+    },
+    {
+      "id": "ERS-L3-EN",
+      "facet": "layer-3",
+      "query": "What defines Layer 3 serviceable assembly, its device-specific geometry and responsibilities?"
+    }
+  ]
+}

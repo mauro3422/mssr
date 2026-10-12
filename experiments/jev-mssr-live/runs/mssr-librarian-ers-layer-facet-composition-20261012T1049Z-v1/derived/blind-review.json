@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "reviewer": {
+    "type": "independent blind model-assisted reviewer",
+    "model": "gpt-6-luna",
+    "priorRunContextProvided": false
+  },
+  "reviewedInputs": [
+    "outputs/assembled-answer.md",
+    "the four exact evidence-pack ranges and citations in raw/evidence-pack.json"
+  ],
+  "verdict": "correcta y completa",
+  "findings": [
+    "The answer names and describes all three layers.",
+    "It explicitly attributes atomic-component placement to the Layer 2 functional module.",
+    "Citations at lines 28-42, 45, 55, and 57-70 support the corresponding claims.",
+    "The reviewer found no important omissions or unsupported claims."
+  ],
+  "limitations": [
+    "One model-assisted review is not owner-adjudicated gold.",
+    "The source and question were already exposed in Runs 45 and 47; this is not an independent holdout.",
+    "The reviewer assessed the supplied answer and evidence, not project-owner truth or production reliability."
+  ]
+}

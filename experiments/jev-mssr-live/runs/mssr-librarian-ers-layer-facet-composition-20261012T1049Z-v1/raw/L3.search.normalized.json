@@ -1,0 +1,1896 @@
+{
+  "schemaVersion": 1,
+  "tool": "mssr_librarian_search",
+  "adapter": "MauroPrime Bridge",
+  "traceId": "mssr-20261012104745-c75fb36e-e19",
+  "executed": true,
+  "projectOwner": "d:/dev/electronics-repair-simulator",
+  "sourceCount": 1,
+  "query": "What defines Layer 3 serviceable assembly, its device-specific geometry and responsibilities?",
+  "metadataMode": "off",
+  "maxResults": 100,
+  "maxSnippetChars": 240,
+  "resultCount": 68,
+  "results": [
+    {
+      "rank": 1,
+      "title": "Electronics Modular System",
+      "headingPath": [
+        "Electronics Modular System"
+      ],
+      "score": 0.75,
+      "exactFetchable": true,
+      "rangeCodeUnits": 14127,
+      "handle": {
+        "version": 1,
+        "id": "4322c931bc80a9271428cd3243a6c48d6fb4733d112ef28af37630761789acc2",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 384,
+        "startOffset": 0,
+        "endOffset": 14127,
+        "fingerprint": "ba2a3c79027433fdbb263f518b93cdbca1baff23ee7cb9f77853731a0d6b3076",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "…for Electronics Repair Simulator without coupling component geometry to gameplay code or to one specific device shell. Current source foundation and promoted assemblies: ```text electronics_modular_library_v001_B001 : model-review multime…"
+    },
+    {
+      "rank": 2,
+      "title": "Layer model",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model"
+      ],
+      "score": 0.75,
+      "exactFetchable": true,
+      "rangeCodeUnits": 1401,
+      "handle": {
+        "version": 1,
+        "id": "bf19fb236fd93ae7f9bcbd50855144e5808704f9d874ff13d57ffdd8d0be040f",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 24,
+        "endLine": 70,
+        "startOffset": 1184,
+        "endOffset": 2585,
+        "fingerprint": "ef5c68b1e1f4235ac16cfeb314488d4a042f564a7d4b6eae8c40e60c106fff31",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "## Layer model Use three explicit layers instead of building every device as one monolithic mesh. ### Layer 1 — atomic component Small reusable pieces with their own stable local interface: - PCB carriers; - processors / IC packages; - res…"
+    },
+    {
+      "rank": 3,
+      "title": "Layer 3 — serviceable assembly",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 3 — serviceable assembly"
+      ],
+      "score": 0.625,
+      "exactFetchable": true,
+      "rangeCodeUnits": 383,
+      "handle": {
+        "version": 1,
+        "id": "f9305df9fb20c8416db886b8955eb38a22951663cb06898bfca63615f5c81f0e",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-6",
+        "rangeKind": "section",
+        "startLine": 57,
+        "endLine": 70,
+        "startOffset": 2202,
+        "endOffset": 2585,
+        "fingerprint": "61cf1b5196f951ee636dfba48a05cccd428b7b755f52f54fafe967f2acbbb887",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "### Layer 3 — serviceable assembly The device-specific interior and shell contract: - covers; - screw interfaces; - PCB/module mount points; - battery cradle/contact placement; - cable routing; - optical/mechanical interfaces; - removal or…"
+    },
+    {
+      "rank": 4,
+      "title": "Layer 3 — serviceable assembly",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 3 — serviceable assembly"
+      ],
+      "score": 0.625,
+      "exactFetchable": true,
+      "rangeCodeUnits": 134,
+      "handle": {
+        "version": 1,
+        "id": "24b9f7e4da77232bfb1861d920470a12fe9a7dec0cddf88245b00b9d9a0d3a34",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-16",
+        "rangeKind": "block",
+        "startLine": 69,
+        "endLine": 69,
+        "startOffset": 2449,
+        "endOffset": 2583,
+        "fingerprint": "4d728741325411c3fb166776d8980f1967d454ab1227ae31fc7f0e4eb159e467",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "The serviceable assembly decides which reusable pieces are instantiated and which device-specific geometry must be derived or created."
+    },
+    {
+      "rank": 5,
+      "title": "Layer 3 — serviceable assembly",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 3 — serviceable assembly"
+      ],
+      "score": 0.5,
+      "exactFetchable": true,
+      "rangeCodeUnits": 48,
+      "handle": {
+        "version": 1,
+        "id": "e56896a0461d5b3e365865d863c436d4a8e1c7d64fa2a93eeeb82ed5ed665c0d",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-14",
+        "rangeKind": "block",
+        "startLine": 59,
+        "endLine": 59,
+        "startOffset": 2238,
+        "endOffset": 2286,
+        "fingerprint": "f06695899d5ce7e498a6add493d1abc04f92ed465ba88cee137b8bc1c1f3a1a7",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "The device-specific interior and shell contract:"
+    },
+    {
+      "rank": 6,
+      "title": "Soldering iron serviceability",
+      "headingPath": [
+        "Electronics Modular System",
+        "Soldering iron serviceability"
+      ],
+      "score": 0.5,
+      "exactFetchable": true,
+      "rangeCodeUnits": 1255,
+      "handle": {
+        "version": 1,
+        "id": "505c42f8da36a49614d6b90cfbb4fecce4660affbc1b0bf6f68257c0e7f752ab",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-22",
+        "rangeKind": "section",
+        "startLine": 290,
+        "endLine": 311,
+        "startOffset": 9641,
+        "endOffset": 10896,
+        "fingerprint": "fe6d453117f316817816b9559129f430f69900e66c4dc6d4df3029853674ec68",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "…ity The approved soldering-kit source remains intact. A new serviceable derivative was created from its soldering-iron exterior: ```text blender/workfiles/tools/soldering_iron_serviceable/soldering_iron_serviceable_v001_B001.blend ``` The…"
+    },
+    {
+      "rank": 7,
+      "title": "Layer 2 — functional module",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 2 — functional module"
+      ],
+      "score": 0.375,
+      "exactFetchable": true,
+      "rangeCodeUnits": 399,
+      "handle": {
+        "version": 1,
+        "id": "01cc93da7a9122ddf2c5f13c214b846c1f2ef4c48319d23363cf15bb3f1c7559",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "startLine": 43,
+        "endLine": 56,
+        "startOffset": 1803,
+        "endOffset": 2202,
+        "fingerprint": "d93fcd981c078a66be33ebc11d571b786aad677801772f751f319d373a6cde0a",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "### Layer 2 — functional module A bounded assembly that combines atomic components for one purpose, for example: - mainboard; - display daughterboard; - power/input board; - LED board; - driver board; - selector/contact module; - connector…"
+    },
+    {
+      "rank": 8,
+      "title": "Layer 3 — serviceable assembly",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 3 — serviceable assembly"
+      ],
+      "score": 0.375,
+      "exactFetchable": true,
+      "rangeCodeUnits": 159,
+      "handle": {
+        "version": 1,
+        "id": "ae62a63f0201d252d7368976c849dec13337e05cb4aaa6a175b4040640ab3540",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-15",
+        "rangeKind": "block",
+        "startLine": 61,
+        "endLine": 67,
+        "startOffset": 2288,
+        "endOffset": 2447,
+        "fingerprint": "59723e80316deada273e309393a8bb7d331a3c372689e74dce7193f83e185550",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- covers; - screw interfaces; - PCB/module mount points; - battery cradle/contact placement; - cable routing; - optical/mechanical interfaces; - removal order."
+    },
+    {
+      "rank": 9,
+      "title": "Layer 3 — serviceable assembly",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 3 — serviceable assembly"
+      ],
+      "score": 0.375,
+      "exactFetchable": true,
+      "rangeCodeUnits": 9,
+      "handle": {
+        "version": 1,
+        "id": "c0a8ce9c736577eb3416b8bc7d582a546913a14f228dd7de6c5ceb295595deb5",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-15/item-1",
+        "rangeKind": "block",
+        "startLine": 61,
+        "endLine": 61,
+        "startOffset": 2288,
+        "endOffset": 2297,
+        "fingerprint": "f30bde7567f11c3beb831826354e14521f3a3b6b00d182679b6f15d4e4a1acc1",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- covers;"
+    },
+    {
+      "rank": 10,
+      "title": "Layer 3 — serviceable assembly",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 3 — serviceable assembly"
+      ],
+      "score": 0.375,
+      "exactFetchable": true,
+      "rangeCodeUnits": 19,
+      "handle": {
+        "version": 1,
+        "id": "6d347a7290ec6b991853b555bf9fdf8cf8969567e98a014f18d4003b4987070a",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-15/item-2",
+        "rangeKind": "block",
+        "startLine": 62,
+        "endLine": 62,
+        "startOffset": 2298,
+        "endOffset": 2317,
+        "fingerprint": "201bcb17d5f0908163b69e4ca4bad450a29510112c22088143c655b78ac6c27e",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- screw interfaces;"
+    },
+    {
+      "rank": 11,
+      "title": "Layer 3 — serviceable assembly",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 3 — serviceable assembly"
+      ],
+      "score": 0.375,
+      "exactFetchable": true,
+      "rangeCodeUnits": 26,
+      "handle": {
+        "version": 1,
+        "id": "d63c5fe2a3e39d2deb19ac857358f5353dfb86b2d2b1ba7d453e2377c4f3be8f",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-15/item-3",
+        "rangeKind": "block",
+        "startLine": 63,
+        "endLine": 63,
+        "startOffset": 2318,
+        "endOffset": 2344,
+        "fingerprint": "a4eecbf123a277d3ee91383ce2d863b84297ea67be14728b4e6c402e3581fde1",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- PCB/module mount points;"
+    },
+    {
+      "rank": 12,
+      "title": "Layer 3 — serviceable assembly",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 3 — serviceable assembly"
+      ],
+      "score": 0.375,
+      "exactFetchable": true,
+      "rangeCodeUnits": 35,
+      "handle": {
+        "version": 1,
+        "id": "5c0c7a6ec101389972133499a527e274d162d57f6cfb6b7903712e20e6ea3bcd",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-15/item-4",
+        "rangeKind": "block",
+        "startLine": 64,
+        "endLine": 64,
+        "startOffset": 2345,
+        "endOffset": 2380,
+        "fingerprint": "73270aab65e65cc8ba92f82cac22fa2a597403bd141f489b59103bfb483227c0",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- battery cradle/contact placement;"
+    },
+    {
+      "rank": 13,
+      "title": "Layer 3 — serviceable assembly",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 3 — serviceable assembly"
+      ],
+      "score": 0.375,
+      "exactFetchable": true,
+      "rangeCodeUnits": 16,
+      "handle": {
+        "version": 1,
+        "id": "9bec8964641d6a7783436465ee11de718aa7dc2ad48601a2a8a218eac334b7e7",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-15/item-5",
+        "rangeKind": "block",
+        "startLine": 65,
+        "endLine": 65,
+        "startOffset": 2381,
+        "endOffset": 2397,
+        "fingerprint": "793708c8d40c8077f880eeaf2075570995cf154c5f3a978835f071aae1d64c26",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- cable routing;"
+    },
+    {
+      "rank": 14,
+      "title": "Layer 3 — serviceable assembly",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 3 — serviceable assembly"
+      ],
+      "score": 0.375,
+      "exactFetchable": true,
+      "rangeCodeUnits": 32,
+      "handle": {
+        "version": 1,
+        "id": "d90c5aae89ef90de74e6bf1e0f98508dceaf15652a55154409420a56c7b61e84",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-15/item-6",
+        "rangeKind": "block",
+        "startLine": 66,
+        "endLine": 66,
+        "startOffset": 2398,
+        "endOffset": 2430,
+        "fingerprint": "85653c61eb8402a8db4e4364a9f58d9f4b95ec717a0b4611a8f5d2123d491edb",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- optical/mechanical interfaces;"
+    },
+    {
+      "rank": 15,
+      "title": "Layer 3 — serviceable assembly",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 3 — serviceable assembly"
+      ],
+      "score": 0.375,
+      "exactFetchable": true,
+      "rangeCodeUnits": 16,
+      "handle": {
+        "version": 1,
+        "id": "618543bc7829dd40c45824aafd07e8ec94ce08b8e656191b81074b7e3b1fc373",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-15/item-7",
+        "rangeKind": "block",
+        "startLine": 67,
+        "endLine": 67,
+        "startOffset": 2431,
+        "endOffset": 2447,
+        "fingerprint": "d58ff9b787f23beb7ff06b87a9e7d13a22441e727aa9e816ebcb6ac6093f7489",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- removal order."
+    },
+    {
+      "rank": 16,
+      "title": "Mandatory metadata contract",
+      "headingPath": [
+        "Electronics Modular System",
+        "Mandatory metadata contract"
+      ],
+      "score": 0.375,
+      "exactFetchable": true,
+      "rangeCodeUnits": 751,
+      "handle": {
+        "version": 1,
+        "id": "9ea04ec6bf87d7cd734ca496336a80174d08d5608d815601d8884849357b6849",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-7",
+        "rangeKind": "section",
+        "startLine": 71,
+        "endLine": 103,
+        "startOffset": 2585,
+        "endOffset": 3336,
+        "fingerprint": "a5d543a9fcacd1fad7223a4a521a79e7e2112e5aa8ea81c11f4388ffe76974f6",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "…Mandatory metadata contract Every new reusable component or serviceable part should preserve, as applicable: ```text asset_id source_revision stage asset_role family_id variant_id detachable reusable source_lineage / prototype_instance_of…"
+    },
+    {
+      "rank": 17,
+      "title": "Existing assets reused by contract",
+      "headingPath": [
+        "Electronics Modular System",
+        "Existing assets reused by contract"
+      ],
+      "score": 0.375,
+      "exactFetchable": true,
+      "rangeCodeUnits": 1187,
+      "handle": {
+        "version": 1,
+        "id": "79182cb9ea974d046ca26c58a8a69d0d6da7c769c0aad8ca54d4f11805739d87",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-15",
+        "rangeKind": "section",
+        "startLine": 220,
+        "endLine": 246,
+        "startOffset": 6346,
+        "endOffset": 7533,
+        "fingerprint": "a7c453ca089ce688f0aab11e1069ed90d850a85fda3770ad53410f703f167941",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "…file Phillips variant rather than embedding duplicate screw geometry. Important: the portable radio has its own already-verified B002 slotted derivative. This modular system does not rewrite that radio-specific contract. ### A4 battery ce…"
+    },
+    {
+      "rank": 18,
+      "title": "Purpose",
+      "headingPath": [
+        "Electronics Modular System",
+        "Purpose"
+      ],
+      "score": 0.25,
+      "exactFetchable": true,
+      "rangeCodeUnits": 1128,
+      "handle": {
+        "version": 1,
+        "id": "2b237a7f94ddd1375c429120c0ac7fa3a1c8adc1f3fedd014045ecf4bfaff635",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "startLine": 5,
+        "endLine": 23,
+        "startOffset": 56,
+        "endOffset": 1184,
+        "fingerprint": "d7f82b4c366c94876d943639190aefc284139ce43d5330eb6316b2537a136a9e",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "…for Electronics Repair Simulator without coupling component geometry to gameplay code or to one specific device shell. Current source foundation and promoted assemblies: ```text electronics_modular_library_v001_B001 : model-review multime…"
+    },
+    {
+      "rank": 19,
+      "title": "Layer 2 — functional module",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 2 — functional module"
+      ],
+      "score": 0.25,
+      "exactFetchable": true,
+      "rangeCodeUnits": 80,
+      "handle": {
+        "version": 1,
+        "id": "de536ba73689b7a02a527dd35d76aac9b6d411be85988b50f960294080aa21a1",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-11",
+        "rangeKind": "block",
+        "startLine": 45,
+        "endLine": 45,
+        "startOffset": 1836,
+        "endOffset": 1916,
+        "fingerprint": "fe9fde89fe885d408e27457e488ffb0f38bbcd277cfc9ef8153aaf9295140bb4",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "A bounded assembly that combines atomic components for one purpose, for example:"
+    },
+    {
+      "rank": 20,
+      "title": "Layer 2 — functional module",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 2 — functional module"
+      ],
+      "score": 0.25,
+      "exactFetchable": true,
+      "rangeCodeUnits": 147,
+      "handle": {
+        "version": 1,
+        "id": "8fc026e6912cf0fe6a43d2da25673c723a2c22ae20ce36a88daf466a073e2098",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-13",
+        "rangeKind": "block",
+        "startLine": 55,
+        "endLine": 55,
+        "startOffset": 2053,
+        "endOffset": 2200,
+        "fingerprint": "0f170c53bb8cac2ea60ebaf8d4a79b6158a9ff04452b61cf6cb8e7298bab144c",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "A module owns the placement of its atomics, but those atomics retain source lineage and detachable identities when the repair loop may expose them."
+    },
+    {
+      "rank": 21,
+      "title": "Mandatory metadata contract",
+      "headingPath": [
+        "Electronics Modular System",
+        "Mandatory metadata contract"
+      ],
+      "score": 0.25,
+      "exactFetchable": true,
+      "rangeCodeUnits": 222,
+      "handle": {
+        "version": 1,
+        "id": "635241b0b1ac92e21e5bd5a466f4bf5ce0b6ee19222c92c156dbefb481ac2034",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-21",
+        "rangeKind": "block",
+        "startLine": 102,
+        "endLine": 102,
+        "startOffset": 3112,
+        "endOffset": 3334,
+        "fingerprint": "57d71fd9d56b2c1c0b925cc4b3b2f7726bdbb354d86e70d8ab38046d4ba16407",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "Geometry metadata describes interfaces. It must not claim electrical simulation, real component ratings, manufacturing tolerances or brand-specific behavior unless a later gameplay/system layer explicitly owns those facts."
+    },
+    {
+      "rank": 22,
+      "title": "F001 micro screw family",
+      "headingPath": [
+        "Electronics Modular System",
+        "Existing assets reused by contract",
+        "F001 micro screw family"
+      ],
+      "score": 0.25,
+      "exactFetchable": true,
+      "rangeCodeUnits": 447,
+      "handle": {
+        "version": 1,
+        "id": "de90983f8093cf43abc2f16d52951b4d9f329ba5fc8409b77d5e0dff8f0634d1",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-16",
+        "rangeKind": "section",
+        "startLine": 222,
+        "endLine": 229,
+        "startOffset": 6385,
+        "endOffset": 6832,
+        "fingerprint": "995e89bd18b2bc43df2b70ca983f53051326d1c34b14e3c1745d9ee31e400fe6",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "…xisting M2×4 low-profile Phillips variant rather than embedding duplicate screw geometry. Important: the portable radio has its own already-verified B002 slotted derivative. This modular system does not rewrite that radio-specific contrac…"
+    },
+    {
+      "rank": 23,
+      "title": "A8 radio PCB / speaker",
+      "headingPath": [
+        "Electronics Modular System",
+        "Existing assets reused by contract",
+        "A8 radio PCB / speaker"
+      ],
+      "score": 0.25,
+      "exactFetchable": true,
+      "rangeCodeUnits": 315,
+      "handle": {
+        "version": 1,
+        "id": "bf957d56a247028d1b010b07dd95cb1b88c3bcb43e84d9b8b539276152294be0",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-19",
+        "rangeKind": "section",
+        "startLine": 242,
+        "endLine": 246,
+        "startOffset": 7218,
+        "endOffset": 7533,
+        "fingerprint": "032e661b066b69216be48c5ef8842c9511e4813326938a0a7aa3c366ee4138d6",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "### A8 radio PCB / speaker - radio PCB: `derive` only when its coarse visual vocabulary helps; the current A8 board is device-specific and its components are monolithic; - large radio speaker: do not non-uniformly scale into tiny devices; …"
+    },
+    {
+      "rank": 24,
+      "title": "A8 radio PCB / speaker",
+      "headingPath": [
+        "Electronics Modular System",
+        "Existing assets reused by contract",
+        "A8 radio PCB / speaker"
+      ],
+      "score": 0.25,
+      "exactFetchable": true,
+      "rangeCodeUnits": 285,
+      "handle": {
+        "version": 1,
+        "id": "89e3e1feb47367d5f3fe404185b6bd76e4882e725b500079517eb1b87382ba56",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-45",
+        "rangeKind": "block",
+        "startLine": 244,
+        "endLine": 245,
+        "startOffset": 7246,
+        "endOffset": 7531,
+        "fingerprint": "355f4c2f2881aef3c3b6ab34c197da3b0960e0d0d85423f2e05498ec85191bf3",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- radio PCB: `derive` only when its coarse visual vocabulary helps; the current A8 board is device-specific and its components are monolithic; - large radio speaker: do not non-uniformly scale into tiny devices; use the smaller transducer …"
+    },
+    {
+      "rank": 25,
+      "title": "A8 radio PCB / speaker",
+      "headingPath": [
+        "Electronics Modular System",
+        "Existing assets reused by contract",
+        "A8 radio PCB / speaker"
+      ],
+      "score": 0.25,
+      "exactFetchable": true,
+      "rangeCodeUnits": 142,
+      "handle": {
+        "version": 1,
+        "id": "d81849f3e50a310777519ad8aaf78da72fff00cd483677aa17bc3bdc805c6926",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-45/item-1",
+        "rangeKind": "block",
+        "startLine": 244,
+        "endLine": 244,
+        "startOffset": 7246,
+        "endOffset": 7388,
+        "fingerprint": "0cc3a8506d4582ffa2d5790ff4741cab773018e051170b4f092daa66db00f36e",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- radio PCB: `derive` only when its coarse visual vocabulary helps; the current A8 board is device-specific and its components are monolithic;"
+    },
+    {
+      "rank": 26,
+      "title": "Soldering iron serviceability",
+      "headingPath": [
+        "Electronics Modular System",
+        "Soldering iron serviceability"
+      ],
+      "score": 0.25,
+      "exactFetchable": true,
+      "rangeCodeUnits": 124,
+      "handle": {
+        "version": 1,
+        "id": "166b01a8044ad1eda340a47399f99bc3cfa8fc91c0eb46f8c35480e3deed7c7e",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-56",
+        "rangeKind": "block",
+        "startLine": 292,
+        "endLine": 292,
+        "startOffset": 9675,
+        "endOffset": 9799,
+        "fingerprint": "2515066968c759fec2d61e321ebb8d54a70bc508a7606ba842da809d0098ff15",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "The approved soldering-kit source remains intact. A new serviceable derivative was created from its soldering-iron exterior:"
+    },
+    {
+      "rank": 27,
+      "title": "Service flashlight",
+      "headingPath": [
+        "Electronics Modular System",
+        "Service flashlight"
+      ],
+      "score": 0.25,
+      "exactFetchable": true,
+      "rangeCodeUnits": 1152,
+      "handle": {
+        "version": 1,
+        "id": "e505cc40092ee9345ed9a99698977aa0847b58b8d05aab9546f47661eb72abeb",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-23",
+        "rangeKind": "section",
+        "startLine": 312,
+        "endLine": 334,
+        "startOffset": 10896,
+        "endOffset": 12048,
+        "fingerprint": "a4b63653ecd2d9090a741541d67939d8092fbe4ab8f480ad5606c74cc30daea2",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "…reflector, LED PCB and LED emitter. The flashlight contains geometry/interfaces only. Light emission, battery drain, faults and electrical behavior belong to later gameplay/simulation systems. Its isolated Godot wrapper passes with 19 imp…"
+    },
+    {
+      "rank": 28,
+      "title": "Service flashlight",
+      "headingPath": [
+        "Electronics Modular System",
+        "Service flashlight"
+      ],
+      "score": 0.25,
+      "exactFetchable": true,
+      "rangeCodeUnits": 340,
+      "handle": {
+        "version": 1,
+        "id": "35219efed525908d274a82c3942c708331d0afe086195e645a99adf5fcaa0789",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-67",
+        "rangeKind": "block",
+        "startLine": 333,
+        "endLine": 333,
+        "startOffset": 11706,
+        "endOffset": 12046,
+        "fingerprint": "0400f50167c5f472369ab878797ef330f5fee555ea2fd9700c92924bf8269bdd",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "The flashlight contains geometry/interfaces only. Light emission, battery drain, faults and electrical behavior belong to later gameplay/simulation systems. Its isolated Godot wrapper passes with 19 imported meshes, ten canonical external …"
+    },
+    {
+      "rank": 29,
+      "title": "Purpose",
+      "headingPath": [
+        "Electronics Modular System",
+        "Purpose"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 178,
+      "handle": {
+        "version": 1,
+        "id": "cc29c9efaf8f7d611f44ab9e41186783a5d2fffe6bff915d03b9bf7988c4b7ec",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 7,
+        "startOffset": 68,
+        "endOffset": 246,
+        "fingerprint": "f7dc6e1e7f6305cd018981d2d91873b3d426f7696bd4783d92878c7af8fcbeb8",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "Define the reusable internal-electronics asset architecture for Electronics Repair Simulator without coupling component geometry to gameplay code or to one specific device shell."
+    },
+    {
+      "rank": 30,
+      "title": "Purpose",
+      "headingPath": [
+        "Electronics Modular System",
+        "Purpose"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 355,
+      "handle": {
+        "version": 1,
+        "id": "6bc3ad8df53bcf889501487fc521ec618111f8dbbc16af2756a0a717c37211cd",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-5",
+        "rangeKind": "block",
+        "startLine": 20,
+        "endLine": 20,
+        "startOffset": 691,
+        "endOffset": 1046,
+        "fingerprint": "8cb404bbc79323a0ed3155c192d2bb44efb8e95fa9d515e76c9341614887a9e3",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "…er core remain reusable modeling sources. The four concrete serviceable assemblies have deterministic GLBs, isolated Godot wrappers, simple selection collisions, stable service anchors, canonical external A4/A3/F001 instances where applic…"
+    },
+    {
+      "rank": 31,
+      "title": "Layer model",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 82,
+      "handle": {
+        "version": 1,
+        "id": "737b711ad6629c9d258ff3dabe6f351769a428a3dbca3c7c934503f03cf14f9a",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-7",
+        "rangeKind": "block",
+        "startLine": 26,
+        "endLine": 26,
+        "startOffset": 1200,
+        "endOffset": 1282,
+        "fingerprint": "8ded225f25a445ce24012ee245c9ed2fb5067204150e46ff939278c4eaa29a00",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "Use three explicit layers instead of building every device as one monolithic mesh."
+    },
+    {
+      "rank": 32,
+      "title": "Layer 1 — atomic component",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 1 — atomic component"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 519,
+      "handle": {
+        "version": 1,
+        "id": "bb3ab88c78175b182c6b8f8c31ef92d10dfa1f4ac80710007a0dbf1265b6c2ac",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "startLine": 28,
+        "endLine": 42,
+        "startOffset": 1284,
+        "endOffset": 1803,
+        "fingerprint": "5f919b498796bea576d33e9a24f05b8b5f2fe8c3b258c90cdd36b2e59730bd59",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "### Layer 1 — atomic component Small reusable pieces with their own stable local interface: - PCB carriers; - processors / IC packages; - resistors, capacitors, diodes and transistors; - fuses and regulators; - switches and potentiometers;…"
+    },
+    {
+      "rank": 33,
+      "title": "Layer 1 — atomic component",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 1 — atomic component"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 60,
+      "handle": {
+        "version": 1,
+        "id": "81bd73342370565be3e5f3f179e5519beac55a988bec3fbf11c32fc889797e4b",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-8",
+        "rangeKind": "block",
+        "startLine": 30,
+        "endLine": 30,
+        "startOffset": 1316,
+        "endOffset": 1376,
+        "fingerprint": "2f933a99a9b7bfbd743c33cda58f4d3d36ddca81ce22f3b27781983e707b4b22",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "Small reusable pieces with their own stable local interface:"
+    },
+    {
+      "rank": 34,
+      "title": "Layer 1 — atomic component",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 1 — atomic component"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 305,
+      "handle": {
+        "version": 1,
+        "id": "16b4b461b61ac2c3014d33b892f526480e0d13062813eb18ab81ce02d8a67562",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-9",
+        "rangeKind": "block",
+        "startLine": 32,
+        "endLine": 39,
+        "startOffset": 1378,
+        "endOffset": 1683,
+        "fingerprint": "8f1c978735875ff712455ca6d81943fc4f1d8e78c1ac9d2237225a7de87cb560",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- PCB carriers; - processors / IC packages; - resistors, capacitors, diodes and transistors; - fuses and regulators; - switches and potentiometers; - headers, wire connectors, terminal blocks and test jacks; - buzzers, LEDs and inductors; …"
+    },
+    {
+      "rank": 35,
+      "title": "Layer 1 — atomic component",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 1 — atomic component"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 15,
+      "handle": {
+        "version": 1,
+        "id": "78bf5398fcdae3fa5fda073489055cce851ee4dd1b66f4530f6b0ca9be8a999f",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-9/item-1",
+        "rangeKind": "block",
+        "startLine": 32,
+        "endLine": 32,
+        "startOffset": 1378,
+        "endOffset": 1393,
+        "fingerprint": "1659d73cc3ff9089d834161654dd0e51543fac1abce9b333580ab87865825401",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- PCB carriers;"
+    },
+    {
+      "rank": 36,
+      "title": "Layer 1 — atomic component",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 1 — atomic component"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 27,
+      "handle": {
+        "version": 1,
+        "id": "3a9b6e0a7d9fdacd13e1bf6638fed94bb87ed0845809124a3f793152acc17c80",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-9/item-2",
+        "rangeKind": "block",
+        "startLine": 33,
+        "endLine": 33,
+        "startOffset": 1394,
+        "endOffset": 1421,
+        "fingerprint": "57a581333ea190c77a0df765aed354a04e588858da3f1f0aa754970936684546",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- processors / IC packages;"
+    },
+    {
+      "rank": 37,
+      "title": "Layer 1 — atomic component",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 1 — atomic component"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 48,
+      "handle": {
+        "version": 1,
+        "id": "ccc4330d6d7ecb945ea20b4bcc6402b860ea4a01a07076859f22dbc2fa3bc2b6",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-9/item-3",
+        "rangeKind": "block",
+        "startLine": 34,
+        "endLine": 34,
+        "startOffset": 1422,
+        "endOffset": 1470,
+        "fingerprint": "b74cedf27e558f14a8386e1a5c848f6885ba11044800e3d3629548de33566b4f",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- resistors, capacitors, diodes and transistors;"
+    },
+    {
+      "rank": 38,
+      "title": "Layer 1 — atomic component",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 1 — atomic component"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 23,
+      "handle": {
+        "version": 1,
+        "id": "b3bb772664f42c559502c6abed312b6224b9624f749574bad6adb782823fcc51",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-9/item-4",
+        "rangeKind": "block",
+        "startLine": 35,
+        "endLine": 35,
+        "startOffset": 1471,
+        "endOffset": 1494,
+        "fingerprint": "c8e598d1af381b30fb8a54568b0a1b239a31204ca33ac5af90be7d95f883adef",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- fuses and regulators;"
+    },
+    {
+      "rank": 39,
+      "title": "Layer 1 — atomic component",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 1 — atomic component"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 30,
+      "handle": {
+        "version": 1,
+        "id": "02a2a130fcffe7683e3af395b367622dd4b920db44d9705696ea362bb7f4b5a7",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-9/item-5",
+        "rangeKind": "block",
+        "startLine": 36,
+        "endLine": 36,
+        "startOffset": 1495,
+        "endOffset": 1525,
+        "fingerprint": "2c79e9c9dcbb7d299248f4d6ce309647501431c3d5bea756986065f54b481d38",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- switches and potentiometers;"
+    },
+    {
+      "rank": 40,
+      "title": "Layer 1 — atomic component",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 1 — atomic component"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 59,
+      "handle": {
+        "version": 1,
+        "id": "935fe5e3320b6e9b76f136d3308c6dc47062a94b11fe3cdfee67fbef0c18b4e7",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-9/item-6",
+        "rangeKind": "block",
+        "startLine": 37,
+        "endLine": 37,
+        "startOffset": 1526,
+        "endOffset": 1585,
+        "fingerprint": "864c977ba3f1d48d75ec1d541d130796e6a0de70c222d6999079a2f1991b7fe0",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- headers, wire connectors, terminal blocks and test jacks;"
+    },
+    {
+      "rank": 41,
+      "title": "Layer 1 — atomic component",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 1 — atomic component"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 30,
+      "handle": {
+        "version": 1,
+        "id": "dc630b8f08f14d73b2e31ae0bb10291655f7be198655625965b70196e0846186",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-9/item-7",
+        "rangeKind": "block",
+        "startLine": 38,
+        "endLine": 38,
+        "startOffset": 1586,
+        "endOffset": 1616,
+        "fingerprint": "f16c10444e21a2e73166078b4179b362602a88d56cff1df94fc44c1534c337d7",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- buzzers, LEDs and inductors;"
+    },
+    {
+      "rank": 42,
+      "title": "Layer 1 — atomic component",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 1 — atomic component"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 66,
+      "handle": {
+        "version": 1,
+        "id": "759dbba2e72ad258e79b077fed6c57ebbf35174050d12aae3de69bdddee5f35d",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-9/item-8",
+        "rangeKind": "block",
+        "startLine": 39,
+        "endLine": 39,
+        "startOffset": 1617,
+        "endOffset": 1683,
+        "fingerprint": "82aeb8e89d38c7ca73ac64b201d31bcfee4faefc793127f74e44c831d5195c15",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- existing reusable fasteners, battery cells and battery contacts."
+    },
+    {
+      "rank": 43,
+      "title": "Layer 1 — atomic component",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 1 — atomic component"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 116,
+      "handle": {
+        "version": 1,
+        "id": "5fc4f865a5274bacd95a93102d9b9a3a2db6e3fbc5c6ad9271d00232a3dc4516",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-10",
+        "rangeKind": "block",
+        "startLine": 41,
+        "endLine": 41,
+        "startOffset": 1685,
+        "endOffset": 1801,
+        "fingerprint": "ffb77744617bc89196a6397250d632c9043a063ab94957c7ee3bb7f811949605",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "Atomic components should remain independent from the device shell and should normally be instanced at scale `1,1,1`."
+    },
+    {
+      "rank": 44,
+      "title": "Layer 2 — functional module",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 2 — functional module"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 12,
+      "handle": {
+        "version": 1,
+        "id": "64035cd05ba858c834d47d2a2adf2479914aa7abbdc9f2b53c2caf0b5ce74e59",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-12/item-1",
+        "rangeKind": "block",
+        "startLine": 47,
+        "endLine": 47,
+        "startOffset": 1918,
+        "endOffset": 1930,
+        "fingerprint": "5e8330913174210583976b6ef447654822e432d21ea545399885c3693d33f82b",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- mainboard;"
+    },
+    {
+      "rank": 45,
+      "title": "Layer 2 — functional module",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 2 — functional module"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 133,
+      "handle": {
+        "version": 1,
+        "id": "c505cabe273e2457343c5d81c879aa558ae5d2f1ab1462676e2070bffed2a104",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-12",
+        "rangeKind": "block",
+        "startLine": 47,
+        "endLine": 53,
+        "startOffset": 1918,
+        "endOffset": 2051,
+        "fingerprint": "220ef2f4e6f6980dd3d7256abeb2f748253faf1105ab540b20400a2eea42f330",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- mainboard; - display daughterboard; - power/input board; - LED board; - driver board; - selector/contact module; - connector board."
+    },
+    {
+      "rank": 46,
+      "title": "Layer 2 — functional module",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 2 — functional module"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 24,
+      "handle": {
+        "version": 1,
+        "id": "b376bff7f286144aca4454a2e68dd71168d6c85fce4ba4b1eab598aa7b87d123",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-12/item-2",
+        "rangeKind": "block",
+        "startLine": 48,
+        "endLine": 48,
+        "startOffset": 1931,
+        "endOffset": 1955,
+        "fingerprint": "14eeca7f2ca131d836251c8f4214acf7057436924b913692b915ef6abc27308f",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- display daughterboard;"
+    },
+    {
+      "rank": 47,
+      "title": "Layer 2 — functional module",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 2 — functional module"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 20,
+      "handle": {
+        "version": 1,
+        "id": "410167775dc8e28fcb063941533fe4ffe007acd96ba43d1f28686c865c8e513a",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-12/item-3",
+        "rangeKind": "block",
+        "startLine": 49,
+        "endLine": 49,
+        "startOffset": 1956,
+        "endOffset": 1976,
+        "fingerprint": "3810740898850027ba37eaacd63cba0ee8e935e9807ea7b73dd57f49ecab1306",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- power/input board;"
+    },
+    {
+      "rank": 48,
+      "title": "Layer 2 — functional module",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 2 — functional module"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 12,
+      "handle": {
+        "version": 1,
+        "id": "731e921d3b1bfd76a5202f7f738ee91f3199c11e028578aed10c0e33fe964e0d",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-12/item-4",
+        "rangeKind": "block",
+        "startLine": 50,
+        "endLine": 50,
+        "startOffset": 1977,
+        "endOffset": 1989,
+        "fingerprint": "f17ebfb5704e6f538a8a857ebf24dd3a4e7d30f55f460c9e1b686de2afc5afbd",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- LED board;"
+    },
+    {
+      "rank": 49,
+      "title": "Layer 2 — functional module",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 2 — functional module"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 15,
+      "handle": {
+        "version": 1,
+        "id": "ed8894793241314ae775ba8a7943cf151a2a9ab1a42ea219a9fb0e027f912a5d",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-12/item-5",
+        "rangeKind": "block",
+        "startLine": 51,
+        "endLine": 51,
+        "startOffset": 1990,
+        "endOffset": 2005,
+        "fingerprint": "019640a5d80e52af66b72571ee8e03a44535278f73b1fd94b5bc5a6af8987069",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- driver board;"
+    },
+    {
+      "rank": 50,
+      "title": "Layer 2 — functional module",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 2 — functional module"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 26,
+      "handle": {
+        "version": 1,
+        "id": "1e643bed75f426c0498b952ae05c34a69fcdb78380a4ae34f9a446984ef7f0a4",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-12/item-6",
+        "rangeKind": "block",
+        "startLine": 52,
+        "endLine": 52,
+        "startOffset": 2006,
+        "endOffset": 2032,
+        "fingerprint": "955086602736cae118b29590fd825046101bc75c521966e45dea78e7b99eb2bb",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- selector/contact module;"
+    },
+    {
+      "rank": 51,
+      "title": "Layer 2 — functional module",
+      "headingPath": [
+        "Electronics Modular System",
+        "Layer model",
+        "Layer 2 — functional module"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 18,
+      "handle": {
+        "version": 1,
+        "id": "720374928b763e5c981f2992cd9cf5f011b0c49a3a870daffeb5dd9bce4e9d07",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-12/item-7",
+        "rangeKind": "block",
+        "startLine": 53,
+        "endLine": 53,
+        "startOffset": 2033,
+        "endOffset": 2051,
+        "fingerprint": "75e0d06c128ba3aaab2547acac8ddcfc4db31e90f5bec84b53a4367fda9ea224",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "- connector board."
+    },
+    {
+      "rank": 52,
+      "title": "Mandatory metadata contract",
+      "headingPath": [
+        "Electronics Modular System",
+        "Mandatory metadata contract"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 80,
+      "handle": {
+        "version": 1,
+        "id": "1e7a53feb4cd13c90e80a8b77b8c93fc27f7748c0863bf6eb2177e525582d7f5",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-17",
+        "rangeKind": "block",
+        "startLine": 73,
+        "endLine": 73,
+        "startOffset": 2617,
+        "endOffset": 2697,
+        "fingerprint": "3c09974dcf7a502fbdfe63359ae545b29d433f9ca471f8f728f1241b70a07cfd",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "Every new reusable component or serviceable part should preserve, as applicable:"
+    },
+    {
+      "rank": 53,
+      "title": "Coordinate and transform contract",
+      "headingPath": [
+        "Electronics Modular System",
+        "Coordinate and transform contract"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 572,
+      "handle": {
+        "version": 1,
+        "id": "129f94c63952f1e554efa341841c872be86cdf00156069eb69e0d3a6a4b275f4",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-8",
+        "rangeKind": "section",
+        "startLine": 104,
+        "endLine": 119,
+        "startOffset": 3336,
+        "endOffset": 3908,
+        "fingerprint": "d7902c53cafc8a1ff5837e745fa3ae60e0e3a9de7e7ad7104e061f52408ff223",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "…+Z component origin = functional center or mount center ``` Serviceable assemblies may use another explicit axis contract, but must store it in their dimensions/part contract instead of relying on visual inference. Do not solve incompatib…"
+    },
+    {
+      "rank": 54,
+      "title": "Coordinate and transform contract",
+      "headingPath": [
+        "Electronics Modular System",
+        "Coordinate and transform contract"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 154,
+      "handle": {
+        "version": 1,
+        "id": "0494789a78214acb66a95fbec86f7cd33dcd267b937b2bd24b5d7e0fcf6c99e1",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-24",
+        "rangeKind": "block",
+        "startLine": 116,
+        "endLine": 116,
+        "startOffset": 3566,
+        "endOffset": 3720,
+        "fingerprint": "ad7915295f7b7f52167c8373f0eb845da1381a74fe083381e2b8319ff8e89f34",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "Serviceable assemblies may use another explicit axis contract, but must store it in their dimensions/part contract instead of relying on visual inference."
+    },
+    {
+      "rank": 55,
+      "title": "Current canonical component matrix",
+      "headingPath": [
+        "Electronics Modular System",
+        "Current canonical component matrix"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 1824,
+      "handle": {
+        "version": 1,
+        "id": "f8d841d0792b9a7e20cf4825ec54f33f9cf604e92c6d9ef4ff7f03fc2158e3ca",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-10",
+        "rangeKind": "section",
+        "startLine": 152,
+        "endLine": 219,
+        "startOffset": 4522,
+        "endOffset": 6346,
+        "fingerprint": "9bb0b3f81ec918e624fa90e13a3322a3056e2b8b32b95b46786f77d3cddf6c92",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "…acement or mount pattern materially differs should derive a device-specific board rather than stretch a canonical carrier. ### IC / processor package families ```text ic_dip8 ic_dip16 ic_soic8 processor_qfp32 processor_qfn32 ``` These are…"
+    },
+    {
+      "rank": 56,
+      "title": "PCB carriers",
+      "headingPath": [
+        "Electronics Modular System",
+        "Current canonical component matrix",
+        "PCB carriers"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 756,
+      "handle": {
+        "version": 1,
+        "id": "f290425d0ad49eddd56293562dacf893f942cd0c3f63dd50ca17056213704893",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-11",
+        "rangeKind": "section",
+        "startLine": 162,
+        "endLine": 174,
+        "startOffset": 4750,
+        "endOffset": 5506,
+        "fingerprint": "83b7973ce49cd437e315f2e7646d857650f7a2b42789f5b76eb5ec8fdb31719f",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "…light / compact driver board | These are generic carriers, not manufacturing CAD. A device whose outline, connector placement or mount pattern materially differs should derive a device-specific board rather than stretch a canonical carrie…"
+    },
+    {
+      "rank": 57,
+      "title": "PCB carriers",
+      "headingPath": [
+        "Electronics Modular System",
+        "Current canonical component matrix",
+        "PCB carriers"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 209,
+      "handle": {
+        "version": 1,
+        "id": "ea490bd556a5439e9accbd4effbde1bafc03928040de02d54586ad35812919fc",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-33",
+        "rangeKind": "block",
+        "startLine": 173,
+        "endLine": 173,
+        "startOffset": 5295,
+        "endOffset": 5504,
+        "fingerprint": "8a5dad30a9671e469c0c7d021bb572bef5b7cced3758dab3b563daff03e54d1a",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "These are generic carriers, not manufacturing CAD. A device whose outline, connector placement or mount pattern materially differs should derive a device-specific board rather than stretch a canonical carrier."
+    },
+    {
+      "rank": 58,
+      "title": "F001 micro screw family",
+      "headingPath": [
+        "Electronics Modular System",
+        "Existing assets reused by contract",
+        "F001 micro screw family"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 174,
+      "handle": {
+        "version": 1,
+        "id": "f0c3048c164d525e5b35b94ed631959a1dc5fb77cc1d20de102e0f2294f91eab",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-39",
+        "rangeKind": "block",
+        "startLine": 226,
+        "endLine": 226,
+        "startOffset": 6504,
+        "endOffset": 6678,
+        "fingerprint": "ffce15ae9768ae8c91d17763b269f3e2b33dfabafe5e13492f5290e99630f6a8",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "For the new meter cores and flashlight, rear service covers reserve anchors for the existing M2×4 low-profile Phillips variant rather than embedding duplicate screw geometry."
+    },
+    {
+      "rank": 59,
+      "title": "F001 micro screw family",
+      "headingPath": [
+        "Electronics Modular System",
+        "Existing assets reused by contract",
+        "F001 micro screw family"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 150,
+      "handle": {
+        "version": 1,
+        "id": "85f641ef3acd78cf70a72d9e6dd8363de35c3515c2521dac6053fad9e4186083",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-40",
+        "rangeKind": "block",
+        "startLine": 228,
+        "endLine": 228,
+        "startOffset": 6680,
+        "endOffset": 6830,
+        "fingerprint": "6fe3801a6610b4a29e2e285cb0acae812dd3e04ed0b3951061b6c769b6adf278",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "Important: the portable radio has its own already-verified B002 slotted derivative. This modular system does not rewrite that radio-specific contract."
+    },
+    {
+      "rank": 60,
+      "title": "Multimeter serviceability",
+      "headingPath": [
+        "Electronics Modular System",
+        "Multimeter serviceability"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 1618,
+      "handle": {
+        "version": 1,
+        "id": "30477332ea2ab6f6bf3b62d73f0dc9ea817a3e5cc240f288f9b580c5d6a3c16f",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-21",
+        "rangeKind": "section",
+        "startLine": 262,
+        "endLine": 289,
+        "startOffset": 8023,
+        "endOffset": 9641,
+        "fingerprint": "616b8c9e18b8a483abba2d7e6e8a04723fb4969c8135d5888d3272b5feb6923a",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "…ithout rewriting the approved revisions: ```text multimeter_serviceable_v001_B002 core: compact_075x145 source lineage: multimeter_v001_B001 bench_multimeter_serviceable_v001_B003 core: toolkit_085x170 source lineage: bench_toolkit_v001_B…"
+    },
+    {
+      "rank": 61,
+      "title": "Multimeter serviceability",
+      "headingPath": [
+        "Electronics Modular System",
+        "Multimeter serviceability"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 364,
+      "handle": {
+        "version": 1,
+        "id": "be6dcff12b84bcd84ea7de9590c416c74b2c88b33ae926f98c9c683874f1958b",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-52",
+        "rangeKind": "block",
+        "startLine": 276,
+        "endLine": 276,
+        "startOffset": 8527,
+        "endOffset": 8891,
+        "fingerprint": "f4163fc7b6a6637bb5a4013fe9ff42fdd86f48301973e42c83d09fa95fc62231",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "Both serviceable derivatives provide a detachable front faceplate, rear service cover, battery door, main PCB, display daughterboard, processor/IC pieces, passives, fuse, piezo buzzer, selector rotor/pads and test-jack backs. The assembled…"
+    },
+    {
+      "rank": 62,
+      "title": "Soldering iron serviceability",
+      "headingPath": [
+        "Electronics Modular System",
+        "Soldering iron serviceability"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 310,
+      "handle": {
+        "version": 1,
+        "id": "357ab59bb257b76be31cc8e3152f4acf5e6acde7867d2220203f08ced37a07d4",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-58",
+        "rangeKind": "block",
+        "startLine": 298,
+        "endLine": 298,
+        "startOffset": 9908,
+        "endOffset": 10218,
+        "fingerprint": "bf6ec3a10adb083d0f0c71b97f917da5130c10a5f7028953c136634784e7cad0",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "The assembly separates two shell halves, rear cap, strain relief, terminal block, live/neutral internal wires, ceramic heater, heater coil, front collar, outer sleeve, replaceable tip and power cable. Four F001 low-profile Phillips fastene…"
+    },
+    {
+      "rank": 63,
+      "title": "Soldering iron serviceability",
+      "headingPath": [
+        "Electronics Modular System",
+        "Soldering iron serviceability"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 360,
+      "handle": {
+        "version": 1,
+        "id": "8b65780963ad682fc9062b515f66e5a818c33df85168678eabaf9087a6bb7a0b",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-61",
+        "rangeKind": "block",
+        "startLine": 310,
+        "endLine": 310,
+        "startOffset": 10534,
+        "endOffset": 10894,
+        "fingerprint": "fe11e068406e34f48997e6b65b478f6c4749f91d6f17b28724b132952bbc35cf",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "…mains behavior and electrical simulation remain outside the geometry asset. The isolated Godot wrapper validates with 24 imported meshes, four canonical external fastener instances, one simple selection collision, root scale `1,1,1`, zero…"
+    },
+    {
+      "rank": 64,
+      "title": "Export / promotion policy",
+      "headingPath": [
+        "Electronics Modular System",
+        "Export / promotion policy"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 597,
+      "handle": {
+        "version": 1,
+        "id": "b6d9415f9084be4b225620a7559051095f1487a1419c7ccc8dc36ac638265c16",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-25",
+        "rangeKind": "section",
+        "startLine": 358,
+        "endLine": 372,
+        "startOffset": 12798,
+        "endOffset": 13395,
+        "fingerprint": "f7ab3fd176545de73e2579e7558b3f92f74d6baee5dc9409d326ff1ce5e54add",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "… create deterministic GLB output if the asset needs runtime geometry; 4. create an isolated Godot wrapper/collision contract when required; 5. validate before promoting to `game-ready`; 6. integrate into shared scenes only with explicit c…"
+    },
+    {
+      "rank": 65,
+      "title": "Export / promotion policy",
+      "headingPath": [
+        "Electronics Modular System",
+        "Export / promotion policy"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 368,
+      "handle": {
+        "version": 1,
+        "id": "95d6f7b99979c0458bbf1ed5204cc0b3b2abbe333aa91d1b5de31b5ca59994a2",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-75",
+        "rangeKind": "block",
+        "startLine": 366,
+        "endLine": 371,
+        "startOffset": 13025,
+        "endOffset": 13393,
+        "fingerprint": "48619bc6ab70fe72d4f2a80b5740a64da5668a345d2df3eaa64052828497f766",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "… create deterministic GLB output if the asset needs runtime geometry; 4. create an isolated Godot wrapper/collision contract when required; 5. validate before promoting to `game-ready`; 6. integrate into shared scenes only with explicit c…"
+    },
+    {
+      "rank": 66,
+      "title": "Export / promotion policy",
+      "headingPath": [
+        "Electronics Modular System",
+        "Export / promotion policy"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 71,
+      "handle": {
+        "version": 1,
+        "id": "00a7115b9a50cd18d784c6e8b0fd712be01ca34e8f5fb09cb2bc9679f6b0a9ed",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-75/item-3",
+        "rangeKind": "block",
+        "startLine": 368,
+        "endLine": 368,
+        "startOffset": 13141,
+        "endOffset": 13212,
+        "fingerprint": "3c6006bdce2e493a4cb946fd5dc49b52b71fe40b80579fd9f23a144bcc1faf83",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "3. create deterministic GLB output if the asset needs runtime geometry;"
+    },
+    {
+      "rank": 67,
+      "title": "Current status",
+      "headingPath": [
+        "Electronics Modular System",
+        "Current status"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 732,
+      "handle": {
+        "version": 1,
+        "id": "a7f7afd7cdff30a7ff6784691ea81ec1db12dedbd46490dfcc3f326038f28438",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-26",
+        "rangeKind": "section",
+        "startLine": 373,
+        "endLine": 384,
+        "startOffset": 13395,
+        "endOffset": 14127,
+        "fingerprint": "c072b68c92a8daa71aa92c130bf99a051a51ee6878c5e4d494bc2642f523e784",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "…s_dashboard_index.json`; each entry points to real Blender assembled/exploded renders and its `completion.json`. No reference images were generated. No gameplay files or shared Godot scenes were modified by the serviceable-device promotio…"
+    },
+    {
+      "rank": 68,
+      "title": "Current status",
+      "headingPath": [
+        "Electronics Modular System",
+        "Current status"
+      ],
+      "score": 0.125,
+      "exactFetchable": true,
+      "rangeCodeUnits": 321,
+      "handle": {
+        "version": 1,
+        "id": "1c0a9493e624f390dd168799c2299e9ad7a24fd807cfc8c9a9c2b9c1ae57da4f",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-77",
+        "rangeKind": "block",
+        "startLine": 384,
+        "endLine": 384,
+        "startOffset": 13805,
+        "endOffset": 14126,
+        "fingerprint": "fd4ea8635561ff13840b36fdd65f9568eaf4c5d24cc92ddb1f77feb8a054cc27",
+        "privacyClass": "project-metadata"
+      },
+      "snippet": "…s_dashboard_index.json`; each entry points to real Blender assembled/exploded renders and its `completion.json`. No reference images were generated. No gameplay files or shared Godot scenes were modified by the serviceable-device promotio…"
+    }
+  ],
+  "advisoryOnly": true,
+  "truthAuthority": false
+}
+

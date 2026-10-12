@@ -1,0 +1,23 @@
+{
+  "projectOwner": "d:/dev/electronics-repair-simulator",
+  "handle": {
+    "version": 1,
+    "id": "8fc026e6912cf0fe6a43d2da25673c723a2c22ae20ce36a88daf466a073e2098",
+    "owner": "d:/dev/electronics-repair-simulator",
+    "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+    "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+    "rangeId": "block-13",
+    "rangeKind": "block",
+    "startLine": 55,
+    "endLine": 55,
+    "startOffset": 2053,
+    "endOffset": 2200,
+    "fingerprint": "0f170c53bb8cac2ea60ebaf8d4a79b6158a9ff04452b61cf6cb8e7298bab144c",
+    "privacyClass": "project-metadata"
+  },
+  "text": "A module owns the placement of its atomics, but those atomics retain source lineage and detachable identities when the repair loop may expose them.",
+  "fingerprint": "0f170c53bb8cac2ea60ebaf8d4a79b6158a9ff04452b61cf6cb8e7298bab144c",
+  "advisoryOnly": true,
+  "truthAuthority": false
+}
+

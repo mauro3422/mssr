@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-ers-layer-facet-composition-20261012T1049Z-v1",
+  "classification": "development-replay-exposed-overlapping",
+  "sourceClusters": 1,
+  "sourceRevisionSha256": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+  "search": {
+    "calls": 4,
+    "resultCounts": [68, 56, 68, 43],
+    "candidatePoolCap": 12,
+    "expectedRangeRanks": {
+      "primaryFacets": [3, 3, 3],
+      "adaptiveLayer2Definition": 4
+    },
+    "expectedTargetsPresentInFrozenPools": 4
+  },
+  "jev": {
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "calls": 4,
+    "statuses": { "selected": 4, "abstained": 0, "failed": 0 },
+    "inputTokens": 7483,
+    "outputTokens": 668,
+    "reportedElapsedMs": 3861.6,
+    "selections": [
+      {
+        "facet": "layer-1",
+        "rangeId": "heading-4",
+        "lines": "28-42",
+        "choiceConfidence": 0.46,
+        "evidenceSufficiency": 0.83,
+        "coverage": "expected layer-1 section"
+      },
+      {
+        "facet": "layer-2 compound",
+        "rangeId": "block-13",
+        "lines": "55-55",
+        "choiceConfidence": 0.43,
+        "evidenceSufficiency": 0.88,
+        "coverage": "placement and lineage sentence; omitted the bounded-module definition at line 45"
+      },
+      {
+        "facet": "layer-3",
+        "rangeId": "heading-6",
+        "lines": "57-70",
+        "choiceConfidence": 0.93,
+        "evidenceSufficiency": 0.74,
+        "coverage": "expected layer-3 section"
+      },
+      {
+        "facet": "adaptive layer-2 definition",
+        "rangeId": "block-11",
+        "lines": "45-45",
+        "choiceConfidence": 0.32,
+        "evidenceSufficiency": 0.95,
+        "coverage": "recovered the missing bounded-module definition"
+      }
+    ],
+    "rawScoresCalibrated": false
+  },
+  "exactEvidence": {
+    "selectedFetches": 4,
+    "fetchFingerprintsMatched": 4,
+    "sourceRevisionsMatched": 4,
+    "textFingerprintsRecomputed": 4,
+    "evidencePackRanges": 4,
+    "evidencePackCitations": 4,
+    "evidencePackCharacters": 1129,
+    "containedRangeDedupe": 0,
+    "semanticCompaction": false,
+    "canonicalRewriteAllowed": false
+  },
+  "composition": {
+    "producer": "host",
+    "jevGeneratedProse": false,
+    "blindReviewVerdict": "correcta y completa",
+    "blindReviews": 1,
+    "ownerAdjudicated": false,
+    "independentHoldout": false,
+    "sourceDisjoint": false
+  },
+  "calibrationOrProductionClaim": false,
+  "runtimeOrThresholdChanged": false
+}
