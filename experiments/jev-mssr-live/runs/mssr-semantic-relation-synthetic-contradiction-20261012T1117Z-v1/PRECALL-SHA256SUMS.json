@@ -1,0 +1,9 @@
+{
+  "algorithm": "SHA-256",
+  "files": {
+    "README.md": "f17ba8b61e82e5217238468aa2e18d36b031219d26ded83201c193f9d4a667ad",
+    "inputs/source.md": "8554396bb8f25c8be30c8a7c5935efaf99047e6d385198a20b3f4ec1fde5db78",
+    "inputs/labels.json": "096a70b2105612da9586ee7d5f22495cd4c9bf3d3b02e84df56c036f42aa59fc",
+    "manifest.json": "93c2ed66f48df0383aba1124ec8dea9cdcb01b92e029a4e54530f9925edba5ad"
+  }
+}

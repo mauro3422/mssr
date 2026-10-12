@@ -1,0 +1,177 @@
+{
+  "judgments": [
+    {
+      "pairId": "run51-provenance-authentication-boundary",
+      "batchId": "jev-evidence:mssr:1",
+      "judgment": {
+        "schemaVersion": 1,
+        "immutable": true,
+        "advisoryOnly": true,
+        "canonicalRewriteAllowed": false,
+        "decisionFamily": "relation",
+        "inputs": [
+          {
+            "atomId": "evidence-atom:9cb032bf66e42b9db019524d",
+            "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+            "revision": "63bac32774a54bdb8e7a5dd6021fa3f0351e491c6475cbb6745ce4c1e05ed2ad",
+            "fingerprints": {
+              "record": "8b52f9321fd1b5ad3468a8b7533ce9c6d5f72ff41d46e235e8970fd96f13e9c9",
+              "payload": "8b52f9321fd1b5ad3468a8b7533ce9c6d5f72ff41d46e235e8970fd96f13e9c9"
+            }
+          },
+          {
+            "atomId": "evidence-atom:99f1d008389a3b3a03c07845",
+            "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+            "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+            "fingerprints": {
+              "record": "ca9576e692cfeb653ebd7252d4a823b4554637bf140ad5b0b53687704b06cc8a",
+              "payload": "ca9576e692cfeb653ebd7252d4a823b4554637bf140ad5b0b53687704b06cc8a"
+            }
+          }
+        ],
+        "heads": [
+          {
+            "head": "relation-kind",
+            "candidates": [
+              "supports",
+              "contradicts",
+              "supersedes",
+              "duplicate",
+              "unrelated",
+              "unresolved"
+            ],
+            "selectedId": "supports",
+            "rawConfidence": 0.96,
+            "probabilities": null
+          }
+        ],
+        "calibratedConfidence": null,
+        "claim": {
+          "validity": "current",
+          "scope": "MSSR evidence provenance and freshness assertions",
+          "validFrom": "2026-10-12T11:26:10.000Z",
+          "validUntil": null
+        },
+        "citations": [
+          {
+            "atomId": "evidence-atom:9cb032bf66e42b9db019524d",
+            "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+            "revision": "63bac32774a54bdb8e7a5dd6021fa3f0351e491c6475cbb6745ce4c1e05ed2ad",
+            "fingerprint": "8b52f9321fd1b5ad3468a8b7533ce9c6d5f72ff41d46e235e8970fd96f13e9c9",
+            "role": "supports"
+          },
+          {
+            "atomId": "evidence-atom:99f1d008389a3b3a03c07845",
+            "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+            "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+            "fingerprint": "ca9576e692cfeb653ebd7252d4a823b4554637bf140ad5b0b53687704b06cc8a",
+            "role": "supports"
+          }
+        ],
+        "relations": [
+          {
+            "leftAtomId": "evidence-atom:9cb032bf66e42b9db019524d",
+            "rightAtomId": "evidence-atom:99f1d008389a3b3a03c07845",
+            "kind": "supports",
+            "rawConfidence": 0.96,
+            "citedAtomIds": [
+              "evidence-atom:9cb032bf66e42b9db019524d",
+              "evidence-atom:99f1d008389a3b3a03c07845"
+            ],
+            "comparability": {
+              "scope": {
+                "left": "MSSR evidence provenance and freshness assertions",
+                "right": "MSSR evidence provenance and freshness assertions"
+              },
+              "temporal": {
+                "leftValidity": "current",
+                "leftValidFrom": "2026-10-12T11:26:10.000Z",
+                "leftValidUntil": null,
+                "rightValidity": "current",
+                "rightValidFrom": "2026-10-12T11:26:10.000Z",
+                "rightValidUntil": null
+              }
+            },
+            "status": "candidate"
+          }
+        ],
+        "evidenceCoverage": {
+          "requestedAtomIds": [
+            "evidence-atom:9cb032bf66e42b9db019524d",
+            "evidence-atom:99f1d008389a3b3a03c07845"
+          ],
+          "returnedAtomIds": [
+            "evidence-atom:9cb032bf66e42b9db019524d",
+            "evidence-atom:99f1d008389a3b3a03c07845"
+          ],
+          "complete": true
+        },
+        "abstainReasons": [],
+        "reviewReasons": [],
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "promptVersion": "mssr-semantic-evidence-relation-v1",
+        "providerSchemaVersion": "mssr-jev-decision-v1",
+        "traceId": "mssr-codex-33ee51c9-194d-4623-b39d-06a1804c8f3c",
+        "verificationEvidence": null,
+        "id": "semantic-judgment:a348bf826e1943105628cac6",
+        "verification": {
+          "status": "unverified",
+          "verificationId": null,
+          "evidenceRef": null,
+          "independenceReasons": [
+            "verification-absent"
+          ]
+        }
+      },
+      "evaluation": {
+        "disposition": "review",
+        "reasons": [
+          "independent-verification-unavailable"
+        ],
+        "advisoryOnly": true,
+        "canonicalRewriteAllowed": false
+      }
+    }
+  ],
+  "batches": [
+    {
+      "batchId": "jev-evidence:mssr:1",
+      "projectKey": "mssr",
+      "corpusKey": "mssr-real-provenance-sources-run51",
+      "pairIds": [
+        "run51-provenance-authentication-boundary"
+      ],
+      "questions": 1,
+      "stateChars": 2680,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 1391,
+        "output_tokens": 69
+      },
+      "elapsedMs": 754.3473000004888
+    }
+  ],
+  "rejected": [],
+  "unusedAtomIds": [],
+  "policy": {
+    "maximumPairsPerRequest": 1,
+    "maximumStateChars": 6000,
+    "mixedProjectOrCorpusState": false,
+    "providerConfidenceDistributionInvented": false,
+    "judgmentsVerified": false,
+    "advisoryOnly": true
+  },
+  "bridgeNotices": {
+    "delivery": "automatic-drain",
+    "scope": "contextual",
+    "count": 0,
+    "remainingPending": 1,
+    "relevantPending": 0,
+    "otherPending": 1,
+    "globalPending": 0,
+    "globalHistoryTool": "bridge_notice_history",
+    "items": []
+  }
+}

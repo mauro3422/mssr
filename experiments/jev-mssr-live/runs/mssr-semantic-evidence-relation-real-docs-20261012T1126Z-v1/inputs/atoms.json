@@ -1,0 +1,131 @@
+[
+  {
+    "schemaVersion": 2,
+    "id": "evidence-atom:9cb032bf66e42b9db019524d",
+    "subject": {
+      "namespace": "mssr",
+      "kind": "evidence-provenance-policy",
+      "identity": "freshness-and-provenance-authentication-limits"
+    },
+    "source": {
+      "ref": "docs/decisions/0009-semantic-evidence-plane.md",
+      "revision": "63bac32774a54bdb8e7a5dd6021fa3f0351e491c6475cbb6745ce4c1e05ed2ad",
+      "freshness": "fresh",
+      "headingPath": [
+        "ADR 0009 — Semantic Evidence Plane and portable semantic triage",
+        "Decision",
+        "1. Common evidence atom"
+      ],
+      "range": {
+        "startLine": 62,
+        "endLine": 62,
+        "startOffset": 3137,
+        "endOffset": 4046
+      },
+      "freshnessEvidence": {
+        "canonicalOwner": "d:/dev/mssr",
+        "ref": "docs/decisions/0009-semantic-evidence-plane.md",
+        "revision": "63bac32774a54bdb8e7a5dd6021fa3f0351e491c6475cbb6745ce4c1e05ed2ad",
+        "observedAt": "2026-10-12T11:26:10.000Z"
+      }
+    },
+    "provenance": {
+      "producer": "librarian-run51",
+      "sourceClass": "canonical",
+      "canonicalOwner": "d:/dev/mssr",
+      "host": "bridge-mcp",
+      "traceId": "mssr-codex-33ee51c9-194d-4623-b39d-06a1804c8f3c",
+      "projectKey": "mssr"
+    },
+    "fingerprints": {
+      "record": "8b52f9321fd1b5ad3468a8b7533ce9c6d5f72ff41d46e235e8970fd96f13e9c9",
+      "payload": "8b52f9321fd1b5ad3468a8b7533ce9c6d5f72ff41d46e235e8970fd96f13e9c9"
+    },
+    "reasonCodes": [
+      "run51-relation-review"
+    ],
+    "lineage": {
+      "parentAtomIds": [],
+      "relatedAtomIds": [],
+      "supersedesAtomIds": []
+    },
+    "dedupeKey": "mssr:provenance-freshness:ADR0009:block-11",
+    "authorityClass": "canonical",
+    "privacyClass": "project-metadata",
+    "usage": {
+      "selection": "selected",
+      "consumed": true,
+      "outcome": "unknown",
+      "reasonCodes": [
+        "relation-control"
+      ]
+    },
+    "attributes": {},
+    "advisoryOnly": true,
+    "canonicalRewriteAllowed": false
+  },
+  {
+    "schemaVersion": 2,
+    "id": "evidence-atom:99f1d008389a3b3a03c07845",
+    "subject": {
+      "namespace": "mssr",
+      "kind": "evidence-provenance-policy",
+      "identity": "freshness-and-provenance-authentication-limits"
+    },
+    "source": {
+      "ref": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+      "freshness": "fresh",
+      "headingPath": [
+        "Semantic Evidence Plane architecture",
+        "Core Document and Librarian guarantees"
+      ],
+      "range": {
+        "startLine": 15,
+        "endLine": 15,
+        "startOffset": 2279,
+        "endOffset": 2730
+      },
+      "freshnessEvidence": {
+        "canonicalOwner": "d:/dev/mssr",
+        "ref": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "observedAt": "2026-10-12T11:26:10.000Z"
+      }
+    },
+    "provenance": {
+      "producer": "librarian-run51",
+      "sourceClass": "canonical",
+      "canonicalOwner": "d:/dev/mssr",
+      "host": "bridge-mcp",
+      "traceId": "mssr-codex-33ee51c9-194d-4623-b39d-06a1804c8f3c",
+      "projectKey": "mssr"
+    },
+    "fingerprints": {
+      "record": "ca9576e692cfeb653ebd7252d4a823b4554637bf140ad5b0b53687704b06cc8a",
+      "payload": "ca9576e692cfeb653ebd7252d4a823b4554637bf140ad5b0b53687704b06cc8a"
+    },
+    "reasonCodes": [
+      "run51-relation-review"
+    ],
+    "lineage": {
+      "parentAtomIds": [],
+      "relatedAtomIds": [],
+      "supersedesAtomIds": []
+    },
+    "dedupeKey": "mssr:provenance-freshness:semantic-evidence-plane:block-5",
+    "authorityClass": "canonical",
+    "privacyClass": "project-metadata",
+    "usage": {
+      "selection": "selected",
+      "consumed": true,
+      "outcome": "unknown",
+      "reasonCodes": [
+        "relation-control"
+      ]
+    },
+    "attributes": {},
+    "advisoryOnly": true,
+    "canonicalRewriteAllowed": false
+  }
+]

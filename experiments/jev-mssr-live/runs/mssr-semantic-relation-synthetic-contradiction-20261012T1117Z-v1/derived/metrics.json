@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1",
+  "sourceClass": "synthetic-canary",
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "calls": 1,
+  "pairs": 1,
+  "expectedRelation": "contradicts",
+  "observedRelation": "contradicts",
+  "rawConfidence": 1,
+  "probabilities": null,
+  "relationStatus": "candidate",
+  "evaluation": {
+    "disposition": "review",
+    "reasons": [
+      "contradictory-relations",
+      "independent-verification-unavailable"
+    ],
+    "advisoryOnly": true,
+    "canonicalRewriteAllowed": false
+  },
+  "verification": {
+    "status": "unverified",
+    "verificationId": null,
+    "evidenceRef": null,
+    "independenceReasons": [
+      "verification-absent"
+    ]
+  },
+  "evidenceCoverage": {
+    "requestedAtomIds": [
+      "evidence-atom:8a7d1e7a6319b12f5a258a44",
+      "evidence-atom:2817583073011fd664590616"
+    ],
+    "returnedAtomIds": [
+      "evidence-atom:8a7d1e7a6319b12f5a258a44",
+      "evidence-atom:2817583073011fd664590616"
+    ],
+    "complete": true
+  },
+  "usage": {
+    "input_tokens": 1459,
+    "output_tokens": 71
+  },
+  "elapsedMs": 746.3494000006467,
+  "source": {
+    "revision": "8554396bb8f25c8be30c8a7c5935efaf99047e6d385198a20b3f4ec1fde5db78",
+    "ranges": [
+      {
+        "sourceRef": "experiments/jev-mssr-live/runs/mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1/inputs/source.md",
+        "fingerprint": "b8cdfa82f2140084c220edc07e3ea7f26683fe9dc45e1ec0d0501d9baea2de50"
+      },
+      {
+        "sourceRef": "experiments/jev-mssr-live/runs/mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1/inputs/source.md",
+        "fingerprint": "398eec40b27058608d176c05cc43c3330a02aedacba629068d48dd19c1478a4a"
+      }
+    ]
+  },
+  "interpretation": "One prelabelled synthetic canary passed; no real-source contradiction quality or calibration claim."
+}

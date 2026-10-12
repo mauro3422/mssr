@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-semantic-evidence-relation-real-docs-20261012T1126Z-v1",
+  "traceId": "mssr-codex-33ee51c9-194d-4623-b39d-06a1804c8f3c",
+  "status": "prepared-before-provider-call",
+  "preparedAt": "2026-10-12T11:26:47.374Z",
+  "providerCallsAtPreparation": 0,
+  "projectKey": "mssr",
+  "corpusKey": "mssr-real-provenance-sources-run51",
+  "pairId": "run51-provenance-authentication-boundary",
+  "sourceBinding": [
+    {
+      "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+      "revision": "63bac32774a54bdb8e7a5dd6021fa3f0351e491c6475cbb6745ce4c1e05ed2ad",
+      "rangeId": "block-11",
+      "rangeKind": "block",
+      "startLine": 62,
+      "endLine": 62,
+      "handleId": "7ea4f627499dcd303ff0b91a16038b14c4aec619355b5ee4fbebd98f8165a63c",
+      "fingerprint": "8b52f9321fd1b5ad3468a8b7533ce9c6d5f72ff41d46e235e8970fd96f13e9c9",
+      "atomId": "evidence-atom:9cb032bf66e42b9db019524d"
+    },
+    {
+      "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+      "rangeId": "block-5",
+      "rangeKind": "block",
+      "startLine": 15,
+      "endLine": 15,
+      "handleId": "81bf72364613f6b5ae5513bda8b947c14019bb828c95ff7aace19a87232deedc",
+      "fingerprint": "ca9576e692cfeb653ebd7252d4a823b4554637bf140ad5b0b53687704b06cc8a",
+      "atomId": "evidence-atom:99f1d008389a3b3a03c07845"
+    }
+  ],
+  "freshnessObservedAt": "2026-10-12T11:26:10.000Z",
+  "expectedLabelPath": "inputs/labels.json",
+  "requestPath": "inputs/request.json",
+  "atomsPath": "inputs/atoms.json",
+  "expectedLabelSentToProvider": false,
+  "synthetic": false,
+  "ownerGold": false,
+  "independentSourceSample": false,
+  "runtimeOrThresholdChanged": false,
+  "rawProviderHttpBytesCaptured": false,
+  "note": "Real exact-source diagnostic; source independence is not established because the architecture module may summarize the ADR."
+}

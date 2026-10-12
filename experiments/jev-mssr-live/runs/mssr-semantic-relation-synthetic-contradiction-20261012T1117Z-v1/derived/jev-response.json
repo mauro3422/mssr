@@ -1,0 +1,396 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1",
+  "traceId": "mssr-20261012110923-daf6fe77-477",
+  "observedAt": "2026-10-12T11:18:44.000Z",
+  "sourceClass": "synthetic-canary",
+  "labelSentToProvider": false,
+  "request": {
+    "projectKey": "mssr-synthetic-canary",
+    "corpusKey": "mssr-synthetic-contradiction-run50",
+    "goal": "Decide whether these two exact claims can both hold for the same declared synthetic service, policy, route, resource and validity interval. Return the most defensible typed relation; treat the result as advisory and never authorize a write.",
+    "inputAtoms": [
+      {
+        "schemaVersion": 2,
+        "id": "evidence-atom:8a7d1e7a6319b12f5a258a44",
+        "subject": {
+          "namespace": "mssr-synthetic",
+          "kind": "authorization-claim",
+          "identity": "fixture-service-01:policy-v1:decision.route:write-target"
+        },
+        "source": {
+          "ref": "experiments/jev-mssr-live/runs/mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1/inputs/source.md",
+          "revision": "8554396bb8f25c8be30c8a7c5935efaf99047e6d385198a20b3f4ec1fde5db78",
+          "freshness": "fresh",
+          "headingPath": [
+            "Synthetic relation control",
+            "Claim A"
+          ],
+          "range": {
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 144,
+            "endOffset": 346
+          },
+          "freshnessEvidence": {
+            "canonicalOwner": "d:/dev/mssr",
+            "ref": "experiments/jev-mssr-live/runs/mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1/inputs/source.md",
+            "revision": "8554396bb8f25c8be30c8a7c5935efaf99047e6d385198a20b3f4ec1fde5db78",
+            "observedAt": "2026-10-12T11:18:44.000Z"
+          }
+        },
+        "provenance": {
+          "producer": "mssr-synthetic-fixture",
+          "sourceClass": "inferred",
+          "canonicalOwner": "d:/dev/mssr",
+          "host": "bridge-mcp",
+          "traceId": "mssr-20261012110923-daf6fe77-477",
+          "projectKey": "mssr-synthetic-canary"
+        },
+        "fingerprints": {
+          "record": "b8cdfa82f2140084c220edc07e3ea7f26683fe9dc45e1ec0d0501d9baea2de50",
+          "payload": "b8cdfa82f2140084c220edc07e3ea7f26683fe9dc45e1ec0d0501d9baea2de50"
+        },
+        "reasonCodes": [
+          "run50-canary"
+        ],
+        "lineage": {
+          "parentAtomIds": [],
+          "relatedAtomIds": [],
+          "supersedesAtomIds": []
+        },
+        "dedupeKey": "run50:block-2:b8cdfa82f2140084c220edc07e3ea7f26683fe9dc45e1ec0d0501d9baea2de50",
+        "authorityClass": "inferred",
+        "privacyClass": "project-metadata",
+        "usage": {
+          "selection": "selected",
+          "consumed": true,
+          "outcome": "unknown",
+          "reasonCodes": [
+            "relation-control"
+          ]
+        },
+        "attributes": {
+          "syntheticFixture": true
+        },
+        "advisoryOnly": true,
+        "canonicalRewriteAllowed": false
+      },
+      {
+        "schemaVersion": 2,
+        "id": "evidence-atom:2817583073011fd664590616",
+        "subject": {
+          "namespace": "mssr-synthetic",
+          "kind": "authorization-claim",
+          "identity": "fixture-service-01:policy-v1:decision.route:write-target"
+        },
+        "source": {
+          "ref": "experiments/jev-mssr-live/runs/mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1/inputs/source.md",
+          "revision": "8554396bb8f25c8be30c8a7c5935efaf99047e6d385198a20b3f4ec1fde5db78",
+          "freshness": "fresh",
+          "headingPath": [
+            "Synthetic relation control",
+            "Claim B"
+          ],
+          "range": {
+            "startLine": 11,
+            "endLine": 11,
+            "startOffset": 360,
+            "endOffset": 575
+          },
+          "freshnessEvidence": {
+            "canonicalOwner": "d:/dev/mssr",
+            "ref": "experiments/jev-mssr-live/runs/mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1/inputs/source.md",
+            "revision": "8554396bb8f25c8be30c8a7c5935efaf99047e6d385198a20b3f4ec1fde5db78",
+            "observedAt": "2026-10-12T11:18:44.000Z"
+          }
+        },
+        "provenance": {
+          "producer": "mssr-synthetic-fixture",
+          "sourceClass": "inferred",
+          "canonicalOwner": "d:/dev/mssr",
+          "host": "bridge-mcp",
+          "traceId": "mssr-20261012110923-daf6fe77-477",
+          "projectKey": "mssr-synthetic-canary"
+        },
+        "fingerprints": {
+          "record": "398eec40b27058608d176c05cc43c3330a02aedacba629068d48dd19c1478a4a",
+          "payload": "398eec40b27058608d176c05cc43c3330a02aedacba629068d48dd19c1478a4a"
+        },
+        "reasonCodes": [
+          "run50-canary"
+        ],
+        "lineage": {
+          "parentAtomIds": [],
+          "relatedAtomIds": [],
+          "supersedesAtomIds": []
+        },
+        "dedupeKey": "run50:block-3:398eec40b27058608d176c05cc43c3330a02aedacba629068d48dd19c1478a4a",
+        "authorityClass": "inferred",
+        "privacyClass": "project-metadata",
+        "usage": {
+          "selection": "selected",
+          "consumed": true,
+          "outcome": "unknown",
+          "reasonCodes": [
+            "relation-control"
+          ]
+        },
+        "attributes": {
+          "syntheticFixture": true
+        },
+        "advisoryOnly": true,
+        "canonicalRewriteAllowed": false
+      }
+    ],
+    "sourceEvidence": [
+      {
+        "atomId": "evidence-atom:8a7d1e7a6319b12f5a258a44",
+        "handle": {
+          "version": 1,
+          "id": "f8dc26e4bb8f68ac5d3226ba717bcb0ca1f02adb8e62a3584f388950d07f04e6",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1/inputs/source.md",
+          "revision": "8554396bb8f25c8be30c8a7c5935efaf99047e6d385198a20b3f4ec1fde5db78",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "startLine": 7,
+          "endLine": 7,
+          "startOffset": 144,
+          "endOffset": 346,
+          "fingerprint": "b8cdfa82f2140084c220edc07e3ea7f26683fe9dc45e1ec0d0501d9baea2de50",
+          "privacyClass": "project-metadata"
+        },
+        "text": "For synthetic service `fixture-service-01`, policy `v1`, route `decision.route` authorizes `write fixture:/target.txt` throughout the interval from `2026-10-12T00:00:00Z` through `2026-10-13T00:00:00Z`."
+      },
+      {
+        "atomId": "evidence-atom:2817583073011fd664590616",
+        "handle": {
+          "version": 1,
+          "id": "34b0bba2194481d3875be95e26fc2528dc9e17112dfe072efbb9eb884394f8ec",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1/inputs/source.md",
+          "revision": "8554396bb8f25c8be30c8a7c5935efaf99047e6d385198a20b3f4ec1fde5db78",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "startLine": 11,
+          "endLine": 11,
+          "startOffset": 360,
+          "endOffset": 575,
+          "fingerprint": "398eec40b27058608d176c05cc43c3330a02aedacba629068d48dd19c1478a4a",
+          "privacyClass": "project-metadata"
+        },
+        "text": "For synthetic service `fixture-service-01`, policy `v1`, route `decision.route` does not authorize `write fixture:/target.txt` throughout the same interval from `2026-10-12T00:00:00Z` through `2026-10-13T00:00:00Z`."
+      }
+    ],
+    "pairs": [
+      {
+        "id": "run50-synthetic-same-scope-period",
+        "leftAtomId": "evidence-atom:8a7d1e7a6319b12f5a258a44",
+        "rightAtomId": "evidence-atom:2817583073011fd664590616",
+        "claim": {
+          "validity": "current",
+          "scope": "synthetic service fixture-service-01; policy v1; decision.route authorization for write fixture:/target.txt",
+          "validFrom": "2026-10-12T00:00:00Z",
+          "validUntil": "2026-10-13T00:00:00Z"
+        },
+        "comparability": {
+          "scope": {
+            "left": "synthetic service fixture-service-01; policy v1; decision.route authorization for write fixture:/target.txt",
+            "right": "synthetic service fixture-service-01; policy v1; decision.route authorization for write fixture:/target.txt"
+          },
+          "temporal": {
+            "leftValidity": "current",
+            "leftValidFrom": "2026-10-12T00:00:00Z",
+            "leftValidUntil": "2026-10-13T00:00:00Z",
+            "rightValidity": "current",
+            "rightValidFrom": "2026-10-12T00:00:00Z",
+            "rightValidUntil": "2026-10-13T00:00:00Z"
+          }
+        }
+      }
+    ],
+    "traceId": "mssr-20261012110923-daf6fe77-477",
+    "maxPairsPerRequest": 1,
+    "maxStateChars": 6000,
+    "concurrency": 1
+  },
+  "providerResponse": {
+    "judgments": [
+      {
+        "pairId": "run50-synthetic-same-scope-period",
+        "batchId": "jev-evidence:mssr-synthetic-canary:1",
+        "judgment": {
+          "schemaVersion": 1,
+          "immutable": true,
+          "advisoryOnly": true,
+          "canonicalRewriteAllowed": false,
+          "decisionFamily": "relation",
+          "inputs": [
+            {
+              "atomId": "evidence-atom:8a7d1e7a6319b12f5a258a44",
+              "sourceRef": "experiments/jev-mssr-live/runs/mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1/inputs/source.md",
+              "revision": "8554396bb8f25c8be30c8a7c5935efaf99047e6d385198a20b3f4ec1fde5db78",
+              "fingerprints": {
+                "record": "b8cdfa82f2140084c220edc07e3ea7f26683fe9dc45e1ec0d0501d9baea2de50",
+                "payload": "b8cdfa82f2140084c220edc07e3ea7f26683fe9dc45e1ec0d0501d9baea2de50"
+              }
+            },
+            {
+              "atomId": "evidence-atom:2817583073011fd664590616",
+              "sourceRef": "experiments/jev-mssr-live/runs/mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1/inputs/source.md",
+              "revision": "8554396bb8f25c8be30c8a7c5935efaf99047e6d385198a20b3f4ec1fde5db78",
+              "fingerprints": {
+                "record": "398eec40b27058608d176c05cc43c3330a02aedacba629068d48dd19c1478a4a",
+                "payload": "398eec40b27058608d176c05cc43c3330a02aedacba629068d48dd19c1478a4a"
+              }
+            }
+          ],
+          "heads": [
+            {
+              "head": "relation-kind",
+              "candidates": [
+                "supports",
+                "contradicts",
+                "supersedes",
+                "duplicate",
+                "unrelated",
+                "unresolved"
+              ],
+              "selectedId": "contradicts",
+              "rawConfidence": 1,
+              "probabilities": null
+            }
+          ],
+          "calibratedConfidence": null,
+          "claim": {
+            "validity": "current",
+            "scope": "synthetic service fixture-service-01; policy v1; decision.route authorization for write fixture:/target.txt",
+            "validFrom": "2026-10-12T00:00:00Z",
+            "validUntil": "2026-10-13T00:00:00Z"
+          },
+          "citations": [
+            {
+              "atomId": "evidence-atom:8a7d1e7a6319b12f5a258a44",
+              "sourceRef": "experiments/jev-mssr-live/runs/mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1/inputs/source.md",
+              "revision": "8554396bb8f25c8be30c8a7c5935efaf99047e6d385198a20b3f4ec1fde5db78",
+              "fingerprint": "b8cdfa82f2140084c220edc07e3ea7f26683fe9dc45e1ec0d0501d9baea2de50",
+              "role": "contradicts"
+            },
+            {
+              "atomId": "evidence-atom:2817583073011fd664590616",
+              "sourceRef": "experiments/jev-mssr-live/runs/mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1/inputs/source.md",
+              "revision": "8554396bb8f25c8be30c8a7c5935efaf99047e6d385198a20b3f4ec1fde5db78",
+              "fingerprint": "398eec40b27058608d176c05cc43c3330a02aedacba629068d48dd19c1478a4a",
+              "role": "contradicts"
+            }
+          ],
+          "relations": [
+            {
+              "leftAtomId": "evidence-atom:8a7d1e7a6319b12f5a258a44",
+              "rightAtomId": "evidence-atom:2817583073011fd664590616",
+              "kind": "contradicts",
+              "rawConfidence": 1,
+              "citedAtomIds": [
+                "evidence-atom:8a7d1e7a6319b12f5a258a44",
+                "evidence-atom:2817583073011fd664590616"
+              ],
+              "comparability": {
+                "scope": {
+                  "left": "synthetic service fixture-service-01; policy v1; decision.route authorization for write fixture:/target.txt",
+                  "right": "synthetic service fixture-service-01; policy v1; decision.route authorization for write fixture:/target.txt"
+                },
+                "temporal": {
+                  "leftValidity": "current",
+                  "leftValidFrom": "2026-10-12T00:00:00Z",
+                  "leftValidUntil": "2026-10-13T00:00:00Z",
+                  "rightValidity": "current",
+                  "rightValidFrom": "2026-10-12T00:00:00Z",
+                  "rightValidUntil": "2026-10-13T00:00:00Z"
+                }
+              },
+              "status": "candidate"
+            }
+          ],
+          "evidenceCoverage": {
+            "requestedAtomIds": [
+              "evidence-atom:8a7d1e7a6319b12f5a258a44",
+              "evidence-atom:2817583073011fd664590616"
+            ],
+            "returnedAtomIds": [
+              "evidence-atom:8a7d1e7a6319b12f5a258a44",
+              "evidence-atom:2817583073011fd664590616"
+            ],
+            "complete": true
+          },
+          "abstainReasons": [],
+          "reviewReasons": [],
+          "provider": "typesafe-jev",
+          "model": "jev-1.13.0",
+          "promptVersion": "mssr-semantic-evidence-relation-v1",
+          "providerSchemaVersion": "mssr-jev-decision-v1",
+          "traceId": "mssr-20261012110923-daf6fe77-477",
+          "verificationEvidence": null,
+          "id": "semantic-judgment:a93c879e6b17742b7af13116",
+          "verification": {
+            "status": "unverified",
+            "verificationId": null,
+            "evidenceRef": null,
+            "independenceReasons": [
+              "verification-absent"
+            ]
+          }
+        },
+        "evaluation": {
+          "disposition": "review",
+          "reasons": [
+            "contradictory-relations",
+            "independent-verification-unavailable"
+          ],
+          "advisoryOnly": true,
+          "canonicalRewriteAllowed": false
+        }
+      }
+    ],
+    "batches": [
+      {
+        "batchId": "jev-evidence:mssr-synthetic-canary:1",
+        "projectKey": "mssr-synthetic-canary",
+        "corpusKey": "mssr-synthetic-contradiction-run50",
+        "pairIds": [
+          "run50-synthetic-same-scope-period"
+        ],
+        "questions": 1,
+        "stateChars": 2110,
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "usage": {
+          "input_tokens": 1459,
+          "output_tokens": 71
+        },
+        "elapsedMs": 746.3494000006467
+      }
+    ],
+    "rejected": [],
+    "unusedAtomIds": [],
+    "policy": {
+      "maximumPairsPerRequest": 1,
+      "maximumStateChars": 6000,
+      "mixedProjectOrCorpusState": false,
+      "providerConfidenceDistributionInvented": false,
+      "judgmentsVerified": false,
+      "advisoryOnly": true
+    },
+    "bridgeNotices": {
+      "delivery": "automatic-drain",
+      "scope": "contextual",
+      "count": 0,
+      "remainingPending": 1,
+      "relevantPending": 0,
+      "otherPending": 1,
+      "globalPending": 0,
+      "globalHistoryTool": "bridge_notice_history",
+      "items": []
+    }
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "projectKey": "mssr",
+  "corpusKey": "mssr-real-provenance-sources-run51",
+  "goal": "Classify whether these exact MSSR source ranges make compatible, contradictory, duplicate, superseding, unrelated, or unresolved claims about the authentication limits of evidence provenance and freshness assertions.",
+  "inputAtoms": [
+    {
+      "schemaVersion": 2,
+      "id": "evidence-atom:9cb032bf66e42b9db019524d",
+      "subject": {
+        "namespace": "mssr",
+        "kind": "evidence-provenance-policy",
+        "identity": "freshness-and-provenance-authentication-limits"
+      },
+      "source": {
+        "ref": "docs/decisions/0009-semantic-evidence-plane.md",
+        "revision": "63bac32774a54bdb8e7a5dd6021fa3f0351e491c6475cbb6745ce4c1e05ed2ad",
+        "freshness": "fresh",
+        "headingPath": [
+          "ADR 0009 — Semantic Evidence Plane and portable semantic triage",
+          "Decision",
+          "1. Common evidence atom"
+        ],
+        "range": {
+          "startLine": 62,
+          "endLine": 62,
+          "startOffset": 3137,
+          "endOffset": 4046
+        },
+        "freshnessEvidence": {
+          "canonicalOwner": "d:/dev/mssr",
+          "ref": "docs/decisions/0009-semantic-evidence-plane.md",
+          "revision": "63bac32774a54bdb8e7a5dd6021fa3f0351e491c6475cbb6745ce4c1e05ed2ad",
+          "observedAt": "2026-10-12T11:26:10.000Z"
+        }
+      },
+      "provenance": {
+        "producer": "librarian-run51",
+        "sourceClass": "canonical",
+        "canonicalOwner": "d:/dev/mssr",
+        "host": "bridge-mcp",
+        "traceId": "mssr-codex-33ee51c9-194d-4623-b39d-06a1804c8f3c",
+        "projectKey": "mssr"
+      },
+      "fingerprints": {
+        "record": "8b52f9321fd1b5ad3468a8b7533ce9c6d5f72ff41d46e235e8970fd96f13e9c9",
+        "payload": "8b52f9321fd1b5ad3468a8b7533ce9c6d5f72ff41d46e235e8970fd96f13e9c9"
+      },
+      "reasonCodes": [
+        "run51-relation-review"
+      ],
+      "lineage": {
+        "parentAtomIds": [],
+        "relatedAtomIds": [],
+        "supersedesAtomIds": []
+      },
+      "dedupeKey": "mssr:provenance-freshness:ADR0009:block-11",
+      "authorityClass": "canonical",
+      "privacyClass": "project-metadata",
+      "usage": {
+        "selection": "selected",
+        "consumed": true,
+        "outcome": "unknown",
+        "reasonCodes": [
+          "relation-control"
+        ]
+      },
+      "attributes": {},
+      "advisoryOnly": true,
+      "canonicalRewriteAllowed": false
+    },
+    {
+      "schemaVersion": 2,
+      "id": "evidence-atom:99f1d008389a3b3a03c07845",
+      "subject": {
+        "namespace": "mssr",
+        "kind": "evidence-provenance-policy",
+        "identity": "freshness-and-provenance-authentication-limits"
+      },
+      "source": {
+        "ref": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "freshness": "fresh",
+        "headingPath": [
+          "Semantic Evidence Plane architecture",
+          "Core Document and Librarian guarantees"
+        ],
+        "range": {
+          "startLine": 15,
+          "endLine": 15,
+          "startOffset": 2279,
+          "endOffset": 2730
+        },
+        "freshnessEvidence": {
+          "canonicalOwner": "d:/dev/mssr",
+          "ref": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+          "observedAt": "2026-10-12T11:26:10.000Z"
+        }
+      },
+      "provenance": {
+        "producer": "librarian-run51",
+        "sourceClass": "canonical",
+        "canonicalOwner": "d:/dev/mssr",
+        "host": "bridge-mcp",
+        "traceId": "mssr-codex-33ee51c9-194d-4623-b39d-06a1804c8f3c",
+        "projectKey": "mssr"
+      },
+      "fingerprints": {
+        "record": "ca9576e692cfeb653ebd7252d4a823b4554637bf140ad5b0b53687704b06cc8a",
+        "payload": "ca9576e692cfeb653ebd7252d4a823b4554637bf140ad5b0b53687704b06cc8a"
+      },
+      "reasonCodes": [
+        "run51-relation-review"
+      ],
+      "lineage": {
+        "parentAtomIds": [],
+        "relatedAtomIds": [],
+        "supersedesAtomIds": []
+      },
+      "dedupeKey": "mssr:provenance-freshness:semantic-evidence-plane:block-5",
+      "authorityClass": "canonical",
+      "privacyClass": "project-metadata",
+      "usage": {
+        "selection": "selected",
+        "consumed": true,
+        "outcome": "unknown",
+        "reasonCodes": [
+          "relation-control"
+        ]
+      },
+      "attributes": {},
+      "advisoryOnly": true,
+      "canonicalRewriteAllowed": false
+    }
+  ],
+  "sourceEvidence": [
+    {
+      "atomId": "evidence-atom:9cb032bf66e42b9db019524d",
+      "handle": {
+        "version": 1,
+        "id": "7ea4f627499dcd303ff0b91a16038b14c4aec619355b5ee4fbebd98f8165a63c",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+        "revision": "63bac32774a54bdb8e7a5dd6021fa3f0351e491c6475cbb6745ce4c1e05ed2ad",
+        "rangeId": "block-11",
+        "rangeKind": "block",
+        "startLine": 62,
+        "endLine": 62,
+        "startOffset": 3137,
+        "endOffset": 4046,
+        "fingerprint": "8b52f9321fd1b5ad3468a8b7533ce9c6d5f72ff41d46e235e8970fd96f13e9c9",
+        "privacyClass": "project-metadata"
+      },
+      "text": "`EvidenceAtom v2` derives a stable content-addressed id from subject + normalized source/revision + provenance + fingerprints + dedupe identity. Semantic reason codes, usage state and small attributes are deliberately non-identity metadata so later selection/outcome observations do not rewrite the atom's stable identity. Exact heading/range refs require a source revision. A `fresh` label additionally requires a caller-supplied observation assertion matching canonical owner, normalized ref and revision with an observation timestamp; validation checks consistency only and does not authenticate the host or independently prove the observation occurred. Sensitive-excluded atoms and free-form attribute strings are rejected. Projection from a Librarian catalog record carries only compact refs/fingerprints plus explicitly selected primitive attributes; it never copies the full Librarian metadata payload."
+    },
+    {
+      "atomId": "evidence-atom:99f1d008389a3b3a03c07845",
+      "handle": {
+        "version": 1,
+        "id": "81bf72364613f6b5ae5513bda8b947c14019bb828c95ff7aace19a87232deedc",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "block-5",
+        "rangeKind": "block",
+        "startLine": 15,
+        "endLine": 15,
+        "startOffset": 2279,
+        "endOffset": 2730,
+        "fingerprint": "ca9576e692cfeb653ebd7252d4a823b4554637bf140ad5b0b53687704b06cc8a",
+        "privacyClass": "project-metadata"
+      },
+      "text": "Librarian adapts typed, privacy-safe producer metadata while retaining caller-asserted provenance; it does not authenticate that provenance. Deterministic structural duplicate checks run before optional Jev relation judgments. Jev selections, confidence and sufficiency scores remain advisory and uncalibrated. Exact fetch, independent verification and separate permission/write gates remain required; synthesis preview never writes canonical sources."
+    }
+  ],
+  "pairs": [
+    {
+      "id": "run51-provenance-authentication-boundary",
+      "leftAtomId": "evidence-atom:9cb032bf66e42b9db019524d",
+      "rightAtomId": "evidence-atom:99f1d008389a3b3a03c07845",
+      "claim": {
+        "validity": "current",
+        "scope": "MSSR evidence provenance and freshness assertions",
+        "validFrom": "2026-10-12T11:26:10.000Z",
+        "validUntil": null
+      },
+      "comparability": {
+        "scope": {
+          "left": "MSSR evidence provenance and freshness assertions",
+          "right": "MSSR evidence provenance and freshness assertions"
+        },
+        "temporal": {
+          "leftValidity": "current",
+          "leftValidFrom": "2026-10-12T11:26:10.000Z",
+          "leftValidUntil": null,
+          "rightValidity": "current",
+          "rightValidFrom": "2026-10-12T11:26:10.000Z",
+          "rightValidUntil": null
+        }
+      }
+    }
+  ],
+  "traceId": "mssr-codex-33ee51c9-194d-4623-b39d-06a1804c8f3c",
+  "maxPairsPerRequest": 1,
+  "maxStateChars": 6000,
+  "concurrency": 1
+}

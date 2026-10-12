@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1",
+  "phase": "post-call",
+  "files": [
+    {
+      "path": "derived/jev-response.json",
+      "sha256": "f74ba2192972c4980275b48fbc45c8bb5ab50b8e86a81c4e9f7f7418c7f3c120"
+    },
+    {
+      "path": "derived/metrics.json",
+      "sha256": "4f017f16230eb3aa644b1d5aca47a64208dc90bd9233c71bee9dc4e69d685838"
+    },
+    {
+      "path": "derived/RUN-REPORT.md",
+      "sha256": "73f9be1c918ed81c7cfd462f041ffaa3d2888730a12a245c6f04a94eb777fdf1"
+    },
+    {
+      "path": "inputs/labels.json",
+      "sha256": "096a70b2105612da9586ee7d5f22495cd4c9bf3d3b02e84df56c036f42aa59fc"
+    },
+    {
+      "path": "inputs/source.md",
+      "sha256": "8554396bb8f25c8be30c8a7c5935efaf99047e6d385198a20b3f4ec1fde5db78"
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "93c2ed66f48df0383aba1124ec8dea9cdcb01b92e029a4e54530f9925edba5ad"
+    },
+    {
+      "path": "PRECALL-SHA256SUMS.json",
+      "sha256": "f2ee7bd5f5340a81f1fa1c18581f999309f7b4b544e3cb6103787d89312567a9"
+    },
+    {
+      "path": "README.md",
+      "sha256": "f17ba8b61e82e5217238468aa2e18d36b031219d26ded83201c193f9d4a667ad"
+    }
+  ]
+}

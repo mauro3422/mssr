@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1",
+  "preparedAt": "2026-10-12T11:17:42Z",
+  "status": "prepared-before-provider-call",
+  "sourceClass": "synthetic-canary",
+  "sourceRef": "experiments/jev-mssr-live/runs/mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1/inputs/source.md",
+  "sourceSha256": "8554396bb8f25c8be30c8a7c5935efaf99047e6d385198a20b3f4ec1fde5db78",
+  "labelRef": "experiments/jev-mssr-live/runs/mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1/inputs/labels.json",
+  "labelSha256": "096a70b2105612da9586ee7d5f22495cd4c9bf3d3b02e84df56c036f42aa59fc",
+  "labelSentToProvider": false,
+  "expectedRelation": "contradicts",
+  "expectedDisposition": "review",
+  "evaluation": {
+    "projectKey": "mssr-synthetic-canary",
+    "corpusKey": "mssr-synthetic-contradiction-run50",
+    "maxPairsPerRequest": 1,
+    "maxStateChars": 6000,
+    "concurrency": 1
+  },
+  "safety": {
+    "advisoryOnly": true,
+    "canonicalRewriteAllowed": false,
+    "noRuntimeOrThresholdChange": true
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-semantic-evidence-relation-real-docs-20261012T1114Z-v1",
+  "providerCalls": 3,
+  "reportedProviderBatches": 3,
+  "decisionQuestions": 3,
+  "uniqueSourceClusters": 1,
+  "uniqueSourceDocuments": 2,
+  "exactSourceEndpointsRevalidated": 6,
+  "citationsReturned": 6,
+  "coverageCompleteCalls": 3,
+  "sourceRevisionOrFingerprintMismatch": 0,
+  "relationOutcomes": {
+    "supports": 2,
+    "contradicts": 0,
+    "supersedes": 0,
+    "duplicate": 0,
+    "unrelated": 0,
+    "unresolved": 1
+  },
+  "evaluationOutcomes": {
+    "review": 2,
+    "abstain": 1,
+    "ready": 0
+  },
+  "verifiedJudgments": 0,
+  "canonicalWrites": 0,
+  "tokenUsage": {
+    "input": 3545,
+    "output": 210
+  },
+  "providerReportedElapsedMs": 2354.7804,
+  "rawConfidence": {
+    "values": [
+      0.93,
+      0.6,
+      0.54
+    ],
+    "calibrated": false,
+    "distributionReturned": false,
+    "positivePairRepeatDelta": -0.33
+  },
+  "interpretation": "Small linked diagnostic only; do not treat these as independent accuracy samples or use confidence as a gate."
+}

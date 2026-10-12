@@ -1,0 +1,8 @@
+{
+  "runId": "mssr-semantic-relation-synthetic-contradiction-20261012T1117Z-v1",
+  "sourceClass": "synthetic-canary",
+  "expectedRelation": "contradicts",
+  "expectedDisposition": "review",
+  "rationale": "The two claims explicitly share service, policy, route, resource, and validity interval but negate the authorization predicate.",
+  "sentToProvider": false
+}

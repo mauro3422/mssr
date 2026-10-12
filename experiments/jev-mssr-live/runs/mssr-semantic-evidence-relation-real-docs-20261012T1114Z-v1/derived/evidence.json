@@ -1,0 +1,462 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-semantic-evidence-relation-real-docs-20261012T1114Z-v1",
+  "traceId": "mssr-20261012110923-daf6fe77-477",
+  "execution": {
+    "startedAt": "2026-10-12T11:14:54Z",
+    "mode": "direct-Bridge-MCP",
+    "runner": "not the frozen CLI runner",
+    "rawVendorRequestResponseAvailable": false,
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "promptVersion": "mssr-semantic-evidence-relation-v1",
+    "providerSchemaVersion": "mssr-jev-decision-v1",
+    "advisoryOnly": true
+  },
+  "sourceCluster": {
+    "count": 1,
+    "sourceRefs": [
+      "AGENTS.md",
+      ".mssr/PROJECT_CONTEXT.md"
+    ],
+    "fetchedRanges": [
+      {
+        "handle": {
+          "version": 1,
+          "id": "041109a9d2ff922e8ebf72c74bb51ccada3a3df36965faefde7be8b9f7678dd3",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "AGENTS.md",
+          "revision": "cb2d567bf085e68ed2e97ec5650de5a152d2a41f4293fe124917ebd3a3f346d2",
+          "rangeId": "block-2/item-1",
+          "rangeKind": "block",
+          "startLine": 6,
+          "endLine": 7,
+          "startOffset": 155,
+          "endOffset": 262,
+          "fingerprint": "45f32255d765fea1e4dd5cf1a1fe5310198cc3f31c9c422f733263078b5ebc76",
+          "privacyClass": "project-metadata"
+        },
+        "text": "- MSSR is advisory. Never turn route output into an implicit permission system,\n  tool proxy, or allowlist."
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "f7598af7696bb36816d9148fd012769d6bdc4d50da73a829b7ce5dafd5f714d7",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/PROJECT_CONTEXT.md",
+          "revision": "b8c4f99b827a92035c90ced135e4e588518d8d32212241f1192aec982dd1feb6",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "startLine": 5,
+          "endLine": 5,
+          "startOffset": 41,
+          "endOffset": 388,
+          "fingerprint": "ad4a9be5ca68ce298e6b5e464b563bd8db1dffa75402ddd6bada5728196a82de",
+          "privacyClass": "project-metadata"
+        },
+        "text": "MSSR is a portable, advisory control layer. Portable code owns validated contracts and pure planning/evaluation; the host owns authorized observation, tool execution, transport, persistence, and I/O. A route, score, model judgment, drift finding, or recommendation is evidence for a host decision and never grants permission or authorizes a write."
+      }
+    ],
+    "expectedRelation": "supports",
+    "labelProvenance": "pre-call reading by Codex/Luna review; not owner-gold or independently adjudicated"
+  },
+  "atoms": {
+    "unknown": [
+      {
+        "schemaVersion": 2,
+        "id": "evidence-atom:a1ee3006f060aef5a6d186e3",
+        "subject": {
+          "namespace": "mssr",
+          "kind": "governance-policy",
+          "identity": "advisory-routing-does-not-grant-permission"
+        },
+        "source": {
+          "ref": "AGENTS.md",
+          "revision": "cb2d567bf085e68ed2e97ec5650de5a152d2a41f4293fe124917ebd3a3f346d2",
+          "freshness": "unknown",
+          "headingPath": [
+            "MSSR repository instructions"
+          ],
+          "range": {
+            "startLine": 6,
+            "endLine": 7,
+            "startOffset": 155,
+            "endOffset": 262
+          }
+        },
+        "provenance": {
+          "producer": "librarian-run49",
+          "sourceClass": "canonical",
+          "canonicalOwner": "d:/dev/mssr",
+          "host": "bridge-mcp",
+          "traceId": "mssr-20261012110923-daf6fe77-477",
+          "projectKey": "mssr"
+        },
+        "fingerprints": {
+          "record": "45f32255d765fea1e4dd5cf1a1fe5310198cc3f31c9c422f733263078b5ebc76",
+          "payload": "45f32255d765fea1e4dd5cf1a1fe5310198cc3f31c9c422f733263078b5ebc76"
+        },
+        "reasonCodes": [
+          "run49-relation-review"
+        ],
+        "lineage": {
+          "parentAtomIds": [],
+          "relatedAtomIds": [],
+          "supersedesAtomIds": []
+        },
+        "dedupeKey": "mssr:advisory-routing:AGENTS.md:cb2d567b:block-2-item-1",
+        "authorityClass": "canonical",
+        "privacyClass": "project-metadata",
+        "usage": {
+          "selection": "selected",
+          "consumed": true,
+          "outcome": "unknown",
+          "reasonCodes": [
+            "relation-control"
+          ]
+        },
+        "attributes": {},
+        "advisoryOnly": true,
+        "canonicalRewriteAllowed": false
+      },
+      {
+        "schemaVersion": 2,
+        "id": "evidence-atom:25acdf1f0a71504f6d5a543c",
+        "subject": {
+          "namespace": "mssr",
+          "kind": "governance-policy",
+          "identity": "judgments-and-routes-are-advisory-not-permission"
+        },
+        "source": {
+          "ref": ".mssr/PROJECT_CONTEXT.md",
+          "revision": "b8c4f99b827a92035c90ced135e4e588518d8d32212241f1192aec982dd1feb6",
+          "freshness": "unknown",
+          "headingPath": [
+            "MSSR project context",
+            "Architecture"
+          ],
+          "range": {
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 41,
+            "endOffset": 388
+          }
+        },
+        "provenance": {
+          "producer": "librarian-run49",
+          "sourceClass": "canonical",
+          "canonicalOwner": "d:/dev/mssr",
+          "host": "bridge-mcp",
+          "traceId": "mssr-20261012110923-daf6fe77-477",
+          "projectKey": "mssr"
+        },
+        "fingerprints": {
+          "record": "ad4a9be5ca68ce298e6b5e464b563bd8db1dffa75402ddd6bada5728196a82de",
+          "payload": "ad4a9be5ca68ce298e6b5e464b563bd8db1dffa75402ddd6bada5728196a82de"
+        },
+        "reasonCodes": [
+          "run49-relation-review"
+        ],
+        "lineage": {
+          "parentAtomIds": [],
+          "relatedAtomIds": [],
+          "supersedesAtomIds": []
+        },
+        "dedupeKey": "mssr:advisory-authority:PROJECT_CONTEXT.md:b8c4f99b:block-1",
+        "authorityClass": "canonical",
+        "privacyClass": "project-metadata",
+        "usage": {
+          "selection": "selected",
+          "consumed": true,
+          "outcome": "unknown",
+          "reasonCodes": [
+            "relation-control"
+          ]
+        },
+        "attributes": {},
+        "advisoryOnly": true,
+        "canonicalRewriteAllowed": false
+      }
+    ],
+    "fresh": [
+      {
+        "schemaVersion": 2,
+        "id": "evidence-atom:0f7aaa0bebfc7b1028672653",
+        "subject": {
+          "namespace": "mssr",
+          "kind": "governance-policy",
+          "identity": "advisory-routing-does-not-grant-permission"
+        },
+        "source": {
+          "ref": "AGENTS.md",
+          "revision": "cb2d567bf085e68ed2e97ec5650de5a152d2a41f4293fe124917ebd3a3f346d2",
+          "freshness": "fresh",
+          "headingPath": [
+            "MSSR repository instructions"
+          ],
+          "range": {
+            "startLine": 6,
+            "endLine": 7,
+            "startOffset": 155,
+            "endOffset": 262
+          },
+          "freshnessEvidence": {
+            "canonicalOwner": "d:/dev/mssr",
+            "ref": "AGENTS.md",
+            "revision": "cb2d567bf085e68ed2e97ec5650de5a152d2a41f4293fe124917ebd3a3f346d2",
+            "observedAt": "2026-10-12T11:15:44.000Z"
+          }
+        },
+        "provenance": {
+          "producer": "librarian-run49",
+          "sourceClass": "canonical",
+          "canonicalOwner": "d:/dev/mssr",
+          "host": "bridge-mcp",
+          "traceId": "mssr-20261012110923-daf6fe77-477",
+          "projectKey": "mssr"
+        },
+        "fingerprints": {
+          "record": "45f32255d765fea1e4dd5cf1a1fe5310198cc3f31c9c422f733263078b5ebc76",
+          "payload": "45f32255d765fea1e4dd5cf1a1fe5310198cc3f31c9c422f733263078b5ebc76"
+        },
+        "reasonCodes": [
+          "run49-relation-review"
+        ],
+        "lineage": {
+          "parentAtomIds": [],
+          "relatedAtomIds": [],
+          "supersedesAtomIds": []
+        },
+        "dedupeKey": "mssr:advisory-routing:AGENTS.md:cb2d567b:block-2-item-1",
+        "authorityClass": "canonical",
+        "privacyClass": "project-metadata",
+        "usage": {
+          "selection": "selected",
+          "consumed": true,
+          "outcome": "unknown",
+          "reasonCodes": [
+            "relation-control"
+          ]
+        },
+        "attributes": {},
+        "advisoryOnly": true,
+        "canonicalRewriteAllowed": false
+      },
+      {
+        "schemaVersion": 2,
+        "id": "evidence-atom:40f6832722f3ea66b1a6b06c",
+        "subject": {
+          "namespace": "mssr",
+          "kind": "governance-policy",
+          "identity": "judgments-and-routes-are-advisory-not-permission"
+        },
+        "source": {
+          "ref": ".mssr/PROJECT_CONTEXT.md",
+          "revision": "b8c4f99b827a92035c90ced135e4e588518d8d32212241f1192aec982dd1feb6",
+          "freshness": "fresh",
+          "headingPath": [
+            "MSSR project context",
+            "Architecture"
+          ],
+          "range": {
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 41,
+            "endOffset": 388
+          },
+          "freshnessEvidence": {
+            "canonicalOwner": "d:/dev/mssr",
+            "ref": ".mssr/PROJECT_CONTEXT.md",
+            "revision": "b8c4f99b827a92035c90ced135e4e588518d8d32212241f1192aec982dd1feb6",
+            "observedAt": "2026-10-12T11:15:44.000Z"
+          }
+        },
+        "provenance": {
+          "producer": "librarian-run49",
+          "sourceClass": "canonical",
+          "canonicalOwner": "d:/dev/mssr",
+          "host": "bridge-mcp",
+          "traceId": "mssr-20261012110923-daf6fe77-477",
+          "projectKey": "mssr"
+        },
+        "fingerprints": {
+          "record": "ad4a9be5ca68ce298e6b5e464b563bd8db1dffa75402ddd6bada5728196a82de",
+          "payload": "ad4a9be5ca68ce298e6b5e464b563bd8db1dffa75402ddd6bada5728196a82de"
+        },
+        "reasonCodes": [
+          "run49-relation-review"
+        ],
+        "lineage": {
+          "parentAtomIds": [],
+          "relatedAtomIds": [],
+          "supersedesAtomIds": []
+        },
+        "dedupeKey": "mssr:advisory-authority:PROJECT_CONTEXT.md:b8c4f99b:block-1",
+        "authorityClass": "canonical",
+        "privacyClass": "project-metadata",
+        "usage": {
+          "selection": "selected",
+          "consumed": true,
+          "outcome": "unknown",
+          "reasonCodes": [
+            "relation-control"
+          ]
+        },
+        "attributes": {},
+        "advisoryOnly": true,
+        "canonicalRewriteAllowed": false
+      }
+    ]
+  },
+  "calls": [
+    {
+      "id": "unknown-freshness-positive-control",
+      "observedAt": "2026-10-12T11:14:54Z",
+      "pairId": "run49-advisory-authority-support",
+      "atomIds": [
+        "evidence-atom:a1ee3006f060aef5a6d186e3",
+        "evidence-atom:25acdf1f0a71504f6d5a543c"
+      ],
+      "freshness": [
+        "unknown",
+        "unknown"
+      ],
+      "declaredComparability": "same current scope/period",
+      "relation": "supports",
+      "rawConfidence": 0.93,
+      "probabilities": null,
+      "relationStatus": "candidate",
+      "citationRoles": [
+        "supports",
+        "supports"
+      ],
+      "coverage": {
+        "complete": true,
+        "requested": 2,
+        "returned": 2
+      },
+      "evaluation": {
+        "disposition": "review",
+        "reasons": [
+          "independent-verification-unavailable",
+          "source-freshness-not-confirmed"
+        ]
+      },
+      "verification": "unverified",
+      "usage": {
+        "inputTokens": 1218,
+        "outputTokens": 69,
+        "elapsedMs": 822.2302,
+        "stateChars": 1714
+      }
+    },
+    {
+      "id": "exact-freshness-ablation",
+      "observedAt": "2026-10-12T11:15:44.000Z",
+      "pairId": "run49-advisory-authority-support-fresh",
+      "atomIds": [
+        "evidence-atom:0f7aaa0bebfc7b1028672653",
+        "evidence-atom:40f6832722f3ea66b1a6b06c"
+      ],
+      "freshness": [
+        "fresh",
+        "fresh"
+      ],
+      "freshnessEvidenceObservation": "2026-10-12T11:15:44.000Z",
+      "declaredComparability": "same current scope/period",
+      "relation": "supports",
+      "rawConfidence": 0.6,
+      "probabilities": null,
+      "relationStatus": "candidate",
+      "citationRoles": [
+        "supports",
+        "supports"
+      ],
+      "coverage": {
+        "complete": true,
+        "requested": 2,
+        "returned": 2
+      },
+      "evaluation": {
+        "disposition": "review",
+        "reasons": [
+          "independent-verification-unavailable"
+        ],
+        "advisoryOnly": true,
+        "canonicalRewriteAllowed": false
+      },
+      "verification": "unverified",
+      "usage": {
+        "inputTokens": 1212,
+        "outputTokens": 69,
+        "elapsedMs": 733.100700000301,
+        "stateChars": 1673
+      }
+    },
+    {
+      "id": "missing-scope-and-time-abstention",
+      "pairId": "run49-advisory-authority-insufficient-comparability",
+      "atomIds": [
+        "evidence-atom:0f7aaa0bebfc7b1028672653",
+        "evidence-atom:40f6832722f3ea66b1a6b06c"
+      ],
+      "freshness": [
+        "fresh",
+        "fresh"
+      ],
+      "declaredComparability": "scope and temporal bounds deliberately absent",
+      "relation": "unresolved",
+      "rawConfidence": 0.54,
+      "probabilities": null,
+      "relationStatus": "unresolved",
+      "citationRoles": [
+        "supports",
+        "supports"
+      ],
+      "coverage": {
+        "complete": true,
+        "requested": 2,
+        "returned": 2
+      },
+      "evaluation": {
+        "disposition": "abstain",
+        "reasons": [
+          "independent-verification-unavailable",
+          "jev-selected-unresolved",
+          "missing-claim-scope",
+          "missing-claim-validity",
+          "relation-scope-unknown",
+          "relation-temporal-comparability-unknown",
+          "unresolved-relations"
+        ],
+        "advisoryOnly": true,
+        "canonicalRewriteAllowed": false
+      },
+      "abstainReasons": [
+        "jev-selected-unresolved"
+      ],
+      "verification": "unverified",
+      "usage": {
+        "inputTokens": 1115,
+        "outputTokens": 72,
+        "elapsedMs": 799.4497999995947,
+        "stateChars": 1497
+      }
+    }
+  ],
+  "integrity": {
+    "sourceBindingsRevalidatedByBridge": true,
+    "sourceRevisionsUnchanged": true,
+    "endpointCitationsMatchAtomIds": true,
+    "canonicalWrites": 0,
+    "thresholdChanges": 0,
+    "runtimeChanges": 0
+  },
+  "limitations": [
+    "Only one linked source pair, reused across three diagnostic calls; these are not independent cases.",
+    "No natural contradiction ground truth was found in current canonical docs or prior positive contradiction fixtures.",
+    "Raw Jev confidence is uncalibrated; repeated support confidence changed from 0.93 to 0.60, so this ablation cannot estimate confidence reliability or attribute the change causally.",
+    "No independent verifier was supplied; all judgments remain unverified and review/abstain only.",
+    "Direct MCP wrapper results are available, but raw vendor transport request/response bytes were not observed."
+  ]
+}

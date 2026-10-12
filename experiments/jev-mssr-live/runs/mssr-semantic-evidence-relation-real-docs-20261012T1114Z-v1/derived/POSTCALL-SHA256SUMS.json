@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-semantic-evidence-relation-real-docs-20261012T1114Z-v1",
+  "phase": "post-call",
+  "files": [
+    {
+      "path": "derived/evidence.json",
+      "sha256": "9987ae5d88fdfa2ef7d38563ca7901834f8063c616a8b7413edb00b45a4df8e2"
+    },
+    {
+      "path": "derived/metrics.json",
+      "sha256": "78ed98569b8241a8bf1dc8ee824de620121ab68e0742f561e624e83c407bb151"
+    },
+    {
+      "path": "derived/RUN-REPORT.md",
+      "sha256": "745bb32d7f9a7dc1b7b3fd5a22e913df4e8dc60e146821b1988d0d004b5ebac5"
+    },
+    {
+      "path": "README.md",
+      "sha256": "1b9e02bcceea9e053c85a3cdfe1155f0f3516ff158f3b11749fece25bfeaaa77"
+    }
+  ]
+}

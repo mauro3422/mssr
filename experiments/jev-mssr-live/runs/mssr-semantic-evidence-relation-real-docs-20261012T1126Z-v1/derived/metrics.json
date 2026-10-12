@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-semantic-evidence-relation-real-docs-20261012T1126Z-v1",
+  "providerCalls": 1,
+  "providerReportedBatches": 1,
+  "decisionQuestions": 1,
+  "uniqueSourceDocuments": 2,
+  "exactSourceEndpointsRevalidated": 2,
+  "citationsReturned": 2,
+  "coverageComplete": true,
+  "sourceRevisionOrFingerprintMismatch": 0,
+  "relationOutcomes": {
+    "supports": 1
+  },
+  "evaluationOutcomes": {
+    "review": 1
+  },
+  "verifiedJudgments": 0,
+  "canonicalWrites": 0,
+  "tokenUsage": {
+    "input": 1391,
+    "output": 69
+  },
+  "providerReportedElapsedMs": 754.3473000004888,
+  "rawConfidence": {
+    "values": [
+      0.96
+    ],
+    "calibrated": false,
+    "distributionReturned": true
+  },
+  "expectedRelation": "supports",
+  "expectedLabelStatus": "exploratory-manual-not-owner-gold",
+  "sourceIndependence": "not established; architecture module may summarize ADR",
+  "labelAgreement": "1/1 exploratory agreement, not accuracy",
+  "interpretation": "Exact binding and citation coverage passed, Jev selected the manually expected compatible relation, and the portable evaluator correctly held the unverified result at review. One dependent source pair cannot support calibration, a reliability claim, or a threshold."
+}

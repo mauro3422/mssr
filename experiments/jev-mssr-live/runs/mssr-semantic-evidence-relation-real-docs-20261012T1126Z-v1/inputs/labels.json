@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "pairId": "run51-provenance-authentication-boundary",
+  "expectedRelation": "supports",
+  "expectedDisposition": "review",
+  "labelStatus": "exploratory-manual-not-owner-gold",
+  "sentToProvider": false,
+  "independentAdjudication": false,
+  "sourceIndependence": "not-established; the architecture module may summarize the ADR",
+  "rationale": "Both exact ranges say that caller-asserted freshness/provenance is checked for consistency but is not authenticated. They are compatible and complementary for this scope; this manual expectation is not a gold label or an independent accuracy sample."
+}
