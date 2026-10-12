@@ -1,0 +1,5 @@
+# Host-composed answer
+
+En la reanudación de solo lectura, la ruta seleccionó cuatro raíces obligatorias —el documento nombra `git-change-publication` y `skill-maintenance-loop` como ejemplos, pero no enumera las otras dos— pese a que la tarea excluía publicación Git y persistencia [HANDOFF_CONTEXT_ECONOMY_PRIORITY.md:L39]. Para una tarea documental, Project Context dejó 383 de 12.000 caracteres disponibles; Context Messages consumió 5.558 de 6.000 y dejó 442 [HANDOFF_CONTEXT_ECONOMY_PRIORITY.md:L51]. La misma sección registra observaciones ADR duplicadas bajo los propietarios históricos `C:/Dev/mssr` y canónicos `D:/Dev/mssr`. La fuente las describe como presión de alias/deduplicación que vale investigar, pero aclara que no demuestra que fueran la causa principal del bloqueo original [HANDOFF_CONTEXT_ECONOMY_PRIORITY.md:L45-L54].
+
+This paragraph was composed by the host from the three exact, fetched and cited ranges in the verified union pack. Jev selected the ranges; it did not generate this prose.

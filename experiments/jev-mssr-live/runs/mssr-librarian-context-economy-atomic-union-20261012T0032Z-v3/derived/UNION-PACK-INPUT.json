@@ -1,0 +1,54 @@
+{
+  "projectRoot": "D:\\Dev\\mssr",
+  "sourceRefs": [
+    "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md"
+  ],
+  "handles": [
+    {
+      "version": 1,
+      "id": "b3eed438514e80e72ebd1e31b2ab195ca3bdfb44766c3b77bdee04abaca2fbc5",
+      "owner": "d:/dev/mssr",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+      "revision": "7b85a968ca5b35197baf91dde99c175ca38c24eab07bc6b6fb1bb74bd874d83a",
+      "rangeId": "block-12",
+      "rangeKind": "block",
+      "startLine": 39,
+      "endLine": 39,
+      "startOffset": 2219,
+      "endOffset": 2523,
+      "fingerprint": "251fbb767f6d67da3d2e68e0d8743197ab2d80ed792a3c2eb473cebdae01fd14",
+      "privacyClass": "project-metadata"
+    },
+    {
+      "version": 1,
+      "id": "db11565763eaab794f79b46c95d8194f624f1602524e67ea441122c354b54cce",
+      "owner": "d:/dev/mssr",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+      "revision": "7b85a968ca5b35197baf91dde99c175ca38c24eab07bc6b6fb1bb74bd874d83a",
+      "rangeId": "block-17",
+      "rangeKind": "block",
+      "startLine": 51,
+      "endLine": 51,
+      "startOffset": 2888,
+      "endOffset": 3090,
+      "fingerprint": "17e5e2373b1a4d78f1ec56c811b7f58bcad8b8432d3040000212b7ebfc14fb64",
+      "privacyClass": "project-metadata"
+    },
+    {
+      "version": 1,
+      "id": "4b94f1c3e33aa83144c88d43a397f950eccdca6722f964f723f1846ae4096d79",
+      "owner": "d:/dev/mssr",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+      "revision": "7b85a968ca5b35197baf91dde99c175ca38c24eab07bc6b6fb1bb74bd874d83a",
+      "rangeId": "heading-7",
+      "rangeKind": "section",
+      "startLine": 45,
+      "endLine": 54,
+      "startOffset": 2711,
+      "endOffset": 3399,
+      "fingerprint": "8cef534d7ed91c306d08ce2bd42ca9d144bccaa02388dc90a90d5f94b9cf66a8",
+      "privacyClass": "project-metadata"
+    }
+  ],
+  "dedupeContainedRanges": false
+}

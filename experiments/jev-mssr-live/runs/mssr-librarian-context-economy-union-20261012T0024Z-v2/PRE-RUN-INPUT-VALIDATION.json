@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "networkRequests": 0,
+  "providerCalls": 0,
+  "validatedCases": 3,
+  "validatedLabels": 3,
+  "acceptedRanges": [
+    {
+      "caseId": "compound-two-facet",
+      "count": 2,
+      "primaryRangeIncluded": true
+    },
+    {
+      "caseId": "facet-readonly-lifecycle",
+      "count": 1,
+      "primaryRangeIncluded": true
+    },
+    {
+      "caseId": "facet-context-budgets",
+      "count": 1,
+      "primaryRangeIncluded": true
+    }
+  ]
+}

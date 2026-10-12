@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "adjudication": "Iterative source-derived diagnostic informed by v2 on the same source document; exploratory, not owner-gold, independent holdout, or calibration data.",
+  "cases": [
+    {
+      "caseId": "facet-required-roots",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+      "expectedHeading": "2. Read-only resume over-routed into publication/maintenance lifecycle",
+      "expectedStartLine": 39,
+      "expectedEndLine": 39,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+          "expectedHeading": "2. Read-only resume over-routed into publication/maintenance lifecycle",
+          "startLine": 39,
+          "endLine": 39
+        }
+      ]
+    },
+    {
+      "caseId": "facet-context-budget",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+      "expectedHeading": "3. The handoff-writing task reproduced high context pressure",
+      "expectedStartLine": 51,
+      "expectedEndLine": 51,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+          "expectedHeading": "3. The handoff-writing task reproduced high context pressure",
+          "startLine": 51,
+          "endLine": 51
+        }
+      ]
+    },
+    {
+      "caseId": "facet-owner-alias-caveat",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+      "expectedHeading": "3. The handoff-writing task reproduced high context pressure",
+      "expectedStartLine": 53,
+      "expectedEndLine": 53,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+          "expectedHeading": "3. The handoff-writing task reproduced high context pressure",
+          "startLine": 53,
+          "endLine": 53
+        }
+      ]
+    }
+  ]
+}

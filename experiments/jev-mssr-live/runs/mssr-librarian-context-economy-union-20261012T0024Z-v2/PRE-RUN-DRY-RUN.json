@@ -1,0 +1,26 @@
+{
+  "status": "dry-run",
+  "networkRequests": 0,
+  "requestedCalls": 3,
+  "requestedModel": "jev-1.13.0",
+  "sourceDocuments": 1,
+  "independentUnits": "one source-document cluster with one compound query and two linked facet queries; not independent samples",
+  "cases": [
+    {
+      "id": "compound-two-facet",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+      "query": "What evidence shows that a small read-only resume incurred disproportionate MSSR routing and lifecycle cost, what context-budget pressure was measured in the related documentation handoff, and is alias duplication established as the root cause?"
+    },
+    {
+      "id": "facet-readonly-lifecycle",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+      "query": "In the read-only resume case, which required workflow roots and stale-close outcome demonstrated disproportionate lifecycle cost?"
+    },
+    {
+      "id": "facet-context-budgets",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+      "query": "What exact Project Context and Context Message budget values were measured for the documentation-only handoff, what duplicate owner aliases appeared, and what causal caveat was recorded?"
+    }
+  ],
+  "labelsParsed": false
+}

@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 2,
+  "schemaProfile": "generic-librarian-run-v1",
+  "reportType": "mechanically-derived run summary; no semantic adjudication",
+  "runId": "mssr-librarian-context-economy-atomic-union-20261012T0032Z-v3",
+  "parentRunId": "mssr-librarian-context-economy-union-20261012T0024Z-v2",
+  "frozenManifestSha256": "a7326f79c2caa4d61773511a38c965fc1ce9357bbcabfd9aaaace8a76d0f4d61",
+  "completionStatus": "complete",
+  "checksumFile": {
+    "present": true,
+    "verified": 25,
+    "requiredFiles": [
+      "manifest.json",
+      "run-completion.json",
+      "inputs/cases.json",
+      "records.jsonl",
+      "inputs/labels.json"
+    ]
+  },
+  "sourceDocumentClusters": 1,
+  "sourceRefs": [
+    "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md"
+  ],
+  "clusterInterpretation": "Distinct sourceRef grouping only; it does not establish independent statistical sampling.",
+  "expectedRequests": 3,
+  "attemptedRequests": 3,
+  "successfulRequests": 3,
+  "failedRequests": 0,
+  "selected": 3,
+  "abstained": 0,
+  "exactFetchesWithFingerprint": 3,
+  "evidencePacksBuilt": 3,
+  "evidenceSufficiencyCapture": {
+    "recorded": 3,
+    "missingFromRecords": 0,
+    "note": "Only the explicit jev.evidenceSufficiency field is counted; raw Noul and other aliases are reported separately."
+  },
+  "rawNoulCapture": {
+    "recorded": 0,
+    "missingFromRecords": 3,
+    "note": "Provider Noul is descriptive and is not treated as an evidence-sufficiency alias."
+  },
+  "tokenUsage": {
+    "input": 29651,
+    "output": 2441
+  },
+  "firstRequestStartedAt": "2026-10-12T00:28:46.083Z",
+  "lastRequestCompletedAt": "2026-10-12T00:28:52.687Z",
+  "manifestCreatedAt": "2026-10-12T00:28:18.930Z",
+  "createdAtDeltaMs": 27153,
+  "timestampWarning": null,
+  "declaredIndependentUnitUnverified": "one previously exposed source-document cluster with three linked atomic queries; not independent samples",
+  "independentUnitDeclarationInterpretation": "Manifest text is retained for audit; it is not verified against observed sourceRef clusters.",
+  "independentUnit": "source-document cluster (descriptive grouping only)",
+  "calibrationClaim": false,
+  "labelMetrics": {
+    "reportType": "strict normalized heading match; not semantic adjudication or calibration",
+    "labelSource": null,
+    "adjudication": "Iterative source-derived diagnostic informed by v2 on the same source document; exploratory, not owner-gold, independent holdout, or calibration data.",
+    "normalizedExactHeadingMatches": 3,
+    "exactHeadingDenominator": 3,
+    "exactAcceptedRangeMatches": 2,
+    "exactAcceptedRangeDenominator": 3,
+    "searchTargetFound": 3,
+    "searchTargetDenominator": 3,
+    "searchExactAcceptedRangeFound": 3,
+    "searchExactAcceptedRangeDenominator": 3,
+    "records": [
+      {
+        "caseId": "facet-required-roots",
+        "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+        "expectedHeading": "2. Read-only resume over-routed into publication/maintenance lifecycle",
+        "observedHeading": "2. Read-only resume over-routed into publication/maintenance lifecycle",
+        "normalizedExactHeadingMatch": true,
+        "exactAcceptedRangeMatch": true,
+        "searchTargetFound": true,
+        "searchExactAcceptedRangeFound": true,
+        "exactFetchPassed": true
+      },
+      {
+        "caseId": "facet-context-budget",
+        "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+        "expectedHeading": "3. The handoff-writing task reproduced high context pressure",
+        "observedHeading": "3. The handoff-writing task reproduced high context pressure",
+        "normalizedExactHeadingMatch": true,
+        "exactAcceptedRangeMatch": true,
+        "searchTargetFound": true,
+        "searchExactAcceptedRangeFound": true,
+        "exactFetchPassed": true
+      },
+      {
+        "caseId": "facet-owner-alias-caveat",
+        "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+        "expectedHeading": "3. The handoff-writing task reproduced high context pressure",
+        "observedHeading": "3. The handoff-writing task reproduced high context pressure",
+        "normalizedExactHeadingMatch": true,
+        "exactAcceptedRangeMatch": false,
+        "searchTargetFound": true,
+        "searchExactAcceptedRangeFound": true,
+        "exactFetchPassed": true
+      }
+    ]
+  },
+  "records": [
+    {
+      "caseId": "facet-required-roots",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+      "status": "complete",
+      "searchResultCount": 100,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-12",
+      "rawChoiceConfidence": 0.47,
+      "evidenceSufficiency": 0.67,
+      "providerNoul": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 2645.5444
+    },
+    {
+      "caseId": "facet-context-budget",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+      "status": "complete",
+      "searchResultCount": 100,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-17",
+      "rawChoiceConfidence": 0.97,
+      "evidenceSufficiency": 0.93,
+      "providerNoul": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 2450.1272
+    },
+    {
+      "caseId": "facet-owner-alias-caveat",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+      "status": "complete",
+      "searchResultCount": 30,
+      "jevStatus": "selected",
+      "selectedRangeId": "heading-7",
+      "rawChoiceConfidence": 0.89,
+      "evidenceSufficiency": 0.95,
+      "providerNoul": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 1503.1657
+    }
+  ]
+}

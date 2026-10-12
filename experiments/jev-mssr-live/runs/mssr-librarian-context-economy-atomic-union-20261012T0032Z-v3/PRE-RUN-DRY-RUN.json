@@ -1,0 +1,26 @@
+{
+  "status": "dry-run",
+  "networkRequests": 0,
+  "requestedCalls": 3,
+  "requestedModel": "jev-1.13.0",
+  "sourceDocuments": 1,
+  "independentUnits": "one previously exposed source-document cluster with three linked atomic queries; not independent samples",
+  "cases": [
+    {
+      "id": "facet-required-roots",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+      "query": "For the read-only resume, which required workflow roots were selected even though Git publication and persistence were explicitly unnecessary?"
+    },
+    {
+      "id": "facet-context-budget",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+      "query": "What exact Project Context and Context Message character totals were measured for the documentation-only handoff?"
+    },
+    {
+      "id": "facet-owner-alias-caveat",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+      "query": "Which two MSSR owner paths exposed duplicate ADR observations, and what does the source say about whether this proves the primary cause?"
+    }
+  ],
+  "labelsParsed": false
+}

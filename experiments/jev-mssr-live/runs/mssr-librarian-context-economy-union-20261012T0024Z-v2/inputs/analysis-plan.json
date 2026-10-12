@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "design": "one compound request versus two host-split facet requests; same source document, all calls linked within one source cluster",
+  "freshnessAudit": {
+    "path": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+    "sourceSha256": "7b85a968ca5b35197baf91dde99c175ca38c24eab07bc6b6fb1bb74bd874d83a",
+    "headCommit": "81f10d22c57987a64896ddc2d71f48dff75e5604",
+    "priorRunsInspected": 48,
+    "declaredSourceRefMatches": 0,
+    "completeContentCopiesFound": 0,
+    "limitation": "The audit cannot exclude an earlier provider-visible excerpt or paraphrase not retained in run artifacts."
+  },
+  "questions": {
+    "compound": "Both facets plus preserve the explicit causal caveat about alias duplication.",
+    "facetA": "Publication/maintenance roots and stale-close outcome in the read-only resume.",
+    "facetB": "Exact context budgets, duplicate owner aliases, and the stated limit on causal attribution."
+  },
+  "primaryMetrics": [
+    "expected range present in search for each request",
+    "selected/fetched range relevance reviewed from literal text",
+    "exact source revision, offset slice, fingerprint and pack verification",
+    "union includes both facet ranges with exact citations",
+    "host-composed paragraph covers both facets without overstating causality"
+  ],
+  "blindReview": {
+    "reviewer": "independent Luna model after run",
+    "input": "anonymized queries, selected literal evidence, union pack and host-authored answer; omit ids, scores, labels, status and source path",
+    "labels": [
+      "direct",
+      "partial",
+      "unsupported",
+      "overbroad",
+      "ambiguous"
+    ]
+  },
+  "independentUnit": "one previously unexposed source-document candidate; three linked requests are not independent samples",
+  "minimumSupport": {
+    "overall": 30,
+    "interpretation": "reporting floor; this three-request single-cluster pilot is descriptive only"
+  },
+  "uncertaintyMethod": "raw counts only; no inference or calibration",
+  "noThresholdTuning": true,
+  "hostCompositionConstraints": [
+    "compose only from exact ranges selected and fetched in the two facet requests",
+    "preserve exact citations to each returned range",
+    "explicitly state alias duplication is not established as the root cause",
+    "if either facet selection is missing or unsupported, report union incomplete and do not substitute the expected target range"
+  ],
+  "excludedClaims": [
+    "owner-gold accuracy",
+    "holdout generalization",
+    "confidence calibration",
+    "production adoption",
+    "automatic facet decomposition",
+    "Jev-generated prose or paragraph synthesis"
+  ],
+  "preflightRepair": {
+    "parentPacket": "mssr-librarian-context-economy-union-20261012T0022Z-v1",
+    "failure": "Compound label primary range spanned 33-53 but validateRunInputs requires its primary range to match one acceptable atomic range (33-43 or 45-53).",
+    "location": "runner-support.mjs validateRunInputs; before provider construction/calls",
+    "providerCalls": 0,
+    "networkRequests": 0,
+    "repair": "Use facet A as primary while retaining A and B as acceptable. Compound completion is separately judged by requiring both exact facet ranges in the union."
+  }
+}

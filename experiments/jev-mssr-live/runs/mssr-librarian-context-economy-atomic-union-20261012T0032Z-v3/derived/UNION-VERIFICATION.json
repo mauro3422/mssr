@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "runId": "mssr-librarian-context-economy-atomic-union-20261012T0032Z-v3",
+  "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+  "sourceRevision": "7b85a968ca5b35197baf91dde99c175ca38c24eab07bc6b6fb1bb74bd874d83a",
+  "selectionCount": 3,
+  "packParagraphCount": 3,
+  "totalFetchedChars": 1194,
+  "assembly": "verbatim-source-ranges",
+  "providerCallsDuringUnion": 0,
+  "comparisons": [
+    {
+      "caseId": "facet-required-roots",
+      "handleId": "b3eed438514e80e72ebd1e31b2ab195ca3bdfb44766c3b77bdee04abaca2fbc5",
+      "rangeId": "block-12",
+      "citation": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md:L39-L39",
+      "chars": 304,
+      "textSha256": "251fbb767f6d67da3d2e68e0d8743197ab2d80ed792a3c2eb473cebdae01fd14"
+    },
+    {
+      "caseId": "facet-context-budget",
+      "handleId": "db11565763eaab794f79b46c95d8194f624f1602524e67ea441122c354b54cce",
+      "rangeId": "block-17",
+      "citation": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md:L51-L51",
+      "chars": 202,
+      "textSha256": "17e5e2373b1a4d78f1ec56c811b7f58bcad8b8432d3040000212b7ebfc14fb64"
+    },
+    {
+      "caseId": "facet-owner-alias-caveat",
+      "handleId": "4b94f1c3e33aa83144c88d43a397f950eccdca6722f964f723f1846ae4096d79",
+      "rangeId": "heading-7",
+      "citation": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md:L45-L54",
+      "chars": 688,
+      "textSha256": "3652b7b58a77de56ff2f804a0b39c98fca09baf55d322b4a47630508a1fc60d9"
+    }
+  ],
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "canonicalRewriteAllowed": false
+}

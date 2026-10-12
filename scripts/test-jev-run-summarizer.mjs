@@ -195,9 +195,9 @@ try {
 
   const generic = path.join(scratch, "generic");
   const genericCases = [
-    { id: "heading-one", sourceRef: "docs/a.md", expectedHeading: "# Overview" },
-    { id: "heading-three", sourceRef: "docs/b.md", expectedHeading: "### History" },
-    { id: "abstain", sourceRef: "docs/c.md", expectedHeading: "# Missing" },
+    { id: "heading-one", sourceRef: "docs/a.md", expectedHeading: "# Overview", expectedStartLine: 2, expectedEndLine: 3 },
+    { id: "heading-three", sourceRef: "docs/b.md", expectedHeading: "### History", expectedStartLine: 10, expectedEndLine: 11 },
+    { id: "abstain", sourceRef: "docs/c.md", expectedHeading: "# Missing", expectedStartLine: 30, expectedEndLine: 30 },
   ];
   const genericManifest = {
     schemaVersion: 1,
@@ -216,26 +216,33 @@ try {
   await writeJson(path.join(generic, "inputs/labels.json"), {
     source: "frozen-offline-fixture",
     adjudication: "independent fixture labels",
-    cases: genericCases.map(({ id, expectedHeading }) => ({ caseId: id, expectedHeading })),
+    cases: genericCases.map(({ id, sourceRef, expectedHeading, expectedStartLine, expectedEndLine }) => ({
+      caseId: id,
+      sourceRef,
+      expectedHeading,
+      expectedStartLine,
+      expectedEndLine,
+      acceptableRanges: [{ sourceRef, expectedHeading, startLine: expectedStartLine, endLine: expectedEndLine }],
+    })),
   });
   const genericRecords = [
     {
       caseId: "heading-one", sourceRef: "docs/a.md", status: "complete",
-      search: { resultCount: 1, results: [{ title: "A section", headingPath: ["Root", "## Overview"] }] },
-      jev: { status: "selected", ...capturedJevMetrics, usage: { input_tokens: 10, output_tokens: 2 }, selected: { title: "Overview", handle: { rangeId: "heading-1" } } },
-      fetch: { passed: true }, evidencePack: { status: "complete" }, startedAt: "2026-10-11T00:00:01Z", completedAt: "2026-10-11T00:00:02Z",
+      search: { resultCount: 1, results: [{ title: "A section", headingPath: ["Root", "## Overview"], handle: { sourceRef: "docs/a.md", startLine: 2, endLine: 3 } }] },
+      jev: { status: "selected", ...capturedJevMetrics, usage: { input_tokens: 10, output_tokens: 2 }, selected: { title: "Overview", handle: { rangeId: "heading-1", startLine: 2, endLine: 3 } } },
+      fetch: { passed: true }, evidencePack: { status: "validated", passed: true }, startedAt: "2026-10-11T00:00:01Z", completedAt: "2026-10-11T00:00:02Z",
     },
     {
       caseId: "heading-three", sourceRef: "docs/b.md", status: "complete",
-      search: { resultCount: 1, results: [{ title: "Historical overview", headingPath: ["Parent", "### History"] }] },
-      jev: { status: "selected", rawChoiceConfidence: 0.72, noul: 0.33, usage: { input_tokens: 20, output_tokens: 3 }, selected: { title: " History ", handle: { rangeId: "heading-2" } } },
-      fetch: { passed: true }, evidencePack: { status: "complete" }, startedAt: "2026-10-11T00:00:03Z", completedAt: "2026-10-11T00:00:04Z",
+      search: { resultCount: 1, results: [{ title: "Historical overview", headingPath: ["Parent", "### History"], handle: { sourceRef: "docs/b.md", startLine: 10, endLine: 11 } }] },
+      jev: { status: "selected", rawChoiceConfidence: 0.72, noul: 0.33, usage: { input_tokens: 20, output_tokens: 3 }, selected: { title: " History ", handle: { rangeId: "heading-2", startLine: 9, endLine: 12 } } },
+      fetch: { passed: true }, evidencePack: { status: "complete", passed: true }, startedAt: "2026-10-11T00:00:03Z", completedAt: "2026-10-11T00:00:04Z",
     },
     {
       caseId: "abstain", sourceRef: "docs/c.md", status: "complete",
       search: { resultCount: 1, results: [{ title: "Missing details", headingPath: ["Archive", "Missing context"] }] },
       jev: { status: "abstained", rawChoiceConfidence: 0.21, usage: { input_tokens: 30, output_tokens: 1 }, selected: null },
-      fetch: { passed: false }, evidencePack: { status: "not-built" }, startedAt: "2026-10-11T00:00:05Z", completedAt: "2026-10-11T00:00:06Z",
+      fetch: { passed: false }, evidencePack: { status: "not-built", passed: false }, startedAt: "2026-10-11T00:00:05Z", completedAt: "2026-10-11T00:00:06Z",
     },
   ];
   const genericRecordsPath = path.join(generic, "records.jsonl");
@@ -253,6 +260,15 @@ try {
   assert.equal(genericSummary.declaredIndependentUnitUnverified, "source-document clusters; 5 only");
   assert.match(genericSummary.independentUnitDeclarationInterpretation, /not verified/u);
   assert.equal(genericSummary.labelMetrics.normalizedExactHeadingMatches, 2);
+  assert.equal(genericSummary.labelMetrics.exactAcceptedRangeMatches, 1,
+    "heading match must not be confused with an exact accepted source-range match");
+  assert.equal(genericSummary.labelMetrics.exactAcceptedRangeDenominator, 3);
+  assert.equal(genericSummary.labelMetrics.records[0].exactAcceptedRangeMatch, true);
+  assert.equal(genericSummary.labelMetrics.records[1].normalizedExactHeadingMatch, true);
+  assert.equal(genericSummary.labelMetrics.records[1].exactAcceptedRangeMatch, false,
+    "a broader selected section must not count as the exact expected line range");
+  assert.equal(genericSummary.labelMetrics.searchExactAcceptedRangeFound, 2,
+    "search may surface the exact range even when Jev selects a broader section");
   assert.equal(genericSummary.labelMetrics.searchTargetFound, 2);
   assert.equal(genericSummary.labelMetrics.records[0].searchTargetFound, true, "headingPath should count an exact normalized heading");
   assert.equal(genericSummary.labelMetrics.records[1].searchTargetFound, true, "headingPath component should count even if title differs");
@@ -261,6 +277,9 @@ try {
   assert.equal(genericSummary.rawNoulCapture.recorded, 2);
   assert.equal(genericSummary.records[0].evidenceSufficiency, 0.58);
   assert.equal(genericSummary.records[0].providerNoul, 0.91);
+  assert.equal(genericSummary.evidencePacksBuilt, 2,
+    "validated evidence packs must count alongside legacy complete packs");
+  assert.equal(genericSummary.records[0].evidencePackBuilt, true);
   assert.equal(genericSummary.calibrationClaim, false);
   assert.deepEqual(genericSummary.checksumFile.requiredFiles, genericChecksumFiles);
   await assert.rejects(fs.access(path.join(generic, "summary-calculated.json")), "stdout mode must not write run artifacts");

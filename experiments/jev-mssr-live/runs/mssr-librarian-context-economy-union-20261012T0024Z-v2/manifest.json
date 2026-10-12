@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "runId": "mssr-librarian-context-economy-union-20261012T0024Z-v2",
+  "createdAt": "2026-10-12T00:25:12.785Z",
+  "parentRunId": "mssr-librarian-context-economy-union-20261012T0022Z-v1",
+  "suite": "mssr-librarian-linked-scope-miss-diagnostic-v1",
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "81f10d22c57987a64896ddc2d71f48dff75e5604",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "workingTreeClean": false,
+    "changedPaths": [
+      "experiments/jev-mssr-live/runs/mssr-librarian-context-economy-union-20261012T0022Z-v1"
+    ],
+    "buildId": "Bridge 0.6.172 / MSSR 0.2.127",
+    "bridgeRoot": "D:\\Dev\\bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+    "bridgeCommit": "8c181ef33919038f400f623bd9a42ca1fd6b17a6",
+    "bridgeVersion": "0.6.172",
+    "mssrVersion": "0.2.127",
+    "bridgeWorkingTreeClean": true,
+    "sdkVersion": "0.6.0",
+    "buildArtifacts": [
+      {
+        "path": "package.json",
+        "sha256": "61518ac7f910582f2cc29084856880adb3cbec426c78b7ed716287a9097988c4",
+        "snapshotPath": "inputs/build/package.json"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "917b9fd3a89254412cc7d40d4bfd0b1adb06d05d2214ae6fa713b2ab2e305a03",
+        "snapshotPath": "inputs/build/package-lock.json"
+      },
+      {
+        "path": "src/tools/mssr-semantic-evidence-tools.ts",
+        "sha256": "622269d203652cc9e1e29dfa3856e612bda9c7a2d2c37c18d27884ce13740289",
+        "snapshotPath": "inputs/build/src/tools/mssr-semantic-evidence-tools.ts"
+      },
+      {
+        "path": "scripts/read-windows-credential.ps1",
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e",
+        "snapshotPath": "inputs/build/scripts/read-windows-credential.ps1"
+      },
+      {
+        "path": "dist/tool-registry.js",
+        "sha256": "670a6cbdec428f7ad0bd6f7a13173c716fd013c3eb87a54d1c9bb38d7f626554",
+        "snapshotPath": "inputs/build/dist/tool-registry.js"
+      },
+      {
+        "path": "dist/tools/mssr-semantic-evidence-tools.js",
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa",
+        "snapshotPath": "inputs/build/dist/tools/mssr-semantic-evidence-tools.js"
+      },
+      {
+        "path": "node_modules/@mauroprime/mssr/package.json",
+        "sha256": "9a57998657fb40e8fae0ec44efef08592f6a332c807d15a90792cdd4a27e4ea2",
+        "snapshotPath": "inputs/build/node_modules/@mauroprime/mssr/package.json"
+      },
+      {
+        "path": "node_modules/@typesafe-ai/sdk/package.json",
+        "sha256": "b94bd1d862b166be53b0b91a36a2af27a0b14e397ffea8f0c53cbfcc9718c508",
+        "snapshotPath": "inputs/build/node_modules/@typesafe-ai/sdk/package.json"
+      },
+      {
+        "path": "vendor/mauroprime-mssr-0.2.127.tgz",
+        "sha256": "70e79ae6e472517501ffdd38c4b0eaad740652c7d570b600bf17f90023703bfc",
+        "snapshotPath": "inputs/build/vendor/mauroprime-mssr-0.2.127.tgz"
+      }
+    ],
+    "preRunCodeCommit": "81f10d22c57987a64896ddc2d71f48dff75e5604"
+  },
+  "instrument": {
+    "runnerPath": "experiments/jev-mssr-live/runs/mssr-librarian-context-economy-union-20261012T0024Z-v2/runner.mjs",
+    "runnerSha256": "072ba164ceaa6db20cd9fc83fbb6881be444c7e766851bdbf600a5e7b49a78a5",
+    "selectionRecordPath": "experiments/jev-mssr-live/runs/mssr-librarian-context-economy-union-20261012T0024Z-v2/selection-record.mjs",
+    "selectionRecordSha256": "847a1224278ed09941526aff7d781842a854f21b3007e4e00ae357e84faa5834",
+    "runnerSupportPath": "experiments/jev-mssr-live/runs/mssr-librarian-context-economy-union-20261012T0024Z-v2/runner-support.mjs",
+    "runnerSupportSha256": "5e550121815ffce473e2624b1c465e06d08d8d06bf3a223e80f588b6ac841996",
+    "casesPath": "experiments/jev-mssr-live/runs/mssr-librarian-context-economy-union-20261012T0024Z-v2/inputs/cases.json",
+    "casesSha256": "9793ae44180d7caacbb027a8cd22e26dd4ae02a38cdb0f125a56c8e2a5929348",
+    "analysisPlanPath": "experiments/jev-mssr-live/runs/mssr-librarian-context-economy-union-20261012T0024Z-v2/inputs/analysis-plan.json",
+    "analysisPlanSha256": "959a0694ec95af334e46b5da6c2c83ff8853d15e4ae07b23d41eb08c9bb75d11",
+    "lockfileSha256": "917b9fd3a89254412cc7d40d4bfd0b1adb06d05d2214ae6fa713b2ab2e305a03",
+    "mssrProjectLockfileSha256": "0f587856d3bd0a86909565b230df601a752e71ba4955775e11be10e886329cda",
+    "runtime": "v24.16.0",
+    "requestSchemaVersion": 1
+  },
+  "labels": {
+    "adjudication": "source-derived prospective targets selected from a current source document with no declared path exposure or complete archived copy in 48 inspected runs; residual possibility of unrecorded excerpts; not owner-gold or holdout",
+    "labelFileSha256": "bd843f9003f0b66fe0906f9c455a164c3fa829ef5fcd01fc7ae7a81246119784",
+    "labelFile": "experiments/jev-mssr-live/runs/mssr-librarian-context-economy-union-20261012T0024Z-v2/inputs/labels.json"
+  },
+  "provider": {
+    "mode": "live",
+    "provider": "TypeSafe Jev through clean Bridge 0.6.172 provider adapter",
+    "endpointIdentity": "https://api.typesafe.ai (TypeSafeClient.executeSystemOne; no credential)",
+    "requestedModel": "jev-1.13.0",
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "timeoutMs": 30000,
+    "maxRetries": 1,
+    "concurrency": 1,
+    "credentialSource": "Windows Credential Manager target TypeSafe:MSSR:JevLab; secret value not read or persisted",
+    "providerRequestIdsAvailable": "unknown before run",
+    "rawVendorResponsePersisted": false,
+    "networkOptIn": true,
+    "networkOptInMethod": "explicit command-line --allow-network plus user authorization recorded in manifest"
+  },
+  "plan": {
+    "minimumSupport": {
+      "overall": 30,
+      "interpretation": "reporting floor; this three-request, one-cluster pilot is descriptive only"
+    },
+    "expectedRequestCount": 3,
+    "independentUnit": "one source-document cluster with one compound query and two linked facet queries; not independent samples",
+    "primaryMetric": "Compare compound selection with split-facet exact fetches, exact cited union and independently reviewed host composition.",
+    "secondaryMetrics": [
+      "target present in search",
+      "blind literal excerpt and composed-answer coverage",
+      "returned scores and latency, descriptive only"
+    ],
+    "uncertaintyMethod": "raw linked counts only; no inference or calibration",
+    "excludedClaims": [
+      "owner-gold accuracy",
+      "holdout generalization",
+      "confidence calibration",
+      "production adoption",
+      "automatic facet decomposition",
+      "Jev-generated prose or paragraph synthesis"
+    ],
+    "noThresholdTuning": true
+  },
+  "corpus": {
+    "snapshotPath": "inputs/sources/",
+    "sourceRevision": "81f10d22c57987a64896ddc2d71f48dff75e5604",
+    "redaction": "public MSSR handoff document; one exact frozen source snapshot; no credentials or user-private corpus",
+    "items": 3,
+    "projectRoot": "D:\\Dev\\mssr",
+    "sources": [
+      {
+        "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+        "sha256": "7b85a968ca5b35197baf91dde99c175ca38c24eab07bc6b6fb1bb74bd874d83a",
+        "snapshotPath": "inputs/sources/source-01.md"
+      }
+    ]
+  }
+}

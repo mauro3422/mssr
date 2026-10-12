@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "design": "Three atomic facets over one previously exposed source document, followed by exact-handle union and host composition. Linked calls remain one source cluster.",
+  "priorExposure": {
+    "runId": "mssr-librarian-context-economy-union-20261012T0024Z-v2",
+    "observed": "Compound query abstained; lifecycle query selected and exact-fetched L39; context-budget/alias/caveat query abstained although the section and relevant blocks appeared in search results.",
+    "implication": "This is informed diagnostic iteration, not holdout or independent replication."
+  },
+  "questions": {
+    "facetA": "Which roots were selected despite no publication/persistence requirement?",
+    "facetB": "Which exact context-budget numbers were measured?",
+    "facetC": "Which owner aliases appeared, and is primary causality established?"
+  },
+  "primaryMetrics": [
+    "expected line-range presence in search",
+    "Jev selection/abstention for each atomic query",
+    "exact frozen-source fetch and returned fingerprint",
+    "verbatim evidence-pack validation for selected handles",
+    "union coverage of only selected and validated ranges",
+    "host-authored paragraph support and explicit causal caveat"
+  ],
+  "blindReview": {
+    "reviewer": "independent Luna after run",
+    "input": "anonymized atomic queries, selected literal evidence, exact union pack and host-authored paragraph; omit identifiers, labels, scores, status and source path",
+    "labels": [
+      "direct",
+      "partial",
+      "unsupported",
+      "overbroad",
+      "ambiguous"
+    ]
+  },
+  "independentUnit": "one previously exposed source-document cluster; linked query results are not independent samples",
+  "minimumSupport": {
+    "overall": 30,
+    "interpretation": "reporting floor; this three-query single-cluster follow-up is descriptive only"
+  },
+  "uncertaintyMethod": "raw counts only; no inference or calibration",
+  "noThresholdTuning": true,
+  "unionPolicy": "Use only handles Jev selected and exact fetch validated. Build the union through the read-only evidence-pack module. If any facet is missing, state the composition is incomplete and do not substitute a target range.",
+  "hostCompositionConstraints": [
+    "compose only from exact ranges selected and fetched in this run",
+    "preserve a citation for each included line range",
+    "state duplicate aliases are worth investigating but are not established as the primary cause",
+    "Jev chooses evidence; the host writes the paragraph"
+  ],
+  "excludedClaims": [
+    "owner-gold accuracy",
+    "holdout generalization",
+    "confidence calibration",
+    "production adoption",
+    "automatic facet decomposition",
+    "Jev-generated prose"
+  ]
+}

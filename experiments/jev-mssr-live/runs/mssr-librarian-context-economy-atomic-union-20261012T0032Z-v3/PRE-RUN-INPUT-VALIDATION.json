@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "caseCount": 3,
+  "labelCount": 3,
+  "primaryRanges": [
+    {
+      "caseId": "facet-required-roots",
+      "startLine": 39,
+      "endLine": 39,
+      "accepted": true
+    },
+    {
+      "caseId": "facet-context-budget",
+      "startLine": 51,
+      "endLine": 51,
+      "accepted": true
+    },
+    {
+      "caseId": "facet-owner-alias-caveat",
+      "startLine": 53,
+      "endLine": 53,
+      "accepted": true
+    }
+  ],
+  "validation": true,
+  "networkRequests": 0
+}

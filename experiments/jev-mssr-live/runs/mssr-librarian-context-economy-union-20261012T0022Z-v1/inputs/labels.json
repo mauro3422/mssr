@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "adjudication": "source-derived prospective targets selected from a current source document with no declared path exposure or complete archived copy in 48 inspected runs; residual possibility of unrecorded excerpts; not owner-gold or holdout",
+  "cases": [
+    {
+      "caseId": "compound-two-facet",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+      "expectedHeading": "2. Read-only resume over-routed into publication/maintenance lifecycle",
+      "expectedStartLine": 33,
+      "expectedEndLine": 53,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+          "expectedHeading": "2. Read-only resume over-routed into publication/maintenance lifecycle",
+          "startLine": 33,
+          "endLine": 43
+        },
+        {
+          "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+          "expectedHeading": "3. The handoff-writing task reproduced high context pressure",
+          "startLine": 45,
+          "endLine": 53
+        }
+      ]
+    },
+    {
+      "caseId": "facet-readonly-lifecycle",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+      "expectedHeading": "2. Read-only resume over-routed into publication/maintenance lifecycle",
+      "expectedStartLine": 33,
+      "expectedEndLine": 43,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+          "expectedHeading": "2. Read-only resume over-routed into publication/maintenance lifecycle",
+          "startLine": 33,
+          "endLine": 43
+        }
+      ]
+    },
+    {
+      "caseId": "facet-context-budgets",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+      "expectedHeading": "3. The handoff-writing task reproduced high context pressure",
+      "expectedStartLine": 45,
+      "expectedEndLine": 53,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+          "expectedHeading": "3. The handoff-writing task reproduced high context pressure",
+          "startLine": 45,
+          "endLine": 53
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "status": "passed",
+  "runId": "mssr-librarian-context-economy-atomic-union-20261012T0032Z-v3",
+  "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_ECONOMY_PRIORITY.md",
+  "sourceRevision": "7b85a968ca5b35197baf91dde99c175ca38c24eab07bc6b6fb1bb74bd874d83a",
+  "currentSourceBytesMatch": true,
+  "frozenSnapshotMatch": true,
+  "providerRecords": 3,
+  "selectedAndExactFetched": 3,
+  "exactEvidencePacksValidated": 3,
+  "unionPackValidated": true,
+  "unionParagraphs": 3,
+  "preRunFilesVerified": 20,
+  "runnerLockPresent": false,
+  "providerTransportInvocationsObserved": null,
+  "records": [
+    {
+      "caseId": "facet-required-roots",
+      "rangeId": "block-12",
+      "lines": [
+        39,
+        39
+      ],
+      "chars": 304,
+      "exactSlice": true,
+      "fingerprintMatched": true,
+      "individualPackValidated": true,
+      "unionCitationValidated": true
+    },
+    {
+      "caseId": "facet-context-budget",
+      "rangeId": "block-17",
+      "lines": [
+        51,
+        51
+      ],
+      "chars": 202,
+      "exactSlice": true,
+      "fingerprintMatched": true,
+      "individualPackValidated": true,
+      "unionCitationValidated": true
+    },
+    {
+      "caseId": "facet-owner-alias-caveat",
+      "rangeId": "heading-7",
+      "lines": [
+        45,
+        54
+      ],
+      "chars": 688,
+      "exactSlice": true,
+      "fingerprintMatched": true,
+      "individualPackValidated": true,
+      "unionCitationValidated": true
+    }
+  ]
+}

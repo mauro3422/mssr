@@ -15,6 +15,38 @@ const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const finite = (value) => Number.isFinite(value);
 const normalizeHeading = (value) => String(value ?? "").trim().replace(/^#{1,6}\s+/u, "").trim();
 
+function evidencePackBuilt(record) {
+  const pack = record.evidencePack;
+  if (!pack || pack.status === "invalid" || pack.status === "not-built") return false;
+  if (typeof pack.passed === "boolean") return pack.passed;
+  return pack.status === "complete" || pack.status === "validated";
+}
+
+function matchesAcceptedRange(record, label, item) {
+  const selectedRanges = Array.isArray(label.acceptableRanges) && label.acceptableRanges.length > 0
+    ? label.acceptableRanges
+    : [{
+        sourceRef: label.sourceRef ?? record.sourceRef,
+        expectedHeading: label.expectedHeading,
+        startLine: label.expectedStartLine,
+        endLine: label.expectedEndLine,
+      }];
+  const itemSourceRef = item?.sourceRef ?? item?.handle?.sourceRef ?? record.sourceRef;
+  return selectedRanges.some((range) => {
+    const expectedHeading = normalizeHeading(range.expectedHeading);
+    const headingMatches = Boolean(expectedHeading && (
+      normalizeHeading(item?.title) === expectedHeading
+        || (Array.isArray(item?.headingPath) && item.headingPath.some((part) => normalizeHeading(part) === expectedHeading))));
+    return range.sourceRef === record.sourceRef
+      && itemSourceRef === range.sourceRef
+      && headingMatches
+      && Number.isInteger(range.startLine)
+      && Number.isInteger(range.endLine)
+      && item?.handle?.startLine === range.startLine
+      && item?.handle?.endLine === range.endLine;
+  });
+}
+
 async function verifyChecksums(requiredFiles) {
   let contents;
   try {
@@ -164,7 +196,7 @@ function genericSummary({ manifest, completion, cases, labels, records, checksum
   const selected = records.filter((record) => record.jev?.status === "selected");
   const abstained = records.filter((record) => record.jev?.status === "abstained");
   const fetched = records.filter((record) => record.fetch?.passed === true);
-  const packs = records.filter((record) => record.evidencePack?.status === "complete");
+  const packs = records.filter(evidencePackBuilt);
   const evidenceSufficiencyRecorded = records.filter((record) => finite(record.jev?.evidenceSufficiency));
   const rawNoulRecorded = records.filter((record) => finite(record.jev?.noul));
   const sourceRefs = [...new Set(records.map((record) => record.sourceRef).filter(Boolean))].sort();
@@ -191,13 +223,19 @@ function genericSummary({ manifest, completion, cases, labels, records, checksum
           .some((result) => normalizeHeading(result.title) === expectedHeading
             || (Array.isArray(result.headingPath)
               && result.headingPath.some((part) => normalizeHeading(part) === expectedHeading)));
+        const exactAcceptedRangeMatch = record.jev?.status === "selected"
+          && matchesAcceptedRange(record, label, record.jev.selected);
+        const searchExactAcceptedRangeFound = (record.search?.results ?? [])
+          .some((result) => matchesAcceptedRange(record, label, result));
         return {
           caseId: record.caseId,
           sourceRef: record.sourceRef,
           expectedHeading: label.expectedHeading,
           observedHeading: record.jev?.selected?.title ?? null,
           normalizedExactHeadingMatch: record.jev?.status === "selected" && observedHeading === expectedHeading,
+          exactAcceptedRangeMatch,
           searchTargetFound,
+          searchExactAcceptedRangeFound,
           exactFetchPassed: record.fetch?.passed === true,
         };
       })
@@ -252,8 +290,12 @@ function genericSummary({ manifest, completion, cases, labels, records, checksum
           adjudication: labels.adjudication ?? null,
           normalizedExactHeadingMatches: labelScores.filter((item) => item.normalizedExactHeadingMatch).length,
           exactHeadingDenominator: labelScores.length,
+          exactAcceptedRangeMatches: labelScores.filter((item) => item.exactAcceptedRangeMatch).length,
+          exactAcceptedRangeDenominator: labelScores.length,
           searchTargetFound: labelScores.filter((item) => item.searchTargetFound).length,
           searchTargetDenominator: labelScores.length,
+          searchExactAcceptedRangeFound: labelScores.filter((item) => item.searchExactAcceptedRangeFound).length,
+          searchExactAcceptedRangeDenominator: labelScores.length,
           records: labelScores,
         }
       : null,
@@ -268,7 +310,7 @@ function genericSummary({ manifest, completion, cases, labels, records, checksum
       evidenceSufficiency: record.jev?.evidenceSufficiency ?? null,
       providerNoul: record.jev?.noul ?? null,
       exactFetchPassed: record.fetch?.passed === true,
-      evidencePackBuilt: record.evidencePack?.status === "complete",
+      evidencePackBuilt: evidencePackBuilt(record),
       elapsedMs: record.elapsedMs ?? null,
     })),
   };
