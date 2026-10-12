@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-semantic-evidence-relation-real-docs-20261012T1126Z-v1",
+  "reviewType": "independent-blind-model-assisted-relation-review",
+  "reviewDate": "2026-10-12",
+  "inputBoundary": "Both reviewers received only the two frozen source excerpts and the relation taxonomy. They were not shown the expected label, Jev response, confidence, or each other's review.",
+  "expectedLabelStatus": "exploratory-disputed-not-owner-gold",
+  "originalManualExpectedLabel": "supports",
+  "jevPrediction": {
+    "relation": "supports",
+    "rawConfidence": 0.96,
+    "evaluatorDisposition": "review",
+    "verified": false
+  },
+  "reviewers": [
+    {
+      "reviewerId": "run51_blind_relation",
+      "choice": "unrelated",
+      "qualitativeConfidence": "high",
+      "rationale": "The first excerpt defines EvidenceAtom identity and freshness conditions. The second describes operational Librarian/Jev limits. Shared context and an unauthenticated-provenance caveat do not make the second excerpt contradict or replace the first excerpt's specific rules. The second source may textually depend on the first."
+    },
+    {
+      "reviewerId": "run51_blind_relation_2",
+      "choice": "unresolved",
+      "qualitativeConfidence": "medium",
+      "rationale": "Both excerpts treat provenance as caller-asserted rather than authenticated, but they specify different compatible controls. The Librarian excerpt does not specify stable atom identity or freshness conditions; the EvidenceAtom excerpt does not mention duplicate checks, Jev judgments, or write gates. Possible textual dependence remains."
+    }
+  ],
+  "classification": {
+    "status": "disputed-ambiguous",
+    "ownerAdjudication": "not-performed",
+    "sourceIndependence": "not-established",
+    "accuracyScored": false,
+    "calibrationUse": false
+  },
+  "limitations": [
+    "Blind model-assisted reviews are not owner-gold.",
+    "The two source excerpts may be dependent.",
+    "The reviewers disagree between unrelated and unresolved; the original frozen exploratory label is retained without treating it as ground truth.",
+    "Jev's supports prediction is not counted as a correct prediction."
+  ],
+  "nextEvidence": "Obtain owner adjudication on this pair and add source-disjoint examples with near-negative controls before scoring relation accuracy or calibrating confidence."
+}

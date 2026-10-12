@@ -4,6 +4,10 @@
   "phase": "post-call",
   "files": [
     {
+      "path": "derived/blind-review.json",
+      "sha256": "c51e23441c84fb5ed7cfcf5fe59c0dde739e5f175866b740ddb153720f94668d"
+    },
+    {
       "path": "derived/jev-response.json",
       "sha256": "57754d3d1cdbe3ed04eda09d43662fb719909a5fa7131df2bd8188bda3acc47f"
     },
@@ -13,7 +17,7 @@
     },
     {
       "path": "derived/RUN-REPORT.md",
-      "sha256": "68d93ae2338da52cc2c91fe2bf7efa19efde177a507a9769d6b00b7cb3d20cd0"
+      "sha256": "675f6ff0afa2c83947a5eeaddaf70d33987fcc7e7416f8dc67806cde760e5a42"
     },
     {
       "path": "inputs/atoms.json",
