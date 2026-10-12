@@ -1,0 +1,18 @@
+{
+  "runId": "mssr-librarian-publication-incident-facets-20261012T121314Z-v1",
+  "status": "invalidated-before-analysis",
+  "invalidatedAt": "2026-10-12T12:13:30Z",
+  "reason": "Frozen analyst support spans omitted title/introduction lines. Verified one-based support is PUB L9-L10 and INCIDENT L7-L10. Labels were never sent to Jev; no coverage/quality metrics from this run are used.",
+  "correction": "Keep frozen inputs, search results and invalidation audit; repeat with corrected labels in v2. Live Jev selection outputs are not present in this run directory and are not claimed as durably preserved.",
+  "affectedInputs": [
+    "inputs/labels.json"
+  ],
+  "retainedEvidence": [
+    "frozen source snapshots",
+    "queries and candidate pools",
+    "raw search results",
+    "label-coordinate audit",
+    "invalidation explanation"
+  ],
+  "archivalGap": "Jev selection calls occurred, but their raw outputs were not persisted into the v1 run directory. The corrected v2 run contains its own complete raw selections and is the sole source for the primary metrics."
+}

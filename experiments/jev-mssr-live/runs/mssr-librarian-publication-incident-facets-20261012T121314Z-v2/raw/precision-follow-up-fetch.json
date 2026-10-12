@@ -1,0 +1,31 @@
+{
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"af23f726496eee02b8ad87a2bffcab520ef3b34fbaefe0037a3493cd14478a46\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md\",\n    \"revision\": \"d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5\",\n    \"rangeId\": \"block-3/item-1\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 7,\n    \"endLine\": 7,\n    \"startOffset\": 102,\n    \"endOffset\": 172,\n    \"fingerprint\": \"cfac4c47202fc22f220c6d75dd656a0e8d358d97f51614363fc7beb27d82922b\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"- routing and fixtures: `D:\\\\Dev\\\\mssr\\\\docs\\\\skill-routing\\\\INCIDENTS.md`;\",\n  \"fingerprint\": \"cfac4c47202fc22f220c6d75dd656a0e8d358d97f51614363fc7beb27d82922b\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false\n}"
+      }
+    ]
+  },
+  "data": {
+    "handle": {
+      "version": 1,
+      "id": "af23f726496eee02b8ad87a2bffcab520ef3b34fbaefe0037a3493cd14478a46",
+      "owner": "d:/dev/mssr",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+      "rangeId": "block-3/item-1",
+      "rangeKind": "block",
+      "startLine": 7,
+      "endLine": 7,
+      "startOffset": 102,
+      "endOffset": 172,
+      "fingerprint": "cfac4c47202fc22f220c6d75dd656a0e8d358d97f51614363fc7beb27d82922b",
+      "privacyClass": "project-metadata"
+    },
+    "text": "- routing and fixtures: `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`;",
+    "fingerprint": "cfac4c47202fc22f220c6d75dd656a0e8d358d97f51614363fc7beb27d82922b",
+    "advisoryOnly": true,
+    "truthAuthority": false
+  }
+}

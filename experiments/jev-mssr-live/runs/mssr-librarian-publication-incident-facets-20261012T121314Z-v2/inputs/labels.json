@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "source": "single analyst exact source review before provider calls; one-based line spans verified from frozen files",
+  "adjudication": "none; not owner-gold",
+  "exposedToProvider": false,
+  "labels": [
+    {
+      "caseId": "PUB-COMPOUND",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "answerability": "answerable",
+      "supportingSpans": [
+        {
+          "startLine": 9,
+          "endLine": 10
+        }
+      ],
+      "analystNote": "Verified against one-based line numbering of the exact frozen Markdown snapshot before new Jev calls."
+    },
+    {
+      "caseId": "PUB-TRIGGER",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "answerability": "answerable",
+      "supportingSpans": [
+        {
+          "startLine": 9,
+          "endLine": 9
+        }
+      ],
+      "analystNote": "Verified against one-based line numbering of the exact frozen Markdown snapshot before new Jev calls."
+    },
+    {
+      "caseId": "PUB-CHECKS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "answerability": "answerable",
+      "supportingSpans": [
+        {
+          "startLine": 10,
+          "endLine": 10
+        }
+      ],
+      "analystNote": "Verified against one-based line numbering of the exact frozen Markdown snapshot before new Jev calls."
+    },
+    {
+      "caseId": "INCIDENT-COMPOUND",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "answerability": "answerable",
+      "supportingSpans": [
+        {
+          "startLine": 7,
+          "endLine": 10
+        }
+      ],
+      "analystNote": "Verified against one-based line numbering of the exact frozen Markdown snapshot before new Jev calls."
+    },
+    {
+      "caseId": "INCIDENT-ROUTING",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "answerability": "answerable",
+      "supportingSpans": [
+        {
+          "startLine": 7,
+          "endLine": 7
+        }
+      ],
+      "analystNote": "Verified against one-based line numbering of the exact frozen Markdown snapshot before new Jev calls."
+    },
+    {
+      "caseId": "INCIDENT-BRIDGE",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "answerability": "answerable",
+      "supportingSpans": [
+        {
+          "startLine": 8,
+          "endLine": 8
+        }
+      ],
+      "analystNote": "Verified against one-based line numbering of the exact frozen Markdown snapshot before new Jev calls."
+    },
+    {
+      "caseId": "INCIDENT-PROJECT",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "answerability": "answerable",
+      "supportingSpans": [
+        {
+          "startLine": 9,
+          "endLine": 9
+        }
+      ],
+      "analystNote": "Verified against one-based line numbering of the exact frozen Markdown snapshot before new Jev calls."
+    },
+    {
+      "caseId": "INCIDENT-SKILL",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "answerability": "answerable",
+      "supportingSpans": [
+        {
+          "startLine": 10,
+          "endLine": 10
+        }
+      ],
+      "analystNote": "Verified against one-based line numbering of the exact frozen Markdown snapshot before new Jev calls."
+    }
+  ]
+}

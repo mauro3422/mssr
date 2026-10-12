@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-publication-incident-facets-20261012T121314Z-v2",
+  "reviewMode": "blind qualitative review",
+  "blinding": "Two fresh Luna reviewers received the original compound question and its cited evidence pack; they were not shown labels, Jev scores, run method, or baseline comparison.",
+  "reviewers": [
+    {
+      "reviewerId": "blind_publication_incident_a",
+      "publication": {
+        "judgment": "full support",
+        "notes": [
+          "L9 states when restart is appropriate; L5-L12 includes post-restart checks.",
+          "The wider range is somewhat broad but relevant; adjacent items are not redundant."
+        ]
+      },
+      "incident": {
+        "judgment": "full support",
+        "notes": [
+          "L1-L12 maps all four requested categories.",
+          "The separate L8-L10 citations duplicate content already present in L1-L12."
+        ]
+      }
+    },
+    {
+      "reviewerId": "blind_publication_incident_b",
+      "publication": {
+        "judgment": "full support",
+        "notes": [
+          "The cited ranges cover restart condition and follow-up checks.",
+          "L5-L12 is broader than necessary; L9-L10 is the recommended narrow citation."
+        ]
+      },
+      "incident": {
+        "judgment": "full support",
+        "notes": [
+          "The source names canonical destinations for all requested categories.",
+          "L1-L12 contains unrelated recording guidance and is redundant alongside the exact L8-L10 citations."
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "publication": "2/2 full support",
+    "incident": "2/2 full support",
+    "commonQualityFinding": "Correct answer support was present in both packs; reviewers independently identified redundant or broader-than-needed citations.",
+    "authority": "qualitative evidence-pack review only; not gold labels, provider calibration, or a human adjudication"
+  }
+}

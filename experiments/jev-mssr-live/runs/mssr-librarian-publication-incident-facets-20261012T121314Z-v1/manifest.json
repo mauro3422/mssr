@@ -1,0 +1,79 @@
+{
+  "schema": "jev-mssr-live-compound-facet-pairing-exploratory-v1",
+  "runId": "mssr-librarian-publication-incident-facets-20261012T121314Z-v1",
+  "preparedAt": "2026-10-12T12:13:14Z",
+  "status": "prepared; source snapshots, queries, and analyst labels frozen before search/JeV selection",
+  "baselineRuns": [
+    "mssr-librarian-fresh-skill-refs-20261012T115056Z-v1",
+    "mssr-librarian-compound-facets-20261012T120410Z-v1"
+  ],
+  "purpose": "Pair same-source compound and facet-specific Jev selections on additional document clusters; exact fetch and evidence-pack validation.",
+  "limits": {
+    "certifiedHoldout": false,
+    "ownerGold": false,
+    "productionCalibration": false,
+    "labelSource": "single analyst reviewed exact lines before Jev calls",
+    "providerLabelsExposed": false,
+    "sourceDocumentClusters": 2,
+    "projects": 1,
+    "negativeControls": 0,
+    "scope": "two positive composite questions across publication and incident routing docs"
+  },
+  "protocol": {
+    "baseline": "one live Jev call for the original compound question in each source",
+    "treatment": "two PUB facets and four INCIDENT facets; one live Jev selection per facet; exact fetch; multi-citation packs",
+    "thresholdChanges": "none",
+    "queriesFrozenBeforeProvider": true,
+    "searchCapturedBeforeProvider": true,
+    "designReview": "one independent Luna prompt-design audit; project-only wording revised to request options"
+  },
+  "runtime": {
+    "bridgeVersion": "0.6.173",
+    "runtimeBootId": "9b1323c6-9499-4700-81d0-6b14de9d6e41",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "actualInvocation": "connected MauroPrime_Bridge MCP"
+  },
+  "sourceSnapshots": [
+    {
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "path": "inputs/sources/source-01.md",
+      "sha256": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+      "bytes": 951
+    },
+    {
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "path": "inputs/sources/source-02.md",
+      "sha256": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+      "bytes": 635
+    }
+  ],
+  "inputs": {
+    "cases": {
+      "path": "inputs/cases.json",
+      "sha256": "8441bfe84ede7d02ccb2f2aa60cc5c5194b479b5f4fcb62d90912f2413aa0c26"
+    },
+    "labels": {
+      "path": "inputs/labels.json",
+      "sha256": "7bff8582f6085a807840ab02a95c672de033dd1efb4c19d1e6d24c1c6785a5d1"
+    },
+    "searchResults": {
+      "path": "raw/search-results.json",
+      "sha256": "0854ec24f9bc687c29fe362f08572d15a2648e1544c7f90c7fb92ad537bbe9ae",
+      "candidateCount": 41,
+      "callCount": 8,
+      "candidatePoolSha256": "ed8f93200b72ab5f6c4084690984e6173e25a2c0be2b1c5fcc51dd38f70eb0da",
+      "capturedBeforeProviderCalls": true
+    }
+  },
+  "repository": {
+    "root": "D:\\Dev\\mssr",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "baselineHead": "63e9c2b3c26c094399795af371da4e453037d31e",
+    "preexistingDirtyPaths": [
+      ".mssr/project-context-segments.json",
+      ".mssr/project-context.json",
+      "scripts/test-project-context-loader.mjs"
+    ]
+  }
+}

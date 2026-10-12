@@ -1,0 +1,1014 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-publication-incident-facets-20261012T121314Z-v1",
+  "capturedBeforeJeVCalls": true,
+  "pools": [
+    {
+      "caseId": "PUB-COMPOUND",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "query": "When is a Bridge restart appropriate, and which checks must follow it?",
+      "candidateCount": 5,
+      "candidates": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "220d3078029c1bf687c50d142888d644abd430b9b6972853364064a193766dfd",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+            "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 12,
+            "startOffset": 0,
+            "endOffset": 951,
+            "fingerprint": "7944d0511cda6d3615d3a6c4b2347a6aea72d9c28f5d5782aa8346277cbf621b",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Publication-close",
+          "headingPath": [
+            "Publication-close"
+          ],
+          "score": 0.571429,
+          "snippet": "…after implementation and verification when capability changes must be persisted. 1. Re-plan at verification, persistence and close; load only skills active for each phase. 2. Verify source repositor…"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+            "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 12,
+            "startOffset": 108,
+            "endOffset": 950,
+            "fingerprint": "8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Publication-close",
+          "headingPath": [
+            "Publication-close"
+          ],
+          "score": 0.428571,
+          "snippet": "…ills active for each phase. 2. Verify source repositories, runtime junctions, generated docs, routing fixtures and live catalog discovery. 3. Use `git-change-publication` for bounded commits and rem…"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "e93bd3103cbf14a8a7554df9ea20c14275a63b3d6a0af8cf33de37f16d65bb52",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+            "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+            "rangeId": "block-2/item-5",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "startOffset": 557,
+            "endOffset": 656,
+            "fingerprint": "7cdc45cf7059c2d8f00d4e2733be16f05958a1061ec0de6e67a135f9d2bc58b1",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Publication-close",
+          "headingPath": [
+            "Publication-close"
+          ],
+          "score": 0.428571,
+          "snippet": "5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it."
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "273e894181d12eca083cef1e9a14ec4794c8f952060c3262242141c18c0572c7",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+            "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 21,
+            "endOffset": 106,
+            "fingerprint": "d16aa70dd55a288cae6dab696a156064145abc1f80b154b8e8e41a833ebd98dd",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Publication-close",
+          "headingPath": [
+            "Publication-close"
+          ],
+          "score": 0.142857,
+          "snippet": "Read after implementation and verification when capability changes must be persisted."
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "242ec0193f7e7e2b1f4fb6a84acbe998f611a096c213d78478b9fbd7cc7cc434",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+            "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+            "rangeId": "block-2/item-6",
+            "rangeKind": "block",
+            "startLine": 10,
+            "endLine": 10,
+            "startOffset": 657,
+            "endOffset": 746,
+            "fingerprint": "c5ee0da7768254fd13455cec2ec26e5143d6ca2919933a6d4fc41f45226a9099",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Publication-close",
+          "headingPath": [
+            "Publication-close"
+          ],
+          "score": 0.142857,
+          "snippet": "6. Verify live process version, tool catalog, focused smokes and full gate after restart."
+        }
+      ]
+    },
+    {
+      "caseId": "PUB-TRIGGER",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "query": "What conditions must be met before restarting Bridge?",
+      "candidateCount": 4,
+      "candidates": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "220d3078029c1bf687c50d142888d644abd430b9b6972853364064a193766dfd",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+            "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 12,
+            "startOffset": 0,
+            "endOffset": 951,
+            "fingerprint": "7944d0511cda6d3615d3a6c4b2347a6aea72d9c28f5d5782aa8346277cbf621b",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Publication-close",
+          "headingPath": [
+            "Publication-close"
+          ],
+          "score": 0.4,
+          "snippet": "…entation and verification when capability changes must be persisted. 1. Re-plan at verification, persistence and close; load only skills active for each phase. 2. Verify source repositories, runtime…"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "273e894181d12eca083cef1e9a14ec4794c8f952060c3262242141c18c0572c7",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+            "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 21,
+            "endOffset": 106,
+            "fingerprint": "d16aa70dd55a288cae6dab696a156064145abc1f80b154b8e8e41a833ebd98dd",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Publication-close",
+          "headingPath": [
+            "Publication-close"
+          ],
+          "score": 0.2,
+          "snippet": "Read after implementation and verification when capability changes must be persisted."
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+            "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 12,
+            "startOffset": 108,
+            "endOffset": 950,
+            "fingerprint": "8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Publication-close",
+          "headingPath": [
+            "Publication-close"
+          ],
+          "score": 0.2,
+          "snippet": "…y without a remote remains local-only. 5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it. 6. Verify live process version, tool catalog, focused smoke…"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "e93bd3103cbf14a8a7554df9ea20c14275a63b3d6a0af8cf33de37f16d65bb52",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+            "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+            "rangeId": "block-2/item-5",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "startOffset": 557,
+            "endOffset": 656,
+            "fingerprint": "7cdc45cf7059c2d8f00d4e2733be16f05958a1061ec0de6e67a135f9d2bc58b1",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Publication-close",
+          "headingPath": [
+            "Publication-close"
+          ],
+          "score": 0.2,
+          "snippet": "5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it."
+        }
+      ]
+    },
+    {
+      "caseId": "PUB-CHECKS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "query": "Which checks should be performed after restarting Bridge?",
+      "candidateCount": 3,
+      "candidates": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "220d3078029c1bf687c50d142888d644abd430b9b6972853364064a193766dfd",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+            "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 12,
+            "startOffset": 0,
+            "endOffset": 951,
+            "fingerprint": "7944d0511cda6d3615d3a6c4b2347a6aea72d9c28f5d5782aa8346277cbf621b",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Publication-close",
+          "headingPath": [
+            "Publication-close"
+          ],
+          "score": 0.2,
+          "snippet": "…y without a remote remains local-only. 5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it. 6. Verify live process version, tool catalog, focused smoke…"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+            "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 12,
+            "startOffset": 108,
+            "endOffset": 950,
+            "fingerprint": "8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Publication-close",
+          "headingPath": [
+            "Publication-close"
+          ],
+          "score": 0.2,
+          "snippet": "…y without a remote remains local-only. 5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it. 6. Verify live process version, tool catalog, focused smoke…"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "e93bd3103cbf14a8a7554df9ea20c14275a63b3d6a0af8cf33de37f16d65bb52",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+            "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+            "rangeId": "block-2/item-5",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "startOffset": 557,
+            "endOffset": 656,
+            "fingerprint": "7cdc45cf7059c2d8f00d4e2733be16f05958a1061ec0de6e67a135f9d2bc58b1",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Publication-close",
+          "headingPath": [
+            "Publication-close"
+          ],
+          "score": 0.2,
+          "snippet": "5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it."
+        }
+      ]
+    },
+    {
+      "caseId": "INCIDENT-COMPOUND",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "query": "Which canonical ledger should receive routing, Bridge, project-only, and procedural-skill defects?",
+      "candidateCount": 7,
+      "candidates": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "5e57c8641e11a21838fa28d743d2f0b86defbfd3bea5bc43e4a9f982851cd9f5",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 12,
+            "startOffset": 0,
+            "endOffset": 635,
+            "fingerprint": "d1624f7592de0f29e55bf96dcbbb1d7dbe766586f4453ce06a0932a412da19b8",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.666667,
+          "snippet": "# Incident-ledger Read when an observable non-nominal event occurred. Choose the canonical ledger: - routing and fixtures: `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`; - Bridge tools, transport or …"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "f446af129a7f84212c8140a8d7fb660a00ec3d3f006deac130a3b95f7ed250bd",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 10,
+            "startOffset": 102,
+            "endOffset": 408,
+            "fingerprint": "fef7236153a28c909d290616f125a1ae2d5355df8c186178599a03186271b155",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.555556,
+          "snippet": "- routing and fixtures: `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`; - Bridge tools, transport or lifecycle: `D:\\Dev\\bridge-mcp\\docs\\INCIDENTS.md`; - project-only defects: the project state or inci…"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "99c6c14e6f95b4372dd53db42fcb48fcb272263e26887b6bd0cfe1cdddb3adc3",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 72,
+            "endOffset": 100,
+            "fingerprint": "573dd3e1012d72d718679b24eed53f7f543ec9ef21c45a4a35e8b86baf9041a7",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.222222,
+          "snippet": "Choose the canonical ledger:"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "414776640d6b774f66ec18921f410b441f081dc52e59047c371058594ab46508",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3/item-3",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "startOffset": 252,
+            "endOffset": 315,
+            "fingerprint": "7410f36034e88f3fef030c45e2c465c91781402b77851b0faa11eecdc9624f79",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.222222,
+          "snippet": "- project-only defects: the project state or incident document;"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "21f5e20838e6abbf57dc714aadc88bef5d6643c0be6f1a1c76bb124c44db3fe4",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3/item-4",
+            "rangeKind": "block",
+            "startLine": 10,
+            "endLine": 10,
+            "startOffset": 316,
+            "endOffset": 408,
+            "fingerprint": "4060befc589f1226306c6e32b2c1aab4fa20a5808115130ded7cb413295ec503",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.222222,
+          "snippet": "- procedural skill defects: the owning skill changelog plus the system ledger when relevant."
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "af23f726496eee02b8ad87a2bffcab520ef3b34fbaefe0037a3493cd14478a46",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3/item-1",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 102,
+            "endOffset": 172,
+            "fingerprint": "cfac4c47202fc22f220c6d75dd656a0e8d358d97f51614363fc7beb27d82922b",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.111111,
+          "snippet": "- routing and fixtures: `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`;"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "40eaf6ad89cec943414d2a2fbf9a7ac3c19c43328c9cce6589b7e90d43156cd5",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3/item-2",
+            "rangeKind": "block",
+            "startLine": 8,
+            "endLine": 8,
+            "startOffset": 173,
+            "endOffset": 251,
+            "fingerprint": "bb05dc3476c0a67564c60c024b8e5056319a4fa00d88d2f7333a40bd770732d7",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.111111,
+          "snippet": "- Bridge tools, transport or lifecycle: `D:\\Dev\\bridge-mcp\\docs\\INCIDENTS.md`;"
+        }
+      ]
+    },
+    {
+      "caseId": "INCIDENT-ROUTING",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "query": "What canonical incident ledger is named for routing and fixture issues?",
+      "candidateCount": 6,
+      "candidates": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "5e57c8641e11a21838fa28d743d2f0b86defbfd3bea5bc43e4a9f982851cd9f5",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 12,
+            "startOffset": 0,
+            "endOffset": 635,
+            "fingerprint": "d1624f7592de0f29e55bf96dcbbb1d7dbe766586f4453ce06a0932a412da19b8",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.571429,
+          "snippet": "# Incident-ledger Read when an observable non-nominal event occurred. Choose the canonical ledger: - routing and fixtures: `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`; - Bridge tools, transport or …"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "f446af129a7f84212c8140a8d7fb660a00ec3d3f006deac130a3b95f7ed250bd",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 10,
+            "startOffset": 102,
+            "endOffset": 408,
+            "fingerprint": "fef7236153a28c909d290616f125a1ae2d5355df8c186178599a03186271b155",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.428571,
+          "snippet": "- routing and fixtures: `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`; - Bridge tools, transport or lifecycle: `D:\\Dev\\bridge-mcp\\docs\\INCIDENTS.md`; - project-only defects: the project state or inci…"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "99c6c14e6f95b4372dd53db42fcb48fcb272263e26887b6bd0cfe1cdddb3adc3",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 72,
+            "endOffset": 100,
+            "fingerprint": "573dd3e1012d72d718679b24eed53f7f543ec9ef21c45a4a35e8b86baf9041a7",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.285714,
+          "snippet": "Choose the canonical ledger:"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "af23f726496eee02b8ad87a2bffcab520ef3b34fbaefe0037a3493cd14478a46",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3/item-1",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 102,
+            "endOffset": 172,
+            "fingerprint": "cfac4c47202fc22f220c6d75dd656a0e8d358d97f51614363fc7beb27d82922b",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.142857,
+          "snippet": "- routing and fixtures: `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`;"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "414776640d6b774f66ec18921f410b441f081dc52e59047c371058594ab46508",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3/item-3",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "startOffset": 252,
+            "endOffset": 315,
+            "fingerprint": "7410f36034e88f3fef030c45e2c465c91781402b77851b0faa11eecdc9624f79",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.142857,
+          "snippet": "- project-only defects: the project state or incident document;"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "21f5e20838e6abbf57dc714aadc88bef5d6643c0be6f1a1c76bb124c44db3fe4",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3/item-4",
+            "rangeKind": "block",
+            "startLine": 10,
+            "endLine": 10,
+            "startOffset": 316,
+            "endOffset": 408,
+            "fingerprint": "4060befc589f1226306c6e32b2c1aab4fa20a5808115130ded7cb413295ec503",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.142857,
+          "snippet": "- procedural skill defects: the owning skill changelog plus the system ledger when relevant."
+        }
+      ]
+    },
+    {
+      "caseId": "INCIDENT-BRIDGE",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "query": "Which incident ledger owns Bridge tool, transport, or lifecycle issues?",
+      "candidateCount": 6,
+      "candidates": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "5e57c8641e11a21838fa28d743d2f0b86defbfd3bea5bc43e4a9f982851cd9f5",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 12,
+            "startOffset": 0,
+            "endOffset": 635,
+            "fingerprint": "d1624f7592de0f29e55bf96dcbbb1d7dbe766586f4453ce06a0932a412da19b8",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.625,
+          "snippet": "# Incident-ledger Read when an observable non-nominal event occurred. Choose the canonical ledger: - routing and fixtures: `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`; - Bridge tools, transport or …"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "f446af129a7f84212c8140a8d7fb660a00ec3d3f006deac130a3b95f7ed250bd",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 10,
+            "startOffset": 102,
+            "endOffset": 408,
+            "fingerprint": "fef7236153a28c909d290616f125a1ae2d5355df8c186178599a03186271b155",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.625,
+          "snippet": "…ing and fixtures: `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`; - Bridge tools, transport or lifecycle: `D:\\Dev\\bridge-mcp\\docs\\INCIDENTS.md`; - project-only defects: the project state or incident …"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "40eaf6ad89cec943414d2a2fbf9a7ac3c19c43328c9cce6589b7e90d43156cd5",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3/item-2",
+            "rangeKind": "block",
+            "startLine": 8,
+            "endLine": 8,
+            "startOffset": 173,
+            "endOffset": 251,
+            "fingerprint": "bb05dc3476c0a67564c60c024b8e5056319a4fa00d88d2f7333a40bd770732d7",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.375,
+          "snippet": "- Bridge tools, transport or lifecycle: `D:\\Dev\\bridge-mcp\\docs\\INCIDENTS.md`;"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "99c6c14e6f95b4372dd53db42fcb48fcb272263e26887b6bd0cfe1cdddb3adc3",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 72,
+            "endOffset": 100,
+            "fingerprint": "573dd3e1012d72d718679b24eed53f7f543ec9ef21c45a4a35e8b86baf9041a7",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.125,
+          "snippet": "Choose the canonical ledger:"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "414776640d6b774f66ec18921f410b441f081dc52e59047c371058594ab46508",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3/item-3",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "startOffset": 252,
+            "endOffset": 315,
+            "fingerprint": "7410f36034e88f3fef030c45e2c465c91781402b77851b0faa11eecdc9624f79",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.125,
+          "snippet": "- project-only defects: the project state or incident document;"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "21f5e20838e6abbf57dc714aadc88bef5d6643c0be6f1a1c76bb124c44db3fe4",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3/item-4",
+            "rangeKind": "block",
+            "startLine": 10,
+            "endLine": 10,
+            "startOffset": 316,
+            "endOffset": 408,
+            "fingerprint": "4060befc589f1226306c6e32b2c1aab4fa20a5808115130ded7cb413295ec503",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.125,
+          "snippet": "- procedural skill defects: the owning skill changelog plus the system ledger when relevant."
+        }
+      ]
+    },
+    {
+      "caseId": "INCIDENT-PROJECT",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "query": "What project-owned record options are listed for project-only defects?",
+      "candidateCount": 5,
+      "candidates": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "5e57c8641e11a21838fa28d743d2f0b86defbfd3bea5bc43e4a9f982851cd9f5",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 12,
+            "startOffset": 0,
+            "endOffset": 635,
+            "fingerprint": "d1624f7592de0f29e55bf96dcbbb1d7dbe766586f4453ce06a0932a412da19b8",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.5,
+          "snippet": "…fecycle: `D:\\Dev\\bridge-mcp\\docs\\INCIDENTS.md`; - project-only defects: the project state or incident document; - procedural skill defects: the owning skill changelog plus the system ledger when rel…"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "f446af129a7f84212c8140a8d7fb660a00ec3d3f006deac130a3b95f7ed250bd",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 10,
+            "startOffset": 102,
+            "endOffset": 408,
+            "fingerprint": "fef7236153a28c909d290616f125a1ae2d5355df8c186178599a03186271b155",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.333333,
+          "snippet": "…fecycle: `D:\\Dev\\bridge-mcp\\docs\\INCIDENTS.md`; - project-only defects: the project state or incident document; - procedural skill defects: the owning skill changelog plus the system ledger when rel…"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "414776640d6b774f66ec18921f410b441f081dc52e59047c371058594ab46508",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3/item-3",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "startOffset": 252,
+            "endOffset": 315,
+            "fingerprint": "7410f36034e88f3fef030c45e2c465c91781402b77851b0faa11eecdc9624f79",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.333333,
+          "snippet": "- project-only defects: the project state or incident document;"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "21f5e20838e6abbf57dc714aadc88bef5d6643c0be6f1a1c76bb124c44db3fe4",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3/item-4",
+            "rangeKind": "block",
+            "startLine": 10,
+            "endLine": 10,
+            "startOffset": 316,
+            "endOffset": 408,
+            "fingerprint": "4060befc589f1226306c6e32b2c1aab4fa20a5808115130ded7cb413295ec503",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.166667,
+          "snippet": "- procedural skill defects: the owning skill changelog plus the system ledger when relevant."
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "ada774446eef917433cd1cbbcbe93f822fd2408f586eca190376983a11d6b358",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-4",
+            "rangeKind": "block",
+            "startLine": 12,
+            "endLine": 12,
+            "startOffset": 410,
+            "endOffset": 634,
+            "fingerprint": "994f4e7413f2360c5a8bc068e8e6cf802f2ddc4320b1f1cd968e42bdcc1b7f80",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.166667,
+          "snippet": "Record date/status, layer/owner, symptom, minimum reproduction or exact evidence, demonstrated cause or `No resuelta`, correction, regression and follow-up. Never store raw prompts, transcripts, secr…"
+        }
+      ]
+    },
+    {
+      "caseId": "INCIDENT-SKILL",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "query": "Where are procedural skill defects recorded, and when is the system ledger relevant?",
+      "candidateCount": 5,
+      "candidates": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "5e57c8641e11a21838fa28d743d2f0b86defbfd3bea5bc43e4a9f982851cd9f5",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 12,
+            "startOffset": 0,
+            "endOffset": 635,
+            "fingerprint": "d1624f7592de0f29e55bf96dcbbb1d7dbe766586f4453ce06a0932a412da19b8",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.857143,
+          "snippet": "# Incident-ledger Read when an observable non-nominal event occurred. Choose the canonical ledger: - routing and fixtures: `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`; - Bridge tools, transport or …"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "f446af129a7f84212c8140a8d7fb660a00ec3d3f006deac130a3b95f7ed250bd",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 10,
+            "startOffset": 102,
+            "endOffset": 408,
+            "fingerprint": "fef7236153a28c909d290616f125a1ae2d5355df8c186178599a03186271b155",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.857143,
+          "snippet": "- routing and fixtures: `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`; - Bridge tools, transport or lifecycle: `D:\\Dev\\bridge-mcp\\docs\\INCIDENTS.md`; - project-only defects: the project state or inci…"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "21f5e20838e6abbf57dc714aadc88bef5d6643c0be6f1a1c76bb124c44db3fe4",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3/item-4",
+            "rangeKind": "block",
+            "startLine": 10,
+            "endLine": 10,
+            "startOffset": 316,
+            "endOffset": 408,
+            "fingerprint": "4060befc589f1226306c6e32b2c1aab4fa20a5808115130ded7cb413295ec503",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.857143,
+          "snippet": "- procedural skill defects: the owning skill changelog plus the system ledger when relevant."
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "99c6c14e6f95b4372dd53db42fcb48fcb272263e26887b6bd0cfe1cdddb3adc3",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 72,
+            "endOffset": 100,
+            "fingerprint": "573dd3e1012d72d718679b24eed53f7f543ec9ef21c45a4a35e8b86baf9041a7",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.142857,
+          "snippet": "Choose the canonical ledger:"
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "414776640d6b774f66ec18921f410b441f081dc52e59047c371058594ab46508",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3/item-3",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "startOffset": 252,
+            "endOffset": 315,
+            "fingerprint": "7410f36034e88f3fef030c45e2c465c91781402b77851b0faa11eecdc9624f79",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Incident-ledger",
+          "headingPath": [
+            "Incident-ledger"
+          ],
+          "score": 0.142857,
+          "snippet": "- project-only defects: the project state or incident document;"
+        }
+      ]
+    }
+  ]
+}

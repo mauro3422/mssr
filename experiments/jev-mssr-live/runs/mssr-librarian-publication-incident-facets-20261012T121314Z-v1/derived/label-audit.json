@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-publication-incident-facets-20261012T121314Z-v1",
+  "kind": "label-coordinate audit",
+  "lineNumbering": "one-based physical lines in exact frozen Markdown snapshots",
+  "incorrectSpans": {
+    "PUB": [
+      "L5-L6",
+      "L5",
+      "L6"
+    ],
+    "INCIDENT": [
+      "L5-L8",
+      "L5",
+      "L6",
+      "L7",
+      "L8"
+    ]
+  },
+  "verifiedSpans": {
+    "PUB": [
+      "L9-L10",
+      "L9",
+      "L10"
+    ],
+    "INCIDENT": [
+      "L7-L10",
+      "L7",
+      "L8",
+      "L9",
+      "L10"
+    ]
+  },
+  "basis": "PowerShell ReadAllLines on frozen source snapshot; corresponding source text enumerated by one-based line number.",
+  "providerDisclosure": "No labels were included in Jev call arguments.",
+  "metricUse": "Do not interpret coverage or label-agreement metrics from the invalidated run."
+}

@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-publication-incident-facets-20261012T121314Z-v2",
+  "cases": [
+    {
+      "id": "PUB-COMPOUND",
+      "parentCaseId": "PUB-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "sourceCluster": "source-01",
+      "facet": "restart-condition-and-follow-up-checks",
+      "language": "en",
+      "query": "When is a Bridge restart appropriate, and which checks must follow it?",
+      "kind": "compound-baseline"
+    },
+    {
+      "id": "PUB-TRIGGER",
+      "parentCaseId": "PUB-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "sourceCluster": "source-01",
+      "facet": "restart-condition",
+      "language": "en",
+      "query": "What conditions must be met before restarting Bridge?",
+      "kind": "atomic-treatment"
+    },
+    {
+      "id": "PUB-CHECKS",
+      "parentCaseId": "PUB-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "sourceCluster": "source-01",
+      "facet": "post-restart-verification",
+      "language": "en",
+      "query": "Which checks should be performed after restarting Bridge?",
+      "kind": "atomic-treatment"
+    },
+    {
+      "id": "INCIDENT-COMPOUND",
+      "parentCaseId": "INCIDENT-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "sourceCluster": "source-02",
+      "facet": "canonical-ledger-ownership",
+      "language": "en",
+      "query": "Which canonical ledger should receive routing, Bridge, project-only, and procedural-skill defects?",
+      "kind": "compound-baseline"
+    },
+    {
+      "id": "INCIDENT-ROUTING",
+      "parentCaseId": "INCIDENT-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "sourceCluster": "source-02",
+      "facet": "routing-fixtures-ledger",
+      "language": "en",
+      "query": "What canonical incident ledger is named for routing and fixture issues?",
+      "kind": "atomic-treatment"
+    },
+    {
+      "id": "INCIDENT-BRIDGE",
+      "parentCaseId": "INCIDENT-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "sourceCluster": "source-02",
+      "facet": "bridge-ledger",
+      "language": "en",
+      "query": "Which incident ledger owns Bridge tool, transport, or lifecycle issues?",
+      "kind": "atomic-treatment"
+    },
+    {
+      "id": "INCIDENT-PROJECT",
+      "parentCaseId": "INCIDENT-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "sourceCluster": "source-02",
+      "facet": "project-only-destinations",
+      "language": "en",
+      "query": "What project-owned record options are listed for project-only defects?",
+      "kind": "atomic-treatment"
+    },
+    {
+      "id": "INCIDENT-SKILL",
+      "parentCaseId": "INCIDENT-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "sourceCluster": "source-02",
+      "facet": "procedural-skill-ledger",
+      "language": "en",
+      "query": "Where are procedural skill defects recorded, and when is the system ledger relevant?",
+      "kind": "atomic-treatment"
+    }
+  ]
+}

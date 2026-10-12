@@ -1,0 +1,214 @@
+[
+  {
+    "parentCaseId": "PUB-POS",
+    "facetCaseIds": [
+      "PUB-TRIGGER",
+      "PUB-CHECKS"
+    ],
+    "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"schemaVersion\": 1,\n  \"kind\": \"mssr-librarian-evidence-pack\",\n  \"assembly\": \"verbatim-source-ranges\",\n  \"paragraphs\": [\n    {\n      \"ordinal\": 1,\n      \"exactText\": \"5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it.\",\n      \"citation\": {\n        \"display\": \"skills/skill-maintenance-loop/references/maintenance-publication.md:L9-L9\",\n        \"handleId\": \"e93bd3103cbf14a8a7554df9ea20c14275a63b3d6a0af8cf33de37f16d65bb52\",\n        \"owner\": \"d:/dev/mssr\",\n        \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-publication.md\",\n        \"revision\": \"cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a\",\n        \"rangeId\": \"block-2/item-5\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 9,\n        \"endLine\": 9,\n        \"fingerprint\": \"7cdc45cf7059c2d8f00d4e2733be16f05958a1061ec0de6e67a135f9d2bc58b1\",\n        \"privacyClass\": \"project-metadata\"\n      }\n    },\n    {\n      \"ordinal\": 2,\n      \"exactText\": \"1. Re-plan at verification, persistence and close; load only skills active for each phase.\\n2. Verify source repositories, runtime junctions, generated docs, routing fixtures and live catalog discovery.\\n3. Use `git-change-publication` for bounded commits and remote readback. Never force-push to resolve ambiguity.\\n4. For multiple repositories, preserve per-repository outcomes and dependency order. A repository without a remote remains local-only.\\n5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it.\\n6. Verify live process version, tool catalog, focused smokes and full gate after restart.\\n7. Record one MSSR outcome with one primary skill; use bounded dimensions for differing subsystems.\\n8. Remove temporary prompts, scripts, terminals and test fixtures; enumerate deliberate residual state.\",\n      \"citation\": {\n        \"display\": \"skills/skill-maintenance-loop/references/maintenance-publication.md:L5-L12\",\n        \"handleId\": \"0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73\",\n        \"owner\": \"d:/dev/mssr\",\n        \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-publication.md\",\n        \"revision\": \"cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a\",\n        \"rangeId\": \"block-2\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 5,\n        \"endLine\": 12,\n        \"fingerprint\": \"8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d\",\n        \"privacyClass\": \"project-metadata\"\n      }\n    }\n  ],\n  \"totalFetchedChars\": 941,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"canonicalRewriteAllowed\": false,\n  \"ownerAndPrivacyAreCallerAsserted\": true\n}"
+        }
+      ]
+    },
+    "pack": {
+      "schemaVersion": 1,
+      "kind": "mssr-librarian-evidence-pack",
+      "assembly": "verbatim-source-ranges",
+      "paragraphs": [
+        {
+          "ordinal": 1,
+          "exactText": "5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it.",
+          "citation": {
+            "display": "skills/skill-maintenance-loop/references/maintenance-publication.md:L9-L9",
+            "handleId": "e93bd3103cbf14a8a7554df9ea20c14275a63b3d6a0af8cf33de37f16d65bb52",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+            "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+            "rangeId": "block-2/item-5",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "fingerprint": "7cdc45cf7059c2d8f00d4e2733be16f05958a1061ec0de6e67a135f9d2bc58b1",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "ordinal": 2,
+          "exactText": "1. Re-plan at verification, persistence and close; load only skills active for each phase.\n2. Verify source repositories, runtime junctions, generated docs, routing fixtures and live catalog discovery.\n3. Use `git-change-publication` for bounded commits and remote readback. Never force-push to resolve ambiguity.\n4. For multiple repositories, preserve per-repository outcomes and dependency order. A repository without a remote remains local-only.\n5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it.\n6. Verify live process version, tool catalog, focused smokes and full gate after restart.\n7. Record one MSSR outcome with one primary skill; use bounded dimensions for differing subsystems.\n8. Remove temporary prompts, scripts, terminals and test fixtures; enumerate deliberate residual state.",
+          "citation": {
+            "display": "skills/skill-maintenance-loop/references/maintenance-publication.md:L5-L12",
+            "handleId": "0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+            "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 12,
+            "fingerprint": "8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "totalFetchedChars": 941,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "canonicalRewriteAllowed": false,
+      "ownerAndPrivacyAreCallerAsserted": true
+    },
+    "citations": [
+      {
+        "display": "skills/skill-maintenance-loop/references/maintenance-publication.md:L9-L9",
+        "handleId": "e93bd3103cbf14a8a7554df9ea20c14275a63b3d6a0af8cf33de37f16d65bb52",
+        "rangeId": "block-2/item-5",
+        "startLine": 9,
+        "endLine": 9,
+        "textChars": 99
+      },
+      {
+        "display": "skills/skill-maintenance-loop/references/maintenance-publication.md:L5-L12",
+        "handleId": "0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73",
+        "rangeId": "block-2",
+        "startLine": 5,
+        "endLine": 12,
+        "textChars": 842
+      }
+    ]
+  },
+  {
+    "parentCaseId": "INCIDENT-POS",
+    "facetCaseIds": [
+      "INCIDENT-ROUTING",
+      "INCIDENT-BRIDGE",
+      "INCIDENT-PROJECT",
+      "INCIDENT-SKILL"
+    ],
+    "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"schemaVersion\": 1,\n  \"kind\": \"mssr-librarian-evidence-pack\",\n  \"assembly\": \"verbatim-source-ranges\",\n  \"paragraphs\": [\n    {\n      \"ordinal\": 1,\n      \"exactText\": \"# Incident-ledger\\n\\nRead when an observable non-nominal event occurred.\\n\\nChoose the canonical ledger:\\n\\n- routing and fixtures: `D:\\\\Dev\\\\mssr\\\\docs\\\\skill-routing\\\\INCIDENTS.md`;\\n- Bridge tools, transport or lifecycle: `D:\\\\Dev\\\\bridge-mcp\\\\docs\\\\INCIDENTS.md`;\\n- project-only defects: the project state or incident document;\\n- procedural skill defects: the owning skill changelog plus the system ledger when relevant.\\n\\nRecord date/status, layer/owner, symptom, minimum reproduction or exact evidence, demonstrated cause or `No resuelta`, correction, regression and follow-up. Never store raw prompts, transcripts, secrets or private reasoning.\\n\",\n      \"citation\": {\n        \"display\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md:L1-L12\",\n        \"handleId\": \"5e57c8641e11a21838fa28d743d2f0b86defbfd3bea5bc43e4a9f982851cd9f5\",\n        \"owner\": \"d:/dev/mssr\",\n        \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md\",\n        \"revision\": \"d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5\",\n        \"rangeId\": \"heading-1\",\n        \"rangeKind\": \"section\",\n        \"startLine\": 1,\n        \"endLine\": 12,\n        \"fingerprint\": \"d1624f7592de0f29e55bf96dcbbb1d7dbe766586f4453ce06a0932a412da19b8\",\n        \"privacyClass\": \"project-metadata\"\n      }\n    },\n    {\n      \"ordinal\": 2,\n      \"exactText\": \"- Bridge tools, transport or lifecycle: `D:\\\\Dev\\\\bridge-mcp\\\\docs\\\\INCIDENTS.md`;\",\n      \"citation\": {\n        \"display\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md:L8-L8\",\n        \"handleId\": \"40eaf6ad89cec943414d2a2fbf9a7ac3c19c43328c9cce6589b7e90d43156cd5\",\n        \"owner\": \"d:/dev/mssr\",\n        \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md\",\n        \"revision\": \"d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5\",\n        \"rangeId\": \"block-3/item-2\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 8,\n        \"endLine\": 8,\n        \"fingerprint\": \"bb05dc3476c0a67564c60c024b8e5056319a4fa00d88d2f7333a40bd770732d7\",\n        \"privacyClass\": \"project-metadata\"\n      }\n    },\n    {\n      \"ordinal\": 3,\n      \"exactText\": \"- project-only defects: the project state or incident document;\",\n      \"citation\": {\n        \"display\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md:L9-L9\",\n        \"handleId\": \"414776640d6b774f66ec18921f410b441f081dc52e59047c371058594ab46508\",\n        \"owner\": \"d:/dev/mssr\",\n        \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md\",\n        \"revision\": \"d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5\",\n        \"rangeId\": \"block-3/item-3\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 9,\n        \"endLine\": 9,\n        \"fingerprint\": \"7410f36034e88f3fef030c45e2c465c91781402b77851b0faa11eecdc9624f79\",\n        \"privacyClass\": \"project-metadata\"\n      }\n    },\n    {\n      \"ordinal\": 4,\n      \"exactText\": \"- procedural skill defects: the owning skill changelog plus the system ledger when relevant.\",\n      \"citation\": {\n        \"display\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md:L10-L10\",\n        \"handleId\": \"21f5e20838e6abbf57dc714aadc88bef5d6643c0be6f1a1c76bb124c44db3fe4\",\n        \"owner\": \"d:/dev/mssr\",\n        \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md\",\n        \"revision\": \"d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5\",\n        \"rangeId\": \"block-3/item-4\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 10,\n        \"endLine\": 10,\n        \"fingerprint\": \"4060befc589f1226306c6e32b2c1aab4fa20a5808115130ded7cb413295ec503\",\n        \"privacyClass\": \"project-metadata\"\n      }\n    }\n  ],\n  \"totalFetchedChars\": 868,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"canonicalRewriteAllowed\": false,\n  \"ownerAndPrivacyAreCallerAsserted\": true\n}"
+        }
+      ]
+    },
+    "pack": {
+      "schemaVersion": 1,
+      "kind": "mssr-librarian-evidence-pack",
+      "assembly": "verbatim-source-ranges",
+      "paragraphs": [
+        {
+          "ordinal": 1,
+          "exactText": "# Incident-ledger\n\nRead when an observable non-nominal event occurred.\n\nChoose the canonical ledger:\n\n- routing and fixtures: `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`;\n- Bridge tools, transport or lifecycle: `D:\\Dev\\bridge-mcp\\docs\\INCIDENTS.md`;\n- project-only defects: the project state or incident document;\n- procedural skill defects: the owning skill changelog plus the system ledger when relevant.\n\nRecord date/status, layer/owner, symptom, minimum reproduction or exact evidence, demonstrated cause or `No resuelta`, correction, regression and follow-up. Never store raw prompts, transcripts, secrets or private reasoning.\n",
+          "citation": {
+            "display": "skills/skill-maintenance-loop/references/maintenance-incidents.md:L1-L12",
+            "handleId": "5e57c8641e11a21838fa28d743d2f0b86defbfd3bea5bc43e4a9f982851cd9f5",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 12,
+            "fingerprint": "d1624f7592de0f29e55bf96dcbbb1d7dbe766586f4453ce06a0932a412da19b8",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "ordinal": 2,
+          "exactText": "- Bridge tools, transport or lifecycle: `D:\\Dev\\bridge-mcp\\docs\\INCIDENTS.md`;",
+          "citation": {
+            "display": "skills/skill-maintenance-loop/references/maintenance-incidents.md:L8-L8",
+            "handleId": "40eaf6ad89cec943414d2a2fbf9a7ac3c19c43328c9cce6589b7e90d43156cd5",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3/item-2",
+            "rangeKind": "block",
+            "startLine": 8,
+            "endLine": 8,
+            "fingerprint": "bb05dc3476c0a67564c60c024b8e5056319a4fa00d88d2f7333a40bd770732d7",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "ordinal": 3,
+          "exactText": "- project-only defects: the project state or incident document;",
+          "citation": {
+            "display": "skills/skill-maintenance-loop/references/maintenance-incidents.md:L9-L9",
+            "handleId": "414776640d6b774f66ec18921f410b441f081dc52e59047c371058594ab46508",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3/item-3",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "fingerprint": "7410f36034e88f3fef030c45e2c465c91781402b77851b0faa11eecdc9624f79",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "ordinal": 4,
+          "exactText": "- procedural skill defects: the owning skill changelog plus the system ledger when relevant.",
+          "citation": {
+            "display": "skills/skill-maintenance-loop/references/maintenance-incidents.md:L10-L10",
+            "handleId": "21f5e20838e6abbf57dc714aadc88bef5d6643c0be6f1a1c76bb124c44db3fe4",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+            "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+            "rangeId": "block-3/item-4",
+            "rangeKind": "block",
+            "startLine": 10,
+            "endLine": 10,
+            "fingerprint": "4060befc589f1226306c6e32b2c1aab4fa20a5808115130ded7cb413295ec503",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ],
+      "totalFetchedChars": 868,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "canonicalRewriteAllowed": false,
+      "ownerAndPrivacyAreCallerAsserted": true
+    },
+    "citations": [
+      {
+        "display": "skills/skill-maintenance-loop/references/maintenance-incidents.md:L1-L12",
+        "handleId": "5e57c8641e11a21838fa28d743d2f0b86defbfd3bea5bc43e4a9f982851cd9f5",
+        "rangeId": "heading-1",
+        "startLine": 1,
+        "endLine": 12,
+        "textChars": 635
+      },
+      {
+        "display": "skills/skill-maintenance-loop/references/maintenance-incidents.md:L8-L8",
+        "handleId": "40eaf6ad89cec943414d2a2fbf9a7ac3c19c43328c9cce6589b7e90d43156cd5",
+        "rangeId": "block-3/item-2",
+        "startLine": 8,
+        "endLine": 8,
+        "textChars": 78
+      },
+      {
+        "display": "skills/skill-maintenance-loop/references/maintenance-incidents.md:L9-L9",
+        "handleId": "414776640d6b774f66ec18921f410b441f081dc52e59047c371058594ab46508",
+        "rangeId": "block-3/item-3",
+        "startLine": 9,
+        "endLine": 9,
+        "textChars": 63
+      },
+      {
+        "display": "skills/skill-maintenance-loop/references/maintenance-incidents.md:L10-L10",
+        "handleId": "21f5e20838e6abbf57dc714aadc88bef5d6643c0be6f1a1c76bb124c44db3fe4",
+        "rangeId": "block-3/item-4",
+        "startLine": 10,
+        "endLine": 10,
+        "textChars": 92
+      }
+    ]
+  }
+]

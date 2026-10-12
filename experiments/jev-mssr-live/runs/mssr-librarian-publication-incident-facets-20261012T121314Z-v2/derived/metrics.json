@@ -1,0 +1,312 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-publication-incident-facets-20261012T121314Z-v2",
+  "completedAt": "2026-10-12",
+  "status": "exploratory-complete",
+  "design": {
+    "sourceDocumentClusters": 2,
+    "projects": 1,
+    "baselineCompoundQueries": 2,
+    "atomicFacetQueries": 6,
+    "negativeControls": 0,
+    "ownerGold": false,
+    "certifiedHoldout": false,
+    "labelsSentToProvider": false,
+    "confidenceCalibration": false
+  },
+  "primary": {
+    "jevSelections": 8,
+    "exactFetches": 8,
+    "evidencePacks": 2,
+    "candidatePoolCount": 41,
+    "searchCalls": 8,
+    "exactFetchesMatchingFrozenText": 8,
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "inputTokens": 8728,
+    "outputTokens": 786,
+    "meanLatencyMs": 296.325,
+    "medianLatencyMs": 289.05,
+    "confidenceCalibration": "uncalibrated-provider-score",
+    "confidenceRange": [
+      0.52,
+      1
+    ],
+    "sufficiencyRange": [
+      0.7,
+      0.97
+    ],
+    "allProviderSelectionsSelected": true,
+    "selectionStatuses": [
+      {
+        "caseId": "PUB-COMPOUND",
+        "status": "selected"
+      },
+      {
+        "caseId": "PUB-TRIGGER",
+        "status": "selected"
+      },
+      {
+        "caseId": "PUB-CHECKS",
+        "status": "selected"
+      },
+      {
+        "caseId": "INCIDENT-COMPOUND",
+        "status": "selected"
+      },
+      {
+        "caseId": "INCIDENT-ROUTING",
+        "status": "selected"
+      },
+      {
+        "caseId": "INCIDENT-BRIDGE",
+        "status": "selected"
+      },
+      {
+        "caseId": "INCIDENT-PROJECT",
+        "status": "selected"
+      },
+      {
+        "caseId": "INCIDENT-SKILL",
+        "status": "selected"
+      }
+    ]
+  },
+  "comparison": {
+    "compoundBaseline": {
+      "queries": 2,
+      "coveredLabeledFacets": 6,
+      "totalLabeledFacets": 6,
+      "fetchedUtf16CodeUnits": 1148
+    },
+    "facetTreatment": {
+      "queries": 6,
+      "coveredLabeledFacets": 6,
+      "totalLabeledFacets": 6,
+      "fetchedUtf16CodeUnits": 1809
+    },
+    "delta": {
+      "selectionCalls": 4,
+      "selectionCallPercentIncrease": 200,
+      "fetchedUtf16CodeUnits": 661,
+      "fetchedUtf16CodeUnitsPercentIncrease": 57.6,
+      "coverageGain": 0
+    },
+    "interpretation": "coverage ties in this small positive sample; treatment improves facet-level separation but adds retrieval calls and returned text, with broad/redundant ranges"
+  },
+  "selections": [
+    {
+      "caseId": "PUB-COMPOUND",
+      "rangeId": "block-2",
+      "startLine": 5,
+      "endLine": 12,
+      "confidence": 1,
+      "sufficiency": 0.9,
+      "inputTokens": 1069,
+      "outputTokens": 97,
+      "elapsedMs": 324.9,
+      "candidateCount": 5,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0"
+    },
+    {
+      "caseId": "PUB-TRIGGER",
+      "rangeId": "block-2/item-5",
+      "startLine": 9,
+      "endLine": 9,
+      "confidence": 0.87,
+      "sufficiency": 0.7,
+      "inputTokens": 968,
+      "outputTokens": 87,
+      "elapsedMs": 276.5,
+      "candidateCount": 4,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0"
+    },
+    {
+      "caseId": "PUB-CHECKS",
+      "rangeId": "block-2",
+      "startLine": 5,
+      "endLine": 12,
+      "confidence": 1,
+      "sufficiency": 0.84,
+      "inputTokens": 881,
+      "outputTokens": 77,
+      "elapsedMs": 263.1,
+      "candidateCount": 3,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0"
+    },
+    {
+      "caseId": "INCIDENT-COMPOUND",
+      "rangeId": "block-3",
+      "startLine": 7,
+      "endLine": 10,
+      "confidence": 0.83,
+      "sufficiency": 0.9,
+      "inputTokens": 1283,
+      "outputTokens": 117,
+      "elapsedMs": 321.6,
+      "candidateCount": 7,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0"
+    },
+    {
+      "caseId": "INCIDENT-ROUTING",
+      "rangeId": "heading-1",
+      "startLine": 1,
+      "endLine": 12,
+      "confidence": 0.52,
+      "sufficiency": 0.94,
+      "inputTokens": 1178,
+      "outputTokens": 107,
+      "elapsedMs": 297.8,
+      "candidateCount": 6,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0"
+    },
+    {
+      "caseId": "INCIDENT-BRIDGE",
+      "rangeId": "block-3/item-2",
+      "startLine": 8,
+      "endLine": 8,
+      "confidence": 0.84,
+      "sufficiency": 0.97,
+      "inputTokens": 1179,
+      "outputTokens": 107,
+      "elapsedMs": 266.8,
+      "candidateCount": 6,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0"
+    },
+    {
+      "caseId": "INCIDENT-PROJECT",
+      "rangeId": "block-3/item-3",
+      "startLine": 9,
+      "endLine": 9,
+      "confidence": 0.92,
+      "sufficiency": 0.92,
+      "inputTokens": 1108,
+      "outputTokens": 97,
+      "elapsedMs": 339.6,
+      "candidateCount": 5,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0"
+    },
+    {
+      "caseId": "INCIDENT-SKILL",
+      "rangeId": "block-3/item-4",
+      "startLine": 10,
+      "endLine": 10,
+      "confidence": 0.69,
+      "sufficiency": 0.76,
+      "inputTokens": 1062,
+      "outputTokens": 97,
+      "elapsedMs": 280.3,
+      "candidateCount": 5,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0"
+    }
+  ],
+  "fetches": [
+    {
+      "caseId": "PUB-COMPOUND",
+      "rangeId": "block-2",
+      "startLine": 5,
+      "endLine": 12,
+      "utf16CodeUnits": 842,
+      "exactTextMatchesFrozenSlice": true,
+      "fingerprintMatches": true
+    },
+    {
+      "caseId": "PUB-TRIGGER",
+      "rangeId": "block-2/item-5",
+      "startLine": 9,
+      "endLine": 9,
+      "utf16CodeUnits": 99,
+      "exactTextMatchesFrozenSlice": true,
+      "fingerprintMatches": true
+    },
+    {
+      "caseId": "PUB-CHECKS",
+      "rangeId": "block-2",
+      "startLine": 5,
+      "endLine": 12,
+      "utf16CodeUnits": 842,
+      "exactTextMatchesFrozenSlice": true,
+      "fingerprintMatches": true
+    },
+    {
+      "caseId": "INCIDENT-COMPOUND",
+      "rangeId": "block-3",
+      "startLine": 7,
+      "endLine": 10,
+      "utf16CodeUnits": 306,
+      "exactTextMatchesFrozenSlice": true,
+      "fingerprintMatches": true
+    },
+    {
+      "caseId": "INCIDENT-ROUTING",
+      "rangeId": "heading-1",
+      "startLine": 1,
+      "endLine": 12,
+      "utf16CodeUnits": 635,
+      "exactTextMatchesFrozenSlice": true,
+      "fingerprintMatches": true
+    },
+    {
+      "caseId": "INCIDENT-BRIDGE",
+      "rangeId": "block-3/item-2",
+      "startLine": 8,
+      "endLine": 8,
+      "utf16CodeUnits": 78,
+      "exactTextMatchesFrozenSlice": true,
+      "fingerprintMatches": true
+    },
+    {
+      "caseId": "INCIDENT-PROJECT",
+      "rangeId": "block-3/item-3",
+      "startLine": 9,
+      "endLine": 9,
+      "utf16CodeUnits": 63,
+      "exactTextMatchesFrozenSlice": true,
+      "fingerprintMatches": true
+    },
+    {
+      "caseId": "INCIDENT-SKILL",
+      "rangeId": "block-3/item-4",
+      "startLine": 10,
+      "endLine": 10,
+      "utf16CodeUnits": 92,
+      "exactTextMatchesFrozenSlice": true,
+      "fingerprintMatches": true
+    }
+  ],
+  "blindReview": {
+    "reviewers": 2,
+    "publicationFullSupport": 2,
+    "incidentFullSupport": 2,
+    "overbroadCitationObserved": true
+  },
+  "adaptiveFollowUp": {
+    "rangeId": "block-3/item-1",
+    "startLine": 7,
+    "endLine": 7,
+    "exactTextMatchesFrozenSlice": true,
+    "fingerprintMatches": true,
+    "confidence": 0.72,
+    "sufficiency": 0.97,
+    "inputTokens": 1178,
+    "outputTokens": 107,
+    "elapsedMs": 313.4,
+    "classification": "exploratory diagnostic; excluded from primary metrics"
+  },
+  "limitations": [
+    "two source-document clusters only",
+    "single analyst reviewed support spans; no owner-adjudicated gold",
+    "positive answerable queries only; no negative/abstention controls",
+    "provider confidence and evidence sufficiency remain uncalibrated",
+    "Librarian pack assembles exact verbatim text; semantic compaction is not measured",
+    "blind reviewers are Luna agents, not independent human/domain-owner adjudication"
+  ]
+}

@@ -1,0 +1,434 @@
+[
+  {
+    "caseId": "PUB-COMPOUND",
+    "handle": {
+      "version": 1,
+      "id": "0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73",
+      "owner": "d:/dev/mssr",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+      "rangeId": "block-2",
+      "rangeKind": "block",
+      "startLine": 5,
+      "endLine": 12,
+      "startOffset": 108,
+      "endOffset": 950,
+      "fingerprint": "8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d",
+      "privacyClass": "project-metadata"
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-publication.md\",\n    \"revision\": \"cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a\",\n    \"rangeId\": \"block-2\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 5,\n    \"endLine\": 12,\n    \"startOffset\": 108,\n    \"endOffset\": 950,\n    \"fingerprint\": \"8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"1. Re-plan at verification, persistence and close; load only skills active for each phase.\\n2. Verify source repositories, runtime junctions, generated docs, routing fixtures and live catalog discovery.\\n3. Use `git-change-publication` for bounded commits and remote readback. Never force-push to resolve ambiguity.\\n4. For multiple repositories, preserve per-repository outcomes and dependency order. A repository without a remote remains local-only.\\n5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it.\\n6. Verify live process version, tool catalog, focused smokes and full gate after restart.\\n7. Record one MSSR outcome with one primary skill; use bounded dimensions for differing subsystems.\\n8. Remove temporary prompts, scripts, terminals and test fixtures; enumerate deliberate residual state.\",\n  \"fingerprint\": \"8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false\n}"
+        }
+      ]
+    },
+    "fetched": {
+      "handle": {
+        "version": 1,
+        "id": "0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+        "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 5,
+        "endLine": 12,
+        "startOffset": 108,
+        "endOffset": 950,
+        "fingerprint": "8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d",
+        "privacyClass": "project-metadata"
+      },
+      "text": "1. Re-plan at verification, persistence and close; load only skills active for each phase.\n2. Verify source repositories, runtime junctions, generated docs, routing fixtures and live catalog discovery.\n3. Use `git-change-publication` for bounded commits and remote readback. Never force-push to resolve ambiguity.\n4. For multiple repositories, preserve per-repository outcomes and dependency order. A repository without a remote remains local-only.\n5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it.\n6. Verify live process version, tool catalog, focused smokes and full gate after restart.\n7. Record one MSSR outcome with one primary skill; use bounded dimensions for differing subsystems.\n8. Remove temporary prompts, scripts, terminals and test fixtures; enumerate deliberate residual state.",
+      "fingerprint": "8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d",
+      "advisoryOnly": true,
+      "truthAuthority": false
+    },
+    "check": {
+      "caseId": "PUB-COMPOUND",
+      "status": "ok",
+      "textEqualsFrozenSubstring": true,
+      "handleMatches": true,
+      "fingerprintMatches": true
+    }
+  },
+  {
+    "caseId": "PUB-TRIGGER",
+    "handle": {
+      "version": 1,
+      "id": "e93bd3103cbf14a8a7554df9ea20c14275a63b3d6a0af8cf33de37f16d65bb52",
+      "owner": "d:/dev/mssr",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+      "rangeId": "block-2/item-5",
+      "rangeKind": "block",
+      "startLine": 9,
+      "endLine": 9,
+      "startOffset": 557,
+      "endOffset": 656,
+      "fingerprint": "7cdc45cf7059c2d8f00d4e2733be16f05958a1061ec0de6e67a135f9d2bc58b1",
+      "privacyClass": "project-metadata"
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"e93bd3103cbf14a8a7554df9ea20c14275a63b3d6a0af8cf33de37f16d65bb52\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-publication.md\",\n    \"revision\": \"cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a\",\n    \"rangeId\": \"block-2/item-5\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 9,\n    \"endLine\": 9,\n    \"startOffset\": 557,\n    \"endOffset\": 656,\n    \"fingerprint\": \"7cdc45cf7059c2d8f00d4e2733be16f05958a1061ec0de6e67a135f9d2bc58b1\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it.\",\n  \"fingerprint\": \"7cdc45cf7059c2d8f00d4e2733be16f05958a1061ec0de6e67a135f9d2bc58b1\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false\n}"
+        }
+      ]
+    },
+    "fetched": {
+      "handle": {
+        "version": 1,
+        "id": "e93bd3103cbf14a8a7554df9ea20c14275a63b3d6a0af8cf33de37f16d65bb52",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+        "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+        "rangeId": "block-2/item-5",
+        "rangeKind": "block",
+        "startLine": 9,
+        "endLine": 9,
+        "startOffset": 557,
+        "endOffset": 656,
+        "fingerprint": "7cdc45cf7059c2d8f00d4e2733be16f05958a1061ec0de6e67a135f9d2bc58b1",
+        "privacyClass": "project-metadata"
+      },
+      "text": "5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it.",
+      "fingerprint": "7cdc45cf7059c2d8f00d4e2733be16f05958a1061ec0de6e67a135f9d2bc58b1",
+      "advisoryOnly": true,
+      "truthAuthority": false
+    },
+    "check": {
+      "caseId": "PUB-TRIGGER",
+      "status": "ok",
+      "textEqualsFrozenSubstring": true,
+      "handleMatches": true,
+      "fingerprintMatches": true
+    }
+  },
+  {
+    "caseId": "PUB-CHECKS",
+    "handle": {
+      "version": 1,
+      "id": "0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73",
+      "owner": "d:/dev/mssr",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+      "rangeId": "block-2",
+      "rangeKind": "block",
+      "startLine": 5,
+      "endLine": 12,
+      "startOffset": 108,
+      "endOffset": 950,
+      "fingerprint": "8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d",
+      "privacyClass": "project-metadata"
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-publication.md\",\n    \"revision\": \"cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a\",\n    \"rangeId\": \"block-2\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 5,\n    \"endLine\": 12,\n    \"startOffset\": 108,\n    \"endOffset\": 950,\n    \"fingerprint\": \"8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"1. Re-plan at verification, persistence and close; load only skills active for each phase.\\n2. Verify source repositories, runtime junctions, generated docs, routing fixtures and live catalog discovery.\\n3. Use `git-change-publication` for bounded commits and remote readback. Never force-push to resolve ambiguity.\\n4. For multiple repositories, preserve per-repository outcomes and dependency order. A repository without a remote remains local-only.\\n5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it.\\n6. Verify live process version, tool catalog, focused smokes and full gate after restart.\\n7. Record one MSSR outcome with one primary skill; use bounded dimensions for differing subsystems.\\n8. Remove temporary prompts, scripts, terminals and test fixtures; enumerate deliberate residual state.\",\n  \"fingerprint\": \"8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false\n}"
+        }
+      ]
+    },
+    "fetched": {
+      "handle": {
+        "version": 1,
+        "id": "0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+        "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 5,
+        "endLine": 12,
+        "startOffset": 108,
+        "endOffset": 950,
+        "fingerprint": "8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d",
+        "privacyClass": "project-metadata"
+      },
+      "text": "1. Re-plan at verification, persistence and close; load only skills active for each phase.\n2. Verify source repositories, runtime junctions, generated docs, routing fixtures and live catalog discovery.\n3. Use `git-change-publication` for bounded commits and remote readback. Never force-push to resolve ambiguity.\n4. For multiple repositories, preserve per-repository outcomes and dependency order. A repository without a remote remains local-only.\n5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it.\n6. Verify live process version, tool catalog, focused smokes and full gate after restart.\n7. Record one MSSR outcome with one primary skill; use bounded dimensions for differing subsystems.\n8. Remove temporary prompts, scripts, terminals and test fixtures; enumerate deliberate residual state.",
+      "fingerprint": "8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d",
+      "advisoryOnly": true,
+      "truthAuthority": false
+    },
+    "check": {
+      "caseId": "PUB-CHECKS",
+      "status": "ok",
+      "textEqualsFrozenSubstring": true,
+      "handleMatches": true,
+      "fingerprintMatches": true
+    }
+  },
+  {
+    "caseId": "INCIDENT-COMPOUND",
+    "handle": {
+      "version": 1,
+      "id": "f446af129a7f84212c8140a8d7fb660a00ec3d3f006deac130a3b95f7ed250bd",
+      "owner": "d:/dev/mssr",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+      "rangeId": "block-3",
+      "rangeKind": "block",
+      "startLine": 7,
+      "endLine": 10,
+      "startOffset": 102,
+      "endOffset": 408,
+      "fingerprint": "fef7236153a28c909d290616f125a1ae2d5355df8c186178599a03186271b155",
+      "privacyClass": "project-metadata"
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"f446af129a7f84212c8140a8d7fb660a00ec3d3f006deac130a3b95f7ed250bd\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md\",\n    \"revision\": \"d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5\",\n    \"rangeId\": \"block-3\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 7,\n    \"endLine\": 10,\n    \"startOffset\": 102,\n    \"endOffset\": 408,\n    \"fingerprint\": \"fef7236153a28c909d290616f125a1ae2d5355df8c186178599a03186271b155\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"- routing and fixtures: `D:\\\\Dev\\\\mssr\\\\docs\\\\skill-routing\\\\INCIDENTS.md`;\\n- Bridge tools, transport or lifecycle: `D:\\\\Dev\\\\bridge-mcp\\\\docs\\\\INCIDENTS.md`;\\n- project-only defects: the project state or incident document;\\n- procedural skill defects: the owning skill changelog plus the system ledger when relevant.\",\n  \"fingerprint\": \"fef7236153a28c909d290616f125a1ae2d5355df8c186178599a03186271b155\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false\n}"
+        }
+      ]
+    },
+    "fetched": {
+      "handle": {
+        "version": 1,
+        "id": "f446af129a7f84212c8140a8d7fb660a00ec3d3f006deac130a3b95f7ed250bd",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+        "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+        "rangeId": "block-3",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 10,
+        "startOffset": 102,
+        "endOffset": 408,
+        "fingerprint": "fef7236153a28c909d290616f125a1ae2d5355df8c186178599a03186271b155",
+        "privacyClass": "project-metadata"
+      },
+      "text": "- routing and fixtures: `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`;\n- Bridge tools, transport or lifecycle: `D:\\Dev\\bridge-mcp\\docs\\INCIDENTS.md`;\n- project-only defects: the project state or incident document;\n- procedural skill defects: the owning skill changelog plus the system ledger when relevant.",
+      "fingerprint": "fef7236153a28c909d290616f125a1ae2d5355df8c186178599a03186271b155",
+      "advisoryOnly": true,
+      "truthAuthority": false
+    },
+    "check": {
+      "caseId": "INCIDENT-COMPOUND",
+      "status": "ok",
+      "textEqualsFrozenSubstring": true,
+      "handleMatches": true,
+      "fingerprintMatches": true
+    }
+  },
+  {
+    "caseId": "INCIDENT-ROUTING",
+    "handle": {
+      "version": 1,
+      "id": "5e57c8641e11a21838fa28d743d2f0b86defbfd3bea5bc43e4a9f982851cd9f5",
+      "owner": "d:/dev/mssr",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+      "rangeId": "heading-1",
+      "rangeKind": "section",
+      "startLine": 1,
+      "endLine": 12,
+      "startOffset": 0,
+      "endOffset": 635,
+      "fingerprint": "d1624f7592de0f29e55bf96dcbbb1d7dbe766586f4453ce06a0932a412da19b8",
+      "privacyClass": "project-metadata"
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"5e57c8641e11a21838fa28d743d2f0b86defbfd3bea5bc43e4a9f982851cd9f5\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md\",\n    \"revision\": \"d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5\",\n    \"rangeId\": \"heading-1\",\n    \"rangeKind\": \"section\",\n    \"startLine\": 1,\n    \"endLine\": 12,\n    \"startOffset\": 0,\n    \"endOffset\": 635,\n    \"fingerprint\": \"d1624f7592de0f29e55bf96dcbbb1d7dbe766586f4453ce06a0932a412da19b8\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"# Incident-ledger\\n\\nRead when an observable non-nominal event occurred.\\n\\nChoose the canonical ledger:\\n\\n- routing and fixtures: `D:\\\\Dev\\\\mssr\\\\docs\\\\skill-routing\\\\INCIDENTS.md`;\\n- Bridge tools, transport or lifecycle: `D:\\\\Dev\\\\bridge-mcp\\\\docs\\\\INCIDENTS.md`;\\n- project-only defects: the project state or incident document;\\n- procedural skill defects: the owning skill changelog plus the system ledger when relevant.\\n\\nRecord date/status, layer/owner, symptom, minimum reproduction or exact evidence, demonstrated cause or `No resuelta`, correction, regression and follow-up. Never store raw prompts, transcripts, secrets or private reasoning.\\n\",\n  \"fingerprint\": \"d1624f7592de0f29e55bf96dcbbb1d7dbe766586f4453ce06a0932a412da19b8\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false\n}"
+        }
+      ]
+    },
+    "fetched": {
+      "handle": {
+        "version": 1,
+        "id": "5e57c8641e11a21838fa28d743d2f0b86defbfd3bea5bc43e4a9f982851cd9f5",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+        "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 12,
+        "startOffset": 0,
+        "endOffset": 635,
+        "fingerprint": "d1624f7592de0f29e55bf96dcbbb1d7dbe766586f4453ce06a0932a412da19b8",
+        "privacyClass": "project-metadata"
+      },
+      "text": "# Incident-ledger\n\nRead when an observable non-nominal event occurred.\n\nChoose the canonical ledger:\n\n- routing and fixtures: `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`;\n- Bridge tools, transport or lifecycle: `D:\\Dev\\bridge-mcp\\docs\\INCIDENTS.md`;\n- project-only defects: the project state or incident document;\n- procedural skill defects: the owning skill changelog plus the system ledger when relevant.\n\nRecord date/status, layer/owner, symptom, minimum reproduction or exact evidence, demonstrated cause or `No resuelta`, correction, regression and follow-up. Never store raw prompts, transcripts, secrets or private reasoning.\n",
+      "fingerprint": "d1624f7592de0f29e55bf96dcbbb1d7dbe766586f4453ce06a0932a412da19b8",
+      "advisoryOnly": true,
+      "truthAuthority": false
+    },
+    "check": {
+      "caseId": "INCIDENT-ROUTING",
+      "status": "ok",
+      "textEqualsFrozenSubstring": true,
+      "handleMatches": true,
+      "fingerprintMatches": true
+    }
+  },
+  {
+    "caseId": "INCIDENT-BRIDGE",
+    "handle": {
+      "version": 1,
+      "id": "40eaf6ad89cec943414d2a2fbf9a7ac3c19c43328c9cce6589b7e90d43156cd5",
+      "owner": "d:/dev/mssr",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+      "rangeId": "block-3/item-2",
+      "rangeKind": "block",
+      "startLine": 8,
+      "endLine": 8,
+      "startOffset": 173,
+      "endOffset": 251,
+      "fingerprint": "bb05dc3476c0a67564c60c024b8e5056319a4fa00d88d2f7333a40bd770732d7",
+      "privacyClass": "project-metadata"
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"40eaf6ad89cec943414d2a2fbf9a7ac3c19c43328c9cce6589b7e90d43156cd5\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md\",\n    \"revision\": \"d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5\",\n    \"rangeId\": \"block-3/item-2\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 8,\n    \"endLine\": 8,\n    \"startOffset\": 173,\n    \"endOffset\": 251,\n    \"fingerprint\": \"bb05dc3476c0a67564c60c024b8e5056319a4fa00d88d2f7333a40bd770732d7\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"- Bridge tools, transport or lifecycle: `D:\\\\Dev\\\\bridge-mcp\\\\docs\\\\INCIDENTS.md`;\",\n  \"fingerprint\": \"bb05dc3476c0a67564c60c024b8e5056319a4fa00d88d2f7333a40bd770732d7\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false\n}"
+        }
+      ]
+    },
+    "fetched": {
+      "handle": {
+        "version": 1,
+        "id": "40eaf6ad89cec943414d2a2fbf9a7ac3c19c43328c9cce6589b7e90d43156cd5",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+        "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+        "rangeId": "block-3/item-2",
+        "rangeKind": "block",
+        "startLine": 8,
+        "endLine": 8,
+        "startOffset": 173,
+        "endOffset": 251,
+        "fingerprint": "bb05dc3476c0a67564c60c024b8e5056319a4fa00d88d2f7333a40bd770732d7",
+        "privacyClass": "project-metadata"
+      },
+      "text": "- Bridge tools, transport or lifecycle: `D:\\Dev\\bridge-mcp\\docs\\INCIDENTS.md`;",
+      "fingerprint": "bb05dc3476c0a67564c60c024b8e5056319a4fa00d88d2f7333a40bd770732d7",
+      "advisoryOnly": true,
+      "truthAuthority": false
+    },
+    "check": {
+      "caseId": "INCIDENT-BRIDGE",
+      "status": "ok",
+      "textEqualsFrozenSubstring": true,
+      "handleMatches": true,
+      "fingerprintMatches": true
+    }
+  },
+  {
+    "caseId": "INCIDENT-PROJECT",
+    "handle": {
+      "version": 1,
+      "id": "414776640d6b774f66ec18921f410b441f081dc52e59047c371058594ab46508",
+      "owner": "d:/dev/mssr",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+      "rangeId": "block-3/item-3",
+      "rangeKind": "block",
+      "startLine": 9,
+      "endLine": 9,
+      "startOffset": 252,
+      "endOffset": 315,
+      "fingerprint": "7410f36034e88f3fef030c45e2c465c91781402b77851b0faa11eecdc9624f79",
+      "privacyClass": "project-metadata"
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"414776640d6b774f66ec18921f410b441f081dc52e59047c371058594ab46508\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md\",\n    \"revision\": \"d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5\",\n    \"rangeId\": \"block-3/item-3\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 9,\n    \"endLine\": 9,\n    \"startOffset\": 252,\n    \"endOffset\": 315,\n    \"fingerprint\": \"7410f36034e88f3fef030c45e2c465c91781402b77851b0faa11eecdc9624f79\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"- project-only defects: the project state or incident document;\",\n  \"fingerprint\": \"7410f36034e88f3fef030c45e2c465c91781402b77851b0faa11eecdc9624f79\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false\n}"
+        }
+      ]
+    },
+    "fetched": {
+      "handle": {
+        "version": 1,
+        "id": "414776640d6b774f66ec18921f410b441f081dc52e59047c371058594ab46508",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+        "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+        "rangeId": "block-3/item-3",
+        "rangeKind": "block",
+        "startLine": 9,
+        "endLine": 9,
+        "startOffset": 252,
+        "endOffset": 315,
+        "fingerprint": "7410f36034e88f3fef030c45e2c465c91781402b77851b0faa11eecdc9624f79",
+        "privacyClass": "project-metadata"
+      },
+      "text": "- project-only defects: the project state or incident document;",
+      "fingerprint": "7410f36034e88f3fef030c45e2c465c91781402b77851b0faa11eecdc9624f79",
+      "advisoryOnly": true,
+      "truthAuthority": false
+    },
+    "check": {
+      "caseId": "INCIDENT-PROJECT",
+      "status": "ok",
+      "textEqualsFrozenSubstring": true,
+      "handleMatches": true,
+      "fingerprintMatches": true
+    }
+  },
+  {
+    "caseId": "INCIDENT-SKILL",
+    "handle": {
+      "version": 1,
+      "id": "21f5e20838e6abbf57dc714aadc88bef5d6643c0be6f1a1c76bb124c44db3fe4",
+      "owner": "d:/dev/mssr",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+      "rangeId": "block-3/item-4",
+      "rangeKind": "block",
+      "startLine": 10,
+      "endLine": 10,
+      "startOffset": 316,
+      "endOffset": 408,
+      "fingerprint": "4060befc589f1226306c6e32b2c1aab4fa20a5808115130ded7cb413295ec503",
+      "privacyClass": "project-metadata"
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"21f5e20838e6abbf57dc714aadc88bef5d6643c0be6f1a1c76bb124c44db3fe4\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md\",\n    \"revision\": \"d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5\",\n    \"rangeId\": \"block-3/item-4\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 10,\n    \"endLine\": 10,\n    \"startOffset\": 316,\n    \"endOffset\": 408,\n    \"fingerprint\": \"4060befc589f1226306c6e32b2c1aab4fa20a5808115130ded7cb413295ec503\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"- procedural skill defects: the owning skill changelog plus the system ledger when relevant.\",\n  \"fingerprint\": \"4060befc589f1226306c6e32b2c1aab4fa20a5808115130ded7cb413295ec503\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false\n}"
+        }
+      ]
+    },
+    "fetched": {
+      "handle": {
+        "version": 1,
+        "id": "21f5e20838e6abbf57dc714aadc88bef5d6643c0be6f1a1c76bb124c44db3fe4",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+        "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+        "rangeId": "block-3/item-4",
+        "rangeKind": "block",
+        "startLine": 10,
+        "endLine": 10,
+        "startOffset": 316,
+        "endOffset": 408,
+        "fingerprint": "4060befc589f1226306c6e32b2c1aab4fa20a5808115130ded7cb413295ec503",
+        "privacyClass": "project-metadata"
+      },
+      "text": "- procedural skill defects: the owning skill changelog plus the system ledger when relevant.",
+      "fingerprint": "4060befc589f1226306c6e32b2c1aab4fa20a5808115130ded7cb413295ec503",
+      "advisoryOnly": true,
+      "truthAuthority": false
+    },
+    "check": {
+      "caseId": "INCIDENT-SKILL",
+      "status": "ok",
+      "textEqualsFrozenSubstring": true,
+      "handleMatches": true,
+      "fingerprintMatches": true
+    }
+  }
+]

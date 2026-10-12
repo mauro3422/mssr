@@ -1,0 +1,226 @@
+{
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"status\": \"selected\",\n  \"candidateCount\": 6,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"verification\": \"unverified\",\n  \"confidenceCalibration\": \"uncalibrated-provider-score\",\n  \"evidenceSufficiencyCalibration\": \"uncalibrated-provider-score\",\n  \"exactFetchRequired\": true,\n  \"autoApplyAllowed\": false,\n  \"candidateRangeDiagnostics\": {\n    \"offered\": 6,\n    \"eligible\": 6,\n    \"oversizedOmitted\": 0,\n    \"maxFetchChars\": 20000,\n    \"lengthUnit\": \"utf16-code-units\"\n  },\n  \"rangeOverlapDiagnostics\": {\n    \"sameSourceRevisionPairs\": 15,\n    \"overlappingPairCount\": 8,\n    \"nestedPairCount\": 8,\n    \"exactRangePairCount\": 0,\n    \"partialOverlapPairCount\": 0,\n    \"pairs\": [\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h002\",\n        \"rightRangeId\": \"block-3\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          7,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 306\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h003\",\n        \"rightRangeId\": \"block-3/item-1\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          7,\n          7\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 70\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h004\",\n        \"rightRangeId\": \"block-2\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          5,\n          5\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 28\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h005\",\n        \"rightRangeId\": \"block-3/item-3\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          9,\n          9\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 63\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h006\",\n        \"rightRangeId\": \"block-3/item-4\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          10,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 92\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-3\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          7,\n          10\n        ],\n        \"rightOptionId\": \"h003\",\n        \"rightRangeId\": \"block-3/item-1\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          7,\n          7\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 70\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-3\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          7,\n          10\n        ],\n        \"rightOptionId\": \"h005\",\n        \"rightRangeId\": \"block-3/item-3\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          9,\n          9\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 63\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-3\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          7,\n          10\n        ],\n        \"rightOptionId\": \"h006\",\n        \"rightRangeId\": \"block-3/item-4\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          10,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 92\n      }\n    ],\n    \"truncated\": false,\n    \"mutationApplied\": false\n  },\n  \"finalistCount\": 6,\n  \"selectionMode\": \"single-pass\",\n  \"selectionPasses\": 1,\n  \"providerCalls\": 1,\n  \"providerConfidence\": 0.72,\n  \"evidenceSufficiency\": 0.97,\n  \"provider\": \"typesafe-jev\",\n  \"model\": \"jev-1.13.0\",\n  \"providersUsed\": [\n    \"typesafe-jev\"\n  ],\n  \"modelsUsed\": [\n    \"jev-1.13.0\"\n  ],\n  \"usage\": {\n    \"input_tokens\": 1178,\n    \"output_tokens\": 107\n  },\n  \"requestFingerprint\": \"ac4605768425960566a15e4a7cf3858dcf09b6b365e0ef4e6a2f5ee2151b153b\",\n  \"elapsedMs\": 313.4,\n  \"jevCallMade\": true,\n  \"selected\": {\n    \"optionId\": \"h003\",\n    \"title\": \"Incident-ledger\",\n    \"headingPath\": [\n      \"Incident-ledger\"\n    ],\n    \"handle\": {\n      \"version\": 1,\n      \"id\": \"af23f726496eee02b8ad87a2bffcab520ef3b34fbaefe0037a3493cd14478a46\",\n      \"owner\": \"d:/dev/mssr\",\n      \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md\",\n      \"revision\": \"d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5\",\n      \"rangeId\": \"block-3/item-1\",\n      \"rangeKind\": \"block\",\n      \"startLine\": 7,\n      \"endLine\": 7,\n      \"startOffset\": 102,\n      \"endOffset\": 172,\n      \"fingerprint\": \"cfac4c47202fc22f220c6d75dd656a0e8d358d97f51614363fc7beb27d82922b\",\n      \"privacyClass\": \"project-metadata\"\n    }\n  }\n}"
+      }
+    ]
+  },
+  "decision": {
+    "status": "selected",
+    "candidateCount": 6,
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "verification": "unverified",
+    "confidenceCalibration": "uncalibrated-provider-score",
+    "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+    "exactFetchRequired": true,
+    "autoApplyAllowed": false,
+    "candidateRangeDiagnostics": {
+      "offered": 6,
+      "eligible": 6,
+      "oversizedOmitted": 0,
+      "maxFetchChars": 20000,
+      "lengthUnit": "utf16-code-units"
+    },
+    "rangeOverlapDiagnostics": {
+      "sameSourceRevisionPairs": 15,
+      "overlappingPairCount": 8,
+      "nestedPairCount": 8,
+      "exactRangePairCount": 0,
+      "partialOverlapPairCount": 0,
+      "pairs": [
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            12
+          ],
+          "rightOptionId": "h002",
+          "rightRangeId": "block-3",
+          "rightRangeKind": "block",
+          "rightLines": [
+            7,
+            10
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 306
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            12
+          ],
+          "rightOptionId": "h003",
+          "rightRangeId": "block-3/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            7,
+            7
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 70
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            12
+          ],
+          "rightOptionId": "h004",
+          "rightRangeId": "block-2",
+          "rightRangeKind": "block",
+          "rightLines": [
+            5,
+            5
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 28
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            12
+          ],
+          "rightOptionId": "h005",
+          "rightRangeId": "block-3/item-3",
+          "rightRangeKind": "block",
+          "rightLines": [
+            9,
+            9
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 63
+        },
+        {
+          "leftOptionId": "h001",
+          "leftRangeId": "heading-1",
+          "leftRangeKind": "section",
+          "leftLines": [
+            1,
+            12
+          ],
+          "rightOptionId": "h006",
+          "rightRangeId": "block-3/item-4",
+          "rightRangeKind": "block",
+          "rightLines": [
+            10,
+            10
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 92
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "block-3",
+          "leftRangeKind": "block",
+          "leftLines": [
+            7,
+            10
+          ],
+          "rightOptionId": "h003",
+          "rightRangeId": "block-3/item-1",
+          "rightRangeKind": "block",
+          "rightLines": [
+            7,
+            7
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 70
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "block-3",
+          "leftRangeKind": "block",
+          "leftLines": [
+            7,
+            10
+          ],
+          "rightOptionId": "h005",
+          "rightRangeId": "block-3/item-3",
+          "rightRangeKind": "block",
+          "rightLines": [
+            9,
+            9
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 63
+        },
+        {
+          "leftOptionId": "h002",
+          "leftRangeId": "block-3",
+          "leftRangeKind": "block",
+          "leftLines": [
+            7,
+            10
+          ],
+          "rightOptionId": "h006",
+          "rightRangeId": "block-3/item-4",
+          "rightRangeKind": "block",
+          "rightLines": [
+            10,
+            10
+          ],
+          "relation": "left-contains-right",
+          "overlapCodeUnits": 92
+        }
+      ],
+      "truncated": false,
+      "mutationApplied": false
+    },
+    "finalistCount": 6,
+    "selectionMode": "single-pass",
+    "selectionPasses": 1,
+    "providerCalls": 1,
+    "providerConfidence": 0.72,
+    "evidenceSufficiency": 0.97,
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "providersUsed": [
+      "typesafe-jev"
+    ],
+    "modelsUsed": [
+      "jev-1.13.0"
+    ],
+    "usage": {
+      "input_tokens": 1178,
+      "output_tokens": 107
+    },
+    "requestFingerprint": "ac4605768425960566a15e4a7cf3858dcf09b6b365e0ef4e6a2f5ee2151b153b",
+    "elapsedMs": 313.4,
+    "jevCallMade": true,
+    "selected": {
+      "optionId": "h003",
+      "title": "Incident-ledger",
+      "headingPath": [
+        "Incident-ledger"
+      ],
+      "handle": {
+        "version": 1,
+        "id": "af23f726496eee02b8ad87a2bffcab520ef3b34fbaefe0037a3493cd14478a46",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+        "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+        "rangeId": "block-3/item-1",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 7,
+        "startOffset": 102,
+        "endOffset": 172,
+        "fingerprint": "cfac4c47202fc22f220c6d75dd656a0e8d358d97f51614363fc7beb27d82922b",
+        "privacyClass": "project-metadata"
+      }
+    }
+  }
+}

@@ -1,0 +1,1616 @@
+[
+  {
+    "caseId": "PUB-COMPOUND",
+    "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+    "query": "When is a Bridge restart appropriate, and which checks must follow it?",
+    "candidateCount": 5,
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"selected\",\n  \"candidateCount\": 5,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"verification\": \"unverified\",\n  \"confidenceCalibration\": \"uncalibrated-provider-score\",\n  \"evidenceSufficiencyCalibration\": \"uncalibrated-provider-score\",\n  \"exactFetchRequired\": true,\n  \"autoApplyAllowed\": false,\n  \"candidateRangeDiagnostics\": {\n    \"offered\": 5,\n    \"eligible\": 5,\n    \"oversizedOmitted\": 0,\n    \"maxFetchChars\": 20000,\n    \"lengthUnit\": \"utf16-code-units\"\n  },\n  \"rangeOverlapDiagnostics\": {\n    \"sameSourceRevisionPairs\": 10,\n    \"overlappingPairCount\": 6,\n    \"nestedPairCount\": 6,\n    \"exactRangePairCount\": 0,\n    \"partialOverlapPairCount\": 0,\n    \"pairs\": [\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h002\",\n        \"rightRangeId\": \"block-2\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          5,\n          12\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 842\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h003\",\n        \"rightRangeId\": \"block-2/item-5\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          9,\n          9\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 99\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h004\",\n        \"rightRangeId\": \"block-1\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          3,\n          3\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 85\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h005\",\n        \"rightRangeId\": \"block-2/item-6\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          10,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 89\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-2\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          5,\n          12\n        ],\n        \"rightOptionId\": \"h003\",\n        \"rightRangeId\": \"block-2/item-5\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          9,\n          9\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 99\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-2\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          5,\n          12\n        ],\n        \"rightOptionId\": \"h005\",\n        \"rightRangeId\": \"block-2/item-6\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          10,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 89\n      }\n    ],\n    \"truncated\": false,\n    \"mutationApplied\": false\n  },\n  \"finalistCount\": 5,\n  \"selectionMode\": \"single-pass\",\n  \"selectionPasses\": 1,\n  \"providerCalls\": 1,\n  \"providerConfidence\": 1,\n  \"evidenceSufficiency\": 0.9,\n  \"provider\": \"typesafe-jev\",\n  \"model\": \"jev-1.13.0\",\n  \"providersUsed\": [\n    \"typesafe-jev\"\n  ],\n  \"modelsUsed\": [\n    \"jev-1.13.0\"\n  ],\n  \"usage\": {\n    \"input_tokens\": 1069,\n    \"output_tokens\": 97\n  },\n  \"requestFingerprint\": \"3a4626a6a24fd1aa25cea432e39acc4bcd5592a58ae4ffdae2c069e963c7ec86\",\n  \"elapsedMs\": 324.9,\n  \"jevCallMade\": true,\n  \"selected\": {\n    \"optionId\": \"h002\",\n    \"title\": \"Publication-close\",\n    \"headingPath\": [\n      \"Publication-close\"\n    ],\n    \"handle\": {\n      \"version\": 1,\n      \"id\": \"0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73\",\n      \"owner\": \"d:/dev/mssr\",\n      \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-publication.md\",\n      \"revision\": \"cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a\",\n      \"rangeId\": \"block-2\",\n      \"rangeKind\": \"block\",\n      \"startLine\": 5,\n      \"endLine\": 12,\n      \"startOffset\": 108,\n      \"endOffset\": 950,\n      \"fingerprint\": \"8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d\",\n      \"privacyClass\": \"project-metadata\"\n    }\n  }\n}"
+        }
+      ]
+    },
+    "decision": {
+      "status": "selected",
+      "candidateCount": 5,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "verification": "unverified",
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "exactFetchRequired": true,
+      "autoApplyAllowed": false,
+      "candidateRangeDiagnostics": {
+        "offered": 5,
+        "eligible": 5,
+        "oversizedOmitted": 0,
+        "maxFetchChars": 20000,
+        "lengthUnit": "utf16-code-units"
+      },
+      "rangeOverlapDiagnostics": {
+        "sameSourceRevisionPairs": 10,
+        "overlappingPairCount": 6,
+        "nestedPairCount": 6,
+        "exactRangePairCount": 0,
+        "partialOverlapPairCount": 0,
+        "pairs": [
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h002",
+            "rightRangeId": "block-2",
+            "rightRangeKind": "block",
+            "rightLines": [
+              5,
+              12
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 842
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-2/item-5",
+            "rightRangeKind": "block",
+            "rightLines": [
+              9,
+              9
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 99
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-1",
+            "rightRangeKind": "block",
+            "rightLines": [
+              3,
+              3
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 85
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "block-2/item-6",
+            "rightRangeKind": "block",
+            "rightLines": [
+              10,
+              10
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 89
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "block-2",
+            "leftRangeKind": "block",
+            "leftLines": [
+              5,
+              12
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-2/item-5",
+            "rightRangeKind": "block",
+            "rightLines": [
+              9,
+              9
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 99
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "block-2",
+            "leftRangeKind": "block",
+            "leftLines": [
+              5,
+              12
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "block-2/item-6",
+            "rightRangeKind": "block",
+            "rightLines": [
+              10,
+              10
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 89
+          }
+        ],
+        "truncated": false,
+        "mutationApplied": false
+      },
+      "finalistCount": 5,
+      "selectionMode": "single-pass",
+      "selectionPasses": 1,
+      "providerCalls": 1,
+      "providerConfidence": 1,
+      "evidenceSufficiency": 0.9,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 1069,
+        "output_tokens": 97
+      },
+      "requestFingerprint": "3a4626a6a24fd1aa25cea432e39acc4bcd5592a58ae4ffdae2c069e963c7ec86",
+      "elapsedMs": 324.9,
+      "jevCallMade": true,
+      "selected": {
+        "optionId": "h002",
+        "title": "Publication-close",
+        "headingPath": [
+          "Publication-close"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+          "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "startLine": 5,
+          "endLine": 12,
+          "startOffset": 108,
+          "endOffset": 950,
+          "fingerprint": "8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d",
+          "privacyClass": "project-metadata"
+        }
+      }
+    },
+    "error": null
+  },
+  {
+    "caseId": "PUB-TRIGGER",
+    "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+    "query": "What conditions must be met before restarting Bridge?",
+    "candidateCount": 4,
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"selected\",\n  \"candidateCount\": 4,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"verification\": \"unverified\",\n  \"confidenceCalibration\": \"uncalibrated-provider-score\",\n  \"evidenceSufficiencyCalibration\": \"uncalibrated-provider-score\",\n  \"exactFetchRequired\": true,\n  \"autoApplyAllowed\": false,\n  \"candidateRangeDiagnostics\": {\n    \"offered\": 4,\n    \"eligible\": 4,\n    \"oversizedOmitted\": 0,\n    \"maxFetchChars\": 20000,\n    \"lengthUnit\": \"utf16-code-units\"\n  },\n  \"rangeOverlapDiagnostics\": {\n    \"sameSourceRevisionPairs\": 6,\n    \"overlappingPairCount\": 4,\n    \"nestedPairCount\": 4,\n    \"exactRangePairCount\": 0,\n    \"partialOverlapPairCount\": 0,\n    \"pairs\": [\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h002\",\n        \"rightRangeId\": \"block-1\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          3,\n          3\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 85\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h003\",\n        \"rightRangeId\": \"block-2\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          5,\n          12\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 842\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h004\",\n        \"rightRangeId\": \"block-2/item-5\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          9,\n          9\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 99\n      },\n      {\n        \"leftOptionId\": \"h003\",\n        \"leftRangeId\": \"block-2\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          5,\n          12\n        ],\n        \"rightOptionId\": \"h004\",\n        \"rightRangeId\": \"block-2/item-5\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          9,\n          9\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 99\n      }\n    ],\n    \"truncated\": false,\n    \"mutationApplied\": false\n  },\n  \"finalistCount\": 4,\n  \"selectionMode\": \"single-pass\",\n  \"selectionPasses\": 1,\n  \"providerCalls\": 1,\n  \"providerConfidence\": 0.87,\n  \"evidenceSufficiency\": 0.7,\n  \"provider\": \"typesafe-jev\",\n  \"model\": \"jev-1.13.0\",\n  \"providersUsed\": [\n    \"typesafe-jev\"\n  ],\n  \"modelsUsed\": [\n    \"jev-1.13.0\"\n  ],\n  \"usage\": {\n    \"input_tokens\": 968,\n    \"output_tokens\": 87\n  },\n  \"requestFingerprint\": \"d341a0e6903fe6557a362519d1d4451cc188dc416ea120d92ae02ca14011c7ae\",\n  \"elapsedMs\": 276.5,\n  \"jevCallMade\": true,\n  \"selected\": {\n    \"optionId\": \"h004\",\n    \"title\": \"Publication-close\",\n    \"headingPath\": [\n      \"Publication-close\"\n    ],\n    \"handle\": {\n      \"version\": 1,\n      \"id\": \"e93bd3103cbf14a8a7554df9ea20c14275a63b3d6a0af8cf33de37f16d65bb52\",\n      \"owner\": \"d:/dev/mssr\",\n      \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-publication.md\",\n      \"revision\": \"cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a\",\n      \"rangeId\": \"block-2/item-5\",\n      \"rangeKind\": \"block\",\n      \"startLine\": 9,\n      \"endLine\": 9,\n      \"startOffset\": 557,\n      \"endOffset\": 656,\n      \"fingerprint\": \"7cdc45cf7059c2d8f00d4e2733be16f05958a1061ec0de6e67a135f9d2bc58b1\",\n      \"privacyClass\": \"project-metadata\"\n    }\n  }\n}"
+        }
+      ]
+    },
+    "decision": {
+      "status": "selected",
+      "candidateCount": 4,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "verification": "unverified",
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "exactFetchRequired": true,
+      "autoApplyAllowed": false,
+      "candidateRangeDiagnostics": {
+        "offered": 4,
+        "eligible": 4,
+        "oversizedOmitted": 0,
+        "maxFetchChars": 20000,
+        "lengthUnit": "utf16-code-units"
+      },
+      "rangeOverlapDiagnostics": {
+        "sameSourceRevisionPairs": 6,
+        "overlappingPairCount": 4,
+        "nestedPairCount": 4,
+        "exactRangePairCount": 0,
+        "partialOverlapPairCount": 0,
+        "pairs": [
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h002",
+            "rightRangeId": "block-1",
+            "rightRangeKind": "block",
+            "rightLines": [
+              3,
+              3
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 85
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-2",
+            "rightRangeKind": "block",
+            "rightLines": [
+              5,
+              12
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 842
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-2/item-5",
+            "rightRangeKind": "block",
+            "rightLines": [
+              9,
+              9
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 99
+          },
+          {
+            "leftOptionId": "h003",
+            "leftRangeId": "block-2",
+            "leftRangeKind": "block",
+            "leftLines": [
+              5,
+              12
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-2/item-5",
+            "rightRangeKind": "block",
+            "rightLines": [
+              9,
+              9
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 99
+          }
+        ],
+        "truncated": false,
+        "mutationApplied": false
+      },
+      "finalistCount": 4,
+      "selectionMode": "single-pass",
+      "selectionPasses": 1,
+      "providerCalls": 1,
+      "providerConfidence": 0.87,
+      "evidenceSufficiency": 0.7,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 968,
+        "output_tokens": 87
+      },
+      "requestFingerprint": "d341a0e6903fe6557a362519d1d4451cc188dc416ea120d92ae02ca14011c7ae",
+      "elapsedMs": 276.5,
+      "jevCallMade": true,
+      "selected": {
+        "optionId": "h004",
+        "title": "Publication-close",
+        "headingPath": [
+          "Publication-close"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "e93bd3103cbf14a8a7554df9ea20c14275a63b3d6a0af8cf33de37f16d65bb52",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+          "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+          "rangeId": "block-2/item-5",
+          "rangeKind": "block",
+          "startLine": 9,
+          "endLine": 9,
+          "startOffset": 557,
+          "endOffset": 656,
+          "fingerprint": "7cdc45cf7059c2d8f00d4e2733be16f05958a1061ec0de6e67a135f9d2bc58b1",
+          "privacyClass": "project-metadata"
+        }
+      }
+    },
+    "error": null
+  },
+  {
+    "caseId": "PUB-CHECKS",
+    "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+    "query": "Which checks should be performed after restarting Bridge?",
+    "candidateCount": 3,
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"selected\",\n  \"candidateCount\": 3,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"verification\": \"unverified\",\n  \"confidenceCalibration\": \"uncalibrated-provider-score\",\n  \"evidenceSufficiencyCalibration\": \"uncalibrated-provider-score\",\n  \"exactFetchRequired\": true,\n  \"autoApplyAllowed\": false,\n  \"candidateRangeDiagnostics\": {\n    \"offered\": 3,\n    \"eligible\": 3,\n    \"oversizedOmitted\": 0,\n    \"maxFetchChars\": 20000,\n    \"lengthUnit\": \"utf16-code-units\"\n  },\n  \"rangeOverlapDiagnostics\": {\n    \"sameSourceRevisionPairs\": 3,\n    \"overlappingPairCount\": 3,\n    \"nestedPairCount\": 3,\n    \"exactRangePairCount\": 0,\n    \"partialOverlapPairCount\": 0,\n    \"pairs\": [\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h002\",\n        \"rightRangeId\": \"block-2\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          5,\n          12\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 842\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h003\",\n        \"rightRangeId\": \"block-2/item-5\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          9,\n          9\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 99\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-2\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          5,\n          12\n        ],\n        \"rightOptionId\": \"h003\",\n        \"rightRangeId\": \"block-2/item-5\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          9,\n          9\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 99\n      }\n    ],\n    \"truncated\": false,\n    \"mutationApplied\": false\n  },\n  \"finalistCount\": 3,\n  \"selectionMode\": \"single-pass\",\n  \"selectionPasses\": 1,\n  \"providerCalls\": 1,\n  \"providerConfidence\": 1,\n  \"evidenceSufficiency\": 0.84,\n  \"provider\": \"typesafe-jev\",\n  \"model\": \"jev-1.13.0\",\n  \"providersUsed\": [\n    \"typesafe-jev\"\n  ],\n  \"modelsUsed\": [\n    \"jev-1.13.0\"\n  ],\n  \"usage\": {\n    \"input_tokens\": 881,\n    \"output_tokens\": 77\n  },\n  \"requestFingerprint\": \"54b5edbd879632887deb2200943e2591f88215ac122e80174f0f6920ad6970e3\",\n  \"elapsedMs\": 263.1,\n  \"jevCallMade\": true,\n  \"selected\": {\n    \"optionId\": \"h002\",\n    \"title\": \"Publication-close\",\n    \"headingPath\": [\n      \"Publication-close\"\n    ],\n    \"handle\": {\n      \"version\": 1,\n      \"id\": \"0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73\",\n      \"owner\": \"d:/dev/mssr\",\n      \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-publication.md\",\n      \"revision\": \"cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a\",\n      \"rangeId\": \"block-2\",\n      \"rangeKind\": \"block\",\n      \"startLine\": 5,\n      \"endLine\": 12,\n      \"startOffset\": 108,\n      \"endOffset\": 950,\n      \"fingerprint\": \"8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d\",\n      \"privacyClass\": \"project-metadata\"\n    }\n  }\n}"
+        }
+      ]
+    },
+    "decision": {
+      "status": "selected",
+      "candidateCount": 3,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "verification": "unverified",
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "exactFetchRequired": true,
+      "autoApplyAllowed": false,
+      "candidateRangeDiagnostics": {
+        "offered": 3,
+        "eligible": 3,
+        "oversizedOmitted": 0,
+        "maxFetchChars": 20000,
+        "lengthUnit": "utf16-code-units"
+      },
+      "rangeOverlapDiagnostics": {
+        "sameSourceRevisionPairs": 3,
+        "overlappingPairCount": 3,
+        "nestedPairCount": 3,
+        "exactRangePairCount": 0,
+        "partialOverlapPairCount": 0,
+        "pairs": [
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h002",
+            "rightRangeId": "block-2",
+            "rightRangeKind": "block",
+            "rightLines": [
+              5,
+              12
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 842
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-2/item-5",
+            "rightRangeKind": "block",
+            "rightLines": [
+              9,
+              9
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 99
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "block-2",
+            "leftRangeKind": "block",
+            "leftLines": [
+              5,
+              12
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-2/item-5",
+            "rightRangeKind": "block",
+            "rightLines": [
+              9,
+              9
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 99
+          }
+        ],
+        "truncated": false,
+        "mutationApplied": false
+      },
+      "finalistCount": 3,
+      "selectionMode": "single-pass",
+      "selectionPasses": 1,
+      "providerCalls": 1,
+      "providerConfidence": 1,
+      "evidenceSufficiency": 0.84,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 881,
+        "output_tokens": 77
+      },
+      "requestFingerprint": "54b5edbd879632887deb2200943e2591f88215ac122e80174f0f6920ad6970e3",
+      "elapsedMs": 263.1,
+      "jevCallMade": true,
+      "selected": {
+        "optionId": "h002",
+        "title": "Publication-close",
+        "headingPath": [
+          "Publication-close"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+          "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "startLine": 5,
+          "endLine": 12,
+          "startOffset": 108,
+          "endOffset": 950,
+          "fingerprint": "8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d",
+          "privacyClass": "project-metadata"
+        }
+      }
+    },
+    "error": null
+  },
+  {
+    "caseId": "INCIDENT-COMPOUND",
+    "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+    "query": "Which canonical ledger should receive routing, Bridge, project-only, and procedural-skill defects?",
+    "candidateCount": 7,
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"selected\",\n  \"candidateCount\": 7,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"verification\": \"unverified\",\n  \"confidenceCalibration\": \"uncalibrated-provider-score\",\n  \"evidenceSufficiencyCalibration\": \"uncalibrated-provider-score\",\n  \"exactFetchRequired\": true,\n  \"autoApplyAllowed\": false,\n  \"candidateRangeDiagnostics\": {\n    \"offered\": 7,\n    \"eligible\": 7,\n    \"oversizedOmitted\": 0,\n    \"maxFetchChars\": 20000,\n    \"lengthUnit\": \"utf16-code-units\"\n  },\n  \"rangeOverlapDiagnostics\": {\n    \"sameSourceRevisionPairs\": 21,\n    \"overlappingPairCount\": 10,\n    \"nestedPairCount\": 10,\n    \"exactRangePairCount\": 0,\n    \"partialOverlapPairCount\": 0,\n    \"pairs\": [\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h002\",\n        \"rightRangeId\": \"block-3\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          7,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 306\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h003\",\n        \"rightRangeId\": \"block-2\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          5,\n          5\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 28\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h004\",\n        \"rightRangeId\": \"block-3/item-3\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          9,\n          9\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 63\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h005\",\n        \"rightRangeId\": \"block-3/item-4\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          10,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 92\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h006\",\n        \"rightRangeId\": \"block-3/item-1\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          7,\n          7\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 70\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h007\",\n        \"rightRangeId\": \"block-3/item-2\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          8,\n          8\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 78\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-3\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          7,\n          10\n        ],\n        \"rightOptionId\": \"h004\",\n        \"rightRangeId\": \"block-3/item-3\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          9,\n          9\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 63\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-3\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          7,\n          10\n        ],\n        \"rightOptionId\": \"h005\",\n        \"rightRangeId\": \"block-3/item-4\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          10,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 92\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-3\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          7,\n          10\n        ],\n        \"rightOptionId\": \"h006\",\n        \"rightRangeId\": \"block-3/item-1\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          7,\n          7\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 70\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-3\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          7,\n          10\n        ],\n        \"rightOptionId\": \"h007\",\n        \"rightRangeId\": \"block-3/item-2\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          8,\n          8\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 78\n      }\n    ],\n    \"truncated\": false,\n    \"mutationApplied\": false\n  },\n  \"finalistCount\": 7,\n  \"selectionMode\": \"single-pass\",\n  \"selectionPasses\": 1,\n  \"providerCalls\": 1,\n  \"providerConfidence\": 0.83,\n  \"evidenceSufficiency\": 0.9,\n  \"provider\": \"typesafe-jev\",\n  \"model\": \"jev-1.13.0\",\n  \"providersUsed\": [\n    \"typesafe-jev\"\n  ],\n  \"modelsUsed\": [\n    \"jev-1.13.0\"\n  ],\n  \"usage\": {\n    \"input_tokens\": 1283,\n    \"output_tokens\": 117\n  },\n  \"requestFingerprint\": \"a518614d56f45fe1691714fdce9bfdcfca18f503b012660f0846d805f7fef6c8\",\n  \"elapsedMs\": 321.6,\n  \"jevCallMade\": true,\n  \"selected\": {\n    \"optionId\": \"h002\",\n    \"title\": \"Incident-ledger\",\n    \"headingPath\": [\n      \"Incident-ledger\"\n    ],\n    \"handle\": {\n      \"version\": 1,\n      \"id\": \"f446af129a7f84212c8140a8d7fb660a00ec3d3f006deac130a3b95f7ed250bd\",\n      \"owner\": \"d:/dev/mssr\",\n      \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md\",\n      \"revision\": \"d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5\",\n      \"rangeId\": \"block-3\",\n      \"rangeKind\": \"block\",\n      \"startLine\": 7,\n      \"endLine\": 10,\n      \"startOffset\": 102,\n      \"endOffset\": 408,\n      \"fingerprint\": \"fef7236153a28c909d290616f125a1ae2d5355df8c186178599a03186271b155\",\n      \"privacyClass\": \"project-metadata\"\n    }\n  }\n}"
+        }
+      ]
+    },
+    "decision": {
+      "status": "selected",
+      "candidateCount": 7,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "verification": "unverified",
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "exactFetchRequired": true,
+      "autoApplyAllowed": false,
+      "candidateRangeDiagnostics": {
+        "offered": 7,
+        "eligible": 7,
+        "oversizedOmitted": 0,
+        "maxFetchChars": 20000,
+        "lengthUnit": "utf16-code-units"
+      },
+      "rangeOverlapDiagnostics": {
+        "sameSourceRevisionPairs": 21,
+        "overlappingPairCount": 10,
+        "nestedPairCount": 10,
+        "exactRangePairCount": 0,
+        "partialOverlapPairCount": 0,
+        "pairs": [
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h002",
+            "rightRangeId": "block-3",
+            "rightRangeKind": "block",
+            "rightLines": [
+              7,
+              10
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 306
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-2",
+            "rightRangeKind": "block",
+            "rightLines": [
+              5,
+              5
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 28
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-3/item-3",
+            "rightRangeKind": "block",
+            "rightLines": [
+              9,
+              9
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 63
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "block-3/item-4",
+            "rightRangeKind": "block",
+            "rightLines": [
+              10,
+              10
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 92
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h006",
+            "rightRangeId": "block-3/item-1",
+            "rightRangeKind": "block",
+            "rightLines": [
+              7,
+              7
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 70
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h007",
+            "rightRangeId": "block-3/item-2",
+            "rightRangeKind": "block",
+            "rightLines": [
+              8,
+              8
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 78
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "block-3",
+            "leftRangeKind": "block",
+            "leftLines": [
+              7,
+              10
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-3/item-3",
+            "rightRangeKind": "block",
+            "rightLines": [
+              9,
+              9
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 63
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "block-3",
+            "leftRangeKind": "block",
+            "leftLines": [
+              7,
+              10
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "block-3/item-4",
+            "rightRangeKind": "block",
+            "rightLines": [
+              10,
+              10
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 92
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "block-3",
+            "leftRangeKind": "block",
+            "leftLines": [
+              7,
+              10
+            ],
+            "rightOptionId": "h006",
+            "rightRangeId": "block-3/item-1",
+            "rightRangeKind": "block",
+            "rightLines": [
+              7,
+              7
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 70
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "block-3",
+            "leftRangeKind": "block",
+            "leftLines": [
+              7,
+              10
+            ],
+            "rightOptionId": "h007",
+            "rightRangeId": "block-3/item-2",
+            "rightRangeKind": "block",
+            "rightLines": [
+              8,
+              8
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 78
+          }
+        ],
+        "truncated": false,
+        "mutationApplied": false
+      },
+      "finalistCount": 7,
+      "selectionMode": "single-pass",
+      "selectionPasses": 1,
+      "providerCalls": 1,
+      "providerConfidence": 0.83,
+      "evidenceSufficiency": 0.9,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 1283,
+        "output_tokens": 117
+      },
+      "requestFingerprint": "a518614d56f45fe1691714fdce9bfdcfca18f503b012660f0846d805f7fef6c8",
+      "elapsedMs": 321.6,
+      "jevCallMade": true,
+      "selected": {
+        "optionId": "h002",
+        "title": "Incident-ledger",
+        "headingPath": [
+          "Incident-ledger"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "f446af129a7f84212c8140a8d7fb660a00ec3d3f006deac130a3b95f7ed250bd",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+          "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "startLine": 7,
+          "endLine": 10,
+          "startOffset": 102,
+          "endOffset": 408,
+          "fingerprint": "fef7236153a28c909d290616f125a1ae2d5355df8c186178599a03186271b155",
+          "privacyClass": "project-metadata"
+        }
+      }
+    },
+    "error": null
+  },
+  {
+    "caseId": "INCIDENT-ROUTING",
+    "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+    "query": "What canonical incident ledger is named for routing and fixture issues?",
+    "candidateCount": 6,
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"selected\",\n  \"candidateCount\": 6,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"verification\": \"unverified\",\n  \"confidenceCalibration\": \"uncalibrated-provider-score\",\n  \"evidenceSufficiencyCalibration\": \"uncalibrated-provider-score\",\n  \"exactFetchRequired\": true,\n  \"autoApplyAllowed\": false,\n  \"candidateRangeDiagnostics\": {\n    \"offered\": 6,\n    \"eligible\": 6,\n    \"oversizedOmitted\": 0,\n    \"maxFetchChars\": 20000,\n    \"lengthUnit\": \"utf16-code-units\"\n  },\n  \"rangeOverlapDiagnostics\": {\n    \"sameSourceRevisionPairs\": 15,\n    \"overlappingPairCount\": 8,\n    \"nestedPairCount\": 8,\n    \"exactRangePairCount\": 0,\n    \"partialOverlapPairCount\": 0,\n    \"pairs\": [\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h002\",\n        \"rightRangeId\": \"block-3\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          7,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 306\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h003\",\n        \"rightRangeId\": \"block-2\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          5,\n          5\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 28\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h004\",\n        \"rightRangeId\": \"block-3/item-1\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          7,\n          7\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 70\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h005\",\n        \"rightRangeId\": \"block-3/item-3\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          9,\n          9\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 63\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h006\",\n        \"rightRangeId\": \"block-3/item-4\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          10,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 92\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-3\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          7,\n          10\n        ],\n        \"rightOptionId\": \"h004\",\n        \"rightRangeId\": \"block-3/item-1\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          7,\n          7\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 70\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-3\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          7,\n          10\n        ],\n        \"rightOptionId\": \"h005\",\n        \"rightRangeId\": \"block-3/item-3\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          9,\n          9\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 63\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-3\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          7,\n          10\n        ],\n        \"rightOptionId\": \"h006\",\n        \"rightRangeId\": \"block-3/item-4\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          10,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 92\n      }\n    ],\n    \"truncated\": false,\n    \"mutationApplied\": false\n  },\n  \"finalistCount\": 6,\n  \"selectionMode\": \"single-pass\",\n  \"selectionPasses\": 1,\n  \"providerCalls\": 1,\n  \"providerConfidence\": 0.52,\n  \"evidenceSufficiency\": 0.94,\n  \"provider\": \"typesafe-jev\",\n  \"model\": \"jev-1.13.0\",\n  \"providersUsed\": [\n    \"typesafe-jev\"\n  ],\n  \"modelsUsed\": [\n    \"jev-1.13.0\"\n  ],\n  \"usage\": {\n    \"input_tokens\": 1178,\n    \"output_tokens\": 107\n  },\n  \"requestFingerprint\": \"930ec050bf27bd666c24d95e54e6b28f2f541805abe746135293f453c2797b37\",\n  \"elapsedMs\": 297.8,\n  \"jevCallMade\": true,\n  \"selected\": {\n    \"optionId\": \"h001\",\n    \"title\": \"Incident-ledger\",\n    \"headingPath\": [\n      \"Incident-ledger\"\n    ],\n    \"handle\": {\n      \"version\": 1,\n      \"id\": \"5e57c8641e11a21838fa28d743d2f0b86defbfd3bea5bc43e4a9f982851cd9f5\",\n      \"owner\": \"d:/dev/mssr\",\n      \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md\",\n      \"revision\": \"d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5\",\n      \"rangeId\": \"heading-1\",\n      \"rangeKind\": \"section\",\n      \"startLine\": 1,\n      \"endLine\": 12,\n      \"startOffset\": 0,\n      \"endOffset\": 635,\n      \"fingerprint\": \"d1624f7592de0f29e55bf96dcbbb1d7dbe766586f4453ce06a0932a412da19b8\",\n      \"privacyClass\": \"project-metadata\"\n    }\n  }\n}"
+        }
+      ]
+    },
+    "decision": {
+      "status": "selected",
+      "candidateCount": 6,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "verification": "unverified",
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "exactFetchRequired": true,
+      "autoApplyAllowed": false,
+      "candidateRangeDiagnostics": {
+        "offered": 6,
+        "eligible": 6,
+        "oversizedOmitted": 0,
+        "maxFetchChars": 20000,
+        "lengthUnit": "utf16-code-units"
+      },
+      "rangeOverlapDiagnostics": {
+        "sameSourceRevisionPairs": 15,
+        "overlappingPairCount": 8,
+        "nestedPairCount": 8,
+        "exactRangePairCount": 0,
+        "partialOverlapPairCount": 0,
+        "pairs": [
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h002",
+            "rightRangeId": "block-3",
+            "rightRangeKind": "block",
+            "rightLines": [
+              7,
+              10
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 306
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-2",
+            "rightRangeKind": "block",
+            "rightLines": [
+              5,
+              5
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 28
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-3/item-1",
+            "rightRangeKind": "block",
+            "rightLines": [
+              7,
+              7
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 70
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "block-3/item-3",
+            "rightRangeKind": "block",
+            "rightLines": [
+              9,
+              9
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 63
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h006",
+            "rightRangeId": "block-3/item-4",
+            "rightRangeKind": "block",
+            "rightLines": [
+              10,
+              10
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 92
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "block-3",
+            "leftRangeKind": "block",
+            "leftLines": [
+              7,
+              10
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-3/item-1",
+            "rightRangeKind": "block",
+            "rightLines": [
+              7,
+              7
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 70
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "block-3",
+            "leftRangeKind": "block",
+            "leftLines": [
+              7,
+              10
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "block-3/item-3",
+            "rightRangeKind": "block",
+            "rightLines": [
+              9,
+              9
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 63
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "block-3",
+            "leftRangeKind": "block",
+            "leftLines": [
+              7,
+              10
+            ],
+            "rightOptionId": "h006",
+            "rightRangeId": "block-3/item-4",
+            "rightRangeKind": "block",
+            "rightLines": [
+              10,
+              10
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 92
+          }
+        ],
+        "truncated": false,
+        "mutationApplied": false
+      },
+      "finalistCount": 6,
+      "selectionMode": "single-pass",
+      "selectionPasses": 1,
+      "providerCalls": 1,
+      "providerConfidence": 0.52,
+      "evidenceSufficiency": 0.94,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 1178,
+        "output_tokens": 107
+      },
+      "requestFingerprint": "930ec050bf27bd666c24d95e54e6b28f2f541805abe746135293f453c2797b37",
+      "elapsedMs": 297.8,
+      "jevCallMade": true,
+      "selected": {
+        "optionId": "h001",
+        "title": "Incident-ledger",
+        "headingPath": [
+          "Incident-ledger"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "5e57c8641e11a21838fa28d743d2f0b86defbfd3bea5bc43e4a9f982851cd9f5",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+          "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 12,
+          "startOffset": 0,
+          "endOffset": 635,
+          "fingerprint": "d1624f7592de0f29e55bf96dcbbb1d7dbe766586f4453ce06a0932a412da19b8",
+          "privacyClass": "project-metadata"
+        }
+      }
+    },
+    "error": null
+  },
+  {
+    "caseId": "INCIDENT-BRIDGE",
+    "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+    "query": "Which incident ledger owns Bridge tool, transport, or lifecycle issues?",
+    "candidateCount": 6,
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"selected\",\n  \"candidateCount\": 6,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"verification\": \"unverified\",\n  \"confidenceCalibration\": \"uncalibrated-provider-score\",\n  \"evidenceSufficiencyCalibration\": \"uncalibrated-provider-score\",\n  \"exactFetchRequired\": true,\n  \"autoApplyAllowed\": false,\n  \"candidateRangeDiagnostics\": {\n    \"offered\": 6,\n    \"eligible\": 6,\n    \"oversizedOmitted\": 0,\n    \"maxFetchChars\": 20000,\n    \"lengthUnit\": \"utf16-code-units\"\n  },\n  \"rangeOverlapDiagnostics\": {\n    \"sameSourceRevisionPairs\": 15,\n    \"overlappingPairCount\": 8,\n    \"nestedPairCount\": 8,\n    \"exactRangePairCount\": 0,\n    \"partialOverlapPairCount\": 0,\n    \"pairs\": [\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h002\",\n        \"rightRangeId\": \"block-3\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          7,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 306\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h003\",\n        \"rightRangeId\": \"block-3/item-2\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          8,\n          8\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 78\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h004\",\n        \"rightRangeId\": \"block-2\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          5,\n          5\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 28\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h005\",\n        \"rightRangeId\": \"block-3/item-3\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          9,\n          9\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 63\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h006\",\n        \"rightRangeId\": \"block-3/item-4\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          10,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 92\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-3\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          7,\n          10\n        ],\n        \"rightOptionId\": \"h003\",\n        \"rightRangeId\": \"block-3/item-2\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          8,\n          8\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 78\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-3\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          7,\n          10\n        ],\n        \"rightOptionId\": \"h005\",\n        \"rightRangeId\": \"block-3/item-3\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          9,\n          9\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 63\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-3\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          7,\n          10\n        ],\n        \"rightOptionId\": \"h006\",\n        \"rightRangeId\": \"block-3/item-4\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          10,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 92\n      }\n    ],\n    \"truncated\": false,\n    \"mutationApplied\": false\n  },\n  \"finalistCount\": 6,\n  \"selectionMode\": \"single-pass\",\n  \"selectionPasses\": 1,\n  \"providerCalls\": 1,\n  \"providerConfidence\": 0.84,\n  \"evidenceSufficiency\": 0.97,\n  \"provider\": \"typesafe-jev\",\n  \"model\": \"jev-1.13.0\",\n  \"providersUsed\": [\n    \"typesafe-jev\"\n  ],\n  \"modelsUsed\": [\n    \"jev-1.13.0\"\n  ],\n  \"usage\": {\n    \"input_tokens\": 1179,\n    \"output_tokens\": 107\n  },\n  \"requestFingerprint\": \"8b7084eb76a76bdd673cb3ef76a8dfffb39129d244eb062c4c601033e325b131\",\n  \"elapsedMs\": 266.8,\n  \"jevCallMade\": true,\n  \"selected\": {\n    \"optionId\": \"h003\",\n    \"title\": \"Incident-ledger\",\n    \"headingPath\": [\n      \"Incident-ledger\"\n    ],\n    \"handle\": {\n      \"version\": 1,\n      \"id\": \"40eaf6ad89cec943414d2a2fbf9a7ac3c19c43328c9cce6589b7e90d43156cd5\",\n      \"owner\": \"d:/dev/mssr\",\n      \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md\",\n      \"revision\": \"d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5\",\n      \"rangeId\": \"block-3/item-2\",\n      \"rangeKind\": \"block\",\n      \"startLine\": 8,\n      \"endLine\": 8,\n      \"startOffset\": 173,\n      \"endOffset\": 251,\n      \"fingerprint\": \"bb05dc3476c0a67564c60c024b8e5056319a4fa00d88d2f7333a40bd770732d7\",\n      \"privacyClass\": \"project-metadata\"\n    }\n  }\n}"
+        }
+      ]
+    },
+    "decision": {
+      "status": "selected",
+      "candidateCount": 6,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "verification": "unverified",
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "exactFetchRequired": true,
+      "autoApplyAllowed": false,
+      "candidateRangeDiagnostics": {
+        "offered": 6,
+        "eligible": 6,
+        "oversizedOmitted": 0,
+        "maxFetchChars": 20000,
+        "lengthUnit": "utf16-code-units"
+      },
+      "rangeOverlapDiagnostics": {
+        "sameSourceRevisionPairs": 15,
+        "overlappingPairCount": 8,
+        "nestedPairCount": 8,
+        "exactRangePairCount": 0,
+        "partialOverlapPairCount": 0,
+        "pairs": [
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h002",
+            "rightRangeId": "block-3",
+            "rightRangeKind": "block",
+            "rightLines": [
+              7,
+              10
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 306
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-3/item-2",
+            "rightRangeKind": "block",
+            "rightLines": [
+              8,
+              8
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 78
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-2",
+            "rightRangeKind": "block",
+            "rightLines": [
+              5,
+              5
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 28
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "block-3/item-3",
+            "rightRangeKind": "block",
+            "rightLines": [
+              9,
+              9
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 63
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h006",
+            "rightRangeId": "block-3/item-4",
+            "rightRangeKind": "block",
+            "rightLines": [
+              10,
+              10
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 92
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "block-3",
+            "leftRangeKind": "block",
+            "leftLines": [
+              7,
+              10
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-3/item-2",
+            "rightRangeKind": "block",
+            "rightLines": [
+              8,
+              8
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 78
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "block-3",
+            "leftRangeKind": "block",
+            "leftLines": [
+              7,
+              10
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "block-3/item-3",
+            "rightRangeKind": "block",
+            "rightLines": [
+              9,
+              9
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 63
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "block-3",
+            "leftRangeKind": "block",
+            "leftLines": [
+              7,
+              10
+            ],
+            "rightOptionId": "h006",
+            "rightRangeId": "block-3/item-4",
+            "rightRangeKind": "block",
+            "rightLines": [
+              10,
+              10
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 92
+          }
+        ],
+        "truncated": false,
+        "mutationApplied": false
+      },
+      "finalistCount": 6,
+      "selectionMode": "single-pass",
+      "selectionPasses": 1,
+      "providerCalls": 1,
+      "providerConfidence": 0.84,
+      "evidenceSufficiency": 0.97,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 1179,
+        "output_tokens": 107
+      },
+      "requestFingerprint": "8b7084eb76a76bdd673cb3ef76a8dfffb39129d244eb062c4c601033e325b131",
+      "elapsedMs": 266.8,
+      "jevCallMade": true,
+      "selected": {
+        "optionId": "h003",
+        "title": "Incident-ledger",
+        "headingPath": [
+          "Incident-ledger"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "40eaf6ad89cec943414d2a2fbf9a7ac3c19c43328c9cce6589b7e90d43156cd5",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+          "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+          "rangeId": "block-3/item-2",
+          "rangeKind": "block",
+          "startLine": 8,
+          "endLine": 8,
+          "startOffset": 173,
+          "endOffset": 251,
+          "fingerprint": "bb05dc3476c0a67564c60c024b8e5056319a4fa00d88d2f7333a40bd770732d7",
+          "privacyClass": "project-metadata"
+        }
+      }
+    },
+    "error": null
+  },
+  {
+    "caseId": "INCIDENT-PROJECT",
+    "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+    "query": "What project-owned record options are listed for project-only defects?",
+    "candidateCount": 5,
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"selected\",\n  \"candidateCount\": 5,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"verification\": \"unverified\",\n  \"confidenceCalibration\": \"uncalibrated-provider-score\",\n  \"evidenceSufficiencyCalibration\": \"uncalibrated-provider-score\",\n  \"exactFetchRequired\": true,\n  \"autoApplyAllowed\": false,\n  \"candidateRangeDiagnostics\": {\n    \"offered\": 5,\n    \"eligible\": 5,\n    \"oversizedOmitted\": 0,\n    \"maxFetchChars\": 20000,\n    \"lengthUnit\": \"utf16-code-units\"\n  },\n  \"rangeOverlapDiagnostics\": {\n    \"sameSourceRevisionPairs\": 10,\n    \"overlappingPairCount\": 6,\n    \"nestedPairCount\": 6,\n    \"exactRangePairCount\": 0,\n    \"partialOverlapPairCount\": 0,\n    \"pairs\": [\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h002\",\n        \"rightRangeId\": \"block-3\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          7,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 306\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h003\",\n        \"rightRangeId\": \"block-3/item-3\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          9,\n          9\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 63\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h004\",\n        \"rightRangeId\": \"block-3/item-4\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          10,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 92\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h005\",\n        \"rightRangeId\": \"block-4\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          12,\n          12\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 224\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-3\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          7,\n          10\n        ],\n        \"rightOptionId\": \"h003\",\n        \"rightRangeId\": \"block-3/item-3\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          9,\n          9\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 63\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-3\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          7,\n          10\n        ],\n        \"rightOptionId\": \"h004\",\n        \"rightRangeId\": \"block-3/item-4\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          10,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 92\n      }\n    ],\n    \"truncated\": false,\n    \"mutationApplied\": false\n  },\n  \"finalistCount\": 5,\n  \"selectionMode\": \"single-pass\",\n  \"selectionPasses\": 1,\n  \"providerCalls\": 1,\n  \"providerConfidence\": 0.92,\n  \"evidenceSufficiency\": 0.92,\n  \"provider\": \"typesafe-jev\",\n  \"model\": \"jev-1.13.0\",\n  \"providersUsed\": [\n    \"typesafe-jev\"\n  ],\n  \"modelsUsed\": [\n    \"jev-1.13.0\"\n  ],\n  \"usage\": {\n    \"input_tokens\": 1108,\n    \"output_tokens\": 97\n  },\n  \"requestFingerprint\": \"81e92dc6536464fca123dab1dea4b3b105e06dfc4128488ae54ce8ebda4d7131\",\n  \"elapsedMs\": 339.6,\n  \"jevCallMade\": true,\n  \"selected\": {\n    \"optionId\": \"h003\",\n    \"title\": \"Incident-ledger\",\n    \"headingPath\": [\n      \"Incident-ledger\"\n    ],\n    \"handle\": {\n      \"version\": 1,\n      \"id\": \"414776640d6b774f66ec18921f410b441f081dc52e59047c371058594ab46508\",\n      \"owner\": \"d:/dev/mssr\",\n      \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md\",\n      \"revision\": \"d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5\",\n      \"rangeId\": \"block-3/item-3\",\n      \"rangeKind\": \"block\",\n      \"startLine\": 9,\n      \"endLine\": 9,\n      \"startOffset\": 252,\n      \"endOffset\": 315,\n      \"fingerprint\": \"7410f36034e88f3fef030c45e2c465c91781402b77851b0faa11eecdc9624f79\",\n      \"privacyClass\": \"project-metadata\"\n    }\n  }\n}"
+        }
+      ]
+    },
+    "decision": {
+      "status": "selected",
+      "candidateCount": 5,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "verification": "unverified",
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "exactFetchRequired": true,
+      "autoApplyAllowed": false,
+      "candidateRangeDiagnostics": {
+        "offered": 5,
+        "eligible": 5,
+        "oversizedOmitted": 0,
+        "maxFetchChars": 20000,
+        "lengthUnit": "utf16-code-units"
+      },
+      "rangeOverlapDiagnostics": {
+        "sameSourceRevisionPairs": 10,
+        "overlappingPairCount": 6,
+        "nestedPairCount": 6,
+        "exactRangePairCount": 0,
+        "partialOverlapPairCount": 0,
+        "pairs": [
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h002",
+            "rightRangeId": "block-3",
+            "rightRangeKind": "block",
+            "rightLines": [
+              7,
+              10
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 306
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-3/item-3",
+            "rightRangeKind": "block",
+            "rightLines": [
+              9,
+              9
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 63
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-3/item-4",
+            "rightRangeKind": "block",
+            "rightLines": [
+              10,
+              10
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 92
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "block-4",
+            "rightRangeKind": "block",
+            "rightLines": [
+              12,
+              12
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 224
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "block-3",
+            "leftRangeKind": "block",
+            "leftLines": [
+              7,
+              10
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-3/item-3",
+            "rightRangeKind": "block",
+            "rightLines": [
+              9,
+              9
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 63
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "block-3",
+            "leftRangeKind": "block",
+            "leftLines": [
+              7,
+              10
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-3/item-4",
+            "rightRangeKind": "block",
+            "rightLines": [
+              10,
+              10
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 92
+          }
+        ],
+        "truncated": false,
+        "mutationApplied": false
+      },
+      "finalistCount": 5,
+      "selectionMode": "single-pass",
+      "selectionPasses": 1,
+      "providerCalls": 1,
+      "providerConfidence": 0.92,
+      "evidenceSufficiency": 0.92,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 1108,
+        "output_tokens": 97
+      },
+      "requestFingerprint": "81e92dc6536464fca123dab1dea4b3b105e06dfc4128488ae54ce8ebda4d7131",
+      "elapsedMs": 339.6,
+      "jevCallMade": true,
+      "selected": {
+        "optionId": "h003",
+        "title": "Incident-ledger",
+        "headingPath": [
+          "Incident-ledger"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "414776640d6b774f66ec18921f410b441f081dc52e59047c371058594ab46508",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+          "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+          "rangeId": "block-3/item-3",
+          "rangeKind": "block",
+          "startLine": 9,
+          "endLine": 9,
+          "startOffset": 252,
+          "endOffset": 315,
+          "fingerprint": "7410f36034e88f3fef030c45e2c465c91781402b77851b0faa11eecdc9624f79",
+          "privacyClass": "project-metadata"
+        }
+      }
+    },
+    "error": null
+  },
+  {
+    "caseId": "INCIDENT-SKILL",
+    "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+    "query": "Where are procedural skill defects recorded, and when is the system ledger relevant?",
+    "candidateCount": 5,
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"selected\",\n  \"candidateCount\": 5,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"verification\": \"unverified\",\n  \"confidenceCalibration\": \"uncalibrated-provider-score\",\n  \"evidenceSufficiencyCalibration\": \"uncalibrated-provider-score\",\n  \"exactFetchRequired\": true,\n  \"autoApplyAllowed\": false,\n  \"candidateRangeDiagnostics\": {\n    \"offered\": 5,\n    \"eligible\": 5,\n    \"oversizedOmitted\": 0,\n    \"maxFetchChars\": 20000,\n    \"lengthUnit\": \"utf16-code-units\"\n  },\n  \"rangeOverlapDiagnostics\": {\n    \"sameSourceRevisionPairs\": 10,\n    \"overlappingPairCount\": 6,\n    \"nestedPairCount\": 6,\n    \"exactRangePairCount\": 0,\n    \"partialOverlapPairCount\": 0,\n    \"pairs\": [\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h002\",\n        \"rightRangeId\": \"block-3\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          7,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 306\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h003\",\n        \"rightRangeId\": \"block-3/item-4\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          10,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 92\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h004\",\n        \"rightRangeId\": \"block-2\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          5,\n          5\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 28\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          12\n        ],\n        \"rightOptionId\": \"h005\",\n        \"rightRangeId\": \"block-3/item-3\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          9,\n          9\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 63\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-3\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          7,\n          10\n        ],\n        \"rightOptionId\": \"h003\",\n        \"rightRangeId\": \"block-3/item-4\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          10,\n          10\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 92\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"block-3\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          7,\n          10\n        ],\n        \"rightOptionId\": \"h005\",\n        \"rightRangeId\": \"block-3/item-3\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          9,\n          9\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 63\n      }\n    ],\n    \"truncated\": false,\n    \"mutationApplied\": false\n  },\n  \"finalistCount\": 5,\n  \"selectionMode\": \"single-pass\",\n  \"selectionPasses\": 1,\n  \"providerCalls\": 1,\n  \"providerConfidence\": 0.69,\n  \"evidenceSufficiency\": 0.76,\n  \"provider\": \"typesafe-jev\",\n  \"model\": \"jev-1.13.0\",\n  \"providersUsed\": [\n    \"typesafe-jev\"\n  ],\n  \"modelsUsed\": [\n    \"jev-1.13.0\"\n  ],\n  \"usage\": {\n    \"input_tokens\": 1062,\n    \"output_tokens\": 97\n  },\n  \"requestFingerprint\": \"7ebc2df13af6c7c72f37c2a2d7ce23bbd91f77d65fc97f1e329f2e47d9d3e0cc\",\n  \"elapsedMs\": 280.3,\n  \"jevCallMade\": true,\n  \"selected\": {\n    \"optionId\": \"h003\",\n    \"title\": \"Incident-ledger\",\n    \"headingPath\": [\n      \"Incident-ledger\"\n    ],\n    \"handle\": {\n      \"version\": 1,\n      \"id\": \"21f5e20838e6abbf57dc714aadc88bef5d6643c0be6f1a1c76bb124c44db3fe4\",\n      \"owner\": \"d:/dev/mssr\",\n      \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md\",\n      \"revision\": \"d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5\",\n      \"rangeId\": \"block-3/item-4\",\n      \"rangeKind\": \"block\",\n      \"startLine\": 10,\n      \"endLine\": 10,\n      \"startOffset\": 316,\n      \"endOffset\": 408,\n      \"fingerprint\": \"4060befc589f1226306c6e32b2c1aab4fa20a5808115130ded7cb413295ec503\",\n      \"privacyClass\": \"project-metadata\"\n    }\n  }\n}"
+        }
+      ]
+    },
+    "decision": {
+      "status": "selected",
+      "candidateCount": 5,
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "verification": "unverified",
+      "confidenceCalibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+      "exactFetchRequired": true,
+      "autoApplyAllowed": false,
+      "candidateRangeDiagnostics": {
+        "offered": 5,
+        "eligible": 5,
+        "oversizedOmitted": 0,
+        "maxFetchChars": 20000,
+        "lengthUnit": "utf16-code-units"
+      },
+      "rangeOverlapDiagnostics": {
+        "sameSourceRevisionPairs": 10,
+        "overlappingPairCount": 6,
+        "nestedPairCount": 6,
+        "exactRangePairCount": 0,
+        "partialOverlapPairCount": 0,
+        "pairs": [
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h002",
+            "rightRangeId": "block-3",
+            "rightRangeKind": "block",
+            "rightLines": [
+              7,
+              10
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 306
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-3/item-4",
+            "rightRangeKind": "block",
+            "rightLines": [
+              10,
+              10
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 92
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h004",
+            "rightRangeId": "block-2",
+            "rightRangeKind": "block",
+            "rightLines": [
+              5,
+              5
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 28
+          },
+          {
+            "leftOptionId": "h001",
+            "leftRangeId": "heading-1",
+            "leftRangeKind": "section",
+            "leftLines": [
+              1,
+              12
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "block-3/item-3",
+            "rightRangeKind": "block",
+            "rightLines": [
+              9,
+              9
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 63
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "block-3",
+            "leftRangeKind": "block",
+            "leftLines": [
+              7,
+              10
+            ],
+            "rightOptionId": "h003",
+            "rightRangeId": "block-3/item-4",
+            "rightRangeKind": "block",
+            "rightLines": [
+              10,
+              10
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 92
+          },
+          {
+            "leftOptionId": "h002",
+            "leftRangeId": "block-3",
+            "leftRangeKind": "block",
+            "leftLines": [
+              7,
+              10
+            ],
+            "rightOptionId": "h005",
+            "rightRangeId": "block-3/item-3",
+            "rightRangeKind": "block",
+            "rightLines": [
+              9,
+              9
+            ],
+            "relation": "left-contains-right",
+            "overlapCodeUnits": 63
+          }
+        ],
+        "truncated": false,
+        "mutationApplied": false
+      },
+      "finalistCount": 5,
+      "selectionMode": "single-pass",
+      "selectionPasses": 1,
+      "providerCalls": 1,
+      "providerConfidence": 0.69,
+      "evidenceSufficiency": 0.76,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providersUsed": [
+        "typesafe-jev"
+      ],
+      "modelsUsed": [
+        "jev-1.13.0"
+      ],
+      "usage": {
+        "input_tokens": 1062,
+        "output_tokens": 97
+      },
+      "requestFingerprint": "7ebc2df13af6c7c72f37c2a2d7ce23bbd91f77d65fc97f1e329f2e47d9d3e0cc",
+      "elapsedMs": 280.3,
+      "jevCallMade": true,
+      "selected": {
+        "optionId": "h003",
+        "title": "Incident-ledger",
+        "headingPath": [
+          "Incident-ledger"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "21f5e20838e6abbf57dc714aadc88bef5d6643c0be6f1a1c76bb124c44db3fe4",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+          "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+          "rangeId": "block-3/item-4",
+          "rangeKind": "block",
+          "startLine": 10,
+          "endLine": 10,
+          "startOffset": 316,
+          "endOffset": 408,
+          "fingerprint": "4060befc589f1226306c6e32b2c1aab4fa20a5808115130ded7cb413295ec503",
+          "privacyClass": "project-metadata"
+        }
+      }
+    },
+    "error": null
+  }
+]

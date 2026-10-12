@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-publication-incident-facets-20261012T121314Z-v2",
+  "status": "completed-exploratory-with-limitations",
+  "completedAt": "2026-10-12",
+  "primaryMetrics": "derived/metrics.json",
+  "qualitativeReview": "derived/blind-review.json",
+  "report": "derived/RUN-REPORT.md",
+  "primaryRaw": [
+    "raw/jev-selections.json",
+    "raw/exact-fetches.json",
+    "raw/evidence-packs.json"
+  ],
+  "adaptiveFollowUp": "derived/precision-follow-up-result.json",
+  "invalidatedPrecursor": "../mssr-librarian-publication-incident-facets-20261012T121314Z-v1/derived/INVALIDATION.md",
+  "nextExperiment": "Measure answer composition and semantic compaction separately from exact verbatim evidence assembly; include owner-reviewed gold and negative/unanswerable controls."
+}

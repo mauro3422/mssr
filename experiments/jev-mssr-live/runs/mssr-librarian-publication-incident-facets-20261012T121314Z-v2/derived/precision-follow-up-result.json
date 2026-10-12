@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "classification": "adaptive precision diagnostic; excluded from primary statistics",
+  "query": "Which filesystem path names the incident ledger for routing and fixtures?",
+  "selection": {
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "rangeId": "block-3/item-1",
+    "startLine": 7,
+    "endLine": 7,
+    "providerConfidence": 0.72,
+    "evidenceSufficiency": 0.97,
+    "elapsedMs": 313.4,
+    "usage": {
+      "input_tokens": 1178,
+      "output_tokens": 107
+    }
+  },
+  "fetch": {
+    "exactText": "- routing and fixtures: `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`;",
+    "exactFrozenSlice": true,
+    "fingerprintMatches": true
+  }
+}
