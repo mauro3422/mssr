@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "reviewer-a",
+  "model": "gpt-6-luna",
+  "reasoningEffort": "low",
+  "cases": [
+    {
+      "caseId": "PUB-CITATION-PRECISION",
+      "support": "full",
+      "factualIssues": [],
+      "missingMaterial": [],
+      "citationAssessment": "exact",
+      "reason": "Cada afirmación coincide con la línea citada: cuándo reiniciar y qué verificar después.",
+      "brevity": "good",
+      "usable": "yes",
+      "rationale": "Responde ambas partes de forma concisa y conserva todas las comprobaciones solicitadas."
+    },
+    {
+      "caseId": "INCIDENT-CITATION-PRECISION",
+      "support": "full",
+      "factualIssues": [],
+      "missingMaterial": [],
+      "citationAssessment": "exact",
+      "reason": "Las ubicaciones y los datos que deben anotarse, incluida la exclusión de material privado, corresponden a los rangos citados.",
+      "brevity": "good",
+      "usable": "yes",
+      "rationale": "Cubre los cuatro tipos de defectos, sus destinos de registro y todos los campos requeridos sin añadir contenido ajeno."
+    }
+  ]
+}

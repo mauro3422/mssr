@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-citation-precision-composition-20261012T124216Z-v1",
+  "measure": "descriptive UTF-16 string lengths of exact fetched source text versus composed answers; not token usage",
+  "aggregate": {
+    "exactFetchedSourceTextChars": 718,
+    "composedAnswerCharsIncludingCitations": 1179,
+    "composedAnswerCharsExcludingCitationStrings": 874,
+    "citationStringsIncludedInPrimaryAnswerCount": true,
+    "answerLengthChangeIncludingCitationsPercent": 64.2,
+    "answerLengthChangeExcludingCitationStringsPercent": 21.7,
+    "citationCount": 4,
+    "citationPrecisionReviewerJudgmentsExact": 4,
+    "citationPrecisionReviewerJudgments": 4
+  },
+  "byCase": [
+    {
+      "caseId": "PUB-CITATION-PRECISION",
+      "exactFetchedSourceTextChars": 188,
+      "answerCharsIncludingCitations": 391,
+      "answerCharsExcludingCitationStrings": 237,
+      "citationCount": 2,
+      "reviewersFullSupport": 2,
+      "reviewersExactCitations": 2,
+      "reviewersUsable": 2
+    },
+    {
+      "caseId": "INCIDENT-CITATION-PRECISION",
+      "exactFetchedSourceTextChars": 530,
+      "answerCharsIncludingCitations": 788,
+      "answerCharsExcludingCitationStrings": 637,
+      "citationCount": 2,
+      "reviewersFullSupport": 2,
+      "reviewersExactCitations": 2,
+      "reviewersUsable": 2
+    }
+  ],
+  "interpretation": "Both reviewers judged the four supplied-range citations exact and the answers complete in these two examples. The answers are longer than the fetched source text because they render the material as complete Spanish prose with citations; this run did not reduce text length. The result does not establish citation reliability, semantic-compaction quality, token savings, generalization, Jev retrieval reliability, or confidence calibration."
+}

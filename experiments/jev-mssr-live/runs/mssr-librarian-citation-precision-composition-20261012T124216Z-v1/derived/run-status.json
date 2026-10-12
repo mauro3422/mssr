@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-citation-precision-composition-20261012T124216Z-v1",
+  "status": "completed_exploratory",
+  "completedAt": "2026-10-12T12:46:46Z",
+  "providerCalls": {
+    "jev": 0,
+    "writer": 1,
+    "blindReviewers": 2
+  },
+  "verification": {
+    "precallManifestAndInputs": "verified",
+    "postcallArtifacts": "verified"
+  },
+  "limitations": [
+    "Two previously used Run52 source clusters; no source holdout.",
+    "Model-assisted writer and reviewers; no owner-gold or human adjudication.",
+    "Exploratory host-side composition and citation-fit check, not Jev or production calibration."
+  ]
+}

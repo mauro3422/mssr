@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "stage": "frozen before writer generation",
+  "prospectiveWriterScore": true,
+  "reviewersSee": [
+    "original question",
+    "verbatim evidence pack with exact range citations",
+    "composed answer",
+    "review axes"
+  ],
+  "reviewersDoNotSee": [
+    "writer prompt",
+    "labels",
+    "other reviewer response",
+    "Run53 output or report",
+    "any baseline result"
+  ],
+  "axes": [
+    "answers the full question",
+    "every material claim is supported by the supplied exact text",
+    "all required categories, conditions, and fields are retained",
+    "citations point to supporting ranges and are as narrow as the supplied evidence allows",
+    "concise without losing needed information"
+  ],
+  "responseFormat": "Per case: support full/partial/unsupported, factual issues, missing material, citation precision (exact/overbroad/missing/incorrect) with explanation, brevity, and usable yes/with edits/no.",
+  "sampleLimits": [
+    "two source clusters reused from Run52; not independent source-holdout",
+    "one writer and two model-assisted reviewers from the same Luna family",
+    "no owner-gold or human adjudication",
+    "no Jev calls; this isolates host-side composition/citation use, not Librarian selection reliability or confidence calibration"
+  ]
+}

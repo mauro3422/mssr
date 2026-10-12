@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "writerModel": "gpt-6-luna",
+  "reasoningEffort": "low",
+  "prompt": "Redacta una respuesta breve en español para cada pregunta de los casos.\nUsa únicamente el texto del pack de evidencia exacta. Conserva todas las condiciones y todos los pasos o categorías solicitados; no agregues conclusiones externas ni afirmes certeza/calibración.\nPara cada afirmación, cita el rango más estrecho de los suministrados que la respalda. No uses un rango amplio si hay rangos exactos más estrechos. Escribe las citas como [nombre-del-archivo, Lx-Ly].\nDevuelve JSON con schemaVersion: 1 y una lista answers con caseId y answer. Si la evidencia no permite contestar una parte, indícalo de manera explícita."
+}

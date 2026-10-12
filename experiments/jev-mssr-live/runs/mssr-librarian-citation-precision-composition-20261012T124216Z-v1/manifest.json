@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-citation-precision-composition-20261012T124216Z-v1",
+  "kind": "mssr-librarian-citation-precision-composition",
+  "createdAt": "2026-10-12T12:42:16Z",
+  "sourceRun": {
+    "runId": "mssr-librarian-publication-incident-facets-20261012T121314Z-v2",
+    "commit": "2834addc58f0815395d42064223d3e40e3888d6a"
+  },
+  "sourceVerification": {
+    "method": "Bridge MSSR Librarian evidence_pack revalidated exact frozen handles against current project files",
+    "sourceRefs": [
+      "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "skills/skill-maintenance-loop/references/maintenance-incidents.md"
+    ],
+    "jevCalls": 0
+  },
+  "design": {
+    "prospectiveWriterScore": true,
+    "writer": "one fresh GPT-6 Luna agent",
+    "reviewers": "two fresh GPT-6 Luna agents",
+    "cases": 2,
+    "sourceClusters": 2,
+    "variation": "replace broad PUB L5-L12 with exact PUB L9 and L10; compose incident destinations from exact L7-L10 plus fields/privacy at L12"
+  },
+  "status": "plan and exact packs frozen before writer invocation"
+}

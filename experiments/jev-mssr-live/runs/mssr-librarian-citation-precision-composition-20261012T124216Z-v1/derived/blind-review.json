@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "reviewMode": "blind independent model-assisted review",
+  "reviewers": [
+    {
+      "id": "reviewer-a",
+      "reasoningEffort": "low",
+      "model": "gpt-6-luna",
+      "evidence": "raw/reviewer-a.json"
+    },
+    {
+      "id": "reviewer-b",
+      "reasoningEffort": "low",
+      "model": "gpt-6-luna",
+      "evidence": "raw/reviewer-b.json"
+    }
+  ],
+  "cases": [
+    {
+      "caseId": "PUB-CITATION-PRECISION",
+      "judgments": 2,
+      "supportFull": 2,
+      "factualIssues": 0,
+      "missingMaterial": 0,
+      "citationAssessmentExact": 2,
+      "brevityGood": 2,
+      "usableYes": 2
+    },
+    {
+      "caseId": "INCIDENT-CITATION-PRECISION",
+      "judgments": 2,
+      "supportFull": 2,
+      "factualIssues": 0,
+      "missingMaterial": 0,
+      "citationAssessmentExact": 2,
+      "brevityGood": 2,
+      "usableYes": 2
+    }
+  ],
+  "agreement": "Both reviewers independently rated both answers fully supported, complete, concise, citation-exact, and usable.",
+  "limitations": [
+    "Model-assisted agreement is not human adjudication or owner-gold.",
+    "Both reviewers used the same model family and reasoning effort.",
+    "Only two source clusters reused from Run52 and one writer output were reviewed."
+  ]
+}

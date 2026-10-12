@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "reviewer-b",
+  "model": "gpt-6-luna",
+  "reasoningEffort": "low",
+  "cases": [
+    {
+      "caseId": "PUB-CITATION-PRECISION",
+      "support": "full",
+      "factualIssues": [],
+      "missingMaterial": [],
+      "citationAssessment": {
+        "rating": "exact",
+        "reason": "Las dos citas respaldan respectivamente la condición para reiniciar Bridge y las comprobaciones posteriores."
+      },
+      "brevity": "good",
+      "usable": "yes",
+      "rationale": "Responde ambas partes y conserva las condiciones y comprobaciones indicadas."
+    },
+    {
+      "caseId": "INCIDENT-CITATION-PRECISION",
+      "support": "full",
+      "factualIssues": [],
+      "missingMaterial": [],
+      "citationAssessment": {
+        "rating": "exact",
+        "reason": "Las citas respaldan los cuatro destinos de registro, los datos requeridos y la exclusión de material privado."
+      },
+      "brevity": "good",
+      "usable": "yes",
+      "rationale": "Incluye todos los tipos de defecto, sus ubicaciones y los campos que deben anotarse."
+    }
+  ]
+}

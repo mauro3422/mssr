@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "agent": "compose_citation_tight_answers",
+  "model": "gpt-6-luna",
+  "reasoningEffort": "low",
+  "status": "completed",
+  "response": {
+    "schemaVersion": 1,
+    "answers": [
+      {
+        "caseId": "PUB-CITATION-PRECISION",
+        "answer": "Reinicia Bridge solo cuando los commits ya sean durables y un cambio de runtime, herramienta o esquema lo requiera [skills/skill-maintenance-loop/references/maintenance-publication.md:L9-L9]. Después, comprueba la versión del proceso activo, el catálogo de herramientas, los smokes focalizados y el gate completo [skills/skill-maintenance-loop/references/maintenance-publication.md:L10-L10]."
+      },
+      {
+        "caseId": "INCIDENT-CITATION-PRECISION",
+        "answer": "Registra los defectos de routing y fixtures en `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`; los de herramientas, transporte o ciclo de vida de Bridge en `D:\\Dev\\bridge-mcp\\docs\\INCIDENTS.md`; los exclusivos del proyecto en el estado o documento de incidentes del proyecto; y los procedurales de skills en el changelog de la skill propietaria, además del ledger del sistema cuando corresponda [skills/skill-maintenance-loop/references/maintenance-incidents.md:L7-L10]. Anota fecha/estado, capa/propietario, síntoma, reproducción mínima o evidencia exacta, causa demostrada o `No resuelta`, corrección, regresión y seguimiento. No incluyas prompts sin procesar, transcripciones, secretos ni razonamiento privado [skills/skill-maintenance-loop/references/maintenance-incidents.md:L12-L12]."
+      }
+    ]
+  }
+}

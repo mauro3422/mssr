@@ -1,0 +1,82 @@
+{
+  "projectOwner": "d:/dev/mssr",
+  "sourceCount": 2,
+  "schemaVersion": 1,
+  "kind": "mssr-librarian-evidence-pack",
+  "assembly": "verbatim-source-ranges",
+  "paragraphs": [
+    {
+      "ordinal": 1,
+      "exactText": "5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it.",
+      "citation": {
+        "display": "skills/skill-maintenance-loop/references/maintenance-publication.md:L9-L9",
+        "handleId": "e93bd3103cbf14a8a7554df9ea20c14275a63b3d6a0af8cf33de37f16d65bb52",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+        "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+        "rangeId": "block-2/item-5",
+        "rangeKind": "block",
+        "startLine": 9,
+        "endLine": 9,
+        "fingerprint": "7cdc45cf7059c2d8f00d4e2733be16f05958a1061ec0de6e67a135f9d2bc58b1",
+        "privacyClass": "project-metadata"
+      }
+    },
+    {
+      "ordinal": 2,
+      "exactText": "6. Verify live process version, tool catalog, focused smokes and full gate after restart.",
+      "citation": {
+        "display": "skills/skill-maintenance-loop/references/maintenance-publication.md:L10-L10",
+        "handleId": "242ec0193f7e7e2b1f4fb6a84acbe998f611a096c213d78478b9fbd7cc7cc434",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+        "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+        "rangeId": "block-2/item-6",
+        "rangeKind": "block",
+        "startLine": 10,
+        "endLine": 10,
+        "fingerprint": "c5ee0da7768254fd13455cec2ec26e5143d6ca2919933a6d4fc41f45226a9099",
+        "privacyClass": "project-metadata"
+      }
+    },
+    {
+      "ordinal": 3,
+      "exactText": "- routing and fixtures: `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`;\n- Bridge tools, transport or lifecycle: `D:\\Dev\\bridge-mcp\\docs\\INCIDENTS.md`;\n- project-only defects: the project state or incident document;\n- procedural skill defects: the owning skill changelog plus the system ledger when relevant.",
+      "citation": {
+        "display": "skills/skill-maintenance-loop/references/maintenance-incidents.md:L7-L10",
+        "handleId": "f446af129a7f84212c8140a8d7fb660a00ec3d3f006deac130a3b95f7ed250bd",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+        "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+        "rangeId": "block-3",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 10,
+        "fingerprint": "fef7236153a28c909d290616f125a1ae2d5355df8c186178599a03186271b155",
+        "privacyClass": "project-metadata"
+      }
+    },
+    {
+      "ordinal": 4,
+      "exactText": "Record date/status, layer/owner, symptom, minimum reproduction or exact evidence, demonstrated cause or `No resuelta`, correction, regression and follow-up. Never store raw prompts, transcripts, secrets or private reasoning.",
+      "citation": {
+        "display": "skills/skill-maintenance-loop/references/maintenance-incidents.md:L12-L12",
+        "handleId": "ada774446eef917433cd1cbbcbe93f822fd2408f586eca190376983a11d6b358",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+        "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+        "rangeId": "block-4",
+        "rangeKind": "block",
+        "startLine": 12,
+        "endLine": 12,
+        "fingerprint": "994f4e7413f2360c5a8bc068e8e6cf802f2ddc4320b1f1cd968e42bdcc1b7f80",
+        "privacyClass": "project-metadata"
+      }
+    }
+  ],
+  "totalFetchedChars": 718,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "canonicalRewriteAllowed": false,
+  "ownerAndPrivacyAreCallerAsserted": true
+}
