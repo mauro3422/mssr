@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "PUB-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "sourceCluster": "source-01",
+      "facet": "restart-gate",
+      "language": "en",
+      "query": "When is a Bridge restart appropriate, and which checks must follow it?"
+    },
+    {
+      "id": "PUB-NEG",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "sourceCluster": "source-01",
+      "facet": "absent-command",
+      "language": "en",
+      "query": "Which exact PowerShell command line starts the Bridge watchdog after reboot?"
+    },
+    {
+      "id": "ROUTE-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+      "sourceCluster": "source-02",
+      "facet": "routing-fixtures-and-gates",
+      "language": "en",
+      "query": "For routing or activation changes, what fixtures and verification gates must be added or run?"
+    },
+    {
+      "id": "ROUTE-NEG",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+      "sourceCluster": "source-02",
+      "facet": "absent-fixture-filename",
+      "language": "en",
+      "query": "Which exact filename contains the positive routing fixture?"
+    },
+    {
+      "id": "INCIDENT-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "sourceCluster": "source-03",
+      "facet": "canonical-ledger-ownership",
+      "language": "en",
+      "query": "Which canonical ledger should receive routing, Bridge, project-only, and procedural-skill defects?"
+    },
+    {
+      "id": "INCIDENT-NEG",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "sourceCluster": "source-03",
+      "facet": "absent-retention-period",
+      "language": "en",
+      "query": "How many days should Bridge incident entries be retained?"
+    },
+    {
+      "id": "LIFECYCLE-POS",
+      "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+      "sourceCluster": "source-04",
+      "facet": "cross-repository-trace-and-close",
+      "language": "en",
+      "query": "When a task crosses repositories, how should trace ownership be handled, and what must be recorded before closing the trace?"
+    },
+    {
+      "id": "LIFECYCLE-NEG",
+      "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+      "sourceCluster": "source-04",
+      "facet": "absent-repository-limit",
+      "language": "en",
+      "query": "What exact maximum number of repositories may share a single open trace?"
+    },
+    {
+      "id": "SAFE-SKILL-POS",
+      "sourceRef": "skills/shared-skill-governance/references/safe-skill-updates.md",
+      "sourceCluster": "source-05",
+      "facet": "routing-stability-evidence",
+      "language": "en",
+      "query": "What evidence is needed before a new or renamed skill can be considered routing-stable?"
+    },
+    {
+      "id": "SAFE-SKILL-NEG",
+      "sourceRef": "skills/shared-skill-governance/references/safe-skill-updates.md",
+      "sourceCluster": "source-05",
+      "facet": "absent-score-threshold",
+      "language": "en",
+      "query": "What exact score threshold makes a skill routing-stable?"
+    },
+    {
+      "id": "MODULAR-POS",
+      "sourceRef": "skills/skill-routing-maintainer/references/modular-skill-architecture.md",
+      "sourceCluster": "source-06",
+      "facet": "routed-entrypoint-boundary",
+      "language": "en",
+      "query": "Are internal skill references independently routed MSSR capabilities, and what is SKILL.md role in routing?"
+    },
+    {
+      "id": "MODULAR-NEG",
+      "sourceRef": "skills/skill-routing-maintainer/references/modular-skill-architecture.md",
+      "sourceCluster": "source-06",
+      "facet": "absent-reference-count-limit",
+      "language": "en",
+      "query": "What is the hard maximum number of optional references one SKILL.md may define?"
+    }
+  ]
+}

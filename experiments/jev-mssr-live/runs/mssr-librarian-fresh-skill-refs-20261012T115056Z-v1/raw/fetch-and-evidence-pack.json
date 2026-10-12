@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-fresh-skill-refs-20261012T115056Z-v1",
+  "capture": "Full responses and exact local checks for six positive mssr_librarian_fetch and mssr_librarian_evidence_pack calls.",
+  "calls": [
+    {
+      "caseId": "PUB-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "selectedHandle": {
+        "version": 1,
+        "id": "0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+        "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 5,
+        "endLine": 12,
+        "startOffset": 108,
+        "endOffset": 950,
+        "fingerprint": "8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d",
+        "privacyClass": "project-metadata"
+      },
+      "fetchResponse": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-publication.md\",\n    \"revision\": \"cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a\",\n    \"rangeId\": \"block-2\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 5,\n    \"endLine\": 12,\n    \"startOffset\": 108,\n    \"endOffset\": 950,\n    \"fingerprint\": \"8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"1. Re-plan at verification, persistence and close; load only skills active for each phase.\\n2. Verify source repositories, runtime junctions, generated docs, routing fixtures and live catalog discovery.\\n3. Use `git-change-publication` for bounded commits and remote readback. Never force-push to resolve ambiguity.\\n4. For multiple repositories, preserve per-repository outcomes and dependency order. A repository without a remote remains local-only.\\n5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it.\\n6. Verify live process version, tool catalog, focused smokes and full gate after restart.\\n7. Record one MSSR outcome with one primary skill; use bounded dimensions for differing subsystems.\\n8. Remove temporary prompts, scripts, terminals and test fixtures; enumerate deliberate residual state.\",\n  \"fingerprint\": \"8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+          }
+        ]
+      },
+      "expectedFetchText": "1. Re-plan at verification, persistence and close; load only skills active for each phase.\n2. Verify source repositories, runtime junctions, generated docs, routing fixtures and live catalog discovery.\n3. Use `git-change-publication` for bounded commits and remote readback. Never force-push to resolve ambiguity.\n4. For multiple repositories, preserve per-repository outcomes and dependency order. A repository without a remote remains local-only.\n5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it.\n6. Verify live process version, tool catalog, focused smokes and full gate after restart.\n7. Record one MSSR outcome with one primary skill; use bounded dimensions for differing subsystems.\n8. Remove temporary prompts, scripts, terminals and test fixtures; enumerate deliberate residual state.",
+      "fetchMatchesFrozenSnapshot": true,
+      "evidencePackResponse": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"sourceCount\": 1,\n  \"schemaVersion\": 1,\n  \"kind\": \"mssr-librarian-evidence-pack\",\n  \"assembly\": \"verbatim-source-ranges\",\n  \"paragraphs\": [\n    {\n      \"ordinal\": 1,\n      \"exactText\": \"1. Re-plan at verification, persistence and close; load only skills active for each phase.\\n2. Verify source repositories, runtime junctions, generated docs, routing fixtures and live catalog discovery.\\n3. Use `git-change-publication` for bounded commits and remote readback. Never force-push to resolve ambiguity.\\n4. For multiple repositories, preserve per-repository outcomes and dependency order. A repository without a remote remains local-only.\\n5. Restart Bridge only after commits are durable when a runtime, tool or schema change requires it.\\n6. Verify live process version, tool catalog, focused smokes and full gate after restart.\\n7. Record one MSSR outcome with one primary skill; use bounded dimensions for differing subsystems.\\n8. Remove temporary prompts, scripts, terminals and test fixtures; enumerate deliberate residual state.\",\n      \"citation\": {\n        \"display\": \"skills/skill-maintenance-loop/references/maintenance-publication.md:L5-L12\",\n        \"handleId\": \"0cf32b4903cfbdc8f8554352128f8a41f34122fbed60f3f0c446a6ace7443a73\",\n        \"owner\": \"d:/dev/mssr\",\n        \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-publication.md\",\n        \"revision\": \"cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a\",\n        \"rangeId\": \"block-2\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 5,\n        \"endLine\": 12,\n        \"fingerprint\": \"8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d\",\n        \"privacyClass\": \"project-metadata\"\n      }\n    }\n  ],\n  \"totalFetchedChars\": 842,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"canonicalRewriteAllowed\": false,\n  \"ownerAndPrivacyAreCallerAsserted\": true,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+          }
+        ]
+      },
+      "evidencePackCitationCount": 1
+    },
+    {
+      "caseId": "ROUTE-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+      "selectedHandle": {
+        "version": 1,
+        "id": "b4c47405ace1bb5457b2c93d720bf29b99e10ccb1c9c32edea48b148283eb8ac",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+        "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+        "rangeId": "block-2/item-6",
+        "rangeKind": "block",
+        "startLine": 10,
+        "endLine": 10,
+        "startOffset": 529,
+        "endOffset": 625,
+        "fingerprint": "7a740d67807c7c7510fc1ad677f6af79c6737d8dbb7abc43e3d464877a7a957a",
+        "privacyClass": "project-metadata"
+      },
+      "fetchResponse": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"b4c47405ace1bb5457b2c93d720bf29b99e10ccb1c9c32edea48b148283eb8ac\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-routing.md\",\n    \"revision\": \"f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2\",\n    \"rangeId\": \"block-2/item-6\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 10,\n    \"endLine\": 10,\n    \"startOffset\": 529,\n    \"endOffset\": 625,\n    \"fingerprint\": \"7a740d67807c7c7510fc1ad677f6af79c6737d8dbb7abc43e3d464877a7a957a\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"6. Run `skill_route_audit`, representative real route plans and the full MSSR verification gate.\",\n  \"fingerprint\": \"7a740d67807c7c7510fc1ad677f6af79c6737d8dbb7abc43e3d464877a7a957a\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+          }
+        ]
+      },
+      "expectedFetchText": "6. Run `skill_route_audit`, representative real route plans and the full MSSR verification gate.",
+      "fetchMatchesFrozenSnapshot": true,
+      "evidencePackResponse": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"sourceCount\": 1,\n  \"schemaVersion\": 1,\n  \"kind\": \"mssr-librarian-evidence-pack\",\n  \"assembly\": \"verbatim-source-ranges\",\n  \"paragraphs\": [\n    {\n      \"ordinal\": 1,\n      \"exactText\": \"6. Run `skill_route_audit`, representative real route plans and the full MSSR verification gate.\",\n      \"citation\": {\n        \"display\": \"skills/skill-maintenance-loop/references/maintenance-routing.md:L10-L10\",\n        \"handleId\": \"b4c47405ace1bb5457b2c93d720bf29b99e10ccb1c9c32edea48b148283eb8ac\",\n        \"owner\": \"d:/dev/mssr\",\n        \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-routing.md\",\n        \"revision\": \"f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2\",\n        \"rangeId\": \"block-2/item-6\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 10,\n        \"endLine\": 10,\n        \"fingerprint\": \"7a740d67807c7c7510fc1ad677f6af79c6737d8dbb7abc43e3d464877a7a957a\",\n        \"privacyClass\": \"project-metadata\"\n      }\n    }\n  ],\n  \"totalFetchedChars\": 96,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"canonicalRewriteAllowed\": false,\n  \"ownerAndPrivacyAreCallerAsserted\": true,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+          }
+        ]
+      },
+      "evidencePackCitationCount": 1
+    },
+    {
+      "caseId": "INCIDENT-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "selectedHandle": {
+        "version": 1,
+        "id": "f446af129a7f84212c8140a8d7fb660a00ec3d3f006deac130a3b95f7ed250bd",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+        "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+        "rangeId": "block-3",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 10,
+        "startOffset": 102,
+        "endOffset": 408,
+        "fingerprint": "fef7236153a28c909d290616f125a1ae2d5355df8c186178599a03186271b155",
+        "privacyClass": "project-metadata"
+      },
+      "fetchResponse": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"f446af129a7f84212c8140a8d7fb660a00ec3d3f006deac130a3b95f7ed250bd\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md\",\n    \"revision\": \"d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5\",\n    \"rangeId\": \"block-3\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 7,\n    \"endLine\": 10,\n    \"startOffset\": 102,\n    \"endOffset\": 408,\n    \"fingerprint\": \"fef7236153a28c909d290616f125a1ae2d5355df8c186178599a03186271b155\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"- routing and fixtures: `D:\\\\Dev\\\\mssr\\\\docs\\\\skill-routing\\\\INCIDENTS.md`;\\n- Bridge tools, transport or lifecycle: `D:\\\\Dev\\\\bridge-mcp\\\\docs\\\\INCIDENTS.md`;\\n- project-only defects: the project state or incident document;\\n- procedural skill defects: the owning skill changelog plus the system ledger when relevant.\",\n  \"fingerprint\": \"fef7236153a28c909d290616f125a1ae2d5355df8c186178599a03186271b155\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+          }
+        ]
+      },
+      "expectedFetchText": "- routing and fixtures: `D:\\Dev\\mssr\\docs\\skill-routing\\INCIDENTS.md`;\n- Bridge tools, transport or lifecycle: `D:\\Dev\\bridge-mcp\\docs\\INCIDENTS.md`;\n- project-only defects: the project state or incident document;\n- procedural skill defects: the owning skill changelog plus the system ledger when relevant.",
+      "fetchMatchesFrozenSnapshot": true,
+      "evidencePackResponse": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"sourceCount\": 1,\n  \"schemaVersion\": 1,\n  \"kind\": \"mssr-librarian-evidence-pack\",\n  \"assembly\": \"verbatim-source-ranges\",\n  \"paragraphs\": [\n    {\n      \"ordinal\": 1,\n      \"exactText\": \"- routing and fixtures: `D:\\\\Dev\\\\mssr\\\\docs\\\\skill-routing\\\\INCIDENTS.md`;\\n- Bridge tools, transport or lifecycle: `D:\\\\Dev\\\\bridge-mcp\\\\docs\\\\INCIDENTS.md`;\\n- project-only defects: the project state or incident document;\\n- procedural skill defects: the owning skill changelog plus the system ledger when relevant.\",\n      \"citation\": {\n        \"display\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md:L7-L10\",\n        \"handleId\": \"f446af129a7f84212c8140a8d7fb660a00ec3d3f006deac130a3b95f7ed250bd\",\n        \"owner\": \"d:/dev/mssr\",\n        \"sourceRef\": \"skills/skill-maintenance-loop/references/maintenance-incidents.md\",\n        \"revision\": \"d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5\",\n        \"rangeId\": \"block-3\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 7,\n        \"endLine\": 10,\n        \"fingerprint\": \"fef7236153a28c909d290616f125a1ae2d5355df8c186178599a03186271b155\",\n        \"privacyClass\": \"project-metadata\"\n      }\n    }\n  ],\n  \"totalFetchedChars\": 306,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"canonicalRewriteAllowed\": false,\n  \"ownerAndPrivacyAreCallerAsserted\": true,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+          }
+        ]
+      },
+      "evidencePackCitationCount": 1
+    },
+    {
+      "caseId": "LIFECYCLE-POS",
+      "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+      "selectedHandle": {
+        "version": 1,
+        "id": "c20ca8c968e54c0640d825fd0f1197b7513d1a6acde077fbb3cd258f00573fd6",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+        "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+        "rangeId": "block-3",
+        "rangeKind": "block",
+        "startLine": 10,
+        "endLine": 13,
+        "startOffset": 357,
+        "endOffset": 627,
+        "fingerprint": "b135726652194045a088c0b549eb9fa014a0036af8867de826e43d2242f39bd8",
+        "privacyClass": "project-metadata"
+      },
+      "fetchResponse": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"c20ca8c968e54c0640d825fd0f1197b7513d1a6acde077fbb3cd258f00573fd6\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/mssr-agent-routing/references/context-and-lifecycle.md\",\n    \"revision\": \"a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90\",\n    \"rangeId\": \"block-3\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 10,\n    \"endLine\": 13,\n    \"startOffset\": 357,\n    \"endOffset\": 627,\n    \"fingerprint\": \"b135726652194045a088c0b549eb9fa014a0036af8867de826e43d2242f39bd8\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"Carry a trace through meaningful replans. Use explicit `traceId` after restart,\\nacross processes, for ambiguity, or deliberate historical selection. Project\\nownership is part of trace identity; crossing repositories needs a new owner\\ntrace with bounded handoff evidence.\",\n  \"fingerprint\": \"b135726652194045a088c0b549eb9fa014a0036af8867de826e43d2242f39bd8\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+          }
+        ]
+      },
+      "expectedFetchText": "Carry a trace through meaningful replans. Use explicit `traceId` after restart,\nacross processes, for ambiguity, or deliberate historical selection. Project\nownership is part of trace identity; crossing repositories needs a new owner\ntrace with bounded handoff evidence.",
+      "fetchMatchesFrozenSnapshot": true,
+      "evidencePackResponse": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"sourceCount\": 1,\n  \"schemaVersion\": 1,\n  \"kind\": \"mssr-librarian-evidence-pack\",\n  \"assembly\": \"verbatim-source-ranges\",\n  \"paragraphs\": [\n    {\n      \"ordinal\": 1,\n      \"exactText\": \"Carry a trace through meaningful replans. Use explicit `traceId` after restart,\\nacross processes, for ambiguity, or deliberate historical selection. Project\\nownership is part of trace identity; crossing repositories needs a new owner\\ntrace with bounded handoff evidence.\",\n      \"citation\": {\n        \"display\": \"skills/mssr-agent-routing/references/context-and-lifecycle.md:L10-L13\",\n        \"handleId\": \"c20ca8c968e54c0640d825fd0f1197b7513d1a6acde077fbb3cd258f00573fd6\",\n        \"owner\": \"d:/dev/mssr\",\n        \"sourceRef\": \"skills/mssr-agent-routing/references/context-and-lifecycle.md\",\n        \"revision\": \"a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90\",\n        \"rangeId\": \"block-3\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 10,\n        \"endLine\": 13,\n        \"fingerprint\": \"b135726652194045a088c0b549eb9fa014a0036af8867de826e43d2242f39bd8\",\n        \"privacyClass\": \"project-metadata\"\n      }\n    }\n  ],\n  \"totalFetchedChars\": 270,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"canonicalRewriteAllowed\": false,\n  \"ownerAndPrivacyAreCallerAsserted\": true,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+          }
+        ]
+      },
+      "evidencePackCitationCount": 1
+    },
+    {
+      "caseId": "SAFE-SKILL-POS",
+      "sourceRef": "skills/shared-skill-governance/references/safe-skill-updates.md",
+      "selectedHandle": {
+        "version": 1,
+        "id": "a3f0f4176324b2e0a90edfe82443fa5dfa2d95667fd9e796c111662f065f6798",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/shared-skill-governance/references/safe-skill-updates.md",
+        "revision": "a232a05b6f2b55785e8488659b6e5266c3cada9f5de8ff38d7f9187e9a2013a1",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 5,
+        "endLine": 11,
+        "startOffset": 106,
+        "endOffset": 627,
+        "fingerprint": "cfcb453b149d1ce4ccd15dfcaafc6e5b4930c3de2b80c7ecfbc07adcaacbec28",
+        "privacyClass": "project-metadata"
+      },
+      "fetchResponse": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"a3f0f4176324b2e0a90edfe82443fa5dfa2d95667fd9e796c111662f065f6798\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/shared-skill-governance/references/safe-skill-updates.md\",\n    \"revision\": \"a232a05b6f2b55785e8488659b6e5266c3cada9f5de8ff38d7f9187e9a2013a1\",\n    \"rangeId\": \"block-2\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 5,\n    \"endLine\": 11,\n    \"startOffset\": 106,\n    \"endOffset\": 627,\n    \"fingerprint\": \"cfcb453b149d1ce4ccd15dfcaafc6e5b4930c3de2b80c7ecfbc07adcaacbec28\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"Read the skill, verify its owner, check existing coverage, and keep\\nproject-specific details out. Preserve frontmatter and activation description.\\nA new/renamed owned skill remains routing-unstable until explicit metadata,\\npositive and nearby negative fixtures, continuation coverage where relevant,\\ncatalog/bootstrap discovery, and a real route plan prove it stable. Update\\nrouting only when activation/composition changes; do not edit generated\\ndashboards or caches. Record project-specific consequences in the project.\",\n  \"fingerprint\": \"cfcb453b149d1ce4ccd15dfcaafc6e5b4930c3de2b80c7ecfbc07adcaacbec28\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+          }
+        ]
+      },
+      "expectedFetchText": "Read the skill, verify its owner, check existing coverage, and keep\nproject-specific details out. Preserve frontmatter and activation description.\nA new/renamed owned skill remains routing-unstable until explicit metadata,\npositive and nearby negative fixtures, continuation coverage where relevant,\ncatalog/bootstrap discovery, and a real route plan prove it stable. Update\nrouting only when activation/composition changes; do not edit generated\ndashboards or caches. Record project-specific consequences in the project.",
+      "fetchMatchesFrozenSnapshot": true,
+      "evidencePackResponse": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"sourceCount\": 1,\n  \"schemaVersion\": 1,\n  \"kind\": \"mssr-librarian-evidence-pack\",\n  \"assembly\": \"verbatim-source-ranges\",\n  \"paragraphs\": [\n    {\n      \"ordinal\": 1,\n      \"exactText\": \"Read the skill, verify its owner, check existing coverage, and keep\\nproject-specific details out. Preserve frontmatter and activation description.\\nA new/renamed owned skill remains routing-unstable until explicit metadata,\\npositive and nearby negative fixtures, continuation coverage where relevant,\\ncatalog/bootstrap discovery, and a real route plan prove it stable. Update\\nrouting only when activation/composition changes; do not edit generated\\ndashboards or caches. Record project-specific consequences in the project.\",\n      \"citation\": {\n        \"display\": \"skills/shared-skill-governance/references/safe-skill-updates.md:L5-L11\",\n        \"handleId\": \"a3f0f4176324b2e0a90edfe82443fa5dfa2d95667fd9e796c111662f065f6798\",\n        \"owner\": \"d:/dev/mssr\",\n        \"sourceRef\": \"skills/shared-skill-governance/references/safe-skill-updates.md\",\n        \"revision\": \"a232a05b6f2b55785e8488659b6e5266c3cada9f5de8ff38d7f9187e9a2013a1\",\n        \"rangeId\": \"block-2\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 5,\n        \"endLine\": 11,\n        \"fingerprint\": \"cfcb453b149d1ce4ccd15dfcaafc6e5b4930c3de2b80c7ecfbc07adcaacbec28\",\n        \"privacyClass\": \"project-metadata\"\n      }\n    }\n  ],\n  \"totalFetchedChars\": 521,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"canonicalRewriteAllowed\": false,\n  \"ownerAndPrivacyAreCallerAsserted\": true,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+          }
+        ]
+      },
+      "evidencePackCitationCount": 1
+    },
+    {
+      "caseId": "MODULAR-POS",
+      "sourceRef": "skills/skill-routing-maintainer/references/modular-skill-architecture.md",
+      "selectedHandle": {
+        "version": 1,
+        "id": "6549f0287bd15f2f9b1a9ff896c0d13dc0591bf1786498845ba43b058019d09b",
+        "owner": "d:/dev/mssr",
+        "sourceRef": "skills/skill-routing-maintainer/references/modular-skill-architecture.md",
+        "revision": "82b3e98eafffc2769cf945515e534e2c66a57b65a024ba3f628d8242e691442b",
+        "rangeId": "block-3",
+        "rangeKind": "block",
+        "startLine": 15,
+        "endLine": 15,
+        "startOffset": 427,
+        "endOffset": 639,
+        "fingerprint": "5a7c7284f6b30864bab867e269204fcd89ccbd9c63cee1fa46d8a66e8b048136",
+        "privacyClass": "project-metadata"
+      },
+      "fetchResponse": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"6549f0287bd15f2f9b1a9ff896c0d13dc0591bf1786498845ba43b058019d09b\",\n    \"owner\": \"d:/dev/mssr\",\n    \"sourceRef\": \"skills/skill-routing-maintainer/references/modular-skill-architecture.md\",\n    \"revision\": \"82b3e98eafffc2769cf945515e534e2c66a57b65a024ba3f628d8242e691442b\",\n    \"rangeId\": \"block-3\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 15,\n    \"endLine\": 15,\n    \"startOffset\": 427,\n    \"endOffset\": 639,\n    \"fingerprint\": \"5a7c7284f6b30864bab867e269204fcd89ccbd9c63cee1fa46d8a66e8b048136\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"`SKILL.md` is the only routed entry point for that capability. Internal references, scripts, and templates belong to the same skill and do not become independent MSSR nodes merely because they are separate files.\",\n  \"fingerprint\": \"5a7c7284f6b30864bab867e269204fcd89ccbd9c63cee1fa46d8a66e8b048136\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+          }
+        ]
+      },
+      "expectedFetchText": "`SKILL.md` is the only routed entry point for that capability. Internal references, scripts, and templates belong to the same skill and do not become independent MSSR nodes merely because they are separate files.",
+      "fetchMatchesFrozenSnapshot": true,
+      "evidencePackResponse": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"sourceCount\": 1,\n  \"schemaVersion\": 1,\n  \"kind\": \"mssr-librarian-evidence-pack\",\n  \"assembly\": \"verbatim-source-ranges\",\n  \"paragraphs\": [\n    {\n      \"ordinal\": 1,\n      \"exactText\": \"`SKILL.md` is the only routed entry point for that capability. Internal references, scripts, and templates belong to the same skill and do not become independent MSSR nodes merely because they are separate files.\",\n      \"citation\": {\n        \"display\": \"skills/skill-routing-maintainer/references/modular-skill-architecture.md:L15-L15\",\n        \"handleId\": \"6549f0287bd15f2f9b1a9ff896c0d13dc0591bf1786498845ba43b058019d09b\",\n        \"owner\": \"d:/dev/mssr\",\n        \"sourceRef\": \"skills/skill-routing-maintainer/references/modular-skill-architecture.md\",\n        \"revision\": \"82b3e98eafffc2769cf945515e534e2c66a57b65a024ba3f628d8242e691442b\",\n        \"rangeId\": \"block-3\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 15,\n        \"endLine\": 15,\n        \"fingerprint\": \"5a7c7284f6b30864bab867e269204fcd89ccbd9c63cee1fa46d8a66e8b048136\",\n        \"privacyClass\": \"project-metadata\"\n      }\n    }\n  ],\n  \"totalFetchedChars\": 212,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"canonicalRewriteAllowed\": false,\n  \"ownerAndPrivacyAreCallerAsserted\": true,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+          }
+        ]
+      },
+      "evidencePackCitationCount": 1
+    }
+  ]
+}

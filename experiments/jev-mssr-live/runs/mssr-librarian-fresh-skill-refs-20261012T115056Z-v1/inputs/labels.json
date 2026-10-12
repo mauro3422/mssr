@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "source": "single analyst exact source review before live provider calls",
+  "adjudication": "none; exploratory labels are not owner-gold",
+  "exposedToProvider": false,
+  "independenceUnit": "six source-document clusters; positive/negative query pair within each file is linked",
+  "cases": [
+    {
+      "caseId": "PUB-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "answerability": "answerable",
+      "acceptableRanges": [
+        {
+          "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+          "expectedHeading": "# Publication-close",
+          "startLine": 1,
+          "endLine": 12
+        }
+      ],
+      "supportingSpans": [
+        {
+          "startLine": 5,
+          "endLine": 10
+        }
+      ]
+    },
+    {
+      "caseId": "PUB-NEG",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "answerability": "unanswerable",
+      "rationale": "No PowerShell watchdog command appears in this source file."
+    },
+    {
+      "caseId": "ROUTE-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+      "answerability": "answerable",
+      "acceptableRanges": [
+        {
+          "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+          "expectedHeading": "# Routing-edit",
+          "startLine": 1,
+          "endLine": 11
+        }
+      ],
+      "supportingSpans": [
+        {
+          "startLine": 5,
+          "endLine": 10
+        }
+      ]
+    },
+    {
+      "caseId": "ROUTE-NEG",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+      "answerability": "unanswerable",
+      "rationale": "The source requires positive/negative/continuation fixtures but names no fixture file."
+    },
+    {
+      "caseId": "INCIDENT-POS",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "answerability": "answerable",
+      "acceptableRanges": [
+        {
+          "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+          "expectedHeading": "# Incident-ledger",
+          "startLine": 1,
+          "endLine": 12
+        }
+      ],
+      "supportingSpans": [
+        {
+          "startLine": 5,
+          "endLine": 10
+        }
+      ]
+    },
+    {
+      "caseId": "INCIDENT-NEG",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "answerability": "unanswerable",
+      "rationale": "The source gives ledger ownership and record fields, not a retention period."
+    },
+    {
+      "caseId": "LIFECYCLE-POS",
+      "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+      "answerability": "answerable",
+      "acceptableRanges": [
+        {
+          "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+          "expectedHeading": "# Context and lifecycle",
+          "startLine": 1,
+          "endLine": 41
+        }
+      ],
+      "supportingSpans": [
+        {
+          "startLine": 10,
+          "endLine": 13
+        },
+        {
+          "startLine": 17,
+          "endLine": 25
+        }
+      ]
+    },
+    {
+      "caseId": "LIFECYCLE-NEG",
+      "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+      "answerability": "unanswerable",
+      "rationale": "It says crossing repositories needs a new owner trace but specifies no numeric repository limit."
+    },
+    {
+      "caseId": "SAFE-SKILL-POS",
+      "sourceRef": "skills/shared-skill-governance/references/safe-skill-updates.md",
+      "answerability": "answerable",
+      "acceptableRanges": [
+        {
+          "sourceRef": "skills/shared-skill-governance/references/safe-skill-updates.md",
+          "expectedHeading": "# Safe shared-skill updates",
+          "startLine": 1,
+          "endLine": 11
+        }
+      ],
+      "supportingSpans": [
+        {
+          "startLine": 5,
+          "endLine": 9
+        }
+      ]
+    },
+    {
+      "caseId": "SAFE-SKILL-NEG",
+      "sourceRef": "skills/shared-skill-governance/references/safe-skill-updates.md",
+      "answerability": "unanswerable",
+      "rationale": "The source names qualitative routing-stability evidence but no score threshold."
+    },
+    {
+      "caseId": "MODULAR-POS",
+      "sourceRef": "skills/skill-routing-maintainer/references/modular-skill-architecture.md",
+      "answerability": "answerable",
+      "acceptableRanges": [
+        {
+          "sourceRef": "skills/skill-routing-maintainer/references/modular-skill-architecture.md",
+          "expectedHeading": "## Core model",
+          "startLine": 5,
+          "endLine": 15
+        }
+      ],
+      "supportingSpans": [
+        {
+          "startLine": 15,
+          "endLine": 15
+        }
+      ]
+    },
+    {
+      "caseId": "MODULAR-NEG",
+      "sourceRef": "skills/skill-routing-maintainer/references/modular-skill-architecture.md",
+      "answerability": "unanswerable",
+      "rationale": "The source defines no numeric maximum for optional references."
+    }
+  ]
+}

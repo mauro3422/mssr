@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "reviewProtocol": "Dos revisiones ciegas independientes; cada revisor recibió la consulta y el extracto fetchado de casos positivos, sin etiquetas analíticas ni scores de Jev. Evalúan cobertura semántica del extracto frente a la consulta; no verifican verdad/procedimiento del contenido.",
+  "reviewers": [
+    {
+      "reviewerId": "/root/librarian_bug_audit",
+      "cases": [
+        {
+          "caseId": "PUB-POS",
+          "rating": "partial",
+          "note": "Incluye la condición de reinicio y los controles posteriores, pero deja ambigua la respuesta completa sobre cuándo corresponde reiniciar."
+        },
+        {
+          "caseId": "ROUTE-POS",
+          "rating": "partial",
+          "note": "Cubre gates de verificación; no especifica qué fixtures agregar."
+        },
+        {
+          "caseId": "INCIDENT-POS",
+          "rating": "full",
+          "note": "Mapea las cuatro categorías de defectos a sus ledgers canónicos."
+        },
+        {
+          "caseId": "LIFECYCLE-POS",
+          "rating": "partial",
+          "note": "Incluye ownership del trace, omite qué registrar antes de cerrarlo."
+        },
+        {
+          "caseId": "SAFE-SKILL-POS",
+          "rating": "full",
+          "note": "La evidencia pedida para estabilidad de routing está presente."
+        },
+        {
+          "caseId": "MODULAR-POS",
+          "rating": "full",
+          "note": "Define directamente SKILL.md como entrada ruteada y mantiene references subordinadas."
+        }
+      ]
+    },
+    {
+      "reviewerId": "/root/run51_blind_relation",
+      "cases": [
+        {
+          "caseId": "PUB-POS",
+          "rating": "full",
+          "note": "Indica que Bridge se reinicia cuando lo requiere un cambio de runtime, herramienta o schema, y enumera controles posteriores."
+        },
+        {
+          "caseId": "ROUTE-POS",
+          "rating": "partial",
+          "note": "Enumera la auditoría, planes representativos y gate completo, pero no especifica qué fixtures agregar."
+        },
+        {
+          "caseId": "INCIDENT-POS",
+          "rating": "full",
+          "note": "Mapea las cuatro categorías de defectos a los ledgers canónicos; sin exceso aparente."
+        },
+        {
+          "caseId": "LIFECYCLE-POS",
+          "rating": "partial",
+          "note": "Explica continuidad y ownership al cruzar repositorios, pero no qué registrar para cerrar el trace."
+        },
+        {
+          "caseId": "SAFE-SKILL-POS",
+          "rating": "full",
+          "note": "Presenta evidencia necesaria para estabilidad de routing y restricciones de mantenimiento."
+        },
+        {
+          "caseId": "MODULAR-POS",
+          "rating": "full",
+          "note": "Declara de forma directa SKILL.md como punto de entrada y que references no son nodos MSSR independientes."
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "No es gold adjudicado por el dueño.",
+    "El caso PUB-POS tiene desacuerdo full/partial.",
+    "Ambos revisores señalan omisión de fixtures en ROUTE-POS y criterios de cierre en LIFECYCLE-POS."
+  ]
+}

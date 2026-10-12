@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-fresh-skill-refs-20261012T115056Z-v1",
+  "scope": {
+    "requests": 12,
+    "sourceDocumentClusters": 6,
+    "projects": 1,
+    "language": "en",
+    "metadataMode": "off",
+    "queryVariants": "none",
+    "gold": "single analyst; not adjudicated",
+    "holdout": "exploratory; not certified"
+  },
+  "providerExecution": {
+    "liveJeVCalls": 12,
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "totalCandidateResults": 246,
+    "meanCandidatePool": 20.5,
+    "totalInputTokens": 33999,
+    "totalOutputTokens": 3006,
+    "meanElapsedMs": 731.5416666666666,
+    "elapsedValuesDescriptiveOnly": true
+  },
+  "decisionAgreement": {
+    "selectedAnswerable": 6,
+    "totalAnswerable": 6,
+    "abstainedUnanswerable": 6,
+    "totalUnanswerable": 6,
+    "analystLabelDispositionAgreement": 12,
+    "totalCases": 12,
+    "interpretation": "Descriptive agreement with non-gold single-analyst labels on this tiny exploratory set; not accuracy, not calibration."
+  },
+  "retrieval": {
+    "positiveSupportCompleteInCandidateUnion": 6,
+    "totalAnswerable": 6,
+    "top1SupportComplete": 6,
+    "selectedRangeCoversAllLabelledSupportLines": 3
+  },
+  "integrity": {
+    "exactFetchMatchedSnapshot": 6,
+    "totalPositiveFetches": 6,
+    "evidencePackCitationBoundToSelectedHandle": 6
+  },
+  "blindReview": {
+    "reviewCount": 2,
+    "casesReviewedByEach": 6,
+    "reviewerARatings": {
+      "partial": 3,
+      "full": 3
+    },
+    "reviewerBRatings": {
+      "full": 4,
+      "partial": 2
+    },
+    "caseComparison": [
+      {
+        "caseId": "PUB-POS",
+        "reviewerA": "partial",
+        "reviewerB": "full",
+        "agreement": false
+      },
+      {
+        "caseId": "ROUTE-POS",
+        "reviewerA": "partial",
+        "reviewerB": "partial",
+        "agreement": true
+      },
+      {
+        "caseId": "INCIDENT-POS",
+        "reviewerA": "full",
+        "reviewerB": "full",
+        "agreement": true
+      },
+      {
+        "caseId": "LIFECYCLE-POS",
+        "reviewerA": "partial",
+        "reviewerB": "partial",
+        "agreement": true
+      },
+      {
+        "caseId": "SAFE-SKILL-POS",
+        "reviewerA": "full",
+        "reviewerB": "full",
+        "agreement": true
+      },
+      {
+        "caseId": "MODULAR-POS",
+        "reviewerA": "full",
+        "reviewerB": "full",
+        "agreement": true
+      }
+    ],
+    "consensusCases": 5,
+    "totalCases": 6,
+    "semanticLimit": "Excerpt fit only; not procedure truth. No statistical or calibration interpretation."
+  },
+  "confidencePolicy": "Provider confidence and evidenceSufficiency are explicitly uncalibrated. No threshold or production policy changed."
+}

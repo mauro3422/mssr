@@ -1,0 +1,718 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-fresh-skill-refs-20261012T115056Z-v1",
+  "cases": [
+    {
+      "caseId": "PUB-POS",
+      "sourceCluster": "source-01",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "facet": "restart-gate",
+      "query": "When is a Bridge restart appropriate, and which checks must follow it?",
+      "analystLabel": {
+        "answerability": "answerable",
+        "labelStatus": "single-analyst; not owner gold; frozen before provider calls",
+        "supportingSpans": [
+          {
+            "startLine": 5,
+            "endLine": 10
+          }
+        ],
+        "rationale": null
+      },
+      "retrieval": {
+        "candidateCount": 5,
+        "top1Range": {
+          "rangeId": "heading-1",
+          "startLine": 1,
+          "endLine": 12
+        },
+        "top1SupportCoverage": {
+          "coveredLines": 6,
+          "totalSupportingLines": 6
+        },
+        "unionCandidateSupportCoverage": {
+          "coveredLines": 6,
+          "totalSupportingLines": 6,
+          "complete": true
+        }
+      },
+      "jev": {
+        "status": "selected",
+        "decision": "selected",
+        "decisionMatchesAnalystAnswerability": true,
+        "selectedRange": {
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "startLine": 5,
+          "endLine": 12,
+          "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+          "revision": "cf279abc6dcc86fe62d6b4f8782b596693a160e4e147303eea0b5cf931e7467a",
+          "fingerprint": "8a0b362aa9b4a8d77017e922cd3c1c946e26a0025ec75df9e49ef56ac979176d"
+        },
+        "selectedSupportCoverage": {
+          "coveredLines": 6,
+          "totalSupportingLines": 6,
+          "ratio": 1
+        },
+        "insideAnalystAcceptableRange": true,
+        "providerConfidence": 1,
+        "evidenceSufficiency": 0.91,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "usage": {
+          "input_tokens": 1069,
+          "output_tokens": 97
+        },
+        "elapsedMs": 1066.5
+      },
+      "exactEvidence": {
+        "fetchMatchedFrozenSnapshot": true,
+        "returnedTextEqualsExpected": true,
+        "selectedFingerprintMatches": true,
+        "packCitationCount": 1,
+        "packCitationMatchesSelectedHandle": true
+      }
+    },
+    {
+      "caseId": "PUB-NEG",
+      "sourceCluster": "source-01",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-publication.md",
+      "facet": "absent-command",
+      "query": "Which exact PowerShell command line starts the Bridge watchdog after reboot?",
+      "analystLabel": {
+        "answerability": "unanswerable",
+        "labelStatus": "single-analyst; not owner gold; frozen before provider calls",
+        "supportingSpans": [],
+        "rationale": "No PowerShell watchdog command appears in this source file."
+      },
+      "retrieval": {
+        "candidateCount": 3,
+        "top1Range": {
+          "rangeId": "heading-1",
+          "startLine": 1,
+          "endLine": 12
+        },
+        "top1SupportCoverage": null,
+        "unionCandidateSupportCoverage": null
+      },
+      "jev": {
+        "status": "abstained",
+        "decision": "abstain",
+        "decisionMatchesAnalystAnswerability": true,
+        "selectedRange": null,
+        "selectedSupportCoverage": null,
+        "insideAnalystAcceptableRange": null,
+        "providerConfidence": 0.99,
+        "evidenceSufficiency": 0.02,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "usage": {
+          "input_tokens": 897,
+          "output_tokens": 74
+        },
+        "elapsedMs": 676.5
+      },
+      "exactEvidence": null
+    },
+    {
+      "caseId": "ROUTE-POS",
+      "sourceCluster": "source-02",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+      "facet": "routing-fixtures-and-gates",
+      "query": "For routing or activation changes, what fixtures and verification gates must be added or run?",
+      "analystLabel": {
+        "answerability": "answerable",
+        "labelStatus": "single-analyst; not owner gold; frozen before provider calls",
+        "supportingSpans": [
+          {
+            "startLine": 5,
+            "endLine": 10
+          }
+        ],
+        "rationale": null
+      },
+      "retrieval": {
+        "candidateCount": 7,
+        "top1Range": {
+          "rangeId": "heading-1",
+          "startLine": 1,
+          "endLine": 11
+        },
+        "top1SupportCoverage": {
+          "coveredLines": 6,
+          "totalSupportingLines": 6
+        },
+        "unionCandidateSupportCoverage": {
+          "coveredLines": 6,
+          "totalSupportingLines": 6,
+          "complete": true
+        }
+      },
+      "jev": {
+        "status": "selected",
+        "decision": "selected",
+        "decisionMatchesAnalystAnswerability": true,
+        "selectedRange": {
+          "rangeId": "block-2/item-6",
+          "rangeKind": "block",
+          "startLine": 10,
+          "endLine": 10,
+          "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+          "revision": "f4f155c24aed8fd2bd8b0f2a63d1792156a1f6504996009adcd7cb824de84cf2",
+          "fingerprint": "7a740d67807c7c7510fc1ad677f6af79c6737d8dbb7abc43e3d464877a7a957a"
+        },
+        "selectedSupportCoverage": {
+          "coveredLines": 1,
+          "totalSupportingLines": 6,
+          "ratio": 0.16666666666666666
+        },
+        "insideAnalystAcceptableRange": true,
+        "providerConfidence": 0.59,
+        "evidenceSufficiency": 0.58,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "usage": {
+          "input_tokens": 1237,
+          "output_tokens": 117
+        },
+        "elapsedMs": 681.7
+      },
+      "exactEvidence": {
+        "fetchMatchedFrozenSnapshot": true,
+        "returnedTextEqualsExpected": true,
+        "selectedFingerprintMatches": true,
+        "packCitationCount": 1,
+        "packCitationMatchesSelectedHandle": true
+      }
+    },
+    {
+      "caseId": "ROUTE-NEG",
+      "sourceCluster": "source-02",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-routing.md",
+      "facet": "absent-fixture-filename",
+      "query": "Which exact filename contains the positive routing fixture?",
+      "analystLabel": {
+        "answerability": "unanswerable",
+        "labelStatus": "single-analyst; not owner gold; frozen before provider calls",
+        "supportingSpans": [],
+        "rationale": "The source requires positive/negative/continuation fixtures but names no fixture file."
+      },
+      "retrieval": {
+        "candidateCount": 6,
+        "top1Range": {
+          "rangeId": "heading-1",
+          "startLine": 1,
+          "endLine": 11
+        },
+        "top1SupportCoverage": null,
+        "unionCandidateSupportCoverage": null
+      },
+      "jev": {
+        "status": "abstained",
+        "decision": "abstain",
+        "decisionMatchesAnalystAnswerability": true,
+        "selectedRange": null,
+        "selectedSupportCoverage": null,
+        "insideAnalystAcceptableRange": null,
+        "providerConfidence": 0.87,
+        "evidenceSufficiency": 0.11,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "usage": {
+          "input_tokens": 1140,
+          "output_tokens": 104
+        },
+        "elapsedMs": 730.9
+      },
+      "exactEvidence": null
+    },
+    {
+      "caseId": "INCIDENT-POS",
+      "sourceCluster": "source-03",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "facet": "canonical-ledger-ownership",
+      "query": "Which canonical ledger should receive routing, Bridge, project-only, and procedural-skill defects?",
+      "analystLabel": {
+        "answerability": "answerable",
+        "labelStatus": "single-analyst; not owner gold; frozen before provider calls",
+        "supportingSpans": [
+          {
+            "startLine": 5,
+            "endLine": 10
+          }
+        ],
+        "rationale": null
+      },
+      "retrieval": {
+        "candidateCount": 7,
+        "top1Range": {
+          "rangeId": "heading-1",
+          "startLine": 1,
+          "endLine": 12
+        },
+        "top1SupportCoverage": {
+          "coveredLines": 6,
+          "totalSupportingLines": 6
+        },
+        "unionCandidateSupportCoverage": {
+          "coveredLines": 6,
+          "totalSupportingLines": 6,
+          "complete": true
+        }
+      },
+      "jev": {
+        "status": "selected",
+        "decision": "selected",
+        "decisionMatchesAnalystAnswerability": true,
+        "selectedRange": {
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "startLine": 7,
+          "endLine": 10,
+          "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+          "revision": "d07751d34185da19631a554b560ddecdaf7b45fa9d699f827ab695da13be84e5",
+          "fingerprint": "fef7236153a28c909d290616f125a1ae2d5355df8c186178599a03186271b155"
+        },
+        "selectedSupportCoverage": {
+          "coveredLines": 4,
+          "totalSupportingLines": 6,
+          "ratio": 0.6666666666666666
+        },
+        "insideAnalystAcceptableRange": true,
+        "providerConfidence": 0.86,
+        "evidenceSufficiency": 0.89,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "usage": {
+          "input_tokens": 1283,
+          "output_tokens": 117
+        },
+        "elapsedMs": 693.5
+      },
+      "exactEvidence": {
+        "fetchMatchedFrozenSnapshot": true,
+        "returnedTextEqualsExpected": true,
+        "selectedFingerprintMatches": true,
+        "packCitationCount": 1,
+        "packCitationMatchesSelectedHandle": true
+      }
+    },
+    {
+      "caseId": "INCIDENT-NEG",
+      "sourceCluster": "source-03",
+      "sourceRef": "skills/skill-maintenance-loop/references/maintenance-incidents.md",
+      "facet": "absent-retention-period",
+      "query": "How many days should Bridge incident entries be retained?",
+      "analystLabel": {
+        "answerability": "unanswerable",
+        "labelStatus": "single-analyst; not owner gold; frozen before provider calls",
+        "supportingSpans": [],
+        "rationale": "The source gives ledger ownership and record fields, not a retention period."
+      },
+      "retrieval": {
+        "candidateCount": 4,
+        "top1Range": {
+          "rangeId": "heading-1",
+          "startLine": 1,
+          "endLine": 12
+        },
+        "top1SupportCoverage": null,
+        "unionCandidateSupportCoverage": null
+      },
+      "jev": {
+        "status": "abstained",
+        "decision": "abstain",
+        "decisionMatchesAnalystAnswerability": true,
+        "selectedRange": null,
+        "selectedSupportCoverage": null,
+        "insideAnalystAcceptableRange": null,
+        "providerConfidence": 0.95,
+        "evidenceSufficiency": 0.07,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "usage": {
+          "input_tokens": 1004,
+          "output_tokens": 84
+        },
+        "elapsedMs": 665.1
+      },
+      "exactEvidence": null
+    },
+    {
+      "caseId": "LIFECYCLE-POS",
+      "sourceCluster": "source-04",
+      "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+      "facet": "cross-repository-trace-and-close",
+      "query": "When a task crosses repositories, how should trace ownership be handled, and what must be recorded before closing the trace?",
+      "analystLabel": {
+        "answerability": "answerable",
+        "labelStatus": "single-analyst; not owner gold; frozen before provider calls",
+        "supportingSpans": [
+          {
+            "startLine": 10,
+            "endLine": 13
+          },
+          {
+            "startLine": 17,
+            "endLine": 25
+          }
+        ],
+        "rationale": null
+      },
+      "retrieval": {
+        "candidateCount": 11,
+        "top1Range": {
+          "rangeId": "heading-1",
+          "startLine": 1,
+          "endLine": 41
+        },
+        "top1SupportCoverage": {
+          "coveredLines": 13,
+          "totalSupportingLines": 13
+        },
+        "unionCandidateSupportCoverage": {
+          "coveredLines": 13,
+          "totalSupportingLines": 13,
+          "complete": true
+        }
+      },
+      "jev": {
+        "status": "selected",
+        "decision": "selected",
+        "decisionMatchesAnalystAnswerability": true,
+        "selectedRange": {
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "startLine": 10,
+          "endLine": 13,
+          "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+          "revision": "a1900fd63b409219433a041350553f0aebac73e5e2ce4c3fe9196db6e30aea90",
+          "fingerprint": "b135726652194045a088c0b549eb9fa014a0036af8867de826e43d2242f39bd8"
+        },
+        "selectedSupportCoverage": {
+          "coveredLines": 4,
+          "totalSupportingLines": 13,
+          "ratio": 0.3076923076923077
+        },
+        "insideAnalystAcceptableRange": true,
+        "providerConfidence": 0.48,
+        "evidenceSufficiency": 0.68,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "usage": {
+          "input_tokens": 1868,
+          "output_tokens": 157
+        },
+        "elapsedMs": 758
+      },
+      "exactEvidence": {
+        "fetchMatchedFrozenSnapshot": true,
+        "returnedTextEqualsExpected": true,
+        "selectedFingerprintMatches": true,
+        "packCitationCount": 1,
+        "packCitationMatchesSelectedHandle": true
+      }
+    },
+    {
+      "caseId": "LIFECYCLE-NEG",
+      "sourceCluster": "source-04",
+      "sourceRef": "skills/mssr-agent-routing/references/context-and-lifecycle.md",
+      "facet": "absent-repository-limit",
+      "query": "What exact maximum number of repositories may share a single open trace?",
+      "analystLabel": {
+        "answerability": "unanswerable",
+        "labelStatus": "single-analyst; not owner gold; frozen before provider calls",
+        "supportingSpans": [],
+        "rationale": "It says crossing repositories needs a new owner trace but specifies no numeric repository limit."
+      },
+      "retrieval": {
+        "candidateCount": 11,
+        "top1Range": {
+          "rangeId": "heading-1",
+          "startLine": 1,
+          "endLine": 41
+        },
+        "top1SupportCoverage": null,
+        "unionCandidateSupportCoverage": null
+      },
+      "jev": {
+        "status": "abstained",
+        "decision": "abstain",
+        "decisionMatchesAnalystAnswerability": true,
+        "selectedRange": null,
+        "selectedSupportCoverage": null,
+        "insideAnalystAcceptableRange": null,
+        "providerConfidence": 0.84,
+        "evidenceSufficiency": 0.09,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "usage": {
+          "input_tokens": 1856,
+          "output_tokens": 154
+        },
+        "elapsedMs": 668.2
+      },
+      "exactEvidence": null
+    },
+    {
+      "caseId": "SAFE-SKILL-POS",
+      "sourceCluster": "source-05",
+      "sourceRef": "skills/shared-skill-governance/references/safe-skill-updates.md",
+      "facet": "routing-stability-evidence",
+      "query": "What evidence is needed before a new or renamed skill can be considered routing-stable?",
+      "analystLabel": {
+        "answerability": "answerable",
+        "labelStatus": "single-analyst; not owner gold; frozen before provider calls",
+        "supportingSpans": [
+          {
+            "startLine": 5,
+            "endLine": 9
+          }
+        ],
+        "rationale": null
+      },
+      "retrieval": {
+        "candidateCount": 3,
+        "top1Range": {
+          "rangeId": "heading-1",
+          "startLine": 1,
+          "endLine": 11
+        },
+        "top1SupportCoverage": {
+          "coveredLines": 5,
+          "totalSupportingLines": 5
+        },
+        "unionCandidateSupportCoverage": {
+          "coveredLines": 5,
+          "totalSupportingLines": 5,
+          "complete": true
+        }
+      },
+      "jev": {
+        "status": "selected",
+        "decision": "selected",
+        "decisionMatchesAnalystAnswerability": true,
+        "selectedRange": {
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "startLine": 5,
+          "endLine": 11,
+          "sourceRef": "skills/shared-skill-governance/references/safe-skill-updates.md",
+          "revision": "a232a05b6f2b55785e8488659b6e5266c3cada9f5de8ff38d7f9187e9a2013a1",
+          "fingerprint": "cfcb453b149d1ce4ccd15dfcaafc6e5b4930c3de2b80c7ecfbc07adcaacbec28"
+        },
+        "selectedSupportCoverage": {
+          "coveredLines": 5,
+          "totalSupportingLines": 5,
+          "ratio": 1
+        },
+        "insideAnalystAcceptableRange": true,
+        "providerConfidence": 1,
+        "evidenceSufficiency": 0.82,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "usage": {
+          "input_tokens": 883,
+          "output_tokens": 77
+        },
+        "elapsedMs": 647.7
+      },
+      "exactEvidence": {
+        "fetchMatchedFrozenSnapshot": true,
+        "returnedTextEqualsExpected": true,
+        "selectedFingerprintMatches": true,
+        "packCitationCount": 1,
+        "packCitationMatchesSelectedHandle": true
+      }
+    },
+    {
+      "caseId": "SAFE-SKILL-NEG",
+      "sourceCluster": "source-05",
+      "sourceRef": "skills/shared-skill-governance/references/safe-skill-updates.md",
+      "facet": "absent-score-threshold",
+      "query": "What exact score threshold makes a skill routing-stable?",
+      "analystLabel": {
+        "answerability": "unanswerable",
+        "labelStatus": "single-analyst; not owner gold; frozen before provider calls",
+        "supportingSpans": [],
+        "rationale": "The source names qualitative routing-stability evidence but no score threshold."
+      },
+      "retrieval": {
+        "candidateCount": 3,
+        "top1Range": {
+          "rangeId": "heading-1",
+          "startLine": 1,
+          "endLine": 11
+        },
+        "top1SupportCoverage": null,
+        "unionCandidateSupportCoverage": null
+      },
+      "jev": {
+        "status": "abstained",
+        "decision": "abstain",
+        "decisionMatchesAnalystAnswerability": true,
+        "selectedRange": null,
+        "selectedSupportCoverage": null,
+        "insideAnalystAcceptableRange": null,
+        "providerConfidence": 0.81,
+        "evidenceSufficiency": 0.16,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "usage": {
+          "input_tokens": 877,
+          "output_tokens": 74
+        },
+        "elapsedMs": 692.5
+      },
+      "exactEvidence": null
+    },
+    {
+      "caseId": "MODULAR-POS",
+      "sourceCluster": "source-06",
+      "sourceRef": "skills/skill-routing-maintainer/references/modular-skill-architecture.md",
+      "facet": "routed-entrypoint-boundary",
+      "query": "Are internal skill references independently routed MSSR capabilities, and what is SKILL.md role in routing?",
+      "analystLabel": {
+        "answerability": "answerable",
+        "labelStatus": "single-analyst; not owner gold; frozen before provider calls",
+        "supportingSpans": [
+          {
+            "startLine": 15,
+            "endLine": 15
+          }
+        ],
+        "rationale": null
+      },
+      "retrieval": {
+        "candidateCount": 93,
+        "top1Range": {
+          "rangeId": "heading-1",
+          "startLine": 1,
+          "endLine": 177
+        },
+        "top1SupportCoverage": {
+          "coveredLines": 1,
+          "totalSupportingLines": 1
+        },
+        "unionCandidateSupportCoverage": {
+          "coveredLines": 1,
+          "totalSupportingLines": 1,
+          "complete": true
+        }
+      },
+      "jev": {
+        "status": "selected",
+        "decision": "selected",
+        "decisionMatchesAnalystAnswerability": true,
+        "selectedRange": {
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "startLine": 15,
+          "endLine": 15,
+          "sourceRef": "skills/skill-routing-maintainer/references/modular-skill-architecture.md",
+          "revision": "82b3e98eafffc2769cf945515e534e2c66a57b65a024ba3f628d8242e691442b",
+          "fingerprint": "5a7c7284f6b30864bab867e269204fcd89ccbd9c63cee1fa46d8a66e8b048136"
+        },
+        "selectedSupportCoverage": {
+          "coveredLines": 1,
+          "totalSupportingLines": 1,
+          "ratio": 1
+        },
+        "insideAnalystAcceptableRange": true,
+        "providerConfidence": 0.58,
+        "evidenceSufficiency": 0.94,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "usage": {
+          "input_tokens": 10950,
+          "output_tokens": 977
+        },
+        "elapsedMs": 763.1
+      },
+      "exactEvidence": {
+        "fetchMatchedFrozenSnapshot": true,
+        "returnedTextEqualsExpected": true,
+        "selectedFingerprintMatches": true,
+        "packCitationCount": 1,
+        "packCitationMatchesSelectedHandle": true
+      }
+    },
+    {
+      "caseId": "MODULAR-NEG",
+      "sourceCluster": "source-06",
+      "sourceRef": "skills/skill-routing-maintainer/references/modular-skill-architecture.md",
+      "facet": "absent-reference-count-limit",
+      "query": "What is the hard maximum number of optional references one SKILL.md may define?",
+      "analystLabel": {
+        "answerability": "unanswerable",
+        "labelStatus": "single-analyst; not owner gold; frozen before provider calls",
+        "supportingSpans": [],
+        "rationale": "The source defines no numeric maximum for optional references."
+      },
+      "retrieval": {
+        "candidateCount": 93,
+        "top1Range": {
+          "rangeId": "heading-1",
+          "startLine": 1,
+          "endLine": 177
+        },
+        "top1SupportCoverage": null,
+        "unionCandidateSupportCoverage": null
+      },
+      "jev": {
+        "status": "abstained",
+        "decision": "abstain",
+        "decisionMatchesAnalystAnswerability": true,
+        "selectedRange": null,
+        "selectedSupportCoverage": null,
+        "insideAnalystAcceptableRange": null,
+        "providerConfidence": 0.9,
+        "evidenceSufficiency": 0.09,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "usage": {
+          "input_tokens": 10935,
+          "output_tokens": 974
+        },
+        "elapsedMs": 734.8
+      },
+      "exactEvidence": null
+    }
+  ]
+}
