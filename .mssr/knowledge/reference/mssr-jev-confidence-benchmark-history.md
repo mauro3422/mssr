@@ -58,3 +58,21 @@ and the [run 39 report](../../../experiments/jev-mssr-live/runs/mssr-librarian-s
 ## Run 40: Context Plane receipt facets and containment control (2026-10-12)
 
 Two live Jev facets selected and exact-fetched their labeled ranges (2/2); the cited host composition passed a blind Luna sufficiency review. A separate structural control removed a 548-character contained child. One thematically exposed source cluster only: no owner-gold, clean holdout, semantic-compaction test or calibration; scores remain uncalibrated. See the [run report](../../../experiments/jev-mssr-live/runs/mssr-librarian-context-plane-receipt-union-20261012T0417Z-v1/RUN-REPORT.md) and [validation](../../../experiments/jev-mssr-live/runs/mssr-librarian-context-plane-receipt-union-20261012T0417Z-v1/derived/validation.json).
+
+## Run 61: live Project Context sidecar pilot (2026-10-12)
+
+The Bridge 0.6.175 / MSSR 0.2.127 / Jev 1.13.0 path projected four exact
+host-declared sidecar selectors (4/4). Across four exposed MSSR source
+clusters, lexical top-8 target recall was 5/8 overall (English 4/4, Spanish
+1/4); the exact sidecar filters returned the target in 8/8 bilingual queries.
+Jev selected within the expected section 12/12 times it selected; seven unique
+handles passed exact fetch/fingerprint and evidence-pack byte equality (7/7).
+Blind Luna review judged 12/12 excerpts sufficient and 7/12 calls overbroad
+(3/7 unique handles). This was a manual live MCP pilot without raw transport
+events/replay IDs, owner-gold, or an independent holdout. It tested this
+Project Context sidecar only, not general atom/skill/reference/telemetry
+metadata integration, confidence calibration, or production reliability. The
+[run report](../../../experiments/jev-mssr-live/runs/mssr-librarian-live-sidecar-bridge-20261012T1810Z-v1/RUN-REPORT.md),
+[blind review](../../../experiments/jev-mssr-live/runs/mssr-librarian-live-sidecar-bridge-20261012T1810Z-v1/BLIND-REVIEW.md),
+and [ledger entry](../../../experiments/jev-mssr-live/README.md) preserve the
+full detail. No runtime or threshold changed.

@@ -57,6 +57,10 @@ fetch of the relevant range. This is one previously exposed source cluster,
 with no owner-gold labels; it supports the retrieval mechanism only, not broad
 bilingual quality or confidence calibration.
 
+Run61's four-filter sidecar result and limits are in
+`knowledge/reference/mssr-jev-confidence-benchmark-history.md`; it validates
+only this Project Context path, not generic atom integration or calibration.
+
 ## Fetchable Librarian tie ordering — 0.2.105
 
 Librarian relevance scores remain lexical overlap ratios. When two candidates

@@ -1,0 +1,5159 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-live-sidecar-bridge-20261012T1810Z-v1",
+  "recordedAt": "2026-10-12",
+  "environment": {
+    "bridgeVersion": "0.6.175",
+    "mssrVersion": "0.2.127",
+    "jevVersion": "1.13.0",
+    "searchRuntimeBootId": "165f4d43-61f9-4ba7-89d4-19e0add66d00",
+    "searchSchemaHash": "b931631885199014"
+  },
+  "planPath": "experiments/jev-mssr-live/runs/mssr-librarian-live-sidecar-bridge-20261012T1810Z-v1/RUN-PLAN.md",
+  "exclusion": "Initial mirror preflight and maxSnippetChars=260 attempts rejected before source reads; no Jev call and excluded.",
+  "summary": {
+    "totalSearches": 16,
+    "controlSearches": 8,
+    "sidecarSearches": 8,
+    "lexicalTargetRecall": "5/8",
+    "sidecarTargetRecall": "8/8",
+    "sidecarProjection": true,
+    "jevCalls": 16,
+    "controlSelected": 5,
+    "controlAbstained": 3,
+    "sidecarSelected": 7,
+    "sidecarAbstained": 1,
+    "selectedRelevant": "12/12",
+    "uniqueSelectedHandles": 7,
+    "fetchFingerprintPass": "7/7",
+    "packByteTextEquality": "7/7",
+    "totalPackChars": 13534,
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "providerCallCount": 16,
+    "inputTokens": 19550,
+    "outputTokens": 1460,
+    "medianBridgeElapsedMs": 711.7
+  },
+  "sources": [
+    {
+      "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+      "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df"
+    },
+    {
+      "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+      "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188"
+    },
+    {
+      "sourceRef": ".mssr/PROJECT_STATE.md",
+      "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887"
+    },
+    {
+      "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+      "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469"
+    }
+  ],
+  "searches": [
+    {
+      "caseId": "A1",
+      "language": "en",
+      "arm": "off",
+      "primaryQuery": "Which authority decides whether linked structural change means the architecture changed?",
+      "queryVariants": [
+        "¿Qué autoridad decide si un cambio estructural enlazado significa que cambió la arquitectura?"
+      ],
+      "filter": null,
+      "metadataStatus": "off",
+      "metadataProjection": null,
+      "targetInTop8": true,
+      "targetRank": 2,
+      "results": [
+        {
+          "rank": 1,
+          "handle": {
+            "version": 1,
+            "id": "f1ea964fd24a2c89017c46cafd603d6d7b2d0cd6a726699fff5584bc2c409b04",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/PROJECT_STATE.md",
+            "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 107,
+            "startOffset": 0,
+            "endOffset": 17208,
+            "fingerprint": "3e08861de0a9b06cee52089a91fa14cb44eb13a696114f9d7bca7576e45f3035",
+            "privacyClass": "project-metadata"
+          },
+          "title": "MSSR project state",
+          "headingPath": [
+            "MSSR project state"
+          ],
+          "score": 0.666667,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.666667,
+              "matchedTerms": [
+                "authority",
+                "linked",
+                "structural",
+                "change",
+                "architecture",
+                "changed"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…ed; no threshold or production behavior changed. See the [Run60 analysis](../experiments/jev-mssr-live/runs/mssr-librarian-run60-fresh-crossproject-bilingual-…"
+        },
+        {
+          "rank": 2,
+          "handle": {
+            "version": 1,
+            "id": "22d2467b49817f36964d9a926b714096acb976143610f251803a890f0939ada9",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+            "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 5,
+            "startOffset": 0,
+            "endOffset": 1955,
+            "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Architecture impact review decision",
+          "headingPath": [
+            "Architecture impact review decision"
+          ],
+          "score": 0.555556,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.555556,
+              "matchedTerms": [
+                "authority",
+                "linked",
+                "structural",
+                "architecture",
+                "changed"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "## Architecture impact review decision Situation Model C2f uses repository-declared architecture relationships plus non-widening structural evidence. `.mssr/ar…"
+        },
+        {
+          "rank": 3,
+          "handle": {
+            "version": 1,
+            "id": "96857243edd7444ad11d42cacbe1fa1f0a9bcf9b36cc79527cda6dc5f74e44ca",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/PROJECT_STATE.md",
+            "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+            "rangeId": "heading-3",
+            "rangeKind": "section",
+            "startLine": 6,
+            "endLine": 82,
+            "startOffset": 1556,
+            "endOffset": 13668,
+            "fingerprint": "220825bbe43608e1c61bf07785e2bc63d123191e5792c5b32497a5d4a1a9f940",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Current Jev/Librarian evaluation",
+          "headingPath": [
+            "MSSR project state",
+            "Current Jev/Librarian evaluation"
+          ],
+          "score": 0.555556,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.555556,
+              "matchedTerms": [
+                "authority",
+                "linked",
+                "structural",
+                "change",
+                "changed"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…ed; no threshold or production behavior changed. See the [Run60 analysis](../experiments/jev-mssr-live/runs/mssr-librarian-run60-fresh-crossproject-bilingual-…"
+        },
+        {
+          "rank": 4,
+          "handle": {
+            "version": 1,
+            "id": "e31a6b2393ca11e00dcfc43cd28172b568b6ffd615b32a0f2849b687cd6cff4c",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+            "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 40,
+            "endOffset": 471,
+            "fingerprint": "eb42c78ebdd7f706fbad295abba3340c6791fa710c882a1c488e6e8eaed357ab",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Architecture impact review decision",
+          "headingPath": [
+            "Architecture impact review decision"
+          ],
+          "score": 0.555556,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.555556,
+              "matchedTerms": [
+                "authority",
+                "linked",
+                "structural",
+                "architecture",
+                "changed"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…tion Model C2f uses repository-declared architecture relationships plus non-widening structural evidence. `.mssr/architecture-impact.json` owns exact declared…"
+        },
+        {
+          "rank": 5,
+          "handle": {
+            "version": 1,
+            "id": "caea75743aa474ef0dc6eb8607c479858be4ed7b300ba71b8fbe906b3b28d943",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+            "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 473,
+            "endOffset": 1954,
+            "fingerprint": "e8433965e494f2c123f94d92837e02bc1b1630c3b129691a8b65467d681b2275",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Architecture impact review decision",
+          "headingPath": [
+            "Architecture impact review decision"
+          ],
+          "score": 0.444444,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.444444,
+              "matchedTerms": [
+                "authority",
+                "structural",
+                "architecture",
+                "changed"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "Architecture Impact host adoption is closed across the portable coordinator and the deliberately separate host gates. `planArchitectureHostAdoption` may expose…"
+        },
+        {
+          "rank": 6,
+          "handle": {
+            "version": 1,
+            "id": "70e7a79eea8102164e9bd1c19237585b3ffdbb1df8e45a351843b59dde787156",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/PROJECT_STATE.md",
+            "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 8,
+            "endLine": 8,
+            "startOffset": 1593,
+            "endOffset": 3109,
+            "fingerprint": "44e4354608b086404d9e60d2833edba1ce4c381b3ceed4508666eea146d27d29",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Current Jev/Librarian evaluation",
+          "headingPath": [
+            "MSSR project state",
+            "Current Jev/Librarian evaluation"
+          ],
+          "score": 0.222222,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.222222,
+              "matchedTerms": [
+                "linked",
+                "changed"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…ed; no threshold or production behavior changed. See the [Run60 analysis](../experiments/jev-mssr-live/runs/mssr-librarian-run60-fresh-crossproject-bilingual-…"
+        },
+        {
+          "rank": 7,
+          "handle": {
+            "version": 1,
+            "id": "7643097c88834c19aff45515283f530a030dfafa8dd0f20e2304fcb044b62d18",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/PROJECT_STATE.md",
+            "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+            "rangeId": "block-4",
+            "rangeKind": "block",
+            "startLine": 12,
+            "endLine": 12,
+            "startOffset": 3709,
+            "endOffset": 4885,
+            "fingerprint": "ac2c41d5067d8d65583f52c1462dc25741a64202b03db843658306573e54d0d5",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Current Jev/Librarian evaluation",
+          "headingPath": [
+            "MSSR project state",
+            "Current Jev/Librarian evaluation"
+          ],
+          "score": 0.222222,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.222222,
+              "matchedTerms": [
+                "structural",
+                "changed"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…dged both facets sufficient. A separate structural containment control removed one redundant 548-character child under its parent section. Retrieval reduction…"
+        },
+        {
+          "rank": 8,
+          "handle": {
+            "version": 1,
+            "id": "a1431bd0517b6d9efa229b38365c940c22fa945c0eb376f48a867b31a1813514",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/PROJECT_STATE.md",
+            "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+            "rangeId": "block-10",
+            "rangeKind": "block",
+            "startLine": 33,
+            "endLine": 44,
+            "startOffset": 9786,
+            "endOffset": 10774,
+            "fingerprint": "3251619ca24f6e8cab98b4b66c00cf90a04ce15bd1b3069074d3309077e5320e",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Current Jev/Librarian evaluation",
+          "headingPath": [
+            "MSSR project state",
+            "Current Jev/Librarian evaluation"
+          ],
+          "score": 0.222222,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.222222,
+              "matchedTerms": [
+                "linked",
+                "change"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…connected diagnostic tested three fresh changelog source clusters. Jev selected and exact-fetched two primary cases; on the third it abstained from an answera…"
+        }
+      ]
+    },
+    {
+      "caseId": "A1",
+      "language": "en",
+      "arm": "sidecar",
+      "primaryQuery": "Which authority decides whether linked structural change means the architecture changed?",
+      "queryVariants": [
+        "¿Qué autoridad decide si un cambio estructural enlazado significa que cambió la arquitectura?"
+      ],
+      "filter": {
+        "domain": "coding",
+        "action": "review",
+        "artifact": "repository",
+        "need": "integrity-verification",
+        "signal": "conflicting-evidence"
+      },
+      "metadataStatus": "applied",
+      "metadataProjection": {
+        "declared": 4,
+        "projected": 4,
+        "omitted": 0,
+        "manifests": {
+          "projectContext": "e1bd3d86e5644c7e2348c5abf7abb3a4543de32763e94691b90ce9e58ed68b6f",
+          "librarian": "9e80e6e2b9973b9bd4b32e55af3a65bb4d1325d01ede0eb2e4e91ca238f1abd7",
+          "segments": "ba9c538cb95a5306015d421b5392edac78d27465146141e677b86ac8609d9ad4",
+          "references": null
+        }
+      },
+      "targetInTop8": true,
+      "targetRank": 1,
+      "results": [
+        {
+          "rank": 1,
+          "handle": {
+            "version": 1,
+            "id": "22d2467b49817f36964d9a926b714096acb976143610f251803a890f0939ada9",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+            "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 5,
+            "startOffset": 0,
+            "endOffset": 1955,
+            "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Architecture impact review decision",
+          "headingPath": [
+            "Architecture impact review decision"
+          ],
+          "score": 0.555556,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.555556,
+              "matchedTerms": [
+                "authority",
+                "linked",
+                "structural",
+                "architecture",
+                "changed"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [
+            {
+              "schemaVersion": 1,
+              "projectionFingerprint": "15f77ac9677221bc7a0c8a8550d1f6a71447cc72bffc39f9328604f59b02d5e1",
+              "atomId": "evidence-atom:73056d9327c495e3fa919d7d",
+              "recordFingerprint": "f382f6a835c78e162efc099ee72ea3c72b0faf3a119e824cda03827171bd0f4a",
+              "producer": "project-context-librarian",
+              "provenanceIsCallerAsserted": true,
+              "matches": [],
+              "filterMatches": [
+                {
+                  "field": "domain",
+                  "value": "coding"
+                },
+                {
+                  "field": "action",
+                  "value": "review"
+                },
+                {
+                  "field": "artifact",
+                  "value": "repository"
+                },
+                {
+                  "field": "need",
+                  "value": "integrity-verification"
+                },
+                {
+                  "field": "signal",
+                  "value": "conflicting-evidence"
+                }
+              ]
+            }
+          ],
+          "snippet": "## Architecture impact review decision Situation Model C2f uses repository-declared architecture relationships plus non-widening structural evidence. `.mssr/ar…"
+        }
+      ]
+    },
+    {
+      "caseId": "A1",
+      "language": "es",
+      "arm": "off",
+      "primaryQuery": "¿Qué autoridad decide si un cambio estructural enlazado significa que cambió la arquitectura?",
+      "queryVariants": [
+        "Which authority decides whether linked structural change means the architecture changed?"
+      ],
+      "filter": null,
+      "metadataStatus": "off",
+      "metadataProjection": null,
+      "targetInTop8": false,
+      "targetRank": null,
+      "results": [
+        {
+          "rank": 1,
+          "handle": {
+            "version": 1,
+            "id": "7733f91e0e507892542ed35d85d5086abc35f9a1551c033f34bae5f58f11e485",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-8",
+            "rangeKind": "section",
+            "startLine": 58,
+            "endLine": 77,
+            "startOffset": 10160,
+            "endOffset": 13003,
+            "fingerprint": "b7faec4cd33612b70896fa7740d3669d667e2a7cf7f1a504d84c85a8907e6f5d",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Composición: cómo cubrir grep, selección, compacción y párrafos",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Composición: cómo cubrir grep, selección, compacción y párrafos"
+          ],
+          "score": 0.5,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.5,
+              "matchedTerms": [
+                "autoridad",
+                "decide",
+                "si",
+                "estructural"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "## Composición: cómo cubrir grep, selección, compacción y párrafos Una aplicación completa puede juntar piezas diferentes, sin adjudicar a Jev el trabajo de la…"
+        },
+        {
+          "rank": 2,
+          "handle": {
+            "version": 1,
+            "id": "c345bc9bc4cbfe25839914bcafeed537a3730608bc5216301ee2bf7efdc7c071",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 6,
+            "endLine": 15,
+            "startOffset": 179,
+            "endOffset": 2091,
+            "fingerprint": "4eb12a98e74fc31e4d77b40aebe3c3a75d70a8346af7d37c634a4c38d58b8f77",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Resumen ejecutivo",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Resumen ejecutivo"
+          ],
+          "score": 0.375,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.375,
+              "matchedTerms": [
+                "si",
+                "estructural",
+                "arquitectura"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "… ejecutivo Jev es una API/modelo de decisiones acotadas: recibe un estado representado como texto/estructura y preguntas con respuestas tipadas predefinidas; …"
+        },
+        {
+          "rank": 3,
+          "handle": {
+            "version": 1,
+            "id": "b2c704e470b8f93788de80624e8fc2cd0d753beed02ff5cd8fa32474da7b947b",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "block-20",
+            "rangeKind": "block",
+            "startLine": 62,
+            "endLine": 66,
+            "startOffset": 10330,
+            "endOffset": 11800,
+            "fingerprint": "40248a3cc3c0f9ce2f5af10d5a7d6bb605a96a25f5da187d945534fadba63e7f",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Composición: cómo cubrir grep, selección, compacción y párrafos",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Composición: cómo cubrir grep, selección, compacción y párrafos"
+          ],
+          "score": 0.375,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.375,
+              "matchedTerms": [
+                "autoridad",
+                "si",
+                "estructural"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "… escoger entre búsquedas candidatas, clasificar intención de consulta o puntuar relevancia de resultados. El host ejecuta `grep`, índice textual/vectorial u o…"
+        },
+        {
+          "rank": 4,
+          "handle": {
+            "version": 1,
+            "id": "7719498578989e7f2cc919ee3d3bd4f1c41d9b52c96d1717d28e58e00ae67c89",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-9",
+            "rangeKind": "section",
+            "startLine": 78,
+            "endLine": 211,
+            "startOffset": 13003,
+            "endOffset": 20731,
+            "fingerprint": "9197101e89eee91feea5862c14ac1ec29c4a0036eb0fbf9d1e744a0e2306a1d5",
+            "privacyClass": "project-metadata"
+          },
+          "title": "100 hipótesis de uso",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "100 hipótesis de uso"
+          ],
+          "score": 0.375,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.375,
+              "matchedTerms": [
+                "autoridad",
+                "si",
+                "cambio"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "## 100 hipótesis de uso Los siguientes casos describen **preguntas candidatas** que podrían expresarse como `choice`, `score` o `noul`. Son propuestas; excepto…"
+        },
+        {
+          "rank": 5,
+          "handle": {
+            "version": 1,
+            "id": "0e69d554719279e22b7f87640ba0be70a016acd201972e3ca85a41a2df038b93",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 8,
+            "endLine": 8,
+            "startOffset": 201,
+            "endOffset": 930,
+            "fingerprint": "7befa725a9ad4e032a68107d02c252ab459c261377dc3bd0296d8ad5c965f60c",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Resumen ejecutivo",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Resumen ejecutivo"
+          ],
+          "score": 0.25,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.25,
+              "matchedTerms": [
+                "si",
+                "estructural"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "Jev es una API/modelo de decisiones acotadas: recibe un estado representado como texto/estructura y preguntas con respuestas tipadas predefinidas; devuelve ele…"
+        },
+        {
+          "rank": 6,
+          "handle": {
+            "version": 1,
+            "id": "2b53540132002175c6ad8e93d619df3236f840af5b14e90e34e803a0123291cf",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-7",
+            "rangeKind": "section",
+            "startLine": 52,
+            "endLine": 57,
+            "startOffset": 8737,
+            "endOffset": 10160,
+            "fingerprint": "5ae68a640e574365279748c79a33f9b4ba66ddb981c415d2963b048acb1c4721",
+            "privacyClass": "project-metadata"
+          },
+          "title": "OpenAI Decisions API: anuncio verificado, esquema pendiente",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "OpenAI Decisions API: anuncio verificado, esquema pendiente"
+          ],
+          "score": 0.25,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.25,
+              "matchedTerms": [
+                "si",
+                "estructural"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "## OpenAI Decisions API: anuncio verificado, esquema pendiente El recap oficial de DevDay, publicado **29-sep-2026**, anunció **Decisions API**: decisiones en …"
+        },
+        {
+          "rank": 7,
+          "handle": {
+            "version": 1,
+            "id": "b8c2a7782e8ebd147fd60227d2275787f12c4ea5fc40c9e85e9e459e537c82a4",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "block-18",
+            "rangeKind": "block",
+            "startLine": 56,
+            "endLine": 56,
+            "startOffset": 9533,
+            "endOffset": 10158,
+            "fingerprint": "8e5f18e710ebba7123a0b6eb2a42f81df236358f6dd7e5d9ef64690789adde33",
+            "privacyClass": "project-metadata"
+          },
+          "title": "OpenAI Decisions API: anuncio verificado, esquema pendiente",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "OpenAI Decisions API: anuncio verificado, esquema pendiente"
+          ],
+          "score": 0.25,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.25,
+              "matchedTerms": [
+                "si",
+                "estructural"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "… (estado + preguntas/alternativas + decisión consumible por software) y añade explícitamente imagen como entrada. Esto hace razonable comparar ambos para la e…"
+        },
+        {
+          "rank": 8,
+          "handle": {
+            "version": 1,
+            "id": "4984ac490232afefdad3775620db0b12adbfe702ccd8e90ccde8e3d766c72438",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "block-22",
+            "rangeKind": "block",
+            "startLine": 70,
+            "endLine": 76,
+            "startOffset": 12470,
+            "endOffset": 13001,
+            "fingerprint": "e659510fa6eff2af692080460af1098415dff4c20acd862f18e7a1af2425bfca",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Composición: cómo cubrir grep, selección, compacción y párrafos",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Composición: cómo cubrir grep, selección, compacción y párrafos"
+          ],
+          "score": 0.25,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.25,
+              "matchedTerms": [
+                "decide",
+                "si"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…ena documentada por TypeSafe: el modelo decide; el host recupera; código conserva/une/renderiza el texto o un generador redacta; la verificación comprueba cit…"
+        }
+      ]
+    },
+    {
+      "caseId": "A1",
+      "language": "es",
+      "arm": "sidecar",
+      "primaryQuery": "¿Qué autoridad decide si un cambio estructural enlazado significa que cambió la arquitectura?",
+      "queryVariants": [
+        "Which authority decides whether linked structural change means the architecture changed?"
+      ],
+      "filter": {
+        "domain": "coding",
+        "action": "review",
+        "artifact": "repository",
+        "need": "integrity-verification",
+        "signal": "conflicting-evidence"
+      },
+      "metadataStatus": "applied",
+      "metadataProjection": {
+        "declared": 4,
+        "projected": 4,
+        "omitted": 0,
+        "manifests": {
+          "projectContext": "e1bd3d86e5644c7e2348c5abf7abb3a4543de32763e94691b90ce9e58ed68b6f",
+          "librarian": "9e80e6e2b9973b9bd4b32e55af3a65bb4d1325d01ede0eb2e4e91ca238f1abd7",
+          "segments": "ba9c538cb95a5306015d421b5392edac78d27465146141e677b86ac8609d9ad4",
+          "references": null
+        }
+      },
+      "targetInTop8": true,
+      "targetRank": 1,
+      "results": [
+        {
+          "rank": 1,
+          "handle": {
+            "version": 1,
+            "id": "22d2467b49817f36964d9a926b714096acb976143610f251803a890f0939ada9",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+            "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 5,
+            "startOffset": 0,
+            "endOffset": 1955,
+            "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Architecture impact review decision",
+          "headingPath": [
+            "Architecture impact review decision"
+          ],
+          "score": 0.555556,
+          "scoreQueryIndex": 1,
+          "queryMatches": [
+            {
+              "queryIndex": 1,
+              "score": 0.555556,
+              "matchedTerms": [
+                "authority",
+                "linked",
+                "structural",
+                "architecture",
+                "changed"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [
+            {
+              "schemaVersion": 1,
+              "projectionFingerprint": "15f77ac9677221bc7a0c8a8550d1f6a71447cc72bffc39f9328604f59b02d5e1",
+              "atomId": "evidence-atom:73056d9327c495e3fa919d7d",
+              "recordFingerprint": "f382f6a835c78e162efc099ee72ea3c72b0faf3a119e824cda03827171bd0f4a",
+              "producer": "project-context-librarian",
+              "provenanceIsCallerAsserted": true,
+              "matches": [],
+              "filterMatches": [
+                {
+                  "field": "domain",
+                  "value": "coding"
+                },
+                {
+                  "field": "action",
+                  "value": "review"
+                },
+                {
+                  "field": "artifact",
+                  "value": "repository"
+                },
+                {
+                  "field": "need",
+                  "value": "integrity-verification"
+                },
+                {
+                  "field": "signal",
+                  "value": "conflicting-evidence"
+                }
+              ]
+            }
+          ],
+          "snippet": "## Architecture impact review decision Situation Model C2f uses repository-declared architecture relationships plus non-widening structural evidence. `.mssr/ar…"
+        }
+      ]
+    },
+    {
+      "caseId": "A2",
+      "language": "en",
+      "arm": "off",
+      "primaryQuery": "Is the learning dataset ready to influence routing or promote rules?",
+      "queryVariants": [
+        "¿El conjunto de datos de aprendizaje ya puede influir en el routing o promover reglas?"
+      ],
+      "filter": null,
+      "metadataStatus": "off",
+      "metadataProjection": null,
+      "targetInTop8": true,
+      "targetRank": 1,
+      "results": [
+        {
+          "rank": 1,
+          "handle": {
+            "version": 1,
+            "id": "a4184120540f627067d789a4ee4fb9b29ed484d1efbd06d93826584f0e8bc263",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2162,
+            "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.714286,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.714286,
+              "matchedTerms": [
+                "learning",
+                "dataset",
+                "influence",
+                "routing",
+                "rules"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.111111,
+              "matchedTerms": [
+                "routing"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "## Learning dataset state Semantic Experience remains separate from routing authority. `0.2.87` automatically projects the privacy-safe `learning-digest-v1` in…"
+        },
+        {
+          "rank": 2,
+          "handle": {
+            "version": 1,
+            "id": "c61c476ed4fb2d274f3994debfe042e0e8c571be343b640e4bf1fc23ab19e65c",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 27,
+            "endOffset": 889,
+            "fingerprint": "3526b6c9cea70e3ef28439974d9ec46709dcdf784696aa69fa2a4f640c05b8ce",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.571429,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.571429,
+              "matchedTerms": [
+                "learning",
+                "dataset",
+                "influence",
+                "routing"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.111111,
+              "matchedTerms": [
+                "routing"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…mantic Experience remains separate from routing authority. `0.2.87` automatically projects the privacy-safe `learning-digest-v1` into bounded trace-linked con…"
+        },
+        {
+          "rank": 3,
+          "handle": {
+            "version": 1,
+            "id": "125739b02a168bbc39bd617233196ac05766481e42e470bbb39b211c23695c40",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 1236,
+            "endOffset": 2161,
+            "fingerprint": "539b10b8f7b0f68421ef413514bd3a2ba1ade6278924d44ea7aba6ca3d31e26a",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.571429,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.571429,
+              "matchedTerms": [
+                "learning",
+                "dataset",
+                "influence",
+                "routing"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.111111,
+              "matchedTerms": [
+                "routing"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…ed, project-held-out evidence and keeps routing, authority, canonical rewrite, and auto-apply influence disabled. This is a local-store observation, distinct …"
+        },
+        {
+          "rank": 4,
+          "handle": {
+            "version": 1,
+            "id": "04d7f8e47083004cde34ee2a7b5a4f9bfca3fc9824150a7ca1caed593d348a32",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 891,
+            "endOffset": 1234,
+            "fingerprint": "d4bfbcfb1d44f04f08ba01801a66aaccd16574d959fed0ce071824c2a5dc405a",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.428571,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.428571,
+              "matchedTerms": [
+                "learning",
+                "dataset",
+                "rules"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…ected, rejected, eligible, or generated rules. This is not current local telemetry; details are preserved in `D:\\MSSR-benchmark-artifacts\\jev-shep-calibration…"
+        },
+        {
+          "rank": 5,
+          "handle": {
+            "version": 1,
+            "id": "22d2467b49817f36964d9a926b714096acb976143610f251803a890f0939ada9",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+            "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 5,
+            "startOffset": 0,
+            "endOffset": 1955,
+            "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Architecture impact review decision",
+          "headingPath": [
+            "Architecture impact review decision"
+          ],
+          "score": 0.142857,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.142857,
+              "matchedTerms": [
+                "rules"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…mbol-analysis plans and exact invariant rules, but analyzers remain optional host observation capabilities (`analyzersRequired=false`). `evaluateArchitectureH…"
+        },
+        {
+          "rank": 6,
+          "handle": {
+            "version": 1,
+            "id": "2b53540132002175c6ad8e93d619df3236f840af5b14e90e34e803a0123291cf",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-7",
+            "rangeKind": "section",
+            "startLine": 52,
+            "endLine": 57,
+            "startOffset": 8737,
+            "endOffset": 10160,
+            "fingerprint": "5ae68a640e574365279748c79a33f9b4ba66ddb981c415d2963b048acb1c4721",
+            "privacyClass": "project-metadata"
+          },
+          "title": "OpenAI Decisions API: anuncio verificado, esquema pendiente",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "OpenAI Decisions API: anuncio verificado, esquema pendiente"
+          ],
+          "score": 0.142857,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.142857,
+              "matchedTerms": [
+                "routing"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.111111,
+              "matchedTerms": [
+                "routing"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…y recibe respuestas para clasificación, routing o próxima acción de agente. El estado publicado era **limited preview**, con release amplio previsto “in the c…"
+        },
+        {
+          "rank": 7,
+          "handle": {
+            "version": 1,
+            "id": "f1ea964fd24a2c89017c46cafd603d6d7b2d0cd6a726699fff5584bc2c409b04",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/PROJECT_STATE.md",
+            "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 107,
+            "startOffset": 0,
+            "endOffset": 17208,
+            "fingerprint": "3e08861de0a9b06cee52089a91fa14cb44eb13a696114f9d7bca7576e45f3035",
+            "privacyClass": "project-metadata"
+          },
+          "title": "MSSR project state",
+          "headingPath": [
+            "MSSR project state"
+          ],
+          "score": 0.142857,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.142857,
+              "matchedTerms": [
+                "learning"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…-live-20261011T192430Z-v1/REPORT.md). **Learning digest overflow correction (2026-10-11):** MSSR 0.2.127 raises the strict context-selection bound from 96 to …"
+        },
+        {
+          "rank": 8,
+          "handle": {
+            "version": 1,
+            "id": "caea75743aa474ef0dc6eb8607c479858be4ed7b300ba71b8fbe906b3b28d943",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+            "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 473,
+            "endOffset": 1954,
+            "fingerprint": "e8433965e494f2c123f94d92837e02bc1b1630c3b129691a8b65467d681b2275",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Architecture impact review decision",
+          "headingPath": [
+            "Architecture impact review decision"
+          ],
+          "score": 0.142857,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.142857,
+              "matchedTerms": [
+                "rules"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…mbol-analysis plans and exact invariant rules, but analyzers remain optional host observation capabilities (`analyzersRequired=false`). `evaluateArchitectureH…"
+        }
+      ]
+    },
+    {
+      "caseId": "A2",
+      "language": "en",
+      "arm": "sidecar",
+      "primaryQuery": "Is the learning dataset ready to influence routing or promote rules?",
+      "queryVariants": [
+        "¿El conjunto de datos de aprendizaje ya puede influir en el routing o promover reglas?"
+      ],
+      "filter": {
+        "domain": "skill-system",
+        "action": "review",
+        "artifact": "document",
+        "need": "integrity-verification",
+        "signal": "uncertainty"
+      },
+      "metadataStatus": "applied",
+      "metadataProjection": {
+        "declared": 4,
+        "projected": 4,
+        "omitted": 0,
+        "manifests": {
+          "projectContext": "e1bd3d86e5644c7e2348c5abf7abb3a4543de32763e94691b90ce9e58ed68b6f",
+          "librarian": "9e80e6e2b9973b9bd4b32e55af3a65bb4d1325d01ede0eb2e4e91ca238f1abd7",
+          "segments": "ba9c538cb95a5306015d421b5392edac78d27465146141e677b86ac8609d9ad4",
+          "references": null
+        }
+      },
+      "targetInTop8": true,
+      "targetRank": 1,
+      "results": [
+        {
+          "rank": 1,
+          "handle": {
+            "version": 1,
+            "id": "a4184120540f627067d789a4ee4fb9b29ed484d1efbd06d93826584f0e8bc263",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2162,
+            "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.714286,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.714286,
+              "matchedTerms": [
+                "learning",
+                "dataset",
+                "influence",
+                "routing",
+                "rules"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.111111,
+              "matchedTerms": [
+                "routing"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [
+            {
+              "schemaVersion": 1,
+              "projectionFingerprint": "531960207ccadaeccb920d179f8a11a4a1972bb46649272d6de814d671ad3cb9",
+              "atomId": "evidence-atom:82c47f2e70b09877d295f7c1",
+              "recordFingerprint": "1fe560c831e8f35e73d437beb927a80e8cabcb5aceb6451f8784591d812f023e",
+              "producer": "project-context-librarian",
+              "provenanceIsCallerAsserted": true,
+              "matches": [],
+              "filterMatches": [
+                {
+                  "field": "domain",
+                  "value": "skill-system"
+                },
+                {
+                  "field": "action",
+                  "value": "review"
+                },
+                {
+                  "field": "artifact",
+                  "value": "document"
+                },
+                {
+                  "field": "need",
+                  "value": "integrity-verification"
+                },
+                {
+                  "field": "signal",
+                  "value": "uncertainty"
+                }
+              ]
+            }
+          ],
+          "snippet": "## Learning dataset state Semantic Experience remains separate from routing authority. `0.2.87` automatically projects the privacy-safe `learning-digest-v1` in…"
+        }
+      ]
+    },
+    {
+      "caseId": "A2",
+      "language": "es",
+      "arm": "off",
+      "primaryQuery": "¿El conjunto de datos de aprendizaje ya puede influir en el routing o promover reglas?",
+      "queryVariants": [
+        "Is the learning dataset ready to influence routing or promote rules?"
+      ],
+      "filter": null,
+      "metadataStatus": "off",
+      "metadataProjection": null,
+      "targetInTop8": false,
+      "targetRank": null,
+      "results": [
+        {
+          "rank": 1,
+          "handle": {
+            "version": 1,
+            "id": "7719498578989e7f2cc919ee3d3bd4f1c41d9b52c96d1717d28e58e00ae67c89",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-9",
+            "rangeKind": "section",
+            "startLine": 78,
+            "endLine": 211,
+            "startOffset": 13003,
+            "endOffset": 20731,
+            "fingerprint": "9197101e89eee91feea5862c14ac1ec29c4a0036eb0fbf9d1e744a0e2306a1d5",
+            "privacyClass": "project-metadata"
+          },
+          "title": "100 hipótesis de uso",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "100 hipótesis de uso"
+          ],
+          "score": 0.444444,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.444444,
+              "matchedTerms": [
+                "conjunto",
+                "datos",
+                "ya",
+                "routing"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.142857,
+              "matchedTerms": [
+                "routing"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "… 1. Elegir skill/ruta entre capacidades ya registradas. 2. Escoger modelo rápido, equilibrado o frontier según dificultad. 3. Recomendar tamaño/nivel de subag…"
+        },
+        {
+          "rank": 2,
+          "handle": {
+            "version": 1,
+            "id": "c345bc9bc4cbfe25839914bcafeed537a3730608bc5216301ee2bf7efdc7c071",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 6,
+            "endLine": 15,
+            "startOffset": 179,
+            "endOffset": 2091,
+            "fingerprint": "4eb12a98e74fc31e4d77b40aebe3c3a75d70a8346af7d37c634a4c38d58b8f77",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Resumen ejecutivo",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Resumen ejecutivo"
+          ],
+          "score": 0.333333,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.333333,
+              "matchedTerms": [
+                "ya",
+                "puede",
+                "reglas"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…Integrado con herramientas de búsqueda, reglas deterministas, un ensamblador y, cuando hace falta, un generador, puede ser parte central de flujos de búsqueda…"
+        },
+        {
+          "rank": 3,
+          "handle": {
+            "version": 1,
+            "id": "7733f91e0e507892542ed35d85d5086abc35f9a1551c033f34bae5f58f11e485",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-8",
+            "rangeKind": "section",
+            "startLine": 58,
+            "endLine": 77,
+            "startOffset": 10160,
+            "endOffset": 13003,
+            "fingerprint": "b7faec4cd33612b70896fa7740d3669d667e2a7cf7f1a504d84c85a8907e6f5d",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Composición: cómo cubrir grep, selección, compacción y párrafos",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Composición: cómo cubrir grep, selección, compacción y párrafos"
+          ],
+          "score": 0.333333,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.333333,
+              "matchedTerms": [
+                "ya",
+                "puede",
+                "reglas"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…ción y párrafos Una aplicación completa puede juntar piezas diferentes, sin adjudicar a Jev el trabajo de las otras: 1. **Búsqueda:** Jev puede escoger entre …"
+        },
+        {
+          "rank": 4,
+          "handle": {
+            "version": 1,
+            "id": "0e69d554719279e22b7f87640ba0be70a016acd201972e3ca85a41a2df038b93",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 8,
+            "endLine": 8,
+            "startOffset": 201,
+            "endOffset": 930,
+            "fingerprint": "7befa725a9ad4e032a68107d02c252ab459c261377dc3bd0296d8ad5c965f60c",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Resumen ejecutivo",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Resumen ejecutivo"
+          ],
+          "score": 0.222222,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.222222,
+              "matchedTerms": [
+                "puede",
+                "reglas"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…Integrado con herramientas de búsqueda, reglas deterministas, un ensamblador y, cuando hace falta, un generador, puede ser parte central de flujos de búsqueda…"
+        },
+        {
+          "rank": 5,
+          "handle": {
+            "version": 1,
+            "id": "b2c704e470b8f93788de80624e8fc2cd0d753beed02ff5cd8fa32474da7b947b",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "block-20",
+            "rangeKind": "block",
+            "startLine": 62,
+            "endLine": 66,
+            "startOffset": 10330,
+            "endOffset": 11800,
+            "fingerprint": "40248a3cc3c0f9ce2f5af10d5a7d6bb605a96a25f5da187d945534fadba63e7f",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Composición: cómo cubrir grep, selección, compacción y párrafos",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Composición: cómo cubrir grep, selección, compacción y párrafos"
+          ],
+          "score": 0.222222,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.222222,
+              "matchedTerms": [
+                "puede",
+                "reglas"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "1. **Búsqueda:** Jev puede escoger entre búsquedas candidatas, clasificar intención de consulta o puntuar relevancia de resultados. El host ejecuta `grep`, índ…"
+        },
+        {
+          "rank": 6,
+          "handle": {
+            "version": 1,
+            "id": "48030f916ce07f9eabe434756c740f74e8e7475c1a6399cb0e260876fbe421f9",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-10",
+            "rangeKind": "section",
+            "startLine": 82,
+            "endLine": 94,
+            "startOffset": 13386,
+            "endOffset": 14103,
+            "fingerprint": "7a5f9dd9b9e88e7b92661127ab873cacb9207f114bf78e05c69c8395a27251d9",
+            "privacyClass": "project-metadata"
+          },
+          "title": "A. Orquestación del sistema y agentes",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "100 hipótesis de uso",
+            "A. Orquestación del sistema y agentes"
+          ],
+          "score": 0.222222,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.222222,
+              "matchedTerms": [
+                "conjunto",
+                "ya"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "… 1. Elegir skill/ruta entre capacidades ya registradas. 2. Escoger modelo rápido, equilibrado o frontier según dificultad. 3. Recomendar tamaño/nivel de subag…"
+        },
+        {
+          "rank": 7,
+          "handle": {
+            "version": 1,
+            "id": "94c4cc31098a55ee3a232305e17a2f4c77d395c9bbd19081b7713c55d4c9d279",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "block-24",
+            "rangeKind": "block",
+            "startLine": 84,
+            "endLine": 93,
+            "startOffset": 13429,
+            "endOffset": 14101,
+            "fingerprint": "f04c2adfcf248f9c3af789a5d26c81c3b5754c2ed618adc531cebbdb7e2271a1",
+            "privacyClass": "project-metadata"
+          },
+          "title": "A. Orquestación del sistema y agentes",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "100 hipótesis de uso",
+            "A. Orquestación del sistema y agentes"
+          ],
+          "score": 0.222222,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.222222,
+              "matchedTerms": [
+                "conjunto",
+                "ya"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "1. Elegir skill/ruta entre capacidades ya registradas. 2. Escoger modelo rápido, equilibrado o frontier según dificultad. 3. Recomendar tamaño/nivel de subagen…"
+        },
+        {
+          "rank": 8,
+          "handle": {
+            "version": 1,
+            "id": "78bdf4b13aad8b43fa264b97d0495ae891f63929754e2376ddef51518866cbbc",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-11",
+            "rangeKind": "section",
+            "startLine": 95,
+            "endLine": 107,
+            "startOffset": 14103,
+            "endOffset": 14894,
+            "fingerprint": "92c9d6e14044fee113762b4c0fe003b79ebd9142fff81c994a363141b279a851",
+            "privacyClass": "project-metadata"
+          },
+          "title": "B. Búsqueda, archivos y recuperación de conocimiento",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "100 hipótesis de uso",
+            "B. Búsqueda, archivos y recuperación de conocimiento"
+          ],
+          "score": 0.222222,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.222222,
+              "matchedTerms": [
+                "conjunto",
+                "ya"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…idad probable según dueño y procedencia ya provistos. 17. Señalar si una ref está potencialmente desactualizada y requiere revisar. 18. Elegir la siguiente ac…"
+        }
+      ]
+    },
+    {
+      "caseId": "A2",
+      "language": "es",
+      "arm": "sidecar",
+      "primaryQuery": "¿El conjunto de datos de aprendizaje ya puede influir en el routing o promover reglas?",
+      "queryVariants": [
+        "Is the learning dataset ready to influence routing or promote rules?"
+      ],
+      "filter": {
+        "domain": "skill-system",
+        "action": "review",
+        "artifact": "document",
+        "need": "integrity-verification",
+        "signal": "uncertainty"
+      },
+      "metadataStatus": "applied",
+      "metadataProjection": {
+        "declared": 4,
+        "projected": 4,
+        "omitted": 0,
+        "manifests": {
+          "projectContext": "e1bd3d86e5644c7e2348c5abf7abb3a4543de32763e94691b90ce9e58ed68b6f",
+          "librarian": "9e80e6e2b9973b9bd4b32e55af3a65bb4d1325d01ede0eb2e4e91ca238f1abd7",
+          "segments": "ba9c538cb95a5306015d421b5392edac78d27465146141e677b86ac8609d9ad4",
+          "references": null
+        }
+      },
+      "targetInTop8": true,
+      "targetRank": 1,
+      "results": [
+        {
+          "rank": 1,
+          "handle": {
+            "version": 1,
+            "id": "a4184120540f627067d789a4ee4fb9b29ed484d1efbd06d93826584f0e8bc263",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2162,
+            "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.111111,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.111111,
+              "matchedTerms": [
+                "routing"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.714286,
+              "matchedTerms": [
+                "learning",
+                "dataset",
+                "influence",
+                "routing",
+                "rules"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [
+            {
+              "schemaVersion": 1,
+              "projectionFingerprint": "531960207ccadaeccb920d179f8a11a4a1972bb46649272d6de814d671ad3cb9",
+              "atomId": "evidence-atom:82c47f2e70b09877d295f7c1",
+              "recordFingerprint": "1fe560c831e8f35e73d437beb927a80e8cabcb5aceb6451f8784591d812f023e",
+              "producer": "project-context-librarian",
+              "provenanceIsCallerAsserted": true,
+              "matches": [],
+              "filterMatches": [
+                {
+                  "field": "domain",
+                  "value": "skill-system"
+                },
+                {
+                  "field": "action",
+                  "value": "review"
+                },
+                {
+                  "field": "artifact",
+                  "value": "document"
+                },
+                {
+                  "field": "need",
+                  "value": "integrity-verification"
+                },
+                {
+                  "field": "signal",
+                  "value": "uncertainty"
+                }
+              ]
+            }
+          ],
+          "snippet": "…mantic Experience remains separate from routing authority. `0.2.87` automatically projects the privacy-safe `learning-digest-v1` into bounded trace-linked con…"
+        }
+      ]
+    },
+    {
+      "caseId": "A3",
+      "language": "en",
+      "arm": "off",
+      "primaryQuery": "Does semantic evidence count as a sixth first-party skill root?",
+      "queryVariants": [
+        "¿La evidencia semántica cuenta como una sexta skill de primera parte?"
+      ],
+      "filter": null,
+      "metadataStatus": "off",
+      "metadataProjection": null,
+      "targetInTop8": true,
+      "targetRank": 2,
+      "results": [
+        {
+          "rank": 1,
+          "handle": {
+            "version": 1,
+            "id": "f1ea964fd24a2c89017c46cafd603d6d7b2d0cd6a726699fff5584bc2c409b04",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/PROJECT_STATE.md",
+            "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 107,
+            "startOffset": 0,
+            "endOffset": 17208,
+            "fingerprint": "3e08861de0a9b06cee52089a91fa14cb44eb13a696114f9d7bca7576e45f3035",
+            "privacyClass": "project-metadata"
+          },
+          "title": "MSSR project state",
+          "headingPath": [
+            "MSSR project state"
+          ],
+          "score": 0.571429,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.571429,
+              "matchedTerms": [
+                "semantic",
+                "evidence",
+                "first-party",
+                "skill"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.142857,
+              "matchedTerms": [
+                "skill"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…ch → Jev select/abstain → exact fetch → evidence pack with metadata disabled. All 24 cases completed; Jev selected 10/12 positive variants and abstained on 12…"
+        },
+        {
+          "rank": 2,
+          "handle": {
+            "version": 1,
+            "id": "3650d906394e9fe9e975828f879c47b99b68e520de412476a07b412a6349b03b",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/PROJECT_STATE.md",
+            "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+            "rangeId": "heading-4",
+            "rangeKind": "section",
+            "startLine": 83,
+            "endLine": 86,
+            "startOffset": 13668,
+            "endOffset": 13919,
+            "fingerprint": "1f17be3d645b3a41253d9da8ea2675f7ec70941b6dc619bdcedbd187f322804c",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Core skill package state",
+          "headingPath": [
+            "MSSR project state",
+            "Core skill package state"
+          ],
+          "score": 0.571429,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.571429,
+              "matchedTerms": [
+                "semantic",
+                "evidence",
+                "first-party",
+                "skill"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.142857,
+              "matchedTerms": [
+                "skill"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "## Core skill package state Core package state: five first-party MSSR operational skill roots. Semantic evidence remains a core/MCP capability, not a new skill…"
+        },
+        {
+          "rank": 3,
+          "handle": {
+            "version": 1,
+            "id": "7669187919b1de5ad6f5689467509e9f99b2f70a307f025a3a96a2e1d3ca2e70",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/PROJECT_STATE.md",
+            "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+            "rangeId": "block-15",
+            "rangeKind": "block",
+            "startLine": 85,
+            "endLine": 85,
+            "startOffset": 13697,
+            "endOffset": 13917,
+            "fingerprint": "5bc1c5f7dc74d7666099f1694f47f06a084914f9f7d0a75a1ab48dae73571307",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Core skill package state",
+          "headingPath": [
+            "MSSR project state",
+            "Core skill package state"
+          ],
+          "score": 0.571429,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.571429,
+              "matchedTerms": [
+                "semantic",
+                "evidence",
+                "first-party",
+                "skill"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.142857,
+              "matchedTerms": [
+                "skill"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "Core package state: five first-party MSSR operational skill roots. Semantic evidence remains a core/MCP capability, not a new skill. Ownership policy: [canonic…"
+        },
+        {
+          "rank": 4,
+          "handle": {
+            "version": 1,
+            "id": "a4184120540f627067d789a4ee4fb9b29ed484d1efbd06d93826584f0e8bc263",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 7,
+            "startOffset": 0,
+            "endOffset": 2162,
+            "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.428571,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.428571,
+              "matchedTerms": [
+                "semantic",
+                "evidence",
+                "count"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "## Learning dataset state Semantic Experience remains separate from routing authority. `0.2.87` automatically projects the privacy-safe `learning-digest-v1` in…"
+        },
+        {
+          "rank": 5,
+          "handle": {
+            "version": 1,
+            "id": "cb26bf735531df3d224f150f079245815cc96856c2e6614187ab43624fd3d88d",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/PROJECT_STATE.md",
+            "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+            "rangeId": "heading-5",
+            "rangeKind": "section",
+            "startLine": 87,
+            "endLine": 104,
+            "startOffset": 13919,
+            "endOffset": 16423,
+            "fingerprint": "d81e9a18c92cdaa68fc0c127f31cef8c92a5bb9c3127c6c0730ec2e530324468",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Machine-readable current-state claims",
+          "headingPath": [
+            "MSSR project state",
+            "Machine-readable current-state claims"
+          ],
+          "score": 0.428571,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.428571,
+              "matchedTerms": [
+                "semantic",
+                "evidence",
+                "skill"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.142857,
+              "matchedTerms": [
+                "skill"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…bridge.live=0.6.175 --> <!-- mssr-owner:semantic.consistency=mssr --> <!-- mssr-decision:adr.0006=r4-bf-portable --> **Linked real-document Jev diagnostic (20…"
+        },
+        {
+          "rank": 6,
+          "handle": {
+            "version": 1,
+            "id": "125739b02a168bbc39bd617233196ac05766481e42e470bbb39b211c23695c40",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 1236,
+            "endOffset": 2161,
+            "fingerprint": "539b10b8f7b0f68421ef413514bd3a2ba1ade6278924d44ea7aba6ca3d31e26a",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.428571,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.428571,
+              "matchedTerms": [
+                "semantic",
+                "evidence",
+                "count"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…adback (2026-10-10 18:56:52 UTC):** the Semantic Experience status tool returned 7,198 observations, all shadow-only: 6,305 context-selection, 813 maintenance…"
+        },
+        {
+          "rank": 7,
+          "handle": {
+            "version": 1,
+            "id": "c61c476ed4fb2d274f3994debfe042e0e8c571be343b640e4bf1fc23ab19e65c",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+            "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 27,
+            "endOffset": 889,
+            "fingerprint": "3526b6c9cea70e3ef28439974d9ec46709dcdf784696aa69fa2a4f640c05b8ce",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Learning dataset state",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "score": 0.285714,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.285714,
+              "matchedTerms": [
+                "semantic",
+                "evidence"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "Semantic Experience remains separate from routing authority. `0.2.87` automatically projects the privacy-safe `learning-digest-v1` into bounded trace-linked co…"
+        },
+        {
+          "rank": 8,
+          "handle": {
+            "version": 1,
+            "id": "96857243edd7444ad11d42cacbe1fa1f0a9bcf9b36cc79527cda6dc5f74e44ca",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/PROJECT_STATE.md",
+            "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+            "rangeId": "heading-3",
+            "rangeKind": "section",
+            "startLine": 6,
+            "endLine": 82,
+            "startOffset": 1556,
+            "endOffset": 13668,
+            "fingerprint": "220825bbe43608e1c61bf07785e2bc63d123191e5792c5b32497a5d4a1a9f940",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Current Jev/Librarian evaluation",
+          "headingPath": [
+            "MSSR project state",
+            "Current Jev/Librarian evaluation"
+          ],
+          "score": 0.285714,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.285714,
+              "matchedTerms": [
+                "semantic",
+                "evidence"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…ch → Jev select/abstain → exact fetch → evidence pack with metadata disabled. All 24 cases completed; Jev selected 10/12 positive variants and abstained on 12…"
+        }
+      ]
+    },
+    {
+      "caseId": "A3",
+      "language": "en",
+      "arm": "sidecar",
+      "primaryQuery": "Does semantic evidence count as a sixth first-party skill root?",
+      "queryVariants": [
+        "¿La evidencia semántica cuenta como una sexta skill de primera parte?"
+      ],
+      "filter": {
+        "domain": "skill-system",
+        "action": "verify",
+        "artifact": "skill",
+        "need": "version-control",
+        "signal": "warning-observed"
+      },
+      "metadataStatus": "applied",
+      "metadataProjection": {
+        "declared": 4,
+        "projected": 4,
+        "omitted": 0,
+        "manifests": {
+          "projectContext": "e1bd3d86e5644c7e2348c5abf7abb3a4543de32763e94691b90ce9e58ed68b6f",
+          "librarian": "9e80e6e2b9973b9bd4b32e55af3a65bb4d1325d01ede0eb2e4e91ca238f1abd7",
+          "segments": "ba9c538cb95a5306015d421b5392edac78d27465146141e677b86ac8609d9ad4",
+          "references": null
+        }
+      },
+      "targetInTop8": true,
+      "targetRank": 1,
+      "results": [
+        {
+          "rank": 1,
+          "handle": {
+            "version": 1,
+            "id": "3650d906394e9fe9e975828f879c47b99b68e520de412476a07b412a6349b03b",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/PROJECT_STATE.md",
+            "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+            "rangeId": "heading-4",
+            "rangeKind": "section",
+            "startLine": 83,
+            "endLine": 86,
+            "startOffset": 13668,
+            "endOffset": 13919,
+            "fingerprint": "1f17be3d645b3a41253d9da8ea2675f7ec70941b6dc619bdcedbd187f322804c",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Core skill package state",
+          "headingPath": [
+            "MSSR project state",
+            "Core skill package state"
+          ],
+          "score": 0.571429,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.571429,
+              "matchedTerms": [
+                "semantic",
+                "evidence",
+                "first-party",
+                "skill"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.142857,
+              "matchedTerms": [
+                "skill"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [
+            {
+              "schemaVersion": 1,
+              "projectionFingerprint": "0764bace291d45d4a10279e32e0d0670b3f63bfa53b899e25d387f36ffc96dd9",
+              "atomId": "evidence-atom:0bd0f298923b091f0558a8ec",
+              "recordFingerprint": "5fb412c70713587cdae154fa9e0ef55ab0efefad5b6d1b3fcbda8d6b5ea00084",
+              "producer": "project-context-librarian",
+              "provenanceIsCallerAsserted": true,
+              "matches": [
+                {
+                  "field": "artifact",
+                  "value": "skill",
+                  "queryTerms": [
+                    "skill"
+                  ],
+                  "queryIndex": 0
+                },
+                {
+                  "field": "artifact",
+                  "value": "skill",
+                  "queryTerms": [
+                    "skill"
+                  ],
+                  "queryIndex": 1
+                }
+              ],
+              "filterMatches": [
+                {
+                  "field": "domain",
+                  "value": "skill-system"
+                },
+                {
+                  "field": "action",
+                  "value": "verify"
+                },
+                {
+                  "field": "artifact",
+                  "value": "skill"
+                },
+                {
+                  "field": "need",
+                  "value": "version-control"
+                },
+                {
+                  "field": "signal",
+                  "value": "warning-observed"
+                }
+              ]
+            }
+          ],
+          "snippet": "## Core skill package state Core package state: five first-party MSSR operational skill roots. Semantic evidence remains a core/MCP capability, not a new skill…"
+        }
+      ]
+    },
+    {
+      "caseId": "A3",
+      "language": "es",
+      "arm": "off",
+      "primaryQuery": "¿La evidencia semántica cuenta como una sexta skill de primera parte?",
+      "queryVariants": [
+        "Does semantic evidence count as a sixth first-party skill root?"
+      ],
+      "filter": null,
+      "metadataStatus": "off",
+      "metadataProjection": null,
+      "targetInTop8": false,
+      "targetRank": null,
+      "results": [
+        {
+          "rank": 1,
+          "handle": {
+            "version": 1,
+            "id": "c345bc9bc4cbfe25839914bcafeed537a3730608bc5216301ee2bf7efdc7c071",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 6,
+            "endLine": 15,
+            "startOffset": 179,
+            "endOffset": 2091,
+            "fingerprint": "4eb12a98e74fc31e4d77b40aebe3c3a75d70a8346af7d37c634a4c38d58b8f77",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Resumen ejecutivo",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Resumen ejecutivo"
+          ],
+          "score": 0.285714,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.285714,
+              "matchedTerms": [
+                "evidencia",
+                "parte"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…ndo hace falta, un generador, puede ser parte central de flujos de búsqueda tipo grep inteligente, selección de evidencia, compacción estructural y armado de …"
+        },
+        {
+          "rank": 2,
+          "handle": {
+            "version": 1,
+            "id": "0e69d554719279e22b7f87640ba0be70a016acd201972e3ca85a41a2df038b93",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 8,
+            "endLine": 8,
+            "startOffset": 201,
+            "endOffset": 930,
+            "fingerprint": "7befa725a9ad4e032a68107d02c252ab459c261377dc3bd0296d8ad5c965f60c",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Resumen ejecutivo",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Resumen ejecutivo"
+          ],
+          "score": 0.285714,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.285714,
+              "matchedTerms": [
+                "evidencia",
+                "parte"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…ndo hace falta, un generador, puede ser parte central de flujos de búsqueda tipo grep inteligente, selección de evidencia, compacción estructural y armado de …"
+        },
+        {
+          "rank": 3,
+          "handle": {
+            "version": 1,
+            "id": "7719498578989e7f2cc919ee3d3bd4f1c41d9b52c96d1717d28e58e00ae67c89",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-9",
+            "rangeKind": "section",
+            "startLine": 78,
+            "endLine": 211,
+            "startOffset": 13003,
+            "endOffset": 20731,
+            "fingerprint": "9197101e89eee91feea5862c14ac1ec29c4a0036eb0fbf9d1e744a0e2306a1d5",
+            "privacyClass": "project-metadata"
+          },
+          "title": "100 hipótesis de uso",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "100 hipótesis de uso"
+          ],
+          "score": 0.285714,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.285714,
+              "matchedTerms": [
+                "evidencia",
+                "skill"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.142857,
+              "matchedTerms": [
+                "skill"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…stación del sistema y agentes 1. Elegir skill/ruta entre capacidades ya registradas. 2. Escoger modelo rápido, equilibrado o frontier según dificultad. 3. Rec…"
+        },
+        {
+          "rank": 4,
+          "handle": {
+            "version": 1,
+            "id": "48030f916ce07f9eabe434756c740f74e8e7475c1a6399cb0e260876fbe421f9",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-10",
+            "rangeKind": "section",
+            "startLine": 82,
+            "endLine": 94,
+            "startOffset": 13386,
+            "endOffset": 14103,
+            "fingerprint": "7a5f9dd9b9e88e7b92661127ab873cacb9207f114bf78e05c69c8395a27251d9",
+            "privacyClass": "project-metadata"
+          },
+          "title": "A. Orquestación del sistema y agentes",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "100 hipótesis de uso",
+            "A. Orquestación del sistema y agentes"
+          ],
+          "score": 0.285714,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.285714,
+              "matchedTerms": [
+                "evidencia",
+                "skill"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.142857,
+              "matchedTerms": [
+                "skill"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…stación del sistema y agentes 1. Elegir skill/ruta entre capacidades ya registradas. 2. Escoger modelo rápido, equilibrado o frontier según dificultad. 3. Rec…"
+        },
+        {
+          "rank": 5,
+          "handle": {
+            "version": 1,
+            "id": "94c4cc31098a55ee3a232305e17a2f4c77d395c9bbd19081b7713c55d4c9d279",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "block-24",
+            "rangeKind": "block",
+            "startLine": 84,
+            "endLine": 93,
+            "startOffset": 13429,
+            "endOffset": 14101,
+            "fingerprint": "f04c2adfcf248f9c3af789a5d26c81c3b5754c2ed618adc531cebbdb7e2271a1",
+            "privacyClass": "project-metadata"
+          },
+          "title": "A. Orquestación del sistema y agentes",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "100 hipótesis de uso",
+            "A. Orquestación del sistema y agentes"
+          ],
+          "score": 0.285714,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.285714,
+              "matchedTerms": [
+                "evidencia",
+                "skill"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.142857,
+              "matchedTerms": [
+                "skill"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "1. Elegir skill/ruta entre capacidades ya registradas. 2. Escoger modelo rápido, equilibrado o frontier según dificultad. 3. Recomendar tamaño/nivel de subagen…"
+        },
+        {
+          "rank": 6,
+          "handle": {
+            "version": 1,
+            "id": "6a8f85ff8e00652901901804bef45e4de88502e30c03833ee5c6c4d01809fe48",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 10,
+            "endLine": 10,
+            "startOffset": 932,
+            "endOffset": 1293,
+            "fingerprint": "6413f8aec881d4d9b1a1f617e93286f5db4618b891a7c48f784512b78b37a708",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Resumen ejecutivo",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Resumen ejecutivo"
+          ],
+          "score": 0.142857,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.142857,
+              "matchedTerms": [
+                "evidencia"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…iente confirmó el estado resultante. Es evidencia de una integración pequeña y controlada, no un benchmark de uso general ni evidencia de que MSSR ya esté con…"
+        },
+        {
+          "rank": 7,
+          "handle": {
+            "version": 1,
+            "id": "f1ea964fd24a2c89017c46cafd603d6d7b2d0cd6a726699fff5584bc2c409b04",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/PROJECT_STATE.md",
+            "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 107,
+            "startOffset": 0,
+            "endOffset": 17208,
+            "fingerprint": "3e08861de0a9b06cee52089a91fa14cb44eb13a696114f9d7bca7576e45f3035",
+            "privacyClass": "project-metadata"
+          },
+          "title": "MSSR project state",
+          "headingPath": [
+            "MSSR project state"
+          ],
+          "score": 0.142857,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.142857,
+              "matchedTerms": [
+                "skill"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.571429,
+              "matchedTerms": [
+                "semantic",
+                "evidence",
+                "first-party",
+                "skill"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…20261011T191747Z-v1/REPORT.md). ## Core skill package state Core package state: five first-party MSSR operational skill roots. Semantic evidence remains a cor…"
+        },
+        {
+          "rank": 8,
+          "handle": {
+            "version": 1,
+            "id": "abc0d6a5be2296c74721f0e307443a71da6771f8c61f079516c0269de2a44429",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-3",
+            "rangeKind": "section",
+            "startLine": 16,
+            "endLine": 23,
+            "startOffset": 2091,
+            "endOffset": 2874,
+            "fingerprint": "95ca4e8423abd329754b82380e7c8301f8267839bb9bffddb023601229c111c9",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Qué es evidencia y qué no",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Qué es evidencia y qué no"
+          ],
+          "score": 0.142857,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.142857,
+              "matchedTerms": [
+                "evidencia"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "## Qué es evidencia y qué no - **Primaria / autorreportada por TypeSafe:** publicación de lanzamiento, documentación y demos propias. Útil para conocer interfa…"
+        }
+      ]
+    },
+    {
+      "caseId": "A3",
+      "language": "es",
+      "arm": "sidecar",
+      "primaryQuery": "¿La evidencia semántica cuenta como una sexta skill de primera parte?",
+      "queryVariants": [
+        "Does semantic evidence count as a sixth first-party skill root?"
+      ],
+      "filter": {
+        "domain": "skill-system",
+        "action": "verify",
+        "artifact": "skill",
+        "need": "version-control",
+        "signal": "warning-observed"
+      },
+      "metadataStatus": "applied",
+      "metadataProjection": {
+        "declared": 4,
+        "projected": 4,
+        "omitted": 0,
+        "manifests": {
+          "projectContext": "e1bd3d86e5644c7e2348c5abf7abb3a4543de32763e94691b90ce9e58ed68b6f",
+          "librarian": "9e80e6e2b9973b9bd4b32e55af3a65bb4d1325d01ede0eb2e4e91ca238f1abd7",
+          "segments": "ba9c538cb95a5306015d421b5392edac78d27465146141e677b86ac8609d9ad4",
+          "references": null
+        }
+      },
+      "targetInTop8": true,
+      "targetRank": 1,
+      "results": [
+        {
+          "rank": 1,
+          "handle": {
+            "version": 1,
+            "id": "3650d906394e9fe9e975828f879c47b99b68e520de412476a07b412a6349b03b",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/PROJECT_STATE.md",
+            "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+            "rangeId": "heading-4",
+            "rangeKind": "section",
+            "startLine": 83,
+            "endLine": 86,
+            "startOffset": 13668,
+            "endOffset": 13919,
+            "fingerprint": "1f17be3d645b3a41253d9da8ea2675f7ec70941b6dc619bdcedbd187f322804c",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Core skill package state",
+          "headingPath": [
+            "MSSR project state",
+            "Core skill package state"
+          ],
+          "score": 0.142857,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.142857,
+              "matchedTerms": [
+                "skill"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.571429,
+              "matchedTerms": [
+                "semantic",
+                "evidence",
+                "first-party",
+                "skill"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [
+            {
+              "schemaVersion": 1,
+              "projectionFingerprint": "0764bace291d45d4a10279e32e0d0670b3f63bfa53b899e25d387f36ffc96dd9",
+              "atomId": "evidence-atom:0bd0f298923b091f0558a8ec",
+              "recordFingerprint": "5fb412c70713587cdae154fa9e0ef55ab0efefad5b6d1b3fcbda8d6b5ea00084",
+              "producer": "project-context-librarian",
+              "provenanceIsCallerAsserted": true,
+              "matches": [
+                {
+                  "field": "artifact",
+                  "value": "skill",
+                  "queryTerms": [
+                    "skill"
+                  ],
+                  "queryIndex": 0
+                },
+                {
+                  "field": "artifact",
+                  "value": "skill",
+                  "queryTerms": [
+                    "skill"
+                  ],
+                  "queryIndex": 1
+                }
+              ],
+              "filterMatches": [
+                {
+                  "field": "domain",
+                  "value": "skill-system"
+                },
+                {
+                  "field": "action",
+                  "value": "verify"
+                },
+                {
+                  "field": "artifact",
+                  "value": "skill"
+                },
+                {
+                  "field": "need",
+                  "value": "version-control"
+                },
+                {
+                  "field": "signal",
+                  "value": "warning-observed"
+                }
+              ]
+            }
+          ],
+          "snippet": "## Core skill package state Core package state: five first-party MSSR operational skill roots. Semantic evidence remains a core/MCP capability, not a new skill…"
+        }
+      ]
+    },
+    {
+      "caseId": "A4",
+      "language": "en",
+      "arm": "off",
+      "primaryQuery": "Are all 100 proposed use cases demonstrated Jev capabilities?",
+      "queryVariants": [
+        "¿Los 100 casos propuestos son capacidades de Jev ya demostradas?"
+      ],
+      "filter": null,
+      "metadataStatus": "off",
+      "metadataProjection": null,
+      "targetInTop8": true,
+      "targetRank": 1,
+      "results": [
+        {
+          "rank": 1,
+          "handle": {
+            "version": 1,
+            "id": "7719498578989e7f2cc919ee3d3bd4f1c41d9b52c96d1717d28e58e00ae67c89",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-9",
+            "rangeKind": "section",
+            "startLine": 78,
+            "endLine": 211,
+            "startOffset": 13003,
+            "endOffset": 20731,
+            "fingerprint": "9197101e89eee91feea5862c14ac1ec29c4a0036eb0fbf9d1e744a0e2306a1d5",
+            "privacyClass": "project-metadata"
+          },
+          "title": "100 hipótesis de uso",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "100 hipótesis de uso"
+          ],
+          "score": 0.428571,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.428571,
+              "matchedTerms": [
+                "100",
+                "use",
+                "jev"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.75,
+              "matchedTerms": [
+                "100",
+                "casos",
+                "son",
+                "capacidades",
+                "jev",
+                "ya"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "## 100 hipótesis de uso Los siguientes casos describen **preguntas candidatas** que podrían expresarse como `choice`, `score` o `noul`. Son propuestas; excepto…"
+        },
+        {
+          "rank": 2,
+          "handle": {
+            "version": 1,
+            "id": "f1ea964fd24a2c89017c46cafd603d6d7b2d0cd6a726699fff5584bc2c409b04",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/PROJECT_STATE.md",
+            "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 107,
+            "startOffset": 0,
+            "endOffset": 17208,
+            "fingerprint": "3e08861de0a9b06cee52089a91fa14cb44eb13a696114f9d7bca7576e45f3035",
+            "privacyClass": "project-metadata"
+          },
+          "title": "MSSR project state",
+          "headingPath": [
+            "MSSR project state"
+          ],
+          "score": 0.428571,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.428571,
+              "matchedTerms": [
+                "cases",
+                "jev",
+                "capabilities"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.125,
+              "matchedTerms": [
+                "jev"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…me-bridge` unavailable with zero cached capabilities and `MCP error -32000: Connection closed`, while direct Bridge health/catalog calls succeed. This is a se…"
+        },
+        {
+          "rank": 3,
+          "handle": {
+            "version": 1,
+            "id": "5ca1cabb1a953f434e22f9a5410786ecb2d9fd8a668fcda9e09d7f35c19df1fc",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "block-23",
+            "rangeKind": "block",
+            "startLine": 80,
+            "endLine": 80,
+            "startOffset": 13028,
+            "endOffset": 13384,
+            "fingerprint": "3c1488950c24886c91da26f36555cf49af0d2809fc4f6ff62e52dec4b656b992",
+            "privacyClass": "project-metadata"
+          },
+          "title": "100 hipótesis de uso",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "100 hipótesis de uso"
+          ],
+          "score": 0.428571,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.428571,
+              "matchedTerms": [
+                "100",
+                "use",
+                "jev"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.5,
+              "matchedTerms": [
+                "100",
+                "casos",
+                "son",
+                "jev"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…sos demostrados. Las categorías visuales requieren primero un modelo/servicio que convierta imagen/audio/video a texto o rasgos estructurados cuando se use Je…"
+        },
+        {
+          "rank": 4,
+          "handle": {
+            "version": 1,
+            "id": "c345bc9bc4cbfe25839914bcafeed537a3730608bc5216301ee2bf7efdc7c071",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 6,
+            "endLine": 15,
+            "startOffset": 179,
+            "endOffset": 2091,
+            "fingerprint": "4eb12a98e74fc31e4d77b40aebe3c3a75d70a8346af7d37c634a4c38d58b8f77",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Resumen ejecutivo",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Resumen ejecutivo"
+          ],
+          "score": 0.285714,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.285714,
+              "matchedTerms": [
+                "100",
+                "jev"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.625,
+              "matchedTerms": [
+                "100",
+                "casos",
+                "son",
+                "jev",
+                "ya"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "## Resumen ejecutivo Jev es una API/modelo de decisiones acotadas: recibe un estado representado como texto/estructura y preguntas con respuestas tipadas prede…"
+        },
+        {
+          "rank": 5,
+          "handle": {
+            "version": 1,
+            "id": "96857243edd7444ad11d42cacbe1fa1f0a9bcf9b36cc79527cda6dc5f74e44ca",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/PROJECT_STATE.md",
+            "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+            "rangeId": "heading-3",
+            "rangeKind": "section",
+            "startLine": 6,
+            "endLine": 82,
+            "startOffset": 1556,
+            "endOffset": 13668,
+            "fingerprint": "220825bbe43608e1c61bf07785e2bc63d123191e5792c5b32497a5d4a1a9f940",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Current Jev/Librarian evaluation",
+          "headingPath": [
+            "MSSR project state",
+            "Current Jev/Librarian evaluation"
+          ],
+          "score": 0.285714,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.285714,
+              "matchedTerms": [
+                "cases",
+                "jev"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.125,
+              "matchedTerms": [
+                "jev"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "## Current Jev/Librarian evaluation Jev/Librarian remains exploratory and uncalibrated; the latest fresh evaluation is Run60 on Bridge 0.6.175 / MSSR 0.2.127 /…"
+        },
+        {
+          "rank": 6,
+          "handle": {
+            "version": 1,
+            "id": "8f825cb96b289299d5dbb94684c914dc522d858afbe61423b00e68747cdd4ad4",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "block-5",
+            "rangeKind": "block",
+            "startLine": 14,
+            "endLine": 14,
+            "startOffset": 1791,
+            "endOffset": 2089,
+            "fingerprint": "9fff3120827608d3c0d8f81a251cd10dec50aa259bc3af356fcc84e554eb3198",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Resumen ejecutivo",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Resumen ejecutivo"
+          ],
+          "score": 0.285714,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.285714,
+              "matchedTerms": [
+                "100",
+                "jev"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.5,
+              "matchedTerms": [
+                "100",
+                "casos",
+                "son",
+                "jev"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "Las 100 ideas de abajo son hipótesis de aplicación de decisiones discretas. No están validadas ni representan una decisión de producto. Cada uso necesita una d…"
+        },
+        {
+          "rank": 7,
+          "handle": {
+            "version": 1,
+            "id": "70e7a79eea8102164e9bd1c19237585b3ffdbb1df8e45a351843b59dde787156",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/PROJECT_STATE.md",
+            "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 8,
+            "endLine": 8,
+            "startOffset": 1593,
+            "endOffset": 3109,
+            "fingerprint": "44e4354608b086404d9e60d2833edba1ce4c381b3ceed4508666eea146d27d29",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Current Jev/Librarian evaluation",
+          "headingPath": [
+            "MSSR project state",
+            "Current Jev/Librarian evaluation"
+          ],
+          "score": 0.285714,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.285714,
+              "matchedTerms": [
+                "cases",
+                "jev"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.125,
+              "matchedTerms": [
+                "jev"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "Jev/Librarian remains exploratory and uncalibrated; the latest fresh evaluation is Run60 on Bridge 0.6.175 / MSSR 0.2.127 / Jev 1.13.0. It tested only raw Mark…"
+        },
+        {
+          "rank": 8,
+          "handle": {
+            "version": 1,
+            "id": "d190c5928e9da2f7611a98015176b13954208a6a5a1ccd292bd728ba6c3d3094",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "block-19",
+            "rangeKind": "block",
+            "startLine": 60,
+            "endLine": 60,
+            "startOffset": 10228,
+            "endOffset": 10328,
+            "fingerprint": "63101050a02323432a2c3fe0018028df4ca13e1f6d02e9c53d477d1d1f9df754",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Composición: cómo cubrir grep, selección, compacción y párrafos",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Composición: cómo cubrir grep, selección, compacción y párrafos"
+          ],
+          "score": 0.285714,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.285714,
+              "matchedTerms": [
+                "100",
+                "jev"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.375,
+              "matchedTerms": [
+                "100",
+                "casos",
+                "jev"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "Una aplicación completa puede juntar piezas diferentes, sin adjudicar a Jev el trabajo de las otras:"
+        }
+      ]
+    },
+    {
+      "caseId": "A4",
+      "language": "en",
+      "arm": "sidecar",
+      "primaryQuery": "Are all 100 proposed use cases demonstrated Jev capabilities?",
+      "queryVariants": [
+        "¿Los 100 casos propuestos son capacidades de Jev ya demostradas?"
+      ],
+      "filter": {
+        "domain": "agent-orchestration",
+        "action": "discover",
+        "artifact": "mcp",
+        "need": "cross-agent",
+        "signal": "reusable-pattern"
+      },
+      "metadataStatus": "applied",
+      "metadataProjection": {
+        "declared": 4,
+        "projected": 4,
+        "omitted": 0,
+        "manifests": {
+          "projectContext": "e1bd3d86e5644c7e2348c5abf7abb3a4543de32763e94691b90ce9e58ed68b6f",
+          "librarian": "9e80e6e2b9973b9bd4b32e55af3a65bb4d1325d01ede0eb2e4e91ca238f1abd7",
+          "segments": "ba9c538cb95a5306015d421b5392edac78d27465146141e677b86ac8609d9ad4",
+          "references": null
+        }
+      },
+      "targetInTop8": true,
+      "targetRank": 1,
+      "results": [
+        {
+          "rank": 1,
+          "handle": {
+            "version": 1,
+            "id": "7719498578989e7f2cc919ee3d3bd4f1c41d9b52c96d1717d28e58e00ae67c89",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-9",
+            "rangeKind": "section",
+            "startLine": 78,
+            "endLine": 211,
+            "startOffset": 13003,
+            "endOffset": 20731,
+            "fingerprint": "9197101e89eee91feea5862c14ac1ec29c4a0036eb0fbf9d1e744a0e2306a1d5",
+            "privacyClass": "project-metadata"
+          },
+          "title": "100 hipótesis de uso",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "100 hipótesis de uso"
+          ],
+          "score": 0.428571,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.428571,
+              "matchedTerms": [
+                "100",
+                "use",
+                "jev"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.75,
+              "matchedTerms": [
+                "100",
+                "casos",
+                "son",
+                "capacidades",
+                "jev",
+                "ya"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [
+            {
+              "schemaVersion": 1,
+              "projectionFingerprint": "8e2861c94770419284aa0189a1ac7ff88ea2d4a2623151236a19a175d9240300",
+              "atomId": "evidence-atom:fddef8e65cd09a244bf23af3",
+              "recordFingerprint": "17cfcf9d8072356b6c95f19785f37886812286164bc26de21846d9b4b464ba83",
+              "producer": "project-context-librarian",
+              "provenanceIsCallerAsserted": true,
+              "matches": [],
+              "filterMatches": [
+                {
+                  "field": "domain",
+                  "value": "agent-orchestration"
+                },
+                {
+                  "field": "action",
+                  "value": "discover"
+                },
+                {
+                  "field": "artifact",
+                  "value": "mcp"
+                },
+                {
+                  "field": "need",
+                  "value": "cross-agent"
+                },
+                {
+                  "field": "signal",
+                  "value": "reusable-pattern"
+                }
+              ]
+            }
+          ],
+          "snippet": "## 100 hipótesis de uso Los siguientes casos describen **preguntas candidatas** que podrían expresarse como `choice`, `score` o `noul`. Son propuestas; excepto…"
+        }
+      ]
+    },
+    {
+      "caseId": "A4",
+      "language": "es",
+      "arm": "off",
+      "primaryQuery": "¿Los 100 casos propuestos son capacidades de Jev ya demostradas?",
+      "queryVariants": [
+        "Are all 100 proposed use cases demonstrated Jev capabilities?"
+      ],
+      "filter": null,
+      "metadataStatus": "off",
+      "metadataProjection": null,
+      "targetInTop8": true,
+      "targetRank": 1,
+      "results": [
+        {
+          "rank": 1,
+          "handle": {
+            "version": 1,
+            "id": "7719498578989e7f2cc919ee3d3bd4f1c41d9b52c96d1717d28e58e00ae67c89",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-9",
+            "rangeKind": "section",
+            "startLine": 78,
+            "endLine": 211,
+            "startOffset": 13003,
+            "endOffset": 20731,
+            "fingerprint": "9197101e89eee91feea5862c14ac1ec29c4a0036eb0fbf9d1e744a0e2306a1d5",
+            "privacyClass": "project-metadata"
+          },
+          "title": "100 hipótesis de uso",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "100 hipótesis de uso"
+          ],
+          "score": 0.75,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.75,
+              "matchedTerms": [
+                "100",
+                "casos",
+                "son",
+                "capacidades",
+                "jev",
+                "ya"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.428571,
+              "matchedTerms": [
+                "100",
+                "use",
+                "jev"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "## 100 hipótesis de uso Los siguientes casos describen **preguntas candidatas** que podrían expresarse como `choice`, `score` o `noul`. Son propuestas; excepto…"
+        },
+        {
+          "rank": 2,
+          "handle": {
+            "version": 1,
+            "id": "c345bc9bc4cbfe25839914bcafeed537a3730608bc5216301ee2bf7efdc7c071",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 6,
+            "endLine": 15,
+            "startOffset": 179,
+            "endOffset": 2091,
+            "fingerprint": "4eb12a98e74fc31e4d77b40aebe3c3a75d70a8346af7d37c634a4c38d58b8f77",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Resumen ejecutivo",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Resumen ejecutivo"
+          ],
+          "score": 0.625,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.625,
+              "matchedTerms": [
+                "100",
+                "casos",
+                "son",
+                "jev",
+                "ya"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.285714,
+              "matchedTerms": [
+                "100",
+                "jev"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "## Resumen ejecutivo Jev es una API/modelo de decisiones acotadas: recibe un estado representado como texto/estructura y preguntas con respuestas tipadas prede…"
+        },
+        {
+          "rank": 3,
+          "handle": {
+            "version": 1,
+            "id": "48030f916ce07f9eabe434756c740f74e8e7475c1a6399cb0e260876fbe421f9",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-10",
+            "rangeKind": "section",
+            "startLine": 82,
+            "endLine": 94,
+            "startOffset": 13386,
+            "endOffset": 14103,
+            "fingerprint": "7a5f9dd9b9e88e7b92661127ab873cacb9207f114bf78e05c69c8395a27251d9",
+            "privacyClass": "project-metadata"
+          },
+          "title": "A. Orquestación del sistema y agentes",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "100 hipótesis de uso",
+            "A. Orquestación del sistema y agentes"
+          ],
+          "score": 0.625,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.625,
+              "matchedTerms": [
+                "100",
+                "casos",
+                "capacidades",
+                "jev",
+                "ya"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.285714,
+              "matchedTerms": [
+                "100",
+                "jev"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…ma y agentes 1. Elegir skill/ruta entre capacidades ya registradas. 2. Escoger modelo rápido, equilibrado o frontier según dificultad. 3. Recomendar tamaño/ni…"
+        },
+        {
+          "rank": 4,
+          "handle": {
+            "version": 1,
+            "id": "94c4cc31098a55ee3a232305e17a2f4c77d395c9bbd19081b7713c55d4c9d279",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "block-24",
+            "rangeKind": "block",
+            "startLine": 84,
+            "endLine": 93,
+            "startOffset": 13429,
+            "endOffset": 14101,
+            "fingerprint": "f04c2adfcf248f9c3af789a5d26c81c3b5754c2ed618adc531cebbdb7e2271a1",
+            "privacyClass": "project-metadata"
+          },
+          "title": "A. Orquestación del sistema y agentes",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "100 hipótesis de uso",
+            "A. Orquestación del sistema y agentes"
+          ],
+          "score": 0.625,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.625,
+              "matchedTerms": [
+                "100",
+                "casos",
+                "capacidades",
+                "jev",
+                "ya"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.285714,
+              "matchedTerms": [
+                "100",
+                "jev"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "1. Elegir skill/ruta entre capacidades ya registradas. 2. Escoger modelo rápido, equilibrado o frontier según dificultad. 3. Recomendar tamaño/nivel de subagen…"
+        },
+        {
+          "rank": 5,
+          "handle": {
+            "version": 1,
+            "id": "fd02c7301621473a7be82494c6cf0ec7615e3b68d72d7711831c70a230a15a12",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "block-24/item-1",
+            "rangeKind": "block",
+            "startLine": 84,
+            "endLine": 84,
+            "startOffset": 13429,
+            "endOffset": 13483,
+            "fingerprint": "c12fd49576fb6ae0fbce7a6855b89057f839c9e7a5ccbb78d3c9f31afc9f4f02",
+            "privacyClass": "project-metadata"
+          },
+          "title": "A. Orquestación del sistema y agentes",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "100 hipótesis de uso",
+            "A. Orquestación del sistema y agentes"
+          ],
+          "score": 0.625,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.625,
+              "matchedTerms": [
+                "100",
+                "casos",
+                "capacidades",
+                "jev",
+                "ya"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.285714,
+              "matchedTerms": [
+                "100",
+                "jev"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "1. Elegir skill/ruta entre capacidades ya registradas."
+        },
+        {
+          "rank": 6,
+          "handle": {
+            "version": 1,
+            "id": "8f825cb96b289299d5dbb94684c914dc522d858afbe61423b00e68747cdd4ad4",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "block-5",
+            "rangeKind": "block",
+            "startLine": 14,
+            "endLine": 14,
+            "startOffset": 1791,
+            "endOffset": 2089,
+            "fingerprint": "9fff3120827608d3c0d8f81a251cd10dec50aa259bc3af356fcc84e554eb3198",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Resumen ejecutivo",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Resumen ejecutivo"
+          ],
+          "score": 0.5,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.5,
+              "matchedTerms": [
+                "100",
+                "casos",
+                "son",
+                "jev"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.285714,
+              "matchedTerms": [
+                "100",
+                "jev"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "Las 100 ideas de abajo son hipótesis de aplicación de decisiones discretas. No están validadas ni representan una decisión de producto. Cada uso necesita una d…"
+        },
+        {
+          "rank": 7,
+          "handle": {
+            "version": 1,
+            "id": "abc0d6a5be2296c74721f0e307443a71da6771f8c61f079516c0269de2a44429",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-3",
+            "rangeKind": "section",
+            "startLine": 16,
+            "endLine": 23,
+            "startOffset": 2091,
+            "endOffset": 2874,
+            "fingerprint": "95ca4e8423abd329754b82380e7c8301f8267839bb9bffddb023601229c111c9",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Qué es evidencia y qué no",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Qué es evidencia y qué no"
+          ],
+          "score": 0.5,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.5,
+              "matchedTerms": [
+                "casos",
+                "son",
+                "jev",
+                "ya"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.142857,
+              "matchedTerms": [
+                "jev"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…comparativas y claims del fabricante no son evaluación independiente. - **Demostración local observada en artefacto:** un run reproducible en el sentido de qu…"
+        },
+        {
+          "rank": 8,
+          "handle": {
+            "version": 1,
+            "id": "221d917e161a84af98fb3c6a86d29d992f2b5bd899875336d6f67d1c0f9a4cb4",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "block-6",
+            "rangeKind": "block",
+            "startLine": 18,
+            "endLine": 22,
+            "startOffset": 2121,
+            "endOffset": 2872,
+            "fingerprint": "d76df7c288fc5002aadaece0e18d381b9051c314678cd62200f4b2a3a3e2359f",
+            "privacyClass": "project-metadata"
+          },
+          "title": "Qué es evidencia y qué no",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "Qué es evidencia y qué no"
+          ],
+          "score": 0.5,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.5,
+              "matchedTerms": [
+                "casos",
+                "son",
+                "jev",
+                "ya"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.142857,
+              "matchedTerms": [
+                "jev"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [],
+          "snippet": "…comparativas y claims del fabricante no son evaluación independiente. - **Demostración local observada en artefacto:** un run reproducible en el sentido de qu…"
+        }
+      ]
+    },
+    {
+      "caseId": "A4",
+      "language": "es",
+      "arm": "sidecar",
+      "primaryQuery": "¿Los 100 casos propuestos son capacidades de Jev ya demostradas?",
+      "queryVariants": [
+        "Are all 100 proposed use cases demonstrated Jev capabilities?"
+      ],
+      "filter": {
+        "domain": "agent-orchestration",
+        "action": "discover",
+        "artifact": "mcp",
+        "need": "cross-agent",
+        "signal": "reusable-pattern"
+      },
+      "metadataStatus": "applied",
+      "metadataProjection": {
+        "declared": 4,
+        "projected": 4,
+        "omitted": 0,
+        "manifests": {
+          "projectContext": "e1bd3d86e5644c7e2348c5abf7abb3a4543de32763e94691b90ce9e58ed68b6f",
+          "librarian": "9e80e6e2b9973b9bd4b32e55af3a65bb4d1325d01ede0eb2e4e91ca238f1abd7",
+          "segments": "ba9c538cb95a5306015d421b5392edac78d27465146141e677b86ac8609d9ad4",
+          "references": null
+        }
+      },
+      "targetInTop8": true,
+      "targetRank": 1,
+      "results": [
+        {
+          "rank": 1,
+          "handle": {
+            "version": 1,
+            "id": "7719498578989e7f2cc919ee3d3bd4f1c41d9b52c96d1717d28e58e00ae67c89",
+            "owner": "d:/dev/mssr",
+            "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+            "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+            "rangeId": "heading-9",
+            "rangeKind": "section",
+            "startLine": 78,
+            "endLine": 211,
+            "startOffset": 13003,
+            "endOffset": 20731,
+            "fingerprint": "9197101e89eee91feea5862c14ac1ec29c4a0036eb0fbf9d1e744a0e2306a1d5",
+            "privacyClass": "project-metadata"
+          },
+          "title": "100 hipótesis de uso",
+          "headingPath": [
+            "Jev, decisiones tipadas y casos de uso para MSSR",
+            "100 hipótesis de uso"
+          ],
+          "score": 0.75,
+          "scoreQueryIndex": 0,
+          "queryMatches": [
+            {
+              "queryIndex": 0,
+              "score": 0.75,
+              "matchedTerms": [
+                "100",
+                "casos",
+                "son",
+                "capacidades",
+                "jev",
+                "ya"
+              ]
+            },
+            {
+              "queryIndex": 1,
+              "score": 0.428571,
+              "matchedTerms": [
+                "100",
+                "use",
+                "jev"
+              ]
+            }
+          ],
+          "metadataProjectionMatches": [
+            {
+              "schemaVersion": 1,
+              "projectionFingerprint": "8e2861c94770419284aa0189a1ac7ff88ea2d4a2623151236a19a175d9240300",
+              "atomId": "evidence-atom:fddef8e65cd09a244bf23af3",
+              "recordFingerprint": "17cfcf9d8072356b6c95f19785f37886812286164bc26de21846d9b4b464ba83",
+              "producer": "project-context-librarian",
+              "provenanceIsCallerAsserted": true,
+              "matches": [],
+              "filterMatches": [
+                {
+                  "field": "domain",
+                  "value": "agent-orchestration"
+                },
+                {
+                  "field": "action",
+                  "value": "discover"
+                },
+                {
+                  "field": "artifact",
+                  "value": "mcp"
+                },
+                {
+                  "field": "need",
+                  "value": "cross-agent"
+                },
+                {
+                  "field": "signal",
+                  "value": "reusable-pattern"
+                }
+              ]
+            }
+          ],
+          "snippet": "## 100 hipótesis de uso Los siguientes casos describen **preguntas candidatas** que podrían expresarse como `choice`, `score` o `noul`. Son propuestas; excepto…"
+        }
+      ]
+    }
+  ],
+  "selections": [
+    {
+      "caseId": "A1",
+      "language": "en",
+      "arm": "off",
+      "query": "Which authority decides whether linked structural change means the architecture changed?",
+      "candidateCount": 8,
+      "status": "selected",
+      "selected": {
+        "optionId": "h002",
+        "title": "Architecture impact review decision",
+        "headingPath": [
+          "Architecture impact review decision"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "22d2467b49817f36964d9a926b714096acb976143610f251803a890f0939ada9",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+          "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 5,
+          "startOffset": 0,
+          "endOffset": 1955,
+          "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "selectedWithinExpectedHeading": true,
+      "providerConfidence": 0.68,
+      "evidenceSufficiency": 0.81,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 1736,
+        "output_tokens": 127
+      },
+      "elapsedMs": 1031.3,
+      "jevCallMade": true,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "h005",
+            "h006",
+            "h007",
+            "h008",
+            "none"
+          ],
+          "selectedOptionId": "h002",
+          "confidence": 0.68,
+          "probabilities": {
+            "h001": 0,
+            "h002": 0.72,
+            "h003": 0,
+            "h004": 0.26,
+            "h005": 0.01,
+            "h006": 0,
+            "h007": 0,
+            "h008": 0,
+            "none": 0.01
+          }
+        }
+      ],
+      "selectionMode": "single-pass",
+      "calibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score"
+    },
+    {
+      "caseId": "A1",
+      "language": "en",
+      "arm": "sidecar",
+      "query": "Which authority decides whether linked structural change means the architecture changed?",
+      "candidateCount": 1,
+      "status": "selected",
+      "selected": {
+        "optionId": "h001",
+        "title": "Architecture impact review decision",
+        "headingPath": [
+          "Architecture impact review decision"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "22d2467b49817f36964d9a926b714096acb976143610f251803a890f0939ada9",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+          "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 5,
+          "startOffset": 0,
+          "endOffset": 1955,
+          "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "selectedWithinExpectedHeading": true,
+      "providerConfidence": 0.88,
+      "evidenceSufficiency": 0.79,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 673,
+        "output_tokens": 57
+      },
+      "elapsedMs": 732.9,
+      "jevCallMade": true,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "none"
+          ],
+          "selectedOptionId": "h001",
+          "confidence": 0.88,
+          "probabilities": {
+            "h001": 0.94,
+            "none": 0.06
+          }
+        }
+      ],
+      "selectionMode": "single-pass",
+      "calibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score"
+    },
+    {
+      "caseId": "A1",
+      "language": "es",
+      "arm": "off",
+      "query": "¿Qué autoridad decide si un cambio estructural enlazado significa que cambió la arquitectura?",
+      "candidateCount": 8,
+      "status": "abstained",
+      "selected": null,
+      "selectedWithinExpectedHeading": false,
+      "providerConfidence": 0.98,
+      "evidenceSufficiency": 0.03,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 1882,
+        "output_tokens": 124
+      },
+      "elapsedMs": 746.9,
+      "jevCallMade": true,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "h005",
+            "h006",
+            "h007",
+            "h008",
+            "none"
+          ],
+          "selectedOptionId": "none",
+          "confidence": 0.98,
+          "probabilities": {
+            "h001": 0,
+            "h002": 0.01,
+            "h003": 0,
+            "h004": 0,
+            "h005": 0,
+            "h006": 0,
+            "h007": 0,
+            "h008": 0.01,
+            "none": 0.98
+          }
+        }
+      ],
+      "selectionMode": "single-pass",
+      "calibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score"
+    },
+    {
+      "caseId": "A1",
+      "language": "es",
+      "arm": "sidecar",
+      "query": "¿Qué autoridad decide si un cambio estructural enlazado significa que cambió la arquitectura?",
+      "candidateCount": 1,
+      "status": "selected",
+      "selected": {
+        "optionId": "h001",
+        "title": "Architecture impact review decision",
+        "headingPath": [
+          "Architecture impact review decision"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "22d2467b49817f36964d9a926b714096acb976143610f251803a890f0939ada9",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+          "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 5,
+          "startOffset": 0,
+          "endOffset": 1955,
+          "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "selectedWithinExpectedHeading": true,
+      "providerConfidence": 0.66,
+      "evidenceSufficiency": 0.6,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 679,
+        "output_tokens": 57
+      },
+      "elapsedMs": 698.1,
+      "jevCallMade": true,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "none"
+          ],
+          "selectedOptionId": "h001",
+          "confidence": 0.66,
+          "probabilities": {
+            "h001": 0.83,
+            "none": 0.17
+          }
+        }
+      ],
+      "selectionMode": "single-pass",
+      "calibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score"
+    },
+    {
+      "caseId": "A2",
+      "language": "en",
+      "arm": "off",
+      "query": "Is the learning dataset ready to influence routing or promote rules?",
+      "candidateCount": 8,
+      "status": "selected",
+      "selected": {
+        "optionId": "h002",
+        "title": "Learning dataset state",
+        "headingPath": [
+          "Learning dataset state"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "c61c476ed4fb2d274f3994debfe042e0e8c571be343b640e4bf1fc23ab19e65c",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "startLine": 3,
+          "endLine": 3,
+          "startOffset": 27,
+          "endOffset": 889,
+          "fingerprint": "3526b6c9cea70e3ef28439974d9ec46709dcdf784696aa69fa2a4f640c05b8ce",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "selectedWithinExpectedHeading": true,
+      "providerConfidence": 1,
+      "evidenceSufficiency": 0.89,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 1657,
+        "output_tokens": 127
+      },
+      "elapsedMs": 688.9,
+      "jevCallMade": true,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "h005",
+            "h006",
+            "h007",
+            "h008",
+            "none"
+          ],
+          "selectedOptionId": "h002",
+          "confidence": 1,
+          "probabilities": {
+            "h001": 0,
+            "h002": 1,
+            "h003": 0,
+            "h004": 0,
+            "h005": 0,
+            "h006": 0,
+            "h007": 0,
+            "h008": 0,
+            "none": 0
+          }
+        }
+      ],
+      "selectionMode": "single-pass",
+      "calibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score"
+    },
+    {
+      "caseId": "A2",
+      "language": "en",
+      "arm": "sidecar",
+      "query": "Is the learning dataset ready to influence routing or promote rules?",
+      "candidateCount": 1,
+      "status": "selected",
+      "selected": {
+        "optionId": "h001",
+        "title": "Learning dataset state",
+        "headingPath": [
+          "Learning dataset state"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "a4184120540f627067d789a4ee4fb9b29ed484d1efbd06d93826584f0e8bc263",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 7,
+          "startOffset": 0,
+          "endOffset": 2162,
+          "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "selectedWithinExpectedHeading": true,
+      "providerConfidence": 0.92,
+      "evidenceSufficiency": 0.59,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 656,
+        "output_tokens": 57
+      },
+      "elapsedMs": 805.1,
+      "jevCallMade": true,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "none"
+          ],
+          "selectedOptionId": "h001",
+          "confidence": 0.92,
+          "probabilities": {
+            "h001": 0.96,
+            "none": 0.04
+          }
+        }
+      ],
+      "selectionMode": "single-pass",
+      "calibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score"
+    },
+    {
+      "caseId": "A2",
+      "language": "es",
+      "arm": "off",
+      "query": "¿El conjunto de datos de aprendizaje ya puede influir en el routing o promover reglas?",
+      "candidateCount": 8,
+      "status": "abstained",
+      "selected": null,
+      "selectedWithinExpectedHeading": false,
+      "providerConfidence": 0.85,
+      "evidenceSufficiency": 0.23,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 1910,
+        "output_tokens": 124
+      },
+      "elapsedMs": 760.3,
+      "jevCallMade": true,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "h005",
+            "h006",
+            "h007",
+            "h008",
+            "none"
+          ],
+          "selectedOptionId": "none",
+          "confidence": 0.85,
+          "probabilities": {
+            "h001": 0,
+            "h002": 0.02,
+            "h003": 0,
+            "h004": 0,
+            "h005": 0,
+            "h006": 0.07,
+            "h007": 0.04,
+            "h008": 0,
+            "none": 0.87
+          }
+        }
+      ],
+      "selectionMode": "single-pass",
+      "calibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score"
+    },
+    {
+      "caseId": "A2",
+      "language": "es",
+      "arm": "sidecar",
+      "query": "¿El conjunto de datos de aprendizaje ya puede influir en el routing o promover reglas?",
+      "candidateCount": 1,
+      "status": "selected",
+      "selected": {
+        "optionId": "h001",
+        "title": "Learning dataset state",
+        "headingPath": [
+          "Learning dataset state"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "a4184120540f627067d789a4ee4fb9b29ed484d1efbd06d93826584f0e8bc263",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 7,
+          "startOffset": 0,
+          "endOffset": 2162,
+          "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "selectedWithinExpectedHeading": true,
+      "providerConfidence": 0.96,
+      "evidenceSufficiency": 0.54,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 662,
+        "output_tokens": 57
+      },
+      "elapsedMs": 681.1,
+      "jevCallMade": true,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "none"
+          ],
+          "selectedOptionId": "h001",
+          "confidence": 0.96,
+          "probabilities": {
+            "h001": 0.98,
+            "none": 0.02
+          }
+        }
+      ],
+      "selectionMode": "single-pass",
+      "calibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score"
+    },
+    {
+      "caseId": "A3",
+      "language": "en",
+      "arm": "off",
+      "query": "Does semantic evidence count as a sixth first-party skill root?",
+      "candidateCount": 8,
+      "status": "selected",
+      "selected": {
+        "optionId": "h003",
+        "title": "Core skill package state",
+        "headingPath": [
+          "MSSR project state",
+          "Core skill package state"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "7669187919b1de5ad6f5689467509e9f99b2f70a307f025a3a96a2e1d3ca2e70",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/PROJECT_STATE.md",
+          "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+          "rangeId": "block-15",
+          "rangeKind": "block",
+          "startLine": 85,
+          "endLine": 85,
+          "startOffset": 13697,
+          "endOffset": 13917,
+          "fingerprint": "5bc1c5f7dc74d7666099f1694f47f06a084914f9f7d0a75a1ab48dae73571307",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "selectedWithinExpectedHeading": true,
+      "providerConfidence": 0.57,
+      "evidenceSufficiency": 0.93,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 1597,
+        "output_tokens": 127
+      },
+      "elapsedMs": 658.5,
+      "jevCallMade": true,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "h005",
+            "h006",
+            "h007",
+            "h008",
+            "none"
+          ],
+          "selectedOptionId": "h003",
+          "confidence": 0.57,
+          "probabilities": {
+            "h001": 0.03,
+            "h002": 0.35,
+            "h003": 0.62,
+            "h004": 0,
+            "h005": 0,
+            "h006": 0,
+            "h007": 0,
+            "h008": 0,
+            "none": 0
+          }
+        }
+      ],
+      "selectionMode": "single-pass",
+      "calibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score"
+    },
+    {
+      "caseId": "A3",
+      "language": "en",
+      "arm": "sidecar",
+      "query": "Does semantic evidence count as a sixth first-party skill root?",
+      "candidateCount": 1,
+      "status": "selected",
+      "selected": {
+        "optionId": "h001",
+        "title": "Core skill package state",
+        "headingPath": [
+          "MSSR project state",
+          "Core skill package state"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "3650d906394e9fe9e975828f879c47b99b68e520de412476a07b412a6349b03b",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/PROJECT_STATE.md",
+          "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+          "rangeId": "heading-4",
+          "rangeKind": "section",
+          "startLine": 83,
+          "endLine": 86,
+          "startOffset": 13668,
+          "endOffset": 13919,
+          "fingerprint": "1f17be3d645b3a41253d9da8ea2675f7ec70941b6dc619bdcedbd187f322804c",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "selectedWithinExpectedHeading": true,
+      "providerConfidence": 1,
+      "evidenceSufficiency": 0.95,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 656,
+        "output_tokens": 57
+      },
+      "elapsedMs": 711.9,
+      "jevCallMade": true,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "none"
+          ],
+          "selectedOptionId": "h001",
+          "confidence": 1,
+          "probabilities": {
+            "h001": 1,
+            "none": 0
+          }
+        }
+      ],
+      "selectionMode": "single-pass",
+      "calibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score"
+    },
+    {
+      "caseId": "A3",
+      "language": "es",
+      "arm": "off",
+      "query": "¿La evidencia semántica cuenta como una sexta skill de primera parte?",
+      "candidateCount": 8,
+      "status": "abstained",
+      "selected": null,
+      "selectedWithinExpectedHeading": false,
+      "providerConfidence": 0.58,
+      "evidenceSufficiency": 0.17,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 1811,
+        "output_tokens": 124
+      },
+      "elapsedMs": 713,
+      "jevCallMade": true,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "h005",
+            "h006",
+            "h007",
+            "h008",
+            "none"
+          ],
+          "selectedOptionId": "none",
+          "confidence": 0.58,
+          "probabilities": {
+            "h001": 0,
+            "h002": 0,
+            "h003": 0,
+            "h004": 0.01,
+            "h005": 0.24,
+            "h006": 0.01,
+            "h007": 0,
+            "h008": 0.11,
+            "none": 0.63
+          }
+        }
+      ],
+      "selectionMode": "single-pass",
+      "calibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score"
+    },
+    {
+      "caseId": "A3",
+      "language": "es",
+      "arm": "sidecar",
+      "query": "¿La evidencia semántica cuenta como una sexta skill de primera parte?",
+      "candidateCount": 1,
+      "status": "selected",
+      "selected": {
+        "optionId": "h001",
+        "title": "Core skill package state",
+        "headingPath": [
+          "MSSR project state",
+          "Core skill package state"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "3650d906394e9fe9e975828f879c47b99b68e520de412476a07b412a6349b03b",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/PROJECT_STATE.md",
+          "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+          "rangeId": "heading-4",
+          "rangeKind": "section",
+          "startLine": 83,
+          "endLine": 86,
+          "startOffset": 13668,
+          "endOffset": 13919,
+          "fingerprint": "1f17be3d645b3a41253d9da8ea2675f7ec70941b6dc619bdcedbd187f322804c",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "selectedWithinExpectedHeading": true,
+      "providerConfidence": 1,
+      "evidenceSufficiency": 0.92,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 660,
+        "output_tokens": 57
+      },
+      "elapsedMs": 682.6,
+      "jevCallMade": true,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "none"
+          ],
+          "selectedOptionId": "h001",
+          "confidence": 1,
+          "probabilities": {
+            "h001": 1,
+            "none": 0
+          }
+        }
+      ],
+      "selectionMode": "single-pass",
+      "calibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score"
+    },
+    {
+      "caseId": "A4",
+      "language": "en",
+      "arm": "off",
+      "query": "Are all 100 proposed use cases demonstrated Jev capabilities?",
+      "candidateCount": 8,
+      "status": "selected",
+      "selected": {
+        "optionId": "h003",
+        "title": "100 hipótesis de uso",
+        "headingPath": [
+          "Jev, decisiones tipadas y casos de uso para MSSR",
+          "100 hipótesis de uso"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "5ca1cabb1a953f434e22f9a5410786ecb2d9fd8a668fcda9e09d7f35c19df1fc",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+          "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+          "rangeId": "block-23",
+          "rangeKind": "block",
+          "startLine": 80,
+          "endLine": 80,
+          "startOffset": 13028,
+          "endOffset": 13384,
+          "fingerprint": "3c1488950c24886c91da26f36555cf49af0d2809fc4f6ff62e52dec4b656b992",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "selectedWithinExpectedHeading": true,
+      "providerConfidence": 0.85,
+      "evidenceSufficiency": 0.85,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 1743,
+        "output_tokens": 127
+      },
+      "elapsedMs": 695.4,
+      "jevCallMade": true,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "h005",
+            "h006",
+            "h007",
+            "h008",
+            "none"
+          ],
+          "selectedOptionId": "h003",
+          "confidence": 0.85,
+          "probabilities": {
+            "h001": 0,
+            "h002": 0,
+            "h003": 0.87,
+            "h004": 0.08,
+            "h005": 0.01,
+            "h006": 0.02,
+            "h007": 0,
+            "h008": 0,
+            "none": 0.02
+          }
+        }
+      ],
+      "selectionMode": "single-pass",
+      "calibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score"
+    },
+    {
+      "caseId": "A4",
+      "language": "en",
+      "arm": "sidecar",
+      "query": "Are all 100 proposed use cases demonstrated Jev capabilities?",
+      "candidateCount": 1,
+      "status": "abstained",
+      "selected": null,
+      "selectedWithinExpectedHeading": false,
+      "providerConfidence": 0.86,
+      "evidenceSufficiency": 0.13,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 699,
+        "output_tokens": 54
+      },
+      "elapsedMs": 711.5,
+      "jevCallMade": true,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "none"
+          ],
+          "selectedOptionId": "none",
+          "confidence": 0.86,
+          "probabilities": {
+            "h001": 0.07,
+            "none": 0.93
+          }
+        }
+      ],
+      "selectionMode": "single-pass",
+      "calibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score"
+    },
+    {
+      "caseId": "A4",
+      "language": "es",
+      "arm": "off",
+      "query": "¿Los 100 casos propuestos son capacidades de Jev ya demostradas?",
+      "candidateCount": 8,
+      "status": "selected",
+      "selected": {
+        "optionId": "h001",
+        "title": "100 hipótesis de uso",
+        "headingPath": [
+          "Jev, decisiones tipadas y casos de uso para MSSR",
+          "100 hipótesis de uso"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "7719498578989e7f2cc919ee3d3bd4f1c41d9b52c96d1717d28e58e00ae67c89",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+          "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+          "rangeId": "heading-9",
+          "rangeKind": "section",
+          "startLine": 78,
+          "endLine": 211,
+          "startOffset": 13003,
+          "endOffset": 20731,
+          "fingerprint": "9197101e89eee91feea5862c14ac1ec29c4a0036eb0fbf9d1e744a0e2306a1d5",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "selectedWithinExpectedHeading": true,
+      "providerConfidence": 0.82,
+      "evidenceSufficiency": 0.89,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 1821,
+        "output_tokens": 127
+      },
+      "elapsedMs": 760,
+      "jevCallMade": true,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "h005",
+            "h006",
+            "h007",
+            "h008",
+            "none"
+          ],
+          "selectedOptionId": "h001",
+          "confidence": 0.82,
+          "probabilities": {
+            "h001": 0.84,
+            "h002": 0.08,
+            "h003": 0,
+            "h004": 0,
+            "h005": 0,
+            "h006": 0.05,
+            "h007": 0.01,
+            "h008": 0.01,
+            "none": 0.01
+          }
+        }
+      ],
+      "selectionMode": "single-pass",
+      "calibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score"
+    },
+    {
+      "caseId": "A4",
+      "language": "es",
+      "arm": "sidecar",
+      "query": "¿Los 100 casos propuestos son capacidades de Jev ya demostradas?",
+      "candidateCount": 1,
+      "status": "selected",
+      "selected": {
+        "optionId": "h001",
+        "title": "100 hipótesis de uso",
+        "headingPath": [
+          "Jev, decisiones tipadas y casos de uso para MSSR",
+          "100 hipótesis de uso"
+        ],
+        "handle": {
+          "version": 1,
+          "id": "7719498578989e7f2cc919ee3d3bd4f1c41d9b52c96d1717d28e58e00ae67c89",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+          "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+          "rangeId": "heading-9",
+          "rangeKind": "section",
+          "startLine": 78,
+          "endLine": 211,
+          "startOffset": 13003,
+          "endOffset": 20731,
+          "fingerprint": "9197101e89eee91feea5862c14ac1ec29c4a0036eb0fbf9d1e744a0e2306a1d5",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "selectedWithinExpectedHeading": true,
+      "providerConfidence": 0.98,
+      "evidenceSufficiency": 0.87,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 708,
+        "output_tokens": 57
+      },
+      "elapsedMs": 672,
+      "jevCallMade": true,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "none"
+          ],
+          "selectedOptionId": "h001",
+          "confidence": 0.98,
+          "probabilities": {
+            "h001": 0.99,
+            "none": 0.01
+          }
+        }
+      ],
+      "selectionMode": "single-pass",
+      "calibration": "uncalibrated-provider-score",
+      "evidenceSufficiencyCalibration": "uncalibrated-provider-score"
+    }
+  ],
+  "integrity": {
+    "fetchAndPack": [
+      {
+        "handle": {
+          "version": 1,
+          "id": "22d2467b49817f36964d9a926b714096acb976143610f251803a890f0939ada9",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+          "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 5,
+          "startOffset": 0,
+          "endOffset": 1955,
+          "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+          "privacyClass": "project-metadata"
+        },
+        "selectedBy": [
+          {
+            "caseId": "A1",
+            "language": "en",
+            "arm": "off",
+            "status": "selected"
+          },
+          {
+            "caseId": "A1",
+            "language": "en",
+            "arm": "sidecar",
+            "status": "selected"
+          },
+          {
+            "caseId": "A1",
+            "language": "es",
+            "arm": "sidecar",
+            "status": "selected"
+          }
+        ],
+        "fetchStatus": "returned",
+        "fetchedTextChars": 1955,
+        "fingerprintMatches": true,
+        "packExactTextChars": 1955,
+        "packCitation": {
+          "display": ".mssr/knowledge/architecture/architecture-impact-review-decision.md:L1-L5",
+          "handleId": "22d2467b49817f36964d9a926b714096acb976143610f251803a890f0939ada9",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+          "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 5,
+          "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+          "privacyClass": "project-metadata"
+        },
+        "fetchPackTextEqual": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "c61c476ed4fb2d274f3994debfe042e0e8c571be343b640e4bf1fc23ab19e65c",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "startLine": 3,
+          "endLine": 3,
+          "startOffset": 27,
+          "endOffset": 889,
+          "fingerprint": "3526b6c9cea70e3ef28439974d9ec46709dcdf784696aa69fa2a4f640c05b8ce",
+          "privacyClass": "project-metadata"
+        },
+        "selectedBy": [
+          {
+            "caseId": "A2",
+            "language": "en",
+            "arm": "off",
+            "status": "selected"
+          }
+        ],
+        "fetchStatus": "returned",
+        "fetchedTextChars": 862,
+        "fingerprintMatches": true,
+        "packExactTextChars": 862,
+        "packCitation": {
+          "display": ".mssr/knowledge/state/mssr-learning-dataset-state.md:L3-L3",
+          "handleId": "c61c476ed4fb2d274f3994debfe042e0e8c571be343b640e4bf1fc23ab19e65c",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "startLine": 3,
+          "endLine": 3,
+          "fingerprint": "3526b6c9cea70e3ef28439974d9ec46709dcdf784696aa69fa2a4f640c05b8ce",
+          "privacyClass": "project-metadata"
+        },
+        "fetchPackTextEqual": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "a4184120540f627067d789a4ee4fb9b29ed484d1efbd06d93826584f0e8bc263",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 7,
+          "startOffset": 0,
+          "endOffset": 2162,
+          "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+          "privacyClass": "project-metadata"
+        },
+        "selectedBy": [
+          {
+            "caseId": "A2",
+            "language": "en",
+            "arm": "sidecar",
+            "status": "selected"
+          },
+          {
+            "caseId": "A2",
+            "language": "es",
+            "arm": "sidecar",
+            "status": "selected"
+          }
+        ],
+        "fetchStatus": "returned",
+        "fetchedTextChars": 2162,
+        "fingerprintMatches": true,
+        "packExactTextChars": 2162,
+        "packCitation": {
+          "display": ".mssr/knowledge/state/mssr-learning-dataset-state.md:L1-L7",
+          "handleId": "a4184120540f627067d789a4ee4fb9b29ed484d1efbd06d93826584f0e8bc263",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 7,
+          "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+          "privacyClass": "project-metadata"
+        },
+        "fetchPackTextEqual": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "7669187919b1de5ad6f5689467509e9f99b2f70a307f025a3a96a2e1d3ca2e70",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/PROJECT_STATE.md",
+          "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+          "rangeId": "block-15",
+          "rangeKind": "block",
+          "startLine": 85,
+          "endLine": 85,
+          "startOffset": 13697,
+          "endOffset": 13917,
+          "fingerprint": "5bc1c5f7dc74d7666099f1694f47f06a084914f9f7d0a75a1ab48dae73571307",
+          "privacyClass": "project-metadata"
+        },
+        "selectedBy": [
+          {
+            "caseId": "A3",
+            "language": "en",
+            "arm": "off",
+            "status": "selected"
+          }
+        ],
+        "fetchStatus": "returned",
+        "fetchedTextChars": 220,
+        "fingerprintMatches": true,
+        "packExactTextChars": 220,
+        "packCitation": {
+          "display": ".mssr/PROJECT_STATE.md:L85-L85",
+          "handleId": "7669187919b1de5ad6f5689467509e9f99b2f70a307f025a3a96a2e1d3ca2e70",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/PROJECT_STATE.md",
+          "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+          "rangeId": "block-15",
+          "rangeKind": "block",
+          "startLine": 85,
+          "endLine": 85,
+          "fingerprint": "5bc1c5f7dc74d7666099f1694f47f06a084914f9f7d0a75a1ab48dae73571307",
+          "privacyClass": "project-metadata"
+        },
+        "fetchPackTextEqual": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "3650d906394e9fe9e975828f879c47b99b68e520de412476a07b412a6349b03b",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/PROJECT_STATE.md",
+          "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+          "rangeId": "heading-4",
+          "rangeKind": "section",
+          "startLine": 83,
+          "endLine": 86,
+          "startOffset": 13668,
+          "endOffset": 13919,
+          "fingerprint": "1f17be3d645b3a41253d9da8ea2675f7ec70941b6dc619bdcedbd187f322804c",
+          "privacyClass": "project-metadata"
+        },
+        "selectedBy": [
+          {
+            "caseId": "A3",
+            "language": "en",
+            "arm": "sidecar",
+            "status": "selected"
+          },
+          {
+            "caseId": "A3",
+            "language": "es",
+            "arm": "sidecar",
+            "status": "selected"
+          }
+        ],
+        "fetchStatus": "returned",
+        "fetchedTextChars": 251,
+        "fingerprintMatches": true,
+        "packExactTextChars": 251,
+        "packCitation": {
+          "display": ".mssr/PROJECT_STATE.md:L83-L86",
+          "handleId": "3650d906394e9fe9e975828f879c47b99b68e520de412476a07b412a6349b03b",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/PROJECT_STATE.md",
+          "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+          "rangeId": "heading-4",
+          "rangeKind": "section",
+          "startLine": 83,
+          "endLine": 86,
+          "fingerprint": "1f17be3d645b3a41253d9da8ea2675f7ec70941b6dc619bdcedbd187f322804c",
+          "privacyClass": "project-metadata"
+        },
+        "fetchPackTextEqual": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "5ca1cabb1a953f434e22f9a5410786ecb2d9fd8a668fcda9e09d7f35c19df1fc",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+          "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+          "rangeId": "block-23",
+          "rangeKind": "block",
+          "startLine": 80,
+          "endLine": 80,
+          "startOffset": 13028,
+          "endOffset": 13384,
+          "fingerprint": "3c1488950c24886c91da26f36555cf49af0d2809fc4f6ff62e52dec4b656b992",
+          "privacyClass": "project-metadata"
+        },
+        "selectedBy": [
+          {
+            "caseId": "A4",
+            "language": "en",
+            "arm": "off",
+            "status": "selected"
+          }
+        ],
+        "fetchStatus": "returned",
+        "fetchedTextChars": 356,
+        "fingerprintMatches": true,
+        "packExactTextChars": 356,
+        "packCitation": {
+          "display": ".mssr/knowledge/research/jev-decision-model-use-cases.md:L80-L80",
+          "handleId": "5ca1cabb1a953f434e22f9a5410786ecb2d9fd8a668fcda9e09d7f35c19df1fc",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+          "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+          "rangeId": "block-23",
+          "rangeKind": "block",
+          "startLine": 80,
+          "endLine": 80,
+          "fingerprint": "3c1488950c24886c91da26f36555cf49af0d2809fc4f6ff62e52dec4b656b992",
+          "privacyClass": "project-metadata"
+        },
+        "fetchPackTextEqual": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "7719498578989e7f2cc919ee3d3bd4f1c41d9b52c96d1717d28e58e00ae67c89",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+          "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+          "rangeId": "heading-9",
+          "rangeKind": "section",
+          "startLine": 78,
+          "endLine": 211,
+          "startOffset": 13003,
+          "endOffset": 20731,
+          "fingerprint": "9197101e89eee91feea5862c14ac1ec29c4a0036eb0fbf9d1e744a0e2306a1d5",
+          "privacyClass": "project-metadata"
+        },
+        "selectedBy": [
+          {
+            "caseId": "A4",
+            "language": "es",
+            "arm": "off",
+            "status": "selected"
+          },
+          {
+            "caseId": "A4",
+            "language": "es",
+            "arm": "sidecar",
+            "status": "selected"
+          }
+        ],
+        "fetchStatus": "returned",
+        "fetchedTextChars": 7728,
+        "fingerprintMatches": true,
+        "packExactTextChars": 7728,
+        "packCitation": {
+          "display": ".mssr/knowledge/research/jev-decision-model-use-cases.md:L78-L211",
+          "handleId": "7719498578989e7f2cc919ee3d3bd4f1c41d9b52c96d1717d28e58e00ae67c89",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+          "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+          "rangeId": "heading-9",
+          "rangeKind": "section",
+          "startLine": 78,
+          "endLine": 211,
+          "fingerprint": "9197101e89eee91feea5862c14ac1ec29c4a0036eb0fbf9d1e744a0e2306a1d5",
+          "privacyClass": "project-metadata"
+        },
+        "fetchPackTextEqual": true
+      }
+    ],
+    "evidencePack": {
+      "assembly": "verbatim-source-ranges",
+      "sourceCount": 4,
+      "rangeCount": 7,
+      "totalFetchedChars": 13534,
+      "citations": [
+        {
+          "display": ".mssr/knowledge/architecture/architecture-impact-review-decision.md:L1-L5",
+          "handleId": "22d2467b49817f36964d9a926b714096acb976143610f251803a890f0939ada9",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/architecture/architecture-impact-review-decision.md",
+          "revision": "e1ab8240b1edc4c6aad10d25a84b4bef4e9b7470663a7649cb415f0cd17c68df",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 5,
+          "fingerprint": "7e11d81904c51a058f2bdb5e5dd8a1c3609a589935c9f5e8bb3ccfa4095e4bd5",
+          "privacyClass": "project-metadata"
+        },
+        {
+          "display": ".mssr/knowledge/state/mssr-learning-dataset-state.md:L3-L3",
+          "handleId": "c61c476ed4fb2d274f3994debfe042e0e8c571be343b640e4bf1fc23ab19e65c",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "startLine": 3,
+          "endLine": 3,
+          "fingerprint": "3526b6c9cea70e3ef28439974d9ec46709dcdf784696aa69fa2a4f640c05b8ce",
+          "privacyClass": "project-metadata"
+        },
+        {
+          "display": ".mssr/knowledge/state/mssr-learning-dataset-state.md:L1-L7",
+          "handleId": "a4184120540f627067d789a4ee4fb9b29ed484d1efbd06d93826584f0e8bc263",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 7,
+          "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+          "privacyClass": "project-metadata"
+        },
+        {
+          "display": ".mssr/PROJECT_STATE.md:L85-L85",
+          "handleId": "7669187919b1de5ad6f5689467509e9f99b2f70a307f025a3a96a2e1d3ca2e70",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/PROJECT_STATE.md",
+          "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+          "rangeId": "block-15",
+          "rangeKind": "block",
+          "startLine": 85,
+          "endLine": 85,
+          "fingerprint": "5bc1c5f7dc74d7666099f1694f47f06a084914f9f7d0a75a1ab48dae73571307",
+          "privacyClass": "project-metadata"
+        },
+        {
+          "display": ".mssr/PROJECT_STATE.md:L83-L86",
+          "handleId": "3650d906394e9fe9e975828f879c47b99b68e520de412476a07b412a6349b03b",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/PROJECT_STATE.md",
+          "revision": "2acc7788a21973eeb8cc9413c33f96d156aff45b5cb0ef3dab40a09769f6f887",
+          "rangeId": "heading-4",
+          "rangeKind": "section",
+          "startLine": 83,
+          "endLine": 86,
+          "fingerprint": "1f17be3d645b3a41253d9da8ea2675f7ec70941b6dc619bdcedbd187f322804c",
+          "privacyClass": "project-metadata"
+        },
+        {
+          "display": ".mssr/knowledge/research/jev-decision-model-use-cases.md:L80-L80",
+          "handleId": "5ca1cabb1a953f434e22f9a5410786ecb2d9fd8a668fcda9e09d7f35c19df1fc",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+          "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+          "rangeId": "block-23",
+          "rangeKind": "block",
+          "startLine": 80,
+          "endLine": 80,
+          "fingerprint": "3c1488950c24886c91da26f36555cf49af0d2809fc4f6ff62e52dec4b656b992",
+          "privacyClass": "project-metadata"
+        },
+        {
+          "display": ".mssr/knowledge/research/jev-decision-model-use-cases.md:L78-L211",
+          "handleId": "7719498578989e7f2cc919ee3d3bd4f1c41d9b52c96d1717d28e58e00ae67c89",
+          "owner": "d:/dev/mssr",
+          "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+          "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+          "rangeId": "heading-9",
+          "rangeKind": "section",
+          "startLine": 78,
+          "endLine": 211,
+          "fingerprint": "9197101e89eee91feea5862c14ac1ec29c4a0036eb0fbf9d1e744a0e2306a1d5",
+          "privacyClass": "project-metadata"
+        }
+      ],
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "canonicalRewriteAllowed": false
+    }
+  }
+}
