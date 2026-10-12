@@ -12,6 +12,7 @@ import {
   validateEvidencePack,
   validateFetchResult,
   validateLabelHeadingPaths,
+  validateProjectContextManifestPreflight,
   validateProjectContextMetadataControls,
   validateRunInputs,
 } from "./runner-support.mjs";
@@ -26,6 +27,7 @@ const cases = JSON.parse(await fs.readFile(path.join(runDir, "inputs/cases.json"
 const bridgeRoot = manifest.source.bridgeRoot;
 const projectRoot = manifest.corpus.projectRoot;
 const metadataConfig = resolveMetadataRunConfig(manifest, cases);
+const projectContextManifest = await validateProjectContextManifestPreflight({ projectRoot });
 const frozenMetadataControls = await validateProjectContextMetadataControls({
   manifest,
   runDir,
@@ -63,6 +65,7 @@ if (!allowNetwork) {
     networkRequests: 0,
     requestedCalls: cases.length,
     requestedModel: manifest.provider.requestedModel,
+    canonicalProjectContextManifest: projectContextManifest,
     metadataControlFiles: frozenMetadataControls,
     sourceDocuments: manifest.corpus.sources.length,
     independentUnits: manifest.plan.independentUnit,
@@ -112,6 +115,7 @@ for (const testCase of cases) {
     query: testCase.query,
     metadataMode: metadataForCase.metadataMode,
     metadata: metadataForCase.metadata,
+    projectContextManifestSha256: projectContextManifest.sha256,
     maxResults: 100,
     maxSnippetChars: 240,
     requestedModel: manifest.provider.requestedModel,
@@ -125,6 +129,7 @@ for (const testCase of cases) {
     requestFingerprint,
     startedAt,
     inputHashes: [manifest.corpus.sources.find((source) => source.sourceRef === testCase.sourceRef).sha256],
+    projectContextManifestSha256: projectContextManifest.sha256,
   });
   const record = {
     caseId: testCase.id,
@@ -555,6 +560,7 @@ const summary = {
     requestedModel: manifest.provider.requestedModel,
     metadataModes: [...new Set(cases.map((item) => metadataConfig.byCaseId.get(item.id).metadataMode))],
     metadataControlFiles: frozenMetadataControls,
+    canonicalProjectContextManifest: projectContextManifest,
     returnedModel: records.find((record) => record.returnedModel)?.returnedModel ?? null,
   },
 };
@@ -575,6 +581,7 @@ await fs.writeFile(path.join(runDir, "run-completion.json"), json({
   providerTransportInvocationsObserved: null,
   metadataModes: [...new Set(cases.map((item) => metadataConfig.byCaseId.get(item.id).metadataMode))],
   metadataControlFiles: frozenMetadataControls,
+  canonicalProjectContextManifest: projectContextManifest,
 }), "utf8");
 const fileList = [];
 async function walk(dir) {

@@ -561,6 +561,9 @@ try {
   const templateRunnerSupportBytes = await fs.readFile(path.join(templateRun, "runner-support.mjs"));
   const templateSourceBytes = Buffer.from("# Sample\n\nExact fixture evidence.\n");
   await fs.mkdir(path.join(templateProject, "docs"), { recursive: true });
+  await fs.mkdir(path.join(templateProject, ".mssr"), { recursive: true });
+  const templateProjectContextBytes = Buffer.from('{"schemaVersion":1,"core":[],"modules":[]}\n', "utf8");
+  await fs.writeFile(path.join(templateProject, ".mssr/project-context.json"), templateProjectContextBytes);
   await fs.writeFile(path.join(templateProject, "docs/one.md"), templateSourceBytes);
   await fs.mkdir(path.join(templateRun, "inputs/sources"), { recursive: true });
   await fs.writeFile(path.join(templateRun, "inputs/sources/source-01.md"), templateSourceBytes);
@@ -615,6 +618,8 @@ try {
   assert.equal(templateDryRunSummary.requestedCalls, 1);
   assert.equal(templateDryRunSummary.sourceDocuments, 1);
   assert.equal(templateDryRunSummary.labelsParsed, false);
+  assert.equal(templateDryRunSummary.canonicalProjectContextManifest.status, "structural-preflight-passed");
+  assert.equal(templateDryRunSummary.canonicalProjectContextManifest.sha256, digest(templateProjectContextBytes));
   await assert.rejects(fs.access(path.join(templateRun, ".runner.lock")), "dry-run must release its exclusive packet lock");
   await assert.rejects(fs.access(path.join(templateRun, "records.jsonl")), "dry-run must not write provider records");
   const partialRecordsPath = path.join(templateRun, "records.jsonl");

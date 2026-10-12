@@ -62,6 +62,46 @@ async function optionalFileBytes(filePath) {
   }
 }
 
+export async function validateProjectContextManifestPreflight({ projectRoot }) {
+  assert.ok(typeof projectRoot === "string" && projectRoot.trim().length > 0,
+    "Librarian runs require an explicit projectRoot");
+  const manifestPath = path.join(projectRoot, ".mssr", "project-context.json");
+  let manifestBytes;
+  try {
+    manifestBytes = await fs.readFile(manifestPath);
+  } catch (error) {
+    if (error?.code === "ENOENT") {
+      throw new Error("Every Librarian run requires the canonical .mssr/project-context.json; metadataMode=off does not disable project initialization.", { cause: error });
+    }
+    throw error;
+  }
+
+  let manifest;
+  try {
+    manifest = JSON.parse(manifestBytes.toString("utf8"));
+  } catch (error) {
+    throw new Error("Canonical .mssr/project-context.json must contain valid JSON before a Librarian run.", { cause: error });
+  }
+  assert.ok(manifest && typeof manifest === "object" && !Array.isArray(manifest),
+    "Canonical .mssr/project-context.json must be a JSON object");
+  assert.equal(manifest.schemaVersion, 1, "Canonical .mssr/project-context.json must use schemaVersion 1");
+  assert.ok(Object.keys(manifest).every((key) => ["schemaVersion", "core", "modules"].includes(key)),
+    "Canonical .mssr/project-context.json contains unsupported top-level fields");
+  assert.ok(manifest.core === undefined || Array.isArray(manifest.core),
+    "Canonical .mssr/project-context.json core must be an array when present");
+  assert.ok(manifest.modules === undefined || Array.isArray(manifest.modules),
+    "Canonical .mssr/project-context.json modules must be an array when present");
+  assert.ok((manifest.core?.length ?? 0) <= 16, "Canonical .mssr/project-context.json core exceeds 16 entries");
+  assert.ok((manifest.modules?.length ?? 0) <= 96, "Canonical .mssr/project-context.json modules exceeds 96 entries");
+
+  return {
+    path: ".mssr/project-context.json",
+    status: "structural-preflight-passed",
+    schemaVersion: manifest.schemaVersion,
+    sha256: sha256Bytes(manifestBytes),
+  };
+}
+
 export async function validateProjectContextMetadataControls({ manifest, runDir, projectRoot, required = false }) {
   const entries = manifest.corpus?.metadataControlFiles;
   if (entries === undefined) {
