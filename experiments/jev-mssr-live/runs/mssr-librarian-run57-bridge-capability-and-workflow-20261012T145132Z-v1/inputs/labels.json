@@ -1,0 +1,69 @@
+{
+  "source": "Etiquetas congeladas antes de las llamadas a Jev; fuera de los requests.",
+  "schemaVersion": 1,
+  "adjudication": "Dos revisiones Luna independientes sobre los mismos bytes; etiquetas source-derived, no owner-gold; sin revisión humana del propietario.",
+  "exposedToRequests": false,
+  "exposureReview": {
+    "docs/CONTEXT_LAYER_ROADMAP.md": "No se encontró texto exacto o distintivo del documento en los artefactos de corridas revisados; sólo fuentes con coincidencia parcial no prueban exposición a Jev.",
+    "docs/MSSR_LIBRARIAN_JEV.md": "La copia de D:\\Dev\\bridge-mcp 0.6.144 difiere; esta corrida congela el texto del Bridge 0.6.175 limpio (HEAD 999a8a2). No se encontró cuerpo exacto en artefactos anteriores."
+  },
+  "independentUnit": "two exact source documents in one project; exploratory diagnostic only",
+  "cases": [
+    {
+      "expectedEndLine": 100,
+      "caseId": "capability-inventory-inputs-and-gate",
+      "expectedStartLine": 90,
+      "allowedEquivalent": "Debe resumir los inputs y el estado requerido, sin presentar esta hoja de ruta como lectura del estado runtime actual.",
+      "relevantRanges": [
+        {
+          "expectedHeading": "P3 — capability inventory / \"what can the system do?\" — CURRENT / PHASE A IMPLEMENTED",
+          "startLine": 86,
+          "sourceRef": "docs/CONTEXT_LAYER_ROADMAP.md",
+          "endLine": 100
+        }
+      ],
+      "sourceRef": "docs/CONTEXT_LAYER_ROADMAP.md",
+      "acceptableRanges": [
+        {
+          "expectedHeading": "P3 — capability inventory / \"what can the system do?\" — CURRENT / PHASE A IMPLEMENTED",
+          "startLine": 90,
+          "sourceRef": "docs/CONTEXT_LAYER_ROADMAP.md",
+          "endLine": 100
+        }
+      ],
+      "expectedHeading": "P3 — capability inventory / \"what can the system do?\" — CURRENT / PHASE A IMPLEMENTED",
+      "concept": "Identifica todas las fuentes del inventario y el gate de estado/propietario que no confunde metadatos cacheados con disponibilidad live."
+    },
+    {
+      "concept": "La sección P4 menciona snapshots diarios y que queda definir una política auditable de retención/cuota, pero no asigna owner ni plazo exacto.",
+      "answerability": "unanswerable",
+      "allowedEquivalent": "Debe abstenerse dentro de esta fuente; un TTL de caché no es una cuota de retención del snapshot.",
+      "caseId": "daily-snapshot-owner-and-retention-unanswerable",
+      "sourceRef": "docs/CONTEXT_LAYER_ROADMAP.md"
+    },
+    {
+      "expectedStartLine": 20,
+      "allowedEquivalent": "Debe separar explícitamente los actos deterministas de Jev de la composición y verificación del host, con apoyo en la frase exacta.",
+      "sourceRef": "docs/MSSR_LIBRARIAN_JEV.md",
+      "expectedEndLine": 20,
+      "acceptableRanges": [
+        {
+          "expectedHeading": "Capabilities",
+          "startLine": 20,
+          "sourceRef": "docs/MSSR_LIBRARIAN_JEV.md",
+          "endLine": 20
+        }
+      ],
+      "caseId": "jev-host-workflow-boundary",
+      "concept": "Distingue selección/evidencia/preview de la orquestación host-side que itera, compacta citas, compone párrafos, revisa contradicciones y verifica claims; el preview ensambla rangos literales y no escribe/genera prosa.",
+      "expectedHeading": "Capabilities"
+    },
+    {
+      "concept": "El documento identifica el boundary de Credential Manager, pero afirma que el valor de la API key no se acepta, registra ni revela.",
+      "answerability": "unanswerable",
+      "allowedEquivalent": "No debe inventar ni exponer credenciales; abstenerse porque el valor secreto no aparece en la fuente.",
+      "caseId": "jev-api-secret-unanswerable",
+      "sourceRef": "docs/MSSR_LIBRARIAN_JEV.md"
+    }
+  ]
+}

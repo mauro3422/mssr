@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 2,
+  "schemaProfile": "generic-librarian-run-v1",
+  "reportType": "mechanically-derived run summary; no semantic adjudication",
+  "runId": "mssr-librarian-run56-mssr-ownership-answerability-20261012T145132Z-v1",
+  "parentRunId": null,
+  "frozenManifestSha256": "32d89d94726fdcb6be2008b0ee4cb7fd14ebb53386cc32c5e5ee5e0753afa8b9",
+  "completionStatus": "complete",
+  "checksumFile": {
+    "present": true,
+    "verified": 12,
+    "requiredFiles": [
+      "manifest.json",
+      "run-completion.json",
+      "inputs/cases.json",
+      "records.jsonl",
+      "inputs/labels.json"
+    ]
+  },
+  "sourceDocumentClusters": 1,
+  "sourceRefs": [
+    ".mssr/knowledge/architecture/canonical-ownership.md"
+  ],
+  "clusterInterpretation": "Distinct sourceRef grouping only; it does not establish independent statistical sampling.",
+  "expectedRequests": 2,
+  "attemptedRequests": 2,
+  "successfulRequests": 2,
+  "failedRequests": 0,
+  "selected": 0,
+  "abstained": 2,
+  "exactFetchesWithFingerprint": 0,
+  "evidencePacksBuilt": 0,
+  "evidenceSufficiencyCapture": {
+    "recorded": 2,
+    "missingFromRecords": 0,
+    "note": "Only the explicit jev.evidenceSufficiency field is counted; raw Noul and other aliases are reported separately."
+  },
+  "rawNoulCapture": {
+    "recorded": 0,
+    "missingFromRecords": 2,
+    "note": "Provider Noul is descriptive and is not treated as an evidence-sufficiency alias."
+  },
+  "tokenUsage": {
+    "input": 2915,
+    "output": 238
+  },
+  "firstRequestStartedAt": "2026-10-12T14:52:34.783Z",
+  "lastRequestCompletedAt": "2026-10-12T14:52:37.229Z",
+  "manifestCreatedAt": "2026-10-12T14:51:33.7166097Z",
+  "createdAtDeltaMs": 61067,
+  "timestampWarning": null,
+  "declaredIndependentUnitUnverified": "1 distinct document source(s) for this small exploratory packet; no reliability estimate",
+  "independentUnitDeclarationInterpretation": "Manifest text is retained for audit; it is not verified against observed sourceRef clusters.",
+  "independentUnit": "source-document cluster (descriptive grouping only)",
+  "calibrationClaim": false,
+  "labelMetrics": {
+    "reportType": "answerability disposition and independently labeled range-selection diagnostics; not semantic adjudication or calibration",
+    "labelSource": "Etiquetas congeladas antes de las llamadas a Jev; fuera de los requests.",
+    "adjudication": "Dos revisiones Luna independientes sobre los mismos bytes; etiquetas source-derived, no owner-gold; sin revisión humana del propietario.",
+    "answerabilityMetrics": {
+      "answerable": {
+        "cases": 1,
+        "correctAnswerabilityDecisions": 0,
+        "correctExactRangeSelections": 0,
+        "correctRelevantRangeSelections": 0,
+        "selectedOutsideLabeledRanges": 0,
+        "incorrectDecisions": 1,
+        "failedOrUnknownDecisions": 0,
+        "abstentions": 1
+      },
+      "unanswerable": {
+        "cases": 1,
+        "correctAbstentions": 1,
+        "falseSelections": 0,
+        "failedOrUnknownDecisions": 0
+      },
+      "classifiedDecisions": 2,
+      "correctDecisions": 1,
+      "incorrectDecisions": 1,
+      "failedOrUnknownDecisions": 0,
+      "decisionAccuracy": 0.5,
+      "decisionAccuracyNote": "This is answerability-status accuracy (select when answerable, abstain when unanswerable); exact/relevant/outside-labeled range quality is reported separately. Failures/unknown decisions stay separate; raw Jev scores remain descriptive and uncalibrated."
+    },
+    "rangeSelectionMetrics": {
+      "exactMatches": 0,
+      "relevantLabeledMatches": 0,
+      "outsideLabeledRanges": 0,
+      "abstentions": 1,
+      "failedOrUnknown": 0,
+      "note": "A range outside the exact or explicitly labeled relevant ranges is ungraded for semantic usefulness; it is not automatically irrelevant. Inspect source text and blinded review separately."
+    },
+    "normalizedExactHeadingMatches": 0,
+    "exactHeadingDenominator": 1,
+    "exactAcceptedRangeMatches": 0,
+    "exactAcceptedRangeDenominator": 1,
+    "relevantRangeMatches": 0,
+    "relevantRangeDenominator": 0,
+    "searchTargetFound": 1,
+    "searchTargetDenominator": 1,
+    "searchExactAcceptedRangeFound": 0,
+    "searchExactAcceptedRangeDenominator": 1,
+    "searchRelevantRangeFound": 0,
+    "searchRelevantRangeDenominator": 0,
+    "records": [
+      {
+        "caseId": "ownership-shared-contract",
+        "sourceRef": ".mssr/knowledge/architecture/canonical-ownership.md",
+        "answerability": "answerable",
+        "expectedHeading": "Canonical ownership",
+        "observedHeading": null,
+        "normalizedExactHeadingMatch": false,
+        "exactAcceptedRangeMatch": false,
+        "relevantRangeMatch": false,
+        "relevantRanges": [],
+        "searchTargetFound": true,
+        "searchExactAcceptedRangeFound": false,
+        "searchRelevantRangeFound": false,
+        "decisionStatus": "abstained",
+        "decisionCorrect": false,
+        "answerabilityDecisionCorrect": false,
+        "rangeSelectionAssessment": "abstained",
+        "exactFetchPassed": false,
+        "pipelineStatus": "complete"
+      },
+      {
+        "caseId": "reserved-skill-names-unanswerable",
+        "sourceRef": ".mssr/knowledge/architecture/canonical-ownership.md",
+        "answerability": "unanswerable",
+        "expectedHeading": null,
+        "observedHeading": null,
+        "decisionStatus": "abstained",
+        "decisionCorrect": true,
+        "answerabilityDecisionCorrect": true,
+        "rangeSelectionAssessment": "abstained",
+        "normalizedExactHeadingMatch": null,
+        "exactAcceptedRangeMatch": null,
+        "relevantRangeMatch": null,
+        "relevantRanges": [],
+        "searchTargetFound": null,
+        "searchExactAcceptedRangeFound": null,
+        "searchRelevantRangeFound": null,
+        "exactFetchPassed": false,
+        "pipelineStatus": "complete"
+      }
+    ]
+  },
+  "records": [
+    {
+      "caseId": "ownership-shared-contract",
+      "sourceRef": ".mssr/knowledge/architecture/canonical-ownership.md",
+      "status": "complete",
+      "searchResultCount": 11,
+      "jevStatus": "abstained",
+      "selectedRangeId": null,
+      "rawChoiceConfidence": 0.43,
+      "evidenceSufficiency": 0.3,
+      "providerNoul": null,
+      "exactFetchPassed": false,
+      "evidencePackBuilt": false,
+      "elapsedMs": 1445.3893
+    },
+    {
+      "caseId": "reserved-skill-names-unanswerable",
+      "sourceRef": ".mssr/knowledge/architecture/canonical-ownership.md",
+      "status": "complete",
+      "searchResultCount": 4,
+      "jevStatus": "abstained",
+      "selectedRangeId": null,
+      "rawChoiceConfidence": 0.91,
+      "evidenceSufficiency": 0.08,
+      "providerNoul": null,
+      "exactFetchPassed": false,
+      "evidencePackBuilt": false,
+      "elapsedMs": 999.0391
+    }
+  ]
+}

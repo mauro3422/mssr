@@ -1,0 +1,36 @@
+{
+  "source": "Etiquetas congeladas antes de las llamadas a Jev; fuera de los requests.",
+  "schemaVersion": 1,
+  "adjudication": "Dos revisiones Luna independientes sobre los mismos bytes; etiquetas source-derived, no owner-gold; sin revisión humana del propietario.",
+  "exposedToRequests": false,
+  "exposureReview": {
+    ".mssr/knowledge/architecture/canonical-ownership.md": "Ruta presente en algunos snapshots de contexto, pero no se encontró cuerpo exacto ni pasaje distintivo del archivo en artefactos de corridas revisados."
+  },
+  "independentUnit": "one exact source document; exploratory diagnostic only",
+  "cases": [
+    {
+      "expectedStartLine": 6,
+      "allowedEquivalent": "La respuesta cubre todas las facetas con apoyo del rango exacto; no infiere autoridad o permiso.",
+      "sourceRef": ".mssr/knowledge/architecture/canonical-ownership.md",
+      "expectedEndLine": 10,
+      "acceptableRanges": [
+        {
+          "expectedHeading": "Canonical ownership",
+          "startLine": 6,
+          "sourceRef": ".mssr/knowledge/architecture/canonical-ownership.md",
+          "endLine": 10
+        }
+      ],
+      "caseId": "ownership-shared-contract",
+      "concept": "Fuente canónica de nombres reservados, precedencia/shadow conflict, instalación opt-in y contrato compartido de estados accepted/skipped/pending.",
+      "expectedHeading": "Canonical ownership"
+    },
+    {
+      "concept": "El archivo dice que hay cinco nombres y apunta a config/provider canónicos, pero no enumera los cinco.",
+      "answerability": "unanswerable",
+      "allowedEquivalent": "Debe abstenerse porque los nombres exactos no aparecen en esta fuente.",
+      "caseId": "reserved-skill-names-unanswerable",
+      "sourceRef": ".mssr/knowledge/architecture/canonical-ownership.md"
+    }
+  ]
+}

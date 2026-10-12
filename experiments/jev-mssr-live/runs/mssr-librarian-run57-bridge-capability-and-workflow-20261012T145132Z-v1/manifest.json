@@ -1,0 +1,202 @@
+{
+  "plan": {
+    "primaryMetric": "answerability decision plus exact/relevant selected source range",
+    "uncertaintyMethod": "raw counts only; source-derived labels; no reliability or calibration claim",
+    "thresholds": {},
+    "minimumSupport": {
+      "perClaimedSubgroup": 30,
+      "overall": 30
+    },
+    "independentUnit": "2 distinct document source(s) for this small exploratory packet; no reliability estimate",
+    "expectedRequestCount": 4,
+    "secondaryMetrics": [
+      "search target presence",
+      "exact fetch/fingerprint",
+      "evidence pack",
+      "token usage",
+      "latency",
+      "abstention/false selection",
+      "blind completeness and overbreadth"
+    ]
+  },
+  "corpus": {
+    "sourceRevision": "999a8a218405c02a4f4bf9d408ec44074724f694",
+    "items": 2,
+    "projectRoot": "D:/Dev/bridge-mcp-mssr-0.2.112-query-variants",
+    "sources": [
+      {
+        "sha256": "f08211edfce08c8820f38adf3a48d44139150b8fdb7ee99c77bd4d4692f360ea",
+        "snapshotPath": "inputs/sources/source-01.md",
+        "sourceRef": "docs/CONTEXT_LAYER_ROADMAP.md"
+      },
+      {
+        "sha256": "8466dad2bd2848ec194dbc2024d8b4e927681f54c37fabc9a550690aa05fc742",
+        "snapshotPath": "inputs/sources/source-02.md",
+        "sourceRef": "docs/MSSR_LIBRARIAN_JEV.md"
+      }
+    ],
+    "redaction": "Public project Markdown; exact source snapshots only; no secret values."
+  },
+  "suite": "mssr-librarian-live-source-disjoint-answerability-diagnostic-v1",
+  "labels": {
+    "cases": [
+      {
+        "expectedEndLine": 100,
+        "caseId": "capability-inventory-inputs-and-gate",
+        "expectedStartLine": 90,
+        "allowedEquivalent": "Debe resumir los inputs y el estado requerido, sin presentar esta hoja de ruta como lectura del estado runtime actual.",
+        "relevantRanges": [
+          {
+            "expectedHeading": "P3 — capability inventory / \"what can the system do?\" — CURRENT / PHASE A IMPLEMENTED",
+            "startLine": 86,
+            "sourceRef": "docs/CONTEXT_LAYER_ROADMAP.md",
+            "endLine": 100
+          }
+        ],
+        "sourceRef": "docs/CONTEXT_LAYER_ROADMAP.md",
+        "acceptableRanges": [
+          {
+            "expectedHeading": "P3 — capability inventory / \"what can the system do?\" — CURRENT / PHASE A IMPLEMENTED",
+            "startLine": 90,
+            "sourceRef": "docs/CONTEXT_LAYER_ROADMAP.md",
+            "endLine": 100
+          }
+        ],
+        "expectedHeading": "P3 — capability inventory / \"what can the system do?\" — CURRENT / PHASE A IMPLEMENTED",
+        "concept": "Identifica todas las fuentes del inventario y el gate de estado/propietario que no confunde metadatos cacheados con disponibilidad live."
+      },
+      {
+        "concept": "La sección P4 menciona snapshots diarios y que queda definir una política auditable de retención/cuota, pero no asigna owner ni plazo exacto.",
+        "answerability": "unanswerable",
+        "allowedEquivalent": "Debe abstenerse dentro de esta fuente; un TTL de caché no es una cuota de retención del snapshot.",
+        "caseId": "daily-snapshot-owner-and-retention-unanswerable",
+        "sourceRef": "docs/CONTEXT_LAYER_ROADMAP.md"
+      },
+      {
+        "expectedStartLine": 20,
+        "allowedEquivalent": "Debe separar explícitamente los actos deterministas de Jev de la composición y verificación del host, con apoyo en la frase exacta.",
+        "sourceRef": "docs/MSSR_LIBRARIAN_JEV.md",
+        "expectedEndLine": 20,
+        "acceptableRanges": [
+          {
+            "expectedHeading": "Capabilities",
+            "startLine": 20,
+            "sourceRef": "docs/MSSR_LIBRARIAN_JEV.md",
+            "endLine": 20
+          }
+        ],
+        "caseId": "jev-host-workflow-boundary",
+        "concept": "Distingue selección/evidencia/preview de la orquestación host-side que itera, compacta citas, compone párrafos, revisa contradicciones y verifica claims; el preview ensambla rangos literales y no escribe/genera prosa.",
+        "expectedHeading": "Capabilities"
+      },
+      {
+        "concept": "El documento identifica el boundary de Credential Manager, pero afirma que el valor de la API key no se acepta, registra ni revela.",
+        "answerability": "unanswerable",
+        "allowedEquivalent": "No debe inventar ni exponer credenciales; abstenerse porque el valor secreto no aparece en la fuente.",
+        "caseId": "jev-api-secret-unanswerable",
+        "sourceRef": "docs/MSSR_LIBRARIAN_JEV.md"
+      }
+    ],
+    "schemaVersion": 1,
+    "source": "Etiquetas congeladas antes de las llamadas a Jev; fuera de los requests.",
+    "labelFile": "inputs/labels.json",
+    "adjudication": "Dos revisiones Luna independientes sobre los mismos bytes; etiquetas source-derived, no owner-gold; sin revisión humana del propietario.",
+    "exposedToRequests": false,
+    "exposureReview": {
+      "docs/CONTEXT_LAYER_ROADMAP.md": "No se encontró texto exacto o distintivo del documento en los artefactos de corridas revisados; sólo fuentes con coincidencia parcial no prueban exposición a Jev.",
+      "docs/MSSR_LIBRARIAN_JEV.md": "La copia de D:\\Dev\\bridge-mcp 0.6.144 difiere; esta corrida congela el texto del Bridge 0.6.175 limpio (HEAD 999a8a2). No se encontró cuerpo exacto en artefactos anteriores."
+    },
+    "labelFileSha256": "3dff8c81df80e9bcdec663cb8e0f2a16359e0906eace77473a50fecc6382fef4",
+    "independentUnit": "two exact source documents in one project; exploratory diagnostic only"
+  },
+  "split": {
+    "holdoutUsedForTuning": false,
+    "holdoutIdsSha256": null,
+    "holdoutOpenedAt": null,
+    "method": "source-unseen exploratory, not protected holdout",
+    "validationIdsSha256": null,
+    "trainIdsSha256": null
+  },
+  "createdAt": "2026-10-12T14:51:33.9706261Z",
+  "provider": {
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "mode": "live",
+    "networkOptIn": true,
+    "timeoutMs": 30000,
+    "rawVendorResponsePersisted": false,
+    "providerRequestIdsAvailable": "unknown",
+    "concurrency": 1,
+    "requestedModel": "jev-1.13.0",
+    "credentialSource": "Windows Credential Manager; secret value not persisted",
+    "networkOptInMethod": "explicit command-line --allow-network plus user authorization recorded in manifest",
+    "provider": "TypeSafe Jev through Bridge 0.6.175 provider adapter",
+    "endpointIdentity": "api.typesafe.ai/v1/systemone",
+    "maxRetries": 1
+  },
+  "repositoryState": {
+    "corpusBranch": "codex/bridge-0.6.173-activation-readback",
+    "corpusWorkingTreeClean": true,
+    "preexistingMssrDirtyPaths": [
+      ".mssr/project-context-segments.json",
+      ".mssr/project-context.json",
+      "scripts/test-project-context-loader.mjs"
+    ],
+    "corpusRepository": "Bridge",
+    "corpusHead": "999a8a218405c02a4f4bf9d408ec44074724f694",
+    "mssrHead": "0d254e8d04cb68dc6ec10d7686d376a748b93629"
+  },
+  "parentRunId": null,
+  "runId": "mssr-librarian-run57-bridge-capability-and-workflow-20261012T145132Z-v1",
+  "question": "Can Jev answer multi-facet Spanish queries over current 0.6.175 Bridge docs, distinguish source facts from missing details, and preserve exact evidence?",
+  "source": {
+    "branch": "codex/bridge-0.6.173-activation-readback",
+    "workingTreeClean": true,
+    "bridgeRoot": "D:/Dev/bridge-mcp-mssr-0.2.112-query-variants",
+    "gitCommit": "999a8a218405c02a4f4bf9d408ec44074724f694",
+    "bridgeVersion": "0.6.175",
+    "repository": "Bridge",
+    "codeSnapshotCleanAtFreeze": true,
+    "buildArtifacts": [
+      {
+        "path": "dist/tool-registry.js",
+        "sha256": "670a6cbdec428f7ad0bd6f7a13173c716fd013c3eb87a54d1c9bb38d7f626554"
+      },
+      {
+        "path": "dist/tools/mssr-semantic-evidence-tools.js",
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa"
+      },
+      {
+        "path": "node_modules/@mauroprime/mssr/package.json",
+        "sha256": "9a57998657fb40e8fae0ec44efef08592f6a332c807d15a90792cdd4a27e4ea2"
+      },
+      {
+        "path": "vendor/mauroprime-mssr-0.2.127.tgz",
+        "sha256": "70e79ae6e472517501ffdd38c4b0eaad740652c7d570b600bf17f90023703bfc"
+      },
+      {
+        "path": "scripts/read-windows-credential.ps1",
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e"
+      }
+    ],
+    "bridgeCommit": "999a8a218405c02a4f4bf9d408ec44074724f694",
+    "providerAdapter": "createMssrJevBridgeDecisionProvider from frozen Bridge release build",
+    "mssrVersion": "0.2.127"
+  },
+  "authorization": {
+    "networkOptInSource": "explicit user authorization in conversation",
+    "secretPersisted": false
+  },
+  "schemaVersion": 1,
+  "status": "prepared",
+  "instrument": {
+    "runtime": "v24.16.0",
+    "runnerPath": "runner.mjs",
+    "labelsPath": "inputs/labels.json",
+    "requestSchemaVersion": 1,
+    "casesSha256": "4d6d586f182aa2985db38d659667572d92908aa6c6688caec6328bd4d591b888",
+    "runnerSupportSha256": "6a9377ec0cdc0c1db4b4f939efa3881fa17facaca5f67fdf02cf6ad5ce123c9a",
+    "casesPath": "inputs/cases.json",
+    "selectionRecordSha256": "847a1224278ed09941526aff7d781842a854f21b3007e4e00ae357e84faa5834",
+    "runnerSha256": "fec35e2727c77e5f12b200e347bf92d78ad8cd23a0e9276d67606613f38857db"
+  }
+}

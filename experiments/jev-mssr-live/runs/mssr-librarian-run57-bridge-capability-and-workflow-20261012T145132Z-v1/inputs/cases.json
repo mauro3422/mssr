@@ -1,0 +1,29 @@
+{
+  "cases": [
+    {
+      "query": "¿Qué evidencias alimentan el inventario de capacidades y qué debe mostrar el sistema sobre estado y propietario de cada capacidad?",
+      "id": "capability-inventory-inputs-and-gate",
+      "sourceRef": "docs/CONTEXT_LAYER_ROADMAP.md",
+      "language": "es"
+    },
+    {
+      "query": "¿Qué propietario y qué plazo de retención exactos se asignan al snapshot diario del inventario de contexto?",
+      "id": "daily-snapshot-owner-and-retention-unanswerable",
+      "sourceRef": "docs/CONTEXT_LAYER_ROADMAP.md",
+      "language": "es"
+    },
+    {
+      "query": "En el flujo alrededor de Jev, ¿qué puede hacer el host para iterar y compactar evidencia en párrafos con citas, y qué construye realmente el preview?",
+      "id": "jev-host-workflow-boundary",
+      "sourceRef": "docs/MSSR_LIBRARIAN_JEV.md",
+      "language": "es"
+    },
+    {
+      "query": "¿Cuál es el valor secreto actual de la API key de Jev guardada en Windows Credential Manager?",
+      "id": "jev-api-secret-unanswerable",
+      "sourceRef": "docs/MSSR_LIBRARIAN_JEV.md",
+      "language": "es"
+    }
+  ],
+  "schemaVersion": 1
+}

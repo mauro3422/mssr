@@ -1,0 +1,17 @@
+{
+  "cases": [
+    {
+      "query": "Para las skills MSSR reservadas y el routing host con estado, ¿quién es la fuente canónica, qué precedencia y conflicto aplican, qué efectos tiene la instalación y qué estados de selección deben conservar los hosts?",
+      "id": "ownership-shared-contract",
+      "sourceRef": ".mssr/knowledge/architecture/canonical-ownership.md",
+      "language": "es"
+    },
+    {
+      "query": "Enumera exactamente los cinco nombres de las skills operativas bundled.",
+      "id": "reserved-skill-names-unanswerable",
+      "sourceRef": ".mssr/knowledge/architecture/canonical-ownership.md",
+      "language": "es"
+    }
+  ],
+  "schemaVersion": 1
+}

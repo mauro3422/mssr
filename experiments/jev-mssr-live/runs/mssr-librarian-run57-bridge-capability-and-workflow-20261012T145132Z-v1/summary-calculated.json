@@ -1,0 +1,253 @@
+{
+  "schemaVersion": 2,
+  "schemaProfile": "generic-librarian-run-v1",
+  "reportType": "mechanically-derived run summary; no semantic adjudication",
+  "runId": "mssr-librarian-run57-bridge-capability-and-workflow-20261012T145132Z-v1",
+  "parentRunId": null,
+  "frozenManifestSha256": "899a75c07bd5473fb5d52ddbcbdc0dc007c045a669aeaf90edeea2f1e9997264",
+  "completionStatus": "complete",
+  "checksumFile": {
+    "present": true,
+    "verified": 13,
+    "requiredFiles": [
+      "manifest.json",
+      "run-completion.json",
+      "inputs/cases.json",
+      "records.jsonl",
+      "inputs/labels.json"
+    ]
+  },
+  "sourceDocumentClusters": 2,
+  "sourceRefs": [
+    "docs/CONTEXT_LAYER_ROADMAP.md",
+    "docs/MSSR_LIBRARIAN_JEV.md"
+  ],
+  "clusterInterpretation": "Distinct sourceRef grouping only; it does not establish independent statistical sampling.",
+  "expectedRequests": 4,
+  "attemptedRequests": 4,
+  "successfulRequests": 4,
+  "failedRequests": 0,
+  "selected": 1,
+  "abstained": 3,
+  "exactFetchesWithFingerprint": 1,
+  "evidencePacksBuilt": 1,
+  "evidenceSufficiencyCapture": {
+    "recorded": 4,
+    "missingFromRecords": 0,
+    "note": "Only the explicit jev.evidenceSufficiency field is counted; raw Noul and other aliases are reported separately."
+  },
+  "rawNoulCapture": {
+    "recorded": 0,
+    "missingFromRecords": 4,
+    "note": "Provider Noul is descriptive and is not treated as an evidence-sufficiency alias."
+  },
+  "tokenUsage": {
+    "input": 21450,
+    "output": 1319
+  },
+  "firstRequestStartedAt": "2026-10-12T14:53:37.894Z",
+  "lastRequestCompletedAt": "2026-10-12T14:53:43.770Z",
+  "manifestCreatedAt": "2026-10-12T14:51:33.9706261Z",
+  "createdAtDeltaMs": 123924,
+  "timestampWarning": null,
+  "declaredIndependentUnitUnverified": "2 distinct document source(s) for this small exploratory packet; no reliability estimate",
+  "independentUnitDeclarationInterpretation": "Manifest text is retained for audit; it is not verified against observed sourceRef clusters.",
+  "independentUnit": "source-document cluster (descriptive grouping only)",
+  "calibrationClaim": false,
+  "labelMetrics": {
+    "reportType": "answerability disposition and independently labeled range-selection diagnostics; not semantic adjudication or calibration",
+    "labelSource": "Etiquetas congeladas antes de las llamadas a Jev; fuera de los requests.",
+    "adjudication": "Dos revisiones Luna independientes sobre los mismos bytes; etiquetas source-derived, no owner-gold; sin revisión humana del propietario.",
+    "answerabilityMetrics": {
+      "answerable": {
+        "cases": 2,
+        "correctAnswerabilityDecisions": 1,
+        "correctExactRangeSelections": 0,
+        "correctRelevantRangeSelections": 0,
+        "selectedOutsideLabeledRanges": 1,
+        "incorrectDecisions": 1,
+        "failedOrUnknownDecisions": 0,
+        "abstentions": 1
+      },
+      "unanswerable": {
+        "cases": 2,
+        "correctAbstentions": 2,
+        "falseSelections": 0,
+        "failedOrUnknownDecisions": 0
+      },
+      "classifiedDecisions": 4,
+      "correctDecisions": 3,
+      "incorrectDecisions": 1,
+      "failedOrUnknownDecisions": 0,
+      "decisionAccuracy": 0.75,
+      "decisionAccuracyNote": "This is answerability-status accuracy (select when answerable, abstain when unanswerable); exact/relevant/outside-labeled range quality is reported separately. Failures/unknown decisions stay separate; raw Jev scores remain descriptive and uncalibrated."
+    },
+    "rangeSelectionMetrics": {
+      "exactMatches": 0,
+      "relevantLabeledMatches": 0,
+      "outsideLabeledRanges": 1,
+      "abstentions": 1,
+      "failedOrUnknown": 0,
+      "note": "A range outside the exact or explicitly labeled relevant ranges is ungraded for semantic usefulness; it is not automatically irrelevant. Inspect source text and blinded review separately."
+    },
+    "normalizedExactHeadingMatches": 0,
+    "exactHeadingDenominator": 2,
+    "exactAcceptedRangeMatches": 0,
+    "exactAcceptedRangeDenominator": 2,
+    "relevantRangeMatches": 0,
+    "relevantRangeDenominator": 1,
+    "searchTargetFound": 1,
+    "searchTargetDenominator": 2,
+    "searchExactAcceptedRangeFound": 0,
+    "searchExactAcceptedRangeDenominator": 2,
+    "searchRelevantRangeFound": 0,
+    "searchRelevantRangeDenominator": 1,
+    "records": [
+      {
+        "caseId": "capability-inventory-inputs-and-gate",
+        "sourceRef": "docs/CONTEXT_LAYER_ROADMAP.md",
+        "answerability": "answerable",
+        "expectedHeading": "P3 — capability inventory / \"what can the system do?\" — CURRENT / PHASE A IMPLEMENTED",
+        "observedHeading": null,
+        "normalizedExactHeadingMatch": false,
+        "exactAcceptedRangeMatch": false,
+        "relevantRangeMatch": false,
+        "relevantRanges": [
+          {
+            "expectedHeading": "P3 — capability inventory / \"what can the system do?\" — CURRENT / PHASE A IMPLEMENTED",
+            "startLine": 86,
+            "sourceRef": "docs/CONTEXT_LAYER_ROADMAP.md",
+            "endLine": 100
+          }
+        ],
+        "searchTargetFound": false,
+        "searchExactAcceptedRangeFound": false,
+        "searchRelevantRangeFound": false,
+        "decisionStatus": "abstained",
+        "decisionCorrect": false,
+        "answerabilityDecisionCorrect": false,
+        "rangeSelectionAssessment": "abstained",
+        "exactFetchPassed": false,
+        "pipelineStatus": "complete"
+      },
+      {
+        "caseId": "daily-snapshot-owner-and-retention-unanswerable",
+        "sourceRef": "docs/CONTEXT_LAYER_ROADMAP.md",
+        "answerability": "unanswerable",
+        "expectedHeading": null,
+        "observedHeading": null,
+        "decisionStatus": "abstained",
+        "decisionCorrect": true,
+        "answerabilityDecisionCorrect": true,
+        "rangeSelectionAssessment": "abstained",
+        "normalizedExactHeadingMatch": null,
+        "exactAcceptedRangeMatch": null,
+        "relevantRangeMatch": null,
+        "relevantRanges": [],
+        "searchTargetFound": null,
+        "searchExactAcceptedRangeFound": null,
+        "searchRelevantRangeFound": null,
+        "exactFetchPassed": false,
+        "pipelineStatus": "complete"
+      },
+      {
+        "caseId": "jev-host-workflow-boundary",
+        "sourceRef": "docs/MSSR_LIBRARIAN_JEV.md",
+        "answerability": "answerable",
+        "expectedHeading": "Capabilities",
+        "observedHeading": "Exact metadata filters",
+        "normalizedExactHeadingMatch": false,
+        "exactAcceptedRangeMatch": false,
+        "relevantRangeMatch": false,
+        "relevantRanges": [],
+        "searchTargetFound": true,
+        "searchExactAcceptedRangeFound": false,
+        "searchRelevantRangeFound": false,
+        "decisionStatus": "selected",
+        "decisionCorrect": true,
+        "answerabilityDecisionCorrect": true,
+        "rangeSelectionAssessment": "outside-labeled-ranges",
+        "exactFetchPassed": true,
+        "pipelineStatus": "complete"
+      },
+      {
+        "caseId": "jev-api-secret-unanswerable",
+        "sourceRef": "docs/MSSR_LIBRARIAN_JEV.md",
+        "answerability": "unanswerable",
+        "expectedHeading": null,
+        "observedHeading": null,
+        "decisionStatus": "abstained",
+        "decisionCorrect": true,
+        "answerabilityDecisionCorrect": true,
+        "rangeSelectionAssessment": "abstained",
+        "normalizedExactHeadingMatch": null,
+        "exactAcceptedRangeMatch": null,
+        "relevantRangeMatch": null,
+        "relevantRanges": [],
+        "searchTargetFound": null,
+        "searchExactAcceptedRangeFound": null,
+        "searchRelevantRangeFound": null,
+        "exactFetchPassed": false,
+        "pipelineStatus": "complete"
+      }
+    ]
+  },
+  "records": [
+    {
+      "caseId": "capability-inventory-inputs-and-gate",
+      "sourceRef": "docs/CONTEXT_LAYER_ROADMAP.md",
+      "status": "complete",
+      "searchResultCount": 3,
+      "jevStatus": "abstained",
+      "selectedRangeId": null,
+      "rawChoiceConfidence": 0.87,
+      "evidenceSufficiency": 0.11,
+      "providerNoul": null,
+      "exactFetchPassed": false,
+      "evidencePackBuilt": false,
+      "elapsedMs": 1156.6526
+    },
+    {
+      "caseId": "daily-snapshot-owner-and-retention-unanswerable",
+      "sourceRef": "docs/CONTEXT_LAYER_ROADMAP.md",
+      "status": "complete",
+      "searchResultCount": 7,
+      "jevStatus": "abstained",
+      "selectedRangeId": null,
+      "rawChoiceConfidence": 0.95,
+      "evidenceSufficiency": 0.09,
+      "providerNoul": null,
+      "exactFetchPassed": false,
+      "evidencePackBuilt": false,
+      "elapsedMs": 1028.3519
+    },
+    {
+      "caseId": "jev-host-workflow-boundary",
+      "sourceRef": "docs/MSSR_LIBRARIAN_JEV.md",
+      "status": "complete",
+      "searchResultCount": 53,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-4",
+      "rawChoiceConfidence": 0.59,
+      "evidenceSufficiency": 0.63,
+      "providerNoul": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 1784.6438
+    },
+    {
+      "caseId": "jev-api-secret-unanswerable",
+      "sourceRef": "docs/MSSR_LIBRARIAN_JEV.md",
+      "status": "complete",
+      "searchResultCount": 53,
+      "jevStatus": "abstained",
+      "selectedRangeId": null,
+      "rawChoiceConfidence": 0.7,
+      "evidenceSufficiency": 0.03,
+      "providerNoul": null,
+      "exactFetchPassed": false,
+      "evidencePackBuilt": false,
+      "elapsedMs": 1902.7395
+    }
+  ]
+}

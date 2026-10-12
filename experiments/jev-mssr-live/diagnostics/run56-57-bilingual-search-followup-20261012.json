@@ -1,0 +1,585 @@
+{
+  "schemaVersion": 1,
+  "diagnostic": "bilingual-search-followup-run56-run57",
+  "createdAt": "2026-10-12T14:58:26.683Z",
+  "method": "local mssr_librarian_search only; no Jev/provider calls; frozen source hashes checked before each packet; gold labels read locally for scoring and never passed to search",
+  "runs": [
+    {
+      "runId": "mssr-librarian-run56-mssr-ownership-answerability-20261012T145132Z-v1",
+      "providerCalls": 0,
+      "networkRequests": 0,
+      "sourceChecks": [
+        {
+          "sourceRef": ".mssr/knowledge/architecture/canonical-ownership.md",
+          "sha256": "dabe0cc19d56c8205280f20fd025bbd856d37e9ba9fb86bb01c97492767d7479",
+          "bytes": 1687
+        }
+      ],
+      "cases": [
+        {
+          "caseId": "ownership-shared-contract",
+          "sourceRef": ".mssr/knowledge/architecture/canonical-ownership.md",
+          "caseLanguage": "es",
+          "perQuery": [
+            {
+              "language": "es",
+              "query": "Para las skills MSSR reservadas y el routing host con estado, ¿quién es la fuente canónica, qué precedencia y conflicto aplican, qué efectos tiene la instalación y qué estados de selección deben conservar los hosts?",
+              "resultCount": 11,
+              "goldRangeChecks": [
+                {
+                  "gold": [
+                    6,
+                    10
+                  ],
+                  "exact": false,
+                  "overlap": true,
+                  "contains": true
+                }
+              ],
+              "topCandidates": [
+                {
+                  "rangeId": "heading-1",
+                  "startLine": 1,
+                  "endLine": 11,
+                  "score": 0.25,
+                  "headingPath": [
+                    "Canonical ownership"
+                  ]
+                },
+                {
+                  "rangeId": "block-1",
+                  "startLine": 3,
+                  "endLine": 11,
+                  "score": 0.25,
+                  "headingPath": [
+                    "Canonical ownership"
+                  ]
+                },
+                {
+                  "rangeId": "block-1/item-8",
+                  "startLine": 10,
+                  "endLine": 10,
+                  "score": 0.2,
+                  "headingPath": [
+                    "Canonical ownership"
+                  ]
+                },
+                {
+                  "rangeId": "block-1/item-1",
+                  "startLine": 3,
+                  "endLine": 3,
+                  "score": 0.1,
+                  "headingPath": [
+                    "Canonical ownership"
+                  ]
+                },
+                {
+                  "rangeId": "block-1/item-2",
+                  "startLine": 4,
+                  "endLine": 4,
+                  "score": 0.1,
+                  "headingPath": [
+                    "Canonical ownership"
+                  ]
+                },
+                {
+                  "rangeId": "block-1/item-3",
+                  "startLine": 5,
+                  "endLine": 5,
+                  "score": 0.1,
+                  "headingPath": [
+                    "Canonical ownership"
+                  ]
+                },
+                {
+                  "rangeId": "block-1/item-4",
+                  "startLine": 6,
+                  "endLine": 6,
+                  "score": 0.1,
+                  "headingPath": [
+                    "Canonical ownership"
+                  ]
+                },
+                {
+                  "rangeId": "block-1/item-5",
+                  "startLine": 7,
+                  "endLine": 7,
+                  "score": 0.05,
+                  "headingPath": [
+                    "Canonical ownership"
+                  ]
+                }
+              ]
+            },
+            {
+              "language": "en",
+              "query": "For the reserved MSSR skills and stateful host routing, what source is canonical, how are precedence and conflicts handled, what effect does installation have, and which selection states must hosts preserve?",
+              "resultCount": 11,
+              "goldRangeChecks": [
+                {
+                  "gold": [
+                    6,
+                    10
+                  ],
+                  "exact": false,
+                  "overlap": true,
+                  "contains": true
+                }
+              ],
+              "topCandidates": [
+                {
+                  "rangeId": "heading-1",
+                  "startLine": 1,
+                  "endLine": 11,
+                  "score": 0.777778,
+                  "headingPath": [
+                    "Canonical ownership"
+                  ]
+                },
+                {
+                  "rangeId": "block-1",
+                  "startLine": 3,
+                  "endLine": 11,
+                  "score": 0.777778,
+                  "headingPath": [
+                    "Canonical ownership"
+                  ]
+                },
+                {
+                  "rangeId": "block-1/item-8",
+                  "startLine": 10,
+                  "endLine": 10,
+                  "score": 0.5,
+                  "headingPath": [
+                    "Canonical ownership"
+                  ]
+                },
+                {
+                  "rangeId": "block-1/item-4",
+                  "startLine": 6,
+                  "endLine": 6,
+                  "score": 0.277778,
+                  "headingPath": [
+                    "Canonical ownership"
+                  ]
+                },
+                {
+                  "rangeId": "block-1/item-5",
+                  "startLine": 7,
+                  "endLine": 7,
+                  "score": 0.277778,
+                  "headingPath": [
+                    "Canonical ownership"
+                  ]
+                },
+                {
+                  "rangeId": "block-1/item-1",
+                  "startLine": 3,
+                  "endLine": 3,
+                  "score": 0.166667,
+                  "headingPath": [
+                    "Canonical ownership"
+                  ]
+                },
+                {
+                  "rangeId": "block-1/item-2",
+                  "startLine": 4,
+                  "endLine": 4,
+                  "score": 0.166667,
+                  "headingPath": [
+                    "Canonical ownership"
+                  ]
+                },
+                {
+                  "rangeId": "block-1/item-3",
+                  "startLine": 5,
+                  "endLine": 5,
+                  "score": 0.166667,
+                  "headingPath": [
+                    "Canonical ownership"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "runId": "mssr-librarian-run57-bridge-capability-and-workflow-20261012T145132Z-v1",
+      "providerCalls": 0,
+      "networkRequests": 0,
+      "sourceChecks": [
+        {
+          "sourceRef": "docs/CONTEXT_LAYER_ROADMAP.md",
+          "sha256": "f08211edfce08c8820f38adf3a48d44139150b8fdb7ee99c77bd4d4692f360ea",
+          "bytes": 17471
+        },
+        {
+          "sourceRef": "docs/MSSR_LIBRARIAN_JEV.md",
+          "sha256": "8466dad2bd2848ec194dbc2024d8b4e927681f54c37fabc9a550690aa05fc742",
+          "bytes": 25299
+        }
+      ],
+      "cases": [
+        {
+          "caseId": "capability-inventory-inputs-and-gate",
+          "sourceRef": "docs/CONTEXT_LAYER_ROADMAP.md",
+          "caseLanguage": "es",
+          "perQuery": [
+            {
+              "language": "es",
+              "query": "¿Qué evidencias alimentan el inventario de capacidades y qué debe mostrar el sistema sobre estado y propietario de cada capacidad?",
+              "resultCount": 3,
+              "goldRangeChecks": [
+                {
+                  "gold": [
+                    90,
+                    100
+                  ],
+                  "exact": false,
+                  "overlap": true,
+                  "contains": true
+                }
+              ],
+              "topCandidates": [
+                {
+                  "rangeId": "heading-1",
+                  "startLine": 1,
+                  "endLine": 191,
+                  "score": 0.090909,
+                  "headingPath": [
+                    "MauroPrime Context Layer Roadmap"
+                  ]
+                },
+                {
+                  "rangeId": "heading-9",
+                  "startLine": 124,
+                  "endLine": 140,
+                  "score": 0.090909,
+                  "headingPath": [
+                    "MauroPrime Context Layer Roadmap",
+                    "P5 — cross-project organization — PHASE B LIVE"
+                  ]
+                },
+                {
+                  "rangeId": "block-35",
+                  "startLine": 126,
+                  "endLine": 126,
+                  "score": 0.090909,
+                  "headingPath": [
+                    "MauroPrime Context Layer Roadmap",
+                    "P5 — cross-project organization — PHASE B LIVE"
+                  ]
+                }
+              ]
+            },
+            {
+              "language": "en",
+              "query": "What evidence feeds the capability inventory, and what must the system show about the status and owner of each capability?",
+              "resultCount": 67,
+              "goldRangeChecks": [
+                {
+                  "gold": [
+                    90,
+                    100
+                  ],
+                  "exact": false,
+                  "overlap": true,
+                  "contains": true
+                }
+              ],
+              "topCandidates": [
+                {
+                  "rangeId": "heading-1",
+                  "startLine": 1,
+                  "endLine": 191,
+                  "score": 0.9,
+                  "headingPath": [
+                    "MauroPrime Context Layer Roadmap"
+                  ]
+                },
+                {
+                  "rangeId": "heading-12",
+                  "startLine": 175,
+                  "endLine": 188,
+                  "score": 0.5,
+                  "headingPath": [
+                    "MauroPrime Context Layer Roadmap",
+                    "Current execution checkpoint — 2026-09-27"
+                  ]
+                },
+                {
+                  "rangeId": "heading-7",
+                  "startLine": 86,
+                  "endLine": 101,
+                  "score": 0.4,
+                  "headingPath": [
+                    "MauroPrime Context Layer Roadmap",
+                    "P3 — capability inventory / \"what can the system do?\" — CURRENT / PHASE A IMPLEMENTED"
+                  ]
+                },
+                {
+                  "rangeId": "block-26",
+                  "startLine": 98,
+                  "endLine": 98,
+                  "score": 0.4,
+                  "headingPath": [
+                    "MauroPrime Context Layer Roadmap",
+                    "P3 — capability inventory / \"what can the system do?\" — CURRENT / PHASE A IMPLEMENTED"
+                  ]
+                },
+                {
+                  "rangeId": "block-27",
+                  "startLine": 100,
+                  "endLine": 100,
+                  "score": 0.4,
+                  "headingPath": [
+                    "MauroPrime Context Layer Roadmap",
+                    "P3 — capability inventory / \"what can the system do?\" — CURRENT / PHASE A IMPLEMENTED"
+                  ]
+                },
+                {
+                  "rangeId": "heading-8",
+                  "startLine": 102,
+                  "endLine": 123,
+                  "score": 0.4,
+                  "headingPath": [
+                    "MauroPrime Context Layer Roadmap",
+                    "P4 — periodic context snapshots"
+                  ]
+                },
+                {
+                  "rangeId": "block-29",
+                  "startLine": 106,
+                  "endLine": 106,
+                  "score": 0.4,
+                  "headingPath": [
+                    "MauroPrime Context Layer Roadmap",
+                    "P4 — periodic context snapshots"
+                  ]
+                },
+                {
+                  "rangeId": "block-50",
+                  "startLine": 179,
+                  "endLine": 183,
+                  "score": 0.4,
+                  "headingPath": [
+                    "MauroPrime Context Layer Roadmap",
+                    "Current execution checkpoint — 2026-09-27"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "caseId": "jev-host-workflow-boundary",
+          "sourceRef": "docs/MSSR_LIBRARIAN_JEV.md",
+          "caseLanguage": "es",
+          "perQuery": [
+            {
+              "language": "es",
+              "query": "En el flujo alrededor de Jev, ¿qué puede hacer el host para iterar y compactar evidencia en párrafos con citas, y qué construye realmente el preview?",
+              "resultCount": 53,
+              "goldRangeChecks": [
+                {
+                  "gold": [
+                    20,
+                    20
+                  ],
+                  "exact": true,
+                  "overlap": true,
+                  "contains": true
+                }
+              ],
+              "topCandidates": [
+                {
+                  "rangeId": "heading-6",
+                  "startLine": 40,
+                  "endLine": 75,
+                  "score": 0.285714,
+                  "headingPath": [
+                    "MSSR Librarian and Jev in Bridge",
+                    "Evaluation evidence and limits"
+                  ]
+                },
+                {
+                  "rangeId": "heading-3",
+                  "startLine": 9,
+                  "endLine": 23,
+                  "score": 0.214286,
+                  "headingPath": [
+                    "MSSR Librarian and Jev in Bridge",
+                    "Exact metadata filters"
+                  ]
+                },
+                {
+                  "rangeId": "block-5",
+                  "startLine": 20,
+                  "endLine": 20,
+                  "score": 0.214286,
+                  "headingPath": [
+                    "MSSR Librarian and Jev in Bridge",
+                    "Exact metadata filters"
+                  ]
+                },
+                {
+                  "rangeId": "heading-10",
+                  "startLine": 60,
+                  "endLine": 67,
+                  "score": 0.214286,
+                  "headingPath": [
+                    "MSSR Librarian and Jev in Bridge",
+                    "Evaluation evidence and limits",
+                    "Isolated Bridge 0.6.154 provider diagnostics and real-document smoke (2026-10-04)"
+                  ]
+                },
+                {
+                  "rangeId": "block-20",
+                  "startLine": 64,
+                  "endLine": 64,
+                  "score": 0.214286,
+                  "headingPath": [
+                    "MSSR Librarian and Jev in Bridge",
+                    "Evaluation evidence and limits",
+                    "Isolated Bridge 0.6.154 provider diagnostics and real-document smoke (2026-10-04)"
+                  ]
+                },
+                {
+                  "rangeId": "block-4",
+                  "startLine": 13,
+                  "endLine": 18,
+                  "score": 0.142857,
+                  "headingPath": [
+                    "MSSR Librarian and Jev in Bridge",
+                    "Exact metadata filters"
+                  ]
+                },
+                {
+                  "rangeId": "block-4/item-6",
+                  "startLine": 18,
+                  "endLine": 18,
+                  "score": 0.142857,
+                  "headingPath": [
+                    "MSSR Librarian and Jev in Bridge",
+                    "Exact metadata filters"
+                  ]
+                },
+                {
+                  "rangeId": "block-6",
+                  "startLine": 22,
+                  "endLine": 22,
+                  "score": 0.142857,
+                  "headingPath": [
+                    "MSSR Librarian and Jev in Bridge",
+                    "Exact metadata filters"
+                  ]
+                }
+              ]
+            },
+            {
+              "language": "en",
+              "query": "In the host workflow around Jev, how can the host iterate, compact exact cited evidence into paragraphs, and what does the synthesis preview actually assemble?",
+              "resultCount": 53,
+              "goldRangeChecks": [
+                {
+                  "gold": [
+                    20,
+                    20
+                  ],
+                  "exact": true,
+                  "overlap": true,
+                  "contains": true
+                }
+              ],
+              "topCandidates": [
+                {
+                  "rangeId": "heading-3",
+                  "startLine": 9,
+                  "endLine": 23,
+                  "score": 0.933333,
+                  "headingPath": [
+                    "MSSR Librarian and Jev in Bridge",
+                    "Exact metadata filters"
+                  ]
+                },
+                {
+                  "rangeId": "block-5",
+                  "startLine": 20,
+                  "endLine": 20,
+                  "score": 0.866667,
+                  "headingPath": [
+                    "MSSR Librarian and Jev in Bridge",
+                    "Exact metadata filters"
+                  ]
+                },
+                {
+                  "rangeId": "block-4",
+                  "startLine": 13,
+                  "endLine": 18,
+                  "score": 0.466667,
+                  "headingPath": [
+                    "MSSR Librarian and Jev in Bridge",
+                    "Exact metadata filters"
+                  ]
+                },
+                {
+                  "rangeId": "heading-6",
+                  "startLine": 40,
+                  "endLine": 75,
+                  "score": 0.466667,
+                  "headingPath": [
+                    "MSSR Librarian and Jev in Bridge",
+                    "Evaluation evidence and limits"
+                  ]
+                },
+                {
+                  "rangeId": "block-6",
+                  "startLine": 22,
+                  "endLine": 22,
+                  "score": 0.4,
+                  "headingPath": [
+                    "MSSR Librarian and Jev in Bridge",
+                    "Exact metadata filters"
+                  ]
+                },
+                {
+                  "rangeId": "block-4/item-6",
+                  "startLine": 18,
+                  "endLine": 18,
+                  "score": 0.333333,
+                  "headingPath": [
+                    "MSSR Librarian and Jev in Bridge",
+                    "Exact metadata filters"
+                  ]
+                },
+                {
+                  "rangeId": "heading-4",
+                  "startLine": 24,
+                  "endLine": 31,
+                  "score": 0.333333,
+                  "headingPath": [
+                    "MSSR Librarian and Jev in Bridge",
+                    "EvidenceAtom ingress boundary"
+                  ]
+                },
+                {
+                  "rangeId": "heading-10",
+                  "startLine": 60,
+                  "endLine": 67,
+                  "score": 0.333333,
+                  "headingPath": [
+                    "MSSR Librarian and Jev in Bridge",
+                    "Evaluation evidence and limits",
+                    "Isolated Bridge 0.6.154 provider diagnostics and real-document smoke (2026-10-04)"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
