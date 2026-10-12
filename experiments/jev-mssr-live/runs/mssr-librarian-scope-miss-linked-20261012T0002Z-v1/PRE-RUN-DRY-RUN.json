@@ -1,0 +1,31 @@
+{
+  "status": "dry-run",
+  "networkRequests": 0,
+  "requestedCalls": 4,
+  "requestedModel": "jev-1.13.0",
+  "sourceDocuments": 2,
+  "independentUnits": "two sourceRef clusters with two linked query variants each; not independent samples",
+  "cases": [
+    {
+      "id": "typed-confidence-baseline",
+      "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+      "query": "In Typed Claim IR, what does confidence represent?"
+    },
+    {
+      "id": "typed-confidence-field-focused",
+      "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+      "query": "What does the `confidence` field in Typed Claim IR explicitly represent?"
+    },
+    {
+      "id": "document-surface-body-baseline",
+      "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+      "query": "What must be verified before a Document Surface body is materialized?"
+    },
+    {
+      "id": "document-surface-revision-focused",
+      "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+      "query": "According to the Document Surface contract, what check governs materializing its exact body for a source revision?"
+    }
+  ],
+  "labelsParsed": false
+}

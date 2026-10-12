@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "question": "Does source-targeted wording change Jev selection and literal excerpt coverage on two linked, previously exposed failure cases?",
+  "scope": "Four requests: two original questions and two field/operation-focused rewrites over the same two frozen sources.",
+  "cohortStatus": "linked exploratory diagnostic; source-derived labels and prior exposure; not owner-gold or holdout",
+  "unit": "Two sourceRef clusters with two linked queries each; requests are correlated and descriptive only.",
+  "primaryMetric": "Compare search target presence, selected range, exact snapshot fetch, pack, and blind literal answerability by query variant.",
+  "noThresholdTuning": true,
+  "notForProduction": true,
+  "excludedClaims": [
+    "statistical reliability",
+    "confidence calibration",
+    "holdout generalization",
+    "synthesis or paragraph composition",
+    "global corpus discovery",
+    "metadata filter quality"
+  ]
+}

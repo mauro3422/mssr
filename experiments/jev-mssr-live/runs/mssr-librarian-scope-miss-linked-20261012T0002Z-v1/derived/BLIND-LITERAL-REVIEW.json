@@ -1,0 +1,28 @@
+{
+  "reviewer": "independent Luna agent",
+  "method": "single model-assisted literal-text review; reviewer read only anonymized query and fetched excerpt for each case, without IDs, source paths, labels, scores, or run status",
+  "cases": [
+    {
+      "case": "R1",
+      "grade": "partial",
+      "coverage": "partial",
+      "overbreadth": "medium",
+      "justification": "The excerpt names evidence classes rather than explaining what confidence represents in Typed Claim IR."
+    },
+    {
+      "case": "R2",
+      "grade": "direct",
+      "coverage": "full",
+      "overbreadth": "low",
+      "justification": "It lists checks against the supplied snapshot, privacy class, revision, range and fingerprint, and says the exact range must be fully fetchable."
+    },
+    {
+      "case": "R3",
+      "grade": "unsupported",
+      "coverage": "none",
+      "overbreadth": "low",
+      "justification": "It describes exact-range retrieval and evidence-pack behavior but does not identify the Document Surface contract check governing materialization of the exact body for a source revision."
+    }
+  ],
+  "note": "This is one model-assisted review, not owner-gold and not a statistical measurement."
+}

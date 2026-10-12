@@ -1,0 +1,664 @@
+import { createHash } from "node:crypto";
+import { RUNTIME_BOOT_ID } from "./runtime-identity.js";
+import { createBinaryFileToolModule } from "./tools/binary-file-tools.js";
+import { createLocalFileResourceRegistry } from "./local-resource-registry.js";
+import { blenderToolModule } from "./tools/blender-tools.js";
+import { bridgeOpsToolModule } from "./tools/bridge-ops.js";
+import { bridgeWorkflowToolModule } from "./tools/bridge-workflow.js";
+import { cacheToolModule } from "./tools/cache-tools.js";
+import { codeGraphToolModule } from "./tools/code-graph.js";
+import { codeIntelligenceToolModule } from "./tools/code-intelligence.js";
+import { coreToolModule } from "./tools/core-tools.js";
+import { fileNavigationToolModule } from "./tools/file-navigation.js";
+import { fileWritingToolModule } from "./tools/file-writing.js";
+import { gitToolModule } from "./tools/git-tools.js";
+import { gitPublicationToolModule } from "./tools/git-publication-tools.js";
+import { godotToolModule } from "./tools/godot-tools.js";
+import { imageToolModule } from "./tools/image-tools.js";
+import { assetFileToolModule } from "./tools/asset-file-tools.js";
+import { mediaReviewToolModule } from "./tools/media-review-tools.js";
+import { metricsToolModule } from "./tools/metrics-tools.js";
+import { mssrObservatoryToolModule } from "./tools/mssr-observatory-tools.js";
+import { noticeToolModule } from "./tools/notice-tools.js";
+import { processToolModule } from "./tools/process-tools.js";
+import { projectToolModule } from "./tools/project-tools.js";
+import { projectContextToolModule } from "./tools/project-context-tools.js";
+import { pythonToolModule } from "./tools/python-tools.js";
+import { remoteNodeToolModule } from "./tools/remote-node-tools.js";
+import { robloxPhotoCaptureToolModule } from "./tools/roblox-photo-capture-tools.js";
+import { robloxAssetToolModule } from "./tools/roblox-asset-tools.js";
+import { robloxStudioToolModule } from "./tools/roblox-studio-tools.js";
+import { skillCatalogToolModule } from "./tools/skill-catalog-tools.js";
+import { workspaceToolModule } from "./tools/workspace-tools.js";
+import { workflowGuideToolModule } from "./tools/workflow-guide-tools.js";
+import { whiteboardToolModule } from "./tools/whiteboard-tools.js";
+import { windowsAdminToolModule } from "./tools/windows-admin-tools.js";
+import { quietDeskToolModule } from "./tools/quietdesk-tools.js";
+import { storageGrowthToolModule } from "./tools/storage-growth-tools.js";
+import { mssrSemanticEvidenceToolModule } from "./tools/mssr-semantic-evidence-tools.js";
+import { mssrProjectContextRefSplitToolModule } from "./tools/mssr-project-context-ref-split-tools.js";
+import { buildToolAudit, TOOL_AUDIT_VIEWS } from "./tool-audit.js";
+import { getToolAuditMetrics, getToolFrictionMetrics } from "./metrics.js";
+import { buildBridgeToolFrictionProjection } from "./mssr-tool-friction.js";
+const readOnlyToolNames = new Set([
+    "system_info", "list_dir", "read_text_file", "list_files_smart", "read_file_lines", "read_many_files", "search_files", "storage_growth_scan",
+    "mssr_librarian_search", "mssr_librarian_fetch", "mssr_librarian_evidence_pack", "mssr_semantic_evidence_synthesis_preview",
+    "terminal_read", "terminal_list", "work_peek", "work_show",
+    "git_status", "git_diff", "git_log", "git_show_commit", "git_compare_branches",
+    "tunnel_health", "bridge_health", "bridge_connector_catalog_compare", "bridge_self_check", "bridge_restart_status",
+    "bridge_metrics_status", "bridge_metrics_summary", "bridge_metrics_recent", "bridge_metrics_query", "bridge_verify_status", "mssr_observatory_query", "mssr_trace_evidence", "bridge_visualization_catalog", "bridge_visualize_metrics", "bridge_notice_status", "bridge_notice_history", "bridge_notice_drain",
+    "path_policy_status", "project_profile", "project_reference_resolve", "workspace_diff", "workspace_snapshot_list", "cache_status", "windows_admin_cache_status", "windows_admin_storage_audit",
+    "analyze_code", "impact_analysis", "find_duplicate_symbols", "import_graph", "dependency_graph", "call_graph", "find_dead_code",
+    "project_context_load", "project_context_audit", "project_context_health", "project_context_modularization_plan", "project_change_consistency", "workflow_guide_recommend", "workflow_guide_load", "bridge_tool_schema", "bridge_tool_audit", "bridge_tool_query",
+    "skill_catalog", "skill_recommend", "skill_route_audit", "skill_route_vocabulary", "skill_route_plan", "skill_bootstrap", "skill_context_next", "skill_load", "mssr_context_proposal_review", "roblox_mcp_status", "roblox_mcp_tool_list", "roblox_mcp_studio_list", "roblox_mcp_query",
+    "binary_file_info", "binary_file_attach", "binary_file_read_chunk", "binary_upload_status", "image_file_attach",
+    "blender_status", "blender_scene_info", "blender_rig_inspect", "blender_validate_reference_pack", "blender_character_loop_status",
+    "godot_mcp_status", "godot_mcp_tool_list", "godot_mcp_instance_list", "godot_mcp_query",
+    "whiteboard_latest_capture", "whiteboard_capture_list",
+    "python_validate", "python_symbols", "python_impact_analysis", "python_import_graph", "python_call_graph", "python_dead_code", "python_test_plan", "pytest_testmon",
+    "remote_node_list", "remote_node_status",
+    "quietdesk_status", "quietdesk_desktop_snapshot", "quietdesk_desktop_coverage", "quietdesk_desktop_candidates", "quietdesk_desktop_semantic_context", "quietdesk_runtime_telemetry",
+]);
+const destructiveToolNames = new Set([
+    "write_text_file", "apply_patch", "edit_lines", "run_command", "terminal_start", "terminal_write", "terminal_stop",
+    "work_once", "work_begin", "work_feed", "work_finish",
+    "git_create_branch", "git_restore_file", "git_set_remote", "git_commit_all", "git_push_current_branch", "git_multi_repo_publish",
+    "project_profile_save", "project_context_initialize", "project_context_update", "project_context_recover_core", "project_context_capture", "workspace_snapshot", "workspace_rollback", "cache_prune", "windows_admin_cache_cleanup",
+    "bridge_request_restart", "bridge_verify_all", "workflow_guide_create", "mssr_skill_maintenance_index", "bridge_tool_action", "roblox_mcp_action", "roblox_studio_window_capture_save", "roblox_screen_capture_save", "roblox_photo_capture_job", "roblox_place_save",
+    "roblox_asset_upload",
+    "image_asset_save", "image_asset_import_files", "image_chat_preview_prepare", "image_character_views_prepare", "image_reference_pack_prepare",
+    "media_review_ingest",
+    "binary_file_write", "binary_upload_begin", "binary_upload_append", "binary_upload_finish", "binary_upload_abort", "asset_import_files",
+    "blender_open", "blender_viewport_screenshot", "blender_focus_review", "blender_review_bundle", "blender_animation_review", "blender_ik_keyframe", "blender_execute_code", "blender_batch_script", "blender_install_reference_pack", "blender_setup_character_references",
+    "godot_mcp_action", "godot_scene_create", "godot_screen_capture_save",
+    "remote_node_exec", "remote_node_upload_file",
+    "quietdesk_execute_semantic",
+]);
+const aliasTargets = new Map([
+    ["work_once", "run_command"],
+    ["work_begin", "terminal_start"],
+    ["work_feed", "terminal_write"],
+    ["work_peek", "terminal_read"],
+    ["work_show", "terminal_list"],
+    ["work_finish", "terminal_stop"],
+]);
+const fallbackToolNames = new Set(["bridge_tool_query", "bridge_tool_action", "image_asset_save"]);
+const aggregatorToolNames = new Set(["bridge_metrics_query", "bridge_verify_all", "bridge_health", "bridge_self_check", "skill_bootstrap"]);
+const providerProxyToolNames = new Set([
+    "roblox_mcp_status", "roblox_mcp_tool_list", "roblox_mcp_studio_list", "roblox_mcp_query", "roblox_mcp_action",
+    "godot_mcp_status", "godot_mcp_tool_list", "godot_mcp_instance_list", "godot_mcp_query", "godot_mcp_action",
+    "quietdesk_status", "quietdesk_desktop_snapshot", "quietdesk_desktop_coverage", "quietdesk_desktop_candidates", "quietdesk_desktop_semantic_context", "quietdesk_desktop_capture", "quietdesk_runtime_telemetry", "quietdesk_execute_semantic",
+]);
+const protectedToolNames = new Set([
+    "bridge_tool_schema", "bridge_tool_audit", "bridge_tool_query", "bridge_tool_action", "bridge_connector_catalog_compare", "project_context_load", "project_context_audit", "project_context_health", "project_context_modularization_plan", "project_context_initialize", "project_context_update", "project_context_recover_core", "project_context_capture",
+    "skill_route_plan", "skill_bootstrap", "skill_context_next", "skill_load", "mssr_context_proposal_review", "mssr_trace_record", "mssr_trace_evidence", "mssr_skill_maintenance_index", "bridge_verify_all", "git_multi_repo_publish", "roblox_place_save",
+]);
+const mssrControlPlaneToolNames = new Set([
+    "skill_catalog", "skill_recommend", "skill_route_audit", "skill_route_vocabulary", "skill_route_plan", "skill_bootstrap", "skill_context_next", "skill_load",
+    "mssr_context_ack", "mssr_context_proposal_review", "mssr_trace_working_update", "mssr_trace_record", "mssr_trace_evidence", "mssr_observatory_query", "mssr_observatory_epoch_start", "mssr_skill_maintenance_index",
+]);
+const mssrSubstantialReadToolNames = new Set([
+    "mssr_librarian_search", "mssr_librarian_fetch", "mssr_librarian_evidence_pack", "mssr_librarian_jev_select", "mssr_semantic_evidence_synthesis_preview",
+    "mssr_project_context_ref_split_plan",
+    "analyze_code", "impact_analysis", "find_duplicate_symbols", "import_graph", "dependency_graph", "call_graph", "find_dead_code",
+    "python_validate", "python_symbols", "python_impact_analysis", "python_import_graph", "python_call_graph", "python_dead_code", "python_test_plan", "pytest_testmon",
+    "project_context_audit", "project_context_health", "project_context_modularization_plan", "project_change_consistency", "bridge_verify_status",
+]);
+const mssrVerifyToolNames = new Set(["python_validate", "pytest_testmon", "bridge_verify_status", "bridge_verify_all"]);
+const mssrPublishToolNames = new Set(["git_push_current_branch", "git_multi_repo_publish", "roblox_asset_upload"]);
+const mssrPersistToolNames = new Set(["git_commit_all", "roblox_place_save", "binary_upload_finish", "asset_import_files"]);
+const mssrExternalSideEffectToolNames = new Set([
+    "remote_node_exec", "remote_node_upload_file", "roblox_mcp_action", "godot_mcp_action", "godot_scene_open",
+    "whiteboard_add_text", "whiteboard_add_svg", "whiteboard_add_diagram", "whiteboard_insert_image",
+    "quietdesk_execute_semantic",
+    "mssr_librarian_jev_select",
+    "mssr_semantic_evidence_relation_review",
+    "mssr_project_context_ref_split_plan",
+]);
+const mssrTrivialInspectToolNames = new Set(["whiteboard_capture_pc_view", "quietdesk_desktop_capture"]);
+const toolUsageGuidance = new Map([
+    ["project_context_load", {
+            prerequisites: ["Use once at the start of substantial work in a known repository."],
+            preflightTools: ["skill_bootstrap"],
+            recovery: [{ code: "mssr-unrouted-tool-call", toolName: "skill_bootstrap", instruction: "Bootstrap the current MSSR phase with structured intent so required skills are loaded automatically." }],
+        }],
+    ["project_context_initialize", {
+            prerequisites: ["Use only for repositories/workspaces that should participate in MSSR project knowledge. Initialization creates bounded .mssr skeleton/control files and may remove only known legacy MSSR-owned .bridge artifacts."],
+            preflightTools: ["project_context_health"],
+            recovery: [{ code: "legacy-cleanup-blocked", toolName: "project_context_health", instruction: "Inspect the blocked legacy MSSR artifact and preserve durable data until a reviewed canonical migration exists." }],
+        }],
+    ["project_context_modularization_plan", {
+            prerequisites: ["Use after Project Context Health reports growth/core/module/index pressure. The planner is read-only: core narrowing and unindexed knowledge remain review decisions."],
+            preflightTools: ["project_context_health"],
+            recovery: [{ code: "project-context-not-initialized", toolName: "project_context_initialize", instruction: "Initialize the canonical .mssr contract first; do not fall back to .bridge or synthesize durable facts." }],
+        }],
+    ["project_context_update", {
+            prerequisites: ["The repository must already be initialized with a valid .mssr/project-context.json. Use this for deliberate root/core PROJECT_* edits; new optional kind=memory knowledge belongs in reference-backed .mssr/knowledge via project_context_capture. Use stable section headings and expectedSha256 when modifying an already-read file."],
+            preflightTools: ["project_context_load"],
+            recovery: [
+                { code: "target-not-found", toolName: "project_context_load", instruction: "Reload the project root/context and retry the durable update against the intended repository." },
+                { code: "concurrent-modification", toolName: "project_context_load", instruction: "Reload current project context, reconcile the changed section, and retry with the new expectedSha256." },
+                { code: "optional-memory-reference-required", toolName: "project_context_capture", instruction: "Create the reviewed optional memory as a selector-backed .mssr/knowledge reference instead of adding another PROJECT_MEMORY.md section." },
+            ],
+        }],
+    ["project_context_capture", {
+            prerequisites: ["The repository must already be initialized. Persist only reviewed durable knowledge that belongs in .mssr/knowledge; existing targets require an expectedTargetSha256 from a prior read."],
+            preflightTools: ["project_context_health", "project_context_load"],
+            recovery: [
+                { code: "target-exists", toolName: "project_context_load", instruction: "Read/reconcile the existing durable knowledge before retrying capture with its expectedTargetSha256." },
+                { code: "concurrent-modification", toolName: "project_context_health", instruction: "Re-audit the canonical contract and retry only after reconciling the changed target/manifest." },
+            ],
+        }],
+    ["skill_route_plan", {
+            prerequisites: ["Provide structured intent with at least one non-nominal signal when friction or uncertainty exists."],
+            preflightTools: ["skill_bootstrap"],
+            recovery: [{ code: "mssr-required-skill-not-loaded", toolName: "skill_bootstrap", instruction: "Call skill_bootstrap with the returned traceId to load the full current phase automatically." }],
+        }],
+    ["skill_load", {
+            prerequisites: ["Pass the traceId returned by skill_route_plan or skill_bootstrap whenever one exists."],
+            preflightTools: ["skill_bootstrap"],
+            recovery: [
+                { code: "mssr-orphan-skill-load", toolName: "skill_bootstrap", instruction: "Bootstrap the active phase instead of loading an unscoped skill, or retry skill_load with an explicit traceId." },
+                { code: "mssr-trace-ambiguous", toolName: "mssr_observatory_query", instruction: "Inspect open traces and retry with one explicit traceId; never guess between concurrent tasks." },
+            ],
+        }],
+    ["terminal_read", {
+            prerequisites: ["Use a sessionId returned by terminal_start or terminal_list."],
+            preflightTools: ["terminal_list"],
+            recovery: [{ code: "target-not-found", toolName: "terminal_list", instruction: "List active terminal sessions and retry with a returned sessionId." }],
+        }],
+    ["terminal_write", {
+            prerequisites: ["Use a live sessionId returned by terminal_start or terminal_list."],
+            preflightTools: ["terminal_list"],
+            recovery: [{ code: "target-not-found", toolName: "terminal_list", instruction: "List active terminal sessions before sending input." }],
+        }],
+    ["terminal_stop", {
+            prerequisites: ["Use a live sessionId returned by terminal_start or terminal_list."],
+            preflightTools: ["terminal_list"],
+            recovery: [{ code: "target-not-found", toolName: "terminal_list", instruction: "List active terminal sessions; an expired session does not mean terminal_stop is broken." }],
+        }],
+    ["workspace_diff", {
+            prerequisites: ["Use a snapshotId returned by workspace_snapshot or workspace_snapshot_list."],
+            preflightTools: ["workspace_snapshot_list"],
+            recovery: [{ code: "target-not-found", toolName: "workspace_snapshot_list", instruction: "List snapshots and retry with an existing snapshotId." }],
+        }],
+    ["workspace_rollback", {
+            prerequisites: ["Use an exact snapshotId returned by workspace_snapshot or workspace_snapshot_list and repeat it in confirmSnapshotId."],
+            preflightTools: ["workspace_snapshot_list", "workspace_diff"],
+            recovery: [{ code: "target-not-found", toolName: "workspace_snapshot_list", instruction: "Resolve an existing snapshot before rollback; do not invent IDs." }],
+        }],
+    ["binary_upload_append", {
+            prerequisites: ["Use an uploadId returned by binary_upload_begin."],
+            preflightTools: ["binary_upload_status"],
+            recovery: [{ code: "target-not-found", toolName: "binary_upload_status", instruction: "Inspect the resumable upload state and retry with its uploadId." }],
+        }],
+    ["binary_upload_finish", {
+            prerequisites: ["Use an uploadId returned by binary_upload_begin and verify all expected chunks are present."],
+            preflightTools: ["binary_upload_status"],
+            recovery: [{ code: "target-not-found", toolName: "binary_upload_status", instruction: "Inspect the upload state before finishing it." }],
+        }],
+    ["bridge_tool_query", {
+            prerequisites: ["Use only when the dedicated connector schema is absent. When MSSR routing already supplied an exact delegated fallback, invoke it immediately; inspect bridge_tool_schema only after validation failure or when arguments are unknown. Pass the active traceId at wrapper level when stateless or concurrent caller metadata cannot identify one open MSSR trace."],
+            preflightTools: ["bridge_tool_schema"],
+            recovery: [{ code: "schema-validation", toolName: "bridge_tool_schema", instruction: "Read the exact runtime schema and rebuild arguments without inventing fields or enums." }],
+        }],
+    ["bridge_tool_action", {
+            prerequisites: ["Use only when the dedicated connector schema is absent and confirmToolName exactly matches toolName. When MSSR routing already supplied an exact delegated fallback, invoke it immediately; inspect bridge_tool_schema only after validation failure or when arguments are unknown. Pass the active traceId at wrapper level when stateless or concurrent caller metadata cannot identify one open MSSR trace."],
+            preflightTools: ["bridge_tool_schema"],
+            recovery: [
+                { code: "schema-validation", toolName: "bridge_tool_schema", instruction: "Read the exact runtime schema before retrying the delegated action." },
+                { code: "permission-or-risk-mismatch", toolName: "bridge_tool_schema", instruction: "Inspect the target annotations and choose bridge_tool_query for read-only tools or bridge_tool_action for mutable tools." },
+            ],
+        }],
+    ["roblox_mcp_query", {
+            prerequisites: ["Inspect the live Roblox tool schema and active Studio before invoking a remote query."],
+            preflightTools: ["roblox_mcp_status", "roblox_mcp_tool_list", "roblox_mcp_studio_list"],
+            recovery: [{ code: "provider-unavailable", toolName: "roblox_mcp_status", instruction: "Refresh Roblox MCP health and live Studio state before retrying." }],
+        }],
+    ["roblox_mcp_action", {
+            prerequisites: ["Inspect the live schema, verify the active Studio and repeat the exact remote tool name in confirmToolName."],
+            preflightTools: ["roblox_mcp_status", "roblox_mcp_tool_list", "roblox_mcp_studio_list"],
+            recovery: [{ code: "provider-unavailable", toolName: "roblox_mcp_status", instruction: "Recover the live Roblox MCP connection and re-inspect the schema before mutating." }],
+        }],
+    ["godot_mcp_query", {
+            prerequisites: ["Inspect the live localhost Godot provider catalog and connected project identity before dispatch."],
+            preflightTools: ["godot_mcp_status", "godot_mcp_tool_list", "godot_mcp_instance_list"],
+            recovery: [{ code: "provider-unavailable", toolName: "godot_mcp_status", instruction: "Start or recover the local Godot provider and verify the editor connection before retrying." }],
+        }],
+    ["godot_mcp_action", {
+            prerequisites: ["Inspect the live tool schema and connected project identity. This dedicated action does not require a separate user confirmation for each Godot operation."],
+            preflightTools: ["godot_mcp_status", "godot_mcp_tool_list", "godot_mcp_instance_list"],
+            recovery: [{ code: "provider-unavailable", toolName: "godot_mcp_status", instruction: "Start the full local Godot provider, connect the intended project, and retry the exact action." }],
+        }],
+    ["godot_scene_open", {
+            prerequisites: ["Reuse the already-connected intended Godot editor. Use native scene opening instead of Ctrl+O, mouse clicks, SendKeys, or launching another editor."],
+            preflightTools: ["godot_mcp_status", "godot_mcp_instance_list"],
+            recovery: [{ code: "provider-unavailable", toolName: "godot_mcp_status", instruction: "Recover/connect the intended Godot editor first; do not fall back to UI automation for scene opening." }],
+        }],
+    ["godot_scene_create", {
+            prerequisites: ["Reuse the already-connected intended Godot editor and provide an explicit res:// destination plus root node type. The tool persists and reads back the scene before reporting success."],
+            preflightTools: ["godot_mcp_status", "godot_mcp_instance_list"],
+            recovery: [{ code: "provider-unavailable", toolName: "godot_mcp_status", instruction: "Recover/connect the intended Godot editor before creating the scene; do not launch a duplicate editor implicitly." }],
+        }],
+    ["godot_screen_capture_save", {
+            prerequisites: ["Verify a runtime instance is connected before requesting a capture."],
+            preflightTools: ["godot_mcp_status", "godot_mcp_instance_list"],
+            recovery: [{ code: "provider-unavailable", toolName: "godot_mcp_status", instruction: "Run the Godot project with the MCPRuntime autoload and verify the local runtime connection." }],
+        }],
+    ["roblox_asset_upload", {
+            prerequisites: ["Configure ROBLOX_OPEN_CLOUD_API_KEY with Assets Read/Write permission for the exact creator.", "Verify local file hashes and repeat the exact creator id before upload."],
+            preflightTools: ["binary_file_info", "roblox_mcp_status"],
+            recovery: [{ code: "missing-capability", instruction: "Create or configure a Roblox Open Cloud API key with Assets Read/Write permission; never pass the secret as a tool argument." }],
+        }],
+    ["media_review_ingest", {
+            prerequisites: ["Provide exactly one source: a ChatGPT-authorized files parameter or an allowed localPath already present on MauroPrime. The default local path policy includes the user's Videos folder for recorded media. When transcribe=true, the full audio is sent once to Google for canonical recognition and bounded speech-aware groups are also sent for temporal anchors; use transcribe=false when external ASR is not intended."],
+            recovery: [
+                { code: "source-file-unavailable", instruction: "For files, retry with the original conversation attachment while its temporary authorized download URL is still valid. For localPath, verify the exact allowed file path still exists and is readable." },
+            ],
+        }],
+    ["blender_focus_review", {
+            prerequisites: ["Leave the intended detail selected in Edit Mode, select the target object, or place the 3D Cursor where the review should focus."],
+            preflightTools: ["blender_status", "blender_scene_info"],
+            recovery: [{ code: "provider-unavailable", toolName: "blender_status", instruction: "Open Blender with the Mauro local kit and verify the interactive bridge before retrying the focus review." }],
+        }],
+    ["blender_execute_code", {
+            prerequisites: ["Verify the interactive Blender bridge is connected before executing code."],
+            preflightTools: ["blender_status", "blender_scene_info"],
+            recovery: [{ code: "provider-unavailable", toolName: "blender_status", instruction: "Check or restore the Blender bridge before retrying." }],
+        }],
+    ["remote_node_exec", {
+            prerequisites: ["Use only a node id returned by remote_node_list and repeat it exactly in confirmNodeId. Remote hosts/users/keys are configuration-owned and are never supplied ad hoc."],
+            preflightTools: ["remote_node_list", "remote_node_status"],
+            recovery: [
+                { code: "target-not-found", toolName: "remote_node_list", instruction: "Resolve a configured node id before retrying remote execution." },
+                { code: "remote-node-connect-failed", toolName: "remote_node_status", instruction: "Verify pinned SSH identity, current LAN host, and node health before retrying a remote command." },
+            ],
+        }],
+    ["remote_node_upload_file", {
+            prerequisites: ["Verify the node with remote_node_status, use an allowed local file path, an absolute POSIX remotePath, and repeat nodeId in confirmNodeId."],
+            preflightTools: ["remote_node_list", "remote_node_status"],
+            recovery: [
+                { code: "remote-node-target-exists", toolName: "remote_node_status", instruction: "Confirm replacement is intended before retrying with overwrite=true." },
+                { code: "remote-node-connect-failed", toolName: "remote_node_status", instruction: "Recover the pinned SSH connection before retrying the upload." },
+            ],
+        }],
+    ["git_push_current_branch", {
+            prerequisites: ["Verify the working tree, commit content, tracking branch and remote before push."],
+            preflightTools: ["git_status", "git_show_commit", "git_compare_branches"],
+            recovery: [{ code: "target-not-found", toolName: "git_status", instruction: "Verify repository root, branch and remote configuration before retrying push." }],
+        }],
+]);
+for (const [alias, canonical] of aliasTargets) {
+    const canonicalUsage = toolUsageGuidance.get(canonical);
+    if (canonicalUsage && !toolUsageGuidance.has(alias))
+        toolUsageGuidance.set(alias, canonicalUsage);
+}
+function mssrLifecycleMetadata(tool, annotations) {
+    if (mssrControlPlaneToolNames.has(tool.name))
+        return { effect: "control-plane", scale: "trivial" };
+    if (mssrPublishToolNames.has(tool.name))
+        return { effect: "publish", scale: "unknown" };
+    if (mssrPersistToolNames.has(tool.name))
+        return { effect: "persist", scale: "unknown" };
+    if (mssrExternalSideEffectToolNames.has(tool.name))
+        return { effect: "external-side-effect", scale: "unknown" };
+    if (mssrTrivialInspectToolNames.has(tool.name))
+        return { effect: "inspect", scale: "trivial" };
+    if (mssrVerifyToolNames.has(tool.name))
+        return { effect: "verify", scale: "substantial" };
+    if (mssrSubstantialReadToolNames.has(tool.name))
+        return { effect: "inspect", scale: "substantial" };
+    if (annotations.destructiveHint === true)
+        return { effect: "mutate", scale: "unknown" };
+    if (annotations.readOnlyHint === true)
+        return { effect: "read", scale: "trivial" };
+    return { effect: "unknown", scale: "unknown" };
+}
+function toolMetadata(tool, moduleName, annotations) {
+    const aliasOf = aliasTargets.get(tool.name);
+    const role = aliasOf
+        ? "alias"
+        : fallbackToolNames.has(tool.name)
+            ? "fallback"
+            : providerProxyToolNames.has(tool.name)
+                ? "provider-proxy"
+                : aggregatorToolNames.has(tool.name)
+                    ? "aggregator"
+                    : "dedicated";
+    return {
+        role,
+        family: moduleName,
+        lifecycle: protectedToolNames.has(tool.name) ? "protected" : "stable",
+        ...(aliasOf ? { aliasOf, preferredTool: aliasOf } : {}),
+        ...(toolUsageGuidance.has(tool.name) ? { usage: toolUsageGuidance.get(tool.name) } : {}),
+        mssrLifecycle: mssrLifecycleMetadata(tool, annotations),
+        ...(tool.metadata ?? {}),
+    };
+}
+function annotateTool(tool, moduleName) {
+    const annotations = readOnlyToolNames.has(tool.name)
+        ? { readOnlyHint: true, destructiveHint: false, ...(tool.annotations ?? {}) }
+        : destructiveToolNames.has(tool.name)
+            ? { readOnlyHint: false, destructiveHint: true, ...(tool.annotations ?? {}) }
+            : { readOnlyHint: false, destructiveHint: false, ...(tool.annotations ?? {}) };
+    return { ...tool, annotations, metadata: toolMetadata(tool, moduleName, annotations) };
+}
+function toolRiskClassification(tool) {
+    const readOnly = tool.annotations?.readOnlyHint === true;
+    const destructive = tool.annotations?.destructiveHint === true;
+    if (readOnly && destructive) {
+        throw new Error(`Tool '${tool.name}' has contradictory risk annotations: readOnlyHint and destructiveHint are both true.`);
+    }
+    return readOnly ? "read-only" : destructive ? "destructive" : "neutral";
+}
+function riskSummary(tools) {
+    return {
+        readOnly: tools.filter((tool) => toolRiskClassification(tool) === "read-only").map((tool) => tool.name),
+        destructive: tools.filter((tool) => toolRiskClassification(tool) === "destructive").map((tool) => tool.name),
+        neutral: tools.filter((tool) => toolRiskClassification(tool) === "neutral").map((tool) => tool.name),
+    };
+}
+export function createToolRegistry(modules) {
+    const tools = [];
+    const handlers = new Map();
+    const moduleNames = [];
+    for (const module of modules) {
+        moduleNames.push(module.name);
+        for (const tool of module.tools) {
+            if (handlers.has(tool.name))
+                throw new Error(`Duplicate bridge tool registered: ${tool.name}`);
+            const handler = module.handlers[tool.name];
+            if (!handler)
+                throw new Error(`Tool module '${module.name}' declares '${tool.name}' without a handler.`);
+            tools.push(annotateTool(tool, module.name));
+            handlers.set(tool.name, handler);
+        }
+    }
+    const proxyToolNames = new Set(["bridge_tool_query", "bridge_tool_action"]);
+    const delegatedArguments = (value) => {
+        if (value === undefined)
+            return {};
+        if (!value || typeof value !== "object" || Array.isArray(value))
+            throw new Error("arguments must be a JSON object.");
+        return value;
+    };
+    const delegatedToolName = (value) => {
+        if (typeof value !== "string" || !value.trim())
+            throw new Error("toolName must be a non-empty string.");
+        const name = value.trim();
+        if (proxyToolNames.has(name))
+            throw new Error(`Recursive delegation to '${name}' is not allowed.`);
+        if (!handlers.has(name))
+            throw new Error(`Unknown modular tool: ${name}`);
+        return name;
+    };
+    moduleNames.push("tool-dispatch");
+    const schemaTool = {
+        name: "bridge_tool_schema",
+        description: "Inspect the exact runtime description, input schema, and safety annotations for one Bridge tool before using a delegated fallback. Use this first when the dedicated connector schema is missing.",
+        inputSchema: {
+            type: "object",
+            properties: {
+                toolName: { type: "string", description: "Exact runtime tool name to inspect." },
+            },
+            required: ["toolName"],
+            additionalProperties: false,
+        },
+    };
+    const auditTool = {
+        name: "bridge_tool_audit",
+        description: "Audit registered Bridge tools against privacy-safe operational metrics plus sanitized repeated-failure signatures. The needs-attention view prioritizes recurring cross-workflow friction over isolated low-sample noise; raw error text is never returned. This tool never changes lifecycle or visibility automatically.",
+        inputSchema: {
+            type: "object",
+            properties: {
+                view: { type: "string", enum: TOOL_AUDIT_VIEWS, default: "needs-attention" },
+                toolName: { type: "string", description: "Exact registered tool name; required when view=tool." },
+                scope: { type: "string", enum: ["active", "all"], default: "active" },
+                days: { type: "number", default: 30, minimum: 1, maximum: 365 },
+                limit: { type: "number", default: 50, minimum: 1, maximum: 200 },
+            },
+            additionalProperties: false,
+        },
+    };
+    const queryTool = {
+        name: "bridge_tool_query",
+        description: "Use this read-only fallback immediately when a runtime Bridge tool exists but its dedicated schema is missing from the current connector catalog. When routing or another Bridge response supplied exact fallback arguments, use them without another discovery call; otherwise inspect bridge_tool_schema first. Delegates only to tools classified read-only. Stateless or concurrent callers may pass the active MSSR traceId as wrapper control without changing the delegated target schema.",
+        inputSchema: {
+            type: "object",
+            properties: {
+                toolName: { type: "string", description: "Exact runtime tool name to invoke." },
+                traceId: { type: "string", description: "Optional active MSSR trace control for stateless or concurrent callers. The wrapper uses it for attribution and does not forward it to targets that do not declare traceId." },
+                arguments: { type: "object", description: "Arguments for the delegated tool.", additionalProperties: true, default: {} },
+            },
+            required: ["toolName"],
+            additionalProperties: false,
+        },
+    };
+    const actionTool = {
+        name: "bridge_tool_action",
+        description: "Use this explicit non-read-only fallback when a runtime Bridge tool exists but its dedicated schema is missing from the current connector catalog. When routing or another Bridge response supplied exact fallback arguments, use them without another discovery call; otherwise inspect the target with bridge_tool_schema first and pass arguments matching that exact runtime contract. Delegates to neutral or destructive tools and requires exact target-name confirmation. Stateless or concurrent callers may pass the active MSSR traceId as wrapper control without changing the delegated target schema. For runtime tools that explicitly declare an authorized top-level files parameter through openai/fileParams metadata, pass ChatGPT-authorized files through this wrapper's stable top-level files parameter so newly added file tools remain usable even when their dedicated connector schema has not refreshed yet; never reconstruct those files as Base64 merely to bypass catalog drift.",
+        inputSchema: {
+            type: "object",
+            properties: {
+                toolName: { type: "string", description: "Exact runtime tool name to invoke." },
+                confirmToolName: { type: "string", description: "Must exactly match toolName to confirm the delegated destructive action." },
+                traceId: { type: "string", description: "Optional active MSSR trace control for stateless or concurrent callers. The wrapper uses it for attribution and does not forward it to targets that do not declare traceId." },
+                files: {
+                    type: "array",
+                    minItems: 1,
+                    maxItems: 8,
+                    description: "ChatGPT-authorized file parameters for delegated runtime tools that explicitly declare files through openai/fileParams metadata. The host injects download_url and file_id without agent-side Base64 conversion.",
+                    items: {
+                        type: "object",
+                        properties: {
+                            download_url: { type: "string" },
+                            file_id: { type: "string" },
+                            mime_type: { type: "string" },
+                            file_name: { type: "string" },
+                        },
+                        required: ["download_url", "file_id"],
+                        additionalProperties: false,
+                    },
+                },
+                arguments: { type: "object", description: "Arguments for the delegated tool.", additionalProperties: true, default: {} },
+            },
+            required: ["toolName", "confirmToolName"],
+            additionalProperties: false,
+        },
+        _meta: {
+            "openai/fileParams": ["files"],
+        },
+    };
+    tools.push(annotateTool(schemaTool, "tool-dispatch"), annotateTool(auditTool, "tool-dispatch"), annotateTool(queryTool, "tool-dispatch"), annotateTool(actionTool, "tool-dispatch"));
+    handlers.set("bridge_tool_schema", async (args) => {
+        const name = delegatedToolName(args.toolName);
+        const tool = tools.find((candidate) => candidate.name === name);
+        if (!tool)
+            throw new Error(`Unknown modular tool: ${name}`);
+        const schemaPayload = {
+            name: tool.name,
+            description: tool.description,
+            inputSchema: tool.inputSchema,
+            annotations: tool.annotations ?? {},
+            _meta: tool._meta ?? {},
+        };
+        const schemaHash = createHash("sha256").update(JSON.stringify(schemaPayload)).digest("hex").slice(0, 16);
+        return {
+            provenance: {
+                runtimeBootId: RUNTIME_BOOT_ID,
+                schemaHash,
+                source: "live-runtime-registry",
+            },
+            tool: {
+                name: tool.name,
+                description: tool.description,
+                inputSchema: tool.inputSchema,
+                annotations: tool.annotations ?? {},
+                metadata: tool.metadata ?? {},
+            },
+        };
+    });
+    handlers.set("bridge_tool_audit", async (args) => {
+        const rawView = args.view === undefined ? "needs-attention" : args.view;
+        if (typeof rawView !== "string" || !TOOL_AUDIT_VIEWS.includes(rawView)) {
+            throw new Error(`view must be one of: ${TOOL_AUDIT_VIEWS.join(", ")}.`);
+        }
+        const rawScope = args.scope === undefined ? "active" : args.scope;
+        if (rawScope !== "active" && rawScope !== "all")
+            throw new Error("scope must be active or all.");
+        const parseBoundedInteger = (value, fallback, min, max, name) => {
+            const numeric = value === undefined ? fallback : value;
+            if (typeof numeric !== "number" || !Number.isInteger(numeric) || numeric < min || numeric > max) {
+                throw new Error(`${name} must be an integer from ${min} to ${max}.`);
+            }
+            return numeric;
+        };
+        const days = parseBoundedInteger(args.days, 30, 1, 365, "days");
+        const limit = parseBoundedInteger(args.limit, 50, 1, 200, "limit");
+        const toolName = args.toolName === undefined
+            ? undefined
+            : typeof args.toolName === "string" && args.toolName.trim()
+                ? args.toolName.trim()
+                : (() => { throw new Error("toolName must be a non-empty string when provided."); })();
+        return buildRegisteredToolAudit(tools, {
+            view: rawView,
+            toolName,
+            limit,
+            days,
+            scope: rawScope,
+        });
+    });
+    handlers.set("bridge_tool_query", async (args) => {
+        const name = delegatedToolName(args.toolName);
+        const target = tools.find((tool) => tool.name === name);
+        if (!target)
+            throw new Error(`Unknown modular tool: ${name}`);
+        if (toolRiskClassification(target) !== "read-only")
+            throw new Error(`Tool '${name}' is not classified read-only; use its direct schema or bridge_tool_action.`);
+        const handler = handlers.get(name);
+        const delegatedResult = await handler(delegatedArguments(args.arguments));
+        if (delegatedResult && typeof delegatedResult === "object" && !Array.isArray(delegatedResult)) {
+            const record = delegatedResult;
+            const { __bridgeImages, __bridgeContent, __bridgeNotices, ...publicResult } = record;
+            return {
+                delegatedTool: name,
+                classification: "read-only",
+                result: publicResult,
+                ...(Array.isArray(__bridgeImages) ? { __bridgeImages } : {}),
+                ...(Array.isArray(__bridgeContent) ? { __bridgeContent } : {}),
+                ...(Array.isArray(__bridgeNotices) ? { __bridgeNotices } : {}),
+            };
+        }
+        return { delegatedTool: name, classification: "read-only", result: delegatedResult };
+    });
+    handlers.set("bridge_tool_action", async (args) => {
+        const name = delegatedToolName(args.toolName);
+        const target = tools.find((tool) => tool.name === name);
+        if (!target)
+            throw new Error(`Unknown modular tool: ${name}`);
+        const classification = toolRiskClassification(target);
+        if (classification === "read-only")
+            throw new Error(`Tool '${name}' is classified read-only; use its direct schema or bridge_tool_query.`);
+        if (args.confirmToolName !== name)
+            throw new Error(`confirmToolName must exactly match '${name}'.`);
+        const handler = handlers.get(name);
+        const delegated = delegatedArguments(args.arguments);
+        if (args.files !== undefined) {
+            const declaredFileParams = target._meta?.["openai/fileParams"];
+            if (!Array.isArray(declaredFileParams) || !declaredFileParams.includes("files")) {
+                throw new Error(`Tool '${name}' does not declare an authorized top-level files parameter through openai/fileParams.`);
+            }
+            if (Object.prototype.hasOwnProperty.call(delegated, "files"))
+                throw new Error("Provide authorized files either through top-level files or arguments.files, not both.");
+            if (!Array.isArray(args.files) || args.files.length === 0)
+                throw new Error("files must be a non-empty array when provided.");
+            delegated.files = args.files;
+        }
+        const delegatedResult = await handler(delegated);
+        if (delegatedResult && typeof delegatedResult === "object" && !Array.isArray(delegatedResult)) {
+            const record = delegatedResult;
+            const { __bridgeImages, __bridgeContent, __bridgeNotices, ...publicResult } = record;
+            return {
+                delegatedTool: name,
+                classification,
+                result: publicResult,
+                ...(Array.isArray(__bridgeImages) ? { __bridgeImages } : {}),
+                ...(Array.isArray(__bridgeContent) ? { __bridgeContent } : {}),
+                ...(Array.isArray(__bridgeNotices) ? { __bridgeNotices } : {}),
+            };
+        }
+        return { delegatedTool: name, classification, result: delegatedResult };
+    });
+    return {
+        tools,
+        modules: moduleNames,
+        riskSummary: riskSummary(tools),
+        has(name) { return handlers.has(name); },
+        async call(name, args) {
+            const handler = handlers.get(name);
+            if (!handler)
+                throw new Error(`Unknown modular tool: ${name}`);
+            return await handler(args);
+        },
+    };
+}
+const defaultToolModules = [
+    coreToolModule,
+    fileNavigationToolModule,
+    storageGrowthToolModule,
+    fileWritingToolModule,
+    workflowGuideToolModule,
+    projectContextToolModule,
+    skillCatalogToolModule,
+    robloxStudioToolModule,
+    robloxAssetToolModule,
+    robloxPhotoCaptureToolModule,
+    createBinaryFileToolModule(null, false),
+    assetFileToolModule,
+    imageToolModule,
+    mediaReviewToolModule,
+    processToolModule,
+    gitToolModule,
+    gitPublicationToolModule,
+    projectToolModule,
+    workspaceToolModule,
+    cacheToolModule,
+    bridgeOpsToolModule,
+    metricsToolModule,
+    mssrObservatoryToolModule,
+    noticeToolModule,
+    codeIntelligenceToolModule,
+    codeGraphToolModule,
+    pythonToolModule,
+    remoteNodeToolModule,
+    blenderToolModule,
+    godotToolModule,
+    whiteboardToolModule,
+    quietDeskToolModule,
+    mssrSemanticEvidenceToolModule,
+    mssrProjectContextRefSplitToolModule,
+    windowsAdminToolModule,
+    bridgeWorkflowToolModule,
+];
+let defaultToolCatalog;
+export function buildRegisteredToolAudit(tools, args) {
+    const auditMetrics = getToolAuditMetrics(args.days, args.scope);
+    const friction = buildBridgeToolFrictionProjection(getToolFrictionMetrics(args.days, args.scope));
+    return buildToolAudit(tools, auditMetrics, {
+        view: args.view,
+        toolName: args.toolName,
+        limit: args.limit,
+    }, friction);
+}
+export function getDefaultToolCatalog() {
+    defaultToolCatalog ??= createToolRegistry(defaultToolModules).tools;
+    return defaultToolCatalog;
+}
+export function getDefaultToolAudit(args) {
+    return buildRegisteredToolAudit(getDefaultToolCatalog(), args);
+}
+export function createDefaultToolRegistry(options = {}) {
+    const localResources = options.localResources === undefined ? createLocalFileResourceRegistry() : options.localResources;
+    const binaryModule = createBinaryFileToolModule(localResources, options.resourceLinksEnabled ?? localResources !== null);
+    return createToolRegistry(defaultToolModules.map((module) => module.name === "binary-files" ? binaryModule : module));
+}

@@ -1,0 +1,135 @@
+{
+  "sourceSnapshots": [
+    {
+      "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+      "expectedSha256": "6c8626f6d6cd8f8fca8ab53ef753ee14eafea4a45409d532bf839f08f3201649",
+      "actualSha256": "6c8626f6d6cd8f8fca8ab53ef753ee14eafea4a45409d532bf839f08f3201649",
+      "sha256Matches": true
+    },
+    {
+      "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+      "expectedSha256": "63bac32774a54bdb8e7a5dd6021fa3f0351e491c6475cbb6745ce4c1e05ed2ad",
+      "actualSha256": "63bac32774a54bdb8e7a5dd6021fa3f0351e491c6475cbb6745ce4c1e05ed2ad",
+      "sha256Matches": true
+    }
+  ],
+  "requests": [
+    {
+      "caseId": "typed-confidence-baseline",
+      "status": "complete",
+      "jevStatus": "selected",
+      "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+      "selectedRangeId": "heading-9",
+      "rangeKind": "section",
+      "selectedLines": [
+        154,
+        164
+      ],
+      "choiceConfidence": 0.34,
+      "evidenceSufficiency": 0.48,
+      "fetchPresent": true,
+      "fetchPassed": true,
+      "handleFingerprintMatches": true,
+      "sourceRevisionMatchesSnapshot": true,
+      "offsetSliceMatchesFetch": true,
+      "sourceSliceFingerprintMatchesHandle": true,
+      "fetchedTextSha256Matches": true,
+      "providerFlagMatchesFrozenSlice": true,
+      "evidencePackPresent": true,
+      "evidencePackPassed": true,
+      "evidencePackTextVerbatim": true,
+      "evidencePackCitationBound": true,
+      "expectedRangePresentInSearch": true
+    },
+    {
+      "caseId": "typed-confidence-field-focused",
+      "status": "complete",
+      "jevStatus": "abstained",
+      "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+      "selectedRangeId": null,
+      "rangeKind": null,
+      "selectedLines": null,
+      "choiceConfidence": 0.57,
+      "evidenceSufficiency": 0.25,
+      "fetchPresent": false,
+      "fetchPassed": null,
+      "handleFingerprintMatches": true,
+      "sourceRevisionMatchesSnapshot": false,
+      "offsetSliceMatchesFetch": false,
+      "sourceSliceFingerprintMatchesHandle": false,
+      "fetchedTextSha256Matches": false,
+      "providerFlagMatchesFrozenSlice": null,
+      "evidencePackPresent": false,
+      "evidencePackPassed": null,
+      "evidencePackTextVerbatim": false,
+      "evidencePackCitationBound": false,
+      "expectedRangePresentInSearch": true
+    },
+    {
+      "caseId": "document-surface-body-baseline",
+      "status": "complete",
+      "jevStatus": "selected",
+      "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+      "selectedRangeId": "block-26",
+      "rangeKind": "block",
+      "selectedLines": [
+        106,
+        106
+      ],
+      "choiceConfidence": 0.54,
+      "evidenceSufficiency": 0.71,
+      "fetchPresent": true,
+      "fetchPassed": true,
+      "handleFingerprintMatches": true,
+      "sourceRevisionMatchesSnapshot": true,
+      "offsetSliceMatchesFetch": true,
+      "sourceSliceFingerprintMatchesHandle": true,
+      "fetchedTextSha256Matches": true,
+      "providerFlagMatchesFrozenSlice": true,
+      "evidencePackPresent": true,
+      "evidencePackPassed": true,
+      "evidencePackTextVerbatim": true,
+      "evidencePackCitationBound": true,
+      "expectedRangePresentInSearch": true
+    },
+    {
+      "caseId": "document-surface-revision-focused",
+      "status": "complete",
+      "jevStatus": "selected",
+      "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+      "selectedRangeId": "block-27",
+      "rangeKind": "block",
+      "selectedLines": [
+        108,
+        108
+      ],
+      "choiceConfidence": 0.35,
+      "evidenceSufficiency": 0.71,
+      "fetchPresent": true,
+      "fetchPassed": true,
+      "handleFingerprintMatches": true,
+      "sourceRevisionMatchesSnapshot": true,
+      "offsetSliceMatchesFetch": true,
+      "sourceSliceFingerprintMatchesHandle": true,
+      "fetchedTextSha256Matches": true,
+      "providerFlagMatchesFrozenSlice": true,
+      "evidencePackPresent": true,
+      "evidencePackPassed": true,
+      "evidencePackTextVerbatim": true,
+      "evidencePackCitationBound": true,
+      "expectedRangePresentInSearch": true
+    }
+  ],
+  "counts": {
+    "requests": 4,
+    "completed": 4,
+    "searchTargetInTop100": 4,
+    "selections": 3,
+    "abstentions": 1,
+    "exactFetches": 3,
+    "evidencePacks": 3,
+    "allSourceSnapshotsMatch": true,
+    "allSelectedSlicesAndPacksMatch": true,
+    "searchTargetInTop100Denominator": 4
+  }
+}

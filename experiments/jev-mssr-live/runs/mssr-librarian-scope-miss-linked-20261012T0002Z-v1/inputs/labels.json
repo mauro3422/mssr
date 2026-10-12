@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "adjudication": "source-derived linked diagnostic targets; known exposed cases; not owner-gold or holdout",
+  "cases": [
+    {
+      "caseId": "typed-confidence-baseline",
+      "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+      "expectedHeading": "## 2. Typed Claim IR",
+      "expectedStartLine": 86,
+      "expectedEndLine": 108,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+          "expectedHeading": "## 2. Typed Claim IR",
+          "startLine": 86,
+          "endLine": 108
+        }
+      ]
+    },
+    {
+      "caseId": "typed-confidence-field-focused",
+      "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+      "expectedHeading": "## 2. Typed Claim IR",
+      "expectedStartLine": 86,
+      "expectedEndLine": 108,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+          "expectedHeading": "## 2. Typed Claim IR",
+          "startLine": 86,
+          "endLine": 108
+        }
+      ]
+    },
+    {
+      "caseId": "document-surface-body-baseline",
+      "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+      "expectedHeading": "### 3.1 Document Surface and the Librarian contract",
+      "expectedStartLine": 94,
+      "expectedEndLine": 113,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "expectedHeading": "### 3.1 Document Surface and the Librarian contract",
+          "startLine": 94,
+          "endLine": 113
+        }
+      ]
+    },
+    {
+      "caseId": "document-surface-revision-focused",
+      "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+      "expectedHeading": "### 3.1 Document Surface and the Librarian contract",
+      "expectedStartLine": 94,
+      "expectedEndLine": 113,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "expectedHeading": "### 3.1 Document Surface and the Librarian contract",
+          "startLine": 94,
+          "endLine": 113
+        }
+      ]
+    }
+  ]
+}

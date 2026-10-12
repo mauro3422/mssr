@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "runId": "mssr-librarian-scope-miss-linked-20261012T0002Z-v1",
+  "createdAt": "2026-10-12T00:05:13.464Z",
+  "parentRunId": "mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04",
+  "suite": "mssr-librarian-linked-scope-miss-diagnostic-v1",
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "138293dcec588005a83a45b6f6bbe0bd0740ab12",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "workingTreeClean": false,
+    "changedPaths": [
+      "experiments/jev-mssr-live/runs/mssr-librarian-scope-miss-linked-20261012T0002Z-v1"
+    ],
+    "buildId": "Bridge 0.6.172 / MSSR 0.2.127",
+    "bridgeRoot": "D:\\Dev\\bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+    "bridgeCommit": "8c181ef33919038f400f623bd9a42ca1fd6b17a6",
+    "bridgeVersion": "0.6.172",
+    "mssrVersion": "0.2.127",
+    "bridgeWorkingTreeClean": true,
+    "sdkVersion": "0.6.0",
+    "buildArtifacts": [
+      {
+        "path": "package.json",
+        "sha256": "61518ac7f910582f2cc29084856880adb3cbec426c78b7ed716287a9097988c4",
+        "snapshotPath": "inputs/build/package.json"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "917b9fd3a89254412cc7d40d4bfd0b1adb06d05d2214ae6fa713b2ab2e305a03",
+        "snapshotPath": "inputs/build/package-lock.json"
+      },
+      {
+        "path": "src/tools/mssr-semantic-evidence-tools.ts",
+        "sha256": "622269d203652cc9e1e29dfa3856e612bda9c7a2d2c37c18d27884ce13740289",
+        "snapshotPath": "inputs/build/src/tools/mssr-semantic-evidence-tools.ts"
+      },
+      {
+        "path": "scripts/read-windows-credential.ps1",
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e",
+        "snapshotPath": "inputs/build/scripts/read-windows-credential.ps1"
+      },
+      {
+        "path": "dist/tool-registry.js",
+        "sha256": "670a6cbdec428f7ad0bd6f7a13173c716fd013c3eb87a54d1c9bb38d7f626554",
+        "snapshotPath": "inputs/build/dist/tool-registry.js"
+      },
+      {
+        "path": "dist/tools/mssr-semantic-evidence-tools.js",
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa",
+        "snapshotPath": "inputs/build/dist/tools/mssr-semantic-evidence-tools.js"
+      },
+      {
+        "path": "node_modules/@mauroprime/mssr/package.json",
+        "sha256": "9a57998657fb40e8fae0ec44efef08592f6a332c807d15a90792cdd4a27e4ea2",
+        "snapshotPath": "inputs/build/node_modules/@mauroprime/mssr/package.json"
+      },
+      {
+        "path": "node_modules/@typesafe-ai/sdk/package.json",
+        "sha256": "b94bd1d862b166be53b0b91a36a2af27a0b14e397ffea8f0c53cbfcc9718c508",
+        "snapshotPath": "inputs/build/node_modules/@typesafe-ai/sdk/package.json"
+      },
+      {
+        "path": "vendor/mauroprime-mssr-0.2.127.tgz",
+        "sha256": "70e79ae6e472517501ffdd38c4b0eaad740652c7d570b600bf17f90023703bfc",
+        "snapshotPath": "inputs/build/vendor/mauroprime-mssr-0.2.127.tgz"
+      }
+    ],
+    "preRunCodeCommit": "138293dcec588005a83a45b6f6bbe0bd0740ab12"
+  },
+  "instrument": {
+    "runnerPath": "experiments/jev-mssr-live/runs/mssr-librarian-scope-miss-linked-20261012T0002Z-v1/runner.mjs",
+    "runnerSha256": "072ba164ceaa6db20cd9fc83fbb6881be444c7e766851bdbf600a5e7b49a78a5",
+    "selectionRecordPath": "experiments/jev-mssr-live/runs/mssr-librarian-scope-miss-linked-20261012T0002Z-v1/selection-record.mjs",
+    "selectionRecordSha256": "847a1224278ed09941526aff7d781842a854f21b3007e4e00ae357e84faa5834",
+    "runnerSupportPath": "experiments/jev-mssr-live/runs/mssr-librarian-scope-miss-linked-20261012T0002Z-v1/runner-support.mjs",
+    "runnerSupportSha256": "5e550121815ffce473e2624b1c465e06d08d8d06bf3a223e80f588b6ac841996",
+    "casesPath": "experiments/jev-mssr-live/runs/mssr-librarian-scope-miss-linked-20261012T0002Z-v1/inputs/cases.json",
+    "casesSha256": "48b822b5e50456ea0ab83a23ed01be750c57702ad9a290a144c0024fac3e1230",
+    "analysisPlanPath": "experiments/jev-mssr-live/runs/mssr-librarian-scope-miss-linked-20261012T0002Z-v1/inputs/analysis-plan.json",
+    "analysisPlanSha256": "2ad7c441a2df305bbeab82e168b4224fc8daca89a2c65dea10a5777280af0e2f",
+    "lockfileSha256": "917b9fd3a89254412cc7d40d4bfd0b1adb06d05d2214ae6fa713b2ab2e305a03",
+    "mssrProjectLockfileSha256": "0f587856d3bd0a86909565b230df601a752e71ba4955775e11be10e886329cda",
+    "runtime": "v24.16.0",
+    "requestSchemaVersion": 1
+  },
+  "labels": {
+    "adjudication": "source-derived linked diagnostic targets; known exposed cases; not owner-gold or holdout",
+    "labelFileSha256": "d4fb89f8068c9bbf4b26303f7a797d10a08532bdc4040766b6cad21479099624",
+    "labelFile": "experiments/jev-mssr-live/runs/mssr-librarian-scope-miss-linked-20261012T0002Z-v1/inputs/labels.json"
+  },
+  "provider": {
+    "mode": "live",
+    "provider": "TypeSafe Jev through clean Bridge 0.6.172 provider adapter",
+    "endpointIdentity": "https://api.typesafe.ai (TypeSafeClient.executeSystemOne; no credential)",
+    "requestedModel": "jev-1.13.0",
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "timeoutMs": 30000,
+    "maxRetries": 1,
+    "concurrency": 1,
+    "credentialSource": "Windows Credential Manager target TypeSafe:MSSR:JevLab; secret value not read or persisted",
+    "providerRequestIdsAvailable": "unknown before run",
+    "rawVendorResponsePersisted": false,
+    "networkOptIn": true,
+    "networkOptInMethod": "explicit command-line --allow-network plus user authorization recorded in manifest"
+  },
+  "plan": {
+    "minimumSupport": {
+      "overall": 30,
+      "interpretation": "reporting floor; this four-request linked diagnostic is below it and descriptive only"
+    },
+    "expectedRequestCount": 4,
+    "independentUnit": "two sourceRef clusters with two linked query variants each; not independent samples",
+    "primaryMetric": "Compare exact range selection, exact fetch/fingerprint and verbatim pack across the linked query pairs.",
+    "secondaryMetrics": [
+      "target present in search",
+      "blind literal excerpt coverage and overbreadth",
+      "returned scores and latency, descriptive only"
+    ],
+    "uncertaintyMethod": "raw linked counts only; no inference or calibration",
+    "excludedClaims": [
+      "owner-gold accuracy",
+      "holdout generalization",
+      "confidence calibration",
+      "production adoption",
+      "synthesis or paragraph composition"
+    ],
+    "noThresholdTuning": true
+  },
+  "corpus": {
+    "snapshotPath": "inputs/sources/",
+    "sourceRevision": "138293dcec588005a83a45b6f6bbe0bd0740ab12",
+    "redaction": "public MSSR architecture documents; two exact frozen source snapshots; no credentials or user-private corpus",
+    "items": 4,
+    "projectRoot": "D:\\Dev\\mssr",
+    "sources": [
+      {
+        "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+        "sha256": "6c8626f6d6cd8f8fca8ab53ef753ee14eafea4a45409d532bf839f08f3201649",
+        "snapshotPath": "inputs/sources/source-01.md"
+      },
+      {
+        "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+        "sha256": "63bac32774a54bdb8e7a5dd6021fa3f0351e491c6475cbb6745ce4c1e05ed2ad",
+        "snapshotPath": "inputs/sources/source-02.md"
+      }
+    ]
+  }
+}

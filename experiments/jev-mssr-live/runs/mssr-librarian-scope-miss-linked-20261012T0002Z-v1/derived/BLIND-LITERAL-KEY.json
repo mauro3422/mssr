@@ -1,0 +1,32 @@
+[
+  {
+    "case": "R1",
+    "caseId": "typed-confidence-baseline",
+    "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+    "selectedLines": [
+      null,
+      null
+    ],
+    "originalRecordOrder": 0
+  },
+  {
+    "case": "R2",
+    "caseId": "document-surface-body-baseline",
+    "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+    "selectedLines": [
+      null,
+      null
+    ],
+    "originalRecordOrder": 2
+  },
+  {
+    "case": "R3",
+    "caseId": "document-surface-revision-focused",
+    "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+    "selectedLines": [
+      null,
+      null
+    ],
+    "originalRecordOrder": 3
+  }
+]
