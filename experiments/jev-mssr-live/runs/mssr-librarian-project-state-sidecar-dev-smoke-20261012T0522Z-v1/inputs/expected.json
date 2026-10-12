@@ -1,0 +1,16 @@
+{
+  "caseId": "ES-CORE-SKILL-PACKAGE-01",
+  "labelStatus": "development-expectation-derived-from-current-owner-text; not owner-adjudicated; not holdout",
+  "expectedDisposition": "select",
+  "expectedSourceRef": ".mssr/PROJECT_STATE.md",
+  "expectedHeadingPath": [
+    "MSSR project state",
+    "Core skill package state"
+  ],
+  "expectedAnswerFacts": [
+    "five first-party operational skill roots",
+    "Semantic evidence is a core/MCP capability, not a separate skill"
+  ],
+  "distractorSourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+  "providerMustNotReceiveThisFile": true
+}

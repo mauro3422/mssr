@@ -1,0 +1,251 @@
+{
+  "projectOwner": "d:/dev/mssr",
+  "sourceCount": 2,
+  "metadataIndex": {
+    "mode": "project-context-librarian-sidecar",
+    "status": "applied",
+    "projectContextManifestRevision": "3e9b70a028124c49ff06c18cbcda3d6f5ce4cd9daf2e3f71cb6ad52581fd2a28",
+    "librarianManifestRevision": "9e80e6e2b9973b9bd4b32e55af3a65bb4d1325d01ede0eb2e4e91ca238f1abd7",
+    "segmentsManifestRevision": "dc4f3530a6b63f21356b327fcec91b88341c696ed4013de9e21572a3778c8de6",
+    "referencesManifestRevision": null,
+    "declared": 4,
+    "projected": 2,
+    "omitted": 2,
+    "items": [
+      {
+        "entryId": "mssr-architecture-impact-decision",
+        "headingPath": [
+          "Architecture impact review decision"
+        ],
+        "status": "omitted",
+        "issue": "source-not-provided"
+      },
+      {
+        "entryId": "mssr-learning-dataset-state",
+        "headingPath": [
+          "Learning dataset state"
+        ],
+        "status": "projected",
+        "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+        "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+        "rangeId": "heading-1",
+        "recordFingerprint": "1fe560c831e8f35e73d437beb927a80e8cabcb5aceb6451f8784591d812f023e",
+        "evidenceAtomId": "evidence-atom:82c47f2e70b09877d295f7c1"
+      },
+      {
+        "entryId": "mssr-core-skill-package-state",
+        "headingPath": [
+          "MSSR project state",
+          "Core skill package state"
+        ],
+        "status": "projected",
+        "sourceRef": ".mssr/PROJECT_STATE.md",
+        "revision": "1b2ab0bb899bbfddb7a1986aa2e537717952969072922536fa840f9ba270a29f",
+        "rangeId": "heading-4",
+        "recordFingerprint": "78e0c70269f6fbcd9b8b7541b1249c826fceb3a49ba984b33cf93831921b4be4",
+        "evidenceAtomId": "evidence-atom:d0399ccc389f2d2427c5f786"
+      },
+      {
+        "entryId": "mssr-jev-use-case-hypotheses",
+        "headingPath": [
+          "Jev, decisiones tipadas y casos de uso para MSSR",
+          "100 hipótesis de uso"
+        ],
+        "status": "omitted",
+        "issue": "source-not-provided"
+      }
+    ],
+    "selectorsAreProjectDeclared": true,
+    "sourceOwnerIsCallerAsserted": true,
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "canonicalRewriteAllowed": false
+  },
+  "results": [
+    {
+      "handle": {
+        "version": 1,
+        "id": "a77536306f7c387792c0c98f821654100927ac07d84acc1c64f068a7fcc9f7bd",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/PROJECT_STATE.md",
+        "revision": "1b2ab0bb899bbfddb7a1986aa2e537717952969072922536fa840f9ba270a29f",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "startLine": 79,
+        "endLine": 82,
+        "startOffset": 12005,
+        "endOffset": 12256,
+        "fingerprint": "1f17be3d645b3a41253d9da8ea2675f7ec70941b6dc619bdcedbd187f322804c",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 251,
+      "exactFetchable": true,
+      "score": 0.5,
+      "title": "Core skill package state",
+      "headingPath": [
+        "MSSR project state",
+        "Core skill package state"
+      ],
+      "snippet": "## Core skill package state Core package state: five first-party MSSR operational skill roots. Semantic evidence remains a core/MCP capability, not a new skill. Ownership policy: …",
+      "metadata": {
+        "sourceRef": ".mssr/PROJECT_STATE.md",
+        "revision": "1b2ab0bb899bbfddb7a1986aa2e537717952969072922536fa840f9ba270a29f",
+        "headingPath": [
+          "MSSR project state",
+          "Core skill package state"
+        ],
+        "level": 2,
+        "parentId": "heading-1",
+        "startLine": 79,
+        "endLine": 82,
+        "chars": 251,
+        "bytes": 251,
+        "terms": [
+          "core",
+          "package",
+          "skill",
+          "state",
+          "ownership",
+          "architecture",
+          "canonical",
+          "canonical-ownership"
+        ]
+      },
+      "metadataProjectionMatches": [
+        {
+          "schemaVersion": 1,
+          "projectionFingerprint": "8c7baedadf618dc21edfbdad21e0968492053f1daf37ac48e4dcd30c4202d17d",
+          "atomId": "evidence-atom:d0399ccc389f2d2427c5f786",
+          "recordFingerprint": "78e0c70269f6fbcd9b8b7541b1249c826fceb3a49ba984b33cf93831921b4be4",
+          "producer": "project-context-librarian",
+          "provenanceIsCallerAsserted": true,
+          "matches": [
+            {
+              "field": "artifact",
+              "value": "skill",
+              "queryTerms": [
+                "skill"
+              ]
+            }
+          ],
+          "filterMatches": [
+            {
+              "field": "domain",
+              "value": "skill-system"
+            }
+          ]
+        }
+      ],
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true,
+      "projectContextLibrarianBindings": [
+        {
+          "entryId": "mssr-core-skill-package-state",
+          "sourceRef": ".mssr/PROJECT_STATE.md",
+          "headingPath": [
+            "MSSR project state",
+            "Core skill package state"
+          ],
+          "rangeId": "heading-4"
+        }
+      ]
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "a4184120540f627067d789a4ee4fb9b29ed484d1efbd06d93826584f0e8bc263",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+        "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 7,
+        "startOffset": 0,
+        "endOffset": 2162,
+        "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 2162,
+      "exactFetchable": true,
+      "score": 0.25,
+      "title": "Learning dataset state",
+      "headingPath": [
+        "Learning dataset state"
+      ],
+      "snippet": "## Learning dataset state Semantic Experience remains separate from routing authority. `0.2.87` automatically projects the privacy-safe `learning-digest-v1` into bounded trace-lin…",
+      "metadata": {
+        "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+        "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+        "headingPath": [
+          "Learning dataset state"
+        ],
+        "level": 2,
+        "parentId": null,
+        "startLine": 1,
+        "endLine": 7,
+        "chars": 2162,
+        "bytes": 2162,
+        "terms": [
+          "dataset",
+          "learning",
+          "state",
+          "false",
+          "remains",
+          "context-selection",
+          "experience",
+          "routing"
+        ]
+      },
+      "metadataProjectionMatches": [
+        {
+          "schemaVersion": 1,
+          "projectionFingerprint": "531960207ccadaeccb920d179f8a11a4a1972bb46649272d6de814d671ad3cb9",
+          "atomId": "evidence-atom:82c47f2e70b09877d295f7c1",
+          "recordFingerprint": "1fe560c831e8f35e73d437beb927a80e8cabcb5aceb6451f8784591d812f023e",
+          "producer": "project-context-librarian",
+          "provenanceIsCallerAsserted": true,
+          "matches": [],
+          "filterMatches": [
+            {
+              "field": "domain",
+              "value": "skill-system"
+            }
+          ]
+        }
+      ],
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true,
+      "projectContextLibrarianBindings": [
+        {
+          "entryId": "mssr-learning-dataset-state",
+          "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+          "headingPath": [
+            "Learning dataset state"
+          ],
+          "rangeId": "heading-1"
+        }
+      ]
+    }
+  ],
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "truncated": false,
+  "bridgeNotices": {
+    "delivery": "automatic-drain",
+    "scope": "contextual",
+    "count": 0,
+    "remainingPending": 1,
+    "relevantPending": 0,
+    "otherPending": 1,
+    "globalPending": 0,
+    "globalHistoryTool": "bridge_notice_history",
+    "items": []
+  }
+}

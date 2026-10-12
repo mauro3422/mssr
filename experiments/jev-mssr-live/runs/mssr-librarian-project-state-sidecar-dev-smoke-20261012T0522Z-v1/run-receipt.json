@@ -1,0 +1,140 @@
+{
+  "schema": "mssr-librarian-run-receipt-v1",
+  "runId": "mssr-librarian-project-state-sidecar-dev-smoke-20261012T0522Z-v1",
+  "status": "completed-development-integration-smoke",
+  "recordedAt": "2026-10-12T05:40:00Z",
+  "frozenPreCallManifest": {
+    "path": "manifest.json",
+    "sha256Readback": "8b0457090fefd9669b73b3ab71d06fbbf88cc49297589671d71d9a54270aeac3",
+    "declaredStatus": "frozen-before-search-and-provider-call",
+    "providerCallsField": 0,
+    "leftUnmodified": true,
+    "hashCapture": "post-run-readback",
+    "contemporaneousPreCallChecksumIndex": false,
+    "note": "providerCalls is the frozen pre-call value; actual Jev calls are recorded below. Current readback hashes protect the packet but cannot retroactively prove bytes at freeze time."
+  },
+  "runtime": {
+    "bridgeVersion": "0.6.172",
+    "mssrPackageVersion": "0.2.127",
+    "mssrGitHead": "89538d0a3a9f453a01a667da3fc780b47e77b2dd",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "productionMutation": false,
+    "thresholdChanged": false
+  },
+  "calls": {
+    "sidecarSearchesSucceeded": 1,
+    "lexicalBaselineSearchesSucceeded": 1,
+    "jevChoiceCalls": 2,
+    "exactFetchCalls": 2,
+    "sidecarEvidencePackCalls": 1,
+    "lexicalEvidencePackCalls": 0,
+    "allSevenLibrarianCallsSucceeded": true
+  },
+  "usage": {
+    "sidecarInputTokens": 797,
+    "sidecarOutputTokens": 67,
+    "baselineInputTokens": 1704,
+    "baselineOutputTokens": 127,
+    "totalInputTokens": 2501,
+    "totalOutputTokens": 194,
+    "sumOfProviderElapsedMs": 1492.3,
+    "elapsedMsMeaning": "sum of Jev call durations, not end-to-end wall time"
+  },
+  "comparison": {
+    "sidecarCandidates": 2,
+    "baselineCandidates": 8,
+    "candidateReduction": 6,
+    "candidateReductionFraction": 0.75,
+    "sameSelectedRange": true,
+    "selectedHandleId": "a77536306f7c387792c0c98f821654100927ac07d84acc1c64f068a7fcc9f7bd",
+    "selectedSourceRef": ".mssr/PROJECT_STATE.md",
+    "selectedRangeId": "heading-4",
+    "selectedLines": [79, 82],
+    "selectedChars": 251,
+    "selectedRangeFingerprint": "1f17be3d645b3a41253d9da8ea2675f7ec70941b6dc619bdcedbd187f322804c",
+    "sidecarProviderConfidence": 1.0,
+    "sidecarEvidenceSufficiency": 0.88,
+    "baselineProviderConfidence": 0.93,
+    "baselineEvidenceSufficiency": 0.9,
+    "scoreCalibration": "uncalibrated-provider-scores; descriptive only"
+  },
+  "verification": {
+    "sidecarExactFetch": "passed",
+    "baselineExactFetch": "passed",
+    "sameFetchedText": true,
+    "sidecarEvidencePack": "validated",
+    "sidecarCitationCount": 1,
+    "lexicalEvidencePack": "not-run",
+    "sourceSnapshotHashesMatchManifest": true,
+    "metadataAuthorityHashesReproduceAtGitHead": true,
+    "metadataAuthoritiesCopiedIntoPacket": false,
+    "blindLunaCandidateReview": "completed-model-assisted-not-owner-gold",
+    "focusedTests": [
+      {
+        "command": "npm run test:librarian-contract",
+        "repository": "mssr",
+        "revision": "89538d0a3a9f453a01a667da3fc780b47e77b2dd",
+        "status": "passed"
+      },
+      {
+        "command": "npm run test:trace-identity",
+        "repository": "mssr",
+        "revision": "89538d0a3a9f453a01a667da3fc780b47e77b2dd",
+        "status": "passed"
+      },
+      {
+        "command": "npm run test:mssr-trace-owner-isolation",
+        "repository": "bridge-mcp-mssr-0.2.112-query-variants",
+        "revision": "3de489cf040f5e581b2b328521f4cbd44f2b81a9",
+        "status": "passed; includes TypeScript build"
+      }
+    ],
+    "bridgeHealthAtClose": {
+      "version": "0.6.172",
+      "runtimeBootId": "c25d1548-6654-4833-b5a4-994aa9d08ae9",
+      "healthz": "live",
+      "readyz": "ready",
+      "restartPending": false
+    }
+  },
+  "traceAttribution": {
+    "traceId": "mssr-jev-sidecar-metadata-dev-smoke-20261012-46",
+    "runtimeBootId": "c25d1548-6654-4833-b5a4-994aa9d08ae9",
+    "readOnlySourceReview": {
+      "bridgeCheckoutRevision": "3de489cf040f5e581b2b328521f4cbd44f2b81a9",
+      "runtimeSourceHashAttested": false,
+      "functionsReviewed": [
+        "recordMssrRoute",
+        "getMssrTraceEvidence",
+        "resolveMetricTaskKey",
+        "bindCompatibleTraceTask"
+      ]
+    },
+    "persistedRouteTaskKey": null,
+    "observedCallLevelTaskKeys": [
+      "mssr-jev-holdout-exposure-audit",
+      "mssr-jev-sidecar-metadata-dev-smoke"
+    ],
+    "interpretation": "The trace evidence schema reports call-level metric task keys separately from canonical route identity. This trace's route event has no persisted taskKey, so the two call-level values do not prove canonical identity migration.",
+    "traceEvidenceReadCallsExcludedFromExperiment": 3
+  },
+  "readbackHashes": {
+    "manifest.json": "8b0457090fefd9669b73b3ab71d06fbbf88cc49297589671d71d9a54270aeac3",
+    "inputs/expected.json": "323a493802948c812e91beb95ea5f585f029b50014cfc6830f28b3aa2b4ac28d",
+    "inputs/search-request.json": "3e91dac5b3df1fdd83ac6ab062ac56d8dd6d798ddcd302a4bc0bbb81df5957ff",
+    "sources/PROJECT_STATE.md": "4ad120d2369b9acdb2785233120f7e0780a5c937e11cefb2be7a5389efcca3cf",
+    "sources/mssr-learning-dataset-state.md": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+    "metadataAuthorities": {
+      ".mssr/project-context.json": "3e9b70a028124c49ff06c18cbcda3d6f5ce4cd9daf2e3f71cb6ad52581fd2a28",
+      ".mssr/project-context-librarian.json": "9e80e6e2b9973b9bd4b32e55af3a65bb4d1325d01ede0eb2e4e91ca238f1abd7"
+    }
+  },
+  "limitations": [
+    "One paired development query over previously exposed source material; not holdout, owner-gold, an independent sample, or reliability evidence.",
+    "No general recall or semantic-answer quality claim follows from retaining one sufficient range.",
+    "Provider confidence and evidence-sufficiency scores remain uncalibrated.",
+    "The lexical path did not build a separate evidence pack, so pack validation is sidecar-only.",
+    "No answer composition, contradiction learning, atom quality, or production policy was tested."
+  ]
+}

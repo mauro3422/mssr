@@ -1,0 +1,33 @@
+{
+  "projectOwner": "d:/dev/mssr",
+  "handle": {
+    "version": 1,
+    "id": "a77536306f7c387792c0c98f821654100927ac07d84acc1c64f068a7fcc9f7bd",
+    "owner": "d:/dev/mssr",
+    "sourceRef": ".mssr/PROJECT_STATE.md",
+    "revision": "1b2ab0bb899bbfddb7a1986aa2e537717952969072922536fa840f9ba270a29f",
+    "rangeId": "heading-4",
+    "rangeKind": "section",
+    "startLine": 79,
+    "endLine": 82,
+    "startOffset": 12005,
+    "endOffset": 12256,
+    "fingerprint": "1f17be3d645b3a41253d9da8ea2675f7ec70941b6dc619bdcedbd187f322804c",
+    "privacyClass": "project-metadata"
+  },
+  "text": "## Core skill package state\n\nCore package state: five first-party MSSR operational skill roots. Semantic evidence remains a core/MCP capability, not a new skill. Ownership policy: [canonical ownership](knowledge/architecture/canonical-ownership.md).\n\n",
+  "fingerprint": "1f17be3d645b3a41253d9da8ea2675f7ec70941b6dc619bdcedbd187f322804c",
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "bridgeNotices": {
+    "delivery": "automatic-drain",
+    "scope": "contextual",
+    "count": 0,
+    "remainingPending": 1,
+    "relevantPending": 0,
+    "otherPending": 1,
+    "globalPending": 0,
+    "globalHistoryTool": "bridge_notice_history",
+    "items": []
+  }
+}

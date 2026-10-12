@@ -1,0 +1,102 @@
+{
+  "projectOwner": "d:/dev/mssr",
+  "sourceCount": 2,
+  "status": "selected",
+  "candidateCount": 2,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "verification": "unverified",
+  "confidenceCalibration": "uncalibrated-provider-score",
+  "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+  "exactFetchRequired": true,
+  "autoApplyAllowed": false,
+  "candidateRangeDiagnostics": {
+    "offered": 2,
+    "eligible": 2,
+    "oversizedOmitted": 0,
+    "maxFetchChars": 20000,
+    "lengthUnit": "utf16-code-units"
+  },
+  "rangeOverlapDiagnostics": {
+    "sameSourceRevisionPairs": 0,
+    "overlappingPairCount": 0,
+    "nestedPairCount": 0,
+    "exactRangePairCount": 0,
+    "partialOverlapPairCount": 0,
+    "pairs": [],
+    "truncated": false,
+    "mutationApplied": false
+  },
+  "finalistCount": 2,
+  "selectionMode": "single-pass",
+  "selectionPasses": 1,
+  "providerCalls": 1,
+  "providerConfidence": 1,
+  "evidenceSufficiency": 0.88,
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "providersUsed": [
+    "typesafe-jev"
+  ],
+  "modelsUsed": [
+    "jev-1.13.0"
+  ],
+  "usage": {
+    "input_tokens": 797,
+    "output_tokens": 67
+  },
+  "requestFingerprint": "0c701ebfeb9b5c207acab989f58f7d8844b83257ce20ddf2e6715b8095236ebf",
+  "elapsedMs": 800,
+  "jevCallMade": true,
+  "selected": {
+    "optionId": "h001",
+    "title": "Core skill package state",
+    "headingPath": [
+      "MSSR project state",
+      "Core skill package state"
+    ],
+    "handle": {
+      "version": 1,
+      "id": "a77536306f7c387792c0c98f821654100927ac07d84acc1c64f068a7fcc9f7bd",
+      "owner": "d:/dev/mssr",
+      "sourceRef": ".mssr/PROJECT_STATE.md",
+      "revision": "1b2ab0bb899bbfddb7a1986aa2e537717952969072922536fa840f9ba270a29f",
+      "rangeId": "heading-4",
+      "rangeKind": "section",
+      "startLine": 79,
+      "endLine": 82,
+      "startOffset": 12005,
+      "endOffset": 12256,
+      "fingerprint": "1f17be3d645b3a41253d9da8ea2675f7ec70941b6dc619bdcedbd187f322804c",
+      "privacyClass": "project-metadata"
+    }
+  },
+  "choiceCalls": [
+    {
+      "questionKey": "selection",
+      "offeredOptionIds": [
+        "h001",
+        "h002",
+        "none"
+      ],
+      "selectedOptionId": "h001",
+      "confidence": 1,
+      "probabilities": {
+        "h001": 1,
+        "h002": 0,
+        "none": 0
+      }
+    }
+  ],
+  "bridgeNotices": {
+    "delivery": "automatic-drain",
+    "scope": "contextual",
+    "count": 0,
+    "remainingPending": 1,
+    "relevantPending": 0,
+    "otherPending": 1,
+    "globalPending": 0,
+    "globalHistoryTool": "bridge_notice_history",
+    "items": []
+  }
+}

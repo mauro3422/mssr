@@ -1,0 +1,454 @@
+{
+  "projectOwner": "d:/dev/mssr",
+  "sourceCount": 2,
+  "results": [
+    {
+      "handle": {
+        "version": 1,
+        "id": "1a08a3464ef0f93fce64e06d197956dd910cd614b4ed73ee87d0c6553f507778",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/PROJECT_STATE.md",
+        "revision": "1b2ab0bb899bbfddb7a1986aa2e537717952969072922536fa840f9ba270a29f",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 103,
+        "startOffset": 0,
+        "endOffset": 15230,
+        "fingerprint": "9c7781d006836151558332d3508b755943270a849dab167a33d2e309868bc224",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 15230,
+      "exactFetchable": true,
+      "score": 0.5,
+      "title": "MSSR project state",
+      "headingPath": [
+        "MSSR project state"
+      ],
+      "snippet": "# MSSR project state ## Current release MSSR 0.2.127 (package SHA-256 `70e79ae6e472517501ffdd38c4b0eaad740652c7d570b600bf17f90023703bfc`) remains active in Bridge 0.6.172. Control…",
+      "metadata": {
+        "sourceRef": ".mssr/PROJECT_STATE.md",
+        "revision": "1b2ab0bb899bbfddb7a1986aa2e537717952969072922536fa840f9ba270a29f",
+        "headingPath": [
+          "MSSR project state"
+        ],
+        "level": 1,
+        "parentId": null,
+        "startLine": 1,
+        "endLine": 103,
+        "chars": 15230,
+        "bytes": 15266,
+        "terms": [
+          "mssr",
+          "state",
+          "bridge",
+          "remains",
+          "active",
+          "delivery",
+          "dev",
+          "mcp"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "a77536306f7c387792c0c98f821654100927ac07d84acc1c64f068a7fcc9f7bd",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/PROJECT_STATE.md",
+        "revision": "1b2ab0bb899bbfddb7a1986aa2e537717952969072922536fa840f9ba270a29f",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "startLine": 79,
+        "endLine": 82,
+        "startOffset": 12005,
+        "endOffset": 12256,
+        "fingerprint": "1f17be3d645b3a41253d9da8ea2675f7ec70941b6dc619bdcedbd187f322804c",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 251,
+      "exactFetchable": true,
+      "score": 0.5,
+      "title": "Core skill package state",
+      "headingPath": [
+        "MSSR project state",
+        "Core skill package state"
+      ],
+      "snippet": "## Core skill package state Core package state: five first-party MSSR operational skill roots. Semantic evidence remains a core/MCP capability, not a new skill. Ownership policy: …",
+      "metadata": {
+        "sourceRef": ".mssr/PROJECT_STATE.md",
+        "revision": "1b2ab0bb899bbfddb7a1986aa2e537717952969072922536fa840f9ba270a29f",
+        "headingPath": [
+          "MSSR project state",
+          "Core skill package state"
+        ],
+        "level": 2,
+        "parentId": "heading-1",
+        "startLine": 79,
+        "endLine": 82,
+        "chars": 251,
+        "bytes": 251,
+        "terms": [
+          "core",
+          "package",
+          "skill",
+          "state",
+          "ownership",
+          "architecture",
+          "canonical",
+          "canonical-ownership"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "acd26e1f8fc1e570d8193a5c526c064259f90b2a0508753b5e9961b7693e6f3e",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/PROJECT_STATE.md",
+        "revision": "1b2ab0bb899bbfddb7a1986aa2e537717952969072922536fa840f9ba270a29f",
+        "rangeId": "block-12",
+        "rangeKind": "block",
+        "startLine": 81,
+        "endLine": 81,
+        "startOffset": 12034,
+        "endOffset": 12254,
+        "fingerprint": "5bc1c5f7dc74d7666099f1694f47f06a084914f9f7d0a75a1ab48dae73571307",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 220,
+      "exactFetchable": true,
+      "score": 0.5,
+      "title": "Core skill package state",
+      "headingPath": [
+        "MSSR project state",
+        "Core skill package state"
+      ],
+      "snippet": "Core package state: five first-party MSSR operational skill roots. Semantic evidence remains a core/MCP capability, not a new skill. Ownership policy: [canonical ownership](knowle…",
+      "metadata": {
+        "sourceRef": ".mssr/PROJECT_STATE.md",
+        "revision": "1b2ab0bb899bbfddb7a1986aa2e537717952969072922536fa840f9ba270a29f",
+        "headingPath": [
+          "MSSR project state",
+          "Core skill package state"
+        ],
+        "blockKind": "prose",
+        "sectionId": "heading-4",
+        "startLine": 81,
+        "endLine": 81,
+        "chars": 220,
+        "bytes": 220,
+        "terms": [
+          "core",
+          "ownership",
+          "skill",
+          "architecture",
+          "canonical",
+          "canonical-ownership",
+          "capability",
+          "evidence"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "08a5a0d4ccc09a89e7c1ed467be8fb81adcbec4aa98d45b0658ae8a45ee99083",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/PROJECT_STATE.md",
+        "revision": "1b2ab0bb899bbfddb7a1986aa2e537717952969072922536fa840f9ba270a29f",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "startLine": 83,
+        "endLine": 100,
+        "startOffset": 12256,
+        "endOffset": 14760,
+        "fingerprint": "094322c3504bf1299568746b5ccbd6d9014e61d82c175d004baee7e6727cbeda",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 2504,
+      "exactFetchable": true,
+      "score": 0.333333,
+      "title": "Machine-readable current-state claims",
+      "headingPath": [
+        "MSSR project state",
+        "Machine-readable current-state claims"
+      ],
+      "snippet": "…# Machine-readable current-state claims <!-- mssr-state:roadmap.r1=completed --> <!-- mssr-state:roadmap.r2=completed --> <!-- mssr-state:roadmap.r3=completed --> <!-- mssr-state…",
+      "metadata": {
+        "sourceRef": ".mssr/PROJECT_STATE.md",
+        "revision": "1b2ab0bb899bbfddb7a1986aa2e537717952969072922536fa840f9ba270a29f",
+        "headingPath": [
+          "MSSR project state",
+          "Machine-readable current-state claims"
+        ],
+        "level": 2,
+        "parentId": "heading-1",
+        "startLine": 83,
+        "endLine": 100,
+        "chars": 2504,
+        "bytes": 2514,
+        "terms": [
+          "claims",
+          "current-state",
+          "machine-readable",
+          "mssr-state",
+          "roadmap",
+          "completed",
+          "mssr-version",
+          "bridge"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "a4184120540f627067d789a4ee4fb9b29ed484d1efbd06d93826584f0e8bc263",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+        "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 7,
+        "startOffset": 0,
+        "endOffset": 2162,
+        "fingerprint": "b9a5d537123324715a44b36687da6298a3cf4189405ced7e6894af6e13a98bbd",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 2162,
+      "exactFetchable": true,
+      "score": 0.25,
+      "title": "Learning dataset state",
+      "headingPath": [
+        "Learning dataset state"
+      ],
+      "snippet": "## Learning dataset state Semantic Experience remains separate from routing authority. `0.2.87` automatically projects the privacy-safe `learning-digest-v1` into bounded trace-lin…",
+      "metadata": {
+        "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+        "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+        "headingPath": [
+          "Learning dataset state"
+        ],
+        "level": 2,
+        "parentId": null,
+        "startLine": 1,
+        "endLine": 7,
+        "chars": 2162,
+        "bytes": 2162,
+        "terms": [
+          "dataset",
+          "learning",
+          "state",
+          "false",
+          "remains",
+          "context-selection",
+          "experience",
+          "routing"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "693cadd4af234d2d6ddd4490a9ba318c27cc8b7883cdf24771357caed4a71f3e",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/PROJECT_STATE.md",
+        "revision": "1b2ab0bb899bbfddb7a1986aa2e537717952969072922536fa840f9ba270a29f",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 7,
+        "endLine": 78,
+        "startOffset": 1425,
+        "endOffset": 12005,
+        "fingerprint": "96c04879662605ea3fdf021f9dc839d4459bc688d52853fafd7ab9091b1020c9",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 10580,
+      "exactFetchable": true,
+      "score": 0.25,
+      "title": "Current Jev/Librarian evaluation",
+      "headingPath": [
+        "MSSR project state",
+        "Current Jev/Librarian evaluation"
+      ],
+      "snippet": "…rated; active production is Bridge 0.6.172 / MSSR 0.2.127. Prior runs 37–39 exercised live Jev 1.13.0 on one real MSSR architecture-impact document using a metadata-selected sour…",
+      "metadata": {
+        "sourceRef": ".mssr/PROJECT_STATE.md",
+        "revision": "1b2ab0bb899bbfddb7a1986aa2e537717952969072922536fa840f9ba270a29f",
+        "headingPath": [
+          "MSSR project state",
+          "Current Jev/Librarian evaluation"
+        ],
+        "level": 2,
+        "parentId": "heading-1",
+        "startLine": 7,
+        "endLine": 78,
+        "chars": 10580,
+        "bytes": 10604,
+        "terms": [
+          "evaluation",
+          "jev",
+          "librarian",
+          "runs",
+          "exact",
+          "run",
+          "experiments",
+          "jev-mssr-live"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "c61c476ed4fb2d274f3994debfe042e0e8c571be343b640e4bf1fc23ab19e65c",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+        "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+        "rangeId": "block-1",
+        "rangeKind": "block",
+        "startLine": 3,
+        "endLine": 3,
+        "startOffset": 27,
+        "endOffset": 889,
+        "fingerprint": "3526b6c9cea70e3ef28439974d9ec46709dcdf784696aa69fa2a4f640c05b8ce",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 862,
+      "exactFetchable": true,
+      "score": 0.25,
+      "title": "Learning dataset state",
+      "headingPath": [
+        "Learning dataset state"
+      ],
+      "snippet": "Semantic Experience remains separate from routing authority. `0.2.87` automatically projects the privacy-safe `learning-digest-v1` into bounded trace-linked context-selection, dri…",
+      "metadata": {
+        "sourceRef": ".mssr/knowledge/state/mssr-learning-dataset-state.md",
+        "revision": "5dfa844a0d0bc18da4251aa34734b453485e90044af72e0d67f3de9858905188",
+        "headingPath": [
+          "Learning dataset state"
+        ],
+        "blockKind": "prose",
+        "sectionId": "heading-1",
+        "startLine": 3,
+        "endLine": 3,
+        "chars": 862,
+        "bytes": 862,
+        "terms": [
+          "false",
+          "remains",
+          "context-selection",
+          "experience",
+          "routing",
+          "semantic",
+          "shadows",
+          "abstention"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "044f82d131ffd5a68c90ed9929b4f1465ee0ba9f23ecae1bcfedb225a02fd7f0",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/PROJECT_STATE.md",
+        "revision": "1b2ab0bb899bbfddb7a1986aa2e537717952969072922536fa840f9ba270a29f",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 9,
+        "endLine": 10,
+        "startOffset": 1462,
+        "endOffset": 4510,
+        "fingerprint": "16805947d0d0e5e89c3eb322bf4180a2a346ddcf7a60acd3d938922767c85598",
+        "privacyClass": "project-metadata"
+      },
+      "rangeCodeUnits": 3048,
+      "exactFetchable": true,
+      "score": 0.25,
+      "title": "Current Jev/Librarian evaluation",
+      "headingPath": [
+        "MSSR project state",
+        "Current Jev/Librarian evaluation"
+      ],
+      "snippet": "…rated; active production is Bridge 0.6.172 / MSSR 0.2.127. Prior runs 37–39 exercised live Jev 1.13.0 on one real MSSR architecture-impact document using a metadata-selected sour…",
+      "metadata": {
+        "sourceRef": ".mssr/PROJECT_STATE.md",
+        "revision": "1b2ab0bb899bbfddb7a1986aa2e537717952969072922536fa840f9ba270a29f",
+        "headingPath": [
+          "MSSR project state",
+          "Current Jev/Librarian evaluation"
+        ],
+        "blockKind": "prose",
+        "sectionId": "heading-3",
+        "startLine": 9,
+        "endLine": 10,
+        "chars": 3048,
+        "bytes": 3058,
+        "terms": [
+          "runs",
+          "exact",
+          "run",
+          "experiments",
+          "jev",
+          "jev-mssr-live",
+          "source",
+          "production"
+        ]
+      },
+      "evidenceTier": "candidate",
+      "advisoryOnly": true,
+      "truthAuthority": false,
+      "ownerAndPrivacyAreCallerAsserted": true,
+      "catalogProvenanceIsCallerAsserted": true
+    }
+  ],
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "truncated": true,
+  "bridgeNotices": {
+    "delivery": "automatic-drain",
+    "scope": "contextual",
+    "count": 0,
+    "remainingPending": 1,
+    "relevantPending": 0,
+    "otherPending": 1,
+    "globalPending": 0,
+    "globalHistoryTool": "bridge_notice_history",
+    "items": []
+  }
+}

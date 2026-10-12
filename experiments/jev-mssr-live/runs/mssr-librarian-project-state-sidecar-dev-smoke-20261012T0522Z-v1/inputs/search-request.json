@@ -1,0 +1,16 @@
+{
+  "projectRoot": "D:/Dev/mssr",
+  "sourceRefs": [
+    ".mssr/PROJECT_STATE.md",
+    ".mssr/knowledge/state/mssr-learning-dataset-state.md"
+  ],
+  "metadataMode": "project-context-librarian-sidecar",
+  "query": {
+    "query": "¿Cuántas raíces operativas first-party tiene el paquete core de MSSR y semantic evidence es una skill aparte?",
+    "metadata": {
+      "domain": "skill-system"
+    },
+    "maxResults": 8,
+    "maxSnippetChars": 180
+  }
+}

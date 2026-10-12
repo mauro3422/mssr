@@ -1,0 +1,259 @@
+{
+  "projectOwner": "d:/dev/mssr",
+  "sourceCount": 2,
+  "status": "selected",
+  "candidateCount": 8,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "verification": "unverified",
+  "confidenceCalibration": "uncalibrated-provider-score",
+  "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+  "exactFetchRequired": true,
+  "autoApplyAllowed": false,
+  "candidateRangeDiagnostics": {
+    "offered": 8,
+    "eligible": 8,
+    "oversizedOmitted": 0,
+    "maxFetchChars": 20000,
+    "lengthUnit": "utf16-code-units"
+  },
+  "rangeOverlapDiagnostics": {
+    "sameSourceRevisionPairs": 16,
+    "overlappingPairCount": 8,
+    "nestedPairCount": 8,
+    "exactRangePairCount": 0,
+    "partialOverlapPairCount": 0,
+    "pairs": [
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          103
+        ],
+        "rightOptionId": "h002",
+        "rightRangeId": "heading-4",
+        "rightRangeKind": "section",
+        "rightLines": [
+          79,
+          82
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 251
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          103
+        ],
+        "rightOptionId": "h003",
+        "rightRangeId": "block-12",
+        "rightRangeKind": "block",
+        "rightLines": [
+          81,
+          81
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 220
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          103
+        ],
+        "rightOptionId": "h004",
+        "rightRangeId": "heading-5",
+        "rightRangeKind": "section",
+        "rightLines": [
+          83,
+          100
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 2504
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          103
+        ],
+        "rightOptionId": "h006",
+        "rightRangeId": "heading-3",
+        "rightRangeKind": "section",
+        "rightLines": [
+          7,
+          78
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 10580
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          103
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-2",
+        "rightRangeKind": "block",
+        "rightLines": [
+          9,
+          10
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 3048
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-4",
+        "leftRangeKind": "section",
+        "leftLines": [
+          79,
+          82
+        ],
+        "rightOptionId": "h003",
+        "rightRangeId": "block-12",
+        "rightRangeKind": "block",
+        "rightLines": [
+          81,
+          81
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 220
+      },
+      {
+        "leftOptionId": "h005",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          7
+        ],
+        "rightOptionId": "h007",
+        "rightRangeId": "block-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          3,
+          3
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 862
+      },
+      {
+        "leftOptionId": "h006",
+        "leftRangeId": "heading-3",
+        "leftRangeKind": "section",
+        "leftLines": [
+          7,
+          78
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-2",
+        "rightRangeKind": "block",
+        "rightLines": [
+          9,
+          10
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 3048
+      }
+    ],
+    "truncated": false,
+    "mutationApplied": false
+  },
+  "finalistCount": 8,
+  "selectionMode": "single-pass",
+  "selectionPasses": 1,
+  "providerCalls": 1,
+  "providerConfidence": 0.93,
+  "evidenceSufficiency": 0.9,
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "providersUsed": [
+    "typesafe-jev"
+  ],
+  "modelsUsed": [
+    "jev-1.13.0"
+  ],
+  "usage": {
+    "input_tokens": 1704,
+    "output_tokens": 127
+  },
+  "requestFingerprint": "256d1da5595eba7efade86a100eadbea466dc167debd60a5792ee8408ce97f93",
+  "elapsedMs": 692.3,
+  "jevCallMade": true,
+  "selected": {
+    "optionId": "h002",
+    "title": "Core skill package state",
+    "headingPath": [
+      "MSSR project state",
+      "Core skill package state"
+    ],
+    "handle": {
+      "version": 1,
+      "id": "a77536306f7c387792c0c98f821654100927ac07d84acc1c64f068a7fcc9f7bd",
+      "owner": "d:/dev/mssr",
+      "sourceRef": ".mssr/PROJECT_STATE.md",
+      "revision": "1b2ab0bb899bbfddb7a1986aa2e537717952969072922536fa840f9ba270a29f",
+      "rangeId": "heading-4",
+      "rangeKind": "section",
+      "startLine": 79,
+      "endLine": 82,
+      "startOffset": 12005,
+      "endOffset": 12256,
+      "fingerprint": "1f17be3d645b3a41253d9da8ea2675f7ec70941b6dc619bdcedbd187f322804c",
+      "privacyClass": "project-metadata"
+    }
+  },
+  "choiceCalls": [
+    {
+      "questionKey": "selection",
+      "offeredOptionIds": [
+        "h001",
+        "h002",
+        "h003",
+        "h004",
+        "h005",
+        "h006",
+        "h007",
+        "h008",
+        "none"
+      ],
+      "selectedOptionId": "h002",
+      "confidence": 0.93,
+      "probabilities": {
+        "h001": 0,
+        "h002": 0.9400000000000001,
+        "h003": 0.06,
+        "h004": 0,
+        "h005": 0,
+        "h006": 0,
+        "h007": 0,
+        "h008": 0,
+        "none": 0
+      }
+    }
+  ],
+  "bridgeNotices": {
+    "delivery": "automatic-drain",
+    "scope": "contextual",
+    "count": 0,
+    "remainingPending": 1,
+    "relevantPending": 0,
+    "otherPending": 1,
+    "globalPending": 0,
+    "globalHistoryTool": "bridge_notice_history",
+    "items": []
+  }
+}
