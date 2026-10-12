@@ -1,0 +1,163 @@
+{
+  "schema": "mssr-jev-frozen-evidence-sha256-v1",
+  "createdAt": "2026-10-12T09:44:21.604Z",
+  "checkpoint": "post-call integrity lock; not a pre-call or provider-isolation attestation",
+  "files": [
+    {
+      "path": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/inputs/labels.json",
+      "bytes": 5062,
+      "sha256": "4a573da8cd8fa8021a67928a36445a1a4520731ea3c847b198311d4457c5dfd8"
+    },
+    {
+      "path": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/manifest.json",
+      "bytes": 4923,
+      "sha256": "a869b928d8003dbf4db0236fa217e5908b29af85849cf57f5b44dc2d546fcf4c"
+    },
+    {
+      "path": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/raw/EF-01-EN.search.json",
+      "bytes": 479,
+      "sha256": "2a243b4a4945bc30a0a491f6ba48d681373f74849e156c849053205134cbcb7a"
+    },
+    {
+      "path": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/raw/EF-NEG-01.search.json",
+      "bytes": 15317,
+      "sha256": "e3d888a5aff1a31579de9d9bf745a4fdc5c134cf42521bb8ba24317f5d31524e"
+    },
+    {
+      "path": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/raw/ERS-01-ES.search.json",
+      "bytes": 883,
+      "sha256": "6c925d53b15cc878b2870db47e889a953ba27f8794713ea44fd2fcb0f9742c25"
+    },
+    {
+      "path": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/raw/ERS-NEG-01.search.json",
+      "bytes": 21830,
+      "sha256": "634b99dad635574d57c6933e1b42eecc479442bd86c97a163b13d8f2e2755265"
+    },
+    {
+      "path": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/raw/KODE-01-ES.search.json",
+      "bytes": 23315,
+      "sha256": "23f3aefef7bb2f118d482d8cb84e4872cbb83c90988acc699a6aab35e1644fc5"
+    },
+    {
+      "path": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/raw/KODE-NEG-01.search.json",
+      "bytes": 22686,
+      "sha256": "81c3f529b80e0aa196eeefd79446aea67bacab64383d85caff90996e72f51cff"
+    },
+    {
+      "path": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/sources/electronics-repair-simulator.md",
+      "bytes": 14150,
+      "sha256": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77"
+    },
+    {
+      "path": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/sources/elemental-frontier.md",
+      "bytes": 2436,
+      "sha256": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe"
+    },
+    {
+      "path": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/sources/kode.md",
+      "bytes": 16917,
+      "sha256": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672"
+    },
+    {
+      "path": "inputs/amendments.json",
+      "bytes": 3417,
+      "sha256": "44f091ef99f34bf881ca151ea52d9afb0c75be4e556a290b35e3ba8da9a8dd3c"
+    },
+    {
+      "path": "inputs/queries.json",
+      "bytes": 3617,
+      "sha256": "27f472cc85a5dbca3ace2b3251e7839b5a01805980743f5a7f296a6378a79668"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 3107,
+      "sha256": "496e628393cb91c84cd38d83505e253a1842c0f61586ed95cddc7836222a8774"
+    },
+    {
+      "path": "raw/cross-project-trace-owner-mismatch.json",
+      "bytes": 929,
+      "sha256": "fb86c4d9236300963e9e91ccc0ef000131ac43c139cf2a0232a028ab695584f9"
+    },
+    {
+      "path": "raw/EF-01-EN.jev.json",
+      "bytes": 11300,
+      "sha256": "6d3c8674e3a2c18b16ff81a6bca542bcad7b67b7239462a0b8299a990376ebf5"
+    },
+    {
+      "path": "raw/EF-01-EN.primary-only-control.search.json",
+      "bytes": 3368,
+      "sha256": "a2528bac25157345260585574be2366614a7ef3b26154ee5ea348c3f664d5ed7"
+    },
+    {
+      "path": "raw/EF-01-EN.search.json",
+      "bytes": 25357,
+      "sha256": "d681aea768e2a3b61708b7b766a367335034f6d4fc781108e8c6bb4547b7bab0"
+    },
+    {
+      "path": "raw/EF-NEG-01.jev.json",
+      "bytes": 19001,
+      "sha256": "ed9b0e881134ade74f1e9cb63176f755f969d8edeca941861c19d9ba43b35a01"
+    },
+    {
+      "path": "raw/EF-NEG-01.primary-only-control.search.json",
+      "bytes": 33286,
+      "sha256": "1bada47ea10ae959320dc7d6c4302b90162c0d44e57b28f6eba9deedd0499e4f"
+    },
+    {
+      "path": "raw/EF-NEG-01.search.json",
+      "bytes": 48229,
+      "sha256": "a639c3dfc4315948c51fb23e8ee337df5d6007e89255d2a73ae4135f664f5637"
+    },
+    {
+      "path": "raw/EF-project-context-budget-gate.json",
+      "bytes": 1017,
+      "sha256": "bee9604cd10b9c90518c8dddefd98ffb5a9757fe1103c696f250e1c0ec945051"
+    },
+    {
+      "path": "raw/ERS-01-ES.jev.json",
+      "bytes": 23177,
+      "sha256": "6552e48cf2a4c2e41427d19e5a23e6c02e4a579035acad5edd008901eace9453"
+    },
+    {
+      "path": "raw/ERS-01-ES.primary-only-control.search.json",
+      "bytes": 1506,
+      "sha256": "5c8312da1f2e28f656b6e39f3caddfe3119b718799dd401c066360dfdaa5426b"
+    },
+    {
+      "path": "raw/ERS-01-ES.search.json",
+      "bytes": 48428,
+      "sha256": "a9f122c605b720074ca2de92973b7d9460e513f61f4637873413bfe04690fb02"
+    },
+    {
+      "path": "raw/ERS-direct-connector-trace-block.json",
+      "bytes": 737,
+      "sha256": "67f6be3fc888ebc544b03351d40398c5b2207bb2d1261a5612b51698deb6525d"
+    },
+    {
+      "path": "raw/ERS-NEG-01.search.json",
+      "bytes": 41819,
+      "sha256": "f0f4c6f2823987f26faa7fd0bf9c06e26374763a6b4cc07f7906a1517aadfd24"
+    },
+    {
+      "path": "raw/KODE-01-ES.search.json",
+      "bytes": 54283,
+      "sha256": "464108be835f1ac9cad1197a6a22e36979fa8c68edb777a92a05b226f612225b"
+    },
+    {
+      "path": "raw/KODE-NEG-01.search.json",
+      "bytes": 43865,
+      "sha256": "f09cc2b7d82364cb53b113b124e747bf76a6c19a822565a65208829c18f688d0"
+    },
+    {
+      "path": "RUN-PLAN.md",
+      "bytes": 3420,
+      "sha256": "a401f1fe7f2052a7e3e8b806a7f9d8e22019a20ca245530240704501eacf7874"
+    },
+    {
+      "path": "scripts/aggregate-run.mjs",
+      "bytes": 30276,
+      "sha256": "448907ffd050d4fe185119d8c4364205c9d00fba1b23b33c356cdd12b00080e3"
+    }
+  ],
+  "inventorySha256": "9cab12e8b26f616a98b992a35f01505601f8cd50ca489b0111dbe055e5011c52"
+}

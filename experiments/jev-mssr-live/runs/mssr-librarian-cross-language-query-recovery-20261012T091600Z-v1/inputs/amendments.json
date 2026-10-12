@@ -1,0 +1,47 @@
+{
+  "schema": "mssr-librarian-cross-language-query-recovery-amendments-v1",
+  "runId": "mssr-librarian-cross-language-query-recovery-20261012T091600Z-v1",
+  "amendments": [
+    {
+      "id": "ef-same-source-primary-control",
+      "observedAt": "2026-10-12T09:29:53Z",
+      "reason": "After the variant calls, Run45 EF raw handles were found to carry revision a51fe..., while Run45's declared snapshot SHA-256 and current clean EF file are 07d5.... The exact historical EF search text/source is unresolved, so the old EF comparison is not treated as paired.",
+      "change": "Add metadata-off primary-only EF positive and negative searches against the exact Run46 frozen snapshot (revision 07d5...) to form a valid within-run comparison. Keep all Run45 artifacts unchanged.",
+      "frozenPlanChanged": false,
+      "labelsExposedToProvider": false,
+      "sourceWrites": false,
+      "outputs": [
+        "raw/EF-01-EN.primary-only-control.search.json",
+        "raw/EF-NEG-01.primary-only-control.search.json"
+      ],
+      "expectedUse": "Deterministic lexical search comparison only; no additional Jev call."
+    },
+    {
+      "id": "ers-same-source-primary-control",
+      "observedAt": "2026-10-12T09:39:56Z",
+      "reason": "The Run45 ERS-01-ES primary receipt contains zero candidate handles, so it cannot attest the source revision used by that search. Run45's manifest snapshot hash matches the Run46 source, but that alone does not bind the empty search response to that revision.",
+      "change": "Before another provider call, add one metadata-off ERS primary-only search using the exact Run46 sourceRef and query on the same Bridge runtime as the variant arm. Record the source hash before and after. Do not call Jev or edit the ERS repository.",
+      "frozenPlanChanged": false,
+      "labelsExposedToProvider": false,
+      "sourceWrites": false,
+      "outputs": [
+        "raw/ERS-01-ES.primary-only-control.search.json"
+      ],
+      "expectedUse": "Validate the ERS primary/variant comparison on the same live Bridge source and revision; no additional Jev call."
+    }
+  ],
+  "observedSourceEvidence": {
+    "declaredRun45SnapshotSha256": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+    "currentEfSourceSha256": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+    "currentEfGitBlob": "36083f72c19610d5fc2fc4f65f19913d93048ae5",
+    "currentEfHead": "9c6b160",
+    "run45RawHandleRevision": "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d",
+    "interpretation": "Conflicting source identity evidence. Do not infer that the bytes are equivalent until the historical provider input is recovered.",
+    "ersRun45EmptyReceipt": "The primary search returned no candidate handles and therefore no receipt-level source revision.",
+    "currentErsSourceSha256BeforeControl": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+    "currentErsSourceSha256AfterControl": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+    "ersPrimaryControlObservedAt": "2026-10-12T09:40:43Z/2026-10-12T09:40:45Z",
+    "ersPrimaryControlCandidateCount": 0,
+    "ersInterpretation": "The current source stayed byte-identical across the Bridge call. The empty response still has no handle revision; comparability is bound by the pre/post file hashes and exact request sourceRef, not by returned-handle metadata."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "mssr-cross-project-trace-owner-mismatch-evidence-v1",
+  "observedAt": "2026-10-12T09:18:32.483Z",
+  "parentTraceId": "mssr-20261012-jev-cross-language-query-recovery",
+  "attemptedProject": "D:/Dev/kode",
+  "tool": "mssr_librarian_search",
+  "outcome": "rejected-before-target-execution",
+  "message": "La traza explícita mssr-20261012-jev-cross-language-query-recovery pertenece a otro owner y no puede adoptarse para este proyecto/workflow.",
+  "ownerEvidence": {
+    "existingProject": "mssr",
+    "requestedProject": "kode",
+    "existingWorkflowKey": "mssr-jev-cross-project-cohort",
+    "requestedWorkflowKey": null,
+    "mismatchFields": [
+      "project"
+    ],
+    "ownerStatus": "project-mismatch"
+  },
+  "correction": "Created separately owned child traces for Kode and ERS linked to the MSSR parent; EF uses its own child trace but searches through portable MSSR after a project-context core gate."
+}

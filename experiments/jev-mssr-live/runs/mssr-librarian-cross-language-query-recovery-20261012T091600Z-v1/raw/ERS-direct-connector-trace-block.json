@@ -1,0 +1,18 @@
+{
+  "schema": "mssr-bridge-jev-trace-propagation-gate-v1",
+  "projectRoot": "D:/Dev/electronics-repair-simulator",
+  "traceId": "mssr-20261012-jev-cross-language-ers",
+  "tool": "mssr_librarian_jev_select",
+  "outcome": "direct-connector-blocked-before-provider",
+  "evidence": {
+    "status": "mssr-lifecycle-preflight-required",
+    "traceId": null,
+    "effect": "external-side-effect",
+    "routePresent": false,
+    "reasonCodes": [
+      "managed-trace-missing",
+      "side-effectful-operation"
+    ]
+  },
+  "correction": "Replayed the exact runtime call through bridge_tool_action with confirmToolName=mssr_librarian_jev_select and the explicit ERS child trace; wrapper result confirms providerCalls=1, provider=typesafe-jev."
+}

@@ -1,0 +1,170 @@
+{
+  "request": {
+    "projectRoot": "D:\\Dev\\electronics-repair-simulator",
+    "sourceRefs": [
+      "docs/ELECTRONICS_MODULAR_SYSTEM.md"
+    ],
+    "query": "¿Cuáles son las tres capas explícitas del modelado del dispositivo y cuál es responsable de ubicar los componentes atómicos?",
+    "candidateHandles": [
+      {
+        "version": 1,
+        "id": "4322c931bc80a9271428cd3243a6c48d6fb4733d112ef28af37630761789acc2",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 384,
+        "startOffset": 0,
+        "endOffset": 14127,
+        "fingerprint": "ba2a3c79027433fdbb263f518b93cdbca1baff23ee7cb9f77853731a0d6b3076",
+        "privacyClass": "project-metadata"
+      },
+      {
+        "version": 1,
+        "id": "bf19fb236fd93ae7f9bcbd50855144e5808704f9d874ff13d57ffdd8d0be040f",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 24,
+        "endLine": 70,
+        "startOffset": 1184,
+        "endOffset": 2585,
+        "fingerprint": "ef5c68b1e1f4235ac16cfeb314488d4a042f564a7d4b6eae8c40e60c106fff31",
+        "privacyClass": "project-metadata"
+      },
+      {
+        "version": 1,
+        "id": "737b711ad6629c9d258ff3dabe6f351769a428a3dbca3c7c934503f03cf14f9a",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-7",
+        "rangeKind": "block",
+        "startLine": 26,
+        "endLine": 26,
+        "startOffset": 1200,
+        "endOffset": 1282,
+        "fingerprint": "8ded225f25a445ce24012ee245c9ed2fb5067204150e46ff939278c4eaa29a00",
+        "privacyClass": "project-metadata"
+      },
+      {
+        "version": 1,
+        "id": "2b237a7f94ddd1375c429120c0ac7fa3a1c8adc1f3fedd014045ecf4bfaff635",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "startLine": 5,
+        "endLine": 23,
+        "startOffset": 56,
+        "endOffset": 1184,
+        "fingerprint": "d7f82b4c366c94876d943639190aefc284139ce43d5330eb6316b2537a136a9e",
+        "privacyClass": "project-metadata"
+      },
+      {
+        "version": 1,
+        "id": "bb3ab88c78175b182c6b8f8c31ef92d10dfa1f4ac80710007a0dbf1265b6c2ac",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "startLine": 28,
+        "endLine": 42,
+        "startOffset": 1284,
+        "endOffset": 1803,
+        "fingerprint": "5f919b498796bea576d33e9a24f05b8b5f2fe8c3b258c90cdd36b2e59730bd59",
+        "privacyClass": "project-metadata"
+      },
+      {
+        "version": 1,
+        "id": "5fc4f865a5274bacd95a93102d9b9a3a2db6e3fbc5c6ad9271d00232a3dc4516",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-10",
+        "rangeKind": "block",
+        "startLine": 41,
+        "endLine": 41,
+        "startOffset": 1685,
+        "endOffset": 1801,
+        "fingerprint": "ffb77744617bc89196a6397250d632c9043a063ab94957c7ee3bb7f811949605",
+        "privacyClass": "project-metadata"
+      },
+      {
+        "version": 1,
+        "id": "01cc93da7a9122ddf2c5f13c214b846c1f2ef4c48319d23363cf15bb3f1c7559",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "startLine": 43,
+        "endLine": 56,
+        "startOffset": 1803,
+        "endOffset": 2202,
+        "fingerprint": "d93fcd981c078a66be33ebc11d571b786aad677801772f751f319d373a6cde0a",
+        "privacyClass": "project-metadata"
+      },
+      {
+        "version": 1,
+        "id": "de536ba73689b7a02a527dd35d76aac9b6d411be85988b50f960294080aa21a1",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-11",
+        "rangeKind": "block",
+        "startLine": 45,
+        "endLine": 45,
+        "startOffset": 1836,
+        "endOffset": 1916,
+        "fingerprint": "fe9fde89fe885d408e27457e488ffb0f38bbcd277cfc9ef8153aaf9295140bb4",
+        "privacyClass": "project-metadata"
+      },
+      {
+        "version": 1,
+        "id": "b6d9415f9084be4b225620a7559051095f1487a1419c7ccc8dc36ac638265c16",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "heading-25",
+        "rangeKind": "section",
+        "startLine": 358,
+        "endLine": 372,
+        "startOffset": 12798,
+        "endOffset": 13395,
+        "fingerprint": "f7ab3fd176545de73e2579e7558b3f92f74d6baee5dc9409d326ff1ce5e54add",
+        "privacyClass": "project-metadata"
+      },
+      {
+        "version": 1,
+        "id": "cc29c9efaf8f7d611f44ab9e41186783a5d2fffe6bff915d03b9bf7988c4b7ec",
+        "owner": "d:/dev/electronics-repair-simulator",
+        "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+        "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 7,
+        "startOffset": 68,
+        "endOffset": 246,
+        "fingerprint": "f7dc6e1e7f6305cd018981d2d91873b3d426f7696bd4783d92878c7af8fcbeb8",
+        "privacyClass": "project-metadata"
+      }
+    ]
+  },
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"delegatedTool\": \"mssr_librarian_jev_select\",\n  \"classification\": \"neutral\",\n  \"result\": {\n    \"projectOwner\": \"d:/dev/electronics-repair-simulator\",\n    \"sourceCount\": 1,\n    \"status\": \"abstained\",\n    \"candidateCount\": 10,\n    \"advisoryOnly\": true,\n    \"truthAuthority\": false,\n    \"verification\": \"unverified\",\n    \"confidenceCalibration\": \"uncalibrated-provider-score\",\n    \"evidenceSufficiencyCalibration\": \"uncalibrated-provider-score\",\n    \"exactFetchRequired\": true,\n    \"autoApplyAllowed\": false,\n    \"candidateRangeDiagnostics\": {\n      \"offered\": 10,\n      \"eligible\": 10,\n      \"oversizedOmitted\": 0,\n      \"maxFetchChars\": 20000,\n      \"lengthUnit\": \"utf16-code-units\"\n    },\n    \"rangeOverlapDiagnostics\": {\n      \"sameSourceRevisionPairs\": 45,\n      \"overlappingPairCount\": 17,\n      \"nestedPairCount\": 17,\n      \"exactRangePairCount\": 0,\n      \"partialOverlapPairCount\": 0,\n      \"pairs\": [\n        {\n          \"leftOptionId\": \"h001\",\n          \"leftRangeId\": \"heading-1\",\n          \"leftRangeKind\": \"section\",\n          \"leftLines\": [\n            1,\n            384\n          ],\n          \"rightOptionId\": \"h002\",\n          \"rightRangeId\": \"heading-3\",\n          \"rightRangeKind\": \"section\",\n          \"rightLines\": [\n            24,\n            70\n          ],\n          \"relation\": \"left-contains-right\",\n          \"overlapCodeUnits\": 1401\n        },\n        {\n          \"leftOptionId\": \"h001\",\n          \"leftRangeId\": \"heading-1\",\n          \"leftRangeKind\": \"section\",\n          \"leftLines\": [\n            1,\n            384\n          ],\n          \"rightOptionId\": \"h003\",\n          \"rightRangeId\": \"block-7\",\n          \"rightRangeKind\": \"block\",\n          \"rightLines\": [\n            26,\n            26\n          ],\n          \"relation\": \"left-contains-right\",\n          \"overlapCodeUnits\": 82\n        },\n        {\n          \"leftOptionId\": \"h001\",\n          \"leftRangeId\": \"heading-1\",\n          \"leftRangeKind\": \"section\",\n          \"leftLines\": [\n            1,\n            384\n          ],\n          \"rightOptionId\": \"h004\",\n          \"rightRangeId\": \"heading-2\",\n          \"rightRangeKind\": \"section\",\n          \"rightLines\": [\n            5,\n            23\n          ],\n          \"relation\": \"left-contains-right\",\n          \"overlapCodeUnits\": 1128\n        },\n        {\n          \"leftOptionId\": \"h001\",\n          \"leftRangeId\": \"heading-1\",\n          \"leftRangeKind\": \"section\",\n          \"leftLines\": [\n            1,\n            384\n          ],\n          \"rightOptionId\": \"h005\",\n          \"rightRangeId\": \"heading-4\",\n          \"rightRangeKind\": \"section\",\n          \"rightLines\": [\n            28,\n            42\n          ],\n          \"relation\": \"left-contains-right\",\n          \"overlapCodeUnits\": 519\n        },\n        {\n          \"leftOptionId\": \"h001\",\n          \"leftRangeId\": \"heading-1\",\n          \"leftRangeKind\": \"section\",\n          \"leftLines\": [\n            1,\n            384\n          ],\n          \"rightOptionId\": \"h006\",\n          \"rightRangeId\": \"block-10\",\n          \"rightRangeKind\": \"block\",\n          \"rightLines\": [\n            41,\n            41\n          ],\n          \"relation\": \"left-contains-right\",\n          \"overlapCodeUnits\": 116\n        },\n        {\n          \"leftOptionId\": \"h001\",\n          \"leftRangeId\": \"heading-1\",\n          \"leftRangeKind\": \"section\",\n          \"leftLines\": [\n            1,\n            384\n          ],\n          \"rightOptionId\": \"h007\",\n          \"rightRangeId\": \"heading-5\",\n          \"rightRangeKind\": \"section\",\n          \"rightLines\": [\n            43,\n            56\n          ],\n          \"relation\": \"left-contains-right\",\n          \"overlapCodeUnits\": 399\n        },\n        {\n          \"leftOptionId\": \"h001\",\n          \"leftRangeId\": \"heading-1\",\n          \"leftRangeKind\": \"section\",\n          \"leftLines\": [\n            1,\n            384\n          ],\n          \"rightOptionId\": \"h008\",\n          \"rightRangeId\": \"block-11\",\n          \"rightRangeKind\": \"block\",\n          \"rightLines\": [\n            45,\n            45\n          ],\n          \"relation\": \"left-contains-right\",\n          \"overlapCodeUnits\": 80\n        },\n        {\n          \"leftOptionId\": \"h001\",\n          \"leftRangeId\": \"heading-1\",\n          \"leftRangeKind\": \"section\",\n          \"leftLines\": [\n            1,\n            384\n          ],\n          \"rightOptionId\": \"h009\",\n          \"rightRangeId\": \"heading-25\",\n          \"rightRangeKind\": \"section\",\n          \"rightLines\": [\n            358,\n            372\n          ],\n          \"relation\": \"left-contains-right\",\n          \"overlapCodeUnits\": 597\n        },\n        {\n          \"leftOptionId\": \"h001\",\n          \"leftRangeId\": \"heading-1\",\n          \"leftRangeKind\": \"section\",\n          \"leftLines\": [\n            1,\n            384\n          ],\n          \"rightOptionId\": \"h010\",\n          \"rightRangeId\": \"block-2\",\n          \"rightRangeKind\": \"block\",\n          \"rightLines\": [\n            7,\n            7\n          ],\n          \"relation\": \"left-contains-right\",\n          \"overlapCodeUnits\": 178\n        },\n        {\n          \"leftOptionId\": \"h002\",\n          \"leftRangeId\": \"heading-3\",\n          \"leftRangeKind\": \"section\",\n          \"leftLines\": [\n            24,\n            70\n          ],\n          \"rightOptionId\": \"h003\",\n          \"rightRangeId\": \"block-7\",\n          \"rightRangeKind\": \"block\",\n          \"rightLines\": [\n            26,\n            26\n          ],\n          \"relation\": \"left-contains-right\",\n          \"overlapCodeUnits\": 82\n        },\n        {\n          \"leftOptionId\": \"h002\",\n          \"leftRangeId\": \"heading-3\",\n          \"leftRangeKind\": \"section\",\n          \"leftLines\": [\n            24,\n            70\n          ],\n          \"rightOptionId\": \"h005\",\n          \"rightRangeId\": \"heading-4\",\n          \"rightRangeKind\": \"section\",\n          \"rightLines\": [\n            28,\n            42\n          ],\n          \"relation\": \"left-contains-right\",\n          \"overlapCodeUnits\": 519\n        },\n        {\n          \"leftOptionId\": \"h002\",\n          \"leftRangeId\": \"heading-3\",\n          \"leftRangeKind\": \"section\",\n          \"leftLines\": [\n            24,\n            70\n          ],\n          \"rightOptionId\": \"h006\",\n          \"rightRangeId\": \"block-10\",\n          \"rightRangeKind\": \"block\",\n          \"rightLines\": [\n            41,\n            41\n          ],\n          \"relation\": \"left-contains-right\",\n          \"overlapCodeUnits\": 116\n        },\n        {\n          \"leftOptionId\": \"h002\",\n          \"leftRangeId\": \"heading-3\",\n          \"leftRangeKind\": \"section\",\n          \"leftLines\": [\n            24,\n            70\n          ],\n          \"rightOptionId\": \"h007\",\n          \"rightRangeId\": \"heading-5\",\n          \"rightRangeKind\": \"section\",\n          \"rightLines\": [\n            43,\n            56\n          ],\n          \"relation\": \"left-contains-right\",\n          \"overlapCodeUnits\": 399\n        },\n        {\n          \"leftOptionId\": \"h002\",\n          \"leftRangeId\": \"heading-3\",\n          \"leftRangeKind\": \"section\",\n          \"leftLines\": [\n            24,\n            70\n          ],\n          \"rightOptionId\": \"h008\",\n          \"rightRangeId\": \"block-11\",\n          \"rightRangeKind\": \"block\",\n          \"rightLines\": [\n            45,\n            45\n          ],\n          \"relation\": \"left-contains-right\",\n          \"overlapCodeUnits\": 80\n        },\n        {\n          \"leftOptionId\": \"h004\",\n          \"leftRangeId\": \"heading-2\",\n          \"leftRangeKind\": \"section\",\n          \"leftLines\": [\n            5,\n            23\n          ],\n          \"rightOptionId\": \"h010\",\n          \"rightRangeId\": \"block-2\",\n          \"rightRangeKind\": \"block\",\n          \"rightLines\": [\n            7,\n            7\n          ],\n          \"relation\": \"left-contains-right\",\n          \"overlapCodeUnits\": 178\n        },\n        {\n          \"leftOptionId\": \"h005\",\n          \"leftRangeId\": \"heading-4\",\n          \"leftRangeKind\": \"section\",\n          \"leftLines\": [\n            28,\n            42\n          ],\n          \"rightOptionId\": \"h006\",\n          \"rightRangeId\": \"block-10\",\n          \"rightRangeKind\": \"block\",\n          \"rightLines\": [\n            41,\n            41\n          ],\n          \"relation\": \"left-contains-right\",\n          \"overlapCodeUnits\": 116\n        },\n        {\n          \"leftOptionId\": \"h007\",\n          \"leftRangeId\": \"heading-5\",\n          \"leftRangeKind\": \"section\",\n          \"leftLines\": [\n            43,\n            56\n          ],\n          \"rightOptionId\": \"h008\",\n          \"rightRangeId\": \"block-11\",\n          \"rightRangeKind\": \"block\",\n          \"rightLines\": [\n            45,\n            45\n          ],\n          \"relation\": \"left-contains-right\",\n          \"overlapCodeUnits\": 80\n        }\n      ],\n      \"truncated\": false,\n      \"mutationApplied\": false\n    },\n    \"finalistCount\": 10,\n    \"selectionMode\": \"single-pass\",\n    \"selectionPasses\": 1,\n    \"providerCalls\": 1,\n    \"providerConfidence\": 0.54,\n    \"evidenceSufficiency\": 0.44,\n    \"provider\": \"typesafe-jev\",\n    \"model\": \"jev-1.13.0\",\n    \"providersUsed\": [\n      \"typesafe-jev\"\n    ],\n    \"modelsUsed\": [\n      \"jev-1.13.0\"\n    ],\n    \"usage\": {\n      \"input_tokens\": 1754,\n      \"output_tokens\": 144\n    },\n    \"requestFingerprint\": \"b3ba28c4131b7d183297dda9762004f1a03b3a88252af9d1484b9ef8a0d5cf2f\",\n    \"elapsedMs\": 802.7,\n    \"jevCallMade\": true,\n    \"selected\": null,\n    \"choiceCalls\": [\n      {\n        \"questionKey\": \"selection\",\n        \"offeredOptionIds\": [\n          \"h001\",\n          \"h002\",\n          \"h003\",\n          \"h004\",\n          \"h005\",\n          \"h006\",\n          \"h007\",\n          \"h008\",\n          \"h009\",\n          \"h010\",\n          \"none\"\n        ],\n        \"selectedOptionId\": \"none\",\n        \"confidence\": 0.54,\n        \"probabilities\": {\n          \"h001\": 0,\n          \"h002\": 0.35000000000000003,\n          \"h003\": 0,\n          \"h004\": 0,\n          \"h005\": 0,\n          \"h006\": 0,\n          \"h007\": 0.07,\n          \"h008\": 0,\n          \"h009\": 0,\n          \"h010\": 0,\n          \"none\": 0.58\n        }\n      }\n    ]\n  },\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 1,\n    \"remainingPending\": 0,\n    \"relevantPending\": 0,\n    \"otherPending\": 0,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": [\n      {\n        \"id\": \"mv51smio-hipykyav\",\n        \"severity\": \"warning\",\n        \"code\": \"mssr-project-knowledge-review-due\",\n        \"source\": \"mssr-project-maintenance\",\n        \"message\": \"MSSR detectó conocimiento durable que requiere atención en la traza mssr-20261012-jev-cross-language-ers (context:review). La metadata sólo dispara revisión: no se escribió ninguna autoridad automáticamente.\",\n        \"details\": {\n          \"traceId\": \"mssr-20261012-jev-cross-language-ers\",\n          \"stage\": \"verify\",\n          \"advisoryLevel\": \"review\",\n          \"operationalLevel\": \"review\",\n          \"maintenancePending\": true,\n          \"maintenanceFresh\": false,\n          \"targets\": [\n            {\n              \"target\": \"context\",\n              \"level\": \"review\",\n              \"authority\": \".mssr/PROJECT_CONTEXT.md\",\n              \"reasons\": [\n                \"project-context-health-review\"\n              ]\n            }\n          ],\n          \"materialWrites\": 0,\n          \"changedPathHints\": [],\n          \"contextFreshnessIssues\": 0,\n          \"projectInitialized\": true,\n          \"projectContextHealth\": \"review\",\n          \"recommendedSkills\": [\n            \"skill-maintenance-loop\"\n          ],\n          \"advisoryOnly\": true,\n          \"mssrNoticeSchemaVersion\": \"mssr-notice-v1\",\n          \"mssrNoticeId\": \"mssr-notice:24:mssr-project-maintenance|33:mssr-project-knowledge-review-due|54:project-knowledge:mssr-20261012-jev-cross-language-ers\",\n          \"subject\": \"project-knowledge:mssr-20261012-jev-cross-language-ers\",\n          \"recommendation\": \"Revisa sólo las autoridades señaladas y registra updated vs reviewed-none; no autoescribas desde la notificación.\",\n          \"event\": \"changed\",\n          \"previousLevel\": \"review\",\n          \"currentLevel\": \"review\",\n          \"fingerprint\": \"24:maintenance-pending:true|20:lifecycle-revision:4|69:context:review:.mssr/PROJECT_CONTEXT.md:project-context-health-review\"\n        },\n        \"actions\": [\n          {\n            \"label\": \"Revisar mantenimiento MSSR\",\n            \"toolName\": \"skill_bootstrap\",\n            \"instruction\": \"Reusa esta traceId y el objetivo resuelto. Replanifica en la fase adecuada (preferentemente close), carga skill-maintenance-loop y sólo las autoridades .mssr/skills señaladas; decide updated vs reviewed-none con diff/readback. No autoescribas desde la notificación.\"\n          },\n          {\n            \"label\": \"Aplicar mantenimiento estructural seguro\",\n            \"toolName\": \"project_context_maintain\",\n            \"arguments\": {\n              \"projectRoot\": \"D:\\\\Dev\\\\electronics-repair-simulator\"\n            },\n            \"instruction\": \"Usa el executor MSSR sólo para movimientos exactos ya indexados. Si devuelve review-required por core, whole-file, overlap o semantic segmentation, detente y revisa la semántica explícitamente.\"\n          }\n        ],\n        \"mssrNotice\": {\n          \"schemaVersion\": \"mssr-notice-v1\",\n          \"noticeId\": \"mssr-notice:24:mssr-project-maintenance|33:mssr-project-knowledge-review-due|54:project-knowledge:mssr-20261012-jev-cross-language-ers\",\n          \"kind\": \"operational-attention\",\n          \"origin\": \"mssr\",\n          \"attentionLevel\": \"review\",\n          \"severity\": \"warning\",\n          \"code\": \"mssr-project-knowledge-review-due\",\n          \"source\": \"mssr-project-maintenance\",\n          \"subject\": \"project-knowledge:mssr-20261012-jev-cross-language-ers\",\n          \"message\": \"MSSR detectó conocimiento durable que requiere atención en la traza mssr-20261012-jev-cross-language-ers (context:review). La metadata sólo dispara revisión: no se escribió ninguna autoridad automáticamente.\",\n          \"recommendation\": \"Revisa sólo las autoridades señaladas y registra updated vs reviewed-none; no autoescribas desde la notificación.\",\n          \"dedupeKey\": \"mssr-notice-dedupe:sha256:a54c018811394866420dc4835a19ca8572b962e8600ac81c0d7e35e0cae9af79\",\n          \"details\": {\n            \"event\": \"changed\",\n            \"previousLevel\": \"review\",\n            \"currentLevel\": \"review\",\n            \"fingerprint\": \"24:maintenance-pending:true|20:lifecycle-revision:4|69:context:review:.mssr/PROJECT_CONTEXT.md:project-context-health-review\",\n            \"advisoryOnly\": true\n          },\n          \"advisoryOnly\": true\n        },\n        \"createdAt\": \"2026-10-12T09:26:48.576Z\",\n        \"updatedAt\": \"2026-10-12T09:26:48.576Z\",\n        \"expiresAt\": \"2026-10-13T09:26:48.576Z\",\n        \"occurrences\": 1,\n        \"dedupeKey\": \"mssr-notice-dedupe:sha256:a54c018811394866420dc4835a19ca8572b962e8600ac81c0d7e35e0cae9af79\",\n        \"deliveryCount\": 0\n      }\n    ]\n  }\n}"
+      }
+    ],
+    "isError": false
+  }
+}

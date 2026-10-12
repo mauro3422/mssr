@@ -1,0 +1,822 @@
+{
+  "id": "KODE-01-ES",
+  "mode": "bridge",
+  "trace": "mssr-20261012-jev-cross-language-kode",
+  "request": {
+    "projectRoot": "D:\\Dev\\kode",
+    "sourceRefs": [
+      "docs/OPENCODE_PROVIDER.md"
+    ],
+    "metadataMode": "off",
+    "query": {
+      "query": "Cuando los metadatos del proveedor especifican un paquete SDK para el modelo, ¿qué tiene prioridad sobre el valor predeterminado del proveedor?",
+      "queryVariants": [
+        "When the provider metadata specifies an SDK package for the model, what takes precedence over the provider's default value?"
+      ],
+      "maxResults": 10
+    }
+  },
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"delegatedTool\": \"mssr_librarian_search\",\n  \"classification\": \"read-only\",\n  \"result\": {\n    \"projectOwner\": \"d:/dev/kode\",\n    \"sourceCount\": 1,\n    \"results\": [\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"889f17fe535cde46f72edd2fbfb9deeae34fe8b7400e441f9bdcf053f0340488\",\n          \"owner\": \"d:/dev/kode\",\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"rangeId\": \"heading-1\",\n          \"rangeKind\": \"section\",\n          \"startLine\": 1,\n          \"endLine\": 360,\n          \"startOffset\": 0,\n          \"endOffset\": 16841,\n          \"fingerprint\": \"b5075a063deeb44f20d7a8af333247b46e6aa0a7c4102522a5666e0ab2babf91\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 16841,\n        \"exactFetchable\": true,\n        \"score\": 0.090909,\n        \"scoreQueryIndex\": 0,\n        \"queryMatches\": [\n          {\n            \"queryIndex\": 0,\n            \"score\": 0.090909,\n            \"matchedTerms\": [\n              \"sdk\"\n            ]\n          },\n          {\n            \"queryIndex\": 1,\n            \"score\": 0.727273,\n            \"matchedTerms\": [\n              \"provider\",\n              \"metadata\",\n              \"sdk\",\n              \"package\",\n              \"model\",\n              \"over\",\n              \"default\",\n              \"value\"\n            ]\n          }\n        ],\n        \"title\": \"Kode ↔ OpenCode Provider Contract\",\n        \"headingPath\": [\n          \"Kode ↔ OpenCode Provider Contract\"\n        ],\n        \"snippet\": \"…e As of this review: - OpenCode uses AI SDK/provider integrations and Models.dev metadata to expose many providers/models. - OpenCode model identities use pro…\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"headingPath\": [\n            \"Kode ↔ OpenCode Provider Contract\"\n          ],\n          \"level\": 1,\n          \"parentId\": null,\n          \"startLine\": 1,\n          \"endLine\": 360,\n          \"chars\": 16841,\n          \"bytes\": 16917,\n          \"terms\": [\n            \"contract\",\n            \"kode\",\n            \"opencode\",\n            \"provider\",\n            \"2026-09-13\",\n            \"against\",\n            \"docs\",\n            \"last\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      },\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"78e872e763cf353190e9691b603c09e76f5c05fc5648ab946e23773414cec580\",\n          \"owner\": \"d:/dev/kode\",\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"rangeId\": \"heading-2\",\n          \"rangeKind\": \"section\",\n          \"startLine\": 13,\n          \"endLine\": 43,\n          \"startOffset\": 571,\n          \"endOffset\": 2206,\n          \"fingerprint\": \"3c54c224087628b2c99992a383ebef824b083dcc38ead9165c47bb67eb7f803f\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 1635,\n        \"exactFetchable\": true,\n        \"score\": 0.090909,\n        \"scoreQueryIndex\": 0,\n        \"queryMatches\": [\n          {\n            \"queryIndex\": 0,\n            \"score\": 0.090909,\n            \"matchedTerms\": [\n              \"sdk\"\n            ]\n          },\n          {\n            \"queryIndex\": 1,\n            \"score\": 0.363636,\n            \"matchedTerms\": [\n              \"provider\",\n              \"metadata\",\n              \"sdk\",\n              \"model\"\n            ]\n          }\n        ],\n        \"title\": \"1. Official upstream sources\",\n        \"headingPath\": [\n          \"Kode ↔ OpenCode Provider Contract\",\n          \"1. Official upstream sources\"\n        ],\n        \"snippet\": \"…e As of this review: - OpenCode uses AI SDK/provider integrations and Models.dev metadata to expose many providers/models. - OpenCode model identities use pro…\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"headingPath\": [\n            \"Kode ↔ OpenCode Provider Contract\",\n            \"1. Official upstream sources\"\n          ],\n          \"level\": 2,\n          \"parentId\": \"heading-1\",\n          \"startLine\": 13,\n          \"endLine\": 43,\n          \"chars\": 1635,\n          \"bytes\": 1643,\n          \"terms\": [\n            \"official\",\n            \"sources\",\n            \"upstream\",\n            \"integration\",\n            \"primary\",\n            \"used\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      },\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"98923a0d60dd1d9f88503603db833727f47f92cc5499083d09f5acbdce6df3e4\",\n          \"owner\": \"d:/dev/kode\",\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"rangeId\": \"heading-3\",\n          \"rangeKind\": \"section\",\n          \"startLine\": 29,\n          \"endLine\": 43,\n          \"startOffset\": 1284,\n          \"endOffset\": 2206,\n          \"fingerprint\": \"790d7f2de73015e7c9d1a1acbbf49c9eacb40a8ae3fd6e0fdc89122420b2550b\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 922,\n        \"exactFetchable\": true,\n        \"score\": 0.090909,\n        \"scoreQueryIndex\": 0,\n        \"queryMatches\": [\n          {\n            \"queryIndex\": 0,\n            \"score\": 0.090909,\n            \"matchedTerms\": [\n              \"sdk\"\n            ]\n          },\n          {\n            \"queryIndex\": 1,\n            \"score\": 0.363636,\n            \"matchedTerms\": [\n              \"provider\",\n              \"metadata\",\n              \"sdk\",\n              \"model\"\n            ]\n          }\n        ],\n        \"title\": \"Current upstream facts relevant to Kode\",\n        \"headingPath\": [\n          \"Kode ↔ OpenCode Provider Contract\",\n          \"1. Official upstream sources\",\n          \"Current upstream facts relevant to Kode\"\n        ],\n        \"snippet\": \"…e As of this review: - OpenCode uses AI SDK/provider integrations and Models.dev metadata to expose many providers/models. - OpenCode model identities use pro…\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"headingPath\": [\n            \"Kode ↔ OpenCode Provider Contract\",\n            \"1. Official upstream sources\",\n            \"Current upstream facts relevant to Kode\"\n          ],\n          \"level\": 3,\n          \"parentId\": \"heading-2\",\n          \"startLine\": 29,\n          \"endLine\": 43,\n          \"chars\": 922,\n          \"bytes\": 930,\n          \"terms\": [\n            \"facts\",\n            \"kode\",\n            \"relevant\",\n            \"upstream\",\n            \"review\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      },\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"96c1984f6672aae445bebb6e2bd0c93a76464d1318c975f4d7cad4e741e94a49\",\n          \"owner\": \"d:/dev/kode\",\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"rangeId\": \"block-9/item-1\",\n          \"rangeKind\": \"block\",\n          \"startLine\": 33,\n          \"endLine\": 33,\n          \"startOffset\": 1349,\n          \"endOffset\": 1450,\n          \"fingerprint\": \"42454a2606fe06267026abe6e87872e6efb5a9ce52ffa3a5be3ee2660b2e4102\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 101,\n        \"exactFetchable\": true,\n        \"score\": 0.090909,\n        \"scoreQueryIndex\": 0,\n        \"queryMatches\": [\n          {\n            \"queryIndex\": 0,\n            \"score\": 0.090909,\n            \"matchedTerms\": [\n              \"sdk\"\n            ]\n          },\n          {\n            \"queryIndex\": 1,\n            \"score\": 0.272727,\n            \"matchedTerms\": [\n              \"provider\",\n              \"metadata\",\n              \"sdk\"\n            ]\n          }\n        ],\n        \"title\": \"Current upstream facts relevant to Kode\",\n        \"headingPath\": [\n          \"Kode ↔ OpenCode Provider Contract\",\n          \"1. Official upstream sources\",\n          \"Current upstream facts relevant to Kode\"\n        ],\n        \"snippet\": \"- OpenCode uses AI SDK/provider integrations and Models.dev metadata to expose many providers/models.\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"headingPath\": [\n            \"Kode ↔ OpenCode Provider Contract\",\n            \"1. Official upstream sources\",\n            \"Current upstream facts relevant to Kode\"\n          ],\n          \"blockKind\": \"list-item\",\n          \"parentBlockId\": \"block-9\",\n          \"parentBlockFingerprint\": \"85b8d5a7742165c223edf839c312ec48421a2a6f5403e946acd79a3e8c15c195\",\n          \"listItemOrdinal\": 1,\n          \"sectionId\": \"heading-3\",\n          \"startLine\": 33,\n          \"endLine\": 33,\n          \"chars\": 101,\n          \"bytes\": 101,\n          \"terms\": [\n            \"opencode\",\n            \"uses\",\n            \"ai\",\n            \"sdk\",\n            \"provider\",\n            \"integrations\",\n            \"and\",\n            \"models\",\n            \"dev\",\n            \"metadata\",\n            \"to\",\n            \"expose\",\n            \"many\",\n            \"providers\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      },\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"ba71a8bb08608c68fd6839d1cb50440749fc628892c267ac71d2df9587a40318\",\n          \"owner\": \"d:/dev/kode\",\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"rangeId\": \"block-9\",\n          \"rangeKind\": \"block\",\n          \"startLine\": 33,\n          \"endLine\": 40,\n          \"startOffset\": 1349,\n          \"endOffset\": 2094,\n          \"fingerprint\": \"85b8d5a7742165c223edf839c312ec48421a2a6f5403e946acd79a3e8c15c195\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 745,\n        \"exactFetchable\": true,\n        \"score\": 0.090909,\n        \"scoreQueryIndex\": 0,\n        \"queryMatches\": [\n          {\n            \"queryIndex\": 0,\n            \"score\": 0.090909,\n            \"matchedTerms\": [\n              \"sdk\"\n            ]\n          },\n          {\n            \"queryIndex\": 1,\n            \"score\": 0.363636,\n            \"matchedTerms\": [\n              \"provider\",\n              \"metadata\",\n              \"sdk\",\n              \"model\"\n            ]\n          }\n        ],\n        \"title\": \"Current upstream facts relevant to Kode\",\n        \"headingPath\": [\n          \"Kode ↔ OpenCode Provider Contract\",\n          \"1. Official upstream sources\",\n          \"Current upstream facts relevant to Kode\"\n        ],\n        \"snippet\": \"- OpenCode uses AI SDK/provider integrations and Models.dev metadata to expose many providers/models. - OpenCode model identities use provider + model IDs; pro…\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"headingPath\": [\n            \"Kode ↔ OpenCode Provider Contract\",\n            \"1. Official upstream sources\",\n            \"Current upstream facts relevant to Kode\"\n          ],\n          \"blockKind\": \"list\",\n          \"sectionId\": \"heading-3\",\n          \"startLine\": 33,\n          \"endLine\": 40,\n          \"chars\": 745,\n          \"bytes\": 753,\n          \"terms\": [\n            \"model\",\n            \"opencode\",\n            \"zen\",\n            \"models\",\n            \"https\",\n            \"endpoint\",\n            \"provider\",\n            \"ai-sdk\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      },\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"810d33c5e74fc4ae550834717f4e1317a76b6fd1de09d5bca567c54e2ea2e6e4\",\n          \"owner\": \"d:/dev/kode\",\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"rangeId\": \"block-9/item-6\",\n          \"rangeKind\": \"block\",\n          \"startLine\": 40,\n          \"endLine\": 40,\n          \"startOffset\": 1990,\n          \"endOffset\": 2094,\n          \"fingerprint\": \"96a2c7ba60cace3c07a2436e667d86c3b8ffd290266c039b8a0eb49dde58dad6\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 104,\n        \"exactFetchable\": true,\n        \"score\": 0.090909,\n        \"scoreQueryIndex\": 0,\n        \"queryMatches\": [\n          {\n            \"queryIndex\": 0,\n            \"score\": 0.090909,\n            \"matchedTerms\": [\n              \"sdk\"\n            ]\n          },\n          {\n            \"queryIndex\": 1,\n            \"score\": 0.181818,\n            \"matchedTerms\": [\n              \"provider\",\n              \"sdk\"\n            ]\n          }\n        ],\n        \"title\": \"Current upstream facts relevant to Kode\",\n        \"headingPath\": [\n          \"Kode ↔ OpenCode Provider Contract\",\n          \"1. Official upstream sources\",\n          \"Current upstream facts relevant to Kode\"\n        ],\n        \"snippet\": \"- Current Go tables likewise mix Responses, Chat Completions and models backed by other AI SDK packages.\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"headingPath\": [\n            \"Kode ↔ OpenCode Provider Contract\",\n            \"1. Official upstream sources\",\n            \"Current upstream facts relevant to Kode\"\n          ],\n          \"blockKind\": \"list-item\",\n          \"parentBlockId\": \"block-9\",\n          \"parentBlockFingerprint\": \"85b8d5a7742165c223edf839c312ec48421a2a6f5403e946acd79a3e8c15c195\",\n          \"listItemOrdinal\": 6,\n          \"sectionId\": \"heading-3\",\n          \"startLine\": 40,\n          \"endLine\": 40,\n          \"chars\": 104,\n          \"bytes\": 104,\n          \"terms\": [\n            \"current\",\n            \"go\",\n            \"tables\",\n            \"likewise\",\n            \"mix\",\n            \"responses\",\n            \"chat\",\n            \"completions\",\n            \"and\",\n            \"models\",\n            \"backed\",\n            \"by\",\n            \"other\",\n            \"ai\",\n            \"sdk\",\n            \"packages\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      },\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"f297b350be4f55c90f198a257c10db318c2ab767dde1e7fb31de7733a8d4be4d\",\n          \"owner\": \"d:/dev/kode\",\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"rangeId\": \"heading-11\",\n          \"rangeKind\": \"section\",\n          \"startLine\": 136,\n          \"endLine\": 158,\n          \"startOffset\": 6521,\n          \"endOffset\": 7570,\n          \"fingerprint\": \"4d9f15776768bf6da086187b54cdb27cafb9d076b0cbefd5fc015d45de38bc89\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 1049,\n        \"exactFetchable\": true,\n        \"score\": 0.090909,\n        \"scoreQueryIndex\": 0,\n        \"queryMatches\": [\n          {\n            \"queryIndex\": 0,\n            \"score\": 0.090909,\n            \"matchedTerms\": [\n              \"sdk\"\n            ]\n          },\n          {\n            \"queryIndex\": 1,\n            \"score\": 0.363636,\n            \"matchedTerms\": [\n              \"provider\",\n              \"metadata\",\n              \"sdk\",\n              \"model\"\n            ]\n          }\n        ],\n        \"title\": \"5. Catalog discovery\",\n        \"headingPath\": [\n          \"Kode ↔ OpenCode Provider Contract\",\n          \"5. Catalog discovery\"\n        ],\n        \"snippet\": \"… reasoning/tool capability and provider SDK metadata. 5. Determine a supported transport. 6. Omit models Kode cannot route safely. 7. Sort the remaining optio…\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"headingPath\": [\n            \"Kode ↔ OpenCode Provider Contract\",\n            \"5. Catalog discovery\"\n          ],\n          \"level\": 2,\n          \"parentId\": \"heading-1\",\n          \"startLine\": 136,\n          \"endLine\": 158,\n          \"chars\": 1049,\n          \"bytes\": 1051,\n          \"terms\": [\n            \"catalog\",\n            \"discovery\",\n            \"does\",\n            \"hard-coded\",\n            \"kode\",\n            \"maintain\",\n            \"model\",\n            \"opencode\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      },\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"2aff7cee8ced6e359c0b74df2c54f139223503cd39c64e9416048de2822f242f\",\n          \"owner\": \"d:/dev/kode\",\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"rangeId\": \"block-38\",\n          \"rangeKind\": \"block\",\n          \"startLine\": 142,\n          \"endLine\": 149,\n          \"startOffset\": 6639,\n          \"endOffset\": 7126,\n          \"fingerprint\": \"e5ab9610f20e9985b3eaa38a5171f8ce670df7c5036a1c9479b9452ba7e79737\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 487,\n        \"exactFetchable\": true,\n        \"score\": 0.090909,\n        \"scoreQueryIndex\": 0,\n        \"queryMatches\": [\n          {\n            \"queryIndex\": 0,\n            \"score\": 0.090909,\n            \"matchedTerms\": [\n              \"sdk\"\n            ]\n          },\n          {\n            \"queryIndex\": 1,\n            \"score\": 0.363636,\n            \"matchedTerms\": [\n              \"provider\",\n              \"metadata\",\n              \"sdk\",\n              \"model\"\n            ]\n          }\n        ],\n        \"title\": \"5. Catalog discovery\",\n        \"headingPath\": [\n          \"Kode ↔ OpenCode Provider Contract\",\n          \"5. Catalog discovery\"\n        ],\n        \"snippet\": \"… reasoning/tool capability and provider SDK metadata. 5. Determine a supported transport. 6. Omit models Kode cannot route safely. 7. Sort the remaining optio…\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"headingPath\": [\n            \"Kode ↔ OpenCode Provider Contract\",\n            \"5. Catalog discovery\"\n          ],\n          \"blockKind\": \"list\",\n          \"sectionId\": \"heading-11\",\n          \"startLine\": 142,\n          \"endLine\": 149,\n          \"chars\": 487,\n          \"bytes\": 489,\n          \"terms\": [\n            \"models\",\n            \"provider\",\n            \"model\",\n            \"dev\",\n            \"each\",\n            \"fetch\",\n            \"ids\",\n            \"kode\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      },\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"83ddf05b913e8fb0e6085c57477b3bfd87beab79fa64fb2bea859b9a13adebbe\",\n          \"owner\": \"d:/dev/kode\",\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"rangeId\": \"block-38/item-4\",\n          \"rangeKind\": \"block\",\n          \"startLine\": 145,\n          \"endLine\": 145,\n          \"startOffset\": 6805,\n          \"endOffset\": 6914,\n          \"fingerprint\": \"c301057bb050a678939737217a505aadf2ffa96a91cca50fac792707e0b51d25\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 109,\n        \"exactFetchable\": true,\n        \"score\": 0.090909,\n        \"scoreQueryIndex\": 0,\n        \"queryMatches\": [\n          {\n            \"queryIndex\": 0,\n            \"score\": 0.090909,\n            \"matchedTerms\": [\n              \"sdk\"\n            ]\n          },\n          {\n            \"queryIndex\": 1,\n            \"score\": 0.363636,\n            \"matchedTerms\": [\n              \"provider\",\n              \"metadata\",\n              \"sdk\",\n              \"model\"\n            ]\n          }\n        ],\n        \"title\": \"5. Catalog discovery\",\n        \"headingPath\": [\n          \"Kode ↔ OpenCode Provider Contract\",\n          \"5. Catalog discovery\"\n        ],\n        \"snippet\": \"4. Enrich each live model with label, cost/tier, limits, reasoning/tool capability and provider SDK metadata.\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"headingPath\": [\n            \"Kode ↔ OpenCode Provider Contract\",\n            \"5. Catalog discovery\"\n          ],\n          \"blockKind\": \"list-item\",\n          \"parentBlockId\": \"block-38\",\n          \"parentBlockFingerprint\": \"e5ab9610f20e9985b3eaa38a5171f8ce670df7c5036a1c9479b9452ba7e79737\",\n          \"listItemOrdinal\": 4,\n          \"sectionId\": \"heading-11\",\n          \"startLine\": 145,\n          \"endLine\": 145,\n          \"chars\": 109,\n          \"bytes\": 109,\n          \"terms\": [\n            \"enrich\",\n            \"each\",\n            \"live\",\n            \"model\",\n            \"with\",\n            \"label\",\n            \"cost\",\n            \"tier\",\n            \"limits\",\n            \"reasoning\",\n            \"tool\",\n            \"capability\",\n            \"and\",\n            \"provider\",\n            \"sdk\",\n            \"metadata\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      },\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"05444b6c62b612c41b540a13cc1901dbc6347c4bc7b67719a31645e1b5cbd426\",\n          \"owner\": \"d:/dev/kode\",\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"rangeId\": \"heading-13\",\n          \"rangeKind\": \"section\",\n          \"startLine\": 159,\n          \"endLine\": 208,\n          \"startOffset\": 7570,\n          \"endOffset\": 9689,\n          \"fingerprint\": \"45442bce637a9b1d92ba9c57ab390001d1786c229aa058f2c7b223ffed5262e8\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 2119,\n        \"exactFetchable\": true,\n        \"score\": 0.090909,\n        \"scoreQueryIndex\": 0,\n        \"queryMatches\": [\n          {\n            \"queryIndex\": 0,\n            \"score\": 0.090909,\n            \"matchedTerms\": [\n              \"sdk\"\n            ]\n          },\n          {\n            \"queryIndex\": 1,\n            \"score\": 0.636364,\n            \"matchedTerms\": [\n              \"provider\",\n              \"metadata\",\n              \"sdk\",\n              \"package\",\n              \"model\",\n              \"over\",\n              \"default\"\n            ]\n          }\n        ],\n        \"title\": \"6. The transport laws\",\n        \"headingPath\": [\n          \"Kode ↔ OpenCode Provider Contract\",\n          \"6. The transport laws\"\n        ],\n        \"snippet\": \"…odels.dev/provider metadata includes an SDK package for the individual model, use it before a provider-level default. This matters because one OpenCode provid…\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/OPENCODE_PROVIDER.md\",\n          \"revision\": \"c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672\",\n          \"headingPath\": [\n            \"Kode ↔ OpenCode Provider Contract\",\n            \"6. The transport laws\"\n          ],\n          \"level\": 2,\n          \"parentId\": \"heading-1\",\n          \"startLine\": 159,\n          \"endLine\": 208,\n          \"chars\": 2119,\n          \"bytes\": 2135,\n          \"terms\": [\n            \"laws\",\n            \"transport\",\n            \"durable\",\n            \"integration\",\n            \"invariants\",\n            \"regression\",\n            \"rules\",\n            \"these\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      }\n    ],\n    \"advisoryOnly\": true,\n    \"truthAuthority\": false,\n    \"truncated\": true\n  }\n}"
+      }
+    ]
+  },
+  "search": {
+    "projectOwner": "d:/dev/kode",
+    "sourceCount": 1,
+    "results": [
+      {
+        "handle": {
+          "version": 1,
+          "id": "889f17fe535cde46f72edd2fbfb9deeae34fe8b7400e441f9bdcf053f0340488",
+          "owner": "d:/dev/kode",
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 360,
+          "startOffset": 0,
+          "endOffset": 16841,
+          "fingerprint": "b5075a063deeb44f20d7a8af333247b46e6aa0a7c4102522a5666e0ab2babf91",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 16841,
+        "exactFetchable": true,
+        "score": 0.090909,
+        "scoreQueryIndex": 0,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.090909,
+            "matchedTerms": [
+              "sdk"
+            ]
+          },
+          {
+            "queryIndex": 1,
+            "score": 0.727273,
+            "matchedTerms": [
+              "provider",
+              "metadata",
+              "sdk",
+              "package",
+              "model",
+              "over",
+              "default",
+              "value"
+            ]
+          }
+        ],
+        "title": "Kode ↔ OpenCode Provider Contract",
+        "headingPath": [
+          "Kode ↔ OpenCode Provider Contract"
+        ],
+        "snippet": "…e As of this review: - OpenCode uses AI SDK/provider integrations and Models.dev metadata to expose many providers/models. - OpenCode model identities use pro…",
+        "metadata": {
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract"
+          ],
+          "level": 1,
+          "parentId": null,
+          "startLine": 1,
+          "endLine": 360,
+          "chars": 16841,
+          "bytes": 16917,
+          "terms": [
+            "contract",
+            "kode",
+            "opencode",
+            "provider",
+            "2026-09-13",
+            "against",
+            "docs",
+            "last"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "78e872e763cf353190e9691b603c09e76f5c05fc5648ab946e23773414cec580",
+          "owner": "d:/dev/kode",
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "startLine": 13,
+          "endLine": 43,
+          "startOffset": 571,
+          "endOffset": 2206,
+          "fingerprint": "3c54c224087628b2c99992a383ebef824b083dcc38ead9165c47bb67eb7f803f",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 1635,
+        "exactFetchable": true,
+        "score": 0.090909,
+        "scoreQueryIndex": 0,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.090909,
+            "matchedTerms": [
+              "sdk"
+            ]
+          },
+          {
+            "queryIndex": 1,
+            "score": 0.363636,
+            "matchedTerms": [
+              "provider",
+              "metadata",
+              "sdk",
+              "model"
+            ]
+          }
+        ],
+        "title": "1. Official upstream sources",
+        "headingPath": [
+          "Kode ↔ OpenCode Provider Contract",
+          "1. Official upstream sources"
+        ],
+        "snippet": "…e As of this review: - OpenCode uses AI SDK/provider integrations and Models.dev metadata to expose many providers/models. - OpenCode model identities use pro…",
+        "metadata": {
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "1. Official upstream sources"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 13,
+          "endLine": 43,
+          "chars": 1635,
+          "bytes": 1643,
+          "terms": [
+            "official",
+            "sources",
+            "upstream",
+            "integration",
+            "primary",
+            "used"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "98923a0d60dd1d9f88503603db833727f47f92cc5499083d09f5acbdce6df3e4",
+          "owner": "d:/dev/kode",
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "rangeId": "heading-3",
+          "rangeKind": "section",
+          "startLine": 29,
+          "endLine": 43,
+          "startOffset": 1284,
+          "endOffset": 2206,
+          "fingerprint": "790d7f2de73015e7c9d1a1acbbf49c9eacb40a8ae3fd6e0fdc89122420b2550b",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 922,
+        "exactFetchable": true,
+        "score": 0.090909,
+        "scoreQueryIndex": 0,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.090909,
+            "matchedTerms": [
+              "sdk"
+            ]
+          },
+          {
+            "queryIndex": 1,
+            "score": 0.363636,
+            "matchedTerms": [
+              "provider",
+              "metadata",
+              "sdk",
+              "model"
+            ]
+          }
+        ],
+        "title": "Current upstream facts relevant to Kode",
+        "headingPath": [
+          "Kode ↔ OpenCode Provider Contract",
+          "1. Official upstream sources",
+          "Current upstream facts relevant to Kode"
+        ],
+        "snippet": "…e As of this review: - OpenCode uses AI SDK/provider integrations and Models.dev metadata to expose many providers/models. - OpenCode model identities use pro…",
+        "metadata": {
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "1. Official upstream sources",
+            "Current upstream facts relevant to Kode"
+          ],
+          "level": 3,
+          "parentId": "heading-2",
+          "startLine": 29,
+          "endLine": 43,
+          "chars": 922,
+          "bytes": 930,
+          "terms": [
+            "facts",
+            "kode",
+            "relevant",
+            "upstream",
+            "review"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "96c1984f6672aae445bebb6e2bd0c93a76464d1318c975f4d7cad4e741e94a49",
+          "owner": "d:/dev/kode",
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "rangeId": "block-9/item-1",
+          "rangeKind": "block",
+          "startLine": 33,
+          "endLine": 33,
+          "startOffset": 1349,
+          "endOffset": 1450,
+          "fingerprint": "42454a2606fe06267026abe6e87872e6efb5a9ce52ffa3a5be3ee2660b2e4102",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 101,
+        "exactFetchable": true,
+        "score": 0.090909,
+        "scoreQueryIndex": 0,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.090909,
+            "matchedTerms": [
+              "sdk"
+            ]
+          },
+          {
+            "queryIndex": 1,
+            "score": 0.272727,
+            "matchedTerms": [
+              "provider",
+              "metadata",
+              "sdk"
+            ]
+          }
+        ],
+        "title": "Current upstream facts relevant to Kode",
+        "headingPath": [
+          "Kode ↔ OpenCode Provider Contract",
+          "1. Official upstream sources",
+          "Current upstream facts relevant to Kode"
+        ],
+        "snippet": "- OpenCode uses AI SDK/provider integrations and Models.dev metadata to expose many providers/models.",
+        "metadata": {
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "1. Official upstream sources",
+            "Current upstream facts relevant to Kode"
+          ],
+          "blockKind": "list-item",
+          "parentBlockId": "block-9",
+          "parentBlockFingerprint": "85b8d5a7742165c223edf839c312ec48421a2a6f5403e946acd79a3e8c15c195",
+          "listItemOrdinal": 1,
+          "sectionId": "heading-3",
+          "startLine": 33,
+          "endLine": 33,
+          "chars": 101,
+          "bytes": 101,
+          "terms": [
+            "opencode",
+            "uses",
+            "ai",
+            "sdk",
+            "provider",
+            "integrations",
+            "and",
+            "models",
+            "dev",
+            "metadata",
+            "to",
+            "expose",
+            "many",
+            "providers"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "ba71a8bb08608c68fd6839d1cb50440749fc628892c267ac71d2df9587a40318",
+          "owner": "d:/dev/kode",
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "rangeId": "block-9",
+          "rangeKind": "block",
+          "startLine": 33,
+          "endLine": 40,
+          "startOffset": 1349,
+          "endOffset": 2094,
+          "fingerprint": "85b8d5a7742165c223edf839c312ec48421a2a6f5403e946acd79a3e8c15c195",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 745,
+        "exactFetchable": true,
+        "score": 0.090909,
+        "scoreQueryIndex": 0,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.090909,
+            "matchedTerms": [
+              "sdk"
+            ]
+          },
+          {
+            "queryIndex": 1,
+            "score": 0.363636,
+            "matchedTerms": [
+              "provider",
+              "metadata",
+              "sdk",
+              "model"
+            ]
+          }
+        ],
+        "title": "Current upstream facts relevant to Kode",
+        "headingPath": [
+          "Kode ↔ OpenCode Provider Contract",
+          "1. Official upstream sources",
+          "Current upstream facts relevant to Kode"
+        ],
+        "snippet": "- OpenCode uses AI SDK/provider integrations and Models.dev metadata to expose many providers/models. - OpenCode model identities use provider + model IDs; pro…",
+        "metadata": {
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "1. Official upstream sources",
+            "Current upstream facts relevant to Kode"
+          ],
+          "blockKind": "list",
+          "sectionId": "heading-3",
+          "startLine": 33,
+          "endLine": 40,
+          "chars": 745,
+          "bytes": 753,
+          "terms": [
+            "model",
+            "opencode",
+            "zen",
+            "models",
+            "https",
+            "endpoint",
+            "provider",
+            "ai-sdk"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "810d33c5e74fc4ae550834717f4e1317a76b6fd1de09d5bca567c54e2ea2e6e4",
+          "owner": "d:/dev/kode",
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "rangeId": "block-9/item-6",
+          "rangeKind": "block",
+          "startLine": 40,
+          "endLine": 40,
+          "startOffset": 1990,
+          "endOffset": 2094,
+          "fingerprint": "96a2c7ba60cace3c07a2436e667d86c3b8ffd290266c039b8a0eb49dde58dad6",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 104,
+        "exactFetchable": true,
+        "score": 0.090909,
+        "scoreQueryIndex": 0,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.090909,
+            "matchedTerms": [
+              "sdk"
+            ]
+          },
+          {
+            "queryIndex": 1,
+            "score": 0.181818,
+            "matchedTerms": [
+              "provider",
+              "sdk"
+            ]
+          }
+        ],
+        "title": "Current upstream facts relevant to Kode",
+        "headingPath": [
+          "Kode ↔ OpenCode Provider Contract",
+          "1. Official upstream sources",
+          "Current upstream facts relevant to Kode"
+        ],
+        "snippet": "- Current Go tables likewise mix Responses, Chat Completions and models backed by other AI SDK packages.",
+        "metadata": {
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "1. Official upstream sources",
+            "Current upstream facts relevant to Kode"
+          ],
+          "blockKind": "list-item",
+          "parentBlockId": "block-9",
+          "parentBlockFingerprint": "85b8d5a7742165c223edf839c312ec48421a2a6f5403e946acd79a3e8c15c195",
+          "listItemOrdinal": 6,
+          "sectionId": "heading-3",
+          "startLine": 40,
+          "endLine": 40,
+          "chars": 104,
+          "bytes": 104,
+          "terms": [
+            "current",
+            "go",
+            "tables",
+            "likewise",
+            "mix",
+            "responses",
+            "chat",
+            "completions",
+            "and",
+            "models",
+            "backed",
+            "by",
+            "other",
+            "ai",
+            "sdk",
+            "packages"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "f297b350be4f55c90f198a257c10db318c2ab767dde1e7fb31de7733a8d4be4d",
+          "owner": "d:/dev/kode",
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "rangeId": "heading-11",
+          "rangeKind": "section",
+          "startLine": 136,
+          "endLine": 158,
+          "startOffset": 6521,
+          "endOffset": 7570,
+          "fingerprint": "4d9f15776768bf6da086187b54cdb27cafb9d076b0cbefd5fc015d45de38bc89",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 1049,
+        "exactFetchable": true,
+        "score": 0.090909,
+        "scoreQueryIndex": 0,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.090909,
+            "matchedTerms": [
+              "sdk"
+            ]
+          },
+          {
+            "queryIndex": 1,
+            "score": 0.363636,
+            "matchedTerms": [
+              "provider",
+              "metadata",
+              "sdk",
+              "model"
+            ]
+          }
+        ],
+        "title": "5. Catalog discovery",
+        "headingPath": [
+          "Kode ↔ OpenCode Provider Contract",
+          "5. Catalog discovery"
+        ],
+        "snippet": "… reasoning/tool capability and provider SDK metadata. 5. Determine a supported transport. 6. Omit models Kode cannot route safely. 7. Sort the remaining optio…",
+        "metadata": {
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "5. Catalog discovery"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 136,
+          "endLine": 158,
+          "chars": 1049,
+          "bytes": 1051,
+          "terms": [
+            "catalog",
+            "discovery",
+            "does",
+            "hard-coded",
+            "kode",
+            "maintain",
+            "model",
+            "opencode"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "2aff7cee8ced6e359c0b74df2c54f139223503cd39c64e9416048de2822f242f",
+          "owner": "d:/dev/kode",
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "rangeId": "block-38",
+          "rangeKind": "block",
+          "startLine": 142,
+          "endLine": 149,
+          "startOffset": 6639,
+          "endOffset": 7126,
+          "fingerprint": "e5ab9610f20e9985b3eaa38a5171f8ce670df7c5036a1c9479b9452ba7e79737",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 487,
+        "exactFetchable": true,
+        "score": 0.090909,
+        "scoreQueryIndex": 0,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.090909,
+            "matchedTerms": [
+              "sdk"
+            ]
+          },
+          {
+            "queryIndex": 1,
+            "score": 0.363636,
+            "matchedTerms": [
+              "provider",
+              "metadata",
+              "sdk",
+              "model"
+            ]
+          }
+        ],
+        "title": "5. Catalog discovery",
+        "headingPath": [
+          "Kode ↔ OpenCode Provider Contract",
+          "5. Catalog discovery"
+        ],
+        "snippet": "… reasoning/tool capability and provider SDK metadata. 5. Determine a supported transport. 6. Omit models Kode cannot route safely. 7. Sort the remaining optio…",
+        "metadata": {
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "5. Catalog discovery"
+          ],
+          "blockKind": "list",
+          "sectionId": "heading-11",
+          "startLine": 142,
+          "endLine": 149,
+          "chars": 487,
+          "bytes": 489,
+          "terms": [
+            "models",
+            "provider",
+            "model",
+            "dev",
+            "each",
+            "fetch",
+            "ids",
+            "kode"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "83ddf05b913e8fb0e6085c57477b3bfd87beab79fa64fb2bea859b9a13adebbe",
+          "owner": "d:/dev/kode",
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "rangeId": "block-38/item-4",
+          "rangeKind": "block",
+          "startLine": 145,
+          "endLine": 145,
+          "startOffset": 6805,
+          "endOffset": 6914,
+          "fingerprint": "c301057bb050a678939737217a505aadf2ffa96a91cca50fac792707e0b51d25",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 109,
+        "exactFetchable": true,
+        "score": 0.090909,
+        "scoreQueryIndex": 0,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.090909,
+            "matchedTerms": [
+              "sdk"
+            ]
+          },
+          {
+            "queryIndex": 1,
+            "score": 0.363636,
+            "matchedTerms": [
+              "provider",
+              "metadata",
+              "sdk",
+              "model"
+            ]
+          }
+        ],
+        "title": "5. Catalog discovery",
+        "headingPath": [
+          "Kode ↔ OpenCode Provider Contract",
+          "5. Catalog discovery"
+        ],
+        "snippet": "4. Enrich each live model with label, cost/tier, limits, reasoning/tool capability and provider SDK metadata.",
+        "metadata": {
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "5. Catalog discovery"
+          ],
+          "blockKind": "list-item",
+          "parentBlockId": "block-38",
+          "parentBlockFingerprint": "e5ab9610f20e9985b3eaa38a5171f8ce670df7c5036a1c9479b9452ba7e79737",
+          "listItemOrdinal": 4,
+          "sectionId": "heading-11",
+          "startLine": 145,
+          "endLine": 145,
+          "chars": 109,
+          "bytes": 109,
+          "terms": [
+            "enrich",
+            "each",
+            "live",
+            "model",
+            "with",
+            "label",
+            "cost",
+            "tier",
+            "limits",
+            "reasoning",
+            "tool",
+            "capability",
+            "and",
+            "provider",
+            "sdk",
+            "metadata"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "05444b6c62b612c41b540a13cc1901dbc6347c4bc7b67719a31645e1b5cbd426",
+          "owner": "d:/dev/kode",
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "rangeId": "heading-13",
+          "rangeKind": "section",
+          "startLine": 159,
+          "endLine": 208,
+          "startOffset": 7570,
+          "endOffset": 9689,
+          "fingerprint": "45442bce637a9b1d92ba9c57ab390001d1786c229aa058f2c7b223ffed5262e8",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 2119,
+        "exactFetchable": true,
+        "score": 0.090909,
+        "scoreQueryIndex": 0,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.090909,
+            "matchedTerms": [
+              "sdk"
+            ]
+          },
+          {
+            "queryIndex": 1,
+            "score": 0.636364,
+            "matchedTerms": [
+              "provider",
+              "metadata",
+              "sdk",
+              "package",
+              "model",
+              "over",
+              "default"
+            ]
+          }
+        ],
+        "title": "6. The transport laws",
+        "headingPath": [
+          "Kode ↔ OpenCode Provider Contract",
+          "6. The transport laws"
+        ],
+        "snippet": "…odels.dev/provider metadata includes an SDK package for the individual model, use it before a provider-level default. This matters because one OpenCode provid…",
+        "metadata": {
+          "sourceRef": "docs/OPENCODE_PROVIDER.md",
+          "revision": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+          "headingPath": [
+            "Kode ↔ OpenCode Provider Contract",
+            "6. The transport laws"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 159,
+          "endLine": 208,
+          "chars": 2119,
+          "bytes": 2135,
+          "terms": [
+            "laws",
+            "transport",
+            "durable",
+            "integration",
+            "invariants",
+            "regression",
+            "rules",
+            "these"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      }
+    ],
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "truncated": true
+  }
+}

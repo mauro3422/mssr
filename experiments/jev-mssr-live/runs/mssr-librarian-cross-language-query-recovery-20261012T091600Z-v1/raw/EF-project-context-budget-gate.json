@@ -1,0 +1,23 @@
+{
+  "schema": "mssr-ef-project-context-budget-gate-evidence-v1",
+  "projectRoot": "D:/Dev/elemental-frontier",
+  "traceId": "mssr-20261012-jev-cross-language-ef",
+  "firstFailure": {
+    "code": "mssr-core-budget-blocked",
+    "message": "Project-context selection exceeds 1800 bytes: .mssr/PROJECT_CONTEXT.md",
+    "ordinaryWritesRemainProtected": true,
+    "coreRecoveryAttempted": false
+  },
+  "requiredPreflight": {
+    "tool": "project_context_load",
+    "includeProjectContext": false,
+    "result": "loaded repository AGENTS; nextAction skill_bootstrap"
+  },
+  "nextBootstrap": {
+    "tool": "skill_bootstrap",
+    "resultCode": "mssr-core-budget-blocked",
+    "message": "Project-context selection exceeds 1800 bytes: .mssr/PROJECT_CONTEXT.md"
+  },
+  "fallback": "Portable MSSR search and Jev on Run45's frozen EF snapshot; owner d:/dev/elemental-frontier and original sourceRef preserved.",
+  "scope": "No EF project authority was changed; the diagnostic run is not authorized to repair the project core."
+}

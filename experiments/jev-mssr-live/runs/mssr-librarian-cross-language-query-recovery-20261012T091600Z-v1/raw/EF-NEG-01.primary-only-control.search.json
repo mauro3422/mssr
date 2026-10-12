@@ -1,0 +1,456 @@
+{
+  "id": "EF-NEG-01-primary-only-control",
+  "mode": "portable-mssr",
+  "pairedWith": "EF-NEG-01",
+  "request": {
+    "documents": [
+      {
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+        "markdown": "# Combat Lab Test Protocol\n\n## Objetivo\n\nConvertir \"se siente bien\" en observaciones repetibles sin eliminar el juicio humano.\n\nCada sesión prueba una sola pregunta. Ejemplos:\n\n- ¿Qué input de dash se siente más natural?\n- ¿Cuánto steering conviene conservar durante un dash?\n- ¿Cuánto recovery hace legible un ataque fuerte?\n- ¿Una animación anticipa suficientemente el hit?\n- ¿El movimiento conserva momentum al terminar?\n\n## Condiciones comunes\n\nPara comparaciones directas:\n\n- mismo perfil de vídeo/FPS;\n- mismo FOV y sensibilidad;\n- misma perspectiva cuando se compare animación;\n- mismo tramo de arena;\n- misma dirección inicial;\n- misma condición sprint/suelo/aire;\n- sin shaders salvo prueba específica;\n- preferir singleplayer/local para eliminar ping;\n- repetir cada medición al menos 5 veces si el dato es cuantitativo.\n\nNo mezclar configuraciones \"tuneadas a gusto\" con defaults en la misma fila. Registrar el cambio de config.\n\n## Medición\n\n### Tiempo\n\nCon vídeo de tasa conocida:\n\n`milisegundos = frames / FPS * 1000`\n\nMarcas principales:\n\n- input;\n- primer frame de respuesta;\n- primer frame activo/hit;\n- último frame activo;\n- retorno a control neutral.\n\nDe ahí salen startup, active, recovery y duración.\n\n### Distancia\n\nUsar una pista marcada en bloques y, cuando haga falta precisión, coordenadas inicial/final.\n\n`distancia horizontal = sqrt(dx² + dz²)`\n\nRegistrar vertical por separado en saltos/launches.\n\n### Velocidad\n\n`velocidad media = distancia / duración`\n\nPeak speed sólo se informa cuando exista evidencia suficiente; no inferirla de distancia total.\n\n## Escalas subjetivas 1–5\n\n- Steering: 1 rígido, 5 control libre.\n- Air control: 1 casi nulo, 5 fuerte.\n- Readability: 1 impredecible, 5 se lee antes del impacto.\n- Feel: 1 incómodo, 5 excelente.\n\nLa puntuación nunca sustituye notas.\n\n## Prueba contra rival\n\nPara ataques/combat:\n\n1. atacante repite el mismo movimiento;\n2. defensor mira al atacante, no al HUD;\n3. registrar cuándo entiende qué ataque viene;\n4. intentar esquiva/bloqueo;\n5. identificar qué pista lo hizo legible: pose, VFX, sonido, desplazamiento o timing.\n\n## Resultado\n\nCada sesión termina en uno:\n\n- `keep-principle`: conservar el principio casi tal cual;\n- `adapt`: conservar idea, cambiar números/input/animación;\n- `discard`: no trasladar;\n- `unreviewed`: falta prueba.\n\nNo copiar assets o código propietario por haber aprobado un principio.\n",
+        "privacyClass": "project-metadata"
+      }
+    ],
+    "query": {
+      "query": "What exact fixed FPS must every comparison video use?",
+      "maxResults": 10
+    }
+  },
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"results\": [\n    {\n      \"handle\": {\n        \"version\": 1,\n        \"id\": \"3dc0144d4752a4293089617e69e3f0e1875186af7b1368f3ce5c3942cf794f76\",\n        \"owner\": \"d:/dev/elemental-frontier\",\n        \"sourceRef\": \"combat-lab/TEST_PROTOCOL.md\",\n        \"revision\": \"07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe\",\n        \"rangeId\": \"heading-1\",\n        \"rangeKind\": \"section\",\n        \"startLine\": 1,\n        \"endLine\": 91,\n        \"startOffset\": 0,\n        \"endOffset\": 2397,\n        \"fingerprint\": \"a0f552c6bb69d38d60a217c204337f5a1fe95947b0b13de85884cbdefa66a8d2\",\n        \"privacyClass\": \"project-metadata\"\n      },\n      \"rangeCodeUnits\": 2397,\n      \"exactFetchable\": true,\n      \"score\": 0.25,\n      \"title\": \"Combat Lab Test Protocol\",\n      \"headingPath\": [\n        \"Combat Lab Test Protocol\"\n      ],\n      \"snippet\": \"…mparaciones directas: - mismo perfil de vídeo/FPS; - mismo FOV y sensibilidad; - misma perspectiva cuando se compare animación; - mismo tramo de arena; - mism…\",\n      \"metadata\": {\n        \"sourceRef\": \"combat-lab/TEST_PROTOCOL.md\",\n        \"revision\": \"07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe\",\n        \"headingPath\": [\n          \"Combat Lab Test Protocol\"\n        ],\n        \"level\": 1,\n        \"parentId\": null,\n        \"startLine\": 1,\n        \"endLine\": 91,\n        \"chars\": 2397,\n        \"bytes\": 2436,\n        \"terms\": [\n          \"combat\",\n          \"lab\",\n          \"protocol\",\n          \"test\",\n          \"bien\",\n          \"convertir\",\n          \"eliminar\",\n          \"humano\"\n        ]\n      },\n      \"evidenceTier\": \"candidate\",\n      \"advisoryOnly\": true,\n      \"truthAuthority\": false,\n      \"ownerAndPrivacyAreCallerAsserted\": true,\n      \"catalogProvenanceIsCallerAsserted\": true\n    },\n    {\n      \"handle\": {\n        \"version\": 1,\n        \"id\": \"2ab4c70b7c9629af5aa60de09bcda2264fcb439c1df049510ce4a13f31483ffc\",\n        \"owner\": \"d:/dev/elemental-frontier\",\n        \"sourceRef\": \"combat-lab/TEST_PROTOCOL.md\",\n        \"revision\": \"07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe\",\n        \"rangeId\": \"heading-3\",\n        \"rangeKind\": \"section\",\n        \"startLine\": 15,\n        \"endLine\": 30,\n        \"startOffset\": 425,\n        \"endOffset\": 941,\n        \"fingerprint\": \"d24090eb0f959b478098ed62491f5bc476764ad72b8680ebe325bc3cd100ea2a\",\n        \"privacyClass\": \"project-metadata\"\n      },\n      \"rangeCodeUnits\": 516,\n      \"exactFetchable\": true,\n      \"score\": 0.25,\n      \"title\": \"Condiciones comunes\",\n      \"headingPath\": [\n        \"Combat Lab Test Protocol\",\n        \"Condiciones comunes\"\n      ],\n      \"snippet\": \"…mparaciones directas: - mismo perfil de vídeo/FPS; - mismo FOV y sensibilidad; - misma perspectiva cuando se compare animación; - mismo tramo de arena; - mism…\",\n      \"metadata\": {\n        \"sourceRef\": \"combat-lab/TEST_PROTOCOL.md\",\n        \"revision\": \"07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe\",\n        \"headingPath\": [\n          \"Combat Lab Test Protocol\",\n          \"Condiciones comunes\"\n        ],\n        \"level\": 2,\n        \"parentId\": \"heading-1\",\n        \"startLine\": 15,\n        \"endLine\": 30,\n        \"chars\": 516,\n        \"bytes\": 522,\n        \"terms\": [\n          \"comunes\",\n          \"condiciones\",\n          \"comparaciones\",\n          \"directas\"\n        ]\n      },\n      \"evidenceTier\": \"candidate\",\n      \"advisoryOnly\": true,\n      \"truthAuthority\": false,\n      \"ownerAndPrivacyAreCallerAsserted\": true,\n      \"catalogProvenanceIsCallerAsserted\": true\n    },\n    {\n      \"handle\": {\n        \"version\": 1,\n        \"id\": \"07f340bc077acb8854a8f6d9fd36636f818014fa71b072d3132319a639c43f34\",\n        \"owner\": \"d:/dev/elemental-frontier\",\n        \"sourceRef\": \"combat-lab/TEST_PROTOCOL.md\",\n        \"revision\": \"07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe\",\n        \"rangeId\": \"block-5\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 19,\n        \"endLine\": 27,\n        \"startOffset\": 479,\n        \"endOffset\": 830,\n        \"fingerprint\": \"f039e1d71fa6927f90f2a0e063540ba66496eae7c1feb41cbe25137543ceb5f0\",\n        \"privacyClass\": \"project-metadata\"\n      },\n      \"rangeCodeUnits\": 351,\n      \"exactFetchable\": true,\n      \"score\": 0.25,\n      \"title\": \"Condiciones comunes\",\n      \"headingPath\": [\n        \"Combat Lab Test Protocol\",\n        \"Condiciones comunes\"\n      ],\n      \"snippet\": \"- mismo perfil de vídeo/FPS; - mismo FOV y sensibilidad; - misma perspectiva cuando se compare animación; - mismo tramo de arena; - misma dirección inicial; - …\",\n      \"metadata\": {\n        \"sourceRef\": \"combat-lab/TEST_PROTOCOL.md\",\n        \"revision\": \"07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe\",\n        \"headingPath\": [\n          \"Combat Lab Test Protocol\",\n          \"Condiciones comunes\"\n        ],\n        \"blockKind\": \"list\",\n        \"sectionId\": \"heading-3\",\n        \"startLine\": 19,\n        \"endLine\": 27,\n        \"chars\": 351,\n        \"bytes\": 357,\n        \"terms\": [\n          \"misma\",\n          \"mismo\",\n          \"aire\",\n          \"animacion\",\n          \"arena\",\n          \"compare\",\n          \"condicion\",\n          \"cuantitativo\"\n        ]\n      },\n      \"evidenceTier\": \"candidate\",\n      \"advisoryOnly\": true,\n      \"truthAuthority\": false,\n      \"ownerAndPrivacyAreCallerAsserted\": true,\n      \"catalogProvenanceIsCallerAsserted\": true\n    },\n    {\n      \"handle\": {\n        \"version\": 1,\n        \"id\": \"bd3f3f17326c700ee1fe4262c356963c6e460c91439b378d480f248e46f63cbf\",\n        \"owner\": \"d:/dev/elemental-frontier\",\n        \"sourceRef\": \"combat-lab/TEST_PROTOCOL.md\",\n        \"revision\": \"07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe\",\n        \"rangeId\": \"block-5/item-1\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 19,\n        \"endLine\": 19,\n        \"startOffset\": 479,\n        \"endOffset\": 507,\n        \"fingerprint\": \"68b74a2018b9eea8156bd165546ba0efb43c57fa4386be62de8e6134cc33344c\",\n        \"privacyClass\": \"project-metadata\"\n      },\n      \"rangeCodeUnits\": 28,\n      \"exactFetchable\": true,\n      \"score\": 0.25,\n      \"title\": \"Condiciones comunes\",\n      \"headingPath\": [\n        \"Combat Lab Test Protocol\",\n        \"Condiciones comunes\"\n      ],\n      \"snippet\": \"- mismo perfil de vídeo/FPS;\",\n      \"metadata\": {\n        \"sourceRef\": \"combat-lab/TEST_PROTOCOL.md\",\n        \"revision\": \"07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe\",\n        \"headingPath\": [\n          \"Combat Lab Test Protocol\",\n          \"Condiciones comunes\"\n        ],\n        \"blockKind\": \"list-item\",\n        \"parentBlockId\": \"block-5\",\n        \"parentBlockFingerprint\": \"f039e1d71fa6927f90f2a0e063540ba66496eae7c1feb41cbe25137543ceb5f0\",\n        \"listItemOrdinal\": 1,\n        \"sectionId\": \"heading-3\",\n        \"startLine\": 19,\n        \"endLine\": 19,\n        \"chars\": 28,\n        \"bytes\": 29,\n        \"terms\": [\n          \"mismo\",\n          \"perfil\",\n          \"de\",\n          \"video\",\n          \"fps\"\n        ]\n      },\n      \"evidenceTier\": \"candidate\",\n      \"advisoryOnly\": true,\n      \"truthAuthority\": false,\n      \"ownerAndPrivacyAreCallerAsserted\": true,\n      \"catalogProvenanceIsCallerAsserted\": true\n    },\n    {\n      \"handle\": {\n        \"version\": 1,\n        \"id\": \"5a5829d0ebceebafa2033e3aaa02138938f88e87a77fe74aab41332fa1f37a23\",\n        \"owner\": \"d:/dev/elemental-frontier\",\n        \"sourceRef\": \"combat-lab/TEST_PROTOCOL.md\",\n        \"revision\": \"07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe\",\n        \"rangeId\": \"heading-4\",\n        \"rangeKind\": \"section\",\n        \"startLine\": 31,\n        \"endLine\": 62,\n        \"startOffset\": 941,\n        \"endOffset\": 1582,\n        \"fingerprint\": \"d1ca1ecf4248b90d0ad706f7c64e864c468f7f8c41e5c3648edf5ceb4650e2f3\",\n        \"privacyClass\": \"project-metadata\"\n      },\n      \"rangeCodeUnits\": 641,\n      \"exactFetchable\": true,\n      \"score\": 0.25,\n      \"title\": \"Medición\",\n      \"headingPath\": [\n        \"Combat Lab Test Protocol\",\n        \"Medición\"\n      ],\n      \"snippet\": \"## Medición ### Tiempo Con vídeo de tasa conocida: `milisegundos = frames / FPS * 1000` Marcas principales: - input; - primer frame de respuesta; - primer fram…\",\n      \"metadata\": {\n        \"sourceRef\": \"combat-lab/TEST_PROTOCOL.md\",\n        \"revision\": \"07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe\",\n        \"headingPath\": [\n          \"Combat Lab Test Protocol\",\n          \"Medición\"\n        ],\n        \"level\": 2,\n        \"parentId\": \"heading-1\",\n        \"startLine\": 31,\n        \"endLine\": 62,\n        \"chars\": 641,\n        \"bytes\": 651,\n        \"terms\": [\n          \"medicion\",\n          \"conocida\",\n          \"tasa\",\n          \"video\"\n        ]\n      },\n      \"evidenceTier\": \"candidate\",\n      \"advisoryOnly\": true,\n      \"truthAuthority\": false,\n      \"ownerAndPrivacyAreCallerAsserted\": true,\n      \"catalogProvenanceIsCallerAsserted\": true\n    },\n    {\n      \"handle\": {\n        \"version\": 1,\n        \"id\": \"ef73abb1a7303dee45ae332581041c2c5396e2e2855f1f3c4a8327c2219d6dcf\",\n        \"owner\": \"d:/dev/elemental-frontier\",\n        \"sourceRef\": \"combat-lab/TEST_PROTOCOL.md\",\n        \"revision\": \"07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe\",\n        \"rangeId\": \"heading-5\",\n        \"rangeKind\": \"section\",\n        \"startLine\": 33,\n        \"endLine\": 48,\n        \"startOffset\": 954,\n        \"endOffset\": 1224,\n        \"fingerprint\": \"3e03166c84092b1d39fef0e2975817f26e1b18172701ae9d1baa2cc8cb4d7ab2\",\n        \"privacyClass\": \"project-metadata\"\n      },\n      \"rangeCodeUnits\": 270,\n      \"exactFetchable\": true,\n      \"score\": 0.25,\n      \"title\": \"Tiempo\",\n      \"headingPath\": [\n        \"Combat Lab Test Protocol\",\n        \"Medición\",\n        \"Tiempo\"\n      ],\n      \"snippet\": \"### Tiempo Con vídeo de tasa conocida: `milisegundos = frames / FPS * 1000` Marcas principales: - input; - primer frame de respuesta; - primer frame activo/hit…\",\n      \"metadata\": {\n        \"sourceRef\": \"combat-lab/TEST_PROTOCOL.md\",\n        \"revision\": \"07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe\",\n        \"headingPath\": [\n          \"Combat Lab Test Protocol\",\n          \"Medición\",\n          \"Tiempo\"\n        ],\n        \"level\": 3,\n        \"parentId\": \"heading-4\",\n        \"startLine\": 33,\n        \"endLine\": 48,\n        \"chars\": 270,\n        \"bytes\": 274,\n        \"terms\": [\n          \"tiempo\",\n          \"conocida\",\n          \"tasa\",\n          \"video\"\n        ]\n      },\n      \"evidenceTier\": \"candidate\",\n      \"advisoryOnly\": true,\n      \"truthAuthority\": false,\n      \"ownerAndPrivacyAreCallerAsserted\": true,\n      \"catalogProvenanceIsCallerAsserted\": true\n    },\n    {\n      \"handle\": {\n        \"version\": 1,\n        \"id\": \"020e34fc242a15e5bdbde0522a150ecb3052670e86c4433bb8674b6e919f46b8\",\n        \"owner\": \"d:/dev/elemental-frontier\",\n        \"sourceRef\": \"combat-lab/TEST_PROTOCOL.md\",\n        \"revision\": \"07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe\",\n        \"rangeId\": \"block-7\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 35,\n        \"endLine\": 35,\n        \"startOffset\": 966,\n        \"endOffset\": 993,\n        \"fingerprint\": \"1c275f93049b8dbabd0faf1c65a00db88676abdb813591e2bc7ba4c03c8fb5b1\",\n        \"privacyClass\": \"project-metadata\"\n      },\n      \"rangeCodeUnits\": 27,\n      \"exactFetchable\": true,\n      \"score\": 0.125,\n      \"title\": \"Tiempo\",\n      \"headingPath\": [\n        \"Combat Lab Test Protocol\",\n        \"Medición\",\n        \"Tiempo\"\n      ],\n      \"snippet\": \"Con vídeo de tasa conocida:\",\n      \"metadata\": {\n        \"sourceRef\": \"combat-lab/TEST_PROTOCOL.md\",\n        \"revision\": \"07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe\",\n        \"headingPath\": [\n          \"Combat Lab Test Protocol\",\n          \"Medición\",\n          \"Tiempo\"\n        ],\n        \"blockKind\": \"prose\",\n        \"sectionId\": \"heading-5\",\n        \"startLine\": 35,\n        \"endLine\": 35,\n        \"chars\": 27,\n        \"bytes\": 28,\n        \"terms\": [\n          \"conocida\",\n          \"tasa\",\n          \"video\"\n        ]\n      },\n      \"evidenceTier\": \"candidate\",\n      \"advisoryOnly\": true,\n      \"truthAuthority\": false,\n      \"ownerAndPrivacyAreCallerAsserted\": true,\n      \"catalogProvenanceIsCallerAsserted\": true\n    },\n    {\n      \"handle\": {\n        \"version\": 1,\n        \"id\": \"cdff87a832e42af343ffe414b74c1643ee8517d889e9aa94bb1894d01cd4a582\",\n        \"owner\": \"d:/dev/elemental-frontier\",\n        \"sourceRef\": \"combat-lab/TEST_PROTOCOL.md\",\n        \"revision\": \"07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe\",\n        \"rangeId\": \"block-8\",\n        \"rangeKind\": \"block\",\n        \"startLine\": 37,\n        \"endLine\": 37,\n        \"startOffset\": 995,\n        \"endOffset\": 1031,\n        \"fingerprint\": \"bb4b08cb3f30c55b39475c15639cb4e5369ff1ab6491a7da0b34605e19cf9ad2\",\n        \"privacyClass\": \"project-metadata\"\n      },\n      \"rangeCodeUnits\": 36,\n      \"exactFetchable\": true,\n      \"score\": 0.125,\n      \"title\": \"Tiempo\",\n      \"headingPath\": [\n        \"Combat Lab Test Protocol\",\n        \"Medición\",\n        \"Tiempo\"\n      ],\n      \"snippet\": \"`milisegundos = frames / FPS * 1000`\",\n      \"metadata\": {\n        \"sourceRef\": \"combat-lab/TEST_PROTOCOL.md\",\n        \"revision\": \"07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe\",\n        \"headingPath\": [\n          \"Combat Lab Test Protocol\",\n          \"Medición\",\n          \"Tiempo\"\n        ],\n        \"blockKind\": \"prose\",\n        \"sectionId\": \"heading-5\",\n        \"startLine\": 37,\n        \"endLine\": 37,\n        \"chars\": 36,\n        \"bytes\": 36,\n        \"terms\": [\n          \"fps\",\n          \"frames\",\n          \"milisegundos\"\n        ]\n      },\n      \"evidenceTier\": \"candidate\",\n      \"advisoryOnly\": true,\n      \"truthAuthority\": false,\n      \"ownerAndPrivacyAreCallerAsserted\": true,\n      \"catalogProvenanceIsCallerAsserted\": true\n    }\n  ],\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"truncated\": false\n}"
+      }
+    ]
+  },
+  "search": {
+    "results": [
+      {
+        "handle": {
+          "version": 1,
+          "id": "3dc0144d4752a4293089617e69e3f0e1875186af7b1368f3ce5c3942cf794f76",
+          "owner": "d:/dev/elemental-frontier",
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 91,
+          "startOffset": 0,
+          "endOffset": 2397,
+          "fingerprint": "a0f552c6bb69d38d60a217c204337f5a1fe95947b0b13de85884cbdefa66a8d2",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 2397,
+        "exactFetchable": true,
+        "score": 0.25,
+        "title": "Combat Lab Test Protocol",
+        "headingPath": [
+          "Combat Lab Test Protocol"
+        ],
+        "snippet": "…mparaciones directas: - mismo perfil de vídeo/FPS; - mismo FOV y sensibilidad; - misma perspectiva cuando se compare animación; - mismo tramo de arena; - mism…",
+        "metadata": {
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+          "headingPath": [
+            "Combat Lab Test Protocol"
+          ],
+          "level": 1,
+          "parentId": null,
+          "startLine": 1,
+          "endLine": 91,
+          "chars": 2397,
+          "bytes": 2436,
+          "terms": [
+            "combat",
+            "lab",
+            "protocol",
+            "test",
+            "bien",
+            "convertir",
+            "eliminar",
+            "humano"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "2ab4c70b7c9629af5aa60de09bcda2264fcb439c1df049510ce4a13f31483ffc",
+          "owner": "d:/dev/elemental-frontier",
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+          "rangeId": "heading-3",
+          "rangeKind": "section",
+          "startLine": 15,
+          "endLine": 30,
+          "startOffset": 425,
+          "endOffset": 941,
+          "fingerprint": "d24090eb0f959b478098ed62491f5bc476764ad72b8680ebe325bc3cd100ea2a",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 516,
+        "exactFetchable": true,
+        "score": 0.25,
+        "title": "Condiciones comunes",
+        "headingPath": [
+          "Combat Lab Test Protocol",
+          "Condiciones comunes"
+        ],
+        "snippet": "…mparaciones directas: - mismo perfil de vídeo/FPS; - mismo FOV y sensibilidad; - misma perspectiva cuando se compare animación; - mismo tramo de arena; - mism…",
+        "metadata": {
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+          "headingPath": [
+            "Combat Lab Test Protocol",
+            "Condiciones comunes"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 15,
+          "endLine": 30,
+          "chars": 516,
+          "bytes": 522,
+          "terms": [
+            "comunes",
+            "condiciones",
+            "comparaciones",
+            "directas"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "07f340bc077acb8854a8f6d9fd36636f818014fa71b072d3132319a639c43f34",
+          "owner": "d:/dev/elemental-frontier",
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+          "rangeId": "block-5",
+          "rangeKind": "block",
+          "startLine": 19,
+          "endLine": 27,
+          "startOffset": 479,
+          "endOffset": 830,
+          "fingerprint": "f039e1d71fa6927f90f2a0e063540ba66496eae7c1feb41cbe25137543ceb5f0",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 351,
+        "exactFetchable": true,
+        "score": 0.25,
+        "title": "Condiciones comunes",
+        "headingPath": [
+          "Combat Lab Test Protocol",
+          "Condiciones comunes"
+        ],
+        "snippet": "- mismo perfil de vídeo/FPS; - mismo FOV y sensibilidad; - misma perspectiva cuando se compare animación; - mismo tramo de arena; - misma dirección inicial; - …",
+        "metadata": {
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+          "headingPath": [
+            "Combat Lab Test Protocol",
+            "Condiciones comunes"
+          ],
+          "blockKind": "list",
+          "sectionId": "heading-3",
+          "startLine": 19,
+          "endLine": 27,
+          "chars": 351,
+          "bytes": 357,
+          "terms": [
+            "misma",
+            "mismo",
+            "aire",
+            "animacion",
+            "arena",
+            "compare",
+            "condicion",
+            "cuantitativo"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "bd3f3f17326c700ee1fe4262c356963c6e460c91439b378d480f248e46f63cbf",
+          "owner": "d:/dev/elemental-frontier",
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+          "rangeId": "block-5/item-1",
+          "rangeKind": "block",
+          "startLine": 19,
+          "endLine": 19,
+          "startOffset": 479,
+          "endOffset": 507,
+          "fingerprint": "68b74a2018b9eea8156bd165546ba0efb43c57fa4386be62de8e6134cc33344c",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 28,
+        "exactFetchable": true,
+        "score": 0.25,
+        "title": "Condiciones comunes",
+        "headingPath": [
+          "Combat Lab Test Protocol",
+          "Condiciones comunes"
+        ],
+        "snippet": "- mismo perfil de vídeo/FPS;",
+        "metadata": {
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+          "headingPath": [
+            "Combat Lab Test Protocol",
+            "Condiciones comunes"
+          ],
+          "blockKind": "list-item",
+          "parentBlockId": "block-5",
+          "parentBlockFingerprint": "f039e1d71fa6927f90f2a0e063540ba66496eae7c1feb41cbe25137543ceb5f0",
+          "listItemOrdinal": 1,
+          "sectionId": "heading-3",
+          "startLine": 19,
+          "endLine": 19,
+          "chars": 28,
+          "bytes": 29,
+          "terms": [
+            "mismo",
+            "perfil",
+            "de",
+            "video",
+            "fps"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "5a5829d0ebceebafa2033e3aaa02138938f88e87a77fe74aab41332fa1f37a23",
+          "owner": "d:/dev/elemental-frontier",
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+          "rangeId": "heading-4",
+          "rangeKind": "section",
+          "startLine": 31,
+          "endLine": 62,
+          "startOffset": 941,
+          "endOffset": 1582,
+          "fingerprint": "d1ca1ecf4248b90d0ad706f7c64e864c468f7f8c41e5c3648edf5ceb4650e2f3",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 641,
+        "exactFetchable": true,
+        "score": 0.25,
+        "title": "Medición",
+        "headingPath": [
+          "Combat Lab Test Protocol",
+          "Medición"
+        ],
+        "snippet": "## Medición ### Tiempo Con vídeo de tasa conocida: `milisegundos = frames / FPS * 1000` Marcas principales: - input; - primer frame de respuesta; - primer fram…",
+        "metadata": {
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+          "headingPath": [
+            "Combat Lab Test Protocol",
+            "Medición"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 31,
+          "endLine": 62,
+          "chars": 641,
+          "bytes": 651,
+          "terms": [
+            "medicion",
+            "conocida",
+            "tasa",
+            "video"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "ef73abb1a7303dee45ae332581041c2c5396e2e2855f1f3c4a8327c2219d6dcf",
+          "owner": "d:/dev/elemental-frontier",
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+          "rangeId": "heading-5",
+          "rangeKind": "section",
+          "startLine": 33,
+          "endLine": 48,
+          "startOffset": 954,
+          "endOffset": 1224,
+          "fingerprint": "3e03166c84092b1d39fef0e2975817f26e1b18172701ae9d1baa2cc8cb4d7ab2",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 270,
+        "exactFetchable": true,
+        "score": 0.25,
+        "title": "Tiempo",
+        "headingPath": [
+          "Combat Lab Test Protocol",
+          "Medición",
+          "Tiempo"
+        ],
+        "snippet": "### Tiempo Con vídeo de tasa conocida: `milisegundos = frames / FPS * 1000` Marcas principales: - input; - primer frame de respuesta; - primer frame activo/hit…",
+        "metadata": {
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+          "headingPath": [
+            "Combat Lab Test Protocol",
+            "Medición",
+            "Tiempo"
+          ],
+          "level": 3,
+          "parentId": "heading-4",
+          "startLine": 33,
+          "endLine": 48,
+          "chars": 270,
+          "bytes": 274,
+          "terms": [
+            "tiempo",
+            "conocida",
+            "tasa",
+            "video"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "020e34fc242a15e5bdbde0522a150ecb3052670e86c4433bb8674b6e919f46b8",
+          "owner": "d:/dev/elemental-frontier",
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+          "rangeId": "block-7",
+          "rangeKind": "block",
+          "startLine": 35,
+          "endLine": 35,
+          "startOffset": 966,
+          "endOffset": 993,
+          "fingerprint": "1c275f93049b8dbabd0faf1c65a00db88676abdb813591e2bc7ba4c03c8fb5b1",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 27,
+        "exactFetchable": true,
+        "score": 0.125,
+        "title": "Tiempo",
+        "headingPath": [
+          "Combat Lab Test Protocol",
+          "Medición",
+          "Tiempo"
+        ],
+        "snippet": "Con vídeo de tasa conocida:",
+        "metadata": {
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+          "headingPath": [
+            "Combat Lab Test Protocol",
+            "Medición",
+            "Tiempo"
+          ],
+          "blockKind": "prose",
+          "sectionId": "heading-5",
+          "startLine": 35,
+          "endLine": 35,
+          "chars": 27,
+          "bytes": 28,
+          "terms": [
+            "conocida",
+            "tasa",
+            "video"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "cdff87a832e42af343ffe414b74c1643ee8517d889e9aa94bb1894d01cd4a582",
+          "owner": "d:/dev/elemental-frontier",
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+          "rangeId": "block-8",
+          "rangeKind": "block",
+          "startLine": 37,
+          "endLine": 37,
+          "startOffset": 995,
+          "endOffset": 1031,
+          "fingerprint": "bb4b08cb3f30c55b39475c15639cb4e5369ff1ab6491a7da0b34605e19cf9ad2",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 36,
+        "exactFetchable": true,
+        "score": 0.125,
+        "title": "Tiempo",
+        "headingPath": [
+          "Combat Lab Test Protocol",
+          "Medición",
+          "Tiempo"
+        ],
+        "snippet": "`milisegundos = frames / FPS * 1000`",
+        "metadata": {
+          "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+          "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+          "headingPath": [
+            "Combat Lab Test Protocol",
+            "Medición",
+            "Tiempo"
+          ],
+          "blockKind": "prose",
+          "sectionId": "heading-5",
+          "startLine": 37,
+          "endLine": 37,
+          "chars": 36,
+          "bytes": 36,
+          "terms": [
+            "fps",
+            "frames",
+            "milisegundos"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      }
+    ],
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "truncated": false
+  }
+}

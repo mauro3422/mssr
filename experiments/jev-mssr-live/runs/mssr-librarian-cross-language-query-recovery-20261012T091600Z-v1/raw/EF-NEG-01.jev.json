@@ -1,0 +1,173 @@
+{
+  "request": {
+    "documents": [
+      {
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+        "markdown": "# Combat Lab Test Protocol\n\n## Objetivo\n\nConvertir \"se siente bien\" en observaciones repetibles sin eliminar el juicio humano.\n\nCada sesión prueba una sola pregunta. Ejemplos:\n\n- ¿Qué input de dash se siente más natural?\n- ¿Cuánto steering conviene conservar durante un dash?\n- ¿Cuánto recovery hace legible un ataque fuerte?\n- ¿Una animación anticipa suficientemente el hit?\n- ¿El movimiento conserva momentum al terminar?\n\n## Condiciones comunes\n\nPara comparaciones directas:\n\n- mismo perfil de vídeo/FPS;\n- mismo FOV y sensibilidad;\n- misma perspectiva cuando se compare animación;\n- mismo tramo de arena;\n- misma dirección inicial;\n- misma condición sprint/suelo/aire;\n- sin shaders salvo prueba específica;\n- preferir singleplayer/local para eliminar ping;\n- repetir cada medición al menos 5 veces si el dato es cuantitativo.\n\nNo mezclar configuraciones \"tuneadas a gusto\" con defaults en la misma fila. Registrar el cambio de config.\n\n## Medición\n\n### Tiempo\n\nCon vídeo de tasa conocida:\n\n`milisegundos = frames / FPS * 1000`\n\nMarcas principales:\n\n- input;\n- primer frame de respuesta;\n- primer frame activo/hit;\n- último frame activo;\n- retorno a control neutral.\n\nDe ahí salen startup, active, recovery y duración.\n\n### Distancia\n\nUsar una pista marcada en bloques y, cuando haga falta precisión, coordenadas inicial/final.\n\n`distancia horizontal = sqrt(dx² + dz²)`\n\nRegistrar vertical por separado en saltos/launches.\n\n### Velocidad\n\n`velocidad media = distancia / duración`\n\nPeak speed sólo se informa cuando exista evidencia suficiente; no inferirla de distancia total.\n\n## Escalas subjetivas 1–5\n\n- Steering: 1 rígido, 5 control libre.\n- Air control: 1 casi nulo, 5 fuerte.\n- Readability: 1 impredecible, 5 se lee antes del impacto.\n- Feel: 1 incómodo, 5 excelente.\n\nLa puntuación nunca sustituye notas.\n\n## Prueba contra rival\n\nPara ataques/combat:\n\n1. atacante repite el mismo movimiento;\n2. defensor mira al atacante, no al HUD;\n3. registrar cuándo entiende qué ataque viene;\n4. intentar esquiva/bloqueo;\n5. identificar qué pista lo hizo legible: pose, VFX, sonido, desplazamiento o timing.\n\n## Resultado\n\nCada sesión termina en uno:\n\n- `keep-principle`: conservar el principio casi tal cual;\n- `adapt`: conservar idea, cambiar números/input/animación;\n- `discard`: no trasladar;\n- `unreviewed`: falta prueba.\n\nNo copiar assets o código propietario por haber aprobado un principio.\n",
+        "privacyClass": "project-metadata"
+      }
+    ],
+    "query": "What exact fixed FPS must every comparison video use?",
+    "candidateHandles": [
+      {
+        "version": 1,
+        "id": "3dc0144d4752a4293089617e69e3f0e1875186af7b1368f3ce5c3942cf794f76",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+        "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 91,
+        "startOffset": 0,
+        "endOffset": 2397,
+        "fingerprint": "a0f552c6bb69d38d60a217c204337f5a1fe95947b0b13de85884cbdefa66a8d2",
+        "privacyClass": "project-metadata"
+      },
+      {
+        "version": 1,
+        "id": "2ab4c70b7c9629af5aa60de09bcda2264fcb439c1df049510ce4a13f31483ffc",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+        "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 15,
+        "endLine": 30,
+        "startOffset": 425,
+        "endOffset": 941,
+        "fingerprint": "d24090eb0f959b478098ed62491f5bc476764ad72b8680ebe325bc3cd100ea2a",
+        "privacyClass": "project-metadata"
+      },
+      {
+        "version": 1,
+        "id": "07f340bc077acb8854a8f6d9fd36636f818014fa71b072d3132319a639c43f34",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+        "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+        "rangeId": "block-5",
+        "rangeKind": "block",
+        "startLine": 19,
+        "endLine": 27,
+        "startOffset": 479,
+        "endOffset": 830,
+        "fingerprint": "f039e1d71fa6927f90f2a0e063540ba66496eae7c1feb41cbe25137543ceb5f0",
+        "privacyClass": "project-metadata"
+      },
+      {
+        "version": 1,
+        "id": "bd3f3f17326c700ee1fe4262c356963c6e460c91439b378d480f248e46f63cbf",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+        "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+        "rangeId": "block-5/item-1",
+        "rangeKind": "block",
+        "startLine": 19,
+        "endLine": 19,
+        "startOffset": 479,
+        "endOffset": 507,
+        "fingerprint": "68b74a2018b9eea8156bd165546ba0efb43c57fa4386be62de8e6134cc33344c",
+        "privacyClass": "project-metadata"
+      },
+      {
+        "version": 1,
+        "id": "5a5829d0ebceebafa2033e3aaa02138938f88e87a77fe74aab41332fa1f37a23",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+        "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "startLine": 31,
+        "endLine": 62,
+        "startOffset": 941,
+        "endOffset": 1582,
+        "fingerprint": "d1ca1ecf4248b90d0ad706f7c64e864c468f7f8c41e5c3648edf5ceb4650e2f3",
+        "privacyClass": "project-metadata"
+      },
+      {
+        "version": 1,
+        "id": "ef73abb1a7303dee45ae332581041c2c5396e2e2855f1f3c4a8327c2219d6dcf",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+        "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "startLine": 33,
+        "endLine": 48,
+        "startOffset": 954,
+        "endOffset": 1224,
+        "fingerprint": "3e03166c84092b1d39fef0e2975817f26e1b18172701ae9d1baa2cc8cb4d7ab2",
+        "privacyClass": "project-metadata"
+      },
+      {
+        "version": 1,
+        "id": "020e34fc242a15e5bdbde0522a150ecb3052670e86c4433bb8674b6e919f46b8",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+        "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+        "rangeId": "block-7",
+        "rangeKind": "block",
+        "startLine": 35,
+        "endLine": 35,
+        "startOffset": 966,
+        "endOffset": 993,
+        "fingerprint": "1c275f93049b8dbabd0faf1c65a00db88676abdb813591e2bc7ba4c03c8fb5b1",
+        "privacyClass": "project-metadata"
+      },
+      {
+        "version": 1,
+        "id": "cdff87a832e42af343ffe414b74c1643ee8517d889e9aa94bb1894d01cd4a582",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+        "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+        "rangeId": "block-8",
+        "rangeKind": "block",
+        "startLine": 37,
+        "endLine": 37,
+        "startOffset": 995,
+        "endOffset": 1031,
+        "fingerprint": "bb4b08cb3f30c55b39475c15639cb4e5369ff1ab6491a7da0b34605e19cf9ad2",
+        "privacyClass": "project-metadata"
+      },
+      {
+        "version": 1,
+        "id": "5a84bdd90ef708eb5b1f07244a49840518bb305ef1d4ea37502c8c4f6f03344f",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+        "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "startLine": 3,
+        "endLine": 14,
+        "startOffset": 28,
+        "endOffset": 425,
+        "fingerprint": "86ac6fe2b74d2963242684284cac3d82ca1ff86167b4568c86ed338b2b87c7dc",
+        "privacyClass": "project-metadata"
+      },
+      {
+        "version": 1,
+        "id": "a71e5c7a87adba3e6ed2528b22f94ac1c1ce8541d13732c35953acaee8ef4137",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+        "revision": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 7,
+        "startOffset": 128,
+        "endOffset": 175,
+        "fingerprint": "034b7392aef9588b64ac91383c6e7fb0d0eaf88468281d35fce7091eb5deca6f",
+        "privacyClass": "project-metadata"
+      }
+    ]
+  },
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"status\": \"abstained\",\n  \"candidateCount\": 10,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"verification\": \"unverified\",\n  \"confidenceCalibration\": \"uncalibrated-provider-score\",\n  \"evidenceSufficiencyCalibration\": \"uncalibrated-provider-score\",\n  \"exactFetchRequired\": true,\n  \"autoApplyAllowed\": false,\n  \"candidateRangeDiagnostics\": {\n    \"offered\": 10,\n    \"eligible\": 10,\n    \"oversizedOmitted\": 0,\n    \"maxFetchChars\": 20000,\n    \"lengthUnit\": \"utf16-code-units\"\n  },\n  \"rangeOverlapDiagnostics\": {\n    \"sameSourceRevisionPairs\": 45,\n    \"overlappingPairCount\": 18,\n    \"nestedPairCount\": 18,\n    \"exactRangePairCount\": 0,\n    \"partialOverlapPairCount\": 0,\n    \"pairs\": [\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          91\n        ],\n        \"rightOptionId\": \"h002\",\n        \"rightRangeId\": \"heading-3\",\n        \"rightRangeKind\": \"section\",\n        \"rightLines\": [\n          15,\n          30\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 516\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          91\n        ],\n        \"rightOptionId\": \"h003\",\n        \"rightRangeId\": \"block-5\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          19,\n          27\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 351\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          91\n        ],\n        \"rightOptionId\": \"h004\",\n        \"rightRangeId\": \"block-5/item-1\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          19,\n          19\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 28\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          91\n        ],\n        \"rightOptionId\": \"h005\",\n        \"rightRangeId\": \"heading-4\",\n        \"rightRangeKind\": \"section\",\n        \"rightLines\": [\n          31,\n          62\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 641\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          91\n        ],\n        \"rightOptionId\": \"h006\",\n        \"rightRangeId\": \"heading-5\",\n        \"rightRangeKind\": \"section\",\n        \"rightLines\": [\n          33,\n          48\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 270\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          91\n        ],\n        \"rightOptionId\": \"h007\",\n        \"rightRangeId\": \"block-7\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          35,\n          35\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 27\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          91\n        ],\n        \"rightOptionId\": \"h008\",\n        \"rightRangeId\": \"block-8\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          37,\n          37\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 36\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          91\n        ],\n        \"rightOptionId\": \"h009\",\n        \"rightRangeId\": \"heading-2\",\n        \"rightRangeKind\": \"section\",\n        \"rightLines\": [\n          3,\n          14\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 397\n      },\n      {\n        \"leftOptionId\": \"h001\",\n        \"leftRangeId\": \"heading-1\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          1,\n          91\n        ],\n        \"rightOptionId\": \"h010\",\n        \"rightRangeId\": \"block-2\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          7,\n          7\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 47\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"heading-3\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          15,\n          30\n        ],\n        \"rightOptionId\": \"h003\",\n        \"rightRangeId\": \"block-5\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          19,\n          27\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 351\n      },\n      {\n        \"leftOptionId\": \"h002\",\n        \"leftRangeId\": \"heading-3\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          15,\n          30\n        ],\n        \"rightOptionId\": \"h004\",\n        \"rightRangeId\": \"block-5/item-1\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          19,\n          19\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 28\n      },\n      {\n        \"leftOptionId\": \"h003\",\n        \"leftRangeId\": \"block-5\",\n        \"leftRangeKind\": \"block\",\n        \"leftLines\": [\n          19,\n          27\n        ],\n        \"rightOptionId\": \"h004\",\n        \"rightRangeId\": \"block-5/item-1\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          19,\n          19\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 28\n      },\n      {\n        \"leftOptionId\": \"h005\",\n        \"leftRangeId\": \"heading-4\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          31,\n          62\n        ],\n        \"rightOptionId\": \"h006\",\n        \"rightRangeId\": \"heading-5\",\n        \"rightRangeKind\": \"section\",\n        \"rightLines\": [\n          33,\n          48\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 270\n      },\n      {\n        \"leftOptionId\": \"h005\",\n        \"leftRangeId\": \"heading-4\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          31,\n          62\n        ],\n        \"rightOptionId\": \"h007\",\n        \"rightRangeId\": \"block-7\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          35,\n          35\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 27\n      },\n      {\n        \"leftOptionId\": \"h005\",\n        \"leftRangeId\": \"heading-4\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          31,\n          62\n        ],\n        \"rightOptionId\": \"h008\",\n        \"rightRangeId\": \"block-8\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          37,\n          37\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 36\n      },\n      {\n        \"leftOptionId\": \"h006\",\n        \"leftRangeId\": \"heading-5\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          33,\n          48\n        ],\n        \"rightOptionId\": \"h007\",\n        \"rightRangeId\": \"block-7\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          35,\n          35\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 27\n      },\n      {\n        \"leftOptionId\": \"h006\",\n        \"leftRangeId\": \"heading-5\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          33,\n          48\n        ],\n        \"rightOptionId\": \"h008\",\n        \"rightRangeId\": \"block-8\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          37,\n          37\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 36\n      },\n      {\n        \"leftOptionId\": \"h009\",\n        \"leftRangeId\": \"heading-2\",\n        \"leftRangeKind\": \"section\",\n        \"leftLines\": [\n          3,\n          14\n        ],\n        \"rightOptionId\": \"h010\",\n        \"rightRangeId\": \"block-2\",\n        \"rightRangeKind\": \"block\",\n        \"rightLines\": [\n          7,\n          7\n        ],\n        \"relation\": \"left-contains-right\",\n        \"overlapCodeUnits\": 47\n      }\n    ],\n    \"truncated\": false,\n    \"mutationApplied\": false\n  },\n  \"finalistCount\": 10,\n  \"selectionMode\": \"single-pass\",\n  \"selectionPasses\": 1,\n  \"providerCalls\": 1,\n  \"providerConfidence\": 0.98,\n  \"evidenceSufficiency\": 0.08,\n  \"provider\": \"typesafe-jev\",\n  \"model\": \"jev-1.13.0\",\n  \"providersUsed\": [\n    \"typesafe-jev\"\n  ],\n  \"modelsUsed\": [\n    \"jev-1.13.0\"\n  ],\n  \"usage\": {\n    \"input_tokens\": 1693,\n    \"output_tokens\": 144\n  },\n  \"requestFingerprint\": \"70b3d4f25f0159e028ff68bfc1dbf10db66fce1bf6501bf6ae304a2c61eb3495\",\n  \"elapsedMs\": 320.2,\n  \"jevCallMade\": true,\n  \"selected\": null\n}"
+      }
+    ]
+  }
+}

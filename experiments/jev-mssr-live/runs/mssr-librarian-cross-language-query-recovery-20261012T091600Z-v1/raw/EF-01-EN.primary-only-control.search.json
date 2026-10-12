@@ -1,0 +1,33 @@
+{
+  "id": "EF-01-EN-primary-only-control",
+  "mode": "portable-mssr",
+  "pairedWith": "EF-01-EN",
+  "request": {
+    "documents": [
+      {
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+        "markdown": "# Combat Lab Test Protocol\n\n## Objetivo\n\nConvertir \"se siente bien\" en observaciones repetibles sin eliminar el juicio humano.\n\nCada sesión prueba una sola pregunta. Ejemplos:\n\n- ¿Qué input de dash se siente más natural?\n- ¿Cuánto steering conviene conservar durante un dash?\n- ¿Cuánto recovery hace legible un ataque fuerte?\n- ¿Una animación anticipa suficientemente el hit?\n- ¿El movimiento conserva momentum al terminar?\n\n## Condiciones comunes\n\nPara comparaciones directas:\n\n- mismo perfil de vídeo/FPS;\n- mismo FOV y sensibilidad;\n- misma perspectiva cuando se compare animación;\n- mismo tramo de arena;\n- misma dirección inicial;\n- misma condición sprint/suelo/aire;\n- sin shaders salvo prueba específica;\n- preferir singleplayer/local para eliminar ping;\n- repetir cada medición al menos 5 veces si el dato es cuantitativo.\n\nNo mezclar configuraciones \"tuneadas a gusto\" con defaults en la misma fila. Registrar el cambio de config.\n\n## Medición\n\n### Tiempo\n\nCon vídeo de tasa conocida:\n\n`milisegundos = frames / FPS * 1000`\n\nMarcas principales:\n\n- input;\n- primer frame de respuesta;\n- primer frame activo/hit;\n- último frame activo;\n- retorno a control neutral.\n\nDe ahí salen startup, active, recovery y duración.\n\n### Distancia\n\nUsar una pista marcada en bloques y, cuando haga falta precisión, coordenadas inicial/final.\n\n`distancia horizontal = sqrt(dx² + dz²)`\n\nRegistrar vertical por separado en saltos/launches.\n\n### Velocidad\n\n`velocidad media = distancia / duración`\n\nPeak speed sólo se informa cuando exista evidencia suficiente; no inferirla de distancia total.\n\n## Escalas subjetivas 1–5\n\n- Steering: 1 rígido, 5 control libre.\n- Air control: 1 casi nulo, 5 fuerte.\n- Readability: 1 impredecible, 5 se lee antes del impacto.\n- Feel: 1 incómodo, 5 excelente.\n\nLa puntuación nunca sustituye notas.\n\n## Prueba contra rival\n\nPara ataques/combat:\n\n1. atacante repite el mismo movimiento;\n2. defensor mira al atacante, no al HUD;\n3. registrar cuándo entiende qué ataque viene;\n4. intentar esquiva/bloqueo;\n5. identificar qué pista lo hizo legible: pose, VFX, sonido, desplazamiento o timing.\n\n## Resultado\n\nCada sesión termina en uno:\n\n- `keep-principle`: conservar el principio casi tal cual;\n- `adapt`: conservar idea, cambiar números/input/animación;\n- `discard`: no trasladar;\n- `unreviewed`: falta prueba.\n\nNo copiar assets o código propietario por haber aprobado un principio.\n",
+        "privacyClass": "project-metadata"
+      }
+    ],
+    "query": {
+      "query": "Which settings must remain the same for direct comparisons, and how many times should quantitative measurements be repeated?",
+      "maxResults": 10
+    }
+  },
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"results\": [],\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"truncated\": false\n}"
+      }
+    ]
+  },
+  "search": {
+    "results": [],
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "truncated": false
+  }
+}

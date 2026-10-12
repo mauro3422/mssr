@@ -1,0 +1,82 @@
+{
+  "schema": "mssr-librarian-cross-language-query-recovery-manifest-v1",
+  "runId": "mssr-librarian-cross-language-query-recovery-20261012T091600Z-v1",
+  "createdAt": "2026-10-12T09:16:06Z",
+  "updatedAt": "2026-10-12T09:44:08Z",
+  "status": "complete; deterministic aggregate/report generated and source/hash checks passed",
+  "baselineRunId": "mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1",
+  "baselineCommit": "c0d0e3e",
+  "runtime": {
+    "bridgeVersion": "0.6.173",
+    "mssrVersion": "0.2.127",
+    "jevProvider": "typesafe-jev",
+    "jevVersion": "jev-1.13.0",
+    "metadataMode": "off",
+    "maxResults": 10,
+    "queryVariants": "one blind explicit translation where applicable; no auto-translation"
+  },
+  "limits": {
+    "certifiedHoldout": false,
+    "productionReliability": false,
+    "confidenceCalibration": false,
+    "ownerAdjudication": "none",
+    "providerLabelsExposed": false,
+    "positiveCases": 3,
+    "negativeControls": 3,
+    "sourceFamilies": 3,
+    "pairedComparison": true,
+    "pairedComparisonScope": "Per-case source/revision checks gate every comparison; EF and ERS use amended same-source primary-only controls; historical Run45 EF and empty ERS receipts are excluded."
+  },
+  "sources": [
+    {
+      "id": "kode",
+      "projectRoot": "D:/Dev/kode",
+      "sourceRef": "docs/OPENCODE_PROVIDER.md",
+      "sha256": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+      "route": "Bridge 0.6.173, child trace mssr-20261012-jev-cross-language-kode"
+    },
+    {
+      "id": "elemental-frontier",
+      "projectRoot": "D:/Dev/elemental-frontier",
+      "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+      "sha256": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+      "route": "portable MSSR on frozen snapshot; Bridge core gate blocked; same-snapshot primary-only control added after historical revision discrepancy"
+    },
+    {
+      "id": "electronics-repair-simulator",
+      "projectRoot": "D:/Dev/electronics-repair-simulator",
+      "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+      "sha256": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+      "route": "Bridge 0.6.173, child trace mssr-20261012-jev-cross-language-ers"
+    }
+  ],
+  "searchCounts": {
+    "totalSearchCalls": 9,
+    "initialSearchCalls": 6,
+    "sameSnapshotEfControls": 2,
+    "sameSnapshotErsControls": 1,
+    "metadataOff": true
+  },
+  "jev": {
+    "calls": 3,
+    "selection": "0/2 positive, 0/1 negative selected; all abstained",
+    "fetches": 0,
+    "evidencePacks": 0
+  },
+  "evidence": {
+    "run45EfRevisionMismatch": true,
+    "run45ErsPositiveReceiptHadNoHandles": true,
+    "amendmentPath": "inputs/amendments.json",
+    "run45Unmodified": true
+  },
+  "outputs": {
+    "plan": "RUN-PLAN.md",
+    "inputs": "inputs/queries.json",
+    "amendments": "inputs/amendments.json",
+    "raw": "raw/",
+    "aggregate": "derived/aggregate.json",
+    "aggregateScript": "scripts/aggregate-run.mjs",
+    "report": "RUN-REPORT.md",
+    "frozenEvidenceChecksums": "derived/frozen-evidence-sha256.json"
+  }
+}

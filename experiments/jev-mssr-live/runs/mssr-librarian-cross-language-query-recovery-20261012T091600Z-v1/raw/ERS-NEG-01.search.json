@@ -1,0 +1,573 @@
+{
+  "id": "ERS-NEG-01",
+  "mode": "bridge",
+  "trace": "mssr-20261012-jev-cross-language-ers",
+  "request": {
+    "projectRoot": "D:\\Dev\\electronics-repair-simulator",
+    "sourceRefs": [
+      "docs/ELECTRONICS_MODULAR_SYSTEM.md"
+    ],
+    "metadataMode": "off",
+    "query": {
+      "query": "What nominal voltage rating and current tolerance must the battery cell meet?",
+      "maxResults": 10
+    }
+  },
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"delegatedTool\": \"mssr_librarian_search\",\n  \"classification\": \"read-only\",\n  \"result\": {\n    \"projectOwner\": \"d:/dev/electronics-repair-simulator\",\n    \"sourceCount\": 1,\n    \"results\": [\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"4322c931bc80a9271428cd3243a6c48d6fb4733d112ef28af37630761789acc2\",\n          \"owner\": \"d:/dev/electronics-repair-simulator\",\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"rangeId\": \"heading-1\",\n          \"rangeKind\": \"section\",\n          \"startLine\": 1,\n          \"endLine\": 384,\n          \"startOffset\": 0,\n          \"endOffset\": 14127,\n          \"fingerprint\": \"ba2a3c79027433fdbb263f518b93cdbca1baff23ee7cb9f77853731a0d6b3076\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 14127,\n        \"exactFetchable\": true,\n        \"score\": 0.444444,\n        \"title\": \"Electronics Modular System\",\n        \"headingPath\": [\n          \"Electronics Modular System\"\n        ],\n        \"snippet\": \"…y code or to one specific device shell. Current source foundation and promoted assemblies: ```text electronics_modular_library_v001_B001 : model-review multim…\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"headingPath\": [\n            \"Electronics Modular System\"\n          ],\n          \"level\": 1,\n          \"parentId\": null,\n          \"startLine\": 1,\n          \"endLine\": 384,\n          \"chars\": 14127,\n          \"bytes\": 14150,\n          \"terms\": [\n            \"electronics\",\n            \"modular\",\n            \"2026-08-08\",\n            \"last\",\n            \"updated\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      },\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"79182cb9ea974d046ca26c58a8a69d0d6da7c769c0aad8ca54d4f11805739d87\",\n          \"owner\": \"d:/dev/electronics-repair-simulator\",\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"rangeId\": \"heading-15\",\n          \"rangeKind\": \"section\",\n          \"startLine\": 220,\n          \"endLine\": 246,\n          \"startOffset\": 6346,\n          \"endOffset\": 7533,\n          \"fingerprint\": \"a7c453ca089ce688f0aab11e1069ed90d850a85fda3770ad53410f703f167941\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 1187,\n        \"exactFetchable\": true,\n        \"score\": 0.333333,\n        \"title\": \"Existing assets reused by contract\",\n        \"headingPath\": [\n          \"Electronics Modular System\",\n          \"Existing assets reused by contract\"\n        ],\n        \"snippet\": \"…te that radio-specific contract. ### A4 battery cell Default decision: `instance`. The meter cores and flashlight reserve exact 52 × 17 mm cell envelopes and …\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"headingPath\": [\n            \"Electronics Modular System\",\n            \"Existing assets reused by contract\"\n          ],\n          \"level\": 2,\n          \"parentId\": \"heading-1\",\n          \"startLine\": 220,\n          \"endLine\": 246,\n          \"chars\": 1187,\n          \"bytes\": 1189,\n          \"terms\": [\n            \"assets\",\n            \"contract\",\n            \"existing\",\n            \"reused\",\n            \"decision\",\n            \"default\",\n            \"drive\",\n            \"envelope\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      },\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"bf19fb236fd93ae7f9bcbd50855144e5808704f9d874ff13d57ffdd8d0be040f\",\n          \"owner\": \"d:/dev/electronics-repair-simulator\",\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"rangeId\": \"heading-3\",\n          \"rangeKind\": \"section\",\n          \"startLine\": 24,\n          \"endLine\": 70,\n          \"startOffset\": 1184,\n          \"endOffset\": 2585,\n          \"fingerprint\": \"ef5c68b1e1f4235ac16cfeb314488d4a042f564a7d4b6eae8c40e60c106fff31\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 1401,\n        \"exactFetchable\": true,\n        \"score\": 0.222222,\n        \"title\": \"Layer model\",\n        \"headingPath\": [\n          \"Electronics Modular System\",\n          \"Layer model\"\n        ],\n        \"snippet\": \"…ductors; - existing reusable fasteners, battery cells and battery contacts. Atomic components should remain independent from the device shell and should norma…\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"headingPath\": [\n            \"Electronics Modular System\",\n            \"Layer model\"\n          ],\n          \"level\": 2,\n          \"parentId\": \"heading-1\",\n          \"startLine\": 24,\n          \"endLine\": 70,\n          \"chars\": 1401,\n          \"bytes\": 1407,\n          \"terms\": [\n            \"layer\",\n            \"model\",\n            \"building\",\n            \"device\",\n            \"every\",\n            \"explicit\",\n            \"instead\",\n            \"layers\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      },\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"f9305df9fb20c8416db886b8955eb38a22951663cb06898bfca63615f5c81f0e\",\n          \"owner\": \"d:/dev/electronics-repair-simulator\",\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"rangeId\": \"heading-6\",\n          \"rangeKind\": \"section\",\n          \"startLine\": 57,\n          \"endLine\": 70,\n          \"startOffset\": 2202,\n          \"endOffset\": 2585,\n          \"fingerprint\": \"61cf1b5196f951ee636dfba48a05cccd428b7b755f52f54fafe967f2acbbb887\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 383,\n        \"exactFetchable\": true,\n        \"score\": 0.222222,\n        \"title\": \"Layer 3 — serviceable assembly\",\n        \"headingPath\": [\n          \"Electronics Modular System\",\n          \"Layer model\",\n          \"Layer 3 — serviceable assembly\"\n        ],\n        \"snippet\": \"…nterfaces; - PCB/module mount points; - battery cradle/contact placement; - cable routing; - optical/mechanical interfaces; - removal order. The serviceable a…\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"headingPath\": [\n            \"Electronics Modular System\",\n            \"Layer model\",\n            \"Layer 3 — serviceable assembly\"\n          ],\n          \"level\": 3,\n          \"parentId\": \"heading-3\",\n          \"startLine\": 57,\n          \"endLine\": 70,\n          \"chars\": 383,\n          \"bytes\": 385,\n          \"terms\": [\n            \"assembly\",\n            \"layer\",\n            \"serviceable\",\n            \"contract\",\n            \"device-specific\",\n            \"interior\",\n            \"shell\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      },\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"ccef563acfd5784e4bbed32d9bf612a8c1240035432d7c0ce47085c1e62896ba\",\n          \"owner\": \"d:/dev/electronics-repair-simulator\",\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"rangeId\": \"heading-17\",\n          \"rangeKind\": \"section\",\n          \"startLine\": 230,\n          \"endLine\": 235,\n          \"startOffset\": 6832,\n          \"endOffset\": 7039,\n          \"fingerprint\": \"9962b3ca319e027bb919db058d416ea8e49061f594ec8739044195318cee4141\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 207,\n        \"exactFetchable\": true,\n        \"score\": 0.222222,\n        \"title\": \"A4 battery cell\",\n        \"headingPath\": [\n          \"Electronics Modular System\",\n          \"Existing assets reused by contract\",\n          \"A4 battery cell\"\n        ],\n        \"snippet\": \"### A4 battery cell Default decision: `instance`. The meter cores and flashlight reserve exact 52 × 17 mm cell envelopes and cell-mount anchors rather than cop…\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"headingPath\": [\n            \"Electronics Modular System\",\n            \"Existing assets reused by contract\",\n            \"A4 battery cell\"\n          ],\n          \"level\": 3,\n          \"parentId\": \"heading-15\",\n          \"startLine\": 230,\n          \"endLine\": 235,\n          \"chars\": 207,\n          \"bytes\": 208,\n          \"terms\": [\n            \"battery\",\n            \"cell\",\n            \"decision\",\n            \"default\",\n            \"instance\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      },\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"d9da0d3e3180c73b0d7d41aec950c7b38d45ac09053877595c6f2827259cc059\",\n          \"owner\": \"d:/dev/electronics-repair-simulator\",\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"rangeId\": \"block-41\",\n          \"rangeKind\": \"block\",\n          \"startLine\": 232,\n          \"endLine\": 232,\n          \"startOffset\": 6853,\n          \"endOffset\": 6882,\n          \"fingerprint\": \"758aa23acf4c356c6454ae577209d012b989b86107b95b19416d6fcab3ececa4\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 29,\n        \"exactFetchable\": true,\n        \"score\": 0.222222,\n        \"title\": \"A4 battery cell\",\n        \"headingPath\": [\n          \"Electronics Modular System\",\n          \"Existing assets reused by contract\",\n          \"A4 battery cell\"\n        ],\n        \"snippet\": \"Default decision: `instance`.\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"headingPath\": [\n            \"Electronics Modular System\",\n            \"Existing assets reused by contract\",\n            \"A4 battery cell\"\n          ],\n          \"blockKind\": \"prose\",\n          \"sectionId\": \"heading-17\",\n          \"startLine\": 232,\n          \"endLine\": 232,\n          \"chars\": 29,\n          \"bytes\": 29,\n          \"terms\": [\n            \"decision\",\n            \"default\",\n            \"instance\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      },\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"2c56b19a74090570c63fbb4fd5343f593fe3ec9904fcc64eb9a5501aebe493de\",\n          \"owner\": \"d:/dev/electronics-repair-simulator\",\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"rangeId\": \"block-42\",\n          \"rangeKind\": \"block\",\n          \"startLine\": 234,\n          \"endLine\": 234,\n          \"startOffset\": 6884,\n          \"endOffset\": 7037,\n          \"fingerprint\": \"3ca92d961975b09023998c9d9cab43ed6f563690fece0a8a264941b23952489a\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 153,\n        \"exactFetchable\": true,\n        \"score\": 0.222222,\n        \"title\": \"A4 battery cell\",\n        \"headingPath\": [\n          \"Electronics Modular System\",\n          \"Existing assets reused by contract\",\n          \"A4 battery cell\"\n        ],\n        \"snippet\": \"The meter cores and flashlight reserve exact 52 × 17 mm cell envelopes and cell-mount anchors rather than copying the A4 mesh into each canonical source.\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"headingPath\": [\n            \"Electronics Modular System\",\n            \"Existing assets reused by contract\",\n            \"A4 battery cell\"\n          ],\n          \"blockKind\": \"prose\",\n          \"sectionId\": \"heading-17\",\n          \"startLine\": 234,\n          \"endLine\": 234,\n          \"chars\": 153,\n          \"bytes\": 154,\n          \"terms\": [\n            \"anchors\",\n            \"canonical\",\n            \"cell\",\n            \"cell-mount\",\n            \"copying\",\n            \"cores\",\n            \"each\",\n            \"envelopes\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      },\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"c9cf59e93282014108532a9658b0c2c7501491b92427d4c0f59ddb4a04f72513\",\n          \"owner\": \"d:/dev/electronics-repair-simulator\",\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"rangeId\": \"heading-24\",\n          \"rangeKind\": \"section\",\n          \"startLine\": 335,\n          \"endLine\": 357,\n          \"startOffset\": 12048,\n          \"endOffset\": 12798,\n          \"fingerprint\": \"dc8b16e8778be7fe64c2fe74413907567d4412457e0f11c275d042861f21f32d\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 750,\n        \"exactFetchable\": true,\n        \"score\": 0.222222,\n        \"title\": \"Scaling toward future devices\",\n        \"headingPath\": [\n          \"Electronics Modular System\",\n          \"Scaling toward future devices\"\n        ],\n        \"snippet\": \"… denser electronics, do not stretch the current 120 × 80 mm board and call it a motherboard. Add new device-class families only when a concrete device require…\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"headingPath\": [\n            \"Electronics Modular System\",\n            \"Scaling toward future devices\"\n          ],\n          \"level\": 2,\n          \"parentId\": \"heading-1\",\n          \"startLine\": 335,\n          \"endLine\": 357,\n          \"chars\": 750,\n          \"bytes\": 751,\n          \"terms\": [\n            \"devices\",\n            \"future\",\n            \"scaling\",\n            \"toward\",\n            \"appliances\",\n            \"atomic\",\n            \"compose\",\n            \"controllers\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      },\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"2b237a7f94ddd1375c429120c0ac7fa3a1c8adc1f3fedd014045ecf4bfaff635\",\n          \"owner\": \"d:/dev/electronics-repair-simulator\",\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"rangeId\": \"heading-2\",\n          \"rangeKind\": \"section\",\n          \"startLine\": 5,\n          \"endLine\": 23,\n          \"startOffset\": 56,\n          \"endOffset\": 1184,\n          \"fingerprint\": \"d7f82b4c366c94876d943639190aefc284139ce43d5330eb6316b2537a136a9e\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 1128,\n        \"exactFetchable\": true,\n        \"score\": 0.111111,\n        \"title\": \"Purpose\",\n        \"headingPath\": [\n          \"Electronics Modular System\",\n          \"Purpose\"\n        ],\n        \"snippet\": \"…y code or to one specific device shell. Current source foundation and promoted assemblies: ```text electronics_modular_library_v001_B001 : model-review multim…\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"headingPath\": [\n            \"Electronics Modular System\",\n            \"Purpose\"\n          ],\n          \"level\": 2,\n          \"parentId\": \"heading-1\",\n          \"startLine\": 5,\n          \"endLine\": 23,\n          \"chars\": 1128,\n          \"bytes\": 1128,\n          \"terms\": [\n            \"purpose\",\n            \"architecture\",\n            \"asset\",\n            \"code\",\n            \"component\",\n            \"coupling\",\n            \"define\",\n            \"device\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      },\n      {\n        \"handle\": {\n          \"version\": 1,\n          \"id\": \"9ac3a06195752c3008d39e9ec249291f336fa8a92e360372904af71918916783\",\n          \"owner\": \"d:/dev/electronics-repair-simulator\",\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"rangeId\": \"block-3\",\n          \"rangeKind\": \"block\",\n          \"startLine\": 9,\n          \"endLine\": 9,\n          \"startOffset\": 248,\n          \"endOffset\": 298,\n          \"fingerprint\": \"df7d4699ab682d7e53ce4b4fcf31811377b7af6734e38eb9be261bb99f6c3de3\",\n          \"privacyClass\": \"project-metadata\"\n        },\n        \"rangeCodeUnits\": 50,\n        \"exactFetchable\": true,\n        \"score\": 0.111111,\n        \"title\": \"Purpose\",\n        \"headingPath\": [\n          \"Electronics Modular System\",\n          \"Purpose\"\n        ],\n        \"snippet\": \"Current source foundation and promoted assemblies:\",\n        \"metadata\": {\n          \"sourceRef\": \"docs/ELECTRONICS_MODULAR_SYSTEM.md\",\n          \"revision\": \"4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77\",\n          \"headingPath\": [\n            \"Electronics Modular System\",\n            \"Purpose\"\n          ],\n          \"blockKind\": \"prose\",\n          \"sectionId\": \"heading-2\",\n          \"startLine\": 9,\n          \"endLine\": 9,\n          \"chars\": 50,\n          \"bytes\": 50,\n          \"terms\": [\n            \"assemblies\",\n            \"foundation\",\n            \"promoted\",\n            \"source\"\n          ]\n        },\n        \"evidenceTier\": \"candidate\",\n        \"advisoryOnly\": true,\n        \"truthAuthority\": false,\n        \"ownerAndPrivacyAreCallerAsserted\": true,\n        \"catalogProvenanceIsCallerAsserted\": true\n      }\n    ],\n    \"advisoryOnly\": true,\n    \"truthAuthority\": false,\n    \"truncated\": true\n  }\n}"
+      }
+    ]
+  },
+  "search": {
+    "projectOwner": "d:/dev/electronics-repair-simulator",
+    "sourceCount": 1,
+    "results": [
+      {
+        "handle": {
+          "version": 1,
+          "id": "4322c931bc80a9271428cd3243a6c48d6fb4733d112ef28af37630761789acc2",
+          "owner": "d:/dev/electronics-repair-simulator",
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "startLine": 1,
+          "endLine": 384,
+          "startOffset": 0,
+          "endOffset": 14127,
+          "fingerprint": "ba2a3c79027433fdbb263f518b93cdbca1baff23ee7cb9f77853731a0d6b3076",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 14127,
+        "exactFetchable": true,
+        "score": 0.444444,
+        "title": "Electronics Modular System",
+        "headingPath": [
+          "Electronics Modular System"
+        ],
+        "snippet": "…y code or to one specific device shell. Current source foundation and promoted assemblies: ```text electronics_modular_library_v001_B001 : model-review multim…",
+        "metadata": {
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "headingPath": [
+            "Electronics Modular System"
+          ],
+          "level": 1,
+          "parentId": null,
+          "startLine": 1,
+          "endLine": 384,
+          "chars": 14127,
+          "bytes": 14150,
+          "terms": [
+            "electronics",
+            "modular",
+            "2026-08-08",
+            "last",
+            "updated"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "79182cb9ea974d046ca26c58a8a69d0d6da7c769c0aad8ca54d4f11805739d87",
+          "owner": "d:/dev/electronics-repair-simulator",
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "rangeId": "heading-15",
+          "rangeKind": "section",
+          "startLine": 220,
+          "endLine": 246,
+          "startOffset": 6346,
+          "endOffset": 7533,
+          "fingerprint": "a7c453ca089ce688f0aab11e1069ed90d850a85fda3770ad53410f703f167941",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 1187,
+        "exactFetchable": true,
+        "score": 0.333333,
+        "title": "Existing assets reused by contract",
+        "headingPath": [
+          "Electronics Modular System",
+          "Existing assets reused by contract"
+        ],
+        "snippet": "…te that radio-specific contract. ### A4 battery cell Default decision: `instance`. The meter cores and flashlight reserve exact 52 × 17 mm cell envelopes and …",
+        "metadata": {
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "headingPath": [
+            "Electronics Modular System",
+            "Existing assets reused by contract"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 220,
+          "endLine": 246,
+          "chars": 1187,
+          "bytes": 1189,
+          "terms": [
+            "assets",
+            "contract",
+            "existing",
+            "reused",
+            "decision",
+            "default",
+            "drive",
+            "envelope"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "bf19fb236fd93ae7f9bcbd50855144e5808704f9d874ff13d57ffdd8d0be040f",
+          "owner": "d:/dev/electronics-repair-simulator",
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "rangeId": "heading-3",
+          "rangeKind": "section",
+          "startLine": 24,
+          "endLine": 70,
+          "startOffset": 1184,
+          "endOffset": 2585,
+          "fingerprint": "ef5c68b1e1f4235ac16cfeb314488d4a042f564a7d4b6eae8c40e60c106fff31",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 1401,
+        "exactFetchable": true,
+        "score": 0.222222,
+        "title": "Layer model",
+        "headingPath": [
+          "Electronics Modular System",
+          "Layer model"
+        ],
+        "snippet": "…ductors; - existing reusable fasteners, battery cells and battery contacts. Atomic components should remain independent from the device shell and should norma…",
+        "metadata": {
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "headingPath": [
+            "Electronics Modular System",
+            "Layer model"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 24,
+          "endLine": 70,
+          "chars": 1401,
+          "bytes": 1407,
+          "terms": [
+            "layer",
+            "model",
+            "building",
+            "device",
+            "every",
+            "explicit",
+            "instead",
+            "layers"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "f9305df9fb20c8416db886b8955eb38a22951663cb06898bfca63615f5c81f0e",
+          "owner": "d:/dev/electronics-repair-simulator",
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "rangeId": "heading-6",
+          "rangeKind": "section",
+          "startLine": 57,
+          "endLine": 70,
+          "startOffset": 2202,
+          "endOffset": 2585,
+          "fingerprint": "61cf1b5196f951ee636dfba48a05cccd428b7b755f52f54fafe967f2acbbb887",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 383,
+        "exactFetchable": true,
+        "score": 0.222222,
+        "title": "Layer 3 — serviceable assembly",
+        "headingPath": [
+          "Electronics Modular System",
+          "Layer model",
+          "Layer 3 — serviceable assembly"
+        ],
+        "snippet": "…nterfaces; - PCB/module mount points; - battery cradle/contact placement; - cable routing; - optical/mechanical interfaces; - removal order. The serviceable a…",
+        "metadata": {
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "headingPath": [
+            "Electronics Modular System",
+            "Layer model",
+            "Layer 3 — serviceable assembly"
+          ],
+          "level": 3,
+          "parentId": "heading-3",
+          "startLine": 57,
+          "endLine": 70,
+          "chars": 383,
+          "bytes": 385,
+          "terms": [
+            "assembly",
+            "layer",
+            "serviceable",
+            "contract",
+            "device-specific",
+            "interior",
+            "shell"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "ccef563acfd5784e4bbed32d9bf612a8c1240035432d7c0ce47085c1e62896ba",
+          "owner": "d:/dev/electronics-repair-simulator",
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "rangeId": "heading-17",
+          "rangeKind": "section",
+          "startLine": 230,
+          "endLine": 235,
+          "startOffset": 6832,
+          "endOffset": 7039,
+          "fingerprint": "9962b3ca319e027bb919db058d416ea8e49061f594ec8739044195318cee4141",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 207,
+        "exactFetchable": true,
+        "score": 0.222222,
+        "title": "A4 battery cell",
+        "headingPath": [
+          "Electronics Modular System",
+          "Existing assets reused by contract",
+          "A4 battery cell"
+        ],
+        "snippet": "### A4 battery cell Default decision: `instance`. The meter cores and flashlight reserve exact 52 × 17 mm cell envelopes and cell-mount anchors rather than cop…",
+        "metadata": {
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "headingPath": [
+            "Electronics Modular System",
+            "Existing assets reused by contract",
+            "A4 battery cell"
+          ],
+          "level": 3,
+          "parentId": "heading-15",
+          "startLine": 230,
+          "endLine": 235,
+          "chars": 207,
+          "bytes": 208,
+          "terms": [
+            "battery",
+            "cell",
+            "decision",
+            "default",
+            "instance"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "d9da0d3e3180c73b0d7d41aec950c7b38d45ac09053877595c6f2827259cc059",
+          "owner": "d:/dev/electronics-repair-simulator",
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "rangeId": "block-41",
+          "rangeKind": "block",
+          "startLine": 232,
+          "endLine": 232,
+          "startOffset": 6853,
+          "endOffset": 6882,
+          "fingerprint": "758aa23acf4c356c6454ae577209d012b989b86107b95b19416d6fcab3ececa4",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 29,
+        "exactFetchable": true,
+        "score": 0.222222,
+        "title": "A4 battery cell",
+        "headingPath": [
+          "Electronics Modular System",
+          "Existing assets reused by contract",
+          "A4 battery cell"
+        ],
+        "snippet": "Default decision: `instance`.",
+        "metadata": {
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "headingPath": [
+            "Electronics Modular System",
+            "Existing assets reused by contract",
+            "A4 battery cell"
+          ],
+          "blockKind": "prose",
+          "sectionId": "heading-17",
+          "startLine": 232,
+          "endLine": 232,
+          "chars": 29,
+          "bytes": 29,
+          "terms": [
+            "decision",
+            "default",
+            "instance"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "2c56b19a74090570c63fbb4fd5343f593fe3ec9904fcc64eb9a5501aebe493de",
+          "owner": "d:/dev/electronics-repair-simulator",
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "rangeId": "block-42",
+          "rangeKind": "block",
+          "startLine": 234,
+          "endLine": 234,
+          "startOffset": 6884,
+          "endOffset": 7037,
+          "fingerprint": "3ca92d961975b09023998c9d9cab43ed6f563690fece0a8a264941b23952489a",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 153,
+        "exactFetchable": true,
+        "score": 0.222222,
+        "title": "A4 battery cell",
+        "headingPath": [
+          "Electronics Modular System",
+          "Existing assets reused by contract",
+          "A4 battery cell"
+        ],
+        "snippet": "The meter cores and flashlight reserve exact 52 × 17 mm cell envelopes and cell-mount anchors rather than copying the A4 mesh into each canonical source.",
+        "metadata": {
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "headingPath": [
+            "Electronics Modular System",
+            "Existing assets reused by contract",
+            "A4 battery cell"
+          ],
+          "blockKind": "prose",
+          "sectionId": "heading-17",
+          "startLine": 234,
+          "endLine": 234,
+          "chars": 153,
+          "bytes": 154,
+          "terms": [
+            "anchors",
+            "canonical",
+            "cell",
+            "cell-mount",
+            "copying",
+            "cores",
+            "each",
+            "envelopes"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "c9cf59e93282014108532a9658b0c2c7501491b92427d4c0f59ddb4a04f72513",
+          "owner": "d:/dev/electronics-repair-simulator",
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "rangeId": "heading-24",
+          "rangeKind": "section",
+          "startLine": 335,
+          "endLine": 357,
+          "startOffset": 12048,
+          "endOffset": 12798,
+          "fingerprint": "dc8b16e8778be7fe64c2fe74413907567d4412457e0f11c275d042861f21f32d",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 750,
+        "exactFetchable": true,
+        "score": 0.222222,
+        "title": "Scaling toward future devices",
+        "headingPath": [
+          "Electronics Modular System",
+          "Scaling toward future devices"
+        ],
+        "snippet": "… denser electronics, do not stretch the current 120 × 80 mm board and call it a motherboard. Add new device-class families only when a concrete device require…",
+        "metadata": {
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "headingPath": [
+            "Electronics Modular System",
+            "Scaling toward future devices"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 335,
+          "endLine": 357,
+          "chars": 750,
+          "bytes": 751,
+          "terms": [
+            "devices",
+            "future",
+            "scaling",
+            "toward",
+            "appliances",
+            "atomic",
+            "compose",
+            "controllers"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "2b237a7f94ddd1375c429120c0ac7fa3a1c8adc1f3fedd014045ecf4bfaff635",
+          "owner": "d:/dev/electronics-repair-simulator",
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "startLine": 5,
+          "endLine": 23,
+          "startOffset": 56,
+          "endOffset": 1184,
+          "fingerprint": "d7f82b4c366c94876d943639190aefc284139ce43d5330eb6316b2537a136a9e",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 1128,
+        "exactFetchable": true,
+        "score": 0.111111,
+        "title": "Purpose",
+        "headingPath": [
+          "Electronics Modular System",
+          "Purpose"
+        ],
+        "snippet": "…y code or to one specific device shell. Current source foundation and promoted assemblies: ```text electronics_modular_library_v001_B001 : model-review multim…",
+        "metadata": {
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "headingPath": [
+            "Electronics Modular System",
+            "Purpose"
+          ],
+          "level": 2,
+          "parentId": "heading-1",
+          "startLine": 5,
+          "endLine": 23,
+          "chars": 1128,
+          "bytes": 1128,
+          "terms": [
+            "purpose",
+            "architecture",
+            "asset",
+            "code",
+            "component",
+            "coupling",
+            "define",
+            "device"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      },
+      {
+        "handle": {
+          "version": 1,
+          "id": "9ac3a06195752c3008d39e9ec249291f336fa8a92e360372904af71918916783",
+          "owner": "d:/dev/electronics-repair-simulator",
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "startLine": 9,
+          "endLine": 9,
+          "startOffset": 248,
+          "endOffset": 298,
+          "fingerprint": "df7d4699ab682d7e53ce4b4fcf31811377b7af6734e38eb9be261bb99f6c3de3",
+          "privacyClass": "project-metadata"
+        },
+        "rangeCodeUnits": 50,
+        "exactFetchable": true,
+        "score": 0.111111,
+        "title": "Purpose",
+        "headingPath": [
+          "Electronics Modular System",
+          "Purpose"
+        ],
+        "snippet": "Current source foundation and promoted assemblies:",
+        "metadata": {
+          "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+          "revision": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "headingPath": [
+            "Electronics Modular System",
+            "Purpose"
+          ],
+          "blockKind": "prose",
+          "sectionId": "heading-2",
+          "startLine": 9,
+          "endLine": 9,
+          "chars": 50,
+          "bytes": 50,
+          "terms": [
+            "assemblies",
+            "foundation",
+            "promoted",
+            "source"
+          ]
+        },
+        "evidenceTier": "candidate",
+        "advisoryOnly": true,
+        "truthAuthority": false,
+        "ownerAndPrivacyAreCallerAsserted": true,
+        "catalogProvenanceIsCallerAsserted": true
+      }
+    ],
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "truncated": true
+  }
+}

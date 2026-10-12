@@ -1,0 +1,502 @@
+{
+  "schema": "mssr-librarian-cross-language-query-recovery-aggregate-v1",
+  "runId": "mssr-librarian-cross-language-query-recovery-20261012T091600Z-v1",
+  "baselineRunId": "mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1",
+  "protocol": {
+    "sourceFamilies": 3,
+    "metadataMode": "off",
+    "maxResults": 10,
+    "providerLabelsExposed": false,
+    "labelsOwnerAdjudicated": false,
+    "sourceSnapshots": "Run45 frozen snapshots, independently SHA-256 checked against Run46 manifest",
+    "queryVariants": "explicit blind translations only; primary-query-first ranking remains active"
+  },
+  "sourceIntegrity": [
+    {
+      "sourceId": "kode",
+      "sourceRef": "docs/OPENCODE_PROVIDER.md",
+      "bytes": 16917,
+      "expectedSha256": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+      "actualSha256": "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672",
+      "passed": true
+    },
+    {
+      "sourceId": "elemental-frontier",
+      "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+      "bytes": 2436,
+      "expectedSha256": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+      "actualSha256": "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe",
+      "passed": true
+    },
+    {
+      "sourceId": "electronics-repair-simulator",
+      "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+      "bytes": 14150,
+      "expectedSha256": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+      "actualSha256": "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+      "passed": true
+    }
+  ],
+  "cases": [
+    {
+      "caseId": "KODE-01-ES",
+      "sourceId": "kode",
+      "sourceRef": "docs/OPENCODE_PROVIDER.md",
+      "answerability": "answerable",
+      "expectedDisposition": "select",
+      "queryVariantCount": 1,
+      "primaryControl": {
+        "origin": "Run45-primary-only-receipt",
+        "candidateCount": 10,
+        "sourceRevisions": [
+          "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672"
+        ],
+        "sourceEvidence": "candidate-handle-revision",
+        "sourceRefs": [
+          "docs/OPENCODE_PROVIDER.md"
+        ],
+        "sourceMatchesFrozenRevision": true,
+        "targetRank": null,
+        "comparableToVariant": true
+      },
+      "variantSearch": {
+        "candidateCount": 10,
+        "sourceRevisions": [
+          "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672"
+        ],
+        "targetRank": null,
+        "targetAt5": false,
+        "targetAt10": false,
+        "variantOnlyCandidateCount": 0
+      },
+      "comparison": {
+        "status": "same-source-revision-comparable",
+        "primaryCount": 10,
+        "variantCount": 10,
+        "addedIds": [],
+        "removedIds": [],
+        "sameOrder": true,
+        "primaryTargetRank": null,
+        "variantTargetRank": null
+      },
+      "historicalRun45Baseline": {
+        "path": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/raw/KODE-01-ES.search.json",
+        "candidateCount": 10,
+        "sourceRevisions": [
+          "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672"
+        ],
+        "sourceMatchesFrozenRevision": true,
+        "usedForPrimaryComparison": true,
+        "excludedReason": null
+      },
+      "jev": null,
+      "exactFetchReceiptPresent": false,
+      "evidencePackReceiptPresent": false
+    },
+    {
+      "caseId": "EF-01-EN",
+      "sourceId": "elemental-frontier",
+      "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+      "answerability": "answerable",
+      "expectedDisposition": "select",
+      "queryVariantCount": 1,
+      "primaryControl": {
+        "origin": "same-run-primary-only-control",
+        "candidateCount": 0,
+        "sourceRevisions": [
+          "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe"
+        ],
+        "sourceEvidence": "embedded-source-bytes",
+        "sourceRefs": [
+          "combat-lab/TEST_PROTOCOL.md"
+        ],
+        "sourceMatchesFrozenRevision": true,
+        "targetRank": null,
+        "comparableToVariant": true
+      },
+      "variantSearch": {
+        "candidateCount": 5,
+        "sourceRevisions": [
+          "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe"
+        ],
+        "targetRank": 2,
+        "targetAt5": true,
+        "targetAt10": true,
+        "variantOnlyCandidateCount": 5
+      },
+      "comparison": {
+        "status": "same-source-revision-comparable",
+        "primaryCount": 0,
+        "variantCount": 5,
+        "addedIds": [
+          "3dc0144d4752a4293089617e69e3f0e1875186af7b1368f3ce5c3942cf794f76",
+          "2ab4c70b7c9629af5aa60de09bcda2264fcb439c1df049510ce4a13f31483ffc",
+          "c6a1a93b166897ec749d91d6c7bd8e901a6a89741e87d1b01d135b81052efdaf",
+          "07f340bc077acb8854a8f6d9fd36636f818014fa71b072d3132319a639c43f34",
+          "c0f7d9ba04bc3eb01305e677f4eedb55bc6fb8fa307a13aabc75177a4d7ef907"
+        ],
+        "removedIds": [],
+        "sameOrder": false,
+        "primaryTargetRank": null,
+        "variantTargetRank": 2
+      },
+      "historicalRun45Baseline": {
+        "path": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/raw/EF-01-EN.search.json",
+        "candidateCount": 0,
+        "sourceRevisions": [],
+        "sourceMatchesFrozenRevision": null,
+        "usedForPrimaryComparison": false,
+        "excludedReason": "empty result has no handle revision; pair excluded as unverifiable"
+      },
+      "jev": {
+        "status": "abstained",
+        "decision": "abstained",
+        "candidateCount": 5,
+        "candidatePoolMatchesVariantSearch": true,
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 0.76,
+        "evidenceSufficiency": 0.95,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "providerCalls": 1,
+        "elapsedMs": 325.4,
+        "inputTokens": 1109,
+        "outputTokens": 94,
+        "selectedRangeId": null,
+        "selectedTarget": false
+      },
+      "exactFetchReceiptPresent": false,
+      "evidencePackReceiptPresent": false
+    },
+    {
+      "caseId": "ERS-01-ES",
+      "sourceId": "electronics-repair-simulator",
+      "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+      "answerability": "answerable",
+      "expectedDisposition": "select",
+      "queryVariantCount": 1,
+      "primaryControl": {
+        "origin": "same-run-primary-only-control",
+        "candidateCount": 0,
+        "sourceRevisions": [
+          "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77",
+          "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77"
+        ],
+        "sourceEvidence": "unchanged-local-hash-before-and-after-call",
+        "sourceRefs": [
+          "docs/ELECTRONICS_MODULAR_SYSTEM.md"
+        ],
+        "sourceMatchesFrozenRevision": true,
+        "targetRank": null,
+        "comparableToVariant": true
+      },
+      "variantSearch": {
+        "candidateCount": 10,
+        "sourceRevisions": [
+          "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77"
+        ],
+        "targetRank": 2,
+        "targetAt5": true,
+        "targetAt10": true,
+        "variantOnlyCandidateCount": 10
+      },
+      "comparison": {
+        "status": "same-source-revision-comparable",
+        "primaryCount": 0,
+        "variantCount": 10,
+        "addedIds": [
+          "4322c931bc80a9271428cd3243a6c48d6fb4733d112ef28af37630761789acc2",
+          "bf19fb236fd93ae7f9bcbd50855144e5808704f9d874ff13d57ffdd8d0be040f",
+          "737b711ad6629c9d258ff3dabe6f351769a428a3dbca3c7c934503f03cf14f9a",
+          "2b237a7f94ddd1375c429120c0ac7fa3a1c8adc1f3fedd014045ecf4bfaff635",
+          "bb3ab88c78175b182c6b8f8c31ef92d10dfa1f4ac80710007a0dbf1265b6c2ac",
+          "5fc4f865a5274bacd95a93102d9b9a3a2db6e3fbc5c6ad9271d00232a3dc4516",
+          "01cc93da7a9122ddf2c5f13c214b846c1f2ef4c48319d23363cf15bb3f1c7559",
+          "de536ba73689b7a02a527dd35d76aac9b6d411be85988b50f960294080aa21a1",
+          "b6d9415f9084be4b225620a7559051095f1487a1419c7ccc8dc36ac638265c16",
+          "cc29c9efaf8f7d611f44ab9e41186783a5d2fffe6bff915d03b9bf7988c4b7ec"
+        ],
+        "removedIds": [],
+        "sameOrder": false,
+        "primaryTargetRank": null,
+        "variantTargetRank": 2
+      },
+      "historicalRun45Baseline": {
+        "path": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/raw/ERS-01-ES.search.json",
+        "candidateCount": 0,
+        "sourceRevisions": [],
+        "sourceMatchesFrozenRevision": null,
+        "usedForPrimaryComparison": false,
+        "excludedReason": "empty result has no handle revision; pair excluded as unverifiable"
+      },
+      "jev": {
+        "status": "abstained",
+        "decision": "abstained",
+        "candidateCount": 10,
+        "candidatePoolMatchesVariantSearch": true,
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 0.54,
+        "evidenceSufficiency": 0.44,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "providerCalls": 1,
+        "elapsedMs": 802.7,
+        "inputTokens": 1754,
+        "outputTokens": 144,
+        "selectedRangeId": null,
+        "selectedTarget": false
+      },
+      "exactFetchReceiptPresent": false,
+      "evidencePackReceiptPresent": false
+    },
+    {
+      "caseId": "EF-NEG-01",
+      "sourceId": "elemental-frontier",
+      "sourceRef": "combat-lab/TEST_PROTOCOL.md",
+      "answerability": "unanswerable-in-source",
+      "expectedDisposition": "abstain",
+      "queryVariantCount": 1,
+      "primaryControl": {
+        "origin": "same-run-primary-only-control",
+        "candidateCount": 8,
+        "sourceRevisions": [
+          "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe"
+        ],
+        "sourceEvidence": "candidate-handle-revision",
+        "sourceRefs": [
+          "combat-lab/TEST_PROTOCOL.md"
+        ],
+        "sourceMatchesFrozenRevision": true,
+        "targetRank": null,
+        "comparableToVariant": true
+      },
+      "variantSearch": {
+        "candidateCount": 10,
+        "sourceRevisions": [
+          "07d5ea38cf9af29c10d3c838a8a9428b478f9eecb6a8d6a812b1dfb8cc3c49fe"
+        ],
+        "targetRank": null,
+        "targetAt5": false,
+        "targetAt10": false,
+        "variantOnlyCandidateCount": 2
+      },
+      "comparison": {
+        "status": "same-source-revision-comparable",
+        "primaryCount": 8,
+        "variantCount": 10,
+        "addedIds": [
+          "5a84bdd90ef708eb5b1f07244a49840518bb305ef1d4ea37502c8c4f6f03344f",
+          "a71e5c7a87adba3e6ed2528b22f94ac1c1ce8541d13732c35953acaee8ef4137"
+        ],
+        "removedIds": [],
+        "sameOrder": false,
+        "primaryTargetRank": null,
+        "variantTargetRank": null
+      },
+      "historicalRun45Baseline": {
+        "path": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/raw/EF-NEG-01.search.json",
+        "candidateCount": 8,
+        "sourceRevisions": [
+          "a51fe735f7a0e85a0bece3ae36bcda5fd01825f8c4ab32c4d7dd356c642c5c7d"
+        ],
+        "sourceMatchesFrozenRevision": false,
+        "usedForPrimaryComparison": false,
+        "excludedReason": "source revision differs from Run46 frozen source; pair excluded"
+      },
+      "jev": {
+        "status": "abstained",
+        "decision": "abstained",
+        "candidateCount": 10,
+        "candidatePoolMatchesVariantSearch": true,
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 0.98,
+        "evidenceSufficiency": 0.08,
+        "confidenceCalibration": "uncalibrated-provider-score",
+        "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+        "providerCalls": 1,
+        "elapsedMs": 320.2,
+        "inputTokens": 1693,
+        "outputTokens": 144,
+        "selectedRangeId": null,
+        "selectedTarget": false
+      },
+      "exactFetchReceiptPresent": false,
+      "evidencePackReceiptPresent": false
+    },
+    {
+      "caseId": "KODE-NEG-01",
+      "sourceId": "kode",
+      "sourceRef": "docs/OPENCODE_PROVIDER.md",
+      "answerability": "unanswerable-in-source",
+      "expectedDisposition": "abstain",
+      "queryVariantCount": 0,
+      "primaryControl": {
+        "origin": "Run45-primary-only-receipt",
+        "candidateCount": 10,
+        "sourceRevisions": [
+          "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672"
+        ],
+        "sourceEvidence": "candidate-handle-revision",
+        "sourceRefs": [
+          "docs/OPENCODE_PROVIDER.md"
+        ],
+        "sourceMatchesFrozenRevision": true,
+        "targetRank": null,
+        "comparableToVariant": true
+      },
+      "variantSearch": {
+        "candidateCount": 10,
+        "sourceRevisions": [
+          "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672"
+        ],
+        "targetRank": null,
+        "targetAt5": false,
+        "targetAt10": false,
+        "variantOnlyCandidateCount": 0
+      },
+      "comparison": {
+        "status": "same-source-revision-comparable",
+        "primaryCount": 10,
+        "variantCount": 10,
+        "addedIds": [],
+        "removedIds": [],
+        "sameOrder": true,
+        "primaryTargetRank": null,
+        "variantTargetRank": null
+      },
+      "historicalRun45Baseline": {
+        "path": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/raw/KODE-NEG-01.search.json",
+        "candidateCount": 10,
+        "sourceRevisions": [
+          "c4cd02ec1926068f593083e242b235319f76f49e133a37cbefa4f6163cbe6672"
+        ],
+        "sourceMatchesFrozenRevision": true,
+        "usedForPrimaryComparison": true,
+        "excludedReason": null
+      },
+      "jev": null,
+      "exactFetchReceiptPresent": false,
+      "evidencePackReceiptPresent": false
+    },
+    {
+      "caseId": "ERS-NEG-01",
+      "sourceId": "electronics-repair-simulator",
+      "sourceRef": "docs/ELECTRONICS_MODULAR_SYSTEM.md",
+      "answerability": "unanswerable-in-source",
+      "expectedDisposition": "abstain",
+      "queryVariantCount": 0,
+      "primaryControl": {
+        "origin": "Run45-primary-only-receipt",
+        "candidateCount": 10,
+        "sourceRevisions": [
+          "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77"
+        ],
+        "sourceEvidence": "candidate-handle-revision",
+        "sourceRefs": [
+          "docs/ELECTRONICS_MODULAR_SYSTEM.md"
+        ],
+        "sourceMatchesFrozenRevision": true,
+        "targetRank": null,
+        "comparableToVariant": true
+      },
+      "variantSearch": {
+        "candidateCount": 10,
+        "sourceRevisions": [
+          "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77"
+        ],
+        "targetRank": null,
+        "targetAt5": false,
+        "targetAt10": false,
+        "variantOnlyCandidateCount": 0
+      },
+      "comparison": {
+        "status": "same-source-revision-comparable",
+        "primaryCount": 10,
+        "variantCount": 10,
+        "addedIds": [],
+        "removedIds": [],
+        "sameOrder": true,
+        "primaryTargetRank": null,
+        "variantTargetRank": null
+      },
+      "historicalRun45Baseline": {
+        "path": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/raw/ERS-NEG-01.search.json",
+        "candidateCount": 10,
+        "sourceRevisions": [
+          "4a5556680a4f395bdbc4e6b578d9fbc368c15483fdad6b6f57aeef3e84a5cd77"
+        ],
+        "sourceMatchesFrozenRevision": true,
+        "usedForPrimaryComparison": true,
+        "excludedReason": null
+      },
+      "jev": null,
+      "exactFetchReceiptPresent": false,
+      "evidencePackReceiptPresent": false
+    }
+  ],
+  "searchSummary": {
+    "positiveCasesWithVariants": {
+      "count": 3,
+      "total": 3,
+      "percent": 100
+    },
+    "positiveTargetsRecoveredInVariantPools": {
+      "count": 2,
+      "total": 3,
+      "percent": 66.7
+    },
+    "recoveredCaseIds": [
+      "EF-01-EN",
+      "ERS-01-ES"
+    ],
+    "recoveredTargetRanks": {
+      "EF-01-EN": 2,
+      "ERS-01-ES": 2
+    },
+    "efNegativeCandidateDelta": {
+      "primaryOnly": 8,
+      "withVariant": 10,
+      "added": 2
+    },
+    "kodeTop10CandidateDelta": {
+      "primaryOnly": 10,
+      "withVariant": 10,
+      "added": 0,
+      "removed": 0,
+      "sameOrder": true
+    }
+  },
+  "jev": {
+    "calls": 3,
+    "positiveCalls": 2,
+    "positiveSelections": {
+      "count": 0,
+      "total": 2,
+      "percent": 0
+    },
+    "negativeCalls": 1,
+    "negativeAbstentions": {
+      "count": 1,
+      "total": 1,
+      "percent": 100
+    },
+    "allAbstained": true,
+    "inputTokens": 4556,
+    "outputTokens": 382,
+    "totalElapsedMs": 1448.3,
+    "rawScoresAreCalibrated": false,
+    "fetchReceipts": 0,
+    "evidencePackReceipts": 0,
+    "compositionPerformed": false
+  },
+  "interpretation": {
+    "scope": "Retrieval candidate recovery and Jev selection diagnostics only; no fetch, evidence-pack, compaction, or paragraph-composition result.",
+    "confidence": "Provider confidence/evidence-sufficiency values are uncalibrated descriptive outputs; no threshold or reliability claim is supported.",
+    "labels": "Analyst source-derived labels; no source-owner adjudication or certified holdout.",
+    "comparison": "Run45 EF raw baseline is excluded because its handle revision differs from the declared and independently hashed EF source. Same-snapshot EF primary-only controls were added by the recorded amendment."
+  },
+  "frozenEvidenceInventorySha256": "9cab12e8b26f616a98b992a35f01505601f8cd50ca489b0111dbe055e5011c52"
+}

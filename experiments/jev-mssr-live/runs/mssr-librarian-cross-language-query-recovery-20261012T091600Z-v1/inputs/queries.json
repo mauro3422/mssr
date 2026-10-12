@@ -1,0 +1,82 @@
+{
+  "schema": "mssr-librarian-cross-language-query-recovery-inputs-v1",
+  "runId": "mssr-librarian-cross-language-query-recovery-20261012T091600Z-v1",
+  "baselineRunId": "mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1",
+  "translationProtocol": "Blind translator saw each query only; no sources, labels, expected ranges, support spans or outcomes.",
+  "cases": [
+    {
+      "id": "KODE-01-ES",
+      "projectRoot": "D:/Dev/kode",
+      "sourceRefs": [
+        "docs/OPENCODE_PROVIDER.md"
+      ],
+      "metadataMode": "off",
+      "primary": "Cuando los metadatos del proveedor especifican un paquete SDK para el modelo, ¿qué tiene prioridad sobre el valor predeterminado del proveedor?",
+      "variants": [
+        "When the provider metadata specifies an SDK package for the model, what takes precedence over the provider's default value?"
+      ],
+      "baselineReceipt": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/raw/KODE-01-ES.search.json"
+    },
+    {
+      "id": "EF-01-EN",
+      "projectRoot": "D:/Dev/elemental-frontier",
+      "sourceRefs": [
+        "combat-lab/TEST_PROTOCOL.md"
+      ],
+      "metadataMode": "off",
+      "primary": "Which settings must remain the same for direct comparisons, and how many times should quantitative measurements be repeated?",
+      "variants": [
+        "¿Qué ajustes deben permanecer iguales para las comparaciones directas y cuántas veces deben repetirse las mediciones cuantitativas?"
+      ],
+      "baselineReceipt": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/raw/EF-01-EN.search.json"
+    },
+    {
+      "id": "ERS-01-ES",
+      "projectRoot": "D:/Dev/electronics-repair-simulator",
+      "sourceRefs": [
+        "docs/ELECTRONICS_MODULAR_SYSTEM.md"
+      ],
+      "metadataMode": "off",
+      "primary": "¿Cuáles son las tres capas explícitas del modelado del dispositivo y cuál es responsable de ubicar los componentes atómicos?",
+      "variants": [
+        "What are the three explicit layers of device modeling, and which one is responsible for positioning the atomic components?"
+      ],
+      "baselineReceipt": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/raw/ERS-01-ES.search.json"
+    },
+    {
+      "id": "EF-NEG-01",
+      "projectRoot": "D:/Dev/elemental-frontier",
+      "sourceRefs": [
+        "combat-lab/TEST_PROTOCOL.md"
+      ],
+      "metadataMode": "off",
+      "primary": "What exact fixed FPS must every comparison video use?",
+      "variants": [
+        "¿Qué FPS fijo exacto debe usar cada video de comparación?"
+      ],
+      "baselineReceipt": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/raw/EF-NEG-01.search.json"
+    },
+    {
+      "id": "KODE-NEG-01",
+      "projectRoot": "D:/Dev/kode",
+      "sourceRefs": [
+        "docs/OPENCODE_PROVIDER.md"
+      ],
+      "metadataMode": "off",
+      "primary": "How many FREE models are available from the provider right now?",
+      "variants": [],
+      "baselineReceipt": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/raw/KODE-NEG-01.search.json"
+    },
+    {
+      "id": "ERS-NEG-01",
+      "projectRoot": "D:/Dev/electronics-repair-simulator",
+      "sourceRefs": [
+        "docs/ELECTRONICS_MODULAR_SYSTEM.md"
+      ],
+      "metadataMode": "off",
+      "primary": "What nominal voltage rating and current tolerance must the battery cell meet?",
+      "variants": [],
+      "baselineReceipt": "../mssr-librarian-cross-project-development-cohort-20261012T083000Z-v1/raw/ERS-NEG-01.search.json"
+    }
+  ]
+}
