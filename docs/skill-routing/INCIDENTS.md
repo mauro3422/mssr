@@ -1771,3 +1771,12 @@ and confirm required loads before dependent work. Do not submit `accepted` for a
 workflow-required skill in host-gated decisions. If either warning recurs after
 that sequence, reproduce it with exact route/load events before changing
 routing code.
+
+**Additional evidence (2026-10-12):** In Run51 trace
+`mssr-codex-7c552544-e081-41a2-adc7-8ee66a8bce0f`, Bridge `skill_load`
+returned `git-change-publication` as loaded, but the following Codex-local
+checkpoint still reported that required skill missing. Bridge trace evidence
+showed the tool call; the Codex-local `skill_bootstrap` then emitted the
+trace-linked `skill_loaded` event and cleared the obligation. This supports the
+existing host-boundary handling: use the active trace owner's bootstrap for
+required activation. No product defect or routing-semantic change is inferred.
