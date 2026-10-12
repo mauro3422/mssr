@@ -87,6 +87,8 @@ confidence-calibration evidence.
 2. [`mssr-librarian-linked-diagnostics-20261011T121000Z-7c4e91`](runs/mssr-librarian-linked-diagnostics-20261011T121000Z-7c4e91/) — three linked requests against one source. Explicit English variants restored search from zero to twelve candidates for the Spanish query; Jev selected the exact preview-only rule. The split relation query directly found the allowed relations and fingerprints; the review-only answer remained partial on explicit temporal/scope wording. Its manifest timestamp has a separate erratum.
 3. [`mssr-librarian-temporal-scope-facet-20261011T112431Z-91cd52`](runs/mssr-librarian-temporal-scope-facet-20261011T112431Z-91cd52/) — one linked precision request selected the exact source item listing missing temporal/scope data, low confidence, and contradiction as review/abstention triggers.
 
+4. [`mssr-librarian-live-facet-split-owner-authority-20261012T2040Z-posthoc-v1`](runs/mssr-librarian-live-facet-split-owner-authority-20261012T2040Z-posthoc-v1/ADHOC-REPORT.md) — five live Jev calls on real MSSR docs: an easy integration smoke, one compound abstention, two exact split-facet selections packaged with citations, and one false-premise abstention. The blind source-only review is not owner-gold; this post-hoc packet is excluded from benchmark denominators and calibration.
+
 All semantic reviews are model-assisted and not independently owner-adjudicated.
 All linked runs use the same policy document and are one source-document
 cluster for evidence accounting. They show a promising retrieval/selection
