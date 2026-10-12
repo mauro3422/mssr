@@ -6,7 +6,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { serializeJevEvidenceMetrics } from "./selection-record.mjs";
-import { acquireExclusiveRunLock, validateEvidencePack, validateFetchResult, validateRunInputs } from "./runner-support.mjs";
+import { acquireExclusiveRunLock, validateEvidencePack, validateFetchResult, validateLabelHeadingPaths, validateRunInputs } from "./runner-support.mjs";
 
 async function main() {
 const runDir = path.dirname(fileURLToPath(import.meta.url));
@@ -65,6 +65,7 @@ for (const source of manifest.corpus.sources) {
   frozenSourceTextByRef.set(source.sourceRef,
     (await fs.readFile(path.join(runDir, source.snapshotPath), "utf8")).replace(/\r\n?/gu, "\n"));
 }
+validateLabelHeadingPaths(cases, labels, frozenSourceTextByRef);
 const frozenManifestHash = await hashFile(path.join(runDir, "manifest.json"));
 const registryUrl = pathToFileURL(path.join(bridgeRoot, "dist/tool-registry.js")).href;
 const toolsUrl = pathToFileURL(path.join(bridgeRoot, "dist/tools/mssr-semantic-evidence-tools.js")).href;

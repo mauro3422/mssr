@@ -86,6 +86,74 @@ export function validateRunInputs(cases, labels, sourceRefs) {
   return true;
 }
 
+function markdownHeadingPathsByLine(markdown) {
+  const stack = [];
+  const lines = String(markdown).replace(/\r\n?/gu, "\n").split("\n");
+  const paths = new Map();
+  let fence = null;
+  for (let index = 0; index < lines.length; index += 1) {
+    const fenceMatch = /^( {0,3})(`{3,}|~{3,})(.*)$/u.exec(lines[index]);
+    if (fenceMatch) {
+      const marker = fenceMatch[2][0];
+      if (fence === null) fence = { marker, length: fenceMatch[2].length };
+      else if (fence.marker === marker && fenceMatch[2].length >= fence.length && /^\s*$/u.test(fenceMatch[3])) fence = null;
+      paths.set(index + 1, stack.filter(Boolean).slice());
+      continue;
+    }
+    if (fence !== null) {
+      paths.set(index + 1, stack.filter(Boolean).slice());
+      continue;
+    }
+    const match = /^( {0,3})(#{1,6})\s+(.+?)\s*#*\s*$/u.exec(lines[index]);
+    if (match) {
+      const depth = match[2].length;
+      stack.length = depth - 1;
+      stack[depth - 1] = match[3].trim();
+    }
+    paths.set(index + 1, stack.filter(Boolean).slice());
+  }
+  return { lineCount: lines.length, paths };
+}
+
+export function validateLabelHeadingPaths(cases, labels, sourceTextByRef) {
+  assert.ok(Array.isArray(cases), "cases.json must contain a cases array");
+  assert.ok(labels && Array.isArray(labels.cases), "labels.json must contain a cases array");
+  assert.ok(sourceTextByRef instanceof Map, "frozen source text must be provided as a Map");
+
+  for (const label of labels.cases) {
+    if (!label || (label.answerability ?? "answerable") !== "answerable") continue;
+    const matchingCase = cases.find((item) => item.id === label.caseId);
+    assert.ok(matchingCase, `label has no matching case ${label.caseId}`);
+    const acceptedRanges = Array.isArray(label.acceptableRanges) && label.acceptableRanges.length > 0
+      ? label.acceptableRanges
+      : Number.isInteger(label.expectedStartLine)
+        ? [{
+          sourceRef: label.sourceRef ?? matchingCase.sourceRef,
+          expectedHeading: label.expectedHeading,
+          startLine: label.expectedStartLine,
+          endLine: label.expectedEndLine,
+        }]
+        : [];
+    const ranges = [...acceptedRanges, ...(Array.isArray(label.relevantRanges) ? label.relevantRanges : [])];
+
+    for (const range of ranges) {
+      const sourceRef = range.sourceRef ?? label.sourceRef ?? matchingCase.sourceRef;
+      const markdown = sourceTextByRef.get(sourceRef);
+      assert.equal(typeof markdown, "string", `label ${label.caseId} source text is missing for ${sourceRef}`);
+      const { lineCount, paths } = markdownHeadingPathsByLine(markdown);
+      assert.ok(range.startLine <= lineCount, `label ${label.caseId} startLine ${range.startLine} exceeds ${sourceRef} line count ${lineCount}`);
+      if (Number.isInteger(range.endLine)) {
+        assert.ok(range.endLine <= lineCount, `label ${label.caseId} endLine ${range.endLine} exceeds ${sourceRef} line count ${lineCount}`);
+      }
+      const expectedHeading = String(range.expectedHeading ?? "").trim().replace(/^#{1,6}\s+/u, "").trim();
+      const actualPath = paths.get(range.startLine) ?? [];
+      assert.ok(actualPath.includes(expectedHeading),
+        `label ${label.caseId} expectedHeading ${JSON.stringify(expectedHeading)} is not in the heading path at ${sourceRef}:${range.startLine}; actual path: ${actualPath.join(" / ") || "(no heading)"}`);
+    }
+  }
+  return true;
+}
+
 function sameHandleIdentity(actual, expected) {
   const keys = [
     "id", "version", "owner", "sourceRef", "revision", "rangeId", "rangeKind",

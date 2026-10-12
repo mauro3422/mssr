@@ -10,6 +10,7 @@ import {
   acquireExclusiveRunLock,
   validateEvidencePack,
   validateFetchResult,
+  validateLabelHeadingPaths,
   validateRunInputs,
 } from "../experiments/jev-mssr-live/runner-support.mjs";
 
@@ -88,6 +89,60 @@ try {
   assert.throws(() => validateRunInputs([fixtureCase, fixtureCase], { cases: [fixtureLabel, fixtureLabel] }, [fixtureCase.sourceRef]), /duplicate case id/u);
   assert.throws(() => validateRunInputs([fixtureCase], { cases: [] }, [fixtureCase.sourceRef]), /one-to-one mapping/u);
   assert.throws(() => validateRunInputs([fixtureCase], { cases: [fixtureLabel] }, []), /absent from the frozen corpus/u);
+
+  const headingFixtureSource = [
+    "# Root",
+    "Introductory text.",
+    "## Capabilities",
+    "Capability overview.",
+    "## Exact metadata filters",
+    "Host composition is described here.",
+  ].join("\n");
+  const headingFixtureLabel = {
+    cases: [{
+      caseId: "heading-scope",
+      sourceRef: "docs/heading-fixture.md",
+      answerability: "answerable",
+      expectedHeading: "Exact metadata filters",
+      expectedStartLine: 6,
+      expectedEndLine: 6,
+      acceptableRanges: [{
+        sourceRef: "docs/heading-fixture.md",
+        expectedHeading: "Exact metadata filters",
+        startLine: 6,
+        endLine: 6,
+      }],
+    }],
+  };
+  const headingFixtureCase = { id: "heading-scope", sourceRef: "docs/heading-fixture.md" };
+  assert.equal(validateLabelHeadingPaths([headingFixtureCase], headingFixtureLabel, new Map([[
+    "docs/heading-fixture.md", headingFixtureSource,
+  ]])), true, "labels may target a heading's own line");
+  assert.throws(() => validateLabelHeadingPaths([headingFixtureCase], { cases: [{
+    ...headingFixtureLabel.cases[0],
+    expectedHeading: "Capabilities",
+    acceptableRanges: [{
+      ...headingFixtureLabel.cases[0].acceptableRanges[0],
+      expectedHeading: "Capabilities",
+    }],
+  }] }, new Map([["docs/heading-fixture.md", headingFixtureSource]])), /not in the heading path/u,
+  "a label must not bind a range to an unrelated sibling heading");
+  assert.throws(() => validateLabelHeadingPaths([headingFixtureCase], headingFixtureLabel, new Map()), /source text is missing/u);
+  assert.throws(() => validateLabelHeadingPaths([headingFixtureCase], { cases: [{
+    ...headingFixtureLabel.cases[0],
+    expectedStartLine: 4,
+    expectedEndLine: 99,
+    acceptableRanges: [{ ...headingFixtureLabel.cases[0].acceptableRanges[0], startLine: 4, endLine: 99 }],
+  }] }, new Map([["docs/heading-fixture.md", headingFixtureSource]])), /endLine 99 exceeds/u,
+  "a label range must not extend past the frozen source");
+  const fencedHeadingSource = "# Root\n```md\n## Fake heading\n```\n## Real heading\nText.";
+  assert.throws(() => validateLabelHeadingPaths([headingFixtureCase], { cases: [{
+    ...headingFixtureLabel.cases[0],
+    expectedHeading: "Fake heading",
+    expectedStartLine: 3,
+    acceptableRanges: [{ ...headingFixtureLabel.cases[0].acceptableRanges[0], expectedHeading: "Fake heading", startLine: 3 }],
+  }] }, new Map([["docs/heading-fixture.md", fencedHeadingSource]])), /not in the heading path/u,
+  "Markdown-like headings inside fenced examples must not authorize labels");
 
   const fixtureFetch = {
     handle: fixtureHandle,
@@ -577,12 +632,13 @@ try {
       {
         caseId: "mock-case-01",
         sourceRef: "docs/one.md",
-        expectedHeading: "LABEL_ONLY_SENTINEL_PRIMARY_4387",
-        expectedStartLine: 97831,
-        expectedEndLine: 97832,
+        expectedHeading: "Sample",
+        expectedStartLine: 1,
+        expectedEndLine: 3,
+        adjudicationNote: "LABEL_ONLY_SENTINEL_PRIMARY_4387; historical source line 97831",
         acceptableRanges: [
-          { sourceRef: "docs/one.md", expectedHeading: "LABEL_ONLY_SENTINEL_PRIMARY_4387", startLine: 97831, endLine: 97832 },
           { sourceRef: "docs/one.md", expectedHeading: "Sample", startLine: 1, endLine: 3 },
+          { sourceRef: "docs/one.md", expectedHeading: "Sample", startLine: 2, endLine: 3 },
         ],
       },
       { caseId: "mock-unanswerable", sourceRef: "docs/one.md", answerability: "unanswerable", reason: "LABEL_ONLY_SENTINEL_NEGATIVE_4387" },
