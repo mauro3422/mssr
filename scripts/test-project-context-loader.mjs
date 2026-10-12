@@ -84,6 +84,63 @@ const intentBlender = intent({ domains: ["blender"], actions: ["discover"], risk
 try {
   const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
   const repositoryManifest = JSON.parse(await fs.readFile(path.join(repositoryRoot, ".mssr", "project-context.json"), "utf8"));
+  assert.equal(repositoryManifest.modules.length, 48, "the exact paired historical section should consolidate into its existing parent module");
+  assert.equal(repositoryManifest.modules.some((entry) => entry.id === "mssr-jev-live-paired-source-diagnostic-20261011"), false);
+  const liveSmokeEntry = repositoryManifest.modules.find((entry) => entry.id === "mssr-jev-live-bridge-smoke-20261011");
+  assert.ok(liveSmokeEntry, "the parent live-smoke module must remain independently selectable");
+  const pairedHistorySource = await fs.readFile(path.join(repositoryRoot, ".mssr/knowledge/reference/jev-mssr-live-bridge-smoke-20261011.md"), "utf8");
+  const pairedHistoryHash = createHash("sha256").update(extractProjectContextSections(pairedHistorySource, [
+    "## Paired source-grouped development diagnostic — 2026-10-11",
+  ]), "utf8").digest("hex");
+  assert.equal(pairedHistoryHash, "bfbe3ac8082a1dff70de17241a917c85f499c2006cc02249c5abd4b45743c2f7", "the indexed paired diagnostic must preserve its historical source section byte-for-byte");
+  const liveSmokeIntent = (summary, signals = ["uncertainty"]) => intent({
+    summary,
+    domains: ["coding", "filesystem"],
+    actions: ["analyze", "verify"],
+    artifacts: ["document", "repository", "mcp"],
+    needs: ["integrity-verification"],
+    signals,
+    risk: "read-only",
+  });
+  const baselineLiveSmoke = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: liveSmokeIntent("Review the live MSSR Bridge Jev smoke reproducibility"),
+    stage: "verify",
+    maxChars: 20_000,
+    maxModules: 40,
+    includeCore: false,
+  });
+  const baselineLiveSmokeRecord = baselineLiveSmoke.selected.find((record) => record.ref === liveSmokeEntry.id);
+  assert.ok(baselineLiveSmokeRecord, "the parent module should still load for its original stage and intent");
+  assert.match(baselineLiveSmokeRecord.content, /## Bilingual abstention and range-precision follow-up/);
+  assert.doesNotMatch(baselineLiveSmokeRecord.content, /## Paired source-grouped development diagnostic/);
+  assert.equal(baselineLiveSmokeRecord.segmentDecisions.find((decision) => decision.id === "live-smoke-baseline")?.selected, true);
+  assert.equal(baselineLiveSmokeRecord.segmentDecisions.find((decision) => decision.id === "paired-source-diagnostic")?.reason, "intent-mismatch");
+  const pairedLiveSmoke = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: liveSmokeIntent("Review paired source-grouped development diagnostic Bridge 0.6.167 MSSR 0.2.115"),
+    stage: "verify",
+    maxChars: 20_000,
+    maxModules: 40,
+    includeCore: false,
+  });
+  const pairedLiveSmokeRecord = pairedLiveSmoke.selected.find((record) => record.ref === liveSmokeEntry.id);
+  assert.ok(pairedLiveSmokeRecord, "the exact paired diagnostic intent should select its parent module");
+  assert.ok(pairedLiveSmokeRecord.bytes <= liveSmokeEntry.maxChars, "baseline plus the selected historical section must remain within the parent's declared context budget");
+  assert.match(pairedLiveSmokeRecord.content, /## Paired source-grouped development diagnostic/);
+  assert.equal(pairedLiveSmokeRecord.segmentDecisions.find((decision) => decision.id === "paired-source-diagnostic")?.selected, true);
+  const missingUncertainty = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: liveSmokeIntent("Review paired source-grouped development diagnostic Bridge 0.6.167 MSSR 0.2.115", ["conflicting-evidence"]),
+    stage: "verify",
+    maxChars: 20_000,
+    maxModules: 40,
+    includeCore: false,
+  });
+  const missingUncertaintyRecord = missingUncertainty.selected.find((record) => record.ref === liveSmokeEntry.id);
+  assert.ok(missingUncertaintyRecord, "the parent remains eligible on its conflicting-evidence selector");
+  assert.doesNotMatch(missingUncertaintyRecord.content, /## Paired source-grouped development diagnostic/);
+  assert.equal(missingUncertaintyRecord.segmentDecisions.find((decision) => decision.id === "paired-source-diagnostic")?.reason, "intent-mismatch");
   const semanticEvidenceEntry = repositoryManifest.modules.find((entry) => entry.id === "mssr-semantic-evidence-plane");
   assert.ok(semanticEvidenceEntry, "the semantic evidence plane must remain an indexed project-context module");
   assert.equal(semanticEvidenceEntry.maxChars, 10_000, "segmentation must solve pressure without raising the declared entry budget");

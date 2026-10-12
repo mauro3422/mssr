@@ -2,6 +2,55 @@
   "schemaVersion": 1,
   "modules": [
     {
+      "moduleId": "mssr-jev-live-bridge-smoke-20261011",
+      "segments": [
+        {
+          "id": "live-smoke-baseline",
+          "sections": [
+            "## Scope and method",
+            "## Exact-fetch review",
+            "## Reproducibility",
+            "## Bilingual abstention and range-precision follow-up"
+          ],
+          "baseline": true
+        },
+        {
+          "id": "paired-source-diagnostic",
+          "sections": [
+            "## Paired source-grouped development diagnostic — 2026-10-11"
+          ],
+          "stages": [
+            "verify"
+          ],
+          "domains": [
+            "coding",
+            "filesystem"
+          ],
+          "actions": [
+            "analyze",
+            "verify"
+          ],
+          "artifacts": [
+            "document",
+            "repository",
+            "mcp"
+          ],
+          "needs": [
+            "integrity-verification"
+          ],
+          "signals": [
+            "uncertainty"
+          ],
+          "terms": [
+            "paired source-grouped development diagnostic",
+            "Bridge 0.6.167",
+            "MSSR 0.2.115"
+          ],
+          "priority": 90
+        }
+      ]
+    },
+    {
       "moduleId": "mssr-architecture-impact-history",
       "segments": [
         {

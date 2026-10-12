@@ -543,7 +543,10 @@
       "kind": "context",
       "description": "The active MSSR evaluation protocol, grouped holdout gates, and required evaluation axes.",
       "source": {
-        "path": ".mssr/knowledge/reference/mssr-jev-confidence-benchmark-history.md"
+        "path": ".mssr/knowledge/reference/mssr-jev-confidence-benchmark-history.md",
+        "sections": [
+          "## Next MSSR evaluation"
+        ]
       },
       "topic": "reference",
       "area": "semantic-evidence",
@@ -651,7 +654,7 @@
       ],
       "required": false,
       "priority": 100,
-      "maxChars": 4000
+      "maxChars": 4800
     },
     {
       "id": "mssr-jev-public-benchmark-evidence",
@@ -1683,13 +1686,7 @@
       "kind": "context",
       "description": "Consolidated live MSSR Bridge/Jev smoke and bilingual abstention follow-up — 2026-10-11",
       "source": {
-        "path": ".mssr/knowledge/reference/jev-mssr-live-bridge-smoke-20261011.md",
-        "sections": [
-          "## Scope and method",
-          "## Exact-fetch review",
-          "## Reproducibility",
-          "## Bilingual abstention and range-precision follow-up"
-        ]
+        "path": ".mssr/knowledge/reference/jev-mssr-live-bridge-smoke-20261011.md"
       },
       "topic": "reference",
       "area": "semantic-evidence",
@@ -1718,45 +1715,7 @@
       ],
       "required": false,
       "priority": 100,
-      "maxChars": 8000
-    },
-    {
-      "id": "mssr-jev-live-paired-source-diagnostic-20261011",
-      "kind": "context",
-      "description": "Historical 2026-10-11 paired source-grouped bilingual development diagnostic (Bridge 0.6.167 / MSSR 0.2.115); not current runtime evidence.",
-      "source": {
-        "path": ".mssr/knowledge/reference/jev-mssr-live-bridge-smoke-20261011.md",
-        "sections": [
-          "## Paired source-grouped development diagnostic — 2026-10-11"
-        ]
-      },
-      "topic": "reference",
-      "area": "semantic-evidence",
-      "stages": [
-        "verify"
-      ],
-      "domains": [
-        "coding",
-        "filesystem"
-      ],
-      "actions": [
-        "analyze",
-        "verify"
-      ],
-      "artifacts": [
-        "document",
-        "repository",
-        "mcp"
-      ],
-      "needs": [
-        "integrity-verification"
-      ],
-      "signals": [
-        "uncertainty"
-      ],
-      "required": false,
-      "priority": 90,
-      "maxChars": 4000
+      "maxChars": 8800
     },
     {
       "id": "mssr-jev-live-bridge-smoke-20261011-bridge-06169",
