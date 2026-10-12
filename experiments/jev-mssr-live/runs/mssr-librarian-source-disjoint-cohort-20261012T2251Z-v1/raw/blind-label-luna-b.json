@@ -1,0 +1,11 @@
+# Blind source-only labels — Luna B
+Produced before provider calls. Reviewer judgments, not owner gold.
+
+[
+{"caseId":"A1","answerability":"yes","supportingLines":["godot-atlas: 7–12"],"expectedAnswer":"El paquete combina métricas estructuradas de geometría/estado de Atlas, que responden por qué se ve así, y una captura confiable del editor Godot con Atlas activo, que responde si se lee bien. Ninguna basta por sí sola.","multipleSpansMustBeCombined":false,"ambiguityNote":null},
+{"caseId":"A2","answerability":"no","supportingLines":["godot-atlas: 31","godot-atlas: 94–106"],"expectedAnswer":null,"multipleSpansMustBeCombined":false,"ambiguityNote":"La fuente indica que se registran los cruces de aristas, pero no fija un máximo para aprobar la auditoría. Las guías visuales especifican cero solapamientos, no un umbral de cruces de aristas."},
+{"caseId":"B1","answerability":"yes","supportingLines":["neopse: 86–93"],"expectedAnswer":"gemma superó 50/50 casos, con latencia promedio de 15.249 ms y P95 de 34.795 ms. gemmaQat superó 50/50, con promedio de 16.510 ms y P95 de 38.392 ms.","multipleSpansMustBeCombined":false,"ambiguityNote":null},
+{"caseId":"B2","answerability":"no","supportingLines":["neopse: 17","neopse: 49","neopse: 100"],"expectedAnswer":null,"multipleSpansMustBeCombined":false,"ambiguityNote":"La fuente menciona el perfil WR CPU, pero no proporciona su latencia P95 en la comparación histórica. Las cifras históricas de P95 en las líneas 90–91 corresponden a gemma y gemmaQat."},
+{"caseId":"C1","answerability":"yes","supportingLines":["elemental-frontier: 10"],"expectedAnswer":"El primer lote real tuvo 13 sesiones, 750 muestras de modelo, 18.000 partes por etapa y 39 PNG auténticos.","multipleSpansMustBeCombined":false,"ambiguityNote":null},
+{"caseId":"C2","answerability":"no","supportingLines":["elemental-frontier: 14","elemental-frontier: 16"],"expectedAnswer":null,"multipleSpansMustBeCombined":false,"ambiguityNote":"No se da un recuento de penetraciones visuales de malla para una captura F5 lateral durante DASH. La fuente dice que los choques físicos del segundo lote no prueban la ausencia de penetración visual y que la vista lateral real F5 está pendiente."}
+]

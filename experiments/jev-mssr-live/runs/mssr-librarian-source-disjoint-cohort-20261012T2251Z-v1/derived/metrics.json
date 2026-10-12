@@ -1,0 +1,47 @@
+{
+  "schema": "mssr-jev-source-disjoint-cohort-metrics-v1",
+  "runId": "mssr-librarian-source-disjoint-cohort-20261012T2251Z-v1",
+  "cases": 6,
+  "sourceDocuments": 3,
+  "projectRoots": 3,
+  "answerableCases": 3,
+  "unanswerableCases": 3,
+  "labels": "source-only analyst labels; not owner-gold",
+  "independence": "exact source paths absent from local Jev ledger; project families previously exposed; not certified holdout",
+  "metadataMode": "off",
+  "queryVariants": 0,
+  "search": {
+    "positiveTargetsPresent": 2,
+    "positiveTargetsTotal": 3,
+    "emptyPositivePools": 1,
+    "emptyPoolJevCalls": 0
+  },
+  "provider": {
+    "name": "typesafe-jev",
+    "version": "1.13.0",
+    "calls": 5,
+    "selected": 1,
+    "abstained": 4,
+    "correctDispositionsAmongCalls": 4,
+    "dispositionCasesAmongCalls": 5,
+    "positiveSelectionsWhenTargetOffered": 1,
+    "positiveCasesWithTargetOffered": 2,
+    "negativeAbstentions": 3,
+    "negativeCases": 3,
+    "selectedRangeSufficient": 1,
+    "selectedRanges": 1,
+    "inputTokens": 8447,
+    "outputTokens": 653,
+    "sumElapsedMs": 4036.3,
+    "confidenceCalibration": "uncalibrated-provider-scores",
+    "evidenceSufficiencyCalibration": "uncalibrated-provider-scores"
+  },
+  "evidenceTransport": {
+    "exactFetchAndEvidencePackPasses": 1,
+    "selectedEvidencePacks": 1,
+    "initialStaleInputFailures": 1,
+    "retryPassed": true,
+    "failureClass": "first attempt rejected as stale for caller-provided source revision; exact UTF-8 Bridge reread retry passed; cause not established by receipt"
+  },
+  "runtimeOrThresholdChanges": 0
+}

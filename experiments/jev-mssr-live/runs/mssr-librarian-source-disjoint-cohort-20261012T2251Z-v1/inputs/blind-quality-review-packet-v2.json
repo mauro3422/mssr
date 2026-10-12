@@ -1,0 +1,544 @@
+{
+  "schema": "blind-output-quality-review-v2",
+  "instructions": "Re-review independently. Do not inspect any file named blind-label or pre-provider-label-agreement, and do not consult provider scores/probabilities. Each candidate below includes the exact complete text of the range actually offered to Jev, not a truncated preview. Use those texts and the frozen full source snapshot only. Distinguish candidate coverage from query support: an overlap threshold of zero does not answer an edge-crossing threshold; broad parent ranges still contain their full source text. For each case, independently judge answerability, whether search returned an adequate relevant exact range, and whether Jev selection/abstention was appropriate. Separate retrieval miss from selector miss. Return exact lines and concise reasoning. These are human-analyst judgments, not owner gold or calibration.",
+  "cases": [
+    {
+      "caseId": "A1",
+      "sourceId": "godot-atlas",
+      "query": "¿Qué dos formas de evidencia forman el paquete de auditoría y qué pregunta contesta cada una?",
+      "sourceSnapshot": "inputs/sources/godot-atlas-capture-audit.md",
+      "candidates": [],
+      "jevOutcome": "not-run",
+      "selected": null
+    },
+    {
+      "caseId": "A2",
+      "sourceId": "godot-atlas",
+      "query": "What maximum number of edge crossings is required to pass the audit?",
+      "sourceSnapshot": "inputs/sources/godot-atlas-capture-audit.md",
+      "candidates": [
+        {
+          "handleId": "b40b2f63ea53d3d271fa6fe490bf47da97884c652fbc8c4d857d7397cf3d6193",
+          "rangeId": "heading-1",
+          "rangeKind": "section",
+          "lines": [
+            1,
+            129
+          ],
+          "title": "Atlas Capture & UX Audit Loop",
+          "exactText": "# Atlas Capture & UX Audit Loop\n\nThis loop exists so Atlas can be iterated from observable evidence instead of asking a human to pan/zoom and manually photograph each state.\n\n## Goal\n\nProduce a paired evidence bundle:\n\n1. structured Atlas geometry/state metrics;\n2. a trustworthy capture of the Godot editor with Atlas active.\n\nThe image answers \"does this read well?\" while metrics answer \"why does it read this way?\". Neither is sufficient alone.\n\n## Standard loop\n\n1. Load project context and route with MSSR for the current Atlas/Godot task.\n2. Inspect Git/work writers before edits. Never appropriate concurrent Companion/gameplay work.\n3. Choose an exact scene (`res://...`) relevant to the UX complaint.\n4. When addon files were synchronized externally, call Godot MCP `rescan_filesystem` and let the editor settle before reloading `godot_atlas`; otherwise Godot may keep stale GDScript resources even when disk hashes are correct.\n5. Reload only `godot_atlas` when addon source changed; preserve notes/tasks/branch/UI/project-override state.\n6. Refresh Atlas and run `Ver todo / Revisar`.\n7. Capture structured metrics:\n   - total scene nodes;\n   - visible/materialized cards;\n   - hidden nodes;\n   - connections;\n   - zoom + `zoom_geometry_policy`;\n   - layout bounds/density/wasted area;\n   - x/y largest gaps;\n   - `overlap_count` and exact pairs;\n   - `edge_crossings`, exact crossing pairs and routing compute time;\n   - minimap state/size;\n   - collapsed/expanded branch summaries;\n   - card rects.\n8. Capture Godot visually using the safe editor-window capture path.\n9. Attach/read the PNG at full quality.\n10. Critique one or more concrete dimensions: hierarchy, naming, whitespace, branch grouping, script placement, card size, cable dominance, focus, minimap, toolbar, readability at zoom, performance.\n11. Change the smallest owner that explains the observed problem.\n12. Run focused service/editor tests.\n13. Resync addon; call `rescan_filesystem`; reload only Atlas; recapture metrics + image.\n14. Compare before/after. Do not declare improvement from code or metrics alone when the complaint is visual.\n15. Check Godot Debugger/Output for fresh errors.\n16. Persist coherent Atlas changes; leave unrelated project/gameplay/MCP concurrent work untouched.\n\n## Capture safety contract\n\nNever read the Godot editor root `ViewportTexture` to capture the whole editor UI. On Godot 4.7.1 this path caused a real native editor crash (`0xc0000005`).\n\nUse the external Windows editor-window capture helper instead.\n\n### Two-monitor policy\n\n- Detect a visible League of Legends/LeagueClientUx window and its monitor.\n- If Godot is already on the opposite monitor, do not move it.\n- If Godot shares the League monitor and another monitor is available, temporarily move Godot to the other monitor.\n- Preserve and restore original window position and maximized/minimized state in `finally`.\n- Capture only after either:\n  - Godot is verified foreground, or\n  - Godot is verified topmost and League-safe (League is absent or Godot is isolated on a different monitor).\n- If neither condition is true, abort before reading screen pixels.\n- Never fall back to capturing whatever application happens to cover the rectangle.\n\n## Coordinate caveat\n\nGodot `Control.get_global_rect()` inside the central editor main-screen is not guaranteed to map 1:1 to Win32 client coordinates when docks/editor chrome are present. Do not blindly crop the OS capture using Atlas `global_rect`.\n\nPreferred evidence:\n\n- **JSON:** exact GraphEdit/card geometry from Atlas;\n- **PNG:** full Godot editor client with Atlas active.\n\nIf a reliable dock-aware transform is implemented later, a GraphEdit-only crop may be added after explicit verification.\n\n## Navigation/focus audit\n\nFor an expand/collapse complaint:\n\n1. record zoom and changed branch id/path;\n2. trigger the branch through the chevron/safe Atlas control;\n3. ensure no card is freed during signal emission;\n4. after layout settles, verify the branch/card intersects the corrected world view;\n5. collapse must preserve zoom;\n6. expansion may zoom out only if necessary;\n7. screenshot the resulting view to confirm the branch is perceptually located, not merely mathematically intersecting.\n\nGraphEdit transformation contract:\n\n`screen_position = position_offset * zoom - scroll_offset`\n\nSo world view is:\n\n`Rect2(scroll_offset / zoom, GraphEdit.size / zoom)`.\n\n## Suggested visual gates\n\nThese are diagnostic guides, not arbitrary optimization targets:\n\n- overlap count: `0`;\n- no toolbar/workspace overflow;\n- all important top-level branches visible after explicit Fit;\n- collapsed large assets show useful counts rather than hundreds of internals;\n- scripts remain near their owners;\n- Panorama has no tiny path/preview text pretending to be readable;\n- minimap is present when enabled but does not dominate the canvas;\n- largest gaps and wasted area are investigated only when the screenshot also shows unhelpful whitespace;\n- panning should remain responsive with the projected/materialized graph, not with the full raw scene hierarchy.\n\n## Evidence naming\n\nA useful audit report should keep:\n\n- scene path;\n- timestamp/id;\n- PNG SHA-256;\n- JSON path/hash when available;\n- Godot editor/runtime identity;\n- current Atlas layout version;\n- before/after metrics relevant to the change;\n- any fresh Debugger errors.\n\n## Stop conditions\n\nStop an iteration and report partial instead of guessing when:\n\n- Atlas or Godot provider is disconnected;\n- a concurrent writer owns the same files;\n- capture cannot prove it is looking at Godot;\n- the editor crashes or reports new unexplained errors;\n- metrics and screenshot contradict each other and the coordinate/capture path has not been resolved.\n"
+        },
+        {
+          "handleId": "1c6cada2270d0aafb3384f16d5e4abeee6145912197e54720c278e668595d95f",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "lines": [
+            3,
+            3
+          ],
+          "title": "Atlas Capture & UX Audit Loop",
+          "exactText": "This loop exists so Atlas can be iterated from observable evidence instead of asking a human to pan/zoom and manually photograph each state."
+        },
+        {
+          "handleId": "0e28e9a4897800ef0e71e026ab8847694f3b84253851be8043edb4c331e85d29",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "lines": [
+            5,
+            13
+          ],
+          "title": "Goal",
+          "exactText": "## Goal\n\nProduce a paired evidence bundle:\n\n1. structured Atlas geometry/state metrics;\n2. a trustworthy capture of the Godot editor with Atlas active.\n\nThe image answers \"does this read well?\" while metrics answer \"why does it read this way?\". Neither is sufficient alone.\n\n"
+        },
+        {
+          "handleId": "976d745d68e74287194b143927bc14f11e40312010da1e1a1d1dd15ad74573fe",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "lines": [
+            7,
+            7
+          ],
+          "title": "Goal",
+          "exactText": "Produce a paired evidence bundle:"
+        },
+        {
+          "handleId": "b548f23f870061740ce6895a7514089d6a7ffb1401afdb650f20877a354d61f7",
+          "rangeId": "block-3/item-1",
+          "rangeKind": "block",
+          "lines": [
+            9,
+            9
+          ],
+          "title": "Goal",
+          "exactText": "1. structured Atlas geometry/state metrics;"
+        },
+        {
+          "handleId": "d7a4dce1c8e7aeacc30ff151822bef4f6b9f1569e23f4b7400745014bd68ba99",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "lines": [
+            9,
+            10
+          ],
+          "title": "Goal",
+          "exactText": "1. structured Atlas geometry/state metrics;\n2. a trustworthy capture of the Godot editor with Atlas active."
+        },
+        {
+          "handleId": "8c8d8a265788ed3a9e38fa531dc7969c6fcf609ef67bd04b58b962f651e223c5",
+          "rangeId": "block-3/item-2",
+          "rangeKind": "block",
+          "lines": [
+            10,
+            10
+          ],
+          "title": "Goal",
+          "exactText": "2. a trustworthy capture of the Godot editor with Atlas active."
+        },
+        {
+          "handleId": "61909873fd1c79ed7868ce621c7e287b7db480f8cdb18b591f0414f3e80807fa",
+          "rangeId": "block-4",
+          "rangeKind": "block",
+          "lines": [
+            12,
+            12
+          ],
+          "title": "Goal",
+          "exactText": "The image answers \"does this read well?\" while metrics answer \"why does it read this way?\". Neither is sufficient alone."
+        },
+        {
+          "handleId": "41111c4f7701e9d77038f68546eff9acb606fd5512e61564feef98d96215159a",
+          "rangeId": "heading-3",
+          "rangeKind": "section",
+          "lines": [
+            14,
+            44
+          ],
+          "title": "Standard loop",
+          "exactText": "## Standard loop\n\n1. Load project context and route with MSSR for the current Atlas/Godot task.\n2. Inspect Git/work writers before edits. Never appropriate concurrent Companion/gameplay work.\n3. Choose an exact scene (`res://...`) relevant to the UX complaint.\n4. When addon files were synchronized externally, call Godot MCP `rescan_filesystem` and let the editor settle before reloading `godot_atlas`; otherwise Godot may keep stale GDScript resources even when disk hashes are correct.\n5. Reload only `godot_atlas` when addon source changed; preserve notes/tasks/branch/UI/project-override state.\n6. Refresh Atlas and run `Ver todo / Revisar`.\n7. Capture structured metrics:\n   - total scene nodes;\n   - visible/materialized cards;\n   - hidden nodes;\n   - connections;\n   - zoom + `zoom_geometry_policy`;\n   - layout bounds/density/wasted area;\n   - x/y largest gaps;\n   - `overlap_count` and exact pairs;\n   - `edge_crossings`, exact crossing pairs and routing compute time;\n   - minimap state/size;\n   - collapsed/expanded branch summaries;\n   - card rects.\n8. Capture Godot visually using the safe editor-window capture path.\n9. Attach/read the PNG at full quality.\n10. Critique one or more concrete dimensions: hierarchy, naming, whitespace, branch grouping, script placement, card size, cable dominance, focus, minimap, toolbar, readability at zoom, performance.\n11. Change the smallest owner that explains the observed problem.\n12. Run focused service/editor tests.\n13. Resync addon; call `rescan_filesystem`; reload only Atlas; recapture metrics + image.\n14. Compare before/after. Do not declare improvement from code or metrics alone when the complaint is visual.\n15. Check Godot Debugger/Output for fresh errors.\n16. Persist coherent Atlas changes; leave unrelated project/gameplay/MCP concurrent work untouched.\n\n"
+        },
+        {
+          "handleId": "3b0a08f7146f634ae3bb3b5c7ed443295aad9c6d70faaab32ff5c007fb16c81e",
+          "rangeId": "block-5/item-1",
+          "rangeKind": "block",
+          "lines": [
+            16,
+            16
+          ],
+          "title": "Standard loop",
+          "exactText": "1. Load project context and route with MSSR for the current Atlas/Godot task."
+        },
+        {
+          "handleId": "c9faf47b9c8c8bbfd4d25917d68defbc23e02087d110ce931755701775b5f92c",
+          "rangeId": "block-5",
+          "rangeKind": "block",
+          "lines": [
+            16,
+            43
+          ],
+          "title": "Standard loop",
+          "exactText": "1. Load project context and route with MSSR for the current Atlas/Godot task.\n2. Inspect Git/work writers before edits. Never appropriate concurrent Companion/gameplay work.\n3. Choose an exact scene (`res://...`) relevant to the UX complaint.\n4. When addon files were synchronized externally, call Godot MCP `rescan_filesystem` and let the editor settle before reloading `godot_atlas`; otherwise Godot may keep stale GDScript resources even when disk hashes are correct.\n5. Reload only `godot_atlas` when addon source changed; preserve notes/tasks/branch/UI/project-override state.\n6. Refresh Atlas and run `Ver todo / Revisar`.\n7. Capture structured metrics:\n   - total scene nodes;\n   - visible/materialized cards;\n   - hidden nodes;\n   - connections;\n   - zoom + `zoom_geometry_policy`;\n   - layout bounds/density/wasted area;\n   - x/y largest gaps;\n   - `overlap_count` and exact pairs;\n   - `edge_crossings`, exact crossing pairs and routing compute time;\n   - minimap state/size;\n   - collapsed/expanded branch summaries;\n   - card rects.\n8. Capture Godot visually using the safe editor-window capture path.\n9. Attach/read the PNG at full quality.\n10. Critique one or more concrete dimensions: hierarchy, naming, whitespace, branch grouping, script placement, card size, cable dominance, focus, minimap, toolbar, readability at zoom, performance.\n11. Change the smallest owner that explains the observed problem.\n12. Run focused service/editor tests.\n13. Resync addon; call `rescan_filesystem`; reload only Atlas; recapture metrics + image.\n14. Compare before/after. Do not declare improvement from code or metrics alone when the complaint is visual.\n15. Check Godot Debugger/Output for fresh errors.\n16. Persist coherent Atlas changes; leave unrelated project/gameplay/MCP concurrent work untouched."
+        },
+        {
+          "handleId": "1327c78c5c04e2410294c9844e303ee7893c29836c31b0d93cdc2e11c4f8b590",
+          "rangeId": "block-5/item-2",
+          "rangeKind": "block",
+          "lines": [
+            17,
+            17
+          ],
+          "title": "Standard loop",
+          "exactText": "2. Inspect Git/work writers before edits. Never appropriate concurrent Companion/gameplay work."
+        }
+      ],
+      "jevOutcome": "abstained",
+      "selected": null
+    },
+    {
+      "caseId": "B1",
+      "sourceId": "neopse",
+      "query": "En la comparación histórica, ¿cuántos casos superó cada perfil gemma y gemmaQat, y cuáles fueron sus latencias promedio y P95?",
+      "sourceSnapshot": "inputs/sources/neopse-ai-benchmarks.md",
+      "candidates": [
+        {
+          "handleId": "8aa09cc6224850e4e48aa3e140c1f9987ae43db246269ef9458f211031bafa9a",
+          "rangeId": "block-21",
+          "rangeKind": "block",
+          "lines": [
+            88,
+            91
+          ],
+          "title": "Estado validado",
+          "exactText": "| Perfil | Modelo | Pass | Avg ms | P95 ms | Avg tok/s | Invalid JSON |\n| --- | --- | ---: | ---: | ---: | ---: | ---: |\n| `gemma` | `google_gemma-4-E2B-it-Q4_K_M.gguf` | 50/50 | 15249 | 34795 | 12.11 | 0 |\n| `gemmaQat` | `gemma-4-E2B_q4_0-it.gguf` | 50/50 | 16510 | 38392 | 12.09 | 0 |"
+        },
+        {
+          "handleId": "cfcef98c834e1091d8fd5d1bcea1abe612a25b08f00ac1d90df521229a6ee574",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "lines": [
+            3,
+            19
+          ],
+          "title": "Comandos",
+          "exactText": "## Comandos\n\n```powershell\nnpm run test:toolcall  # smoke test de Gemma tool calling\nnpm run test:ai        # suite corta Gemma + WR CPU\nnpm run test:ai:historical\nnpm run test:ai:compare -- --profiles gemma,gemmaQat\n```\n\nTambien se puede levantar un perfil manualmente:\n\n```powershell\nnpx tsx scripts/debugger-llm.ts server gemma\nnpx tsx scripts/debugger-llm.ts server gemmaQat\nnpx tsx scripts/debugger-llm.ts server wrCpu\n```\n\n"
+        },
+        {
+          "handleId": "7400b5cbc6ca517cbdfced9087bad445c0aeb0ac484f66e158de682eb80c9d57",
+          "rangeId": "block-8",
+          "rangeKind": "block",
+          "lines": [
+            32,
+            39
+          ],
+          "title": "Pipeline",
+          "exactText": "- `benchmarks/data/benchmarks.db`: historico SQLite local, ignorado por Git.\n- `NEOPSE_BENCHMARK_DB`: variable opcional para redirigir la DB.\n- `benchmarks/results/latest.json`: ultimo resultado plano local, ignorado por Git.\n- `benchmarks/results/latest-summary.md`: tabla local comparativa con pass rate, latencia, p95, tok/s y fallos, ignorada por Git.\n- `benchmarks/results/<timestamp>.json`: snapshots locales por corrida, ignorados por Git.\n- `benchmarks/results/<timestamp>.md`: resumen local por corrida, ignorado por Git.\n- `logs/`: logs locales de servidores/procesos, ignorados por Git.\n- `prompt_benchmarks.json`: suite historica de 50 casos, no se actualiza en la suite corta."
+        },
+        {
+          "handleId": "cd98ab2bd3d0157055e58bc12051401c5263ee4ff7c5cc18c21178df1fd42ef5",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "lines": [
+            5,
+            10
+          ],
+          "title": "Comandos",
+          "exactText": "```powershell\nnpm run test:toolcall  # smoke test de Gemma tool calling\nnpm run test:ai        # suite corta Gemma + WR CPU\nnpm run test:ai:historical\nnpm run test:ai:compare -- --profiles gemma,gemmaQat\n```"
+        },
+        {
+          "handleId": "cd0ddca4d81b5eb851aceb40280eb4b3e1c903c4cbd2a26fa54392bd05615afc",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "lines": [
+            14,
+            18
+          ],
+          "title": "Comandos",
+          "exactText": "```powershell\nnpx tsx scripts/debugger-llm.ts server gemma\nnpx tsx scripts/debugger-llm.ts server gemmaQat\nnpx tsx scripts/debugger-llm.ts server wrCpu\n```"
+        },
+        {
+          "handleId": "b1079b899dd1b413477948a1b218c0918defa328b1ff42267f11020515dadebe",
+          "rangeId": "block-8/item-8",
+          "rangeKind": "block",
+          "lines": [
+            39,
+            39
+          ],
+          "title": "Pipeline",
+          "exactText": "- `prompt_benchmarks.json`: suite historica de 50 casos, no se actualiza en la suite corta."
+        },
+        {
+          "handleId": "ca9d966b03e881a0824f2b35da04516ae90a3e59ae1baa47ad48246580ad0365",
+          "rangeId": "block-19",
+          "rangeKind": "block",
+          "lines": [
+            82,
+            84
+          ],
+          "title": "Estado validado",
+          "exactText": "- Suite historica Gemma: 50/50.\n- Guardrails locales: 12/12.\n- Build: OK."
+        },
+        {
+          "handleId": "f6c14778f4e84ec9f84c05e0c0868a2f5e9d7d2e84b3995bf776e0421df59e63",
+          "rangeId": "block-19/item-1",
+          "rangeKind": "block",
+          "lines": [
+            82,
+            82
+          ],
+          "title": "Estado validado",
+          "exactText": "- Suite historica Gemma: 50/50."
+        },
+        {
+          "handleId": "272071099e72a5b169483d02067f9047cec1806d9546217f18a120552cffc566",
+          "rangeId": "heading-7",
+          "rangeKind": "section",
+          "lines": [
+            95,
+            102
+          ],
+          "title": "Limitaciones",
+          "exactText": "## Limitaciones\n\n- La suite corta es smoke test, no ranking de calidad.\n- No ejecuta PSeInt ni valida semantica profunda.\n- No simula el canvas real.\n- WR CPU es lento y puede agotar el timeout si se amplia la suite.\n- La comparacion de modelos usa la suite historica; para decidir default tambien conviene revisar 5-10 prompts manuales reales en la app.\n\n"
+        }
+      ],
+      "jevOutcome": "abstained",
+      "selected": null
+    },
+    {
+      "caseId": "B2",
+      "sourceId": "neopse",
+      "query": "What P95 latency did WR CPU achieve in the historical model comparison?",
+      "sourceSnapshot": "inputs/sources/neopse-ai-benchmarks.md",
+      "candidates": [
+        {
+          "handleId": "cfcef98c834e1091d8fd5d1bcea1abe612a25b08f00ac1d90df521229a6ee574",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "lines": [
+            3,
+            19
+          ],
+          "title": "Comandos",
+          "exactText": "## Comandos\n\n```powershell\nnpm run test:toolcall  # smoke test de Gemma tool calling\nnpm run test:ai        # suite corta Gemma + WR CPU\nnpm run test:ai:historical\nnpm run test:ai:compare -- --profiles gemma,gemmaQat\n```\n\nTambien se puede levantar un perfil manualmente:\n\n```powershell\nnpx tsx scripts/debugger-llm.ts server gemma\nnpx tsx scripts/debugger-llm.ts server gemmaQat\nnpx tsx scripts/debugger-llm.ts server wrCpu\n```\n\n"
+        },
+        {
+          "handleId": "cd98ab2bd3d0157055e58bc12051401c5263ee4ff7c5cc18c21178df1fd42ef5",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "lines": [
+            5,
+            10
+          ],
+          "title": "Comandos",
+          "exactText": "```powershell\nnpm run test:toolcall  # smoke test de Gemma tool calling\nnpm run test:ai        # suite corta Gemma + WR CPU\nnpm run test:ai:historical\nnpm run test:ai:compare -- --profiles gemma,gemmaQat\n```"
+        },
+        {
+          "handleId": "c2736103c6aee6e67f5f51cd21cd7bb7b138428abc1dfab96dd990ca666baeb6",
+          "rangeId": "heading-4",
+          "rangeKind": "section",
+          "lines": [
+            41,
+            50
+          ],
+          "title": "Suite corta actual",
+          "exactText": "## Suite corta actual\n\n| Caso | Modelo | Objetivo |\n| --- | --- | --- |\n| `Gemma-PSeInt-Bisiesto` | Gemma | Generacion PSeInt reconocible |\n| `Gemma-Inline-Editar` | Gemma | Edicion inline de `node-1` |\n| `Gemma-Conversacional` | Gemma | Explicacion pedagogica |\n| `ToolCall-Gemma` | Gemma | Tool calling nativo con `sumar` |\n| `WR-Seguridad-Conceptual` | WR CPU | Explicacion conceptual de seguridad |\n\n"
+        },
+        {
+          "handleId": "f78f0dcdd844fb566ba028ec289db17d93c82d7c21403278b8de3cf659e507b1",
+          "rangeId": "block-9",
+          "rangeKind": "block",
+          "lines": [
+            43,
+            49
+          ],
+          "title": "Suite corta actual",
+          "exactText": "| Caso | Modelo | Objetivo |\n| --- | --- | --- |\n| `Gemma-PSeInt-Bisiesto` | Gemma | Generacion PSeInt reconocible |\n| `Gemma-Inline-Editar` | Gemma | Edicion inline de `node-1` |\n| `Gemma-Conversacional` | Gemma | Explicacion pedagogica |\n| `ToolCall-Gemma` | Gemma | Tool calling nativo con `sumar` |\n| `WR-Seguridad-Conceptual` | WR CPU | Explicacion conceptual de seguridad |"
+        },
+        {
+          "handleId": "272071099e72a5b169483d02067f9047cec1806d9546217f18a120552cffc566",
+          "rangeId": "heading-7",
+          "rangeKind": "section",
+          "lines": [
+            95,
+            102
+          ],
+          "title": "Limitaciones",
+          "exactText": "## Limitaciones\n\n- La suite corta es smoke test, no ranking de calidad.\n- No ejecuta PSeInt ni valida semantica profunda.\n- No simula el canvas real.\n- WR CPU es lento y puede agotar el timeout si se amplia la suite.\n- La comparacion de modelos usa la suite historica; para decidir default tambien conviene revisar 5-10 prompts manuales reales en la app.\n\n"
+        },
+        {
+          "handleId": "60f439ba341a1cd81e0898e1d1241c42119833d15a73b5871d274fbba32bc997",
+          "rangeId": "block-23",
+          "rangeKind": "block",
+          "lines": [
+            97,
+            101
+          ],
+          "title": "Limitaciones",
+          "exactText": "- La suite corta es smoke test, no ranking de calidad.\n- No ejecuta PSeInt ni valida semantica profunda.\n- No simula el canvas real.\n- WR CPU es lento y puede agotar el timeout si se amplia la suite.\n- La comparacion de modelos usa la suite historica; para decidir default tambien conviene revisar 5-10 prompts manuales reales en la app."
+        },
+        {
+          "handleId": "0f49524d75268aeaa29733d37f056fafece627b8d7fc0ae85d333dde8e150e7b",
+          "rangeId": "block-23/item-4",
+          "rangeKind": "block",
+          "lines": [
+            100,
+            100
+          ],
+          "title": "Limitaciones",
+          "exactText": "- WR CPU es lento y puede agotar el timeout si se amplia la suite."
+        },
+        {
+          "handleId": "7400b5cbc6ca517cbdfced9087bad445c0aeb0ac484f66e158de682eb80c9d57",
+          "rangeId": "block-8",
+          "rangeKind": "block",
+          "lines": [
+            32,
+            39
+          ],
+          "title": "Pipeline",
+          "exactText": "- `benchmarks/data/benchmarks.db`: historico SQLite local, ignorado por Git.\n- `NEOPSE_BENCHMARK_DB`: variable opcional para redirigir la DB.\n- `benchmarks/results/latest.json`: ultimo resultado plano local, ignorado por Git.\n- `benchmarks/results/latest-summary.md`: tabla local comparativa con pass rate, latencia, p95, tok/s y fallos, ignorada por Git.\n- `benchmarks/results/<timestamp>.json`: snapshots locales por corrida, ignorados por Git.\n- `benchmarks/results/<timestamp>.md`: resumen local por corrida, ignorado por Git.\n- `logs/`: logs locales de servidores/procesos, ignorados por Git.\n- `prompt_benchmarks.json`: suite historica de 50 casos, no se actualiza en la suite corta."
+        },
+        {
+          "handleId": "d3485989d85a7842e07365f8e46613b143ea98ebe2af8931a85b4a8dc441ca7f",
+          "rangeId": "block-8/item-4",
+          "rangeKind": "block",
+          "lines": [
+            35,
+            35
+          ],
+          "title": "Pipeline",
+          "exactText": "- `benchmarks/results/latest-summary.md`: tabla local comparativa con pass rate, latencia, p95, tok/s y fallos, ignorada por Git."
+        }
+      ],
+      "jevOutcome": "abstained",
+      "selected": null
+    },
+    {
+      "caseId": "C1",
+      "sourceId": "elemental-frontier",
+      "query": "¿Cuántas sesiones, muestras de modelo, partes por etapa y PNG auténticos tuvo el primer lote real del cliente NeoForge?",
+      "sourceSnapshot": "inputs/sources/elemental-frontier-minecraft-reference-index.md",
+      "candidates": [
+        {
+          "handleId": "6f30b906581db9be0d014d8064b081a6ff08d80a84eba79a72f7e1319c74f0ff",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "lines": [
+            6,
+            17
+          ],
+          "title": "Referencias de animación Minecraft — índice verificable",
+          "exactText": "| Recurso | Origen | Estado |\n|---|---|---|\n| Huellas de nueve clases originales `PlayerModel`, `HumanoidModel`, `Mth` y otras | Artefacto NeoForm local, hashes SHA-256 | **Verificado, versionado**: `MINECRAFT_REFERENCE_SOURCE_FINGERPRINTS_1_21_8.properties` |\n| Fórmulas y cubos de Steve/Alex | Código fuente Minecraft instalado / adaptador del estudio | **Verificado para subconjunto neutral**; Walk/Sprint del visor Swing aún usan entradas sintéticas |\n| Idle, caminar, Sprint, DASH, crouch, jump, strafe, backward y cámara frontal | **Cliente real NeoForge**, instancia Prism independiente `ef-animation-reference-qa` | **13 sesiones reales**: 750 muestras de modelo, 18.000 partes por etapa y 39 PNG auténticos |\n| Antes/después por cada `PlayerModel` y `PlayerRenderState` | Mixin `PlayerModel.setupAnim` después de vanilla y composición de EF | **Verificado en runtime** con CSV completos y auditoría de pares |\n| Contact sheets, curvas y marcadores geométricos | Capturas reales + analizador `MinecraftReferenceCli` y `ModelPartGeometryAudit` | **Verificado**: cada sesión dispone de `joint-risks.csv`, `joint-analysis.md`, `pose-curves.png`, originales PNG y metadatos |\n| Inclinación del torso vanilla vs DASH propio | Datos cliente real | **Verificado**: Sprint torso 0°; DASH pico 25–26°; 5,3–5,4 model px de desplazamiento de centro cadera proxy |\n| Banderas de físicas (suelo, pared, agua) | Estado de entidad cliente en segundo lote | **Verificado**: 0 choques horizontales en las sesiones diurnas de DASH, Sprint y crouch; no prueba ausencia de penetración visual de mallas |\n| Ataque con objetos, transición de manos, agua/swim, elytra | Capturas aún no ejecutadas con equipamiento y estado adecuado | **Pendiente** |\n| Visión lateral real F5 en pleno DASH | El sistema dispone de frente y espalda, no cámara lateral dedicada | **Pendiente** para gate visual humano |\n| Reproducción de estados reales CSV dentro de Animation Studio | Actualmente el visor Swing usa fixtures | **Pendiente de integración y comparación** |"
+        },
+        {
+          "handleId": "f7fbd75c60b44715d996c6eb2b37542f98951a6a8e4e55548f3d2d8dfcd415c4",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "lines": [
+            25,
+            31
+          ],
+          "title": "Nuevas sesiones validadas en servidor Paper (dirección y cadera)",
+          "exactText": "## Nuevas sesiones validadas en servidor Paper (dirección y cadera)\n\nContrato y resultados: [DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md](DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md).\n\nAdemás de las 13 sesiones históricas del primer lote, se generaron 4 sesiones **de servidor integrado QA** y 4 sesiones **cliente + Paper autoridad real** con `dash-left`, `dash-right`, `dash-last-left`, `dash-last-right`. Todos los CSV y screenshots originales se preservan en `qa/minecraft-reference/live/` ignorado en Git. El plugin Paper aplicó velocidades X de signo contrario y se verificó el handshake v2 en el cliente. Las sesiones nuevas provienen del sampler con torso acotado (anteriormente 27°), por lo que nunca mezclar valores históricos con estas métricas como si fueran el mismo build.\n\nPendiente: aprobación humana de sensibilidad y legibilidad en F5 con cámara en movimiento, cámara lateral fija y VFX; el dash en Singleplayer sin Paper no representa movimiento del producto.\n"
+        },
+        {
+          "handleId": "e16e19784b382ff917d6f7fe7aaec0adeff57b1027305fc8848c0dec09a8e229",
+          "rangeId": "block-7",
+          "rangeKind": "block",
+          "lines": [
+            29,
+            29
+          ],
+          "title": "Nuevas sesiones validadas en servidor Paper (dirección y cadera)",
+          "exactText": "Además de las 13 sesiones históricas del primer lote, se generaron 4 sesiones **de servidor integrado QA** y 4 sesiones **cliente + Paper autoridad real** con `dash-left`, `dash-right`, `dash-last-left`, `dash-last-right`. Todos los CSV y screenshots originales se preservan en `qa/minecraft-reference/live/` ignorado en Git. El plugin Paper aplicó velocidades X de signo contrario y se verificó el handshake v2 en el cliente. Las sesiones nuevas provienen del sampler con torso acotado (anteriormente 27°), por lo que nunca mezclar valores históricos con estas métricas como si fueran el mismo build."
+        },
+        {
+          "handleId": "39ed6e47bd2e3be0771d410febf32a38afe0c8653967ee867030b4cb4f916138",
+          "rangeId": "block-1",
+          "rangeKind": "block",
+          "lines": [
+            3,
+            4
+          ],
+          "title": "Referencias de animación Minecraft — índice verificable",
+          "exactText": "**Versión:** Minecraft Java 1.21.8 / NeoForge 21.8.54 / Parchment 2025.09.14.\n**Registro principal:** [MINECRAFT_REFERENCE_LIVE_AUDIT_20261011.md](MINECRAFT_REFERENCE_LIVE_AUDIT_20261011.md)."
+        },
+        {
+          "handleId": "8f8ecf843028836171857f9e36778e54cb2cfdb158f70ab03449dd70e7a375ad",
+          "rangeId": "block-4",
+          "rangeKind": "block",
+          "lines": [
+            21,
+            21
+          ],
+          "title": "Referencias de animación Minecraft — índice verificable",
+          "exactText": "**Scripts:** `tools/minecraft-reference/provision-qa-instance.ps1` prepara la copia segura, `run-live-suite.ps1` pide secuencias reales dentro del cliente ya abierto, `RUN_MINECRAFT_REFERENCE_CLI.cmd` analiza y verifica procedencia."
+        },
+        {
+          "handleId": "af19f5a9cb309e38aa8abb0c2767f323a1dd59f3f8d90555182dcb0bd1ba5c13",
+          "rangeId": "block-5",
+          "rangeKind": "block",
+          "lines": [
+            23,
+            23
+          ],
+          "title": "Referencias de animación Minecraft — índice verificable",
+          "exactText": "**Contratos obligatorios:** [MINECRAFT_REFERENCE_HARNESS_V1.md](MINECRAFT_REFERENCE_HARNESS_V1.md) y [ANIMATION_VANILLA_FIDELITY_CONTRACT.md](ANIMATION_VANILLA_FIDELITY_CONTRACT.md). No llamar colisión física a separación entre cubos del renderer. Los resultados numéricos no sustituyen la revisión de vídeo lateral real, y no autorizan un cambio automático de producción."
+        },
+        {
+          "handleId": "3043e8bb1e8a9cd968406d83ac064737b8188e963e262d5d1b2283e3a7482635",
+          "rangeId": "block-6",
+          "rangeKind": "block",
+          "lines": [
+            27,
+            27
+          ],
+          "title": "Nuevas sesiones validadas en servidor Paper (dirección y cadera)",
+          "exactText": "Contrato y resultados: [DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md](DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md)."
+        },
+        {
+          "handleId": "5e9dd5f96d747b0562c1f3dd862e666c7462c4fc722cab56ddd74c8365b3f26e",
+          "rangeId": "block-8",
+          "rangeKind": "block",
+          "lines": [
+            31,
+            31
+          ],
+          "title": "Nuevas sesiones validadas en servidor Paper (dirección y cadera)",
+          "exactText": "Pendiente: aprobación humana de sensibilidad y legibilidad en F5 con cámara en movimiento, cámara lateral fija y VFX; el dash en Singleplayer sin Paper no representa movimiento del producto."
+        }
+      ],
+      "jevOutcome": "selected",
+      "selected": {
+        "rangeId": "block-2",
+        "lines": [
+          6,
+          17
+        ]
+      }
+    },
+    {
+      "caseId": "C2",
+      "sourceId": "elemental-frontier",
+      "query": "How many visual mesh penetrations were counted during a real side-view F5 DASH capture?",
+      "sourceSnapshot": "inputs/sources/elemental-frontier-minecraft-reference-index.md",
+      "candidates": [
+        {
+          "handleId": "6f30b906581db9be0d014d8064b081a6ff08d80a84eba79a72f7e1319c74f0ff",
+          "rangeId": "block-2",
+          "rangeKind": "block",
+          "lines": [
+            6,
+            17
+          ],
+          "title": "Referencias de animación Minecraft — índice verificable",
+          "exactText": "| Recurso | Origen | Estado |\n|---|---|---|\n| Huellas de nueve clases originales `PlayerModel`, `HumanoidModel`, `Mth` y otras | Artefacto NeoForm local, hashes SHA-256 | **Verificado, versionado**: `MINECRAFT_REFERENCE_SOURCE_FINGERPRINTS_1_21_8.properties` |\n| Fórmulas y cubos de Steve/Alex | Código fuente Minecraft instalado / adaptador del estudio | **Verificado para subconjunto neutral**; Walk/Sprint del visor Swing aún usan entradas sintéticas |\n| Idle, caminar, Sprint, DASH, crouch, jump, strafe, backward y cámara frontal | **Cliente real NeoForge**, instancia Prism independiente `ef-animation-reference-qa` | **13 sesiones reales**: 750 muestras de modelo, 18.000 partes por etapa y 39 PNG auténticos |\n| Antes/después por cada `PlayerModel` y `PlayerRenderState` | Mixin `PlayerModel.setupAnim` después de vanilla y composición de EF | **Verificado en runtime** con CSV completos y auditoría de pares |\n| Contact sheets, curvas y marcadores geométricos | Capturas reales + analizador `MinecraftReferenceCli` y `ModelPartGeometryAudit` | **Verificado**: cada sesión dispone de `joint-risks.csv`, `joint-analysis.md`, `pose-curves.png`, originales PNG y metadatos |\n| Inclinación del torso vanilla vs DASH propio | Datos cliente real | **Verificado**: Sprint torso 0°; DASH pico 25–26°; 5,3–5,4 model px de desplazamiento de centro cadera proxy |\n| Banderas de físicas (suelo, pared, agua) | Estado de entidad cliente en segundo lote | **Verificado**: 0 choques horizontales en las sesiones diurnas de DASH, Sprint y crouch; no prueba ausencia de penetración visual de mallas |\n| Ataque con objetos, transición de manos, agua/swim, elytra | Capturas aún no ejecutadas con equipamiento y estado adecuado | **Pendiente** |\n| Visión lateral real F5 en pleno DASH | El sistema dispone de frente y espalda, no cámara lateral dedicada | **Pendiente** para gate visual humano |\n| Reproducción de estados reales CSV dentro de Animation Studio | Actualmente el visor Swing usa fixtures | **Pendiente de integración y comparación** |"
+        },
+        {
+          "handleId": "f7fbd75c60b44715d996c6eb2b37542f98951a6a8e4e55548f3d2d8dfcd415c4",
+          "rangeId": "heading-2",
+          "rangeKind": "section",
+          "lines": [
+            25,
+            31
+          ],
+          "title": "Nuevas sesiones validadas en servidor Paper (dirección y cadera)",
+          "exactText": "## Nuevas sesiones validadas en servidor Paper (dirección y cadera)\n\nContrato y resultados: [DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md](DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md).\n\nAdemás de las 13 sesiones históricas del primer lote, se generaron 4 sesiones **de servidor integrado QA** y 4 sesiones **cliente + Paper autoridad real** con `dash-left`, `dash-right`, `dash-last-left`, `dash-last-right`. Todos los CSV y screenshots originales se preservan en `qa/minecraft-reference/live/` ignorado en Git. El plugin Paper aplicó velocidades X de signo contrario y se verificó el handshake v2 en el cliente. Las sesiones nuevas provienen del sampler con torso acotado (anteriormente 27°), por lo que nunca mezclar valores históricos con estas métricas como si fueran el mismo build.\n\nPendiente: aprobación humana de sensibilidad y legibilidad en F5 con cámara en movimiento, cámara lateral fija y VFX; el dash en Singleplayer sin Paper no representa movimiento del producto.\n"
+        },
+        {
+          "handleId": "5e9dd5f96d747b0562c1f3dd862e666c7462c4fc722cab56ddd74c8365b3f26e",
+          "rangeId": "block-8",
+          "rangeKind": "block",
+          "lines": [
+            31,
+            31
+          ],
+          "title": "Nuevas sesiones validadas en servidor Paper (dirección y cadera)",
+          "exactText": "Pendiente: aprobación humana de sensibilidad y legibilidad en F5 con cámara en movimiento, cámara lateral fija y VFX; el dash en Singleplayer sin Paper no representa movimiento del producto."
+        },
+        {
+          "handleId": "af19f5a9cb309e38aa8abb0c2767f323a1dd59f3f8d90555182dcb0bd1ba5c13",
+          "rangeId": "block-5",
+          "rangeKind": "block",
+          "lines": [
+            23,
+            23
+          ],
+          "title": "Referencias de animación Minecraft — índice verificable",
+          "exactText": "**Contratos obligatorios:** [MINECRAFT_REFERENCE_HARNESS_V1.md](MINECRAFT_REFERENCE_HARNESS_V1.md) y [ANIMATION_VANILLA_FIDELITY_CONTRACT.md](ANIMATION_VANILLA_FIDELITY_CONTRACT.md). No llamar colisión física a separación entre cubos del renderer. Los resultados numéricos no sustituyen la revisión de vídeo lateral real, y no autorizan un cambio automático de producción."
+        },
+        {
+          "handleId": "e16e19784b382ff917d6f7fe7aaec0adeff57b1027305fc8848c0dec09a8e229",
+          "rangeId": "block-7",
+          "rangeKind": "block",
+          "lines": [
+            29,
+            29
+          ],
+          "title": "Nuevas sesiones validadas en servidor Paper (dirección y cadera)",
+          "exactText": "Además de las 13 sesiones históricas del primer lote, se generaron 4 sesiones **de servidor integrado QA** y 4 sesiones **cliente + Paper autoridad real** con `dash-left`, `dash-right`, `dash-last-left`, `dash-last-right`. Todos los CSV y screenshots originales se preservan en `qa/minecraft-reference/live/` ignorado en Git. El plugin Paper aplicó velocidades X de signo contrario y se verificó el handshake v2 en el cliente. Las sesiones nuevas provienen del sampler con torso acotado (anteriormente 27°), por lo que nunca mezclar valores históricos con estas métricas como si fueran el mismo build."
+        }
+      ],
+      "jevOutcome": "abstained",
+      "selected": null
+    }
+  ]
+}

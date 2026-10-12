@@ -1,0 +1,3 @@
+# Review-packet v1 erratum
+
+The first quality-review packet contained only bounded search snippets rather than full exact range text. Jev had received the complete exact ranges, including broad parent ranges. This mismatch caused reviewers to incorrectly say the offered candidate set lacked lines 94–106 in A2 and lines 14–16 in C2; one also confused overlap_count zero with an edge_crossings threshold. Both initial reviews are preserved under raw/ with v1 filenames but are invalidated for quality scoring. The corrected packet inputs/blind-quality-review-packet-v2.json includes exact candidate text, and the reviewers are to start fresh without provider probabilities or expected labels.

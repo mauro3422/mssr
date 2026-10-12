@@ -1,0 +1,107 @@
+{
+  "schema": "mssr-librarian-source-disjoint-cohort-v1",
+  "runId": "mssr-librarian-source-disjoint-cohort-20261012T2251Z-v1",
+  "createdAt": "2026-10-12T22:51:27Z",
+  "status": "labels-frozen-awaiting-provider",
+  "purpose": "Fresh-source evaluation of answerability, multilingual retrieval, Jev selection, exact ranges, and citation-preserving fetch/pack. Each source is explicit; no automatic crawl.",
+  "independence": {
+    "sourceDocuments": 3,
+    "cases": 6,
+    "projectRoots": 3,
+    "caveat": "All three project families may have appeared elsewhere in prior work; exact source paths show no match in the local Jev run ledger. This is source-disjoint relative to the local run ledger, not certified project-disjoint or globally unseen.",
+    "positiveNegativeMix": "3 independently labeled answerable and 3 independently labeled unanswerable; analyst labels, not owner gold"
+  },
+  "provider": {
+    "metadataMode": "off",
+    "networkOptIn": true,
+    "queryVariants": "none",
+    "networkOptInMethod": "User explicitly authorized real Jev evaluation calls in this conversation; tool calls will use the connected Bridge MCP catalog.",
+    "providerCalls": 0,
+    "mode": "live",
+    "candidatePool": "only exact search handles from the same query; zero-handle search will not call Jev",
+    "provider": "TypeSafe Jev through connected MauroPrime Bridge MCP",
+    "requestedModel": "jev-1.13.0"
+  },
+  "labels": {
+    "providerLabelsExposed": false,
+    "reviewers": [
+      "Luna A",
+      "Luna B"
+    ],
+    "ownerAdjudication": "none",
+    "status": "two-independent-source-only-reviews-complete",
+    "answerabilityAgreement": "6/6",
+    "answerContentAgreement": "3/3-answerable-cases",
+    "reconciliationPath": "derived/pre-provider-label-agreement.md",
+    "reviewOutputs": [
+      {
+        "reviewer": "Luna A",
+        "path": "raw/blind-label-luna-a.md",
+        "sha256": "bd17a0be4549e62b385d4c94b18c02e015b89b83e17fc5d31033d0f2030d4976"
+      },
+      {
+        "reviewer": "Luna B",
+        "path": "raw/blind-label-luna-b.json",
+        "sha256": "c0eac7a548cc9a6dcc7eb93310a1505b8af9444a536987a3fd985278491e4e31"
+      }
+    ],
+    "reconciliationSha256": "05dcd1f94df5c92e81ff355c75e2be6b335d9e87f79d23b7a8456326b0e402c3",
+    "frozenAt": "2026-10-12T22:55:34.2896604Z"
+  },
+  "corpus": {
+    "sources": [
+      {
+        "sourceId": "godot-atlas",
+        "projectRoot": "D:\\Dev\\GodotAtlas",
+        "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+        "snapshotPath": "inputs/sources/godot-atlas-capture-audit.md",
+        "sha256": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+        "bytes": 5736,
+        "head": "b033a41d4ee275e6ebc1dac1713a6cca2334bb4a",
+        "branch": "main",
+        "targetSourceClean": true,
+        "projectContextManifestSha256": "52d493e48ba1ba98d025cbf186efa77bb0b113ce7145dc359cc8b9090e81d4fe",
+        "localExperimentLedgerExactPathMatch": false
+      },
+      {
+        "sourceId": "neopse",
+        "projectRoot": "D:\\Dev\\NeoPSE",
+        "sourceRef": "src/ai/BENCHMARKS.md",
+        "snapshotPath": "inputs/sources/neopse-ai-benchmarks.md",
+        "sha256": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+        "bytes": 4164,
+        "head": "70fde3cc146a0aa564eff7d2ccaedcf6a577affc",
+        "branch": "main",
+        "targetSourceClean": true,
+        "projectContextManifestSha256": "4c3ba54c91116ff01529bfd3b04479ebf2294f9e2c34ec9079958646013f7d31",
+        "localExperimentLedgerExactPathMatch": false
+      },
+      {
+        "sourceId": "elemental-frontier",
+        "projectRoot": "D:\\Dev\\elemental-frontier",
+        "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+        "snapshotPath": "inputs/sources/elemental-frontier-minecraft-reference-index.md",
+        "sha256": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+        "bytes": 4236,
+        "head": "f5a0dc9895c7b7b7c755c3a1e7bb65795c58f346",
+        "branch": "main",
+        "targetSourceClean": true,
+        "projectContextManifestSha256": "a5179f9a82bd8e2c286f3ba2a44f3f1c952dd4c430f1682a775b634eea9853a0",
+        "localExperimentLedgerExactPathMatch": false
+      }
+    ]
+  },
+  "inputs": {
+    "casesSha256": "61adeeeaf87651098f4a3dce8ce77f30266ddc941f411649baff7c8f8f4a2b52",
+    "cases": "inputs/cases.json"
+  },
+  "constraints": {
+    "sourceWrites": 0,
+    "rawScoresUncalibrated": true,
+    "thresholdChanges": 0,
+    "excludeLocalMachinePathsFromProviderCandidates": true,
+    "productionChanges": 0,
+    "evidencePackRequired": true,
+    "exactFetchRequired": true
+  }
+}

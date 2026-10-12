@@ -1,0 +1,509 @@
+{
+  "schema": "blind-output-quality-review-v1",
+  "instructions": "Review Jev's retrieval/selection outcome independently. Do not inspect raw/blind-label-luna-a.md, raw/blind-label-luna-b.json, derived/pre-provider-label-agreement.md, or any score/confidence fields. Use only each query, the listed safe same-query candidates, and the corresponding frozen source snapshot under inputs/sources. For each case, independently judge answerability, whether the search returned an adequate exact source range, and whether Jev's selected range or abstention is appropriate. Separate search misses from selection misses. Do not infer correctness from the provider's choice. Return concise reason and exact source lines; no threshold recommendations.",
+  "cases": [
+    {
+      "caseId": "A1",
+      "sourceSnapshot": "inputs/sources/godot-atlas-capture-audit.md",
+      "query": "¿Qué dos formas de evidencia forman el paquete de auditoría y qué pregunta contesta cada una?",
+      "searchCandidateCount": 0,
+      "safeCandidateCount": 0,
+      "safeCandidates": [],
+      "jevOutcome": "not-run",
+      "selectedRange": null
+    },
+    {
+      "caseId": "A2",
+      "sourceSnapshot": "inputs/sources/godot-atlas-capture-audit.md",
+      "query": "What maximum number of edge crossings is required to pass the audit?",
+      "searchCandidateCount": 12,
+      "safeCandidateCount": 12,
+      "safeCandidates": [
+        {
+          "handleId": "b40b2f63ea53d3d271fa6fe490bf47da97884c652fbc8c4d857d7397cf3d6193",
+          "rangeId": "heading-1",
+          "lines": [
+            1,
+            129
+          ],
+          "title": "Atlas Capture & UX Audit Loop",
+          "snippet": "# Atlas Capture & UX Audit Loop This loop exists so Atlas can be iterated from observable evidence instead of asking a human to pan/zoom and manually photograph each state. ## Goal Produce a paired evidence bundle: 1. structured Atlas geom…"
+        },
+        {
+          "handleId": "1c6cada2270d0aafb3384f16d5e4abeee6145912197e54720c278e668595d95f",
+          "rangeId": "block-1",
+          "lines": [
+            3,
+            3
+          ],
+          "title": "Atlas Capture & UX Audit Loop",
+          "snippet": "This loop exists so Atlas can be iterated from observable evidence instead of asking a human to pan/zoom and manually photograph each state."
+        },
+        {
+          "handleId": "0e28e9a4897800ef0e71e026ab8847694f3b84253851be8043edb4c331e85d29",
+          "rangeId": "heading-2",
+          "lines": [
+            5,
+            13
+          ],
+          "title": "Goal",
+          "snippet": "## Goal Produce a paired evidence bundle: 1. structured Atlas geometry/state metrics; 2. a trustworthy capture of the Godot editor with Atlas active. The image answers \"does this read well?\" while metrics answer \"why does it read this way?…"
+        },
+        {
+          "handleId": "976d745d68e74287194b143927bc14f11e40312010da1e1a1d1dd15ad74573fe",
+          "rangeId": "block-2",
+          "lines": [
+            7,
+            7
+          ],
+          "title": "Goal",
+          "snippet": "Produce a paired evidence bundle:"
+        },
+        {
+          "handleId": "b548f23f870061740ce6895a7514089d6a7ffb1401afdb650f20877a354d61f7",
+          "rangeId": "block-3/item-1",
+          "lines": [
+            9,
+            9
+          ],
+          "title": "Goal",
+          "snippet": "1. structured Atlas geometry/state metrics;"
+        },
+        {
+          "handleId": "d7a4dce1c8e7aeacc30ff151822bef4f6b9f1569e23f4b7400745014bd68ba99",
+          "rangeId": "block-3",
+          "lines": [
+            9,
+            10
+          ],
+          "title": "Goal",
+          "snippet": "1. structured Atlas geometry/state metrics; 2. a trustworthy capture of the Godot editor with Atlas active."
+        },
+        {
+          "handleId": "8c8d8a265788ed3a9e38fa531dc7969c6fcf609ef67bd04b58b962f651e223c5",
+          "rangeId": "block-3/item-2",
+          "lines": [
+            10,
+            10
+          ],
+          "title": "Goal",
+          "snippet": "2. a trustworthy capture of the Godot editor with Atlas active."
+        },
+        {
+          "handleId": "61909873fd1c79ed7868ce621c7e287b7db480f8cdb18b591f0414f3e80807fa",
+          "rangeId": "block-4",
+          "lines": [
+            12,
+            12
+          ],
+          "title": "Goal",
+          "snippet": "The image answers \"does this read well?\" while metrics answer \"why does it read this way?\". Neither is sufficient alone."
+        },
+        {
+          "handleId": "41111c4f7701e9d77038f68546eff9acb606fd5512e61564feef98d96215159a",
+          "rangeId": "heading-3",
+          "lines": [
+            14,
+            44
+          ],
+          "title": "Standard loop",
+          "snippet": "## Standard loop 1. Load project context and route with MSSR for the current Atlas/Godot task. 2. Inspect Git/work writers before edits. Never appropriate concurrent Companion/gameplay work. 3. Choose an exact scene (`res://...`) relevant …"
+        },
+        {
+          "handleId": "3b0a08f7146f634ae3bb3b5c7ed443295aad9c6d70faaab32ff5c007fb16c81e",
+          "rangeId": "block-5/item-1",
+          "lines": [
+            16,
+            16
+          ],
+          "title": "Standard loop",
+          "snippet": "1. Load project context and route with MSSR for the current Atlas/Godot task."
+        },
+        {
+          "handleId": "c9faf47b9c8c8bbfd4d25917d68defbc23e02087d110ce931755701775b5f92c",
+          "rangeId": "block-5",
+          "lines": [
+            16,
+            43
+          ],
+          "title": "Standard loop",
+          "snippet": "1. Load project context and route with MSSR for the current Atlas/Godot task. 2. Inspect Git/work writers before edits. Never appropriate concurrent Companion/gameplay work. 3. Choose an exact scene (`res://...`) relevant to the UX complai…"
+        },
+        {
+          "handleId": "1327c78c5c04e2410294c9844e303ee7893c29836c31b0d93cdc2e11c4f8b590",
+          "rangeId": "block-5/item-2",
+          "lines": [
+            17,
+            17
+          ],
+          "title": "Standard loop",
+          "snippet": "2. Inspect Git/work writers before edits. Never appropriate concurrent Companion/gameplay work."
+        }
+      ],
+      "jevOutcome": "abstained",
+      "selectedRange": null
+    },
+    {
+      "caseId": "B1",
+      "sourceSnapshot": "inputs/sources/neopse-ai-benchmarks.md",
+      "query": "En la comparación histórica, ¿cuántos casos superó cada perfil gemma y gemmaQat, y cuáles fueron sus latencias promedio y P95?",
+      "searchCandidateCount": 12,
+      "safeCandidateCount": 9,
+      "safeCandidates": [
+        {
+          "handleId": "8aa09cc6224850e4e48aa3e140c1f9987ae43db246269ef9458f211031bafa9a",
+          "rangeId": "block-21",
+          "lines": [
+            88,
+            91
+          ],
+          "title": "Estado validado",
+          "snippet": "| Perfil | Modelo | Pass | Avg ms | P95 ms | Avg tok/s | Invalid JSON | | --- | --- | ---: | ---: | ---: | ---: | ---: | | `gemma` | `google_gemma-4-E2B-it-Q4_K_M.gguf` | 50/50 | 15249 | 34795 | 12.11 | 0 | | `gemmaQat` | `gemma-4-E2B_q4_0…"
+        },
+        {
+          "handleId": "cfcef98c834e1091d8fd5d1bcea1abe612a25b08f00ac1d90df521229a6ee574",
+          "rangeId": "heading-2",
+          "lines": [
+            3,
+            19
+          ],
+          "title": "Comandos",
+          "snippet": "…omandos ```powershell npm run test:toolcall # smoke test de Gemma tool calling npm run test:ai # suite corta Gemma + WR CPU npm run test:ai:historical npm run test:ai:compare -- --profiles gemma,gemmaQat ``` Tambien se puede levantar un p…"
+        },
+        {
+          "handleId": "7400b5cbc6ca517cbdfced9087bad445c0aeb0ac484f66e158de682eb80c9d57",
+          "rangeId": "block-8",
+          "lines": [
+            32,
+            39
+          ],
+          "title": "Pipeline",
+          "snippet": "…mmary.md`: tabla local comparativa con pass rate, latencia, p95, tok/s y fallos, ignorada por Git. - `benchmarks/results/<timestamp>.json`: snapshots locales por corrida, ignorados por Git. - `benchmarks/results/<timestamp>.md`: resumen l…"
+        },
+        {
+          "handleId": "cd98ab2bd3d0157055e58bc12051401c5263ee4ff7c5cc18c21178df1fd42ef5",
+          "rangeId": "block-1",
+          "lines": [
+            5,
+            10
+          ],
+          "title": "Comandos",
+          "snippet": "```powershell npm run test:toolcall # smoke test de Gemma tool calling npm run test:ai # suite corta Gemma + WR CPU npm run test:ai:historical npm run test:ai:compare -- --profiles gemma,gemmaQat ```"
+        },
+        {
+          "handleId": "cd0ddca4d81b5eb851aceb40280eb4b3e1c903c4cbd2a26fa54392bd05615afc",
+          "rangeId": "block-3",
+          "lines": [
+            14,
+            18
+          ],
+          "title": "Comandos",
+          "snippet": "```powershell npx tsx scripts/debugger-llm.ts server gemma npx tsx scripts/debugger-llm.ts server gemmaQat npx tsx scripts/debugger-llm.ts server wrCpu ```"
+        },
+        {
+          "handleId": "b1079b899dd1b413477948a1b218c0918defa328b1ff42267f11020515dadebe",
+          "rangeId": "block-8/item-8",
+          "lines": [
+            39,
+            39
+          ],
+          "title": "Pipeline",
+          "snippet": "- `prompt_benchmarks.json`: suite historica de 50 casos, no se actualiza en la suite corta."
+        },
+        {
+          "handleId": "ca9d966b03e881a0824f2b35da04516ae90a3e59ae1baa47ad48246580ad0365",
+          "rangeId": "block-19",
+          "lines": [
+            82,
+            84
+          ],
+          "title": "Estado validado",
+          "snippet": "- Suite historica Gemma: 50/50. - Guardrails locales: 12/12. - Build: OK."
+        },
+        {
+          "handleId": "f6c14778f4e84ec9f84c05e0c0868a2f5e9d7d2e84b3995bf776e0421df59e63",
+          "rangeId": "block-19/item-1",
+          "lines": [
+            82,
+            82
+          ],
+          "title": "Estado validado",
+          "snippet": "- Suite historica Gemma: 50/50."
+        },
+        {
+          "handleId": "272071099e72a5b169483d02067f9047cec1806d9546217f18a120552cffc566",
+          "rangeId": "heading-7",
+          "lines": [
+            95,
+            102
+          ],
+          "title": "Limitaciones",
+          "snippet": "…ofunda. - No simula el canvas real. - WR CPU es lento y puede agotar el timeout si se amplia la suite. - La comparacion de modelos usa la suite historica; para decidir default tambien conviene revisar 5-10 prompts manuales reales en la ap…"
+        }
+      ],
+      "jevOutcome": "abstained",
+      "selectedRange": null
+    },
+    {
+      "caseId": "B2",
+      "sourceSnapshot": "inputs/sources/neopse-ai-benchmarks.md",
+      "query": "What P95 latency did WR CPU achieve in the historical model comparison?",
+      "searchCandidateCount": 12,
+      "safeCandidateCount": 9,
+      "safeCandidates": [
+        {
+          "handleId": "cfcef98c834e1091d8fd5d1bcea1abe612a25b08f00ac1d90df521229a6ee574",
+          "rangeId": "heading-2",
+          "lines": [
+            3,
+            19
+          ],
+          "title": "Comandos",
+          "snippet": "…de Gemma tool calling npm run test:ai # suite corta Gemma + WR CPU npm run test:ai:historical npm run test:ai:compare -- --profiles gemma,gemmaQat ``` Tambien se puede levantar un perfil manualmente: ```powershell npx tsx scripts/debugger…"
+        },
+        {
+          "handleId": "cd98ab2bd3d0157055e58bc12051401c5263ee4ff7c5cc18c21178df1fd42ef5",
+          "rangeId": "block-1",
+          "lines": [
+            5,
+            10
+          ],
+          "title": "Comandos",
+          "snippet": "```powershell npm run test:toolcall # smoke test de Gemma tool calling npm run test:ai # suite corta Gemma + WR CPU npm run test:ai:historical npm run test:ai:compare -- --profiles gemma,gemmaQat ```"
+        },
+        {
+          "handleId": "c2736103c6aee6e67f5f51cd21cd7bb7b138428abc1dfab96dd990ca666baeb6",
+          "rangeId": "heading-4",
+          "lines": [
+            41,
+            50
+          ],
+          "title": "Suite corta actual",
+          "snippet": "…` | Gemma | Edicion inline de `node-1` | | `Gemma-Conversacional` | Gemma | Explicacion pedagogica | | `ToolCall-Gemma` | Gemma | Tool calling nativo con `sumar` | | `WR-Seguridad-Conceptual` | WR CPU | Explicacion conceptual de seguridad…"
+        },
+        {
+          "handleId": "f78f0dcdd844fb566ba028ec289db17d93c82d7c21403278b8de3cf659e507b1",
+          "rangeId": "block-9",
+          "lines": [
+            43,
+            49
+          ],
+          "title": "Suite corta actual",
+          "snippet": "…` | Gemma | Edicion inline de `node-1` | | `Gemma-Conversacional` | Gemma | Explicacion pedagogica | | `ToolCall-Gemma` | Gemma | Tool calling nativo con `sumar` | | `WR-Seguridad-Conceptual` | WR CPU | Explicacion conceptual de seguridad…"
+        },
+        {
+          "handleId": "272071099e72a5b169483d02067f9047cec1806d9546217f18a120552cffc566",
+          "rangeId": "heading-7",
+          "lines": [
+            95,
+            102
+          ],
+          "title": "Limitaciones",
+          "snippet": "…ni valida semantica profunda. - No simula el canvas real. - WR CPU es lento y puede agotar el timeout si se amplia la suite. - La comparacion de modelos usa la suite historica; para decidir default tambien conviene revisar 5-10 prompts ma…"
+        },
+        {
+          "handleId": "60f439ba341a1cd81e0898e1d1241c42119833d15a73b5871d274fbba32bc997",
+          "rangeId": "block-23",
+          "lines": [
+            97,
+            101
+          ],
+          "title": "Limitaciones",
+          "snippet": "…ni valida semantica profunda. - No simula el canvas real. - WR CPU es lento y puede agotar el timeout si se amplia la suite. - La comparacion de modelos usa la suite historica; para decidir default tambien conviene revisar 5-10 prompts ma…"
+        },
+        {
+          "handleId": "0f49524d75268aeaa29733d37f056fafece627b8d7fc0ae85d333dde8e150e7b",
+          "rangeId": "block-23/item-4",
+          "lines": [
+            100,
+            100
+          ],
+          "title": "Limitaciones",
+          "snippet": "- WR CPU es lento y puede agotar el timeout si se amplia la suite."
+        },
+        {
+          "handleId": "7400b5cbc6ca517cbdfced9087bad445c0aeb0ac484f66e158de682eb80c9d57",
+          "rangeId": "block-8",
+          "lines": [
+            32,
+            39
+          ],
+          "title": "Pipeline",
+          "snippet": "…mmary.md`: tabla local comparativa con pass rate, latencia, p95, tok/s y fallos, ignorada por Git. - `benchmarks/results/<timestamp>.json`: snapshots locales por corrida, ignorados por Git. - `benchmarks/results/<timestamp>.md`: resumen l…"
+        },
+        {
+          "handleId": "d3485989d85a7842e07365f8e46613b143ea98ebe2af8931a85b4a8dc441ca7f",
+          "rangeId": "block-8/item-4",
+          "lines": [
+            35,
+            35
+          ],
+          "title": "Pipeline",
+          "snippet": "- `benchmarks/results/latest-summary.md`: tabla local comparativa con pass rate, latencia, p95, tok/s y fallos, ignorada por Git."
+        }
+      ],
+      "jevOutcome": "abstained",
+      "selectedRange": null
+    },
+    {
+      "caseId": "C1",
+      "sourceSnapshot": "inputs/sources/elemental-frontier-minecraft-reference-index.md",
+      "query": "¿Cuántas sesiones, muestras de modelo, partes por etapa y PNG auténticos tuvo el primer lote real del cliente NeoForge?",
+      "searchCandidateCount": 10,
+      "safeCandidateCount": 8,
+      "safeCandidates": [
+        {
+          "handleId": "6f30b906581db9be0d014d8064b081a6ff08d80a84eba79a72f7e1319c74f0ff",
+          "rangeId": "block-2",
+          "lines": [
+            6,
+            17
+          ],
+          "title": "Referencias de animación Minecraft — índice verificable",
+          "snippet": "…, DASH, crouch, jump, strafe, backward y cámara frontal | **Cliente real NeoForge**, instancia Prism independiente `ef-animation-reference-qa` | **13 sesiones reales**: 750 muestras de modelo, 18.000 partes por etapa y 39 PNG auténticos |…"
+        },
+        {
+          "handleId": "f7fbd75c60b44715d996c6eb2b37542f98951a6a8e4e55548f3d2d8dfcd415c4",
+          "rangeId": "heading-2",
+          "lines": [
+            25,
+            31
+          ],
+          "title": "Nuevas sesiones validadas en servidor Paper (dirección y cadera)",
+          "snippet": "## Nuevas sesiones validadas en servidor Paper (dirección y cadera) Contrato y resultados: [DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md](DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md). Además de las 13 sesiones históricas del primer lote…"
+        },
+        {
+          "handleId": "e16e19784b382ff917d6f7fe7aaec0adeff57b1027305fc8848c0dec09a8e229",
+          "rangeId": "block-7",
+          "lines": [
+            29,
+            29
+          ],
+          "title": "Nuevas sesiones validadas en servidor Paper (dirección y cadera)",
+          "snippet": "Además de las 13 sesiones históricas del primer lote, se generaron 4 sesiones **de servidor integrado QA** y 4 sesiones **cliente + Paper autoridad real** con `dash-left`, `dash-right`, `dash-last-left`, `dash-last-right`. Todos los CSV y …"
+        },
+        {
+          "handleId": "39ed6e47bd2e3be0771d410febf32a38afe0c8653967ee867030b4cb4f916138",
+          "rangeId": "block-1",
+          "lines": [
+            3,
+            4
+          ],
+          "title": "Referencias de animación Minecraft — índice verificable",
+          "snippet": "**Versión:** Minecraft Java 1.21.8 / NeoForge 21.8.54 / Parchment 2025.09.14. **Registro principal:** [MINECRAFT_REFERENCE_LIVE_AUDIT_20261011.md](MINECRAFT_REFERENCE_LIVE_AUDIT_20261011.md)."
+        },
+        {
+          "handleId": "8f8ecf843028836171857f9e36778e54cb2cfdb158f70ab03449dd70e7a375ad",
+          "rangeId": "block-4",
+          "lines": [
+            21,
+            21
+          ],
+          "title": "Referencias de animación Minecraft — índice verificable",
+          "snippet": "**Scripts:** `tools/minecraft-reference/provision-qa-instance.ps1` prepara la copia segura, `run-live-suite.ps1` pide secuencias reales dentro del cliente ya abierto, `RUN_MINECRAFT_REFERENCE_CLI.cmd` analiza y verifica procedencia."
+        },
+        {
+          "handleId": "af19f5a9cb309e38aa8abb0c2767f323a1dd59f3f8d90555182dcb0bd1ba5c13",
+          "rangeId": "block-5",
+          "lines": [
+            23,
+            23
+          ],
+          "title": "Referencias de animación Minecraft — índice verificable",
+          "snippet": "…TRACT.md](ANIMATION_VANILLA_FIDELITY_CONTRACT.md). No llamar colisión física a separación entre cubos del renderer. Los resultados numéricos no sustituyen la revisión de vídeo lateral real, y no autorizan un cambio automático de producció…"
+        },
+        {
+          "handleId": "3043e8bb1e8a9cd968406d83ac064737b8188e963e262d5d1b2283e3a7482635",
+          "rangeId": "block-6",
+          "lines": [
+            27,
+            27
+          ],
+          "title": "Nuevas sesiones validadas en servidor Paper (dirección y cadera)",
+          "snippet": "Contrato y resultados: [DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md](DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md)."
+        },
+        {
+          "handleId": "5e9dd5f96d747b0562c1f3dd862e666c7462c4fc722cab56ddd74c8365b3f26e",
+          "rangeId": "block-8",
+          "lines": [
+            31,
+            31
+          ],
+          "title": "Nuevas sesiones validadas en servidor Paper (dirección y cadera)",
+          "snippet": "Pendiente: aprobación humana de sensibilidad y legibilidad en F5 con cámara en movimiento, cámara lateral fija y VFX; el dash en Singleplayer sin Paper no representa movimiento del producto."
+        }
+      ],
+      "jevOutcome": "selected",
+      "selectedRange": {
+        "handleId": "6f30b906581db9be0d014d8064b081a6ff08d80a84eba79a72f7e1319c74f0ff",
+        "rangeId": "block-2",
+        "lines": [
+          6,
+          17
+        ],
+        "text": "…, DASH, crouch, jump, strafe, backward y cámara frontal | **Cliente real NeoForge**, instancia Prism independiente `ef-animation-reference-qa` | **13 sesiones reales**: 750 muestras de modelo, 18.000 partes por etapa y 39 PNG auténticos |…"
+      }
+    },
+    {
+      "caseId": "C2",
+      "sourceSnapshot": "inputs/sources/elemental-frontier-minecraft-reference-index.md",
+      "query": "How many visual mesh penetrations were counted during a real side-view F5 DASH capture?",
+      "searchCandidateCount": 6,
+      "safeCandidateCount": 5,
+      "safeCandidates": [
+        {
+          "handleId": "6f30b906581db9be0d014d8064b081a6ff08d80a84eba79a72f7e1319c74f0ff",
+          "rangeId": "block-2",
+          "lines": [
+            6,
+            17
+          ],
+          "title": "Referencias de animación Minecraft — índice verificable",
+          "snippet": "…ing aún usan entradas sintéticas | | Idle, caminar, Sprint, DASH, crouch, jump, strafe, backward y cámara frontal | **Cliente real NeoForge**, instancia Prism independiente `ef-animation-reference-qa` | **13 sesiones reales**: 750 muestra…"
+        },
+        {
+          "handleId": "f7fbd75c60b44715d996c6eb2b37542f98951a6a8e4e55548f3d2d8dfcd415c4",
+          "rangeId": "heading-2",
+          "lines": [
+            25,
+            31
+          ],
+          "title": "Nuevas sesiones validadas en servidor Paper (dirección y cadera)",
+          "snippet": "…servidor Paper (dirección y cadera) Contrato y resultados: [DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md](DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md). Además de las 13 sesiones históricas del primer lote, se generaron 4 sesiones **de …"
+        },
+        {
+          "handleId": "5e9dd5f96d747b0562c1f3dd862e666c7462c4fc722cab56ddd74c8365b3f26e",
+          "rangeId": "block-8",
+          "lines": [
+            31,
+            31
+          ],
+          "title": "Nuevas sesiones validadas en servidor Paper (dirección y cadera)",
+          "snippet": "Pendiente: aprobación humana de sensibilidad y legibilidad en F5 con cámara en movimiento, cámara lateral fija y VFX; el dash en Singleplayer sin Paper no representa movimiento del producto."
+        },
+        {
+          "handleId": "af19f5a9cb309e38aa8abb0c2767f323a1dd59f3f8d90555182dcb0bd1ba5c13",
+          "rangeId": "block-5",
+          "lines": [
+            23,
+            23
+          ],
+          "title": "Referencias de animación Minecraft — índice verificable",
+          "snippet": "…TRACT.md](ANIMATION_VANILLA_FIDELITY_CONTRACT.md). No llamar colisión física a separación entre cubos del renderer. Los resultados numéricos no sustituyen la revisión de vídeo lateral real, y no autorizan un cambio automático de producció…"
+        },
+        {
+          "handleId": "e16e19784b382ff917d6f7fe7aaec0adeff57b1027305fc8848c0dec09a8e229",
+          "rangeId": "block-7",
+          "lines": [
+            29,
+            29
+          ],
+          "title": "Nuevas sesiones validadas en servidor Paper (dirección y cadera)",
+          "snippet": "…dor integrado QA** y 4 sesiones **cliente + Paper autoridad real** con `dash-left`, `dash-right`, `dash-last-left`, `dash-last-right`. Todos los CSV y screenshots originales se preservan en `qa/minecraft-reference/live/` ignorado en Git. …"
+        }
+      ],
+      "jevOutcome": "abstained",
+      "selectedRange": null
+    }
+  ]
+}

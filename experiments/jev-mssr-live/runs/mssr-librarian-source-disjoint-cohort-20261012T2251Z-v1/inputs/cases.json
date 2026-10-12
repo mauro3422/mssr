@@ -1,0 +1,44 @@
+[
+  {
+    "caseId": "A1",
+    "sourceId": "godot-atlas",
+    "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+    "language": "es",
+    "query": "¿Qué dos formas de evidencia forman el paquete de auditoría y qué pregunta contesta cada una?"
+  },
+  {
+    "caseId": "A2",
+    "sourceId": "godot-atlas",
+    "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+    "language": "en",
+    "query": "What maximum number of edge crossings is required to pass the audit?"
+  },
+  {
+    "caseId": "B1",
+    "sourceId": "neopse",
+    "sourceRef": "src/ai/BENCHMARKS.md",
+    "language": "es",
+    "query": "En la comparación histórica, ¿cuántos casos superó cada perfil gemma y gemmaQat, y cuáles fueron sus latencias promedio y P95?"
+  },
+  {
+    "caseId": "B2",
+    "sourceId": "neopse",
+    "sourceRef": "src/ai/BENCHMARKS.md",
+    "language": "en",
+    "query": "What P95 latency did WR CPU achieve in the historical model comparison?"
+  },
+  {
+    "caseId": "C1",
+    "sourceId": "elemental-frontier",
+    "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+    "language": "es",
+    "query": "¿Cuántas sesiones, muestras de modelo, partes por etapa y PNG auténticos tuvo el primer lote real del cliente NeoForge?"
+  },
+  {
+    "caseId": "C2",
+    "sourceId": "elemental-frontier",
+    "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+    "language": "en",
+    "query": "How many visual mesh penetrations were counted during a real side-view F5 DASH capture?"
+  }
+]

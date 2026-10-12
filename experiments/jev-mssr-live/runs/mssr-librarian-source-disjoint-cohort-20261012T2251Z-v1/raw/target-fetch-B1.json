@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"projectOwner\": \"d:/dev/neopse\",\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"8aa09cc6224850e4e48aa3e140c1f9987ae43db246269ef9458f211031bafa9a\",\n    \"owner\": \"d:/dev/neopse\",\n    \"sourceRef\": \"src/ai/BENCHMARKS.md\",\n    \"revision\": \"aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d\",\n    \"rangeId\": \"block-21\",\n    \"rangeKind\": \"block\",\n    \"startLine\": 88,\n    \"endLine\": 91,\n    \"startOffset\": 3062,\n    \"endOffset\": 3348,\n    \"fingerprint\": \"3fbc7346b75afc3f728d21532747dcc30257bb92fa203490cedd4c7b1366b24b\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"| Perfil | Modelo | Pass | Avg ms | P95 ms | Avg tok/s | Invalid JSON |\\n| --- | --- | ---: | ---: | ---: | ---: | ---: |\\n| `gemma` | `google_gemma-4-E2B-it-Q4_K_M.gguf` | 50/50 | 15249 | 34795 | 12.11 | 0 |\\n| `gemmaQat` | `gemma-4-E2B_q4_0-it.gguf` | 50/50 | 16510 | 38392 | 12.09 | 0 |\",\n  \"fingerprint\": \"3fbc7346b75afc3f728d21532747dcc30257bb92fa203490cedd4c7b1366b24b\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 20,\n    \"relevantPending\": 0,\n    \"otherPending\": 20,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+    }
+  ],
+  "isError": false
+}
