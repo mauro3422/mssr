@@ -1661,10 +1661,24 @@ adapters intentionally own separate trace stores or continuity regressed.
 recorder after respecting its 300-character summary limit. No trace data or
 project work was lost, and no adapter code was changed.
 
+**Reproduction — 2026-10-12:** Run43 used trace `mssr-jev-run-43`. The
+Codex-local `mssr_trace_status` reported `closed` with outcome complete, while
+Bridge `mssr_trace_evidence` reported `open-active` at `close`, with the
+committed persistence receipt present but maintenance and outcome pending.
+The packet and commit `b7668082` remain intact and checksummed. This confirms
+that the local adapter's closure does not close Bridge's independently observed
+trace; it is a lifecycle/adapter-boundary discrepancy, not lost experiment data.
+
+**Current handling:** Use the Bridge-owned recorder to complete the
+Bridge-observed maintenance and outcome events. This is an operational
+workaround only; no adapter behavior has changed.
+
 **Follow-up:** Reproduce a route/load/checkpoint sequence across the native
 MSSR and Bridge adapters with the same explicit trace ID. Confirm the intended
 host boundary, then add cross-adapter conformance coverage or document the
 required recorder. Keep checkpoint summaries within the declared schema limit.
+Verify that the Bridge lifecycle becomes closed after the explicit Bridge
+maintenance/outcome events, then compare it with the local adapter state.
 
 ## MSSR-055 — Jev heading excerpts used offsets from normalized Markdown on raw CRLF text
 
