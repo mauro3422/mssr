@@ -1,0 +1,403 @@
+{
+  "plan": {
+    "primaryMetric": "Answerability decision plus exact/relevant selected source range",
+    "uncertaintyMethod": "Raw counts only; source-derived labels; one document per case; no reliability or calibration claim",
+    "thresholds": {},
+    "minimumSupport": {
+      "perClaimedSubgroup": 30,
+      "overall": 30
+    },
+    "independentUnit": "9 distinct Markdown source documents from one Bridge project; descriptive source-disjoint pilot only, not owner-gold or reliability evidence",
+    "expectedRequestCount": 9,
+    "secondaryMetrics": [
+      "search target presence",
+      "exact fetch/fingerprint",
+      "evidence pack",
+      "token usage",
+      "latency",
+      "abstention/false selection",
+      "blind completeness and overbreadth"
+    ]
+  },
+  "corpus": {
+    "sourceRevision": "999a8a218405c02a4f4bf9d408ec44074724f694",
+    "items": 9,
+    "projectRoot": "D:/Dev/bridge-mcp-mssr-0.2.112-query-variants",
+    "sources": [
+      {
+        "sourceRef": "docs/MCP_BINARY_AND_IMAGE_TRANSPORT.md",
+        "snapshotPath": "inputs/sources/source-01.md",
+        "sha256": "29e61e5b5d546691da227937182db6b798575225863ad11be732c39580a03e0d"
+      },
+      {
+        "sourceRef": "docs/MSSR_JEV_USE_CASE_CATALOG.md",
+        "snapshotPath": "inputs/sources/source-02.md",
+        "sha256": "8d3c8c8d4571b030a29fc17b3cf4aa64f7b0d7b717ecf11618c9948ca148b9b1"
+      },
+      {
+        "sourceRef": "docs/HUMAN_COCKPIT.md",
+        "snapshotPath": "inputs/sources/source-03.md",
+        "sha256": "177de1372f31814d59d2e858f236686804be8b940d343b7b05b802557b3cf947"
+      },
+      {
+        "sourceRef": "docs/MCP_V2_MIGRATION.md",
+        "snapshotPath": "inputs/sources/source-04.md",
+        "sha256": "d2170ca77ddc1b6a48af71f9256200714c20b800b7a46c89d2a9c05edb602036"
+      },
+      {
+        "sourceRef": "HTTP_LOCAL_MCP.md",
+        "snapshotPath": "inputs/sources/source-05.md",
+        "sha256": "d43f3069d1eca694d36b642cbe1f262fd02cd1bd8f9485bb7fa49878feff4ef8"
+      },
+      {
+        "sourceRef": "BRIDGE_WATCHDOG.md",
+        "snapshotPath": "inputs/sources/source-06.md",
+        "sha256": "7e118f66737a6e15fe41e4c045be9e1461170a0392220e68e7f56c89f517ea73"
+      },
+      {
+        "sourceRef": "OPENAI_TUNNEL_LOCAL_AUTH.md",
+        "snapshotPath": "inputs/sources/source-07.md",
+        "sha256": "9a4a334fb9d6af61c2eb42f4e752bd93270c65a8f577af957633e328d829dbae"
+      },
+      {
+        "sourceRef": "docs/MSSR_CORE_RECOVERY.md",
+        "snapshotPath": "inputs/sources/source-08.md",
+        "sha256": "706eeca6f0b430ee873d1d6752e6c0b9c5d03b51e81c7eb177c409f4f267e9ed"
+      },
+      {
+        "sourceRef": "docs/BRIDGE_DIRTY_TREE_RECOVERY_PLAN.md",
+        "snapshotPath": "inputs/sources/source-09.md",
+        "sha256": "e4e995c561a63bfd8047ab8f576dd71009e300ad32cf05fa08f4729f55e364e6"
+      }
+    ],
+    "redaction": "Public project Markdown; exact source snapshots only; no secret values."
+  },
+  "suite": "mssr-librarian-live-source-disjoint-answerability-diagnostic-v1",
+  "labels": {
+    "cases": [
+      {
+        "caseId": "binary-file-attachment-modes",
+        "sourceRef": "docs/MCP_BINARY_AND_IMAGE_TRANSPORT.md",
+        "answerability": "answerable",
+        "expectedHeading": "Binary file attachments",
+        "expectedStartLine": 5,
+        "expectedEndLine": 7,
+        "acceptableRanges": [
+          {
+            "expectedHeading": "Binary file attachments",
+            "startLine": 5,
+            "sourceRef": "docs/MCP_BINARY_AND_IMAGE_TRANSPORT.md",
+            "endLine": 7
+          }
+        ],
+        "relevantRanges": [
+          {
+            "expectedHeading": "Binary file attachments",
+            "startLine": 5,
+            "sourceRef": "docs/MCP_BINARY_AND_IMAGE_TRANSPORT.md",
+            "endLine": 7
+          }
+        ],
+        "concept": "Tres modos de binary_file_attach y alternativa para archivos demasiado grandes.",
+        "allowedEquivalent": "Debe distinguir mode=embedded, both, link, el registro por sesión y read_chunk para archivos demasiado grandes."
+      },
+      {
+        "caseId": "catalog-capability-status-legend",
+        "sourceRef": "docs/MSSR_JEV_USE_CASE_CATALOG.md",
+        "answerability": "answerable",
+        "expectedHeading": "Catálogo de 100 casos candidatos para Jev / Decisions API en MSSR y Bridge",
+        "expectedStartLine": 3,
+        "expectedEndLine": 9,
+        "acceptableRanges": [
+          {
+            "expectedHeading": "Catálogo de 100 casos candidatos para Jev / Decisions API en MSSR y Bridge",
+            "startLine": 3,
+            "sourceRef": "docs/MSSR_JEV_USE_CASE_CATALOG.md",
+            "endLine": 9
+          }
+        ],
+        "relevantRanges": [
+          {
+            "expectedHeading": "Catálogo de 100 casos candidatos para Jev / Decisions API en MSSR y Bridge",
+            "startLine": 3,
+            "sourceRef": "docs/MSSR_JEV_USE_CASE_CATALOG.md",
+            "endLine": 9
+          }
+        ],
+        "concept": "Aviso de alcance del catálogo y definiciones de estado.",
+        "allowedEquivalent": "Debe aclarar que el catálogo no afirma implementación automática y diferenciar EXISTE, PARCIAL y NUEVO."
+      },
+      {
+        "caseId": "cockpit-unresolved-trace-lane",
+        "sourceRef": "docs/HUMAN_COCKPIT.md",
+        "answerability": "answerable",
+        "expectedHeading": "Morning brief and interrupted-chat recovery",
+        "expectedStartLine": 58,
+        "expectedEndLine": 58,
+        "acceptableRanges": [
+          {
+            "expectedHeading": "Morning brief and interrupted-chat recovery",
+            "startLine": 58,
+            "sourceRef": "docs/HUMAN_COCKPIT.md",
+            "endLine": 58
+          }
+        ],
+        "relevantRanges": [
+          {
+            "expectedHeading": "Morning brief and interrupted-chat recovery",
+            "startLine": 58,
+            "sourceRef": "docs/HUMAN_COCKPIT.md",
+            "endLine": 58
+          }
+        ],
+        "concept": "Presentación de trazas con cierre pendiente en el cockpit.",
+        "allowedEquivalent": "Debe explicar la lane Deuda MSSR y que la evidencia sigue auditable/reanudable, sin auto-cerrar, fallar ni reescribir la traza."
+      },
+      {
+        "caseId": "modern-chatgpt-live-tunnel-gate",
+        "sourceRef": "docs/MCP_V2_MIGRATION.md",
+        "answerability": "answerable",
+        "expectedHeading": "Required gates",
+        "expectedStartLine": 42,
+        "expectedEndLine": 42,
+        "acceptableRanges": [
+          {
+            "expectedHeading": "Required gates",
+            "startLine": 42,
+            "sourceRef": "docs/MCP_V2_MIGRATION.md",
+            "endLine": 42
+          }
+        ],
+        "relevantRanges": [
+          {
+            "expectedHeading": "Required gates",
+            "startLine": 42,
+            "sourceRef": "docs/MCP_V2_MIGRATION.md",
+            "endLine": 42
+          }
+        ],
+        "concept": "Gate de compatibilidad live de ChatGPT Web moderno.",
+        "allowedEquivalent": "Debe requerir prueba del túnel live tanto desde una conversación ChatGPT Web actual como desde una conversación refrescada, listando y llamando herramientas."
+      },
+      {
+        "caseId": "http-local-default-endpoints",
+        "sourceRef": "HTTP_LOCAL_MCP.md",
+        "answerability": "answerable",
+        "expectedHeading": "Local HTTP server",
+        "expectedStartLine": 36,
+        "expectedEndLine": 44,
+        "acceptableRanges": [
+          {
+            "expectedHeading": "Local HTTP server",
+            "startLine": 36,
+            "sourceRef": "HTTP_LOCAL_MCP.md",
+            "endLine": 44
+          }
+        ],
+        "relevantRanges": [
+          {
+            "expectedHeading": "Local HTTP server",
+            "startLine": 36,
+            "sourceRef": "HTTP_LOCAL_MCP.md",
+            "endLine": 44
+          }
+        ],
+        "concept": "Endpoints HTTP locales por defecto.",
+        "allowedEquivalent": "Debe identificar los endpoints locales por defecto y el propósito/respuesta de cada uno."
+      },
+      {
+        "caseId": "watchdog-scheduled-task-fallback",
+        "sourceRef": "BRIDGE_WATCHDOG.md",
+        "answerability": "answerable",
+        "expectedHeading": "Install at Windows logon",
+        "expectedStartLine": 34,
+        "expectedEndLine": 34,
+        "acceptableRanges": [
+          {
+            "expectedHeading": "Install at Windows logon",
+            "startLine": 34,
+            "sourceRef": "BRIDGE_WATCHDOG.md",
+            "endLine": 34
+          }
+        ],
+        "relevantRanges": [
+          {
+            "expectedHeading": "Install at Windows logon",
+            "startLine": 34,
+            "sourceRef": "BRIDGE_WATCHDOG.md",
+            "endLine": 34
+          }
+        ],
+        "concept": "Fallback de watchdog si se deniega Scheduled Task.",
+        "allowedEquivalent": "Debe mencionar el lanzador de Startup sin admin cuando Windows niega permiso para Scheduled Task."
+      },
+      {
+        "caseId": "oauth-discovery-404-meaning",
+        "sourceRef": "OPENAI_TUNNEL_LOCAL_AUTH.md",
+        "answerability": "answerable",
+        "expectedHeading": "What `oauth_metadata` means here",
+        "expectedStartLine": 39,
+        "expectedEndLine": 42,
+        "acceptableRanges": [
+          {
+            "expectedHeading": "What `oauth_metadata` means here",
+            "startLine": 39,
+            "sourceRef": "OPENAI_TUNNEL_LOCAL_AUTH.md",
+            "endLine": 42
+          }
+        ],
+        "relevantRanges": [
+          {
+            "expectedHeading": "What `oauth_metadata` means here",
+            "startLine": 39,
+            "sourceRef": "OPENAI_TUNNEL_LOCAL_AUTH.md",
+            "endLine": 42
+          }
+        ],
+        "concept": "Significado del 404 OAuth en modo local sin autenticación.",
+        "allowedEquivalent": "Debe decir que el listener MCP local no anuncia OAuth y que el 404 no es un bug de la app."
+      },
+      {
+        "caseId": "core-recovery-safeguards",
+        "sourceRef": "docs/MSSR_CORE_RECOVERY.md",
+        "answerability": "answerable",
+        "expectedHeading": "Fix candidate",
+        "expectedStartLine": 11,
+        "expectedEndLine": 18,
+        "acceptableRanges": [
+          {
+            "expectedHeading": "Fix candidate",
+            "startLine": 11,
+            "sourceRef": "docs/MSSR_CORE_RECOVERY.md",
+            "endLine": 18
+          }
+        ],
+        "relevantRanges": [
+          {
+            "expectedHeading": "Fix candidate",
+            "startLine": 11,
+            "sourceRef": "docs/MSSR_CORE_RECOVERY.md",
+            "endLine": 18
+          }
+        ],
+        "concept": "Requisitos fail-closed de recuperación de core.",
+        "allowedEquivalent": "Debe exigir manifest canónico válido, una sección core indexada, SHA-256 completo actual, reemplazo revisado que quede bajo presupuesto, preflight válido y reemplazo temporal con checksum/readback y revalidación de hash; sin relajar límites."
+      },
+      {
+        "caseId": "dirty-tree-current-count-unanswerable",
+        "sourceRef": "docs/BRIDGE_DIRTY_TREE_RECOVERY_PLAN.md",
+        "answerability": "unanswerable",
+        "concept": "El plan sólo contiene un recuento histórico y prohíbe inferir el estado actual.",
+        "allowedEquivalent": "Debe abstenerse: el documento anota 81 dirty paths al redactarse y cero tras una reconciliación local del 2026-09-26, pero ninguno establece el estado del 2026-10-12."
+      }
+    ],
+    "schemaVersion": 1,
+    "source": "Frozen before live Jev calls; source-derived by two independent Luna reviews, not owner-gold.",
+    "labelFile": "inputs/labels.json",
+    "adjudication": "Two independent Luna source reviews using the exact frozen Bridge 0.6.175 source bytes. Labels are source-derived, not owner-gold.",
+    "exposedToRequests": false,
+    "exposureReview": {
+      "docs/MCP_BINARY_AND_IMAGE_TRANSPORT.md": "Explicit source was not used in Runs45–57; blind candidate and evidence review was completed before Jev output.",
+      "docs/MSSR_JEV_USE_CASE_CATALOG.md": "Explicit source was not used in Runs45–57; blind candidate and evidence review was completed before Jev output.",
+      "docs/HUMAN_COCKPIT.md": "Explicit source was not used in Runs45–57; blind candidate and evidence review was completed before Jev output.",
+      "docs/MCP_V2_MIGRATION.md": "Explicit source was not used in Runs45–57; blind candidate and evidence review was completed before Jev output.",
+      "HTTP_LOCAL_MCP.md": "Explicit source was not used in Runs45–57; blind candidate and evidence review was completed before Jev output.",
+      "BRIDGE_WATCHDOG.md": "Explicit source was not used in Runs45–57; blind candidate and evidence review was completed before Jev output.",
+      "OPENAI_TUNNEL_LOCAL_AUTH.md": "Explicit source was not used in Runs45–57; blind candidate and evidence review was completed before Jev output.",
+      "docs/MSSR_CORE_RECOVERY.md": "Explicit source was not used in Runs45–57; blind candidate and evidence review was completed before Jev output.",
+      "docs/BRIDGE_DIRTY_TREE_RECOVERY_PLAN.md": "Explicit source was not used in Runs45–57; blind candidate and evidence review was completed before Jev output."
+    },
+    "labelFileSha256": "f80909cc84e4c3ed7621e653eee1d60f0c2eb7461d470edf3b71d4c5fc03d1be",
+    "independentUnit": "9 distinct Markdown source documents from one Bridge project; descriptive source-disjoint pilot only, not owner-gold or reliability evidence"
+  },
+  "split": {
+    "holdoutUsedForTuning": false,
+    "holdoutIdsSha256": null,
+    "holdoutOpenedAt": null,
+    "method": "source-unseen exploratory, not protected holdout",
+    "validationIdsSha256": null,
+    "trainIdsSha256": null
+  },
+  "createdAt": "2026-10-12T15:32:25.9089008Z",
+  "provider": {
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "mode": "live",
+    "networkOptIn": true,
+    "timeoutMs": 30000,
+    "rawVendorResponsePersisted": false,
+    "providerRequestIdsAvailable": "unknown",
+    "concurrency": 1,
+    "requestedModel": "jev-1.13.0",
+    "credentialSource": "Windows Credential Manager; secret value not persisted",
+    "networkOptInMethod": "explicit command-line --allow-network plus user authorization recorded in manifest",
+    "provider": "TypeSafe Jev through Bridge 0.6.175 provider adapter",
+    "endpointIdentity": "api.typesafe.ai/v1/systemone",
+    "maxRetries": 1
+  },
+  "repositoryState": {
+    "corpusBranch": "codex/bridge-0.6.173-activation-readback",
+    "corpusWorkingTreeClean": true,
+    "preexistingMssrDirtyPaths": [
+      ".mssr/project-context-segments.json",
+      ".mssr/project-context.json",
+      "scripts/test-project-context-loader.mjs"
+    ],
+    "corpusRepository": "Bridge",
+    "corpusHead": "999a8a218405c02a4f4bf9d408ec44074724f694",
+    "mssrHead": "7133eee689ede5c6a7a94a7b5cc4a0005e59b292"
+  },
+  "parentRunId": "mssr-librarian-run57-bridge-capability-and-workflow-20261012T145132Z-v1",
+  "runId": "mssr-librarian-run58-bridge-cross-doc-pilot-20261012T153028Z-v1",
+  "question": "Can live Jev choose exact evidence from previously unqueried Bridge release documents across Spanish and English queries, abstain when a source lacks a current fact, and preserve exact fetch/citation?",
+  "source": {
+    "branch": "codex/bridge-0.6.173-activation-readback",
+    "workingTreeClean": true,
+    "bridgeRoot": "D:/Dev/bridge-mcp-mssr-0.2.112-query-variants",
+    "gitCommit": "999a8a218405c02a4f4bf9d408ec44074724f694",
+    "bridgeVersion": "0.6.175",
+    "repository": "Bridge",
+    "codeSnapshotCleanAtFreeze": true,
+    "buildArtifacts": [
+      {
+        "path": "dist/tool-registry.js",
+        "sha256": "670a6cbdec428f7ad0bd6f7a13173c716fd013c3eb87a54d1c9bb38d7f626554"
+      },
+      {
+        "path": "dist/tools/mssr-semantic-evidence-tools.js",
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa"
+      },
+      {
+        "path": "node_modules/@mauroprime/mssr/package.json",
+        "sha256": "9a57998657fb40e8fae0ec44efef08592f6a332c807d15a90792cdd4a27e4ea2"
+      },
+      {
+        "path": "vendor/mauroprime-mssr-0.2.127.tgz",
+        "sha256": "70e79ae6e472517501ffdd38c4b0eaad740652c7d570b600bf17f90023703bfc"
+      },
+      {
+        "path": "scripts/read-windows-credential.ps1",
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e"
+      }
+    ],
+    "bridgeCommit": "999a8a218405c02a4f4bf9d408ec44074724f694",
+    "providerAdapter": "createMssrJevBridgeDecisionProvider from frozen Bridge release build",
+    "mssrVersion": "0.2.127"
+  },
+  "authorization": {
+    "networkOptInSource": "explicit user authorization in conversation",
+    "secretPersisted": false
+  },
+  "schemaVersion": 1,
+  "status": "prepared",
+  "instrument": {
+    "runtime": "v24.16.0",
+    "runnerPath": "runner.mjs",
+    "labelsPath": "inputs/labels.json",
+    "requestSchemaVersion": 1,
+    "casesSha256": "99d63dcb201c2deb45cbd4ccb1f7128906b2046e86fde31dbf955bc834405e19",
+    "runnerSupportSha256": "a9f81dc26050b1f2ea37b2d909580ff0cd02e9af686b39f8642b08f5460215bf",
+    "casesPath": "inputs/cases.json",
+    "selectionRecordSha256": "847a1224278ed09941526aff7d781842a854f21b3007e4e00ae357e84faa5834",
+    "runnerSha256": "d8614c4e9f6e5e3c2b5650a27ea8deb92948656e2aeffb267b9e0309acf6a86d"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "binary-file-attachment-modes",
+      "sourceRef": "docs/MCP_BINARY_AND_IMAGE_TRANSPORT.md",
+      "language": "es",
+      "query": "En el endpoint moderno stateless de Bridge 0.6.175, ¿qué devuelve cada modo y qué alternativa recomienda para archivos demasiado grandes?"
+    },
+    {
+      "id": "catalog-capability-status-legend",
+      "sourceRef": "docs/MSSR_JEV_USE_CASE_CATALOG.md",
+      "language": "es",
+      "query": "¿El catálogo afirma que todos los casos propuestos ya están implementados? ¿Qué significan EXISTE, PARCIAL y NUEVO?"
+    },
+    {
+      "id": "cockpit-unresolved-trace-lane",
+      "sourceRef": "docs/HUMAN_COCKPIT.md",
+      "language": "en",
+      "query": "When a trace has a closure reminder and no later outcome, how does the cockpit present it, and what does it refrain from doing?"
+    },
+    {
+      "id": "modern-chatgpt-live-tunnel-gate",
+      "sourceRef": "docs/MCP_V2_MIGRATION.md",
+      "language": "en",
+      "query": "What exact live-tunnel gate must pass before modern ChatGPT-host compatibility is declared?"
+    },
+    {
+      "id": "http-local-default-endpoints",
+      "sourceRef": "HTTP_LOCAL_MCP.md",
+      "language": "en",
+      "query": "What default local HTTP endpoints are provided and what does each return?"
+    },
+    {
+      "id": "watchdog-scheduled-task-fallback",
+      "sourceRef": "BRIDGE_WATCHDOG.md",
+      "language": "en",
+      "query": "If Windows denies permission while installing the Bridge watchdog, what fallback starts?"
+    },
+    {
+      "id": "oauth-discovery-404-meaning",
+      "sourceRef": "OPENAI_TUNNEL_LOCAL_AUTH.md",
+      "language": "es",
+      "query": "¿Qué indica el 404 de oauth-protected-resource en el modo local sin autenticación?"
+    },
+    {
+      "id": "core-recovery-safeguards",
+      "sourceRef": "docs/MSSR_CORE_RECOVERY.md",
+      "language": "es",
+      "query": "¿Qué requisitos de seguridad exige la recuperación antes de reducir una sección core que excedió su presupuesto?"
+    },
+    {
+      "id": "dirty-tree-current-count-unanswerable",
+      "sourceRef": "docs/BRIDGE_DIRTY_TREE_RECOVERY_PLAN.md",
+      "language": "es",
+      "query": "Según este plan, ¿cuántas rutas de Bridge estaban sucias al 12 de octubre de 2026?"
+    }
+  ]
+}

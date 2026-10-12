@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 1,
+  "source": "Frozen before live Jev calls; source-derived by two independent Luna reviews, not owner-gold.",
+  "labelFile": "inputs/labels.json",
+  "adjudication": "Two independent Luna source reviews using the exact frozen Bridge 0.6.175 source bytes. Labels are source-derived, not owner-gold.",
+  "exposedToRequests": false,
+  "exposureReview": {
+    "docs/MCP_BINARY_AND_IMAGE_TRANSPORT.md": "Explicit source was not used in Runs45–57; blind candidate and evidence review was completed before Jev output.",
+    "docs/MSSR_JEV_USE_CASE_CATALOG.md": "Explicit source was not used in Runs45–57; blind candidate and evidence review was completed before Jev output.",
+    "docs/HUMAN_COCKPIT.md": "Explicit source was not used in Runs45–57; blind candidate and evidence review was completed before Jev output.",
+    "docs/MCP_V2_MIGRATION.md": "Explicit source was not used in Runs45–57; blind candidate and evidence review was completed before Jev output.",
+    "HTTP_LOCAL_MCP.md": "Explicit source was not used in Runs45–57; blind candidate and evidence review was completed before Jev output.",
+    "BRIDGE_WATCHDOG.md": "Explicit source was not used in Runs45–57; blind candidate and evidence review was completed before Jev output.",
+    "OPENAI_TUNNEL_LOCAL_AUTH.md": "Explicit source was not used in Runs45–57; blind candidate and evidence review was completed before Jev output.",
+    "docs/MSSR_CORE_RECOVERY.md": "Explicit source was not used in Runs45–57; blind candidate and evidence review was completed before Jev output.",
+    "docs/BRIDGE_DIRTY_TREE_RECOVERY_PLAN.md": "Explicit source was not used in Runs45–57; blind candidate and evidence review was completed before Jev output."
+  },
+  "cases": [
+    {
+      "caseId": "binary-file-attachment-modes",
+      "sourceRef": "docs/MCP_BINARY_AND_IMAGE_TRANSPORT.md",
+      "answerability": "answerable",
+      "expectedHeading": "Binary file attachments",
+      "expectedStartLine": 5,
+      "expectedEndLine": 7,
+      "acceptableRanges": [
+        {
+          "expectedHeading": "Binary file attachments",
+          "startLine": 5,
+          "sourceRef": "docs/MCP_BINARY_AND_IMAGE_TRANSPORT.md",
+          "endLine": 7
+        }
+      ],
+      "relevantRanges": [
+        {
+          "expectedHeading": "Binary file attachments",
+          "startLine": 5,
+          "sourceRef": "docs/MCP_BINARY_AND_IMAGE_TRANSPORT.md",
+          "endLine": 7
+        }
+      ],
+      "concept": "Tres modos de binary_file_attach y alternativa para archivos demasiado grandes.",
+      "allowedEquivalent": "Debe distinguir mode=embedded, both, link, el registro por sesión y read_chunk para archivos demasiado grandes."
+    },
+    {
+      "caseId": "catalog-capability-status-legend",
+      "sourceRef": "docs/MSSR_JEV_USE_CASE_CATALOG.md",
+      "answerability": "answerable",
+      "expectedHeading": "Catálogo de 100 casos candidatos para Jev / Decisions API en MSSR y Bridge",
+      "expectedStartLine": 3,
+      "expectedEndLine": 9,
+      "acceptableRanges": [
+        {
+          "expectedHeading": "Catálogo de 100 casos candidatos para Jev / Decisions API en MSSR y Bridge",
+          "startLine": 3,
+          "sourceRef": "docs/MSSR_JEV_USE_CASE_CATALOG.md",
+          "endLine": 9
+        }
+      ],
+      "relevantRanges": [
+        {
+          "expectedHeading": "Catálogo de 100 casos candidatos para Jev / Decisions API en MSSR y Bridge",
+          "startLine": 3,
+          "sourceRef": "docs/MSSR_JEV_USE_CASE_CATALOG.md",
+          "endLine": 9
+        }
+      ],
+      "concept": "Aviso de alcance del catálogo y definiciones de estado.",
+      "allowedEquivalent": "Debe aclarar que el catálogo no afirma implementación automática y diferenciar EXISTE, PARCIAL y NUEVO."
+    },
+    {
+      "caseId": "cockpit-unresolved-trace-lane",
+      "sourceRef": "docs/HUMAN_COCKPIT.md",
+      "answerability": "answerable",
+      "expectedHeading": "Morning brief and interrupted-chat recovery",
+      "expectedStartLine": 58,
+      "expectedEndLine": 58,
+      "acceptableRanges": [
+        {
+          "expectedHeading": "Morning brief and interrupted-chat recovery",
+          "startLine": 58,
+          "sourceRef": "docs/HUMAN_COCKPIT.md",
+          "endLine": 58
+        }
+      ],
+      "relevantRanges": [
+        {
+          "expectedHeading": "Morning brief and interrupted-chat recovery",
+          "startLine": 58,
+          "sourceRef": "docs/HUMAN_COCKPIT.md",
+          "endLine": 58
+        }
+      ],
+      "concept": "Presentación de trazas con cierre pendiente en el cockpit.",
+      "allowedEquivalent": "Debe explicar la lane Deuda MSSR y que la evidencia sigue auditable/reanudable, sin auto-cerrar, fallar ni reescribir la traza."
+    },
+    {
+      "caseId": "modern-chatgpt-live-tunnel-gate",
+      "sourceRef": "docs/MCP_V2_MIGRATION.md",
+      "answerability": "answerable",
+      "expectedHeading": "Required gates",
+      "expectedStartLine": 42,
+      "expectedEndLine": 42,
+      "acceptableRanges": [
+        {
+          "expectedHeading": "Required gates",
+          "startLine": 42,
+          "sourceRef": "docs/MCP_V2_MIGRATION.md",
+          "endLine": 42
+        }
+      ],
+      "relevantRanges": [
+        {
+          "expectedHeading": "Required gates",
+          "startLine": 42,
+          "sourceRef": "docs/MCP_V2_MIGRATION.md",
+          "endLine": 42
+        }
+      ],
+      "concept": "Gate de compatibilidad live de ChatGPT Web moderno.",
+      "allowedEquivalent": "Debe requerir prueba del túnel live tanto desde una conversación ChatGPT Web actual como desde una conversación refrescada, listando y llamando herramientas."
+    },
+    {
+      "caseId": "http-local-default-endpoints",
+      "sourceRef": "HTTP_LOCAL_MCP.md",
+      "answerability": "answerable",
+      "expectedHeading": "Local HTTP server",
+      "expectedStartLine": 36,
+      "expectedEndLine": 44,
+      "acceptableRanges": [
+        {
+          "expectedHeading": "Local HTTP server",
+          "startLine": 36,
+          "sourceRef": "HTTP_LOCAL_MCP.md",
+          "endLine": 44
+        }
+      ],
+      "relevantRanges": [
+        {
+          "expectedHeading": "Local HTTP server",
+          "startLine": 36,
+          "sourceRef": "HTTP_LOCAL_MCP.md",
+          "endLine": 44
+        }
+      ],
+      "concept": "Endpoints HTTP locales por defecto.",
+      "allowedEquivalent": "Debe identificar los endpoints locales por defecto y el propósito/respuesta de cada uno."
+    },
+    {
+      "caseId": "watchdog-scheduled-task-fallback",
+      "sourceRef": "BRIDGE_WATCHDOG.md",
+      "answerability": "answerable",
+      "expectedHeading": "Install at Windows logon",
+      "expectedStartLine": 34,
+      "expectedEndLine": 34,
+      "acceptableRanges": [
+        {
+          "expectedHeading": "Install at Windows logon",
+          "startLine": 34,
+          "sourceRef": "BRIDGE_WATCHDOG.md",
+          "endLine": 34
+        }
+      ],
+      "relevantRanges": [
+        {
+          "expectedHeading": "Install at Windows logon",
+          "startLine": 34,
+          "sourceRef": "BRIDGE_WATCHDOG.md",
+          "endLine": 34
+        }
+      ],
+      "concept": "Fallback de watchdog si se deniega Scheduled Task.",
+      "allowedEquivalent": "Debe mencionar el lanzador de Startup sin admin cuando Windows niega permiso para Scheduled Task."
+    },
+    {
+      "caseId": "oauth-discovery-404-meaning",
+      "sourceRef": "OPENAI_TUNNEL_LOCAL_AUTH.md",
+      "answerability": "answerable",
+      "expectedHeading": "What `oauth_metadata` means here",
+      "expectedStartLine": 39,
+      "expectedEndLine": 42,
+      "acceptableRanges": [
+        {
+          "expectedHeading": "What `oauth_metadata` means here",
+          "startLine": 39,
+          "sourceRef": "OPENAI_TUNNEL_LOCAL_AUTH.md",
+          "endLine": 42
+        }
+      ],
+      "relevantRanges": [
+        {
+          "expectedHeading": "What `oauth_metadata` means here",
+          "startLine": 39,
+          "sourceRef": "OPENAI_TUNNEL_LOCAL_AUTH.md",
+          "endLine": 42
+        }
+      ],
+      "concept": "Significado del 404 OAuth en modo local sin autenticación.",
+      "allowedEquivalent": "Debe decir que el listener MCP local no anuncia OAuth y que el 404 no es un bug de la app."
+    },
+    {
+      "caseId": "core-recovery-safeguards",
+      "sourceRef": "docs/MSSR_CORE_RECOVERY.md",
+      "answerability": "answerable",
+      "expectedHeading": "Fix candidate",
+      "expectedStartLine": 11,
+      "expectedEndLine": 18,
+      "acceptableRanges": [
+        {
+          "expectedHeading": "Fix candidate",
+          "startLine": 11,
+          "sourceRef": "docs/MSSR_CORE_RECOVERY.md",
+          "endLine": 18
+        }
+      ],
+      "relevantRanges": [
+        {
+          "expectedHeading": "Fix candidate",
+          "startLine": 11,
+          "sourceRef": "docs/MSSR_CORE_RECOVERY.md",
+          "endLine": 18
+        }
+      ],
+      "concept": "Requisitos fail-closed de recuperación de core.",
+      "allowedEquivalent": "Debe exigir manifest canónico válido, una sección core indexada, SHA-256 completo actual, reemplazo revisado que quede bajo presupuesto, preflight válido y reemplazo temporal con checksum/readback y revalidación de hash; sin relajar límites."
+    },
+    {
+      "caseId": "dirty-tree-current-count-unanswerable",
+      "sourceRef": "docs/BRIDGE_DIRTY_TREE_RECOVERY_PLAN.md",
+      "answerability": "unanswerable",
+      "concept": "El plan sólo contiene un recuento histórico y prohíbe inferir el estado actual.",
+      "allowedEquivalent": "Debe abstenerse: el documento anota 81 dirty paths al redactarse y cero tras una reconciliación local del 2026-09-26, pero ninguno establece el estado del 2026-10-12."
+    }
+  ]
+}

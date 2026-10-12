@@ -1,0 +1,479 @@
+{
+  "schemaVersion": 2,
+  "schemaProfile": "generic-librarian-run-v1",
+  "reportType": "mechanically-derived run summary; no semantic adjudication",
+  "runId": "mssr-librarian-run58-bridge-cross-doc-pilot-20261012T153028Z-v1",
+  "parentRunId": "mssr-librarian-run57-bridge-capability-and-workflow-20261012T145132Z-v1",
+  "frozenManifestSha256": "04fecb570657111176a90b53f2a71b153343be7ad57dada9e62cabc21b49038b",
+  "completionStatus": "complete",
+  "checksumFile": {
+    "present": true,
+    "verified": 20,
+    "requiredFiles": [
+      "manifest.json",
+      "run-completion.json",
+      "inputs/cases.json",
+      "records.jsonl",
+      "inputs/labels.json"
+    ]
+  },
+  "sourceDocumentClusters": 9,
+  "sourceRefs": [
+    "BRIDGE_WATCHDOG.md",
+    "HTTP_LOCAL_MCP.md",
+    "OPENAI_TUNNEL_LOCAL_AUTH.md",
+    "docs/BRIDGE_DIRTY_TREE_RECOVERY_PLAN.md",
+    "docs/HUMAN_COCKPIT.md",
+    "docs/MCP_BINARY_AND_IMAGE_TRANSPORT.md",
+    "docs/MCP_V2_MIGRATION.md",
+    "docs/MSSR_CORE_RECOVERY.md",
+    "docs/MSSR_JEV_USE_CASE_CATALOG.md"
+  ],
+  "clusterInterpretation": "Distinct sourceRef grouping only; it does not establish independent statistical sampling.",
+  "expectedRequests": 9,
+  "attemptedRequests": 9,
+  "successfulRequests": 9,
+  "failedRequests": 0,
+  "selected": 8,
+  "abstained": 1,
+  "exactFetchesWithFingerprint": 8,
+  "evidencePacksBuilt": 8,
+  "evidenceSufficiencyCapture": {
+    "recorded": 9,
+    "missingFromRecords": 0,
+    "note": "Only the explicit jev.evidenceSufficiency field is counted; raw Noul and other aliases are reported separately."
+  },
+  "rawNoulCapture": {
+    "recorded": 0,
+    "missingFromRecords": 9,
+    "note": "Provider Noul is descriptive and is not treated as an evidence-sufficiency alias."
+  },
+  "tokenUsage": {
+    "input": 59085,
+    "output": 4550
+  },
+  "firstRequestStartedAt": "2026-10-12T15:36:41.906Z",
+  "lastRequestCompletedAt": "2026-10-12T15:36:53.527Z",
+  "manifestCreatedAt": "2026-10-12T15:32:25.9089008Z",
+  "createdAtDeltaMs": 255998,
+  "timestampWarning": null,
+  "declaredIndependentUnitUnverified": "9 distinct Markdown source documents from one Bridge project; descriptive source-disjoint pilot only, not owner-gold or reliability evidence",
+  "independentUnitDeclarationInterpretation": "Manifest text is retained for audit; it is not verified against observed sourceRef clusters.",
+  "independentUnit": "source-document cluster (descriptive grouping only)",
+  "calibrationClaim": false,
+  "labelMetrics": {
+    "reportType": "answerability disposition and independently labeled range-selection diagnostics; not semantic adjudication or calibration",
+    "labelSource": "Frozen before live Jev calls; source-derived by two independent Luna reviews, not owner-gold.",
+    "adjudication": "Two independent Luna source reviews using the exact frozen Bridge 0.6.175 source bytes. Labels are source-derived, not owner-gold.",
+    "answerabilityMetrics": {
+      "answerable": {
+        "cases": 8,
+        "correctAnswerabilityDecisions": 8,
+        "correctExactRangeSelections": 2,
+        "correctRelevantRangeSelections": 2,
+        "selectedOutsideLabeledRanges": 6,
+        "incorrectDecisions": 0,
+        "failedOrUnknownDecisions": 0,
+        "abstentions": 0
+      },
+      "unanswerable": {
+        "cases": 1,
+        "correctAbstentions": 1,
+        "falseSelections": 0,
+        "failedOrUnknownDecisions": 0
+      },
+      "classifiedDecisions": 9,
+      "correctDecisions": 9,
+      "incorrectDecisions": 0,
+      "failedOrUnknownDecisions": 0,
+      "decisionAccuracy": 1,
+      "decisionAccuracyNote": "This is answerability-status accuracy (select when answerable, abstain when unanswerable); exact/relevant/outside-labeled range quality is reported separately. Failures/unknown decisions stay separate; raw Jev scores remain descriptive and uncalibrated."
+    },
+    "rangeSelectionMetrics": {
+      "exactMatches": 2,
+      "relevantLabeledMatches": 0,
+      "outsideLabeledRanges": 6,
+      "abstentions": 0,
+      "failedOrUnknown": 0,
+      "note": "A range outside the exact or explicitly labeled relevant ranges is ungraded for semantic usefulness; it is not automatically irrelevant. Inspect source text and blinded review separately."
+    },
+    "normalizedExactHeadingMatches": 6,
+    "exactHeadingDenominator": 8,
+    "exactAcceptedRangeMatches": 2,
+    "exactAcceptedRangeDenominator": 8,
+    "relevantRangeMatches": 2,
+    "relevantRangeDenominator": 8,
+    "searchTargetFound": 8,
+    "searchTargetDenominator": 8,
+    "searchExactAcceptedRangeFound": 3,
+    "searchExactAcceptedRangeDenominator": 8,
+    "searchRelevantRangeFound": 3,
+    "searchRelevantRangeDenominator": 8,
+    "records": [
+      {
+        "caseId": "binary-file-attachment-modes",
+        "sourceRef": "docs/MCP_BINARY_AND_IMAGE_TRANSPORT.md",
+        "answerability": "answerable",
+        "expectedHeading": "Binary file attachments",
+        "observedHeading": "Binary file attachments",
+        "normalizedExactHeadingMatch": true,
+        "exactAcceptedRangeMatch": false,
+        "relevantRangeMatch": false,
+        "relevantRanges": [
+          {
+            "expectedHeading": "Binary file attachments",
+            "startLine": 5,
+            "sourceRef": "docs/MCP_BINARY_AND_IMAGE_TRANSPORT.md",
+            "endLine": 7
+          }
+        ],
+        "searchTargetFound": true,
+        "searchExactAcceptedRangeFound": false,
+        "searchRelevantRangeFound": false,
+        "decisionStatus": "selected",
+        "decisionCorrect": true,
+        "answerabilityDecisionCorrect": true,
+        "rangeSelectionAssessment": "outside-labeled-ranges",
+        "exactFetchPassed": true,
+        "pipelineStatus": "complete"
+      },
+      {
+        "caseId": "catalog-capability-status-legend",
+        "sourceRef": "docs/MSSR_JEV_USE_CASE_CATALOG.md",
+        "answerability": "answerable",
+        "expectedHeading": "Catálogo de 100 casos candidatos para Jev / Decisions API en MSSR y Bridge",
+        "observedHeading": "Leyenda y límites",
+        "normalizedExactHeadingMatch": false,
+        "exactAcceptedRangeMatch": false,
+        "relevantRangeMatch": false,
+        "relevantRanges": [
+          {
+            "expectedHeading": "Catálogo de 100 casos candidatos para Jev / Decisions API en MSSR y Bridge",
+            "startLine": 3,
+            "sourceRef": "docs/MSSR_JEV_USE_CASE_CATALOG.md",
+            "endLine": 9
+          }
+        ],
+        "searchTargetFound": true,
+        "searchExactAcceptedRangeFound": false,
+        "searchRelevantRangeFound": false,
+        "decisionStatus": "selected",
+        "decisionCorrect": true,
+        "answerabilityDecisionCorrect": true,
+        "rangeSelectionAssessment": "outside-labeled-ranges",
+        "exactFetchPassed": true,
+        "pipelineStatus": "complete"
+      },
+      {
+        "caseId": "cockpit-unresolved-trace-lane",
+        "sourceRef": "docs/HUMAN_COCKPIT.md",
+        "answerability": "answerable",
+        "expectedHeading": "Morning brief and interrupted-chat recovery",
+        "observedHeading": "Morning brief and interrupted-chat recovery",
+        "normalizedExactHeadingMatch": true,
+        "exactAcceptedRangeMatch": true,
+        "relevantRangeMatch": true,
+        "relevantRanges": [
+          {
+            "expectedHeading": "Morning brief and interrupted-chat recovery",
+            "startLine": 58,
+            "sourceRef": "docs/HUMAN_COCKPIT.md",
+            "endLine": 58
+          }
+        ],
+        "searchTargetFound": true,
+        "searchExactAcceptedRangeFound": true,
+        "searchRelevantRangeFound": true,
+        "decisionStatus": "selected",
+        "decisionCorrect": true,
+        "answerabilityDecisionCorrect": true,
+        "rangeSelectionAssessment": "exact",
+        "exactFetchPassed": true,
+        "pipelineStatus": "complete"
+      },
+      {
+        "caseId": "modern-chatgpt-live-tunnel-gate",
+        "sourceRef": "docs/MCP_V2_MIGRATION.md",
+        "answerability": "answerable",
+        "expectedHeading": "Required gates",
+        "observedHeading": "Required gates",
+        "normalizedExactHeadingMatch": true,
+        "exactAcceptedRangeMatch": false,
+        "relevantRangeMatch": false,
+        "relevantRanges": [
+          {
+            "expectedHeading": "Required gates",
+            "startLine": 42,
+            "sourceRef": "docs/MCP_V2_MIGRATION.md",
+            "endLine": 42
+          }
+        ],
+        "searchTargetFound": true,
+        "searchExactAcceptedRangeFound": false,
+        "searchRelevantRangeFound": false,
+        "decisionStatus": "selected",
+        "decisionCorrect": true,
+        "answerabilityDecisionCorrect": true,
+        "rangeSelectionAssessment": "outside-labeled-ranges",
+        "exactFetchPassed": true,
+        "pipelineStatus": "complete"
+      },
+      {
+        "caseId": "http-local-default-endpoints",
+        "sourceRef": "HTTP_LOCAL_MCP.md",
+        "answerability": "answerable",
+        "expectedHeading": "Local HTTP server",
+        "observedHeading": "Local HTTP server",
+        "normalizedExactHeadingMatch": true,
+        "exactAcceptedRangeMatch": false,
+        "relevantRangeMatch": false,
+        "relevantRanges": [
+          {
+            "expectedHeading": "Local HTTP server",
+            "startLine": 36,
+            "sourceRef": "HTTP_LOCAL_MCP.md",
+            "endLine": 44
+          }
+        ],
+        "searchTargetFound": true,
+        "searchExactAcceptedRangeFound": false,
+        "searchRelevantRangeFound": false,
+        "decisionStatus": "selected",
+        "decisionCorrect": true,
+        "answerabilityDecisionCorrect": true,
+        "rangeSelectionAssessment": "outside-labeled-ranges",
+        "exactFetchPassed": true,
+        "pipelineStatus": "complete"
+      },
+      {
+        "caseId": "watchdog-scheduled-task-fallback",
+        "sourceRef": "BRIDGE_WATCHDOG.md",
+        "answerability": "answerable",
+        "expectedHeading": "Install at Windows logon",
+        "observedHeading": "Install at Windows logon",
+        "normalizedExactHeadingMatch": true,
+        "exactAcceptedRangeMatch": true,
+        "relevantRangeMatch": true,
+        "relevantRanges": [
+          {
+            "expectedHeading": "Install at Windows logon",
+            "startLine": 34,
+            "sourceRef": "BRIDGE_WATCHDOG.md",
+            "endLine": 34
+          }
+        ],
+        "searchTargetFound": true,
+        "searchExactAcceptedRangeFound": true,
+        "searchRelevantRangeFound": true,
+        "decisionStatus": "selected",
+        "decisionCorrect": true,
+        "answerabilityDecisionCorrect": true,
+        "rangeSelectionAssessment": "exact",
+        "exactFetchPassed": true,
+        "pipelineStatus": "complete"
+      },
+      {
+        "caseId": "oauth-discovery-404-meaning",
+        "sourceRef": "OPENAI_TUNNEL_LOCAL_AUTH.md",
+        "answerability": "answerable",
+        "expectedHeading": "What `oauth_metadata` means here",
+        "observedHeading": "What `oauth_metadata` means here",
+        "normalizedExactHeadingMatch": true,
+        "exactAcceptedRangeMatch": false,
+        "relevantRangeMatch": false,
+        "relevantRanges": [
+          {
+            "expectedHeading": "What `oauth_metadata` means here",
+            "startLine": 39,
+            "sourceRef": "OPENAI_TUNNEL_LOCAL_AUTH.md",
+            "endLine": 42
+          }
+        ],
+        "searchTargetFound": true,
+        "searchExactAcceptedRangeFound": false,
+        "searchRelevantRangeFound": false,
+        "decisionStatus": "selected",
+        "decisionCorrect": true,
+        "answerabilityDecisionCorrect": true,
+        "rangeSelectionAssessment": "outside-labeled-ranges",
+        "exactFetchPassed": true,
+        "pipelineStatus": "complete"
+      },
+      {
+        "caseId": "core-recovery-safeguards",
+        "sourceRef": "docs/MSSR_CORE_RECOVERY.md",
+        "answerability": "answerable",
+        "expectedHeading": "Fix candidate",
+        "observedHeading": "Emergency workflow (only for an over-budget indexed core)",
+        "normalizedExactHeadingMatch": false,
+        "exactAcceptedRangeMatch": false,
+        "relevantRangeMatch": false,
+        "relevantRanges": [
+          {
+            "expectedHeading": "Fix candidate",
+            "startLine": 11,
+            "sourceRef": "docs/MSSR_CORE_RECOVERY.md",
+            "endLine": 18
+          }
+        ],
+        "searchTargetFound": true,
+        "searchExactAcceptedRangeFound": true,
+        "searchRelevantRangeFound": true,
+        "decisionStatus": "selected",
+        "decisionCorrect": true,
+        "answerabilityDecisionCorrect": true,
+        "rangeSelectionAssessment": "outside-labeled-ranges",
+        "exactFetchPassed": true,
+        "pipelineStatus": "complete"
+      },
+      {
+        "caseId": "dirty-tree-current-count-unanswerable",
+        "sourceRef": "docs/BRIDGE_DIRTY_TREE_RECOVERY_PLAN.md",
+        "answerability": "unanswerable",
+        "expectedHeading": null,
+        "observedHeading": null,
+        "decisionStatus": "abstained",
+        "decisionCorrect": true,
+        "answerabilityDecisionCorrect": true,
+        "rangeSelectionAssessment": "abstained",
+        "normalizedExactHeadingMatch": null,
+        "exactAcceptedRangeMatch": null,
+        "relevantRangeMatch": null,
+        "relevantRanges": [],
+        "searchTargetFound": null,
+        "searchExactAcceptedRangeFound": null,
+        "searchRelevantRangeFound": null,
+        "exactFetchPassed": false,
+        "pipelineStatus": "complete"
+      }
+    ]
+  },
+  "records": [
+    {
+      "caseId": "binary-file-attachment-modes",
+      "sourceRef": "docs/MCP_BINARY_AND_IMAGE_TRANSPORT.md",
+      "status": "complete",
+      "searchResultCount": 3,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-2",
+      "rawChoiceConfidence": 0.52,
+      "evidenceSufficiency": 0.36,
+      "providerNoul": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 1671.8498
+    },
+    {
+      "caseId": "catalog-capability-status-legend",
+      "sourceRef": "docs/MSSR_JEV_USE_CASE_CATALOG.md",
+      "status": "complete",
+      "searchResultCount": 31,
+      "jevStatus": "selected",
+      "selectedRangeId": "heading-2",
+      "rawChoiceConfidence": 0.36,
+      "evidenceSufficiency": 0.95,
+      "providerNoul": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 1286.727
+    },
+    {
+      "caseId": "cockpit-unresolved-trace-lane",
+      "sourceRef": "docs/HUMAN_COCKPIT.md",
+      "status": "complete",
+      "searchResultCount": 88,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-19",
+      "rawChoiceConfidence": 0.98,
+      "evidenceSufficiency": 0.8,
+      "providerNoul": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 1562.9024
+    },
+    {
+      "caseId": "modern-chatgpt-live-tunnel-gate",
+      "sourceRef": "docs/MCP_V2_MIGRATION.md",
+      "status": "complete",
+      "searchResultCount": 14,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-10/item-3",
+      "rawChoiceConfidence": 0.29,
+      "evidenceSufficiency": 0.66,
+      "providerNoul": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 896.9028
+    },
+    {
+      "caseId": "http-local-default-endpoints",
+      "sourceRef": "HTTP_LOCAL_MCP.md",
+      "status": "complete",
+      "searchResultCount": 100,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-12",
+      "rawChoiceConfidence": 1,
+      "evidenceSufficiency": 0.86,
+      "providerNoul": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 1145.6343
+    },
+    {
+      "caseId": "watchdog-scheduled-task-fallback",
+      "sourceRef": "BRIDGE_WATCHDOG.md",
+      "status": "complete",
+      "searchResultCount": 26,
+      "jevStatus": "selected",
+      "selectedRangeId": "block-10",
+      "rawChoiceConfidence": 1,
+      "evidenceSufficiency": 0.96,
+      "providerNoul": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 817.1157
+    },
+    {
+      "caseId": "oauth-discovery-404-meaning",
+      "sourceRef": "OPENAI_TUNNEL_LOCAL_AUTH.md",
+      "status": "complete",
+      "searchResultCount": 25,
+      "jevStatus": "selected",
+      "selectedRangeId": "heading-4",
+      "rawChoiceConfidence": 0.86,
+      "evidenceSufficiency": 0.95,
+      "providerNoul": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 821.437
+    },
+    {
+      "caseId": "core-recovery-safeguards",
+      "sourceRef": "docs/MSSR_CORE_RECOVERY.md",
+      "status": "complete",
+      "searchResultCount": 28,
+      "jevStatus": "selected",
+      "selectedRangeId": "heading-4",
+      "rawChoiceConfidence": 0.78,
+      "evidenceSufficiency": 0.86,
+      "providerNoul": null,
+      "exactFetchPassed": true,
+      "evidencePackBuilt": true,
+      "elapsedMs": 923.6081
+    },
+    {
+      "caseId": "dirty-tree-current-count-unanswerable",
+      "sourceRef": "docs/BRIDGE_DIRTY_TREE_RECOVERY_PLAN.md",
+      "status": "complete",
+      "searchResultCount": 100,
+      "jevStatus": "abstained",
+      "selectedRangeId": null,
+      "rawChoiceConfidence": 0.84,
+      "evidenceSufficiency": 0.12,
+      "providerNoul": null,
+      "exactFetchPassed": false,
+      "evidencePackBuilt": false,
+      "elapsedMs": 2485.7349
+    }
+  ]
+}
