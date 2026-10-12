@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "adjudication": "source-derived analyst label, not owner-verified gold",
+  "exposedToJev": false,
+  "cases": [
+    {
+      "caseId": "widgetforge-status-relation-01",
+      "expectedRelation": "contradicts",
+      "rationale": "The header says 24/24 widgets are complete; the later widget/functionality sections say only three are implemented and 21 are only in the manifest. Both statements concern the same project widget status and the same dated document snapshot.",
+      "evidence": [
+        {
+          "sourceRef": "TODO.md",
+          "startLine": 32,
+          "endLine": 32,
+          "claim": "24/24 widgets complete"
+        },
+        {
+          "sourceRef": "TODO.md",
+          "startLine": 67,
+          "endLine": 88,
+          "claim": "3 implemented and 21 remaining in manifest"
+        }
+      ]
+    }
+  ]
+}

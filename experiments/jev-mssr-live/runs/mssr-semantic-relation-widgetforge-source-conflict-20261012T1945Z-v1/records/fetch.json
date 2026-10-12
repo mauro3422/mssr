@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "revalidatedByBridge": true,
+  "sources": [
+    {
+      "handle": {
+        "version": 1,
+        "id": "aa5d5273e3350c0bc943610f7f143e81b00ec01eac13e6fe5ca5813f4828784d",
+        "owner": "d:/dev/wigdetforge",
+        "sourceRef": "TODO.md",
+        "revision": "45a996f4cde2778f0e49f008a6a9637134395a0f81ca4a879459acc84bef2ad5",
+        "rangeId": "block-6",
+        "rangeKind": "block",
+        "startLine": 32,
+        "endLine": 57,
+        "startOffset": 1020,
+        "endOffset": 2297,
+        "fingerprint": "25df036352a7029d50b9c36817b1ee745a1a69ed93780c824eec6425eaa086a2",
+        "privacyClass": "project-metadata"
+      },
+      "text": "**Widgets Implementados (24/24): ✅ COMPLETO**\n- ✅ `js/widgets/manifest.js` - Lista completa de 24 widgets\n- ✅ `js/widgets/code-helix/` - DNA de código\n- ✅ `js/widgets/holo-id/` - Tarjeta de identidad holográfica\n- ✅ `js/widgets/orbital-skills/` - Sistema de habilidades orbital\n- ✅ `js/widgets/header/` - Header cyberpunk\n- ✅ `js/widgets/glitch/` - Texto glitch\n- ✅ `js/widgets/neon-hud/` - HUD de estadísticas\n- ✅ `js/widgets/glitch-repo/` - Tarjeta de repositorio\n- ✅ `js/widgets/streak/` - Contador de racha\n- ✅ `js/widgets/donut/` - Gráfico de lenguajes\n- ✅ `js/widgets/radar/` - Gráfico radar\n- ✅ `js/widgets/system-monitor/` - Monitor de sistema\n- ✅ `js/widgets/stack/` - Stack tecnológico\n- ✅ `js/widgets/neon-card/` - Tarjeta neón\n- ✅ `js/widgets/holo-board/` - Tablero holográfico\n- ✅ `js/widgets/cyber-badge/` - Medallas cyberpunk\n- ✅ `js/widgets/lang-orbit/` - Lenguajes en órbita\n- ✅ `js/widgets/neural-lang/` - Red neuronal de lenguajes\n- ✅ `js/widgets/synth-city/` - Ciudad synthwave\n- ✅ `js/widgets/commit-highway/` - Autopista de commits\n- ✅ `js/widgets/terminal/` - Terminal\n- ✅ `js/widgets/music/` - Visualizador de música\n- ✅ `js/widgets/cyber-clock/` - Reloj cyberpunk\n- ✅ `js/widgets/cyber-id/` - ID futurista\n- ✅ `js/widgets/social-neon/` - Links sociales",
+      "fingerprint": "25df036352a7029d50b9c36817b1ee745a1a69ed93780c824eec6425eaa086a2",
+      "advisoryOnly": true,
+      "truthAuthority": false
+    },
+    {
+      "handle": {
+        "version": 1,
+        "id": "131e9bd02558ecada6dcf622ebd483a880e9436f83515c67093b462bd9e74909",
+        "owner": "d:/dev/wigdetforge",
+        "sourceRef": "TODO.md",
+        "revision": "45a996f4cde2778f0e49f008a6a9637134395a0f81ca4a879459acc84bef2ad5",
+        "rangeId": "block-10",
+        "rangeKind": "block",
+        "startLine": 80,
+        "endLine": 88,
+        "startOffset": 2961,
+        "endOffset": 3316,
+        "fingerprint": "1643726e1ac2ee66d77999e5dc7333d55614e033cddaf03efeea9280c028a96d",
+        "privacyClass": "project-metadata"
+      },
+      "text": "| Widget | Categoría | Estado |\n|--------|-----------|--------|\n| Code Helix DNA | Art | ✅ Implementado |\n| Holo ID Card | Identity | ✅ Implementado |\n| Orbital Skills | Skills | ✅ Implementado |\n| Header | Headers | 📋 En manifest |\n| Glitch Title | Headers | 📋 En manifest |\n| Neon HUD | Stats | 📋 En manifest |\n| ... (21 más) | ... | 📋 En manifest |",
+      "fingerprint": "1643726e1ac2ee66d77999e5dc7333d55614e033cddaf03efeea9280c028a96d",
+      "advisoryOnly": true,
+      "truthAuthority": false
+    }
+  ]
+}

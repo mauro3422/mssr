@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "pairId": "widgetforge-status-relation-01",
+  "batchId": "jev-evidence:widgetforge:1",
+  "judgment": {
+    "schemaVersion": 1,
+    "immutable": true,
+    "advisoryOnly": true,
+    "canonicalRewriteAllowed": false,
+    "decisionFamily": "relation",
+    "inputs": [
+      {
+        "atomId": "evidence-atom:d72f5baf45a9c8b35c0c3a0d",
+        "sourceRef": "TODO.md",
+        "revision": "45a996f4cde2778f0e49f008a6a9637134395a0f81ca4a879459acc84bef2ad5",
+        "fingerprints": {
+          "record": "25df036352a7029d50b9c36817b1ee745a1a69ed93780c824eec6425eaa086a2",
+          "payload": "25df036352a7029d50b9c36817b1ee745a1a69ed93780c824eec6425eaa086a2"
+        }
+      },
+      {
+        "atomId": "evidence-atom:6417d3b5516e8fa871bc7d13",
+        "sourceRef": "TODO.md",
+        "revision": "45a996f4cde2778f0e49f008a6a9637134395a0f81ca4a879459acc84bef2ad5",
+        "fingerprints": {
+          "record": "1643726e1ac2ee66d77999e5dc7333d55614e033cddaf03efeea9280c028a96d",
+          "payload": "1643726e1ac2ee66d77999e5dc7333d55614e033cddaf03efeea9280c028a96d"
+        }
+      }
+    ],
+    "heads": [
+      {
+        "head": "relation-kind",
+        "candidates": [
+          "supports",
+          "contradicts",
+          "supersedes",
+          "duplicate",
+          "unrelated",
+          "unresolved"
+        ],
+        "selectedId": "contradicts",
+        "rawConfidence": 0.95,
+        "probabilities": null
+      }
+    ],
+    "calibratedConfidence": null,
+    "claim": {
+      "validity": "historical",
+      "scope": "WidgetForge widget implementation status as represented in TODO.md dated 2026-02-09",
+      "validFrom": "2026-02-09T00:00:00Z",
+      "validUntil": null
+    },
+    "citations": [
+      {
+        "atomId": "evidence-atom:d72f5baf45a9c8b35c0c3a0d",
+        "sourceRef": "TODO.md",
+        "revision": "45a996f4cde2778f0e49f008a6a9637134395a0f81ca4a879459acc84bef2ad5",
+        "fingerprint": "25df036352a7029d50b9c36817b1ee745a1a69ed93780c824eec6425eaa086a2",
+        "role": "contradicts"
+      },
+      {
+        "atomId": "evidence-atom:6417d3b5516e8fa871bc7d13",
+        "sourceRef": "TODO.md",
+        "revision": "45a996f4cde2778f0e49f008a6a9637134395a0f81ca4a879459acc84bef2ad5",
+        "fingerprint": "1643726e1ac2ee66d77999e5dc7333d55614e033cddaf03efeea9280c028a96d",
+        "role": "contradicts"
+      }
+    ],
+    "relations": [
+      {
+        "leftAtomId": "evidence-atom:d72f5baf45a9c8b35c0c3a0d",
+        "rightAtomId": "evidence-atom:6417d3b5516e8fa871bc7d13",
+        "kind": "contradicts",
+        "rawConfidence": 0.95,
+        "citedAtomIds": [
+          "evidence-atom:d72f5baf45a9c8b35c0c3a0d",
+          "evidence-atom:6417d3b5516e8fa871bc7d13"
+        ],
+        "comparability": {
+          "scope": {
+            "left": "WidgetForge widget implementation status as represented in TODO.md dated 2026-02-09",
+            "right": "WidgetForge widget implementation status as represented in TODO.md dated 2026-02-09"
+          },
+          "temporal": {
+            "leftValidity": "historical",
+            "leftValidFrom": "2026-02-09T00:00:00Z",
+            "leftValidUntil": null,
+            "rightValidity": "historical",
+            "rightValidFrom": "2026-02-09T00:00:00Z",
+            "rightValidUntil": null
+          }
+        },
+        "status": "candidate"
+      }
+    ],
+    "evidenceCoverage": {
+      "requestedAtomIds": [
+        "evidence-atom:d72f5baf45a9c8b35c0c3a0d",
+        "evidence-atom:6417d3b5516e8fa871bc7d13"
+      ],
+      "returnedAtomIds": [
+        "evidence-atom:d72f5baf45a9c8b35c0c3a0d",
+        "evidence-atom:6417d3b5516e8fa871bc7d13"
+      ],
+      "complete": true
+    },
+    "abstainReasons": [],
+    "reviewReasons": [],
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "promptVersion": "mssr-semantic-evidence-relation-v1",
+    "providerSchemaVersion": "mssr-jev-decision-v1",
+    "traceId": "mssr-20261012-independent-reliability-cohort",
+    "verificationEvidence": null,
+    "id": "semantic-judgment:9d48d05aded5d385e20ea9fb",
+    "verification": {
+      "status": "unverified",
+      "verificationId": null,
+      "evidenceRef": null,
+      "independenceReasons": [
+        "verification-absent"
+      ]
+    }
+  },
+  "evaluation": {
+    "disposition": "review",
+    "reasons": [
+      "contradictory-relations",
+      "independent-verification-unavailable"
+    ],
+    "advisoryOnly": true,
+    "canonicalRewriteAllowed": false
+  },
+  "batch": {
+    "batchId": "jev-evidence:widgetforge:1",
+    "projectKey": "widgetforge",
+    "corpusKey": "todo-status-2026-02-09",
+    "pairIds": [
+      "widgetforge-status-relation-01"
+    ],
+    "questions": 1,
+    "stateChars": 2966,
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 1685,
+      "output_tokens": 71
+    },
+    "elapsedMs": 1339.5758000016212
+  },
+  "rejected": [],
+  "unusedAtomIds": [],
+  "policy": {
+    "maximumPairsPerRequest": 1,
+    "maximumStateChars": 24000,
+    "mixedProjectOrCorpusState": false,
+    "providerConfidenceDistributionInvented": false,
+    "judgmentsVerified": false,
+    "advisoryOnly": true
+  },
+  "rawVendorResponsePersisted": false,
+  "providerTransportInvocationsObserved": "Tool-level Jev result only; lower transport invocations not observed."
+}

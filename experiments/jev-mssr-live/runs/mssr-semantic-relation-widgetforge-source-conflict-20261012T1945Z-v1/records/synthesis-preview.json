@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "semantic-synthesis:11786966a44973a62a698d84",
+  "judgmentId": "semantic-judgment:9d48d05aded5d385e20ea9fb",
+  "disposition": "review",
+  "policy": {
+    "minimumRawRelationConfidence": 0.75,
+    "thresholdIsCalibrated": false,
+    "requiresIndependentConfirmed": true,
+    "verificationEvidenceIsCallerAsserted": true,
+    "sourceFreshnessIsCallerAsserted": true,
+    "hostMustRevalidateCurrentRevisions": true
+  },
+  "relations": [
+    {
+      "leftAtomId": "evidence-atom:d72f5baf45a9c8b35c0c3a0d",
+      "rightAtomId": "evidence-atom:6417d3b5516e8fa871bc7d13",
+      "kind": "contradicts",
+      "rawConfidence": 0.95,
+      "status": "review",
+      "reasonCodes": [
+        "contradiction-blocks-consolidation"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "atomIds": [
+        "evidence-atom:d72f5baf45a9c8b35c0c3a0d"
+      ],
+      "disposition": "review",
+      "reasonCodes": [
+        "contradictory-relations",
+        "independent-verification-unavailable",
+        "relation-conflict-or-uncertainty"
+      ],
+      "sourceSnapshots": [
+        {
+          "atomId": "evidence-atom:d72f5baf45a9c8b35c0c3a0d",
+          "sourceRef": "TODO.md",
+          "revision": "45a996f4cde2778f0e49f008a6a9637134395a0f81ca4a879459acc84bef2ad5",
+          "range": {
+            "version": 1,
+            "id": "aa5d5273e3350c0bc943610f7f143e81b00ec01eac13e6fe5ca5813f4828784d",
+            "owner": "d:/dev/wigdetforge",
+            "sourceRef": "TODO.md",
+            "revision": "45a996f4cde2778f0e49f008a6a9637134395a0f81ca4a879459acc84bef2ad5",
+            "rangeId": "block-6",
+            "rangeKind": "block",
+            "startLine": 32,
+            "endLine": 57,
+            "startOffset": 1020,
+            "endOffset": 2297,
+            "fingerprint": "25df036352a7029d50b9c36817b1ee745a1a69ed93780c824eec6425eaa086a2",
+            "privacyClass": "project-metadata"
+          },
+          "fingerprint": "25df036352a7029d50b9c36817b1ee745a1a69ed93780c824eec6425eaa086a2",
+          "textChars": 1277
+        }
+      ]
+    },
+    {
+      "atomIds": [
+        "evidence-atom:6417d3b5516e8fa871bc7d13"
+      ],
+      "disposition": "review",
+      "reasonCodes": [
+        "contradictory-relations",
+        "independent-verification-unavailable",
+        "relation-conflict-or-uncertainty"
+      ],
+      "sourceSnapshots": [
+        {
+          "atomId": "evidence-atom:6417d3b5516e8fa871bc7d13",
+          "sourceRef": "TODO.md",
+          "revision": "45a996f4cde2778f0e49f008a6a9637134395a0f81ca4a879459acc84bef2ad5",
+          "range": {
+            "version": 1,
+            "id": "131e9bd02558ecada6dcf622ebd483a880e9436f83515c67093b462bd9e74909",
+            "owner": "d:/dev/wigdetforge",
+            "sourceRef": "TODO.md",
+            "revision": "45a996f4cde2778f0e49f008a6a9637134395a0f81ca4a879459acc84bef2ad5",
+            "rangeId": "block-10",
+            "rangeKind": "block",
+            "startLine": 80,
+            "endLine": 88,
+            "startOffset": 2961,
+            "endOffset": 3316,
+            "fingerprint": "1643726e1ac2ee66d77999e5dc7333d55614e033cddaf03efeea9280c028a96d",
+            "privacyClass": "project-metadata"
+          },
+          "fingerprint": "1643726e1ac2ee66d77999e5dc7333d55614e033cddaf03efeea9280c028a96d",
+          "textChars": 355
+        }
+      ]
+    }
+  ],
+  "sourceEvidenceRetained": true,
+  "reversible": true,
+  "advisoryOnly": true,
+  "canonicalRewriteAllowed": false,
+  "applyAllowed": false
+}

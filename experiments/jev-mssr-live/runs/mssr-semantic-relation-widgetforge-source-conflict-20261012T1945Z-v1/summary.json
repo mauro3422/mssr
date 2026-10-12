@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-semantic-relation-widgetforge-source-conflict-20261012T1945Z-v1",
+  "status": "complete",
+  "independentUnits": 1,
+  "sourceDocuments": 1,
+  "sourceClusters": 1,
+  "pairs": 1,
+  "sourceDerivedRelationMatches": 1,
+  "ownerGoldPairs": 0,
+  "calibratedScores": 0,
+  "relation": "contradicts",
+  "rawConfidence": 0.95,
+  "deterministicDisposition": "review",
+  "previewDisposition": "review",
+  "applyAllowed": false,
+  "usage": {
+    "input_tokens": 1685,
+    "output_tokens": 71
+  },
+  "elapsedMs": 1339.5758000016212,
+  "limitations": [
+    "One historical source and one pair only.",
+    "Source-derived label; no document-owner adjudication.",
+    "Raw score is descriptive, not calibrated probability.",
+    "No production readiness or general contradiction recall claim."
+  ]
+}

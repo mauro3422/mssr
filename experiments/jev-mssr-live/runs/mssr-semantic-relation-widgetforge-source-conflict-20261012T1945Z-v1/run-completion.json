@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-semantic-relation-widgetforge-source-conflict-20261012T1945Z-v1",
+  "manifestSha256": "71e5eb00071eed29c0d62b8cb09ed036fdbca39c0cfb8d3bcd2e993bda6539e7",
+  "status": "complete",
+  "completedAt": "2026-10-12T19:48:06Z",
+  "attemptedRequests": 1,
+  "successfulRequests": 1,
+  "failedRequests": 0,
+  "sourceSearches": 2,
+  "exactFetches": 2,
+  "synthesisPreviews": 1,
+  "labelsExposedToProvider": false,
+  "networkOptInAuthorized": true,
+  "argvContainsAllowNetwork": null,
+  "jevRequestIdsReturned": 0,
+  "providerTransportInvocationsObserved": null,
+  "sourceRevision": "45a996f4cde2778f0e49f008a6a9637134395a0f81ca4a879459acc84bef2ad5",
+  "returnedProvider": "typesafe-jev",
+  "returnedModel": "jev-1.13.0",
+  "usage": {
+    "input_tokens": 1685,
+    "output_tokens": 71
+  },
+  "elapsedMs": 1339.5758000016212,
+  "result": {
+    "expectedSourceDerivedRelation": "contradicts",
+    "returnedRelation": "contradicts",
+    "sourceDerivedLabelMatched": true,
+    "rawConfidence": 0.95,
+    "calibratedConfidence": null,
+    "deterministicDisposition": "review",
+    "previewDisposition": "review",
+    "applyAllowed": false,
+    "independentVerification": "absent",
+    "ownerGold": false
+  }
+}

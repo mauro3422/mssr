@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "atoms": [
+    {
+      "schemaVersion": 2,
+      "id": "evidence-atom:d72f5baf45a9c8b35c0c3a0d",
+      "subject": {
+        "namespace": "widgetforge",
+        "kind": "implementation-status",
+        "identity": "WidgetForge widget implementation status in TODO.md dated 2026-02-09"
+      },
+      "source": {
+        "ref": "TODO.md",
+        "revision": "45a996f4cde2778f0e49f008a6a9637134395a0f81ca4a879459acc84bef2ad5",
+        "freshness": "fresh",
+        "headingPath": [
+          "PROYECTO WIDGETFORGE - RECONSTRUCCIÓN COMPLETA ✅",
+          "📊 RESUMEN DE RECONSTRUCCIÓN",
+          "✅ Archivos Recuperados (100%)"
+        ],
+        "range": {
+          "startLine": 32,
+          "endLine": 57,
+          "startOffset": 1020,
+          "endOffset": 2297
+        },
+        "freshnessEvidence": {
+          "canonicalOwner": "d:/dev/wigdetforge",
+          "ref": "TODO.md",
+          "revision": "45a996f4cde2778f0e49f008a6a9637134395a0f81ca4a879459acc84bef2ad5",
+          "observedAt": "2026-10-12T19:45:02Z"
+        }
+      },
+      "provenance": {
+        "producer": "mssr-live-diagnostic",
+        "sourceClass": "observed",
+        "canonicalOwner": "d:/dev/wigdetforge",
+        "host": "codex",
+        "traceId": "mssr-20261012-independent-reliability-cohort",
+        "projectKey": "widgetforge"
+      },
+      "fingerprints": {
+        "record": "25df036352a7029d50b9c36817b1ee745a1a69ed93780c824eec6425eaa086a2",
+        "payload": "25df036352a7029d50b9c36817b1ee745a1a69ed93780c824eec6425eaa086a2"
+      },
+      "reasonCodes": [
+        "source-derived-status-claims"
+      ],
+      "lineage": {
+        "parentAtomIds": [],
+        "relatedAtomIds": [],
+        "supersedesAtomIds": []
+      },
+      "dedupeKey": "widgetforge:todo:implementation-status:2026-02-09:header-block",
+      "authorityClass": "observed",
+      "privacyClass": "project-metadata",
+      "usage": {
+        "selection": "selected",
+        "consumed": true,
+        "outcome": "unknown",
+        "reasonCodes": []
+      },
+      "attributes": {
+        "documentDate": "2026-02-09"
+      },
+      "advisoryOnly": true,
+      "canonicalRewriteAllowed": false
+    },
+    {
+      "schemaVersion": 2,
+      "id": "evidence-atom:6417d3b5516e8fa871bc7d13",
+      "subject": {
+        "namespace": "widgetforge",
+        "kind": "implementation-status",
+        "identity": "WidgetForge widget implementation status in TODO.md dated 2026-02-09"
+      },
+      "source": {
+        "ref": "TODO.md",
+        "revision": "45a996f4cde2778f0e49f008a6a9637134395a0f81ca4a879459acc84bef2ad5",
+        "freshness": "fresh",
+        "headingPath": [
+          "PROYECTO WIDGETFORGE - RECONSTRUCCIÓN COMPLETA ✅",
+          "🚀 CARACTERÍSTICAS IMPLEMENTADAS",
+          "Widgets Disponibles:"
+        ],
+        "range": {
+          "startLine": 80,
+          "endLine": 88,
+          "startOffset": 2961,
+          "endOffset": 3316
+        },
+        "freshnessEvidence": {
+          "canonicalOwner": "d:/dev/wigdetforge",
+          "ref": "TODO.md",
+          "revision": "45a996f4cde2778f0e49f008a6a9637134395a0f81ca4a879459acc84bef2ad5",
+          "observedAt": "2026-10-12T19:45:02Z"
+        }
+      },
+      "provenance": {
+        "producer": "mssr-live-diagnostic",
+        "sourceClass": "observed",
+        "canonicalOwner": "d:/dev/wigdetforge",
+        "host": "codex",
+        "traceId": "mssr-20261012-independent-reliability-cohort",
+        "projectKey": "widgetforge"
+      },
+      "fingerprints": {
+        "record": "1643726e1ac2ee66d77999e5dc7333d55614e033cddaf03efeea9280c028a96d",
+        "payload": "1643726e1ac2ee66d77999e5dc7333d55614e033cddaf03efeea9280c028a96d"
+      },
+      "reasonCodes": [
+        "source-derived-status-claims"
+      ],
+      "lineage": {
+        "parentAtomIds": [],
+        "relatedAtomIds": [],
+        "supersedesAtomIds": []
+      },
+      "dedupeKey": "widgetforge:todo:implementation-status:2026-02-09:widget-list",
+      "authorityClass": "observed",
+      "privacyClass": "project-metadata",
+      "usage": {
+        "selection": "selected",
+        "consumed": true,
+        "outcome": "unknown",
+        "reasonCodes": []
+      },
+      "attributes": {
+        "documentDate": "2026-02-09"
+      },
+      "advisoryOnly": true,
+      "canonicalRewriteAllowed": false
+    }
+  ]
+}

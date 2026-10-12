@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "status": "prepared",
+  "runId": "mssr-semantic-relation-widgetforge-source-conflict-20261012T1945Z-v1",
+  "createdAt": "2026-10-12T19:45:00Z",
+  "goal": "Exercise the active Bridge relation-review and synthesis-preview path on one exact real source contradiction.",
+  "source": {
+    "repository": "MSSR experiment / Bridge live MCP",
+    "mssrVersion": "0.2.127",
+    "bridgeVersion": "0.6.175",
+    "bridgeRuntimeBootId": "165f4d43-61f9-4ba7-89d4-19e0add66d00",
+    "bridgeToolCatalogCount": 189,
+    "bridgeToolCatalogHash": "018b9f91ae7fcff9",
+    "currentMssrRegistryProviderStatus": "mauroprime-bridge unavailable in local capability registry (MCP error -32000: Connection closed); active Bridge MCP tools independently returned healthy",
+    "workingTreeRoot": "D:\\Dev\\mssr"
+  },
+  "instrument": {
+    "mode": "manual live MCP call sequence",
+    "callsPlanned": {
+      "librarianSearch": 2,
+      "librarianFetch": 2,
+      "semanticRelationReview": 1,
+      "synthesisPreview": 1
+    },
+    "noRunnerReplay": true
+  },
+  "provider": {
+    "mode": "live",
+    "provider": "TypeSafe Jev through active Bridge semantic relation tool",
+    "requestedModel": "jev-1.13.0",
+    "credentialSource": "Bridge Windows Credential Manager; no secret passed or persisted",
+    "userAuthorization": "Existing explicit authorization to use live Jev for MSSR tests; cost is acceptable.",
+    "networkOptIn": true,
+    "rawVendorResponsePersisted": false,
+    "providerTransportInvocationsObserved": "tool-level result only; lower transport unobserved"
+  },
+  "plan": {
+    "expectedJevRelationCalls": 1,
+    "independentUnit": "one source document and one relation pair",
+    "expectedSourceDerivedRelation": "contradicts",
+    "primaryMetric": "Exact source reread and atom binding, live relation response, deterministic review disposition, immutable no-write synthesis preview.",
+    "secondaryMetrics": [
+      "provider/model returned",
+      "raw confidence descriptive only",
+      "latency/usage if exposed"
+    ],
+    "minimumSupport": {
+      "overall": 30,
+      "interpretation": "Reliability support floor; this one-case diagnostic does not meet it."
+    },
+    "uncertaintyMethod": "none; descriptive integration smoke only",
+    "thresholds": {},
+    "noThresholdTuning": true,
+    "excludedClaims": [
+      "owner-gold accuracy",
+      "general contradiction recall",
+      "confidence calibration",
+      "production readiness",
+      "automated atom discovery",
+      "automatic source merge",
+      "canonical write"
+    ]
+  },
+  "corpus": {
+    "items": 1,
+    "projectClusters": 1,
+    "holdoutStatus": "Known, exposed source-level contradiction; not a holdout.",
+    "sources": [
+      {
+        "projectRoot": "D:\\Dev\\WigdetForge",
+        "sourceRef": "TODO.md",
+        "snapshotPath": "inputs/sources/widgetforge-todo.md",
+        "sha256": "45a996f4cde2778f0e49f008a6a9637134395a0f81ca4a879459acc84bef2ad5",
+        "bytes": 6110,
+        "gitHead": "3270c9a8f9cb9332ad080f941a8504cc20b1242d",
+        "branch": "main",
+        "targetFileStatus": "clean",
+        "projectContextManifestPresent": true
+      }
+    ]
+  },
+  "labels": {
+    "path": "inputs/labels.json",
+    "adjudication": "source-derived analyst label; not document-owner verified",
+    "exposedToJev": false
+  }
+}

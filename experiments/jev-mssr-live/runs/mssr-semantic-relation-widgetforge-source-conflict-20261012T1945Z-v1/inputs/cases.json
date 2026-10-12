@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "caseId": "widgetforge-status-relation-01",
+      "projectRoot": "D:\\Dev\\WigdetForge",
+      "sourceRef": "TODO.md",
+      "searchQueries": [
+        "¿Qué estado declara el encabezado sobre los 24 widgets implementados?",
+        "¿Cuántos widgets aparecen implementados y cuántos quedan sólo en el manifest en la sección de funcionalidades?"
+      ],
+      "relationGoal": "Compare the two exact statements about the implementation status of this project's widgets in the same dated document. Determine whether they are compatible, contradictory, superseding, or unresolved.",
+      "scope": "WidgetForge widget implementation status as represented in TODO.md dated 2026-02-09",
+      "validity": "historical",
+      "validFrom": "2026-02-09T00:00:00Z"
+    }
+  ]
+}

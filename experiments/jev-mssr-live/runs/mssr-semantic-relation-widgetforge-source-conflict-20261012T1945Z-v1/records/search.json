@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "note": "Local Bridge retrieval only; search candidates are advisory and are not Jev judgments.",
+  "searches": [
+    {
+      "query": "Widgets implementados 24/24 completo",
+      "projectOwner": "d:/dev/wigdetforge",
+      "sourceCount": 1,
+      "selectedCandidate": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "aa5d5273e3350c0bc943610f7f143e81b00ec01eac13e6fe5ca5813f4828784d",
+            "owner": "d:/dev/wigdetforge",
+            "sourceRef": "TODO.md",
+            "revision": "45a996f4cde2778f0e49f008a6a9637134395a0f81ca4a879459acc84bef2ad5",
+            "rangeId": "block-6",
+            "rangeKind": "block",
+            "startLine": 32,
+            "endLine": 57,
+            "startOffset": 1020,
+            "endOffset": 2297,
+            "fingerprint": "25df036352a7029d50b9c36817b1ee745a1a69ed93780c824eec6425eaa086a2",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 1277,
+          "exactFetchable": true,
+          "score": 1,
+          "title": "✅ Archivos Recuperados (100%)",
+          "headingPath": [
+            "PROYECTO WIDGETFORGE - RECONSTRUCCIÓN COMPLETA ✅",
+            "📊 RESUMEN DE RECONSTRUCCIÓN",
+            "✅ Archivos Recuperados (100%)"
+          ],
+          "snippet": "**Widgets Implementados (24/24): ✅ COMPLETO** - ✅ `js/widgets/manifest.js` - Lista completa de 24 widgets - ✅ `js/widgets/code-helix/` - DNA de código - ✅ `js/…",
+          "evidenceTier": "candidate",
+          "advisoryOnly": true
+        }
+      ],
+      "returnedCandidateCount": 8
+    },
+    {
+      "query": "21 módulos 3 implementados 21 en manifest widgets disponibles",
+      "projectOwner": "d:/dev/wigdetforge",
+      "sourceCount": 1,
+      "selectedCandidate": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "131e9bd02558ecada6dcf622ebd483a880e9436f83515c67093b462bd9e74909",
+            "owner": "d:/dev/wigdetforge",
+            "sourceRef": "TODO.md",
+            "revision": "45a996f4cde2778f0e49f008a6a9637134395a0f81ca4a879459acc84bef2ad5",
+            "rangeId": "block-10",
+            "rangeKind": "block",
+            "startLine": 80,
+            "endLine": 88,
+            "startOffset": 2961,
+            "endOffset": 3316,
+            "fingerprint": "1643726e1ac2ee66d77999e5dc7333d55614e033cddaf03efeea9280c028a96d",
+            "privacyClass": "project-metadata"
+          },
+          "rangeCodeUnits": 355,
+          "exactFetchable": true,
+          "score": 0.666667,
+          "title": "Widgets Disponibles:",
+          "headingPath": [
+            "PROYECTO WIDGETFORGE - RECONSTRUCCIÓN COMPLETA ✅",
+            "🚀 CARACTERÍSTICAS IMPLEMENTADAS",
+            "Widgets Disponibles:"
+          ],
+          "snippet": "…mplementado | | Header | Headers | 📋 En manifest | | Glitch Title | Headers | 📋 En manifest | | Neon HUD | Stats | 📋 En manifest | | ... (21 más) | ... | 📋 En…",
+          "evidenceTier": "candidate",
+          "advisoryOnly": true
+        }
+      ],
+      "returnedCandidateCount": 8
+    }
+  ],
+  "selectedRangeRationale": "The first selected block contains the 24/24 header; the second is the later widget-status table listing three implemented items and the remaining items in the manifest."
+}
