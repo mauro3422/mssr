@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "kind": "mssr-librarian-evidence-pack",
+  "assembly": "verbatim-source-ranges",
+  "paragraphs": [
+    {
+      "ordinal": 1,
+      "exactText": "## Inbox tombstone semantics (0.2.12)\n\n- Context Plane inbox tombstones (0.2.12): an acknowledged delivery receipt acts as a temporary tombstone for the same evidence — enqueue suppresses only a message whose `messageId` and stable content `fingerprint` (sha256 over the validated message, identity excluded) both match an already-acknowledged receipt. Content/revision changes or a new id reappear; `receiptRetentionMs` pruning lets identical evidence be delivered again. Inbox state schema is v2 with transparent v1 migration; migrated receipts carry no fingerprint and never suppress.\n\n\n",
+      "citation": {
+        "display": ".mssr/knowledge/architecture/context-plane-history.md:L14-L18",
+        "handleId": "ee5353b40c7a2ab4c8ad0f353628eec5cd904e3334d6cef46f60a42a0bf0bf83",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/context-plane-history.md",
+        "revision": "ac6204112aa086bd9d25634792ebde3559e802617fc0fb004f69bcdc13f93392",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "startLine": 14,
+        "endLine": 18,
+        "fingerprint": "20aa3462ada2a256f486c1bc2932aa8a5a66d5989a1fa2ceb3c1328123cd711f",
+        "privacyClass": "project-metadata"
+      }
+    }
+  ],
+  "totalFetchedChars": 590,
+  "rangeCompaction": {
+    "policy": "strict-contained-range-deduplication",
+    "inputHandleCount": 2,
+    "retainedHandleCount": 1,
+    "removed": [
+      {
+        "handleId": "074bad3f5de0fcbd403f3468a8a499a3dc797aca118623834a25f623245c7fd3",
+        "coveredByHandleId": "ee5353b40c7a2ab4c8ad0f353628eec5cd904e3334d6cef46f60a42a0bf0bf83",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/context-plane-history.md",
+        "revision": "ac6204112aa086bd9d25634792ebde3559e802617fc0fb004f69bcdc13f93392",
+        "rangeId": "block-4/item-1",
+        "rangeKind": "block",
+        "startLine": 16,
+        "endLine": 16,
+        "fingerprint": "4725690c1679efed5080ff39981de45ea94fee8dc542b72929f5c22837bee2b4",
+        "privacyClass": "project-metadata"
+      }
+    ]
+  },
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "canonicalRewriteAllowed": false,
+  "ownerAndPrivacyAreCallerAsserted": true
+}

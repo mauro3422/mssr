@@ -54,3 +54,7 @@ uncalibrated; no threshold or production behavior changed. See the
 [run 37 report](../../../experiments/jev-mssr-live/runs/mssr-librarian-sidecar-architecture-impact-20261012T0346Z-v1/RUN-REPORT.md),
 the [run 38 report](../../../experiments/jev-mssr-live/runs/mssr-librarian-sidecar-architecture-impact-narrowed-followup-20261012T0353Z-v1/RUN-REPORT.md),
 and the [run 39 report](../../../experiments/jev-mssr-live/runs/mssr-librarian-sidecar-architecture-impact-atomic-facets-20261012T0400Z-v1/RUN-REPORT.md).
+
+## Run 40: Context Plane receipt facets and containment control (2026-10-12)
+
+Two live Jev facets selected and exact-fetched their labeled ranges (2/2); the cited host composition passed a blind Luna sufficiency review. A separate structural control removed a 548-character contained child. One thematically exposed source cluster only: no owner-gold, clean holdout, semantic-compaction test or calibration; scores remain uncalibrated. See the [run report](../../../experiments/jev-mssr-live/runs/mssr-librarian-context-plane-receipt-union-20261012T0417Z-v1/RUN-REPORT.md) and [validation](../../../experiments/jev-mssr-live/runs/mssr-librarian-context-plane-receipt-union-20261012T0417Z-v1/derived/validation.json).

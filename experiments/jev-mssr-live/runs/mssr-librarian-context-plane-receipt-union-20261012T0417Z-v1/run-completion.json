@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-context-plane-receipt-union-20261012T0417Z-v1",
+  "status": "complete",
+  "attemptedRequests": 2,
+  "completedAt": "2026-10-12T04:25:16Z",
+  "executionPath": "connected-MSSR-MCP",
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "providerCalls": 2,
+  "exactFetchesVerified": 2,
+  "evidencePacksValidated": 2,
+  "providerTokens": {
+    "input": 5001,
+    "output": 354,
+    "total": 5355
+  },
+  "providerElapsedMsSum": 1067.3,
+  "outcome": "Both source-derived facets selected the exact labeled child range and exact fetch/pack integrity passed. A separate structural containment control deduplicated an overlapping child range. The host assembled the cited answer; Jev did not generate prose. Near-disjoint diagnostic only, with broader thematic exposure; no owner-gold, holdout, calibration, threshold change, or production inference.",
+  "timingNote": "Provider-reported per-call elapsedMs are summed; this is not end-to-end wall-clock duration.",
+  "bridgeRuntimeInvocationVerified": false
+}

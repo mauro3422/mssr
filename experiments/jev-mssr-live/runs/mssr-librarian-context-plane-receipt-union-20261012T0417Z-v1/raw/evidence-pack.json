@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "kind": "mssr-librarian-evidence-pack",
+  "assembly": "verbatim-source-ranges",
+  "paragraphs": [
+    {
+      "ordinal": 1,
+      "exactText": "- Context Plane inbox tombstones (0.2.12): an acknowledged delivery receipt acts as a temporary tombstone for the same evidence — enqueue suppresses only a message whose `messageId` and stable content `fingerprint` (sha256 over the validated message, identity excluded) both match an already-acknowledged receipt. Content/revision changes or a new id reappear; `receiptRetentionMs` pruning lets identical evidence be delivered again. Inbox state schema is v2 with transparent v1 migration; migrated receipts carry no fingerprint and never suppress.",
+      "citation": {
+        "display": ".mssr/knowledge/architecture/context-plane-history.md:L16-L16",
+        "handleId": "074bad3f5de0fcbd403f3468a8a499a3dc797aca118623834a25f623245c7fd3",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/context-plane-history.md",
+        "revision": "ac6204112aa086bd9d25634792ebde3559e802617fc0fb004f69bcdc13f93392",
+        "rangeId": "block-4/item-1",
+        "rangeKind": "block",
+        "startLine": 16,
+        "endLine": 16,
+        "fingerprint": "4725690c1679efed5080ff39981de45ea94fee8dc542b72929f5c22837bee2b4",
+        "privacyClass": "project-metadata"
+      }
+    },
+    {
+      "ordinal": 2,
+      "exactText": "- A project-local inbox may outlive a filesystem move and therefore retain pending repository messages whose only identity drift is an older path-based `canonicalOwner`. Before current repository facts are enqueued, MSSR 0.2.64 reconciles only subjects proven equivalent by the current repository provider: exact message id/kind plus exact project evidence kind/ref/provenance identity. Owner/path/basename similarity by itself is never sufficient. Historical delivery receipts remain unchanged; only stale pending selection state is superseded, and bounded `reconciledOwners` metadata makes the migration observable.",
+      "citation": {
+        "display": ".mssr/knowledge/architecture/context-plane-history.md:L21-L21",
+        "handleId": "17dff234692387822fbf198e390599c4b2f294d93e8a133dabf08254eb49fabe",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/context-plane-history.md",
+        "revision": "ac6204112aa086bd9d25634792ebde3559e802617fc0fb004f69bcdc13f93392",
+        "rangeId": "block-5/item-1",
+        "rangeKind": "block",
+        "startLine": 21,
+        "endLine": 21,
+        "fingerprint": "cf8fc72e86435b470cd77da1f3ad2b2aace34465779eb9a4c7371c0e4c6b1980",
+        "privacyClass": "project-metadata"
+      }
+    }
+  ],
+  "totalFetchedChars": 1165,
+  "rangeCompaction": {
+    "policy": "strict-contained-range-deduplication",
+    "inputHandleCount": 2,
+    "retainedHandleCount": 2,
+    "removed": []
+  },
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "canonicalRewriteAllowed": false,
+  "ownerAndPrivacyAreCallerAsserted": true
+}

@@ -1,0 +1,30 @@
+{
+  "cases": [
+    {
+      "caseId": "tombstone-identity",
+      "sourceDerivedGold": {
+        "targetLine": 16,
+        "requiredFacts": [
+          "both messageId and stable content fingerprint match an acknowledged receipt",
+          "content/revision changes or a new id reappear",
+          "receipt retention pruning lets identical evidence be delivered again",
+          "migrated receipts carry no fingerprint and never suppress"
+        ]
+      },
+      "adjudication": "source-derived, not independent owner-gold"
+    },
+    {
+      "caseId": "migration-reconciliation",
+      "sourceDerivedGold": {
+        "targetLine": 21,
+        "requiredFacts": [
+          "exact message id/kind plus exact project evidence kind/ref/provenance identity",
+          "owner/path/basename similarity alone is insufficient",
+          "historical delivery receipts remain unchanged",
+          "only stale pending selection state is superseded; reconciledOwners exposes migration"
+        ]
+      },
+      "adjudication": "source-derived, not independent owner-gold"
+    }
+  ]
+}

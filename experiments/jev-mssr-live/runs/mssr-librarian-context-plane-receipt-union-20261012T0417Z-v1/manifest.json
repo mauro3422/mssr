@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-context-plane-receipt-union-20261012T0417Z-v1",
+  "startedAt": "2026-10-12T04:17:05Z",
+  "status": "precall-frozen",
+  "parentRuns": [
+    "mssr-librarian-sidecar-architecture-impact-20261012T0346Z-v1",
+    "mssr-librarian-sidecar-architecture-impact-narrowed-followup-20261012T0353Z-v1",
+    "mssr-librarian-sidecar-architecture-impact-atomic-facets-20261012T0400Z-v1"
+  ],
+  "exposure": {
+    "classification": "near-disjoint-facet-diagnostic",
+    "auditAgent": "/root/mssr_exposure_sweep",
+    "exactSnapshotFound": false,
+    "exactHashFound": false,
+    "broaderThematicExposure": true,
+    "sourceDeclaredInProjectContextLibrarianSidecar": false,
+    "reason": "Prior work exposed Context Plane and metadata delivery broadly; this exact tombstone/migration facet and source snapshot were not found in the bounded run audit. Do not count as holdout."
+  },
+  "source": {
+    "owner": "d:/dev/mssr",
+    "sourceRef": ".mssr/knowledge/architecture/context-plane-history.md",
+    "diskSha256": "e58610d13b3ed35537e30c0f5b16d03b7aa3033c868d4ed000cc183a71305fc7",
+    "librarianRevision": "ac6204112aa086bd9d25634792ebde3559e802617fc0fb004f69bcdc13f93392",
+    "privacyClass": "project-metadata"
+  },
+  "methodology": {
+    "search": "Deterministic source-local lexical search, two independent queries, maxResults=20, maxSnippetChars=240.",
+    "selection": "Live Jev Choice on the union of top-20 exact search handles; exact-content duplicate ranges removed by fingerprint.",
+    "fetch": "Re-read same snapshot and validate selected handles.",
+    "composition": "Host assembles source-exact fetched text into a cited paragraph. Jev selects; Jev does not generate prose.",
+    "scores": "Descriptive, uncalibrated. No threshold or production inference."
+  },
+  "provider": {
+    "status": "not-yet-called"
+  }
+}

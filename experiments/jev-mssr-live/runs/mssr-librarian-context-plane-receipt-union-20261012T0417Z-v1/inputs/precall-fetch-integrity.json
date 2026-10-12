@@ -1,0 +1,19 @@
+{
+  "sourceRef": ".mssr/knowledge/architecture/context-plane-history.md",
+  "sourceDiskSha256": "e58610d13b3ed35537e30c0f5b16d03b7aa3033c868d4ed000cc183a71305fc7",
+  "selectionRevision": "ac6204112aa086bd9d25634792ebde3559e802617fc0fb004f69bcdc13f93392",
+  "failedAttempt": {
+    "reason": "The first generated packet source used apply_patch line endings; exact fetch rejected it as stale before any Jev call.",
+    "response": "Evidence handle is stale for the caller-provided source revision.",
+    "providerCalls": 0
+  },
+  "correctedAttempt": {
+    "snapshotCopiedByteForByteFromCanonicalSource": true,
+    "sourceCharacters": 3576,
+    "resultStatus": "verified",
+    "revision": "ac6204112aa086bd9d25634792ebde3559e802617fc0fb004f69bcdc13f93392",
+    "returnedFingerprint": "4725690c1679efed5080ff39981de45ea94fee8dc542b72929f5c22837bee2b4",
+    "expectedFingerprint": "4725690c1679efed5080ff39981de45ea94fee8dc542b72929f5c22837bee2b4",
+    "providerCalls": 0
+  }
+}

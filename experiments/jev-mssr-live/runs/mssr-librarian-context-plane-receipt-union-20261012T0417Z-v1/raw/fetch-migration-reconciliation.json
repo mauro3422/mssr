@@ -1,0 +1,21 @@
+{
+  "handle": {
+    "version": 1,
+    "id": "17dff234692387822fbf198e390599c4b2f294d93e8a133dabf08254eb49fabe",
+    "owner": "d:/dev/mssr",
+    "sourceRef": ".mssr/knowledge/architecture/context-plane-history.md",
+    "revision": "ac6204112aa086bd9d25634792ebde3559e802617fc0fb004f69bcdc13f93392",
+    "rangeId": "block-5/item-1",
+    "rangeKind": "block",
+    "startLine": 21,
+    "endLine": 21,
+    "startOffset": 2956,
+    "endOffset": 3573,
+    "fingerprint": "cf8fc72e86435b470cd77da1f3ad2b2aace34465779eb9a4c7371c0e4c6b1980",
+    "privacyClass": "project-metadata"
+  },
+  "text": "- A project-local inbox may outlive a filesystem move and therefore retain pending repository messages whose only identity drift is an older path-based `canonicalOwner`. Before current repository facts are enqueued, MSSR 0.2.64 reconciles only subjects proven equivalent by the current repository provider: exact message id/kind plus exact project evidence kind/ref/provenance identity. Owner/path/basename similarity by itself is never sufficient. Historical delivery receipts remain unchanged; only stale pending selection state is superseded, and bounded `reconciledOwners` metadata makes the migration observable.",
+  "fingerprint": "cf8fc72e86435b470cd77da1f3ad2b2aace34465779eb9a4c7371c0e4c6b1980",
+  "advisoryOnly": true,
+  "truthAuthority": false
+}

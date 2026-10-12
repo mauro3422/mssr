@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-context-plane-receipt-union-20261012T0417Z-v1",
+  "validatedAt": "2026-10-12T04:26:43.546Z",
+  "status": "passed",
+  "checks": [
+    {
+      "name": "frozen-input-checksums",
+      "passed": true,
+      "detail": "7 input files checked"
+    },
+    {
+      "name": "manifest-source-sha256",
+      "passed": true,
+      "detail": "Frozen source bytes match manifest SHA-256"
+    },
+    {
+      "name": "case-label-one-to-one",
+      "passed": true,
+      "detail": "2 cases and labels"
+    },
+    {
+      "name": "tombstone-identity-selected-accepted-range",
+      "passed": true,
+      "detail": "selected block-4/item-1"
+    },
+    {
+      "name": "tombstone-identity-exact-fetch-binding",
+      "passed": true,
+      "detail": "Fetched text, handle identity, source revision and fingerprint agree"
+    },
+    {
+      "name": "tombstone-identity-evidence-pack-citation",
+      "passed": true,
+      "detail": "Pack citation and exact text agree with fetch"
+    },
+    {
+      "name": "migration-reconciliation-selected-accepted-range",
+      "passed": true,
+      "detail": "selected block-5/item-1"
+    },
+    {
+      "name": "migration-reconciliation-exact-fetch-binding",
+      "passed": true,
+      "detail": "Fetched text, handle identity, source revision and fingerprint agree"
+    },
+    {
+      "name": "migration-reconciliation-evidence-pack-citation",
+      "passed": true,
+      "detail": "Pack citation and exact text agree with fetch"
+    },
+    {
+      "name": "containment-control",
+      "passed": true,
+      "detail": "Parent section retained and 548-character child range removed"
+    },
+    {
+      "name": "source-declared-status",
+      "passed": true,
+      "detail": "Not declared in sidecar; not a clean holdout"
+    }
+  ],
+  "limitations": [
+    "source-derived labels",
+    "one conceptually exposed source cluster",
+    "blind review is model-assisted, not owner-gold",
+    "provider scores are uncalibrated"
+  ]
+}

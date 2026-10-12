@@ -1,0 +1,47 @@
+{
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "calls": [
+    {
+      "caseId": "tombstone-identity",
+      "status": "selected",
+      "selectedRangeId": "block-4/item-1",
+      "selectedFingerprint": "4725690c1679efed5080ff39981de45ea94fee8dc542b72929f5c22837bee2b4",
+      "providerConfidence": 0.52,
+      "evidenceSufficiency": 0.4,
+      "selectionMode": "single-pass",
+      "usage": {
+        "input_tokens": 2512,
+        "output_tokens": 177
+      },
+      "elapsedMs": 738.9,
+      "exactFetchVerified": true
+    },
+    {
+      "caseId": "migration-reconciliation",
+      "status": "selected",
+      "selectedRangeId": "block-5/item-1",
+      "selectedFingerprint": "cf8fc72e86435b470cd77da1f3ad2b2aace34465779eb9a4c7371c0e4c6b1980",
+      "providerConfidence": 0.74,
+      "evidenceSufficiency": 0.85,
+      "selectionMode": "single-pass",
+      "usage": {
+        "input_tokens": 2489,
+        "output_tokens": 177
+      },
+      "elapsedMs": 328.4,
+      "exactFetchVerified": true
+    }
+  ],
+  "evidencePack": {
+    "retainedRanges": 2,
+    "rangeCompaction": {
+      "policy": "strict-contained-range-deduplication",
+      "inputHandleCount": 2,
+      "retainedHandleCount": 2,
+      "removed": []
+    },
+    "exactTextChars": 1165
+  },
+  "scope": "two correlated facets, one source-document cluster; scores uncalibrated"
+}

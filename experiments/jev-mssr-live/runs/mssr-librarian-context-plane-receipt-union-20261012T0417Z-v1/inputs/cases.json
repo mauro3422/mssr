@@ -1,0 +1,30 @@
+{
+  "cases": [
+    {
+      "id": "tombstone-identity",
+      "query": "What does an acknowledged Context Plane inbox receipt suppress, and which identity fields must match?",
+      "sourceRef": ".mssr/knowledge/architecture/context-plane-history.md",
+      "facet": "Acknowledgement tombstone identity and expiry semantics.",
+      "expectedExactRangeIds": [
+        "block-4/item-1",
+        "block-4"
+      ],
+      "acceptableParentRangeIds": [
+        "heading-5"
+      ]
+    },
+    {
+      "id": "migration-reconciliation",
+      "query": "During canonical-owner migration, which pending messages may be reconciled, and what happens to historical receipts?",
+      "sourceRef": ".mssr/knowledge/architecture/context-plane-history.md",
+      "facet": "Strict evidence identity for pending owner migration reconciliation; historical receipt invariant.",
+      "expectedExactRangeIds": [
+        "block-5/item-1",
+        "block-5"
+      ],
+      "acceptableParentRangeIds": [
+        "heading-6"
+      ]
+    }
+  ]
+}
