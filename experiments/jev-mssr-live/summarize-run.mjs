@@ -47,12 +47,53 @@ function matchesRanges(record, label, item, selectedRanges) {
   });
 }
 
+function containsRanges(record, label, item, selectedRanges, requireHeading = true) {
+  const ranges = selectedRanges ?? (Array.isArray(label.acceptableRanges) && label.acceptableRanges.length > 0
+    ? label.acceptableRanges
+    : [{
+        sourceRef: label.sourceRef ?? record.sourceRef,
+        expectedHeading: label.expectedHeading,
+        startLine: label.expectedStartLine,
+        endLine: label.expectedEndLine,
+      }]);
+  const itemSourceRef = item?.sourceRef ?? item?.handle?.sourceRef ?? record.sourceRef;
+  const candidateStartLine = item?.handle?.startLine;
+  const candidateEndLine = item?.handle?.endLine;
+  return ranges.some((range) => {
+    const expectedHeading = normalizeHeading(range.expectedHeading);
+    const headingMatches = Boolean(expectedHeading && (
+      normalizeHeading(item?.title) === expectedHeading
+        || (Array.isArray(item?.headingPath) && item.headingPath.some((part) => normalizeHeading(part) === expectedHeading))));
+    return range.sourceRef === record.sourceRef
+      && itemSourceRef === range.sourceRef
+      && (!requireHeading || headingMatches)
+      && Number.isInteger(range.startLine)
+      && Number.isInteger(range.endLine)
+      && Number.isInteger(candidateStartLine)
+      && Number.isInteger(candidateEndLine)
+      && candidateStartLine <= range.startLine
+      && candidateEndLine >= range.endLine;
+  });
+}
+
 function matchesAcceptedRange(record, label, item) {
   return matchesRanges(record, label, item);
 }
 
 function matchesRelevantRange(record, label, item) {
   return matchesRanges(record, label, item, label.relevantRanges ?? []);
+}
+
+function containsAcceptedRange(record, label, item) {
+  return containsRanges(record, label, item);
+}
+
+function containsAcceptedLines(record, label, item) {
+  return containsRanges(record, label, item, undefined, false);
+}
+
+function containsRelevantRange(record, label, item) {
+  return containsRanges(record, label, item, label.relevantRanges ?? []);
 }
 
 async function verifyChecksums(requiredFiles) {
@@ -268,7 +309,10 @@ function genericSummary({ manifest, completion, cases, labels, records, checksum
             relevantRanges: [],
             searchTargetFound: null,
             searchExactAcceptedRangeFound: null,
+            searchTargetRangeContainedAt100: null,
+            searchTargetLinesContainedAt100: null,
             searchRelevantRangeFound: null,
+            searchRelevantRangeContainedAt100: null,
             exactFetchPassed: record.fetch?.passed === true,
             pipelineStatus: record.status,
           };
@@ -281,8 +325,14 @@ function genericSummary({ manifest, completion, cases, labels, records, checksum
               && result.headingPath.some((part) => normalizeHeading(part) === expectedHeading)));
         const searchExactAcceptedRangeFound = (record.search?.results ?? [])
           .some((result) => matchesAcceptedRange(record, label, result));
+        const searchTargetRangeContainedAt100 = (record.search?.results ?? [])
+          .some((result) => containsAcceptedRange(record, label, result));
+        const searchTargetLinesContainedAt100 = (record.search?.results ?? [])
+          .some((result) => containsAcceptedLines(record, label, result));
         const searchRelevantRangeFound = (record.search?.results ?? [])
           .some((result) => matchesRelevantRange(record, label, result));
+        const searchRelevantRangeContainedAt100 = (record.search?.results ?? [])
+          .some((result) => containsRelevantRange(record, label, result));
         return {
           caseId: record.caseId,
           sourceRef: record.sourceRef,
@@ -295,7 +345,10 @@ function genericSummary({ manifest, completion, cases, labels, records, checksum
           relevantRanges: label.relevantRanges ?? [],
           searchTargetFound,
           searchExactAcceptedRangeFound,
+          searchTargetRangeContainedAt100,
+          searchTargetLinesContainedAt100,
           searchRelevantRangeFound,
+          searchRelevantRangeContainedAt100,
           decisionStatus,
           decisionCorrect: answerabilityDecisionCorrect,
           answerabilityDecisionCorrect,
@@ -403,9 +456,17 @@ function genericSummary({ manifest, completion, cases, labels, records, checksum
           searchTargetDenominator: answerableLabelScores.length,
           searchExactAcceptedRangeFound: answerableLabelScores.filter((item) => item.searchExactAcceptedRangeFound).length,
           searchExactAcceptedRangeDenominator: answerableLabelScores.length,
+          searchTargetRangeContainedAt100: answerableLabelScores.filter((item) => item.searchTargetRangeContainedAt100).length,
+          searchTargetRangeContainmentDenominator: answerableLabelScores.length,
+          searchTargetLinesContainedAt100: answerableLabelScores.filter((item) => item.searchTargetLinesContainedAt100).length,
+          searchTargetLinesContainmentDenominator: answerableLabelScores.length,
           searchRelevantRangeFound: answerableLabelScores.filter((item) => item.searchRelevantRangeFound).length,
           searchRelevantRangeDenominator: answerableLabelScores.filter((item) => Array.isArray(labelsByCase.get(item.caseId)?.relevantRanges)
             && labelsByCase.get(item.caseId).relevantRanges.length > 0).length,
+          searchRelevantRangeContainedAt100: answerableLabelScores.filter((item) => item.searchRelevantRangeContainedAt100).length,
+          searchRelevantRangeContainmentDenominator: answerableLabelScores.filter((item) => Array.isArray(labelsByCase.get(item.caseId)?.relevantRanges)
+            && labelsByCase.get(item.caseId).relevantRanges.length > 0).length,
+          searchRangeMetricNote: "Range containment requires the same sourceRef and inclusive candidate line bounds that fully contain the labeled range. The heading-constrained variant additionally requires a matching heading/path. These are retrieval coverage metrics, not semantic sufficiency; review fetched text independently.",
           records: labelScores,
         }
       : null,

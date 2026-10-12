@@ -1780,3 +1780,35 @@ showed the tool call; the Codex-local `skill_bootstrap` then emitted the
 trace-linked `skill_loaded` event and cleared the obligation. This supports the
 existing host-boundary handling: use the active trace owner's bootstrap for
 required activation. No product defect or routing-semantic change is inferred.
+
+**Additional evidence (2026-10-12):** During close review of trace
+mssr-codex-3a8fe69c-0903-4ab7-836e-c2c282203e1c, two Bridge bootstraps
+rejected explicit skill decisions for mssr-agent-routing and then
+skill-maintenance-loop as non-root optional candidates. Those decisions had
+not been returned as current optional roots; the first was an invalid attempt
+to host-gate a root skill. Focused Bridge skill_load calls loaded both skills
+successfully, with no routing/runtime edits. This is invalid host input and
+recovery, not evidence of a routing defect. Follow-up: only pass decisions for
+current root optional candidates; if AGENTS requires a skill absent from those
+candidates, load it through the authoritative Bridge skill_load and verify the
+active trace.
+
+**Additional evidence (2026-10-12):** While opening a follow-up persistence
+trace for the Run59 erratum, `skill_route_plan` rejected a request that supplied
+`parentTraceId` without the required stable `taskKey`. The route was retried with
+`taskKey=mssr-run59-report-erratum` and succeeded; no route/runtime change was
+needed. This was caller schema-input friction, not a product defect. Follow-up:
+include a taskKey whenever resuming or superseding a trace by parentTraceId.
+
+**Additional evidence (2026-10-12):** During Run60 metric-report persistence,
+Bridge `skill_route_plan` rejected the active trace
+`mssr-20261012172421-70d73665-b57` because its task identity belonged to an
+earlier continuation. The rejection recurred when a fresh `stage=start` route
+was requested without an explicit trace id, so the Bridge session still
+resolved to that incompatible open trace. A Codex-local MSSR bootstrap created
+and completed the separate Run60 trace and work continued; no benchmark
+artifact or runtime was altered by the rejected calls. Cause is unresolved:
+the evidence does not distinguish intended single-trace continuity from stale
+Bridge session correlation. Follow-up: inspect Bridge trace selection with two
+open tasks and verify that a new task starts a compatible trace or returns an
+actionable explicit handoff requirement.

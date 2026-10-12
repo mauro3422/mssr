@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 1,
+  "suite": "mssr-librarian-spanish-source-holdout-pilot-v1",
+  "runId": "mssr-librarian-spanish-source-holdout-pilot-20261012T161950Z-v1",
+  "createdAt": "2026-10-12T16:22:24Z",
+  "status": "prepared",
+  "parentRunId": "mssr-librarian-run58-bridge-cross-doc-pilot-20261012T153028Z-v1",
+  "source": {
+    "branch": "codex/bridge-0.6.173-activation-readback",
+    "workingTreeClean": true,
+    "bridgeRoot": "D:/Dev/bridge-mcp-mssr-0.2.112-query-variants",
+    "gitCommit": "999a8a218405c02a4f4bf9d408ec44074724f694",
+    "bridgeVersion": "0.6.175",
+    "repository": "Bridge",
+    "codeSnapshotCleanAtFreeze": true,
+    "buildArtifacts": [
+      {
+        "path": "dist/tool-registry.js",
+        "sha256": "670a6cbdec428f7ad0bd6f7a13173c716fd013c3eb87a54d1c9bb38d7f626554"
+      },
+      {
+        "path": "dist/tools/mssr-semantic-evidence-tools.js",
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa"
+      },
+      {
+        "path": "node_modules/@mauroprime/mssr/package.json",
+        "sha256": "9a57998657fb40e8fae0ec44efef08592f6a332c807d15a90792cdd4a27e4ea2"
+      },
+      {
+        "path": "vendor/mauroprime-mssr-0.2.127.tgz",
+        "sha256": "70e79ae6e472517501ffdd38c4b0eaad740652c7d570b600bf17f90023703bfc"
+      },
+      {
+        "path": "scripts/read-windows-credential.ps1",
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e"
+      }
+    ],
+    "bridgeCommit": "999a8a218405c02a4f4bf9d408ec44074724f694",
+    "providerAdapter": "createMssrJevBridgeDecisionProvider from frozen Bridge release build",
+    "mssrVersion": "0.2.127"
+  },
+  "experimentHarness": {
+    "repository": "D:\\Dev\\mssr",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "head": "06f570c344d83e4c114f0857afae2259414b8298",
+    "workingTreeChangedPathCount": 5,
+    "userChangesAtFreeze": [
+      ".mssr/PROJECT_STATE.md",
+      ".mssr/project-context-segments.json",
+      ".mssr/project-context.json",
+      "scripts/test-project-context-loader.mjs"
+    ]
+  },
+  "instrument": {
+    "runnerPath": "runner.mjs",
+    "runnerSha256": "aa46720e8dbc06171cacde0b0997ef3f64b552698a1c4de226701d4a436ae515",
+    "selectionRecordPath": "selection-record.mjs",
+    "selectionRecordSha256": "847a1224278ed09941526aff7d781842a854f21b3007e4e00ae357e84faa5834",
+    "runnerSupportPath": "runner-support.mjs",
+    "runnerSupportSha256": "a9f81dc26050b1f2ea37b2d909580ff0cd02e9af686b39f8642b08f5460215bf",
+    "casesPath": "inputs/cases.json",
+    "casesSha256": "f42cd84b86aae1c5faa859a8299e8e9583f7220b2adf371fdaf9c248ada02862",
+    "lockfileSha256": null,
+    "runtime": "node v24.16.0",
+    "requestSchemaVersion": 1
+  },
+  "corpus": {
+    "snapshotPath": "inputs/sources/",
+    "items": 3,
+    "sourceRevision": "Three exact project HEADs and source file hashes recorded in sources[]",
+    "redaction": "public first-party documentation; no secrets",
+    "sources": [
+      {
+        "sourceId": "ducksugar",
+        "family": "ducksugar",
+        "projectRoot": "D:\\Dev\\ducksugar",
+        "sourceRef": "CHANGELOG.md",
+        "snapshotPath": "inputs/sources/ducksugar-changelog.md",
+        "gitHead": "95df7e77203ad74c6a4d82c1b56857cb20f91ad6",
+        "branch": "main",
+        "workingTreeChangedPathCount": 1,
+        "sha256": "3ac91be7932511f0a32a5b74a1976aff23400142984badad51e457ac9c6b15c7",
+        "targetFileCleanAtFreeze": true,
+        "bytes": 3376
+      },
+      {
+        "sourceId": "incremental-farm",
+        "family": "incremental-farm",
+        "projectRoot": "D:\\Dev\\incremental-farm",
+        "sourceRef": "docs/prototypes/TOMATO_FULL_GROWTH_CYCLE.md",
+        "snapshotPath": "inputs/sources/incremental-farm-tomato-cycle.md",
+        "gitHead": "1eaa5d0262b54784db328b43e2fa9470be8f04ef",
+        "branch": "master",
+        "workingTreeChangedPathCount": 20,
+        "sha256": "581608e0c7670faf5435358c23e92ee0a815c9fc1207175856fb71a2ca3be12f",
+        "targetFileCleanAtFreeze": true,
+        "bytes": 4590
+      },
+      {
+        "sourceId": "zomboid-smartwatch-network",
+        "family": "zomboid-smartwatch-network",
+        "projectRoot": "D:\\Dev\\zomboid-smartwatch-network",
+        "sourceRef": "changelogs/0.2.12.md",
+        "snapshotPath": "inputs/sources/zomboid-changelog-0.2.12.md",
+        "gitHead": "fa943a7196c219c88d06b9530d739f702d7ace5b",
+        "branch": "main",
+        "workingTreeChangedPathCount": 48,
+        "sha256": "e9c74ca0ab540170e5b23e094ce72db692308fb8afbe1be3d34b5b58760260d3",
+        "targetFileCleanAtFreeze": true,
+        "bytes": 7172
+      }
+    ]
+  },
+  "provider": {
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "mode": "live",
+    "networkOptIn": true,
+    "timeoutMs": 30000,
+    "rawVendorResponsePersisted": false,
+    "providerRequestIdsAvailable": "unknown",
+    "concurrency": 1,
+    "requestedModel": "jev-1.13.0",
+    "credentialSource": "Windows Credential Manager; secret value not persisted",
+    "networkOptInMethod": "explicit command-line --allow-network plus user authorization recorded in manifest",
+    "provider": "TypeSafe Jev through Bridge 0.6.175 provider adapter",
+    "endpointIdentity": "api.typesafe.ai/v1/systemone",
+    "maxRetries": 1
+  },
+  "labels": {
+    "source": "independent-review",
+    "frozenAt": "2026-10-12T16:22:24Z",
+    "adjudication": "independent source review; not owner-gold",
+    "labelFile": "inputs/labels.json",
+    "labelFileSha256": "caa9d576bf0257c0e4461e86a9043654c47ee863628f4d33ac14897ea81db147",
+    "exposedToRequests": false
+  },
+  "split": {
+    "method": "frozen-file-content-holdout",
+    "trainIdsSha256": null,
+    "validationIdsSha256": null,
+    "holdoutIdsSha256": "f42cd84b86aae1c5faa859a8299e8e9583f7220b2adf371fdaf9c248ada02862",
+    "holdoutOpenedAt": null,
+    "holdoutUsedForTuning": false,
+    "note": "content-disjoint documents; Zomboid project name/path appeared in three prior handoff copies, so this is not project-blind"
+  },
+  "plan": {
+    "primaryMetric": "Per-case answerable target presence in search and Jev selection of an acceptable range; correct abstention on source-scoped unanswerable controls",
+    "secondaryMetrics": [
+      "exact fetch/fingerprint against frozen source bytes",
+      "evidence-pack exact text and citation integrity",
+      "blind semantic sufficiency and overbreadth",
+      "latency and token usage"
+    ],
+    "thresholds": {},
+    "independentUnit": "sourceRef cluster; 3 clusters only",
+    "expectedRequestCount": 6,
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30
+    },
+    "uncertaintyMethod": "none; report descriptive case counts only because support floor is not met"
+  },
+  "runFiles": {
+    "frozenSourceSnapshots": [
+      {
+        "path": "inputs/sources/ducksugar-changelog.md",
+        "sha256": "3ac91be7932511f0a32a5b74a1976aff23400142984badad51e457ac9c6b15c7"
+      },
+      {
+        "path": "inputs/sources/incremental-farm-tomato-cycle.md",
+        "sha256": "581608e0c7670faf5435358c23e92ee0a815c9fc1207175856fb71a2ca3be12f"
+      },
+      {
+        "path": "inputs/sources/zomboid-changelog-0.2.12.md",
+        "sha256": "e9c74ca0ab540170e5b23e094ce72db692308fb8afbe1be3d34b5b58760260d3"
+      }
+    ]
+  },
+  "authorization": "User has explicitly authorized real Jev calls for these MSSR/Librarian calibration experiments in the active conversation history; live calls are limited to this frozen packet."
+}

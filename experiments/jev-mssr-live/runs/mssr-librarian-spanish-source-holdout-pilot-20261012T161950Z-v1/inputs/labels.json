@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "source": "Two independent Luna source reviews, query-author review, no repository-owner adjudication; source-scoped labels.",
+  "adjudication": "Independent source-based review before Jev calls. All unanswerable labels mean not stated in this exact source, not absent from the whole project.",
+  "exposedToRequests": false,
+  "cases": [
+    {
+      "caseId": "ducksugar-tc03-es",
+      "sourceRef": "CHANGELOG.md",
+      "answerability": "answerable",
+      "expectedHeading": "Changed",
+      "expectedStartLine": 29,
+      "expectedEndLine": 29,
+      "acceptableRanges": [
+        {
+          "sourceRef": "CHANGELOG.md",
+          "expectedHeading": "Changed",
+          "startLine": 29,
+          "endLine": 29
+        }
+      ],
+      "relevantRanges": [
+        {
+          "sourceRef": "CHANGELOG.md",
+          "expectedHeading": "Changed",
+          "startLine": 29,
+          "endLine": 29
+        }
+      ],
+      "concept": "tc-03 note-list reconstruction behavior",
+      "allowedEquivalent": "State that note-list reconstruction uses IDE-context identifiers rather than a global dictionary."
+    },
+    {
+      "caseId": "ducksugar-wer-negative-es",
+      "sourceRef": "CHANGELOG.md",
+      "answerability": "unanswerable",
+      "concept": "WER percentage for tc-03",
+      "allowedEquivalent": "Must abstain or say the exact changelog does not report a WER percentage; do not invent a benchmark improvement."
+    },
+    {
+      "caseId": "farm-flowering-range-es",
+      "sourceRef": "docs/prototypes/TOMATO_FULL_GROWTH_CYCLE.md",
+      "answerability": "answerable",
+      "expectedHeading": "Phase contract",
+      "expectedStartLine": 18,
+      "expectedEndLine": 24,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/prototypes/TOMATO_FULL_GROWTH_CYCLE.md",
+          "expectedHeading": "Phase contract",
+          "startLine": 18,
+          "endLine": 24
+        }
+      ],
+      "relevantRanges": [
+        {
+          "sourceRef": "docs/prototypes/TOMATO_FULL_GROWTH_CYCLE.md",
+          "expectedHeading": "Phase contract",
+          "startLine": 18,
+          "endLine": 24
+        }
+      ],
+      "concept": "normalized growth progress interval for flowering",
+      "allowedEquivalent": "Identify 0.62–0.74 as FLORACIÓN/flowering."
+    },
+    {
+      "caseId": "farm-real-days-negative-es",
+      "sourceRef": "docs/prototypes/TOMATO_FULL_GROWTH_CYCLE.md",
+      "answerability": "unanswerable",
+      "concept": "real-world duration of vegetative growth",
+      "allowedEquivalent": "Must not convert normalized game progress into real-world days; the document says these ranges are not real-world tomato chronology."
+    },
+    {
+      "caseId": "zomboid-watch-loss-result-es",
+      "sourceRef": "changelogs/0.2.12.md",
+      "answerability": "answerable",
+      "expectedHeading": "Runtime acceptance",
+      "expectedStartLine": 36,
+      "expectedEndLine": 39,
+      "acceptableRanges": [
+        {
+          "sourceRef": "changelogs/0.2.12.md",
+          "expectedHeading": "Runtime acceptance",
+          "startLine": 36,
+          "endLine": 39
+        }
+      ],
+      "relevantRanges": [
+        {
+          "sourceRef": "changelogs/0.2.12.md",
+          "expectedHeading": "Runtime acceptance",
+          "startLine": 36,
+          "endLine": 39
+        }
+      ],
+      "concept": "watch-loss acceptance behavior and server disconnect",
+      "allowedEquivalent": "Report client disconnected with zero members and server received disconnect; mention local projection only if supported by the selected text."
+    },
+    {
+      "caseId": "zomboid-tick-latency-negative-es",
+      "sourceRef": "changelogs/0.2.12.md",
+      "answerability": "unanswerable",
+      "concept": "measured server tick latency saved by immediate GPS cleanup",
+      "allowedEquivalent": "Must abstain or say no latency measurement is reported in this changelog; do not treat the separate broader baseline as the watch-loss test."
+    }
+  ]
+}

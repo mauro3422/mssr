@@ -1,0 +1,185 @@
+{
+  "createdAt": "2026-10-12T17:25:00Z",
+  "corpus": {
+    "projectClusters": 5,
+    "sourceRevision": "Exact file SHA-256 plus source repository HEAD and branch recorded per source",
+    "snapshotPath": "inputs/sources/",
+    "redaction": "Public first-party project documentation; no secret-bearing files",
+    "items": 6,
+    "sources": [
+      {
+        "family": "gitteach",
+        "workingTreeChangedPathCount": 44,
+        "branch": "main",
+        "bytes": 10666,
+        "targetFileCleanAtFreeze": true,
+        "gitHead": "45190cdec0511433016253a03582da3c7daa7264",
+        "sourceId": "gitteach",
+        "sourceRef": "docs/EXPERIENCE_ATTRIBUTION.md",
+        "snapshotPath": "inputs/sources/gitteach-experience-attribution.md",
+        "projectRoot": "D:\\Dev\\GitTeach",
+        "sha256": "2bba00d5672f2f1d7e7dddcc8e523557c43ba5f987fe924f1e5ea5282e268fcd"
+      },
+      {
+        "family": "tabletwhiteboard",
+        "workingTreeChangedPathCount": 20,
+        "branch": "main",
+        "bytes": 9590,
+        "targetFileCleanAtFreeze": true,
+        "gitHead": "87d843e632d78f218667dce9943c77852b75da1c",
+        "sourceId": "tabletwhiteboard",
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "snapshotPath": "inputs/sources/tabletwhiteboard-architecture.md",
+        "projectRoot": "D:\\Dev\\TabletWhiteboard",
+        "sha256": "5487d1f78906e8a5e33df5b57c15175de28f13f0a6ff16129b2bb04409ac555b"
+      },
+      {
+        "family": "motorgrafico",
+        "workingTreeChangedPathCount": 1,
+        "branch": "main",
+        "bytes": 21336,
+        "targetFileCleanAtFreeze": true,
+        "gitHead": "eab93f5baab26cee918404fd666bf27acc7e3325",
+        "sourceId": "motorgrafico-input",
+        "sourceRef": "docs/INPUT_SYSTEM_SPEC.md",
+        "snapshotPath": "inputs/sources/motorgrafico-input-system.md",
+        "projectRoot": "D:\\Dev\\MotorGrafico",
+        "sha256": "a3d6e33545a3fd17d63407f2b4dc15598977547e79e34125d534dd22a2474687"
+      },
+      {
+        "family": "motorgrafico",
+        "workingTreeChangedPathCount": 1,
+        "branch": "main",
+        "bytes": 18374,
+        "targetFileCleanAtFreeze": true,
+        "gitHead": "eab93f5baab26cee918404fd666bf27acc7e3325",
+        "sourceId": "motorgrafico-layout",
+        "sourceRef": "docs/LAYOUT_VIEWPORT_SPEC.md",
+        "snapshotPath": "inputs/sources/motorgrafico-layout-viewport.md",
+        "projectRoot": "D:\\Dev\\MotorGrafico",
+        "sha256": "36c4b728539c641f7c4d47bbf6dd12a8459cf53bf3aea1d514baa33d2a06e921"
+      },
+      {
+        "family": "neopse",
+        "workingTreeChangedPathCount": 1,
+        "branch": "main",
+        "bytes": 4844,
+        "targetFileCleanAtFreeze": true,
+        "gitHead": "70fde3cc146a0aa564eff7d2ccaedcf6a577affc",
+        "sourceId": "neopse-v070",
+        "sourceRef": "CHANGELOG.md",
+        "snapshotPath": "inputs/sources/neopse-changelog.md",
+        "projectRoot": "D:\\Dev\\NeoPSE",
+        "sha256": "0cf930718c55c4cda231272f6c0632e789eb5cfece3a6048d2274877431b0711"
+      },
+      {
+        "family": "maestro-agua",
+        "workingTreeChangedPathCount": 54,
+        "branch": "main",
+        "bytes": 4226,
+        "targetFileCleanAtFreeze": true,
+        "gitHead": "abb813898ca26f03b246e9272e0a4e185a52f59f",
+        "sourceId": "maestroagua-v020",
+        "sourceRef": "changelogs/v0.2.0.md",
+        "snapshotPath": "inputs/sources/maestroagua-v020.md",
+        "projectRoot": "D:\\Dev\\maestro-agua",
+        "sha256": "702761c395d564599bfaa394a11e4166f6989d451d3608558d007b52bf1483be"
+      }
+    ],
+    "holdoutStatus": "Fresh source-disjoint candidate cohort; exposure audit limited to local historical run ledger; not certified holdout."
+  },
+  "instrument": {
+    "casesSha256": "643937b3b9e8a7b08d2dde260bf925fdd1d12708cde4dd81c294916b965ce2bb",
+    "lockfileSha256": null,
+    "runnerPath": "runner.mjs",
+    "runnerSha256": "62dcc8de3196a8cce287f5b5e27ae967aa817ddd81d6fa6fba2ceaf379384429",
+    "runnerSupportSha256": "a9f81dc26050b1f2ea37b2d909580ff0cd02e9af686b39f8642b08f5460215bf",
+    "runtime": "v24.16.0",
+    "casesPath": "inputs/cases.json",
+    "selectionRecordPath": "selection-record.mjs",
+    "runnerSupportPath": "runner-support.mjs",
+    "selectionRecordSha256": "847a1224278ed09941526aff7d781842a854f21b3007e4e00ae357e84faa5834",
+    "requestSchemaVersion": 1
+  },
+  "labels": {
+    "labelFile": "inputs/labels.json",
+    "source": "independent-review",
+    "adjudication": "independent source review; not owner-gold",
+    "exposedToRequests": false,
+    "labelFileSha256": "ab6d23f4f0077666f08565f048d6071b580b1b3680c1be90a79947260ece20ba",
+    "frozenAt": "2026-10-12T17:30:09Z"
+  },
+  "schemaVersion": 1,
+  "status": "prepared",
+  "runId": "mssr-librarian-run60-fresh-crossproject-bilingual-20261012T1725Z-v1",
+  "provider": {
+    "networkOptInMethod": "explicit command-line --allow-network plus user authorization recorded in manifest",
+    "mode": "live",
+    "maxRetries": 1,
+    "sdk": "@typesafe-ai/sdk@0.6.0",
+    "rawVendorResponsePersisted": false,
+    "providerRequestIdsAvailable": "unknown",
+    "concurrency": 1,
+    "provider": "TypeSafe Jev through Bridge 0.6.175 provider adapter",
+    "credentialSource": "Windows Credential Manager; secret value not persisted",
+    "requestedModel": "jev-1.13.0",
+    "timeoutMs": 30000,
+    "endpointIdentity": "api.typesafe.ai/v1/systemone",
+    "networkOptIn": true
+  },
+  "plan": {
+    "pairDesign": "2 query arms x 6 positive concepts plus 2 arms x 6 source-scoped negative controls",
+    "secondaryMetrics": [
+      "exact selected range completeness versus analyst labels",
+      "exact fetch/fingerprint against frozen source bytes",
+      "evidence-pack exact text and citation integrity",
+      "blind semantic sufficiency and overbreadth",
+      "raw Choice confidence and Noul as uncalibrated descriptive values",
+      "latency and token usage"
+    ],
+    "uncertaintyMethod": "none; report descriptive case counts only because support floor is not met",
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30
+    },
+    "independentUnit": "Six source-backed concepts in five project clusters; each Spanish/bilingual pair is repeated measurement, not two independent samples.",
+    "thresholds": {},
+    "primaryMetric": "Paired, per-concept target presence in source-scoped search and Jev selection of a source-supported range; correct abstention on source-scoped unanswerable controls.",
+    "expectedRequestCount": 24
+  },
+  "goal": "Measure paired Spanish-only versus Spanish-plus-English retrieval and Jev decisions on a fresh real-document candidate cohort.",
+  "source": {
+    "codeSnapshotCleanAtFreeze": true,
+    "mssrVersion": "0.2.127",
+    "bridgeCommit": "999a8a218405c02a4f4bf9d408ec44074724f694",
+    "bridgeRoot": "D:\\Dev\\bridge-mcp-mssr-0.2.112-query-variants",
+    "buildArtifacts": [
+      {
+        "sha256": "670a6cbdec428f7ad0bd6f7a13173c716fd013c3eb87a54d1c9bb38d7f626554",
+        "path": "dist/tool-registry.js"
+      },
+      {
+        "sha256": "fbed1c7f1614a1b3c46f379187781d81669e7b355ac043696e055c879055f8aa",
+        "path": "dist/tools/mssr-semantic-evidence-tools.js"
+      },
+      {
+        "sha256": "9a57998657fb40e8fae0ec44efef08592f6a332c807d15a90792cdd4a27e4ea2",
+        "path": "node_modules/@mauroprime/mssr/package.json"
+      },
+      {
+        "sha256": "70e79ae6e472517501ffdd38c4b0eaad740652c7d570b600bf17f90023703bfc",
+        "path": "vendor/mauroprime-mssr-0.2.127.tgz"
+      },
+      {
+        "sha256": "bdbf6b2ec99cc37e3663fe9287d15ca6406fe05630662ec53b379e31fc550c8e",
+        "path": "scripts/read-windows-credential.ps1"
+      }
+    ],
+    "bridgeVersion": "0.6.175",
+    "workingTreeClean": true,
+    "gitCommit": "999a8a218405c02a4f4bf9d408ec44074724f694",
+    "branch": "codex/bridge-0.6.173-activation-readback",
+    "repository": "Bridge",
+    "providerAdapter": "createMssrJevBridgeDecisionProvider from frozen Bridge release build"
+  }
+}

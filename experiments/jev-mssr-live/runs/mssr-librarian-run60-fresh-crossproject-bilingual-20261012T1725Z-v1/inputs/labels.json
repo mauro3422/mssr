@@ -1,0 +1,405 @@
+{
+  "exposedToRequests": false,
+  "cases": [
+    {
+      "caseId": "gitteach-positive-es",
+      "expectedHeading": "3. Actor linkage — who is connected to the work",
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/EXPERIENCE_ATTRIBUTION.md",
+          "expectedHeading": "3. Actor linkage — who is connected to the work",
+          "startLine": 42,
+          "endLine": 42
+        }
+      ],
+      "concept": "identity-linked attribution versus proof of manual authorship",
+      "expectedStartLine": 42,
+      "answerability": "answerable",
+      "sourceRef": "docs/EXPERIENCE_ATTRIBUTION.md",
+      "relevantRanges": [
+        {
+          "sourceRef": "docs/EXPERIENCE_ATTRIBUTION.md",
+          "expectedHeading": "3. Actor linkage — who is connected to the work",
+          "startLine": 42,
+          "endLine": 42
+        }
+      ],
+      "allowedEquivalent": "Identity-linked means Git/review identity is associated with the change, but manual authorship is not established.",
+      "expectedEndLine": 42
+    },
+    {
+      "caseId": "gitteach-positive-es-en",
+      "expectedHeading": "3. Actor linkage — who is connected to the work",
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/EXPERIENCE_ATTRIBUTION.md",
+          "expectedHeading": "3. Actor linkage — who is connected to the work",
+          "startLine": 42,
+          "endLine": 42
+        }
+      ],
+      "concept": "identity-linked attribution versus proof of manual authorship",
+      "expectedStartLine": 42,
+      "answerability": "answerable",
+      "sourceRef": "docs/EXPERIENCE_ATTRIBUTION.md",
+      "relevantRanges": [
+        {
+          "sourceRef": "docs/EXPERIENCE_ATTRIBUTION.md",
+          "expectedHeading": "3. Actor linkage — who is connected to the work",
+          "startLine": 42,
+          "endLine": 42
+        }
+      ],
+      "allowedEquivalent": "Identity-linked means Git/review identity is associated with the change, but manual authorship is not established.",
+      "expectedEndLine": 42
+    },
+    {
+      "caseId": "gitteach-negative-es",
+      "allowedEquivalent": "The source does not state a minimum percentage of personally written code.",
+      "sourceRef": "docs/EXPERIENCE_ATTRIBUTION.md",
+      "concept": "minimum personal-authorship percentage",
+      "answerability": "unanswerable"
+    },
+    {
+      "caseId": "gitteach-negative-es-en",
+      "allowedEquivalent": "The source does not state a minimum percentage of personally written code.",
+      "sourceRef": "docs/EXPERIENCE_ATTRIBUTION.md",
+      "concept": "minimum personal-authorship percentage",
+      "answerability": "unanswerable"
+    },
+    {
+      "caseId": "tabletwhiteboard-positive-es",
+      "expectedHeading": "Flujo de una operación",
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "expectedHeading": "Flujo de una operación",
+          "startLine": 27,
+          "endLine": 27
+        }
+      ],
+      "concept": "reconnection handling for pending operations and queue",
+      "expectedStartLine": 27,
+      "answerability": "answerable",
+      "sourceRef": "docs/ARCHITECTURE.md",
+      "relevantRanges": [
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "expectedHeading": "Flujo de una operación",
+          "startLine": 27,
+          "endLine": 27
+        }
+      ],
+      "allowedEquivalent": "On reconnect, only pending operations whose boardId matches the active board are overlaid, and then the entire queue is resent.",
+      "expectedEndLine": 27
+    },
+    {
+      "caseId": "tabletwhiteboard-positive-es-en",
+      "expectedHeading": "Flujo de una operación",
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "expectedHeading": "Flujo de una operación",
+          "startLine": 27,
+          "endLine": 27
+        }
+      ],
+      "concept": "reconnection handling for pending operations and queue",
+      "expectedStartLine": 27,
+      "answerability": "answerable",
+      "sourceRef": "docs/ARCHITECTURE.md",
+      "relevantRanges": [
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "expectedHeading": "Flujo de una operación",
+          "startLine": 27,
+          "endLine": 27
+        }
+      ],
+      "allowedEquivalent": "On reconnect, only pending operations whose boardId matches the active board are overlaid, and then the entire queue is resent.",
+      "expectedEndLine": 27
+    },
+    {
+      "caseId": "tabletwhiteboard-negative-es",
+      "allowedEquivalent": "The architecture does not specify a maximum offline queue length.",
+      "sourceRef": "docs/ARCHITECTURE.md",
+      "concept": "maximum offline queue length",
+      "answerability": "unanswerable"
+    },
+    {
+      "caseId": "tabletwhiteboard-negative-es-en",
+      "allowedEquivalent": "The architecture does not specify a maximum offline queue length.",
+      "sourceRef": "docs/ARCHITECTURE.md",
+      "concept": "maximum offline queue length",
+      "answerability": "unanswerable"
+    },
+    {
+      "caseId": "motorgrafico-input-positive-es",
+      "expectedHeading": "1.1 Input Context",
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/INPUT_SYSTEM_SPEC.md",
+          "expectedHeading": "1.1 Input Context",
+          "startLine": 19,
+          "endLine": 26
+        }
+      ],
+      "concept": "default input context and defined contexts",
+      "expectedStartLine": 19,
+      "answerability": "answerable",
+      "sourceRef": "docs/INPUT_SYSTEM_SPEC.md",
+      "relevantRanges": [
+        {
+          "sourceRef": "docs/INPUT_SYSTEM_SPEC.md",
+          "expectedHeading": "1.1 Input Context",
+          "startLine": 19,
+          "endLine": 26
+        }
+      ],
+      "allowedEquivalent": "ViewMode is the default context; the enum also defines ObjectMode, EditMode, and PaintMode.",
+      "expectedEndLine": 26
+    },
+    {
+      "caseId": "motorgrafico-input-positive-es-en",
+      "expectedHeading": "1.1 Input Context",
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/INPUT_SYSTEM_SPEC.md",
+          "expectedHeading": "1.1 Input Context",
+          "startLine": 19,
+          "endLine": 26
+        }
+      ],
+      "concept": "default input context and defined contexts",
+      "expectedStartLine": 19,
+      "answerability": "answerable",
+      "sourceRef": "docs/INPUT_SYSTEM_SPEC.md",
+      "relevantRanges": [
+        {
+          "sourceRef": "docs/INPUT_SYSTEM_SPEC.md",
+          "expectedHeading": "1.1 Input Context",
+          "startLine": 19,
+          "endLine": 26
+        }
+      ],
+      "allowedEquivalent": "ViewMode is the default context; the enum also defines ObjectMode, EditMode, and PaintMode.",
+      "expectedEndLine": 26
+    },
+    {
+      "caseId": "motorgrafico-input-negative-es",
+      "allowedEquivalent": "The specification does not state a required polling frequency.",
+      "sourceRef": "docs/INPUT_SYSTEM_SPEC.md",
+      "concept": "required input polling frequency",
+      "answerability": "unanswerable"
+    },
+    {
+      "caseId": "motorgrafico-input-negative-es-en",
+      "allowedEquivalent": "The specification does not state a required polling frequency.",
+      "sourceRef": "docs/INPUT_SYSTEM_SPEC.md",
+      "concept": "required input polling frequency",
+      "answerability": "unanswerable"
+    },
+    {
+      "caseId": "motorgrafico-layout-positive-es",
+      "expectedHeading": "1.1 Layout Node",
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/LAYOUT_VIEWPORT_SPEC.md",
+          "expectedHeading": "1.1 Layout Node",
+          "startLine": 19,
+          "endLine": 29
+        }
+      ],
+      "concept": "LayoutNode variants and split-axis mapping",
+      "expectedStartLine": 19,
+      "answerability": "answerable",
+      "sourceRef": "docs/LAYOUT_VIEWPORT_SPEC.md",
+      "relevantRanges": [
+        {
+          "sourceRef": "docs/LAYOUT_VIEWPORT_SPEC.md",
+          "expectedHeading": "1.1 Layout Node",
+          "startLine": 19,
+          "endLine": 29
+        }
+      ],
+      "allowedEquivalent": "LayoutNode consists of Panel, Split, Floating, and Viewport; Horizontal maps left/right and Vertical maps top/bottom.",
+      "expectedEndLine": 29
+    },
+    {
+      "caseId": "motorgrafico-layout-positive-es-en",
+      "expectedHeading": "1.1 Layout Node",
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/LAYOUT_VIEWPORT_SPEC.md",
+          "expectedHeading": "1.1 Layout Node",
+          "startLine": 19,
+          "endLine": 29
+        }
+      ],
+      "concept": "LayoutNode variants and split-axis mapping",
+      "expectedStartLine": 19,
+      "answerability": "answerable",
+      "sourceRef": "docs/LAYOUT_VIEWPORT_SPEC.md",
+      "relevantRanges": [
+        {
+          "sourceRef": "docs/LAYOUT_VIEWPORT_SPEC.md",
+          "expectedHeading": "1.1 Layout Node",
+          "startLine": 19,
+          "endLine": 29
+        }
+      ],
+      "allowedEquivalent": "LayoutNode consists of Panel, Split, Floating, and Viewport; Horizontal maps left/right and Vertical maps top/bottom.",
+      "expectedEndLine": 29
+    },
+    {
+      "caseId": "motorgrafico-layout-negative-es",
+      "allowedEquivalent": "The specification does not state a maximum number of simultaneous viewports.",
+      "sourceRef": "docs/LAYOUT_VIEWPORT_SPEC.md",
+      "concept": "maximum simultaneous viewport count",
+      "answerability": "unanswerable"
+    },
+    {
+      "caseId": "motorgrafico-layout-negative-es-en",
+      "allowedEquivalent": "The specification does not state a maximum number of simultaneous viewports.",
+      "sourceRef": "docs/LAYOUT_VIEWPORT_SPEC.md",
+      "concept": "maximum simultaneous viewport count",
+      "answerability": "unanswerable"
+    },
+    {
+      "caseId": "neopse-v070-positive-es",
+      "expectedHeading": "[v0.7.0] - 2026-04-25",
+      "acceptableRanges": [
+        {
+          "sourceRef": "CHANGELOG.md",
+          "expectedHeading": "[v0.7.0] - 2026-04-25",
+          "startLine": 22,
+          "endLine": 23
+        }
+      ],
+      "concept": "background-click deselection and keyboard deletion safeguard",
+      "expectedStartLine": 22,
+      "answerability": "answerable",
+      "sourceRef": "CHANGELOG.md",
+      "relevantRanges": [
+        {
+          "sourceRef": "CHANGELOG.md",
+          "expectedHeading": "[v0.7.0] - 2026-04-25",
+          "startLine": 22,
+          "endLine": 23
+        }
+      ],
+      "allowedEquivalent": "Clicking the background clears the current selection; Delete/Backspace deletion includes anti-typing safety.",
+      "expectedEndLine": 23
+    },
+    {
+      "caseId": "neopse-v070-positive-es-en",
+      "expectedHeading": "[v0.7.0] - 2026-04-25",
+      "acceptableRanges": [
+        {
+          "sourceRef": "CHANGELOG.md",
+          "expectedHeading": "[v0.7.0] - 2026-04-25",
+          "startLine": 22,
+          "endLine": 23
+        }
+      ],
+      "concept": "background-click deselection and keyboard deletion safeguard",
+      "expectedStartLine": 22,
+      "answerability": "answerable",
+      "sourceRef": "CHANGELOG.md",
+      "relevantRanges": [
+        {
+          "sourceRef": "CHANGELOG.md",
+          "expectedHeading": "[v0.7.0] - 2026-04-25",
+          "startLine": 22,
+          "endLine": 23
+        }
+      ],
+      "allowedEquivalent": "Clicking the background clears the current selection; Delete/Backspace deletion includes anti-typing safety.",
+      "expectedEndLine": 23
+    },
+    {
+      "caseId": "neopse-v070-negative-es",
+      "allowedEquivalent": "The changelog does not state a participant count for hitbox testing.",
+      "sourceRef": "CHANGELOG.md",
+      "concept": "number of users in hitbox testing",
+      "answerability": "unanswerable"
+    },
+    {
+      "caseId": "neopse-v070-negative-es-en",
+      "allowedEquivalent": "The changelog does not state a participant count for hitbox testing.",
+      "sourceRef": "CHANGELOG.md",
+      "concept": "number of users in hitbox testing",
+      "answerability": "unanswerable"
+    },
+    {
+      "caseId": "maestroagua-v020-positive-es",
+      "expectedHeading": "Verificación",
+      "acceptableRanges": [
+        {
+          "sourceRef": "changelogs/v0.2.0.md",
+          "expectedHeading": "Verificación",
+          "startLine": 46,
+          "endLine": 48
+        }
+      ],
+      "concept": "release QA result, conserved water and wall impacts",
+      "expectedStartLine": 46,
+      "answerability": "answerable",
+      "sourceRef": "changelogs/v0.2.0.md",
+      "relevantRanges": [
+        {
+          "sourceRef": "changelogs/v0.2.0.md",
+          "expectedHeading": "Verificación",
+          "startLine": 46,
+          "endLine": 48
+        }
+      ],
+      "allowedEquivalent": "The release records QA 34/34 PASS in 900 frames, 12.0 conserved water units, and one launch with 12 wall impacts.",
+      "expectedEndLine": 48
+    },
+    {
+      "caseId": "maestroagua-v020-positive-es-en",
+      "expectedHeading": "Verificación",
+      "acceptableRanges": [
+        {
+          "sourceRef": "changelogs/v0.2.0.md",
+          "expectedHeading": "Verificación",
+          "startLine": 46,
+          "endLine": 48
+        }
+      ],
+      "concept": "release QA result, conserved water and wall impacts",
+      "expectedStartLine": 46,
+      "answerability": "answerable",
+      "sourceRef": "changelogs/v0.2.0.md",
+      "relevantRanges": [
+        {
+          "sourceRef": "changelogs/v0.2.0.md",
+          "expectedHeading": "Verificación",
+          "startLine": 46,
+          "endLine": 48
+        }
+      ],
+      "allowedEquivalent": "The release records QA 34/34 PASS in 900 frames, 12.0 conserved water units, and one launch with 12 wall impacts.",
+      "expectedEndLine": 48
+    },
+    {
+      "caseId": "maestroagua-v020-negative-es",
+      "allowedEquivalent": "The release notes do not identify a GPU model for QA.",
+      "sourceRef": "changelogs/v0.2.0.md",
+      "concept": "GPU model used for release QA",
+      "answerability": "unanswerable"
+    },
+    {
+      "caseId": "maestroagua-v020-negative-es-en",
+      "allowedEquivalent": "The release notes do not identify a GPU model for QA.",
+      "sourceRef": "changelogs/v0.2.0.md",
+      "concept": "GPU model used for release QA",
+      "answerability": "unanswerable"
+    }
+  ],
+  "source": "Two independent Luna source reviews plus exact-source query author review; no repository-owner adjudication; source-scoped labels.",
+  "adjudication": "Fresh candidate cohort; source-derived analyst labels, independently reviewed but not owner-gold. Unanswerable means absent from this exact frozen file, not absent from the full project.",
+  "schemaVersion": 1,
+  "bilingualDesign": "Paired Spanish-only and Spanish-plus-English query arms per answerability concept; the two arms are repeated measurements, not independent samples."
+}

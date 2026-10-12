@@ -294,6 +294,9 @@ const scored = records.map((record) => {
       relevantRangeMatch: null,
       targetInSearchTop100: null,
       relevantTargetInSearchTop100: null,
+      targetRangeContainedInSearchTop100: null,
+      targetLinesContainedInSearchTop100: null,
+      relevantRangeContainedInSearchTop100: null,
       exactFetchPassed: Boolean(record.fetch?.passed),
       evidencePackBuilt: record.evidencePack?.passed === true,
       status: record.status,
@@ -320,10 +323,31 @@ const scored = records.map((record) => {
       || (item?.handle?.startLine === range.startLine && item?.handle?.endLine === range.endLine);
     return sourceMatches && headingMatches && lineRangeMatches;
   });
+  const containsRanges = (item, ranges, requireHeading = true) => ranges.some((range) => {
+    const expectedHeading = normalizeHeading(range.expectedHeading);
+    const actualSourceRef = item?.sourceRef ?? item?.handle?.sourceRef;
+    const sourceMatches = range.sourceRef === record.sourceRef
+      && (!actualSourceRef || actualSourceRef === range.sourceRef);
+    const headingMatches = Boolean(expectedHeading && (
+      normalizeHeading(item?.title) === expectedHeading
+        || (Array.isArray(item?.headingPath) && item.headingPath.some((part) => normalizeHeading(part) === expectedHeading))));
+    const candidateStartLine = item?.handle?.startLine;
+    const candidateEndLine = item?.handle?.endLine;
+    const containsLabeledLines = Number.isInteger(range.startLine)
+      && Number.isInteger(range.endLine)
+      && Number.isInteger(candidateStartLine)
+      && Number.isInteger(candidateEndLine)
+      && candidateStartLine <= range.startLine
+      && candidateEndLine >= range.endLine;
+    return sourceMatches && (!requireHeading || headingMatches) && containsLabeledLines;
+  });
   const exactAcceptedRangeMatch = Boolean(decisionStatus === "selected" && matchesRanges(selected, acceptedRanges));
   const relevantRangeMatch = Boolean(decisionStatus === "selected" && matchesRanges(selected, relevantRanges));
   const targetInSearchTop100 = Boolean(record.search?.results?.some((item) => matchesRanges(item, acceptedRanges)));
   const relevantTargetInSearchTop100 = Boolean(record.search?.results?.some((item) => matchesRanges(item, relevantRanges)));
+  const targetRangeContainedInSearchTop100 = Boolean(record.search?.results?.some((item) => containsRanges(item, acceptedRanges)));
+  const targetLinesContainedInSearchTop100 = Boolean(record.search?.results?.some((item) => containsRanges(item, acceptedRanges, false)));
+  const relevantRangeContainedInSearchTop100 = Boolean(record.search?.results?.some((item) => containsRanges(item, relevantRanges)));
   answerabilityDecisionCorrect = decisionStatus === "failed-or-unknown"
     ? null
     : decisionStatus === "selected";
@@ -363,6 +387,9 @@ const scored = records.map((record) => {
     rangeSelectionAssessment,
     targetInSearchTop100,
     relevantTargetInSearchTop100,
+    targetRangeContainedInSearchTop100,
+    targetLinesContainedInSearchTop100,
+    relevantRangeContainedInSearchTop100,
     exactFetchPassed: Boolean(record.fetch?.passed),
     evidencePackBuilt: record.evidencePack?.passed === true,
     status: record.status,
@@ -389,8 +416,19 @@ const summary = {
   exactHeadingDenominator: answerableScores.length,
   searchTargetRecallAt100: answerableScores.filter((item) => item.targetInSearchTop100).length,
   searchTargetRecallAt100Denominator: answerableScores.length,
+  // Backwards-compatible historical key: this is exact range equality, not range containment.
+  searchTargetRecallAt100Semantics: "LEGACY strict equality: matching source, heading and exact labeled start/end lines; use the explicit searchExactLabeledRangeAt100 or searchTargetRangeContainedAt100 fields.",
+  searchExactLabeledRangeAt100: answerableScores.filter((item) => item.targetInSearchTop100).length,
+  searchExactLabeledRangeDenominator: answerableScores.length,
+  searchTargetRangeContainedAt100: answerableScores.filter((item) => item.targetRangeContainedInSearchTop100).length,
+  searchTargetRangeContainmentDenominator: answerableScores.length,
+  searchTargetLinesContainedAt100: answerableScores.filter((item) => item.targetLinesContainedInSearchTop100).length,
+  searchTargetLinesContainmentDenominator: answerableScores.length,
   searchRelevantRangeFound: answerableScores.filter((item) => item.relevantTargetInSearchTop100).length,
   searchRelevantRangeDenominator: answerableScores.filter((item) => item.relevantRanges.length > 0).length,
+  searchRelevantRangeContainedAt100: answerableScores.filter((item) => item.relevantRangeContainedInSearchTop100).length,
+  searchRelevantRangeContainmentDenominator: answerableScores.filter((item) => item.relevantRanges.length > 0).length,
+  searchRangeMetricNote: "Range containment requires the same sourceRef and inclusive candidate line bounds that fully contain the labeled range. The heading-constrained variant additionally requires a matching heading/path. These are retrieval coverage metrics, not semantic sufficiency; review fetched text independently.",
   answerabilityMetrics: {
     answerable: {
       cases: answerableScores.length,

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "id": "ducksugar-tc03-es",
+      "sourceRef": "CHANGELOG.md",
+      "language": "es",
+      "query": "¿Qué comportamiento cambió en tc-03 para reconstruir la lista de notas?"
+    },
+    {
+      "id": "ducksugar-wer-negative-es",
+      "sourceRef": "CHANGELOG.md",
+      "language": "es",
+      "query": "¿Qué reducción porcentual del WER midió tc-03 en el benchmark?"
+    },
+    {
+      "id": "farm-flowering-range-es",
+      "sourceRef": "docs/prototypes/TOMATO_FULL_GROWTH_CYCLE.md",
+      "language": "es",
+      "query": "¿Qué fase del crecimiento del tomate corresponde al progreso 0.62–0.74?"
+    },
+    {
+      "id": "farm-real-days-negative-es",
+      "sourceRef": "docs/prototypes/TOMATO_FULL_GROWTH_CYCLE.md",
+      "language": "es",
+      "query": "¿Cuántos días reales dura la fase vegetativa del tomate?"
+    },
+    {
+      "id": "zomboid-watch-loss-result-es",
+      "sourceRef": "changelogs/0.2.12.md",
+      "language": "es",
+      "query": "En la aceptación de pérdida del reloj, ¿qué resultado se observó en el cliente y qué comando recibió el servidor?"
+    },
+    {
+      "id": "zomboid-tick-latency-negative-es",
+      "sourceRef": "changelogs/0.2.12.md",
+      "language": "es",
+      "query": "¿Cuántos milisegundos de latencia del tick del servidor se ahorraron al limpiar el GPS durante esa prueba?"
+    }
+  ]
+}

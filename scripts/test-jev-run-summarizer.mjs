@@ -297,7 +297,7 @@ try {
     },
     {
       caseId: "heading-three", sourceRef: "docs/b.md", status: "complete",
-      search: { resultCount: 1, results: [{ title: "Historical overview", headingPath: ["Parent", "### History"], handle: { sourceRef: "docs/b.md", startLine: 10, endLine: 11 } }] },
+      search: { resultCount: 1, results: [{ title: "Historical overview", headingPath: ["Parent", "### History"], handle: { sourceRef: "docs/b.md", startLine: 9, endLine: 12 } }] },
       jev: { status: "selected", rawChoiceConfidence: 0.72, noul: 0.33, usage: { input_tokens: 20, output_tokens: 3 }, selected: { title: " History ", handle: { rangeId: "heading-2", startLine: 9, endLine: 12 } } },
       fetch: { passed: true }, evidencePack: { status: "complete", passed: true }, startedAt: "2026-10-11T00:00:03Z", completedAt: "2026-10-11T00:00:04Z",
     },
@@ -336,8 +336,15 @@ try {
     "an answerable selection in a pre-labeled relevant range counts as useful retrieval");
   assert.equal(genericSummary.labelMetrics.answerabilityMetrics.answerable.correctExactRangeSelections, 1);
   assert.equal(genericSummary.labelMetrics.answerabilityMetrics.answerable.correctRelevantRangeSelections, 1);
-  assert.equal(genericSummary.labelMetrics.searchExactAcceptedRangeFound, 2,
-    "search may surface the exact range even when Jev selects a broader section");
+  assert.equal(genericSummary.labelMetrics.searchExactAcceptedRangeFound, 1,
+    "exact search-range matching must remain separate from broad candidate containment");
+  assert.equal(genericSummary.labelMetrics.searchTargetRangeContainedAt100, 2,
+    "a search candidate may contain the complete target without matching its exact boundaries");
+  assert.equal(genericSummary.labelMetrics.searchTargetRangeContainmentDenominator, 3);
+  assert.equal(genericSummary.labelMetrics.searchTargetLinesContainedAt100, 2);
+  assert.equal(genericSummary.labelMetrics.searchRelevantRangeContainedAt100, 1,
+    "relevant-range containment is reported separately from exact relevant-range equality");
+  assert.match(genericSummary.labelMetrics.searchRangeMetricNote, /not semantic sufficiency/u);
   assert.equal(genericSummary.labelMetrics.searchTargetFound, 2);
   assert.equal(genericSummary.labelMetrics.records[0].searchTargetFound, true, "headingPath should count an exact normalized heading");
   assert.equal(genericSummary.labelMetrics.records[1].searchTargetFound, true, "headingPath component should count even if title differs");
@@ -407,9 +414,9 @@ try {
   const answerabilityRecords = [
     { caseId: "answerable-exact", sourceRef: "docs/source.md", status: "complete", jev: { status: "selected", selected: exactSelected }, fetch: { passed: true } },
     { caseId: "answerable-abstained", sourceRef: "docs/source.md", status: "complete", jev: { status: "abstained", selected: null } },
-    { caseId: "answerable-wrong-range", sourceRef: "docs/source.md", status: "complete", jev: { status: "selected", selected: { ...exactSelected, handle: { ...exactSelected.handle, startLine: 1, endLine: 4 } } } },
+    { caseId: "answerable-wrong-range", sourceRef: "docs/source.md", status: "complete", search: { results: [{ title: "Target", headingPath: ["Root", "Target"], handle: { sourceRef: "docs/source.md", startLine: 3, endLine: 4 } }] }, jev: { status: "selected", selected: { ...exactSelected, handle: { ...exactSelected.handle, startLine: 1, endLine: 4 } } } },
     { caseId: "answerable-relevant-range", sourceRef: "docs/source.md", status: "complete", jev: { status: "selected", selected: { ...exactSelected, handle: { ...exactSelected.handle, startLine: 1, endLine: 4 } } } },
-    { caseId: "answerable-conflicted", sourceRef: "docs/source.md", status: "complete", jev: { status: "selected", choice: "none", selected: exactSelected } },
+    { caseId: "answerable-conflicted", sourceRef: "docs/source.md", status: "complete", search: { results: [{ title: "Nearby", headingPath: ["Root", "Other"], handle: { sourceRef: "docs/source.md", startLine: 2, endLine: 3 } }] }, jev: { status: "selected", choice: "none", selected: exactSelected } },
     { caseId: "unanswerable-abstained", sourceRef: "docs/source.md", status: "complete", jev: { choice: "none", selected: null } },
     { caseId: "unanswerable-selected", sourceRef: "docs/source.md", status: "complete", jev: { status: "selected", selected: { title: "Nearby", handle: { sourceRef: "docs/source.md", startLine: 8, endLine: 9 } } } },
     { caseId: "unanswerable-failed", sourceRef: "docs/source.md", status: "failed", jev: { status: "failed" } },
@@ -455,6 +462,15 @@ try {
   assert.equal(answerabilitySummary.labelMetrics.records[2].decisionCorrect, true,
     "selecting a range does not make an answerability-status decision wrong merely because the range missed strict labels");
   assert.equal(answerabilitySummary.labelMetrics.records[2].rangeSelectionAssessment, "outside-labeled-ranges");
+  assert.equal(answerabilitySummary.labelMetrics.records[2].searchTargetFound, true,
+    "heading discovery remains an explicitly separate search signal");
+  assert.equal(answerabilitySummary.labelMetrics.records[2].searchExactAcceptedRangeFound, false);
+  assert.equal(answerabilitySummary.labelMetrics.records[2].searchTargetRangeContainedAt100, false,
+    "a partial overlap must not count as full labeled-range containment");
+  assert.equal(answerabilitySummary.labelMetrics.records[4].searchTargetRangeContainedAt100, false,
+    "same line bounds under an unrelated heading must not count as heading-scoped containment");
+  assert.equal(answerabilitySummary.labelMetrics.records[4].searchTargetLinesContainedAt100, true,
+    "source-bound line coverage is reported separately from heading-scoped coverage");
   assert.deepEqual(answerabilitySummary.labelMetrics.rangeSelectionMetrics, {
     exactMatches: 1,
     relevantLabeledMatches: 1,
@@ -623,6 +639,7 @@ try {
       { id: "mock-unanswerable", sourceRef: "docs/one.md", query: "What absent fact is not in this fixture?" },
       { id: "mock-conflicted", sourceRef: "docs/one.md", query: "Check this conflict fixture." },
       { id: "mock-fetch-failure", sourceRef: "docs/one.md", query: "Select the exact fixture despite a fetch-failure." },
+      { id: "mock-contained-target", sourceRef: "docs/one.md", query: "Select the contained target range." },
     ],
   });
   const mockLabelsBytes = await writeJson(path.join(mockRun, "inputs/labels.json"), {
@@ -659,6 +676,15 @@ try {
         acceptableRanges: [{ sourceRef: "docs/one.md", expectedHeading: "Sample", startLine: 1, endLine: 3 }],
         relevantRanges: [{ sourceRef: "docs/one.md", expectedHeading: "Sample", startLine: 1, endLine: 3 }],
       },
+      {
+        caseId: "mock-contained-target",
+        sourceRef: "docs/one.md",
+        expectedHeading: "Sample",
+        expectedStartLine: 2,
+        expectedEndLine: 3,
+        acceptableRanges: [{ sourceRef: "docs/one.md", expectedHeading: "Sample", startLine: 2, endLine: 3 }],
+        relevantRanges: [{ sourceRef: "docs/one.md", expectedHeading: "Sample", startLine: 1, endLine: 3 }],
+      },
     ],
   });
   const mockManifest = {
@@ -686,7 +712,7 @@ try {
       networkOptIn: true,
       networkOptInMethod: "explicit command-line --allow-network plus user authorization recorded in manifest",
     },
-    plan: { expectedRequestCount: 4, independentUnit: "fixture sourceRef only; no statistical claim" },
+    plan: { expectedRequestCount: 5, independentUnit: "fixture sourceRef only; no statistical claim" },
     instrument: {
       runnerSha256: digest(mockRunnerBytes),
       selectionRecordSha256: digest(mockSelectionBytes),
@@ -705,15 +731,15 @@ try {
   assert.equal(mockLiveRun.status, 0, mockLiveRun.stderr);
   const mockSummary = JSON.parse(mockLiveRun.stdout);
   assert.equal(mockSummary.status, "partial");
-  assert.equal(mockSummary.successfulRequests, 3);
+  assert.equal(mockSummary.successfulRequests, 4);
   assert.equal(mockSummary.failedRequests, 1);
   assert.equal(mockSummary.exactHeadingMatches, 2);
-  assert.equal(mockSummary.exactHeadingDenominator, 3);
+  assert.equal(mockSummary.exactHeadingDenominator, 4);
   assert.deepEqual(mockSummary.answerabilityMetrics.answerable, {
-    cases: 3,
-    correctAnswerabilityDecisions: 2,
+    cases: 4,
+    correctAnswerabilityDecisions: 3,
     correctExactRangeSelections: 2,
-    correctRelevantRangeSelections: 1,
+    correctRelevantRangeSelections: 2,
     selectedOutsideLabeledRanges: 0,
     incorrectDecisions: 0,
     failedOrUnknownDecisions: 1,
@@ -722,6 +748,16 @@ try {
   assert.equal(mockSummary.answerabilityMetrics.unanswerable.correctAbstentions, 1);
   assert.equal(mockSummary.answerabilityMetrics.decisionAccuracy, 1);
   assert.equal(mockSummary.searchTargetRecallAt100, 3);
+  assert.equal(mockSummary.searchExactLabeledRangeAt100, 3);
+  assert.equal(mockSummary.searchTargetRangeContainedAt100, 4,
+    "the live runner must count a broad candidate that fully contains the labeled target");
+  assert.equal(mockSummary.searchTargetRangeContainmentDenominator, 4);
+  assert.equal(mockSummary.searchTargetLinesContainedAt100, 4);
+  assert.match(mockSummary.searchTargetRecallAt100Semantics, /LEGACY strict equality/u);
+  const containedTargetRecord = mockSummary.records.find((item) => item.caseId === "mock-contained-target");
+  assert.equal(containedTargetRecord.targetInSearchTop100, false,
+    "legacy strict search matching must not silently become containment");
+  assert.equal(containedTargetRecord.targetRangeContainedInSearchTop100, true);
   assert.equal(mockSummary.records[0].acceptableRanges.length, 2,
     "summary must expose every accepted range used by the scorer");
   assert.equal(mockSummary.records[0].relevantRanges.length, 0,
@@ -738,15 +774,16 @@ try {
     "downstream exact-fetch integrity remains an independent metric");
   assert.equal(mockSummary.records[3].evidencePackBuilt, false,
     "a failed exact fetch must prevent evidence-pack construction");
-  assert.equal(mockSummary.exactFetchesWithFingerprint, 1,
+  assert.equal(mockSummary.exactFetchesWithFingerprint, 2,
     "the live runner must not fetch a contradictory selection");
-  assert.equal(mockSummary.evidencePacksBuilt, 1,
+  assert.equal(mockSummary.evidencePacksBuilt, 2,
     "the live runner must not pack a contradictory selection");
   const mockRecordLines = (await fs.readFile(path.join(mockRun, "records.jsonl"), "utf8")).trim().split(/\r?\n/u);
   const mockRecord = JSON.parse(mockRecordLines[0]);
   const mockAbstentionRecord = JSON.parse(mockRecordLines[1]);
   const mockConflictedRecord = JSON.parse(mockRecordLines[2]);
   const mockFetchFailureRecord = JSON.parse(mockRecordLines[3]);
+  const mockContainedRecord = JSON.parse(mockRecordLines[4]);
   assert.equal(mockRecord.jev.evidenceSufficiency, 0.87);
   assert.equal(mockRecord.jev.choice, "fixture-handle-01");
   assert.equal(mockRecord.jev.noul, 0.65);
@@ -760,6 +797,7 @@ try {
   assert.equal(mockFetchFailureRecord.jev.status, "selected");
   assert.equal(mockFetchFailureRecord.fetch, null, "failed fetch must not produce a validated fetch record");
   assert.equal(mockFetchFailureRecord.evidencePack, null, "failed fetch must stop before evidence-pack construction");
+  assert.equal(mockContainedRecord.fetch.passed, true, "a contained broader span must remain fetchable and verifiable");
   const mockCompletion = JSON.parse(await fs.readFile(path.join(mockRun, "run-completion.json"), "utf8"));
   assert.equal(mockCompletion.labelsExposedToProvider, false);
   assert.equal(mockCompletion.networkOptInAuthorized, true);

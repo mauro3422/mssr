@@ -1,0 +1,245 @@
+{
+  "cases": [
+    {
+      "answerabilityCategory": "answerable",
+      "sourceId": "gitteach",
+      "pairId": "gitteach-positive",
+      "queryVariant": "spanish",
+      "sourceRef": "docs/EXPERIENCE_ATTRIBUTION.md",
+      "language": "es",
+      "query": "¿Qué establece la atribución identity-linked y qué no demuestra sobre la autoría manual?",
+      "id": "gitteach-positive-es"
+    },
+    {
+      "answerabilityCategory": "answerable",
+      "sourceId": "gitteach",
+      "pairId": "gitteach-positive",
+      "queryVariant": "spanish+english",
+      "sourceRef": "docs/EXPERIENCE_ATTRIBUTION.md",
+      "language": "es+en",
+      "query": "¿Qué establece la atribución identity-linked y qué no demuestra sobre la autoría manual? / What does identity-linked attribution establish, and what does it not prove about manual authorship?",
+      "id": "gitteach-positive-es-en"
+    },
+    {
+      "answerabilityCategory": "unanswerable",
+      "sourceId": "gitteach",
+      "pairId": "gitteach-negative",
+      "queryVariant": "spanish",
+      "sourceRef": "docs/EXPERIENCE_ATTRIBUTION.md",
+      "language": "es",
+      "query": "¿Qué porcentaje mínimo del código debe escribir personalmente un desarrollador para reclamar una contribución identity-linked?",
+      "id": "gitteach-negative-es"
+    },
+    {
+      "answerabilityCategory": "unanswerable",
+      "sourceId": "gitteach",
+      "pairId": "gitteach-negative",
+      "queryVariant": "spanish+english",
+      "sourceRef": "docs/EXPERIENCE_ATTRIBUTION.md",
+      "language": "es+en",
+      "query": "¿Qué porcentaje mínimo del código debe escribir personalmente un desarrollador para reclamar una contribución identity-linked? / What minimum percentage of code must a developer personally write to claim identity-linked contribution?",
+      "id": "gitteach-negative-es-en"
+    },
+    {
+      "answerabilityCategory": "answerable",
+      "sourceId": "tabletwhiteboard",
+      "pairId": "tabletwhiteboard-positive",
+      "queryVariant": "spanish",
+      "sourceRef": "docs/ARCHITECTURE.md",
+      "language": "es",
+      "query": "Al reconectarse, ¿qué operaciones pendientes se superponen y qué sucede con la cola?",
+      "id": "tabletwhiteboard-positive-es"
+    },
+    {
+      "answerabilityCategory": "answerable",
+      "sourceId": "tabletwhiteboard",
+      "pairId": "tabletwhiteboard-positive",
+      "queryVariant": "spanish+english",
+      "sourceRef": "docs/ARCHITECTURE.md",
+      "language": "es+en",
+      "query": "Al reconectarse, ¿qué operaciones pendientes se superponen y qué sucede con la cola? / After reconnection, which pending operations are overlaid, and what happens to the queue?",
+      "id": "tabletwhiteboard-positive-es-en"
+    },
+    {
+      "answerabilityCategory": "unanswerable",
+      "sourceId": "tabletwhiteboard",
+      "pairId": "tabletwhiteboard-negative",
+      "queryVariant": "spanish",
+      "sourceRef": "docs/ARCHITECTURE.md",
+      "language": "es",
+      "query": "¿Cuál es la cantidad máxima de operaciones que puede contener la cola sin conexión?",
+      "id": "tabletwhiteboard-negative-es"
+    },
+    {
+      "answerabilityCategory": "unanswerable",
+      "sourceId": "tabletwhiteboard",
+      "pairId": "tabletwhiteboard-negative",
+      "queryVariant": "spanish+english",
+      "sourceRef": "docs/ARCHITECTURE.md",
+      "language": "es+en",
+      "query": "¿Cuál es la cantidad máxima de operaciones que puede contener la cola sin conexión? / What is the maximum number of operations the offline queue can hold?",
+      "id": "tabletwhiteboard-negative-es-en"
+    },
+    {
+      "answerabilityCategory": "answerable",
+      "sourceId": "motorgrafico-input",
+      "pairId": "motorgrafico-input-positive",
+      "queryVariant": "spanish",
+      "sourceRef": "docs/INPUT_SYSTEM_SPEC.md",
+      "language": "es",
+      "query": "¿Cuál es el contexto de entrada predeterminado y qué otros contextos se definen?",
+      "id": "motorgrafico-input-positive-es"
+    },
+    {
+      "answerabilityCategory": "answerable",
+      "sourceId": "motorgrafico-input",
+      "pairId": "motorgrafico-input-positive",
+      "queryVariant": "spanish+english",
+      "sourceRef": "docs/INPUT_SYSTEM_SPEC.md",
+      "language": "es+en",
+      "query": "¿Cuál es el contexto de entrada predeterminado y qué otros contextos se definen? / Which input context is the default, and which other contexts are defined?",
+      "id": "motorgrafico-input-positive-es-en"
+    },
+    {
+      "answerabilityCategory": "unanswerable",
+      "sourceId": "motorgrafico-input",
+      "pairId": "motorgrafico-input-negative",
+      "queryVariant": "spanish",
+      "sourceRef": "docs/INPUT_SYSTEM_SPEC.md",
+      "language": "es",
+      "query": "¿Qué frecuencia de sondeo exige esta especificación para el sistema de entrada?",
+      "id": "motorgrafico-input-negative-es"
+    },
+    {
+      "answerabilityCategory": "unanswerable",
+      "sourceId": "motorgrafico-input",
+      "pairId": "motorgrafico-input-negative",
+      "queryVariant": "spanish+english",
+      "sourceRef": "docs/INPUT_SYSTEM_SPEC.md",
+      "language": "es+en",
+      "query": "¿Qué frecuencia de sondeo exige esta especificación para el sistema de entrada? / What polling frequency does this input-system specification require?",
+      "id": "motorgrafico-input-negative-es-en"
+    },
+    {
+      "answerabilityCategory": "answerable",
+      "sourceId": "motorgrafico-layout",
+      "pairId": "motorgrafico-layout-positive",
+      "queryVariant": "spanish",
+      "sourceRef": "docs/LAYOUT_VIEWPORT_SPEC.md",
+      "language": "es",
+      "query": "¿Qué variantes componen LayoutNode y cómo se mapean los sentidos de división a los ejes de pantalla?",
+      "id": "motorgrafico-layout-positive-es"
+    },
+    {
+      "answerabilityCategory": "answerable",
+      "sourceId": "motorgrafico-layout",
+      "pairId": "motorgrafico-layout-positive",
+      "queryVariant": "spanish+english",
+      "sourceRef": "docs/LAYOUT_VIEWPORT_SPEC.md",
+      "language": "es+en",
+      "query": "¿Qué variantes componen LayoutNode y cómo se mapean los sentidos de división a los ejes de pantalla? / Which variants compose LayoutNode, and how do split directions map to screen axes?",
+      "id": "motorgrafico-layout-positive-es-en"
+    },
+    {
+      "answerabilityCategory": "unanswerable",
+      "sourceId": "motorgrafico-layout",
+      "pairId": "motorgrafico-layout-negative",
+      "queryVariant": "spanish",
+      "sourceRef": "docs/LAYOUT_VIEWPORT_SPEC.md",
+      "language": "es",
+      "query": "¿Cuál es el número máximo de viewports simultáneos que permite la especificación?",
+      "id": "motorgrafico-layout-negative-es"
+    },
+    {
+      "answerabilityCategory": "unanswerable",
+      "sourceId": "motorgrafico-layout",
+      "pairId": "motorgrafico-layout-negative",
+      "queryVariant": "spanish+english",
+      "sourceRef": "docs/LAYOUT_VIEWPORT_SPEC.md",
+      "language": "es+en",
+      "query": "¿Cuál es el número máximo de viewports simultáneos que permite la especificación? / What is the maximum number of simultaneous viewports allowed by the specification?",
+      "id": "motorgrafico-layout-negative-es-en"
+    },
+    {
+      "answerabilityCategory": "answerable",
+      "sourceId": "neopse-v070",
+      "pairId": "neopse-v070-positive",
+      "queryVariant": "spanish",
+      "sourceRef": "CHANGELOG.md",
+      "language": "es",
+      "query": "¿Qué cambia al hacer clic en el fondo y qué protección acompaña el soporte de Delete/Backspace en v0.7.0?",
+      "id": "neopse-v070-positive-es"
+    },
+    {
+      "answerabilityCategory": "answerable",
+      "sourceId": "neopse-v070",
+      "pairId": "neopse-v070-positive",
+      "queryVariant": "spanish+english",
+      "sourceRef": "CHANGELOG.md",
+      "language": "es+en",
+      "query": "¿Qué cambia al hacer clic en el fondo y qué protección acompaña el soporte de Delete/Backspace en v0.7.0? / What changes when clicking the background, and what safeguard accompanies Delete/Backspace support in v0.7.0?",
+      "id": "neopse-v070-positive-es-en"
+    },
+    {
+      "answerabilityCategory": "unanswerable",
+      "sourceId": "neopse-v070",
+      "pairId": "neopse-v070-negative",
+      "queryVariant": "spanish",
+      "sourceRef": "CHANGELOG.md",
+      "language": "es",
+      "query": "¿Cuántos usuarios participaron en las pruebas de hitbox de la versión v0.7.0?",
+      "id": "neopse-v070-negative-es"
+    },
+    {
+      "answerabilityCategory": "unanswerable",
+      "sourceId": "neopse-v070",
+      "pairId": "neopse-v070-negative",
+      "queryVariant": "spanish+english",
+      "sourceRef": "CHANGELOG.md",
+      "language": "es+en",
+      "query": "¿Cuántos usuarios participaron en las pruebas de hitbox de la versión v0.7.0? / How many users participated in v0.7.0 hitbox testing?",
+      "id": "neopse-v070-negative-es-en"
+    },
+    {
+      "answerabilityCategory": "answerable",
+      "sourceId": "maestroagua-v020",
+      "pairId": "maestroagua-v020-positive",
+      "queryVariant": "spanish",
+      "sourceRef": "changelogs/v0.2.0.md",
+      "language": "es",
+      "query": "¿Qué resultado de QA, total de agua conservada y cantidad de impactos contra paredes registra la versión v0.2.0?",
+      "id": "maestroagua-v020-positive-es"
+    },
+    {
+      "answerabilityCategory": "answerable",
+      "sourceId": "maestroagua-v020",
+      "pairId": "maestroagua-v020-positive",
+      "queryVariant": "spanish+english",
+      "sourceRef": "changelogs/v0.2.0.md",
+      "language": "es+en",
+      "query": "¿Qué resultado de QA, total de agua conservada y cantidad de impactos contra paredes registra la versión v0.2.0? / What QA result, conserved-water total, and number of wall impacts does v0.2.0 record?",
+      "id": "maestroagua-v020-positive-es-en"
+    },
+    {
+      "answerabilityCategory": "unanswerable",
+      "sourceId": "maestroagua-v020",
+      "pairId": "maestroagua-v020-negative",
+      "queryVariant": "spanish",
+      "sourceRef": "changelogs/v0.2.0.md",
+      "language": "es",
+      "query": "¿Qué modelo de GPU se usó para la corrida principal de QA de v0.2.0?",
+      "id": "maestroagua-v020-negative-es"
+    },
+    {
+      "answerabilityCategory": "unanswerable",
+      "sourceId": "maestroagua-v020",
+      "pairId": "maestroagua-v020-negative",
+      "queryVariant": "spanish+english",
+      "sourceRef": "changelogs/v0.2.0.md",
+      "language": "es+en",
+      "query": "¿Qué modelo de GPU se usó para la corrida principal de QA de v0.2.0? / Which GPU model was used for the main v0.2.0 QA run?",
+      "id": "maestroagua-v020-negative-es-en"
+    }
+  ],
+  "schemaVersion": 1
+}
