@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen-before-search-and-provider-call",
+  "ownerGold": false,
+  "labelBasis": "Manual source-derived targets from canonical MSSR authorities; not independently adjudicated and not a holdout.",
+  "cases": [
+    {
+      "caseId": "C01",
+      "targetSource": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+      "targetHeading": "Confidence and merge policy",
+      "requiredClaims": [
+        "Contradiction/unresolved/non-comparable evidence remains separate or review-only.",
+        "Supersession is represented as a temporal relation, not silent overwrite.",
+        "The raw 0.75 gate is exploratory and uncalibrated; no canonical write is authorized."
+      ]
+    },
+    {
+      "caseId": "C02",
+      "targetSource": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "targetHeading": "Reduction, batching and semantic triage",
+      "requiredClaims": [
+        "Jev labels/selects among explicit candidates but does not establish authority, truth, permission, verification, or canonical write rights.",
+        "Contradictory, unresolved, non-comparable, non-fresh, or unverified evidence cannot become a consolidation preview.",
+        "The host rereads source revisions before consuming a preview; permission and independent verification remain outside Jev."
+      ]
+    }
+  ]
+}

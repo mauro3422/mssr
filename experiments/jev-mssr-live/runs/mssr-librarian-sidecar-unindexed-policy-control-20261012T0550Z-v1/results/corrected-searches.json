@@ -1,0 +1,1891 @@
+{
+  "schemaVersion": 1,
+  "attempt": "corrected-after-CORR-01",
+  "providerCalls": 0,
+  "cases": {
+    "C01": {
+      "query": "When evidence atoms conflict or cannot be compared, may the synthesis preview consolidate them? How should supersession be represented, and can a raw confidence threshold authorize canonical writes?",
+      "baseline": {
+        "metadataMode": "off",
+        "status": "lexical",
+        "results": [
+          {
+            "handle": {
+              "version": 1,
+              "id": "dfd035157293a02f358e25d49593a0f2115625920d5b1aef96a15b3c8cd784c2",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "heading-1",
+              "rangeKind": "section",
+              "startLine": 1,
+              "endLine": 54,
+              "startOffset": 0,
+              "endOffset": 3276,
+              "fingerprint": "5d85091022f92ece940f53a5adceb6d021de3de898482cc4f909ab80bd4e0711",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 3276,
+            "exactFetchable": true,
+            "score": 0.7,
+            "title": "Confidence and merge policy",
+            "headingPath": [
+              "Confidence and merge policy"
+            ],
+            "snippet": "## Confidence and merge policy Treat confidence as a decision-family-specific routing signal, not a universal quality percentage. Choose thresholds against the cost of a false action and report risk-versus-coverage at s…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy"
+              ],
+              "level": 2,
+              "parentId": null,
+              "startLine": 1,
+              "endLine": 54,
+              "chars": 3276,
+              "bytes": 3282,
+              "terms": [
+                "confidence",
+                "merge",
+                "policy",
+                "abstention",
+                "accuracy",
+                "action",
+                "against",
+                "alongside"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "7be9c43de5eb18c7e1e58dc32bfc88dce41936e42f6ceaf844478c585470c5d1",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "rangeId": "heading-1",
+              "rangeKind": "section",
+              "startLine": 1,
+              "endLine": 65,
+              "startOffset": 0,
+              "endOffset": 9431,
+              "fingerprint": "55cc7dcec8e39fa0c7bd33415aa37a857416205c2e704fea1572929248ee1a83",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 9431,
+            "exactFetchable": true,
+            "score": 0.6,
+            "title": "Semantic Evidence Plane architecture",
+            "headingPath": [
+              "Semantic Evidence Plane architecture"
+            ],
+            "snippet": "# Semantic Evidence Plane architecture MSSR owns the portable semantic contract for turning bounded observable work evidence into queryable, selectively retrievable context/attention without becoming an execution proxy …",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "headingPath": [
+                "Semantic Evidence Plane architecture"
+              ],
+              "level": 1,
+              "parentId": null,
+              "startLine": 1,
+              "endLine": 65,
+              "chars": 9431,
+              "bytes": 9431,
+              "terms": [
+                "architecture",
+                "evidence",
+                "plane",
+                "semantic",
+                "context",
+                "adrs",
+                "attention",
+                "authoritative"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "6b1cf59789e53d70b6ab7b0578436fc9c3d5b01b555425bdc64e643544b9a969",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "block-4",
+              "rangeKind": "block",
+              "startLine": 23,
+              "endLine": 38,
+              "startOffset": 1090,
+              "endOffset": 2287,
+              "fingerprint": "4208c1f8f33cabd5ac4568cc0c55ae1032f6ee17036c51360a518790bc9816e9",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 1197,
+            "exactFetchable": true,
+            "score": 0.5,
+            "title": "Confidence and merge policy",
+            "headingPath": [
+              "Confidence and merge policy"
+            ],
+            "snippet": "A merge/synthesis proposal should retain input atom IDs, refs, revisions and fingerprints; candidate relations and conflicts; decision alternatives and a short evidence-cited reason for each inclusion, omission or separ…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy"
+              ],
+              "blockKind": "prose",
+              "sectionId": "heading-1",
+              "startLine": 23,
+              "endLine": 38,
+              "chars": 1197,
+              "bytes": 1197,
+              "terms": [
+                "source",
+                "candidate",
+                "blocks",
+                "confidence",
+                "contradiction",
+                "exact",
+                "output",
+                "relation"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "b88f8fc2c4dee89aacfeea3f388d28b9613eac35b8d7c244d4839c39f17e4c17",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "block-3",
+              "rangeKind": "block",
+              "startLine": 13,
+              "endLine": 21,
+              "startOffset": 556,
+              "endOffset": 1088,
+              "fingerprint": "74d595f5d539533c5e69c0b2d66c14081c8aacfd1266ffb6d20bae33df1bae19",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 532,
+            "exactFetchable": true,
+            "score": 0.4,
+            "title": "Confidence and merge policy",
+            "headingPath": [
+              "Confidence and merge policy"
+            ],
+            "snippet": "…rministic identity, owner, revision, privacy and exact-evidence guards. 2. Librarian returns bounded evidence handles; Jev proposes typed judgments over those explicit candidates. 3. Missing temporal/scope data, low co…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy"
+              ],
+              "blockKind": "list",
+              "sectionId": "heading-1",
+              "startLine": 13,
+              "endLine": 21,
+              "chars": 532,
+              "bytes": 532,
+              "terms": [
+                "confidence",
+                "owner",
+                "abstain",
+                "admit",
+                "any",
+                "approval",
+                "before",
+                "bounded"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "b97724fb8009b7d6e5423d9372a2683c2813ae2131d97a36fde29209d0506124",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "block-3/item-4",
+              "rangeKind": "block",
+              "startLine": 18,
+              "endLine": 19,
+              "startOffset": 854,
+              "endOffset": 978,
+              "fingerprint": "e9ca9c2d93d6e7df7f2a8656ccda30e63e06e99f18741de3693839388d0178fe",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 124,
+            "exactFetchable": true,
+            "score": 0.35,
+            "title": "Confidence and merge policy",
+            "headingPath": [
+              "Confidence and merge policy"
+            ],
+            "snippet": "4. A raw confidence threshold may admit a derived synthesis preview, never a destructive source merge or canonical write.",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy"
+              ],
+              "blockKind": "list-item",
+              "parentBlockId": "block-3",
+              "parentBlockFingerprint": "74d595f5d539533c5e69c0b2d66c14081c8aacfd1266ffb6d20bae33df1bae19",
+              "listItemOrdinal": 4,
+              "sectionId": "heading-1",
+              "startLine": 18,
+              "endLine": 19,
+              "chars": 124,
+              "bytes": 124,
+              "terms": [
+                "raw",
+                "confidence",
+                "threshold",
+                "may",
+                "admit",
+                "derived",
+                "synthesis",
+                "preview",
+                "never",
+                "destructive",
+                "source",
+                "merge",
+                "or",
+                "canonical",
+                "write"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "12cf41a33e58e3f1299f940e4fd881111192baed0dc3a02d3b6899efca5671d4",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "rangeId": "heading-5",
+              "rangeKind": "section",
+              "startLine": 24,
+              "endLine": 31,
+              "startOffset": 3716,
+              "endOffset": 5865,
+              "fingerprint": "0215e92763d651a87cb09aa555efc852c0f079f6a55c38aa761a92a32a1c516e",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 2149,
+            "exactFetchable": true,
+            "score": 0.35,
+            "title": "Reduction, batching and semantic triage",
+            "headingPath": [
+              "Semantic Evidence Plane architecture",
+              "Reduction, batching and semantic triage"
+            ],
+            "snippet": "…h/fetch -> isolated Jev relation batches per connected evidence component -> exact atom-bound semantic judgments -> contradiction-aware reversible preview -> host re-read/revision check and approval/write outside MSSR …",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "headingPath": [
+                "Semantic Evidence Plane architecture",
+                "Reduction, batching and semantic triage"
+              ],
+              "level": 2,
+              "parentId": "heading-1",
+              "startLine": 24,
+              "endLine": 31,
+              "chars": 2149,
+              "bytes": 2149,
+              "terms": [
+                "batching",
+                "reduction",
+                "semantic",
+                "triage",
+                "evidence",
+                "host",
+                "jev",
+                "preview"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "2dc35beada0510e876e51b229c15f00b42a49280179dada9d1ab5deb65d67594",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "heading-2",
+              "rangeKind": "section",
+              "startLine": 40,
+              "endLine": 54,
+              "startOffset": 2289,
+              "endOffset": 3276,
+              "fingerprint": "530473af5b24fb8751515906344f7316bfb035a5fa4e9d0a26858d5d53f3169e",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 987,
+            "exactFetchable": true,
+            "score": 0.35,
+            "title": "Current exploratory live MSSR smoke — 2026-09-30",
+            "headingPath": [
+              "Confidence and merge policy",
+              "Current exploratory live MSSR smoke — 2026-09-30"
+            ],
+            "snippet": "… with unknown scope/time, Jev chose `supports` at 0.45 confidence; deterministic evaluation and synthesis preview kept both atoms in review because scope and temporal comparability were unknown. Both previews had `appl…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy",
+                "Current exploratory live MSSR smoke — 2026-09-30"
+              ],
+              "level": 3,
+              "parentId": "heading-1",
+              "startLine": 40,
+              "endLine": 54,
+              "chars": 987,
+              "bytes": 989,
+              "terms": [
+                "2026-09-30",
+                "exploratory",
+                "live",
+                "mssr",
+                "smoke",
+                "jev",
+                "four",
+                "blocks"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "7557d32e0892b651e05f965630c9dcc23330f855f6308cf3a33693aaa9ced5c1",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "block-5",
+              "rangeKind": "block",
+              "startLine": 42,
+              "endLine": 54,
+              "startOffset": 2343,
+              "endOffset": 3275,
+              "fingerprint": "1a45b0b5d3ad7c021697d035dc6af917d8285fcdc2049c565637d5ef21463259",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 932,
+            "exactFetchable": true,
+            "score": 0.35,
+            "title": "Current exploratory live MSSR smoke — 2026-09-30",
+            "headingPath": [
+              "Confidence and merge policy",
+              "Current exploratory live MSSR smoke — 2026-09-30"
+            ],
+            "snippet": "… with unknown scope/time, Jev chose `supports` at 0.45 confidence; deterministic evaluation and synthesis preview kept both atoms in review because scope and temporal comparability were unknown. Both previews had `appl…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy",
+                "Current exploratory live MSSR smoke — 2026-09-30"
+              ],
+              "blockKind": "prose",
+              "sectionId": "heading-2",
+              "startLine": 42,
+              "endLine": 54,
+              "chars": 932,
+              "bytes": 932,
+              "terms": [
+                "jev",
+                "four",
+                "blocks",
+                "both",
+                "confidence",
+                "contradiction",
+                "does",
+                "exact"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          }
+        ]
+      },
+      "sidecar": {
+        "metadataMode": "project-context-librarian-sidecar",
+        "status": "no-projectable-declarations",
+        "metadataIndex": {
+          "mode": "project-context-librarian-sidecar",
+          "status": "no-projectable-declarations",
+          "projectContextManifestRevision": "3e9b70a028124c49ff06c18cbcda3d6f5ce4cd9daf2e3f71cb6ad52581fd2a28",
+          "librarianManifestRevision": "9e80e6e2b9973b9bd4b32e55af3a65bb4d1325d01ede0eb2e4e91ca238f1abd7",
+          "segmentsManifestRevision": "dc4f3530a6b63f21356b327fcec91b88341c696ed4013de9e21572a3778c8de6",
+          "referencesManifestRevision": null,
+          "declared": 4,
+          "projected": 0,
+          "omitted": 4,
+          "items": [
+            {
+              "entryId": "mssr-architecture-impact-decision",
+              "headingPath": [
+                "Architecture impact review decision"
+              ],
+              "status": "omitted",
+              "issue": "source-not-provided"
+            },
+            {
+              "entryId": "mssr-learning-dataset-state",
+              "headingPath": [
+                "Learning dataset state"
+              ],
+              "status": "omitted",
+              "issue": "source-not-provided"
+            },
+            {
+              "entryId": "mssr-core-skill-package-state",
+              "headingPath": [
+                "MSSR project state",
+                "Core skill package state"
+              ],
+              "status": "omitted",
+              "issue": "source-not-provided"
+            },
+            {
+              "entryId": "mssr-jev-use-case-hypotheses",
+              "headingPath": [
+                "Jev, decisiones tipadas y casos de uso para MSSR",
+                "100 hipótesis de uso"
+              ],
+              "status": "omitted",
+              "issue": "source-not-provided"
+            }
+          ],
+          "selectorsAreProjectDeclared": true,
+          "sourceOwnerIsCallerAsserted": true,
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "canonicalRewriteAllowed": false
+        },
+        "results": [
+          {
+            "handle": {
+              "version": 1,
+              "id": "dfd035157293a02f358e25d49593a0f2115625920d5b1aef96a15b3c8cd784c2",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "heading-1",
+              "rangeKind": "section",
+              "startLine": 1,
+              "endLine": 54,
+              "startOffset": 0,
+              "endOffset": 3276,
+              "fingerprint": "5d85091022f92ece940f53a5adceb6d021de3de898482cc4f909ab80bd4e0711",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 3276,
+            "exactFetchable": true,
+            "score": 0.7,
+            "title": "Confidence and merge policy",
+            "headingPath": [
+              "Confidence and merge policy"
+            ],
+            "snippet": "## Confidence and merge policy Treat confidence as a decision-family-specific routing signal, not a universal quality percentage. Choose thresholds against the cost of a false action and report risk-versus-coverage at s…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy"
+              ],
+              "level": 2,
+              "parentId": null,
+              "startLine": 1,
+              "endLine": 54,
+              "chars": 3276,
+              "bytes": 3282,
+              "terms": [
+                "confidence",
+                "merge",
+                "policy",
+                "abstention",
+                "accuracy",
+                "action",
+                "against",
+                "alongside"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "7be9c43de5eb18c7e1e58dc32bfc88dce41936e42f6ceaf844478c585470c5d1",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "rangeId": "heading-1",
+              "rangeKind": "section",
+              "startLine": 1,
+              "endLine": 65,
+              "startOffset": 0,
+              "endOffset": 9431,
+              "fingerprint": "55cc7dcec8e39fa0c7bd33415aa37a857416205c2e704fea1572929248ee1a83",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 9431,
+            "exactFetchable": true,
+            "score": 0.6,
+            "title": "Semantic Evidence Plane architecture",
+            "headingPath": [
+              "Semantic Evidence Plane architecture"
+            ],
+            "snippet": "# Semantic Evidence Plane architecture MSSR owns the portable semantic contract for turning bounded observable work evidence into queryable, selectively retrievable context/attention without becoming an execution proxy …",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "headingPath": [
+                "Semantic Evidence Plane architecture"
+              ],
+              "level": 1,
+              "parentId": null,
+              "startLine": 1,
+              "endLine": 65,
+              "chars": 9431,
+              "bytes": 9431,
+              "terms": [
+                "architecture",
+                "evidence",
+                "plane",
+                "semantic",
+                "context",
+                "adrs",
+                "attention",
+                "authoritative"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "6b1cf59789e53d70b6ab7b0578436fc9c3d5b01b555425bdc64e643544b9a969",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "block-4",
+              "rangeKind": "block",
+              "startLine": 23,
+              "endLine": 38,
+              "startOffset": 1090,
+              "endOffset": 2287,
+              "fingerprint": "4208c1f8f33cabd5ac4568cc0c55ae1032f6ee17036c51360a518790bc9816e9",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 1197,
+            "exactFetchable": true,
+            "score": 0.5,
+            "title": "Confidence and merge policy",
+            "headingPath": [
+              "Confidence and merge policy"
+            ],
+            "snippet": "A merge/synthesis proposal should retain input atom IDs, refs, revisions and fingerprints; candidate relations and conflicts; decision alternatives and a short evidence-cited reason for each inclusion, omission or separ…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy"
+              ],
+              "blockKind": "prose",
+              "sectionId": "heading-1",
+              "startLine": 23,
+              "endLine": 38,
+              "chars": 1197,
+              "bytes": 1197,
+              "terms": [
+                "source",
+                "candidate",
+                "blocks",
+                "confidence",
+                "contradiction",
+                "exact",
+                "output",
+                "relation"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "b88f8fc2c4dee89aacfeea3f388d28b9613eac35b8d7c244d4839c39f17e4c17",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "block-3",
+              "rangeKind": "block",
+              "startLine": 13,
+              "endLine": 21,
+              "startOffset": 556,
+              "endOffset": 1088,
+              "fingerprint": "74d595f5d539533c5e69c0b2d66c14081c8aacfd1266ffb6d20bae33df1bae19",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 532,
+            "exactFetchable": true,
+            "score": 0.4,
+            "title": "Confidence and merge policy",
+            "headingPath": [
+              "Confidence and merge policy"
+            ],
+            "snippet": "…rministic identity, owner, revision, privacy and exact-evidence guards. 2. Librarian returns bounded evidence handles; Jev proposes typed judgments over those explicit candidates. 3. Missing temporal/scope data, low co…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy"
+              ],
+              "blockKind": "list",
+              "sectionId": "heading-1",
+              "startLine": 13,
+              "endLine": 21,
+              "chars": 532,
+              "bytes": 532,
+              "terms": [
+                "confidence",
+                "owner",
+                "abstain",
+                "admit",
+                "any",
+                "approval",
+                "before",
+                "bounded"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "b97724fb8009b7d6e5423d9372a2683c2813ae2131d97a36fde29209d0506124",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "block-3/item-4",
+              "rangeKind": "block",
+              "startLine": 18,
+              "endLine": 19,
+              "startOffset": 854,
+              "endOffset": 978,
+              "fingerprint": "e9ca9c2d93d6e7df7f2a8656ccda30e63e06e99f18741de3693839388d0178fe",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 124,
+            "exactFetchable": true,
+            "score": 0.35,
+            "title": "Confidence and merge policy",
+            "headingPath": [
+              "Confidence and merge policy"
+            ],
+            "snippet": "4. A raw confidence threshold may admit a derived synthesis preview, never a destructive source merge or canonical write.",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy"
+              ],
+              "blockKind": "list-item",
+              "parentBlockId": "block-3",
+              "parentBlockFingerprint": "74d595f5d539533c5e69c0b2d66c14081c8aacfd1266ffb6d20bae33df1bae19",
+              "listItemOrdinal": 4,
+              "sectionId": "heading-1",
+              "startLine": 18,
+              "endLine": 19,
+              "chars": 124,
+              "bytes": 124,
+              "terms": [
+                "raw",
+                "confidence",
+                "threshold",
+                "may",
+                "admit",
+                "derived",
+                "synthesis",
+                "preview",
+                "never",
+                "destructive",
+                "source",
+                "merge",
+                "or",
+                "canonical",
+                "write"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "12cf41a33e58e3f1299f940e4fd881111192baed0dc3a02d3b6899efca5671d4",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "rangeId": "heading-5",
+              "rangeKind": "section",
+              "startLine": 24,
+              "endLine": 31,
+              "startOffset": 3716,
+              "endOffset": 5865,
+              "fingerprint": "0215e92763d651a87cb09aa555efc852c0f079f6a55c38aa761a92a32a1c516e",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 2149,
+            "exactFetchable": true,
+            "score": 0.35,
+            "title": "Reduction, batching and semantic triage",
+            "headingPath": [
+              "Semantic Evidence Plane architecture",
+              "Reduction, batching and semantic triage"
+            ],
+            "snippet": "…h/fetch -> isolated Jev relation batches per connected evidence component -> exact atom-bound semantic judgments -> contradiction-aware reversible preview -> host re-read/revision check and approval/write outside MSSR …",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "headingPath": [
+                "Semantic Evidence Plane architecture",
+                "Reduction, batching and semantic triage"
+              ],
+              "level": 2,
+              "parentId": "heading-1",
+              "startLine": 24,
+              "endLine": 31,
+              "chars": 2149,
+              "bytes": 2149,
+              "terms": [
+                "batching",
+                "reduction",
+                "semantic",
+                "triage",
+                "evidence",
+                "host",
+                "jev",
+                "preview"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "2dc35beada0510e876e51b229c15f00b42a49280179dada9d1ab5deb65d67594",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "heading-2",
+              "rangeKind": "section",
+              "startLine": 40,
+              "endLine": 54,
+              "startOffset": 2289,
+              "endOffset": 3276,
+              "fingerprint": "530473af5b24fb8751515906344f7316bfb035a5fa4e9d0a26858d5d53f3169e",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 987,
+            "exactFetchable": true,
+            "score": 0.35,
+            "title": "Current exploratory live MSSR smoke — 2026-09-30",
+            "headingPath": [
+              "Confidence and merge policy",
+              "Current exploratory live MSSR smoke — 2026-09-30"
+            ],
+            "snippet": "… with unknown scope/time, Jev chose `supports` at 0.45 confidence; deterministic evaluation and synthesis preview kept both atoms in review because scope and temporal comparability were unknown. Both previews had `appl…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy",
+                "Current exploratory live MSSR smoke — 2026-09-30"
+              ],
+              "level": 3,
+              "parentId": "heading-1",
+              "startLine": 40,
+              "endLine": 54,
+              "chars": 987,
+              "bytes": 989,
+              "terms": [
+                "2026-09-30",
+                "exploratory",
+                "live",
+                "mssr",
+                "smoke",
+                "jev",
+                "four",
+                "blocks"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "7557d32e0892b651e05f965630c9dcc23330f855f6308cf3a33693aaa9ced5c1",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "block-5",
+              "rangeKind": "block",
+              "startLine": 42,
+              "endLine": 54,
+              "startOffset": 2343,
+              "endOffset": 3275,
+              "fingerprint": "1a45b0b5d3ad7c021697d035dc6af917d8285fcdc2049c565637d5ef21463259",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 932,
+            "exactFetchable": true,
+            "score": 0.35,
+            "title": "Current exploratory live MSSR smoke — 2026-09-30",
+            "headingPath": [
+              "Confidence and merge policy",
+              "Current exploratory live MSSR smoke — 2026-09-30"
+            ],
+            "snippet": "… with unknown scope/time, Jev chose `supports` at 0.45 confidence; deterministic evaluation and synthesis preview kept both atoms in review because scope and temporal comparability were unknown. Both previews had `appl…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy",
+                "Current exploratory live MSSR smoke — 2026-09-30"
+              ],
+              "blockKind": "prose",
+              "sectionId": "heading-2",
+              "startLine": 42,
+              "endLine": 54,
+              "chars": 932,
+              "bytes": 932,
+              "terms": [
+                "jev",
+                "four",
+                "blocks",
+                "both",
+                "confidence",
+                "contradiction",
+                "does",
+                "exact"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          }
+        ]
+      },
+      "sameCandidateHandleOrder": true
+    },
+    "C02": {
+      "query": "What may a Jev relation judgment establish, and what exact host-side checks are required before a synthesis preview is consumed?",
+      "baseline": {
+        "metadataMode": "off",
+        "status": "lexical",
+        "results": [
+          {
+            "handle": {
+              "version": 1,
+              "id": "7be9c43de5eb18c7e1e58dc32bfc88dce41936e42f6ceaf844478c585470c5d1",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "rangeId": "heading-1",
+              "rangeKind": "section",
+              "startLine": 1,
+              "endLine": 65,
+              "startOffset": 0,
+              "endOffset": 9431,
+              "fingerprint": "55cc7dcec8e39fa0c7bd33415aa37a857416205c2e704fea1572929248ee1a83",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 9431,
+            "exactFetchable": true,
+            "score": 0.75,
+            "title": "Semantic Evidence Plane architecture",
+            "headingPath": [
+              "Semantic Evidence Plane architecture"
+            ],
+            "snippet": "…e, freshness, revision/hash, optional heading path and exact span), bounded semantic labels/reason codes, relation/evidence refs, classifier identity when applicable, lifecycle state (`selected`, `skipped`, `delivered`…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "headingPath": [
+                "Semantic Evidence Plane architecture"
+              ],
+              "level": 1,
+              "parentId": null,
+              "startLine": 1,
+              "endLine": 65,
+              "chars": 9431,
+              "bytes": 9431,
+              "terms": [
+                "architecture",
+                "evidence",
+                "plane",
+                "semantic",
+                "context",
+                "adrs",
+                "attention",
+                "authoritative"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "dfd035157293a02f358e25d49593a0f2115625920d5b1aef96a15b3c8cd784c2",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "heading-1",
+              "rangeKind": "section",
+              "startLine": 1,
+              "endLine": 54,
+              "startOffset": 0,
+              "endOffset": 3276,
+              "fingerprint": "5d85091022f92ece940f53a5adceb6d021de3de898482cc4f909ab80bd4e0711",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 3276,
+            "exactFetchable": true,
+            "score": 0.666667,
+            "title": "Confidence and merge policy",
+            "headingPath": [
+              "Confidence and merge policy"
+            ],
+            "snippet": "…. Deterministic identity, owner, revision, privacy and exact-evidence guards. 2. Librarian returns bounded evidence handles; Jev proposes typed judgments over those explicit candidates. 3. Missing temporal/scope data, …",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy"
+              ],
+              "level": 2,
+              "parentId": null,
+              "startLine": 1,
+              "endLine": 54,
+              "chars": 3276,
+              "bytes": 3282,
+              "terms": [
+                "confidence",
+                "merge",
+                "policy",
+                "abstention",
+                "accuracy",
+                "action",
+                "against",
+                "alongside"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "44ff6d436e293b49ccbf5ae6b5f947301d1868481b591cecfa8b2235e2621fab",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "rangeId": "heading-3",
+              "rangeKind": "section",
+              "startLine": 11,
+              "endLine": 16,
+              "startOffset": 1963,
+              "endOffset": 2732,
+              "fingerprint": "aa1a4555149ff2cfc27077271adf28530351cc4b4ef9c92b1a6647a27adecc67",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 769,
+            "exactFetchable": true,
+            "score": 0.583333,
+            "title": "Core Document and Librarian guarantees",
+            "headingPath": [
+              "Semantic Evidence Plane architecture",
+              "Core Document and Librarian guarantees"
+            ],
+            "snippet": "…s Document Surface exposes revision-bound metadata and exact source ranges. A later fetch is usable only against the same source revision. Hosts read files and supply bounded Markdown; MSSR search does not scan the fil…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "headingPath": [
+                "Semantic Evidence Plane architecture",
+                "Core Document and Librarian guarantees"
+              ],
+              "level": 2,
+              "parentId": "heading-1",
+              "startLine": 11,
+              "endLine": 16,
+              "chars": 769,
+              "bytes": 769,
+              "terms": [
+                "core",
+                "document",
+                "guarantees",
+                "librarian",
+                "source",
+                "against",
+                "authority",
+                "bounded"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "81bf72364613f6b5ae5513bda8b947c14019bb828c95ff7aace19a87232deedc",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "rangeId": "block-5",
+              "rangeKind": "block",
+              "startLine": 15,
+              "endLine": 15,
+              "startOffset": 2279,
+              "endOffset": 2730,
+              "fingerprint": "ca9576e692cfeb653ebd7252d4a823b4554637bf140ad5b0b53687704b06cc8a",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 451,
+            "exactFetchable": true,
+            "score": 0.583333,
+            "title": "Core Document and Librarian guarantees",
+            "headingPath": [
+              "Semantic Evidence Plane architecture",
+              "Core Document and Librarian guarantees"
+            ],
+            "snippet": "…te that provenance. Deterministic structural duplicate checks run before optional Jev relation judgments. Jev selections, confidence and sufficiency scores remain advisory and uncalibrated. Exact fetch, independent ver…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "headingPath": [
+                "Semantic Evidence Plane architecture",
+                "Core Document and Librarian guarantees"
+              ],
+              "blockKind": "prose",
+              "sectionId": "heading-3",
+              "startLine": 15,
+              "endLine": 15,
+              "chars": 451,
+              "bytes": 451,
+              "terms": [
+                "jev",
+                "provenance",
+                "remain",
+                "adapts",
+                "advisory",
+                "authenticate",
+                "before",
+                "caller-asserted"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "2dc35beada0510e876e51b229c15f00b42a49280179dada9d1ab5deb65d67594",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "heading-2",
+              "rangeKind": "section",
+              "startLine": 40,
+              "endLine": 54,
+              "startOffset": 2289,
+              "endOffset": 3276,
+              "fingerprint": "530473af5b24fb8751515906344f7316bfb035a5fa4e9d0a26858d5d53f3169e",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 987,
+            "exactFetchable": true,
+            "score": 0.5,
+            "title": "Current exploratory live MSSR smoke — 2026-09-30",
+            "headingPath": [
+              "Confidence and merge policy",
+              "Current exploratory live MSSR smoke — 2026-09-30"
+            ],
+            "snippet": "…e MSSR smoke — 2026-09-30 The live run at `experiments/jev-mssr-live/runs/mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1/` used four current MSSR documents, four retrieval queries, eight exact fetched blocks …",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy",
+                "Current exploratory live MSSR smoke — 2026-09-30"
+              ],
+              "level": 3,
+              "parentId": "heading-1",
+              "startLine": 40,
+              "endLine": 54,
+              "chars": 987,
+              "bytes": 989,
+              "terms": [
+                "2026-09-30",
+                "exploratory",
+                "live",
+                "mssr",
+                "smoke",
+                "jev",
+                "four",
+                "blocks"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "7557d32e0892b651e05f965630c9dcc23330f855f6308cf3a33693aaa9ced5c1",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "block-5",
+              "rangeKind": "block",
+              "startLine": 42,
+              "endLine": 54,
+              "startOffset": 2343,
+              "endOffset": 3275,
+              "fingerprint": "1a45b0b5d3ad7c021697d035dc6af917d8285fcdc2049c565637d5ef21463259",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 932,
+            "exactFetchable": true,
+            "score": 0.5,
+            "title": "Current exploratory live MSSR smoke — 2026-09-30",
+            "headingPath": [
+              "Confidence and merge policy",
+              "Current exploratory live MSSR smoke — 2026-09-30"
+            ],
+            "snippet": "The live run at `experiments/jev-mssr-live/runs/mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1/` used four current MSSR documents, four retrieval queries, eight exact fetched blocks and four Jev relation reque…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy",
+                "Current exploratory live MSSR smoke — 2026-09-30"
+              ],
+              "blockKind": "prose",
+              "sectionId": "heading-2",
+              "startLine": 42,
+              "endLine": 54,
+              "chars": 932,
+              "bytes": 932,
+              "terms": [
+                "jev",
+                "four",
+                "blocks",
+                "both",
+                "confidence",
+                "contradiction",
+                "does",
+                "exact"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "b88f8fc2c4dee89aacfeea3f388d28b9613eac35b8d7c244d4839c39f17e4c17",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "block-3",
+              "rangeKind": "block",
+              "startLine": 13,
+              "endLine": 21,
+              "startOffset": 556,
+              "endOffset": 1088,
+              "fingerprint": "74d595f5d539533c5e69c0b2d66c14081c8aacfd1266ffb6d20bae33df1bae19",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 532,
+            "exactFetchable": true,
+            "score": 0.416667,
+            "title": "Confidence and merge policy",
+            "headingPath": [
+              "Confidence and merge policy"
+            ],
+            "snippet": "…guards. 2. Librarian returns bounded evidence handles; Jev proposes typed judgments over those explicit candidates. 3. Missing temporal/scope data, low confidence, or a contradiction sends the proposal to review/abstai…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy"
+              ],
+              "blockKind": "list",
+              "sectionId": "heading-1",
+              "startLine": 13,
+              "endLine": 21,
+              "chars": 532,
+              "bytes": 532,
+              "terms": [
+                "confidence",
+                "owner",
+                "abstain",
+                "admit",
+                "any",
+                "approval",
+                "before",
+                "bounded"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "12cf41a33e58e3f1299f940e4fd881111192baed0dc3a02d3b6899efca5671d4",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "rangeId": "heading-5",
+              "rangeKind": "section",
+              "startLine": 24,
+              "endLine": 31,
+              "startOffset": 3716,
+              "endOffset": 5865,
+              "fingerprint": "0215e92763d651a87cb09aa555efc852c0f079f6a55c38aa761a92a32a1c516e",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 2149,
+            "exactFetchable": true,
+            "score": 0.416667,
+            "title": "Reduction, batching and semantic triage",
+            "headingPath": [
+              "Semantic Evidence Plane architecture",
+              "Reduction, batching and semantic triage"
+            ],
+            "snippet": "…ts/reads sources -> Librarian search/fetch -> isolated Jev relation batches per connected evidence component -> exact atom-bound semantic judgments -> contradiction-aware reversible preview -> host re-read/revision che…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "headingPath": [
+                "Semantic Evidence Plane architecture",
+                "Reduction, batching and semantic triage"
+              ],
+              "level": 2,
+              "parentId": "heading-1",
+              "startLine": 24,
+              "endLine": 31,
+              "chars": 2149,
+              "bytes": 2149,
+              "terms": [
+                "batching",
+                "reduction",
+                "semantic",
+                "triage",
+                "evidence",
+                "host",
+                "jev",
+                "preview"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          }
+        ]
+      },
+      "sidecar": {
+        "metadataMode": "project-context-librarian-sidecar",
+        "status": "no-projectable-declarations",
+        "metadataIndex": {
+          "mode": "project-context-librarian-sidecar",
+          "status": "no-projectable-declarations",
+          "projectContextManifestRevision": "3e9b70a028124c49ff06c18cbcda3d6f5ce4cd9daf2e3f71cb6ad52581fd2a28",
+          "librarianManifestRevision": "9e80e6e2b9973b9bd4b32e55af3a65bb4d1325d01ede0eb2e4e91ca238f1abd7",
+          "segmentsManifestRevision": "dc4f3530a6b63f21356b327fcec91b88341c696ed4013de9e21572a3778c8de6",
+          "referencesManifestRevision": null,
+          "declared": 4,
+          "projected": 0,
+          "omitted": 4,
+          "items": [
+            {
+              "entryId": "mssr-architecture-impact-decision",
+              "headingPath": [
+                "Architecture impact review decision"
+              ],
+              "status": "omitted",
+              "issue": "source-not-provided"
+            },
+            {
+              "entryId": "mssr-learning-dataset-state",
+              "headingPath": [
+                "Learning dataset state"
+              ],
+              "status": "omitted",
+              "issue": "source-not-provided"
+            },
+            {
+              "entryId": "mssr-core-skill-package-state",
+              "headingPath": [
+                "MSSR project state",
+                "Core skill package state"
+              ],
+              "status": "omitted",
+              "issue": "source-not-provided"
+            },
+            {
+              "entryId": "mssr-jev-use-case-hypotheses",
+              "headingPath": [
+                "Jev, decisiones tipadas y casos de uso para MSSR",
+                "100 hipótesis de uso"
+              ],
+              "status": "omitted",
+              "issue": "source-not-provided"
+            }
+          ],
+          "selectorsAreProjectDeclared": true,
+          "sourceOwnerIsCallerAsserted": true,
+          "advisoryOnly": true,
+          "truthAuthority": false,
+          "canonicalRewriteAllowed": false
+        },
+        "results": [
+          {
+            "handle": {
+              "version": 1,
+              "id": "7be9c43de5eb18c7e1e58dc32bfc88dce41936e42f6ceaf844478c585470c5d1",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "rangeId": "heading-1",
+              "rangeKind": "section",
+              "startLine": 1,
+              "endLine": 65,
+              "startOffset": 0,
+              "endOffset": 9431,
+              "fingerprint": "55cc7dcec8e39fa0c7bd33415aa37a857416205c2e704fea1572929248ee1a83",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 9431,
+            "exactFetchable": true,
+            "score": 0.75,
+            "title": "Semantic Evidence Plane architecture",
+            "headingPath": [
+              "Semantic Evidence Plane architecture"
+            ],
+            "snippet": "…e, freshness, revision/hash, optional heading path and exact span), bounded semantic labels/reason codes, relation/evidence refs, classifier identity when applicable, lifecycle state (`selected`, `skipped`, `delivered`…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "headingPath": [
+                "Semantic Evidence Plane architecture"
+              ],
+              "level": 1,
+              "parentId": null,
+              "startLine": 1,
+              "endLine": 65,
+              "chars": 9431,
+              "bytes": 9431,
+              "terms": [
+                "architecture",
+                "evidence",
+                "plane",
+                "semantic",
+                "context",
+                "adrs",
+                "attention",
+                "authoritative"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "dfd035157293a02f358e25d49593a0f2115625920d5b1aef96a15b3c8cd784c2",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "heading-1",
+              "rangeKind": "section",
+              "startLine": 1,
+              "endLine": 54,
+              "startOffset": 0,
+              "endOffset": 3276,
+              "fingerprint": "5d85091022f92ece940f53a5adceb6d021de3de898482cc4f909ab80bd4e0711",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 3276,
+            "exactFetchable": true,
+            "score": 0.666667,
+            "title": "Confidence and merge policy",
+            "headingPath": [
+              "Confidence and merge policy"
+            ],
+            "snippet": "…. Deterministic identity, owner, revision, privacy and exact-evidence guards. 2. Librarian returns bounded evidence handles; Jev proposes typed judgments over those explicit candidates. 3. Missing temporal/scope data, …",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy"
+              ],
+              "level": 2,
+              "parentId": null,
+              "startLine": 1,
+              "endLine": 54,
+              "chars": 3276,
+              "bytes": 3282,
+              "terms": [
+                "confidence",
+                "merge",
+                "policy",
+                "abstention",
+                "accuracy",
+                "action",
+                "against",
+                "alongside"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "44ff6d436e293b49ccbf5ae6b5f947301d1868481b591cecfa8b2235e2621fab",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "rangeId": "heading-3",
+              "rangeKind": "section",
+              "startLine": 11,
+              "endLine": 16,
+              "startOffset": 1963,
+              "endOffset": 2732,
+              "fingerprint": "aa1a4555149ff2cfc27077271adf28530351cc4b4ef9c92b1a6647a27adecc67",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 769,
+            "exactFetchable": true,
+            "score": 0.583333,
+            "title": "Core Document and Librarian guarantees",
+            "headingPath": [
+              "Semantic Evidence Plane architecture",
+              "Core Document and Librarian guarantees"
+            ],
+            "snippet": "…s Document Surface exposes revision-bound metadata and exact source ranges. A later fetch is usable only against the same source revision. Hosts read files and supply bounded Markdown; MSSR search does not scan the fil…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "headingPath": [
+                "Semantic Evidence Plane architecture",
+                "Core Document and Librarian guarantees"
+              ],
+              "level": 2,
+              "parentId": "heading-1",
+              "startLine": 11,
+              "endLine": 16,
+              "chars": 769,
+              "bytes": 769,
+              "terms": [
+                "core",
+                "document",
+                "guarantees",
+                "librarian",
+                "source",
+                "against",
+                "authority",
+                "bounded"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "81bf72364613f6b5ae5513bda8b947c14019bb828c95ff7aace19a87232deedc",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "rangeId": "block-5",
+              "rangeKind": "block",
+              "startLine": 15,
+              "endLine": 15,
+              "startOffset": 2279,
+              "endOffset": 2730,
+              "fingerprint": "ca9576e692cfeb653ebd7252d4a823b4554637bf140ad5b0b53687704b06cc8a",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 451,
+            "exactFetchable": true,
+            "score": 0.583333,
+            "title": "Core Document and Librarian guarantees",
+            "headingPath": [
+              "Semantic Evidence Plane architecture",
+              "Core Document and Librarian guarantees"
+            ],
+            "snippet": "…te that provenance. Deterministic structural duplicate checks run before optional Jev relation judgments. Jev selections, confidence and sufficiency scores remain advisory and uncalibrated. Exact fetch, independent ver…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "headingPath": [
+                "Semantic Evidence Plane architecture",
+                "Core Document and Librarian guarantees"
+              ],
+              "blockKind": "prose",
+              "sectionId": "heading-3",
+              "startLine": 15,
+              "endLine": 15,
+              "chars": 451,
+              "bytes": 451,
+              "terms": [
+                "jev",
+                "provenance",
+                "remain",
+                "adapts",
+                "advisory",
+                "authenticate",
+                "before",
+                "caller-asserted"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "2dc35beada0510e876e51b229c15f00b42a49280179dada9d1ab5deb65d67594",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "heading-2",
+              "rangeKind": "section",
+              "startLine": 40,
+              "endLine": 54,
+              "startOffset": 2289,
+              "endOffset": 3276,
+              "fingerprint": "530473af5b24fb8751515906344f7316bfb035a5fa4e9d0a26858d5d53f3169e",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 987,
+            "exactFetchable": true,
+            "score": 0.5,
+            "title": "Current exploratory live MSSR smoke — 2026-09-30",
+            "headingPath": [
+              "Confidence and merge policy",
+              "Current exploratory live MSSR smoke — 2026-09-30"
+            ],
+            "snippet": "…e MSSR smoke — 2026-09-30 The live run at `experiments/jev-mssr-live/runs/mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1/` used four current MSSR documents, four retrieval queries, eight exact fetched blocks …",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy",
+                "Current exploratory live MSSR smoke — 2026-09-30"
+              ],
+              "level": 3,
+              "parentId": "heading-1",
+              "startLine": 40,
+              "endLine": 54,
+              "chars": 987,
+              "bytes": 989,
+              "terms": [
+                "2026-09-30",
+                "exploratory",
+                "live",
+                "mssr",
+                "smoke",
+                "jev",
+                "four",
+                "blocks"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "7557d32e0892b651e05f965630c9dcc23330f855f6308cf3a33693aaa9ced5c1",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "block-5",
+              "rangeKind": "block",
+              "startLine": 42,
+              "endLine": 54,
+              "startOffset": 2343,
+              "endOffset": 3275,
+              "fingerprint": "1a45b0b5d3ad7c021697d035dc6af917d8285fcdc2049c565637d5ef21463259",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 932,
+            "exactFetchable": true,
+            "score": 0.5,
+            "title": "Current exploratory live MSSR smoke — 2026-09-30",
+            "headingPath": [
+              "Confidence and merge policy",
+              "Current exploratory live MSSR smoke — 2026-09-30"
+            ],
+            "snippet": "The live run at `experiments/jev-mssr-live/runs/mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1/` used four current MSSR documents, four retrieval queries, eight exact fetched blocks and four Jev relation reque…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy",
+                "Current exploratory live MSSR smoke — 2026-09-30"
+              ],
+              "blockKind": "prose",
+              "sectionId": "heading-2",
+              "startLine": 42,
+              "endLine": 54,
+              "chars": 932,
+              "bytes": 932,
+              "terms": [
+                "jev",
+                "four",
+                "blocks",
+                "both",
+                "confidence",
+                "contradiction",
+                "does",
+                "exact"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "b88f8fc2c4dee89aacfeea3f388d28b9613eac35b8d7c244d4839c39f17e4c17",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "rangeId": "block-3",
+              "rangeKind": "block",
+              "startLine": 13,
+              "endLine": 21,
+              "startOffset": 556,
+              "endOffset": 1088,
+              "fingerprint": "74d595f5d539533c5e69c0b2d66c14081c8aacfd1266ffb6d20bae33df1bae19",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 532,
+            "exactFetchable": true,
+            "score": 0.416667,
+            "title": "Confidence and merge policy",
+            "headingPath": [
+              "Confidence and merge policy"
+            ],
+            "snippet": "…guards. 2. Librarian returns bounded evidence handles; Jev proposes typed judgments over those explicit candidates. 3. Missing temporal/scope data, low confidence, or a contradiction sends the proposal to review/abstai…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+              "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+              "headingPath": [
+                "Confidence and merge policy"
+              ],
+              "blockKind": "list",
+              "sectionId": "heading-1",
+              "startLine": 13,
+              "endLine": 21,
+              "chars": 532,
+              "bytes": 532,
+              "terms": [
+                "confidence",
+                "owner",
+                "abstain",
+                "admit",
+                "any",
+                "approval",
+                "before",
+                "bounded"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          },
+          {
+            "handle": {
+              "version": 1,
+              "id": "12cf41a33e58e3f1299f940e4fd881111192baed0dc3a02d3b6899efca5671d4",
+              "owner": "d:/dev/mssr",
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "rangeId": "heading-5",
+              "rangeKind": "section",
+              "startLine": 24,
+              "endLine": 31,
+              "startOffset": 3716,
+              "endOffset": 5865,
+              "fingerprint": "0215e92763d651a87cb09aa555efc852c0f079f6a55c38aa761a92a32a1c516e",
+              "privacyClass": "project-metadata"
+            },
+            "rangeCodeUnits": 2149,
+            "exactFetchable": true,
+            "score": 0.416667,
+            "title": "Reduction, batching and semantic triage",
+            "headingPath": [
+              "Semantic Evidence Plane architecture",
+              "Reduction, batching and semantic triage"
+            ],
+            "snippet": "…ts/reads sources -> Librarian search/fetch -> isolated Jev relation batches per connected evidence component -> exact atom-bound semantic judgments -> contradiction-aware reversible preview -> host re-read/revision che…",
+            "metadata": {
+              "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+              "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+              "headingPath": [
+                "Semantic Evidence Plane architecture",
+                "Reduction, batching and semantic triage"
+              ],
+              "level": 2,
+              "parentId": "heading-1",
+              "startLine": 24,
+              "endLine": 31,
+              "chars": 2149,
+              "bytes": 2149,
+              "terms": [
+                "batching",
+                "reduction",
+                "semantic",
+                "triage",
+                "evidence",
+                "host",
+                "jev",
+                "preview"
+              ]
+            },
+            "evidenceTier": "candidate",
+            "advisoryOnly": true,
+            "truthAuthority": false,
+            "ownerAndPrivacyAreCallerAsserted": true,
+            "catalogProvenanceIsCallerAsserted": true
+          }
+        ]
+      },
+      "sameCandidateHandleOrder": true
+    }
+  }
+}

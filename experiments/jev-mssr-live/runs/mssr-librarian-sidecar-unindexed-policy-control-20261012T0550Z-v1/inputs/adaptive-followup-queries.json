@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "adaptiveIntervention": true,
+  "queries": [
+    {
+      "caseId": "C01a",
+      "poolCase": "C01",
+      "query": "When evidence atoms conflict or are not comparable, may the preview consolidate them automatically, and what happens to the original atoms?"
+    },
+    {
+      "caseId": "C01b",
+      "poolCase": "C01",
+      "query": "Does the default raw 0.75 relation threshold represent calibrated probability or permit a canonical rewrite?"
+    },
+    {
+      "caseId": "C02a",
+      "poolCase": "C02",
+      "query": "What can a Jev judgment establish about authority, truth, permission, verification, or canonical write rights?"
+    },
+    {
+      "caseId": "C02b",
+      "poolCase": "C02",
+      "query": "Before consuming a synthesis preview, what must the host re-read and compare, and are freshness/verifier records authenticated?"
+    }
+  ],
+  "additionalProviderCallsMadeAtFreeze": 0
+}

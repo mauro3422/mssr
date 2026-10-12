@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "correctionId": "CORR-01",
+  "createdAt": "2026-10-12T05:54:10Z",
+  "reason": "The initial request supplied query.metadata.domain=coding to both search modes. Source code applies query.metadata as an actual candidate-range filter in metadata-off mode too; the explicit sources have no domain=coding metadata, so both arms returned zero candidates.",
+  "change": "Retain identical query text and explicit sources but omit query.metadata from both arms. Keep metadataMode=off for lexical baseline and project-context-librarian-sidecar for sidecar mode. No source label or target changes.",
+  "precondition": "No provider calls have occurred. Freeze and hash this amendment before corrected searches or Jev.",
+  "cases": [
+    {
+      "caseId": "C01",
+      "facet": "contradiction-and-supersession",
+      "query": "When evidence atoms conflict or cannot be compared, may the synthesis preview consolidate them? How should supersession be represented, and can a raw confidence threshold authorize canonical writes?",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md"
+      ]
+    },
+    {
+      "caseId": "C02",
+      "facet": "Jev-authority-boundary-and-revalidation",
+      "query": "What may a Jev relation judgment establish, and what exact host-side checks are required before a synthesis preview is consumed?",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md"
+      ]
+    }
+  ],
+  "searchArguments": [
+    {
+      "caseId": "C01",
+      "arm": "baseline",
+      "metadataMode": "off",
+      "projectRoot": "D:/Dev/mssr",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md"
+      ],
+      "query": {
+        "query": "When evidence atoms conflict or cannot be compared, may the synthesis preview consolidate them? How should supersession be represented, and can a raw confidence threshold authorize canonical writes?",
+        "maxResults": 8,
+        "maxSnippetChars": 220
+      }
+    },
+    {
+      "caseId": "C01",
+      "arm": "sidecar",
+      "metadataMode": "project-context-librarian-sidecar",
+      "projectRoot": "D:/Dev/mssr",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md"
+      ],
+      "query": {
+        "query": "When evidence atoms conflict or cannot be compared, may the synthesis preview consolidate them? How should supersession be represented, and can a raw confidence threshold authorize canonical writes?",
+        "maxResults": 8,
+        "maxSnippetChars": 220
+      }
+    },
+    {
+      "caseId": "C02",
+      "arm": "baseline",
+      "metadataMode": "off",
+      "projectRoot": "D:/Dev/mssr",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md"
+      ],
+      "query": {
+        "query": "What may a Jev relation judgment establish, and what exact host-side checks are required before a synthesis preview is consumed?",
+        "maxResults": 8,
+        "maxSnippetChars": 220
+      }
+    },
+    {
+      "caseId": "C02",
+      "arm": "sidecar",
+      "metadataMode": "project-context-librarian-sidecar",
+      "projectRoot": "D:/Dev/mssr",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md"
+      ],
+      "query": {
+        "query": "What may a Jev relation judgment establish, and what exact host-side checks are required before a synthesis preview is consumed?",
+        "maxResults": 8,
+        "maxSnippetChars": 220
+      }
+    }
+  ]
+}

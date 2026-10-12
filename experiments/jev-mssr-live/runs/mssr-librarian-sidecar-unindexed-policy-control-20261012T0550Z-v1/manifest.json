@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-sidecar-unindexed-policy-control-20261012T0550Z-v1",
+  "createdAt": "2026-10-12T05:52:35Z",
+  "status": "frozen-before-search-and-provider-call",
+  "studyKind": "development-integration-metadata-coverage-negative-control",
+  "holdout": false,
+  "ownerGold": false,
+  "purpose": "Check explicit sidecar behavior for two canonical MSSR policy sources absent from the four-entry project Librarian sidecar, paired with lexical-only search and live Jev exact-handle selection.",
+  "runtimePreflight": {
+    "bridgeVersion": "0.6.172",
+    "mssrPackageVersion": "0.2.127",
+    "gitHead": "f6a63dab1ea332bf376acf1b174335d92d372e6d",
+    "productionMutation": false,
+    "thresholdChange": false
+  },
+  "sources": [
+    {
+      "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+      "snapshot": "sources/mssr-jev-confidence-merge-policy.md",
+      "sha256": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+      "sidecarEntryId": null,
+      "expectedHeading": "Confidence and merge policy",
+      "exposureClass": "previously-exposed-development-source"
+    },
+    {
+      "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+      "snapshot": "sources/semantic-evidence-plane.md",
+      "sha256": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+      "sidecarEntryId": null,
+      "expectedHeading": "Reduction, batching and semantic triage",
+      "exposureClass": "previously-exposed-development-source"
+    }
+  ],
+  "metadataAuthorities": {
+    ".mssr/project-context-librarian.json": "9e80e6e2b9973b9bd4b32e55af3a65bb4d1325d01ede0eb2e4e91ca238f1abd7",
+    ".mssr/project-context.json": "3e9b70a028124c49ff06c18cbcda3d6f5ce4cd9daf2e3f71cb6ad52581fd2a28"
+  },
+  "queryInput": "inputs/search-requests.json",
+  "expectedLabelFile": "labels/frozen-labels.json",
+  "providerCalls": 0,
+  "limitations": [
+    "Two queries over one related MSSR architecture source cluster; not independent samples, holdout, owner-gold, calibration, contradiction accuracy, or production reliability.",
+    "Sources were previously exposed in development packet materials; absence of a sidecar declaration tests fallback coverage, not unseen-document generalization.",
+    "Manual targets were derived from canonical prose and were not independently adjudicated.",
+    "Jev selection is advisory; fetch/fingerprint validation and host verification remain separate."
+  ]
+}

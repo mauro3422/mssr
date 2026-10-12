@@ -87,3 +87,11 @@ exact search rank 25→3 and Jev fetched the analysis-only rule (Choice
 evidence. D12/D14 probes found partial support or abstention. No owner-gold/
 holdout; labels/thresholds unchanged. Receipts:
 `D:\MSSR-benchmark-artifacts\jev-shep-calibration-20261009-v1\librarian-contrastive-authority-abstention-20261010-v1\`.
+
+
+## Run43 (2026-10-12)
+
+Unindexed policy control: sidecar fallback matched lexical 8/8; expected ranges
+were in 4/4 adaptive pools, but exact Jev target selection was 1/4. Two answers
+were complete; one was 4.39x overbroad. Exploratory, uncalibrated; no
+sidecar/policy/threshold change. Full results: `experiments/jev-mssr-live/README.md`.

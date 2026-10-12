@@ -1,0 +1,72 @@
+{
+  "attempt": "initial-metadata-filter-nohit",
+  "providerCalls": 0,
+  "requests": [
+    {
+      "caseId": "C01",
+      "facet": "contradiction-and-supersession",
+      "query": "When evidence atoms conflict or cannot be compared, may the synthesis preview consolidate them? How should supersession be represented, and can a raw confidence threshold authorize canonical writes?",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md"
+      ],
+      "metadata": {
+        "domain": "coding"
+      }
+    },
+    {
+      "caseId": "C02",
+      "facet": "Jev-authority-boundary-and-revalidation",
+      "query": "What may a Jev relation judgment establish, and what exact host-side checks are required before a synthesis preview is consumed?",
+      "sourceRefs": [
+        ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+        ".mssr/knowledge/architecture/semantic-evidence-plane.md"
+      ],
+      "metadata": {
+        "domain": "coding"
+      }
+    }
+  ],
+  "results": {
+    "baseline_C01": {
+      "isError": false,
+      "structuredContent": null,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"sourceCount\": 2,\n  \"results\": [],\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"truncated\": false,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+        }
+      ]
+    },
+    "sidecar_C01": {
+      "isError": false,
+      "structuredContent": null,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"sourceCount\": 2,\n  \"metadataIndex\": {\n    \"mode\": \"project-context-librarian-sidecar\",\n    \"status\": \"no-projectable-declarations\",\n    \"projectContextManifestRevision\": \"3e9b70a028124c49ff06c18cbcda3d6f5ce4cd9daf2e3f71cb6ad52581fd2a28\",\n    \"librarianManifestRevision\": \"9e80e6e2b9973b9bd4b32e55af3a65bb4d1325d01ede0eb2e4e91ca238f1abd7\",\n    \"segmentsManifestRevision\": \"dc4f3530a6b63f21356b327fcec91b88341c696ed4013de9e21572a3778c8de6\",\n    \"referencesManifestRevision\": null,\n    \"declared\": 4,\n    \"projected\": 0,\n    \"omitted\": 4,\n    \"items\": [\n      {\n        \"entryId\": \"mssr-architecture-impact-decision\",\n        \"headingPath\": [\n          \"Architecture impact review decision\"\n        ],\n        \"status\": \"omitted\",\n        \"issue\": \"source-not-provided\"\n      },\n      {\n        \"entryId\": \"mssr-learning-dataset-state\",\n        \"headingPath\": [\n          \"Learning dataset state\"\n        ],\n        \"status\": \"omitted\",\n        \"issue\": \"source-not-provided\"\n      },\n      {\n        \"entryId\": \"mssr-core-skill-package-state\",\n        \"headingPath\": [\n          \"MSSR project state\",\n          \"Core skill package state\"\n        ],\n        \"status\": \"omitted\",\n        \"issue\": \"source-not-provided\"\n      },\n      {\n        \"entryId\": \"mssr-jev-use-case-hypotheses\",\n        \"headingPath\": [\n          \"Jev, decisiones tipadas y casos de uso para MSSR\",\n          \"100 hipótesis de uso\"\n        ],\n        \"status\": \"omitted\",\n        \"issue\": \"source-not-provided\"\n      }\n    ],\n    \"selectorsAreProjectDeclared\": true,\n    \"sourceOwnerIsCallerAsserted\": true,\n    \"advisoryOnly\": true,\n    \"truthAuthority\": false,\n    \"canonicalRewriteAllowed\": false\n  },\n  \"results\": [],\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"truncated\": false,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+        }
+      ]
+    },
+    "baseline_C02": {
+      "isError": false,
+      "structuredContent": null,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"sourceCount\": 2,\n  \"results\": [],\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"truncated\": false,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+        }
+      ]
+    },
+    "sidecar_C02": {
+      "isError": false,
+      "structuredContent": null,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"projectOwner\": \"d:/dev/mssr\",\n  \"sourceCount\": 2,\n  \"metadataIndex\": {\n    \"mode\": \"project-context-librarian-sidecar\",\n    \"status\": \"no-projectable-declarations\",\n    \"projectContextManifestRevision\": \"3e9b70a028124c49ff06c18cbcda3d6f5ce4cd9daf2e3f71cb6ad52581fd2a28\",\n    \"librarianManifestRevision\": \"9e80e6e2b9973b9bd4b32e55af3a65bb4d1325d01ede0eb2e4e91ca238f1abd7\",\n    \"segmentsManifestRevision\": \"dc4f3530a6b63f21356b327fcec91b88341c696ed4013de9e21572a3778c8de6\",\n    \"referencesManifestRevision\": null,\n    \"declared\": 4,\n    \"projected\": 0,\n    \"omitted\": 4,\n    \"items\": [\n      {\n        \"entryId\": \"mssr-architecture-impact-decision\",\n        \"headingPath\": [\n          \"Architecture impact review decision\"\n        ],\n        \"status\": \"omitted\",\n        \"issue\": \"source-not-provided\"\n      },\n      {\n        \"entryId\": \"mssr-learning-dataset-state\",\n        \"headingPath\": [\n          \"Learning dataset state\"\n        ],\n        \"status\": \"omitted\",\n        \"issue\": \"source-not-provided\"\n      },\n      {\n        \"entryId\": \"mssr-core-skill-package-state\",\n        \"headingPath\": [\n          \"MSSR project state\",\n          \"Core skill package state\"\n        ],\n        \"status\": \"omitted\",\n        \"issue\": \"source-not-provided\"\n      },\n      {\n        \"entryId\": \"mssr-jev-use-case-hypotheses\",\n        \"headingPath\": [\n          \"Jev, decisiones tipadas y casos de uso para MSSR\",\n          \"100 hipótesis de uso\"\n        ],\n        \"status\": \"omitted\",\n        \"issue\": \"source-not-provided\"\n      }\n    ],\n    \"selectorsAreProjectDeclared\": true,\n    \"sourceOwnerIsCallerAsserted\": true,\n    \"advisoryOnly\": true,\n    \"truthAuthority\": false,\n    \"canonicalRewriteAllowed\": false\n  },\n  \"results\": [],\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"truncated\": false,\n  \"bridgeNotices\": {\n    \"delivery\": \"automatic-drain\",\n    \"scope\": \"contextual\",\n    \"count\": 0,\n    \"remainingPending\": 1,\n    \"relevantPending\": 0,\n    \"otherPending\": 1,\n    \"globalPending\": 0,\n    \"globalHistoryTool\": \"bridge_notice_history\",\n    \"items\": []\n  }\n}"
+        }
+      ]
+    }
+  }
+}

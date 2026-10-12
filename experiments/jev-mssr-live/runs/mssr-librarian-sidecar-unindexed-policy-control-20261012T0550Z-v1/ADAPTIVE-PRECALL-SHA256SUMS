@@ -1,0 +1,6 @@
+SHA-256 (Bridge write verification, frozen before additional Jev calls)
+
+cc384a9d5861a0c83732ddc20b842d395c1070037484c2b6c451d3f6385e67dc  inputs/adaptive-followup-queries.json
+fc3d370343404cda74513c0b3fb3077cbfffc3607e14e674ba9d71de1a090174  inputs/adaptive-followup-candidate-pools.json
+5f3a6521f9717c19bb582ead5714e89a9c96ca7a922a8363f6d640657ebf4ccc  labels/adaptive-followup-labels.json
+66d15536c7a495d9b2457020c3b63f54761fa55bbd073ff77520dfb2d5bc71fe  protocol-amendment-CORR-02.md

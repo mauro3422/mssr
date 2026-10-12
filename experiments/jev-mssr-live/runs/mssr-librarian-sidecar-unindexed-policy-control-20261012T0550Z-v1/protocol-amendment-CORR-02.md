@@ -1,0 +1,7 @@
+# CORR-02 — Adaptive query decomposition
+
+This amendment records an adaptive follow-up after the two primary Run43 Jev outputs were observed. It does not replace, edit, or re-score the primary measurements. C01 returned a relevant but partial 532-character passage at raw provider confidence 0.84; C02 returned a 9,431-character section at 0.35. Both exact fetches and the advisory evidence pack passed.
+
+Before any additional provider call, the follow-up freezes four single-facet query variants and the exact unchanged eight-handle pools from the corrected C01 and C02 lexical searches. No new search is run and no handle, source, revision, rank, or candidate is added or removed. C01a/C01b use the original C01 pool; C02a/C02b use the original C02 pool. The full query strings and pools are in `inputs/adaptive-followup-queries.json` and `inputs/adaptive-followup-candidate-pools.json`; source-derived expected ranges/facets are separately recorded in `labels/adaptive-followup-labels.json` and are not shown to Jev or the blind reviewer.
+
+The four extra Jev calls are adaptive diagnostic evidence, not preregistered primary results, independent holdout, gold labels, or calibration. Provider confidence remains uncalibrated. Report query resolution, exact source/range selection, answer coverage, breadth, abstention, and confidence as separate dimensions. No thresholds, canonical policy, production behavior, or sidecar declarations are changed by this experiment.

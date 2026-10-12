@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 1,
+  "reviewKind": "blind model-assisted sufficiency and overbreadth review",
+  "instructions": "Assess only whether each selected passage answers the query and whether it is too broad. Note relevant candidate alternatives if visible. Do not infer authority, calibration or production readiness. Do not inspect manifests, labels, reports, or other files; do not call Jev.",
+  "cases": [
+    {
+      "caseId": "C01",
+      "query": "When evidence atoms conflict or cannot be compared, may the synthesis preview consolidate them? How should supersession be represented, and can a raw confidence threshold authorize canonical writes?",
+      "candidateOptions": [
+        {
+          "id": "dfd035157293a02f358e25d49593a0f2115625920d5b1aef96a15b3c8cd784c2",
+          "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+          "rangeId": "heading-1",
+          "lines": [
+            1,
+            54
+          ],
+          "title": "Confidence and merge policy",
+          "snippet": "## Confidence and merge policy Treat confidence as a decision-family-specific routing signal, not a universal quality percentage. Choose thresholds against the cost of a false action and report risk-versus-coverage at s…"
+        },
+        {
+          "id": "7be9c43de5eb18c7e1e58dc32bfc88dce41936e42f6ceaf844478c585470c5d1",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "rangeId": "heading-1",
+          "lines": [
+            1,
+            65
+          ],
+          "title": "Semantic Evidence Plane architecture",
+          "snippet": "# Semantic Evidence Plane architecture MSSR owns the portable semantic contract for turning bounded observable work evidence into queryable, selectively retrievable context/attention without becoming an execution proxy …"
+        },
+        {
+          "id": "6b1cf59789e53d70b6ab7b0578436fc9c3d5b01b555425bdc64e643544b9a969",
+          "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+          "rangeId": "block-4",
+          "lines": [
+            23,
+            38
+          ],
+          "title": "Confidence and merge policy",
+          "snippet": "A merge/synthesis proposal should retain input atom IDs, refs, revisions and fingerprints; candidate relations and conflicts; decision alternatives and a short evidence-cited reason for each inclusion, omission or separ…"
+        },
+        {
+          "id": "b88f8fc2c4dee89aacfeea3f388d28b9613eac35b8d7c244d4839c39f17e4c17",
+          "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+          "rangeId": "block-3",
+          "lines": [
+            13,
+            21
+          ],
+          "title": "Confidence and merge policy",
+          "snippet": "…rministic identity, owner, revision, privacy and exact-evidence guards. 2. Librarian returns bounded evidence handles; Jev proposes typed judgments over those explicit candidates. 3. Missing temporal/scope data, low co…"
+        },
+        {
+          "id": "b97724fb8009b7d6e5423d9372a2683c2813ae2131d97a36fde29209d0506124",
+          "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+          "rangeId": "block-3/item-4",
+          "lines": [
+            18,
+            19
+          ],
+          "title": "Confidence and merge policy",
+          "snippet": "4. A raw confidence threshold may admit a derived synthesis preview, never a destructive source merge or canonical write."
+        },
+        {
+          "id": "12cf41a33e58e3f1299f940e4fd881111192baed0dc3a02d3b6899efca5671d4",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "rangeId": "heading-5",
+          "lines": [
+            24,
+            31
+          ],
+          "title": "Reduction, batching and semantic triage",
+          "snippet": "…h/fetch -> isolated Jev relation batches per connected evidence component -> exact atom-bound semantic judgments -> contradiction-aware reversible preview -> host re-read/revision check and approval/write outside MSSR …"
+        },
+        {
+          "id": "2dc35beada0510e876e51b229c15f00b42a49280179dada9d1ab5deb65d67594",
+          "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+          "rangeId": "heading-2",
+          "lines": [
+            40,
+            54
+          ],
+          "title": "Current exploratory live MSSR smoke — 2026-09-30",
+          "snippet": "… with unknown scope/time, Jev chose `supports` at 0.45 confidence; deterministic evaluation and synthesis preview kept both atoms in review because scope and temporal comparability were unknown. Both previews had `appl…"
+        },
+        {
+          "id": "7557d32e0892b651e05f965630c9dcc23330f855f6308cf3a33693aaa9ced5c1",
+          "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+          "rangeId": "block-5",
+          "lines": [
+            42,
+            54
+          ],
+          "title": "Current exploratory live MSSR smoke — 2026-09-30",
+          "snippet": "… with unknown scope/time, Jev chose `supports` at 0.45 confidence; deterministic evaluation and synthesis preview kept both atoms in review because scope and temporal comparability were unknown. Both previews had `appl…"
+        }
+      ],
+      "selectedHandle": {
+        "version": 1,
+        "id": "b88f8fc2c4dee89aacfeea3f388d28b9613eac35b8d7c244d4839c39f17e4c17",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+        "revision": "821211910a11c2f4497368b31d30d7791193357c7acc09e500d85894410bb87c",
+        "rangeId": "block-3",
+        "rangeKind": "block",
+        "startLine": 13,
+        "endLine": 21,
+        "startOffset": 556,
+        "endOffset": 1088,
+        "fingerprint": "74d595f5d539533c5e69c0b2d66c14081c8aacfd1266ffb6d20bae33df1bae19",
+        "privacyClass": "project-metadata"
+      },
+      "selectedExactText": "1. Deterministic identity, owner, revision, privacy and exact-evidence guards.\n2. Librarian returns bounded evidence handles; Jev proposes typed judgments\n   over those explicit candidates.\n3. Missing temporal/scope data, low confidence, or a contradiction sends the\n   proposal to review/abstain.\n4. A raw confidence threshold may admit a derived synthesis preview, never a\n   destructive source merge or canonical write.\n5. Independent verification and normal owner approval remain required before\n   any persisted project change."
+    },
+    {
+      "caseId": "C02",
+      "query": "What may a Jev relation judgment establish, and what exact host-side checks are required before a synthesis preview is consumed?",
+      "candidateOptions": [
+        {
+          "id": "7be9c43de5eb18c7e1e58dc32bfc88dce41936e42f6ceaf844478c585470c5d1",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "rangeId": "heading-1",
+          "lines": [
+            1,
+            65
+          ],
+          "title": "Semantic Evidence Plane architecture",
+          "snippet": "…e, freshness, revision/hash, optional heading path and exact span), bounded semantic labels/reason codes, relation/evidence refs, classifier identity when applicable, lifecycle state (`selected`, `skipped`, `delivered`…"
+        },
+        {
+          "id": "dfd035157293a02f358e25d49593a0f2115625920d5b1aef96a15b3c8cd784c2",
+          "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+          "rangeId": "heading-1",
+          "lines": [
+            1,
+            54
+          ],
+          "title": "Confidence and merge policy",
+          "snippet": "…. Deterministic identity, owner, revision, privacy and exact-evidence guards. 2. Librarian returns bounded evidence handles; Jev proposes typed judgments over those explicit candidates. 3. Missing temporal/scope data, …"
+        },
+        {
+          "id": "44ff6d436e293b49ccbf5ae6b5f947301d1868481b591cecfa8b2235e2621fab",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "rangeId": "heading-3",
+          "lines": [
+            11,
+            16
+          ],
+          "title": "Core Document and Librarian guarantees",
+          "snippet": "…s Document Surface exposes revision-bound metadata and exact source ranges. A later fetch is usable only against the same source revision. Hosts read files and supply bounded Markdown; MSSR search does not scan the fil…"
+        },
+        {
+          "id": "81bf72364613f6b5ae5513bda8b947c14019bb828c95ff7aace19a87232deedc",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "rangeId": "block-5",
+          "lines": [
+            15,
+            15
+          ],
+          "title": "Core Document and Librarian guarantees",
+          "snippet": "…te that provenance. Deterministic structural duplicate checks run before optional Jev relation judgments. Jev selections, confidence and sufficiency scores remain advisory and uncalibrated. Exact fetch, independent ver…"
+        },
+        {
+          "id": "2dc35beada0510e876e51b229c15f00b42a49280179dada9d1ab5deb65d67594",
+          "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+          "rangeId": "heading-2",
+          "lines": [
+            40,
+            54
+          ],
+          "title": "Current exploratory live MSSR smoke — 2026-09-30",
+          "snippet": "…e MSSR smoke — 2026-09-30 The live run at `experiments/jev-mssr-live/runs/mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1/` used four current MSSR documents, four retrieval queries, eight exact fetched blocks …"
+        },
+        {
+          "id": "7557d32e0892b651e05f965630c9dcc23330f855f6308cf3a33693aaa9ced5c1",
+          "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+          "rangeId": "block-5",
+          "lines": [
+            42,
+            54
+          ],
+          "title": "Current exploratory live MSSR smoke — 2026-09-30",
+          "snippet": "The live run at `experiments/jev-mssr-live/runs/mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1/` used four current MSSR documents, four retrieval queries, eight exact fetched blocks and four Jev relation reque…"
+        },
+        {
+          "id": "b88f8fc2c4dee89aacfeea3f388d28b9613eac35b8d7c244d4839c39f17e4c17",
+          "sourceRef": ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+          "rangeId": "block-3",
+          "lines": [
+            13,
+            21
+          ],
+          "title": "Confidence and merge policy",
+          "snippet": "…guards. 2. Librarian returns bounded evidence handles; Jev proposes typed judgments over those explicit candidates. 3. Missing temporal/scope data, low confidence, or a contradiction sends the proposal to review/abstai…"
+        },
+        {
+          "id": "12cf41a33e58e3f1299f940e4fd881111192baed0dc3a02d3b6899efca5671d4",
+          "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+          "rangeId": "heading-5",
+          "lines": [
+            24,
+            31
+          ],
+          "title": "Reduction, batching and semantic triage",
+          "snippet": "…ts/reads sources -> Librarian search/fetch -> isolated Jev relation batches per connected evidence component -> exact atom-bound semantic judgments -> contradiction-aware reversible preview -> host re-read/revision che…"
+        }
+      ],
+      "selectedHandle": {
+        "version": 1,
+        "id": "7be9c43de5eb18c7e1e58dc32bfc88dce41936e42f6ceaf844478c585470c5d1",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/architecture/semantic-evidence-plane.md",
+        "revision": "97771c3da97e468d945d6d627024e322300bd336da48453688a1df202215cd94",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 65,
+        "startOffset": 0,
+        "endOffset": 9431,
+        "fingerprint": "55cc7dcec8e39fa0c7bd33415aa37a857416205c2e704fea1572929248ee1a83",
+        "privacyClass": "project-metadata"
+      },
+      "selectedExactText": "# Semantic Evidence Plane architecture\n\nMSSR owns the portable semantic contract for turning bounded observable work evidence into queryable, selectively retrievable context/attention without becoming an execution proxy or a second source of project truth. Existing producers remain authoritative for their own facts: project files/ADRs/skills, Context Plane, trace/lifecycle telemetry, Situation/Notice projections, Semantic Experience and host/runtime metrics.\n\n## Evidence atom and source boundary\n\nThe common unit is a bounded `EvidenceAtom`: identity (`kind`, `subject`, project/trace/workflow/task when known), source/provenance (`sourceRef`, source class, canonical owner, observed time, freshness, revision/hash, optional heading path and exact span), bounded semantic labels/reason codes, relation/evidence refs, classifier identity when applicable, lifecycle state (`selected`, `skipped`, `delivered`, `consumed`, later verification/outcome) and explicit authority/privacy class. EvidenceAtom v2 requires source class and canonical owner; a `freshnessEvidence` assertion must match the same owner, normalized ref and revision and include a timestamp. This is structural consistency validation of caller-supplied evidence, not authentication or independent proof that a host performed the observation. Unknown is the safe default. Atoms point to source bytes instead of copying whole documents. Raw prompts, transcripts, secrets and private reasoning are excluded by producer-owned projections; the generic metadata blacklist is defense in depth, not a universal sanitizer.\n\nHuman-authored `.md` stays the readable/versioned authority. High-volume atoms and indexes are reconstructable structured runtime data under host storage such as `.mssr/runtime`/SQLite/JSONL; storage format is not semantic authority. A workspace-level `D:\\Dev\\.mssr\\runtime` projection may aggregate projects for discovery/maintenance only while preserving each original owner.\n\n## Core Document and Librarian guarantees\n\nDocument Surface exposes revision-bound metadata and exact source ranges. A later fetch is usable only against the same source revision. Hosts read files and supply bounded Markdown; MSSR search does not scan the filesystem or turn derived indexes into project authority.\n\nLibrarian adapts typed, privacy-safe producer metadata while retaining caller-asserted provenance; it does not authenticate that provenance. Deterministic structural duplicate checks run before optional Jev relation judgments. Jev selections, confidence and sufficiency scores remain advisory and uncalibrated. Exact fetch, independent verification and separate permission/write gates remain required; synthesis preview never writes canonical sources.\n\n## Progressive section retrieval\n\nEligible Markdown/skill sources may expose a revision-bound heading tree (`H1..H6`) with exact ranges. Retrieval is progressive: metadata -> top-level headings -> relevant branch -> exact section -> deeper/neighboring section only if necessary. Declared selectors, `project-context.json`, `context-modules.json`, `requiredWhen`, reviewed segments and canonical ownership outrank any derived heading index. Derived indexing is candidate/retrieval evidence only and never promotes an arbitrary document to authority.\n\n`SKILL.md` remains the routed capability entry point. Detailed procedure should use parent-owned references/modules; heading indexes may help discover monoliths or retrieve bounded internal sections but do not invent permanent activation/routing semantics.\n\nThe detailed revision-bound Document Surface and Librarian contract is indexed in `mssr-document-surface-librarian-contract` for exact-range retrieval and catalog integration.\n## Reduction, batching and semantic triage\n\nThe implemented slice is `host selects/reads sources -> Librarian search/fetch -> isolated Jev relation batches per connected evidence component -> exact atom-bound semantic judgments -> contradiction-aware reversible preview -> host re-read/revision check and approval/write outside MSSR -> independent verification`. Disjoint evidence components never share one Jev state; connected pairs may share a request within limits. The broader plane still intends to capture deterministic reduction, freshness, destination, later feedback and all producer classes. Cheap deterministic filtering runs first. Every drop/defer preserves a reason so later analysis can distinguish unseen, filtered, skipped, delivered and actually-used evidence. Jev provider transport/credentials remain host-owned. The relation-review tool builds typed judgments from selected-option confidence; when the provider does not return a full class distribution, MSSR records that distribution as unavailable rather than inferring one. Contradictory, unresolved, non-comparable, non-fresh or unverified evidence cannot become a consolidation preview. Verifier identity and freshness metadata are structurally checked caller assertions, not authenticated receipts; preview output requires the host to re-read current revisions before consuming a candidate.\n\nIndependent subjects are independent semantic jobs with bounded concurrency, cache, budgets, timeout/failure policy and circuit breaking. Multiple questions about the exact same subject/state may share one call; unrelated targets are not packed into one state just to reduce requests.\n\nJev becomes an optional portable MSSR classifier contract, not a QuietDesk dependency. MSSR owns bounded candidate/decision semantics; hosts own provider credentials/transport/runtime. QuietDesk remains a visual evidence producer/executor that may consume the same classifier. Jev may label relevance, novelty, relation, priority, audit-worthiness, selection or abstention among explicit candidates, but never establishes authority, truth, permission, verification or canonical write rights.\n\n## Progressive evidence acquisition\n\nSemantic triage may request more evidence instead of forcing a decision. The classifier receives only explicit candidate handles and can return a typed bounded request such as `inspect-heading-index`, `read-section`, `read-neighbor-section`, `read-exact-range`, `compare-revision`, `fetch-related-atom`, `request-verifier`, or `abstain`.\n\nThe host executes only requests permitted by the current evidence contract and normal tool authorization. The classifier never receives arbitrary filesystem traversal or generic tool execution authority. Every acquisition consumes explicit budgets: maximum rounds, maximum sections/ranges, maximum characters/tokens, maximum related atoms, timeout and provider-call budget. Repeated requests dedupe by source revision + section/range identity.\n\nA typical loop is:\n\n```text\nmetadata atom\n  -> inspect H1/H2 inventory\n  -> semantic triage: needs section X + sibling Y\n  -> host returns exact bounded ranges\n  -> triage again\n  -> select / skip / review / abstain\n```\n\nSeveral compatible section requests may be batched into one host read and one semantic job. The acquisition trace records what was requested, what was actually returned, cost/depth, why the loop stopped, and whether later evidence showed the extra read was useful. This makes evidence acquisition itself learnable without making Jev authoritative.\n\n## Destinations, unused evidence and learning\n\nClassification and destination are separate. Policy may route an atom to `ignore`, shadow retention, context, Notice, audit, Semantic Experience, verification request, project-knowledge persistence proposal or skill/routing maintenance review. Existing owner/write gates remain unchanged.\n\nThe plane records the full funnel: ingested -> eligible -> deduped -> classified -> selected/skipped -> delivered -> consumed/application evidence -> later verifier/outcome/correction. Unused evidence can therefore be sampled in counterfactual sweeps to detect missed relevance or correct skips. A model cannot self-confirm its own historical proposal.\n\nSemantic Experience remains the learning boundary. Reducer/selector/Jev decisions begin shadow-only with exact provenance/version identity. Any deterministic fast-path promotion requires independently verified cross-project holdout evidence, support/coverage, calibration/abstention and an explicit versioned promotion/rollback gate. Hard deterministic authority/permission rules remain outside learned influence.\n\n## Query and coverage target\n\nA broader read-only evidence query surface should support views by `trace`, `project`, `subject`, `source`, `classifier`, `batch`, `destination`, `unconsumed`, `dropped` and `gaps`. `gaps` reports producer families with missing or partial instrumentation so absence of evidence is never treated as evidence of absence. Full source bytes remain behind their owning provider and are loaded only through explicit bounded retrieval. The initial local Markdown search is a pure host-supplied input API; it does not yet provide cross-project storage, corpus-wide coverage, or those query views.\n\nThe first producer inventory covers MSSR routes/replans, project context and Context Messages, skills/selection/load feedback, context assembly/paging, lifecycle/checkpoints/outcomes, Semantic Experience, Notices/Situation/consistency findings, Bridge/host tool metrics and errors, filesystem/Git/document revisions, visual QA evidence, and explicit corrections/verifier evidence.\n\nSee ADR 0009 for the durable decision boundary and staged roadmap.\n"
+    }
+  ]
+}

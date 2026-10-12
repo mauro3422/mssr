@@ -1,0 +1,26 @@
+[
+  {
+    "caseId": "C01",
+    "facet": "contradiction-and-supersession",
+    "query": "When evidence atoms conflict or cannot be compared, may the synthesis preview consolidate them? How should supersession be represented, and can a raw confidence threshold authorize canonical writes?",
+    "sourceRefs": [
+      ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+      ".mssr/knowledge/architecture/semantic-evidence-plane.md"
+    ],
+    "metadata": {
+      "domain": "coding"
+    }
+  },
+  {
+    "caseId": "C02",
+    "facet": "Jev-authority-boundary-and-revalidation",
+    "query": "What may a Jev relation judgment establish, and what exact host-side checks are required before a synthesis preview is consumed?",
+    "sourceRefs": [
+      ".mssr/knowledge/architecture/mssr-jev-confidence-merge-policy.md",
+      ".mssr/knowledge/architecture/semantic-evidence-plane.md"
+    ],
+    "metadata": {
+      "domain": "coding"
+    }
+  }
+]

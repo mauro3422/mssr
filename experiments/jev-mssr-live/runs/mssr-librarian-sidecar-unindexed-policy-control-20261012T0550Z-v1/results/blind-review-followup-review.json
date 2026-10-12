@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "fresh delegated Luna subagent / blind_adaptive_review",
+  "model": "gpt-6-luna",
+  "labelsVisible": false,
+  "filesSeenOnly": [
+    "results/blind-review-followup-input.json"
+  ],
+  "summary": "Independent blind assessment of query answer coverage and range precision. This is model-assisted review, not owner gold.",
+  "assessments": [
+    {
+      "caseId": "C01a",
+      "reviewerCoverage": "partial",
+      "strictFacetCoverage": "partial",
+      "rangePrecision": "tight",
+      "facets": [
+        "answers only that raw-confidence threshold can admit preview, not destructive merge/canonical write",
+        "does not answer what happens when evidence conflicts/is not comparable or that originals remain unchanged"
+      ],
+      "betterOfferedCandidate": "block-5, lines 42-54, appears relevant to unknown scope/temporal comparability and keeping both atoms in review"
+    },
+    {
+      "caseId": "C01b",
+      "reviewerCoverage": "complete",
+      "strictFacetCoverage": "partial",
+      "rangePrecision": "acceptable",
+      "facets": [
+        "answers raw threshold may admit preview, not canonical write",
+        "includes independent verification and owner approval",
+        "does not mention default 0.75 or state it is exploratory/not calibrated"
+      ],
+      "reviewerCaveat": "The blind reviewer judged complete but its written evidence did not support the 0.75/calibration facets; strict assessment therefore marks partial."
+    },
+    {
+      "caseId": "C02a",
+      "reviewerCoverage": "complete",
+      "strictFacetCoverage": "complete",
+      "rangePrecision": "acceptable",
+      "facets": [
+        "explicitly says Jev may label/select among candidates",
+        "explicitly excludes authority, truth, permission, verification and canonical write rights"
+      ],
+      "betterOfferedCandidate": "block-5, line 15, is narrower but does not enumerate all five limits as fully"
+    },
+    {
+      "caseId": "C02b",
+      "reviewerCoverage": "complete",
+      "strictFacetCoverage": "complete",
+      "rangePrecision": "overbroad",
+      "facets": [
+        "host must reread current revisions before consuming candidate",
+        "freshness/verifier metadata are caller assertions, not authenticated receipts"
+      ],
+      "betterOfferedCandidate": "heading-5 lines 24-31 is more targeted"
+    }
+  ]
+}
