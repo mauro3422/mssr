@@ -1,0 +1,23 @@
+{
+  "labelProvenance": "source-only analyst labels frozen in Run63 before any Jev calls; not repository-owner gold",
+  "cases": [
+    {
+      "caseId": "A1",
+      "answerable": true,
+      "supportLines": [
+        7,
+        12
+      ]
+    },
+    {
+      "caseId": "B1",
+      "answerable": true,
+      "supportLines": [
+        88,
+        91
+      ],
+      "exactRangeId": "block-21"
+    }
+  ],
+  "notProvidedToJev": true
+}

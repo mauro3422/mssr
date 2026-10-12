@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-query-variant-replay-20261012T2326Z-v1",
+  "date": "2026-10-12",
+  "evaluationType": "exposed-case-diagnostic-replay",
+  "independentCases": 2,
+  "distinctSourceDocuments": 2,
+  "sourceLabels": "source-only analyst labels from Run63; not owner-gold; withheld from Jev",
+  "metadataMode": "off",
+  "bridgeRuntime": "0.6.175",
+  "mssrPackage": "0.2.127",
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "sources": [
+    {
+      "caseId": "A1",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-disjoint-cohort-20261012T2251Z-v1/inputs/sources/godot-atlas-capture-audit.md",
+      "sha256": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d"
+    },
+    {
+      "caseId": "B1",
+      "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-disjoint-cohort-20261012T2251Z-v1/inputs/sources/neopse-ai-benchmarks.md",
+      "sha256": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d"
+    }
+  ],
+  "retrieval": [
+    {
+      "caseId": "A1",
+      "query": "Spanish primary only",
+      "results": 0,
+      "targetPresent": false
+    },
+    {
+      "caseId": "A1",
+      "query": "Spanish primary plus explicit English variant",
+      "results": 12,
+      "targetPresent": true,
+      "targetRank": 3,
+      "targetRangeId": "heading-2",
+      "targetLines": [5, 13],
+      "targetQueryIndex": 1
+    },
+    {
+      "caseId": "B1",
+      "query": "Spanish primary only",
+      "results": 12,
+      "targetPresent": true,
+      "targetRank": 3,
+      "targetRangeId": "block-21",
+      "targetLines": [88, 91],
+      "targetScore": 0.285714
+    },
+    {
+      "caseId": "B1",
+      "query": "Spanish primary plus explicit English variant",
+      "results": 12,
+      "targetPresent": true,
+      "targetRank": 3,
+      "targetRangeId": "block-21",
+      "targetLines": [88, 91],
+      "targetScore": 0.285714,
+      "targetQueryIndex": 0
+    }
+  ],
+  "jevCalls": [
+    {
+      "id": "A1-es-target-only",
+      "caseId": "A1",
+      "status": "selected",
+      "selectionConfidence": 0.98,
+      "probabilities": {"h001": 0.99, "none": 0.01},
+      "noul": 0.85,
+      "inputTokens": 718,
+      "outputTokens": 57,
+      "providerElapsedMs": 1259.6,
+      "selectedRange": "heading-2",
+      "selectedLines": [5, 13]
+    },
+    {
+      "id": "B1-es-compound-target-only",
+      "caseId": "B1",
+      "status": "abstained",
+      "selectionConfidence": 0.4,
+      "probabilities": {"h001": 0.3, "none": 0.7},
+      "noul": 0.14,
+      "inputTokens": 802,
+      "outputTokens": 54,
+      "providerElapsedMs": 785.0,
+      "selectedRange": null,
+      "offeredRange": "block-21"
+    },
+    {
+      "id": "B1-en-compound-target-only",
+      "caseId": "B1",
+      "status": "selected",
+      "selectionConfidence": 0.68,
+      "probabilities": {"h001": 0.84, "none": 0.16},
+      "noul": 0.27,
+      "inputTokens": 798,
+      "outputTokens": 57,
+      "providerElapsedMs": 749.3,
+      "selectedRange": "block-21",
+      "selectedLines": [88, 91]
+    },
+    {
+      "id": "B1-es-pass-facet-target-only",
+      "caseId": "B1",
+      "status": "selected",
+      "selectionConfidence": 0.98,
+      "probabilities": {"h001": 0.99, "none": 0.01},
+      "noul": 0.89,
+      "inputTokens": 788,
+      "outputTokens": 57,
+      "providerElapsedMs": 715.6,
+      "selectedRange": "block-21",
+      "selectedLines": [88, 91]
+    },
+    {
+      "id": "B1-es-latency-facet-target-only",
+      "caseId": "B1",
+      "status": "selected",
+      "selectionConfidence": 0.58,
+      "probabilities": {"h001": 0.79, "none": 0.21},
+      "noul": 0.28,
+      "inputTokens": 792,
+      "outputTokens": 57,
+      "providerElapsedMs": 696.3,
+      "selectedRange": "block-21",
+      "selectedLines": [88, 91]
+    }
+  ],
+  "jevTotals": {
+    "calls": 5,
+    "selected": 4,
+    "abstained": 1,
+    "inputTokens": 3898,
+    "outputTokens": 282,
+    "summedProviderElapsedMs": 4205.8,
+    "note": "Repeated probes on two exposed source questions; not an accuracy or reliability rate."
+  },
+  "evidenceAssembly": {
+    "exactFetches": 2,
+    "evidencePacks": 2,
+    "a1": {"rangeId": "heading-2", "lines": [5, 13], "characters": 275, "fingerprint": "96aac427c3ab257ca2beabd7e10d1ad9a83200eb11b63ea0570402a75dceff27"},
+    "b1": {"rangeId": "block-21", "lines": [88, 91], "characters": 286, "fingerprint": "3fbc7346b75afc3f728d21532747dcc30257bb92fa203490cedd4c7b1366b24b"},
+    "packPolicy": "verbatim exact source ranges; advisoryOnly=true; truthAuthority=false; canonicalRewriteAllowed=false"
+  },
+  "blindReview": {
+    "reviewer": "independent Luna reviewer",
+    "casesJudgedSufficient": 5,
+    "casesReviewed": 5,
+    "a1Breadth": "focused",
+    "b1Breadth": "some extra table columns beyond each question/facet",
+    "limitations": "model-assisted, not human owner-gold; reviewer saw neither Jev scores nor source-only labels"
+  },
+  "calibration": "Choice and Noul are uncalibrated provider scores; this diagnostic cannot set thresholds.",
+  "runtimeChanged": false,
+  "thresholdChanged": false,
+  "negativeCases": 0,
+  "ownerGoldCases": 0,
+  "holdout": false
+}

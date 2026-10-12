@@ -1,0 +1,20 @@
+{
+  "cases": 2,
+  "sourceFiles": [
+    {
+      "sha256": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+      "path": "experiments/jev-mssr-live/runs/mssr-librarian-source-disjoint-cohort-20261012T2251Z-v1/inputs/sources/godot-atlas-capture-audit.md"
+    },
+    {
+      "sha256": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+      "path": "experiments/jev-mssr-live/runs/mssr-librarian-source-disjoint-cohort-20261012T2251Z-v1/inputs/sources/neopse-ai-benchmarks.md"
+    }
+  ],
+  "bridgeRuntime": "0.6.175",
+  "providerCalls": 0,
+  "status": "awaiting-provider",
+  "runId": "mssr-librarian-query-variant-replay-20261012T2326Z-v1",
+  "packageVersion": "0.2.127",
+  "preparedAtUtc": "2026-10-12T23:26:45Z",
+  "design": "exposed-case paired query-variant diagnostic; not independent holdout"
+}

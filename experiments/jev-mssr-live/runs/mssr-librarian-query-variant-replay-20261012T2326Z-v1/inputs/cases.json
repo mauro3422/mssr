@@ -1,0 +1,33 @@
+[
+  {
+    "caseId": "A1",
+    "baselineRun": "mssr-librarian-source-disjoint-cohort-20261012T2251Z-v1",
+    "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-disjoint-cohort-20261012T2251Z-v1/inputs/sources/godot-atlas-capture-audit.md",
+    "primaryQuery": "¿Qué dos formas de evidencia forman el paquete de auditoría y qué pregunta contesta cada una?",
+    "queryVariants": [
+      "What two evidence types form the audit package and what question does each answer?"
+    ],
+    "answerableBySourceReview": true,
+    "expectedSupportLines": [
+      7,
+      12
+    ],
+    "diagnostic": "Known empty-pool retrieval miss; if target appears, test Jev with exact target handle only."
+  },
+  {
+    "caseId": "B1",
+    "baselineRun": "mssr-librarian-source-disjoint-cohort-20261012T2251Z-v1",
+    "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-disjoint-cohort-20261012T2251Z-v1/inputs/sources/neopse-ai-benchmarks.md",
+    "primaryQuery": "En la comparación histórica, ¿cuántos casos superó cada perfil gemma y gemmaQat, y cuáles fueron sus latencias promedio y P95?",
+    "queryVariants": [
+      "In the historical comparison, how many cases did each Gemma and gemmaQat profile pass, and what were their average and P95 latencies?"
+    ],
+    "answerableBySourceReview": true,
+    "expectedSupportLines": [
+      88,
+      91
+    ],
+    "expectedRangeId": "block-21",
+    "diagnostic": "Known false abstention despite exact table offered; test candidate-competition hypothesis with exact target handle only."
+  }
+]
