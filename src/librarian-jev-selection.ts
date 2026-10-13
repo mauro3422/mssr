@@ -7,6 +7,7 @@ import {
   mssrLibrarianEvidenceHandleId,
   mssrLibrarianEvidenceHandleSchema,
   mssrLibrarianRetrievalDocumentSchema,
+  mssrLibrarianRetrievalQuerySchema,
   type MssrLibrarianEvidenceHandle,
 } from "./librarian-retrieval.js";
 import { MssrLibrarianRangeSizeLimitError } from "./librarian-errors.js";
@@ -40,11 +41,30 @@ const selectionDocumentSchema = mssrLibrarianRetrievalDocumentSchema.pick({
 
 export const mssrLibrarianJevSelectInputSchema = z.object({
   documents: z.array(selectionDocumentSchema).min(1).max(MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxDocuments),
-  /** Optional revision-bound candidates returned by mssr_librarian_search. */
-  candidateHandles: z.array(mssrLibrarianEvidenceHandleSchema).min(1).max(MSSR_LIBRARIAN_JEV_SELECTION_LIMITS.maxCandidateHandles).optional(),
+  /** `search-results` can carry an empty pool; `all-headings` explicitly opts into heading enumeration. */
+  selectionMode: z.enum(["search-results", "all-headings"]).optional(),
+  /** Revision-bound candidates returned by mssr_librarian_search; may be empty in explicit search-results mode. */
+  candidateHandles: z.array(mssrLibrarianEvidenceHandleSchema).max(MSSR_LIBRARIAN_JEV_SELECTION_LIMITS.maxCandidateHandles).optional(),
   query: z.string().trim().min(1).max(MSSR_LIBRARIAN_RETRIEVAL_LIMITS.queryChars),
+  /** Explicit alternate phrasings may center excerpts; Jev still receives the original query as its decision question. */
+  queryVariants: z.array(z.string().trim().min(1).max(MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxQueryVariantChars)).max(MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxQueryVariants).optional(),
   model: z.string().trim().min(1).max(120).optional(),
 }).strict().superRefine((value, ctx) => {
+  if (value.selectionMode === "search-results" && value.candidateHandles === undefined) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["candidateHandles"], message: "Search-results mode requires candidateHandles; use an empty array when the search returned no candidates." });
+  }
+  if (value.selectionMode === "all-headings" && value.candidateHandles !== undefined) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["candidateHandles"], message: "All-headings mode cannot also supply candidateHandles." });
+  }
+  if (value.selectionMode === undefined && (value.candidateHandles === undefined || value.candidateHandles.length === 0)) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["selectionMode"], message: "Choose all-headings explicitly when no search handles are supplied; an empty search pool must use search-results mode." });
+  }
+  const variantValidation = mssrLibrarianRetrievalQuerySchema.safeParse({ query: value.query, queryVariants: value.queryVariants });
+  if (!variantValidation.success) {
+    for (const issue of variantValidation.error.issues) {
+      if (issue.path[0] === "queryVariants") ctx.addIssue({ code: z.ZodIssueCode.custom, path: issue.path, message: issue.message });
+    }
+  }
   let totalChars = 0;
   let totalLines = 0;
   const sourceKeys = new Set<string>();
@@ -165,12 +185,12 @@ function truncateUtf16Safely(value: string, maxCodeUnits: number): string {
   return value.slice(0, end);
 }
 
-function queryCenteredExcerpt(text: string, query: string): string {
+function queryCenteredExcerpt(text: string, queries: readonly string[]): string {
   const sourcePoints = Array.from(text.replace(/\s+/g, " ").trim());
   const flat = sourcePoints.join("");
   if (sourcePoints.length <= MSSR_LIBRARIAN_JEV_SELECTION_LIMITS.maxExcerptChars) return flat;
   const folded = foldMssrLibrarianSearchTextWithSourceOffsets(flat);
-  const terms = [...new Set(foldMssrLibrarianSearchText(query).match(/[\p{L}\p{N}][\p{L}\p{N}_-]{1,}/gu) ?? [])];
+  const termSets = queries.map((query) => [...new Set(foldMssrLibrarianSearchText(query).match(/[\p{L}\p{N}][\p{L}\p{N}_-]{1,}/gu) ?? [])]);
   const sourcePointOffsets: number[] = [0];
   for (const point of sourcePoints) sourcePointOffsets.push(sourcePointOffsets.at(-1)! + point.length);
   const sourcePointForOffset = (offset: number): number => {
@@ -183,18 +203,20 @@ function queryCenteredExcerpt(text: string, query: string): string {
     }
     return Math.min(low, sourcePoints.length - 1);
   };
-  const termMatchPoints = terms.map((term) => {
+  const termMatchPoints = termSets.map((terms) => terms.map((term) => {
     const first = folded.normalized.indexOf(term);
     if (first < 0) return [];
     const last = folded.normalized.lastIndexOf(term);
     return [...new Set([first, last])].map((index) => sourcePointForOffset(folded.starts[index] ?? 0));
-  });
+  }));
   const limit = MSSR_LIBRARIAN_JEV_SELECTION_LIMITS.maxExcerptChars;
   const maxStart = sourcePoints.length - limit;
   const candidateStarts = new Set<number>([0]);
-  for (const matchPoints of termMatchPoints) {
-    for (const matchPoint of matchPoints) {
-      candidateStarts.add(Math.max(0, Math.min(matchPoint - Math.floor(limit / 4), maxStart)));
+  for (const queryMatchPoints of termMatchPoints) {
+    for (const termMatchPointsForQuery of queryMatchPoints) {
+      for (const matchPoint of termMatchPointsForQuery) {
+        candidateStarts.add(Math.max(0, Math.min(matchPoint - Math.floor(limit / 4), maxStart)));
+      }
     }
   }
   const render = (start: number) => {
@@ -208,12 +230,16 @@ function queryCenteredExcerpt(text: string, query: string): string {
   };
   let bestStart = 0;
   let bestCoverage = -1;
+  let bestCoverageRatio = -1;
   for (const start of [...candidateStarts].sort((left, right) => left - right)) {
     const excerpt = render(start);
-    const coverage = termMatchPoints.reduce((count, positions) => count + Number(positions.some((point) => point >= start && point < excerpt.end)), 0);
-    if (coverage > bestCoverage) {
+    const coverages = termMatchPoints.map((queryTerms) => queryTerms.reduce((count, positions) => count + Number(positions.some((point) => point >= start && point < excerpt.end)), 0));
+    const coverage = Math.max(0, ...coverages);
+    const coverageRatio = Math.max(0, ...coverages.map((count, index) => count / Math.max(1, termSets[index]!.length)));
+    if (coverageRatio > bestCoverageRatio || (coverageRatio === bestCoverageRatio && coverage > bestCoverage)) {
       bestStart = start;
       bestCoverage = coverage;
+      bestCoverageRatio = coverageRatio;
     }
   }
   return render(bestStart).text;
@@ -361,7 +387,7 @@ export async function selectMssrLibrarianEvidenceWithJev(
         endOffset: handle.endOffset,
         fingerprint: fetched.fingerprint,
         privacyClass: handle.privacyClass,
-        excerpt: queryCenteredExcerpt(fetched.text, input.query),
+        excerpt: queryCenteredExcerpt(fetched.text, [input.query, ...(input.queryVariants ?? [])]),
       });
     }
   } else {
@@ -387,7 +413,7 @@ export async function selectMssrLibrarianEvidenceWithJev(
       }
       const leadStart = canonicalMarkdown.indexOf("\n", heading.startOffset);
       const sectionText = canonicalMarkdown.slice(leadStart < 0 ? heading.startOffset : leadStart + 1, heading.endOffset);
-      const excerpt = queryCenteredExcerpt(sectionText, input.query);
+      const excerpt = queryCenteredExcerpt(sectionText, [input.query, ...(input.queryVariants ?? [])]);
       candidates.push({
         optionId: `h${String(candidates.length + 1).padStart(3, "0")}`,
         owner: document.owner,
@@ -421,7 +447,9 @@ export async function selectMssrLibrarianEvidenceWithJev(
   if (candidates.length === 0) {
     return {
       ...responseBase("not-run", 0),
-      reason: oversizedCandidateCount > 0 ? "no-fetchable-candidates" : "no-eligible-headings",
+      reason: input.selectionMode === "search-results" && offeredCandidateCount === 0
+        ? "no-search-candidates"
+        : oversizedCandidateCount > 0 ? "no-fetchable-candidates" : "no-eligible-headings",
       selected: null,
       jevCallMade: false,
       fallbackTool: "mssr_librarian_search",

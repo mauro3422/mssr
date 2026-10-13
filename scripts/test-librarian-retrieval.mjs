@@ -253,10 +253,23 @@ assert.equal(fetchMssrLibrarianEvidence({
 
 const duplicateSpanishDocs = [spanishLibrarianDoc, { ...spanishLibrarianDoc }];
 const duplicateWithoutVariants = searchMssrLibrarianEvidence({
-  documents: duplicateSpanishDocs,
+  documents: [spanishLibrarianDoc, { ...spanishLibrarianDoc, sourceRef: "docs\\bibliotecario.md" }],
   query: { query: "bibliotecario evidencia", maxResults: 20 },
 }).results;
-assert.equal(duplicateWithoutVariants.filter((item) => item.handle.id === spanishVariantResult.handle.id).length, 2, "omitting variants preserves legacy duplicate-document results");
+assert.equal(duplicateWithoutVariants.filter((item) => item.handle.id === spanishVariantResult.handle.id).length, 1, "duplicate exact handles coalesce even without query variants");
+const oneSpanishDocResults = searchMssrLibrarianEvidence({
+  documents: [spanishLibrarianDoc],
+  query: { query: "bibliotecario evidencia", maxResults: 3 },
+}).results;
+const duplicateTopThree = searchMssrLibrarianEvidence({
+  documents: [spanishLibrarianDoc, { ...spanishLibrarianDoc, sourceRef: "docs\\bibliotecario.md" }],
+  query: { query: "bibliotecario evidencia", maxResults: 3 },
+}).results;
+assert.deepEqual(
+  duplicateTopThree.map((item) => item.handle.id),
+  oneSpanishDocResults.slice(0, 3).map((item) => item.handle.id),
+  "duplicate normalized source refs must not consume top-k slots or hide distinct ranges",
+);
 const duplicateWithVariants = searchMssrLibrarianEvidence({
   documents: duplicateSpanishDocs,
   query: { query: "evidence librarian", queryVariants: ["bibliotecario evidencia"], maxResults: 20 },

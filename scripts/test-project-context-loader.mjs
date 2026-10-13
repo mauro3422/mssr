@@ -84,8 +84,18 @@ const intentBlender = intent({ domains: ["blender"], actions: ["discover"], risk
 try {
   const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
   const repositoryManifest = JSON.parse(await fs.readFile(path.join(repositoryRoot, ".mssr", "project-context.json"), "utf8"));
-  assert.equal(repositoryManifest.modules.length, 48, "the exact paired historical section should consolidate into its existing parent module");
+  assert.equal(repositoryManifest.modules.length, 49, "the bounded run-history split should add one independently selectable historical module");
   assert.equal(repositoryManifest.modules.some((entry) => entry.id === "mssr-jev-live-paired-source-diagnostic-20261011"), false);
+  const crossProjectFollowUpsEntry = repositoryManifest.modules.find((entry) => entry.id === "mssr-jev-confidence-cross-project-follow-ups-20261012");
+  assert.ok(crossProjectFollowUpsEntry, "Runs 62–63 follow-ups must remain independently discoverable");
+  assert.deepEqual(crossProjectFollowUpsEntry.stages, ["resume"], "historical follow-ups should load for continuation, not ordinary benchmark verification");
+  const crossProjectFollowUpsSource = await fs.readFile(path.join(repositoryRoot, crossProjectFollowUpsEntry.source.path), "utf8");
+  const crossProjectFollowUpsHeading = "## Cross-project live follow-ups: Runs 62–63 (2026-10-12)";
+  assert.equal(
+    createHash("sha256").update(extractProjectContextSections(crossProjectFollowUpsSource, [crossProjectFollowUpsHeading]), "utf8").digest("hex"),
+    "0fc901ba86f368043703f2f601072f2d6866ac563821ccdaa4f3bea408e7e05e",
+    "the exact Runs 62–63 follow-up section must survive the history split byte-for-byte",
+  );
   const liveSmokeEntry = repositoryManifest.modules.find((entry) => entry.id === "mssr-jev-live-bridge-smoke-20261011");
   assert.ok(liveSmokeEntry, "the parent live-smoke module must remain independently selectable");
   const pairedHistorySource = await fs.readFile(path.join(repositoryRoot, ".mssr/knowledge/reference/jev-mssr-live-bridge-smoke-20261011.md"), "utf8");
@@ -176,7 +186,7 @@ try {
   const librarianContractSource = await fs.readFile(path.join(repositoryRoot, ".mssr/knowledge/architecture/document-surface-librarian-contract.md"), "utf8");
   assert.equal(
     createHash("sha256").update(extractProjectContextSections(librarianContractSource, ["## Document Surface and Librarian contract"]), "utf8").digest("hex"),
-    "3292fe2a5253f745a74e922dec554de83240bab189a6958cdb7d92dc591eb2f3",
+    "168fe012f29f5f39d66260be18618e5b8dd0bf3f40047d45b1c2e66a368f3fbd",
     "the extracted Librarian contract must preserve the hash-addressed source section",
   );
   assert.deepEqual(semanticEvidenceLibrarian.ambiguousSegments, []);
@@ -223,10 +233,12 @@ try {
   const jevById = new Map(jevBenchmarkContext.selected.map((record) => [record.ref, record]));
   const confidencePolicy = jevById.get("mssr-jev-confidence-merge-policy");
   const runHistory = jevById.get("mssr-jev-confidence-run-history");
+  const crossProjectFollowUps = jevById.get("mssr-jev-confidence-cross-project-follow-ups-20261012");
   const evaluationProtocol = jevById.get("mssr-jev-confidence-benchmark-history");
   const connectedDiagnostics = jevById.get("mssr-jev-connected-diagnostics-20261011");
   assert.ok(confidencePolicy, "Jev conflict review should load the focused confidence/merge policy");
   assert.ok(runHistory, "Jev benchmark review should load measured run history independently");
+  assert.equal(crossProjectFollowUps, undefined, "resume-only historical detail must not crowd ordinary benchmark context");
   assert.ok(evaluationProtocol, "Jev benchmark review should retain the active evaluation protocol");
   assert.ok(connectedDiagnostics, "Jev benchmark review should load the recent connected diagnostic module independently");
   const selectorReleaseHistory = jevById.get("mssr-jev-librarian-selector-release-history");
@@ -238,6 +250,30 @@ try {
   assert.match(runHistory.content, /What the MSSR runs establish/);
   assert.match(runHistory.content, /labels were not independently\s+adjudicated/i);
   assert.doesNotMatch(runHistory.content, /## Confidence and merge policy/);
+
+  const historicalResumeContext = await loadProjectContextModules({
+    projectRoot: repositoryRoot,
+    intent: intent({
+      summary: "Recover and continue the historical cross-project Jev runs 62 and 63",
+      domains: ["coding", "agent-orchestration", "skill-system"],
+      actions: ["recover", "review"],
+      artifacts: ["document", "project"],
+      needs: ["integrity-verification", "cross-agent"],
+      signals: ["uncertainty", "conflicting-evidence"],
+      risk: "read-only",
+    }),
+    stage: "resume",
+    maxChars: 20_000,
+    maxModules: 40,
+    includeCore: false,
+  });
+  const resumedFollowUps = historicalResumeContext.selected.find((record) => record.ref === "mssr-jev-confidence-cross-project-follow-ups-20261012");
+  assert.ok(resumedFollowUps, "the exact historical follow-ups must load when resuming related work");
+  assert.equal(
+    createHash("sha256").update(extractProjectContextSections(resumedFollowUps.content, [crossProjectFollowUpsHeading]), "utf8").digest("hex"),
+    "0fc901ba86f368043703f2f601072f2d6866ac563821ccdaa4f3bea408e7e05e",
+    "resumed historical context must preserve the indexed Runs 62–63 evidence",
+  );
   assert.match(connectedDiagnostics.content, /answer-complete/i);
   assert.match(connectedDiagnostics.content, /not owner-gold, reliability estimates,/i);
   assert.match(evaluationProtocol.content, /Next MSSR evaluation/);

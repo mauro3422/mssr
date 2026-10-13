@@ -180,9 +180,39 @@ const decomposedSpanishDocument = {
   privacyClass: "project-metadata",
 };
 const decomposedSpanishStart = providerCalls.length;
-await selectMssrLibrarianEvidenceWithJev({ documents: [decomposedSpanishDocument], query: "¿Cuál es la evidencia clave del año fiscal?" }, provider);
+await selectMssrLibrarianEvidenceWithJev({ selectionMode: "all-headings", documents: [decomposedSpanishDocument], query: "¿Cuál es la evidencia clave del año fiscal?" }, provider);
 const decomposedSpanishEvidence = providerCalls[decomposedSpanishStart].state.evidence.map((item) => JSON.parse(item.text)[3]);
 assert.ok(decomposedSpanishEvidence.some((excerpt) => excerpt.includes("an\u0303o fiscal")), "query-centering must find composed ñ against decomposed source text and preserve its exact bytes");
+
+const bilingualDocument = {
+  owner,
+  sourceRef: "docs/bilingual-tail-evidence.md",
+  markdown: `# Revisión\n\n## Resultado\n\n${"Contexto general del proyecto sin el dato concreto solicitado. ".repeat(28)}La conclusión exacta es que el umbral de confianza requiere dos revisiones independientes y un hash exacto de la fuente.\n`,
+  privacyClass: "project-metadata",
+};
+const bilingualQuery = "Which evidence supports the current decision threshold?";
+const bilingualVariant = "umbral confianza revisiones independientes hash exacto";
+const bilingualSearch = searchMssrLibrarianEvidence({
+  documents: [bilingualDocument],
+  query: { query: bilingualQuery, queryVariants: [bilingualVariant], maxResults: 10 },
+});
+const bilingualHandle = bilingualSearch.results.find((item) => item.handle.rangeKind === "block")?.handle;
+assert.ok(bilingualHandle, "the Spanish alternate query should recover the exact target block");
+const bilingualCallStart = providerCalls.length;
+const bilingualSelection = await selectMssrLibrarianEvidenceWithJev({
+  selectionMode: "search-results",
+  documents: [bilingualDocument],
+  candidateHandles: [bilingualHandle],
+  query: bilingualQuery,
+  queryVariants: [bilingualVariant],
+}, provider);
+assert.equal(bilingualSelection.status, "selected");
+const bilingualRequest = providerCalls[bilingualCallStart];
+const bilingualEvidence = JSON.parse(bilingualRequest.state.evidence[0].text);
+assert.equal(bilingualRequest.state.query, bilingualQuery, "query variants guide evidence centering but do not rewrite Jev's semantic question");
+assert.ok(bilingualEvidence[3].includes("dos revisiones independientes y un hash exacto"), "the excerpt must center on the Spanish evidence that the alternate query retrieved near the end of a long block");
+assert.ok(Array.from(bilingualEvidence[3]).length <= 260);
+
 const exact = fetchMssrLibrarianEvidence({
   handle: selected.selected.handle,
   owner,
@@ -239,13 +269,33 @@ assert.equal(providerCalls.length, beforeInvalidHandleChecks, "invalid and stale
 
 const legacyCallIndex = providerCalls.length;
 const legacy = await selectMssrLibrarianEvidenceWithJev({
+  selectionMode: "all-headings",
   documents,
   query: "select by heading when no search handles were supplied",
 }, provider);
-assert.equal(legacy.status, "selected", "existing callers without candidate handles retain heading selection behavior");
+assert.equal(legacy.status, "selected", "heading selection remains available when the caller opts into all-headings mode");
 assert.equal(legacy.selected.handle.rangeKind, "section");
 const legacyOption = JSON.parse(providerCalls[legacyCallIndex].state.evidence[0].text);
 assert.equal(legacyOption[4], "section");
+const callsBeforeModeBoundary = providerCalls.length;
+await assert.rejects(
+  selectMssrLibrarianEvidenceWithJev({ documents, query: "missing mode must fail closed" }, provider),
+  /Choose all-headings explicitly/,
+);
+const emptySearch = await selectMssrLibrarianEvidenceWithJev({
+  selectionMode: "search-results",
+  documents,
+  candidateHandles: [],
+  query: "search found no evidence for this query",
+}, provider);
+assert.equal(emptySearch.status, "not-run");
+assert.equal(emptySearch.reason, "no-search-candidates");
+assert.equal(emptySearch.jevCallMade, false);
+assert.equal(providerCalls.length, callsBeforeModeBoundary, "a missing mode or empty search pool must not call Jev or expose document headings");
+await assert.rejects(
+  selectMssrLibrarianEvidenceWithJev({ selectionMode: "search-results", documents, query: "missing candidate array" }, provider),
+  /requires candidateHandles/,
+);
 
 const newlineVariants = [
   ["\n", "\n", "\n"],
@@ -266,6 +316,7 @@ for (const [index, lineSeparators] of newlineVariants.entries()) {
   };
   const callStart = providerCalls.length;
   const newlineSelection = await selectMssrLibrarianEvidenceWithJev({
+    selectionMode: "all-headings",
     documents: [newlineDocument],
     query: "What text follows the Target Needle heading?",
   }, provider);
@@ -303,6 +354,7 @@ const unicodeSectionDocument = {
 };
 const unicodeSectionCallStart = providerCalls.length;
 const unicodeSectionSelection = await selectMssrLibrarianEvidenceWithJev({
+  selectionMode: "all-headings",
   documents: [unicodeSectionDocument],
   query: "target evidence",
 }, provider);
@@ -322,7 +374,7 @@ const metadataPressureDocument = {
   privacyClass: "project-metadata",
 };
 const metadataPressureCallStart = providerCalls.length;
-const metadataPressureSelection = await selectMssrLibrarianEvidenceWithJev({ documents: [metadataPressureDocument], query: "target evidence" }, provider);
+const metadataPressureSelection = await selectMssrLibrarianEvidenceWithJev({ selectionMode: "all-headings", documents: [metadataPressureDocument], query: "target evidence" }, provider);
 assert.equal(metadataPressureSelection.status, "selected", "bounded metadata compaction should still make a valid Jev call");
 const metadataPressureEvidence = providerCalls[metadataPressureCallStart].state.evidence.map((item) => JSON.parse(item.text));
 assert.ok(metadataPressureEvidence.length > 0);
@@ -335,7 +387,7 @@ for (let index = 1; index <= 260; index += 1) {
 }
 const largeDocument = { owner, sourceRef: "docs/large-catalog.md", markdown: manyHeadings.join("\n"), privacyClass: "project-metadata" };
 const beforeHierarchicalCalls = providerCalls.length;
-const hierarchical = await selectMssrLibrarianEvidenceWithJev({ documents: [largeDocument], query: "Find the target needle evidence in the large catalog." }, provider);
+const hierarchical = await selectMssrLibrarianEvidenceWithJev({ selectionMode: "all-headings", documents: [largeDocument], query: "Find the target needle evidence in the large catalog." }, provider);
 assert.equal(hierarchical.status, "selected");
 assert.equal(hierarchical.selectionMode, "hierarchical");
 assert.equal(hierarchical.candidateCount, 260, "the oversized root range is omitted while 260 exact child ranges remain eligible");
@@ -398,6 +450,7 @@ assert.equal(JSON.stringify(providerCalls[oversizedCallStart]).includes("UNIQUE_
 
 const allOversizedProviderCalls = providerCalls.length;
 const allOversizedSelection = await selectMssrLibrarianEvidenceWithJev({
+  selectionMode: "search-results",
   documents: [oversizedSectionDocument],
   query: "select the oversized tail",
   candidateHandles: [oversizedCandidate.handle],
@@ -419,6 +472,7 @@ const oversizedHeadingDocument = {
 };
 const headingCallStart = providerCalls.length;
 const headingSelection = await selectMssrLibrarianEvidenceWithJev({
+  selectionMode: "all-headings",
   documents: [oversizedHeadingDocument],
   query: "select the fetchable child section",
 }, provider);
@@ -449,7 +503,7 @@ const providerWithoutDistribution = {
     };
   },
 };
-const fallbackHierarchy = await selectMssrLibrarianEvidenceWithJev({ documents: [largeDocument], query: "Find a target in the catalog." }, providerWithoutDistribution);
+const fallbackHierarchy = await selectMssrLibrarianEvidenceWithJev({ selectionMode: "all-headings", documents: [largeDocument], query: "Find a target in the catalog." }, providerWithoutDistribution);
 assert.equal(fallbackHierarchy.status, "selected");
 assert.equal(fallbackHierarchy.finalistCount, 2, "providers without a probability map retain one selected candidate per shard");
 assert.deepEqual(fallbackHierarchy.batchAssessments.map((item) => item.retainedFinalistCount), [1, 1]);
@@ -468,7 +522,7 @@ const oversizedCatalogs = Array.from({ length: 4 }, (_, documentIndex) => {
   };
 });
 let limitProviderCalls = 0;
-const limitResult = await selectMssrLibrarianEvidenceWithJev({ documents: oversizedCatalogs, query: "Find a matching catalog section." }, {
+const limitResult = await selectMssrLibrarianEvidenceWithJev({ selectionMode: "all-headings", documents: oversizedCatalogs, query: "Find a matching catalog section." }, {
   async executeSystemOne() { limitProviderCalls += 1; throw new Error("provider must not be called after preflight limit"); },
 });
 assert.equal(limitResult.status, "not-run");

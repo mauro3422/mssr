@@ -663,7 +663,6 @@ export function searchMssrLibrarianEvidence(args: { documents: readonly MssrLibr
       const handleFields = { version: 1 as const, owner: doc.owner, sourceRef, revision, rangeId: range.id, rangeKind: range.kind, startLine: range.metadata.startLine as number, endLine: range.metadata.endLine as number, startOffset: range.startOffset, endOffset: range.endOffset, fingerprint: range.fingerprint, privacyClass: doc.privacyClass as MssrLibrarianEvidenceHandle["privacyClass"] };
       const handle = mssrLibrarianEvidenceHandleSchema.parse({ ...handleFields, id: mssrLibrarianEvidenceHandleId(handleFields) });
       const rangeCodeUnits = range.endOffset - range.startOffset;
-      if (candidates.length >= MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxCandidates) throw new Error(`Librarian retrieval exceeds ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxCandidates} matching candidates.`);
       const candidate: MssrLibrarianRetrievalResult = {
         handle,
         rangeCodeUnits,
@@ -681,10 +680,12 @@ export function searchMssrLibrarianEvidence(args: { documents: readonly MssrLibr
         ownerAndPrivacyAreCallerAsserted: true,
         catalogProvenanceIsCallerAsserted: true,
       };
-      const existing = hasQueryVariants ? candidatesByHandle.get(handle.id) : undefined;
+      const existing = candidatesByHandle.get(handle.id);
       if (existing) {
-        const combinedQueryMatches = [...(existing.queryMatches ?? []), ...queryMatches];
-        existing.queryMatches = combinedQueryMatches.filter((match, index) => combinedQueryMatches.findIndex((candidate) => candidate.queryIndex === match.queryIndex) === index);
+        if (hasQueryVariants) {
+          const combinedQueryMatches = [...(existing.queryMatches ?? []), ...queryMatches];
+          existing.queryMatches = combinedQueryMatches.filter((match, index) => combinedQueryMatches.findIndex((candidate) => candidate.queryIndex === match.queryIndex) === index);
+        }
         for (const projection of metadataProjectionMatches) {
           const prior = existing.metadataProjectionMatches?.find((item) => item.projectionFingerprint === projection.projectionFingerprint);
           if (!prior) existing.metadataProjectionMatches = [...(existing.metadataProjectionMatches ?? []), projection];
@@ -701,7 +702,7 @@ export function searchMssrLibrarianEvidence(args: { documents: readonly MssrLibr
         continue;
       }
       if (candidates.length >= MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxCandidates) throw new Error(`Librarian retrieval exceeds ${MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxCandidates} matching candidates.`);
-      if (hasQueryVariants) candidatesByHandle.set(handle.id, candidate);
+      candidatesByHandle.set(handle.id, candidate);
       candidates.push(candidate);
     }
   }
