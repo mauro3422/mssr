@@ -1826,3 +1826,13 @@ an older trace is open, supply a fresh child `traceId`, `parentTraceId`, and
 stable `taskKey`; do not guess or reuse the older trace identity. Keep the
 concurrent-task correlation investigation open if this recurs after that
 pattern.
+
+**Additional evidence (2026-10-13):** During the source-disjoint librarian pilot,
+Bridge bootstrap for trace `mssr-20261013091313-344a8d00-770` rejected a
+host-gated decision supplied for required root `mssr-agent-routing`. The
+bootstrap made no Jev call. Replanning with the validation/replan signals and
+omitting the required root from optional decisions succeeded. This repeats the
+caller-input pattern recorded on 2026-10-12; no product or routing change was
+made. Follow-up remains: pass decisions only for current optional candidates,
+and materialize repository-required roots through the authoritative route/load
+step.
