@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-fresh-six-project-source-only-20261013T0027Z-v1",
+  "kind": "execution-path-and-project-root erratum",
+  "observedAt": "2026-10-13T00:36:43.513Z",
+  "plannedProviderPath": "TypeSafe Jev through Bridge",
+  "actualProviderPath": "Direct mcp__MSSR__mssr_librarian_search / mssr_librarian_jev_select / fetch / evidence_pack MCP calls. Jev responses identify provider typesafe-jev and model jev-1.13.0. All primary decisions were live Jev calls only when the exact search pool was non-empty.",
+  "correction": "The RUN-PLAN describes the provider path as 'through Bridge'. The primary benchmark calls were made through MSSR's direct MCP endpoint with explicit caller-supplied Markdown snapshots; this validates MSSR retrieval/selection/fetch/pack with live Jev, not Bridge's project-root authorization/orchestration.",
+  "bridgeRootPreflight": {
+    "projectRoot": "D:\\Dev\\typescript-practice",
+    "sourceRef": "docs/STUDY_HARNESS.md",
+    "result": "mssr_librarian_search rejected the root with 'requires a Git project initialized with canonical .mssr/project-context.json'",
+    "localEvidence": "project-context.json exists and its frozen SHA matches; git rev-parse --show-toplevel fails because this directory has no .git",
+    "jevCalled": false,
+    "primaryMetricsChanged": false
+  },
+  "normalization": "SOURCE-REVISION-ERRATUM.json preserves the initial CBAnimal raw-byte-vs-normalized-LF revision mismatch. The source was not changed; the rejected preflight did not call Jev. Retry used the normalized revision from MSSR's documented algorithm.",
+  "changes": {
+    "sourceFilesChanged": false,
+    "projectManifestsChanged": false,
+    "productionRuntimeChanged": false,
+    "thresholdsChanged": false
+  }
+}

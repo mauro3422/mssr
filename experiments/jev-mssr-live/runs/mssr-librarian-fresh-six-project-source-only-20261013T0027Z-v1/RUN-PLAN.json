@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-fresh-six-project-source-only-20261013T0027Z-v1",
+  "createdAt": "2026-10-13T00:27:24Z",
+  "evaluationType": "fresh-source exploratory pilot",
+  "independentQuestionCases": 12,
+  "distinctSourceDocuments": 6,
+  "distinctProjectFamilies": 6,
+  "labels": "source-only labels independently reviewed before provider calls; not owner-gold",
+  "exposure": "Source hashes do not match the local prior-run ledger. This is not a protected holdout; informal or model exposure cannot be ruled out.",
+  "scope": "Search and Jev selection over one explicit Markdown source per case; metadataMode off. This does not measure automatic atom/source discovery, relationship synthesis, multsource union, or canonical writes.",
+  "providerPlan": {
+    "provider": "TypeSafe Jev through Bridge",
+    "expectedModel": "jev-1.13.0 (record actual response)",
+    "metadataMode": "off",
+    "maxResults": 20,
+    "maxSnippetChars": 240,
+    "candidatePolicy": "pass only exact handles returned by the same query and source",
+    "emptyPoolPolicy": "record not-run/no-search-candidates; do not invoke selector",
+    "postSelection": "fetch exact handle, then evidence pack; compare source hash again after all calls",
+    "runtimeOrThresholdChange": false
+  },
+  "scoring": [
+    "search target presence and rank",
+    "selector disposition and selected-range relation to frozen gold span",
+    "abstention correctness on source-absent questions, only when a candidate pool was offered",
+    "blind semantic sufficiency and breadth",
+    "exact fetch/fingerprint/evidence-pack integrity",
+    "provider/model, latency and tokens when returned"
+  ],
+  "cases": [
+    {
+      "id": "MA-POS",
+      "projectRoot": "D:\\Dev\\MauroAudio",
+      "sourceRef": "docs/ANDROID_CLIENT.md",
+      "sourceSha256": "c33c42afa159600b581003778a69218765d597ddf87d035c26ebd9d9d68481a6",
+      "manifestSha256": "9a3eccf581352bc82e686e560a257b36d94d0e540589c7769688fb46692a69bf",
+      "query": "What audio format and packet interval are used for the tablet-to-PC microphone uplink?",
+      "answerable": true,
+      "goldLines": [
+        130,
+        131
+      ],
+      "labelBasis": "PCM16 LE, 48 kHz mono; target packet interval 20 ms."
+    },
+    {
+      "id": "MA-NEG",
+      "projectRoot": "D:\\Dev\\MauroAudio",
+      "sourceRef": "docs/ANDROID_CLIENT.md",
+      "sourceSha256": "c33c42afa159600b581003778a69218765d597ddf87d035c26ebd9d9d68481a6",
+      "manifestSha256": "9a3eccf581352bc82e686e560a257b36d94d0e540589c7769688fb46692a69bf",
+      "query": "What Opus bitrate is specified for the microphone uplink?",
+      "answerable": false,
+      "absentScope": "The frozen source contains no Opus or bitrate specification."
+    },
+    {
+      "id": "LAT-POS",
+      "projectRoot": "D:\\Dev\\lattice-web-engine",
+      "sourceRef": "docs/BENCHMARKS.md",
+      "sourceSha256": "a259317a74a7d7c5ecb9b6e1a004b1096accc7812918df33de836e1ee9186f0f",
+      "manifestSha256": "6bba490df10724ac3cb6feae3f8543c48d704c8eb98423e3885095298a25c343",
+      "query": "Which fields does the benchmark discipline require each architectural experiment to record?",
+      "answerable": true,
+      "goldLines": [
+        39,
+        49
+      ],
+      "labelBasis": "Ten enumerated experiment-record fields."
+    },
+    {
+      "id": "LAT-NEG",
+      "projectRoot": "D:\\Dev\\lattice-web-engine",
+      "sourceRef": "docs/BENCHMARKS.md",
+      "sourceSha256": "a259317a74a7d7c5ecb9b6e1a004b1096accc7812918df33de836e1ee9186f0f",
+      "manifestSha256": "6bba490df10724ac3cb6feae3f8543c48d704c8eb98423e3885095298a25c343",
+      "query": "What numeric P95 input-to-visible-response threshold must a benchmark pass?",
+      "answerable": false,
+      "absentScope": "P95 is named, but no numeric pass threshold is specified."
+    },
+    {
+      "id": "CBA-POS",
+      "projectRoot": "D:\\Dev\\cbanimal",
+      "sourceRef": ".mssr/PROJECT_CONTEXT.md",
+      "sourceSha256": "cae9538bbb353298992aa3c24f56a54e1df533ccb597aef05a893c9ec7d7560f",
+      "manifestSha256": "9e105c76c33186461881b5287e2c7e2e918a00c3fa6d3a491cbe90c224ed0797",
+      "query": "What is the initial visual-budget target for the main character?",
+      "answerable": true,
+      "goldLines": [
+        57,
+        65
+      ],
+      "labelBasis": "Low-poly humanoid, ~8k–12k triangles, one 1024x1024 texture, 1–2 materials, root motion disabled, consistent animation names."
+    },
+    {
+      "id": "CBA-NEG",
+      "projectRoot": "D:\\Dev\\cbanimal",
+      "sourceRef": ".mssr/PROJECT_CONTEXT.md",
+      "sourceSha256": "cae9538bbb353298992aa3c24f56a54e1df533ccb597aef05a893c9ec7d7560f",
+      "manifestSha256": "9e105c76c33186461881b5287e2c7e2e918a00c3fa6d3a491cbe90c224ed0797",
+      "query": "How many concurrent users must the game support at multiplayer launch?",
+      "answerable": false,
+      "absentScope": "No launch concurrency or multiplayer capacity target is declared."
+    },
+    {
+      "id": "GOD-POS",
+      "projectRoot": "D:\\Dev\\mauroprime-godot-mcp",
+      "sourceRef": "docs/README.md",
+      "sourceSha256": "629944d3d34a8b1283349e91a9e4036219dea74396d6c3912e524524282d812b",
+      "manifestSha256": "19b285ce30d032646b1b737642b459da346e9c27771d6e7d6f84a54dd48c1291",
+      "query": "Which documents provide the main Godot Companion guide and the general architecture?",
+      "answerable": true,
+      "goldLines": [
+        7,
+        8
+      ],
+      "labelBasis": "GODOT_COMPANION.md and MAUROPRIME_ARCHITECTURE.md."
+    },
+    {
+      "id": "GOD-NEG",
+      "projectRoot": "D:\\Dev\\mauroprime-godot-mcp",
+      "sourceRef": "docs/README.md",
+      "sourceSha256": "629944d3d34a8b1283349e91a9e4036219dea74396d6c3912e524524282d812b",
+      "manifestSha256": "19b285ce30d032646b1b737642b459da346e9c27771d6e7d6f84a54dd48c1291",
+      "query": "How many tools does the provider currently have?",
+      "answerable": false,
+      "absentScope": "A historical smoke count is explicitly not a current count."
+    },
+    {
+      "id": "TS-POS",
+      "projectRoot": "D:\\Dev\\typescript-practice",
+      "sourceRef": "docs/STUDY_HARNESS.md",
+      "sourceSha256": "f74f2e4a468fe1e9e32cdc08757e6ab82ea4b58efc71375c37103b7cee774387",
+      "manifestSha256": "4c3ba54c91116ff01529bfd3b04479ebf2294f9e2c34ec9079958646013f7d31",
+      "query": "Which tools are disabled during normal tutoring?",
+      "answerable": true,
+      "goldLines": [
+        93
+      ],
+      "labelBasis": "study_patch, bash, edit, write, apply_patch."
+    },
+    {
+      "id": "TS-NEG",
+      "projectRoot": "D:\\Dev\\typescript-practice",
+      "sourceRef": "docs/STUDY_HARNESS.md",
+      "sourceSha256": "f74f2e4a468fe1e9e32cdc08757e6ab82ea4b58efc71375c37103b7cee774387",
+      "manifestSha256": "4c3ba54c91116ff01529bfd3b04479ebf2294f9e2c34ec9079958646013f7d31",
+      "query": "According to this document, what exact maximum character count is allowed for a selection?",
+      "answerable": false,
+      "absentScope": "The document delegates selection limits to .study/harness.json and gives no numeric maximum itself."
+    },
+    {
+      "id": "WMS-POS",
+      "projectRoot": "D:\\Dev\\workshop-media-studio",
+      "sourceRef": "README.md",
+      "sourceSha256": "fb7671d9e033724f78547d878a2e3cc5f23fc4f1f36f8b47405b12fdf9a8bfca",
+      "manifestSha256": "90826fc6a612daaa6799e0d14ab002a00bf08f3a6787764e71dbdfdb28f03bed",
+      "query": "What duration and controls do image scenes have?",
+      "answerable": true,
+      "goldLines": [
+        7,
+        17
+      ],
+      "labelBasis": "Editable virtual still duration (3.0 s default), fixed 1x, crop/camera and multiple A/B markers."
+    },
+    {
+      "id": "WMS-NEG",
+      "projectRoot": "D:\\Dev\\workshop-media-studio",
+      "sourceRef": "README.md",
+      "sourceSha256": "fb7671d9e033724f78547d878a2e3cc5f23fc4f1f36f8b47405b12fdf9a8bfca",
+      "manifestSha256": "90826fc6a612daaa6799e0d14ab002a00bf08f3a6787764e71dbdfdb28f03bed",
+      "query": "What maximum bitrate does MP4 export use?",
+      "answerable": false,
+      "absentScope": "H.264/yuv420p are stated, but no bitrate is specified."
+    }
+  ]
+}

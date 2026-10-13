@@ -1,0 +1,262 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-fresh-six-project-source-only-20261013T0027Z-v1",
+  "kind": "post-hoc query-language diagnostic; excluded from primary metrics",
+  "source": {
+    "projectRoot": "D:\\Dev\\typescript-practice",
+    "sourceRef": "docs/STUDY_HARNESS.md",
+    "sourceSha256": "f74f2e4a468fe1e9e32cdc08757e6ab82ea4b58efc71375c37103b7cee774387",
+    "projectManifestSha256": "4c3ba54c91116ff01529bfd3b04479ebf2294f9e2c34ec9079958646013f7d31"
+  },
+  "cases": [
+    {
+      "id": "TS-POS-ES-V1",
+      "originalCase": "TS-POS",
+      "query": "Which tools are disabled during normal tutoring?",
+      "explicitQueryVariant": "¿Qué herramientas permanecen desactivadas durante la tutoría normal?",
+      "sourceSha256": "f74f2e4a468fe1e9e32cdc08757e6ab82ea4b58efc71375c37103b7cee774387",
+      "manifestSha256": "4c3ba54c91116ff01529bfd3b04479ebf2294f9e2c34ec9079958646013f7d31",
+      "searchResultCount": 20,
+      "searchTargetPresent": true,
+      "candidateSummary": [
+        {
+          "rank": 1,
+          "rangeId": "heading-1",
+          "lines": [
+            1,
+            140
+          ],
+          "title": "Mauro Study Harness",
+          "matchedQueryIndexes": []
+        },
+        {
+          "rank": 2,
+          "rangeId": "heading-2",
+          "lines": [
+            5,
+            46
+          ],
+          "title": "Flujo principal: Study Code Editor para TypeScript",
+          "matchedQueryIndexes": []
+        },
+        {
+          "rank": 3,
+          "rangeId": "block-2",
+          "lines": [
+            7,
+            35
+          ],
+          "title": "Flujo principal: Study Code Editor para TypeScript",
+          "matchedQueryIndexes": []
+        },
+        {
+          "rank": 4,
+          "rangeId": "block-3",
+          "lines": [
+            37,
+            37
+          ],
+          "title": "Flujo principal: Study Code Editor para TypeScript",
+          "matchedQueryIndexes": []
+        },
+        {
+          "rank": 5,
+          "rangeId": "heading-5",
+          "lines": [
+            53,
+            68
+          ],
+          "title": "Markdown: Study Editor opcional",
+          "matchedQueryIndexes": []
+        },
+        {
+          "rank": 6,
+          "rangeId": "block-12",
+          "lines": [
+            67,
+            67
+          ],
+          "title": "Markdown: Study Editor opcional",
+          "matchedQueryIndexes": []
+        },
+        {
+          "rank": 7,
+          "rangeId": "heading-6",
+          "lines": [
+            69,
+            76
+          ],
+          "title": "Conversaciones ancladas",
+          "matchedQueryIndexes": []
+        },
+        {
+          "rank": 8,
+          "rangeId": "block-15",
+          "lines": [
+            75,
+            75
+          ],
+          "title": "Conversaciones ancladas",
+          "matchedQueryIndexes": []
+        },
+        {
+          "rank": 9,
+          "rangeId": "heading-7",
+          "lines": [
+            77,
+            94
+          ],
+          "title": "Backend OpenCode",
+          "matchedQueryIndexes": []
+        },
+        {
+          "rank": 10,
+          "rangeId": "block-19",
+          "lines": [
+            93,
+            93
+          ],
+          "title": "Backend OpenCode",
+          "matchedQueryIndexes": []
+        }
+      ],
+      "status": "selected",
+      "providerCalls": 1,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providerConfidence": 0.83,
+      "evidenceSufficiency": 0.9,
+      "selectionMode": "single-pass",
+      "usage": {
+        "input_tokens": 3315,
+        "output_tokens": 247
+      },
+      "elapsedMs": 406.2,
+      "selectedRangeId": "block-19",
+      "selectedLines": [
+        93,
+        93
+      ],
+      "selectedCoversGold": true,
+      "selectedExactGoldRange": true,
+      "fetchFingerprintMatches": true,
+      "fetchedChars": 185,
+      "packChars": 185,
+      "packCitations": 1
+    },
+    {
+      "id": "TS-NEG-ES-V1",
+      "originalCase": "TS-NEG",
+      "query": "According to this document, what exact maximum character count is allowed for a selection?",
+      "explicitQueryVariant": "¿Cuál es el límite máximo exacto de caracteres permitido para una selección según este documento?",
+      "sourceSha256": "f74f2e4a468fe1e9e32cdc08757e6ab82ea4b58efc71375c37103b7cee774387",
+      "manifestSha256": "4c3ba54c91116ff01529bfd3b04479ebf2294f9e2c34ec9079958646013f7d31",
+      "searchResultCount": 20,
+      "candidateSummary": [
+        {
+          "rank": 1,
+          "rangeId": "heading-1",
+          "lines": [
+            1,
+            140
+          ],
+          "title": "Mauro Study Harness"
+        },
+        {
+          "rank": 2,
+          "rangeId": "heading-2",
+          "lines": [
+            5,
+            46
+          ],
+          "title": "Flujo principal: Study Code Editor para TypeScript"
+        },
+        {
+          "rank": 3,
+          "rangeId": "heading-5",
+          "lines": [
+            53,
+            68
+          ],
+          "title": "Markdown: Study Editor opcional"
+        },
+        {
+          "rank": 4,
+          "rangeId": "block-12",
+          "lines": [
+            67,
+            67
+          ],
+          "title": "Markdown: Study Editor opcional"
+        },
+        {
+          "rank": 5,
+          "rangeId": "block-2",
+          "lines": [
+            7,
+            35
+          ],
+          "title": "Flujo principal: Study Code Editor para TypeScript"
+        },
+        {
+          "rank": 6,
+          "rangeId": "block-3",
+          "lines": [
+            37,
+            37
+          ],
+          "title": "Flujo principal: Study Code Editor para TypeScript"
+        },
+        {
+          "rank": 7,
+          "rangeId": "heading-3",
+          "lines": [
+            41,
+            46
+          ],
+          "title": "Qué conserva Monaco y qué no hereda automáticamente"
+        },
+        {
+          "rank": 8,
+          "rangeId": "block-5",
+          "lines": [
+            43,
+            43
+          ],
+          "title": "Qué conserva Monaco y qué no hereda automáticamente"
+        },
+        {
+          "rank": 9,
+          "rangeId": "heading-4",
+          "lines": [
+            47,
+            52
+          ],
+          "title": "Quick Chat: fallback nativo"
+        },
+        {
+          "rank": 10,
+          "rangeId": "block-7",
+          "lines": [
+            49,
+            49
+          ],
+          "title": "Quick Chat: fallback nativo"
+        }
+      ],
+      "status": "abstained",
+      "providerCalls": 1,
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providerConfidence": 0.9,
+      "evidenceSufficiency": 0.09,
+      "selectionMode": "single-pass",
+      "usage": {
+        "input_tokens": 3377,
+        "output_tokens": 244
+      },
+      "elapsedMs": 398.5
+    }
+  ],
+  "conclusion": "The two frozen English queries produced empty pools against a Spanish document. Adding one explicit Spanish query variant yielded 20 candidates for each; Jev selected the exact line 93 for the positive and abstained on the source-absent numeric limit. This is a targeted post-hoc diagnostic, not part of the primary cohort denominator."
+}

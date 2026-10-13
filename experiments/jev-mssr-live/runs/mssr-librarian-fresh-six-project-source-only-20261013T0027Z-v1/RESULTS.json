@@ -1,0 +1,635 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-fresh-six-project-source-only-20261013T0027Z-v1",
+  "createdAt": "2026-10-13T00:27:24Z",
+  "completedAt": "2026-10-13T00:56:05Z",
+  "kind": "fresh-source exploratory pilot",
+  "planPath": "RUN-PLAN.json",
+  "executionPath": "MSSR direct MCP caller-supplied Markdown + live TypeSafe Jev Choice (actual provider=model returned); Bridge project-root wrapper was not used for the primary case chain.",
+  "scope": "Search and Jev selection over one explicit Markdown source per case; metadataMode off. This does not measure automatic atom/source discovery, relationship synthesis, multsource union, or canonical writes.",
+  "exposure": "Source hashes do not match the local prior-run ledger. This is not a protected holdout; informal or model exposure cannot be ruled out.",
+  "metadataMode": "off",
+  "runtimeOrThresholdChange": false,
+  "integrity": {
+    "preCallSourceAndManifestHashesMatched": true,
+    "postCallSourceAndManifestHashesMatch": true,
+    "allSixSourcesUnchanged": true,
+    "rawSourceBodiesPersisted": false,
+    "workingTreeNotes": {
+      "typescriptPractice": "The path has a valid .mssr/project-context.json but is not a Git repository; Bridge project-root Librarian wrapper refused it. Direct MSSR tools accepted an explicit caller-supplied snapshot.",
+      "workshopMediaStudio": "Bridge project profile showed a dirty working tree including README.md; frozen README and project manifest hashes matched before/after the calls. No files were changed by this pilot."
+    }
+  },
+  "metrics": {
+    "primaryCases": 12,
+    "projectFamilies": 6,
+    "distinctSourceDocuments": 6,
+    "labels": "source-only; not owner-gold; not protected holdout",
+    "positive": {
+      "cases": 6,
+      "searchReturnedAnyContainingRange": 5,
+      "searchExactFrozenRange": 2,
+      "jevSelectedAmongCasesWithCandidates": 5,
+      "selectedRangesCoveringEntireFrozenSpan": 2,
+      "blindReviewed": 5,
+      "blindSufficient": 4,
+      "blindPartial": 1
+    },
+    "negative": {
+      "cases": 6,
+      "candidatePoolOffered": 5,
+      "correctJevAbstentions": 5,
+      "emptyPoolNotRun": 1
+    },
+    "exactEvidence": {
+      "selectedPositiveCases": 5,
+      "fetchFingerprintPasses": 5,
+      "evidencePacks": 5
+    },
+    "liveProvider": {
+      "inputTokens": 26034,
+      "outputTokens": 2215,
+      "elapsedMs": 8963.699999999999,
+      "providerCalls": 10
+    },
+    "confidence": "Choice and evidenceSufficiency remain uncalibrated; do not interpret as correctness probabilities."
+  },
+  "cases": [
+    {
+      "id": "MA-POS",
+      "projectRoot": "D:\\Dev\\MauroAudio",
+      "sourceRef": "docs/ANDROID_CLIENT.md",
+      "sourceSha256": "c33c42afa159600b581003778a69218765d597ddf87d035c26ebd9d9d68481a6",
+      "projectManifestSha256": "9a3eccf581352bc82e686e560a257b36d94d0e540589c7769688fb46692a69bf",
+      "query": "What audio format and packet interval are used for the tablet-to-PC microphone uplink?",
+      "label": {
+        "answerable": true,
+        "kind": "source-only; not owner-gold",
+        "goldLines": [
+          130,
+          131
+        ],
+        "absentScope": null
+      },
+      "search": {
+        "candidateCount": 20,
+        "targetPresent": true,
+        "goldContainingRanks": [
+          1,
+          2,
+          3
+        ],
+        "narrowestGoldContainingRank": 3,
+        "narrowestGoldContainingRange": {
+          "rank": 3,
+          "rangeId": "block-35",
+          "rangeKind": "block",
+          "startLine": 130,
+          "endLine": 139,
+          "span": 10,
+          "exact": false
+        },
+        "exactGoldRangePresent": false
+      },
+      "decision": {
+        "status": "selected",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "selected": {
+          "rangeId": "block-35",
+          "lines": [
+            130,
+            139
+          ],
+          "fullyCoversFrozenLabel": true,
+          "exactFrozenLabel": null
+        },
+        "rawChoiceConfidence": 1,
+        "rawEvidenceSufficiency": 0.97,
+        "selectionMode": "single-pass",
+        "usage": {
+          "input_tokens": 2731,
+          "output_tokens": 247
+        },
+        "elapsedMs": 1346.7,
+        "correctAbstention": null
+      },
+      "exactEvidence": {
+        "fetchFingerprintMatches": true,
+        "fetchedChars": 809,
+        "evidencePackChars": 809,
+        "citations": 1
+      },
+      "blindReview": {
+        "verdict": "sufficient",
+        "breadth": "focused",
+        "reason": "Selected lines specify 48 kHz mono signed PCM16 LE and the 20 ms packet target."
+      }
+    },
+    {
+      "id": "MA-NEG",
+      "projectRoot": "D:\\Dev\\MauroAudio",
+      "sourceRef": "docs/ANDROID_CLIENT.md",
+      "sourceSha256": "c33c42afa159600b581003778a69218765d597ddf87d035c26ebd9d9d68481a6",
+      "projectManifestSha256": "9a3eccf581352bc82e686e560a257b36d94d0e540589c7769688fb46692a69bf",
+      "query": "What Opus bitrate is specified for the microphone uplink?",
+      "label": {
+        "answerable": false,
+        "kind": "source-only; not owner-gold",
+        "goldLines": null,
+        "absentScope": "The frozen source contains no Opus or bitrate specification."
+      },
+      "search": {
+        "candidateCount": 17,
+        "targetPresent": null,
+        "goldContainingRanks": null,
+        "narrowestGoldContainingRank": null,
+        "narrowestGoldContainingRange": null,
+        "exactGoldRangePresent": null
+      },
+      "decision": {
+        "status": "abstained",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "selected": null,
+        "rawChoiceConfidence": 0.98,
+        "rawEvidenceSufficiency": 0.05,
+        "selectionMode": "single-pass",
+        "usage": {
+          "input_tokens": 2327,
+          "output_tokens": 214
+        },
+        "elapsedMs": 811.3,
+        "correctAbstention": true
+      },
+      "exactEvidence": null,
+      "blindReview": null
+    },
+    {
+      "id": "LAT-POS",
+      "projectRoot": "D:\\Dev\\lattice-web-engine",
+      "sourceRef": "docs/BENCHMARKS.md",
+      "sourceSha256": "a259317a74a7d7c5ecb9b6e1a004b1096accc7812918df33de836e1ee9186f0f",
+      "projectManifestSha256": "6bba490df10724ac3cb6feae3f8543c48d704c8eb98423e3885095298a25c343",
+      "query": "Which fields does the benchmark discipline require each architectural experiment to record?",
+      "label": {
+        "answerable": true,
+        "kind": "source-only; not owner-gold",
+        "goldLines": [
+          39,
+          49
+        ],
+        "absentScope": null
+      },
+      "search": {
+        "candidateCount": 20,
+        "targetPresent": true,
+        "goldContainingRanks": [
+          1,
+          2,
+          3
+        ],
+        "narrowestGoldContainingRank": 3,
+        "narrowestGoldContainingRange": null,
+        "exactGoldRangePresent": true
+      },
+      "decision": {
+        "status": "selected",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "selected": null,
+        "rawChoiceConfidence": 0.74,
+        "rawEvidenceSufficiency": 0.92,
+        "selectionMode": "single-pass",
+        "usage": {
+          "input_tokens": 2693,
+          "output_tokens": 247
+        },
+        "elapsedMs": 750.8,
+        "correctAbstention": null
+      },
+      "exactEvidence": null,
+      "blindReview": {
+        "verdict": "sufficient",
+        "breadth": "adequate",
+        "reason": "Selected lines enumerate the ten required experiment-record fields."
+      }
+    },
+    {
+      "id": "LAT-NEG",
+      "projectRoot": "D:\\Dev\\lattice-web-engine",
+      "sourceRef": "docs/BENCHMARKS.md",
+      "sourceSha256": "a259317a74a7d7c5ecb9b6e1a004b1096accc7812918df33de836e1ee9186f0f",
+      "projectManifestSha256": "6bba490df10724ac3cb6feae3f8543c48d704c8eb98423e3885095298a25c343",
+      "query": "What numeric P95 input-to-visible-response threshold must a benchmark pass?",
+      "label": {
+        "answerable": false,
+        "kind": "source-only; not owner-gold",
+        "goldLines": null,
+        "absentScope": "P95 is named, but no numeric pass threshold is specified."
+      },
+      "search": {
+        "candidateCount": 20,
+        "targetPresent": null,
+        "goldContainingRanks": null,
+        "narrowestGoldContainingRank": null,
+        "narrowestGoldContainingRange": null,
+        "exactGoldRangePresent": null
+      },
+      "decision": {
+        "status": "abstained",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "selected": null,
+        "rawChoiceConfidence": 0.98,
+        "rawEvidenceSufficiency": 0.06,
+        "selectionMode": "single-pass",
+        "usage": {
+          "input_tokens": 2768,
+          "output_tokens": 244
+        },
+        "elapsedMs": 812.8,
+        "correctAbstention": true
+      },
+      "exactEvidence": null,
+      "blindReview": null
+    },
+    {
+      "id": "CBA-POS",
+      "projectRoot": "D:\\Dev\\cbanimal",
+      "sourceRef": ".mssr/PROJECT_CONTEXT.md",
+      "sourceSha256": "cae9538bbb353298992aa3c24f56a54e1df533ccb597aef05a893c9ec7d7560f",
+      "projectManifestSha256": "9e105c76c33186461881b5287e2c7e2e918a00c3fa6d3a491cbe90c224ed0797",
+      "query": "What is the initial visual-budget target for the main character?",
+      "label": {
+        "answerable": true,
+        "kind": "source-only; not owner-gold",
+        "goldLines": [
+          57,
+          65
+        ],
+        "absentScope": null
+      },
+      "search": {
+        "candidateCount": 20,
+        "targetPresent": true,
+        "goldContainingRanks": [
+          1,
+          2
+        ],
+        "narrowestGoldContainingRank": 2,
+        "narrowestGoldContainingRange": null,
+        "exactGoldRangePresent": false
+      },
+      "decision": {
+        "status": "selected",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "selected": null,
+        "rawChoiceConfidence": 0.35,
+        "rawEvidenceSufficiency": 0.72,
+        "selectionMode": "single-pass",
+        "usage": {
+          "input_tokens": 2502,
+          "output_tokens": 247
+        },
+        "elapsedMs": 1002.4,
+        "correctAbstention": null
+      },
+      "exactEvidence": null,
+      "blindReview": {
+        "verdict": "sufficient",
+        "breadth": "focused",
+        "reason": "Selected line gives the main character target of approximately 8,000–12,000 triangles."
+      }
+    },
+    {
+      "id": "CBA-NEG",
+      "projectRoot": "D:\\Dev\\cbanimal",
+      "sourceRef": ".mssr/PROJECT_CONTEXT.md",
+      "sourceSha256": "cae9538bbb353298992aa3c24f56a54e1df533ccb597aef05a893c9ec7d7560f",
+      "projectManifestSha256": "9e105c76c33186461881b5287e2c7e2e918a00c3fa6d3a491cbe90c224ed0797",
+      "query": "How many concurrent users must the game support at multiplayer launch?",
+      "label": {
+        "answerable": false,
+        "kind": "source-only; not owner-gold",
+        "goldLines": null,
+        "absentScope": "No launch concurrency or multiplayer capacity target is declared."
+      },
+      "search": {
+        "candidateCount": 17,
+        "targetPresent": null,
+        "goldContainingRanks": null,
+        "narrowestGoldContainingRank": null,
+        "narrowestGoldContainingRange": null,
+        "exactGoldRangePresent": null
+      },
+      "decision": {
+        "status": "abstained",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "selected": null,
+        "rawChoiceConfidence": 0.99,
+        "rawEvidenceSufficiency": 0.03,
+        "selectionMode": "single-pass",
+        "usage": {
+          "input_tokens": 2586,
+          "output_tokens": 214
+        },
+        "elapsedMs": 1196.3,
+        "correctAbstention": true
+      },
+      "exactEvidence": null,
+      "blindReview": null
+    },
+    {
+      "id": "GOD-POS",
+      "projectRoot": "D:\\Dev\\mauroprime-godot-mcp",
+      "sourceRef": "docs/README.md",
+      "sourceSha256": "629944d3d34a8b1283349e91a9e4036219dea74396d6c3912e524524282d812b",
+      "projectManifestSha256": "19b285ce30d032646b1b737642b459da346e9c27771d6e7d6f84a54dd48c1291",
+      "query": "Which documents provide the main Godot Companion guide and the general architecture?",
+      "label": {
+        "answerable": true,
+        "kind": "source-only; not owner-gold",
+        "goldLines": [
+          7,
+          8
+        ],
+        "absentScope": null
+      },
+      "search": {
+        "candidateCount": 20,
+        "targetPresent": true,
+        "goldContainingRanks": [
+          1,
+          2,
+          3
+        ],
+        "narrowestGoldContainingRank": 3,
+        "narrowestGoldContainingRange": null,
+        "exactGoldRangePresent": true
+      },
+      "decision": {
+        "status": "selected",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "selected": null,
+        "rawChoiceConfidence": 0.63,
+        "rawEvidenceSufficiency": 0.94,
+        "selectionMode": "single-pass",
+        "usage": {
+          "input_tokens": 3139,
+          "output_tokens": 247
+        },
+        "elapsedMs": 1333.5,
+        "correctAbstention": null
+      },
+      "exactEvidence": null,
+      "blindReview": {
+        "verdict": "partial",
+        "breadth": "focused",
+        "reason": "Selected line names GODOT_COMPANION.md and says it covers architecture, but omits the separate MAUROPRIME_ARCHITECTURE.md link."
+      }
+    },
+    {
+      "id": "GOD-NEG",
+      "projectRoot": "D:\\Dev\\mauroprime-godot-mcp",
+      "sourceRef": "docs/README.md",
+      "sourceSha256": "629944d3d34a8b1283349e91a9e4036219dea74396d6c3912e524524282d812b",
+      "projectManifestSha256": "19b285ce30d032646b1b737642b459da346e9c27771d6e7d6f84a54dd48c1291",
+      "query": "How many tools does the provider currently have?",
+      "label": {
+        "answerable": false,
+        "kind": "source-only; not owner-gold",
+        "goldLines": null,
+        "absentScope": "A historical smoke count is explicitly not a current count."
+      },
+      "search": {
+        "candidateCount": 11,
+        "targetPresent": null,
+        "goldContainingRanks": null,
+        "narrowestGoldContainingRank": null,
+        "narrowestGoldContainingRange": null,
+        "exactGoldRangePresent": null
+      },
+      "decision": {
+        "status": "abstained",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "selected": null,
+        "rawChoiceConfidence": 0.96,
+        "rawEvidenceSufficiency": 0.1,
+        "selectionMode": "single-pass",
+        "usage": {
+          "input_tokens": 2146,
+          "output_tokens": 154
+        },
+        "elapsedMs": 894.2,
+        "correctAbstention": true
+      },
+      "exactEvidence": null,
+      "blindReview": null
+    },
+    {
+      "id": "TS-POS",
+      "projectRoot": "D:\\Dev\\typescript-practice",
+      "sourceRef": "docs/STUDY_HARNESS.md",
+      "sourceSha256": "f74f2e4a468fe1e9e32cdc08757e6ab82ea4b58efc71375c37103b7cee774387",
+      "projectManifestSha256": "4c3ba54c91116ff01529bfd3b04479ebf2294f9e2c34ec9079958646013f7d31",
+      "query": "Which tools are disabled during normal tutoring?",
+      "label": {
+        "answerable": true,
+        "kind": "source-only; not owner-gold",
+        "goldLines": [
+          93
+        ],
+        "absentScope": null
+      },
+      "search": {
+        "candidateCount": 0,
+        "targetPresent": false,
+        "goldContainingRanks": [],
+        "narrowestGoldContainingRank": null,
+        "narrowestGoldContainingRange": null,
+        "exactGoldRangePresent": false
+      },
+      "decision": {
+        "status": "not-run/no-search-candidates",
+        "provider": null,
+        "model": null,
+        "providerCalls": 0,
+        "selected": null,
+        "rawChoiceConfidence": null,
+        "rawEvidenceSufficiency": null,
+        "selectionMode": null,
+        "usage": null,
+        "elapsedMs": null,
+        "correctAbstention": null
+      },
+      "exactEvidence": null,
+      "blindReview": null
+    },
+    {
+      "id": "TS-NEG",
+      "projectRoot": "D:\\Dev\\typescript-practice",
+      "sourceRef": "docs/STUDY_HARNESS.md",
+      "sourceSha256": "f74f2e4a468fe1e9e32cdc08757e6ab82ea4b58efc71375c37103b7cee774387",
+      "projectManifestSha256": "4c3ba54c91116ff01529bfd3b04479ebf2294f9e2c34ec9079958646013f7d31",
+      "query": "According to this document, what exact maximum character count is allowed for a selection?",
+      "label": {
+        "answerable": false,
+        "kind": "source-only; not owner-gold",
+        "goldLines": null,
+        "absentScope": "The document delegates selection limits to .study/harness.json and gives no numeric maximum itself."
+      },
+      "search": {
+        "candidateCount": 0,
+        "targetPresent": null,
+        "goldContainingRanks": null,
+        "narrowestGoldContainingRank": null,
+        "narrowestGoldContainingRange": null,
+        "exactGoldRangePresent": null
+      },
+      "decision": {
+        "status": "not-run/no-search-candidates",
+        "provider": null,
+        "model": null,
+        "providerCalls": 0,
+        "selected": null,
+        "rawChoiceConfidence": null,
+        "rawEvidenceSufficiency": null,
+        "selectionMode": null,
+        "usage": null,
+        "elapsedMs": null,
+        "correctAbstention": null
+      },
+      "exactEvidence": null,
+      "blindReview": null
+    },
+    {
+      "id": "WMS-POS",
+      "projectRoot": "D:\\Dev\\workshop-media-studio",
+      "sourceRef": "README.md",
+      "sourceSha256": "fb7671d9e033724f78547d878a2e3cc5f23fc4f1f36f8b47405b12fdf9a8bfca",
+      "projectManifestSha256": "90826fc6a612daaa6799e0d14ab002a00bf08f3a6787764e71dbdfdb28f03bed",
+      "query": "What duration and controls do image scenes have?",
+      "label": {
+        "answerable": true,
+        "kind": "source-only; not owner-gold",
+        "goldLines": [
+          7,
+          17
+        ],
+        "absentScope": null
+      },
+      "search": {
+        "candidateCount": 11,
+        "targetPresent": true,
+        "goldContainingRanks": [
+          1,
+          2
+        ],
+        "narrowestGoldContainingRank": 2,
+        "narrowestGoldContainingRange": {
+          "rank": 2,
+          "rangeId": "heading-2",
+          "kind": "section",
+          "start": 5,
+          "end": 62,
+          "span": 58
+        },
+        "exactGoldRangePresent": false
+      },
+      "decision": {
+        "status": "selected",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "selected": {
+          "rangeId": "block-10",
+          "lines": [
+            23,
+            28
+          ],
+          "fullyCoversFrozenLabel": false,
+          "exactFrozenLabel": false
+        },
+        "rawChoiceConfidence": 0.98,
+        "rawEvidenceSufficiency": 0.78,
+        "selectionMode": "single-pass",
+        "usage": {
+          "input_tokens": 1948,
+          "output_tokens": 157
+        },
+        "elapsedMs": 413.8,
+        "correctAbstention": null
+      },
+      "exactEvidence": {
+        "fetchFingerprintMatches": true,
+        "fetchedChars": 367,
+        "evidencePackChars": 367,
+        "citations": 1
+      },
+      "blindReview": {
+        "verdict": "sufficient",
+        "breadth": "focused",
+        "reason": "Selected lines describe editable virtual stillDuration and image-scene camera/crop/movement controls, without trim or speed."
+      }
+    },
+    {
+      "id": "WMS-NEG",
+      "projectRoot": "D:\\Dev\\workshop-media-studio",
+      "sourceRef": "README.md",
+      "sourceSha256": "fb7671d9e033724f78547d878a2e3cc5f23fc4f1f36f8b47405b12fdf9a8bfca",
+      "projectManifestSha256": "90826fc6a612daaa6799e0d14ab002a00bf08f3a6787764e71dbdfdb28f03bed",
+      "query": "What maximum bitrate does MP4 export use?",
+      "label": {
+        "answerable": false,
+        "kind": "source-only; not owner-gold",
+        "goldLines": null,
+        "absentScope": "H.264/yuv420p are stated, but no bitrate is specified."
+      },
+      "search": {
+        "candidateCount": 20,
+        "targetPresent": null,
+        "goldContainingRanks": null,
+        "narrowestGoldContainingRank": null,
+        "narrowestGoldContainingRange": null,
+        "exactGoldRangePresent": null
+      },
+      "decision": {
+        "status": "abstained",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerCalls": 1,
+        "selected": null,
+        "rawChoiceConfidence": 0.96,
+        "rawEvidenceSufficiency": 0.05,
+        "selectionMode": "single-pass",
+        "usage": {
+          "input_tokens": 3194,
+          "output_tokens": 244
+        },
+        "elapsedMs": 401.9,
+        "correctAbstention": true
+      },
+      "exactEvidence": null,
+      "blindReview": null
+    }
+  ],
+  "caveats": [
+    "Labels were source-only and not adjudicated by project owners; this is not a protected holdout or reliability estimate.",
+    "Any-section containment can be a whole-document heading; exact target-range presence and full frozen-span selection are reported separately.",
+    "Blind semantic review disagreed with the more exhaustive frozen spans for CBAnimal and Workshop Media; those cases need owner adjudication before using the disagreement as a calibration label.",
+    "The primary run does not test atom/sidecar retrieval, multi-source union, contradiction review, synthesis, or Bridge's project-scoped source authorization."
+  ]
+}

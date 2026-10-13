@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "checksumFileExcludedFromItsOwnIndex": true,
+  "files": [
+    {
+      "path": "RUN-PLAN.json",
+      "bytes": 8136,
+      "sha256": "5b4ffcf02e08d82795b6201f454982f6a780f09e2bd36077c013a30021376a98"
+    },
+    {
+      "path": "SOURCE-REVISION-ERRATUM.json",
+      "bytes": 2751,
+      "sha256": "ea6d29d33303491e0e60204dbb7702b11cc1ebb852ec36128750453d993e674c"
+    },
+    {
+      "path": "RESULTS.json",
+      "bytes": 21568,
+      "sha256": "2d5debaaf90045997f84f5761f2d6e11171fecf12d71d07f8190aa8cf953370f"
+    },
+    {
+      "path": "FOLLOWUP-QUERY-VARIANTS.json",
+      "bytes": 7209,
+      "sha256": "c0b66e8b973f35defe6ce313148cb7137338cbed42d85495b176cb858c4cfc8c"
+    },
+    {
+      "path": "EXECUTION-ERRATUM.json",
+      "bytes": 1768,
+      "sha256": "0fabbd2f5d6749a24dfb1da05b6103dec2512ae71e2a7bc0fe6d85698a3a7c6a"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 3552,
+      "sha256": "a4daa995361570c23865193a080a9587247fff32f83c17a829dccab1c564ba35"
+    },
+    {
+      "path": "BLIND-REVIEW.md",
+      "bytes": 1513,
+      "sha256": "8101742ee9574c1baaf0a405e7620d4f10dab848b310592fb87b26cc6b2fa143"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-fresh-six-project-source-only-20261013T0027Z-v1",
+  "kind": "pre-provider-check-interpretation-erratum",
+  "observedAt": "2026-10-13T00:27:24Z",
+  "issue": "The first CBAnimal preflight compared the handle revision to the raw-byte source SHA. MSSR document-surface revision is SHA-256 of UTF-8 Markdown with CRLF/CR normalized to LF.",
+  "codeEvidence": "MSSR src/document-surface.ts uses normalizeMarkdown(markdown) => markdown.replace(/\\r\\n?/g, '\\n'), then sha256(normalized source).",
+  "caseCbaPosFirstAttempt": {
+    "rawByteSha256": "cae9538bbb353298992aa3c24f56a54e1df533ccb597aef05a893c9ec7d7560f",
+    "returnedHandleRevision": "8936bff85f87f1ade3f9369402d1035cfd45da1fb97c0474542c8aea451601fd",
+    "normalizedTextSha256": "8936bff85f87f1ade3f9369402d1035cfd45da1fb97c0474542c8aea451601fd",
+    "crlfCount": 86,
+    "jevCalled": false,
+    "disposition": "Keep original preflight rejection in the audit trail; retry only after verifying the normalized revision algorithm."
+  },
+  "sources": [
+    {
+      "sourceRef": "docs/ANDROID_CLIENT.md",
+      "rawByteSha256": "c33c42afa159600b581003778a69218765d597ddf87d035c26ebd9d9d68481a6",
+      "normalizedTextSha256": "c33c42afa159600b581003778a69218765d597ddf87d035c26ebd9d9d68481a6",
+      "crlfCount": 0
+    },
+    {
+      "sourceRef": "docs/BENCHMARKS.md",
+      "rawByteSha256": "a259317a74a7d7c5ecb9b6e1a004b1096accc7812918df33de836e1ee9186f0f",
+      "normalizedTextSha256": "a259317a74a7d7c5ecb9b6e1a004b1096accc7812918df33de836e1ee9186f0f",
+      "crlfCount": 0
+    },
+    {
+      "sourceRef": ".mssr/PROJECT_CONTEXT.md",
+      "rawByteSha256": "cae9538bbb353298992aa3c24f56a54e1df533ccb597aef05a893c9ec7d7560f",
+      "normalizedTextSha256": "8936bff85f87f1ade3f9369402d1035cfd45da1fb97c0474542c8aea451601fd",
+      "crlfCount": 86
+    },
+    {
+      "sourceRef": "docs/README.md",
+      "rawByteSha256": "629944d3d34a8b1283349e91a9e4036219dea74396d6c3912e524524282d812b",
+      "normalizedTextSha256": "629944d3d34a8b1283349e91a9e4036219dea74396d6c3912e524524282d812b",
+      "crlfCount": 0
+    },
+    {
+      "sourceRef": "docs/STUDY_HARNESS.md",
+      "rawByteSha256": "f74f2e4a468fe1e9e32cdc08757e6ab82ea4b58efc71375c37103b7cee774387",
+      "normalizedTextSha256": "f74f2e4a468fe1e9e32cdc08757e6ab82ea4b58efc71375c37103b7cee774387",
+      "crlfCount": 0
+    },
+    {
+      "sourceRef": "README.md",
+      "rawByteSha256": "fb7671d9e033724f78547d878a2e3cc5f23fc4f1f36f8b47405b12fdf9a8bfca",
+      "normalizedTextSha256": "847844427cddde92d973bd80e047f5470a28057c05572fdf0655c1665c669da1",
+      "crlfCount": 165
+    }
+  ],
+  "scoringOrQueryChanges": false,
+  "sourceFilesChanged": false,
+  "productionRuntimeChanged": false
+}
