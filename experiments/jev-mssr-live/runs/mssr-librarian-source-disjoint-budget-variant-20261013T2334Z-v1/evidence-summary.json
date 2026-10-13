@@ -1,0 +1,1961 @@
+{
+  "schemaVersion": 1,
+  "packageKind": "posthoc-same-case-candidate-budget-and-filtering-variant",
+  "createdAt": "2026-10-13T23:34:27Z",
+  "originalRun": "mssr-librarian-source-disjoint-cohort-20261012T2251Z-v1",
+  "originalCasesSha256": "61adeeeaf87651098f4a3dce8ce77f30266ddc941f411649baff7c8f8f4a2b52",
+  "sourceSnapshots": [
+    {
+      "project": "GodotAtlas",
+      "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+      "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d"
+    },
+    {
+      "project": "NeoPSE",
+      "sourceRef": "src/ai/BENCHMARKS.md",
+      "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d"
+    },
+    {
+      "project": "Elemental Frontier",
+      "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+      "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0"
+    }
+  ],
+  "searches": [
+    {
+      "caseId": "A1",
+      "project": "GodotAtlas",
+      "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+      "query": "¿Qué dos formas de evidencia forman el paquete de auditoría y qué pregunta contesta cada una?",
+      "resultCount": 0,
+      "truncated": false,
+      "returnedRanges": [],
+      "snippetTextPersisted": false
+    },
+    {
+      "caseId": "A2",
+      "project": "GodotAtlas",
+      "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+      "query": "What maximum number of edge crossings is required to pass the audit?",
+      "resultCount": 20,
+      "truncated": true,
+      "returnedRanges": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "b40b2f63ea53d3d271fa6fe490bf47da97884c652fbc8c4d857d7397cf3d6193",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 129,
+            "startOffset": 0,
+            "endOffset": 5736,
+            "fingerprint": "615dfa656215a41dede751a942e3b64ae30e5de4deb15141cbe72036a22eae72",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 5736,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "1c6cada2270d0aafb3384f16d5e4abeee6145912197e54720c278e668595d95f",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 33,
+            "endOffset": 173,
+            "fingerprint": "eff3e46662d705b86d9afcc979f1be8d530bb19ceaddb7a787cb35e23366e11d",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 140,
+          "previewCharacters": 140
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "0e28e9a4897800ef0e71e026ab8847694f3b84253851be8043edb4c331e85d29",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 5,
+            "endLine": 13,
+            "startOffset": 175,
+            "endOffset": 450,
+            "fingerprint": "96aac427c3ab257ca2beabd7e10d1ad9a83200eb11b63ea0570402a75dceff27",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 275,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "976d745d68e74287194b143927bc14f11e40312010da1e1a1d1dd15ad74573fe",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 184,
+            "endOffset": 217,
+            "fingerprint": "41d3a1c3f0753c50d93b4f2506eba2a88e7d8574b4119c2bc44de1fee3ead2bd",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 33,
+          "previewCharacters": 33
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "b548f23f870061740ce6895a7514089d6a7ffb1401afdb650f20877a354d61f7",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "block-3/item-1",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 9,
+            "startOffset": 219,
+            "endOffset": 262,
+            "fingerprint": "92c865418bc7db23c41477d847822cd6ef7df1758aacd508b2e29edb445d439f",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 43,
+          "previewCharacters": 43
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "d7a4dce1c8e7aeacc30ff151822bef4f6b9f1569e23f4b7400745014bd68ba99",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 9,
+            "endLine": 10,
+            "startOffset": 219,
+            "endOffset": 326,
+            "fingerprint": "aa57d0bf2833f311ffa55b0f0b6652f83f0708682f374858d662a65e6a90bda0",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 107,
+          "previewCharacters": 107
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "8c8d8a265788ed3a9e38fa531dc7969c6fcf609ef67bd04b58b962f651e223c5",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "block-3/item-2",
+            "rangeKind": "block",
+            "startLine": 10,
+            "endLine": 10,
+            "startOffset": 263,
+            "endOffset": 326,
+            "fingerprint": "1df3ce3d781a3ade0bab2e91a88528bf1eabfb7a7c5234bc9aba83cf31251350",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 63,
+          "previewCharacters": 63
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "61909873fd1c79ed7868ce621c7e287b7db480f8cdb18b591f0414f3e80807fa",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "block-4",
+            "rangeKind": "block",
+            "startLine": 12,
+            "endLine": 12,
+            "startOffset": 328,
+            "endOffset": 448,
+            "fingerprint": "b670ccae1b4a75d60e15e4ab17cd3dc042517af684a9286b3a5909abf2ff4068",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 120,
+          "previewCharacters": 120
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "41111c4f7701e9d77038f68546eff9acb606fd5512e61564feef98d96215159a",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "heading-3",
+            "rangeKind": "section",
+            "startLine": 14,
+            "endLine": 44,
+            "startOffset": 450,
+            "endOffset": 2276,
+            "fingerprint": "4d1118b5f04fd99509240131e3c6279fcdaeee0a40cc96b706d4a67ec6351cb2",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 1826,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "3b0a08f7146f634ae3bb3b5c7ed443295aad9c6d70faaab32ff5c007fb16c81e",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "block-5/item-1",
+            "rangeKind": "block",
+            "startLine": 16,
+            "endLine": 16,
+            "startOffset": 468,
+            "endOffset": 545,
+            "fingerprint": "2e0f22d704d38cdb521f2f7ed3f0e22584e5be6dc8b7a5eb369ca6ebd845ba0f",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 77,
+          "previewCharacters": 77
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "c9faf47b9c8c8bbfd4d25917d68defbc23e02087d110ce931755701775b5f92c",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "block-5",
+            "rangeKind": "block",
+            "startLine": 16,
+            "endLine": 43,
+            "startOffset": 468,
+            "endOffset": 2274,
+            "fingerprint": "857193021f606429846ce8aac92f25083554d3b92bd2628fb8982f18cb274b3b",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 1806,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "1327c78c5c04e2410294c9844e303ee7893c29836c31b0d93cdc2e11c4f8b590",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "block-5/item-2",
+            "rangeKind": "block",
+            "startLine": 17,
+            "endLine": 17,
+            "startOffset": 546,
+            "endOffset": 641,
+            "fingerprint": "0a1baf133f22aa0d566b0e0981422fc6f863f8fabebc4528950d2a2e34c71cd6",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 95,
+          "previewCharacters": 95
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "ee0c5f87e89f73dacf8e820fb664967baaa895c0315f2dddd0f244adc6bd98f5",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "block-5/item-3",
+            "rangeKind": "block",
+            "startLine": 18,
+            "endLine": 18,
+            "startOffset": 642,
+            "endOffset": 710,
+            "fingerprint": "c44ca8874c2502555aa873b84641eb8b093531c181d6e26b70ef8e0541fa4cdf",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 68,
+          "previewCharacters": 68
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "33c70a56de2eb4dc242d02fb806bf4fb65a9532a7398d613a0ca528b12065a5a",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "block-5/item-4",
+            "rangeKind": "block",
+            "startLine": 19,
+            "endLine": 19,
+            "startOffset": 711,
+            "endOffset": 938,
+            "fingerprint": "3bc1d1e55d9dee594b39ff78a6c34090ed52689553dceef6e62cbb397a030800",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 227,
+          "previewCharacters": 227
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "b169143c9da940c23729bb2ea92ca252a7f3f65dcd53390fa617292ede700c91",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "block-5/item-5",
+            "rangeKind": "block",
+            "startLine": 20,
+            "endLine": 20,
+            "startOffset": 939,
+            "endOffset": 1049,
+            "fingerprint": "d988c2e18ec3f8c073f77d9a2e7f2164113b9d6bc3281e5baeb8c7fdeb484cac",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 110,
+          "previewCharacters": 110
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "c7a4d1800e46c6790f2aede9bc2ebb3f72210b1377507cbc8c04a8164fedda76",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "block-5/item-6",
+            "rangeKind": "block",
+            "startLine": 21,
+            "endLine": 21,
+            "startOffset": 1050,
+            "endOffset": 1096,
+            "fingerprint": "fac021b623764e7c53b6dbbb61172a9158bb51d17deb46ab037e9d0a557ae0bd",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 46,
+          "previewCharacters": 46
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "d33ea783f682f31978f4429f23b7acbb6c013aa6fd9006dce3f77733397b69ac",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "block-5/item-7",
+            "rangeKind": "block",
+            "startLine": 22,
+            "endLine": 34,
+            "startOffset": 1097,
+            "endOffset": 1512,
+            "fingerprint": "99941cb558c7e94caf7fe53fe75c9fcf0b9457821bde1556e2147cdcad229241",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 415,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "aa2df8ffa70746bdc75e483a314f5a3c047133327dc04c196db02b470b975f26",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "block-5/item-8",
+            "rangeKind": "block",
+            "startLine": 35,
+            "endLine": 35,
+            "startOffset": 1513,
+            "endOffset": 1581,
+            "fingerprint": "c00bfe34222dc9d1840c00ff4046027937d9b71c7fcc5a5c00ed11248a04d9d8",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 68,
+          "previewCharacters": 68
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "cce5855c41f58f27a336e8baee7f899a9835f37b0d3250396140d5592c6f16b8",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "block-5/item-9",
+            "rangeKind": "block",
+            "startLine": 36,
+            "endLine": 36,
+            "startOffset": 1582,
+            "endOffset": 1621,
+            "fingerprint": "2f8f987a4886d7531a8c4e4742cb6a48244803b5bc38e514588d3ddb6a1d1d39",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 39,
+          "previewCharacters": 39
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "2462758da298080b4f88cc8a79c961a0c7e876414239a64b36e3c65a5b1f46eb",
+            "project": "GodotAtlas",
+            "sourceRef": "docs/ATLAS_CAPTURE_AUDIT_LOOP.md",
+            "revision": "ef0b0fa250c9b5e19e7f486dfc8e56cdb03c34b6d3323ab5d8d7cf49e8ef925d",
+            "rangeId": "block-5/item-10",
+            "rangeKind": "block",
+            "startLine": 37,
+            "endLine": 37,
+            "startOffset": 1622,
+            "endOffset": 1820,
+            "fingerprint": "f1cccfe577578852eeec011bf58253e360e76f0e74f173ac89074d7de0a77376",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 198,
+          "previewCharacters": 198
+        }
+      ],
+      "snippetTextPersisted": false
+    },
+    {
+      "caseId": "B1",
+      "project": "NeoPSE",
+      "sourceRef": "src/ai/BENCHMARKS.md",
+      "query": "En la comparación histórica, ¿cuántos casos superó cada perfil gemma y gemmaQat, y cuáles fueron sus latencias promedio y P95?",
+      "resultCount": 20,
+      "truncated": true,
+      "returnedRanges": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "09e556261d9cd04a772418050b915aec86f804f9f410707b8b2c110898dd60ef",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 108,
+            "startOffset": 0,
+            "endOffset": 4164,
+            "fingerprint": "2b0d823f5832ed9c226bacad80db092acbca11e7f0eead7793b9894708d90243",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.5,
+          "exactFetchable": true,
+          "rangeCodeUnits": 4164,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "2e29df050d073c77ad2ead7d0e5173824c9b1ebff8bde0c4e3ae217cb6d03148",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "heading-6",
+            "rangeKind": "section",
+            "startLine": 72,
+            "endLine": 94,
+            "startOffset": 2580,
+            "endOffset": 3526,
+            "fingerprint": "4d0ec7c0d0bc041bbd081d01a635b21261c2ff8e942efe3bcc31369c43c2bbe3",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.428571,
+          "exactFetchable": true,
+          "rangeCodeUnits": 946,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "8aa09cc6224850e4e48aa3e140c1f9987ae43db246269ef9458f211031bafa9a",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-21",
+            "rangeKind": "block",
+            "startLine": 88,
+            "endLine": 91,
+            "startOffset": 3062,
+            "endOffset": 3348,
+            "fingerprint": "3fbc7346b75afc3f728d21532747dcc30257bb92fa203490cedd4c7b1366b24b",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.285714,
+          "exactFetchable": true,
+          "rangeCodeUnits": 286,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "cfcef98c834e1091d8fd5d1bcea1abe612a25b08f00ac1d90df521229a6ee574",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 3,
+            "endLine": 19,
+            "startOffset": 24,
+            "endOffset": 453,
+            "fingerprint": "9950bc31ed7449aa40a2549ea5590153f62a33acf6e67f36c7292e72baa9ffc5",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.214286,
+          "exactFetchable": true,
+          "rangeCodeUnits": 429,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "b77ca3c5c1711a6f2f0474baacb81b85c0389d3dba06cb16f024bc7813e2c0f8",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "heading-3",
+            "rangeKind": "section",
+            "startLine": 20,
+            "endLine": 40,
+            "startOffset": 453,
+            "endOffset": 1468,
+            "fingerprint": "3c1d2536f80df723edaf027ae6c7fd09ea46d6ada35638fdf7b6dae1ab22ce3a",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.214286,
+          "exactFetchable": true,
+          "rangeCodeUnits": 1015,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "7400b5cbc6ca517cbdfced9087bad445c0aeb0ac484f66e158de682eb80c9d57",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-8",
+            "rangeKind": "block",
+            "startLine": 32,
+            "endLine": 39,
+            "startOffset": 777,
+            "endOffset": 1466,
+            "fingerprint": "8ea2532a1a13fc6a54620c796173e284e8236b3856d08df9e848410a02de4d82",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.214286,
+          "exactFetchable": true,
+          "rangeCodeUnits": 689,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "cd98ab2bd3d0157055e58bc12051401c5263ee4ff7c5cc18c21178df1fd42ef5",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 10,
+            "startOffset": 37,
+            "endOffset": 244,
+            "fingerprint": "4bab7566b9a576e5ac06a30acbb0b10daca7e8ecadfb72f5604b5db5e3b959dd",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 207,
+          "previewCharacters": 199
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "cd0ddca4d81b5eb851aceb40280eb4b3e1c903c4cbd2a26fa54392bd05615afc",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 14,
+            "endLine": 18,
+            "startOffset": 296,
+            "endOffset": 451,
+            "fingerprint": "2b51763f471fdc73fba74ed3dd69aa6c4be08ddcaf531ad0b3ee973a370c8eff",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 155,
+          "previewCharacters": 155
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "b1079b899dd1b413477948a1b218c0918defa328b1ff42267f11020515dadebe",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-8/item-8",
+            "rangeKind": "block",
+            "startLine": 39,
+            "endLine": 39,
+            "startOffset": 1375,
+            "endOffset": 1466,
+            "fingerprint": "038072f9c22d4ffb8dc4c3599dda398cd9945e665be15e58925279b4fc695868",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 91,
+          "previewCharacters": 91
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "ca9d966b03e881a0824f2b35da04516ae90a3e59ae1baa47ad48246580ad0365",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-19",
+            "rangeKind": "block",
+            "startLine": 82,
+            "endLine": 84,
+            "startOffset": 2934,
+            "endOffset": 3007,
+            "fingerprint": "b722a84660a1e7d0f83ee9b4a0be821aed9a92a11aa34121baacfc305069ae87",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 73,
+          "previewCharacters": 73
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "f6c14778f4e84ec9f84c05e0c0868a2f5e9d7d2e84b3995bf776e0421df59e63",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-19/item-1",
+            "rangeKind": "block",
+            "startLine": 82,
+            "endLine": 82,
+            "startOffset": 2934,
+            "endOffset": 2965,
+            "fingerprint": "47e584a833c063497541fcf00ad38c122488d74f2420a4ae9b006367dbec8e1e",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 31,
+          "previewCharacters": 31
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "272071099e72a5b169483d02067f9047cec1806d9546217f18a120552cffc566",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "heading-7",
+            "rangeKind": "section",
+            "startLine": 95,
+            "endLine": 102,
+            "startOffset": 3526,
+            "endOffset": 3882,
+            "fingerprint": "ac42cd8098eb2c76673d358b8783f63b5acd5fce4a6318f799b7d6f840b34d55",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 356,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "60f439ba341a1cd81e0898e1d1241c42119833d15a73b5871d274fbba32bc997",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-23",
+            "rangeKind": "block",
+            "startLine": 97,
+            "endLine": 101,
+            "startOffset": 3543,
+            "endOffset": 3880,
+            "fingerprint": "be3e19df11fa473d5161daeaf8dc6625f5025a4bb5dfa2565c03bdc1940082c9",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 337,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "8835599abc5b876c790d375f6a8a244551bb7df0713c6fd4b14b2fb0fef1cdf8",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-23/item-5",
+            "rangeKind": "block",
+            "startLine": 101,
+            "endLine": 101,
+            "startOffset": 3743,
+            "endOffset": 3880,
+            "fingerprint": "e775ab96d9e43a717a62234b60719ae49f43c2709b182924d04d2d3486c8bf96",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 137,
+          "previewCharacters": 137
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "d67a4f5545b7f9302cc6c6e675a7cd3f60496b4242e0e13cc731d86c39e57cb6",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "heading-8",
+            "rangeKind": "section",
+            "startLine": 103,
+            "endLine": 108,
+            "startOffset": 3882,
+            "endOffset": 4164,
+            "fingerprint": "47593880ae0f79c0ec546c5e9daf74619b682ad1acb91991e30f9646db1f69af",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 282,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "aad815c8d7eb31a1f136f8e382601c3019f81c0d0c73f29b74f9a74a3ba499cc",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-24",
+            "rangeKind": "block",
+            "startLine": 105,
+            "endLine": 108,
+            "startOffset": 3916,
+            "endOffset": 4163,
+            "fingerprint": "0fb61f8478ca9eead9e48787dfe730d9baf869e7ca7070b3bb9d3da35271c8f4",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.142857,
+          "exactFetchable": true,
+          "rangeCodeUnits": 247,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "2d27bffe3792e1b709becbc3586462c496f8a9905cc3c9efb6f5125d4f5777b6",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 12,
+            "endLine": 12,
+            "startOffset": 246,
+            "endOffset": 294,
+            "fingerprint": "a5536a91ead9c4dd7ba009a68f47db3863bc7d3584abb77c094e83700c81a5e7",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.071429,
+          "exactFetchable": true,
+          "rangeCodeUnits": 48,
+          "previewCharacters": 48
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "d3485989d85a7842e07365f8e46613b143ea98ebe2af8931a85b4a8dc441ca7f",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-8/item-4",
+            "rangeKind": "block",
+            "startLine": 35,
+            "endLine": 35,
+            "startOffset": 1003,
+            "endOffset": 1132,
+            "fingerprint": "a7681e3afb2c0138406d5748477ba1b2dd7d248a1864a58899a30d64f4fc53f1",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.071429,
+          "exactFetchable": true,
+          "rangeCodeUnits": 129,
+          "previewCharacters": 129
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "c2736103c6aee6e67f5f51cd21cd7bb7b138428abc1dfab96dd990ca666baeb6",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "heading-4",
+            "rangeKind": "section",
+            "startLine": 41,
+            "endLine": 50,
+            "startOffset": 1468,
+            "endOffset": 1872,
+            "fingerprint": "ba1cc4d9aa5f16f81a3f76f1e16dc9b10fcccb8136d5b1f56348c48ea787532c",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.071429,
+          "exactFetchable": true,
+          "rangeCodeUnits": 404,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "f78f0dcdd844fb566ba028ec289db17d93c82d7c21403278b8de3cf659e507b1",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-9",
+            "rangeKind": "block",
+            "startLine": 43,
+            "endLine": 49,
+            "startOffset": 1491,
+            "endOffset": 1870,
+            "fingerprint": "ff6b15d14e6fbcda6e5383e7efe81ff9689f0c86f113bc89a91891d96fa6d04a",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.071429,
+          "exactFetchable": true,
+          "rangeCodeUnits": 379,
+          "previewCharacters": 240
+        }
+      ],
+      "snippetTextPersisted": false
+    },
+    {
+      "caseId": "B2",
+      "project": "NeoPSE",
+      "sourceRef": "src/ai/BENCHMARKS.md",
+      "query": "What P95 latency did WR CPU achieve in the historical model comparison?",
+      "resultCount": 13,
+      "truncated": false,
+      "returnedRanges": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "09e556261d9cd04a772418050b915aec86f804f9f410707b8b2c110898dd60ef",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 108,
+            "startOffset": 0,
+            "endOffset": 4164,
+            "fingerprint": "2b0d823f5832ed9c226bacad80db092acbca11e7f0eead7793b9894708d90243",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.5,
+          "exactFetchable": true,
+          "rangeCodeUnits": 4164,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "cfcef98c834e1091d8fd5d1bcea1abe612a25b08f00ac1d90df521229a6ee574",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 3,
+            "endLine": 19,
+            "startOffset": 24,
+            "endOffset": 453,
+            "fingerprint": "9950bc31ed7449aa40a2549ea5590153f62a33acf6e67f36c7292e72baa9ffc5",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.375,
+          "exactFetchable": true,
+          "rangeCodeUnits": 429,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "cd98ab2bd3d0157055e58bc12051401c5263ee4ff7c5cc18c21178df1fd42ef5",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 10,
+            "startOffset": 37,
+            "endOffset": 244,
+            "fingerprint": "4bab7566b9a576e5ac06a30acbb0b10daca7e8ecadfb72f5604b5db5e3b959dd",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.375,
+          "exactFetchable": true,
+          "rangeCodeUnits": 207,
+          "previewCharacters": 199
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "c2736103c6aee6e67f5f51cd21cd7bb7b138428abc1dfab96dd990ca666baeb6",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "heading-4",
+            "rangeKind": "section",
+            "startLine": 41,
+            "endLine": 50,
+            "startOffset": 1468,
+            "endOffset": 1872,
+            "fingerprint": "ba1cc4d9aa5f16f81a3f76f1e16dc9b10fcccb8136d5b1f56348c48ea787532c",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.25,
+          "exactFetchable": true,
+          "rangeCodeUnits": 404,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "f78f0dcdd844fb566ba028ec289db17d93c82d7c21403278b8de3cf659e507b1",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-9",
+            "rangeKind": "block",
+            "startLine": 43,
+            "endLine": 49,
+            "startOffset": 1491,
+            "endOffset": 1870,
+            "fingerprint": "ff6b15d14e6fbcda6e5383e7efe81ff9689f0c86f113bc89a91891d96fa6d04a",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.25,
+          "exactFetchable": true,
+          "rangeCodeUnits": 379,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "272071099e72a5b169483d02067f9047cec1806d9546217f18a120552cffc566",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "heading-7",
+            "rangeKind": "section",
+            "startLine": 95,
+            "endLine": 102,
+            "startOffset": 3526,
+            "endOffset": 3882,
+            "fingerprint": "ac42cd8098eb2c76673d358b8783f63b5acd5fce4a6318f799b7d6f840b34d55",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.25,
+          "exactFetchable": true,
+          "rangeCodeUnits": 356,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "60f439ba341a1cd81e0898e1d1241c42119833d15a73b5871d274fbba32bc997",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-23",
+            "rangeKind": "block",
+            "startLine": 97,
+            "endLine": 101,
+            "startOffset": 3543,
+            "endOffset": 3880,
+            "fingerprint": "be3e19df11fa473d5161daeaf8dc6625f5025a4bb5dfa2565c03bdc1940082c9",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.25,
+          "exactFetchable": true,
+          "rangeCodeUnits": 337,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "0f49524d75268aeaa29733d37f056fafece627b8d7fc0ae85d333dde8e150e7b",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-23/item-4",
+            "rangeKind": "block",
+            "startLine": 100,
+            "endLine": 100,
+            "startOffset": 3676,
+            "endOffset": 3742,
+            "fingerprint": "6ba7a03d9712023a9c8cb78b465b92c4d68269e057cc3cb462d09faf80ae0f06",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.25,
+          "exactFetchable": true,
+          "rangeCodeUnits": 66,
+          "previewCharacters": 66
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "b77ca3c5c1711a6f2f0474baacb81b85c0389d3dba06cb16f024bc7813e2c0f8",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "heading-3",
+            "rangeKind": "section",
+            "startLine": 20,
+            "endLine": 40,
+            "startOffset": 453,
+            "endOffset": 1468,
+            "fingerprint": "3c1d2536f80df723edaf027ae6c7fd09ea46d6ada35638fdf7b6dae1ab22ce3a",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.125,
+          "exactFetchable": true,
+          "rangeCodeUnits": 1015,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "7400b5cbc6ca517cbdfced9087bad445c0aeb0ac484f66e158de682eb80c9d57",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-8",
+            "rangeKind": "block",
+            "startLine": 32,
+            "endLine": 39,
+            "startOffset": 777,
+            "endOffset": 1466,
+            "fingerprint": "8ea2532a1a13fc6a54620c796173e284e8236b3856d08df9e848410a02de4d82",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.125,
+          "exactFetchable": true,
+          "rangeCodeUnits": 689,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "d3485989d85a7842e07365f8e46613b143ea98ebe2af8931a85b4a8dc441ca7f",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-8/item-4",
+            "rangeKind": "block",
+            "startLine": 35,
+            "endLine": 35,
+            "startOffset": 1003,
+            "endOffset": 1132,
+            "fingerprint": "a7681e3afb2c0138406d5748477ba1b2dd7d248a1864a58899a30d64f4fc53f1",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.125,
+          "exactFetchable": true,
+          "rangeCodeUnits": 129,
+          "previewCharacters": 129
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "2e29df050d073c77ad2ead7d0e5173824c9b1ebff8bde0c4e3ae217cb6d03148",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "heading-6",
+            "rangeKind": "section",
+            "startLine": 72,
+            "endLine": 94,
+            "startOffset": 2580,
+            "endOffset": 3526,
+            "fingerprint": "4d0ec7c0d0bc041bbd081d01a635b21261c2ff8e942efe3bcc31369c43c2bbe3",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.125,
+          "exactFetchable": true,
+          "rangeCodeUnits": 946,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "8aa09cc6224850e4e48aa3e140c1f9987ae43db246269ef9458f211031bafa9a",
+            "project": "NeoPSE",
+            "sourceRef": "src/ai/BENCHMARKS.md",
+            "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+            "rangeId": "block-21",
+            "rangeKind": "block",
+            "startLine": 88,
+            "endLine": 91,
+            "startOffset": 3062,
+            "endOffset": 3348,
+            "fingerprint": "3fbc7346b75afc3f728d21532747dcc30257bb92fa203490cedd4c7b1366b24b",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.125,
+          "exactFetchable": true,
+          "rangeCodeUnits": 286,
+          "previewCharacters": 240
+        }
+      ],
+      "snippetTextPersisted": false
+    },
+    {
+      "caseId": "C1",
+      "project": "Elemental Frontier",
+      "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+      "query": "¿Cuántas sesiones, muestras de modelo, partes por etapa y PNG auténticos tuvo el primer lote real del cliente NeoForge?",
+      "resultCount": 10,
+      "truncated": false,
+      "returnedRanges": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "e79fe552d328fc642637773c0e7e9bc1ccb6d6ca9ff6ec81842808317383cf9a",
+            "project": "Elemental Frontier",
+            "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+            "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 31,
+            "startOffset": 0,
+            "endOffset": 4183,
+            "fingerprint": "df5dcd6d35d0e000529dd7df3d58d556c92e445f3436608a83153f05bbe44529",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.857143,
+          "exactFetchable": true,
+          "rangeCodeUnits": 4183,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "6f30b906581db9be0d014d8064b081a6ff08d80a84eba79a72f7e1319c74f0ff",
+            "project": "Elemental Frontier",
+            "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+            "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 6,
+            "endLine": 17,
+            "startOffset": 252,
+            "endOffset": 2289,
+            "fingerprint": "92a093bb3325a102e4d61d44e935498af8c112c31c8e0eb878e82203c5bcc89a",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.785714,
+          "exactFetchable": true,
+          "rangeCodeUnits": 2037,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "f7fbd75c60b44715d996c6eb2b37542f98951a6a8e4e55548f3d2d8dfcd415c4",
+            "project": "Elemental Frontier",
+            "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+            "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 25,
+            "endLine": 31,
+            "startOffset": 3200,
+            "endOffset": 4183,
+            "fingerprint": "7fab417dd5e8025090e9c6e54a4fc65f8e93e8436e4edeed6ff37c8ab3c60cbb",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.357143,
+          "exactFetchable": true,
+          "rangeCodeUnits": 983,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "e16e19784b382ff917d6f7fe7aaec0adeff57b1027305fc8848c0dec09a8e229",
+            "project": "Elemental Frontier",
+            "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+            "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+            "rangeId": "block-7",
+            "rangeKind": "block",
+            "startLine": 29,
+            "endLine": 29,
+            "startOffset": 3389,
+            "endOffset": 3990,
+            "fingerprint": "928facf931203b4af980bda543f1341e2f49672682d3ca90432338b1dcfdf33a",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.357143,
+          "exactFetchable": true,
+          "rangeCodeUnits": 601,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "39ed6e47bd2e3be0771d410febf32a38afe0c8653967ee867030b4cb4f916138",
+            "project": "Elemental Frontier",
+            "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+            "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 4,
+            "startOffset": 59,
+            "endOffset": 250,
+            "fingerprint": "0e7d55a87e1464d8800aa89c739a61380fb4e046e6572fc51a558b0fd564ad6f",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.071429,
+          "exactFetchable": true,
+          "rangeCodeUnits": 191,
+          "previewCharacters": 191
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "42b820c3bfc997ecadd98d2275156e237cdc9132b2aab3c818a473f6b850dcee",
+            "project": "Elemental Frontier",
+            "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+            "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 19,
+            "endLine": 19,
+            "startOffset": 2291,
+            "endOffset": 2590,
+            "fingerprint": "54d7c9f5a06f33538a138b19ccba9f82ec749b910d6a4cfa1f1cde0e79353ac4",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.071429,
+          "exactFetchable": true,
+          "rangeCodeUnits": 299,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "8f8ecf843028836171857f9e36778e54cb2cfdb158f70ab03449dd70e7a375ad",
+            "project": "Elemental Frontier",
+            "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+            "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+            "rangeId": "block-4",
+            "rangeKind": "block",
+            "startLine": 21,
+            "endLine": 21,
+            "startOffset": 2592,
+            "endOffset": 2824,
+            "fingerprint": "7cc5ee8cef467a81c6a749209d2ab093d015d1c394f6ca6bedd7520de624c65d",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.071429,
+          "exactFetchable": true,
+          "rangeCodeUnits": 232,
+          "previewCharacters": 232
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "af19f5a9cb309e38aa8abb0c2767f323a1dd59f3f8d90555182dcb0bd1ba5c13",
+            "project": "Elemental Frontier",
+            "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+            "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+            "rangeId": "block-5",
+            "rangeKind": "block",
+            "startLine": 23,
+            "endLine": 23,
+            "startOffset": 2826,
+            "endOffset": 3198,
+            "fingerprint": "2c83030708a141b7e3644027687580ab34503e3e3e4e8fd81cda1ba153872b64",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.071429,
+          "exactFetchable": true,
+          "rangeCodeUnits": 372,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "3043e8bb1e8a9cd968406d83ac064737b8188e963e262d5d1b2283e3a7482635",
+            "project": "Elemental Frontier",
+            "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+            "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+            "rangeId": "block-6",
+            "rangeKind": "block",
+            "startLine": 27,
+            "endLine": 27,
+            "startOffset": 3269,
+            "endOffset": 3387,
+            "fingerprint": "912505a28f0bffdf4b879f4594ca5f9c37d75ac116b6f19954083ea4e8d578e8",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.071429,
+          "exactFetchable": true,
+          "rangeCodeUnits": 118,
+          "previewCharacters": 118
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "5e9dd5f96d747b0562c1f3dd862e666c7462c4fc722cab56ddd74c8365b3f26e",
+            "project": "Elemental Frontier",
+            "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+            "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+            "rangeId": "block-8",
+            "rangeKind": "block",
+            "startLine": 31,
+            "endLine": 31,
+            "startOffset": 3992,
+            "endOffset": 4182,
+            "fingerprint": "5d0145afd381a369d1eca1de6041c87317eb80cec6eb48d315898a538bec1d0f",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.071429,
+          "exactFetchable": true,
+          "rangeCodeUnits": 190,
+          "previewCharacters": 190
+        }
+      ],
+      "snippetTextPersisted": false
+    },
+    {
+      "caseId": "C2",
+      "project": "Elemental Frontier",
+      "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+      "query": "How many visual mesh penetrations were counted during a real side-view F5 DASH capture?",
+      "resultCount": 6,
+      "truncated": false,
+      "returnedRanges": [
+        {
+          "handle": {
+            "version": 1,
+            "id": "e79fe552d328fc642637773c0e7e9bc1ccb6d6ca9ff6ec81842808317383cf9a",
+            "project": "Elemental Frontier",
+            "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+            "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 31,
+            "startOffset": 0,
+            "endOffset": 4183,
+            "fingerprint": "df5dcd6d35d0e000529dd7df3d58d556c92e445f3436608a83153f05bbe44529",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.4,
+          "exactFetchable": true,
+          "rangeCodeUnits": 4183,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "6f30b906581db9be0d014d8064b081a6ff08d80a84eba79a72f7e1319c74f0ff",
+            "project": "Elemental Frontier",
+            "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+            "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 6,
+            "endLine": 17,
+            "startOffset": 252,
+            "endOffset": 2289,
+            "fingerprint": "92a093bb3325a102e4d61d44e935498af8c112c31c8e0eb878e82203c5bcc89a",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.4,
+          "exactFetchable": true,
+          "rangeCodeUnits": 2037,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "f7fbd75c60b44715d996c6eb2b37542f98951a6a8e4e55548f3d2d8dfcd415c4",
+            "project": "Elemental Frontier",
+            "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+            "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 25,
+            "endLine": 31,
+            "startOffset": 3200,
+            "endOffset": 4183,
+            "fingerprint": "7fab417dd5e8025090e9c6e54a4fc65f8e93e8436e4edeed6ff37c8ab3c60cbb",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.3,
+          "exactFetchable": true,
+          "rangeCodeUnits": 983,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "5e9dd5f96d747b0562c1f3dd862e666c7462c4fc722cab56ddd74c8365b3f26e",
+            "project": "Elemental Frontier",
+            "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+            "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+            "rangeId": "block-8",
+            "rangeKind": "block",
+            "startLine": 31,
+            "endLine": 31,
+            "startOffset": 3992,
+            "endOffset": 4182,
+            "fingerprint": "5d0145afd381a369d1eca1de6041c87317eb80cec6eb48d315898a538bec1d0f",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.2,
+          "exactFetchable": true,
+          "rangeCodeUnits": 190,
+          "previewCharacters": 190
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "af19f5a9cb309e38aa8abb0c2767f323a1dd59f3f8d90555182dcb0bd1ba5c13",
+            "project": "Elemental Frontier",
+            "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+            "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+            "rangeId": "block-5",
+            "rangeKind": "block",
+            "startLine": 23,
+            "endLine": 23,
+            "startOffset": 2826,
+            "endOffset": 3198,
+            "fingerprint": "2c83030708a141b7e3644027687580ab34503e3e3e4e8fd81cda1ba153872b64",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.1,
+          "exactFetchable": true,
+          "rangeCodeUnits": 372,
+          "previewCharacters": 240
+        },
+        {
+          "handle": {
+            "version": 1,
+            "id": "e16e19784b382ff917d6f7fe7aaec0adeff57b1027305fc8848c0dec09a8e229",
+            "project": "Elemental Frontier",
+            "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+            "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+            "rangeId": "block-7",
+            "rangeKind": "block",
+            "startLine": 29,
+            "endLine": 29,
+            "startOffset": 3389,
+            "endOffset": 3990,
+            "fingerprint": "928facf931203b4af980bda543f1341e2f49672682d3ca90432338b1dcfdf33a",
+            "privacyClass": "project-metadata"
+          },
+          "score": 0.1,
+          "exactFetchable": true,
+          "rangeCodeUnits": 601,
+          "previewCharacters": 240
+        }
+      ],
+      "snippetTextPersisted": false
+    }
+  ],
+  "decisions": [
+    {
+      "caseId": "A2",
+      "answerabilityLabel": "unanswerable",
+      "previousRunCandidatesOffered": 12,
+      "variantCandidatesOffered": 20,
+      "status": "abstained",
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providerConfidence": 0.86,
+      "evidenceSufficiency": 0.08,
+      "selectedOptionId": null,
+      "selectedHandle": null,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "h005",
+            "h006",
+            "h007",
+            "h008",
+            "h009",
+            "h010",
+            "h011",
+            "h012",
+            "h013",
+            "h014",
+            "h015",
+            "h016",
+            "h017",
+            "h018",
+            "h019",
+            "h020",
+            "none"
+          ],
+          "selectedOptionId": "none",
+          "confidence": 0.86,
+          "probabilities": {
+            "h001": 0,
+            "h002": 0,
+            "h003": 0,
+            "h004": 0,
+            "h005": 0,
+            "h006": 0,
+            "h007": 0,
+            "h008": 0,
+            "h009": 0,
+            "h010": 0,
+            "h011": 0,
+            "h012": 0,
+            "h013": 0,
+            "h014": 0,
+            "h015": 0,
+            "h016": 0,
+            "h017": 0.13,
+            "h018": 0,
+            "h019": 0,
+            "h020": 0,
+            "none": 0.87
+          }
+        }
+      ],
+      "usage": {
+        "input_tokens": 2661,
+        "output_tokens": 244
+      },
+      "elapsedMs": 1155.6,
+      "requestFingerprint": "6464a1e2866bb3118283efd85b15e787829a4b439008a9ac8deee47cffa6b6e2"
+    },
+    {
+      "caseId": "B1",
+      "answerabilityLabel": "answerable",
+      "previousRunCandidatesOffered": 9,
+      "variantCandidatesOffered": 20,
+      "status": "selected",
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providerConfidence": 0.41,
+      "evidenceSufficiency": 0.29,
+      "selectedOptionId": "h003",
+      "selectedHandle": {
+        "version": 1,
+        "id": "8aa09cc6224850e4e48aa3e140c1f9987ae43db246269ef9458f211031bafa9a",
+        "project": "NeoPSE",
+        "sourceRef": "src/ai/BENCHMARKS.md",
+        "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+        "rangeId": "block-21",
+        "rangeKind": "block",
+        "startLine": 88,
+        "endLine": 91,
+        "startOffset": 3062,
+        "endOffset": 3348,
+        "fingerprint": "3fbc7346b75afc3f728d21532747dcc30257bb92fa203490cedd4c7b1366b24b",
+        "privacyClass": "project-metadata"
+      },
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "h005",
+            "h006",
+            "h007",
+            "h008",
+            "h009",
+            "h010",
+            "h011",
+            "h012",
+            "h013",
+            "h014",
+            "h015",
+            "h016",
+            "h017",
+            "h018",
+            "h019",
+            "h020",
+            "none"
+          ],
+          "selectedOptionId": "h003",
+          "confidence": 0.41,
+          "probabilities": {
+            "h001": 0,
+            "h002": 0.31,
+            "h003": 0.44,
+            "h004": 0,
+            "h005": 0,
+            "h006": 0,
+            "h007": 0,
+            "h008": 0,
+            "h009": 0,
+            "h010": 0.01,
+            "h011": 0,
+            "h012": 0,
+            "h013": 0,
+            "h014": 0,
+            "h015": 0,
+            "h016": 0,
+            "h017": 0,
+            "h018": 0.02,
+            "h019": 0,
+            "h020": 0,
+            "none": 0.22
+          }
+        }
+      ],
+      "usage": {
+        "input_tokens": 3302,
+        "output_tokens": 247
+      },
+      "elapsedMs": 1265,
+      "requestFingerprint": "8306d32f6a443292e59a8316fc64a70a876639fd7c1222b3a0b040d16e0a0087"
+    },
+    {
+      "caseId": "B2",
+      "answerabilityLabel": "unanswerable",
+      "previousRunCandidatesOffered": 9,
+      "variantCandidatesOffered": 13,
+      "status": "abstained",
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providerConfidence": 0.78,
+      "evidenceSufficiency": 0.15,
+      "selectedOptionId": null,
+      "selectedHandle": null,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "h005",
+            "h006",
+            "h007",
+            "h008",
+            "h009",
+            "h010",
+            "h011",
+            "h012",
+            "h013",
+            "none"
+          ],
+          "selectedOptionId": "none",
+          "confidence": 0.78,
+          "probabilities": {
+            "h001": 0,
+            "h002": 0,
+            "h003": 0,
+            "h004": 0,
+            "h005": 0,
+            "h006": 0,
+            "h007": 0,
+            "h008": 0,
+            "h009": 0,
+            "h010": 0,
+            "h011": 0.01,
+            "h012": 0.06,
+            "h013": 0.13,
+            "none": 0.8
+          }
+        }
+      ],
+      "usage": {
+        "input_tokens": 2456,
+        "output_tokens": 174
+      },
+      "elapsedMs": 901.6,
+      "requestFingerprint": "266d0aa6e0477f240e39b13a49efe5a94b0e550aa7fe0facb5d0da669a25dd9f"
+    },
+    {
+      "caseId": "C1",
+      "answerabilityLabel": "answerable",
+      "previousRunCandidatesOffered": 8,
+      "variantCandidatesOffered": 10,
+      "status": "selected",
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providerConfidence": 0.9,
+      "evidenceSufficiency": 0.94,
+      "selectedOptionId": "h001",
+      "selectedHandle": {
+        "version": 1,
+        "id": "e79fe552d328fc642637773c0e7e9bc1ccb6d6ca9ff6ec81842808317383cf9a",
+        "project": "Elemental Frontier",
+        "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+        "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 31,
+        "startOffset": 0,
+        "endOffset": 4183,
+        "fingerprint": "df5dcd6d35d0e000529dd7df3d58d556c92e445f3436608a83153f05bbe44529",
+        "privacyClass": "project-metadata"
+      },
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "h005",
+            "h006",
+            "h007",
+            "h008",
+            "h009",
+            "h010",
+            "none"
+          ],
+          "selectedOptionId": "h001",
+          "confidence": 0.9,
+          "probabilities": {
+            "h001": 0.91,
+            "h002": 0.08,
+            "h003": 0,
+            "h004": 0,
+            "h005": 0,
+            "h006": 0,
+            "h007": 0,
+            "h008": 0,
+            "h009": 0,
+            "h010": 0,
+            "none": 0.01
+          }
+        }
+      ],
+      "usage": {
+        "input_tokens": 2140,
+        "output_tokens": 147
+      },
+      "elapsedMs": 932.8,
+      "requestFingerprint": "bb512ac94691db8ff05db2af1b3c9385c0ae648b02d98babe108179647799830"
+    },
+    {
+      "caseId": "C2",
+      "answerabilityLabel": "unanswerable",
+      "previousRunCandidatesOffered": 5,
+      "variantCandidatesOffered": 6,
+      "status": "abstained",
+      "provider": "typesafe-jev",
+      "model": "jev-1.13.0",
+      "providerConfidence": 0.93,
+      "evidenceSufficiency": 0.05,
+      "selectedOptionId": null,
+      "selectedHandle": null,
+      "choiceCalls": [
+        {
+          "questionKey": "selection",
+          "offeredOptionIds": [
+            "h001",
+            "h002",
+            "h003",
+            "h004",
+            "h005",
+            "h006",
+            "none"
+          ],
+          "selectedOptionId": "none",
+          "confidence": 0.93,
+          "probabilities": {
+            "h001": 0,
+            "h002": 0.06,
+            "h003": 0,
+            "h004": 0,
+            "h005": 0,
+            "h006": 0,
+            "none": 0.94
+          }
+        }
+      ],
+      "usage": {
+        "input_tokens": 1456,
+        "output_tokens": 104
+      },
+      "elapsedMs": 808.3,
+      "requestFingerprint": "c10cbda37e9e1297d7ad111a7c84c220b6090419ea3f79dc88a286e0ccc9dbe4"
+    }
+  ],
+  "exactFetchAndPack": [
+    {
+      "caseId": "B1",
+      "handle": {
+        "version": 1,
+        "id": "8aa09cc6224850e4e48aa3e140c1f9987ae43db246269ef9458f211031bafa9a",
+        "project": "NeoPSE",
+        "sourceRef": "src/ai/BENCHMARKS.md",
+        "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+        "rangeId": "block-21",
+        "rangeKind": "block",
+        "startLine": 88,
+        "endLine": 91,
+        "startOffset": 3062,
+        "endOffset": 3348,
+        "fingerprint": "3fbc7346b75afc3f728d21532747dcc30257bb92fa203490cedd4c7b1366b24b",
+        "privacyClass": "project-metadata"
+      },
+      "fetchedCharacters": 286,
+      "fingerprint": "3fbc7346b75afc3f728d21532747dcc30257bb92fa203490cedd4c7b1366b24b",
+      "citation": {
+        "display": "src/ai/BENCHMARKS.md:L88-L91",
+        "handleId": "8aa09cc6224850e4e48aa3e140c1f9987ae43db246269ef9458f211031bafa9a",
+        "sourceRef": "src/ai/BENCHMARKS.md",
+        "revision": "aeb71416156ca39fb533e05982ca9283ace633a217e2a5316c81a1735ade6b3d",
+        "rangeId": "block-21",
+        "rangeKind": "block",
+        "startLine": 88,
+        "endLine": 91,
+        "fingerprint": "3fbc7346b75afc3f728d21532747dcc30257bb92fa203490cedd4c7b1366b24b",
+        "privacyClass": "project-metadata"
+      },
+      "totalFetchedChars": 286
+    },
+    {
+      "caseId": "C1",
+      "handle": {
+        "version": 1,
+        "id": "e79fe552d328fc642637773c0e7e9bc1ccb6d6ca9ff6ec81842808317383cf9a",
+        "project": "Elemental Frontier",
+        "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+        "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 31,
+        "startOffset": 0,
+        "endOffset": 4183,
+        "fingerprint": "df5dcd6d35d0e000529dd7df3d58d556c92e445f3436608a83153f05bbe44529",
+        "privacyClass": "project-metadata"
+      },
+      "fetchedCharacters": 4183,
+      "fingerprint": "df5dcd6d35d0e000529dd7df3d58d556c92e445f3436608a83153f05bbe44529",
+      "citation": {
+        "display": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md:L1-L31",
+        "handleId": "e79fe552d328fc642637773c0e7e9bc1ccb6d6ca9ff6ec81842808317383cf9a",
+        "sourceRef": "docs/MINECRAFT_REFERENCE_DATASET_INDEX.md",
+        "revision": "299148d04e0071444601c7366571f7958b15d1dfabfc11afe569898b49a4a2d0",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 31,
+        "fingerprint": "df5dcd6d35d0e000529dd7df3d58d556c92e445f3436608a83153f05bbe44529",
+        "privacyClass": "project-metadata"
+      },
+      "totalFetchedChars": 4183
+    }
+  ],
+  "privacyReview": {
+    "status": "potential-exposure-unresolved",
+    "scannedLiteralCounts": {
+      "searchSnippetCount": 69,
+      "privateIpv4InSnippets": 1,
+      "urlsInSnippets": 0,
+      "drivePathsInSnippets": 0,
+      "uncPathsInSnippets": 0,
+      "credentialPatternMatchesInSnippets": 0,
+      "fetchedRanges": 2,
+      "privateIpv4InFetchedRanges": 0,
+      "drivePathInFetchedRanges": 1,
+      "urlsInFetchedRanges": 0,
+      "credentialPatternMatchesInFetchedRanges": 0
+    },
+    "providerPromptTextRetained": false,
+    "note": "One private IPv4 literal appeared in a B1 search snippet, and a local drive path appeared in the exact C1 full-document range. The provider request text is not retained; do not assert either literal reached the provider or that it did not. Both strings and all snippets/fetched prose are omitted from this package."
+  },
+  "caveats": [
+    "Same six source-derived cases as the completed original run; not independent, not holdout, not owner-gold.",
+    "Candidate pools and safety filtering differed, and all five provider request fingerprints differ from the original.",
+    "A1 had zero search results and no Jev call.",
+    "Choice and Noul are uncalibrated descriptive outputs.",
+    "Search result ranges are persisted as handles only; snippets, local-owner roots and fetched prose are omitted."
+  ]
+}

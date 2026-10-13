@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-source-disjoint-budget-variant-20261013T2334Z-v1",
+  "status": "completed-with-protocol-deviation",
+  "experimentClass": "posthoc-candidate-budget-and-filtering-variant",
+  "originalRun": "mssr-librarian-source-disjoint-cohort-20261012T2251Z-v1",
+  "provider": {
+    "name": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "calls": 5,
+    "inputTokens": 12015,
+    "outputTokens": 916,
+    "reportedElapsedMs": 5063.3
+  },
+  "scope": {
+    "searches": 6,
+    "providerCalls": 5,
+    "emptySearchNoCall": 1,
+    "exactFetches": 2,
+    "evidencePacks": 2,
+    "sourceProjectFamilies": 3,
+    "ownerGoldUnits": 0,
+    "independentCases": 0
+  },
+  "changesToRuntime": false,
+  "thresholdChanged": false,
+  "sourceMutations": false,
+  "canonicalWrites": false,
+  "privacy": {
+    "classification": "potential-exposure-unresolved",
+    "rawSnippetsPersisted": false,
+    "fetchedProsePersisted": false,
+    "notes": "See REPORT.md; exact provider prompt payload was not retained."
+  },
+  "artifacts": {
+    "REPORT.md": "00f35209a140b8f024a2918a67ddbec2148579ebabbe652461addca7b350a1cd",
+    "evidence-summary.json": "a8b8f182599bf7fbb7b1f1d79476b14117b9b33194ea40fb30bb1fb2117bc082"
+  }
+}
