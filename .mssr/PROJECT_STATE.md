@@ -1,7 +1,7 @@
 # MSSR project state
 
 ## Current release
-MSSR 0.2.127 (package SHA-256 `70e79ae6e472517501ffdd38c4b0eaad740652c7d570b600bf17f90023703bfc`) was merged to `origin/main` as `c9ea91b563edbcb24daf5e7509e0cc914626dfad` (PR #2); activation documentation was merged as `87f8f6be2ec3468e3efc3812f24abc8a3c25ddca` (PR #3). Latest direct Bridge health readback at `2026-10-13T01:39:22.234Z` confirms server 0.6.175, boot `98e20537-ddbc-4d40-82f5-ed6f38a09156`, 189 tools/catalog `018b9f91ae7fcff9`, tunnel `/healthz` and `/readyz` at HTTP 200, and no restart pending. Since telemetry baseline `2026-10-13T00:21:09.943Z`, the tunnel recorded five service-side 502s and zero new local POST-without-status failures; its command queue was empty. The 502 cause is not attributed by these metrics. The controlled HTTP restart request `820c5b7f-d129-4ea5-bf37-18d6efbd97df`, requested at `2026-10-12T08:07:15.500Z` and acknowledged at `08:07:24.0361424Z`, belongs to the previous boot `9b1323c6-9499-4700-81d0-6b14de9d6e41` and is historical. The requesting chat received the structured `maintenanceNotice` in that MCP response with reconnect guidance; delivery is best-effort and Bridge cannot push it to unrelated web chats. Active code is `D:\Dev\bridge-mcp-mssr-0.2.112-query-variants`; the older `D:\Dev\bridge-mcp` checkout remains dirty and preserved as runtime/data owner. The latest local MSSR provider refresh attempt at `2026-10-13T01:39:08.658Z` still reports `mauroprime-bridge` unavailable with zero cached capabilities and `MCP error -32000: Connection closed`. Direct Bridge health, skill catalog and Librarian calls succeed, so this remains a distinct capability-discovery path with its cause unresolved.
+MSSR 0.2.130 (package SHA-256 `35d3fe6d2e385efcb9e7bf2ae51490406088c5bbb32a8d2e9e4abc0e1a1a37e6`) is published on branch `codex/mssr-librarian-query-variants-0.2.112`; Bridge 0.6.176 now adopts the exact artifact. The MSSR branch is pushed but not yet merged to `origin/main`. Active Bridge code is `D:\Dev\bridge-mcp-mssr-0.2.112-query-variants`; runtime/data remain at `D:\Dev\bridge-mcp`.
 
 ## Current Jev/Librarian evaluation
 
@@ -9,9 +9,9 @@ Jev/Librarian remains exploratory. Choice/Noul scores are uncalibrated; no confi
 
 **Evidence inventory update (2026-10-13):** An audit of 95 run directories found zero owner-adjudicated gold units and no unexposed, ready-to-use holdout. Run59 was already called despite `holdoutOpenedAt: null`; treat it as exposed development evidence. Run58–65 contain useful retrieval/selection diagnostics, but repeated language arms and queries on the same source/project do not increase the independent sample size. Do not promote their provider scores as calibrated confidence. A new confirmatory set requires owner-adjudicated, frozen source/query/facet labels from project families not used in prior runs; adjudicate before any Jev call.
 
-**MSSR 0.2.129 branch candidate (2026-10-13):** Includes the 0.2.128 deterministic selector/retrieval fixes: exact duplicate handles coalesce before top-k; empty search pools return `not-run` without a provider call; heading enumeration requires `selectionMode=all-headings`; query variants center excerpts while Jev receives the original question. It also stores Runs 62–63 as a `resume`-only segment within the existing run-history module. Focused loader/health tests, full `npm run verify`, and `npm run release:gate` pass; the release receipt is `.mssr/runtime/releases/0.2.129.json`. Bridge adoption and runtime verification remain pending. No live Jev calls were made for these plumbing or context-layout changes.
+**MSSR 0.2.129 prior candidate (2026-10-13):** Superseded for the active Bridge adoption by 0.2.130. Its selector/retrieval fixes and bounded run-history layout remain part of the development record; no separate 0.2.129 runtime is active.
 
-**MSSR 0.2.130 branch candidate (2026-10-13):** Registers the already-versioned `git-worktree-reconciliation` skill in portable routing and adds positive, continuation, and nearby single-branch-publication negative fixtures. The intent is to avoid invoking the multi-worktree procedure for ordinary Git publication. The canonical skill repository was not edited. All 277 routing fixtures, full `npm run verify`, and `npm run release:gate` pass; canonical package `mauroprime-mssr-0.2.130.tgz` is 1,178,226 bytes with SHA-256 `35d3fe6d2e385efcb9e7bf2ae51490406088c5bbb32a8d2e9e4abc0e1a1a37e6`. Bridge adoption and live audit remain pending.
+**MSSR 0.2.130 published candidate and Bridge adoption (2026-10-13):** Registers the already-versioned `git-worktree-reconciliation` skill with positive, continuation, and nearby single-branch-publication negative fixtures. All 277 routing fixtures, full `npm run verify`, and `npm run release:gate` pass. Canonical package `mauroprime-mssr-0.2.130.tgz` is 1,178,226 bytes with SHA-256 `35d3fe6d2e385efcb9e7bf2ae51490406088c5bbb32a8d2e9e4abc0e1a1a37e6`; source and Bridge-vendored artifact hashes match. The branch is pushed at commit `1e6068632689b1f5024fb2a3bcd926c78b6ac6f5` but is not yet merged to `origin/main`. Bridge 0.6.176 has adopted the exact package; its live 277-case routing audit reports 58/58 owned skills with positive and negative fixtures and no maintenance requirement. Package adoption made no live Jev calls.
 
 **Bridge provider observation (2026-10-13 01:56 UTC):** Direct Bridge HTTP remains healthy from the prior readback, while MSSR registry refresh reports the stdio provider closed with zero discovered tools. Two live Node stdio Bridge processes are descendants of separate Codex/MSSR launcher processes; this confirms multiple host sessions but does not identify why the registry connection closes. No process was started, stopped or restarted. Keep root cause unassigned pending provider/host-side diagnostics.
 
@@ -33,8 +33,8 @@ Core package state: five first-party MSSR operational skill roots. Semantic evid
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.127 -->
-<!-- mssr-version:bridge.live=0.6.175 -->
+<!-- mssr-version:mssr.source=0.2.130 -->
+<!-- mssr-version:bridge.live=0.6.176 -->
 
 <!-- mssr-owner:semantic.consistency=mssr -->
 <!-- mssr-decision:adr.0006=r4-bf-portable -->
