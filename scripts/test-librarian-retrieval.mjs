@@ -4,6 +4,7 @@ import { evidenceAtomFromLibrarianCatalogRecord } from "../dist/evidence-atom.js
 import { catalogMssrLibrarianRecord } from "../dist/librarian-contract.js";
 import {
   MSSR_LIBRARIAN_RETRIEVAL_LIMITS,
+  buildMssrLibrarianIndexedRanges,
   fetchMssrLibrarianEvidence,
   mssrLibrarianEvidenceHandleId,
   mssrLibrarianRetrievalQuerySchema,
@@ -570,7 +571,7 @@ const thematicBreakListDocument = {
   sourceRef: "docs/list-items-before-thematic-break.md",
   markdown: [
     "- Keep only this list-item paragraph.",
-    "---",
+    "- - -",
     "This paragraph follows a thematic break outside the list.",
   ].join("\n"),
   privacyClass: "project-metadata",
@@ -589,6 +590,237 @@ const thematicBreakFetch = fetchMssrLibrarianEvidence({
   privacyClass: "project-metadata",
 });
 assert.equal(thematicBreakFetch.text, "- Keep only this list-item paragraph.");
+const thematicBreakRanges = buildMssrLibrarianIndexedRanges(
+  buildMssrMarkdownDocumentSurface(thematicBreakListDocument),
+  thematicBreakListDocument.markdown,
+);
+assert.equal(
+  thematicBreakRanges.filter((range) => range.metadata.blockKind === "list-item").length,
+  1,
+  "a dash thematic break is not emitted as a second list-item range",
+);
+const asteriskThematicBreakDocument = {
+  owner,
+  sourceRef: "docs/list-items-before-asterisk-thematic-break.md",
+  markdown: [
+    "* Keep only this list-item paragraph.",
+    "* * *",
+    "This paragraph follows an asterisk thematic break outside the list.",
+  ].join("\n"),
+  privacyClass: "project-metadata",
+};
+const asteriskThematicBreakRanges = buildMssrLibrarianIndexedRanges(
+  buildMssrMarkdownDocumentSurface(asteriskThematicBreakDocument),
+  asteriskThematicBreakDocument.markdown,
+);
+assert.equal(
+  asteriskThematicBreakRanges.filter((range) => range.metadata.blockKind === "list-item").length,
+  1,
+  "an asterisk thematic break is not emitted as a second list-item range",
+);
+assert.equal(
+  asteriskThematicBreakRanges.find((range) => range.metadata.blockKind === "list-item")?.metadata.endLine,
+  1,
+  "the asterisk thematic break is excluded from the preceding list item",
+);
+for (const htmlTag of ["script", "pre", "style", "textarea", "basefont", "colgroup"]) {
+  const htmlBlockListDocument = {
+    owner,
+    sourceRef: "docs/list-items-before-" + htmlTag + "-block.md",
+    markdown: [
+      "- Keep only this paragraph.",
+      "<" + htmlTag + ">",
+      "unrelated HTML block content.",
+      "</" + htmlTag + ">",
+    ].join("\n"),
+    privacyClass: "project-metadata",
+  };
+  const htmlBlockRanges = buildMssrLibrarianIndexedRanges(
+    buildMssrMarkdownDocumentSurface(htmlBlockListDocument),
+    htmlBlockListDocument.markdown,
+  );
+  assert.equal(
+    htmlBlockRanges.find((range) => range.metadata.blockKind === "list-item")?.metadata.endLine,
+    1,
+    "a type-" + (["script", "pre", "style", "textarea"].includes(htmlTag) ? "1" : "6") +
+      " <" + htmlTag + "> HTML block starts outside an unindented list-item paragraph",
+  );
+}
+const cdataBlockListDocument = {
+  owner,
+  sourceRef: "docs/list-items-before-cdata-block.md",
+  markdown: [
+    "- Keep only this paragraph.",
+    "<![CDATA[",
+    "unrelated raw text.",
+    "]]>",
+  ].join("\n"),
+  privacyClass: "project-metadata",
+};
+const cdataBlockRanges = buildMssrLibrarianIndexedRanges(
+  buildMssrMarkdownDocumentSurface(cdataBlockListDocument),
+  cdataBlockListDocument.markdown,
+);
+assert.equal(
+  cdataBlockRanges.find((range) => range.metadata.blockKind === "list-item")?.metadata.endLine,
+  1,
+  "a CommonMark type-5 CDATA block starts outside an unindented list-item paragraph",
+);
+const blankUnderIndentedListDocument = {
+  owner,
+  sourceRef: "docs/list-with-under-indented-blank-continuation.md",
+  markdown: [
+    "- Keep only this paragraph.",
+    "",
+    " Under-indented text is outside the list item.",
+  ].join("\n"),
+  privacyClass: "project-metadata",
+};
+const blankUnderIndentedRanges = buildMssrLibrarianIndexedRanges(
+  buildMssrMarkdownDocumentSurface(blankUnderIndentedListDocument),
+  blankUnderIndentedListDocument.markdown,
+);
+assert.equal(
+  blankUnderIndentedRanges.find((range) => range.metadata.blockKind === "list-item")?.metadata.endLine,
+  1,
+  "after a blank line, continuation indentation is compared with the list content column",
+);
+for (const padding of ["  ", "\t"]) {
+  const paddedListDocument = {
+    owner,
+    sourceRef: "docs/list-with-marker-padding-" + (padding === "\t" ? "tab" : "spaces") + ".md",
+    markdown: [
+      "-"+padding+"Parent item.",
+      "",
+      "  This continuation is short of the item's content column.",
+    ].join("\n"),
+    privacyClass: "project-metadata",
+  };
+  const paddedListRanges = buildMssrLibrarianIndexedRanges(
+    buildMssrMarkdownDocumentSurface(paddedListDocument),
+    paddedListDocument.markdown,
+  );
+  assert.equal(
+    paddedListRanges.find((range) => range.metadata.blockKind === "list-item")?.metadata.endLine,
+    1,
+    "content indentation includes marker padding columns, including tabs",
+  );
+}
+const blankUnderIndentedFenceDocument = {
+  owner,
+  sourceRef: "docs/list-with-under-indented-blank-fence.md",
+  markdown: [
+    "- Keep only this paragraph.",
+    "",
+    " ```text",
+    " unrelated code",
+    " ```",
+  ].join("\n"),
+  privacyClass: "project-metadata",
+};
+const blankUnderIndentedFenceRanges = buildMssrLibrarianIndexedRanges(
+  buildMssrMarkdownDocumentSurface(blankUnderIndentedFenceDocument),
+  blankUnderIndentedFenceDocument.markdown,
+);
+assert.equal(
+  blankUnderIndentedFenceRanges.find((range) => range.metadata.blockKind === "list-item")?.metadata.endLine,
+  1,
+  "an under-indented fenced block after a blank line is not captured by the list item",
+);
+const directHeadingContinuationDocument = {
+  owner,
+  sourceRef: "docs/list-continuation-before-heading.md",
+  markdown: [
+    "- The paragraph begins in the list item.",
+    "This is a valid lazy continuation.",
+    "## The next heading is outside the item",
+    "This paragraph is outside the item too.",
+  ].join("\n"),
+  privacyClass: "project-metadata",
+};
+const directHeadingRanges = buildMssrLibrarianIndexedRanges(
+  buildMssrMarkdownDocumentSurface(directHeadingContinuationDocument),
+  directHeadingContinuationDocument.markdown,
+);
+const directHeadingItem = directHeadingRanges.find((range) => range.metadata.blockKind === "list-item");
+assert.equal(directHeadingItem?.metadata.endLine, 2, "a heading immediately after lazy continuation ends the exact list-item range");
+const tabIndentedThematicLookingContinuationDocument = {
+  owner,
+  sourceRef: "docs/list-with-tab-indented-thematic-looking-text.md",
+  markdown: [
+    "123456789. This paragraph begins an ordered list item.",
+    "\t---",
+  ].join("\n"),
+  privacyClass: "project-metadata",
+};
+const tabIndentedThematicLookingRanges = buildMssrLibrarianIndexedRanges(
+  buildMssrMarkdownDocumentSurface(tabIndentedThematicLookingContinuationDocument),
+  tabIndentedThematicLookingContinuationDocument.markdown,
+);
+assert.equal(
+  tabIndentedThematicLookingRanges.find((range) => range.metadata.blockKind === "list-item")?.metadata.endLine,
+  2,
+  "a tab-prefixed line is not misclassified as a 0–3-space thematic break",
+);
+const fenceMarker = String.fromCharCode(96).repeat(3);
+const fencedThematicLookingContentDocument = {
+  owner,
+  sourceRef: "docs/list-with-thematic-looking-fence-content.md",
+  markdown: [
+    "- Fenced content stays with this item.",
+    "  " + fenceMarker + "text",
+    "---",
+    "* * *",
+    "  " + fenceMarker,
+    "- A later sibling.",
+  ].join("\n"),
+  privacyClass: "project-metadata",
+};
+const fencedThematicLookingRanges = buildMssrLibrarianIndexedRanges(
+  buildMssrMarkdownDocumentSurface(fencedThematicLookingContentDocument),
+  fencedThematicLookingContentDocument.markdown,
+);
+const fencedThematicLookingItem = fencedThematicLookingRanges.find((range) => range.metadata.blockKind === "list-item");
+assert.equal(
+  fencedThematicLookingItem?.metadata.endLine,
+  5,
+  "thematic-break-looking lines inside an open fence remain part of that list item",
+);
+const longOrderedMarkerContinuationDocument = {
+  owner,
+  sourceRef: "docs/list-with-long-ordered-marker-like-continuation.md",
+  markdown: [
+    "- The paragraph starts in this item.",
+    "1234567890. this is a sentence continuation, not a list marker.",
+  ].join("\n"),
+  privacyClass: "project-metadata",
+};
+const longOrderedMarkerRanges = buildMssrLibrarianIndexedRanges(
+  buildMssrMarkdownDocumentSurface(longOrderedMarkerContinuationDocument),
+  longOrderedMarkerContinuationDocument.markdown,
+);
+const longOrderedMarkerItems = longOrderedMarkerRanges.filter((range) => range.metadata.blockKind === "list-item");
+assert.equal(longOrderedMarkerItems.length, 1, "ordered markers longer than nine digits are not split as list items");
+assert.equal(longOrderedMarkerItems[0]?.metadata.endLine, 2, "a long ordered-marker-like line remains a lazy paragraph continuation");
+const indentedBlockLikeContinuationDocument = {
+  owner,
+  sourceRef: "docs/list-with-indented-block-like-continuation.md",
+  markdown: [
+    "123456789. This paragraph begins an ordered list item.",
+    "    # four spaces do not make an ATX heading here.",
+    "\t<script>this is inline HTML text, not an HTML block.</script>",
+  ].join("\n"),
+  privacyClass: "project-metadata",
+};
+const indentedBlockLikeRanges = buildMssrLibrarianIndexedRanges(
+  buildMssrMarkdownDocumentSurface(indentedBlockLikeContinuationDocument),
+  indentedBlockLikeContinuationDocument.markdown,
+);
+assert.equal(
+  indentedBlockLikeRanges.find((range) => range.metadata.blockKind === "list-item")?.metadata.endLine,
+  3,
+  "block-like syntax beyond three leading spaces is not treated as a lazy-continuation boundary",
+);
 const fencedBlockListDocument = {
   owner,
   sourceRef: "docs/list-items-before-unindented-fence.md",

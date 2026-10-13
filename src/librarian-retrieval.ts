@@ -197,7 +197,7 @@ export function mssrLibrarianEvidenceHandleId(fields: Omit<MssrLibrarianEvidence
 }
 export type MssrLibrarianIndexedRange = { id: string; kind: "section" | "block"; startOffset: number; endOffset: number; fingerprint: string; title: string; path: string[]; terms: string[]; hint: string; metadata: Record<string, unknown> };
 
-const TOP_LEVEL_LIST_ITEM_RE = /^([ \t]*)(?:[-*+]|\d+[.)])(?:[ \t]+|$)/;
+const TOP_LEVEL_LIST_ITEM_RE = /^([ \t]*)(?:[-*+]|\d{1,9}[.)])(?:[ \t]+|$)/;
 const INDENTED_FENCE_RE = /^([ \t]*)(`{3,}|~{3,})/;
 
 function listFenceClose(line: string, marker: string): boolean {
@@ -216,15 +216,39 @@ function indentationColumns(line: string): number {
   return columns;
 }
 
+function listItemContentIndentColumns(marker: RegExpMatchArray): number {
+  const prefix = marker[0] ?? "";
+  const indentation = marker[1] ?? "";
+  const markerToken = prefix.slice(indentation.length).match(/^(?:[-*+]|\d{1,9}[.)])/);
+  if (!markerToken) return indentationColumns(indentation) + 1;
+  const markerEndColumns = indentationColumns(indentation) + markerToken[0].length;
+  let prefixEndColumns = markerEndColumns;
+  for (const character of prefix.slice(indentation.length + markerToken[0].length)) {
+    if (character === " ") prefixEndColumns += 1;
+    else if (character === "\t") prefixEndColumns += 4 - prefixEndColumns % 4;
+  }
+  const paddingColumns = prefixEndColumns - markerEndColumns;
+  // CommonMark uses one padding column when the marker is followed by more
+  // than four columns of whitespace; excess whitespace belongs to its content.
+  return markerEndColumns + (paddingColumns >= 1 && paddingColumns <= 4 ? paddingColumns : 1);
+}
+
+function isThematicBreak(line: string): boolean {
+  const match = line.match(/^( {0,3})(.*)$/);
+  if (!match) return false;
+  return /^(?:\* *){3,}$|^(?:- *){3,}$|^(?:_ *){3,}$/.test(match[2]!);
+}
+
 // CommonMark lazy continuation applies to paragraph text, not block starts.
 function isParagraphContinuationText(value: string): boolean {
   const line = value.trimStart();
   if (!line) return false;
-  if (/^#{1,6}(?:[ \t]|$)/.test(line) || /^>/.test(line) || INDENTED_FENCE_RE.test(value)) return false;
-  if (/^(?:[-+*]|\d+[.)])(?:[ \t]+|$)/.test(line)) return false;
-  const compact = line.replace(/[ \t]/g, "");
-  if (/^(?:\*{3,}|-{3,}|_{3,})$/.test(compact) || /^(?:=+|-+)[ \t]*$/.test(line)) return false;
-  if (/^<(?:!--|\?|![A-Z]|\/?(?:address|article|aside|base|blockquote|body|caption|center|col|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h[1-6]|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|nav|noframes|ol|optgroup|option|p|param|search|section|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul)(?:[ \t/>]|$))/i.test(line)) return false;
+  const fenceStart = value.match(INDENTED_FENCE_RE);
+  if (/^ {0,3}#{1,6}(?:[ \t]|$)/.test(value) || /^ {0,3}>/.test(value) ||
+      (fenceStart && indentationColumns(fenceStart[1] ?? "") <= 3)) return false;
+  if (/^ {0,3}(?:[-+*]|\d{1,9}[.)])(?:[ \t]+|$)/.test(value)) return false;
+  if (isThematicBreak(value) || /^ {0,3}(?:=+|-+)[ \t]*$/.test(value)) return false;
+  if (/^ {0,3}<(?:!--|\?|!\[CDATA\[|![A-Z]|\/?(?:address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h[1-6]|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|nav|noframes|ol|optgroup|option|p|param|pre|script|search|section|style|summary|table|tbody|td|tfoot|th|thead|textarea|title|tr|track|ul)(?:[ \t/>]|$))/i.test(value)) return false;
   return true;
 }
 
@@ -250,6 +274,7 @@ function listItemRanges(args: {
   const starts: number[] = [blockStart];
   const ends: number[] = [];
   let currentItemEnd = blockStart;
+  let currentItemContentIndentColumns = listItemContentIndentColumns(firstMarker);
   let paragraphOpen = hasParagraphAfterListMarker(args.lines[blockStart] ?? "", firstMarker);
   let fence: { marker: string; length: number } | null = null;
   for (let index = blockStart + 1; index < args.lines.length;) {
@@ -261,21 +286,22 @@ function listItemRanges(args: {
       while (nextIndex < args.lines.length && args.lines[nextIndex]!.trim().length === 0) nextIndex += 1;
       if (nextIndex >= args.lines.length || args.headingLines.has(nextIndex)) break;
       const next = args.lines[nextIndex] ?? "";
+    if (isThematicBreak(next) && indentationColumns(next) < currentItemContentIndentColumns) break;
       const nextMarker = markerAt(nextIndex);
       if (nextMarker && indentationColumns(nextMarker[1]!) === baseIndentColumns) {
         ends.push(currentItemEnd);
         starts.push(nextIndex);
         currentItemEnd = nextIndex;
+        currentItemContentIndentColumns = listItemContentIndentColumns(nextMarker);
         paragraphOpen = hasParagraphAfterListMarker(next, nextMarker);
         index = nextIndex + 1;
         continue;
       }
-      if (indentationColumns(next) <= baseIndentColumns) break;
+      if (indentationColumns(next) < currentItemContentIndentColumns) break;
       index = nextIndex;
       continue;
     }
     const fenceMatch = line.match(INDENTED_FENCE_RE);
-    if (fenceMatch && indentationColumns(line) <= baseIndentColumns) break;
     if (fence) {
       if (listFenceClose(line, fence.marker)) fence = null;
       currentItemEnd = index;
@@ -283,6 +309,8 @@ function listItemRanges(args: {
       index += 1;
       continue;
     }
+    if (isThematicBreak(line) && indentationColumns(line) < currentItemContentIndentColumns) break;
+    if (fenceMatch && indentationColumns(line) < currentItemContentIndentColumns) break;
     if (fenceMatch) {
       fence = { marker: fenceMatch[2]!, length: fenceMatch[2]!.length };
       currentItemEnd = index;
@@ -295,11 +323,12 @@ function listItemRanges(args: {
       ends.push(currentItemEnd);
       starts.push(index);
       currentItemEnd = index;
+      currentItemContentIndentColumns = listItemContentIndentColumns(marker);
       paragraphOpen = hasParagraphAfterListMarker(line, marker);
       index += 1;
       continue;
     }
-    if (indentationColumns(line) <= baseIndentColumns && (!paragraphOpen || !isParagraphContinuationText(line))) break;
+    if (indentationColumns(line) < currentItemContentIndentColumns && (!paragraphOpen || !isParagraphContinuationText(line))) break;
     currentItemEnd = index;
     paragraphOpen = marker ? hasParagraphAfterListMarker(line, marker) : isParagraphContinuationText(line);
     index += 1;
