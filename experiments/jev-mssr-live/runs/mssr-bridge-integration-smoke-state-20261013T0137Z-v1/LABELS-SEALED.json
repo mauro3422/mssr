@@ -1,0 +1,18 @@
+{
+  "runId": "mssr-bridge-integration-smoke-state-20261013T0137Z-v1",
+  "sealedFromProvider": true,
+  "provenance": "source-derived, pre-call, not owner-gold",
+  "answerability": "positive",
+  "expectedFacts": [
+    "Choice/Noul scores are uncalibrated",
+    "No confidence threshold is justified",
+    "No autonomous canonical merge is justified"
+  ],
+  "exactTarget": {
+    "endLine": 8,
+    "rangeId": "block-2",
+    "sourceRef": ".mssr/PROJECT_STATE.md",
+    "startLine": 8,
+    "text": "Jev/Librarian remains exploratory. Choice/Noul scores are uncalibrated; no confidence threshold or autonomous canonical merge is justified."
+  }
+}

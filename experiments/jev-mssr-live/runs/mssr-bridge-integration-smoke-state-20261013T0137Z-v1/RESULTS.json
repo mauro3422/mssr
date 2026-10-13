@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-bridge-integration-smoke-state-20261013T0137Z-v1",
+  "classification": "integration-smoke; not independent reliability data",
+  "call": {
+    "selectedRangeId": "block-2",
+    "requestFingerprint": "4d1409f4ffabede24c4b09cbaded0f13def146a75963d4feac5b17d77c4926dd",
+    "selectedChoiceProbability": 0.96,
+    "jevCallMade": true,
+    "outputTokens": 97,
+    "rawProviderConfidence": 0.95,
+    "rawEvidenceSufficiency": 0.94,
+    "model": "jev-1.13.0",
+    "status": "selected",
+    "exactFetchRequired": true,
+    "selectedOptionId": "h003",
+    "providerCalls": 1,
+    "scoresCalibrated": false,
+    "candidateCount": 5,
+    "choiceProbabilities": {
+      "h001": 0.01,
+      "h002": 0.03,
+      "h003": 0.96,
+      "none": 0,
+      "h005": 0,
+      "h004": 0
+    },
+    "overlap": {
+      "mutationApplied": false,
+      "overlappingPairs": 6,
+      "sameRevisionPairs": 10,
+      "partialOverlapPairs": 0,
+      "nestedPairs": 6
+    },
+    "selectionMode": "single-pass",
+    "elapsedMs": 952.2,
+    "provider": "typesafe-jev",
+    "autoApplyAllowed": false,
+    "selectionPasses": 1,
+    "selectedLine": 8,
+    "offeredOptionIds": [
+      "h001",
+      "h002",
+      "h003",
+      "h004",
+      "h005",
+      "none"
+    ],
+    "inputTokens": 1214
+  },
+  "fetch": {
+    "exactText": "Jev/Librarian remains exploratory. Choice/Noul scores are uncalibrated; no confidence threshold or autonomous canonical merge is justified.",
+    "rangeId": "block-2",
+    "startLine": 8,
+    "truthAuthority": false,
+    "endLine": 8,
+    "sourceRef": ".mssr/PROJECT_STATE.md",
+    "passed": true,
+    "advisoryOnly": true,
+    "fingerprint": "ff8dda274778232153eb5db78dbeb5d6e33d58f62ee9d88d4b2f2ef21667e13a"
+  },
+  "evidencePack": {
+    "totalFetchedChars": 139,
+    "canonicalRewriteAllowed": false,
+    "passed": true,
+    "kind": "mssr-librarian-evidence-pack",
+    "fingerprint": "ff8dda274778232153eb5db78dbeb5d6e33d58f62ee9d88d4b2f2ef21667e13a",
+    "paragraphCount": 1,
+    "assembly": "verbatim-source-ranges",
+    "citation": ".mssr/PROJECT_STATE.md:L8-L8"
+  },
+  "integration": {
+    "passed": true,
+    "path": "Bridge project authorization -> search -> Jev select -> exact fetch -> evidence pack",
+    "projectRoot": "D:\\Dev\\mssr",
+    "unrelatedRegistryProvider": "mauroprime-bridge remains unavailable in MSSR registry with MCP error -32000; direct Bridge connector/catalog is live",
+    "initializedGitProjectAccepted": true
+  },
+  "interpretation": "One known-family query selected the pre-labeled exact target. Useful for end-to-end wiring and handle integrity only; n=1 and label is source-derived, not owner-gold. Raw scores are not probability calibration."
+}

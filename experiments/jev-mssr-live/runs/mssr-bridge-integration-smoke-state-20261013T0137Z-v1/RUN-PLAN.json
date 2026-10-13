@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-bridge-integration-smoke-state-20261013T0137Z-v1",
+  "runType": "integration-smoke",
+  "date": "2026-10-13",
+  "purpose": "Verify live Bridge Librarian search -> Jev selection -> exact fetch/evidence pack on an initialized Git/MSSR project. This is a known-family diagnostic, not independent reliability evidence.",
+  "git": {
+    "head": "a0cfdbcb5b554dea8cab2598b342e8373354de69",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112"
+  },
+  "source": {
+    "privacyClass": "project-metadata",
+    "projectRoot": "D:\\Dev\\mssr",
+    "sourceRef": ".mssr/PROJECT_STATE.md",
+    "sha256": "efc7ee1c3fed1f00d7d70959cf7824eb11ae35ef30002b52c7a978aa02896c24",
+    "revision": "efc7ee1c3fed1f00d7d70959cf7824eb11ae35ef30002b52c7a978aa02896c24"
+  },
+  "request": {
+    "frozenCandidateCount": 5,
+    "metadataMode": "off",
+    "providerPath": "mcp__codex_apps__brigdemcp_web_mssr_librarian_jev_select",
+    "searchMaxResults": 12,
+    "query": "According to the current MSSR state, are Jev Choice/Noul outputs calibrated enough to authorize an automatic canonical merge?"
+  },
+  "frozenCandidateHandles": [
+    {
+      "rangeKind": "section",
+      "owner": "d:/dev/mssr",
+      "id": "a49e6af2956e863f003991bb5513293acfcf3c84ec4430b3075a075b3f8ea835",
+      "startOffset": 0,
+      "startLine": 1,
+      "endOffset": 7755,
+      "revision": "efc7ee1c3fed1f00d7d70959cf7824eb11ae35ef30002b52c7a978aa02896c24",
+      "endLine": 40,
+      "privacyClass": "project-metadata",
+      "version": 1,
+      "rangeId": "heading-1",
+      "fingerprint": "70bf1d5a282777c0095da3ce19e89c51cc87aa395acf3bb7d56cc3c540329e48",
+      "sourceRef": ".mssr/PROJECT_STATE.md"
+    },
+    {
+      "rangeKind": "section",
+      "owner": "d:/dev/mssr",
+      "id": "03a64dedaf545da672c1fae296b5be85e6663b0f6d34e1c694f4528619b024ce",
+      "startOffset": 1560,
+      "startLine": 6,
+      "endOffset": 3413,
+      "revision": "efc7ee1c3fed1f00d7d70959cf7824eb11ae35ef30002b52c7a978aa02896c24",
+      "endLine": 15,
+      "privacyClass": "project-metadata",
+      "version": 1,
+      "rangeId": "heading-3",
+      "fingerprint": "6c61af74173b67f36354e1d9bcfa86351a94750a504512b94b5fe692142d9ad2",
+      "sourceRef": ".mssr/PROJECT_STATE.md"
+    },
+    {
+      "rangeKind": "block",
+      "owner": "d:/dev/mssr",
+      "id": "9c481e1729e64e50792f2fc0d5253aa581c9a375c551b07a5dd505869b753776",
+      "startOffset": 1597,
+      "startLine": 8,
+      "endOffset": 1736,
+      "revision": "efc7ee1c3fed1f00d7d70959cf7824eb11ae35ef30002b52c7a978aa02896c24",
+      "endLine": 8,
+      "privacyClass": "project-metadata",
+      "version": 1,
+      "rangeId": "block-2",
+      "fingerprint": "ff8dda274778232153eb5db78dbeb5d6e33d58f62ee9d88d4b2f2ef21667e13a",
+      "sourceRef": ".mssr/PROJECT_STATE.md"
+    },
+    {
+      "version": 1,
+      "id": "c21d4f3383e703ab12f0cf27e028f5a32e319ef88b96c5a3a2a7c61214129e58",
+      "owner": "d:/dev/mssr",
+      "sourceRef": ".mssr/PROJECT_STATE.md",
+      "revision": "efc7ee1c3fed1f00d7d70959cf7824eb11ae35ef30002b52c7a978aa02896c24",
+      "rangeId": "block-5",
+      "rangeKind": "block",
+      "startLine": 14,
+      "endLine": 14,
+      "startOffset": 2937,
+      "endOffset": 3411,
+      "fingerprint": "749fec905025927cd2c437ce66391d9fcf1e4c8dc210fb41cd816e797c6512de",
+      "privacyClass": "project-metadata"
+    },
+    {
+      "version": 1,
+      "id": "2d6fee17d11fb7ce41672f85148ca9cf39caa360432b6b60201f96639cdd86ad",
+      "owner": "d:/dev/mssr",
+      "sourceRef": ".mssr/PROJECT_STATE.md",
+      "revision": "efc7ee1c3fed1f00d7d70959cf7824eb11ae35ef30002b52c7a978aa02896c24",
+      "rangeId": "heading-5",
+      "rangeKind": "section",
+      "startLine": 20,
+      "endLine": 37,
+      "startOffset": 3664,
+      "endOffset": 6168,
+      "fingerprint": "d81e9a18c92cdaa68fc0c127f31cef8c92a5bb9c3127c6c0730ec2e530324468",
+      "privacyClass": "project-metadata"
+    }
+  ],
+  "expected": {
+    "labelProvenance": "source-derived and frozen before live Jev; not owner-adjudicated gold",
+    "targetLine": 8,
+    "targetRangeId": "block-2",
+    "expectedFacts": [
+      "Choice/Noul scores are uncalibrated",
+      "No confidence threshold is justified",
+      "No autonomous canonical merge is justified"
+    ]
+  },
+  "metrics": [
+    "Bridge project authorization and search",
+    "Jev exact-range selection",
+    "exact fetch/fingerprint",
+    "evidence-pack provenance"
+  ],
+  "interpretationLimit": "One query over one already exposed MSSR project; only integration smoke. Do not pool with independent cases or infer calibration."
+}
