@@ -8782,6 +8782,153 @@
         ],
         "missingRequiredPhases": []
       }
+    },
+    {
+      "name": "git-worktree-reconciliation-positive",
+      "task": "Auditá los worktrees de este repo: hay ramas divergentes con cambios staged, unstaged y untracked. Armá el inventario por dueño, detectá solapamientos y proponé lotes verificables sin borrar ni mezclar experimentos a ciegas.",
+      "caller": "chatgpt-web",
+      "stage": "start",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Inventariar y reconciliar un repositorio con varios worktrees y cambios concurrentes preservando evidencia y dueños.",
+        "domains": [
+          "git",
+          "filesystem",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "discover",
+          "review",
+          "analyze",
+          "coordinate",
+          "verify"
+        ],
+        "artifacts": [
+          "repository",
+          "backup",
+          "document"
+        ],
+        "needs": [
+          "version-control",
+          "history-recovery",
+          "cross-agent",
+          "integrity-verification",
+          "backup"
+        ],
+        "signals": [
+          "conflicting-evidence",
+          "uncertainty",
+          "recovery-needed"
+        ],
+        "risk": "write",
+        "ambiguity": "medium"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "git-worktree-reconciliation"
+        ]
+      }
+    },
+    {
+      "name": "git-worktree-reconciliation-continuation",
+      "task": "Dale, seguí con el inventario y el plan de integración.",
+      "taskVariants": [
+        "Sí, continuá revisando los worktrees",
+        "Mandale con los lotes de merge",
+        "Seguí preservando los cambios y la evidencia"
+      ],
+      "context": "El objetivo aceptado es inventariar todos los worktrees registrados, comparar HEAD/upstream, staged/unstaged/untracked e identificar dueños y solapamientos. No limpiar ni integrar una rama sin evidencia, propietario y lote revisable; continuar desde la clasificación de ramas divergentes.",
+      "caller": "chatgpt-web",
+      "stage": "resume",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Continuar una reconciliación multi-worktree ya iniciada conservando ownership y evidencia.",
+        "domains": [
+          "git",
+          "filesystem",
+          "agent-orchestration"
+        ],
+        "actions": [
+          "review",
+          "analyze",
+          "coordinate",
+          "recover",
+          "verify"
+        ],
+        "artifacts": [
+          "repository",
+          "project",
+          "backup",
+          "document"
+        ],
+        "needs": [
+          "version-control",
+          "history-recovery",
+          "cross-agent",
+          "integrity-verification"
+        ],
+        "signals": [
+          "conflicting-evidence",
+          "recovery-needed",
+          "replan-needed"
+        ],
+        "risk": "write",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "contextUsed": true,
+        "activeIncludes": [
+          "git-worktree-reconciliation"
+        ]
+      }
+    },
+    {
+      "name": "git-worktree-reconciliation-negative-single-branch-publish",
+      "task": "El cambio de esta única rama ya pasó las pruebas. Hacé el commit y push sin force y verificá el SHA remoto.",
+      "caller": "chatgpt-web",
+      "stage": "persist",
+      "sources": [
+        "codex-local"
+      ],
+      "intent": {
+        "summary": "Publicar un cambio verificado de un solo branch sin reconciliar worktrees concurrentes.",
+        "domains": [
+          "git"
+        ],
+        "actions": [
+          "save",
+          "version",
+          "publish",
+          "verify"
+        ],
+        "artifacts": [
+          "repository"
+        ],
+        "needs": [
+          "version-control",
+          "integrity-verification"
+        ],
+        "signals": [
+          "nominal"
+        ],
+        "risk": "external-side-effect",
+        "ambiguity": "low"
+      },
+      "expect": {
+        "classificationMode": "structured-semantic",
+        "activeIncludes": [
+          "git-change-publication"
+        ],
+        "activeExcludes": [
+          "git-worktree-reconciliation"
+        ]
+      }
     }
   ]
 }

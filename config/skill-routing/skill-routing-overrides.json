@@ -2045,6 +2045,69 @@
       "priority": 89,
       "activation": "on-demand"
     },
+    "git-worktree-reconciliation": {
+      "phase": "discovery",
+      "coversPhases": [
+        "discovery",
+        "safety",
+        "implementation",
+        "verification",
+        "persistence"
+      ],
+      "domains": [
+        "git",
+        "filesystem",
+        "agent-orchestration"
+      ],
+      "actions": [
+        "discover",
+        "review",
+        "analyze",
+        "coordinate",
+        "recover",
+        "document"
+      ],
+      "artifacts": [
+        "repository",
+        "project",
+        "backup",
+        "document"
+      ],
+      "needs": [
+        "version-control",
+        "history-recovery",
+        "cross-agent",
+        "integrity-verification",
+        "backup"
+      ],
+      "signals": [
+        "warning-observed",
+        "conflicting-evidence",
+        "uncertainty",
+        "recovery-needed",
+        "replan-needed"
+      ],
+      "requires": [
+        "mssr-agent-routing"
+      ],
+      "complements": [
+        "git-change-publication",
+        "systematic-debugging",
+        "shared-skill-governance"
+      ],
+      "excludes": [],
+      "negativeIntents": [
+        "routine single-branch commit or push",
+        "explain Git concepts without repository integration",
+        "read-only history inspection without concurrent worktree reconciliation"
+      ],
+      "requireNeedMatch": true,
+      "requireActionMatch": true,
+      "requireArtifactMatch": true,
+      "requireSignalMatch": false,
+      "priority": 94,
+      "activation": "on-demand"
+    },
     "steam-workshop-publication": {
       "phase": "persistence",
       "coversPhases": [
