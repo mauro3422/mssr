@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-bridge-jev-facet-readiness-20261013T0539Z-v1",
+  "runNumber": 67,
+  "createdAt": "2026-10-13T05:39:03Z",
+  "status": "exploratory-posthoc-complete",
+  "purpose": "Verify the current Bridge-to-MSSR Librarian-to-live-Jev path and diagnose compound-query evidence coverage versus targeted facet selection.",
+  "project": {
+    "root": "D:\\Dev\\mssr",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "head": "7e2881001ec094c093a4d6e079f44746e5730b20",
+    "sourceRef": ".mssr/PROJECT_STATE.md",
+    "sourceRevisionSha256": "8f788e951ead3e19e92477e477c77f56d8ee4c2e07be8fb43d65959903762299",
+    "sourceExposure": "Previously exposed canonical MSSR state; not holdout."
+  },
+  "design": {
+    "primaryQueries": 1,
+    "posthocFacetQueries": 1,
+    "independentProjectFamilies": 1,
+    "independentSourceClusters": 1,
+    "ownerAdjudicatedGold": false,
+    "protectedHoldout": false,
+    "metadataMode": "off",
+    "candidateHandlesPassedFromSearch": true,
+    "labelsFrozenBeforeJev": false,
+    "posthocFacetQuestionExcludedFromPrimaryMetrics": true
+  },
+  "runtime": {
+    "bridgeServerVersion": "0.6.177",
+    "bridgeRuntimeBootId": "9713db6e-b666-4bfa-ba2f-b945a6801cf5",
+    "bridgeHealthObservedAt": "2026-10-13T05:39:26.725Z",
+    "bridgeTunnelHealth": "200 live",
+    "bridgeTunnelReady": "200 ready",
+    "bridgeToolCatalogCount": 189,
+    "installedMssrPackageOnCurrentBridgeVersion": "not independently verified"
+  },
+  "registryObservation": {
+    "providerId": "mauroprime-bridge",
+    "status": "unavailable",
+    "capabilityCount": 0,
+    "error": "MCP error -32000: Connection closed",
+    "providerObservedAt": "2026-10-11T06:12:45.733Z",
+    "refreshAttemptAt": "2026-10-13T05:34:46.927Z"
+  },
+  "queries": [
+    {
+      "id": "Q1",
+      "role": "primary-compound-query",
+      "text": "What evidence and remaining gate are required before saying Jev is reliable or calibrated in MSSR?",
+      "searchCount": 8,
+      "targetRank": 3,
+      "targetRangeId": "block-3",
+      "targetLines": [
+        10,
+        10
+      ],
+      "choiceMode": "single-pass",
+      "choiceRawConfidence": 0.97,
+      "selectedOptionProbability": 0.97,
+      "evidenceSufficiency": 0.53,
+      "selectedHandleId": "b437e2bd8435a4cfdeb721b3895d9d9bb5ad0d8fcea8deb10bafa7d7476d8b00",
+      "selectedFingerprint": "a5d58e4a22a85c56b0f43641763905807d009505d44fa854bae3dfdc6764f312",
+      "providerTokens": {
+        "input": 1739,
+        "output": 127
+      },
+      "providerLatencyMs": 822.2,
+      "requestFingerprint": "837a6b09c365718488f056013ec0500ea2e13efa1a4ae73652a294593cc68e7b3",
+      "blindReview": "partial"
+    },
+    {
+      "id": "Q2",
+      "role": "posthoc-targeted-facet-followup",
+      "text": "What is the minimum size and structure of the independent labeled Jev cohort before reliability claims?",
+      "searchCount": 8,
+      "targetRank": 3,
+      "targetRangeId": "block-10",
+      "targetLines": [
+        24,
+        24
+      ],
+      "choiceMode": "single-pass",
+      "choiceRawConfidence": 0.39,
+      "selectedOptionProbability": 0.46,
+      "selectedHandleId": "215d5bb8afd248d9d18a327b8cdea21ba9a5f36bf8c942f041307369c819e1ed",
+      "selectedFingerprint": "a575535073d97b29e5360253455b3657db867782358ef2e81edbb3fed0a4cc17",
+      "providerTokens": {
+        "input": 1694,
+        "output": 127
+      },
+      "providerLatencyMs": 772.5,
+      "requestFingerprint": "b76f83c015623e91fa4fe8e4996f3fb85112d7a52c165327bb6bbe1d600907ea",
+      "posthoc": true
+    }
+  ],
+  "pipeline": {
+    "searchCalls": 2,
+    "jevCalls": 2,
+    "exactFetchCalls": 2,
+    "evidencePackCalls": 2,
+    "exactFetchPassed": 2,
+    "evidencePackFinalCombinedChars": 1163,
+    "citations": [
+      ".mssr/PROJECT_STATE.md:L10-L10",
+      ".mssr/PROJECT_STATE.md:L24-L24"
+    ],
+    "canonicalRewriteAllowed": false,
+    "sourceMutated": false,
+    "thresholdChanged": false
+  },
+  "capture": {
+    "providerRawHttpBytesCaptured": false,
+    "bridgeTraceId": "mssr-20261013051428-62748fb4-56b",
+    "bridgeTraceToolsSuccessful": 19,
+    "bridgeTraceToolErrors": 0
+  },
+  "interpretation": "The two queries address the same previously exposed document and form one dependent diagnostic cluster, not two independent accuracy observations. The primary compound excerpt was judged partial despite high raw Choice confidence; the follow-up facet recovered the complementary next-gate paragraph at lower raw confidence. Treat this as evidence for testing explicit/automatic facet decomposition and separate Choice from sufficiency, not as calibrated quality."
+}

@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-bridge-jev-facet-readiness-20261013T0539Z-v1",
+  "sourceSnapshot": {
+    "sourceRef": ".mssr/PROJECT_STATE.md",
+    "revisionSha256": "8f788e951ead3e19e92477e477c77f56d8ee4c2e07be8fb43d65959903762299",
+    "ranges": [
+      {
+        "rangeId": "block-3",
+        "startLine": 10,
+        "endLine": 10,
+        "startOffset": 612,
+        "endOffset": 1259,
+        "fingerprint": "a5d58e4a22a85c56b0f43641763905807d009505d44fa854bae3dfdc6764f312",
+        "exactText": "**Evidence inventory update (2026-10-13):** An audit of 95 run directories found zero owner-adjudicated gold units and no unexposed, ready-to-use holdout. Run59 was already called despite `holdoutOpenedAt: null`; treat it as exposed development evidence. Run58–65 contain useful retrieval/selection diagnostics, but repeated language arms and queries on the same source/project do not increase the independent sample size. Do not promote their provider scores as calibrated confidence. A new confirmatory set requires owner-adjudicated, frozen source/query/facet labels from project families not used in prior runs; adjudicate before any Jev call."
+      },
+      {
+        "rangeId": "block-10",
+        "startLine": 24,
+        "endLine": 24,
+        "startOffset": 4722,
+        "endOffset": 5238,
+        "fingerprint": "a575535073d97b29e5360253455b3657db867782358ef2e81edbb3fed0a4cc17",
+        "exactText": "**Next gate:** adjudicate the disputed Run65 spans and build a frozen project-grouped cohort with at least 30 independent labeled units; investigate the separate MSSR registry failure. Report retrieval, selection, sufficiency, overbreadth, abstention, and exact evidence integrity separately, and preserve human review before canonical writes. Detailed history remains in the [experiment ledger](../experiments/jev-mssr-live/README.md) and [benchmark history](knowledge/reference/mssr-jev-confidence-run-history.md)."
+      }
+    ]
+  },
+  "evaluations": {
+    "q1": {
+      "status": "selected",
+      "targetRangeExact": true,
+      "choiceRaw": 0.97,
+      "selectedOptionProbability": 0.97,
+      "evidenceSufficiency": 0.53,
+      "blindSufficiency": "partial",
+      "reason": "Blind review found the excerpt explains why current evidence cannot support reliability/calibration claims but does not define evaluation acceptance criteria."
+    },
+    "q2": {
+      "status": "selected",
+      "targetRangeExact": true,
+      "choiceRaw": 0.39,
+      "selectedOptionProbability": 0.46,
+      "posthoc": true,
+      "reason": "Exact range states the documented next gate: owner-adjudicate disputed spans, then use a frozen project-grouped cohort with at least 30 independent labeled units and report distinct metric families."
+    },
+    "query1CandidatePool": {
+      "offered": 8,
+      "sameSourceRevisionPairs": 28,
+      "overlappingPairs": 12,
+      "nestedPairs": 12,
+      "exactRangePairs": 0,
+      "partialOverlapPairs": 0
+    },
+    "query2CandidatePool": {
+      "offered": 8,
+      "sameSourceRevisionPairs": 28,
+      "overlappingPairs": 12,
+      "nestedPairs": 12,
+      "exactRangePairs": 0,
+      "partialOverlapPairs": 0
+    }
+  },
+  "liveUsage": {
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "calls": 2,
+    "inputTokens": 3433,
+    "outputTokens": 254,
+    "providerReportedLatencyMs": 1594.7
+  },
+  "integrity": {
+    "exactFetchesPassed": 2,
+    "evidencePackCalls": 2,
+    "finalCombinedExactChars": 1163,
+    "citationsExact": true,
+    "sourceRevisionStable": true,
+    "canonicalRewriteAllowed": false,
+    "sourceMutation": false
+  },
+  "blindReview": {
+    "reviewer": "independent Luna agent",
+    "blindToScoresAndLabels": true,
+    "status": "partial",
+    "covers": [
+      "No owner-adjudicated gold units",
+      "No unexposed ready-to-use holdout",
+      "Repeated queries do not create independent sample size",
+      "Labels should be frozen and owner-adjudicated before Jev calls"
+    ],
+    "missing": [
+      "Evaluation metrics/analysis that would support a reliability claim",
+      "Numerical acceptance criteria for claiming calibration or reliable use"
+    ],
+    "overbreadth": "Some run-specific detail could be condensed.",
+    "notOwnerGold": true
+  },
+  "registryVsBridge": {
+    "registryProviderStatus": "unavailable",
+    "registryProviderError": "MCP error -32000: Connection closed",
+    "directBridgeSearchJevFetchEvidencePack": "all succeeded",
+    "bridgeServerVersion": "0.6.177",
+    "bridgeTunnelHealth": "live",
+    "bridgeTunnelReady": "ready",
+    "rootCause": "unassigned"
+  },
+  "decisions": {
+    "runtimeChanged": false,
+    "confidenceThresholdChanged": false,
+    "canonicalSourceChanged": false,
+    "automaticMergeEnabled": false,
+    "mainBranchMerged": false
+  }
+}

@@ -1,7 +1,7 @@
 # MSSR project state
 
 ## Current release
-MSSR 0.2.130 (package SHA-256 `35d3fe6d2e385efcb9e7bf2ae51490406088c5bbb32a8d2e9e4abc0e1a1a37e6`) is published on branch `codex/mssr-librarian-query-variants-0.2.112`; Bridge 0.6.176 now adopts the exact artifact. The MSSR branch is pushed but not yet merged to `origin/main`. Active Bridge code is `D:\Dev\bridge-mcp-mssr-0.2.112-query-variants`; runtime/data remain at `D:\Dev\bridge-mcp`.
+MSSR 0.2.130 (package SHA-256 `35d3fe6d2e385efcb9e7bf2ae51490406088c5bbb32a8d2e9e4abc0e1a1a37e6`) is published on branch `codex/mssr-librarian-query-variants-0.2.112`. Exact package adoption was verified on Bridge 0.6.176; the current Bridge server reports 0.6.177, but its installed MSSR package hash has not yet been re-read. The MSSR branch is pushed but not yet merged to `origin/main`. Active Bridge code is `D:\Dev\bridge-mcp-mssr-0.2.112-query-variants`; runtime/data remain at `D:\Dev\bridge-mcp`.
 
 ## Current Jev/Librarian evaluation
 
@@ -11,9 +11,9 @@ Jev/Librarian remains exploratory. Choice/Noul scores are uncalibrated; no confi
 
 **MSSR 0.2.129 prior candidate (2026-10-13):** Superseded for the active Bridge adoption by 0.2.130. Its selector/retrieval fixes and bounded run-history layout remain part of the development record; no separate 0.2.129 runtime is active.
 
-**MSSR 0.2.130 published candidate and Bridge adoption (2026-10-13):** Registers the already-versioned `git-worktree-reconciliation` skill with positive, continuation, and nearby single-branch-publication negative fixtures. All 277 routing fixtures, full `npm run verify`, and `npm run release:gate` pass. Canonical package `mauroprime-mssr-0.2.130.tgz` is 1,178,226 bytes with SHA-256 `35d3fe6d2e385efcb9e7bf2ae51490406088c5bbb32a8d2e9e4abc0e1a1a37e6`; source and Bridge-vendored artifact hashes match. The branch is pushed at commit `1e6068632689b1f5024fb2a3bcd926c78b6ac6f5` but is not yet merged to `origin/main`. Bridge 0.6.176 has adopted the exact package; its live 277-case routing audit reports 58/58 owned skills with positive and negative fixtures and no maintenance requirement. Package adoption made no live Jev calls.
+**MSSR 0.2.130 published candidate and Bridge adoption (2026-10-13):** Registers the already-versioned `git-worktree-reconciliation` skill with positive, continuation, and nearby single-branch-publication negative fixtures. All 277 routing fixtures, full `npm run verify`, and `npm run release:gate` pass. Canonical package `mauroprime-mssr-0.2.130.tgz` is 1,178,226 bytes with SHA-256 `35d3fe6d2e385efcb9e7bf2ae51490406088c5bbb32a8d2e9e4abc0e1a1a37e6`; source and Bridge-vendored artifact hashes matched at the 0.6.176 adoption readback. The branch is pushed at commit `1e6068632689b1f5024fb2a3bcd926c78b6ac6f5` but is not yet merged to `origin/main`. Bridge 0.6.176 adopted that exact package; its live 277-case routing audit reports 58/58 owned skills with positive and negative fixtures and no maintenance requirement. Current Bridge is 0.6.177, but its installed MSSR package hash has not been independently re-read. Package adoption made no live Jev calls.
 
-**Bridge provider observation (2026-10-13 01:56 UTC):** Direct Bridge HTTP remains healthy from the prior readback, while MSSR registry refresh reports the stdio provider closed with zero discovered tools. Two live Node stdio Bridge processes are descendants of separate Codex/MSSR launcher processes; this confirms multiple host sessions but does not identify why the registry connection closes. No process was started, stopped or restarted. Keep root cause unassigned pending provider/host-side diagnostics.
+**Live Bridge/provider observation (2026-10-13 05:39 UTC):** Bridge health reports server 0.6.177, runtime boot `9713db6e-b666-4bfa-ba2f-b945a6801cf5`, tunnel `200/live`, readiness `200/ready`, and 189 catalog tools. Direct Bridge search → Jev selection → exact fetch → evidence-pack succeeded. MSSR registry refresh still reports `mauroprime-bridge` unavailable (`-32000: Connection closed`, zero capabilities; provider `observedAt` remains 2026-10-11). The direct Bridge path is operational while registry discovery is stale/disconnected; root cause and the installed MSSR package hash on 0.6.177 remain unverified. No process was started, stopped or restarted.
 
 **Latest live cohort — Run65 (2026-10-13 UTC):** 12 source-only questions across six project families, metadata off. Search returned a containing range in 5/6 positives and the exact frozen target in 2/6. Jev selected evidence in all 5 positives with a non-empty pool and covered the full frozen span in 2/5; it abstained in 5/5 negatives that reached Jev, while one empty-pool negative was not called. Exact fetch, fingerprint, and evidence-pack checks passed 5/5. Blind review judged 4/5 selections sufficient and 1/5 partial; disagreements for CBAnimal and Workshop Media need project-owner adjudication. Ten live Jev 1.13.0 calls used 26,034 input and 2,215 output tokens with 8,963.7 ms aggregate provider-reported latency.
 
@@ -21,7 +21,9 @@ A separate post-hoc Spanish-variant check recovered the TypeScript Practice posi
 
 **Bridge integration smoke (2026-10-13):** A frozen one-query, source-derived (not owner-gold) smoke through Bridge 0.6.175 / MSSR 0.2.127 used `.mssr/PROJECT_STATE.md` and selected the exact `block-2` at line 8 from five lexical candidates. Jev 1.13.0 reported Choice 0.95, selected-option probability 0.96 and Noul 0.94; all remain uncalibrated. Exact fetch fingerprint and verbatim evidence-pack citation passed. Automatic application remained disabled. This verifies one known-family integration path only, not retrieval reliability or calibration. See the [smoke run](../experiments/jev-mssr-live/runs/mssr-bridge-integration-smoke-state-20261013T0137Z-v1/RUN-PLAN.json).
 
-**Next gate:** adjudicate the disputed Run65 spans and build a frozen project-grouped cohort with at least 30 independent labeled units; investigate the separate MSSR registry failure. Report retrieval, selection, sufficiency, overbreadth, abstention, and exact evidence integrity separately, and preserve human review before canonical writes. Detailed history remains in the [experiment ledger](../experiments/jev-mssr-live/README.md) and [benchmark history](knowledge/reference/mssr-jev-confidence-run-history.md).
+**Run 67 (2026-10-13):** On one already-exposed MSSR state document, Bridge search → live Jev → exact fetch → evidence-pack passed for a compound query and a post-hoc facet. The compound selection had Choice 0.97 but Noul sufficiency 0.53 and was judged partial by a blind Luna review; the lower-scored facet follow-up (Choice 0.39, selected-option probability 0.46) found the exact complementary gate. This is one dependent diagnostic cluster, not calibration evidence. No runtime, threshold, or merge policy changed. See the [Run 67 report](../experiments/jev-mssr-live/runs/mssr-bridge-jev-facet-readiness-20261013T0539Z-v1/RUN-REPORT.md).
+
+**Next gate:** adjudicate the disputed Run65 spans; freeze an owner-adjudicated, project-grouped cohort with at least 30 independent units; and set numerical risk/coverage and calibration acceptance criteria before confirmatory Jev calls. Thirty is a pilot floor, not proof of calibration. Report retrieval, selection, sufficiency, overbreadth, abstention, and exact evidence integrity separately, preserve human review before canonical writes, and continue diagnosing MSSR registry discovery without conflating it with the healthy direct Bridge path. Detailed history remains in the [experiment ledger](../experiments/jev-mssr-live/README.md) and [benchmark history](knowledge/reference/mssr-jev-confidence-run-history.md).
 
 ## Core skill package state
 
@@ -34,7 +36,7 @@ Core package state: five first-party MSSR operational skill roots. Semantic evid
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
 <!-- mssr-version:mssr.source=0.2.130 -->
-<!-- mssr-version:bridge.live=0.6.176 -->
+<!-- mssr-version:bridge.live=0.6.177 -->
 
 <!-- mssr-owner:semantic.consistency=mssr -->
 <!-- mssr-decision:adr.0006=r4-bf-portable -->
