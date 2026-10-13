@@ -46,6 +46,18 @@ assert.equal(found.advisoryOnly, true);
 assert.ok(found.results.some((item) => item.handle.rangeId === routing.id));
 assert.ok(found.results.every((item) => item.snippet.length <= 160 && !("text" in item.handle)));
 
+const metadataKeyLeakDoc = {
+  owner,
+  sourceRef: "docs/metadata-key-leak.md",
+  markdown: "# Guide\n\n## Routing\n\nUse the declared route for this task.\n",
+  searchableMetadata: { ownerTag: "searchablevalue" },
+  privacyClass: "project-metadata",
+};
+assert.equal(metadataKeyLeakDoc.markdown.toLowerCase().includes("revision"), false);
+assert.equal(searchMssrLibrarianEvidence({ documents: [metadataKeyLeakDoc], query: { query: "revision" } }).results.length, 0, "generated metadata keys must not create lexical matches");
+assert.equal(searchMssrLibrarianEvidence({ documents: [metadataKeyLeakDoc], query: { query: "ownerTag" } }).results.length, 0, "caller metadata keys are filters, not searchable content");
+assert.ok(searchMssrLibrarianEvidence({ documents: [metadataKeyLeakDoc], query: { query: "searchablevalue" } }).results.length > 0, "caller-supplied searchable metadata values remain searchable");
+
 const filtered = searchMssrLibrarianEvidence({ documents: [doc], query: { query: "routing", namespace: "document", kind: "section", metadata: { area: "routing" } } });
 assert.ok(filtered.results.some((item) => item.handle.rangeId === routing.id));
 assert.equal("records" in filtered.results[0].metadata, false, "catalog metadata is not copied into the retrieval result");

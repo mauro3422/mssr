@@ -43,7 +43,7 @@ const searchableMetadataSchema = z.record(z.string().regex(/^[A-Za-z][A-Za-z0-9_
   if (value && Object.keys(value).some((key) => /(?:prompt|transcript|raw|body|content|text|instruction|summary|description|note|secret|credential|private|reasoning|argument|token)/i.test(key))) {
     ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Searchable Librarian metadata key looks like free-form or sensitive content." });
   }
-});
+}).describe("Primitive metadata values are searchable lexical content; field names remain exact-filter labels and are not indexed.");
 export const mssrLibrarianRetrievalDocumentSchema = z.object({
   owner: z.string().trim().min(1).max(240),
   sourceRef: z.string().trim().min(1).max(1_000),
@@ -139,6 +139,12 @@ function sha256(value: string): string { return createHash("sha256").update(valu
 function normalizeRef(value: string): string { return value.trim().replace(/\\/g, "/").replace(/\/{2,}/g, "/"); }
 function foldSearchText(value: string): string { return foldMssrLibrarianSearchText(value); }
 function tokens(value: string): string[] { return [...new Set(foldSearchText(value).match(/[\p{L}\p{N}][\p{L}\p{N}_-]*/gu) ?? [])]; }
+function searchableMetadataValues(value: unknown): string {
+  if (value === null || value === undefined) return "";
+  if (Array.isArray(value)) return value.map(searchableMetadataValues).filter(Boolean).join(" ");
+  if (typeof value === "object") return Object.values(value as Record<string, unknown>).map(searchableMetadataValues).filter(Boolean).join(" ");
+  return String(value);
+}
 const LIBRARIAN_QUERY_STOPWORDS = new Set([
   "a", "about", "after", "all", "an", "and", "are", "as", "at", "be", "because", "before", "been", "being", "but", "by",
   "did", "do", "does", "for", "from", "had", "has", "have", "how", "if", "in", "into", "is", "many", "of", "on", "or",
@@ -678,7 +684,7 @@ export function searchMssrLibrarianEvidence(args: { documents: readonly MssrLibr
         || doc.searchableMetadata?.[key] === value
         || projectedAtoms.some((projected) => projected.terms.some((term) => term.field === key && term.value === value)))) continue;
       const body = canonicalMarkdown.slice(range.startOffset, range.endOffset);
-      const searchText = [range.title, range.path.join(" "), range.terms.join(" "), range.hint, body, JSON.stringify(metadata), JSON.stringify(doc.searchableMetadata ?? {}), projectedTerms.flatMap((term) => [term.value, ...term.tokens]).join(" ")].join(" ");
+      const searchText = [range.title, range.path.join(" "), range.terms.join(" "), range.hint, body, searchableMetadataValues(metadata), searchableMetadataValues(doc.searchableMetadata ?? {}), projectedTerms.flatMap((term) => [term.value, ...term.tokens]).join(" ")].join(" ");
       const searchTerms = new Set(tokens(searchText));
       const queryMatches = queryTermSets.flatMap((terms, queryIndex) => {
         const matchedTerms = terms.filter((term) => searchTerms.has(term));
