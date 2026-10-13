@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { createHash } from "node:crypto";
+import { fileURLToPath } from "node:url";
+import Ajv2020 from "ajv/dist/2020.js";
 
 const isSha256 = (value) => typeof value === "string" && /^[0-9a-f]{64}$/u.test(value);
 const sha256Text = (value) => createHash("sha256").update(Buffer.from(value, "utf8")).digest("hex");
@@ -62,7 +64,106 @@ async function optionalFileBytes(filePath) {
   }
 }
 
-export async function validateProjectContextManifestPreflight({ projectRoot }) {
+async function findProjectContextManifestSchemaPath(explicitPath) {
+  if (explicitPath) {
+    const resolved = path.resolve(explicitPath);
+    await fs.access(resolved);
+    return resolved;
+  }
+  const moduleDirectory = path.dirname(fileURLToPath(import.meta.url));
+  const packetCopy = path.join(moduleDirectory, "inputs", "project-context-manifest.schema.json");
+  try {
+    await fs.access(packetCopy);
+    return packetCopy;
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error;
+  }
+  let directory = moduleDirectory;
+  while (true) {
+    const candidate = path.join(directory, "config", "project-context", "project-context-manifest.schema.json");
+    try {
+      await fs.access(candidate);
+      return candidate;
+    } catch (error) {
+      if (error?.code !== "ENOENT") throw error;
+    }
+    const parent = path.dirname(directory);
+    if (parent === directory) break;
+    directory = parent;
+  }
+  throw new Error("Could not locate the repository-owned project-context-manifest.schema.json from the frozen runner.");
+}
+
+export async function fingerprintProjectContextManifestSchema({ schemaPath: explicitPath } = {}) {
+  const schemaPath = await findProjectContextManifestSchemaPath(explicitPath);
+  const schemaBytes = await fs.readFile(schemaPath);
+  return {
+    path: path.relative(path.dirname(fileURLToPath(import.meta.url)), schemaPath).split(path.sep).join("/"),
+    sha256: sha256Bytes(schemaBytes),
+    bytes: schemaBytes.length,
+  };
+}
+
+export async function fingerprintMssrPackageTree({ bridgeRoot, packagePath = "node_modules/@mauroprime/mssr" }) {
+  assert.ok(typeof bridgeRoot === "string" && bridgeRoot.trim().length > 0, "MSSR package fingerprint requires an explicit bridgeRoot");
+  assert.ok(typeof packagePath === "string" && packagePath.trim().length > 0 && !path.isAbsolute(packagePath),
+    "MSSR package path must be a non-empty relative path");
+  const normalizedPackagePath = packagePath.replace(/[\\]+/gu, "/").replace(/^\.\//u, "");
+  assert.ok(!normalizedPackagePath.split("/").some((segment) => segment === ".."), "MSSR package path cannot escape bridgeRoot");
+  const packageRoot = path.resolve(bridgeRoot, ...normalizedPackagePath.split("/"));
+  const packageRootReal = await fs.realpath(packageRoot);
+  const packageJsonBytes = await fs.readFile(path.join(packageRootReal, "package.json"));
+  const packageJson = JSON.parse(packageJsonBytes.toString("utf8"));
+  const files = [];
+
+  async function walk(directory, relativeDirectory = "") {
+    const entries = await fs.readdir(directory, { withFileTypes: true });
+    entries.sort((left, right) => left.name.localeCompare(right.name, "en"));
+    for (const entry of entries) {
+      const relativePath = relativeDirectory ? `${relativeDirectory}/${entry.name}` : entry.name;
+      const fullPath = path.join(directory, entry.name);
+      if (entry.isSymbolicLink()) throw new Error(`MSSR package tree contains unsupported symlink: ${relativePath}`);
+      if (entry.isDirectory()) {
+        await walk(fullPath, relativePath);
+      } else if (entry.isFile()) {
+        const bytes = await fs.readFile(fullPath);
+        files.push({ path: relativePath, sha256: sha256Bytes(bytes), bytes: bytes.length });
+      } else {
+        throw new Error(`MSSR package tree contains an unsupported filesystem entry: ${relativePath}`);
+      }
+    }
+  }
+
+  await walk(packageRootReal);
+  files.sort((left, right) => left.path.localeCompare(right.path, "en"));
+  const treeDigest = createHash("sha256");
+  for (const file of files) treeDigest.update(`${file.path}\0${file.sha256}\n`, "utf8");
+  return {
+    path: normalizedPackagePath,
+    version: typeof packageJson.version === "string" ? packageJson.version : null,
+    sha256: treeDigest.digest("hex"),
+    fileCount: files.length,
+    files,
+  };
+}
+
+export async function validateMssrPackageTreeFreeze({ bridgeRoot, source }) {
+  const expectedPath = source?.mssrPackagePath ?? "node_modules/@mauroprime/mssr";
+  assert.ok(isSha256(source?.mssrPackageTreeSha256), "manifest.source.mssrPackageTreeSha256 must freeze the installed MSSR package tree");
+  const actual = await fingerprintMssrPackageTree({ bridgeRoot, packagePath: expectedPath });
+  assert.equal(actual.sha256, source.mssrPackageTreeSha256, "installed @mauroprime/mssr package tree changed since freeze");
+  assert.equal(actual.version, source.mssrVersion, "installed @mauroprime/mssr package version differs from the frozen MSSR version");
+  return { path: actual.path, version: actual.version, sha256: actual.sha256, fileCount: actual.fileCount };
+}
+
+export async function assertFrozenProjectContextManifest({ projectRoot, sha256 }) {
+  const manifestPath = path.join(projectRoot, ".mssr", "project-context.json");
+  const actualBytes = await fs.readFile(manifestPath);
+  assert.equal(sha256Bytes(actualBytes), sha256, "canonical .mssr/project-context.json changed during the Librarian run");
+  return true;
+}
+
+export async function validateProjectContextManifestPreflight({ projectRoot, schemaPath: explicitSchemaPath }) {
   assert.ok(typeof projectRoot === "string" && projectRoot.trim().length > 0,
     "Librarian runs require an explicit projectRoot");
   const manifestPath = path.join(projectRoot, ".mssr", "project-context.json");
@@ -82,23 +183,23 @@ export async function validateProjectContextManifestPreflight({ projectRoot }) {
   } catch (error) {
     throw new Error("Canonical .mssr/project-context.json must contain valid JSON before a Librarian run.", { cause: error });
   }
-  assert.ok(manifest && typeof manifest === "object" && !Array.isArray(manifest),
-    "Canonical .mssr/project-context.json must be a JSON object");
-  assert.equal(manifest.schemaVersion, 1, "Canonical .mssr/project-context.json must use schemaVersion 1");
-  assert.ok(Object.keys(manifest).every((key) => ["schemaVersion", "core", "modules"].includes(key)),
-    "Canonical .mssr/project-context.json contains unsupported top-level fields");
-  assert.ok(manifest.core === undefined || Array.isArray(manifest.core),
-    "Canonical .mssr/project-context.json core must be an array when present");
-  assert.ok(manifest.modules === undefined || Array.isArray(manifest.modules),
-    "Canonical .mssr/project-context.json modules must be an array when present");
-  assert.ok((manifest.core?.length ?? 0) <= 16, "Canonical .mssr/project-context.json core exceeds 16 entries");
-  assert.ok((manifest.modules?.length ?? 0) <= 96, "Canonical .mssr/project-context.json modules exceeds 96 entries");
+  const schemaPath = await findProjectContextManifestSchemaPath(explicitSchemaPath);
+  const schemaBytes = await fs.readFile(schemaPath);
+  const schema = JSON.parse(schemaBytes.toString("utf8"));
+  const valid = new Ajv2020({ allErrors: true, strict: false }).compile(schema);
+  assert.ok(valid(manifest), `Canonical .mssr/project-context.json does not match its repository schema: ${JSON.stringify(valid.errors ?? [])}`);
+  const ids = new Set();
+  for (const entry of [...(manifest.core ?? []), ...(manifest.modules ?? [])]) {
+    assert.ok(!ids.has(entry.id), `Canonical .mssr/project-context.json contains duplicate project-context id: ${entry.id}`);
+    ids.add(entry.id);
+  }
 
   return {
     path: ".mssr/project-context.json",
-    status: "structural-preflight-passed",
+    status: "canonical-schema-preflight-passed",
     schemaVersion: manifest.schemaVersion,
     sha256: sha256Bytes(manifestBytes),
+    schemaSha256: sha256Bytes(schemaBytes),
   };
 }
 

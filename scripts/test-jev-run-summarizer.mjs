@@ -8,6 +8,8 @@ import { fileURLToPath } from "node:url";
 import { serializeJevEvidenceMetrics, serializeJevSelectionDiagnostics } from "../experiments/jev-mssr-live/selection-record.mjs";
 import {
   acquireExclusiveRunLock,
+  fingerprintMssrPackageTree,
+  fingerprintProjectContextManifestSchema,
   resolveMetadataRunConfig,
   validateEvidencePack,
   validateFetchResult,
@@ -553,6 +555,12 @@ try {
   const selectionRecordModule = path.join(root, "experiments/jev-mssr-live/selection-record.mjs");
   const runnerSupportModule = path.join(root, "experiments/jev-mssr-live/runner-support.mjs");
   await fs.mkdir(templateRun, { recursive: true });
+  await fs.mkdir(path.join(templateRun, "inputs"), { recursive: true });
+  const projectContextSchemaPath = path.join(root, "config/project-context/project-context-manifest.schema.json");
+  const templateSchemaPacketPath = path.join(templateRun, "inputs/project-context-manifest.schema.json");
+  await fs.copyFile(projectContextSchemaPath, templateSchemaPacketPath);
+  const templateSchemaBytes = await fs.readFile(templateSchemaPacketPath);
+  const templateSchemaFingerprint = await fingerprintProjectContextManifestSchema({ schemaPath: templateSchemaPacketPath });
   await fs.copyFile(runnerTemplate, templateRunnerPath);
   await fs.copyFile(selectionRecordModule, path.join(templateRun, "selection-record.mjs"));
   await fs.copyFile(runnerSupportModule, path.join(templateRun, "runner-support.mjs"));
@@ -569,8 +577,17 @@ try {
   await fs.writeFile(path.join(templateRun, "inputs/sources/source-01.md"), templateSourceBytes);
   const templateArtifactPath = "dist/tool-registry.js";
   const templateArtifactBytes = Buffer.from("fixture Bridge artifact\n");
+  const templateToolsArtifactPath = "dist/tools/mssr-semantic-evidence-tools.js";
+  const templateToolsArtifactBytes = Buffer.from("fixture MSSR tool module\n");
   await fs.mkdir(path.join(templateBridge, "dist"), { recursive: true });
   await fs.writeFile(path.join(templateBridge, templateArtifactPath), templateArtifactBytes);
+  await fs.mkdir(path.join(templateBridge, "dist/tools"), { recursive: true });
+  await fs.writeFile(path.join(templateBridge, templateToolsArtifactPath), templateToolsArtifactBytes);
+  const templatePackageRoot = path.join(templateBridge, "node_modules/@mauroprime/mssr");
+  await fs.mkdir(path.join(templatePackageRoot, "dist"), { recursive: true });
+  await fs.writeFile(path.join(templatePackageRoot, "package.json"), JSON.stringify({ name: "@mauroprime/mssr", version: "0.2.130" }), "utf8");
+  await fs.writeFile(path.join(templatePackageRoot, "dist/index.js"), "export const fixture = true;\n", "utf8");
+  const templatePackageFingerprint = await fingerprintMssrPackageTree({ bridgeRoot: templateBridge });
   const templateCasesBytes = await writeJson(path.join(templateRun, "inputs/cases.json"), {
     schemaVersion: 1,
     cases: [{ id: "template-smoke", sourceRef: "docs/one.md", query: "What is the exact fixture evidence?" }],
@@ -584,8 +601,13 @@ try {
     source: {
       bridgeRoot: templateBridge,
       bridgeVersion: "fixture-bridge",
-      mssrVersion: "fixture-mssr",
-      buildArtifacts: [{ path: templateArtifactPath, sha256: digest(templateArtifactBytes) }],
+      mssrVersion: "0.2.130",
+      mssrPackagePath: templatePackageFingerprint.path,
+      mssrPackageTreeSha256: templatePackageFingerprint.sha256,
+      buildArtifacts: [
+        { path: templateArtifactPath, sha256: digest(templateArtifactBytes) },
+        { path: templateToolsArtifactPath, sha256: digest(templateToolsArtifactBytes) },
+      ],
     },
     corpus: {
       projectRoot: templateProject,
@@ -602,6 +624,7 @@ try {
       selectionRecordSha256: digest(templateSelectionRecordBytes),
       runnerSupportSha256: digest(templateRunnerSupportBytes),
       casesSha256: digest(templateCasesBytes),
+      projectContextManifestSchemaSha256: templateSchemaFingerprint.sha256,
     },
     labels: { adjudication: "fixture-only", labelFileSha256: digest(templateLabelsBytes) },
   };
@@ -618,8 +641,10 @@ try {
   assert.equal(templateDryRunSummary.requestedCalls, 1);
   assert.equal(templateDryRunSummary.sourceDocuments, 1);
   assert.equal(templateDryRunSummary.labelsParsed, false);
-  assert.equal(templateDryRunSummary.canonicalProjectContextManifest.status, "structural-preflight-passed");
+  assert.equal(templateDryRunSummary.canonicalProjectContextManifest.status, "canonical-schema-preflight-passed");
   assert.equal(templateDryRunSummary.canonicalProjectContextManifest.sha256, digest(templateProjectContextBytes));
+  assert.equal(templateDryRunSummary.canonicalProjectContextManifest.schemaSha256, digest(templateSchemaBytes));
+  assert.equal(templateDryRunSummary.installedMssrPackage.sha256, templatePackageFingerprint.sha256);
   await assert.rejects(fs.access(path.join(templateRun, ".runner.lock")), "dry-run must release its exclusive packet lock");
   await assert.rejects(fs.access(path.join(templateRun, "records.jsonl")), "dry-run must not write provider records");
   const partialRecordsPath = path.join(templateRun, "records.jsonl");
@@ -645,6 +670,8 @@ try {
   await fs.mkdir(path.join(mockProject, ".mssr"), { recursive: true });
   await fs.mkdir(path.join(mockRun, "inputs/sources"), { recursive: true });
   await fs.mkdir(path.join(mockRun, "inputs/metadata"), { recursive: true });
+  await fs.copyFile(projectContextSchemaPath, path.join(mockRun, "inputs/project-context-manifest.schema.json"));
+  const mockSchemaFingerprint = await fingerprintProjectContextManifestSchema({ schemaPath: path.join(mockRun, "inputs/project-context-manifest.schema.json") });
   await fs.mkdir(path.join(mockBridge, "dist/tools"), { recursive: true });
   await fs.writeFile(path.join(mockProject, "docs/one.md"), mockSourceBytes);
   await fs.writeFile(path.join(mockRun, "inputs/sources/source-01.md"), mockSourceBytes);
@@ -696,6 +723,11 @@ try {
   ].join("\n");
   await fs.writeFile(path.join(mockBridge, "dist/tool-registry.js"), mockRegistrySource);
   await fs.writeFile(path.join(mockBridge, "dist/tools/mssr-semantic-evidence-tools.js"), mockToolsSource);
+  const mockPackageRoot = path.join(mockBridge, "node_modules/@mauroprime/mssr");
+  await fs.mkdir(path.join(mockPackageRoot, "dist"), { recursive: true });
+  await fs.writeFile(path.join(mockPackageRoot, "package.json"), JSON.stringify({ name: "@mauroprime/mssr", version: "0.2.130" }), "utf8");
+  await fs.writeFile(path.join(mockPackageRoot, "dist/index.js"), "export const fixture = true;\n", "utf8");
+  const mockPackageFingerprint = await fingerprintMssrPackageTree({ bridgeRoot: mockBridge });
   await fs.copyFile(runnerTemplate, mockRunnerPath);
   await fs.copyFile(selectionRecordModule, path.join(mockRun, "selection-record.mjs"));
   await fs.copyFile(runnerSupportModule, path.join(mockRun, "runner-support.mjs"));
@@ -776,7 +808,9 @@ try {
       bridgeRoot: mockBridge,
       bridgeVersion: "fixture-bridge",
       bridgeCommit: "fixture-commit",
-      mssrVersion: "fixture-mssr",
+      mssrVersion: "0.2.130",
+      mssrPackagePath: mockPackageFingerprint.path,
+      mssrPackageTreeSha256: mockPackageFingerprint.sha256,
       buildArtifacts: [
         { path: "dist/tool-registry.js", sha256: digest(mockRegistryBytes) },
         { path: "dist/tools/mssr-semantic-evidence-tools.js", sha256: digest(mockToolsBytes) },
@@ -801,6 +835,7 @@ try {
       selectionRecordSha256: digest(mockSelectionBytes),
       runnerSupportSha256: digest(mockSupportBytes),
       casesSha256: digest(mockCasesBytes),
+      projectContextManifestSchemaSha256: mockSchemaFingerprint.sha256,
     },
     labels: { adjudication: "fixture-only", labelFileSha256: digest(mockLabelsBytes) },
   };

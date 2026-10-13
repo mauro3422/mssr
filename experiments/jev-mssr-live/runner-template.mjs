@@ -8,7 +8,10 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { serializeJevEvidenceMetrics, serializeJevSelectionDiagnostics } from "./selection-record.mjs";
 import {
   acquireExclusiveRunLock,
+  assertFrozenProjectContextManifest,
+  fingerprintProjectContextManifestSchema,
   resolveMetadataRunConfig,
+  validateMssrPackageTreeFreeze,
   validateEvidencePack,
   validateFetchResult,
   validateLabelHeadingPaths,
@@ -27,7 +30,11 @@ const cases = JSON.parse(await fs.readFile(path.join(runDir, "inputs/cases.json"
 const bridgeRoot = manifest.source.bridgeRoot;
 const projectRoot = manifest.corpus.projectRoot;
 const metadataConfig = resolveMetadataRunConfig(manifest, cases);
-const projectContextManifest = await validateProjectContextManifestPreflight({ projectRoot });
+const projectContextSchemaPath = path.join(runDir, "inputs", "project-context-manifest.schema.json");
+const projectContextManifest = await validateProjectContextManifestPreflight({ projectRoot, schemaPath: projectContextSchemaPath });
+const projectContextSchema = await fingerprintProjectContextManifestSchema({ schemaPath: projectContextSchemaPath });
+assert.equal(projectContextManifest.schemaSha256, manifest.instrument.projectContextManifestSchemaSha256,
+  "project-context manifest schema changed after packet freeze");
 const frozenMetadataControls = await validateProjectContextMetadataControls({
   manifest,
   runDir,
@@ -52,6 +59,12 @@ assert.equal(await hashFile(path.join(runDir, "selection-record.mjs")), manifest
 assert.equal(await hashFile(path.join(runDir, "runner-support.mjs")), manifest.instrument.runnerSupportSha256);
 assert.equal(await hashFile(path.join(runDir, "inputs/cases.json")), manifest.instrument.casesSha256);
 assert.equal(await hashFile(path.join(runDir, "inputs/labels.json")), manifest.labels.labelFileSha256);
+assert.ok(Array.isArray(manifest.source.buildArtifacts), "manifest.source.buildArtifacts must enumerate imported Bridge artifacts");
+const artifactPaths = new Set(manifest.source.buildArtifacts.map((artifact) => artifact.path));
+for (const importedBridgePath of ["dist/tool-registry.js", "dist/tools/mssr-semantic-evidence-tools.js"]) {
+  assert.ok(artifactPaths.has(importedBridgePath), `manifest.source.buildArtifacts must freeze imported Bridge module: ${importedBridgePath}`);
+}
+const mssrPackageTree = await validateMssrPackageTreeFreeze({ bridgeRoot, source: manifest.source });
 for (const source of manifest.corpus.sources) {
   assert.equal(await hashFile(path.join(runDir, source.snapshotPath)), source.sha256, "snapshot changed: " + source.sourceRef);
   assert.equal(await hashFile(path.join(projectRoot, ...source.sourceRef.split("/"))), source.sha256, "source changed since freeze: " + source.sourceRef);
@@ -66,6 +79,8 @@ if (!allowNetwork) {
     requestedCalls: cases.length,
     requestedModel: manifest.provider.requestedModel,
     canonicalProjectContextManifest: projectContextManifest,
+    projectContextManifestSchema: projectContextSchema,
+    installedMssrPackage: mssrPackageTree,
     metadataControlFiles: frozenMetadataControls,
     sourceDocuments: manifest.corpus.sources.length,
     independentUnits: manifest.plan.independentUnit,
@@ -104,6 +119,13 @@ assert.ok(registry.has("mssr_librarian_search"));
 assert.ok(registry.has("mssr_librarian_jev_select"));
 assert.ok(registry.has("mssr_librarian_fetch"));
 assert.ok(registry.has("mssr_librarian_evidence_pack"));
+
+const callTool = async (name, args) => {
+  await assertFrozenProjectContextManifest({ projectRoot, sha256: projectContextManifest.sha256 });
+  const result = await registry.call(name, args);
+  await assertFrozenProjectContextManifest({ projectRoot, sha256: projectContextManifest.sha256 });
+  return result;
+};
 
 const appendJsonl = async (file, value) => fs.appendFile(path.join(runDir, file), json(value), "utf8");
 const records = [];
@@ -153,7 +175,7 @@ for (const testCase of cases) {
     evidencePack: null,
   };
   try {
-    const search = await registry.call("mssr_librarian_search", {
+    const search = await callTool("mssr_librarian_search", {
       projectRoot,
       sourceRefs: [testCase.sourceRef],
       metadataMode: metadataForCase.metadataMode,
@@ -193,7 +215,7 @@ for (const testCase of cases) {
         truthAuthority: false,
         verification: "unverified",
       }
-      : await registry.call("mssr_librarian_jev_select", {
+      : await callTool("mssr_librarian_jev_select", {
         projectRoot,
         sourceRefs: [testCase.sourceRef],
         query: testCase.query,
@@ -260,7 +282,7 @@ for (const testCase of cases) {
         && selectedHandle.endOffset <= frozenSourceText.length,
       "selected range offsets are outside the normalized frozen source snapshot");
       const expectedFetchText = frozenSourceText.slice(selectedHandle.startOffset, selectedHandle.endOffset);
-      const fetched = await registry.call("mssr_librarian_fetch", {
+      const fetched = await callTool("mssr_librarian_fetch", {
         projectRoot,
         handle: selectedHandle,
       });
@@ -284,7 +306,7 @@ for (const testCase of cases) {
         text: fetched.text ?? null,
       };
       assert.ok(fetchValidation.passed, `Fetch validation failed: ${fetchValidation.errors.join("; ")}`);
-      const pack = await registry.call("mssr_librarian_evidence_pack", {
+      const pack = await callTool("mssr_librarian_evidence_pack", {
         projectRoot,
         sourceRefs: [testCase.sourceRef],
         handles: [selectedHandle],
@@ -325,6 +347,7 @@ for (const testCase of cases) {
 for (const source of manifest.corpus.sources) {
   assert.equal(await hashFile(path.join(projectRoot, ...source.sourceRef.split("/"))), source.sha256, "source changed during run: " + source.sourceRef);
 }
+await assertFrozenProjectContextManifest({ projectRoot, sha256: projectContextManifest.sha256 });
 const finalMetadataControls = await validateProjectContextMetadataControls({
   manifest,
   runDir,
@@ -561,6 +584,8 @@ const summary = {
     metadataModes: [...new Set(cases.map((item) => metadataConfig.byCaseId.get(item.id).metadataMode))],
     metadataControlFiles: frozenMetadataControls,
     canonicalProjectContextManifest: projectContextManifest,
+    projectContextManifestSchema: projectContextSchema,
+    installedMssrPackage: mssrPackageTree,
     returnedModel: records.find((record) => record.returnedModel)?.returnedModel ?? null,
   },
 };
@@ -582,6 +607,8 @@ await fs.writeFile(path.join(runDir, "run-completion.json"), json({
   metadataModes: [...new Set(cases.map((item) => metadataConfig.byCaseId.get(item.id).metadataMode))],
   metadataControlFiles: frozenMetadataControls,
   canonicalProjectContextManifest: projectContextManifest,
+  projectContextManifestSchema: projectContextSchema,
+  installedMssrPackage: mssrPackageTree,
 }), "utf8");
 const fileList = [];
 async function walk(dir) {

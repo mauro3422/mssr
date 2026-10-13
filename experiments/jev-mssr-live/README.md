@@ -21,11 +21,21 @@ confidence-calibration evidence.
   reports missing values as a recording gap, not a provider abstention. Keep
   this score descriptive and uncalibrated.
 - For new live packets, copy runner-template.mjs, selection-record.mjs, and
-  runner-support.mjs into the run directory before freezing it. Record their
-  hashes as manifest.instrument.runnerSha256,
-  manifest.instrument.selectionRecordSha256, and
-  manifest.instrument.runnerSupportSha256; run the template without
-  --allow-network before any provider call. The shared serializer keeps
+  runner-support.mjs into the run directory before freezing it. Copy
+  `config/project-context/project-context-manifest.schema.json` to
+  `inputs/project-context-manifest.schema.json`. Record the runner hashes as
+  `manifest.instrument.runnerSha256`,
+  `manifest.instrument.selectionRecordSha256`, and
+  `manifest.instrument.runnerSupportSha256`; run the template without
+  `--allow-network` before any provider call. Run
+  `npm run fingerprint:jev-live-build -- <Bridge code root>` and copy its
+  `instrument.projectContextManifestSchemaSha256` into the packet manifest,
+  along with `source.mssrVersion`, `source.mssrPackagePath`, and
+  `source.mssrPackageTreeSha256`. Merge its two `source.buildArtifacts` entries
+  into the packet's existing list. This fingerprints the installed MSSR tree
+  that the imported Bridge tool actually resolves, including generated package
+  files; a tarball digest or `package.json` digest alone does not prove those
+  installed bytes match. The shared serializer keeps
   canonical evidenceSufficiency separate from a separately returned raw
   noul field. The support module validates one-to-one case/label IDs, exact
   label-to-source bindings, selected-range offsets and byte-for-byte text
@@ -53,11 +63,14 @@ confidence-calibration evidence.
   are not rewritten.
 - Every new runner invocation, including metadata-off dry runs, now requires a
   parseable canonical `.mssr/project-context.json` v1 envelope before any Jev
-  request. The preflight records its SHA-256 in the dry-run, request fingerprint,
-  request-start event and completion summary. It checks presence and the
-  top-level v1 shape; the Librarian remains the authority for full schema and
-  source validation. This gate prevents missing project initialization from
-  being misreported as a Jev abstention or provider result.
+  request. The preflight validates every entry against the repository-owned
+  JSON Schema and rejects duplicate IDs across `core` and `modules`. Freeze
+  that schema's SHA-256 in the packet manifest. The runner records the manifest
+  SHA in the dry-run, request fingerprint, request-start event and completion
+  summary, then rechecks it before and after every tool call and at run close.
+  A change aborts the run rather than attributing results to a stale manifest
+  revision. This gate prevents invalid project initialization or mixed context
+  revisions from being misreported as a Jev result.
 - Scoring keeps precise `acceptableRanges` separate from optional broader
   `relevantRanges`. An exact-range match is reported independently; a broader
   source section can count as a relevant answer only when its exact lines were

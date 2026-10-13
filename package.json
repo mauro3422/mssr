@@ -62,6 +62,7 @@
     "test:composed-librarian-experiment": "node scripts/test-composed-librarian-experiment.mjs",
     "test:jev-run-summarizer": "node scripts/test-jev-run-summarizer.mjs",
     "test:jev-live-runner-preflight": "node scripts/test-jev-live-runner-preflight.mjs",
+    "fingerprint:jev-live-build": "node scripts/fingerprint-jev-live-build.mjs",
     "test:librarian-evidence-pack": "node scripts/test-librarian-evidence-pack.mjs",
     "test:evidence-atom": "node scripts/test-evidence-atom.mjs",
     "test:librarian-coverage": "node scripts/test-librarian-coverage.mjs",
