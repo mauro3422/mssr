@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-live-sidecar-selector-pair-20261013T1102Z-v1",
+  "status": "prepared",
+  "evaluationClass": "posthoc-development-diagnostic",
+  "createdAt": "2026-10-13T11:02:18Z",
+  "question": "¿Qué etapas describe la sección de composición para combinar búsqueda tipo grep, selección de evidencia, compacción sin pérdida y armado de párrafos con citas?",
+  "sourceSnapshot": {
+    "projectRoot": "D:\\Dev\\mssr",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "commit": "f624be5b6603fb2e0ee7fdffc4d85ceb9fe75a9f",
+    "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+    "inputCopy": "inputs/source.md",
+    "sha256": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+    "targetRangeId": "heading-8",
+    "targetLines": [58, 77]
+  },
+  "exposure": {
+    "projectFamilyPreviouslyExposed": true,
+    "questionAndSourcePreviouslyExposed": true,
+    "ownerAdjudicated": false,
+    "holdout": false,
+    "confirmatory": false,
+    "labelsFile": "LABELS.json",
+    "labelsExposedToRequests": false
+  },
+  "arms": [
+    {
+      "armId": "lexical-off",
+      "metadataMode": "off",
+      "metadataFilter": null,
+      "maxResults": 20,
+      "candidateSetRule": "Use all exact candidate handles returned by the live Bridge Librarian search for this frozen source and query."
+    },
+    {
+      "armId": "sidecar-domain-filter",
+      "metadataMode": "project-context-librarian-sidecar",
+      "metadataFilter": {
+        "domain": "agent-orchestration"
+      },
+      "maxResults": 20,
+      "candidateSetRule": "Use all exact candidate handles returned by the live Bridge Librarian search for this frozen source and query."
+    }
+  ],
+  "measures": [
+    "candidate recall for the source-derived target range",
+    "candidate count and target rank",
+    "Jev selected/abstained disposition",
+    "selected range sufficiency and overbreadth by blind review",
+    "exact fetch and evidence-pack integrity",
+    "provider, model, tokens, and reported latency when exposed"
+  ],
+  "controls": {
+    "sameSourceBytes": true,
+    "sameQuestion": true,
+    "sameJevContract": true,
+    "confidenceThresholdChanged": false,
+    "canonicalWriteAllowed": false
+  },
+  "limitations": [
+    "One already-exposed MSSR document/query pair; not an independent unit or reliability estimate.",
+    "Expected range and facet labels are source-derived, not owner-adjudicated gold.",
+    "The sidecar arm intentionally adds an exact metadata filter; this compares the practical selector path, not a pure model-only A/B."
+  ]
+}

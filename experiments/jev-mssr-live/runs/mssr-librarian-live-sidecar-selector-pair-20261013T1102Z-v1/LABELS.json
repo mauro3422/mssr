@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-live-sidecar-selector-pair-20261013T1102Z-v1",
+  "ownerAdjudicated": false,
+  "gold": false,
+  "exposedToRequests": false,
+  "sourceDerivedOnly": true,
+  "queryId": "Q01",
+  "expectedDisposition": "answerable-from-source",
+  "expectedTarget": {
+    "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+    "rangeId": "heading-8",
+    "startLine": 58,
+    "endLine": 77,
+    "fingerprint": "b7faec4cd33612b70896fa7740d3669d667e2a7cf7f1a504d84c85a8907e6f5d"
+  },
+  "requiredFacets": [
+    "host performs bounded text/search retrieval and keeps provenance",
+    "deterministic code filters duplicates, permissions, paths, and revisions before Jev selection",
+    "Jev-guided structural compaction preserves original words rather than paraphrasing",
+    "a deterministic assembler can compose paragraphs while preserving source text and citations"
+  ],
+  "sidecarCandidateAssessment": {
+    "rangeId": "heading-9",
+    "startLine": 78,
+    "endLine": 211,
+    "expectedDisposition": "related-but-not-sufficient-for-all-facets"
+  }
+}

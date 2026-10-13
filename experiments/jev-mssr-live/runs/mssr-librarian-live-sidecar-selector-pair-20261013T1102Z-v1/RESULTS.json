@@ -1,0 +1,95 @@
+{
+  "runId": "mssr-librarian-live-sidecar-selector-pair-20261013T1102Z-v1",
+  "classification": "post-hoc-development-diagnostic",
+  "source": {
+    "commit": "f624be5b6603fb2e0ee7fdffc4d85ceb9fe75a9f",
+    "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+    "sha256": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469"
+  },
+  "question": "¿Qué etapas describe la sección de composición para combinar búsqueda tipo grep, selección de evidencia, compacción sin pérdida y armado de párrafos con citas?",
+  "arms": [
+    {
+      "mode": "lexical-off",
+      "searchCandidateCount": 20,
+      "targetSectionRank": 1,
+      "targetBlockRank": 2,
+      "jev": {
+        "status": "selected",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 0.42,
+        "evidenceSufficiency": 0.86,
+        "providerCalls": 1,
+        "elapsedMs": 663.9,
+        "usage": {
+          "inputTokens": 3969,
+          "outputTokens": 247
+        }
+      },
+      "selectedRange": {
+        "id": "block-20",
+        "lines": [
+          62,
+          66
+        ],
+        "fingerprint": "40248a3cc3c0f9ce2f5af10d5a7d6bb605a96a25f5da187d945534fadba63e7f"
+      },
+      "exactFetch": "passed",
+      "evidencePack": "passed"
+    },
+    {
+      "mode": "sidecar-domain-filter",
+      "filter": {
+        "domain": "agent-orchestration"
+      },
+      "searchCandidateCount": 1,
+      "metadataProjection": {
+        "declared": 4,
+        "projected": 1,
+        "omitted": 3
+      },
+      "targetIncluded": false,
+      "onlyCandidate": {
+        "id": "heading-9",
+        "title": "100 hipótesis de uso",
+        "lines": [
+          78,
+          211
+        ],
+        "fingerprint": "9197101e89eee91feea5862c14ac1ec29c4a0036eb0fbf9d1e744a8e18ab5c3469"
+      },
+      "jev": {
+        "status": "abstained",
+        "provider": "typesafe-jev",
+        "model": "jev-1.13.0",
+        "providerConfidence": 0.98,
+        "evidenceSufficiency": 0.04,
+        "providerCalls": 1,
+        "elapsedMs": 818.6,
+        "usage": {
+          "inputTokens": 722,
+          "outputTokens": 54
+        }
+      },
+      "exactFetch": "passed for sole candidate"
+    }
+  ],
+  "blindReview": {
+    "passageA": "direct-complete, covers all four facets, broader than question",
+    "passageB": "partial, clearly covers search and selection only, overbroad",
+    "reviewType": "model-assisted, not owner-gold"
+  },
+  "limits": [
+    "single previously exposed MSSR document",
+    "post-hoc query",
+    "provider scores uncalibrated",
+    "not a holdout or reliability estimate"
+  ],
+  "changes": {
+    "code": false,
+    "metadata": false,
+    "thresholds": false,
+    "runtime": false
+  },
+  "interpretation": "In this case sidecar filtering reduced the pool from 20 candidates to one and excluded the sufficient composition passage; Jev abstained on the retained partial passage."
+}
