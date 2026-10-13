@@ -1,0 +1,44 @@
+{
+  "runId": "myceliumfront-query-variant-ranking-implementation-20261013T152745Z-v1",
+  "createdAt": "2026-10-13T15:27:45Z",
+  "kind": "deterministic-librarian-query-ranking-implementation-replay",
+  "implementationVersion": "0.2.132",
+  "sourceRunId": "myceliumfront-retrieval-only-20261013141145Z-v1",
+  "source": {
+    "projectRevision": "6bc411943c80be6ef844e4b5ac6847ae57465926",
+    "queryPacketSha256": "00F58CB646A590050D9D370E8EE9D5A9EC0DBEE2D7D47C39B9E2EA60363DAA8D",
+    "sourceRefs": [
+      "README.md",
+      "ROADMAP.md",
+      "docs/ARCHITECTURE.md",
+      "docs/PROJECT_NOTES.md"
+    ],
+    "sourceHashes": {
+      "README.md": "C231C3619FC62049BD5ED301DF0E80A39658031D242B760ACF8DC0381177E208",
+      "ROADMAP.md": "094E423BA73E5E0C022BC9393225E65314AC43BE1C732E9F534F8D68D0E743F9",
+      "docs/ARCHITECTURE.md": "E86150020CDF7E183B54925667F74B6E8FA54383E710A88979BA99F1E054A3F6",
+      "docs/PROJECT_NOTES.md": "89FFF1330B53F1059CE76E72C94425025955470A7D2C007415499E688026F2EF"
+    }
+  },
+  "cohort": {
+    "cases": 9,
+    "queryArms": 18,
+    "independentProjectClusters": 1,
+    "ownerAdjudication": "pending",
+    "anchors": "provisional",
+    "focusCaseIds": ["P04", "P05", "D02", "D03", "D05", "D06", "D10", "D13", "U03"],
+    "exposure": "nine previously exposed English top-8 misses; this is a deterministic implementation replay"
+  },
+  "policies": [
+    "primary-only",
+    "primary-first",
+    "round-robin"
+  ],
+  "caps": [8, 16],
+  "exclusions": [
+    "No Jev/provider calls",
+    "No confidence or answer-quality scoring",
+    "No production ranking change",
+    "No canonical source writes"
+  ]
+}

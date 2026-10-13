@@ -1,0 +1,3839 @@
+{
+  "schemaVersion": "mssr-librarian-query-ranking-replay-v1",
+  "runId": "myceliumfront-query-variant-ranking-implementation-20261013T152745Z-v1",
+  "sourceRunId": "myceliumfront-retrieval-only-20261013141145Z-v1",
+  "implementationVersion": "0.2.132",
+  "implementationBuildReceipt": {
+    "schema": "mssr-build-receipt-v1",
+    "id": "mssr-build:sha256:d2e0b8c819880737",
+    "version": "0.2.132",
+    "files": 127,
+    "bytes": 1470229
+  },
+  "sourceRevision": "6bc411943c80be6ef844e4b5ac6847ae57465926",
+  "verifiedQueryPacketSha256": "00F58CB646A590050D9D370E8EE9D5A9EC0DBEE2D7D47C39B9E2EA60363DAA8D",
+  "verifiedSourceHashes": {
+    "README.md": "C231C3619FC62049BD5ED301DF0E80A39658031D242B760ACF8DC0381177E208",
+    "ROADMAP.md": "094E423BA73E5E0C022BC9393225E65314AC43BE1C732E9F534F8D68D0E743F9",
+    "docs/ARCHITECTURE.md": "E86150020CDF7E183B54925667F74B6E8FA54383E710A88979BA99F1E054A3F6",
+    "docs/PROJECT_NOTES.md": "89FFF1330B53F1059CE76E72C94425025955470A7D2C007415499E688026F2EF"
+  },
+  "cohort": {
+    "cases": 9,
+    "queryArms": 18,
+    "projectClusters": 1,
+    "ownerAdjudication": "pending",
+    "anchors": "provisional",
+    "priorSearchExposure": true
+  },
+  "method": "Deterministic replay of nine previously exposed English top-8 misses in both primary-language directions, using primary-only, primary-first, and implemented round-robin. Each query returns top 16 once; top-8 metrics are derived by slicing the same ranked list. No Jev/provider calls.",
+  "summaries": [
+    {
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "cases": 9,
+      "nonempty": 9,
+      "anyAnchorOverlap": 9,
+      "fullAnchorContained": 9,
+      "exactAnchorRange": 3,
+      "rescuedByVariant": 0,
+      "lostPrimaryAnchor": 0,
+      "truncated": 9,
+      "meanFirstOverlapRank": 1.556
+    },
+    {
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "cases": 9,
+      "nonempty": 9,
+      "anyAnchorOverlap": 9,
+      "fullAnchorContained": 9,
+      "exactAnchorRange": 3,
+      "rescuedByVariant": 0,
+      "lostPrimaryAnchor": 0,
+      "truncated": 9,
+      "meanFirstOverlapRank": 1.556
+    },
+    {
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "cases": 9,
+      "nonempty": 9,
+      "anyAnchorOverlap": 9,
+      "fullAnchorContained": 9,
+      "exactAnchorRange": 2,
+      "rescuedByVariant": 0,
+      "lostPrimaryAnchor": 0,
+      "truncated": 9,
+      "meanFirstOverlapRank": 1.667
+    },
+    {
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "cases": 9,
+      "nonempty": 9,
+      "anyAnchorOverlap": 9,
+      "fullAnchorContained": 9,
+      "exactAnchorRange": 5,
+      "rescuedByVariant": 0,
+      "lostPrimaryAnchor": 0,
+      "truncated": 9,
+      "meanFirstOverlapRank": 1.556
+    },
+    {
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "cases": 9,
+      "nonempty": 9,
+      "anyAnchorOverlap": 9,
+      "fullAnchorContained": 9,
+      "exactAnchorRange": 5,
+      "rescuedByVariant": 0,
+      "lostPrimaryAnchor": 0,
+      "truncated": 9,
+      "meanFirstOverlapRank": 1.556
+    },
+    {
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "cases": 9,
+      "nonempty": 9,
+      "anyAnchorOverlap": 9,
+      "fullAnchorContained": 9,
+      "exactAnchorRange": 5,
+      "rescuedByVariant": 0,
+      "lostPrimaryAnchor": 0,
+      "truncated": 9,
+      "meanFirstOverlapRank": 1.667
+    },
+    {
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "cases": 9,
+      "nonempty": 3,
+      "anyAnchorOverlap": 0,
+      "fullAnchorContained": 0,
+      "exactAnchorRange": 0,
+      "rescuedByVariant": 0,
+      "lostPrimaryAnchor": 0,
+      "truncated": 1,
+      "meanFirstOverlapRank": null
+    },
+    {
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "cases": 9,
+      "nonempty": 9,
+      "anyAnchorOverlap": 8,
+      "fullAnchorContained": 8,
+      "exactAnchorRange": 2,
+      "rescuedByVariant": 8,
+      "lostPrimaryAnchor": 0,
+      "truncated": 9,
+      "meanFirstOverlapRank": 2.375
+    },
+    {
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "cases": 9,
+      "nonempty": 9,
+      "anyAnchorOverlap": 9,
+      "fullAnchorContained": 9,
+      "exactAnchorRange": 2,
+      "rescuedByVariant": 9,
+      "lostPrimaryAnchor": 0,
+      "truncated": 9,
+      "meanFirstOverlapRank": 2
+    },
+    {
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "cases": 9,
+      "nonempty": 3,
+      "anyAnchorOverlap": 1,
+      "fullAnchorContained": 1,
+      "exactAnchorRange": 0,
+      "rescuedByVariant": 0,
+      "lostPrimaryAnchor": 0,
+      "truncated": 1,
+      "meanFirstOverlapRank": 10
+    },
+    {
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "cases": 9,
+      "nonempty": 9,
+      "anyAnchorOverlap": 9,
+      "fullAnchorContained": 9,
+      "exactAnchorRange": 5,
+      "rescuedByVariant": 8,
+      "lostPrimaryAnchor": 0,
+      "truncated": 9,
+      "meanFirstOverlapRank": 3.222
+    },
+    {
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "cases": 9,
+      "nonempty": 9,
+      "anyAnchorOverlap": 9,
+      "fullAnchorContained": 9,
+      "exactAnchorRange": 5,
+      "rescuedByVariant": 8,
+      "lostPrimaryAnchor": 0,
+      "truncated": 9,
+      "meanFirstOverlapRank": 2
+    }
+  ],
+  "findings": {
+    "englishPrimaryTop8": {
+      "primaryOnlyOverlap": 0,
+      "primaryFirstOverlap": 8,
+      "roundRobinOverlap": 9,
+      "primaryFirstExactRanges": 2,
+      "roundRobinExactRanges": 2,
+      "d10PrimaryFirstTop16Rank": 10,
+      "d10RoundRobinTop16Rank": 4
+    },
+    "spanishPrimaryTop8": {
+      "primaryFirstOverlap": 9,
+      "roundRobinOverlap": 9,
+      "primaryFirstExactRanges": 3,
+      "roundRobinExactRanges": 2,
+      "primaryFirstLostAnchors": 0,
+      "roundRobinLostAnchors": 0
+    }
+  },
+  "caseObservations": [
+    {
+      "caseId": "P04",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "P04",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.6,
+            "matchedTerms": [
+              "forma",
+              "entidad",
+              "construida"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "P04",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.6,
+            "matchedTerms": [
+              "forma",
+              "entidad",
+              "construida"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "P04",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "P04",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.6,
+            "matchedTerms": [
+              "forma",
+              "entidad",
+              "construida"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "P04",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.6,
+            "matchedTerms": [
+              "forma",
+              "entidad",
+              "construida"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "P04",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "returned": 0,
+      "truncated": false,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": false,
+      "fullAnchorContained": false,
+      "exactAnchor": false,
+      "firstOverlapRank": null,
+      "firstOverlap": null,
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "P04",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.6,
+            "matchedTerms": [
+              "forma",
+              "entidad",
+              "construida"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "P04",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.6,
+            "matchedTerms": [
+              "forma",
+              "entidad",
+              "construida"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1,
+        "rankingQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "P04",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "returned": 0,
+      "truncated": false,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": false,
+      "fullAnchorContained": false,
+      "exactAnchor": false,
+      "firstOverlapRank": null,
+      "firstOverlap": null,
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "P04",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.6,
+            "matchedTerms": [
+              "forma",
+              "entidad",
+              "construida"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "P04",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.6,
+            "matchedTerms": [
+              "forma",
+              "entidad",
+              "construida"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1,
+        "rankingQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "P05",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 2,
+      "firstOverlap": {
+        "rank": 2,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "P05",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 2,
+      "firstOverlap": {
+        "rank": 2,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.666667,
+            "matchedTerms": [
+              "cuatro",
+              "puertos",
+              "logicos",
+              "planta"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "P05",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 3,
+      "firstOverlap": {
+        "rank": 3,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.666667,
+            "matchedTerms": [
+              "cuatro",
+              "puertos",
+              "logicos",
+              "planta"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "P05",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 2,
+      "firstOverlap": {
+        "rank": 2,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "P05",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 2,
+      "firstOverlap": {
+        "rank": 2,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.666667,
+            "matchedTerms": [
+              "cuatro",
+              "puertos",
+              "logicos",
+              "planta"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "P05",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 3,
+      "firstOverlap": {
+        "rank": 3,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.666667,
+            "matchedTerms": [
+              "cuatro",
+              "puertos",
+              "logicos",
+              "planta"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "P05",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "returned": 3,
+      "truncated": false,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": false,
+      "fullAnchorContained": false,
+      "exactAnchor": false,
+      "firstOverlapRank": null,
+      "firstOverlap": null,
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "P05",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 5,
+      "firstOverlap": {
+        "rank": 5,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.666667,
+            "matchedTerms": [
+              "cuatro",
+              "puertos",
+              "logicos",
+              "planta"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "P05",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 4,
+      "firstOverlap": {
+        "rank": 4,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.666667,
+            "matchedTerms": [
+              "cuatro",
+              "puertos",
+              "logicos",
+              "planta"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1,
+        "rankingQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "P05",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "returned": 3,
+      "truncated": false,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": false,
+      "fullAnchorContained": false,
+      "exactAnchor": false,
+      "firstOverlapRank": null,
+      "firstOverlap": null,
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "P05",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 5,
+      "firstOverlap": {
+        "rank": 5,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.666667,
+            "matchedTerms": [
+              "cuatro",
+              "puertos",
+              "logicos",
+              "planta"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "P05",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 4,
+      "firstOverlap": {
+        "rank": 4,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.666667,
+            "matchedTerms": [
+              "cuatro",
+              "puertos",
+              "logicos",
+              "planta"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1,
+        "rankingQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D02",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D02",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.875,
+            "matchedTerms": [
+              "ya",
+              "estan",
+              "crecimiento",
+              "biologico",
+              "avanzado",
+              "variaciones",
+              "especie"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D02",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.875,
+            "matchedTerms": [
+              "ya",
+              "estan",
+              "crecimiento",
+              "biologico",
+              "avanzado",
+              "variaciones",
+              "especie"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D02",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D02",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.875,
+            "matchedTerms": [
+              "ya",
+              "estan",
+              "crecimiento",
+              "biologico",
+              "avanzado",
+              "variaciones",
+              "especie"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D02",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.875,
+            "matchedTerms": [
+              "ya",
+              "estan",
+              "crecimiento",
+              "biologico",
+              "avanzado",
+              "variaciones",
+              "especie"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D02",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "returned": 5,
+      "truncated": false,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": false,
+      "fullAnchorContained": false,
+      "exactAnchor": false,
+      "firstOverlapRank": null,
+      "firstOverlap": null,
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D02",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 6,
+      "firstOverlap": {
+        "rank": 6,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.875,
+            "matchedTerms": [
+              "ya",
+              "estan",
+              "crecimiento",
+              "biologico",
+              "avanzado",
+              "variaciones",
+              "especie"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D02",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 2,
+      "firstOverlap": {
+        "rank": 2,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.875,
+            "matchedTerms": [
+              "ya",
+              "estan",
+              "crecimiento",
+              "biologico",
+              "avanzado",
+              "variaciones",
+              "especie"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1,
+        "rankingQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D02",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "returned": 5,
+      "truncated": false,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": false,
+      "fullAnchorContained": false,
+      "exactAnchor": false,
+      "firstOverlapRank": null,
+      "firstOverlap": null,
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D02",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 6,
+      "firstOverlap": {
+        "rank": 6,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.875,
+            "matchedTerms": [
+              "ya",
+              "estan",
+              "crecimiento",
+              "biologico",
+              "avanzado",
+              "variaciones",
+              "especie"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D02",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 2,
+      "firstOverlap": {
+        "rank": 2,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.875,
+            "matchedTerms": [
+              "ya",
+              "estan",
+              "crecimiento",
+              "biologico",
+              "avanzado",
+              "variaciones",
+              "especie"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1,
+        "rankingQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D03",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 19,
+        "endLine": 53
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D03",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 19,
+        "endLine": 53,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.857143,
+            "matchedTerms": [
+              "constructor",
+              "ya",
+              "busca",
+              "automaticamente",
+              "entre",
+              "nodos"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D03",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 19,
+        "endLine": 53,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.857143,
+            "matchedTerms": [
+              "constructor",
+              "ya",
+              "busca",
+              "automaticamente",
+              "entre",
+              "nodos"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D03",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 19,
+        "endLine": 53
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D03",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 19,
+        "endLine": 53,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.857143,
+            "matchedTerms": [
+              "constructor",
+              "ya",
+              "busca",
+              "automaticamente",
+              "entre",
+              "nodos"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D03",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 19,
+        "endLine": 53,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.857143,
+            "matchedTerms": [
+              "constructor",
+              "ya",
+              "busca",
+              "automaticamente",
+              "entre",
+              "nodos"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D03",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "returned": 0,
+      "truncated": false,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": false,
+      "fullAnchorContained": false,
+      "exactAnchor": false,
+      "firstOverlapRank": null,
+      "firstOverlap": null,
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D03",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 19,
+        "endLine": 53,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.857143,
+            "matchedTerms": [
+              "constructor",
+              "ya",
+              "busca",
+              "automaticamente",
+              "entre",
+              "nodos"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D03",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 19,
+        "endLine": 53,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.857143,
+            "matchedTerms": [
+              "constructor",
+              "ya",
+              "busca",
+              "automaticamente",
+              "entre",
+              "nodos"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1,
+        "rankingQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D03",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "returned": 0,
+      "truncated": false,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": false,
+      "fullAnchorContained": false,
+      "exactAnchor": false,
+      "firstOverlapRank": null,
+      "firstOverlap": null,
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D03",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 19,
+        "endLine": 53,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.857143,
+            "matchedTerms": [
+              "constructor",
+              "ya",
+              "busca",
+              "automaticamente",
+              "entre",
+              "nodos"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D03",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 19,
+        "endLine": 53,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.857143,
+            "matchedTerms": [
+              "constructor",
+              "ya",
+              "busca",
+              "automaticamente",
+              "entre",
+              "nodos"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1,
+        "rankingQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D05",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D05",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.75,
+            "matchedTerms": [
+              "guardan",
+              "entre",
+              "sesiones"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D05",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.75,
+            "matchedTerms": [
+              "guardan",
+              "entre",
+              "sesiones"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D05",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D05",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.75,
+            "matchedTerms": [
+              "guardan",
+              "entre",
+              "sesiones"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D05",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.75,
+            "matchedTerms": [
+              "guardan",
+              "entre",
+              "sesiones"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D05",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "returned": 0,
+      "truncated": false,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": false,
+      "fullAnchorContained": false,
+      "exactAnchor": false,
+      "firstOverlapRank": null,
+      "firstOverlap": null,
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D05",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.75,
+            "matchedTerms": [
+              "guardan",
+              "entre",
+              "sesiones"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D05",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.75,
+            "matchedTerms": [
+              "guardan",
+              "entre",
+              "sesiones"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1,
+        "rankingQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D05",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "returned": 0,
+      "truncated": false,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": false,
+      "fullAnchorContained": false,
+      "exactAnchor": false,
+      "firstOverlapRank": null,
+      "firstOverlap": null,
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D05",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.75,
+            "matchedTerms": [
+              "guardan",
+              "entre",
+              "sesiones"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D05",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "docs/ARCHITECTURE.md",
+        "startLine": 1,
+        "endLine": 328,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.75,
+            "matchedTerms": [
+              "guardan",
+              "entre",
+              "sesiones"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1,
+        "rankingQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D06",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D06",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.666667,
+            "matchedTerms": [
+              "puede",
+              "ya",
+              "superficies",
+              "materiales"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D06",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.666667,
+            "matchedTerms": [
+              "puede",
+              "ya",
+              "superficies",
+              "materiales"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D06",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D06",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.666667,
+            "matchedTerms": [
+              "puede",
+              "ya",
+              "superficies",
+              "materiales"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D06",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.666667,
+            "matchedTerms": [
+              "puede",
+              "ya",
+              "superficies",
+              "materiales"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D06",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "returned": 0,
+      "truncated": false,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": false,
+      "fullAnchorContained": false,
+      "exactAnchor": false,
+      "firstOverlapRank": null,
+      "firstOverlap": null,
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D06",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.666667,
+            "matchedTerms": [
+              "puede",
+              "ya",
+              "superficies",
+              "materiales"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D06",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.666667,
+            "matchedTerms": [
+              "puede",
+              "ya",
+              "superficies",
+              "materiales"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1,
+        "rankingQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D06",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "returned": 0,
+      "truncated": false,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": false,
+      "fullAnchorContained": false,
+      "exactAnchor": false,
+      "firstOverlapRank": null,
+      "firstOverlap": null,
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D06",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.666667,
+            "matchedTerms": [
+              "puede",
+              "ya",
+              "superficies",
+              "materiales"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D06",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.666667,
+            "matchedTerms": [
+              "puede",
+              "ya",
+              "superficies",
+              "materiales"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1,
+        "rankingQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D10",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 3,
+      "firstOverlap": {
+        "rank": 3,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 208,
+        "endLine": 432
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D10",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 3,
+      "firstOverlap": {
+        "rank": 3,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 208,
+        "endLine": 432,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.375,
+            "matchedTerms": [
+              "ruta",
+              "fase",
+              "8"
+            ]
+          },
+          {
+            "queryIndex": 1,
+            "score": 0.285714,
+            "matchedTerms": [
+              "roadmap",
+              "8"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D10",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 3,
+      "firstOverlap": {
+        "rank": 3,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 208,
+        "endLine": 432,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.375,
+            "matchedTerms": [
+              "ruta",
+              "fase",
+              "8"
+            ]
+          },
+          {
+            "queryIndex": 1,
+            "score": 0.285714,
+            "matchedTerms": [
+              "roadmap",
+              "8"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D10",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 3,
+      "firstOverlap": {
+        "rank": 3,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 208,
+        "endLine": 432
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D10",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 3,
+      "firstOverlap": {
+        "rank": 3,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 208,
+        "endLine": 432,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.375,
+            "matchedTerms": [
+              "ruta",
+              "fase",
+              "8"
+            ]
+          },
+          {
+            "queryIndex": 1,
+            "score": 0.285714,
+            "matchedTerms": [
+              "roadmap",
+              "8"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D10",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 3,
+      "firstOverlap": {
+        "rank": 3,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 208,
+        "endLine": 432,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.375,
+            "matchedTerms": [
+              "ruta",
+              "fase",
+              "8"
+            ]
+          },
+          {
+            "queryIndex": 1,
+            "score": 0.285714,
+            "matchedTerms": [
+              "roadmap",
+              "8"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D10",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": false,
+      "fullAnchorContained": false,
+      "exactAnchor": false,
+      "firstOverlapRank": null,
+      "firstOverlap": null,
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D10",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": false,
+      "fullAnchorContained": false,
+      "exactAnchor": false,
+      "firstOverlapRank": null,
+      "firstOverlap": null,
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D10",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 4,
+      "firstOverlap": {
+        "rank": 4,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 208,
+        "endLine": 432,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.285714,
+            "matchedTerms": [
+              "roadmap",
+              "8"
+            ]
+          },
+          {
+            "queryIndex": 1,
+            "score": 0.375,
+            "matchedTerms": [
+              "ruta",
+              "fase",
+              "8"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D10",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 10,
+      "firstOverlap": {
+        "rank": 10,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 208,
+        "endLine": 432
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D10",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 10,
+      "firstOverlap": {
+        "rank": 10,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 208,
+        "endLine": 432,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.285714,
+            "matchedTerms": [
+              "roadmap",
+              "8"
+            ]
+          },
+          {
+            "queryIndex": 1,
+            "score": 0.375,
+            "matchedTerms": [
+              "ruta",
+              "fase",
+              "8"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D10",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 4,
+      "firstOverlap": {
+        "rank": 4,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "ROADMAP.md",
+        "startLine": 208,
+        "endLine": 432,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.285714,
+            "matchedTerms": [
+              "roadmap",
+              "8"
+            ]
+          },
+          {
+            "queryIndex": 1,
+            "score": 0.375,
+            "matchedTerms": [
+              "ruta",
+              "fase",
+              "8"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 1
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D13",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D13",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.857143,
+            "matchedTerms": [
+              "rutas",
+              "alternativas",
+              "ya",
+              "forman",
+              "parte",
+              "implementado"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D13",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.857143,
+            "matchedTerms": [
+              "rutas",
+              "alternativas",
+              "ya",
+              "forman",
+              "parte",
+              "implementado"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D13",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D13",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.857143,
+            "matchedTerms": [
+              "rutas",
+              "alternativas",
+              "ya",
+              "forman",
+              "parte",
+              "implementado"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D13",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.857143,
+            "matchedTerms": [
+              "rutas",
+              "alternativas",
+              "ya",
+              "forman",
+              "parte",
+              "implementado"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "D13",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "returned": 0,
+      "truncated": false,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": false,
+      "fullAnchorContained": false,
+      "exactAnchor": false,
+      "firstOverlapRank": null,
+      "firstOverlap": null,
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D13",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.857143,
+            "matchedTerms": [
+              "rutas",
+              "alternativas",
+              "ya",
+              "forman",
+              "parte",
+              "implementado"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D13",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.857143,
+            "matchedTerms": [
+              "rutas",
+              "alternativas",
+              "ya",
+              "forman",
+              "parte",
+              "implementado"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1,
+        "rankingQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D13",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "returned": 0,
+      "truncated": false,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": false,
+      "fullAnchorContained": false,
+      "exactAnchor": false,
+      "firstOverlapRank": null,
+      "firstOverlap": null,
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D13",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.857143,
+            "matchedTerms": [
+              "rutas",
+              "alternativas",
+              "ya",
+              "forman",
+              "parte",
+              "implementado"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "D13",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 1,
+      "firstOverlap": {
+        "rank": 1,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.857143,
+            "matchedTerms": [
+              "rutas",
+              "alternativas",
+              "ya",
+              "forman",
+              "parte",
+              "implementado"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1,
+        "rankingQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "U03",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 3,
+      "firstOverlap": {
+        "rank": 3,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "U03",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 3,
+      "firstOverlap": {
+        "rank": 3,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.4,
+            "matchedTerms": [
+              "esporas",
+              "conexion"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "U03",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 3,
+      "firstOverlap": {
+        "rank": 3,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.4,
+            "matchedTerms": [
+              "esporas",
+              "conexion"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "U03",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 3,
+      "firstOverlap": {
+        "rank": 3,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "U03",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 3,
+      "firstOverlap": {
+        "rank": 3,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.4,
+            "matchedTerms": [
+              "esporas",
+              "conexion"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "U03",
+      "primaryLanguage": "es",
+      "variantLanguage": "en",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": true,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 3,
+      "firstOverlap": {
+        "rank": 3,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 0,
+            "score": 0.4,
+            "matchedTerms": [
+              "esporas",
+              "conexion"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 0,
+        "rankingQueryIndex": 0
+      },
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": true
+    },
+    {
+      "caseId": "U03",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-only",
+      "returned": 0,
+      "truncated": false,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": false,
+      "fullAnchorContained": false,
+      "exactAnchor": false,
+      "firstOverlapRank": null,
+      "firstOverlap": null,
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "U03",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "primary-first",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 3,
+      "firstOverlap": {
+        "rank": 3,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.4,
+            "matchedTerms": [
+              "esporas",
+              "conexion"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "U03",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 8,
+      "policy": "round-robin",
+      "returned": 8,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 3,
+      "firstOverlap": {
+        "rank": 3,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.4,
+            "matchedTerms": [
+              "esporas",
+              "conexion"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1,
+        "rankingQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "U03",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-only",
+      "returned": 0,
+      "truncated": false,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": false,
+      "fullAnchorContained": false,
+      "exactAnchor": false,
+      "firstOverlapRank": null,
+      "firstOverlap": null,
+      "rescuedByVariant": false,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "U03",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "primary-first",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 3,
+      "firstOverlap": {
+        "rank": 3,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.4,
+            "matchedTerms": [
+              "esporas",
+              "conexion"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    },
+    {
+      "caseId": "U03",
+      "primaryLanguage": "en",
+      "variantLanguage": "es",
+      "maxResults": 16,
+      "policy": "round-robin",
+      "returned": 16,
+      "truncated": true,
+      "baselineAnchorOverlap": false,
+      "anyOverlap": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstOverlapRank": 3,
+      "firstOverlap": {
+        "rank": 3,
+        "exact": false,
+        "contains": true,
+        "sourceRef": "README.md",
+        "startLine": 1,
+        "endLine": 238,
+        "queryMatches": [
+          {
+            "queryIndex": 1,
+            "score": 0.4,
+            "matchedTerms": [
+              "esporas",
+              "conexion"
+            ]
+          }
+        ],
+        "scoreQueryIndex": 1,
+        "rankingQueryIndex": 1
+      },
+      "rescuedByVariant": true,
+      "lostPrimaryAnchor": false,
+      "primarySearchTruncated": false
+    }
+  ]
+}

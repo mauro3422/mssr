@@ -22,9 +22,11 @@ The 2026-10-10 cross-repository development sample put a bilingual target at
 rank 32/74 with Spanish primary, and rank 2/20 with an English primary plus the
 Spanish variant. A nested child missed one subclaim at Noul 0.97; sibling
 sections selected the parent containing both. These source-derived cases are
-not owner-gold or calibration. Keep primary-first until a grouped owner-labeled
-comparison supports change; test host language ordering and non-overlapping
-ranges, and track the dedicated connector schema drift separately.
+not owner-gold or calibration. Keep primary-first as the default. The opt-in
+round-robin mode may be compared on exposed development cases, but must not be
+enabled by default until a grouped owner-labeled comparison supports that
+change; test host language ordering and non-overlapping ranges, and track the
+dedicated connector schema drift separately.
 
 ## Run 35 evaluator invariant
 
