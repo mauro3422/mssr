@@ -559,7 +559,8 @@
       "actions": [
         "analyze",
         "review",
-        "verify"
+        "verify",
+        "recover"
       ],
       "artifacts": [
         "project",
@@ -613,44 +614,7 @@
       ],
       "required": false,
       "priority": 100,
-      "maxChars": 7000
-    },
-    {
-      "id": "mssr-jev-confidence-cross-project-follow-ups-20261012",
-      "kind": "context",
-      "description": "Detailed cross-project MSSR Jev/Librarian follow-ups from Runs 62–63 for historical recovery and continuation.",
-      "source": {
-        "path": ".mssr/knowledge/reference/mssr-jev-confidence-cross-project-follow-ups-20261012.md"
-      },
-      "topic": "reference",
-      "area": "semantic-evidence",
-      "stages": [
-        "resume"
-      ],
-      "domains": [
-        "coding",
-        "agent-orchestration",
-        "skill-system"
-      ],
-      "actions": [
-        "recover",
-        "review"
-      ],
-      "artifacts": [
-        "document",
-        "project"
-      ],
-      "needs": [
-        "integrity-verification",
-        "cross-agent"
-      ],
-      "signals": [
-        "uncertainty",
-        "conflicting-evidence"
-      ],
-      "required": false,
-      "priority": 75,
-      "maxChars": 3200
+      "maxChars": 9000
     },
     {
       "id": "mssr-jev-connected-diagnostics-20261011",

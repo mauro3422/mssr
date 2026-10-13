@@ -536,6 +536,32 @@
       ]
     },
     {
+      "moduleId": "mssr-jev-confidence-run-history",
+      "segments": [
+        {
+          "id": "measured-run-history",
+          "sections": [
+            "## What the MSSR runs establish"
+          ],
+          "baseline": true
+        },
+        {
+          "id": "cross-project-runs-62-63",
+          "sections": [
+            "## Cross-project live follow-ups: Runs 62–63 (2026-10-12)"
+          ],
+          "stages": [
+            "resume"
+          ],
+          "actions": [
+            "recover",
+            "review"
+          ],
+          "priority": 75
+        }
+      ]
+    },
+    {
       "moduleId": "mssr-jev-librarian-integration-handoff",
       "segments": [
         {

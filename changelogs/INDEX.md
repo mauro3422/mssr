@@ -21,6 +21,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.129](0.2.129.md) - keep Runs 62–63 in the existing run-history module as a resume-only segment, preserving benchmark context and the 48-module budget.
 - [0.2.128](0.2.128.md) - deduplicate Librarian top-k candidates, fail closed on ambiguous empty selector pools, and center excerpts with explicit query variants.
 - [0.2.127](0.2.127.md) - preserve up to 128 bounded context selections in a strict trace learning digest.
 - [0.2.126](0.2.126.md) - align Jev heading excerpts with canonical offsets across CRLF, CR, and mixed newline documents.
