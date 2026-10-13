@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-current-runtime-parity-20261013T164300Z-v1",
+  "createdAt": "2026-10-13T16:43:00Z",
+  "kind": "active-bridge-current-runtime-jev-librarian-parity-diagnostic",
+  "status": "completed",
+  "runtime": {
+    "bridgeVersion": "0.6.179",
+    "mssrVersion": "0.2.132",
+    "mssrArtifactSha256": "c5655a496f2cbb3d3e98cb505e5a6bc2b082333043676ea52506f9e4d892529f",
+    "runtimeBootId": "72bd1014-9946-4245-821d-8be20272c823",
+    "providerPath": "Bridge-owned web connector",
+    "provider": "TypeSafe Jev; returned model and scores captured per call"
+  },
+  "sourceCorpus": {
+    "repository": "MSSR",
+    "sourceRevision": "3217effade2460c13e42bff8871dd3f4844e1611",
+    "sourceRunId": "mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04",
+    "sourceRunManifestSha256": "27431a5e2cf97970cb1d551be95b1ddefdf6992c8cc91a61f161ecdbbd6c80ce",
+    "sourceRunChecksumsSha256": "9d2ca165f030e45524e0d6b884f9ae03b64d3e66de18d960da395b877685fb7d",
+    "originalCasesSha256": "d8058ec6e37d133a7a5945a7a857c1ee7d5fb3957159d02143fc03666f200408",
+    "originalLabelsSha256": "0f77ef179b54230bf5ed6bcfd9079396bfab7e737ce8fd7e1d216d9fb70a7627",
+    "originalAnalysisPlanSha256": "9d9f6edc51b7539f3f1e1a27e0e27c1614fb8e9275fd1ac967120936eeb08977",
+    "uniqueSourceRefs": 30,
+    "projectClusters": 1,
+    "exposure": "Previously queried live in Jev development runs; not a holdout",
+    "labelStatus": "source-derived, not owner-gold"
+  },
+  "inputs": {
+    "casesPath": "inputs/CASES.json",
+    "casesSha256": "1f4a121b3983174a0f53cd0d72caf21355f5341f06c5849f7acab0ca1c9aadf1",
+    "labelsPath": "inputs/LABELS.json",
+    "labelsSha256": "29376e2be31ea8496848a8412b45ee74d95d0d8f299102eebbfb054b719fe2cd"
+  },
+  "design": {
+    "unit": "one query per unique frozen sourceRef",
+    "caseCount": 30,
+    "search": {
+      "maxResults": 100,
+      "metadataMode": "off",
+      "ranking": "primary-first default"
+    },
+    "jev": "one live Choice call per case over exact candidate handles returned by Bridge-owned search; labels are not passed",
+    "postSelection": [
+      "exact Librarian fetch",
+      "verbatim evidence pack"
+    ],
+    "metrics": [
+      "search target present",
+      "selected exact/within/overlap accepted range",
+      "Choice probability/confidence when returned",
+      "evidence sufficiency/Noul when returned",
+      "abstention",
+      "exact fetch validity",
+      "evidence pack validity",
+      "overbreadth blind review",
+      "latency and usage when returned"
+    ],
+    "thresholds": null,
+    "calibrationClaim": false
+  },
+  "prePlanPilot": {
+    "caseIds": [
+      "cohort-01",
+      "cohort-02",
+      "cohort-03"
+    ],
+    "callsObserved": true,
+    "excludedFromThisRunRecords": true,
+    "note": "Exploratory schema/route pilot before the 30-case run manifest was created; the registered run reissues and captures all 30 cases."
+  },
+  "exclusions": [
+    "No owner-gold or protected-holdout claim",
+    "No confidence threshold tuning",
+    "No canonical writes",
+    "No contradiction, union, compaction or paragraph synthesis claims",
+    "No automatic merge authority"
+  ],
+  "outputs": {
+    "casesPath": "inputs/CASES.json",
+    "labelsPath": "inputs/LABELS.json",
+    "recordsPath": "records.jsonl",
+    "reportPath": "REPORT.md",
+    "completionPath": "run-completion.json",
+    "checksumPath": "SHA256SUMS.txt",
+    "executionErrataPath": "EXECUTION-ERRATA.md",
+    "blindReviewPath": "blind-review-results.json",
+    "blindReviewKeyPath": "blind-review-key.json"
+  },
+  "completedAt": "2026-10-13T17:07:27+00:00",
+  "completionSummary": {
+    "registeredRecords": 30,
+    "uniqueCases": 30,
+    "selected": 28,
+    "abstained": 2,
+    "calibrationClaim": false,
+    "holdout": false,
+    "canonicalWrites": false,
+    "automaticMerge": false
+  }
+}

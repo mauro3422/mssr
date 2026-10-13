@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "caseId": "cohort-01",
+      "sourceRef": "docs/skill-routing/AUDIT_CONTEXT_VALUE_2026-09-05.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+      "sourceSha256": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+      "query": "Según esta auditoría del 2026-09-05, ¿qué tres estados distingue la revisión proporcional?"
+    },
+    {
+      "caseId": "cohort-02",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_FIX_TERRA_2026-09-05.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-02.md",
+      "sourceSha256": "81dde4350efd5143be12bb83c24bf443f8527cfeeaecf9593a7a8ea74f09a742",
+      "query": "At the time of this handoff, why did release:gate stop?"
+    },
+    {
+      "caseId": "cohort-03",
+      "sourceRef": "docs/skill-routing/NEXT_TRIAL_AFTER_QUOTA_RESET.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-03.md",
+      "sourceSha256": "d6c17672a5bc1e6e742fa1993ebf1b59e92de0fd53a88a46011b74c4701f206d",
+      "query": "According to this dated trial note, what should serve as the next modeling trial's quality reference?"
+    },
+    {
+      "caseId": "cohort-04",
+      "sourceRef": "skills/mssr-agent-routing/SKILL.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-04.md",
+      "sourceSha256": "bfe11b49b8ab65890a53e552ea5eedd720860e4adfca4b859ef6a658c681f07a",
+      "query": "Which workflow-stage changes explicitly call for a re-plan?"
+    },
+    {
+      "caseId": "cohort-05",
+      "sourceRef": "skills/mssr-observability-maintenance/SKILL.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-05.md",
+      "sourceSha256": "55ba6f5ac9fdd1b284cb0cbabf26e04af4fe844f9813fad7da7c51d5ce24b29f",
+      "query": "Which evidence types are outside Bridge's observation boundary?"
+    },
+    {
+      "caseId": "cohort-06",
+      "sourceRef": "skills/shared-skill-governance/SKILL.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-06.md",
+      "sourceSha256": "e5b44602c0bba48ab21939eedf3f708f7253837ec03b1b301ead4bba9c5e2942",
+      "query": "Are runtime mounts editable skill sources or junctions?"
+    },
+    {
+      "caseId": "cohort-07",
+      "sourceRef": "skills/skill-maintenance-loop/SKILL.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-07.md",
+      "sourceSha256": "cbb6c999546804528df4375af6e94dc774330e25da05acf5c7cbab5b1e4c53de",
+      "query": "What disposition should maintenance record when no reusable change is found?"
+    },
+    {
+      "caseId": "cohort-08",
+      "sourceRef": "skills/skill-routing-maintainer/SKILL.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-08.md",
+      "sourceSha256": "d7ed4664327d02c755716ddefdf8b8b406141454febe4270c404279fc36ab93c",
+      "query": "Which three cases must be measured for a skill-context change?"
+    },
+    {
+      "caseId": "cohort-09",
+      "sourceRef": "changelogs/0.2.120.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-09.md",
+      "sourceSha256": "3794707b39a7ad27ec13d089f4682722248053ce309fe64e5e8a6556cda4fcfd",
+      "query": "What equality rule do metadata filters use in release 0.2.120?"
+    },
+    {
+      "caseId": "cohort-10",
+      "sourceRef": "changelogs/0.2.122.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-10.md",
+      "sourceSha256": "004782dbb9fbbfa835389e220ad2d00fcd53f301c86a2e1a749d00468db4dc89",
+      "query": "How many historical sections may a recovery query select from the handoff sidecar?"
+    },
+    {
+      "caseId": "cohort-11",
+      "sourceRef": "changelogs/0.2.123.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-11.md",
+      "sourceSha256": "04539e3d3809405f1c951b301c9d52284e5ef928ed8b74936d7c3a212a0cdbf9",
+      "query": "How does release 0.2.123 classify the 260-vs-larger excerpt comparison?"
+    },
+    {
+      "caseId": "cohort-12",
+      "sourceRef": "changelogs/0.2.126.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-12.md",
+      "sourceSha256": "7e333f0ab2f25a2de889bb125279ed9f529c6dfc870ad19d6d19b02a2c46feb8",
+      "query": "Which line-ending variants does the normalization regression cover?"
+    },
+    {
+      "caseId": "cohort-13",
+      "sourceRef": "docs/FIRST_PARTY_SKILLS_V1.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-13.md",
+      "sourceSha256": "cc312b8c50c10c2909bceb63472bc611a6516bd02f9f0073947ecfa1a12c3b4d",
+      "query": "What does test:first-party-skills verify?"
+    },
+    {
+      "caseId": "cohort-14",
+      "sourceRef": ".mssr/PROJECT_CONTEXT.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-14.md",
+      "sourceSha256": "b8c4f99b827a92035c90ced135e4e588518d8d32212241f1192aec982dd1feb6",
+      "query": "Who owns authorized observation and tool execution: portable MSSR or the host?"
+    },
+    {
+      "caseId": "cohort-15",
+      "sourceRef": ".mssr/PROJECT_MEMORY.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-15.md",
+      "sourceSha256": "9cfc87f0f51ecd888ea6a245536e53d0018736a06fe085522348d88661c858a7",
+      "query": "According to this memory entry, what independent properties justify creating a new skill?"
+    },
+    {
+      "caseId": "cohort-16",
+      "sourceRef": "docs/decisions/0001-context-plane-v1.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-16.md",
+      "sourceSha256": "96b7f4d707915a73feeb1e6b3f538b5882eaae11b8d9a4a85303a493b87bee0d",
+      "query": "Which freshness values may a context message or receipt declare?"
+    },
+    {
+      "caseId": "cohort-17",
+      "sourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-17.md",
+      "sourceSha256": "9d8e552c6797bce396de5ca821eecbf3c0e72506cc0093a493fe9bd847425b29",
+      "query": "What may the system do when evidence is insufficient for a corrective action?"
+    },
+    {
+      "caseId": "cohort-18",
+      "sourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-18.md",
+      "sourceSha256": "bb9072f74d6201ce650ec0c01f469dc940f434b64d929f824e31e5c2c0daf7a1",
+      "query": "Does the producer extract claims from prose or accept facts that are already structured?"
+    },
+    {
+      "caseId": "cohort-19",
+      "sourceRef": "docs/decisions/0005-architecture-impact-drift-links.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-19.md",
+      "sourceSha256": "b2b98c50c799a62f3c9aaf21762433c24780f26bf24ae82d346b359cc5f47872",
+      "query": "Can optional structural refinement introduce an architecture or implementation file that was not declared?"
+    },
+    {
+      "caseId": "cohort-20",
+      "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-20.md",
+      "sourceSha256": "6c8626f6d6cd8f8fca8ab53ef753ee14eafea4a45409d532bf839f08f3201649",
+      "query": "In Typed Claim IR, what does confidence represent?"
+    },
+    {
+      "caseId": "cohort-21",
+      "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-21.md",
+      "sourceSha256": "63bac32774a54bdb8e7a5dd6021fa3f0351e491c6475cbb6745ce4c1e05ed2ad",
+      "query": "What must be verified before a Document Surface body is materialized?"
+    },
+    {
+      "caseId": "cohort-22",
+      "sourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-22.md",
+      "sourceSha256": "8879d7ffb50f41d4c22565d9cb6554f7e1aab2cee4073a65139e0c5ebc0847c3",
+      "query": "Under what temporal conditions may supersedes compare claims across validity states or intervals?"
+    },
+    {
+      "caseId": "cohort-23",
+      "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-23.md",
+      "sourceSha256": "7c7600253d4919570540c1f7a9de41c75369121ac0a2203d2e8d5fcef3409b5e",
+      "query": "How must a host establish taskKey?"
+    },
+    {
+      "caseId": "cohort-24",
+      "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-24.md",
+      "sourceSha256": "a26f9bd1929710a0cb90130c161020017a074f689155921b5ba514f35440948f",
+      "query": "Does reserved-name precedence require loading every first-party skill on every task?"
+    },
+    {
+      "caseId": "cohort-25",
+      "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-25.md",
+      "sourceSha256": "a0ac67cd103114d0128ad52acddc1ab7d382ffcaff28792bc5f35f0830b6b9fe",
+      "query": "What default evidence thresholds apply to distilling a shadow rule?"
+    },
+    {
+      "caseId": "cohort-26",
+      "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-26.md",
+      "sourceSha256": "9a3ad7239843f468a72f7555668195670a767b1c9ebc7b0e2444047058837692",
+      "query": "Who owns the explicit write/manifest transaction after drift review?"
+    },
+    {
+      "caseId": "cohort-27",
+      "sourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-27.md",
+      "sourceSha256": "7909dfc3a2c16ac628491f779b4dcb949b8d77483fe9ad47df7e7ecb368295c0",
+      "query": "What action moves a document into the explicitly connected state?"
+    },
+    {
+      "caseId": "cohort-28",
+      "sourceRef": ".mssr/knowledge/architecture/project-context-plane.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-28.md",
+      "sourceSha256": "436da00e7f93de2891040c5177d6ccf0b02272fabfe63b5fef2d7c8fcc143ed7",
+      "query": "When may structural maintenance move content automatically?"
+    },
+    {
+      "caseId": "cohort-29",
+      "sourceRef": ".mssr/knowledge/architecture/document-surface-librarian-contract.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-29.md",
+      "sourceSha256": "52757e094bee8d03d2609eee822593e8dcbc285e8c50914ee31c45e5f270c563",
+      "query": "What coverage condition makes a negative catalog result valid for its scope?"
+    },
+    {
+      "caseId": "cohort-30",
+      "sourceRef": "docs/skill-routing/TESTING.md",
+      "sourceSnapshotRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-30.md",
+      "sourceSha256": "0ce399dcdf13797a09d52ac35b2e96dbd521d42456ade41872465397725564b4",
+      "query": "What must the Bridge regression prove about trace propagation when calls omit a manual ID?"
+    }
+  ]
+}

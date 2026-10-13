@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "reviewer": {
+    "model": "gpt-6-luna",
+    "method": "blinded model-assisted literal excerpt review",
+    "inputSha256": "1dab650686e2d935c1f94b95954259720b4f24f6815e90adc6032e96e5f9075e",
+    "inputCases": 28,
+    "sawExpectedLabelsOrScores": false
+  },
+  "results": [
+    {
+      "anonymousId": "review-01",
+      "support": "direct",
+      "scope": "acceptable",
+      "reason": "El fragmento dice que un negativo solo es válido si la cobertura relevante del ámbito está completa; fuera de eso, «missing instrumentation != evidence of absence»."
+    },
+    {
+      "anonymousId": "review-02",
+      "support": "direct",
+      "scope": "tight",
+      "reason": "Asigna al host la observación autorizada y la ejecución de herramientas; MSSR conserva contratos y planificación portables."
+    },
+    {
+      "anonymousId": "review-03",
+      "support": "direct",
+      "scope": "tight",
+      "reason": "Indica que el registro explícito de la fuente exacta —o una referencia explícita desde contexto seleccionable— la conecta."
+    },
+    {
+      "anonymousId": "review-04",
+      "support": "direct",
+      "scope": "acceptable",
+      "reason": "Enumera qué verifica el test y aclara que no publica ni crea un tarball; también describe el test del instalador."
+    },
+    {
+      "anonymousId": "review-05",
+      "support": "direct",
+      "scope": "acceptable",
+      "reason": "Dice que taskKey es evidencia explícita del host y excluye derivarlo de prosa, workflowKey, similitud, recencia o inactividad."
+    },
+    {
+      "anonymousId": "review-06",
+      "support": "direct",
+      "scope": "broad",
+      "reason": "Señala que el guante v2 aceptado debe servir como referencia de calidad; añade varias condiciones del ensayo que exceden la pregunta."
+    },
+    {
+      "anonymousId": "review-07",
+      "support": "direct",
+      "scope": "acceptable",
+      "reason": "Limita la automatización a movimientos de bytes exactos con límites seguros; el resto detalla una regla relacionada de selección."
+    },
+    {
+      "anonymousId": "review-08",
+      "support": "direct",
+      "scope": "acceptable",
+      "reason": "Aclara que el productor recibe hechos ya estructurados y no analiza prosa; agrega los tipos y campos de claim."
+    },
+    {
+      "anonymousId": "review-09",
+      "support": "direct",
+      "scope": "broad",
+      "reason": "La instrucción explícita es registrar `reviewed-none` si no hay cambio reutilizable; el fragmento también cubre el ciclo de mantenimiento y otros estados."
+    },
+    {
+      "anonymousId": "review-10",
+      "support": "direct",
+      "scope": "acceptable",
+      "reason": "Enumera herramientas nativas, renderizado final de UI, razonamiento privado y metadatos no expuestos como fuera del límite de observación."
+    },
+    {
+      "anonymousId": "review-11",
+      "support": "direct",
+      "scope": "tight",
+      "reason": "Dice expresamente que el refinamiento no puede introducir una arquitectura ni un archivo de implementación no declarado."
+    },
+    {
+      "anonymousId": "review-12",
+      "support": "direct",
+      "scope": "tight",
+      "reason": "Lista los valores de freshness permitidos."
+    },
+    {
+      "anonymousId": "review-13",
+      "support": "direct",
+      "scope": "acceptable",
+      "reason": "Describe una ruta sin ID manual que conserva y propaga la misma traza por cargas, dispatch, replan, verificación, persistencia y outcome; añade casos límite probados."
+    },
+    {
+      "anonymousId": "review-14",
+      "support": "partial",
+      "scope": "broad",
+      "reason": "Menciona replan al avanzar a verificación, persistencia y cierre, pero no especifica todos los cambios de etapa; incluye también otros motivos para replan."
+    },
+    {
+      "anonymousId": "review-15",
+      "support": "direct",
+      "scope": "acceptable",
+      "reason": "Permite que `supersedes` cruce estados e intervalos si ambos inicios son conocidos y el claim izquierdo no es anterior; añade contexto de otras relaciones."
+    },
+    {
+      "anonymousId": "review-16",
+      "support": "direct",
+      "scope": "tight",
+      "reason": "La línea enumera LF, CRLF, CR aislado, finales mixtos, Unicode suplementario y ausencia de salto final."
+    },
+    {
+      "anonymousId": "review-17",
+      "support": "direct",
+      "scope": "acceptable",
+      "reason": "Afirma que los montajes runtime son junctions y nunca copias editables; también explica dónde viven las fuentes."
+    },
+    {
+      "anonymousId": "review-18",
+      "support": "direct",
+      "scope": "tight",
+      "reason": "Permite una abstención explícita cuando la evidencia está vacía o es insuficiente, en lugar de inventar una corrección."
+    },
+    {
+      "anonymousId": "review-19",
+      "support": "direct",
+      "scope": "tight",
+      "reason": "Indica que el gate se detuvo porque CHANGELOG.md no identificaba 0.2.60 como release actual; también aclara que full verify no se ejecutó."
+    },
+    {
+      "anonymousId": "review-20",
+      "support": "direct",
+      "scope": "broad",
+      "reason": "Dice que el host posee la transacción explícita de escritura/manifiesto; el resto describe detectores, selección del dueño y límites de autoridad."
+    },
+    {
+      "anonymousId": "review-21",
+      "support": "direct",
+      "scope": "acceptable",
+      "reason": "Declara igualdad exacta de campo/valor y enumera las fuentes de metadatos donde puede coincidir."
+    },
+    {
+      "anonymousId": "review-22",
+      "support": "direct",
+      "scope": "tight",
+      "reason": "Exige activación, resultado, responsable y verificación independientes para crear una skill."
+    },
+    {
+      "anonymousId": "review-23",
+      "support": "partial",
+      "scope": "broad",
+      "reason": "Menciona comprobaciones de fuente, clasificación de privacidad, revisión, rango y fingerprint contra el snapshot, pero pregunta por materializar el body; no dice explícitamente que deba verificarse la misma revisión antes de materializarlo. Incluye detalles del selector y límites de tamaño."
+    },
+    {
+      "anonymousId": "review-24",
+      "support": "direct",
+      "scope": "tight",
+      "reason": "Fija un máximo de una sección histórica seleccionada por consulta de recuperación."
+    },
+    {
+      "anonymousId": "review-25",
+      "support": "direct",
+      "scope": "acceptable",
+      "reason": "Dice explícitamente que la precedencia del paquete no implica cargar todas las skills en cada tarea; la activación requerida o bajo demanda sigue explícita."
+    },
+    {
+      "anonymousId": "review-26",
+      "support": "direct",
+      "scope": "acceptable",
+      "reason": "Nombra los tres estados: `no-learning-change`, `insufficient-evidence` y `proposal-ready`; el fragmento contiene hallazgos adicionales."
+    },
+    {
+      "anonymousId": "review-27",
+      "support": "direct",
+      "scope": "acceptable",
+      "reason": "Clasifica la comparación como planificada únicamente y prohíbe cambios de score, umbral, valor predeterminado o runtime."
+    },
+    {
+      "anonymousId": "review-28",
+      "support": "unsupported",
+      "scope": "broad",
+      "reason": "El extracto clasifica niveles de evidencia, pero no define qué representa `confidence` en Typed Claim IR; queda sin cubrir el significado de confidence."
+    }
+  ],
+  "reportedSummary": {
+    "support": {
+      "direct": 25,
+      "partial": 2,
+      "unsupported": 1,
+      "ambiguous": 0
+    },
+    "scope": {
+      "tight": 8,
+      "acceptable": 13,
+      "broad": 7,
+      "excessive": 0
+    }
+  },
+  "recomputedFromItems": {
+    "count": 28,
+    "support": {
+      "direct": 25,
+      "partial": 2,
+      "unsupported": 1
+    },
+    "scope": {
+      "acceptable": 13,
+      "tight": 9,
+      "broad": 6
+    }
+  },
+  "summaryDiscrepancy": {
+    "field": "scope",
+    "reported": {
+      "tight": 8,
+      "acceptable": 13,
+      "broad": 7,
+      "excessive": 0
+    },
+    "recomputedFromItems": {
+      "acceptable": 13,
+      "tight": 9,
+      "broad": 6
+    },
+    "note": "The item-level review results sum to tight=9, acceptable=13, broad=6, while the reviewer-provided aggregate says tight=8, acceptable=13, broad=7. Per-item classifications are preserved; do not silently rewrite the reviewer output."
+  },
+  "caveat": "Exploratory model-assisted review, not owner ground truth; the reviewer received shuffled questions and exact selected excerpts without frozen labels or scores."
+}

@@ -1,0 +1,458 @@
+{
+  "schemaVersion": 1,
+  "sourceRunId": "mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04",
+  "sourceLabels": "author-created source-derived; not owner-gold",
+  "adjudication": "frozen before the original 2026-10-11 run; publicly exposed development cases",
+  "cases": [
+    {
+      "caseId": "cohort-01",
+      "sourceRef": "docs/skill-routing/AUDIT_CONTEXT_VALUE_2026-09-05.md",
+      "expectedHeading": "## Hallazgos y correcciones",
+      "expectedStartLine": 28,
+      "expectedEndLine": 37,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/skill-routing/AUDIT_CONTEXT_VALUE_2026-09-05.md",
+          "expectedHeading": "## Hallazgos y correcciones",
+          "startLine": 28,
+          "endLine": 37
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-02",
+      "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_FIX_TERRA_2026-09-05.md",
+      "expectedHeading": "## Exact remaining state",
+      "expectedStartLine": 14,
+      "expectedEndLine": 23,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/skill-routing/HANDOFF_CONTEXT_FIX_TERRA_2026-09-05.md",
+          "expectedHeading": "## Exact remaining state",
+          "startLine": 14,
+          "endLine": 23
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-03",
+      "sourceRef": "docs/skill-routing/NEXT_TRIAL_AFTER_QUOTA_RESET.md",
+      "expectedHeading": "# Next trial after quota reset",
+      "expectedStartLine": 1,
+      "expectedEndLine": 21,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/skill-routing/NEXT_TRIAL_AFTER_QUOTA_RESET.md",
+          "expectedHeading": "# Next trial after quota reset",
+          "startLine": 1,
+          "endLine": 21
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-04",
+      "sourceRef": "skills/mssr-agent-routing/SKILL.md",
+      "expectedHeading": "## Core protocol",
+      "expectedStartLine": 10,
+      "expectedEndLine": 36,
+      "acceptableRanges": [
+        {
+          "sourceRef": "skills/mssr-agent-routing/SKILL.md",
+          "expectedHeading": "## Core protocol",
+          "startLine": 10,
+          "endLine": 36
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-05",
+      "sourceRef": "skills/mssr-observability-maintenance/SKILL.md",
+      "expectedHeading": "## Core protocol",
+      "expectedStartLine": 11,
+      "expectedEndLine": 28,
+      "acceptableRanges": [
+        {
+          "sourceRef": "skills/mssr-observability-maintenance/SKILL.md",
+          "expectedHeading": "## Core protocol",
+          "startLine": 11,
+          "endLine": 28
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-06",
+      "sourceRef": "skills/shared-skill-governance/SKILL.md",
+      "expectedHeading": "## Core rules",
+      "expectedStartLine": 11,
+      "expectedEndLine": 28,
+      "acceptableRanges": [
+        {
+          "sourceRef": "skills/shared-skill-governance/SKILL.md",
+          "expectedHeading": "## Core rules",
+          "startLine": 11,
+          "endLine": 28
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-07",
+      "sourceRef": "skills/skill-maintenance-loop/SKILL.md",
+      "expectedHeading": "## Core loop",
+      "expectedStartLine": 11,
+      "expectedEndLine": 29,
+      "acceptableRanges": [
+        {
+          "sourceRef": "skills/skill-maintenance-loop/SKILL.md",
+          "expectedHeading": "## Core loop",
+          "startLine": 11,
+          "endLine": 29
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-08",
+      "sourceRef": "skills/skill-routing-maintainer/SKILL.md",
+      "expectedHeading": "## Core protocol",
+      "expectedStartLine": 11,
+      "expectedEndLine": 32,
+      "acceptableRanges": [
+        {
+          "sourceRef": "skills/skill-routing-maintainer/SKILL.md",
+          "expectedHeading": "## Core protocol",
+          "startLine": 11,
+          "endLine": 32
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-09",
+      "sourceRef": "changelogs/0.2.120.md",
+      "expectedHeading": "## Behavior",
+      "expectedStartLine": 11,
+      "expectedEndLine": 16,
+      "acceptableRanges": [
+        {
+          "sourceRef": "changelogs/0.2.120.md",
+          "expectedHeading": "## Behavior",
+          "startLine": 11,
+          "endLine": 16
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-10",
+      "sourceRef": "changelogs/0.2.122.md",
+      "expectedHeading": "## Behavior",
+      "expectedStartLine": 11,
+      "expectedEndLine": 18,
+      "acceptableRanges": [
+        {
+          "sourceRef": "changelogs/0.2.122.md",
+          "expectedHeading": "## Behavior",
+          "startLine": 11,
+          "endLine": 18
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-11",
+      "sourceRef": "changelogs/0.2.123.md",
+      "expectedHeading": "## Behavior",
+      "expectedStartLine": 11,
+      "expectedEndLine": 15,
+      "acceptableRanges": [
+        {
+          "sourceRef": "changelogs/0.2.123.md",
+          "expectedHeading": "## Behavior",
+          "startLine": 11,
+          "endLine": 15
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-12",
+      "sourceRef": "changelogs/0.2.126.md",
+      "expectedHeading": "## Behavior",
+      "expectedStartLine": 11,
+      "expectedEndLine": 18,
+      "acceptableRanges": [
+        {
+          "sourceRef": "changelogs/0.2.126.md",
+          "expectedHeading": "## Behavior",
+          "startLine": 11,
+          "endLine": 18
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-13",
+      "sourceRef": "docs/FIRST_PARTY_SKILLS_V1.md",
+      "expectedHeading": "## Package preflight",
+      "expectedStartLine": 23,
+      "expectedEndLine": 53,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/FIRST_PARTY_SKILLS_V1.md",
+          "expectedHeading": "## Package preflight",
+          "startLine": 23,
+          "endLine": 53
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-14",
+      "sourceRef": ".mssr/PROJECT_CONTEXT.md",
+      "expectedHeading": "## Architecture",
+      "expectedStartLine": 3,
+      "expectedEndLine": 14,
+      "acceptableRanges": [
+        {
+          "sourceRef": ".mssr/PROJECT_CONTEXT.md",
+          "expectedHeading": "## Architecture",
+          "startLine": 3,
+          "endLine": 14
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-15",
+      "sourceRef": ".mssr/PROJECT_MEMORY.md",
+      "expectedHeading": "## Skill capability/reference architecture",
+      "expectedStartLine": 174,
+      "expectedEndLine": 179,
+      "acceptableRanges": [
+        {
+          "sourceRef": ".mssr/PROJECT_MEMORY.md",
+          "expectedHeading": "## Skill capability/reference architecture",
+          "startLine": 174,
+          "endLine": 179
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-16",
+      "sourceRef": "docs/decisions/0001-context-plane-v1.md",
+      "expectedHeading": "### Message contract",
+      "expectedStartLine": 34,
+      "expectedEndLine": 53,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/decisions/0001-context-plane-v1.md",
+          "expectedHeading": "### Message contract",
+          "startLine": 34,
+          "endLine": 53
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-17",
+      "sourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+      "expectedHeading": "## Evidence-first rules",
+      "expectedStartLine": 32,
+      "expectedEndLine": 43,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/decisions/0003-evidence-first-consistency-recommendations.md",
+          "expectedHeading": "## Evidence-first rules",
+          "startLine": 32,
+          "endLine": 43
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-18",
+      "sourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+      "expectedHeading": "### Explicit semantic claim producers",
+      "expectedStartLine": 66,
+      "expectedEndLine": 73,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/decisions/0004-situation-model-project-knowledge.md",
+          "expectedHeading": "### Explicit semantic claim producers",
+          "startLine": 66,
+          "endLine": 73
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-19",
+      "sourceRef": "docs/decisions/0005-architecture-impact-drift-links.md",
+      "expectedHeading": "## C2f-C.5 boundary — Architecture Impact Map / Structural Fingerprints",
+      "expectedStartLine": 102,
+      "expectedEndLine": 114,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/decisions/0005-architecture-impact-drift-links.md",
+          "expectedHeading": "## C2f-C.5 boundary — Architecture Impact Map / Structural Fingerprints",
+          "startLine": 102,
+          "endLine": 114
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-20",
+      "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+      "expectedHeading": "## 2. Typed Claim IR",
+      "expectedStartLine": 86,
+      "expectedEndLine": 108,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/decisions/0006-deterministic-semantic-consistency.md",
+          "expectedHeading": "## 2. Typed Claim IR",
+          "startLine": 86,
+          "endLine": 108
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-21",
+      "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+      "expectedHeading": "### 3.1 Document Surface and the Librarian contract",
+      "expectedStartLine": 94,
+      "expectedEndLine": 113,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/decisions/0009-semantic-evidence-plane.md",
+          "expectedHeading": "### 3.1 Document Surface and the Librarian contract",
+          "startLine": 94,
+          "endLine": 113
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-22",
+      "sourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+      "expectedHeading": "# Semantic consistency relations and retrieval decision",
+      "expectedStartLine": 1,
+      "expectedEndLine": 9,
+      "acceptableRanges": [
+        {
+          "sourceRef": ".mssr/knowledge/decision/semantic-consistency-relations-retrieval.md",
+          "expectedHeading": "# Semantic consistency relations and retrieval decision",
+          "startLine": 1,
+          "endLine": 9
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-23",
+      "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+      "expectedHeading": "# Human-task identity decision",
+      "expectedStartLine": 1,
+      "expectedEndLine": 7,
+      "acceptableRanges": [
+        {
+          "sourceRef": ".mssr/knowledge/decision/human-task-identity.md",
+          "expectedHeading": "# Human-task identity decision",
+          "startLine": 1,
+          "endLine": 7
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-24",
+      "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+      "expectedHeading": "## First-party core skill direction",
+      "expectedStartLine": 1,
+      "expectedEndLine": 3,
+      "acceptableRanges": [
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-first-party-skill-direction.md",
+          "expectedHeading": "## First-party core skill direction",
+          "startLine": 1,
+          "endLine": 3
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-25",
+      "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+      "expectedHeading": "## Separate shadow-rule and fallback-preference gates",
+      "expectedStartLine": 5,
+      "expectedEndLine": 9,
+      "acceptableRanges": [
+        {
+          "sourceRef": ".mssr/knowledge/decision/mssr-learning-activation-decision.md",
+          "expectedHeading": "## Separate shadow-rule and fallback-preference gates",
+          "startLine": 5,
+          "endLine": 9
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-26",
+      "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+      "expectedHeading": "## Project knowledge drift review decision",
+      "expectedStartLine": 1,
+      "expectedEndLine": 7,
+      "acceptableRanges": [
+        {
+          "sourceRef": ".mssr/knowledge/operations/mssr-project-knowledge-drift-review.md",
+          "expectedHeading": "## Project knowledge drift review decision",
+          "startLine": 1,
+          "endLine": 7
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-27",
+      "sourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+      "expectedHeading": "## States",
+      "expectedStartLine": 5,
+      "expectedEndLine": 15,
+      "acceptableRanges": [
+        {
+          "sourceRef": ".mssr/knowledge/architecture/project-document-reference-lifecycle.md",
+          "expectedHeading": "## States",
+          "startLine": 5,
+          "endLine": 15
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-28",
+      "sourceRef": ".mssr/knowledge/architecture/project-context-plane.md",
+      "expectedHeading": "## Maintenance and write preflight",
+      "expectedStartLine": 9,
+      "expectedEndLine": 18,
+      "acceptableRanges": [
+        {
+          "sourceRef": ".mssr/knowledge/architecture/project-context-plane.md",
+          "expectedHeading": "## Maintenance and write preflight",
+          "startLine": 9,
+          "endLine": 18
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-29",
+      "sourceRef": ".mssr/knowledge/architecture/document-surface-librarian-contract.md",
+      "expectedHeading": "## Document Surface and Librarian contract",
+      "expectedStartLine": 7,
+      "expectedEndLine": 21,
+      "acceptableRanges": [
+        {
+          "sourceRef": ".mssr/knowledge/architecture/document-surface-librarian-contract.md",
+          "expectedHeading": "## Document Surface and Librarian contract",
+          "startLine": 7,
+          "endLine": 21
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-30",
+      "sourceRef": "docs/skill-routing/TESTING.md",
+      "expectedHeading": "## Benchmark de activación y resultado",
+      "expectedStartLine": 106,
+      "expectedEndLine": 121,
+      "acceptableRanges": [
+        {
+          "sourceRef": "docs/skill-routing/TESTING.md",
+          "expectedHeading": "## Benchmark de activación y resultado",
+          "startLine": 106,
+          "endLine": 121
+        }
+      ]
+    }
+  ]
+}

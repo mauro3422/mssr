@@ -1,0 +1,1176 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-current-runtime-parity-20261013T164300Z-v1",
+  "kind": "pre-plan-pilot-excluded-from-registered-analysis",
+  "createdAt": "2026-10-13T16:39:00Z",
+  "cases": [
+    "cohort-01",
+    "cohort-02",
+    "cohort-03"
+  ],
+  "sourceRunId": "mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04",
+  "searches": [
+    {
+      "caseId": "cohort-01",
+      "candidateCount": 41,
+      "truncated": false,
+      "candidates": [
+        {
+          "title": "Auditoría de utilidad y economía de contexto — 2026-09-05",
+          "score": 0.75,
+          "handle": {
+            "version": 1,
+            "id": "448d363fd8deb63d29d8545fc585696c0db8cfb4e7ee8808b2eacf6b15f59e89",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 71,
+            "startOffset": 0,
+            "endOffset": 9770,
+            "fingerprint": "2645a62a39cf393474ed4c486e156acc6dc5a9045800a8d9708e8c294622cb00",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Hallazgos y correcciones",
+          "score": 0.75,
+          "handle": {
+            "version": 1,
+            "id": "82b075aedab6b8030d4104021f69aa3085f87ba85005a0526432950d60593ca4",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "heading-5",
+            "rangeKind": "section",
+            "startLine": 28,
+            "endLine": 37,
+            "startOffset": 3752,
+            "endOffset": 5596,
+            "fingerprint": "422383a87d7ba109e3db50457c2be5b3ab1b1fd8486a6b90f9775e746d043285",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Hallazgos y correcciones",
+          "score": 0.75,
+          "handle": {
+            "version": 1,
+            "id": "a758e8626588027b382c242d9c6036ca6b3945448803b29d2e5089f0330e59bd",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-8",
+            "rangeKind": "block",
+            "startLine": 30,
+            "endLine": 34,
+            "startOffset": 3781,
+            "endOffset": 5445,
+            "fingerprint": "0e19fd9d318925d0cfc41f8e27bfe2a80ae9d25dfa870c2cc1f05ca2e1fcca26",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Hallazgos y correcciones",
+          "score": 0.625,
+          "handle": {
+            "version": 1,
+            "id": "6ba7df828a66b8d3cc3719febe56dbacc5c9c4322f280c45e12377a9363deb11",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-8/item-1",
+            "rangeKind": "block",
+            "startLine": 30,
+            "endLine": 30,
+            "startOffset": 3781,
+            "endOffset": 4171,
+            "fingerprint": "9cebf92d7dfc74d4fa36102cc13ce456f220f8eb55fbd183ef8ae25bd679e788",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Fuentes y alcance",
+          "score": 0.375,
+          "handle": {
+            "version": 1,
+            "id": "9fd6c9a9967cd69648db9f4f9bfcb13b380079c81dc1271c199f9e2c5f295cce",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "heading-3",
+            "rangeKind": "section",
+            "startLine": 9,
+            "endLine": 17,
+            "startOffset": 842,
+            "endOffset": 2213,
+            "fingerprint": "fb891e757b38265d5bafa7b527850d96de5db4867deb1a86268e35c933c0c937",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Fuentes y alcance",
+          "score": 0.375,
+          "handle": {
+            "version": 1,
+            "id": "311147b33d81ab6a056f9ea0c0ca5185de3f47d3a0960e524858229858381647",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 11,
+            "endLine": 16,
+            "startOffset": 864,
+            "endOffset": 2211,
+            "fingerprint": "56437149d3f67b48e6cf3bdbc454dc1f21f09199175886ce9046e0b2cacc58f0",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Fuentes y alcance",
+          "score": 0.375,
+          "handle": {
+            "version": 1,
+            "id": "8653aee143491ceedc5d1cbff11cd918f96fe99887836d2ad6fe621b434204e1",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-3/item-5",
+            "rangeKind": "block",
+            "startLine": 15,
+            "endLine": 15,
+            "startOffset": 1638,
+            "endOffset": 1961,
+            "fingerprint": "ca5a53f1fec235198462a854bfa9212aac3474e0371d192a15b88d77c1d9f7e3",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Hallazgos y correcciones",
+          "score": 0.375,
+          "handle": {
+            "version": 1,
+            "id": "c5a2fb32869638629b7761b6da0e072ea43848d7e4eb5a77c612667cc0a5bfb1",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-8/item-5",
+            "rangeKind": "block",
+            "startLine": 34,
+            "endLine": 34,
+            "startOffset": 5030,
+            "endOffset": 5445,
+            "fingerprint": "44dd991095605643563cf872f601040cc03d7e7dd7cc56078db91f5a47c15344",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Regresión de contexto",
+          "score": 0.375,
+          "handle": {
+            "version": 1,
+            "id": "eb4f591a0e848292378b8755f9ff62bf4eca7bc6a310e508b4faffc24cddf678",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "heading-6",
+            "rangeKind": "section",
+            "startLine": 38,
+            "endLine": 53,
+            "startOffset": 5596,
+            "endOffset": 6945,
+            "fingerprint": "aeb9ae6a585689784b7304ab7e7bcaa948d0a9aefc9c3a75dd95a86eefedf412",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Regresión de contexto",
+          "score": 0.375,
+          "handle": {
+            "version": 1,
+            "id": "16328940b644cf335f2e309c42c69c257a62b28431ad4331ec83ed9b41c38f4d",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-11",
+            "rangeKind": "block",
+            "startLine": 42,
+            "endLine": 50,
+            "startOffset": 5871,
+            "endOffset": 6670,
+            "fingerprint": "c958ecaad11f7ceb3c5e4e83530e828880040e111fab1358265be5a89c9f8414",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Prioridades siguientes",
+          "score": 0.375,
+          "handle": {
+            "version": 1,
+            "id": "db5df001afd70a769b655e15b545d6baf2f0cc4c5d43724d58053b24d23e737d",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "heading-8",
+            "rangeKind": "section",
+            "startLine": 64,
+            "endLine": 71,
+            "startOffset": 8537,
+            "endOffset": 9770,
+            "fingerprint": "d08d1202b8930f9149280fca86d211867eb69210233c7ef576d6cc616feb9eb2",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Prioridades siguientes",
+          "score": 0.375,
+          "handle": {
+            "version": 1,
+            "id": "bef524302a1bcda1ea675b9563c6629a18f59225409779e717e6cc24e457e724",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-17",
+            "rangeKind": "block",
+            "startLine": 66,
+            "endLine": 69,
+            "startOffset": 8564,
+            "endOffset": 9553,
+            "fingerprint": "6a47a10c3d7117f3d6fcffe8e554e8d09023ffaa48b40638d08867921a481e4c",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Prioridades siguientes",
+          "score": 0.375,
+          "handle": {
+            "version": 1,
+            "id": "a328f35a789d44d998f9ab120fc8a87138245ebc9a87eb10121a0a1b4e83c7d2",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-17/item-2",
+            "rangeKind": "block",
+            "startLine": 67,
+            "endLine": 67,
+            "startOffset": 8769,
+            "endOffset": 8923,
+            "fingerprint": "0c816dabddabc8a38041cd2ab53446b85e1faa235dfab8c26c03a5a437faab58",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Dictamen",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "7f171068c42de40c647bf577da1c3f4e25346ce60ac2045f155d0326e1d4a86f",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 3,
+            "endLine": 8,
+            "startOffset": 61,
+            "endOffset": 842,
+            "fingerprint": "3b16e5eed0cfd9e9f3bae90616faaeb29f8e7e043a4800a61b6ab0d2cb8e1452",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Dictamen",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "67f2af67c5f6ff5f11f420d51ccb404633609f01cc1a8f27251299f3476c4aa1",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 5,
+            "endLine": 5,
+            "startOffset": 74,
+            "endOffset": 525,
+            "fingerprint": "4861fa6b124a8ff45ea60ef2b793429bc52217656e2201343d7a14063a4db600",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Dictamen",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "f180b397bf05fb12a20f966bf3530dc00cdb6d017f63d234a1dd5aa98783bbc9",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 7,
+            "startOffset": 527,
+            "endOffset": 840,
+            "fingerprint": "09164a7ff36e38f671f7e04c7843eb154eef1ec292557841890bef1e19810689",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Fuentes y alcance",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "34d093d4d518c41967cdbcc4e84aad6099e69279c4eddf38e3327d6171a7a905",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-3/item-1",
+            "rangeKind": "block",
+            "startLine": 11,
+            "endLine": 11,
+            "startOffset": 864,
+            "endOffset": 1008,
+            "fingerprint": "390cc5c7ee2b82e342b20753edd7da91328c1466e750b3cb36975935b189f80a",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Fuentes y alcance",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "f5959d910440b7e9d64f24c24b2349f392d47a44287885755f686992b1ff5344",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-3/item-2",
+            "rangeKind": "block",
+            "startLine": 12,
+            "endLine": 12,
+            "startOffset": 1009,
+            "endOffset": 1118,
+            "fingerprint": "8177b1dd3a3e6a612d58f34eee0db128e27b949bee9987057fd2fdd7ca3bec72",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Fuentes y alcance",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "2f7b02f31932ae326e92712880288a8112ed35646eb9fac1f8f6e0588bab8918",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-3/item-3",
+            "rangeKind": "block",
+            "startLine": 13,
+            "endLine": 13,
+            "startOffset": 1119,
+            "endOffset": 1283,
+            "fingerprint": "7f50bf4b007ca7320dac675bef7b3023d25137c1297afc421a64dbf64c187a6e",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Fuentes y alcance",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "2d2125b1d06512c56bce09ee9cf857a18d5ca7d831b3b5966c3db7e6893a0058",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-3/item-4",
+            "rangeKind": "block",
+            "startLine": 14,
+            "endLine": 14,
+            "startOffset": 1284,
+            "endOffset": 1637,
+            "fingerprint": "0642439b493885b2293fcc80a64b266fc2d6e523df3870c57582154a7c6a0f03",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Fuentes y alcance",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "caaf1ffc3a3a8e6d0a475cc5944d0d8eed74b2df1cdd80b74ed787de8d937bc8",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-3/item-6",
+            "rangeKind": "block",
+            "startLine": 16,
+            "endLine": 16,
+            "startOffset": 1962,
+            "endOffset": 2211,
+            "fingerprint": "32ce681a1e4e298de96b8869f7feca7b8a71a511b0b5a35831b1bc3180b65085",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Qué permiten afirmar los números",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "f47bb080317bcd95cd83d40e2a335be8c74d77af0f84985bb59e34a444cf24e1",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "heading-4",
+            "rangeKind": "section",
+            "startLine": 18,
+            "endLine": 27,
+            "startOffset": 2213,
+            "endOffset": 3752,
+            "fingerprint": "92da5c2aefc6b08cc186817afdf7c5d1b0115cf5c18ab4c67e8c79d0258ee89f",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Qué permiten afirmar los números",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "0c12b64e5f2aa653f2906d9d5b370993ca85ebdea688049e78b8489cce50d38c",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-4",
+            "rangeKind": "block",
+            "startLine": 20,
+            "endLine": 20,
+            "startOffset": 2250,
+            "endOffset": 2550,
+            "fingerprint": "af99f71ea7c8ab71c9a3aef5e4e3858e00c5d963a58a85befa1a5867dbe1f512",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Qué permiten afirmar los números",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "474ff4ef22d0bd30e118aed0861c9701131fdc929e96fbd1f97daf67a4cc501b",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-5",
+            "rangeKind": "block",
+            "startLine": 22,
+            "endLine": 22,
+            "startOffset": 2552,
+            "endOffset": 2930,
+            "fingerprint": "fd629dc6b5c11e7fae846d596bb9b9acfb5956f9276b32d2d57f030a9ded580b",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Qué permiten afirmar los números",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "87b4b72b9413ecf66e3e3360e572dada0ead3696ed86ecd5ab86ac34934463ee",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-6",
+            "rangeKind": "block",
+            "startLine": 24,
+            "endLine": 24,
+            "startOffset": 2932,
+            "endOffset": 3374,
+            "fingerprint": "78d6684e34c323ccfc405d79f9f0d9b582dfc7f6122cc8aa71ad5920c5eb8a38",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Qué permiten afirmar los números",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "3e339a6523fecaf1a10b2d9213a0ad028d12a873f0d23aa198403881f6c1f694",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-7",
+            "rangeKind": "block",
+            "startLine": 26,
+            "endLine": 26,
+            "startOffset": 3376,
+            "endOffset": 3750,
+            "fingerprint": "c30912f7d3f3a854178a574d4b42024937d3590ad8c57ca131daecb39b2be958",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Hallazgos y correcciones",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "20c68afbff65a56828cf37af52b3d3b5644e681e0d9423c2da550e12f062a177",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-8/item-2",
+            "rangeKind": "block",
+            "startLine": 31,
+            "endLine": 31,
+            "startOffset": 4172,
+            "endOffset": 4500,
+            "fingerprint": "9b27dab4bc66b41eab166a79853c4a1c8729ffcd6a9d40bf023c52e0baf92ba2",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Hallazgos y correcciones",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "cbcf1f5d8fb0f9de89fddd70efb86ab1625bbaa54a2796cea8d8c94b77977247",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-8/item-3",
+            "rangeKind": "block",
+            "startLine": 32,
+            "endLine": 32,
+            "startOffset": 4501,
+            "endOffset": 4789,
+            "fingerprint": "e75fae4cfba9d513052cbd47811e875623adb6f8ef54d121c03532eed80e2f51",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Hallazgos y correcciones",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "2acabc3ac72b7e7ab4b0b7b7380295e4aff4b93934b62c682dbd97139e22ad4e",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-8/item-4",
+            "rangeKind": "block",
+            "startLine": 33,
+            "endLine": 33,
+            "startOffset": 4790,
+            "endOffset": 5029,
+            "fingerprint": "260380245b5e2aa42f28f898f843884341205907dd49be1df653904359eb55e3",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Hallazgos y correcciones",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "bd33b01b770b92775a1ae8ab29050869e8dd265867285f8317475a6ae0bf6dc7",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-9",
+            "rangeKind": "block",
+            "startLine": 36,
+            "endLine": 36,
+            "startOffset": 5447,
+            "endOffset": 5594,
+            "fingerprint": "8b5044d67dcc25574e9c92aa0e8a7d043d7007d0d9ea2734965b64856c308f4f",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Regresión de contexto",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "525988fd1c611be982e73d1b5241b718220dd784f4bc31f3dda17b15f50e7741",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-10",
+            "rangeKind": "block",
+            "startLine": 40,
+            "endLine": 40,
+            "startOffset": 5622,
+            "endOffset": 5869,
+            "fingerprint": "43517df10bf22cd134ff1b1ac7b2839aea8a99e999088920e75c94b803bcd408",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Regresión de contexto",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "96a25ce77bc0ab4b3d23135505678d7e85ba522e44b798a8ec7694a7c5524ec2",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-12",
+            "rangeKind": "block",
+            "startLine": 52,
+            "endLine": 52,
+            "startOffset": 6672,
+            "endOffset": 6943,
+            "fingerprint": "b1de320374c9c8f7bad0e2dcedb396f75829f8d0e0eb8781b1be5d0f15abb91f",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Verificación y adopción",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "4aad22ef441fccd5573db3acc22868822cbbedd89eddc68d36f44b5bbaa06bea",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "heading-7",
+            "rangeKind": "section",
+            "startLine": 54,
+            "endLine": 63,
+            "startOffset": 6945,
+            "endOffset": 8537,
+            "fingerprint": "7469f38299d82db4f23bcd7e96710fa9b68e566fc6c9f44c69f9cbeb5a5a0343",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Verificación y adopción",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "6f7d5e05ece3857a6e7921a24efcede83cd9afcdc06930b0394f8f67d9603f17",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-13",
+            "rangeKind": "block",
+            "startLine": 56,
+            "endLine": 56,
+            "startOffset": 6973,
+            "endOffset": 7531,
+            "fingerprint": "5b63c2ff456d398c69002d5941146f8598b5685d1dcccd5cb8822f7ea40afae5",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Verificación y adopción",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "aed1ee887f14fb00e0f0afea8b4fcc5dc5125cd70c1bc852f4f9862cd1d16a7f",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-14",
+            "rangeKind": "block",
+            "startLine": 58,
+            "endLine": 58,
+            "startOffset": 7533,
+            "endOffset": 7807,
+            "fingerprint": "a6d760797612885e11a1b30a9d7376ee9b8f7f140225d06d85b19cd62002c1cb",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Verificación y adopción",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "3637c49bddd8cb74e2365efabbd3c554048bb535170b800122eac217f62a1bc0",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-15",
+            "rangeKind": "block",
+            "startLine": 60,
+            "endLine": 60,
+            "startOffset": 7809,
+            "endOffset": 8198,
+            "fingerprint": "1c39ccb858596b7259ddd6f07f9d9b9ed62383572e1a93eaab7b1f2f84e01568",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Verificación y adopción",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "8ae7016db5b9639fff85f13119190c7b52edc436e95e307d523c5f220b7180df",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-16",
+            "rangeKind": "block",
+            "startLine": 62,
+            "endLine": 62,
+            "startOffset": 8200,
+            "endOffset": 8535,
+            "fingerprint": "18b3d451915bb2e2d55bbb1fb7b66f5476e377b895924cfaf782e3292465bc02",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Prioridades siguientes",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "0edff15cdd11086035ce2f5bc2baa64462dec882d64d5eda5b4475d7ee67ef78",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-17/item-1",
+            "rangeKind": "block",
+            "startLine": 66,
+            "endLine": 66,
+            "startOffset": 8564,
+            "endOffset": 8768,
+            "fingerprint": "ddb9682803db4aa6322d81fd9735b51262566890170fb9e56dc0d422aa02071f",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Prioridades siguientes",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "88129e7bf9bf3fe7156946f5a506421159c6dc14ba45a7fc034cab48de5acd00",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-17/item-3",
+            "rangeKind": "block",
+            "startLine": 68,
+            "endLine": 68,
+            "startOffset": 8924,
+            "endOffset": 9298,
+            "fingerprint": "58a49e091a95264494bbff6b64eff0b89a6eafcb57006d56447963effd2e56a4",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Prioridades siguientes",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "29713218ccdbb4f073d5e4ef7f9cdf8b1087936e8ae8f8b1a209635d427eda78",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-17/item-4",
+            "rangeKind": "block",
+            "startLine": 69,
+            "endLine": 69,
+            "startOffset": 9299,
+            "endOffset": 9553,
+            "fingerprint": "6ecc18c0b03cc6f1392f909e74d8d036a5c950c096dd0121ab7ea7009b93cc4d",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Prioridades siguientes",
+          "score": 0.25,
+          "handle": {
+            "version": 1,
+            "id": "eaf4e07690c6d3f45fb7727ddcb48266484de1b0d7c449140e5830eab86f6789",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+            "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+            "rangeId": "block-18",
+            "rangeKind": "block",
+            "startLine": 71,
+            "endLine": 71,
+            "startOffset": 9555,
+            "endOffset": 9769,
+            "fingerprint": "2043830ac8a41b58a2f93859c574ee78fe72a2ec9306c3d99bdbea9cf43a6453",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-02",
+      "candidateCount": 8,
+      "truncated": false,
+      "candidates": [
+        {
+          "title": "Continuation: bounded context-economy correction",
+          "score": 0.6,
+          "handle": {
+            "version": 1,
+            "id": "161452a597ce2d7aa17a300542207d603fa1c56c10aee1e9ca12fabc186aaa91",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-02.md",
+            "revision": "81dde4350efd5143be12bb83c24bf443f8527cfeeaecf9593a7a8ea74f09a742",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 28,
+            "startOffset": 0,
+            "endOffset": 3948,
+            "fingerprint": "1784ce5f562b83ab1adc9ab1160b5dcfc43ae1fdb5c0882a44b73ce07645c69b",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Exact remaining state",
+          "score": 0.4,
+          "handle": {
+            "version": 1,
+            "id": "c5f37e0aae755fe905f77d5b8d39c708e427e77ae204e4b72903c2e41f285715",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-02.md",
+            "revision": "81dde4350efd5143be12bb83c24bf443f8527cfeeaecf9593a7a8ea74f09a742",
+            "rangeId": "heading-3",
+            "rangeKind": "section",
+            "startLine": 14,
+            "endLine": 23,
+            "startOffset": 1749,
+            "endOffset": 3290,
+            "fingerprint": "71d3c97e45bc964e797ddd4da96ebb7cf801437acfb3a2af2575f56f1178ac1c",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Exact remaining state",
+          "score": 0.4,
+          "handle": {
+            "version": 1,
+            "id": "852edd81f3fc0d6cf5004ffafba0a5b90cb030572c8744d24b8fc9dac080a8c5",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-02.md",
+            "revision": "81dde4350efd5143be12bb83c24bf443f8527cfeeaecf9593a7a8ea74f09a742",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 16,
+            "endLine": 22,
+            "startOffset": 1775,
+            "endOffset": 3288,
+            "fingerprint": "bbbb04bbef9be23573b7de898f5776825ec6cf8a7186fa21954b6489786f8c48",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Exact remaining state",
+          "score": 0.4,
+          "handle": {
+            "version": 1,
+            "id": "d39d39e084815cb603b9260456fc8e45bbdc1c6b7688c88b0b99e00cd67bfe30",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-02.md",
+            "revision": "81dde4350efd5143be12bb83c24bf443f8527cfeeaecf9593a7a8ea74f09a742",
+            "rangeId": "block-3/item-2",
+            "rangeKind": "block",
+            "startLine": 17,
+            "endLine": 17,
+            "startOffset": 2008,
+            "endOffset": 2228,
+            "fingerprint": "df30a0cac6454af42f79f0cd4c896c6b5754e30245458ded2713667db442f33b",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Continuation: bounded context-economy correction",
+          "score": 0.2,
+          "handle": {
+            "version": 1,
+            "id": "83e79e66654ce24e1e83630b4ef9abdd5f7ba6d078ce52caa634af81184687a0",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-02.md",
+            "revision": "81dde4350efd5143be12bb83c24bf443f8527cfeeaecf9593a7a8ea74f09a742",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 3,
+            "startOffset": 52,
+            "endOffset": 351,
+            "fingerprint": "4010ad096c254af49583808c8b6823e2234512ae8d9a50a4ab995a064a86f018",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Completed",
+          "score": 0.2,
+          "handle": {
+            "version": 1,
+            "id": "46c814e6bc535f056eef223e42bf7d575e9bb5cd0f7e69ffe05accf19162d85c",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-02.md",
+            "revision": "81dde4350efd5143be12bb83c24bf443f8527cfeeaecf9593a7a8ea74f09a742",
+            "rangeId": "heading-2",
+            "rangeKind": "section",
+            "startLine": 5,
+            "endLine": 13,
+            "startOffset": 353,
+            "endOffset": 1749,
+            "fingerprint": "9b3c5cd85098873334353147fca0d71ded30f5f7a0e50ed350d1c11c94babad3",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Completed",
+          "score": 0.2,
+          "handle": {
+            "version": 1,
+            "id": "8e6e387a9f8677d26408c5b598978af47cadf08e7eda232dc6c7236ef3377799",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-02.md",
+            "revision": "81dde4350efd5143be12bb83c24bf443f8527cfeeaecf9593a7a8ea74f09a742",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 7,
+            "endLine": 12,
+            "startOffset": 367,
+            "endOffset": 1747,
+            "fingerprint": "14ed4734cb4c9d996f303dcee7af411e51d3d3a5bad528141699786a9e8e09db",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Completed",
+          "score": 0.2,
+          "handle": {
+            "version": 1,
+            "id": "c7e684fd9b8371cac22cb66c0e396ac6c71f145655d1b2b6ef07647cb58f5e29",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-02.md",
+            "revision": "81dde4350efd5143be12bb83c24bf443f8527cfeeaecf9593a7a8ea74f09a742",
+            "rangeId": "block-2/item-4",
+            "rangeKind": "block",
+            "startLine": 10,
+            "endLine": 10,
+            "startOffset": 901,
+            "endOffset": 1154,
+            "fingerprint": "435550dcc3275f81629e5d72e0d54c0af3ab5567c1c3fc4f6bda7a353752a697",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "cohort-03",
+      "candidateCount": 5,
+      "truncated": false,
+      "candidates": [
+        {
+          "title": "Next trial after quota reset",
+          "score": 0.454545,
+          "handle": {
+            "version": 1,
+            "id": "9eed80ae0e3ebe01540dcfc1ae172794ff5e7c7e84a635d8883c99984fa0ed21",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-03.md",
+            "revision": "d6c17672a5bc1e6e742fa1993ebf1b59e92de0fd53a88a46011b74c4701f206d",
+            "rangeId": "heading-1",
+            "rangeKind": "section",
+            "startLine": 1,
+            "endLine": 21,
+            "startOffset": 0,
+            "endOffset": 1296,
+            "fingerprint": "3617ec289daf443c103ab2c7a1dd978d8d8ca1a6ef531db417e62e3a96b00bba",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Next trial after quota reset",
+          "score": 0.454545,
+          "handle": {
+            "version": 1,
+            "id": "cfd0e04a13ff80b5b1ee13e5906d1a5a0247c0d9513bf93d98c6306f8075eb67",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-03.md",
+            "revision": "d6c17672a5bc1e6e742fa1993ebf1b59e92de0fd53a88a46011b74c4701f206d",
+            "rangeId": "block-3",
+            "rangeKind": "block",
+            "startLine": 12,
+            "endLine": 17,
+            "startOffset": 589,
+            "endOffset": 1049,
+            "fingerprint": "9cbe97c96e180c3df9593905a6330eef4b7e99d7a6cc47dafc65f9c34c3a1804",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Next trial after quota reset",
+          "score": 0.272727,
+          "handle": {
+            "version": 1,
+            "id": "5820f301d68f7222e1aafb6a305cb5ec6682e17c6337b5b22909cb227bbf5dc3",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-03.md",
+            "revision": "d6c17672a5bc1e6e742fa1993ebf1b59e92de0fd53a88a46011b74c4701f206d",
+            "rangeId": "block-2",
+            "rangeKind": "block",
+            "startLine": 6,
+            "endLine": 10,
+            "startOffset": 192,
+            "endOffset": 587,
+            "fingerprint": "3a3592c411bcb0decd5185fdcc07a1efb3dc5da781d38e6040ae16dad130afcc",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Next trial after quota reset",
+          "score": 0.272727,
+          "handle": {
+            "version": 1,
+            "id": "dc1f65d7c552d70b7f42724d1ca6026a99bb2684253c29222ef1b3792cdf7194",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-03.md",
+            "revision": "d6c17672a5bc1e6e742fa1993ebf1b59e92de0fd53a88a46011b74c4701f206d",
+            "rangeId": "block-4",
+            "rangeKind": "block",
+            "startLine": 19,
+            "endLine": 21,
+            "startOffset": 1051,
+            "endOffset": 1295,
+            "fingerprint": "8b4a35db490ed8de46fe5b307bed6e119dd58540182a7de6fdcab2d9ab55ed62",
+            "privacyClass": "project-metadata"
+          }
+        },
+        {
+          "title": "Next trial after quota reset",
+          "score": 0.181818,
+          "handle": {
+            "version": 1,
+            "id": "704fb0b6766b210ca2eed1c5d2f95f5352378e9cf4bdad7647e25746b101efa2",
+            "owner": "d:/dev/mssr",
+            "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-03.md",
+            "revision": "d6c17672a5bc1e6e742fa1993ebf1b59e92de0fd53a88a46011b74c4701f206d",
+            "rangeId": "block-1",
+            "rangeKind": "block",
+            "startLine": 3,
+            "endLine": 4,
+            "startOffset": 32,
+            "endOffset": 190,
+            "fingerprint": "ab76cc556ad05cbf35cfda4595976edaf8973cf3e0813dfc0f305497e2f4e61a",
+            "privacyClass": "project-metadata"
+          }
+        }
+      ]
+    }
+  ],
+  "jevSelections": [
+    {
+      "caseId": "cohort-01",
+      "status": "selected",
+      "provider": "typesafe-jev",
+      "sufficiency": 0.95,
+      "candidateCount": 41,
+      "selected": {
+        "rangeId": "heading-5",
+        "lines": [
+          28,
+          37
+        ],
+        "title": "Hallazgos y correcciones",
+        "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+        "handle": {
+          "version": 1,
+          "id": "82b075aedab6b8030d4104021f69aa3085f87ba85005a0526432950d60593ca4",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-01.md",
+          "revision": "7a034dc21ed774b9d2ea3185fbcdbe9212db9161c81f8ff55184cfc0648c7a13",
+          "rangeId": "heading-5",
+          "rangeKind": "section",
+          "startLine": 28,
+          "endLine": 37,
+          "startOffset": 3752,
+          "endOffset": 5596,
+          "fingerprint": "422383a87d7ba109e3db50457c2be5b3ab1b1fd8486a6b90f9775e746d043285",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "elapsedMs": 1144.2,
+      "usage": {
+        "input_tokens": 8796,
+        "output_tokens": 457
+      }
+    },
+    {
+      "caseId": "cohort-02",
+      "status": "selected",
+      "provider": "typesafe-jev",
+      "sufficiency": 0.9,
+      "candidateCount": 8,
+      "selected": {
+        "rangeId": "block-3/item-2",
+        "lines": [
+          17,
+          17
+        ],
+        "title": "Exact remaining state",
+        "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-02.md",
+        "handle": {
+          "version": 1,
+          "id": "d39d39e084815cb603b9260456fc8e45bbdc1c6b7688c88b0b99e00cd67bfe30",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-02.md",
+          "revision": "81dde4350efd5143be12bb83c24bf443f8527cfeeaecf9593a7a8ea74f09a742",
+          "rangeId": "block-3/item-2",
+          "rangeKind": "block",
+          "startLine": 17,
+          "endLine": 17,
+          "startOffset": 2008,
+          "endOffset": 2228,
+          "fingerprint": "df30a0cac6454af42f79f0cd4c896c6b5754e30245458ded2713667db442f33b",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "elapsedMs": 763.7,
+      "usage": {
+        "input_tokens": 1996,
+        "output_tokens": 127
+      }
+    },
+    {
+      "caseId": "cohort-03",
+      "status": "selected",
+      "provider": "typesafe-jev",
+      "sufficiency": 0.95,
+      "candidateCount": 5,
+      "selected": {
+        "rangeId": "block-3",
+        "lines": [
+          12,
+          17
+        ],
+        "title": "Next trial after quota reset",
+        "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-03.md",
+        "handle": {
+          "version": 1,
+          "id": "cfd0e04a13ff80b5b1ee13e5906d1a5a0247c0d9513bf93d98c6306f8075eb67",
+          "owner": "d:/dev/mssr",
+          "sourceRef": "experiments/jev-mssr-live/runs/mssr-librarian-source-derived-candidates-20261011T232531Z-e2dc04/inputs/sources/source-03.md",
+          "revision": "d6c17672a5bc1e6e742fa1993ebf1b59e92de0fd53a88a46011b74c4701f206d",
+          "rangeId": "block-3",
+          "rangeKind": "block",
+          "startLine": 12,
+          "endLine": 17,
+          "startOffset": 589,
+          "endOffset": 1049,
+          "fingerprint": "9cbe97c96e180c3df9593905a6330eef4b7e99d7a6cc47dafc65f9c34c3a1804",
+          "privacyClass": "project-metadata"
+        }
+      },
+      "elapsedMs": 762,
+      "usage": {
+        "input_tokens": 1361,
+        "output_tokens": 97
+      }
+    }
+  ],
+  "limitations": [
+    "Exploratory calls preceded this run plan and are excluded from the 30-case registered records.",
+    "Scores were not preserved in the initial summary for all calls; the 30 registered calls capture the full Bridge-returned Jev payload.",
+    "All cases are exposed source-derived development cases."
+  ]
+}

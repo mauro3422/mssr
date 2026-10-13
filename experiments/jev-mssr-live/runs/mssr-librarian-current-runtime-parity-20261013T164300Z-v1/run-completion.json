@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-current-runtime-parity-20261013T164300Z-v1",
+  "status": "completed-with-errata",
+  "completedAt": "2026-10-13T17:07:27+00:00",
+  "runtime": {
+    "bridgeVersion": "0.6.179",
+    "mssrVersion": "0.2.132",
+    "mssrArtifactSha256": "c5655a496f2cbb3d3e98cb505e5a6bc2b082333043676ea52506f9e4d892529f",
+    "runtimeBootId": "72bd1014-9946-4245-821d-8be20272c823",
+    "providerPath": "Bridge-owned web connector",
+    "provider": "TypeSafe Jev; returned model and scores captured per call"
+  },
+  "registeredRecordCount": 30,
+  "uniqueCaseCount": 30,
+  "selectedCount": 28,
+  "abstainedCount": 2,
+  "searchTargetPresentCount": 30,
+  "searchTruncatedCount": 0,
+  "exactFetchAndPackCount": 28,
+  "calibrationClaim": false,
+  "ownerGold": false,
+  "holdout": false,
+  "canonicalWrites": false,
+  "automaticMerge": false,
+  "recordSha256": "eb5b062efa17e0d7414f51f3824ea0f1bb95720ba3e05c292f3adcaa03cccba5",
+  "blindReviewInputSha256": "1dab650686e2d935c1f94b95954259720b4f24f6815e90adc6032e96e5f9075e",
+  "reportPath": "REPORT.md",
+  "errataPath": "EXECUTION-ERRATA.md"
+}
