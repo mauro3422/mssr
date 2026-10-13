@@ -1,0 +1,32 @@
+{
+  "schema": "mssr-bridge-observed-friction-v1",
+  "observedAt": "2026-10-13 11:26:09 UTC",
+  "source": "live MauroPrime Bridge tool responses and runtime schema inspection",
+  "observations": [
+    {
+      "tool": "mssr_librarian_search",
+      "symptom": "Connector call rejected arguments documents; live schema required projectRoot and sourceRefs.",
+      "evidence": {
+        "runtimeRegistrySource": "live-runtime-registry",
+        "runtimeSchemaHash": "b931631885199014",
+        "requiredFields": ["projectRoot", "sourceRefs", "query"],
+        "effect": "schema-validation before search execution"
+      },
+      "correction": "Inspected bridge_tool_schema and called the tool with the live projectRoot/sourceRefs contract.",
+      "outcome": "search succeeded"
+    },
+    {
+      "tool": "mssr_librarian_fetch",
+      "symptom": "Fetch returned executed=false and status mssr-lifecycle-preflight-required; the suggested explicit trace then failed with mssr-trace-owner-mismatch.",
+      "evidence": {
+        "reasonCodes": ["managed-trace-missing", "substantial-operation"],
+        "lifecycleAction": "ensure-trace-and-route",
+        "nextAction": "skill_bootstrap"
+      },
+      "correction": "Established a fresh local MSSR route/bootstrap and retried the unchanged exact handle.",
+      "outcome": "Bridge exact fetch and evidence pack succeeded; trace-owner root cause remains unresolved"
+    }
+  ],
+  "impact": "Excluded from retrieval/selection metrics; no score, tool permission, Bridge runtime, or MSSR runtime was changed.",
+  "followUp": "Review Bridge connector schema parity and project/trace ownership continuity for substantial MSSR tool calls."
+}

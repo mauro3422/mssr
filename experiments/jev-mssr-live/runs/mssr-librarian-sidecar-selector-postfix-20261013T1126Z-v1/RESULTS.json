@@ -1,0 +1,63 @@
+{
+  "schema": "mssr-librarian-sidecar-live-diagnostic-results-v1",
+  "runId": "mssr-librarian-sidecar-selector-postfix-20261013T1126Z-v1",
+  "observedAt": "2026-10-13 11:26:09 UTC",
+  "search": {
+    "metadataOff": {
+      "resultCount": 20,
+      "targetRank": 3
+    },
+    "sidecar": {
+      "resultCount": 2,
+      "targetRank": 1,
+      "candidateReduction": 18
+    }
+  },
+  "selection": {
+    "status": "selected",
+    "selectedRangeId": "heading-8",
+    "selectedTitle": "Composición: cómo cubrir grep, selección, compacción y párrafos",
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "choice": 0.97,
+    "noul": 0.56,
+    "calibration": "uncalibrated provider scores",
+    "usage": {
+      "input_tokens": 901,
+      "output_tokens": 67
+    },
+    "choiceCalls": [
+      {
+        "questionKey": "selection",
+        "offeredOptionIds": [
+          "h001",
+          "h002",
+          "none"
+        ],
+        "selectedOptionId": "h001",
+        "confidence": 0.97,
+        "probabilities": {
+          "h001": 0.98,
+          "h002": 0,
+          "none": 0.02
+        }
+      }
+    ],
+    "requestFingerprint": "980d837018b4b4c08b8c2e2084b7783919bbc88cc76dacb93c72c27e387fd58c",
+    "elapsedMs": 734
+  },
+  "exactFetch": {
+    "rangeId": "heading-8",
+    "expectedFingerprint": "b7faec4cd33612b70896fa7740d3669d667e2a7cf7f1a504d84c85a8907e6f5d",
+    "observedFingerprint": "b7faec4cd33612b70896fa7740d3669d667e2a7cf7f1a504d84c85a8907e6f5d",
+    "exactRangeChars": 2843,
+    "matched": true
+  },
+  "evidencePack": {
+    "kind": "mssr-librarian-evidence-pack",
+    "assembly": "verbatim-source-ranges",
+    "paragraphCount": 1,
+    "exactTextMatchesFetch": true
+  },
+  "interpretation": "Promising single exposed query. Sidecar focuses the target; live Jev selects it; fetch and pack preserve exact source. No gold/holdout/calibration claim."
+}

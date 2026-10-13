@@ -79,3 +79,21 @@ Together, Runs 62 and 63 reinforce that a successful fetch/pack path does not im
 ## Run 67 (2026-10-13)
 
 One post-hoc facet pair on an already exposed MSSR state document forms a single dependent cluster. Bridge search, exact live Jev selection, fetch, and evidence-pack passed twice. The compound excerpt had Choice 0.97 but Noul sufficiency 0.53 and was judged partial in a blind content review; a lower-scored targeted facet selected the exact complementary gate at Choice 0.39 / option probability 0.46. This supports separate scoring of selection and sufficiency and testing facet decomposition; it is not calibration evidence. Bridge 0.6.177 direct health and the full tool chain were live/ready, while MSSR registry discovery still reported a stale unavailable provider. Root cause and the current Bridge .177 MSSR package hash remain unverified. No runtime or threshold changed. Full provenance and limitations: experiments/jev-mssr-live/runs/mssr-bridge-jev-facet-readiness-20261013T0539Z-v1/.
+
+
+## Run 68 (2026-10-13)
+
+One post-hoc query on an already exposed MSSR research document tested the
+previously missing exact sidecar binding for its indexed composition section.
+Metadata-off search returned 20 candidates with the target at rank 3; the
+sidecar domain=agent-orchestration filter returned two candidates with the
+target at rank 1. Live Jev 1.13.0 selected the exact heading (Choice 0.97,
+selected-option probability 0.98, Noul sufficiency 0.56; 901 input and 67
+output tokens). Exact fetch returned 2,843 characters and matched the selected
+fingerprint; the one-range evidence pack matched the fetch verbatim. The local
+real-document smoke now projects/fetches all five declared sidecar bindings.
+This is an exposed development diagnostic, not owner-gold, independent holdout,
+confidence calibration or general reliability evidence. Scores and thresholds
+remain unchanged. Bridge schema and trace-owner friction was observed and is
+tracked separately. Full receipts:
+experiments/jev-mssr-live/runs/mssr-librarian-sidecar-selector-postfix-20261013T1126Z-v1/.

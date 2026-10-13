@@ -1,0 +1,107 @@
+{
+  "metadataMode": "off",
+  "resultCount": 20,
+  "targetRank": 3,
+  "results": [
+    {
+      "rank": 1,
+      "rangeId": "heading-2",
+      "title": "Resumen ejecutivo",
+      "score": 1,
+      "handleId": "c345bc9bc4cbfe25839914bcafeed537a3730608bc5216301ee2bf7efdc7c071",
+      "fingerprint": "4eb12a98e74fc31e4d77b40aebe3c3a75d70a8346af7d37c634a4c38d58b8f77",
+      "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+      "exactFetchable": true
+    },
+    {
+      "rank": 2,
+      "rangeId": "block-2",
+      "title": "Resumen ejecutivo",
+      "score": 1,
+      "handleId": "0e69d554719279e22b7f87640ba0be70a016acd201972e3ca85a41a2df038b93",
+      "fingerprint": "7befa725a9ad4e032a68107d02c252ab459c261377dc3bd0296d8ad5c965f60c",
+      "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+      "exactFetchable": true
+    },
+    {
+      "rank": 3,
+      "rangeId": "heading-8",
+      "title": "Composición: cómo cubrir grep, selección, compacción y párrafos",
+      "score": 1,
+      "handleId": "7733f91e0e507892542ed35d85d5086abc35f9a1551c033f34bae5f58f11e485",
+      "fingerprint": "b7faec4cd33612b70896fa7740d3669d667e2a7cf7f1a504d84c85a8907e6f5d",
+      "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+      "exactFetchable": true
+    },
+    {
+      "rank": 4,
+      "rangeId": "block-22",
+      "title": "Composición: cómo cubrir grep, selección, compacción y párrafos",
+      "score": 1,
+      "handleId": "4984ac490232afefdad3775620db0b12adbfe702ccd8e90ccde8e3d766c72438",
+      "fingerprint": "e659510fa6eff2af692080460af1098415dff4c20acd862f18e7a1af2425bfca",
+      "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+      "exactFetchable": true
+    },
+    {
+      "rank": 5,
+      "rangeId": "block-19",
+      "title": "Composición: cómo cubrir grep, selección, compacción y párrafos",
+      "score": 0.8,
+      "handleId": "d190c5928e9da2f7611a98015176b13954208a6a5a1ccd292bd728ba6c3d3094",
+      "fingerprint": "63101050a02323432a2c3fe0018028df4ca13e1f6d02e9c53d477d1d1f9df754",
+      "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+      "exactFetchable": true
+    },
+    {
+      "rank": 6,
+      "rangeId": "block-20/item-1",
+      "title": "Composición: cómo cubrir grep, selección, compacción y párrafos",
+      "score": 0.8,
+      "handleId": "5e56055bb2a70c01e6e3e6c1a2e8ed7ce335d53caf556ba93dc6dbd679bac46e",
+      "fingerprint": "94652b080f1756d96a30c71c8a44b14cb78410acd4fa899d965e0f4e8d4bc3ed",
+      "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+      "exactFetchable": true
+    },
+    {
+      "rank": 7,
+      "rangeId": "block-20",
+      "title": "Composición: cómo cubrir grep, selección, compacción y párrafos",
+      "score": 0.8,
+      "handleId": "b2c704e470b8f93788de80624e8fc2cd0d753beed02ff5cd8fa32474da7b947b",
+      "fingerprint": "40248a3cc3c0f9ce2f5af10d5a7d6bb605a96a25f5da187d945534fadba63e7f",
+      "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+      "exactFetchable": true
+    },
+    {
+      "rank": 8,
+      "rangeId": "block-20/item-2",
+      "title": "Composición: cómo cubrir grep, selección, compacción y párrafos",
+      "score": 0.8,
+      "handleId": "01f83d56e532c7ce4f564868c61ef1803a5103660e6541cf2aaab5bd12e05fe1",
+      "fingerprint": "82707056c1503c13954c6b4406949c36ce5feb7690c5df3f55c42704c0291773",
+      "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+      "exactFetchable": true
+    },
+    {
+      "rank": 9,
+      "rangeId": "block-20/item-3",
+      "title": "Composición: cómo cubrir grep, selección, compacción y párrafos",
+      "score": 0.8,
+      "handleId": "636c0d36d07a95d510c540e4551fcba9d7fbc48b27df05238e4506d0f68b722b",
+      "fingerprint": "80de1c75ab129ccdfa0289be5b34e2fccd3d34ec89491aa350baa635d34bb5e8",
+      "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+      "exactFetchable": true
+    },
+    {
+      "rank": 10,
+      "rangeId": "block-20/item-4",
+      "title": "Composición: cómo cubrir grep, selección, compacción y párrafos",
+      "score": 0.8,
+      "handleId": "d885295e4da36b1d754171e7e02dd859dcf2afcba000d9f35daf9b70139bf6d3",
+      "fingerprint": "79faadec67760c33da7323bfe711bf52e6ebd54fc51a607d071d75a566534bce",
+      "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+      "exactFetchable": true
+    }
+  ]
+}

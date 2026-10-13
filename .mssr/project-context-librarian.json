@@ -113,6 +113,35 @@
           "reusable-pattern"
         ]
       }
+    },
+    {
+      "entryId": "mssr-jev-decision-model-use-cases",
+      "sourcePath": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+      "headingPath": [
+        "Jev, decisiones tipadas y casos de uso para MSSR",
+        "Composición: cómo cubrir grep, selección, compacción y párrafos"
+      ],
+      "expectedFingerprint": "b7faec4cd33612b70896fa7740d3669d667e2a7cf7f1a504d84c85a8907e6f5d",
+      "selectors": {
+        "domains": [
+          "agent-orchestration",
+          "coding"
+        ],
+        "actions": [
+          "analyze",
+          "design"
+        ],
+        "artifacts": [
+          "document",
+          "mcp"
+        ],
+        "needs": [
+          "integrity-verification"
+        ],
+        "signals": [
+          "reusable-pattern"
+        ]
+      }
     }
   ]
 }

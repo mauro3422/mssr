@@ -1,0 +1,35 @@
+{
+  "data": {
+    "projectOwner": "d:/dev/mssr",
+    "handle": {
+      "version": 1,
+      "id": "7733f91e0e507892542ed35d85d5086abc35f9a1551c033f34bae5f58f11e485",
+      "owner": "d:/dev/mssr",
+      "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+      "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+      "rangeId": "heading-8",
+      "rangeKind": "section",
+      "startLine": 58,
+      "endLine": 77,
+      "startOffset": 10160,
+      "endOffset": 13003,
+      "fingerprint": "b7faec4cd33612b70896fa7740d3669d667e2a7cf7f1a504d84c85a8907e6f5d",
+      "privacyClass": "project-metadata"
+    },
+    "text": "## Composición: cómo cubrir grep, selección, compacción y párrafos\n\nUna aplicación completa puede juntar piezas diferentes, sin adjudicar a Jev el trabajo de las otras:\n\n1. **Búsqueda:** Jev puede escoger entre búsquedas candidatas, clasificar intención de consulta o puntuar relevancia de resultados. El host ejecuta `grep`, índice textual/vectorial u otras herramientas y recoge líneas/rutas con procedencia.\n2. **Selección de evidencia:** código filtra duplicados, permisos, rutas y revisiones. Jev podría clasificar qué fragmentos parecen pertinentes o qué rama requiere lectura; la autoridad/proveniencia se comprueba por reglas del sistema.\n3. **Compacción sin pérdida:** la receta oficial de Structure recovery usa Jev para juzgar pares de líneas y clasificar bloques; código une líneas que continúan una oración y renderiza el formato con las palabras originales. Es compacción estructural guiada por Jev, distinta de resumir o reescribir semánticamente.\n4. **Armado de párrafos:** no hace falta un generador si el objetivo es reconstruir estructura: decisiones Jev + ensamblador determinístico pueden producir párrafos, listas y encabezados conservando el texto. Un generador o persona sí hace falta para redactar frases nuevas. Jev puede además evaluar citas/soporte y seleccionar una estructura entre alternativas.\n5. **Acción y verificación:** código limita acciones permitidas; Jev puede elegir una acción candidata o señalar incertidumbre. El host aplica permisos, frescura, umbrales y confirmación humana según riesgo. Un verificador independiente comprueba el efecto observable; no se acepta la confianza de Jev como prueba.\n\nEl patrón más útil es `herramienta determinista para obtener candidatos → decisión estrecha → política/ejecución del host → verificación independiente → fallback a LLM/humano cuando corresponda`. TypeSafe publica también un ejemplo de reranking con BM25 y Jev: 30 pasajes candidatos por consulta, 40 consultas CLERC, top-1 5%→18% y top-10 38%→62%; son cifras del cookbook/proveedor que MSSR no ha replicado. Para MSSR, ya existen búsqueda/fetch, selección Jev, revisión relacional y preview reversible; esta entrega añade una proyección de metadata tipada ligada a rangos exactos. Ninguna de estas piezas activa por sí sola el loop completo ni la integración Bridge.\n\nLa observación de Mauro —grep inteligente, selección, compacción y armado de\npárrafos en una sola experiencia— encaja con la cadena documentada por\nTypeSafe: el modelo decide; el host recupera; código conserva/une/renderiza el\ntexto o un generador redacta; la verificación comprueba citas y efecto. La\nestructura de párrafos puede resultar del ensamblador determinístico, no\nnecesariamente de prosa generada. Esa observación informa casos a probar, no es\npor sí misma un benchmark independiente ni prueba que Jev aislado haga todo.\n\n",
+    "fingerprint": "b7faec4cd33612b70896fa7740d3669d667e2a7cf7f1a504d84c85a8907e6f5d",
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "bridgeNotices": {
+      "delivery": "automatic-drain",
+      "scope": "contextual",
+      "count": 0,
+      "remainingPending": 1,
+      "relevantPending": 0,
+      "otherPending": 1,
+      "globalPending": 0,
+      "globalHistoryTool": "bridge_notice_history",
+      "items": []
+    }
+  }
+}

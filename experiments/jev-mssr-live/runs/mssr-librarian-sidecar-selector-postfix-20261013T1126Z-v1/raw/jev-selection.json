@@ -1,0 +1,104 @@
+{
+  "data": {
+    "projectOwner": "d:/dev/mssr",
+    "sourceCount": 1,
+    "status": "selected",
+    "candidateCount": 2,
+    "advisoryOnly": true,
+    "truthAuthority": false,
+    "verification": "unverified",
+    "confidenceCalibration": "uncalibrated-provider-score",
+    "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+    "exactFetchRequired": true,
+    "autoApplyAllowed": false,
+    "candidateRangeDiagnostics": {
+      "offered": 2,
+      "eligible": 2,
+      "oversizedOmitted": 0,
+      "maxFetchChars": 20000,
+      "lengthUnit": "utf16-code-units"
+    },
+    "rangeOverlapDiagnostics": {
+      "sameSourceRevisionPairs": 1,
+      "overlappingPairCount": 0,
+      "nestedPairCount": 0,
+      "exactRangePairCount": 0,
+      "partialOverlapPairCount": 0,
+      "pairs": [],
+      "truncated": false,
+      "mutationApplied": false
+    },
+    "finalistCount": 2,
+    "selectionMode": "single-pass",
+    "selectionPasses": 1,
+    "providerCalls": 1,
+    "providerConfidence": 0.97,
+    "evidenceSufficiency": 0.56,
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "providersUsed": [
+      "typesafe-jev"
+    ],
+    "modelsUsed": [
+      "jev-1.13.0"
+    ],
+    "usage": {
+      "input_tokens": 901,
+      "output_tokens": 67
+    },
+    "requestFingerprint": "980d837018b4b4c08b8c2e2084b7783919bbc88cc76dacb93c72c27e387fd58c",
+    "elapsedMs": 734,
+    "jevCallMade": true,
+    "selected": {
+      "optionId": "h001",
+      "title": "Composición: cómo cubrir grep, selección, compacción y párrafos",
+      "headingPath": [
+        "Jev, decisiones tipadas y casos de uso para MSSR",
+        "Composición: cómo cubrir grep, selección, compacción y párrafos"
+      ],
+      "handle": {
+        "version": 1,
+        "id": "7733f91e0e507892542ed35d85d5086abc35f9a1551c033f34bae5f58f11e485",
+        "owner": "d:/dev/mssr",
+        "sourceRef": ".mssr/knowledge/research/jev-decision-model-use-cases.md",
+        "revision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+        "rangeId": "heading-8",
+        "rangeKind": "section",
+        "startLine": 58,
+        "endLine": 77,
+        "startOffset": 10160,
+        "endOffset": 13003,
+        "fingerprint": "b7faec4cd33612b70896fa7740d3669d667e2a7cf7f1a504d84c85a8907e6f5d",
+        "privacyClass": "project-metadata"
+      }
+    },
+    "choiceCalls": [
+      {
+        "questionKey": "selection",
+        "offeredOptionIds": [
+          "h001",
+          "h002",
+          "none"
+        ],
+        "selectedOptionId": "h001",
+        "confidence": 0.97,
+        "probabilities": {
+          "h001": 0.98,
+          "h002": 0,
+          "none": 0.02
+        }
+      }
+    ],
+    "bridgeNotices": {
+      "delivery": "automatic-drain",
+      "scope": "contextual",
+      "count": 0,
+      "remainingPending": 1,
+      "relevantPending": 0,
+      "otherPending": 1,
+      "globalPending": 0,
+      "globalHistoryTool": "bridge_notice_history",
+      "items": []
+    }
+  }
+}

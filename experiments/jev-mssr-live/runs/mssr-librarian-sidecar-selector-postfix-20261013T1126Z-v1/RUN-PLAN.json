@@ -1,0 +1,40 @@
+{
+  "schema": "mssr-librarian-sidecar-live-diagnostic-v1",
+  "runId": "mssr-librarian-sidecar-selector-postfix-20261013T1126Z-v1",
+  "observedAt": "2026-10-13 11:26:09 UTC",
+  "projectRoot": "D:\\Dev\\mssr",
+  "branch": "codex/mssr-librarian-query-variants-0.2.112",
+  "baseCommit": "dc5752afe1ef1837850c895d700386bf4d0940fc",
+  "implementationWasUncommittedAtRun": true,
+  "bridgeRuntimeBootId": "9713db6e-b666-4bfa-ba2f-b945a6801cf5",
+  "sourceRefs": [
+    ".mssr/knowledge/research/jev-decision-model-use-cases.md"
+  ],
+  "manifestHashes": {
+    "projectContextSha256": "4e105763a805f6589c1c8add05eb78729704d763716fd1cd88ec5640a65ea878",
+    "librarianSidecarSha256": "8a996dd65ed1c37732ac79f1d264a423ce80d9600697b18c8b947f31a02e21bd"
+  },
+  "sourceRevision": "a44d90231af23eb9fc6123a7c06bfc53c9a058d7cc556c4c476a8e18ab5c3469",
+  "sourceFingerprint": "b7faec4cd33612b70896fa7740d3669d667e2a7cf7f1a504d84c85a8907e6f5d",
+  "query": "grep inteligente selección compacción párrafos",
+  "decisionQuery": "Select the exact passage that explains how to combine intelligent grep-like search, evidence selection, structural compaction, and paragraph assembly into one composed workflow.",
+  "comparison": {
+    "metadataOff": "lexical only",
+    "treatment": "project-context-librarian-sidecar",
+    "metadataFilter": {
+      "domain": "agent-orchestration"
+    }
+  },
+  "model": {
+    "provider": "typesafe-jev",
+    "model": "jev-1.13.0",
+    "choice": 0.97,
+    "sufficiency": 0.56,
+    "calibration": "uncalibrated"
+  },
+  "limits": [
+    "One already-exposed MSSR document and one query; not an independent holdout.",
+    "Choice and Noul are uncalibrated provider outputs, not correctness probabilities.",
+    "This diagnostic tests focused retrieval, bounded selection, exact fetch, and verbatim evidence packaging. It does not benchmark newly generated prose or production-wide reliability."
+  ]
+}

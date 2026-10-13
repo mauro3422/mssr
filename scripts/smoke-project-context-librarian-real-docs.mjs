@@ -58,6 +58,37 @@ const documents = sourceFiles.map((source) => ({
   evidenceAtoms: projection.evidenceAtoms.filter((atom) => atom.source.ref === source.path),
   privacyClass: "project-metadata",
 }));
+const compositionEntry = librarianManifest.entries.find((entry) => entry.entryId === "mssr-jev-decision-model-use-cases"
+  && entry.headingPath.at(-1) === "Composición: cómo cubrir grep, selección, compacción y párrafos");
+assert.ok(compositionEntry, "the current Jev workflow composition section must have an exact Librarian binding");
+const compositionProjection = projection.items.find((item) => item.entryId === compositionEntry.entryId
+  && JSON.stringify(item.headingPath) === JSON.stringify(compositionEntry.headingPath));
+assert.equal(compositionProjection?.status, "projected");
+const compositionSearch = searchMssrLibrarianEvidence({
+  documents,
+  query: {
+    query: "grep inteligente selección compacción párrafos",
+    metadata: { domain: "agent-orchestration" },
+    maxResults: 20,
+  },
+});
+const compositionResult = compositionSearch.results.find((result) => result.handle.sourceRef === compositionEntry.sourcePath
+  && result.handle.rangeId === compositionProjection.rangeId);
+assert.ok(compositionResult, "workflow composition search must return its exact indexed section");
+assert.ok(compositionResult.metadataProjectionMatches?.some((match) => match.filterMatches?.some((item) => item.field === "domain"
+  && item.value === "agent-orchestration")));
+assert.equal(compositionResult.exactFetchable, true);
+const compositionSource = sourceFiles.find((source) => source.path === compositionEntry.sourcePath);
+assert.ok(compositionSource);
+const compositionFetch = fetchMssrLibrarianEvidence({
+  handle: compositionResult.handle,
+  owner,
+  sourceRef: compositionEntry.sourcePath,
+  markdown: compositionSource.markdown,
+  privacyClass: "project-metadata",
+});
+assert.equal(compositionFetch.fingerprint, compositionEntry.expectedFingerprint);
+assert.match(compositionFetch.text, /compacción estructural guiada por Jev/);
 const fieldNames = { domains: "domain", actions: "action", artifacts: "artifact", needs: "need", signals: "signal" };
 const results = [];
 const adversarialChecks = [];
