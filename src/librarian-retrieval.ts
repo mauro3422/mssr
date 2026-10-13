@@ -60,6 +60,10 @@ export const mssrLibrarianRetrievalQuerySchema = z.object({
   query: z.string().trim().min(1).max(MSSR_LIBRARIAN_RETRIEVAL_LIMITS.queryChars),
   /** Optional alternate phrasings supplied explicitly by the calling host. */
   queryVariants: z.array(z.string().trim().min(1).max(MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxQueryVariantChars)).max(MSSR_LIBRARIAN_RETRIEVAL_LIMITS.maxQueryVariants).optional(),
+  /** Optional ranking policy for explicit query variants; primary-first remains the compatibility default. */
+  queryVariantRanking: z.enum(["primary-first", "round-robin"]).optional().describe(
+    "primary-first ranks all primary-query matches before variants. round-robin interleaves per-query rankings before maxResults truncation without combining their lexical scores.",
+  ),
   owner: z.string().trim().min(1).max(240).optional(),
   sourceRef: z.string().trim().min(1).max(1_000).optional(),
   namespace: z.string().trim().min(1).max(80).optional(),
@@ -123,6 +127,8 @@ export type MssrLibrarianRetrievalResult = {
   scoreQueryIndex?: number;
   /** Per-query lexical matches; scores are not combined and are not confidence estimates. */
   queryMatches?: Array<{ queryIndex: number; score: number; matchedTerms: string[] }>;
+  /** Present only in round-robin mode; identifies the query lane that placed this result in the interleaved ranking. */
+  rankingQueryIndex?: number;
   title: string;
   headingPath: string[];
   snippet: string;
@@ -435,6 +441,47 @@ function diversifyRankTies(results: MssrLibrarianRetrievalResult[]): MssrLibrari
     start = end;
   }
   return diversified;
+}
+
+function roundRobinQueryVariantResults(candidates: MssrLibrarianRetrievalResult[], queryCount: number): MssrLibrarianRetrievalResult[] {
+  const lanes = Array.from({ length: queryCount }, (_, queryIndex) => {
+    const laneCandidates = candidates.flatMap((candidate) => {
+      const match = candidate.queryMatches?.find((item) => item.queryIndex === queryIndex);
+      return match ? [{ candidate, score: match.score }] : [];
+    });
+    laneCandidates.sort((a, b) => Number(b.candidate.exactFetchable) - Number(a.candidate.exactFetchable)
+      || b.score - a.score
+      || a.candidate.handle.owner.localeCompare(b.candidate.handle.owner)
+      || a.candidate.handle.sourceRef.localeCompare(b.candidate.handle.sourceRef)
+      || a.candidate.handle.startOffset - b.candidate.handle.startOffset
+      || a.candidate.handle.id.localeCompare(b.candidate.handle.id));
+
+    const candidateById = new Map(laneCandidates.map(({ candidate }) => [candidate.handle.id, candidate]));
+    const rankingViews = laneCandidates.map(({ candidate, score }) => ({ ...candidate, score, scoreQueryIndex: queryIndex }));
+    return diversifyRankTies(rankingViews).map((view) => ({
+      candidate: candidateById.get(view.handle.id)!,
+      rankingQueryIndex: queryIndex,
+    }));
+  });
+
+  const ranked: MssrLibrarianRetrievalResult[] = [];
+  const seen = new Set<string>();
+  const offsets = lanes.map(() => 0);
+  while (true) {
+    let added = false;
+    for (let laneIndex = 0; laneIndex < lanes.length; laneIndex++) {
+      const lane = lanes[laneIndex]!;
+      while (offsets[laneIndex]! < lane.length && seen.has(lane[offsets[laneIndex]!]!.candidate.handle.id)) offsets[laneIndex]!++;
+      const next = lane[offsets[laneIndex]!];
+      if (!next) continue;
+      offsets[laneIndex]!++;
+      seen.add(next.candidate.handle.id);
+      ranked.push({ ...next.candidate, rankingQueryIndex: next.rankingQueryIndex });
+      added = true;
+    }
+    if (!added) break;
+  }
+  return ranked;
 }
 
 type ProjectedAtomMetadata = {
@@ -766,7 +813,9 @@ export function searchMssrLibrarianEvidence(args: { documents: readonly MssrLibr
     }
   }
   candidates.sort((a, b) => (a.scoreQueryIndex ?? 0) - (b.scoreQueryIndex ?? 0) || Number(b.exactFetchable) - Number(a.exactFetchable) || b.score - a.score || a.handle.owner.localeCompare(b.handle.owner) || a.handle.sourceRef.localeCompare(b.handle.sourceRef) || a.handle.startOffset - b.handle.startOffset || a.handle.id.localeCompare(b.handle.id));
-  const rankedCandidates = diversifyRankTies(candidates);
+  const rankedCandidates = query.queryVariantRanking === "round-robin" && hasQueryVariants
+    ? roundRobinQueryVariantResults(candidates, queryTermSets.length)
+    : diversifyRankTies(candidates);
   return { results: rankedCandidates.slice(0, query.maxResults), advisoryOnly: true, truthAuthority: false, truncated: rankedCandidates.length > query.maxResults };
 }
 

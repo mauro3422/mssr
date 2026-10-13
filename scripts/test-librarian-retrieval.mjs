@@ -323,10 +323,36 @@ const primaryRanked = searchMssrLibrarianEvidence({
   ],
   query: { query: "routing architecture and declared decision policy", queryVariants: ["signal"] },
 }).results;
+const explicitPrimaryRanked = searchMssrLibrarianEvidence({
+  documents: [
+    { owner, sourceRef: "docs/primary.md", markdown: "# Primary\n\n## Routing\n\nOnly routing appears here.\n", privacyClass: "project-metadata" },
+    { owner, sourceRef: "docs/variant.md", markdown: "# Variant\n\n## Signal\n\nOnly signal appears here.\n", privacyClass: "project-metadata" },
+    { owner, sourceRef: "docs/both.md", markdown: "# Both\n\n## Routing and signal\n\nRouting and signal appear here.\n", privacyClass: "project-metadata" },
+  ],
+  query: { query: "routing architecture and declared decision policy", queryVariants: ["signal"], queryVariantRanking: "primary-first" },
+}).results;
+assert.deepEqual(explicitPrimaryRanked.map((item) => item.handle.id), primaryRanked.map((item) => item.handle.id), "explicit primary-first is byte-for-byte compatible with the omitted ranking policy");
 assert.ok(primaryRanked.slice(0, 2).every((item) => item.scoreQueryIndex === 0), "all primary-query matches rank ahead of a short variant with a higher lexical ratio");
 assert.equal(primaryRanked.find((item) => item.scoreQueryIndex === 1)?.handle.sourceRef, "docs/variant.md", "variant-only matches follow the primary-query result group");
 const bothCandidate = primaryRanked.find((item) => item.handle.sourceRef === "docs/both.md");
 assert.deepEqual(bothCandidate?.queryMatches?.map((match) => match.queryIndex), [0, 1], "one exact handle deduplicates across queries while preserving match lineage");
+
+const roundRobinRanked = searchMssrLibrarianEvidence({
+  documents: [
+    { owner, sourceRef: "docs/primary.md", markdown: "# Primary\n\n## Routing\n\nOnly routing appears here.\n", privacyClass: "project-metadata" },
+    { owner, sourceRef: "docs/variant.md", markdown: "# Variant\n\n## Signal\n\nOnly signal appears here.\n", privacyClass: "project-metadata" },
+    { owner, sourceRef: "docs/both.md", markdown: "# Both\n\n## Routing and signal\n\nRouting and signal appear here.\n", privacyClass: "project-metadata" },
+  ],
+  query: { query: "routing architecture and declared decision policy", queryVariants: ["signal"], queryVariantRanking: "round-robin", maxResults: 2 },
+}).results;
+assert.deepEqual(
+  roundRobinRanked.slice(0, 2).map((item) => item.handle.sourceRef),
+  ["docs/both.md", "docs/variant.md"],
+  "round-robin gives an explicit variant a top-k slot when primary-only results would otherwise fill the cap",
+);
+assert.deepEqual(roundRobinRanked.slice(0, 2).map((item) => item.rankingQueryIndex), [0, 1], "round-robin reports the query lane that placed each result");
+assert.equal(roundRobinRanked[1]?.scoreQueryIndex, 1, "a variant-only result keeps its per-query lexical score provenance");
+assert.ok(roundRobinRanked.every((item) => item.queryMatches?.length), "round-robin preserves separate per-query match scores");
 
 const projectionVariant = searchMssrLibrarianEvidence({
   documents: [atomDoc],

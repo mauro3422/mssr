@@ -406,6 +406,8 @@
             "English variant",
             "range granularity",
             "primary-first",
+            "round-robin",
+            "queryVariantRanking",
             "broad vs atomic query"
           ],
           "priority": 20

@@ -36,6 +36,23 @@ changing source-level recall, but it is development evidence, not a new
 holdout or owner-gold. Keep observing on an independent owner-reviewed set
 before adopting more ranking features.
 
+## Explicit Librarian query-variant interleaving — 0.2.132
+
+MyceliumFront's exposed nine-query replay found primary-first can starve an
+alternate-language hit at the top-k cap: with English primary, round-robin
+moved one provisional anchor from rank 10 to rank 4 and improved provisional
+top-8 anchor containment from 8/9 to 9/9. Exact-range counts stayed unchanged
+(2/9 at top 8 and 5/9 at top 16), so this is candidate coverage evidence only,
+not Jev answer quality. Reversing the language order retained 9/9 anchor
+containment but changed exact top-8 range count from 3/9 to 2/9; top-16 stayed
+5/9. Round-robin therefore remains explicit and opt-in.
+The new `queryVariantRanking="round-robin"` mode interleaves independently
+ranked query lanes and exposes `rankingQueryIndex`; it never blends per-query
+scores. `primary-first` remains the default and existing callers remain
+unchanged. Use the mode explicitly for multilingual recall diagnostics, then
+measure exact-range and semantic sufficiency separately on owner-reviewed,
+project-grouped cases before considering any default change.
+
 ## Host-supplied Librarian query variants — 0.2.112
 
 Cross-language expansion belongs to the calling host because MSSR cannot

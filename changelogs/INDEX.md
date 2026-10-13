@@ -21,6 +21,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.132](0.2.132.md) - add explicit round-robin ranking for host-supplied Librarian query variants while preserving primary-first by default.
 - [0.2.131](0.2.131.md) - exclude metadata field names from Librarian lexical matches while keeping metadata values searchable.
 - [0.2.130](0.2.130.md) - register the owned Git worktree-reconciliation skill with explicit routing and positive, continuation, and nearby negative fixtures.
 - [0.2.129](0.2.129.md) - keep Runs 62–63 in the existing run-history module as a resume-only segment, preserving benchmark context and the 48-module budget.
