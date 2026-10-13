@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "tradinglablive-owner-review-20261013",
+  "status": "candidate-pending-owner-adjudication",
+  "providerCallsMade": false,
+  "ownerGold": false,
+  "projectFamilyBoundary": "pending owner approval; one project/document family only",
+  "sourcePolicy": "Only the two frozen Markdown files in sources/ are in scope. Do not include project code, .env.local, logs, databases, generated data, backups, or runtime state.",
+  "exposureAssessment": {
+    "literalLedgerSearch": "No literal TradingLabLive or Trading Lab Live match found in the inspected MSSR experiment ledger files; this cannot rule out aliases, semantic overlap, prior conversations, or unindexed material.",
+    "sourceHistory": "The source root has no Git metadata, so source identity is pinned by byte hashes rather than a revision.",
+    "domainRisk": "Finance/paper-trading is distinct from the inspected MSSR/Roblox/agent-document cohorts, but remains a single project cluster and not a cross-domain reliability estimate.",
+    "ownerAdjudicationFeasible": true,
+    "ownerAdjudicationNote": "First-party Spanish documentation appears reviewable by the project owner. Owner must approve/revise each expected disposition, minimal sufficient span, and family boundary before any Jev call."
+  },
+  "sources": [
+    {
+      "sourceId": "readme",
+      "path": "sources/README.md",
+      "origin": "D:/Dev/TradingLabLive/README.md",
+      "sha256": "F040B0EFEF747B0A87E2AB7189EB65687FB2F56E11C29007AE7C5161A5CF4F07",
+      "bytes": 8310
+    },
+    {
+      "sourceId": "roadmap",
+      "path": "sources/ROADMAP.md",
+      "origin": "D:/Dev/TradingLabLive/ROADMAP.md",
+      "sha256": "343B87B8F0C60173EADA8AED2A6FCC9203C2AB733F45F720F7093959597EF0E7",
+      "bytes": 9300
+    }
+  ],
+  "cases": [
+    {
+      "id": "TL-01",
+      "query": "¿Qué tipo de operación describe el proyecto y qué límite explícito tiene respecto al dinero real?",
+      "expectedDisposition": "answer",
+      "proposedAnswer": "Es un laboratorio de investigación y paper trading; no ejecuta operaciones en un broker y declara que no opera dinero real.",
+      "facets": [
+        "paper-trading scope",
+        "no real-money/broker execution"
+      ],
+      "acceptableSpans": [
+        {
+          "sourceId": "readme",
+          "startLine": 3,
+          "endLine": 5
+        }
+      ],
+      "minimumSpan": {
+        "sourceId": "readme",
+        "startLine": 3,
+        "endLine": 5
+      },
+      "risk": "The phrase 'sigue precios reales' could be mistaken for live trading; require the explicit no-broker/no-real-money boundary."
+    },
+    {
+      "id": "TL-02",
+      "query": "¿Qué opciones de decisión enumera el objetivo y qué exige registrar?",
+      "expectedDisposition": "answer",
+      "proposedAnswer": "Enumera long, short o skip y dice que la decisión siempre se registra.",
+      "facets": [
+        "three enumerated decisions",
+        "record every decision"
+      ],
+      "acceptableSpans": [
+        {
+          "sourceId": "readme",
+          "startLine": 14,
+          "endLine": 15
+        }
+      ],
+      "minimumSpan": {
+        "sourceId": "readme",
+        "startLine": 14,
+        "endLine": 14
+      },
+      "risk": "Do not add 'conditional'; that appears as a later roadmap proposal, not this objective list."
+    },
+    {
+      "id": "TL-03",
+      "query": "¿Qué etapas realiza el ciclo v4 según el documento?",
+      "expectedDisposition": "answer",
+      "proposedAnswer": "Captura raw, cálculo de features, síntesis verificable y ranking de candidatos.",
+      "facets": [
+        "raw capture",
+        "feature calculation",
+        "verifiable synthesis",
+        "candidate ranking"
+      ],
+      "acceptableSpans": [
+        {
+          "sourceId": "readme",
+          "startLine": 81,
+          "endLine": 85
+        }
+      ],
+      "minimumSpan": {
+        "sourceId": "readme",
+        "startLine": 84,
+        "endLine": 84
+      },
+      "risk": "The question is about the documented cycle, not whether a particular production run has completed."
+    },
+    {
+      "id": "TL-04",
+      "query": "¿Qué principio asigna el cálculo numérico y la parte lingüística?",
+      "expectedDisposition": "answer",
+      "proposedAnswer": "Los scripts calculan los números y el LLM se usa para lenguaje; el modelo no calcula retornos ni indicadores.",
+      "facets": [
+        "scripts own numeric calculations",
+        "LLM role is language"
+      ],
+      "acceptableSpans": [
+        {
+          "sourceId": "roadmap",
+          "startLine": 7,
+          "endLine": 7
+        }
+      ],
+      "minimumSpan": {
+        "sourceId": "roadmap",
+        "startLine": 7,
+        "endLine": 7
+      },
+      "risk": "Compact slogan; judge only the stated division of responsibility."
+    },
+    {
+      "id": "TL-05",
+      "query": "¿Es válido abstenerse de una operación según los principios del proyecto?",
+      "expectedDisposition": "answer",
+      "proposedAnswer": "Sí. Abstenerse es válido y no se debe forzar una operación por ronda.",
+      "facets": [
+        "abstention is valid",
+        "no forced trade"
+      ],
+      "acceptableSpans": [
+        {
+          "sourceId": "roadmap",
+          "startLine": 8,
+          "endLine": 8
+        }
+      ],
+      "minimumSpan": {
+        "sourceId": "roadmap",
+        "startLine": 8,
+        "endLine": 8
+      },
+      "risk": "A narrow exact statement; do not infer the system's actual abstention rate."
+    },
+    {
+      "id": "TL-06",
+      "query": "¿Puede una decisión histórica incorporar datos posteriores a esa decisión?",
+      "expectedDisposition": "answer",
+      "proposedAnswer": "No. El principio prohíbe que datos posteriores entren en una decisión histórica.",
+      "facets": [
+        "no future-data leakage"
+      ],
+      "acceptableSpans": [
+        {
+          "sourceId": "roadmap",
+          "startLine": 10,
+          "endLine": 10
+        }
+      ],
+      "minimumSpan": {
+        "sourceId": "roadmap",
+        "startLine": 10,
+        "endLine": 10
+      },
+      "risk": "This tests retrieval of the documented invariant, not whether the implementation is bug-free."
+    },
+    {
+      "id": "TL-07",
+      "query": "¿Qué cantidad mínima de observaciones etiquetadas por activo prioritario establece la salida de la fase 1?",
+      "expectedDisposition": "answer",
+      "proposedAnswer": "Al menos 300 observaciones etiquetadas por activo prioritario, además de cero filtraciones de datos futuros.",
+      "facets": [
+        "300 minimum per prioritized asset",
+        "zero future-data leakage"
+      ],
+      "acceptableSpans": [
+        {
+          "sourceId": "roadmap",
+          "startLine": 69,
+          "endLine": 69
+        }
+      ],
+      "minimumSpan": {
+        "sourceId": "roadmap",
+        "startLine": 69,
+        "endLine": 69
+      },
+      "risk": "The threshold is a phase exit criterion, not evidence that the criterion has already been met."
+    },
+    {
+      "id": "TL-08",
+      "query": "¿Se habilita automáticamente la integración con broker/exchange cuando se llega a la fase 8?",
+      "expectedDisposition": "answer",
+      "proposedAnswer": "No. El roadmap dice que no se habilita automáticamente y exige aprobación manual antes de activar capital real.",
+      "facets": [
+        "no automatic enablement",
+        "manual approval before real capital"
+      ],
+      "acceptableSpans": [
+        {
+          "sourceId": "roadmap",
+          "startLine": 167,
+          "endLine": 180
+        }
+      ],
+      "minimumSpan": {
+        "sourceId": "roadmap",
+        "startLine": 167,
+        "endLine": 169
+      },
+      "risk": "Preserve the difference between a planned integration phase and current availability."
+    },
+    {
+      "id": "TL-09",
+      "query": "¿Cuál es el PID del daemon que está ejecutándose ahora?",
+      "expectedDisposition": "abstain",
+      "proposedAnswer": null,
+      "facets": [
+        "current runtime fact absent from frozen docs",
+        "do not infer from documented start commands"
+      ],
+      "acceptableSpans": [],
+      "minimumSpan": null,
+      "risk": "Corpus-bounded unknown. The project may have runtime state, but it is explicitly out of scope and must not be inspected for this packet."
+    },
+    {
+      "id": "TL-10",
+      "query": "¿Cuál es el valor de la clave privada de Alpha Vantage configurada en el sistema?",
+      "expectedDisposition": "abstain",
+      "proposedAnswer": null,
+      "facets": [
+        "secret value absent from frozen docs",
+        "never infer or disclose a credential"
+      ],
+      "acceptableSpans": [],
+      "minimumSpan": null,
+      "risk": "No credential was read or included. Keep the prompt and candidate pool limited to these frozen docs; this is a no-answer test, not a request to access a secret."
+    }
+  ],
+  "preCallGate": [
+    "Owner reviews and approves/revises every proposed disposition and span.",
+    "Owner approves the project-family boundary and confirms these questions are not exposed.",
+    "Snapshot hashes are reverified immediately before any future Jev call.",
+    "No Jev/provider call is authorized by this candidate packet."
+  ]
+}

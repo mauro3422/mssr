@@ -5,5 +5,9 @@
 # bytes intact instead of applying repository-wide text line-ending conversion.
 experiments/jev-mssr-live/runs/** -text whitespace=cr-at-eol
 
+# Candidate benchmark snapshots are byte-addressed source evidence too; keep
+# their original bytes stable across commits and checkouts.
+experiments/jev-mssr-live/candidates/** -text whitespace=cr-at-eol
+
 # CRLF fixtures exercise byte/offset handling and must check out as CRLF.
 experiments/jev-mssr-live/crlf-tail*.md text eol=crlf
