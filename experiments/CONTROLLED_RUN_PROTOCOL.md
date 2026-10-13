@@ -143,6 +143,19 @@ request ID if available, token usage if returned, a validated response or a
 classified error, and whether any retry occurred. Do not include credentials,
 unredacted exception bodies, or unrelated user/private content.
 
+For an evidence-selection pipeline, a provider response with `status: selected`
+is valid only when it carries a usable selected handle bound to the frozen case
+source and to one of the candidate handles actually offered. Missing handles,
+`choice: none` conflicts, or unoffered handles are failed/unknown decisions and
+must stop before exact fetch or evidence-pack construction. A selection-only
+experiment must declare that mode and validate its selected option against the
+offered options; it must not count that decision as fetched or packed evidence.
+Derived summaries keep raw provider-reported selections separate from valid
+selected decisions. An exact fetch counts only when its pass record is bound to
+that valid selected handle and fingerprint. Packs count only after that chain
+is valid. A later fetch failure does not erase an otherwise valid selector
+decision; report decision quality and evidence-pipeline integrity separately.
+
 Summaries are derived artifacts. They must report attempted, successful,
 failed, and excluded counts; the denominator and missing-data policy for every
 metric; input/output usage; and the exact code/version that produced the

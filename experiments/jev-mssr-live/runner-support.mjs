@@ -407,6 +407,44 @@ function sameHandleIdentity(actual, expected) {
   return Boolean(actual && expected && keys.every((key) => actual[key] === expected[key]));
 }
 
+export function validateSelectedDecision(selection, { sourceRef, candidateHandles } = {}) {
+  const errors = [];
+  if (!selection || typeof selection !== "object" || Array.isArray(selection)) {
+    return { passed: false, errors: ["selector response is not an object"] };
+  }
+  if (selection.status !== "selected") errors.push("selector status is not selected");
+  if (selection.choice === "none") errors.push("selector returned choice=none with status=selected");
+  const handle = selection.selected?.handle;
+  if (!selection.selected || typeof selection.selected !== "object" || Array.isArray(selection.selected)) {
+    errors.push("selected payload is missing or invalid");
+  }
+  if (!handle || typeof handle !== "object" || Array.isArray(handle)) {
+    errors.push("selected handle is missing or invalid");
+  } else {
+    const requiredStrings = ["id", "owner", "sourceRef", "revision", "rangeId", "rangeKind", "fingerprint", "privacyClass"];
+    for (const key of requiredStrings) {
+      if (typeof handle[key] !== "string" || handle[key].trim().length === 0) {
+        errors.push(`selected handle ${key} is missing or invalid`);
+      }
+    }
+    if (!Number.isSafeInteger(handle.version) || handle.version < 1) errors.push("selected handle version is missing or invalid");
+    if (!Number.isSafeInteger(handle.startLine) || handle.startLine < 1
+      || !Number.isSafeInteger(handle.endLine) || handle.endLine < handle.startLine) {
+      errors.push("selected handle line range is missing or invalid");
+    }
+    if (!Number.isSafeInteger(handle.startOffset) || handle.startOffset < 0
+      || !Number.isSafeInteger(handle.endOffset) || handle.endOffset < handle.startOffset) {
+      errors.push("selected handle offset range is missing or invalid");
+    }
+    if (!/^[a-f\d]{64}$/iu.test(handle.fingerprint ?? "")) errors.push("selected handle fingerprint is not SHA-256");
+    if (sourceRef && handle.sourceRef !== sourceRef) errors.push("selected handle sourceRef differs from the frozen case sourceRef");
+    if (Array.isArray(candidateHandles) && !candidateHandles.some((candidate) => sameHandleIdentity(handle, candidate))) {
+      errors.push("selected handle is not identical to any offered candidate handle");
+    }
+  }
+  return { passed: errors.length === 0, errors };
+}
+
 export function validateFetchResult(fetched, expectedHandle, expectedText) {
   const errors = [];
   if (!fetched || typeof fetched !== "object") return { passed: false, errors: ["fetch result is not an object"] };

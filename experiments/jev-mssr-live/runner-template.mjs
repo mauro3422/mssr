@@ -14,6 +14,7 @@ import {
   validateMssrPackageTreeFreeze,
   validateEvidencePack,
   validateFetchResult,
+  validateSelectedDecision,
   validateLabelHeadingPaths,
   validateProjectContextManifestPreflight,
   validateProjectContextMetadataControls,
@@ -271,7 +272,20 @@ for (const testCase of cases) {
     };
     record.returnedProvider = selected.provider ?? null;
     record.returnedModel = selected.model ?? null;
-    if (selected.status === "selected" && selected.choice !== "none" && selected.selected?.handle) {
+    if (candidateHandles.length > 0 && selected.status === "selected") {
+      const selectionValidation = validateSelectedDecision(selected, {
+        sourceRef: testCase.sourceRef,
+        candidateHandles,
+      });
+      assert.ok(selectionValidation.passed,
+        `Selected decision contract failed: ${selectionValidation.errors.join("; ")}`);
+    } else if (candidateHandles.length > 0 && selected.status === "abstained") {
+      assert.equal(selected.choice, "none", "abstained selector response must use choice=none");
+      assert.equal(selected.selected, null, "abstained selector response must not contain a selected item");
+    } else if (candidateHandles.length > 0) {
+      throw new Error(`Selector returned unsupported decision status: ${String(selected.status)}`);
+    }
+    if (selected.status === "selected") {
       const selectedHandle = selected.selected.handle;
       const frozenSourceText = frozenSourceTextByRef.get(selectedHandle.sourceRef);
       assert.equal(typeof frozenSourceText, "string", "selected source is absent from frozen corpus snapshots");
@@ -356,6 +370,25 @@ const finalMetadataControls = await validateProjectContextMetadataControls({
 });
 assert.deepEqual(finalMetadataControls, frozenMetadataControls, "Project Context metadata controls changed during run");
 const labelByCase = new Map(labels.cases.map((label) => [label.caseId, label]));
+const selectionValidationByCase = new Map(records.map((record) => [
+  record.caseId,
+  validateSelectedDecision(record.jev, {
+    sourceRef: record.sourceRef,
+    candidateHandles: (record.search?.results ?? []).map((item) => item.handle).filter(Boolean),
+  }),
+]));
+const selectedDecisionValid = (record) => selectionValidationByCase.get(record.caseId)?.passed === true;
+const exactFetchPassedForRecord = (record) => {
+  if (!selectedDecisionValid(record) || record.fetch?.passed !== true) return false;
+  const handle = record.jev.selected.handle;
+  return record.fetch.handleId === handle.id
+    && record.fetch.selectedFingerprint === handle.fingerprint
+    && record.fetch.fingerprint === handle.fingerprint
+    && record.fetch.returnedFingerprint === handle.fingerprint;
+};
+const evidencePackBuiltForRecord = (record) => selectedDecisionValid(record)
+  && exactFetchPassedForRecord(record)
+  && record.evidencePack?.passed === true;
 const scored = records.map((record) => {
   const label = labelByCase.get(record.caseId);
   assert.ok(label, "missing label " + record.caseId);
@@ -363,10 +396,10 @@ const scored = records.map((record) => {
   assert.ok(["answerable", "unanswerable"].includes(answerability), "invalid answerability for " + record.caseId);
   const selected = record.jev?.selected;
   const hasSelectionConflict = (record.jev?.status === "abstained" && selected != null)
-    || (record.jev?.status === "selected" && (selected == null || record.jev?.choice === "none"))
+    || (record.jev?.status === "selected" && !selectedDecisionValid(record))
     || (record.jev?.status === "abstained" && record.jev?.choice != null && record.jev.choice !== "none")
     || (record.jev?.status == null && record.jev?.choice === "none" && selected != null);
-  const hasSelectedDecision = !hasSelectionConflict && record.jev?.status === "selected" && selected != null;
+  const hasSelectedDecision = !hasSelectionConflict && selectedDecisionValid(record);
   const hasAbstainedDecision = !hasSelectionConflict && (record.jev?.status === "abstained"
     || (record.jev?.status == null && record.jev?.choice === "none" && selected == null));
   const decisionStatus = hasSelectedDecision ? "selected" : hasAbstainedDecision ? "abstained" : "failed-or-unknown";
@@ -398,8 +431,9 @@ const scored = records.map((record) => {
       targetRangeContainedInSearchTop100: null,
       targetLinesContainedInSearchTop100: null,
       relevantRangeContainedInSearchTop100: null,
-      exactFetchPassed: Boolean(record.fetch?.passed),
-      evidencePackBuilt: record.evidencePack?.passed === true,
+      exactFetchPassed: exactFetchPassedForRecord(record),
+      evidencePackBuilt: evidencePackBuiltForRecord(record),
+      selectedDecisionValid: selectedDecisionValid(record),
       status: record.status,
     };
   }
@@ -491,8 +525,9 @@ const scored = records.map((record) => {
     targetRangeContainedInSearchTop100,
     targetLinesContainedInSearchTop100,
     relevantRangeContainedInSearchTop100,
-    exactFetchPassed: Boolean(record.fetch?.passed),
-    evidencePackBuilt: record.evidencePack?.passed === true,
+    exactFetchPassed: exactFetchPassedForRecord(record),
+    evidencePackBuilt: evidencePackBuiltForRecord(record),
+    selectedDecisionValid: selectedDecisionValid(record),
     status: record.status,
   };
 });
@@ -502,6 +537,9 @@ const classifiedDecisionCount = scored.filter((item) => item.answerabilityDecisi
 const correctDecisionCount = scored.filter((item) => item.answerabilityDecisionCorrect === true).length;
 const incorrectDecisionCount = scored.filter((item) => item.answerabilityDecisionCorrect === false).length;
 const sourceDocumentClusters = new Set(records.map((record) => record.sourceRef).filter(Boolean)).size;
+const providerReportedSelected = records.filter((record) => record.jev?.status === "selected");
+const validSelectedDecisions = providerReportedSelected.filter(selectedDecisionValid);
+const malformedSelectedDecisions = providerReportedSelected.filter((record) => !selectedDecisionValid(record));
 const summary = {
   schemaVersion: 1,
   runId: manifest.runId,
@@ -510,6 +548,13 @@ const summary = {
   attemptedRequests: records.length,
   successfulRequests: records.filter((record) => record.status === "complete").length,
   failedRequests: records.filter((record) => record.status === "failed").length,
+  providerReportedSelected: providerReportedSelected.length,
+  selected: validSelectedDecisions.length,
+  malformedSelectedDecisions: malformedSelectedDecisions.map((record) => ({
+    caseId: record.caseId,
+    errors: selectionValidationByCase.get(record.caseId)?.errors ?? [],
+  })),
+  selectionIntegrityStatus: malformedSelectedDecisions.length === 0 ? "passed" : "issues",
   sourceDocumentClusters,
   independentUnits: manifest.plan.independentUnit ?? "sourceRef clusters (descriptive grouping only)",
   clusterInterpretation: "Distinct sourceRef grouping only; it does not establish independent statistical sampling.",
@@ -562,8 +607,9 @@ const summary = {
     failedOrUnknown: answerableScores.filter((item) => item.rangeSelectionAssessment === "failed-or-unknown").length,
     note: "A range outside the exact or explicitly labeled relevant ranges is ungraded for semantic usefulness; it is not automatically irrelevant. Inspect source text and blinded review separately.",
   },
-  exactFetchesWithFingerprint: scored.filter((item) => item.exactFetchPassed).length,
-  evidencePacksBuilt: scored.filter((item) => item.evidencePackBuilt).length,
+  exactFetchesWithFingerprint: records.filter(exactFetchPassedForRecord).length,
+  fetchesReportedPassed: records.filter((record) => record.fetch?.passed === true).length,
+  evidencePacksBuilt: records.filter(evidencePackBuiltForRecord).length,
   tokenUsage: {
     input: records.reduce((sum, record) => sum + (record.jev?.usage?.input_tokens ?? 0), 0),
     output: records.reduce((sum, record) => sum + (record.jev?.usage?.output_tokens ?? 0), 0),

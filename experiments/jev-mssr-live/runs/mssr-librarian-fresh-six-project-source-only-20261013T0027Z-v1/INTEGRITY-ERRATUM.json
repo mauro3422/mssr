@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-fresh-six-project-source-only-20261013T0027Z-v1",
+  "kind": "append-only result-integrity audit",
+  "observedAt": "2026-10-13T08:15:41Z",
+  "frozenArtifactsAudited": [
+    {
+      "path": "RUN-PLAN.json",
+      "sha256": "5b4ffcf02e08d82795b6201f454982f6a780f09e2bd36077c013a30021376a98"
+    },
+    {
+      "path": "RESULTS.json",
+      "sha256": "2d5debaaf90045997f84f5761f2d6e11171fecf12d71d07f8190aa8cf953370f"
+    },
+    {
+      "path": "BLIND-REVIEW.md",
+      "sha256": "8101742ee9574c1baaf0a405e7620d4f10dab848b310592fb87b26cc6b2fa143"
+    },
+    {
+      "path": "SHA256SUMS.json",
+      "sha256": "018449ab98b7e1b554181cd48414867664707ecd03f566e814dd744997e790c9"
+    }
+  ],
+  "observations": {
+    "selectedPositiveCasesReported": 5,
+    "caseRowsWithPersistedSelectedRange": 2,
+    "caseRowsWithExactFetchFingerprintPass": 2,
+    "caseRowsWithEvidencePackDetails": 2,
+    "selectedCasesMissingRangeAndFetchDetails": [
+      "LAT-POS",
+      "CBA-POS",
+      "GOD-POS"
+    ],
+    "metricsJsonClaims": {
+      "exactFetchFingerprintPasses": 5,
+      "evidencePacks": 5
+    },
+    "rawProviderResponsesOrRequestRecordsPersisted": false,
+    "blindReviewRows": 5
+  },
+  "assessment": "The top-level 5/5 exact-fetch and evidence-pack counts cannot be reconstructed from the persisted case rows. Two passes are case-level verifiable; the remaining three are unsupported by this packet, not proven failures. The blind review reports selected line ranges for all five cases, but the three missing machine-readable selections prevent binding those reviews to exact fetched handles and fingerprints.",
+  "disposition": [
+    "Keep RESULTS.json, BLIND-REVIEW.md, and the original checksum index unchanged.",
+    "Use only the two persisted case-level passes as verified exact-fetch/evidence-pack evidence; report three additional passes as unverified aggregate claims.",
+    "Retain the pilot as exploratory source-only evidence; it remains non-gold, non-holdout, and uncalibrated.",
+    "Future evidence-pipeline runs must persist every selected handle, fetch identity/fingerprint, and evidence-pack validation per case before counting the chain as passed."
+  ],
+  "appendOnlyArtifact": true,
+  "includedInOriginalChecksumIndex": false
+}

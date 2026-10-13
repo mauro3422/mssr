@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { inspectSelectedDecision } from "./selection-record.mjs";
 
 const [runArgument, writeArgument, ...extraArguments] = process.argv.slice(2);
 if (!runArgument || (writeArgument && writeArgument !== "--write") || extraArguments.length) {
@@ -13,13 +14,53 @@ const runDir = path.resolve(runArgument);
 const readJson = async (file) => JSON.parse(await fs.readFile(path.join(runDir, file), "utf8"));
 const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const finite = (value) => Number.isFinite(value);
+const isSha256 = (value) => typeof value === "string" && /^[a-f\d]{64}$/iu.test(value);
 const normalizeHeading = (value) => String(value ?? "").trim().replace(/^#{1,6}\s+/u, "").trim();
+
+function exactFetchBoundToHandle(fetch, handle) {
+  return fetch?.passed === true
+    && handle != null
+    && typeof handle.id === "string"
+    && typeof handle.revision === "string"
+    && isSha256(handle.fingerprint)
+    && fetch.handleId === handle.id
+    && fetch.revision === handle.revision
+    && fetch.selectedFingerprint === handle.fingerprint
+    && fetch.fingerprint === handle.fingerprint
+    && (fetch.returnedFingerprint == null || fetch.returnedFingerprint === handle.fingerprint)
+    && (fetch.textMatchesFrozenSource == null || fetch.textMatchesFrozenSource === true)
+    && (fetch.expectedTextSha256 == null || fetch.textSha256 === fetch.expectedTextSha256);
+}
 
 function evidencePackBuilt(record) {
   const pack = record.evidencePack;
   if (!pack || pack.status === "invalid" || pack.status === "not-built") return false;
   if (typeof pack.passed === "boolean") return pack.passed;
   return pack.status === "complete" || pack.status === "validated";
+}
+
+function evidencePackBoundToHandle(record, handle) {
+  const packRecord = record.evidencePack;
+  if (!evidencePackBuilt(record) || !handle) return false;
+  if (typeof packRecord.passed === "boolean") return packRecord.passed;
+  const pack = packRecord.rawPack;
+  if (!Array.isArray(pack?.paragraphs)) return false;
+  return pack.paragraphs.some((paragraph) => {
+    const citation = paragraph?.citation;
+    const identityMatches = citation?.handleId === handle.id
+      && citation?.owner === handle.owner
+      && citation?.sourceRef === handle.sourceRef
+      && citation?.revision === handle.revision
+      && citation?.rangeId === handle.rangeId
+      && citation?.rangeKind === handle.rangeKind
+      && citation?.startLine === handle.startLine
+      && citation?.endLine === handle.endLine
+      && citation?.fingerprint === handle.fingerprint
+      && citation?.privacyClass === handle.privacyClass;
+    const textMatchesFetch = typeof record.fetch?.text !== "string"
+      || paragraph?.exactText === record.fetch.text;
+    return identityMatches && textMatchesFetch;
+  });
 }
 
 function matchesRanges(record, label, item, selectedRanges) {
@@ -168,11 +209,32 @@ function pairedExcerptCapSummary({ manifest, completion, cases, records, checksu
   }
 
   const sourceRefs = [...new Set(cases.map((item) => item.sourceRef).filter(Boolean))].sort();
-  const selected = records.filter((record) => record.selector?.status === "selected");
+  const providerReportedSelected = records.filter((record) => record.selector?.status === "selected");
+  const selected = providerReportedSelected.filter((record) => inspectSelectedDecision(
+    record.selector,
+    caseById.get(record.caseId)?.sourceRef,
+  ).valid);
+  const malformedSelected = providerReportedSelected.filter((record) => !inspectSelectedDecision(
+    record.selector,
+    caseById.get(record.caseId)?.sourceRef,
+  ).valid);
   const abstained = records.filter((record) => record.selector?.status === "abstained");
   const failed = records.filter((record) => record.safeError != null
-    || !["selected", "abstained"].includes(record.selector?.status));
-  const exactFetches = records.filter((record) => record.exactFetch?.fingerprintMatched === true);
+    || !["selected", "abstained"].includes(record.selector?.status)
+    || (record.selector?.status === "selected" && !inspectSelectedDecision(
+      record.selector,
+      caseById.get(record.caseId)?.sourceRef,
+    ).valid));
+  const exactFetchReportedMatched = records.filter((record) => record.exactFetch?.fingerprintMatched === true);
+  const exactFetchIntegrityErrors = exactFetchReportedMatched.filter((record) => {
+    const integrity = inspectSelectedDecision(record.selector, caseById.get(record.caseId)?.sourceRef);
+    const fingerprint = record.selector?.selected?.handle?.fingerprint;
+    return !integrity.valid
+      || !isSha256(fingerprint)
+      || record.exactFetch?.fingerprint !== fingerprint
+      || record.exactFetch?.handleFingerprint !== fingerprint;
+  });
+  const exactFetches = exactFetchReportedMatched.filter((record) => !exactFetchIntegrityErrors.includes(record));
   const evidenceSufficiencyRecorded = records.filter((record) => finite(record.selector?.evidenceSufficiency));
   const confidenceRecorded = records.filter((record) => finite(record.selector?.providerConfidence));
   const tokenUsage = usageFor(records, (record) => record.selector?.usage);
@@ -196,12 +258,20 @@ function pairedExcerptCapSummary({ manifest, completion, cases, records, checksu
     expectedProviderCalls: manifest.providerCallsExpected,
     attemptedRequests: records.length,
     selected: selected.length,
+    providerReportedSelected: providerReportedSelected.length,
+    selectionIntegrityStatus: malformedSelected.length === 0 && exactFetchIntegrityErrors.length === 0 ? "passed" : "issues",
+    malformedSelectedDecisions: malformedSelected.map((record) => ({
+      caseId: record.caseId,
+      reason: inspectSelectedDecision(record.selector, caseById.get(record.caseId)?.sourceRef).reason,
+    })),
     abstained: abstained.length,
     failedRequests: failed.length,
     sourceDocumentClusters: sourceRefs.length,
     sourceRefs,
     clusterInterpretation: "Distinct sourceRef grouping only; it does not establish independent statistical sampling.",
     exactFetchesWithFingerprint: exactFetches.length,
+    exactFetchesReportedMatched: exactFetchReportedMatched.length,
+    exactFetchIntegrityErrors: exactFetchIntegrityErrors.map((record) => record.caseId),
     providerConfidenceCapture: { recorded: confidenceRecorded.length, missing: records.length - confidenceRecorded.length },
     evidenceSufficiencyCapture: { recorded: evidenceSufficiencyRecorded.length, missing: records.length - evidenceSufficiencyRecorded.length },
     tokenUsage,
@@ -216,7 +286,8 @@ function pairedExcerptCapSummary({ manifest, completion, cases, records, checksu
       selectedTitle: record.selector?.selected?.title ?? null,
       rawChoiceConfidence: record.selector?.providerConfidence ?? null,
       evidenceSufficiency: record.selector?.evidenceSufficiency ?? null,
-      exactFetchPassed: record.exactFetch?.fingerprintMatched === true,
+      exactFetchPassed: exactFetchReportedMatched.includes(record) && !exactFetchIntegrityErrors.includes(record),
+      selectedDecisionValid: inspectSelectedDecision(record.selector, caseById.get(record.caseId)?.sourceRef).valid,
       elapsedMs: record.elapsedWallMs ?? null,
     })),
   };
@@ -242,10 +313,30 @@ function genericSummary({ manifest, completion, cases, labels, records, checksum
 
   const successful = records.filter((record) => record.status === "complete");
   const failed = records.filter((record) => record.status !== "complete");
-  const selected = records.filter((record) => record.jev?.status === "selected");
+  const providerReportedSelected = records.filter((record) => record.jev?.status === "selected");
+  const selectionIntegrity = new Map(records.map((record) => [
+    record.caseId,
+    inspectSelectedDecision(record.jev, record.sourceRef),
+  ]));
+  const selected = records.filter((record) => selectionIntegrity.get(record.caseId).valid);
+  const malformedSelected = providerReportedSelected.filter((record) => !selectionIntegrity.get(record.caseId).valid);
   const abstained = records.filter((record) => record.jev?.status === "abstained");
-  const fetched = records.filter((record) => record.fetch?.passed === true);
-  const packs = records.filter(evidencePackBuilt);
+  const fetchLinkageErrors = records.filter((record) => {
+    if (record.fetch?.passed !== true || !selectionIntegrity.get(record.caseId).valid) return false;
+    const handle = record.jev.selected.handle;
+    return !exactFetchBoundToHandle(record.fetch, handle);
+  });
+  const fetched = records.filter((record) => record.fetch?.passed === true
+    && selectionIntegrity.get(record.caseId).valid
+    && exactFetchBoundToHandle(record.fetch, record.jev.selected.handle));
+  const packs = records.filter((record) => selectionIntegrity.get(record.caseId).valid
+    && exactFetchBoundToHandle(record.fetch, record.jev?.selected?.handle)
+    && evidencePackBoundToHandle(record, record.jev?.selected?.handle));
+  const fetchPassedForRecord = (record) => record.fetch?.passed === true
+    && selectionIntegrity.get(record.caseId).valid
+    && exactFetchBoundToHandle(record.fetch, record.jev.selected.handle);
+  const evidencePackBuiltForRecord = (record) => fetchPassedForRecord(record)
+    && evidencePackBoundToHandle(record, record.jev?.selected?.handle);
   const evidenceSufficiencyRecorded = records.filter((record) => finite(record.jev?.evidenceSufficiency));
   const rawNoulRecorded = records.filter((record) => finite(record.jev?.noul));
   const sourceRefs = [...new Set(records.map((record) => record.sourceRef).filter(Boolean))].sort();
@@ -268,11 +359,12 @@ function genericSummary({ manifest, completion, cases, labels, records, checksum
         assert.ok(label, `missing label for record ${record.caseId}`);
         const answerability = label.answerability ?? "answerable";
         assert.ok(["answerable", "unanswerable"].includes(answerability), `invalid answerability for ${record.caseId}`);
+        const selectedIntegrity = selectionIntegrity.get(record.caseId);
         const hasSelectionConflict = (record.jev?.status === "abstained" && record.jev?.selected != null)
-          || (record.jev?.status === "selected" && (record.jev?.selected == null || record.jev?.choice === "none"))
+          || (record.jev?.status === "selected" && !selectedIntegrity.valid)
           || (record.jev?.status === "abstained" && record.jev?.choice != null && record.jev.choice !== "none")
           || (record.jev?.status == null && record.jev?.choice === "none" && record.jev?.selected != null);
-        const hasSelectedDecision = !hasSelectionConflict && record.jev?.status === "selected" && record.jev?.selected != null;
+        const hasSelectedDecision = !hasSelectionConflict && selectedIntegrity.valid;
         const hasAbstainedDecision = !hasSelectionConflict && (record.jev?.status === "abstained"
           || (record.jev?.status == null && record.jev?.choice === "none" && record.jev?.selected == null));
         const decisionStatus = hasSelectedDecision ? "selected" : hasAbstainedDecision ? "abstained" : "failed-or-unknown";
@@ -313,7 +405,7 @@ function genericSummary({ manifest, completion, cases, labels, records, checksum
             searchTargetLinesContainedAt100: null,
             searchRelevantRangeFound: null,
             searchRelevantRangeContainedAt100: null,
-            exactFetchPassed: record.fetch?.passed === true,
+            exactFetchPassed: fetchPassedForRecord(record),
             pipelineStatus: record.status,
           };
         }
@@ -353,7 +445,7 @@ function genericSummary({ manifest, completion, cases, labels, records, checksum
           decisionCorrect: answerabilityDecisionCorrect,
           answerabilityDecisionCorrect,
           rangeSelectionAssessment,
-          exactFetchPassed: record.fetch?.passed === true,
+          exactFetchPassed: fetchPassedForRecord(record),
           pipelineStatus: record.status,
         };
       })
@@ -381,9 +473,20 @@ function genericSummary({ manifest, completion, cases, labels, records, checksum
     successfulRequests: successful.length,
     failedRequests: failed.length,
     selected: selected.length,
+    providerReportedSelected: providerReportedSelected.length,
+    selectionIntegrityStatus: malformedSelected.length === 0 && fetchLinkageErrors.length === 0 ? "passed" : "issues",
+    malformedSelectedDecisions: malformedSelected.map((record) => ({
+      caseId: record.caseId,
+      reason: selectionIntegrity.get(record.caseId).reason,
+    })),
     abstained: abstained.length,
     exactFetchesWithFingerprint: fetched.length,
+    fetchesReportedPassed: records.filter((record) => record.fetch?.passed === true).length,
+    fetchesWithoutValidSelection: records.filter((record) => record.fetch?.passed === true
+      && !selectionIntegrity.get(record.caseId).valid).map((record) => record.caseId),
+    fetchSelectionLinkageErrors: fetchLinkageErrors.map((record) => record.caseId),
     evidencePacksBuilt: packs.length,
+    evidencePacksReportedBuilt: records.filter(evidencePackBuilt).length,
     evidenceSufficiencyCapture: {
       recorded: evidenceSufficiencyRecorded.length,
       missingFromRecords: records.length - evidenceSufficiencyRecorded.length,
@@ -480,8 +583,9 @@ function genericSummary({ manifest, completion, cases, labels, records, checksum
       rawChoiceConfidence: record.jev?.rawChoiceConfidence ?? null,
       evidenceSufficiency: record.jev?.evidenceSufficiency ?? null,
       providerNoul: record.jev?.noul ?? null,
-      exactFetchPassed: record.fetch?.passed === true,
-      evidencePackBuilt: evidencePackBuilt(record),
+      exactFetchPassed: fetchPassedForRecord(record),
+      selectedDecisionValid: selectionIntegrity.get(record.caseId).valid,
+      evidencePackBuilt: evidencePackBuiltForRecord(record),
       elapsedMs: record.elapsedMs ?? null,
     })),
   };
