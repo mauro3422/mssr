@@ -1812,3 +1812,17 @@ the evidence does not distinguish intended single-trace continuity from stale
 Bridge session correlation. Follow-up: inspect Bridge trace selection with two
 open tasks and verify that a new task starts a compatible trace or returns an
 actionable explicit handoff requirement.
+
+**Additional evidence (2026-10-13):** During publication of runner commit
+`8d3e3e977bf47064c5a30ea757562dcda5ec4743`, Bridge rejected both a new route and
+a bootstrap when they attempted to reuse the open trace
+`mssr-20261013051352-4145a99c-a2d` under a different task identity. A new
+linked trace, `mssr-20261013052809-026ee61d2db6`, with an explicit stable
+`taskKey` completed the publication workflow; the direct remote ref matched
+the commit. The rejected calls made no repository or runtime changes. This is
+caller-side trace-selection friction under the existing identity lock, not
+evidence of a Bridge defect. Follow-up: when beginning a distinct subtask while
+an older trace is open, supply a fresh child `traceId`, `parentTraceId`, and
+stable `taskKey`; do not guess or reuse the older trace identity. Keep the
+concurrent-task correlation investigation open if this recurs after that
+pattern.
