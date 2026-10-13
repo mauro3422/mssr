@@ -1,0 +1,2723 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Blind review of retrieval plus Jev selections; answers and benchmark class labels intentionally withheld.",
+  "items": [
+    {
+      "reviewId": "Q-01",
+      "sourceFamily": "BeeIncremental",
+      "sourceRef": "docs/VISUAL_DIRECTION.md",
+      "sourceSnapshot": "inputs\\sources\\bee\\docs\\VISUAL_DIRECTION.md",
+      "arm": "es",
+      "question": "¿Qué motor y formato visual se eligieron para el juego?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Visual Direction",
+            "headingPath": [
+              "Visual Direction"
+            ],
+            "lines": [
+              1,
+              97
+            ],
+            "snippet": "# Visual Direction ## Chosen format Godot 2D with faux-2.5D depth. The honeycomb is presented almost front-on, with enough illustrated perspective to make wax …"
+          },
+          {
+            "rank": 2,
+            "title": "Chosen format",
+            "headingPath": [
+              "Visual Direction",
+              "Chosen format"
+            ],
+            "lines": [
+              3,
+              8
+            ],
+            "snippet": "## Chosen format Godot 2D with faux-2.5D depth. The honeycomb is presented almost front-on, with enough illustrated perspective to make wax walls, cells and be…"
+          },
+          {
+            "rank": 3,
+            "title": "Chosen format",
+            "headingPath": [
+              "Visual Direction",
+              "Chosen format"
+            ],
+            "lines": [
+              5,
+              5
+            ],
+            "snippet": "Godot 2D with faux-2.5D depth."
+          },
+          {
+            "rank": 4,
+            "title": "Chosen format",
+            "headingPath": [
+              "Visual Direction",
+              "Chosen format"
+            ],
+            "lines": [
+              7,
+              7
+            ],
+            "snippet": "The honeycomb is presented almost front-on, with enough illustrated perspective to make wax walls, cells and bees feel dimensional without using a 3D world."
+          },
+          {
+            "rank": 5,
+            "title": "Why not full isometric or 3D",
+            "headingPath": [
+              "Visual Direction",
+              "Why not full isometric or 3D"
+            ],
+            "lines": [
+              9,
+              12
+            ],
+            "snippet": "## Why not full isometric or 3D The honeycomb itself is an interface. Cells must remain easy to read, hover and click. A strong isometric angle would distort t…"
+          },
+          {
+            "rank": 6,
+            "title": "Why not full isometric or 3D",
+            "headingPath": [
+              "Visual Direction",
+              "Why not full isometric or 3D"
+            ],
+            "lines": [
+              11,
+              11
+            ],
+            "snippet": "The honeycomb itself is an interface. Cells must remain easy to read, hover and click. A strong isometric angle would distort the hex grid, reduce usable scree…"
+          },
+          {
+            "rank": 7,
+            "title": "Recommended camera language",
+            "headingPath": [
+              "Visual Direction",
+              "Recommended camera language"
+            ],
+            "lines": [
+              13,
+              21
+            ],
+            "snippet": "…n comb plane: near frontal. - Suggested visual tilt: mild 3/4 illusion only, produced mostly by art rather than by a camera transform. - Cells: preserve clear…"
+          },
+          {
+            "rank": 8,
+            "title": "Recommended camera language",
+            "headingPath": [
+              "Visual Direction",
+              "Recommended camera language"
+            ],
+            "lines": [
+              15,
+              15
+            ],
+            "snippet": "- Main comb plane: near frontal."
+          }
+        ]
+      },
+      "jev": {
+        "status": "selected",
+        "selected": {
+          "title": "Chosen format",
+          "headingPath": [
+            "Visual Direction",
+            "Chosen format"
+          ],
+          "lines": [
+            3,
+            8
+          ],
+          "exactText": "## Chosen format\n\nGodot 2D with faux-2.5D depth.\n\nThe honeycomb is presented almost front-on, with enough illustrated perspective to make wax walls, cells and bees feel dimensional without using a 3D world.\n\n"
+        }
+      }
+    },
+    {
+      "reviewId": "Q-02",
+      "sourceFamily": "BeeIncremental",
+      "sourceRef": "docs/VISUAL_DIRECTION.md",
+      "sourceSnapshot": "inputs\\sources\\bee\\docs\\VISUAL_DIRECTION.md",
+      "arm": "en",
+      "question": "Which engine and visual format were chosen for the game?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Visual Direction",
+            "headingPath": [
+              "Visual Direction"
+            ],
+            "lines": [
+              1,
+              97
+            ],
+            "snippet": "# Visual Direction ## Chosen format Godot 2D with faux-2.5D depth. The honeycomb is presented almost front-on, with enough illustrated perspective to make wax …"
+          },
+          {
+            "rank": 2,
+            "title": "Chosen format",
+            "headingPath": [
+              "Visual Direction",
+              "Chosen format"
+            ],
+            "lines": [
+              3,
+              8
+            ],
+            "snippet": "## Chosen format Godot 2D with faux-2.5D depth. The honeycomb is presented almost front-on, with enough illustrated perspective to make wax walls, cells and be…"
+          },
+          {
+            "rank": 3,
+            "title": "Chosen format",
+            "headingPath": [
+              "Visual Direction",
+              "Chosen format"
+            ],
+            "lines": [
+              5,
+              5
+            ],
+            "snippet": "Godot 2D with faux-2.5D depth."
+          },
+          {
+            "rank": 4,
+            "title": "Chosen format",
+            "headingPath": [
+              "Visual Direction",
+              "Chosen format"
+            ],
+            "lines": [
+              7,
+              7
+            ],
+            "snippet": "The honeycomb is presented almost front-on, with enough illustrated perspective to make wax walls, cells and bees feel dimensional without using a 3D world."
+          },
+          {
+            "rank": 5,
+            "title": "Hive-first interface rule",
+            "headingPath": [
+              "Visual Direction",
+              "Hive-first interface rule"
+            ],
+            "lines": [
+              55,
+              60
+            ],
+            "snippet": "…nterface rule The honeycomb is the main game board, not decorative background. The player should spend most of the time looking at the colony itself. Panels, …"
+          },
+          {
+            "rank": 6,
+            "title": "Hive-first interface rule",
+            "headingPath": [
+              "Visual Direction",
+              "Hive-first interface rule"
+            ],
+            "lines": [
+              57,
+              57
+            ],
+            "snippet": "The honeycomb is the main game board, not decorative background. The player should spend most of the time looking at the colony itself."
+          },
+          {
+            "rank": 7,
+            "title": "Why not full isometric or 3D",
+            "headingPath": [
+              "Visual Direction",
+              "Why not full isometric or 3D"
+            ],
+            "lines": [
+              9,
+              12
+            ],
+            "snippet": "## Why not full isometric or 3D The honeycomb itself is an interface. Cells must remain easy to read, hover and click. A strong isometric angle would distort t…"
+          },
+          {
+            "rank": 8,
+            "title": "Why not full isometric or 3D",
+            "headingPath": [
+              "Visual Direction",
+              "Why not full isometric or 3D"
+            ],
+            "lines": [
+              11,
+              11
+            ],
+            "snippet": "The honeycomb itself is an interface. Cells must remain easy to read, hover and click. A strong isometric angle would distort the hex grid, reduce usable scree…"
+          }
+        ]
+      },
+      "jev": {
+        "status": "selected",
+        "selected": {
+          "title": "Chosen format",
+          "headingPath": [
+            "Visual Direction",
+            "Chosen format"
+          ],
+          "lines": [
+            5,
+            5
+          ],
+          "exactText": "Godot 2D with faux-2.5D depth."
+        }
+      }
+    },
+    {
+      "reviewId": "Q-03",
+      "sourceFamily": "BeeIncremental",
+      "sourceRef": "docs/VISUAL_DIRECTION.md",
+      "sourceSnapshot": "inputs\\sources\\bee\\docs\\VISUAL_DIRECTION.md",
+      "arm": "es",
+      "question": "¿Qué dos vistas forman el primer slice jugable?",
+      "retrieval": {
+        "candidateCount": 0,
+        "candidates": []
+      },
+      "jev": {
+        "status": "not-run",
+        "selected": null
+      }
+    },
+    {
+      "reviewId": "Q-04",
+      "sourceFamily": "BeeIncremental",
+      "sourceRef": "docs/VISUAL_DIRECTION.md",
+      "sourceSnapshot": "inputs\\sources\\bee\\docs\\VISUAL_DIRECTION.md",
+      "arm": "en",
+      "question": "Which two views make up the first playable slice?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Visual Direction",
+            "headingPath": [
+              "Visual Direction"
+            ],
+            "lines": [
+              1,
+              97
+            ],
+            "snippet": "… with enough illustrated perspective to make wax walls, cells and bees feel dimensional without using a 3D world. ## Why not full isometric or 3D The honeycom…"
+          },
+          {
+            "rank": 2,
+            "title": "Connected primary views",
+            "headingPath": [
+              "Visual Direction",
+              "Connected primary views"
+            ],
+            "lines": [
+              61,
+              69
+            ],
+            "snippet": "## Connected primary views The first playable may switch between two lightweight 2D presentation scenes while preserving one continuous colony state: - `HiveVi…"
+          },
+          {
+            "rank": 3,
+            "title": "Connected primary views",
+            "headingPath": [
+              "Visual Direction",
+              "Connected primary views"
+            ],
+            "lines": [
+              63,
+              63
+            ],
+            "snippet": "The first playable may switch between two lightweight 2D presentation scenes while preserving one continuous colony state:"
+          },
+          {
+            "rank": 4,
+            "title": "Chosen format",
+            "headingPath": [
+              "Visual Direction",
+              "Chosen format"
+            ],
+            "lines": [
+              3,
+              8
+            ],
+            "snippet": "…th. The honeycomb is presented almost front-on, with enough illustrated perspective to make wax walls, cells and bees feel dimensional without using a 3D worl…"
+          },
+          {
+            "rank": 5,
+            "title": "Chosen format",
+            "headingPath": [
+              "Visual Direction",
+              "Chosen format"
+            ],
+            "lines": [
+              7,
+              7
+            ],
+            "snippet": "The honeycomb is presented almost front-on, with enough illustrated perspective to make wax walls, cells and bees feel dimensional without using a 3D world."
+          },
+          {
+            "rank": 6,
+            "title": "Why not full isometric or 3D",
+            "headingPath": [
+              "Visual Direction",
+              "Why not full isometric or 3D"
+            ],
+            "lines": [
+              9,
+              12
+            ],
+            "snippet": "…ex grid, reduce usable screen space and make interaction less immediate. Real 3D would add modeling, rigging, camera, lighting and navigation work before the …"
+          },
+          {
+            "rank": 7,
+            "title": "Why not full isometric or 3D",
+            "headingPath": [
+              "Visual Direction",
+              "Why not full isometric or 3D"
+            ],
+            "lines": [
+              11,
+              11
+            ],
+            "snippet": "…ex grid, reduce usable screen space and make interaction less immediate. Real 3D would add modeling, rigging, camera, lighting and navigation work before the …"
+          },
+          {
+            "rank": 8,
+            "title": "Connected primary views",
+            "headingPath": [
+              "Visual Direction",
+              "Connected primary views"
+            ],
+            "lines": [
+              65,
+              66
+            ],
+            "snippet": "- `HiveView`: honeycomb, brood, storage and visible worker activity; - `ForageView`: flowers/plants, forage clicking and visible bees collecting resources."
+          }
+        ]
+      },
+      "jev": {
+        "status": "selected",
+        "selected": {
+          "title": "Connected primary views",
+          "headingPath": [
+            "Visual Direction",
+            "Connected primary views"
+          ],
+          "lines": [
+            65,
+            66
+          ],
+          "exactText": "- `HiveView`: honeycomb, brood, storage and visible worker activity;\n- `ForageView`: flowers/plants, forage clicking and visible bees collecting resources."
+        }
+      }
+    },
+    {
+      "reviewId": "Q-05",
+      "sourceFamily": "BeeIncremental",
+      "sourceRef": "docs/OPEN_QUESTIONS.md",
+      "sourceSnapshot": "inputs\\sources\\bee\\docs\\OPEN_QUESTIONS.md",
+      "arm": "es",
+      "question": "¿Cuál es el nombre público definitivo que ya se aprobó para BeeIncremental?",
+      "retrieval": {
+        "candidateCount": 4,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Open Questions",
+            "headingPath": [
+              "Open Questions"
+            ],
+            "lines": [
+              1,
+              45
+            ],
+            "snippet": "…ority 1. **Working/final name** - Keep `BeeIncremental` internally for now. - Later choose whether the public name should sound scientific, cozy, funny or add…"
+          },
+          {
+            "rank": 2,
+            "title": "Highest priority",
+            "headingPath": [
+              "Open Questions",
+              "Highest priority"
+            ],
+            "lines": [
+              5,
+              10
+            ],
+            "snippet": "…ority 1. **Working/final name** - Keep `BeeIncremental` internally for now. - Later choose whether the public name should sound scientific, cozy, funny or add…"
+          },
+          {
+            "rank": 3,
+            "title": "Highest priority",
+            "headingPath": [
+              "Open Questions",
+              "Highest priority"
+            ],
+            "lines": [
+              7,
+              9
+            ],
+            "snippet": "1. **Working/final name** - Keep `BeeIncremental` internally for now. - Later choose whether the public name should sound scientific, cozy, funny or addictive/…"
+          },
+          {
+            "rank": 4,
+            "title": "Highest priority",
+            "headingPath": [
+              "Open Questions",
+              "Highest priority"
+            ],
+            "lines": [
+              7,
+              9
+            ],
+            "snippet": "1. **Working/final name** - Keep `BeeIncremental` internally for now. - Later choose whether the public name should sound scientific, cozy, funny or addictive/…"
+          }
+        ]
+      },
+      "jev": {
+        "status": "abstained",
+        "selected": null
+      }
+    },
+    {
+      "reviewId": "Q-06",
+      "sourceFamily": "BeeIncremental",
+      "sourceRef": "docs/OPEN_QUESTIONS.md",
+      "sourceSnapshot": "inputs\\sources\\bee\\docs\\OPEN_QUESTIONS.md",
+      "arm": "en",
+      "question": "What definitive public name has been approved for BeeIncremental?",
+      "retrieval": {
+        "candidateCount": 7,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Open Questions",
+            "headingPath": [
+              "Open Questions"
+            ],
+            "lines": [
+              1,
+              45
+            ],
+            "snippet": "… ## Highest priority 1. **Working/final name** - Keep `BeeIncremental` internally for now. - Later choose whether the public name should sound scientific, coz…"
+          },
+          {
+            "rank": 2,
+            "title": "Highest priority",
+            "headingPath": [
+              "Open Questions",
+              "Highest priority"
+            ],
+            "lines": [
+              5,
+              10
+            ],
+            "snippet": "## Highest priority 1. **Working/final name** - Keep `BeeIncremental` internally for now. - Later choose whether the public name should sound scientific, cozy,…"
+          },
+          {
+            "rank": 3,
+            "title": "Highest priority",
+            "headingPath": [
+              "Open Questions",
+              "Highest priority"
+            ],
+            "lines": [
+              7,
+              9
+            ],
+            "snippet": "1. **Working/final name** - Keep `BeeIncremental` internally for now. - Later choose whether the public name should sound scientific, cozy, funny or addictive/…"
+          },
+          {
+            "rank": 4,
+            "title": "Highest priority",
+            "headingPath": [
+              "Open Questions",
+              "Highest priority"
+            ],
+            "lines": [
+              7,
+              9
+            ],
+            "snippet": "1. **Working/final name** - Keep `BeeIncremental` internally for now. - Later choose whether the public name should sound scientific, cozy, funny or addictive/…"
+          },
+          {
+            "rank": 5,
+            "title": "Medium priority",
+            "headingPath": [
+              "Open Questions",
+              "Medium priority"
+            ],
+            "lines": [
+              17,
+              25
+            ],
+            "snippet": "…uld offline progress exist in the first public build or only after the basic economy is stable? 9. What is the permanent prestige resource called? Avoid pseud…"
+          },
+          {
+            "rank": 6,
+            "title": "Medium priority",
+            "headingPath": [
+              "Open Questions",
+              "Medium priority"
+            ],
+            "lines": [
+              19,
+              24
+            ],
+            "snippet": "…uld offline progress exist in the first public build or only after the basic economy is stable? 9. What is the permanent prestige resource called? Avoid pseud…"
+          },
+          {
+            "rank": 7,
+            "title": "Medium priority",
+            "headingPath": [
+              "Open Questions",
+              "Medium priority"
+            ],
+            "lines": [
+              22,
+              22
+            ],
+            "snippet": "8. Should offline progress exist in the first public build or only after the basic economy is stable?"
+          }
+        ]
+      },
+      "jev": {
+        "status": "abstained",
+        "selected": null
+      }
+    },
+    {
+      "reviewId": "Q-07",
+      "sourceFamily": "BeeIncremental",
+      "sourceRef": "docs/OPEN_QUESTIONS.md",
+      "sourceSnapshot": "inputs\\sources\\bee\\docs\\OPEN_QUESTIONS.md",
+      "arm": "es",
+      "question": "¿Cuántos segundos exactos pasan antes de que la primera recompensa de automatización se sienta bien?",
+      "retrieval": {
+        "candidateCount": 0,
+        "candidates": []
+      },
+      "jev": {
+        "status": "not-run",
+        "selected": null
+      }
+    },
+    {
+      "reviewId": "Q-08",
+      "sourceFamily": "BeeIncremental",
+      "sourceRef": "docs/OPEN_QUESTIONS.md",
+      "sourceSnapshot": "inputs\\sources\\bee\\docs\\OPEN_QUESTIONS.md",
+      "arm": "en",
+      "question": "How many exact seconds pass before the first automation reward feels good?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Open Questions",
+            "headingPath": [
+              "Open Questions"
+            ],
+            "lines": [
+              1,
+              45
+            ],
+            "snippet": "…e/arcade-like. ## Recently resolved - **First manual action:** begin with flower/forage clicking, then route gathered food into brood support until the first …"
+          },
+          {
+            "rank": 2,
+            "title": "Prototype questions",
+            "headingPath": [
+              "Open Questions",
+              "Prototype questions"
+            ],
+            "lines": [
+              26,
+              36
+            ],
+            "snippet": "## Prototype questions The first playable should answer these empirically: - Does clicking feel satisfying before art is polished? - How many seconds before th…"
+          },
+          {
+            "rank": 3,
+            "title": "Prototype questions",
+            "headingPath": [
+              "Open Questions",
+              "Prototype questions"
+            ],
+            "lines": [
+              30,
+              35
+            ],
+            "snippet": "…ying before art is polished? - How many seconds before the first automation reward feels good? - Is seeing one bee take over a task more satisfying than only …"
+          },
+          {
+            "rank": 4,
+            "title": "Prototype questions",
+            "headingPath": [
+              "Open Questions",
+              "Prototype questions"
+            ],
+            "lines": [
+              31,
+              31
+            ],
+            "snippet": "- How many seconds before the first automation reward feels good?"
+          },
+          {
+            "rank": 5,
+            "title": "Recently resolved",
+            "headingPath": [
+              "Open Questions",
+              "Recently resolved"
+            ],
+            "lines": [
+              11,
+              16
+            ],
+            "snippet": "## Recently resolved - **First manual action:** begin with flower/forage clicking, then route gathered food into brood support until the first worker emerges. …"
+          },
+          {
+            "rank": 6,
+            "title": "Recently resolved",
+            "headingPath": [
+              "Open Questions",
+              "Recently resolved"
+            ],
+            "lines": [
+              13,
+              13
+            ],
+            "snippet": "- **First manual action:** begin with flower/forage clicking, then route gathered food into brood support until the first worker emerges."
+          },
+          {
+            "rank": 7,
+            "title": "Recently resolved",
+            "headingPath": [
+              "Open Questions",
+              "Recently resolved"
+            ],
+            "lines": [
+              13,
+              15
+            ],
+            "snippet": "- **First manual action:** begin with flower/forage clicking, then route gathered food into brood support until the first worker emerges. - **Art direction:** …"
+          },
+          {
+            "rank": 8,
+            "title": "Medium priority",
+            "headingPath": [
+              "Open Questions",
+              "Medium priority"
+            ],
+            "lines": [
+              17,
+              25
+            ],
+            "snippet": "## Medium priority 5. Desktop-first only, or design UI from the beginning so mobile/touch remains possible? 6. Should the player control one colony forever bet…"
+          }
+        ]
+      },
+      "jev": {
+        "status": "abstained",
+        "selected": null
+      }
+    },
+    {
+      "reviewId": "Q-09",
+      "sourceFamily": "Elemental Frontier",
+      "sourceRef": "combat-lab/research/VERSION_MATRIX.md",
+      "sourceSnapshot": "inputs\\sources\\ef\\combat-lab\\research\\VERSION_MATRIX.md",
+      "arm": "es",
+      "question": "¿Qué versión de NeoForge fija el baseline común del Combat Lab?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              1,
+              39
+            ],
+            "snippet": "# Combat Lab Version Matrix Baseline común de comparación: - Minecraft Java 1.21.8 - NeoForge 21.8.54 - Java 21 - Prism Launcher 11.1.1 La versión final del se…"
+          },
+          {
+            "rank": 2,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              3,
+              3
+            ],
+            "snippet": "Baseline común de comparación:"
+          },
+          {
+            "rank": 3,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              10,
+              10
+            ],
+            "snippet": "La versión final del servidor **no queda fijada por este baseline**. El laboratorio usa la versión común más reciente entre las referencias principales para co…"
+          },
+          {
+            "rank": 4,
+            "title": "Bending Styles",
+            "headingPath": [
+              "Combat Lab Version Matrix",
+              "Bending Styles"
+            ],
+            "lines": [
+              24,
+              32
+            ],
+            "snippet": "…ente: - Minecraft exactamente 1.21.8. - NeoForge >= 21.8.31. El baseline 21.8.54 satisface esa restricción. No declara otra dependencia requerida dentro de `n…"
+          },
+          {
+            "rank": 5,
+            "title": "Bending Styles",
+            "headingPath": [
+              "Combat Lab Version Matrix",
+              "Bending Styles"
+            ],
+            "lines": [
+              31,
+              31
+            ],
+            "snippet": "El baseline 21.8.54 satisface esa restricción. No declara otra dependencia requerida dentro de `neoforge.mods.toml`."
+          },
+          {
+            "rank": 6,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              5,
+              8
+            ],
+            "snippet": "- Minecraft Java 1.21.8 - NeoForge 21.8.54 - Java 21 - Prism Launcher 11.1.1"
+          },
+          {
+            "rank": 7,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              6,
+              6
+            ],
+            "snippet": "- NeoForge 21.8.54"
+          },
+          {
+            "rank": 8,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              12,
+              18
+            ],
+            "snippet": "…transiciones | LGPL-3.0-only | | Better Combat | 1.21.8 | 3.0.1 | timing, telegraph, hit window, recovery | All Rights Reserved: referencia; no copiar código/…"
+          }
+        ]
+      },
+      "jev": {
+        "status": "selected",
+        "selected": {
+          "title": "Combat Lab Version Matrix",
+          "headingPath": [
+            "Combat Lab Version Matrix"
+          ],
+          "lines": [
+            1,
+            39
+          ],
+          "exactText": "# Combat Lab Version Matrix\n\nBaseline común de comparación:\n\n- Minecraft Java 1.21.8\n- NeoForge 21.8.54\n- Java 21\n- Prism Launcher 11.1.1\n\nLa versión final del servidor **no queda fijada por este baseline**. El laboratorio usa la versión común más reciente entre las referencias principales para comparar comportamiento bajo condiciones equivalentes.\n\n| Perfil | Minecraft | Build fijada | Uso | Licencia / regla |\n|---|---|---|---|---|\n| Enhanced Movement | 1.21.8 | 2.1.3 | dash, air-dash, double-tap, ledge | MIT según metadata de la build fijada |\n| ParCool stable | 1.21.8 | 3.4.3.3 | parkour, vault, wall movement, transiciones | LGPL-3.0-only |\n| Better Combat | 1.21.8 | 3.0.1 | timing, telegraph, hit window, recovery | All Rights Reserved: referencia; no copiar código/assets |\n| Bending Styles | 1.21.8 | 1.1.1 | input elemental, movilidad, animación y VFX | GPLv3 |\n| ParCool 4.0 experimental | 1.21.1 | 4.0.0.5 | estudiar el motor/animaciones 4.x | excepción aislada; no entra en comparación baseline directa |\n\n## Locks\n\n`combat-lab/locks/*.json` conserva IDs exactos, dependencias, hashes y URLs resueltas. Sólo refrescar un lock de forma deliberada con `resolve <perfil> --refresh`.\n\n## Bending Styles\n\nLa build 1.21.8 declara directamente:\n\n- Minecraft exactamente 1.21.8.\n- NeoForge >= 21.8.31.\n\nEl baseline 21.8.54 satisface esa restricción. No declara otra dependencia requerida dentro de `neoforge.mods.toml`.\n\n## Better Combat\n\nEl resolver incluye automáticamente dependencias requeridas compatibles con 1.21.8. En el lock actual se fijan Better Combat + Player Animation Library + Cloth Config.\n\n## Regla\n\nNunca actualizar un perfil a mitad de una ronda de medición. Una ronda completa conserva los mismos locks.\n"
+        }
+      }
+    },
+    {
+      "reviewId": "Q-10",
+      "sourceFamily": "Elemental Frontier",
+      "sourceRef": "combat-lab/research/VERSION_MATRIX.md",
+      "sourceSnapshot": "inputs\\sources\\ef\\combat-lab\\research\\VERSION_MATRIX.md",
+      "arm": "en",
+      "question": "What NeoForge version does the Combat Lab shared baseline use?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              1,
+              39
+            ],
+            "snippet": "# Combat Lab Version Matrix Baseline común de comparación: - Minecraft Java 1.21.8 - NeoForge 21.8.54 - Java 21 - Prism Launcher 11.1.1 La versión final del se…"
+          },
+          {
+            "rank": 2,
+            "title": "Bending Styles",
+            "headingPath": [
+              "Combat Lab Version Matrix",
+              "Bending Styles"
+            ],
+            "lines": [
+              24,
+              32
+            ],
+            "snippet": "…ente: - Minecraft exactamente 1.21.8. - NeoForge >= 21.8.31. El baseline 21.8.54 satisface esa restricción. No declara otra dependencia requerida dentro de `n…"
+          },
+          {
+            "rank": 3,
+            "title": "Bending Styles",
+            "headingPath": [
+              "Combat Lab Version Matrix",
+              "Bending Styles"
+            ],
+            "lines": [
+              31,
+              31
+            ],
+            "snippet": "El baseline 21.8.54 satisface esa restricción. No declara otra dependencia requerida dentro de `neoforge.mods.toml`."
+          },
+          {
+            "rank": 4,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              3,
+              3
+            ],
+            "snippet": "Baseline común de comparación:"
+          },
+          {
+            "rank": 5,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              5,
+              8
+            ],
+            "snippet": "- Minecraft Java 1.21.8 - NeoForge 21.8.54 - Java 21 - Prism Launcher 11.1.1"
+          },
+          {
+            "rank": 6,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              6,
+              6
+            ],
+            "snippet": "- NeoForge 21.8.54"
+          },
+          {
+            "rank": 7,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              10,
+              10
+            ],
+            "snippet": "La versión final del servidor **no queda fijada por este baseline**. El laboratorio usa la versión común más reciente entre las referencias principales para co…"
+          },
+          {
+            "rank": 8,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              12,
+              18
+            ],
+            "snippet": "…transiciones | LGPL-3.0-only | | Better Combat | 1.21.8 | 3.0.1 | timing, telegraph, hit window, recovery | All Rights Reserved: referencia; no copiar código/…"
+          }
+        ]
+      },
+      "jev": {
+        "status": "selected",
+        "selected": {
+          "title": "Combat Lab Version Matrix",
+          "headingPath": [
+            "Combat Lab Version Matrix"
+          ],
+          "lines": [
+            1,
+            39
+          ],
+          "exactText": "# Combat Lab Version Matrix\n\nBaseline común de comparación:\n\n- Minecraft Java 1.21.8\n- NeoForge 21.8.54\n- Java 21\n- Prism Launcher 11.1.1\n\nLa versión final del servidor **no queda fijada por este baseline**. El laboratorio usa la versión común más reciente entre las referencias principales para comparar comportamiento bajo condiciones equivalentes.\n\n| Perfil | Minecraft | Build fijada | Uso | Licencia / regla |\n|---|---|---|---|---|\n| Enhanced Movement | 1.21.8 | 2.1.3 | dash, air-dash, double-tap, ledge | MIT según metadata de la build fijada |\n| ParCool stable | 1.21.8 | 3.4.3.3 | parkour, vault, wall movement, transiciones | LGPL-3.0-only |\n| Better Combat | 1.21.8 | 3.0.1 | timing, telegraph, hit window, recovery | All Rights Reserved: referencia; no copiar código/assets |\n| Bending Styles | 1.21.8 | 1.1.1 | input elemental, movilidad, animación y VFX | GPLv3 |\n| ParCool 4.0 experimental | 1.21.1 | 4.0.0.5 | estudiar el motor/animaciones 4.x | excepción aislada; no entra en comparación baseline directa |\n\n## Locks\n\n`combat-lab/locks/*.json` conserva IDs exactos, dependencias, hashes y URLs resueltas. Sólo refrescar un lock de forma deliberada con `resolve <perfil> --refresh`.\n\n## Bending Styles\n\nLa build 1.21.8 declara directamente:\n\n- Minecraft exactamente 1.21.8.\n- NeoForge >= 21.8.31.\n\nEl baseline 21.8.54 satisface esa restricción. No declara otra dependencia requerida dentro de `neoforge.mods.toml`.\n\n## Better Combat\n\nEl resolver incluye automáticamente dependencias requeridas compatibles con 1.21.8. En el lock actual se fijan Better Combat + Player Animation Library + Cloth Config.\n\n## Regla\n\nNunca actualizar un perfil a mitad de una ronda de medición. Una ronda completa conserva los mismos locks.\n"
+        }
+      }
+    },
+    {
+      "reviewId": "Q-11",
+      "sourceFamily": "Elemental Frontier",
+      "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+      "sourceSnapshot": "inputs\\sources\\ef\\docs\\DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+      "arm": "es",
+      "question": "¿Qué input produce un intento de dash según el contrato?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)"
+            ],
+            "lines": [
+              1,
+              71
+            ],
+            "snippet": "# Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11) **Estado:** corrección en `feat/animation-studio-v1`; QA real cliente NeoForge 1.21.8 …"
+          },
+          {
+            "rank": 2,
+            "title": "Contrato obligatorio de controles",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Contrato obligatorio de controles"
+            ],
+            "lines": [
+              15,
+              24
+            ],
+            "snippet": "## Contrato obligatorio de controles - **Ctrl** sigue siendo Sprint vanilla, y genera **un solo intento de dash por flanco de pulsación**, condicionado a coold…"
+          },
+          {
+            "rank": 3,
+            "title": "Contrato obligatorio de controles",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Contrato obligatorio de controles"
+            ],
+            "lines": [
+              17,
+              23
+            ],
+            "snippet": "…endo Sprint vanilla, y genera **un solo intento de dash por flanco de pulsación**, condicionado a cooldown. No se introducen slots numéricos ni se usan Alt ni…"
+          },
+          {
+            "rank": 4,
+            "title": "Contrato obligatorio de controles",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Contrato obligatorio de controles"
+            ],
+            "lines": [
+              17,
+              17
+            ],
+            "snippet": "…endo Sprint vanilla, y genera **un solo intento de dash por flanco de pulsación**, condicionado a cooldown. No se introducen slots numéricos ni se usan Alt ni…"
+          },
+          {
+            "rank": 5,
+            "title": "Gates automatizados",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Gates automatizados"
+            ],
+            "lines": [
+              31,
+              38
+            ],
+            "snippet": "## Gates automatizados - `DashDirectionMemoryTest` valida lateral puro, diagonales, prioridad del input actual, memoria tras soltar, giro de cámara a 90°, cont…"
+          },
+          {
+            "rank": 6,
+            "title": "Gates automatizados",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Gates automatizados"
+            ],
+            "lines": [
+              33,
+              37
+            ],
+            "snippet": "- `DashDirectionMemoryTest` valida lateral puro, diagonales, prioridad del input actual, memoria tras soltar, giro de cámara a 90°, contradicciones y reinicio …"
+          },
+          {
+            "rank": 7,
+            "title": "Gates automatizados",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Gates automatizados"
+            ],
+            "lines": [
+              33,
+              33
+            ],
+            "snippet": "- `DashDirectionMemoryTest` valida lateral puro, diagonales, prioridad del input actual, memoria tras soltar, giro de cámara a 90°, contradicciones y reinicio …"
+          },
+          {
+            "rank": 8,
+            "title": "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)"
+            ],
+            "lines": [
+              3,
+              3
+            ],
+            "snippet": "**Estado:** corrección en `feat/animation-studio-v1`; QA real cliente NeoForge 1.21.8 + Paper 1.21.8, plugin EF Paper v0.1.5. No fusionar automáticamente a `ma…"
+          }
+        ]
+      },
+      "jev": {
+        "status": "selected",
+        "selected": {
+          "title": "Contrato obligatorio de controles",
+          "headingPath": [
+            "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+            "Contrato obligatorio de controles"
+          ],
+          "lines": [
+            15,
+            24
+          ],
+          "exactText": "## Contrato obligatorio de controles\n\n- **Ctrl** sigue siendo Sprint vanilla, y genera **un solo intento de dash por flanco de pulsación**, condicionado a cooldown. No se introducen slots numéricos ni se usan Alt ni teclas incompatibles con BUILD/COMBAT.\n- Con **W/A/S/D actualmente pulsadas**, su vector gana. `A` = strafe negativo, `D` = positivo, `W` = adelante, `S` = atrás. Diagonales se normalizan y se conservan como diagonales. No forzar adelante si el jugador pidió un lateral.\n- Con **ninguna tecla pulsada**, Ctrl reutiliza la **última dirección válida en coordenadas del mundo**. Girar la cámara/personaje después de soltarlas no gira el vector almacenado. `W+S` o `A+D` que cancelan explícitamente **no** recurren a memoria. Se borra memoria al cambiar de conexión.\n- Si nunca hubo dirección válida, el dash no se ejecuta ni inventa movimiento frontal.\n- Paper recibe `(strafe,forward)` actual o reproyectado a la orientación presente. Paper sigue validando movimiento, cooldown y aplicando velocidad: **el cliente no adquiere autoridad en multiplayer**.\n- En Singleplayer ordinario, sin sincronización del canal Paper, no mostrar un DASH inmóvil. Se muestra una indicación discreta una vez y permanece Sprint vanilla.\n- **Excepción explícita QA:** únicamente el perfil aislado `ef-animation-reference-qa`, con ambos flags JVM y servidor integrado, puede aplicar un impulso equivalente para probar física local. **NO** se ejecuta cuando hay Paper dedicado y nunca afecta otros perfiles, servidores o mundos.\n\n"
+        }
+      }
+    },
+    {
+      "reviewId": "Q-12",
+      "sourceFamily": "Elemental Frontier",
+      "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+      "sourceSnapshot": "inputs\\sources\\ef\\docs\\DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+      "arm": "en",
+      "question": "What input triggers a dash attempt under the contract?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)"
+            ],
+            "lines": [
+              1,
+              71
+            ],
+            "snippet": "# Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11) **Estado:** corrección en `feat/animation-studio-v1`; QA real cliente NeoForge 1.21.8 …"
+          },
+          {
+            "rank": 2,
+            "title": "Gates automatizados",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Gates automatizados"
+            ],
+            "lines": [
+              31,
+              38
+            ],
+            "snippet": "## Gates automatizados - `DashDirectionMemoryTest` valida lateral puro, diagonales, prioridad del input actual, memoria tras soltar, giro de cámara a 90°, cont…"
+          },
+          {
+            "rank": 3,
+            "title": "Gates automatizados",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Gates automatizados"
+            ],
+            "lines": [
+              33,
+              37
+            ],
+            "snippet": "- `DashDirectionMemoryTest` valida lateral puro, diagonales, prioridad del input actual, memoria tras soltar, giro de cámara a 90°, contradicciones y reinicio …"
+          },
+          {
+            "rank": 4,
+            "title": "Gates automatizados",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Gates automatizados"
+            ],
+            "lines": [
+              33,
+              33
+            ],
+            "snippet": "- `DashDirectionMemoryTest` valida lateral puro, diagonales, prioridad del input actual, memoria tras soltar, giro de cámara a 90°, contradicciones y reinicio …"
+          },
+          {
+            "rank": 5,
+            "title": "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)"
+            ],
+            "lines": [
+              3,
+              3
+            ],
+            "snippet": "**Estado:** corrección en `feat/animation-studio-v1`; QA real cliente NeoForge 1.21.8 + Paper 1.21.8, plugin EF Paper v0.1.5. No fusionar automáticamente a `ma…"
+          },
+          {
+            "rank": 6,
+            "title": "Problema reproducido",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Problema reproducido"
+            ],
+            "lines": [
+              5,
+              14
+            ],
+            "snippet": "…2. En tercera persona se ve una pose de dash/rotación de las piernas, pero **no resulta claro un desplazamiento lateral**. Se observaron fotogramas de 0–18 s …"
+          },
+          {
+            "rank": 7,
+            "title": "Problema reproducido",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Problema reproducido"
+            ],
+            "lines": [
+              7,
+              7
+            ],
+            "snippet": "…2. En tercera persona se ve una pose de dash/rotación de las piernas, pero **no resulta claro un desplazamiento lateral**. Se observaron fotogramas de 0–18 s …"
+          },
+          {
+            "rank": 8,
+            "title": "Problema reproducido",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Problema reproducido"
+            ],
+            "lines": [
+              9,
+              9
+            ],
+            "snippet": "**Causas separadas:**"
+          }
+        ]
+      },
+      "jev": {
+        "status": "abstained",
+        "selected": null
+      }
+    },
+    {
+      "reviewId": "Q-13",
+      "sourceFamily": "Elemental Frontier",
+      "sourceRef": "combat-lab/research/VERSION_MATRIX.md",
+      "sourceSnapshot": "inputs\\sources\\ef\\combat-lab\\research\\VERSION_MATRIX.md",
+      "arm": "es",
+      "question": "¿Qué versión final del servidor quedó fijada por este baseline?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              1,
+              39
+            ],
+            "snippet": "# Combat Lab Version Matrix Baseline común de comparación: - Minecraft Java 1.21.8 - NeoForge 21.8.54 - Java 21 - Prism Launcher 11.1.1 La versión final del se…"
+          },
+          {
+            "rank": 2,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              10,
+              10
+            ],
+            "snippet": "La versión final del servidor **no queda fijada por este baseline**. El laboratorio usa la versión común más reciente entre las referencias principales para co…"
+          },
+          {
+            "rank": 3,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              12,
+              18
+            ],
+            "snippet": "| Perfil | Minecraft | Build fijada | Uso | Licencia / regla | |---|---|---|---|---| | Enhanced Movement | 1.21.8 | 2.1.3 | dash, air-dash, double-tap, ledge |…"
+          },
+          {
+            "rank": 4,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              3,
+              3
+            ],
+            "snippet": "Baseline común de comparación:"
+          },
+          {
+            "rank": 5,
+            "title": "Bending Styles",
+            "headingPath": [
+              "Combat Lab Version Matrix",
+              "Bending Styles"
+            ],
+            "lines": [
+              24,
+              32
+            ],
+            "snippet": "… exactamente 1.21.8. - NeoForge >= 21.8.31. El baseline 21.8.54 satisface esa restricción. No declara otra dependencia requerida dentro de `neoforge.mods.toml…"
+          },
+          {
+            "rank": 6,
+            "title": "Bending Styles",
+            "headingPath": [
+              "Combat Lab Version Matrix",
+              "Bending Styles"
+            ],
+            "lines": [
+              31,
+              31
+            ],
+            "snippet": "El baseline 21.8.54 satisface esa restricción. No declara otra dependencia requerida dentro de `neoforge.mods.toml`."
+          },
+          {
+            "rank": 7,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              5,
+              8
+            ],
+            "snippet": "- Minecraft Java 1.21.8 - NeoForge 21.8.54 - Java 21 - Prism Launcher 11.1.1"
+          },
+          {
+            "rank": 8,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              5,
+              5
+            ],
+            "snippet": "- Minecraft Java 1.21.8"
+          }
+        ]
+      },
+      "jev": {
+        "status": "selected",
+        "selected": {
+          "title": "Combat Lab Version Matrix",
+          "headingPath": [
+            "Combat Lab Version Matrix"
+          ],
+          "lines": [
+            10,
+            10
+          ],
+          "exactText": "La versión final del servidor **no queda fijada por este baseline**. El laboratorio usa la versión común más reciente entre las referencias principales para comparar comportamiento bajo condiciones equivalentes."
+        }
+      }
+    },
+    {
+      "reviewId": "Q-14",
+      "sourceFamily": "Elemental Frontier",
+      "sourceRef": "combat-lab/research/VERSION_MATRIX.md",
+      "sourceSnapshot": "inputs\\sources\\ef\\combat-lab\\research\\VERSION_MATRIX.md",
+      "arm": "en",
+      "question": "What final server version was fixed by this baseline?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              1,
+              39
+            ],
+            "snippet": "# Combat Lab Version Matrix Baseline común de comparación: - Minecraft Java 1.21.8 - NeoForge 21.8.54 - Java 21 - Prism Launcher 11.1.1 La versión final del se…"
+          },
+          {
+            "rank": 2,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              10,
+              10
+            ],
+            "snippet": "La versión final del servidor **no queda fijada por este baseline**. El laboratorio usa la versión común más reciente entre las referencias principales para co…"
+          },
+          {
+            "rank": 3,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              3,
+              3
+            ],
+            "snippet": "Baseline común de comparación:"
+          },
+          {
+            "rank": 4,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              12,
+              18
+            ],
+            "snippet": "… VFX | GPLv3 | | ParCool 4.0 experimental | 1.21.1 | 4.0.0.5 | estudiar el motor/animaciones 4.x | excepción aislada; no entra en comparación baseline directa…"
+          },
+          {
+            "rank": 5,
+            "title": "Bending Styles",
+            "headingPath": [
+              "Combat Lab Version Matrix",
+              "Bending Styles"
+            ],
+            "lines": [
+              24,
+              32
+            ],
+            "snippet": "… exactamente 1.21.8. - NeoForge >= 21.8.31. El baseline 21.8.54 satisface esa restricción. No declara otra dependencia requerida dentro de `neoforge.mods.toml…"
+          },
+          {
+            "rank": 6,
+            "title": "Bending Styles",
+            "headingPath": [
+              "Combat Lab Version Matrix",
+              "Bending Styles"
+            ],
+            "lines": [
+              31,
+              31
+            ],
+            "snippet": "El baseline 21.8.54 satisface esa restricción. No declara otra dependencia requerida dentro de `neoforge.mods.toml`."
+          },
+          {
+            "rank": 7,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              5,
+              8
+            ],
+            "snippet": "- Minecraft Java 1.21.8 - NeoForge 21.8.54 - Java 21 - Prism Launcher 11.1.1"
+          },
+          {
+            "rank": 8,
+            "title": "Combat Lab Version Matrix",
+            "headingPath": [
+              "Combat Lab Version Matrix"
+            ],
+            "lines": [
+              5,
+              5
+            ],
+            "snippet": "- Minecraft Java 1.21.8"
+          }
+        ]
+      },
+      "jev": {
+        "status": "selected",
+        "selected": {
+          "title": "Combat Lab Version Matrix",
+          "headingPath": [
+            "Combat Lab Version Matrix"
+          ],
+          "lines": [
+            10,
+            10
+          ],
+          "exactText": "La versión final del servidor **no queda fijada por este baseline**. El laboratorio usa la versión común más reciente entre las referencias principales para comparar comportamiento bajo condiciones equivalentes."
+        }
+      }
+    },
+    {
+      "reviewId": "Q-15",
+      "sourceFamily": "Elemental Frontier",
+      "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+      "sourceSnapshot": "inputs\\sources\\ef\\docs\\DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+      "arm": "es",
+      "question": "¿En qué ruta de archivo está el video lateral a 60 FPS que valida el dash?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)"
+            ],
+            "lines": [
+              1,
+              71
+            ],
+            "snippet": "# Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11) **Estado:** corrección en `feat/animation-studio-v1`; QA real cliente NeoForge 1.21.8 …"
+          },
+          {
+            "rank": 2,
+            "title": "QA REAL Paper, sin simulación de movimiento local",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "QA REAL Paper, sin simulación de movimiento local"
+            ],
+            "lines": [
+              52,
+              66
+            ],
+            "snippet": "…vamente**, directorio aislado `qa/paper-dash-lab` ignorado en Git, mundo nuevo plano `qa_flat`, plugin del worktree compilado. Cliente Prism `ef-animation-ref…"
+          },
+          {
+            "rank": 3,
+            "title": "QA REAL Paper, sin simulación de movimiento local",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "QA REAL Paper, sin simulación de movimiento local"
+            ],
+            "lines": [
+              65,
+              65
+            ],
+            "snippet": "…amente menos evidente su traslación. Un video lateral a 60 FPS, telemetría de desplazamiento por tick en mundo con paredes reales, HUD/cámara/VFX para legibil…"
+          },
+          {
+            "rank": 4,
+            "title": "Problema reproducido",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Problema reproducido"
+            ],
+            "lines": [
+              5,
+              14
+            ],
+            "snippet": "## Problema reproducido El video del usuario `20261011-2054-41.0657131.mp4` dura 18,24 s a 30 FPS, resolución 544×522. En tercera persona se ve una pose de das…"
+          },
+          {
+            "rank": 5,
+            "title": "Problema reproducido",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Problema reproducido"
+            ],
+            "lines": [
+              7,
+              7
+            ],
+            "snippet": "El video del usuario `20261011-2054-41.0657131.mp4` dura 18,24 s a 30 FPS, resolución 544×522. En tercera persona se ve una pose de dash/rotación de las pierna…"
+          },
+          {
+            "rank": 6,
+            "title": "Contrato obligatorio de controles",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Contrato obligatorio de controles"
+            ],
+            "lines": [
+              15,
+              24
+            ],
+            "snippet": "… vanilla, y genera **un solo intento de dash por flanco de pulsación**, condicionado a cooldown. No se introducen slots numéricos ni se usan Alt ni teclas inc…"
+          },
+          {
+            "rank": 7,
+            "title": "Contrato obligatorio de controles",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Contrato obligatorio de controles"
+            ],
+            "lines": [
+              17,
+              23
+            ],
+            "snippet": "… vanilla, y genera **un solo intento de dash por flanco de pulsación**, condicionado a cooldown. No se introducen slots numéricos ni se usan Alt ni teclas inc…"
+          },
+          {
+            "rank": 8,
+            "title": "Gates automatizados",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Gates automatizados"
+            ],
+            "lines": [
+              31,
+              38
+            ],
+            "snippet": "## Gates automatizados - `DashDirectionMemoryTest` valida lateral puro, diagonales, prioridad del input actual, memoria tras soltar, giro de cámara a 90°, cont…"
+          }
+        ]
+      },
+      "jev": {
+        "status": "abstained",
+        "selected": null
+      }
+    },
+    {
+      "reviewId": "Q-16",
+      "sourceFamily": "Elemental Frontier",
+      "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+      "sourceSnapshot": "inputs\\sources\\ef\\docs\\DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+      "arm": "en",
+      "question": "What is the file path of the 60 FPS lateral video validating the dash?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)"
+            ],
+            "lines": [
+              1,
+              71
+            ],
+            "snippet": "# Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11) **Estado:** corrección en `feat/animation-studio-v1`; QA real cliente NeoForge 1.21.8 …"
+          },
+          {
+            "rank": 2,
+            "title": "QA REAL Paper, sin simulación de movimiento local",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "QA REAL Paper, sin simulación de movimiento local"
+            ],
+            "lines": [
+              52,
+              66
+            ],
+            "snippet": "…vamente**, directorio aislado `qa/paper-dash-lab` ignorado en Git, mundo nuevo plano `qa_flat`, plugin del worktree compilado. Cliente Prism `ef-animation-ref…"
+          },
+          {
+            "rank": 3,
+            "title": "QA REAL Paper, sin simulación de movimiento local",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "QA REAL Paper, sin simulación de movimiento local"
+            ],
+            "lines": [
+              65,
+              65
+            ],
+            "snippet": "…amente menos evidente su traslación. Un video lateral a 60 FPS, telemetría de desplazamiento por tick en mundo con paredes reales, HUD/cámara/VFX para legibil…"
+          },
+          {
+            "rank": 4,
+            "title": "Problema reproducido",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Problema reproducido"
+            ],
+            "lines": [
+              5,
+              14
+            ],
+            "snippet": "## Problema reproducido El video del usuario `20261011-2054-41.0657131.mp4` dura 18,24 s a 30 FPS, resolución 544×522. En tercera persona se ve una pose de das…"
+          },
+          {
+            "rank": 5,
+            "title": "Problema reproducido",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Problema reproducido"
+            ],
+            "lines": [
+              7,
+              7
+            ],
+            "snippet": "El video del usuario `20261011-2054-41.0657131.mp4` dura 18,24 s a 30 FPS, resolución 544×522. En tercera persona se ve una pose de dash/rotación de las pierna…"
+          },
+          {
+            "rank": 6,
+            "title": "Problema reproducido",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Problema reproducido"
+            ],
+            "lines": [
+              11,
+              13
+            ],
+            "snippet": "1. `ClientDashInput` requería tecla Sprint recién presionada y WASD activo en los siguientes **3 ticks**; no guardaba ninguna dirección si se soltaba WASD. Res…"
+          },
+          {
+            "rank": 7,
+            "title": "Problema reproducido",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Problema reproducido"
+            ],
+            "lines": [
+              12,
+              12
+            ],
+            "snippet": "2. El video y las primeras sesiones correspondían a **Minecraft Singleplayer**, sin autoridad Paper. El cliente podía predecir una pose de DASH mientras el imp…"
+          },
+          {
+            "rank": 8,
+            "title": "Contrato obligatorio de controles",
+            "headingPath": [
+              "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+              "Contrato obligatorio de controles"
+            ],
+            "lines": [
+              15,
+              24
+            ],
+            "snippet": "… vanilla, y genera **un solo intento de dash por flanco de pulsación**, condicionado a cooldown. No se introducen slots numéricos ni se usan Alt ni teclas inc…"
+          }
+        ]
+      },
+      "jev": {
+        "status": "abstained",
+        "selected": null
+      }
+    },
+    {
+      "reviewId": "Q-17",
+      "sourceFamily": "Bridge candidate",
+      "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+      "sourceSnapshot": "inputs\\sources\\bridge\\docs\\DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+      "arm": "es",
+      "question": "¿Cuáles son los cuatro destinos de navegación primaria propuestos para dashboard v2?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Dashboard UX v2 — Information Architecture and Metric Semantics",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics"
+            ],
+            "lines": [
+              3,
+              3
+            ],
+            "snippet": "Status: research/design specification. This document does **not** authorize frontend implementation, publication, restart, or changes to MSSR/Bridge authority."
+          },
+          {
+            "rank": 2,
+            "title": "1. Why v2 exists",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "1. Why v2 exists"
+            ],
+            "lines": [
+              5,
+              22
+            ],
+            "snippet": "## 1. Why v2 exists Human UX v1/v1.1 improved density, responsive behavior, contextual help and progressive disclosure, but retained the original information a…"
+          },
+          {
+            "rank": 3,
+            "title": "1. Why v2 exists",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "1. Why v2 exists"
+            ],
+            "lines": [
+              7,
+              7
+            ],
+            "snippet": "… original information architecture. The dashboard is still organized primarily around what Bridge/MSSR emits (tool calls, traces, registries, runtime metadata…"
+          },
+          {
+            "rank": 4,
+            "title": "1. Why v2 exists",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "1. Why v2 exists"
+            ],
+            "lines": [
+              9,
+              9
+            ],
+            "snippet": "The v2 goal is not to compress the existing dashboard further. It is to change the unit of presentation from **technical source** to **human decision**."
+          },
+          {
+            "rank": 5,
+            "title": "1. Why v2 exists",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "1. Why v2 exists"
+            ],
+            "lines": [
+              11,
+              11
+            ],
+            "snippet": "The dashboard must answer, in this order:"
+          },
+          {
+            "rank": 6,
+            "title": "1. Why v2 exists",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "1. Why v2 exists"
+            ],
+            "lines": [
+              13,
+              19
+            ],
+            "snippet": "1. What is happening now? 2. What needs my attention? 3. What should I continue next? 4. What changed? 5. Is the system healthy? 6. If something is abnormal, w…"
+          },
+          {
+            "rank": 7,
+            "title": "1. Why v2 exists",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "1. Why v2 exists"
+            ],
+            "lines": [
+              13,
+              13
+            ],
+            "snippet": "1. What is happening now?"
+          },
+          {
+            "rank": 8,
+            "title": "1. Why v2 exists",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "1. Why v2 exists"
+            ],
+            "lines": [
+              14,
+              14
+            ],
+            "snippet": "2. What needs my attention?"
+          }
+        ]
+      },
+      "jev": {
+        "status": "abstained",
+        "selected": null
+      }
+    },
+    {
+      "reviewId": "Q-18",
+      "sourceFamily": "Bridge candidate",
+      "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+      "sourceSnapshot": "inputs\\sources\\bridge\\docs\\DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+      "arm": "en",
+      "question": "What are the four primary navigation destinations proposed for dashboard v2?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "4. Target information architecture",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "4. Target information architecture"
+            ],
+            "lines": [
+              65,
+              88
+            ],
+            "snippet": "…Target information architecture ### 4.1 Primary navigation Replace the seven source-oriented top-level tabs with four human-intent destinations: **Inicio** — …"
+          },
+          {
+            "rank": 2,
+            "title": "4.1 Primary navigation",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "4. Target information architecture",
+              "4.1 Primary navigation"
+            ],
+            "lines": [
+              67,
+              80
+            ],
+            "snippet": "### 4.1 Primary navigation Replace the seven source-oriented top-level tabs with four human-intent destinations: **Inicio** — What is happening, what requires …"
+          },
+          {
+            "rank": 3,
+            "title": "4.1 Primary navigation",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "4. Target information architecture",
+              "4.1 Primary navigation"
+            ],
+            "lines": [
+              69,
+              69
+            ],
+            "snippet": "Replace the seven source-oriented top-level tabs with four human-intent destinations:"
+          },
+          {
+            "rank": 4,
+            "title": "5. New shell",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "5. New shell"
+            ],
+            "lines": [
+              89,
+              104
+            ],
+            "snippet": "…try. Mobile target: title/status first, four primary navigation items immediately reachable, then content. The five current system cards must not stack above …"
+          },
+          {
+            "rank": 5,
+            "title": "5. New shell",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "5. New shell"
+            ],
+            "lines": [
+              95,
+              95
+            ],
+            "snippet": "Mobile target: title/status first, four primary navigation items immediately reachable, then content. The five current system cards must not stack above every …"
+          },
+          {
+            "rank": 6,
+            "title": "1. Why v2 exists",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "1. Why v2 exists"
+            ],
+            "lines": [
+              5,
+              22
+            ],
+            "snippet": "## 1. Why v2 exists Human UX v1/v1.1 improved density, responsive behavior, contextual help and progressive disclosure, but retained the original information a…"
+          },
+          {
+            "rank": 7,
+            "title": "1. Why v2 exists",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "1. Why v2 exists"
+            ],
+            "lines": [
+              21,
+              21
+            ],
+            "snippet": "Raw telemetry remains available, but it must stop defining the primary navigation and visual hierarchy."
+          },
+          {
+            "rank": 8,
+            "title": "4.1 Primary navigation",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "4. Target information architecture",
+              "4.1 Primary navigation"
+            ],
+            "lines": [
+              71,
+              71
+            ],
+            "snippet": "**Inicio** — What is happening, what requires attention, what should I continue, what changed, and a compact system pulse."
+          }
+        ]
+      },
+      "jev": {
+        "status": "selected",
+        "selected": {
+          "title": "4.1 Primary navigation",
+          "headingPath": [
+            "Dashboard UX v2 — Information Architecture and Metric Semantics",
+            "4. Target information architecture",
+            "4.1 Primary navigation"
+          ],
+          "lines": [
+            67,
+            80
+          ],
+          "exactText": "### 4.1 Primary navigation\n\nReplace the seven source-oriented top-level tabs with four human-intent destinations:\n\n**Inicio** — What is happening, what requires attention, what should I continue, what changed, and a compact system pulse.\n\n**Trabajo** — Active work, projects, blockers, next gates and semantic activity over time.\n\n**Salud** — Operational health for Bridge and MSSR, trends, anomalies and actionable maintenance signals.\n\n**Explorar** — Tools, skills, traces, projects, errors and historical evidence for intentional investigation.\n\n**Inspector** is not a fifth content page. It is a global side drawer/modal opened from any item when exact IDs, raw calls, trace lifecycle, boot/PID, provenance or JSON are needed.\n\n"
+        }
+      }
+    },
+    {
+      "reviewId": "Q-19",
+      "sourceFamily": "Bridge candidate",
+      "sourceRef": "CONNECT_OPENAI_TUNNEL.md",
+      "sourceSnapshot": "inputs\\sources\\bridge\\CONNECT_OPENAI_TUNNEL.md",
+      "arm": "es",
+      "question": "¿Dónde se crea el tunnel_id?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+            "headingPath": [
+              "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel"
+            ],
+            "lines": [
+              1,
+              52
+            ],
+            "snippet": "… ```text CONTROL_PLANE_API_KEY = sk-... TUNNEL_ID = tunnel_... ``` La API key se crea con el flujo seguro de OpenAI Platform. No pegarla en ChatGPT. El `tunne…"
+          },
+          {
+            "rank": 2,
+            "title": "Lo que falta conseguir desde UI",
+            "headingPath": [
+              "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+              "Lo que falta conseguir desde UI"
+            ],
+            "lines": [
+              12,
+              23
+            ],
+            "snippet": "… ```text CONTROL_PLANE_API_KEY = sk-... TUNNEL_ID = tunnel_... ``` La API key se crea con el flujo seguro de OpenAI Platform. No pegarla en ChatGPT. El `tunne…"
+          },
+          {
+            "rank": 3,
+            "title": "Lo que falta conseguir desde UI",
+            "headingPath": [
+              "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+              "Lo que falta conseguir desde UI"
+            ],
+            "lines": [
+              23,
+              23
+            ],
+            "snippet": "El `tunnel_id` se crea en OpenAI Platform → Tunnel settings."
+          },
+          {
+            "rank": 4,
+            "title": "Lo que falta conseguir desde UI",
+            "headingPath": [
+              "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+              "Lo que falta conseguir desde UI"
+            ],
+            "lines": [
+              16,
+              19
+            ],
+            "snippet": "```text CONTROL_PLANE_API_KEY = sk-... TUNNEL_ID = tunnel_... ```"
+          },
+          {
+            "rank": 5,
+            "title": "Lo que falta conseguir desde UI",
+            "headingPath": [
+              "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+              "Lo que falta conseguir desde UI"
+            ],
+            "lines": [
+              21,
+              21
+            ],
+            "snippet": "La API key se crea con el flujo seguro de OpenAI Platform. No pegarla en ChatGPT."
+          },
+          {
+            "rank": 6,
+            "title": "En ChatGPT",
+            "headingPath": [
+              "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+              "En ChatGPT"
+            ],
+            "lines": [
+              44,
+              52
+            ],
+            "snippet": "…te connector/app. 4. Connection: Tunnel. 5. Elegir o pegar el `tunnel_id`. 6. Crear. 7. En un chat nuevo, abrir `+` / Developer mode y seleccionar `bridge-mcp…"
+          },
+          {
+            "rank": 7,
+            "title": "En ChatGPT",
+            "headingPath": [
+              "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+              "En ChatGPT"
+            ],
+            "lines": [
+              46,
+              52
+            ],
+            "snippet": "…te connector/app. 4. Connection: Tunnel. 5. Elegir o pegar el `tunnel_id`. 6. Crear. 7. En un chat nuevo, abrir `+` / Developer mode y seleccionar `bridge-mcp…"
+          },
+          {
+            "rank": 8,
+            "title": "En ChatGPT",
+            "headingPath": [
+              "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+              "En ChatGPT"
+            ],
+            "lines": [
+              50,
+              50
+            ],
+            "snippet": "5. Elegir o pegar el `tunnel_id`."
+          }
+        ]
+      },
+      "jev": {
+        "status": "selected",
+        "selected": {
+          "title": "Lo que falta conseguir desde UI",
+          "headingPath": [
+            "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+            "Lo que falta conseguir desde UI"
+          ],
+          "lines": [
+            23,
+            23
+          ],
+          "exactText": "El `tunnel_id` se crea en OpenAI Platform → Tunnel settings."
+        }
+      }
+    },
+    {
+      "reviewId": "Q-20",
+      "sourceFamily": "Bridge candidate",
+      "sourceRef": "CONNECT_OPENAI_TUNNEL.md",
+      "sourceSnapshot": "inputs\\sources\\bridge\\CONNECT_OPENAI_TUNNEL.md",
+      "arm": "en",
+      "question": "Where is the tunnel_id created?",
+      "retrieval": {
+        "candidateCount": 7,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+            "headingPath": [
+              "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel"
+            ],
+            "lines": [
+              1,
+              52
+            ],
+            "snippet": "… ```text CONTROL_PLANE_API_KEY = sk-... TUNNEL_ID = tunnel_... ``` La API key se crea con el flujo seguro de OpenAI Platform. No pegarla en ChatGPT. El `tunne…"
+          },
+          {
+            "rank": 2,
+            "title": "Lo que falta conseguir desde UI",
+            "headingPath": [
+              "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+              "Lo que falta conseguir desde UI"
+            ],
+            "lines": [
+              12,
+              23
+            ],
+            "snippet": "… ```text CONTROL_PLANE_API_KEY = sk-... TUNNEL_ID = tunnel_... ``` La API key se crea con el flujo seguro de OpenAI Platform. No pegarla en ChatGPT. El `tunne…"
+          },
+          {
+            "rank": 3,
+            "title": "Lo que falta conseguir desde UI",
+            "headingPath": [
+              "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+              "Lo que falta conseguir desde UI"
+            ],
+            "lines": [
+              16,
+              19
+            ],
+            "snippet": "```text CONTROL_PLANE_API_KEY = sk-... TUNNEL_ID = tunnel_... ```"
+          },
+          {
+            "rank": 4,
+            "title": "Lo que falta conseguir desde UI",
+            "headingPath": [
+              "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+              "Lo que falta conseguir desde UI"
+            ],
+            "lines": [
+              23,
+              23
+            ],
+            "snippet": "El `tunnel_id` se crea en OpenAI Platform → Tunnel settings."
+          },
+          {
+            "rank": 5,
+            "title": "En ChatGPT",
+            "headingPath": [
+              "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+              "En ChatGPT"
+            ],
+            "lines": [
+              44,
+              52
+            ],
+            "snippet": "…te connector/app. 4. Connection: Tunnel. 5. Elegir o pegar el `tunnel_id`. 6. Crear. 7. En un chat nuevo, abrir `+` / Developer mode y seleccionar `bridge-mcp…"
+          },
+          {
+            "rank": 6,
+            "title": "En ChatGPT",
+            "headingPath": [
+              "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+              "En ChatGPT"
+            ],
+            "lines": [
+              46,
+              52
+            ],
+            "snippet": "…te connector/app. 4. Connection: Tunnel. 5. Elegir o pegar el `tunnel_id`. 6. Crear. 7. En un chat nuevo, abrir `+` / Developer mode y seleccionar `bridge-mcp…"
+          },
+          {
+            "rank": 7,
+            "title": "En ChatGPT",
+            "headingPath": [
+              "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+              "En ChatGPT"
+            ],
+            "lines": [
+              50,
+              50
+            ],
+            "snippet": "5. Elegir o pegar el `tunnel_id`."
+          }
+        ]
+      },
+      "jev": {
+        "status": "selected",
+        "selected": {
+          "title": "Lo que falta conseguir desde UI",
+          "headingPath": [
+            "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+            "Lo que falta conseguir desde UI"
+          ],
+          "lines": [
+            23,
+            23
+          ],
+          "exactText": "El `tunnel_id` se crea en OpenAI Platform → Tunnel settings."
+        }
+      }
+    },
+    {
+      "reviewId": "Q-21",
+      "sourceFamily": "Bridge candidate",
+      "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+      "sourceSnapshot": "inputs\\sources\\bridge\\docs\\DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+      "arm": "es",
+      "question": "¿Qué versión publicada de dashboard v2 autoriza este documento a implementar?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "5. New shell",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "5. New shell"
+            ],
+            "lines": [
+              89,
+              104
+            ],
+            "snippet": "… compact header line containing product/version, overall runtime state, current human-work state, time range, project/scope and Inspector entry. Mobile target…"
+          },
+          {
+            "rank": 2,
+            "title": "5. New shell",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "5. New shell"
+            ],
+            "lines": [
+              93,
+              93
+            ],
+            "snippet": "…ktop target: one compact header line containing product/version, overall runtime state, current human-work state, time range, project/scope and Inspector entr…"
+          },
+          {
+            "rank": 3,
+            "title": "6. Inicio — decision-first overview",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "6. Inicio — decision-first overview"
+            ],
+            "lines": [
+              105,
+              138
+            ],
+            "snippet": "…cation passed/failed, restart/adoption, version change, project health changed, error spike, recovery, commit/push when observable. Multiple low-level tool ca…"
+          },
+          {
+            "rank": 4,
+            "title": "6.5 What changed",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "6. Inicio — decision-first overview",
+              "6.5 What changed"
+            ],
+            "lines": [
+              133,
+              138
+            ],
+            "snippet": "…cation passed/failed, restart/adoption, version change, project health changed, error spike, recovery, commit/push when observable. Multiple low-level tool ca…"
+          },
+          {
+            "rank": 5,
+            "title": "6.5 What changed",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "6. Inicio — decision-first overview",
+              "6.5 What changed"
+            ],
+            "lines": [
+              135,
+              135
+            ],
+            "snippet": "…: task started/closed, verification passed/failed, restart/adoption, version change, project health changed, error spike, recovery, commit/push when observabl…"
+          },
+          {
+            "rank": 6,
+            "title": "Dashboard UX v2 — Information Architecture and Metric Semantics",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics"
+            ],
+            "lines": [
+              3,
+              3
+            ],
+            "snippet": "Status: research/design specification. This document does **not** authorize frontend implementation, publication, restart, or changes to MSSR/Bridge authority."
+          },
+          {
+            "rank": 7,
+            "title": "1. Why v2 exists",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "1. Why v2 exists"
+            ],
+            "lines": [
+              5,
+              22
+            ],
+            "snippet": "## 1. Why v2 exists Human UX v1/v1.1 improved density, responsive behavior, contextual help and progressive disclosure, but retained the original information a…"
+          },
+          {
+            "rank": 8,
+            "title": "1. Why v2 exists",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "1. Why v2 exists"
+            ],
+            "lines": [
+              7,
+              7
+            ],
+            "snippet": "… original information architecture. The dashboard is still organized primarily around what Bridge/MSSR emits (tool calls, traces, registries, runtime metadata…"
+          }
+        ]
+      },
+      "jev": {
+        "status": "selected",
+        "selected": {
+          "title": "Dashboard UX v2 — Information Architecture and Metric Semantics",
+          "headingPath": [
+            "Dashboard UX v2 — Information Architecture and Metric Semantics"
+          ],
+          "lines": [
+            3,
+            3
+          ],
+          "exactText": "Status: research/design specification. This document does **not** authorize frontend implementation, publication, restart, or changes to MSSR/Bridge authority."
+        }
+      }
+    },
+    {
+      "reviewId": "Q-22",
+      "sourceFamily": "Bridge candidate",
+      "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+      "sourceSnapshot": "inputs\\sources\\bridge\\docs\\DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+      "arm": "en",
+      "question": "What published dashboard v2 version does this document authorize for implementation?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Dashboard UX v2 — Information Architecture and Metric Semantics",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics"
+            ],
+            "lines": [
+              3,
+              3
+            ],
+            "snippet": "Status: research/design specification. This document does **not** authorize frontend implementation, publication, restart, or changes to MSSR/Bridge authority."
+          },
+          {
+            "rank": 2,
+            "title": "6. Inicio — decision-first overview",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "6. Inicio — decision-first overview"
+            ],
+            "lines": [
+              105,
+              138
+            ],
+            "snippet": "…should prefer operational symptoms over implementation metadata. ### 6.5 What changed A semantic change feed should replace “latest raw tool calls” as the def…"
+          },
+          {
+            "rank": 3,
+            "title": "2. Evidence from the current implementation",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "2. Evidence from the current implementation"
+            ],
+            "lines": [
+              23,
+              54
+            ],
+            "snippet": "## 2. Evidence from the current implementation ### 2.1 Navigation follows backend categories Current top-level tabs are Summary, Cockpit/“Dónde estoy”, Activit…"
+          },
+          {
+            "rank": 4,
+            "title": "2.1 Navigation follows backend categories",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "2. Evidence from the current implementation",
+              "2.1 Navigation follows backend categories"
+            ],
+            "lines": [
+              25,
+              28
+            ],
+            "snippet": "### 2.1 Navigation follows backend categories Current top-level tabs are Summary, Cockpit/“Dónde estoy”, Activity, Tools, MSSR, Errors and System. This makes t…"
+          },
+          {
+            "rank": 5,
+            "title": "2.1 Navigation follows backend categories",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "2. Evidence from the current implementation",
+              "2.1 Navigation follows backend categories"
+            ],
+            "lines": [
+              27,
+              27
+            ],
+            "snippet": "Current top-level tabs are Summary, Cockpit/“Dónde estoy”, Activity, Tools, MSSR, Errors and System. This makes the user choose a data source before they know …"
+          },
+          {
+            "rank": 6,
+            "title": "2.2 Global chrome consumes too much attention",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "2. Evidence from the current implementation",
+              "2.2 Global chrome consumes too much attention"
+            ],
+            "lines": [
+              29,
+              32
+            ],
+            "snippet": "### 2.2 Global chrome consumes too much attention The top of every page repeats five large technical health cards: Bridge HTTP, MCP transport, SQLite metrics, …"
+          },
+          {
+            "rank": 7,
+            "title": "2.2 Global chrome consumes too much attention",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "2. Evidence from the current implementation",
+              "2.2 Global chrome consumes too much attention"
+            ],
+            "lines": [
+              31,
+              31
+            ],
+            "snippet": "The top of every page repeats five large technical health cards: Bridge HTTP, MCP transport, SQLite metrics, MSSR and MCP connections. On 390×844 mobile these …"
+          },
+          {
+            "rank": 8,
+            "title": "2.3 Summary prioritizes telemetry over meaning",
+            "headingPath": [
+              "Dashboard UX v2 — Information Architecture and Metric Semantics",
+              "2. Evidence from the current implementation",
+              "2.3 Summary prioritizes telemetry over meaning"
+            ],
+            "lines": [
+              33,
+              36
+            ],
+            "snippet": "### 2.3 Summary prioritizes telemetry over meaning The first screen of Summary currently emphasizes a five-minute tool-call timeline, retained/active connectio…"
+          }
+        ]
+      },
+      "jev": {
+        "status": "abstained",
+        "selected": null
+      }
+    },
+    {
+      "reviewId": "Q-23",
+      "sourceFamily": "Bridge candidate",
+      "sourceRef": "docs/roblox-visual-capture/PLAN.md",
+      "sourceSnapshot": "inputs\\sources\\bridge\\docs\\roblox-visual-capture\\PLAN.md",
+      "arm": "es",
+      "question": "¿Qué duraciones exactas en segundos configura el watchdog para los timeouts de MCP y de aparición del PNG?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Roblox Visual Capture Reliability Plan",
+            "headingPath": [
+              "Roblox Visual Capture Reliability Plan"
+            ],
+            "lines": [
+              1,
+              220
+            ],
+            "snippet": "… 2026-07-23 **Ámbitos:** `D:\\Dev\\bridge-mcp`, `D:\\Dev\\MyceliumFront`, skill `roblox-photo-rig-capture` ## 1. Objetivo Dejar un loop visual de una sola llamada…"
+          },
+          {
+            "rank": 2,
+            "title": "5. Watchdog del job",
+            "headingPath": [
+              "Roblox Visual Capture Reliability Plan",
+              "5. Watchdog del job"
+            ],
+            "lines": [
+              111,
+              140
+            ],
+            "snippet": "## 5. Watchdog del job ### Preflight - conexión persistente y catálogo StudioMCP saludables; - exactamente el Studio esperado; - modo Edit inicial; - Photo Rig…"
+          },
+          {
+            "rank": 3,
+            "title": "Durante el job",
+            "headingPath": [
+              "Roblox Visual Capture Reliability Plan",
+              "5. Watchdog del job",
+              "Durante el job"
+            ],
+            "lines": [
+              123,
+              131
+            ],
+            "snippet": "…ntento; - timeout separado para llamada MCP y aparición del PNG; - detección de hash repetido entre cámaras semánticamente distintas; - registro de recuperaci…"
+          },
+          {
+            "rank": 4,
+            "title": "Durante el job",
+            "headingPath": [
+              "Roblox Visual Capture Reliability Plan",
+              "5. Watchdog del job",
+              "Durante el job"
+            ],
+            "lines": [
+              125,
+              130
+            ],
+            "snippet": "…ntento; - timeout separado para llamada MCP y aparición del PNG; - detección de hash repetido entre cámaras semánticamente distintas; - registro de recuperaci…"
+          },
+          {
+            "rank": 5,
+            "title": "Durante el job",
+            "headingPath": [
+              "Roblox Visual Capture Reliability Plan",
+              "5. Watchdog del job",
+              "Durante el job"
+            ],
+            "lines": [
+              127,
+              127
+            ],
+            "snippet": "- timeout separado para llamada MCP y aparición del PNG;"
+          },
+          {
+            "rank": 6,
+            "title": "2. Diagnóstico confirmado",
+            "headingPath": [
+              "Roblox Visual Capture Reliability Plan",
+              "2. Diagnóstico confirmado"
+            ],
+            "lines": [
+              26,
+              40
+            ],
+            "snippet": "…geométrica: - `screen_capture` de StudioMCP podía quedar bloqueado y serializar toda la conexión; - el timeout de 60 segundos del SDK MCP cerraba prematuramen…"
+          },
+          {
+            "rank": 7,
+            "title": "2. Diagnóstico confirmado",
+            "headingPath": [
+              "Roblox Visual Capture Reliability Plan",
+              "2. Diagnóstico confirmado"
+            ],
+            "lines": [
+              30,
+              37
+            ],
+            "snippet": "- `screen_capture` de StudioMCP podía quedar bloqueado y serializar toda la conexión; - el timeout de 60 segundos del SDK MCP cerraba prematuramente llamadas l…"
+          },
+          {
+            "rank": 8,
+            "title": "2. Diagnóstico confirmado",
+            "headingPath": [
+              "Roblox Visual Capture Reliability Plan",
+              "2. Diagnóstico confirmado"
+            ],
+            "lines": [
+              31,
+              31
+            ],
+            "snippet": "- el timeout de 60 segundos del SDK MCP cerraba prematuramente llamadas largas;"
+          }
+        ]
+      },
+      "jev": {
+        "status": "abstained",
+        "selected": null
+      }
+    },
+    {
+      "reviewId": "Q-24",
+      "sourceFamily": "Bridge candidate",
+      "sourceRef": "docs/roblox-visual-capture/PLAN.md",
+      "sourceSnapshot": "inputs\\sources\\bridge\\docs\\roblox-visual-capture\\PLAN.md",
+      "arm": "en",
+      "question": "Which exact durations in seconds does the watchdog configure for MCP and PNG appearance timeouts?",
+      "retrieval": {
+        "candidateCount": 8,
+        "candidates": [
+          {
+            "rank": 1,
+            "title": "Roblox Visual Capture Reliability Plan",
+            "headingPath": [
+              "Roblox Visual Capture Reliability Plan"
+            ],
+            "lines": [
+              1,
+              220
+            ],
+            "snippet": "… 2026-07-23 **Ámbitos:** `D:\\Dev\\bridge-mcp`, `D:\\Dev\\MyceliumFront`, skill `roblox-photo-rig-capture` ## 1. Objetivo Dejar un loop visual de una sola llamada…"
+          },
+          {
+            "rank": 2,
+            "title": "5. Watchdog del job",
+            "headingPath": [
+              "Roblox Visual Capture Reliability Plan",
+              "5. Watchdog del job"
+            ],
+            "lines": [
+              111,
+              140
+            ],
+            "snippet": "## 5. Watchdog del job ### Preflight - conexión persistente y catálogo StudioMCP saludables; - exactamente el Studio esperado; - modo Edit inicial; - Photo Rig…"
+          },
+          {
+            "rank": 3,
+            "title": "Durante el job",
+            "headingPath": [
+              "Roblox Visual Capture Reliability Plan",
+              "5. Watchdog del job",
+              "Durante el job"
+            ],
+            "lines": [
+              123,
+              131
+            ],
+            "snippet": "…ntento; - timeout separado para llamada MCP y aparición del PNG; - detección de hash repetido entre cámaras semánticamente distintas; - registro de recuperaci…"
+          },
+          {
+            "rank": 4,
+            "title": "Durante el job",
+            "headingPath": [
+              "Roblox Visual Capture Reliability Plan",
+              "5. Watchdog del job",
+              "Durante el job"
+            ],
+            "lines": [
+              125,
+              130
+            ],
+            "snippet": "…ntento; - timeout separado para llamada MCP y aparición del PNG; - detección de hash repetido entre cámaras semánticamente distintas; - registro de recuperaci…"
+          },
+          {
+            "rank": 5,
+            "title": "Durante el job",
+            "headingPath": [
+              "Roblox Visual Capture Reliability Plan",
+              "5. Watchdog del job",
+              "Durante el job"
+            ],
+            "lines": [
+              127,
+              127
+            ],
+            "snippet": "- timeout separado para llamada MCP y aparición del PNG;"
+          },
+          {
+            "rank": 6,
+            "title": "2. Diagnóstico confirmado",
+            "headingPath": [
+              "Roblox Visual Capture Reliability Plan",
+              "2. Diagnóstico confirmado"
+            ],
+            "lines": [
+              26,
+              40
+            ],
+            "snippet": "…geométrica: - `screen_capture` de StudioMCP podía quedar bloqueado y serializar toda la conexión; - el timeout de 60 segundos del SDK MCP cerraba prematuramen…"
+          },
+          {
+            "rank": 7,
+            "title": "1. Objetivo",
+            "headingPath": [
+              "Roblox Visual Capture Reliability Plan",
+              "1. Objetivo"
+            ],
+            "lines": [
+              7,
+              25
+            ],
+            "snippet": "…na cabina adaptable, obtener un lote de PNG internos de Roblox de forma secuencial, reintentar sólo las tomas fallidas, registrar anomalías y entregar evidenc…"
+          },
+          {
+            "rank": 8,
+            "title": "1. Objetivo",
+            "headingPath": [
+              "Roblox Visual Capture Reliability Plan",
+              "1. Objetivo"
+            ],
+            "lines": [
+              9,
+              9
+            ],
+            "snippet": "…na cabina adaptable, obtener un lote de PNG internos de Roblox de forma secuencial, reintentar sólo las tomas fallidas, registrar anomalías y entregar evidenc…"
+          }
+        ]
+      },
+      "jev": {
+        "status": "abstained",
+        "selected": null
+      }
+    }
+  ]
+}

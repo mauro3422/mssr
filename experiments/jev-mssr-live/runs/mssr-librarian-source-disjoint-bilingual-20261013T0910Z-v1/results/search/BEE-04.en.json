@@ -1,0 +1,260 @@
+{
+  "caseId": "BEE-04",
+  "family": "BeeIncremental",
+  "arm": "en",
+  "query": "How many exact seconds pass before the first automation reward feels good?",
+  "projectRoot": "D:\\Dev\\BeeIncremental",
+  "sourceRef": "docs/OPEN_QUESTIONS.md",
+  "expectedSourceRevision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+  "labelSpan": {
+    "start": 31,
+    "end": 31
+  },
+  "candidateCount": 8,
+  "truncated": true,
+  "targetSpanCoveredAt8": true,
+  "targetSpanOverlapAt8": true,
+  "firstTargetRank": 1,
+  "candidates": [
+    {
+      "rank": 1,
+      "handle": {
+        "version": 1,
+        "id": "01d63e0b553c5a9773712b939393e1155a4cfe9b1b1dc0e636cdb9ce345f476a",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 45,
+        "startOffset": 0,
+        "endOffset": 2308,
+        "fingerprint": "eda7483f4e5ab787a56869f7e15efa58d120f31fd7f733eda19f3252fffa44eb",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.75,
+      "title": "Open Questions",
+      "headingPath": [
+        "Open Questions"
+      ],
+      "snippet": "…e/arcade-like. ## Recently resolved - **First manual action:** begin with flower/forage clicking, then route gathered food into brood support until the first …",
+      "rangeCodeUnits": 2308,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 1,
+      "endLine": 45
+    },
+    {
+      "rank": 2,
+      "handle": {
+        "version": 1,
+        "id": "e4959ac22d11293eceac9d7eb8d0ef34bdaf556da6a58ad2f5733a138e6c3250",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "startLine": 26,
+        "endLine": 36,
+        "startOffset": 1550,
+        "endOffset": 2049,
+        "fingerprint": "597ca50f7730cf1b9844a6cf075421f8fe0e11fc7d9aa15f61e26532797fe50f",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.75,
+      "title": "Prototype questions",
+      "headingPath": [
+        "Open Questions",
+        "Prototype questions"
+      ],
+      "snippet": "## Prototype questions The first playable should answer these empirically: - Does clicking feel satisfying before art is polished? - How many seconds before th…",
+      "rangeCodeUnits": 499,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 26,
+      "endLine": 36
+    },
+    {
+      "rank": 3,
+      "handle": {
+        "version": 1,
+        "id": "1a5f51c92d65df70176e857c033bf7df9b48044cface7218020fbf0d0b74f41c",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "block-6",
+        "rangeKind": "block",
+        "startLine": 30,
+        "endLine": 35,
+        "startOffset": 1627,
+        "endOffset": 2047,
+        "fingerprint": "edb7a93ad1df4c97ae4eb625ffeaf9806cefabb78b9d10f9994c53a6a804536b",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.75,
+      "title": "Prototype questions",
+      "headingPath": [
+        "Open Questions",
+        "Prototype questions"
+      ],
+      "snippet": "…ying before art is polished? - How many seconds before the first automation reward feels good? - Is seeing one bee take over a task more satisfying than only …",
+      "rangeCodeUnits": 420,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 30,
+      "endLine": 35
+    },
+    {
+      "rank": 4,
+      "handle": {
+        "version": 1,
+        "id": "7c8a427070df0eb718ffe00aef582067ca9adf72e6b76d62782495a613268169",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "block-6/item-2",
+        "rangeKind": "block",
+        "startLine": 31,
+        "endLine": 31,
+        "startOffset": 1683,
+        "endOffset": 1748,
+        "fingerprint": "dbdc2deb5388999cde58019d91f0139f490d8869c2a68dcbf61df046bd2bbf2c",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.75,
+      "title": "Prototype questions",
+      "headingPath": [
+        "Open Questions",
+        "Prototype questions"
+      ],
+      "snippet": "- How many seconds before the first automation reward feels good?",
+      "rangeCodeUnits": 65,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 31,
+      "endLine": 31
+    },
+    {
+      "rank": 5,
+      "handle": {
+        "version": 1,
+        "id": "5367a567ea0412ffbf1eb0b7e09a26784546f438285f130cd44262f3a369027c",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 11,
+        "endLine": 16,
+        "startOffset": 357,
+        "endOffset": 863,
+        "fingerprint": "ce344874c0055c41172849be09d419a1bb36f23f747a2095e57bb9f266ad31bc",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.125,
+      "title": "Recently resolved",
+      "headingPath": [
+        "Open Questions",
+        "Recently resolved"
+      ],
+      "snippet": "## Recently resolved - **First manual action:** begin with flower/forage clicking, then route gathered food into brood support until the first worker emerges. …",
+      "rangeCodeUnits": 506,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 11,
+      "endLine": 16
+    },
+    {
+      "rank": 6,
+      "handle": {
+        "version": 1,
+        "id": "0a654ed98fb1c24b262ce3f725358905a304d913cd9565561f6f300f68d6bbe4",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "block-3/item-1",
+        "rangeKind": "block",
+        "startLine": 13,
+        "endLine": 13,
+        "startOffset": 379,
+        "endOffset": 516,
+        "fingerprint": "c2b87752a9dd10879631cbc45f903bfe96f3298ac9c6ed8c322384581254a0e7",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.125,
+      "title": "Recently resolved",
+      "headingPath": [
+        "Open Questions",
+        "Recently resolved"
+      ],
+      "snippet": "- **First manual action:** begin with flower/forage clicking, then route gathered food into brood support until the first worker emerges.",
+      "rangeCodeUnits": 137,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 13,
+      "endLine": 13
+    },
+    {
+      "rank": 7,
+      "handle": {
+        "version": 1,
+        "id": "98e9b85c4588ea5005e9923a525e5f340bcb31f6cd055c717713f9b2c054ba10",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "block-3",
+        "rangeKind": "block",
+        "startLine": 13,
+        "endLine": 15,
+        "startOffset": 379,
+        "endOffset": 861,
+        "fingerprint": "1890d16d85f46afb9a1396447ec05a0292550614ca892c89bd18e295ce746a8f",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.125,
+      "title": "Recently resolved",
+      "headingPath": [
+        "Open Questions",
+        "Recently resolved"
+      ],
+      "snippet": "- **First manual action:** begin with flower/forage clicking, then route gathered food into brood support until the first worker emerges. - **Art direction:** …",
+      "rangeCodeUnits": 482,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 13,
+      "endLine": 15
+    },
+    {
+      "rank": 8,
+      "handle": {
+        "version": 1,
+        "id": "28dfc72ab48bd166011ece3bc5356dede7bd46b4a792d74b26e9aa01e2dd3084",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "startLine": 17,
+        "endLine": 25,
+        "startOffset": 863,
+        "endOffset": 1550,
+        "fingerprint": "5c5ef2750eb2861be4dd647fc9a76bef6f10609ab31eff74b02d2f6c71ebbafd",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.125,
+      "title": "Medium priority",
+      "headingPath": [
+        "Open Questions",
+        "Medium priority"
+      ],
+      "snippet": "## Medium priority 5. Desktop-first only, or design UI from the beginning so mobile/touch remains possible? 6. Should the player control one colony forever bet…",
+      "rangeCodeUnits": 687,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 17,
+      "endLine": 25
+    }
+  ],
+  "responseAdvisoryOnly": true
+}

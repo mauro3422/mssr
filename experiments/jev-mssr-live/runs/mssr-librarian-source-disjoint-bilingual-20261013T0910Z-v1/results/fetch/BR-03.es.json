@@ -1,0 +1,22 @@
+{
+  "projectOwner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+  "handle": {
+    "version": 1,
+    "id": "261a152ec1d783ac627949106dde58b7409b9fcb7981b9511a387fc5455dd385",
+    "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+    "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+    "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+    "rangeId": "block-1",
+    "rangeKind": "block",
+    "startLine": 3,
+    "endLine": 3,
+    "startOffset": 67,
+    "endOffset": 226,
+    "fingerprint": "e6a9af6033cc1f9a898c006504cefc559790ff6d815d4ff485dba02d51eb0893",
+    "privacyClass": "project-metadata"
+  },
+  "text": "Status: research/design specification. This document does **not** authorize frontend implementation, publication, restart, or changes to MSSR/Bridge authority.",
+  "fingerprint": "e6a9af6033cc1f9a898c006504cefc559790ff6d815d4ff485dba02d51eb0893",
+  "advisoryOnly": true,
+  "truthAuthority": false
+}

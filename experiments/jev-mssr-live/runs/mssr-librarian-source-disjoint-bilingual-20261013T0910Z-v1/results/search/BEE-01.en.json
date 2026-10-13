@@ -1,0 +1,260 @@
+{
+  "caseId": "BEE-01",
+  "family": "BeeIncremental",
+  "arm": "en",
+  "query": "Which engine and visual format were chosen for the game?",
+  "projectRoot": "D:\\Dev\\BeeIncremental",
+  "sourceRef": "docs/VISUAL_DIRECTION.md",
+  "expectedSourceRevision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+  "labelSpan": {
+    "start": 5,
+    "end": 5
+  },
+  "candidateCount": 8,
+  "truncated": true,
+  "targetSpanCoveredAt8": true,
+  "targetSpanOverlapAt8": true,
+  "firstTargetRank": 1,
+  "candidates": [
+    {
+      "rank": 1,
+      "handle": {
+        "version": 1,
+        "id": "1f4deeb183480bdbe0440462efe0cadb86a720082e570f7c2c7f0beacacb6ea9",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/VISUAL_DIRECTION.md",
+        "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 97,
+        "startOffset": 0,
+        "endOffset": 4671,
+        "fingerprint": "bd4e1509a986a95f53f04bcd50f7c8b3272f77f0d5972ec21736036554c17b75",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.8,
+      "title": "Visual Direction",
+      "headingPath": [
+        "Visual Direction"
+      ],
+      "snippet": "# Visual Direction ## Chosen format Godot 2D with faux-2.5D depth. The honeycomb is presented almost front-on, with enough illustrated perspective to make wax …",
+      "rangeCodeUnits": 4671,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 1,
+      "endLine": 97
+    },
+    {
+      "rank": 2,
+      "handle": {
+        "version": 1,
+        "id": "65217ed73443c0707b032182ca42cde55783e172277fcb443580ba0e6a2eaae1",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/VISUAL_DIRECTION.md",
+        "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "startLine": 3,
+        "endLine": 8,
+        "startOffset": 20,
+        "endOffset": 228,
+        "fingerprint": "aa3ccf25074b3b1aa07dae6b63c9015cfdd49887307130e033088c135363ea7a",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.6,
+      "title": "Chosen format",
+      "headingPath": [
+        "Visual Direction",
+        "Chosen format"
+      ],
+      "snippet": "## Chosen format Godot 2D with faux-2.5D depth. The honeycomb is presented almost front-on, with enough illustrated perspective to make wax walls, cells and be…",
+      "rangeCodeUnits": 208,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 3,
+      "endLine": 8
+    },
+    {
+      "rank": 3,
+      "handle": {
+        "version": 1,
+        "id": "512a7ade1a22c223a27da38db987c315253c521b12a30e2eb919e34b42c3f9c2",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/VISUAL_DIRECTION.md",
+        "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+        "rangeId": "block-1",
+        "rangeKind": "block",
+        "startLine": 5,
+        "endLine": 5,
+        "startOffset": 38,
+        "endOffset": 68,
+        "fingerprint": "10de2726b07ba57a9f98a784f54cb51fe5c9cb12bb42065ebea6ab0b24f41114",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.6,
+      "title": "Chosen format",
+      "headingPath": [
+        "Visual Direction",
+        "Chosen format"
+      ],
+      "snippet": "Godot 2D with faux-2.5D depth.",
+      "rangeCodeUnits": 30,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 5,
+      "endLine": 5
+    },
+    {
+      "rank": 4,
+      "handle": {
+        "version": 1,
+        "id": "29ca1205060ebdc37644bc7c913afd8b57f06cb2cc81bdf6e3d025fc530c1258",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/VISUAL_DIRECTION.md",
+        "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 7,
+        "startOffset": 70,
+        "endOffset": 226,
+        "fingerprint": "c49b55f85ca3bb69428b9a2e210218a3c14e8035bcd082f3a8987238cd18983d",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.6,
+      "title": "Chosen format",
+      "headingPath": [
+        "Visual Direction",
+        "Chosen format"
+      ],
+      "snippet": "The honeycomb is presented almost front-on, with enough illustrated perspective to make wax walls, cells and bees feel dimensional without using a 3D world.",
+      "rangeCodeUnits": 156,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 7,
+      "endLine": 7
+    },
+    {
+      "rank": 5,
+      "handle": {
+        "version": 1,
+        "id": "971e6f21659bdc68f92075797d15f7ebe16e999a1c31e607333f2e576b99da7b",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/VISUAL_DIRECTION.md",
+        "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+        "rangeId": "heading-8",
+        "rangeKind": "section",
+        "startLine": 55,
+        "endLine": 60,
+        "startOffset": 2678,
+        "endOffset": 3147,
+        "fingerprint": "57468b0ce34280b83a7638dc3e6acdcfc2919a7d2a74cbf54b46b2ce80c8865f",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.4,
+      "title": "Hive-first interface rule",
+      "headingPath": [
+        "Visual Direction",
+        "Hive-first interface rule"
+      ],
+      "snippet": "…nterface rule The honeycomb is the main game board, not decorative background. The player should spend most of the time looking at the colony itself. Panels, …",
+      "rangeCodeUnits": 469,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 55,
+      "endLine": 60
+    },
+    {
+      "rank": 6,
+      "handle": {
+        "version": 1,
+        "id": "0a96f6072cb53d43c8fc039a96f9084368786fe0604b9904ab25c817e1d296fa",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/VISUAL_DIRECTION.md",
+        "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+        "rangeId": "block-12",
+        "rangeKind": "block",
+        "startLine": 57,
+        "endLine": 57,
+        "startOffset": 2708,
+        "endOffset": 2843,
+        "fingerprint": "d1fffc759a8a1b99d591228a33b6a0616bfa5ae39a17cfe2815fae563dac496c",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.4,
+      "title": "Hive-first interface rule",
+      "headingPath": [
+        "Visual Direction",
+        "Hive-first interface rule"
+      ],
+      "snippet": "The honeycomb is the main game board, not decorative background. The player should spend most of the time looking at the colony itself.",
+      "rangeCodeUnits": 135,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 57,
+      "endLine": 57
+    },
+    {
+      "rank": 7,
+      "handle": {
+        "version": 1,
+        "id": "051522c3312ba10ca2f332d80dc5bf219446b4886eaefe044e3376bae2d496e6",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/VISUAL_DIRECTION.md",
+        "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 9,
+        "endLine": 12,
+        "startOffset": 228,
+        "endOffset": 575,
+        "fingerprint": "493dbe67a7b055aa9c1c48e4c2c3e84cde93552f58762fe0f0e6fe89c6934c02",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.2,
+      "title": "Why not full isometric or 3D",
+      "headingPath": [
+        "Visual Direction",
+        "Why not full isometric or 3D"
+      ],
+      "snippet": "## Why not full isometric or 3D The honeycomb itself is an interface. Cells must remain easy to read, hover and click. A strong isometric angle would distort t…",
+      "rangeCodeUnits": 347,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 9,
+      "endLine": 12
+    },
+    {
+      "rank": 8,
+      "handle": {
+        "version": 1,
+        "id": "56ed8b98d96806d6f3159614b42aa37df39a671f5d83c2623e14d572cbc73759",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/VISUAL_DIRECTION.md",
+        "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+        "rangeId": "block-3",
+        "rangeKind": "block",
+        "startLine": 11,
+        "endLine": 11,
+        "startOffset": 261,
+        "endOffset": 573,
+        "fingerprint": "d5c7229fc29e31eec8278ab093de1230e30cdcdb83877355d9b49c9ca2d21af8",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.2,
+      "title": "Why not full isometric or 3D",
+      "headingPath": [
+        "Visual Direction",
+        "Why not full isometric or 3D"
+      ],
+      "snippet": "The honeycomb itself is an interface. Cells must remain easy to read, hover and click. A strong isometric angle would distort the hex grid, reduce usable scree…",
+      "rangeCodeUnits": 312,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 11,
+      "endLine": 11
+    }
+  ],
+  "responseAdvisoryOnly": true
+}

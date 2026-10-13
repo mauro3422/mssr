@@ -1,0 +1,22 @@
+{
+  "projectOwner": "d:/dev/beeincremental",
+  "handle": {
+    "version": 1,
+    "id": "88222cae7876157531e8663ca5d8671e8bd49e8cd834ff631fed092c6f4ea3cc",
+    "owner": "d:/dev/beeincremental",
+    "sourceRef": "docs/VISUAL_DIRECTION.md",
+    "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+    "rangeId": "block-15",
+    "rangeKind": "block",
+    "startLine": 65,
+    "endLine": 66,
+    "startOffset": 3299,
+    "endOffset": 3454,
+    "fingerprint": "d689b0983be534254d71bb43b00d172e8e2a5814c23ff2410bcb11c369b7768c",
+    "privacyClass": "project-metadata"
+  },
+  "text": "- `HiveView`: honeycomb, brood, storage and visible worker activity;\n- `ForageView`: flowers/plants, forage clicking and visible bees collecting resources.",
+  "fingerprint": "d689b0983be534254d71bb43b00d172e8e2a5814c23ff2410bcb11c369b7768c",
+  "advisoryOnly": true,
+  "truthAuthority": false
+}

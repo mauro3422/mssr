@@ -1,0 +1,255 @@
+{
+  "caseId": "EF-01",
+  "family": "Elemental Frontier",
+  "arm": "es",
+  "query": "¿Qué versión de NeoForge fija el baseline común del Combat Lab?",
+  "projectRoot": "D:\\Dev\\elemental-frontier",
+  "sourceRef": "combat-lab/research/VERSION_MATRIX.md",
+  "expectedSourceRevision": "fa29514bd0fe4504a1b9a8a7712fff981bf1b660e7c486a72706388588f555fd",
+  "labelSpan": {
+    "start": 6,
+    "end": 6
+  },
+  "candidateCount": 8,
+  "truncated": true,
+  "targetSpanCoveredAt8": true,
+  "targetSpanOverlapAt8": true,
+  "firstTargetRank": 1,
+  "candidates": [
+    {
+      "rank": 1,
+      "handle": {
+        "version": 1,
+        "id": "2cd536f523a9c3f5d2adf7cc51b05704b2b783091511db98e995a40a772adab9",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/research/VERSION_MATRIX.md",
+        "revision": "fa29514bd0fe4504a1b9a8a7712fff981bf1b660e7c486a72706388588f555fd",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 39,
+        "startOffset": 0,
+        "endOffset": 1736,
+        "fingerprint": "81ab4ce5b06b7a4d4013d4a1d4950b9653b20f00a62706f5cd55c8246506e6aa",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.857143,
+      "title": "Combat Lab Version Matrix",
+      "headingPath": [
+        "Combat Lab Version Matrix"
+      ],
+      "snippet": "# Combat Lab Version Matrix Baseline común de comparación: - Minecraft Java 1.21.8 - NeoForge 21.8.54 - Java 21 - Prism Launcher 11.1.1 La versión final del se…",
+      "rangeCodeUnits": 1736,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 1,
+      "endLine": 39
+    },
+    {
+      "rank": 2,
+      "handle": {
+        "version": 1,
+        "id": "6f96a8b7bb598d7a23148e78a2488aa1e2ff97d557cd6b322cdc6bf492d70367",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/research/VERSION_MATRIX.md",
+        "revision": "fa29514bd0fe4504a1b9a8a7712fff981bf1b660e7c486a72706388588f555fd",
+        "rangeId": "block-1",
+        "rangeKind": "block",
+        "startLine": 3,
+        "endLine": 3,
+        "startOffset": 29,
+        "endOffset": 59,
+        "fingerprint": "06751491d9098793f6a7d5158e7e625524fc2591b9c55c481c9dd128f05be6a1",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.714286,
+      "title": "Combat Lab Version Matrix",
+      "headingPath": [
+        "Combat Lab Version Matrix"
+      ],
+      "snippet": "Baseline común de comparación:",
+      "rangeCodeUnits": 30,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 3,
+      "endLine": 3
+    },
+    {
+      "rank": 3,
+      "handle": {
+        "version": 1,
+        "id": "e244b1cf6fe55f457758435f6f0b02f42e2372d8c3526d341337bc2527be4587",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/research/VERSION_MATRIX.md",
+        "revision": "fa29514bd0fe4504a1b9a8a7712fff981bf1b660e7c486a72706388588f555fd",
+        "rangeId": "block-3",
+        "rangeKind": "block",
+        "startLine": 10,
+        "endLine": 10,
+        "startOffset": 139,
+        "endOffset": 350,
+        "fingerprint": "36fdc0567be777294729b497e5b2b4c9269a0e036acdb501ffe15b08f27be390",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.714286,
+      "title": "Combat Lab Version Matrix",
+      "headingPath": [
+        "Combat Lab Version Matrix"
+      ],
+      "snippet": "La versión final del servidor **no queda fijada por este baseline**. El laboratorio usa la versión común más reciente entre las referencias principales para co…",
+      "rangeCodeUnits": 211,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 10,
+      "endLine": 10
+    },
+    {
+      "rank": 4,
+      "handle": {
+        "version": 1,
+        "id": "3d1261ca38617f781b0dc8812ff0ef737e5be15ab8b2f7a3ec7181102e3f1bd3",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/research/VERSION_MATRIX.md",
+        "revision": "fa29514bd0fe4504a1b9a8a7712fff981bf1b660e7c486a72706388588f555fd",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 24,
+        "endLine": 32,
+        "startOffset": 1200,
+        "endOffset": 1432,
+        "fingerprint": "78f8054773fbfbc2eb17464783f092c66f538395ffd9dd1b3c2b07af8985f10a",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.714286,
+      "title": "Bending Styles",
+      "headingPath": [
+        "Combat Lab Version Matrix",
+        "Bending Styles"
+      ],
+      "snippet": "…ente: - Minecraft exactamente 1.21.8. - NeoForge >= 21.8.31. El baseline 21.8.54 satisface esa restricción. No declara otra dependencia requerida dentro de `n…",
+      "rangeCodeUnits": 232,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 24,
+      "endLine": 32
+    },
+    {
+      "rank": 5,
+      "handle": {
+        "version": 1,
+        "id": "8ae9926a8864b7ad0b34869f17c6730cd06e7d3a2f113d6cb244c5122716712c",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/research/VERSION_MATRIX.md",
+        "revision": "fa29514bd0fe4504a1b9a8a7712fff981bf1b660e7c486a72706388588f555fd",
+        "rangeId": "block-8",
+        "rangeKind": "block",
+        "startLine": 31,
+        "endLine": 31,
+        "startOffset": 1314,
+        "endOffset": 1430,
+        "fingerprint": "f37100f803e960f45721f4e1efa5b1c75ba65b7fa09e72ab003b771b7b6d0b01",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.714286,
+      "title": "Bending Styles",
+      "headingPath": [
+        "Combat Lab Version Matrix",
+        "Bending Styles"
+      ],
+      "snippet": "El baseline 21.8.54 satisface esa restricción. No declara otra dependencia requerida dentro de `neoforge.mods.toml`.",
+      "rangeCodeUnits": 116,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 31,
+      "endLine": 31
+    },
+    {
+      "rank": 6,
+      "handle": {
+        "version": 1,
+        "id": "71163b09d94add6ff3db992eeb70669d3f6d96cbab3112a6d198fd147b4d195f",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/research/VERSION_MATRIX.md",
+        "revision": "fa29514bd0fe4504a1b9a8a7712fff981bf1b660e7c486a72706388588f555fd",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 5,
+        "endLine": 8,
+        "startOffset": 61,
+        "endOffset": 137,
+        "fingerprint": "37cba5e49b65fc495983cb28a6e069ca859f92b5554b9b29774336193b8f208b",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.571429,
+      "title": "Combat Lab Version Matrix",
+      "headingPath": [
+        "Combat Lab Version Matrix"
+      ],
+      "snippet": "- Minecraft Java 1.21.8 - NeoForge 21.8.54 - Java 21 - Prism Launcher 11.1.1",
+      "rangeCodeUnits": 76,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 5,
+      "endLine": 8
+    },
+    {
+      "rank": 7,
+      "handle": {
+        "version": 1,
+        "id": "b63ae4f3f6504fb5339fd054cec19c5b85e6b86151048c6f4f1bd3f5caf6b4b0",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/research/VERSION_MATRIX.md",
+        "revision": "fa29514bd0fe4504a1b9a8a7712fff981bf1b660e7c486a72706388588f555fd",
+        "rangeId": "block-2/item-2",
+        "rangeKind": "block",
+        "startLine": 6,
+        "endLine": 6,
+        "startOffset": 85,
+        "endOffset": 103,
+        "fingerprint": "db2a6aa9cea9b0a0512b544357ad72e6247d705148f8eed0e92608afc560ce46",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.571429,
+      "title": "Combat Lab Version Matrix",
+      "headingPath": [
+        "Combat Lab Version Matrix"
+      ],
+      "snippet": "- NeoForge 21.8.54",
+      "rangeCodeUnits": 18,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 6,
+      "endLine": 6
+    },
+    {
+      "rank": 8,
+      "handle": {
+        "version": 1,
+        "id": "f6ee1ceaef481e71f68e0e789f992322817be432442d0c4c59f001d538e5b38c",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/research/VERSION_MATRIX.md",
+        "revision": "fa29514bd0fe4504a1b9a8a7712fff981bf1b660e7c486a72706388588f555fd",
+        "rangeId": "block-4",
+        "rangeKind": "block",
+        "startLine": 12,
+        "endLine": 18,
+        "startOffset": 352,
+        "endOffset": 1023,
+        "fingerprint": "284f20a8b138a5177bd4910d1872187a6024d56363e8a1561cc50473b78644e4",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.571429,
+      "title": "Combat Lab Version Matrix",
+      "headingPath": [
+        "Combat Lab Version Matrix"
+      ],
+      "snippet": "…transiciones | LGPL-3.0-only | | Better Combat | 1.21.8 | 3.0.1 | timing, telegraph, hit window, recovery | All Rights Reserved: referencia; no copiar código/…",
+      "rangeCodeUnits": 671,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 12,
+      "endLine": 18
+    }
+  ],
+  "responseAdvisoryOnly": true
+}

@@ -1,0 +1,20 @@
+{
+  "caseId": "BEE-04",
+  "family": "BeeIncremental",
+  "arm": "es",
+  "query": "¿Cuántos segundos exactos pasan antes de que la primera recompensa de automatización se sienta bien?",
+  "projectRoot": "D:\\Dev\\BeeIncremental",
+  "sourceRef": "docs/OPEN_QUESTIONS.md",
+  "expectedSourceRevision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+  "labelSpan": {
+    "start": 31,
+    "end": 31
+  },
+  "candidateCount": 0,
+  "truncated": false,
+  "targetSpanCoveredAt8": false,
+  "targetSpanOverlapAt8": false,
+  "firstTargetRank": null,
+  "candidates": [],
+  "responseAdvisoryOnly": true
+}

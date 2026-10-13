@@ -1,0 +1,259 @@
+{
+  "caseId": "EF-02",
+  "family": "Elemental Frontier",
+  "arm": "en",
+  "query": "What input triggers a dash attempt under the contract?",
+  "projectRoot": "D:\\Dev\\elemental-frontier",
+  "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+  "expectedSourceRevision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+  "labelSpan": {
+    "start": 17,
+    "end": 17
+  },
+  "candidateCount": 8,
+  "truncated": true,
+  "targetSpanCoveredAt8": true,
+  "targetSpanOverlapAt8": true,
+  "firstTargetRank": 1,
+  "candidates": [
+    {
+      "rank": 1,
+      "handle": {
+        "version": 1,
+        "id": "38f4622be9bc6967f59a5ab88a554c1116b1ffc901255a067d6864453ec8b0b2",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 71,
+        "startOffset": 0,
+        "endOffset": 7344,
+        "fingerprint": "39c9649b6f5096a0865d9b47f0c7054c97db7c5770ba9cf79037aaedc4017026",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.333333,
+      "title": "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)"
+      ],
+      "snippet": "# Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11) **Estado:** corrección en `feat/animation-studio-v1`; QA real cliente NeoForge 1.21.8 …",
+      "rangeCodeUnits": 7344,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 1,
+      "endLine": 71
+    },
+    {
+      "rank": 2,
+      "handle": {
+        "version": 1,
+        "id": "4febfa5393d87a900485eeff0993e5baebc64a9024eb65e0b887006624b50817",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "startLine": 31,
+        "endLine": 38,
+        "startOffset": 3699,
+        "endOffset": 4271,
+        "fingerprint": "44ab0698ebf9ea615a361c6211cabeece06cb4ae80eda9907265396d05e57afa",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.333333,
+      "title": "Gates automatizados",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "Gates automatizados"
+      ],
+      "snippet": "## Gates automatizados - `DashDirectionMemoryTest` valida lateral puro, diagonales, prioridad del input actual, memoria tras soltar, giro de cámara a 90°, cont…",
+      "rangeCodeUnits": 572,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 31,
+      "endLine": 38
+    },
+    {
+      "rank": 3,
+      "handle": {
+        "version": 1,
+        "id": "403a92125bfded3eb3b7120c3fd767f5116f2bbf018a85eaa4bda4684d98bee9",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "block-7",
+        "rangeKind": "block",
+        "startLine": 33,
+        "endLine": 37,
+        "startOffset": 3723,
+        "endOffset": 4269,
+        "fingerprint": "957a0e380d7943206189f88ca48913f406b22b60c8b0dac1622ad3d46e4f718a",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.333333,
+      "title": "Gates automatizados",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "Gates automatizados"
+      ],
+      "snippet": "- `DashDirectionMemoryTest` valida lateral puro, diagonales, prioridad del input actual, memoria tras soltar, giro de cámara a 90°, contradicciones y reinicio …",
+      "rangeCodeUnits": 546,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 33,
+      "endLine": 37
+    },
+    {
+      "rank": 4,
+      "handle": {
+        "version": 1,
+        "id": "9146f13c8eeccd0bd64f625a079276d1b98fd04b89d5cab22bd54dded766cfcc",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "block-7/item-1",
+        "rangeKind": "block",
+        "startLine": 33,
+        "endLine": 33,
+        "startOffset": 3723,
+        "endOffset": 3895,
+        "fingerprint": "e0e3407b223308c227713068b4b6f49734a69c54f9042dce06a4a4a750d42463",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.333333,
+      "title": "Gates automatizados",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "Gates automatizados"
+      ],
+      "snippet": "- `DashDirectionMemoryTest` valida lateral puro, diagonales, prioridad del input actual, memoria tras soltar, giro de cámara a 90°, contradicciones y reinicio …",
+      "rangeCodeUnits": 172,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 33,
+      "endLine": 33
+    },
+    {
+      "rank": 5,
+      "handle": {
+        "version": 1,
+        "id": "440b611bddb31b573455aecd1f694c5db8961da0b22d8517ac16e14391b2a5ce",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "block-1",
+        "rangeKind": "block",
+        "startLine": 3,
+        "endLine": 3,
+        "startOffset": 74,
+        "endOffset": 237,
+        "fingerprint": "eb326c0b0a1f5261c60149cb6a185fd22bf04bb74ca9679f027237ced7cd7aee",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.166667,
+      "title": "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)"
+      ],
+      "snippet": "**Estado:** corrección en `feat/animation-studio-v1`; QA real cliente NeoForge 1.21.8 + Paper 1.21.8, plugin EF Paper v0.1.5. No fusionar automáticamente a `ma…",
+      "rangeCodeUnits": 163,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 3,
+      "endLine": 3
+    },
+    {
+      "rank": 6,
+      "handle": {
+        "version": 1,
+        "id": "46f6a6663e5f5c47d49cf6c870fc8dcb634ad1d2ed2a0378fd0d15cbfc4d78f0",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "startLine": 5,
+        "endLine": 14,
+        "startOffset": 239,
+        "endOffset": 1494,
+        "fingerprint": "718b7d3c6ee76863a25dfe6556a665163b22d541af1a959ad550b7252011bf03",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.166667,
+      "title": "Problema reproducido",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "Problema reproducido"
+      ],
+      "snippet": "…2. En tercera persona se ve una pose de dash/rotación de las piernas, pero **no resulta claro un desplazamiento lateral**. Se observaron fotogramas de 0–18 s …",
+      "rangeCodeUnits": 1255,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 5,
+      "endLine": 14
+    },
+    {
+      "rank": 7,
+      "handle": {
+        "version": 1,
+        "id": "a5a5279de02a4a66a90e3fa6fe1f422de52ae9852fe13d52f1810b7a7ea43afd",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 7,
+        "startOffset": 264,
+        "endOffset": 605,
+        "fingerprint": "00e45740a20fb2d9c4322bc571deaedd16967679cb1ec03b2372d0ecc4a4b34a",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.166667,
+      "title": "Problema reproducido",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "Problema reproducido"
+      ],
+      "snippet": "…2. En tercera persona se ve una pose de dash/rotación de las piernas, pero **no resulta claro un desplazamiento lateral**. Se observaron fotogramas de 0–18 s …",
+      "rangeCodeUnits": 341,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 7,
+      "endLine": 7
+    },
+    {
+      "rank": 8,
+      "handle": {
+        "version": 1,
+        "id": "e4fdb40414fe23c340ab19c3a01cab44584de6f3ace07dd7fa87c21e4f969274",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "block-3",
+        "rangeKind": "block",
+        "startLine": 9,
+        "endLine": 9,
+        "startOffset": 607,
+        "endOffset": 628,
+        "fingerprint": "2cde7480860198a383b005f15ad811ed97eea7c63c2e6e1d05ce8daaaf16215e",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.166667,
+      "title": "Problema reproducido",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "Problema reproducido"
+      ],
+      "snippet": "**Causas separadas:**",
+      "rangeCodeUnits": 21,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 9,
+      "endLine": 9
+    }
+  ],
+  "responseAdvisoryOnly": true
+}

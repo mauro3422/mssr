@@ -1,0 +1,226 @@
+{
+  "projectOwner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+  "sourceCount": 1,
+  "status": "abstained",
+  "candidateCount": 8,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "verification": "unverified",
+  "confidenceCalibration": "uncalibrated-provider-score",
+  "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+  "exactFetchRequired": true,
+  "autoApplyAllowed": false,
+  "candidateRangeDiagnostics": {
+    "offered": 8,
+    "eligible": 8,
+    "oversizedOmitted": 0,
+    "maxFetchChars": 20000,
+    "lengthUnit": "utf16-code-units"
+  },
+  "rangeOverlapDiagnostics": {
+    "sameSourceRevisionPairs": 28,
+    "overlappingPairCount": 8,
+    "nestedPairCount": 8,
+    "exactRangePairCount": 0,
+    "partialOverlapPairCount": 0,
+    "pairs": [
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-2",
+        "leftRangeKind": "section",
+        "leftLines": [
+          5,
+          22
+        ],
+        "rightOptionId": "h003",
+        "rightRangeId": "block-2",
+        "rightRangeKind": "block",
+        "rightLines": [
+          7,
+          7
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 358
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-2",
+        "leftRangeKind": "section",
+        "leftLines": [
+          5,
+          22
+        ],
+        "rightOptionId": "h004",
+        "rightRangeId": "block-3",
+        "rightRangeKind": "block",
+        "rightLines": [
+          9,
+          9
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 152
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-2",
+        "leftRangeKind": "section",
+        "leftLines": [
+          5,
+          22
+        ],
+        "rightOptionId": "h005",
+        "rightRangeId": "block-4",
+        "rightRangeKind": "block",
+        "rightLines": [
+          11,
+          11
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 41
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-2",
+        "leftRangeKind": "section",
+        "leftLines": [
+          5,
+          22
+        ],
+        "rightOptionId": "h006",
+        "rightRangeId": "block-5",
+        "rightRangeKind": "block",
+        "rightLines": [
+          13,
+          19
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 204
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-2",
+        "leftRangeKind": "section",
+        "leftLines": [
+          5,
+          22
+        ],
+        "rightOptionId": "h007",
+        "rightRangeId": "block-5/item-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          13,
+          13
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 25
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-2",
+        "leftRangeKind": "section",
+        "leftLines": [
+          5,
+          22
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-5/item-2",
+        "rightRangeKind": "block",
+        "rightLines": [
+          14,
+          14
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 27
+      },
+      {
+        "leftOptionId": "h006",
+        "leftRangeId": "block-5",
+        "leftRangeKind": "block",
+        "leftLines": [
+          13,
+          19
+        ],
+        "rightOptionId": "h007",
+        "rightRangeId": "block-5/item-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          13,
+          13
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 25
+      },
+      {
+        "leftOptionId": "h006",
+        "leftRangeId": "block-5",
+        "leftRangeKind": "block",
+        "leftLines": [
+          13,
+          19
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-5/item-2",
+        "rightRangeKind": "block",
+        "rightLines": [
+          14,
+          14
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 27
+      }
+    ],
+    "truncated": false,
+    "mutationApplied": false
+  },
+  "finalistCount": 8,
+  "selectionMode": "single-pass",
+  "selectionPasses": 1,
+  "providerCalls": 1,
+  "providerConfidence": 0.47,
+  "evidenceSufficiency": 0.29,
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "providersUsed": [
+    "typesafe-jev"
+  ],
+  "modelsUsed": [
+    "jev-1.13.0"
+  ],
+  "usage": {
+    "input_tokens": 1695,
+    "output_tokens": 124
+  },
+  "requestFingerprint": "fdf468a87afe831c2e0d87df616b6af7a914fb1b7027d73c3af31fe35fd7eb85",
+  "elapsedMs": 731.2,
+  "jevCallMade": true,
+  "selected": null,
+  "choiceCalls": [
+    {
+      "questionKey": "selection",
+      "offeredOptionIds": [
+        "h001",
+        "h002",
+        "h003",
+        "h004",
+        "h005",
+        "h006",
+        "h007",
+        "h008",
+        "none"
+      ],
+      "selectedOptionId": "none",
+      "confidence": 0.47,
+      "probabilities": {
+        "h001": 0,
+        "h002": 0,
+        "h003": 0,
+        "h004": 0,
+        "h005": 0,
+        "h006": 0.46,
+        "h007": 0.01,
+        "h008": 0,
+        "none": 0.53
+      }
+    }
+  ]
+}

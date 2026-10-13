@@ -1,0 +1,31 @@
+{
+  "projectOwner": "d:/dev/beeincremental",
+  "sourceCount": 1,
+  "schemaVersion": 1,
+  "kind": "mssr-librarian-evidence-pack",
+  "assembly": "verbatim-source-ranges",
+  "paragraphs": [
+    {
+      "ordinal": 1,
+      "exactText": "Godot 2D with faux-2.5D depth.",
+      "citation": {
+        "display": "docs/VISUAL_DIRECTION.md:L5-L5",
+        "handleId": "512a7ade1a22c223a27da38db987c315253c521b12a30e2eb919e34b42c3f9c2",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/VISUAL_DIRECTION.md",
+        "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+        "rangeId": "block-1",
+        "rangeKind": "block",
+        "startLine": 5,
+        "endLine": 5,
+        "fingerprint": "10de2726b07ba57a9f98a784f54cb51fe5c9cb12bb42065ebea6ab0b24f41114",
+        "privacyClass": "project-metadata"
+      }
+    }
+  ],
+  "totalFetchedChars": 30,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "canonicalRewriteAllowed": false,
+  "ownerAndPrivacyAreCallerAsserted": true
+}

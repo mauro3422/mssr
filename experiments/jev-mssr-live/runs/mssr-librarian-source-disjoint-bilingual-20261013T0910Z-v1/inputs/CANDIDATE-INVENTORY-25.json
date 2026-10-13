@@ -1,0 +1,177 @@
+[
+  {
+    "root": "D:\\Dev\\BeeIncremental",
+    "head": "854dfb40555a9a4ec4b94ca2118b63d20f13b0ce",
+    "remote": "https://github.com/mauro3422/BeeIncremental.git",
+    "sourceRef": "docs/BIOLOGY.md",
+    "sha256": "d1a709fd244d8c56e054c79d992cb2d894faaf53fc9611058b3490345aaf32b1"
+  },
+  {
+    "root": "D:\\Dev\\BeeIncremental",
+    "head": "854dfb40555a9a4ec4b94ca2118b63d20f13b0ce",
+    "remote": "https://github.com/mauro3422/BeeIncremental.git",
+    "sourceRef": "docs/OPEN_QUESTIONS.md",
+    "sha256": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa"
+  },
+  {
+    "root": "D:\\Dev\\BeeIncremental",
+    "head": "854dfb40555a9a4ec4b94ca2118b63d20f13b0ce",
+    "remote": "https://github.com/mauro3422/BeeIncremental.git",
+    "sourceRef": "docs/ROADMAP.md",
+    "sha256": "7ce0c5fdc876b76159bdceca1e44f941bd280600a24c7d1db2c0ba46ed5a0d72"
+  },
+  {
+    "root": "D:\\Dev\\BeeIncremental",
+    "head": "854dfb40555a9a4ec4b94ca2118b63d20f13b0ce",
+    "remote": "https://github.com/mauro3422/BeeIncremental.git",
+    "sourceRef": "docs/VISION.md",
+    "sha256": "7d2ac12d499b9047aef734e09d480421b2c7b8a144f3c66aa334791991c9d5d7"
+  },
+  {
+    "root": "D:\\Dev\\BeeIncremental",
+    "head": "854dfb40555a9a4ec4b94ca2118b63d20f13b0ce",
+    "remote": "https://github.com/mauro3422/BeeIncremental.git",
+    "sourceRef": "docs/VISUAL_DIRECTION.md",
+    "sha256": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882"
+  },
+  {
+    "root": "D:\\Dev\\bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+    "head": "8c181ef33919038f400f623bd9a42ca1fd6b17a6",
+    "remote": "https://github.com/mauro3422/bridgeWEB-MCP.git",
+    "sourceRef": "CONNECT_OPENAI_TUNNEL.md",
+    "sha256": "8a74e8a453c8141a903d716c8ef1eb7f646a743cae494a8827dea4de227f6235"
+  },
+  {
+    "root": "D:\\Dev\\bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+    "head": "8c181ef33919038f400f623bd9a42ca1fd6b17a6",
+    "remote": "https://github.com/mauro3422/bridgeWEB-MCP.git",
+    "sourceRef": "CONNECTOR_PLAYBOOK.md",
+    "sha256": "772c2e82f273a61fe938f618a2a42fa590a2eb799bd2641799bf138ce3196ea0"
+  },
+  {
+    "root": "D:\\Dev\\bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+    "head": "8c181ef33919038f400f623bd9a42ca1fd6b17a6",
+    "remote": "https://github.com/mauro3422/bridgeWEB-MCP.git",
+    "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+    "sha256": "c6a10d9c5826197d4975d55cf27024874bed3c9a10a7ea6576d675f589926936"
+  },
+  {
+    "root": "D:\\Dev\\bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+    "head": "8c181ef33919038f400f623bd9a42ca1fd6b17a6",
+    "remote": "https://github.com/mauro3422/bridgeWEB-MCP.git",
+    "sourceRef": "docs/roblox-visual-capture/PLAN.md",
+    "sha256": "053f039ecb470e20b391f592f34cff3146e12d5d02033366ee3d594542b08414"
+  },
+  {
+    "root": "D:\\Dev\\bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+    "head": "8c181ef33919038f400f623bd9a42ca1fd6b17a6",
+    "remote": "https://github.com/mauro3422/bridgeWEB-MCP.git",
+    "sourceRef": "integrations/workflow-guides/character-concept-blender/GUIDE.md",
+    "sha256": "522c7faf332dc80a672fc779793c859bebda65da36288f8c0caffc3959df589b"
+  },
+  {
+    "root": "D:\\Dev\\elemental-frontier",
+    "head": "f5a0dc9895c7b7b7c755c3a1e7bb65795c58f346",
+    "remote": "https://github.com/mauro3422/elemental-frontier.git",
+    "sourceRef": "combat-lab/research/REFERENCE_PLAN.md",
+    "sha256": "f0e0e0513d9df1821c6eb16226d66cc856997889c78840549efe25b0f9ea3a6e"
+  },
+  {
+    "root": "D:\\Dev\\elemental-frontier",
+    "head": "f5a0dc9895c7b7b7c755c3a1e7bb65795c58f346",
+    "remote": "https://github.com/mauro3422/elemental-frontier.git",
+    "sourceRef": "combat-lab/research/VERSION_MATRIX.md",
+    "sha256": "fa29514bd0fe4504a1b9a8a7712fff981bf1b660e7c486a72706388588f555fd"
+  },
+  {
+    "root": "D:\\Dev\\elemental-frontier",
+    "head": "f5a0dc9895c7b7b7c755c3a1e7bb65795c58f346",
+    "remote": "https://github.com/mauro3422/elemental-frontier.git",
+    "sourceRef": "docs/ABILITY_REFERENCE_SYSTEM_V1.md",
+    "sha256": "0cee6ed694c61134ee24a7875bcd9d793e76262760d4cccb49dce8da1c04736c"
+  },
+  {
+    "root": "D:\\Dev\\elemental-frontier",
+    "head": "f5a0dc9895c7b7b7c755c3a1e7bb65795c58f346",
+    "remote": "https://github.com/mauro3422/elemental-frontier.git",
+    "sourceRef": "docs/ACTION_FEEDBACK_V1.md",
+    "sha256": "ced2eb9b3ecd96254acab130c04ec1098c4823c0c171ee5fbab2a7503c52af34"
+  },
+  {
+    "root": "D:\\Dev\\elemental-frontier",
+    "head": "f5a0dc9895c7b7b7c755c3a1e7bb65795c58f346",
+    "remote": "https://github.com/mauro3422/elemental-frontier.git",
+    "sourceRef": "docs/ANIMATION_STUDIO_ANTI_REGRESSION_V1.md",
+    "sha256": "991859e47dc59564b12defc71c025b4255728de244d8e5ed1bd04d91430822e2"
+  },
+  {
+    "root": "D:\\Dev\\elemental-frontier",
+    "head": "f5a0dc9895c7b7b7c755c3a1e7bb65795c58f346",
+    "remote": "https://github.com/mauro3422/elemental-frontier.git",
+    "sourceRef": "docs/ANIMATION_STUDIO_V1.md",
+    "sha256": "6e9ab5724f8375854bbc9cd9bb8d4b42445083a93ae2f0cd6e9d470aa85f5e9f"
+  },
+  {
+    "root": "D:\\Dev\\elemental-frontier",
+    "head": "f5a0dc9895c7b7b7c755c3a1e7bb65795c58f346",
+    "remote": "https://github.com/mauro3422/elemental-frontier.git",
+    "sourceRef": "docs/ANIMATION_VANILLA_FIDELITY_CONTRACT.md",
+    "sha256": "18250fbf728953336fa1c3cb23674418edbe5a0ba38bbd230371901380dbe2e0"
+  },
+  {
+    "root": "D:\\Dev\\elemental-frontier",
+    "head": "f5a0dc9895c7b7b7c755c3a1e7bb65795c58f346",
+    "remote": "https://github.com/mauro3422/elemental-frontier.git",
+    "sourceRef": "docs/CLIENT_ARCHITECTURE_REASSESSMENT.md",
+    "sha256": "6ef4affddc7a54c08b3cce8db5eb147615e910e469b9a9b22988309b3846ecef"
+  },
+  {
+    "root": "D:\\Dev\\elemental-frontier",
+    "head": "f5a0dc9895c7b7b7c755c3a1e7bb65795c58f346",
+    "remote": "https://github.com/mauro3422/elemental-frontier.git",
+    "sourceRef": "docs/COMBAT_AUTHORING_V1.md",
+    "sha256": "544783f63e490d517f608d4e3b43c15722e8a9795eec3a52c687ae782cf5e799"
+  },
+  {
+    "root": "D:\\Dev\\elemental-frontier",
+    "head": "f5a0dc9895c7b7b7c755c3a1e7bb65795c58f346",
+    "remote": "https://github.com/mauro3422/elemental-frontier.git",
+    "sourceRef": "docs/COMBAT_BUILD_MODE_V0.md",
+    "sha256": "9ac329cc2ff286f33410b4b6c3d16ba8969dce3623a6c68552e671426ae31e1e"
+  },
+  {
+    "root": "D:\\Dev\\elemental-frontier",
+    "head": "f5a0dc9895c7b7b7c755c3a1e7bb65795c58f346",
+    "remote": "https://github.com/mauro3422/elemental-frontier.git",
+    "sourceRef": "docs/COMBAT_INPUT_V0.md",
+    "sha256": "ea98cc76a10daaf5a1bdaa4cbc3468b84e0fe73faa89dbb0b8fcac093633cda6"
+  },
+  {
+    "root": "D:\\Dev\\elemental-frontier",
+    "head": "f5a0dc9895c7b7b7c755c3a1e7bb65795c58f346",
+    "remote": "https://github.com/mauro3422/elemental-frontier.git",
+    "sourceRef": "docs/COMBAT_PRESENTATION_V1.md",
+    "sha256": "273fd3d073d5d0dccb8f0d3e274f87af127db9dddfaf10f28d9a8071c89206d3"
+  },
+  {
+    "root": "D:\\Dev\\elemental-frontier",
+    "head": "f5a0dc9895c7b7b7c755c3a1e7bb65795c58f346",
+    "remote": "https://github.com/mauro3422/elemental-frontier.git",
+    "sourceRef": "docs/COMBAT_STANCE_CONTRACT_V5.md",
+    "sha256": "6cbadfae8b93ef10bd470576c9c55e9293282b44dc3a054bb81a42ecb875a108"
+  },
+  {
+    "root": "D:\\Dev\\elemental-frontier",
+    "head": "f5a0dc9895c7b7b7c755c3a1e7bb65795c58f346",
+    "remote": "https://github.com/mauro3422/elemental-frontier.git",
+    "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+    "sha256": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564"
+  },
+  {
+    "root": "D:\\Dev\\elemental-frontier",
+    "head": "f5a0dc9895c7b7b7c755c3a1e7bb65795c58f346",
+    "remote": "https://github.com/mauro3422/elemental-frontier.git",
+    "sourceRef": "docs/DASH_EXPRESSIVE_COMBAT_MOTION_V2.md",
+    "sha256": "335b04850785c663cc544d80dc17f36775af09c1d7b70de7f8a298beb74d137c"
+  }
+]

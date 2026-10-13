@@ -1,0 +1,193 @@
+{
+  "projectOwner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+  "sourceCount": 1,
+  "status": "selected",
+  "candidateCount": 8,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "verification": "unverified",
+  "confidenceCalibration": "uncalibrated-provider-score",
+  "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+  "exactFetchRequired": true,
+  "autoApplyAllowed": false,
+  "candidateRangeDiagnostics": {
+    "offered": 8,
+    "eligible": 8,
+    "oversizedOmitted": 0,
+    "maxFetchChars": 20000,
+    "lengthUnit": "utf16-code-units"
+  },
+  "rangeOverlapDiagnostics": {
+    "sameSourceRevisionPairs": 28,
+    "overlappingPairCount": 5,
+    "nestedPairCount": 5,
+    "exactRangePairCount": 0,
+    "partialOverlapPairCount": 0,
+    "pairs": [
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-14",
+        "leftRangeKind": "section",
+        "leftLines": [
+          89,
+          104
+        ],
+        "rightOptionId": "h002",
+        "rightRangeId": "block-28",
+        "rightRangeKind": "block",
+        "rightLines": [
+          93,
+          93
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 163
+      },
+      {
+        "leftOptionId": "h003",
+        "leftRangeId": "heading-15",
+        "leftRangeKind": "section",
+        "leftLines": [
+          105,
+          138
+        ],
+        "rightOptionId": "h004",
+        "rightRangeId": "heading-20",
+        "rightRangeKind": "section",
+        "rightLines": [
+          133,
+          138
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 378
+      },
+      {
+        "leftOptionId": "h003",
+        "leftRangeId": "heading-15",
+        "leftRangeKind": "section",
+        "leftLines": [
+          105,
+          138
+        ],
+        "rightOptionId": "h005",
+        "rightRangeId": "block-43",
+        "rightRangeKind": "block",
+        "rightLines": [
+          135,
+          135
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 261
+      },
+      {
+        "leftOptionId": "h004",
+        "leftRangeId": "heading-20",
+        "leftRangeKind": "section",
+        "leftLines": [
+          133,
+          138
+        ],
+        "rightOptionId": "h005",
+        "rightRangeId": "block-43",
+        "rightRangeKind": "block",
+        "rightLines": [
+          135,
+          135
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 261
+      },
+      {
+        "leftOptionId": "h007",
+        "leftRangeId": "heading-2",
+        "leftRangeKind": "section",
+        "leftLines": [
+          5,
+          22
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-2",
+        "rightRangeKind": "block",
+        "rightLines": [
+          7,
+          7
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 358
+      }
+    ],
+    "truncated": false,
+    "mutationApplied": false
+  },
+  "finalistCount": 8,
+  "selectionMode": "single-pass",
+  "selectionPasses": 1,
+  "providerCalls": 1,
+  "providerConfidence": 0.71,
+  "evidenceSufficiency": 0.73,
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "providersUsed": [
+    "typesafe-jev"
+  ],
+  "modelsUsed": [
+    "jev-1.13.0"
+  ],
+  "usage": {
+    "input_tokens": 1839,
+    "output_tokens": 127
+  },
+  "requestFingerprint": "f9663f42cb7f7f4f0a54c3d43c1f9d4ef51404a55d1f84098608ae89f04b64a2",
+  "elapsedMs": 669.5,
+  "jevCallMade": true,
+  "selected": {
+    "optionId": "h006",
+    "title": "Dashboard UX v2 — Information Architecture and Metric Semantics",
+    "headingPath": [
+      "Dashboard UX v2 — Information Architecture and Metric Semantics"
+    ],
+    "handle": {
+      "version": 1,
+      "id": "261a152ec1d783ac627949106dde58b7409b9fcb7981b9511a387fc5455dd385",
+      "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+      "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+      "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+      "rangeId": "block-1",
+      "rangeKind": "block",
+      "startLine": 3,
+      "endLine": 3,
+      "startOffset": 67,
+      "endOffset": 226,
+      "fingerprint": "e6a9af6033cc1f9a898c006504cefc559790ff6d815d4ff485dba02d51eb0893",
+      "privacyClass": "project-metadata"
+    }
+  },
+  "choiceCalls": [
+    {
+      "questionKey": "selection",
+      "offeredOptionIds": [
+        "h001",
+        "h002",
+        "h003",
+        "h004",
+        "h005",
+        "h006",
+        "h007",
+        "h008",
+        "none"
+      ],
+      "selectedOptionId": "h006",
+      "confidence": 0.71,
+      "probabilities": {
+        "h001": 0,
+        "h002": 0,
+        "h003": 0,
+        "h004": 0,
+        "h005": 0,
+        "h006": 0.74,
+        "h007": 0,
+        "h008": 0,
+        "none": 0.26
+      }
+    }
+  ]
+}

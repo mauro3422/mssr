@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-source-disjoint-bilingual-20261013T0910Z-v1",
+  "status": "prepared",
+  "frozenAt": "2026-10-13T09:10:12Z",
+  "benchmarkQuestion": "On source-disjoint Markdown documents from already-exposed project families, how often does Spanish-versus-explicit-English retrieval return a span sufficient for the frozen question, and when Jev receives those exact candidates, does it select sufficient positive evidence or abstain on explicit no-answer questions?",
+  "hypotheses": [
+    "An explicit English query will improve retrieval over the Spanish query for English source documents.",
+    "When at least one candidate is returned, Jev will select sufficient evidence on positive questions and abstain on explicit no-answer questions.",
+    "Exact fetch and evidence-pack integrity will hold for every valid selected handle."
+  ],
+  "limits": {
+    "labelType": "source-derived; not owner-gold",
+    "split": "diagnostic-only; not a protected holdout",
+    "independentClusters": 3,
+    "questionCount": 12,
+    "pairedSearchArmsPerQuestion": 2,
+    "maxJevCalls": 24,
+    "maxProviderTokens": 60000,
+    "thresholdTuningAllowed": false,
+    "canonicalWritesAllowed": false,
+    "runtimeChangesAllowed": false,
+    "familyExposure": "All three families were previously exposed; these exact sourceRefs and hashes were absent from the local run ledger. The cohort is source-disjoint within known families, not family-independent."
+  },
+  "searchProtocol": {
+    "metadataMode": "off",
+    "maxResults": 8,
+    "maxSnippetChars": 160,
+    "arms": [
+      {"id": "es-primary", "queryField": "queryEs"},
+      {"id": "en-explicit-translation", "queryField": "queryEn"}
+    ],
+    "candidatePolicy": "Run Jev separately per non-empty arm using exactly the search-returned handles, with selectionMode=search-results. If an arm returns no candidates, record not-run; do not turn an empty pool into a semantic abstention result."
+  },
+  "metrics": {
+    "retrieval": ["candidateCount@8", "targetSpanCovered@8", "targetSpanOverlap@8", "firstTargetRank"],
+    "selection": ["positiveSelectionRateAmongNonEmptyPools", "selectedHandleCoversTargetSpan", "negativeAbstentionRateAmongNonEmptyPools", "selectedOutOfSourceOrUnsupported"],
+    "integrity": ["selectedHandleFetchValid", "fingerprintValid", "evidencePackRetainsExactText", "citationMatchesSource"],
+    "provider": ["modelVersion", "ChoiceRaw", "NoulRaw", "inputTokens", "outputTokens", "reportedLatencyMs"],
+    "reporting": "Report Spanish and English arms paired by question. Do not treat paired arms or repeated calls as independent questions. Do not call raw Choice/Noul calibrated confidence."
+  },
+  "preflightExcluded": [
+    {
+      "operation": "EF-01 search smoke",
+      "result": "First request rejected before provider because maxSnippetChars=500 exceeded the runtime maximum 240. A corrected search smoke succeeded before this plan was frozen.",
+      "reasonExcluded": "The first candidate result was observed before the plan/checksum was frozen; exclude both preflight searches from primary metrics. No Jev call occurred."
+    }
+  ],
+  "sources": [
+    {"family":"BeeIncremental","projectRoot":"D:/Dev/BeeIncremental","head":"854dfb40555a9a4ec4b94ca2118b63d20f13b0ce","gitStatus":"clean"},
+    {"family":"Elemental Frontier","projectRoot":"D:/Dev/elemental-frontier","head":"f5a0dc9895c7b7b7c755c3a1e7bb65795c58f346","gitStatus":"clean"},
+    {"family":"Bridge candidate","projectRoot":"D:/Dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109","head":"8c181ef33919038f400f623bd9a42ca1fd6b17a6","gitStatus":"clean"}
+  ],
+  "cases": [
+    {"id":"BEE-01","family":"BeeIncremental","sourceRef":"docs/VISUAL_DIRECTION.md","sourceSha256":"4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882","questionClass":"positive","targetLines":{"start":5,"end":5},"contextLines":{"start":3,"end":7},"queryEs":"¿Qué motor y formato visual se eligieron para el juego?","queryEn":"Which engine and visual format were chosen for the game?","expectedAnswer":"Godot 2D with faux-2.5D depth.","blindReview":"sufficient; shortest sufficient span line 5; no material ambiguity"},
+    {"id":"BEE-02","family":"BeeIncremental","sourceRef":"docs/VISUAL_DIRECTION.md","sourceSha256":"4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882","questionClass":"positive","targetLines":{"start":65,"end":66},"contextLines":{"start":61,"end":68},"queryEs":"¿Qué dos vistas forman el primer slice jugable?","queryEn":"Which two views make up the first playable slice?","expectedAnswer":"HiveView and ForageView; they are views over one continuous simulation/economy.","blindReview":"sufficient; shortest sufficient span lines 65-66; no material ambiguity"},
+    {"id":"BEE-03","family":"BeeIncremental","sourceRef":"docs/OPEN_QUESTIONS.md","sourceSha256":"f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa","questionClass":"negative","noAnswerEvidenceLines":{"start":7,"end":9},"queryEs":"¿Cuál es el nombre público definitivo que ya se aprobó para BeeIncremental?","queryEn":"What definitive public name has been approved for BeeIncremental?","expectedAnswer":"No definitive public name is approved; BeeIncremental remains an internal working name while the public style/name is deferred.","blindReview":"explicit no-answer; do not invent an approved name"},
+    {"id":"BEE-04","family":"BeeIncremental","sourceRef":"docs/OPEN_QUESTIONS.md","sourceSha256":"f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa","questionClass":"negative","noAnswerEvidenceLines":{"start":31,"end":31},"queryEs":"¿Cuántos segundos exactos pasan antes de que la primera recompensa de automatización se sienta bien?","queryEn":"How many exact seconds pass before the first automation reward feels good?","expectedAnswer":"No duration is fixed; the document leaves this as a question for the prototype to answer.","blindReview":"explicit no-answer; exact duration is an open question"},
+    {"id":"EF-01","family":"Elemental Frontier","sourceRef":"combat-lab/research/VERSION_MATRIX.md","sourceSha256":"fa29514bd0fe4504a1b9a8a7712fff981bf1b660e7c486a72706388588f555fd","questionClass":"positive","targetLines":{"start":6,"end":6},"contextLines":{"start":3,"end":8},"queryEs":"¿Qué versión de NeoForge fija el baseline común del Combat Lab?","queryEn":"What NeoForge version does the Combat Lab shared baseline use?","expectedAnswer":"NeoForge 21.8.54.","blindReview":"sufficient; shortest sufficient span line 6; no material ambiguity"},
+    {"id":"EF-02","family":"Elemental Frontier","sourceRef":"docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md","sourceSha256":"08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564","questionClass":"positive","targetLines":{"start":17,"end":17},"contextLines":{"start":15,"end":22},"queryEs":"¿Qué input produce un intento de dash según el contrato?","queryEn":"What input triggers a dash attempt under the contract?","expectedAnswer":"Ctrl (vanilla Sprint) produces one dash attempt per key-down edge, subject to cooldown.","blindReview":"sufficient; shortest sufficient span line 17; question is qualified by cooldown"},
+    {"id":"EF-03","family":"Elemental Frontier","sourceRef":"combat-lab/research/VERSION_MATRIX.md","sourceSha256":"fa29514bd0fe4504a1b9a8a7712fff981bf1b660e7c486a72706388588f555fd","questionClass":"negative","noAnswerEvidenceLines":{"start":10,"end":10},"queryEs":"¿Qué versión final del servidor quedó fijada por este baseline?","queryEn":"What final server version was fixed by this baseline?","expectedAnswer":"None; the baseline explicitly does not fix the final server version.","blindReview":"explicit no-answer; distinguishes baseline client versions from final server version"},
+    {"id":"EF-04","family":"Elemental Frontier","sourceRef":"docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md","sourceSha256":"08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564","questionClass":"negative","noAnswerEvidenceLines":{"start":65,"end":65},"queryEs":"¿En qué ruta de archivo está el video lateral a 60 FPS que valida el dash?","queryEn":"What is the file path of the 60 FPS lateral video validating the dash?","expectedAnswer":"No path is given; the lateral 60 FPS video is still pending.","blindReview":"explicit no-answer; validation is pending, not an existing artifact"},
+    {"id":"BR-01","family":"Bridge candidate","sourceRef":"docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md","sourceSha256":"c6a10d9c5826197d4975d55cf27024874bed3c9a10a7ea6576d675f589926936","questionClass":"positive","targetLines":{"start":71,"end":77},"contextLines":{"start":67,"end":79},"queryEs":"¿Cuáles son los cuatro destinos de navegación primaria propuestos para dashboard v2?","queryEn":"What are the four primary navigation destinations proposed for dashboard v2?","expectedAnswer":"Inicio, Trabajo, Salud and Explorar; Inspector is a global drawer/modal, not a fifth page.","blindReview":"sufficient; four labels lines 71-77; line 79 resolves the Inspector ambiguity"},
+    {"id":"BR-02","family":"Bridge candidate","sourceRef":"CONNECT_OPENAI_TUNNEL.md","sourceSha256":"8a74e8a453c8141a903d716c8ef1eb7f646a743cae494a8827dea4de227f6235","questionClass":"positive","targetLines":{"start":23,"end":23},"contextLines":{"start":12,"end":23},"queryEs":"¿Dónde se crea el tunnel_id?","queryEn":"Where is the tunnel_id created?","expectedAnswer":"OpenAI Platform → Tunnel settings.","blindReview":"sufficient; shortest sufficient span line 23; no material ambiguity"},
+    {"id":"BR-03","family":"Bridge candidate","sourceRef":"docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md","sourceSha256":"c6a10d9c5826197d4975d55cf27024874bed3c9a10a7ea6576d675f589926936","questionClass":"negative","noAnswerEvidenceLines":{"start":3,"end":3},"queryEs":"¿Qué versión publicada de dashboard v2 autoriza este documento a implementar?","queryEn":"What published dashboard v2 version does this document authorize for implementation?","expectedAnswer":"None; this is a research/design specification and it authorizes no implementation or publication.","blindReview":"explicit no-answer; title v2 is a document label, not release authorization"},
+    {"id":"BR-04","family":"Bridge candidate","sourceRef":"docs/roblox-visual-capture/PLAN.md","sourceSha256":"053f039ecb470e20b391f592f34cff3146e12d5d02033366ee3d594542b08414","questionClass":"negative","noAnswerEvidenceLines":{"start":127,"end":127},"queryEs":"¿Qué duraciones exactas en segundos configura el watchdog para los timeouts de MCP y de aparición del PNG?","queryEn":"Which exact durations in seconds does the watchdog configure for MCP and PNG appearance timeouts?","expectedAnswer":"No durations are stated; the plan only requires separate timeouts.","blindReview":"explicit no-answer; another 60-second SDK timeout elsewhere is not the watchdog setting"}
+  ],
+  "reviewMethod": {
+    "curation": "Luna agent curated source-derived questions/labels after checking source hashes and Git state.",
+    "blindReview": "A separate Luna agent received questions and source refs without expected answers and independently reviewed sufficiency/no-answer spans.",
+    "adjudication": "No repository owners adjudicated these cases; remain source-derived labels."
+  }
+}
+

@@ -1,0 +1,265 @@
+{
+  "caseId": "BR-03",
+  "family": "Bridge candidate",
+  "arm": "en",
+  "query": "What published dashboard v2 version does this document authorize for implementation?",
+  "projectRoot": "D:\\Dev\\bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+  "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+  "expectedSourceRevision": "c6a10d9c5826197d4975d55cf27024874bed3c9a10a7ea6576d675f589926936",
+  "labelSpan": {
+    "start": 3,
+    "end": 3
+  },
+  "candidateCount": 8,
+  "truncated": true,
+  "targetSpanCoveredAt8": true,
+  "targetSpanOverlapAt8": true,
+  "firstTargetRank": 1,
+  "candidates": [
+    {
+      "rank": 1,
+      "handle": {
+        "version": 1,
+        "id": "261a152ec1d783ac627949106dde58b7409b9fcb7981b9511a387fc5455dd385",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "block-1",
+        "rangeKind": "block",
+        "startLine": 3,
+        "endLine": 3,
+        "startOffset": 67,
+        "endOffset": 226,
+        "fingerprint": "e6a9af6033cc1f9a898c006504cefc559790ff6d815d4ff485dba02d51eb0893",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.714286,
+      "title": "Dashboard UX v2 — Information Architecture and Metric Semantics",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics"
+      ],
+      "snippet": "Status: research/design specification. This document does **not** authorize frontend implementation, publication, restart, or changes to MSSR/Bridge authority.",
+      "rangeCodeUnits": 159,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 3,
+      "endLine": 3
+    },
+    {
+      "rank": 2,
+      "handle": {
+        "version": 1,
+        "id": "ecce505623e83092734bee23050c1a7e2466f5c156d218f0f0d651a05eaf7270",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "heading-15",
+        "rangeKind": "section",
+        "startLine": 105,
+        "endLine": 138,
+        "startOffset": 7463,
+        "endOffset": 9147,
+        "fingerprint": "e9392a4cd39a8b266bc1df016a69f4128fbf178788aa19f17d70837e3cc24b1a",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.571429,
+      "title": "6. Inicio — decision-first overview",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "6. Inicio — decision-first overview"
+      ],
+      "snippet": "…should prefer operational symptoms over implementation metadata. ### 6.5 What changed A semantic change feed should replace “latest raw tool calls” as the def…",
+      "rangeCodeUnits": 1684,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 105,
+      "endLine": 138
+    },
+    {
+      "rank": 3,
+      "handle": {
+        "version": 1,
+        "id": "7170c1541b374bea7bda0c102d23fab59a745e174395815b6805a5e76baa43d4",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 23,
+        "endLine": 54,
+        "startOffset": 1117,
+        "endOffset": 4058,
+        "fingerprint": "2847cde02039a8efb32bdb5059326056336fe46aab9ac9148ea5f90785d6ecb6",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.428571,
+      "title": "2. Evidence from the current implementation",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "2. Evidence from the current implementation"
+      ],
+      "snippet": "## 2. Evidence from the current implementation ### 2.1 Navigation follows backend categories Current top-level tabs are Summary, Cockpit/“Dónde estoy”, Activit…",
+      "rangeCodeUnits": 2941,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 23,
+      "endLine": 54
+    },
+    {
+      "rank": 4,
+      "handle": {
+        "version": 1,
+        "id": "89949ede81ab995662005cff88291c0bcc8d0896065292e957613c0111ee3f2a",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "startLine": 25,
+        "endLine": 28,
+        "startOffset": 1165,
+        "endOffset": 1413,
+        "fingerprint": "ed7f4942dc82e4848cedca54da8841b89048b65684d72c01fc220462e08e4e91",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.428571,
+      "title": "2.1 Navigation follows backend categories",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "2. Evidence from the current implementation",
+        "2.1 Navigation follows backend categories"
+      ],
+      "snippet": "### 2.1 Navigation follows backend categories Current top-level tabs are Summary, Cockpit/“Dónde estoy”, Activity, Tools, MSSR, Errors and System. This makes t…",
+      "rangeCodeUnits": 248,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 25,
+      "endLine": 28
+    },
+    {
+      "rank": 5,
+      "handle": {
+        "version": 1,
+        "id": "329152faf01ba29fb9ddc30e921c2d78ff2c6cf7818da9dfe057896495ae450d",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "block-7",
+        "rangeKind": "block",
+        "startLine": 27,
+        "endLine": 27,
+        "startOffset": 1212,
+        "endOffset": 1411,
+        "fingerprint": "9c6388da63db88c0de5517980d67acd0c158b159962458053fab4d52344f55bd",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.428571,
+      "title": "2.1 Navigation follows backend categories",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "2. Evidence from the current implementation",
+        "2.1 Navigation follows backend categories"
+      ],
+      "snippet": "Current top-level tabs are Summary, Cockpit/“Dónde estoy”, Activity, Tools, MSSR, Errors and System. This makes the user choose a data source before they know …",
+      "rangeCodeUnits": 199,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 27,
+      "endLine": 27
+    },
+    {
+      "rank": 6,
+      "handle": {
+        "version": 1,
+        "id": "f54432c4abd93c6d834c664061d9ee54dfb00b430c9c717714d38f7391c3438f",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "startLine": 29,
+        "endLine": 32,
+        "startOffset": 1413,
+        "endOffset": 1806,
+        "fingerprint": "ae0c5b693e644b144f4b4f8028876f7e176192199d427bbb62389f183580f1f9",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.428571,
+      "title": "2.2 Global chrome consumes too much attention",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "2. Evidence from the current implementation",
+        "2.2 Global chrome consumes too much attention"
+      ],
+      "snippet": "### 2.2 Global chrome consumes too much attention The top of every page repeats five large technical health cards: Bridge HTTP, MCP transport, SQLite metrics, …",
+      "rangeCodeUnits": 393,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 29,
+      "endLine": 32
+    },
+    {
+      "rank": 7,
+      "handle": {
+        "version": 1,
+        "id": "5b9ce0ffdd8ffc67c81ec3f10e3d5417b290d0aed9ed04c7f0595db010f873c5",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "block-8",
+        "rangeKind": "block",
+        "startLine": 31,
+        "endLine": 31,
+        "startOffset": 1464,
+        "endOffset": 1804,
+        "fingerprint": "6bdbe5336e4e1e5aacbed017bd86e82a97eb34dbf83d452299a374c8e50fc031",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.428571,
+      "title": "2.2 Global chrome consumes too much attention",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "2. Evidence from the current implementation",
+        "2.2 Global chrome consumes too much attention"
+      ],
+      "snippet": "The top of every page repeats five large technical health cards: Bridge HTTP, MCP transport, SQLite metrics, MSSR and MCP connections. On 390×844 mobile these …",
+      "rangeCodeUnits": 340,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 31,
+      "endLine": 31
+    },
+    {
+      "rank": 8,
+      "handle": {
+        "version": 1,
+        "id": "b3ce8b2dd707b51b78ba9c6a4a603e720b48853ee9599ffc29ca4eb104825772",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "heading-6",
+        "rangeKind": "section",
+        "startLine": 33,
+        "endLine": 36,
+        "startOffset": 1806,
+        "endOffset": 2212,
+        "fingerprint": "7f886e37b9c66e7c75c729b9335b8b004b28097f71d8a9a62ba3946b73fb2730",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.428571,
+      "title": "2.3 Summary prioritizes telemetry over meaning",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "2. Evidence from the current implementation",
+        "2.3 Summary prioritizes telemetry over meaning"
+      ],
+      "snippet": "### 2.3 Summary prioritizes telemetry over meaning The first screen of Summary currently emphasizes a five-minute tool-call timeline, retained/active connectio…",
+      "rangeCodeUnits": 406,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 33,
+      "endLine": 36
+    }
+  ],
+  "responseAdvisoryOnly": true
+}

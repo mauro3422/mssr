@@ -1,0 +1,262 @@
+{
+  "caseId": "BR-03",
+  "family": "Bridge candidate",
+  "arm": "es",
+  "query": "¿Qué versión publicada de dashboard v2 autoriza este documento a implementar?",
+  "projectRoot": "D:\\Dev\\bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+  "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+  "expectedSourceRevision": "c6a10d9c5826197d4975d55cf27024874bed3c9a10a7ea6576d675f589926936",
+  "labelSpan": {
+    "start": 3,
+    "end": 3
+  },
+  "candidateCount": 8,
+  "truncated": true,
+  "targetSpanCoveredAt8": true,
+  "targetSpanOverlapAt8": true,
+  "firstTargetRank": 6,
+  "candidates": [
+    {
+      "rank": 1,
+      "handle": {
+        "version": 1,
+        "id": "c89ecb1a88f7ca7964d6219f1baf762c0cd110a0ae1b5b2f82cd10f0475da31b",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "heading-14",
+        "rangeKind": "section",
+        "startLine": 89,
+        "endLine": 104,
+        "startOffset": 6631,
+        "endOffset": 7463,
+        "fingerprint": "53a83ba691c42cb3d462fc6c196c3f1b94509426047d1b9397718a5582af17c5",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.428571,
+      "title": "5. New shell",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "5. New shell"
+      ],
+      "snippet": "… compact header line containing product/version, overall runtime state, current human-work state, time range, project/scope and Inspector entry. Mobile target…",
+      "rangeCodeUnits": 832,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 89,
+      "endLine": 104
+    },
+    {
+      "rank": 2,
+      "handle": {
+        "version": 1,
+        "id": "d401f2af1b816b0706ca8d3c7c7c3d41d429dcdfe913570aff8132a49c5efe4f",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "block-28",
+        "rangeKind": "block",
+        "startLine": 93,
+        "endLine": 93,
+        "startOffset": 6685,
+        "endOffset": 6848,
+        "fingerprint": "7dd6e2af6e90d14ec588836eb6ae1649d92397c958ca05e2d926309019b2ce6d",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.428571,
+      "title": "5. New shell",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "5. New shell"
+      ],
+      "snippet": "…ktop target: one compact header line containing product/version, overall runtime state, current human-work state, time range, project/scope and Inspector entr…",
+      "rangeCodeUnits": 163,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 93,
+      "endLine": 93
+    },
+    {
+      "rank": 3,
+      "handle": {
+        "version": 1,
+        "id": "ecce505623e83092734bee23050c1a7e2466f5c156d218f0f0d651a05eaf7270",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "heading-15",
+        "rangeKind": "section",
+        "startLine": 105,
+        "endLine": 138,
+        "startOffset": 7463,
+        "endOffset": 9147,
+        "fingerprint": "e9392a4cd39a8b266bc1df016a69f4128fbf178788aa19f17d70837e3cc24b1a",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.428571,
+      "title": "6. Inicio — decision-first overview",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "6. Inicio — decision-first overview"
+      ],
+      "snippet": "…cation passed/failed, restart/adoption, version change, project health changed, error spike, recovery, commit/push when observable. Multiple low-level tool ca…",
+      "rangeCodeUnits": 1684,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 105,
+      "endLine": 138
+    },
+    {
+      "rank": 4,
+      "handle": {
+        "version": 1,
+        "id": "bcaa2ec80448c8765b7ba5f46c981e2e7ea4823161c71e52f8d8a8b21257102f",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "heading-20",
+        "rangeKind": "section",
+        "startLine": 133,
+        "endLine": 138,
+        "startOffset": 8769,
+        "endOffset": 9147,
+        "fingerprint": "976bf1e6ca55a63c8f6edc040ea6a70e4a45e5891ba4f17eaf08b254948a6dec",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.428571,
+      "title": "6.5 What changed",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "6. Inicio — decision-first overview",
+        "6.5 What changed"
+      ],
+      "snippet": "…cation passed/failed, restart/adoption, version change, project health changed, error spike, recovery, commit/push when observable. Multiple low-level tool ca…",
+      "rangeCodeUnits": 378,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 133,
+      "endLine": 138
+    },
+    {
+      "rank": 5,
+      "handle": {
+        "version": 1,
+        "id": "ea40325e42260370011737d922dc0c48cf5e7eba43408a195c37ccaaa9ccfa3a",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "block-43",
+        "rangeKind": "block",
+        "startLine": 135,
+        "endLine": 135,
+        "startOffset": 8791,
+        "endOffset": 9052,
+        "fingerprint": "12838106b05296c7de70a04a78a488bcf2f17d4c228cc6716ef4d0e9ecad4ac3",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.428571,
+      "title": "6.5 What changed",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "6. Inicio — decision-first overview",
+        "6.5 What changed"
+      ],
+      "snippet": "…: task started/closed, verification passed/failed, restart/adoption, version change, project health changed, error spike, recovery, commit/push when observabl…",
+      "rangeCodeUnits": 261,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 135,
+      "endLine": 135
+    },
+    {
+      "rank": 6,
+      "handle": {
+        "version": 1,
+        "id": "261a152ec1d783ac627949106dde58b7409b9fcb7981b9511a387fc5455dd385",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "block-1",
+        "rangeKind": "block",
+        "startLine": 3,
+        "endLine": 3,
+        "startOffset": 67,
+        "endOffset": 226,
+        "fingerprint": "e6a9af6033cc1f9a898c006504cefc559790ff6d815d4ff485dba02d51eb0893",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.285714,
+      "title": "Dashboard UX v2 — Information Architecture and Metric Semantics",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics"
+      ],
+      "snippet": "Status: research/design specification. This document does **not** authorize frontend implementation, publication, restart, or changes to MSSR/Bridge authority.",
+      "rangeCodeUnits": 159,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 3,
+      "endLine": 3
+    },
+    {
+      "rank": 7,
+      "handle": {
+        "version": 1,
+        "id": "df803451f91e6a26a2876cff83cc3f2a820c41203b37b462c9898eae688d4450",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "startLine": 5,
+        "endLine": 22,
+        "startOffset": 228,
+        "endOffset": 1117,
+        "fingerprint": "763203a70684005abd3d97fbef685ca49856d3a0a53fee3aa91452589efb1fca",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.285714,
+      "title": "1. Why v2 exists",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "1. Why v2 exists"
+      ],
+      "snippet": "## 1. Why v2 exists Human UX v1/v1.1 improved density, responsive behavior, contextual help and progressive disclosure, but retained the original information a…",
+      "rangeCodeUnits": 889,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 5,
+      "endLine": 22
+    },
+    {
+      "rank": 8,
+      "handle": {
+        "version": 1,
+        "id": "90a2ca98adec595b353e29138fac67fa51566f3914e4ab01c13993ac70d6cd0f",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 7,
+        "startOffset": 249,
+        "endOffset": 607,
+        "fingerprint": "7ace00269c58491f83952595093a775f6085aba7e34ec786d8426e3fe852d5da",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.285714,
+      "title": "1. Why v2 exists",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "1. Why v2 exists"
+      ],
+      "snippet": "… original information architecture. The dashboard is still organized primarily around what Bridge/MSSR emits (tool calls, traces, registries, runtime metadata…",
+      "rangeCodeUnits": 358,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 7,
+      "endLine": 7
+    }
+  ],
+  "responseAdvisoryOnly": true
+}

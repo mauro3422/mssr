@@ -1,0 +1,259 @@
+{
+  "caseId": "EF-02",
+  "family": "Elemental Frontier",
+  "arm": "es",
+  "query": "¿Qué input produce un intento de dash según el contrato?",
+  "projectRoot": "D:\\Dev\\elemental-frontier",
+  "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+  "expectedSourceRevision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+  "labelSpan": {
+    "start": 17,
+    "end": 17
+  },
+  "candidateCount": 8,
+  "truncated": true,
+  "targetSpanCoveredAt8": true,
+  "targetSpanOverlapAt8": true,
+  "firstTargetRank": 1,
+  "candidates": [
+    {
+      "rank": 1,
+      "handle": {
+        "version": 1,
+        "id": "38f4622be9bc6967f59a5ab88a554c1116b1ffc901255a067d6864453ec8b0b2",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 71,
+        "startOffset": 0,
+        "endOffset": 7344,
+        "fingerprint": "39c9649b6f5096a0865d9b47f0c7054c97db7c5770ba9cf79037aaedc4017026",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.666667,
+      "title": "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)"
+      ],
+      "snippet": "# Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11) **Estado:** corrección en `feat/animation-studio-v1`; QA real cliente NeoForge 1.21.8 …",
+      "rangeCodeUnits": 7344,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 1,
+      "endLine": 71
+    },
+    {
+      "rank": 2,
+      "handle": {
+        "version": 1,
+        "id": "71216a54fe61f89aa0c63d051c37d57abb9c40188f53b4082013675b59d44142",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 15,
+        "endLine": 24,
+        "startOffset": 1494,
+        "endOffset": 3016,
+        "fingerprint": "c8774334cf7ea6f1a8adc9d30ee46158dfee53113f36e95e838fc7d6f63c1842",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.5,
+      "title": "Contrato obligatorio de controles",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "Contrato obligatorio de controles"
+      ],
+      "snippet": "## Contrato obligatorio de controles - **Ctrl** sigue siendo Sprint vanilla, y genera **un solo intento de dash por flanco de pulsación**, condicionado a coold…",
+      "rangeCodeUnits": 1522,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 15,
+      "endLine": 24
+    },
+    {
+      "rank": 3,
+      "handle": {
+        "version": 1,
+        "id": "2c7279afe1c760c8aa06d91b1920422edbee412e18aed5b13c0cd7a2883109ce",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "block-5",
+        "rangeKind": "block",
+        "startLine": 17,
+        "endLine": 23,
+        "startOffset": 1532,
+        "endOffset": 3014,
+        "fingerprint": "291330c966334fb7bb2f4c1f84dfb586cda496efe9efd90647a98181bb317c1c",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.5,
+      "title": "Contrato obligatorio de controles",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "Contrato obligatorio de controles"
+      ],
+      "snippet": "…endo Sprint vanilla, y genera **un solo intento de dash por flanco de pulsación**, condicionado a cooldown. No se introducen slots numéricos ni se usan Alt ni…",
+      "rangeCodeUnits": 1482,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 17,
+      "endLine": 23
+    },
+    {
+      "rank": 4,
+      "handle": {
+        "version": 1,
+        "id": "46720933a312ca6a3381d60532679aa6ef18a7cf64e439f925c50860724b9602",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "block-5/item-1",
+        "rangeKind": "block",
+        "startLine": 17,
+        "endLine": 17,
+        "startOffset": 1532,
+        "endOffset": 1748,
+        "fingerprint": "38116ee99e972e00c98111c3630c730043ac4816555356060730af312a74503e",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.5,
+      "title": "Contrato obligatorio de controles",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "Contrato obligatorio de controles"
+      ],
+      "snippet": "…endo Sprint vanilla, y genera **un solo intento de dash por flanco de pulsación**, condicionado a cooldown. No se introducen slots numéricos ni se usan Alt ni…",
+      "rangeCodeUnits": 216,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 17,
+      "endLine": 17
+    },
+    {
+      "rank": 5,
+      "handle": {
+        "version": 1,
+        "id": "4febfa5393d87a900485eeff0993e5baebc64a9024eb65e0b887006624b50817",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "startLine": 31,
+        "endLine": 38,
+        "startOffset": 3699,
+        "endOffset": 4271,
+        "fingerprint": "44ab0698ebf9ea615a361c6211cabeece06cb4ae80eda9907265396d05e57afa",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.5,
+      "title": "Gates automatizados",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "Gates automatizados"
+      ],
+      "snippet": "## Gates automatizados - `DashDirectionMemoryTest` valida lateral puro, diagonales, prioridad del input actual, memoria tras soltar, giro de cámara a 90°, cont…",
+      "rangeCodeUnits": 572,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 31,
+      "endLine": 38
+    },
+    {
+      "rank": 6,
+      "handle": {
+        "version": 1,
+        "id": "403a92125bfded3eb3b7120c3fd767f5116f2bbf018a85eaa4bda4684d98bee9",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "block-7",
+        "rangeKind": "block",
+        "startLine": 33,
+        "endLine": 37,
+        "startOffset": 3723,
+        "endOffset": 4269,
+        "fingerprint": "957a0e380d7943206189f88ca48913f406b22b60c8b0dac1622ad3d46e4f718a",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.5,
+      "title": "Gates automatizados",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "Gates automatizados"
+      ],
+      "snippet": "- `DashDirectionMemoryTest` valida lateral puro, diagonales, prioridad del input actual, memoria tras soltar, giro de cámara a 90°, contradicciones y reinicio …",
+      "rangeCodeUnits": 546,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 33,
+      "endLine": 37
+    },
+    {
+      "rank": 7,
+      "handle": {
+        "version": 1,
+        "id": "9146f13c8eeccd0bd64f625a079276d1b98fd04b89d5cab22bd54dded766cfcc",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "block-7/item-1",
+        "rangeKind": "block",
+        "startLine": 33,
+        "endLine": 33,
+        "startOffset": 3723,
+        "endOffset": 3895,
+        "fingerprint": "e0e3407b223308c227713068b4b6f49734a69c54f9042dce06a4a4a750d42463",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.5,
+      "title": "Gates automatizados",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "Gates automatizados"
+      ],
+      "snippet": "- `DashDirectionMemoryTest` valida lateral puro, diagonales, prioridad del input actual, memoria tras soltar, giro de cámara a 90°, contradicciones y reinicio …",
+      "rangeCodeUnits": 172,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 33,
+      "endLine": 33
+    },
+    {
+      "rank": 8,
+      "handle": {
+        "version": 1,
+        "id": "440b611bddb31b573455aecd1f694c5db8961da0b22d8517ac16e14391b2a5ce",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "block-1",
+        "rangeKind": "block",
+        "startLine": 3,
+        "endLine": 3,
+        "startOffset": 74,
+        "endOffset": 237,
+        "fingerprint": "eb326c0b0a1f5261c60149cb6a185fd22bf04bb74ca9679f027237ced7cd7aee",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.333333,
+      "title": "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)"
+      ],
+      "snippet": "**Estado:** corrección en `feat/animation-studio-v1`; QA real cliente NeoForge 1.21.8 + Paper 1.21.8, plugin EF Paper v0.1.5. No fusionar automáticamente a `ma…",
+      "rangeCodeUnits": 163,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 3,
+      "endLine": 3
+    }
+  ],
+  "responseAdvisoryOnly": true
+}

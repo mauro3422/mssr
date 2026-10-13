@@ -1,0 +1,338 @@
+{
+  "projectOwner": "d:/dev/elemental-frontier",
+  "sourceCount": 1,
+  "status": "selected",
+  "candidateCount": 8,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "verification": "unverified",
+  "confidenceCalibration": "uncalibrated-provider-score",
+  "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+  "exactFetchRequired": true,
+  "autoApplyAllowed": false,
+  "candidateRangeDiagnostics": {
+    "offered": 8,
+    "eligible": 8,
+    "oversizedOmitted": 0,
+    "maxFetchChars": 20000,
+    "lengthUnit": "utf16-code-units"
+  },
+  "rangeOverlapDiagnostics": {
+    "sameSourceRevisionPairs": 28,
+    "overlappingPairCount": 13,
+    "nestedPairCount": 13,
+    "exactRangePairCount": 0,
+    "partialOverlapPairCount": 0,
+    "pairs": [
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          71
+        ],
+        "rightOptionId": "h002",
+        "rightRangeId": "heading-3",
+        "rightRangeKind": "section",
+        "rightLines": [
+          15,
+          24
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 1522
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          71
+        ],
+        "rightOptionId": "h003",
+        "rightRangeId": "block-5",
+        "rightRangeKind": "block",
+        "rightLines": [
+          17,
+          23
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 1482
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          71
+        ],
+        "rightOptionId": "h004",
+        "rightRangeId": "block-5/item-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          17,
+          17
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 216
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          71
+        ],
+        "rightOptionId": "h005",
+        "rightRangeId": "heading-5",
+        "rightRangeKind": "section",
+        "rightLines": [
+          31,
+          38
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 572
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          71
+        ],
+        "rightOptionId": "h006",
+        "rightRangeId": "block-7",
+        "rightRangeKind": "block",
+        "rightLines": [
+          33,
+          37
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 546
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          71
+        ],
+        "rightOptionId": "h007",
+        "rightRangeId": "block-7/item-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          33,
+          33
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 172
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          71
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          3,
+          3
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 163
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-3",
+        "leftRangeKind": "section",
+        "leftLines": [
+          15,
+          24
+        ],
+        "rightOptionId": "h003",
+        "rightRangeId": "block-5",
+        "rightRangeKind": "block",
+        "rightLines": [
+          17,
+          23
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 1482
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-3",
+        "leftRangeKind": "section",
+        "leftLines": [
+          15,
+          24
+        ],
+        "rightOptionId": "h004",
+        "rightRangeId": "block-5/item-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          17,
+          17
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 216
+      },
+      {
+        "leftOptionId": "h003",
+        "leftRangeId": "block-5",
+        "leftRangeKind": "block",
+        "leftLines": [
+          17,
+          23
+        ],
+        "rightOptionId": "h004",
+        "rightRangeId": "block-5/item-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          17,
+          17
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 216
+      },
+      {
+        "leftOptionId": "h005",
+        "leftRangeId": "heading-5",
+        "leftRangeKind": "section",
+        "leftLines": [
+          31,
+          38
+        ],
+        "rightOptionId": "h006",
+        "rightRangeId": "block-7",
+        "rightRangeKind": "block",
+        "rightLines": [
+          33,
+          37
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 546
+      },
+      {
+        "leftOptionId": "h005",
+        "leftRangeId": "heading-5",
+        "leftRangeKind": "section",
+        "leftLines": [
+          31,
+          38
+        ],
+        "rightOptionId": "h007",
+        "rightRangeId": "block-7/item-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          33,
+          33
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 172
+      },
+      {
+        "leftOptionId": "h006",
+        "leftRangeId": "block-7",
+        "leftRangeKind": "block",
+        "leftLines": [
+          33,
+          37
+        ],
+        "rightOptionId": "h007",
+        "rightRangeId": "block-7/item-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          33,
+          33
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 172
+      }
+    ],
+    "truncated": false,
+    "mutationApplied": false
+  },
+  "finalistCount": 8,
+  "selectionMode": "single-pass",
+  "selectionPasses": 1,
+  "providerCalls": 1,
+  "providerConfidence": 0.48,
+  "evidenceSufficiency": 0.65,
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "providersUsed": [
+    "typesafe-jev"
+  ],
+  "modelsUsed": [
+    "jev-1.13.0"
+  ],
+  "usage": {
+    "input_tokens": 1923,
+    "output_tokens": 127
+  },
+  "requestFingerprint": "04c210a4651223194abf5057955be97b41aa920518aedc6dbfda375b5c8704b2",
+  "elapsedMs": 707.7,
+  "jevCallMade": true,
+  "selected": {
+    "optionId": "h002",
+    "title": "Contrato obligatorio de controles",
+    "headingPath": [
+      "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+      "Contrato obligatorio de controles"
+    ],
+    "handle": {
+      "version": 1,
+      "id": "71216a54fe61f89aa0c63d051c37d57abb9c40188f53b4082013675b59d44142",
+      "owner": "d:/dev/elemental-frontier",
+      "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+      "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+      "rangeId": "heading-3",
+      "rangeKind": "section",
+      "startLine": 15,
+      "endLine": 24,
+      "startOffset": 1494,
+      "endOffset": 3016,
+      "fingerprint": "c8774334cf7ea6f1a8adc9d30ee46158dfee53113f36e95e838fc7d6f63c1842",
+      "privacyClass": "project-metadata"
+    }
+  },
+  "choiceCalls": [
+    {
+      "questionKey": "selection",
+      "offeredOptionIds": [
+        "h001",
+        "h002",
+        "h003",
+        "h004",
+        "h005",
+        "h006",
+        "h007",
+        "h008",
+        "none"
+      ],
+      "selectedOptionId": "h002",
+      "confidence": 0.48,
+      "probabilities": {
+        "h001": 0,
+        "h002": 0.54,
+        "h003": 0.29,
+        "h004": 0.12,
+        "h005": 0,
+        "h006": 0,
+        "h007": 0,
+        "h008": 0,
+        "none": 0.05
+      }
+    }
+  ]
+}

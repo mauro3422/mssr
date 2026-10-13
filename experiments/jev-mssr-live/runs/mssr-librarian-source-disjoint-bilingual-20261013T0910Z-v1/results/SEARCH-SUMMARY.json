@@ -1,0 +1,50 @@
+{
+  "runId": "mssr-librarian-source-disjoint-bilingual-20261013T0910Z-v1",
+  "searchCallsSaved": 24,
+  "arms": [
+    {
+      "arm": "es",
+      "queries": 12,
+      "spanCovered": 9,
+      "positiveCovered": 4,
+      "positiveTotal": 6,
+      "negativeContextCovered": 5,
+      "negativeTotal": 6,
+      "emptyPools": 2,
+      "meanFirstTargetRank": 1.56
+    },
+    {
+      "arm": "en",
+      "queries": 12,
+      "spanCovered": 12,
+      "positiveCovered": 6,
+      "positiveTotal": 6,
+      "negativeContextCovered": 6,
+      "negativeTotal": 6,
+      "emptyPools": 0,
+      "meanFirstTargetRank": 1.0
+    }
+  ],
+  "byFamily": [
+    {
+      "family": "BeeIncremental",
+      "esCovered": 2,
+      "enCovered": 4,
+      "cases": 4
+    },
+    {
+      "family": "Elemental Frontier",
+      "esCovered": 4,
+      "enCovered": 4,
+      "cases": 4
+    },
+    {
+      "family": "Bridge candidate",
+      "esCovered": 3,
+      "enCovered": 4,
+      "cases": 4
+    }
+  ],
+  "sourceLabels": "source-derived, independently blind-reviewed; not owner-gold",
+  "generalization": "three previously exposed families; diagnostic only"
+}

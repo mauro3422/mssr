@@ -1,0 +1,182 @@
+{
+  "projectOwner": "d:/dev/beeincremental",
+  "sourceCount": 1,
+  "status": "abstained",
+  "candidateCount": 4,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "verification": "unverified",
+  "confidenceCalibration": "uncalibrated-provider-score",
+  "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+  "exactFetchRequired": true,
+  "autoApplyAllowed": false,
+  "candidateRangeDiagnostics": {
+    "offered": 4,
+    "eligible": 4,
+    "oversizedOmitted": 0,
+    "maxFetchChars": 20000,
+    "lengthUnit": "utf16-code-units"
+  },
+  "rangeOverlapDiagnostics": {
+    "sameSourceRevisionPairs": 6,
+    "overlappingPairCount": 6,
+    "nestedPairCount": 5,
+    "exactRangePairCount": 1,
+    "partialOverlapPairCount": 0,
+    "pairs": [
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          45
+        ],
+        "rightOptionId": "h002",
+        "rightRangeId": "heading-2",
+        "rightRangeKind": "section",
+        "rightLines": [
+          5,
+          10
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 200
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          45
+        ],
+        "rightOptionId": "h003",
+        "rightRangeId": "block-2",
+        "rightRangeKind": "block",
+        "rightLines": [
+          7,
+          9
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 177
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          45
+        ],
+        "rightOptionId": "h004",
+        "rightRangeId": "block-2/item-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          7,
+          9
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 177
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-2",
+        "leftRangeKind": "section",
+        "leftLines": [
+          5,
+          10
+        ],
+        "rightOptionId": "h003",
+        "rightRangeId": "block-2",
+        "rightRangeKind": "block",
+        "rightLines": [
+          7,
+          9
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 177
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-2",
+        "leftRangeKind": "section",
+        "leftLines": [
+          5,
+          10
+        ],
+        "rightOptionId": "h004",
+        "rightRangeId": "block-2/item-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          7,
+          9
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 177
+      },
+      {
+        "leftOptionId": "h003",
+        "leftRangeId": "block-2",
+        "leftRangeKind": "block",
+        "leftLines": [
+          7,
+          9
+        ],
+        "rightOptionId": "h004",
+        "rightRangeId": "block-2/item-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          7,
+          9
+        ],
+        "relation": "exact-range",
+        "overlapCodeUnits": 177
+      }
+    ],
+    "truncated": false,
+    "mutationApplied": false
+  },
+  "finalistCount": 4,
+  "selectionMode": "single-pass",
+  "selectionPasses": 1,
+  "providerCalls": 1,
+  "providerConfidence": 0.94,
+  "evidenceSufficiency": 0.08,
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "providersUsed": [
+    "typesafe-jev"
+  ],
+  "modelsUsed": [
+    "jev-1.13.0"
+  ],
+  "usage": {
+    "input_tokens": 992,
+    "output_tokens": 84
+  },
+  "requestFingerprint": "90485c97496037a0d47a2176f7b587ac540608a4869e08c971b64f17a59d44a6",
+  "elapsedMs": 642.2,
+  "jevCallMade": true,
+  "selected": null,
+  "choiceCalls": [
+    {
+      "questionKey": "selection",
+      "offeredOptionIds": [
+        "h001",
+        "h002",
+        "h003",
+        "h004",
+        "none"
+      ],
+      "selectedOptionId": "none",
+      "confidence": 0.94,
+      "probabilities": {
+        "h001": 0,
+        "h002": 0.02,
+        "h003": 0.03,
+        "h004": 0,
+        "none": 0.95
+      }
+    }
+  ]
+}

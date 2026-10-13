@@ -1,0 +1,31 @@
+{
+  "projectOwner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+  "sourceCount": 1,
+  "schemaVersion": 1,
+  "kind": "mssr-librarian-evidence-pack",
+  "assembly": "verbatim-source-ranges",
+  "paragraphs": [
+    {
+      "ordinal": 1,
+      "exactText": "Status: research/design specification. This document does **not** authorize frontend implementation, publication, restart, or changes to MSSR/Bridge authority.",
+      "citation": {
+        "display": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md:L3-L3",
+        "handleId": "261a152ec1d783ac627949106dde58b7409b9fcb7981b9511a387fc5455dd385",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "block-1",
+        "rangeKind": "block",
+        "startLine": 3,
+        "endLine": 3,
+        "fingerprint": "e6a9af6033cc1f9a898c006504cefc559790ff6d815d4ff485dba02d51eb0893",
+        "privacyClass": "project-metadata"
+      }
+    }
+  ],
+  "totalFetchedChars": 159,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "canonicalRewriteAllowed": false,
+  "ownerAndPrivacyAreCallerAsserted": true
+}

@@ -1,0 +1,263 @@
+{
+  "caseId": "BR-04",
+  "family": "Bridge candidate",
+  "arm": "es",
+  "query": "¿Qué duraciones exactas en segundos configura el watchdog para los timeouts de MCP y de aparición del PNG?",
+  "projectRoot": "D:\\Dev\\bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+  "sourceRef": "docs/roblox-visual-capture/PLAN.md",
+  "expectedSourceRevision": "053f039ecb470e20b391f592f34cff3146e12d5d02033366ee3d594542b08414",
+  "labelSpan": {
+    "start": 127,
+    "end": 127
+  },
+  "candidateCount": 8,
+  "truncated": true,
+  "targetSpanCoveredAt8": true,
+  "targetSpanOverlapAt8": true,
+  "firstTargetRank": 1,
+  "candidates": [
+    {
+      "rank": 1,
+      "handle": {
+        "version": 1,
+        "id": "0f7b9361024efbcb0cdefd56d9e64ff744e870dbadfa925594e479fb140b927d",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/roblox-visual-capture/PLAN.md",
+        "revision": "8ad4e6120ff8ca46fee98e39a714cd3d22dbd707ebb39d5eb569f044395f8262",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 220,
+        "startOffset": 0,
+        "endOffset": 8526,
+        "fingerprint": "0e722ec81f1ffb7e96ea748ba775f0cf6517f266f988a8a891c2111665b5c2d9",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.555556,
+      "title": "Roblox Visual Capture Reliability Plan",
+      "headingPath": [
+        "Roblox Visual Capture Reliability Plan"
+      ],
+      "snippet": "… 2026-07-23 **Ámbitos:** `D:\\Dev\\bridge-mcp`, `D:\\Dev\\MyceliumFront`, skill `roblox-photo-rig-capture` ## 1. Objetivo Dejar un loop visual de una sola llamada…",
+      "rangeCodeUnits": 8526,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 1,
+      "endLine": 220
+    },
+    {
+      "rank": 2,
+      "handle": {
+        "version": 1,
+        "id": "b485ccfbb8925654c8e6a3693e1822cb7013cac477e7ae8f421027aba8bcbb74",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/roblox-visual-capture/PLAN.md",
+        "revision": "8ad4e6120ff8ca46fee98e39a714cd3d22dbd707ebb39d5eb569f044395f8262",
+        "rangeId": "heading-10",
+        "rangeKind": "section",
+        "startLine": 111,
+        "endLine": 140,
+        "startOffset": 4540,
+        "endOffset": 5424,
+        "fingerprint": "8351deba6513100923d42503c7770b70c9315f2995b281187ba4e97c41adfa47",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.444444,
+      "title": "5. Watchdog del job",
+      "headingPath": [
+        "Roblox Visual Capture Reliability Plan",
+        "5. Watchdog del job"
+      ],
+      "snippet": "## 5. Watchdog del job ### Preflight - conexión persistente y catálogo StudioMCP saludables; - exactamente el Studio esperado; - modo Edit inicial; - Photo Rig…",
+      "rangeCodeUnits": 884,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 111,
+      "endLine": 140
+    },
+    {
+      "rank": 3,
+      "handle": {
+        "version": 1,
+        "id": "315687e414e17c2026ea1ff7d965a38739cc0460516434c84f707a2027c6c8e0",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/roblox-visual-capture/PLAN.md",
+        "revision": "8ad4e6120ff8ca46fee98e39a714cd3d22dbd707ebb39d5eb569f044395f8262",
+        "rangeId": "heading-12",
+        "rangeKind": "section",
+        "startLine": 123,
+        "endLine": 131,
+        "startOffset": 4832,
+        "endOffset": 5148,
+        "fingerprint": "be622cace341bb6b4b2c4175dbf1d42bc681976bf3e40556649a0b90d3756b28",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.444444,
+      "title": "Durante el job",
+      "headingPath": [
+        "Roblox Visual Capture Reliability Plan",
+        "5. Watchdog del job",
+        "Durante el job"
+      ],
+      "snippet": "…ntento; - timeout separado para llamada MCP y aparición del PNG; - detección de hash repetido entre cámaras semánticamente distintas; - registro de recuperaci…",
+      "rangeCodeUnits": 316,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 123,
+      "endLine": 131
+    },
+    {
+      "rank": 4,
+      "handle": {
+        "version": 1,
+        "id": "c4fd8a286d84499ab08883ab48d019d9edd41b60949e304fb66c37c5b3b500f0",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/roblox-visual-capture/PLAN.md",
+        "revision": "8ad4e6120ff8ca46fee98e39a714cd3d22dbd707ebb39d5eb569f044395f8262",
+        "rangeId": "block-23",
+        "rangeKind": "block",
+        "startLine": 125,
+        "endLine": 130,
+        "startOffset": 4852,
+        "endOffset": 5146,
+        "fingerprint": "d8782509cd35ddd317430bb6578bbe7abc5f443bf57b8fd5f0873299611b7ec0",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.444444,
+      "title": "Durante el job",
+      "headingPath": [
+        "Roblox Visual Capture Reliability Plan",
+        "5. Watchdog del job",
+        "Durante el job"
+      ],
+      "snippet": "…ntento; - timeout separado para llamada MCP y aparición del PNG; - detección de hash repetido entre cámaras semánticamente distintas; - registro de recuperaci…",
+      "rangeCodeUnits": 294,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 125,
+      "endLine": 130
+    },
+    {
+      "rank": 5,
+      "handle": {
+        "version": 1,
+        "id": "976ae508c69904577fbc0629fe381f3ce80682db567f914dc48c0efa01d1d909",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/roblox-visual-capture/PLAN.md",
+        "revision": "8ad4e6120ff8ca46fee98e39a714cd3d22dbd707ebb39d5eb569f044395f8262",
+        "rangeId": "block-23/item-3",
+        "rangeKind": "block",
+        "startLine": 127,
+        "endLine": 127,
+        "startOffset": 4924,
+        "endOffset": 4980,
+        "fingerprint": "fc2b7739a138ed47d93e4e70674761b2c467d2de4b65408de4feb057d4a3bd25",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.444444,
+      "title": "Durante el job",
+      "headingPath": [
+        "Roblox Visual Capture Reliability Plan",
+        "5. Watchdog del job",
+        "Durante el job"
+      ],
+      "snippet": "- timeout separado para llamada MCP y aparición del PNG;",
+      "rangeCodeUnits": 56,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 127,
+      "endLine": 127
+    },
+    {
+      "rank": 6,
+      "handle": {
+        "version": 1,
+        "id": "ee0a0b5de8eca8c9ade6112ea9cd36d3da2d30101d0c027154e62e654665a029",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/roblox-visual-capture/PLAN.md",
+        "revision": "8ad4e6120ff8ca46fee98e39a714cd3d22dbd707ebb39d5eb569f044395f8262",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 26,
+        "endLine": 40,
+        "startOffset": 958,
+        "endOffset": 1920,
+        "fingerprint": "8fe82911055203fb312999684b83881c9c43738983a0bcb7cd8b1d59c947b8c2",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.333333,
+      "title": "2. Diagnóstico confirmado",
+      "headingPath": [
+        "Roblox Visual Capture Reliability Plan",
+        "2. Diagnóstico confirmado"
+      ],
+      "snippet": "…geométrica: - `screen_capture` de StudioMCP podía quedar bloqueado y serializar toda la conexión; - el timeout de 60 segundos del SDK MCP cerraba prematuramen…",
+      "rangeCodeUnits": 962,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 26,
+      "endLine": 40
+    },
+    {
+      "rank": 7,
+      "handle": {
+        "version": 1,
+        "id": "833bd0671e9d55e97836ec19752e93bc061ae868cfaf7e64a73ae9d54c723534",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/roblox-visual-capture/PLAN.md",
+        "revision": "8ad4e6120ff8ca46fee98e39a714cd3d22dbd707ebb39d5eb569f044395f8262",
+        "rangeId": "block-6",
+        "rangeKind": "block",
+        "startLine": 30,
+        "endLine": 37,
+        "startOffset": 1099,
+        "endOffset": 1733,
+        "fingerprint": "141bea1b133ad25b628015932be5f6ddd814abbe62ec9da0adffb7d745b19634",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.222222,
+      "title": "2. Diagnóstico confirmado",
+      "headingPath": [
+        "Roblox Visual Capture Reliability Plan",
+        "2. Diagnóstico confirmado"
+      ],
+      "snippet": "- `screen_capture` de StudioMCP podía quedar bloqueado y serializar toda la conexión; - el timeout de 60 segundos del SDK MCP cerraba prematuramente llamadas l…",
+      "rangeCodeUnits": 634,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 30,
+      "endLine": 37
+    },
+    {
+      "rank": 8,
+      "handle": {
+        "version": 1,
+        "id": "11b64018ede906b0d4214302873083aa52c74373286f4109f8c4b3a5940275f5",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/roblox-visual-capture/PLAN.md",
+        "revision": "8ad4e6120ff8ca46fee98e39a714cd3d22dbd707ebb39d5eb569f044395f8262",
+        "rangeId": "block-6/item-2",
+        "rangeKind": "block",
+        "startLine": 31,
+        "endLine": 31,
+        "startOffset": 1185,
+        "endOffset": 1264,
+        "fingerprint": "f09950a3a71d67844844be991c71e5a51e38453bb85f0482cdcb7419eb558f17",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.222222,
+      "title": "2. Diagnóstico confirmado",
+      "headingPath": [
+        "Roblox Visual Capture Reliability Plan",
+        "2. Diagnóstico confirmado"
+      ],
+      "snippet": "- el timeout de 60 segundos del SDK MCP cerraba prematuramente llamadas largas;",
+      "rangeCodeUnits": 79,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 31,
+      "endLine": 31
+    }
+  ],
+  "responseAdvisoryOnly": true
+}

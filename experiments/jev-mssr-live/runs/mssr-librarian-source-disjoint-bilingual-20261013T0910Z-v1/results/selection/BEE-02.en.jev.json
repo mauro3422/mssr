@@ -1,0 +1,302 @@
+{
+  "projectOwner": "d:/dev/beeincremental",
+  "sourceCount": 1,
+  "status": "selected",
+  "candidateCount": 8,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "verification": "unverified",
+  "confidenceCalibration": "uncalibrated-provider-score",
+  "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+  "exactFetchRequired": true,
+  "autoApplyAllowed": false,
+  "candidateRangeDiagnostics": {
+    "offered": 8,
+    "eligible": 8,
+    "oversizedOmitted": 0,
+    "maxFetchChars": 20000,
+    "lengthUnit": "utf16-code-units"
+  },
+  "rangeOverlapDiagnostics": {
+    "sameSourceRevisionPairs": 28,
+    "overlappingPairCount": 11,
+    "nestedPairCount": 11,
+    "exactRangePairCount": 0,
+    "partialOverlapPairCount": 0,
+    "pairs": [
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          97
+        ],
+        "rightOptionId": "h002",
+        "rightRangeId": "heading-9",
+        "rightRangeKind": "section",
+        "rightLines": [
+          61,
+          69
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 590
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          97
+        ],
+        "rightOptionId": "h003",
+        "rightRangeId": "block-14",
+        "rightRangeKind": "block",
+        "rightLines": [
+          63,
+          63
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 122
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          97
+        ],
+        "rightOptionId": "h004",
+        "rightRangeId": "heading-2",
+        "rightRangeKind": "section",
+        "rightLines": [
+          3,
+          8
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 208
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          97
+        ],
+        "rightOptionId": "h005",
+        "rightRangeId": "block-2",
+        "rightRangeKind": "block",
+        "rightLines": [
+          7,
+          7
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 156
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          97
+        ],
+        "rightOptionId": "h006",
+        "rightRangeId": "heading-3",
+        "rightRangeKind": "section",
+        "rightLines": [
+          9,
+          12
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 347
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          97
+        ],
+        "rightOptionId": "h007",
+        "rightRangeId": "block-3",
+        "rightRangeKind": "block",
+        "rightLines": [
+          11,
+          11
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 312
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          97
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-15",
+        "rightRangeKind": "block",
+        "rightLines": [
+          65,
+          66
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 155
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-9",
+        "leftRangeKind": "section",
+        "leftLines": [
+          61,
+          69
+        ],
+        "rightOptionId": "h003",
+        "rightRangeId": "block-14",
+        "rightRangeKind": "block",
+        "rightLines": [
+          63,
+          63
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 122
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-9",
+        "leftRangeKind": "section",
+        "leftLines": [
+          61,
+          69
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-15",
+        "rightRangeKind": "block",
+        "rightLines": [
+          65,
+          66
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 155
+      },
+      {
+        "leftOptionId": "h004",
+        "leftRangeId": "heading-2",
+        "leftRangeKind": "section",
+        "leftLines": [
+          3,
+          8
+        ],
+        "rightOptionId": "h005",
+        "rightRangeId": "block-2",
+        "rightRangeKind": "block",
+        "rightLines": [
+          7,
+          7
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 156
+      },
+      {
+        "leftOptionId": "h006",
+        "leftRangeId": "heading-3",
+        "leftRangeKind": "section",
+        "leftLines": [
+          9,
+          12
+        ],
+        "rightOptionId": "h007",
+        "rightRangeId": "block-3",
+        "rightRangeKind": "block",
+        "rightLines": [
+          11,
+          11
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 312
+      }
+    ],
+    "truncated": false,
+    "mutationApplied": false
+  },
+  "finalistCount": 8,
+  "selectionMode": "single-pass",
+  "selectionPasses": 1,
+  "providerCalls": 1,
+  "providerConfidence": 0.57,
+  "evidenceSufficiency": 0.96,
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "providersUsed": [
+    "typesafe-jev"
+  ],
+  "modelsUsed": [
+    "jev-1.13.0"
+  ],
+  "usage": {
+    "input_tokens": 1453,
+    "output_tokens": 127
+  },
+  "requestFingerprint": "c2a3fb2e260e24a7db4579650e1fdc4e2605216722bec7d7a84ecdd00e5b1ea7",
+  "elapsedMs": 631.6,
+  "jevCallMade": true,
+  "selected": {
+    "optionId": "h008",
+    "title": "Connected primary views",
+    "headingPath": [
+      "Visual Direction",
+      "Connected primary views"
+    ],
+    "handle": {
+      "version": 1,
+      "id": "88222cae7876157531e8663ca5d8671e8bd49e8cd834ff631fed092c6f4ea3cc",
+      "owner": "d:/dev/beeincremental",
+      "sourceRef": "docs/VISUAL_DIRECTION.md",
+      "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+      "rangeId": "block-15",
+      "rangeKind": "block",
+      "startLine": 65,
+      "endLine": 66,
+      "startOffset": 3299,
+      "endOffset": 3454,
+      "fingerprint": "d689b0983be534254d71bb43b00d172e8e2a5814c23ff2410bcb11c369b7768c",
+      "privacyClass": "project-metadata"
+    }
+  },
+  "choiceCalls": [
+    {
+      "questionKey": "selection",
+      "offeredOptionIds": [
+        "h001",
+        "h002",
+        "h003",
+        "h004",
+        "h005",
+        "h006",
+        "h007",
+        "h008",
+        "none"
+      ],
+      "selectedOptionId": "h008",
+      "confidence": 0.57,
+      "probabilities": {
+        "h001": 0.01,
+        "h002": 0.37,
+        "h003": 0,
+        "h004": 0,
+        "h005": 0,
+        "h006": 0,
+        "h007": 0,
+        "h008": 0.62,
+        "none": 0
+      }
+    }
+  ]
+}

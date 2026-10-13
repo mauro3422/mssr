@@ -1,0 +1,31 @@
+{
+  "projectOwner": "d:/dev/elemental-frontier",
+  "sourceCount": 1,
+  "schemaVersion": 1,
+  "kind": "mssr-librarian-evidence-pack",
+  "assembly": "verbatim-source-ranges",
+  "paragraphs": [
+    {
+      "ordinal": 1,
+      "exactText": "La versión final del servidor **no queda fijada por este baseline**. El laboratorio usa la versión común más reciente entre las referencias principales para comparar comportamiento bajo condiciones equivalentes.",
+      "citation": {
+        "display": "combat-lab/research/VERSION_MATRIX.md:L10-L10",
+        "handleId": "e244b1cf6fe55f457758435f6f0b02f42e2372d8c3526d341337bc2527be4587",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/research/VERSION_MATRIX.md",
+        "revision": "fa29514bd0fe4504a1b9a8a7712fff981bf1b660e7c486a72706388588f555fd",
+        "rangeId": "block-3",
+        "rangeKind": "block",
+        "startLine": 10,
+        "endLine": 10,
+        "fingerprint": "36fdc0567be777294729b497e5b2b4c9269a0e036acdb501ffe15b08f27be390",
+        "privacyClass": "project-metadata"
+      }
+    }
+  ],
+  "totalFetchedChars": 211,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "canonicalRewriteAllowed": false,
+  "ownerAndPrivacyAreCallerAsserted": true
+}

@@ -1,0 +1,260 @@
+{
+  "caseId": "BR-01",
+  "family": "Bridge candidate",
+  "arm": "es",
+  "query": "¿Cuáles son los cuatro destinos de navegación primaria propuestos para dashboard v2?",
+  "projectRoot": "D:\\Dev\\bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+  "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+  "expectedSourceRevision": "c6a10d9c5826197d4975d55cf27024874bed3c9a10a7ea6576d675f589926936",
+  "labelSpan": {
+    "start": 71,
+    "end": 77
+  },
+  "candidateCount": 8,
+  "truncated": true,
+  "targetSpanCoveredAt8": false,
+  "targetSpanOverlapAt8": false,
+  "firstTargetRank": null,
+  "candidates": [
+    {
+      "rank": 1,
+      "handle": {
+        "version": 1,
+        "id": "261a152ec1d783ac627949106dde58b7409b9fcb7981b9511a387fc5455dd385",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "block-1",
+        "rangeKind": "block",
+        "startLine": 3,
+        "endLine": 3,
+        "startOffset": 67,
+        "endOffset": 226,
+        "fingerprint": "e6a9af6033cc1f9a898c006504cefc559790ff6d815d4ff485dba02d51eb0893",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.222222,
+      "title": "Dashboard UX v2 — Information Architecture and Metric Semantics",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics"
+      ],
+      "snippet": "Status: research/design specification. This document does **not** authorize frontend implementation, publication, restart, or changes to MSSR/Bridge authority.",
+      "rangeCodeUnits": 159,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 3,
+      "endLine": 3
+    },
+    {
+      "rank": 2,
+      "handle": {
+        "version": 1,
+        "id": "df803451f91e6a26a2876cff83cc3f2a820c41203b37b462c9898eae688d4450",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "startLine": 5,
+        "endLine": 22,
+        "startOffset": 228,
+        "endOffset": 1117,
+        "fingerprint": "763203a70684005abd3d97fbef685ca49856d3a0a53fee3aa91452589efb1fca",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.222222,
+      "title": "1. Why v2 exists",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "1. Why v2 exists"
+      ],
+      "snippet": "## 1. Why v2 exists Human UX v1/v1.1 improved density, responsive behavior, contextual help and progressive disclosure, but retained the original information a…",
+      "rangeCodeUnits": 889,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 5,
+      "endLine": 22
+    },
+    {
+      "rank": 3,
+      "handle": {
+        "version": 1,
+        "id": "90a2ca98adec595b353e29138fac67fa51566f3914e4ab01c13993ac70d6cd0f",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 7,
+        "startOffset": 249,
+        "endOffset": 607,
+        "fingerprint": "7ace00269c58491f83952595093a775f6085aba7e34ec786d8426e3fe852d5da",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.222222,
+      "title": "1. Why v2 exists",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "1. Why v2 exists"
+      ],
+      "snippet": "… original information architecture. The dashboard is still organized primarily around what Bridge/MSSR emits (tool calls, traces, registries, runtime metadata…",
+      "rangeCodeUnits": 358,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 7,
+      "endLine": 7
+    },
+    {
+      "rank": 4,
+      "handle": {
+        "version": 1,
+        "id": "8f0454fced7a7b0fe482a6c88730a051783353f0447a7cf99c24a16c3390769a",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "block-3",
+        "rangeKind": "block",
+        "startLine": 9,
+        "endLine": 9,
+        "startOffset": 609,
+        "endOffset": 761,
+        "fingerprint": "dca08cb01c2e3fe34a7fd24c0e8bc45b6ee23344c7b6c64f788f1c20ca9043ee",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.222222,
+      "title": "1. Why v2 exists",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "1. Why v2 exists"
+      ],
+      "snippet": "The v2 goal is not to compress the existing dashboard further. It is to change the unit of presentation from **technical source** to **human decision**.",
+      "rangeCodeUnits": 152,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 9,
+      "endLine": 9
+    },
+    {
+      "rank": 5,
+      "handle": {
+        "version": 1,
+        "id": "5456a5720297db06de8d85027dd2ca224d05617db3d00972d183e1723c950d12",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "block-4",
+        "rangeKind": "block",
+        "startLine": 11,
+        "endLine": 11,
+        "startOffset": 763,
+        "endOffset": 804,
+        "fingerprint": "7c7193f67fa765549f5110397ac5e500f7c143ab123a785abcb3d9024528dea1",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.222222,
+      "title": "1. Why v2 exists",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "1. Why v2 exists"
+      ],
+      "snippet": "The dashboard must answer, in this order:",
+      "rangeCodeUnits": 41,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 11,
+      "endLine": 11
+    },
+    {
+      "rank": 6,
+      "handle": {
+        "version": 1,
+        "id": "592740008bf7e7108e6ac2933709691b91cf9da868a735c63c8a9a7d36b8993e",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "block-5",
+        "rangeKind": "block",
+        "startLine": 13,
+        "endLine": 19,
+        "startOffset": 806,
+        "endOffset": 1010,
+        "fingerprint": "b18e634c12285892814d67c8613f6da042a3085659340f48a5b18aafb94b67c3",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.222222,
+      "title": "1. Why v2 exists",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "1. Why v2 exists"
+      ],
+      "snippet": "1. What is happening now? 2. What needs my attention? 3. What should I continue next? 4. What changed? 5. Is the system healthy? 6. If something is abnormal, w…",
+      "rangeCodeUnits": 204,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 13,
+      "endLine": 19
+    },
+    {
+      "rank": 7,
+      "handle": {
+        "version": 1,
+        "id": "d00d32ed68b95620c3f779ba9227727eeaf9b5464c54471f7924cd891a38c617",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "block-5/item-1",
+        "rangeKind": "block",
+        "startLine": 13,
+        "endLine": 13,
+        "startOffset": 806,
+        "endOffset": 831,
+        "fingerprint": "6e1079a4bec14dcf8f124a30987eb91e82ae23fc6213afce0af16bdaef35c480",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.222222,
+      "title": "1. Why v2 exists",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "1. Why v2 exists"
+      ],
+      "snippet": "1. What is happening now?",
+      "rangeCodeUnits": 25,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 13,
+      "endLine": 13
+    },
+    {
+      "rank": 8,
+      "handle": {
+        "version": 1,
+        "id": "f04177877b3e0022205977376a3c6c246336f5a434a0c8f252b7ca202f8c772c",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+        "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+        "rangeId": "block-5/item-2",
+        "rangeKind": "block",
+        "startLine": 14,
+        "endLine": 14,
+        "startOffset": 832,
+        "endOffset": 859,
+        "fingerprint": "299b1f1cc44f6b70ce9265354cb42b8875fbb7ea9b9243d874ca35459e7a4088",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.222222,
+      "title": "1. Why v2 exists",
+      "headingPath": [
+        "Dashboard UX v2 — Information Architecture and Metric Semantics",
+        "1. Why v2 exists"
+      ],
+      "snippet": "2. What needs my attention?",
+      "rangeCodeUnits": 27,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 14,
+      "endLine": 14
+    }
+  ],
+  "responseAdvisoryOnly": true
+}

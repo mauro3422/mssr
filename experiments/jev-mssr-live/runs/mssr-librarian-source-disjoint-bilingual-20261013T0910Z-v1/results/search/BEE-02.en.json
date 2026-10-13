@@ -1,0 +1,260 @@
+{
+  "caseId": "BEE-02",
+  "family": "BeeIncremental",
+  "arm": "en",
+  "query": "Which two views make up the first playable slice?",
+  "projectRoot": "D:\\Dev\\BeeIncremental",
+  "sourceRef": "docs/VISUAL_DIRECTION.md",
+  "expectedSourceRevision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+  "labelSpan": {
+    "start": 65,
+    "end": 66
+  },
+  "candidateCount": 8,
+  "truncated": true,
+  "targetSpanCoveredAt8": true,
+  "targetSpanOverlapAt8": true,
+  "firstTargetRank": 1,
+  "candidates": [
+    {
+      "rank": 1,
+      "handle": {
+        "version": 1,
+        "id": "1f4deeb183480bdbe0440462efe0cadb86a720082e570f7c2c7f0beacacb6ea9",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/VISUAL_DIRECTION.md",
+        "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 97,
+        "startOffset": 0,
+        "endOffset": 4671,
+        "fingerprint": "bd4e1509a986a95f53f04bcd50f7c8b3272f77f0d5972ec21736036554c17b75",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.714286,
+      "title": "Visual Direction",
+      "headingPath": [
+        "Visual Direction"
+      ],
+      "snippet": "… with enough illustrated perspective to make wax walls, cells and bees feel dimensional without using a 3D world. ## Why not full isometric or 3D The honeycom…",
+      "rangeCodeUnits": 4671,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 1,
+      "endLine": 97
+    },
+    {
+      "rank": 2,
+      "handle": {
+        "version": 1,
+        "id": "1eeb86a109b237335643bcf945e33d07954be413f60ccfa124137fffc451dd19",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/VISUAL_DIRECTION.md",
+        "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+        "rangeId": "heading-9",
+        "rangeKind": "section",
+        "startLine": 61,
+        "endLine": 69,
+        "startOffset": 3147,
+        "endOffset": 3737,
+        "fingerprint": "1d09b2f05491b6aa8d877ca804fbfd1f61f25a9ae17b0ec6a0a03afb7afc48b5",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.571429,
+      "title": "Connected primary views",
+      "headingPath": [
+        "Visual Direction",
+        "Connected primary views"
+      ],
+      "snippet": "## Connected primary views The first playable may switch between two lightweight 2D presentation scenes while preserving one continuous colony state: - `HiveVi…",
+      "rangeCodeUnits": 590,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 61,
+      "endLine": 69
+    },
+    {
+      "rank": 3,
+      "handle": {
+        "version": 1,
+        "id": "83be070c8265fb23e4d5ce5c06242e2c62d27158fa5902dbec0fde0980867ed5",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/VISUAL_DIRECTION.md",
+        "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+        "rangeId": "block-14",
+        "rangeKind": "block",
+        "startLine": 63,
+        "endLine": 63,
+        "startOffset": 3175,
+        "endOffset": 3297,
+        "fingerprint": "a2d6996ed65e3ccb322d45884259a3496f5f8d73d214db2c0dd2db67671098c3",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.571429,
+      "title": "Connected primary views",
+      "headingPath": [
+        "Visual Direction",
+        "Connected primary views"
+      ],
+      "snippet": "The first playable may switch between two lightweight 2D presentation scenes while preserving one continuous colony state:",
+      "rangeCodeUnits": 122,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 63,
+      "endLine": 63
+    },
+    {
+      "rank": 4,
+      "handle": {
+        "version": 1,
+        "id": "65217ed73443c0707b032182ca42cde55783e172277fcb443580ba0e6a2eaae1",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/VISUAL_DIRECTION.md",
+        "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "startLine": 3,
+        "endLine": 8,
+        "startOffset": 20,
+        "endOffset": 228,
+        "fingerprint": "aa3ccf25074b3b1aa07dae6b63c9015cfdd49887307130e033088c135363ea7a",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.142857,
+      "title": "Chosen format",
+      "headingPath": [
+        "Visual Direction",
+        "Chosen format"
+      ],
+      "snippet": "…th. The honeycomb is presented almost front-on, with enough illustrated perspective to make wax walls, cells and bees feel dimensional without using a 3D worl…",
+      "rangeCodeUnits": 208,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 3,
+      "endLine": 8
+    },
+    {
+      "rank": 5,
+      "handle": {
+        "version": 1,
+        "id": "29ca1205060ebdc37644bc7c913afd8b57f06cb2cc81bdf6e3d025fc530c1258",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/VISUAL_DIRECTION.md",
+        "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 7,
+        "startOffset": 70,
+        "endOffset": 226,
+        "fingerprint": "c49b55f85ca3bb69428b9a2e210218a3c14e8035bcd082f3a8987238cd18983d",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.142857,
+      "title": "Chosen format",
+      "headingPath": [
+        "Visual Direction",
+        "Chosen format"
+      ],
+      "snippet": "The honeycomb is presented almost front-on, with enough illustrated perspective to make wax walls, cells and bees feel dimensional without using a 3D world.",
+      "rangeCodeUnits": 156,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 7,
+      "endLine": 7
+    },
+    {
+      "rank": 6,
+      "handle": {
+        "version": 1,
+        "id": "051522c3312ba10ca2f332d80dc5bf219446b4886eaefe044e3376bae2d496e6",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/VISUAL_DIRECTION.md",
+        "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 9,
+        "endLine": 12,
+        "startOffset": 228,
+        "endOffset": 575,
+        "fingerprint": "493dbe67a7b055aa9c1c48e4c2c3e84cde93552f58762fe0f0e6fe89c6934c02",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.142857,
+      "title": "Why not full isometric or 3D",
+      "headingPath": [
+        "Visual Direction",
+        "Why not full isometric or 3D"
+      ],
+      "snippet": "…ex grid, reduce usable screen space and make interaction less immediate. Real 3D would add modeling, rigging, camera, lighting and navigation work before the …",
+      "rangeCodeUnits": 347,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 9,
+      "endLine": 12
+    },
+    {
+      "rank": 7,
+      "handle": {
+        "version": 1,
+        "id": "56ed8b98d96806d6f3159614b42aa37df39a671f5d83c2623e14d572cbc73759",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/VISUAL_DIRECTION.md",
+        "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+        "rangeId": "block-3",
+        "rangeKind": "block",
+        "startLine": 11,
+        "endLine": 11,
+        "startOffset": 261,
+        "endOffset": 573,
+        "fingerprint": "d5c7229fc29e31eec8278ab093de1230e30cdcdb83877355d9b49c9ca2d21af8",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.142857,
+      "title": "Why not full isometric or 3D",
+      "headingPath": [
+        "Visual Direction",
+        "Why not full isometric or 3D"
+      ],
+      "snippet": "…ex grid, reduce usable screen space and make interaction less immediate. Real 3D would add modeling, rigging, camera, lighting and navigation work before the …",
+      "rangeCodeUnits": 312,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 11,
+      "endLine": 11
+    },
+    {
+      "rank": 8,
+      "handle": {
+        "version": 1,
+        "id": "88222cae7876157531e8663ca5d8671e8bd49e8cd834ff631fed092c6f4ea3cc",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/VISUAL_DIRECTION.md",
+        "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+        "rangeId": "block-15",
+        "rangeKind": "block",
+        "startLine": 65,
+        "endLine": 66,
+        "startOffset": 3299,
+        "endOffset": 3454,
+        "fingerprint": "d689b0983be534254d71bb43b00d172e8e2a5814c23ff2410bcb11c369b7768c",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.142857,
+      "title": "Connected primary views",
+      "headingPath": [
+        "Visual Direction",
+        "Connected primary views"
+      ],
+      "snippet": "- `HiveView`: honeycomb, brood, storage and visible worker activity; - `ForageView`: flowers/plants, forage clicking and visible bees collecting resources.",
+      "rangeCodeUnits": 155,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 65,
+      "endLine": 66
+    }
+  ],
+  "responseAdvisoryOnly": true
+}

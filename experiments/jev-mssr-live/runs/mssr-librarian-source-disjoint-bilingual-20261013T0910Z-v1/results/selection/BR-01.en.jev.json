@@ -1,0 +1,231 @@
+{
+  "projectOwner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+  "sourceCount": 1,
+  "status": "selected",
+  "candidateCount": 8,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "verification": "unverified",
+  "confidenceCalibration": "uncalibrated-provider-score",
+  "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+  "exactFetchRequired": true,
+  "autoApplyAllowed": false,
+  "candidateRangeDiagnostics": {
+    "offered": 8,
+    "eligible": 8,
+    "oversizedOmitted": 0,
+    "maxFetchChars": 20000,
+    "lengthUnit": "utf16-code-units"
+  },
+  "rangeOverlapDiagnostics": {
+    "sameSourceRevisionPairs": 28,
+    "overlappingPairCount": 7,
+    "nestedPairCount": 7,
+    "exactRangePairCount": 0,
+    "partialOverlapPairCount": 0,
+    "pairs": [
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-11",
+        "leftRangeKind": "section",
+        "leftLines": [
+          65,
+          88
+        ],
+        "rightOptionId": "h002",
+        "rightRangeId": "heading-12",
+        "rightRangeKind": "section",
+        "rightLines": [
+          67,
+          80
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 732
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-11",
+        "leftRangeKind": "section",
+        "leftLines": [
+          65,
+          88
+        ],
+        "rightOptionId": "h003",
+        "rightRangeId": "block-18",
+        "rightRangeKind": "block",
+        "rightLines": [
+          69,
+          69
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 85
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-11",
+        "leftRangeKind": "section",
+        "leftLines": [
+          65,
+          88
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-19",
+        "rightRangeKind": "block",
+        "rightLines": [
+          71,
+          71
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 122
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-12",
+        "leftRangeKind": "section",
+        "leftLines": [
+          67,
+          80
+        ],
+        "rightOptionId": "h003",
+        "rightRangeId": "block-18",
+        "rightRangeKind": "block",
+        "rightLines": [
+          69,
+          69
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 85
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-12",
+        "leftRangeKind": "section",
+        "leftLines": [
+          67,
+          80
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-19",
+        "rightRangeKind": "block",
+        "rightLines": [
+          71,
+          71
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 122
+      },
+      {
+        "leftOptionId": "h004",
+        "leftRangeId": "heading-14",
+        "leftRangeKind": "section",
+        "leftLines": [
+          89,
+          104
+        ],
+        "rightOptionId": "h005",
+        "rightRangeId": "block-29",
+        "rightRangeKind": "block",
+        "rightLines": [
+          95,
+          95
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 164
+      },
+      {
+        "leftOptionId": "h006",
+        "leftRangeId": "heading-2",
+        "leftRangeKind": "section",
+        "leftLines": [
+          5,
+          22
+        ],
+        "rightOptionId": "h007",
+        "rightRangeId": "block-6",
+        "rightRangeKind": "block",
+        "rightLines": [
+          21,
+          21
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 103
+      }
+    ],
+    "truncated": false,
+    "mutationApplied": false
+  },
+  "finalistCount": 8,
+  "selectionMode": "single-pass",
+  "selectionPasses": 1,
+  "providerCalls": 1,
+  "providerConfidence": 0.67,
+  "evidenceSufficiency": 0.42,
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "providersUsed": [
+    "typesafe-jev"
+  ],
+  "modelsUsed": [
+    "jev-1.13.0"
+  ],
+  "usage": {
+    "input_tokens": 1759,
+    "output_tokens": 127
+  },
+  "requestFingerprint": "852d2c11104ab8ff7acee83661ab7cdb5a6d53b6f6543bc9b95c50dc3676d61d",
+  "elapsedMs": 660.4,
+  "jevCallMade": true,
+  "selected": {
+    "optionId": "h002",
+    "title": "4.1 Primary navigation",
+    "headingPath": [
+      "Dashboard UX v2 — Information Architecture and Metric Semantics",
+      "4. Target information architecture",
+      "4.1 Primary navigation"
+    ],
+    "handle": {
+      "version": 1,
+      "id": "a2b49564e1df70ddc0d935c86e30eefa4054aa99e2804916600046329916da02",
+      "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+      "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+      "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+      "rangeId": "heading-12",
+      "rangeKind": "section",
+      "startLine": 67,
+      "endLine": 80,
+      "startOffset": 5543,
+      "endOffset": 6275,
+      "fingerprint": "ad98af4d06fc702905dd245b8f15cdfa5b9df7d411e34a6081865f1ac27210c7",
+      "privacyClass": "project-metadata"
+    }
+  },
+  "choiceCalls": [
+    {
+      "questionKey": "selection",
+      "offeredOptionIds": [
+        "h001",
+        "h002",
+        "h003",
+        "h004",
+        "h005",
+        "h006",
+        "h007",
+        "h008",
+        "none"
+      ],
+      "selectedOptionId": "h002",
+      "confidence": 0.67,
+      "probabilities": {
+        "h001": 0.06,
+        "h002": 0.71,
+        "h003": 0.01,
+        "h004": 0,
+        "h005": 0,
+        "h006": 0,
+        "h007": 0,
+        "h008": 0,
+        "none": 0.22
+      }
+    }
+  ]
+}

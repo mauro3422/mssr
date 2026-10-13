@@ -1,0 +1,230 @@
+{
+  "caseId": "BEE-03",
+  "family": "BeeIncremental",
+  "arm": "en",
+  "query": "What definitive public name has been approved for BeeIncremental?",
+  "projectRoot": "D:\\Dev\\BeeIncremental",
+  "sourceRef": "docs/OPEN_QUESTIONS.md",
+  "expectedSourceRevision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+  "labelSpan": {
+    "start": 7,
+    "end": 9
+  },
+  "candidateCount": 7,
+  "truncated": false,
+  "targetSpanCoveredAt8": true,
+  "targetSpanOverlapAt8": true,
+  "firstTargetRank": 1,
+  "candidates": [
+    {
+      "rank": 1,
+      "handle": {
+        "version": 1,
+        "id": "01d63e0b553c5a9773712b939393e1155a4cfe9b1b1dc0e636cdb9ce345f476a",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 45,
+        "startOffset": 0,
+        "endOffset": 2308,
+        "fingerprint": "eda7483f4e5ab787a56869f7e15efa58d120f31fd7f733eda19f3252fffa44eb",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.6,
+      "title": "Open Questions",
+      "headingPath": [
+        "Open Questions"
+      ],
+      "snippet": "… ## Highest priority 1. **Working/final name** - Keep `BeeIncremental` internally for now. - Later choose whether the public name should sound scientific, coz…",
+      "rangeCodeUnits": 2308,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 1,
+      "endLine": 45
+    },
+    {
+      "rank": 2,
+      "handle": {
+        "version": 1,
+        "id": "b921d7bc93cd34d388e24823468f3fbb050775c6a229b31143c747844ff13536",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "startLine": 5,
+        "endLine": 10,
+        "startOffset": 157,
+        "endOffset": 357,
+        "fingerprint": "09b2d0556e59cbc4277051e8b5c3cf6218ed0c66faf9c6f1bf58432342cebed8",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.6,
+      "title": "Highest priority",
+      "headingPath": [
+        "Open Questions",
+        "Highest priority"
+      ],
+      "snippet": "## Highest priority 1. **Working/final name** - Keep `BeeIncremental` internally for now. - Later choose whether the public name should sound scientific, cozy,…",
+      "rangeCodeUnits": 200,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 5,
+      "endLine": 10
+    },
+    {
+      "rank": 3,
+      "handle": {
+        "version": 1,
+        "id": "3c18ecbba6ecaa5dcff5d8ea516f4a07d13e6e636c80213b11c6483428f25372",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 9,
+        "startOffset": 178,
+        "endOffset": 355,
+        "fingerprint": "4ffab5288957c0e98a69bfbc4b7da498f8c189d80d08e252653009d8a6cd6d42",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.6,
+      "title": "Highest priority",
+      "headingPath": [
+        "Open Questions",
+        "Highest priority"
+      ],
+      "snippet": "1. **Working/final name** - Keep `BeeIncremental` internally for now. - Later choose whether the public name should sound scientific, cozy, funny or addictive/…",
+      "rangeCodeUnits": 177,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 7,
+      "endLine": 9
+    },
+    {
+      "rank": 4,
+      "handle": {
+        "version": 1,
+        "id": "8a860380562bd6e0dbd90d56e9e40c03e7d2e5acd2384266406d25057b0b31d5",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "block-2/item-1",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 9,
+        "startOffset": 178,
+        "endOffset": 355,
+        "fingerprint": "4ffab5288957c0e98a69bfbc4b7da498f8c189d80d08e252653009d8a6cd6d42",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.6,
+      "title": "Highest priority",
+      "headingPath": [
+        "Open Questions",
+        "Highest priority"
+      ],
+      "snippet": "1. **Working/final name** - Keep `BeeIncremental` internally for now. - Later choose whether the public name should sound scientific, cozy, funny or addictive/…",
+      "rangeCodeUnits": 177,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 7,
+      "endLine": 9
+    },
+    {
+      "rank": 5,
+      "handle": {
+        "version": 1,
+        "id": "28dfc72ab48bd166011ece3bc5356dede7bd46b4a792d74b26e9aa01e2dd3084",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "startLine": 17,
+        "endLine": 25,
+        "startOffset": 863,
+        "endOffset": 1550,
+        "fingerprint": "5c5ef2750eb2861be4dd647fc9a76bef6f10609ab31eff74b02d2f6c71ebbafd",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.2,
+      "title": "Medium priority",
+      "headingPath": [
+        "Open Questions",
+        "Medium priority"
+      ],
+      "snippet": "…uld offline progress exist in the first public build or only after the basic economy is stable? 9. What is the permanent prestige resource called? Avoid pseud…",
+      "rangeCodeUnits": 687,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 17,
+      "endLine": 25
+    },
+    {
+      "rank": 6,
+      "handle": {
+        "version": 1,
+        "id": "dc81fff5412952aa45fecdaaf669200dc7e6cef37c5a77b740e97c316f2c0069",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "block-4",
+        "rangeKind": "block",
+        "startLine": 19,
+        "endLine": 24,
+        "startOffset": 883,
+        "endOffset": 1548,
+        "fingerprint": "6c6611438eb365bb77f64af5efa6da8369a52ba7f5dc51e1e403863f94aea77d",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.2,
+      "title": "Medium priority",
+      "headingPath": [
+        "Open Questions",
+        "Medium priority"
+      ],
+      "snippet": "…uld offline progress exist in the first public build or only after the basic economy is stable? 9. What is the permanent prestige resource called? Avoid pseud…",
+      "rangeCodeUnits": 665,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 19,
+      "endLine": 24
+    },
+    {
+      "rank": 7,
+      "handle": {
+        "version": 1,
+        "id": "f57a9df31385f4db189d775d9378972f9c28d8d3b39a494831af605df1872bdd",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "block-4/item-4",
+        "rangeKind": "block",
+        "startLine": 22,
+        "endLine": 22,
+        "startOffset": 1201,
+        "endOffset": 1302,
+        "fingerprint": "2f4b441862fc1bc5fe97d1c7b070d262d60b13b3eca42281043dfe08a1db24f4",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.2,
+      "title": "Medium priority",
+      "headingPath": [
+        "Open Questions",
+        "Medium priority"
+      ],
+      "snippet": "8. Should offline progress exist in the first public build or only after the basic economy is stable?",
+      "rangeCodeUnits": 101,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 22,
+      "endLine": 22
+    }
+  ],
+  "responseAdvisoryOnly": true
+}

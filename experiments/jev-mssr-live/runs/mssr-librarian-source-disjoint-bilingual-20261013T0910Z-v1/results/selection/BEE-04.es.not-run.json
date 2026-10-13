@@ -1,0 +1,7 @@
+{
+  "caseId": "BEE-04",
+  "arm": "es",
+  "status": "not-run",
+  "reason": "empty-search-pool",
+  "searchFile": "experiments/jev-mssr-live/runs/mssr-librarian-source-disjoint-bilingual-20261013T0910Z-v1/results/search/BEE-04.es.json"
+}

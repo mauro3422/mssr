@@ -1,0 +1,20 @@
+{
+  "caseId": "BEE-02",
+  "family": "BeeIncremental",
+  "arm": "es",
+  "query": "¿Qué dos vistas forman el primer slice jugable?",
+  "projectRoot": "D:\\Dev\\BeeIncremental",
+  "sourceRef": "docs/VISUAL_DIRECTION.md",
+  "expectedSourceRevision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+  "labelSpan": {
+    "start": 65,
+    "end": 66
+  },
+  "candidateCount": 0,
+  "truncated": false,
+  "targetSpanCoveredAt8": false,
+  "targetSpanOverlapAt8": false,
+  "firstTargetRank": null,
+  "candidates": [],
+  "responseAdvisoryOnly": true
+}

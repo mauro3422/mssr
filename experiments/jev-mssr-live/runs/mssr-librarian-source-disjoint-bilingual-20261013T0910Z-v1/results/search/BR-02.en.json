@@ -1,0 +1,230 @@
+{
+  "caseId": "BR-02",
+  "family": "Bridge candidate",
+  "arm": "en",
+  "query": "Where is the tunnel_id created?",
+  "projectRoot": "D:\\Dev\\bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+  "sourceRef": "CONNECT_OPENAI_TUNNEL.md",
+  "expectedSourceRevision": "8a74e8a453c8141a903d716c8ef1eb7f646a743cae494a8827dea4de227f6235",
+  "labelSpan": {
+    "start": 23,
+    "end": 23
+  },
+  "candidateCount": 7,
+  "truncated": false,
+  "targetSpanCoveredAt8": true,
+  "targetSpanOverlapAt8": true,
+  "firstTargetRank": 1,
+  "candidates": [
+    {
+      "rank": 1,
+      "handle": {
+        "version": 1,
+        "id": "36b0641354e05f2b8e675bfae278a8c690f76e9b945bf2f676a0af078fc7d71a",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "CONNECT_OPENAI_TUNNEL.md",
+        "revision": "850669365e0753305680401381fae7239841ca226f2968d31002ec0f85c81537",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 52,
+        "startOffset": 0,
+        "endOffset": 1213,
+        "fingerprint": "edf06c97dd114b9fb6cde5dbb5cb8ff23b2438c3484f3a377bb9eb6b17e2c30f",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.5,
+      "title": "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+      "headingPath": [
+        "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel"
+      ],
+      "snippet": "… ```text CONTROL_PLANE_API_KEY = sk-... TUNNEL_ID = tunnel_... ``` La API key se crea con el flujo seguro de OpenAI Platform. No pegarla en ChatGPT. El `tunne…",
+      "rangeCodeUnits": 1213,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 1,
+      "endLine": 52
+    },
+    {
+      "rank": 2,
+      "handle": {
+        "version": 1,
+        "id": "bb1056eea1129b1dc00cb2efbb1b894a9dbd1886c58cedfb92ad10525ceeee78",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "CONNECT_OPENAI_TUNNEL.md",
+        "revision": "850669365e0753305680401381fae7239841ca226f2968d31002ec0f85c81537",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "startLine": 12,
+        "endLine": 23,
+        "startOffset": 207,
+        "endOffset": 478,
+        "fingerprint": "0290669022a60f0e18904a1055e981270ce18c7fc4759e07e837819a672357ae",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.5,
+      "title": "Lo que falta conseguir desde UI",
+      "headingPath": [
+        "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+        "Lo que falta conseguir desde UI"
+      ],
+      "snippet": "… ```text CONTROL_PLANE_API_KEY = sk-... TUNNEL_ID = tunnel_... ``` La API key se crea con el flujo seguro de OpenAI Platform. No pegarla en ChatGPT. El `tunne…",
+      "rangeCodeUnits": 271,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 12,
+      "endLine": 23
+    },
+    {
+      "rank": 3,
+      "handle": {
+        "version": 1,
+        "id": "0b7cc61477eaf5eb87ac317e4ebf723519737c7150daf1c423da4965e1091168",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "CONNECT_OPENAI_TUNNEL.md",
+        "revision": "850669365e0753305680401381fae7239841ca226f2968d31002ec0f85c81537",
+        "rangeId": "block-5",
+        "rangeKind": "block",
+        "startLine": 16,
+        "endLine": 19,
+        "startOffset": 267,
+        "endOffset": 332,
+        "fingerprint": "bd519863906be74b32894878d609e1bc7c4655266097075f7e58f346dada7cb9",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.5,
+      "title": "Lo que falta conseguir desde UI",
+      "headingPath": [
+        "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+        "Lo que falta conseguir desde UI"
+      ],
+      "snippet": "```text CONTROL_PLANE_API_KEY = sk-... TUNNEL_ID = tunnel_... ```",
+      "rangeCodeUnits": 65,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 16,
+      "endLine": 19
+    },
+    {
+      "rank": 4,
+      "handle": {
+        "version": 1,
+        "id": "08afdde1a84bea2ca098c1cb0b2e546412e40124709080fef43ed231697991e3",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "CONNECT_OPENAI_TUNNEL.md",
+        "revision": "850669365e0753305680401381fae7239841ca226f2968d31002ec0f85c81537",
+        "rangeId": "block-7",
+        "rangeKind": "block",
+        "startLine": 23,
+        "endLine": 23,
+        "startOffset": 417,
+        "endOffset": 477,
+        "fingerprint": "d3e0430e4a4a5e59e901e4d9558159eafc3e1b7f46b51acb0ae3ccb9916c53e6",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.5,
+      "title": "Lo que falta conseguir desde UI",
+      "headingPath": [
+        "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+        "Lo que falta conseguir desde UI"
+      ],
+      "snippet": "El `tunnel_id` se crea en OpenAI Platform → Tunnel settings.",
+      "rangeCodeUnits": 60,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 23,
+      "endLine": 23
+    },
+    {
+      "rank": 5,
+      "handle": {
+        "version": 1,
+        "id": "e129b4f77f77e66d8424d3250cdfad3ad0ffe012407dcc8907d6e87eddef85a2",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "CONNECT_OPENAI_TUNNEL.md",
+        "revision": "850669365e0753305680401381fae7239841ca226f2968d31002ec0f85c81537",
+        "rangeId": "heading-4",
+        "rangeKind": "section",
+        "startLine": 44,
+        "endLine": 52,
+        "startOffset": 955,
+        "endOffset": 1213,
+        "fingerprint": "a481c82c43e0761674817c6752856629b08b9f0c472a3d1243c72338db732d5a",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.5,
+      "title": "En ChatGPT",
+      "headingPath": [
+        "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+        "En ChatGPT"
+      ],
+      "snippet": "…te connector/app. 4. Connection: Tunnel. 5. Elegir o pegar el `tunnel_id`. 6. Crear. 7. En un chat nuevo, abrir `+` / Developer mode y seleccionar `bridge-mcp…",
+      "rangeCodeUnits": 258,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 44,
+      "endLine": 52
+    },
+    {
+      "rank": 6,
+      "handle": {
+        "version": 1,
+        "id": "1cfbcf64ff203b2983b760b492e8d40a95d5690c42926601bb47c27008561417",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "CONNECT_OPENAI_TUNNEL.md",
+        "revision": "850669365e0753305680401381fae7239841ca226f2968d31002ec0f85c81537",
+        "rangeId": "block-10",
+        "rangeKind": "block",
+        "startLine": 46,
+        "endLine": 52,
+        "startOffset": 970,
+        "endOffset": 1212,
+        "fingerprint": "5a8916b0bca49b76d0edc78982fb754229ccd69d58faa708ae37f9add2f64766",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.5,
+      "title": "En ChatGPT",
+      "headingPath": [
+        "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+        "En ChatGPT"
+      ],
+      "snippet": "…te connector/app. 4. Connection: Tunnel. 5. Elegir o pegar el `tunnel_id`. 6. Crear. 7. En un chat nuevo, abrir `+` / Developer mode y seleccionar `bridge-mcp…",
+      "rangeCodeUnits": 242,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 46,
+      "endLine": 52
+    },
+    {
+      "rank": 7,
+      "handle": {
+        "version": 1,
+        "id": "b9f449ead1856b249467c7156241bde3a66389faa9f7970cb2c89df8eca7b8b3",
+        "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+        "sourceRef": "CONNECT_OPENAI_TUNNEL.md",
+        "revision": "850669365e0753305680401381fae7239841ca226f2968d31002ec0f85c81537",
+        "rangeId": "block-10/item-5",
+        "rangeKind": "block",
+        "startLine": 50,
+        "endLine": 50,
+        "startOffset": 1093,
+        "endOffset": 1126,
+        "fingerprint": "ce78bea0261c8183883cf32ba88ddb027bf69649b339018faee22e34a753b8b7",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.5,
+      "title": "En ChatGPT",
+      "headingPath": [
+        "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+        "En ChatGPT"
+      ],
+      "snippet": "5. Elegir o pegar el `tunnel_id`.",
+      "rangeCodeUnits": 33,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 50,
+      "endLine": 50
+    }
+  ],
+  "responseAdvisoryOnly": true
+}

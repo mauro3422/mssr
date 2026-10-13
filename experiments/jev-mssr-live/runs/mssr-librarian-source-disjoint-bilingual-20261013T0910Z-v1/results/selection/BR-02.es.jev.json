@@ -1,0 +1,338 @@
+{
+  "projectOwner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+  "sourceCount": 1,
+  "status": "selected",
+  "candidateCount": 8,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "verification": "unverified",
+  "confidenceCalibration": "uncalibrated-provider-score",
+  "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+  "exactFetchRequired": true,
+  "autoApplyAllowed": false,
+  "candidateRangeDiagnostics": {
+    "offered": 8,
+    "eligible": 8,
+    "oversizedOmitted": 0,
+    "maxFetchChars": 20000,
+    "lengthUnit": "utf16-code-units"
+  },
+  "rangeOverlapDiagnostics": {
+    "sameSourceRevisionPairs": 28,
+    "overlappingPairCount": 13,
+    "nestedPairCount": 13,
+    "exactRangePairCount": 0,
+    "partialOverlapPairCount": 0,
+    "pairs": [
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          52
+        ],
+        "rightOptionId": "h002",
+        "rightRangeId": "heading-2",
+        "rightRangeKind": "section",
+        "rightLines": [
+          12,
+          23
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 271
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          52
+        ],
+        "rightOptionId": "h003",
+        "rightRangeId": "block-7",
+        "rightRangeKind": "block",
+        "rightLines": [
+          23,
+          23
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 60
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          52
+        ],
+        "rightOptionId": "h004",
+        "rightRangeId": "block-5",
+        "rightRangeKind": "block",
+        "rightLines": [
+          16,
+          19
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 65
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          52
+        ],
+        "rightOptionId": "h005",
+        "rightRangeId": "block-6",
+        "rightRangeKind": "block",
+        "rightLines": [
+          21,
+          21
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 81
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          52
+        ],
+        "rightOptionId": "h006",
+        "rightRangeId": "heading-4",
+        "rightRangeKind": "section",
+        "rightLines": [
+          44,
+          52
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 258
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          52
+        ],
+        "rightOptionId": "h007",
+        "rightRangeId": "block-10",
+        "rightRangeKind": "block",
+        "rightLines": [
+          46,
+          52
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 242
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          52
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-10/item-5",
+        "rightRangeKind": "block",
+        "rightLines": [
+          50,
+          50
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 33
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-2",
+        "leftRangeKind": "section",
+        "leftLines": [
+          12,
+          23
+        ],
+        "rightOptionId": "h003",
+        "rightRangeId": "block-7",
+        "rightRangeKind": "block",
+        "rightLines": [
+          23,
+          23
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 60
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-2",
+        "leftRangeKind": "section",
+        "leftLines": [
+          12,
+          23
+        ],
+        "rightOptionId": "h004",
+        "rightRangeId": "block-5",
+        "rightRangeKind": "block",
+        "rightLines": [
+          16,
+          19
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 65
+      },
+      {
+        "leftOptionId": "h002",
+        "leftRangeId": "heading-2",
+        "leftRangeKind": "section",
+        "leftLines": [
+          12,
+          23
+        ],
+        "rightOptionId": "h005",
+        "rightRangeId": "block-6",
+        "rightRangeKind": "block",
+        "rightLines": [
+          21,
+          21
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 81
+      },
+      {
+        "leftOptionId": "h006",
+        "leftRangeId": "heading-4",
+        "leftRangeKind": "section",
+        "leftLines": [
+          44,
+          52
+        ],
+        "rightOptionId": "h007",
+        "rightRangeId": "block-10",
+        "rightRangeKind": "block",
+        "rightLines": [
+          46,
+          52
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 242
+      },
+      {
+        "leftOptionId": "h006",
+        "leftRangeId": "heading-4",
+        "leftRangeKind": "section",
+        "leftLines": [
+          44,
+          52
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-10/item-5",
+        "rightRangeKind": "block",
+        "rightLines": [
+          50,
+          50
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 33
+      },
+      {
+        "leftOptionId": "h007",
+        "leftRangeId": "block-10",
+        "leftRangeKind": "block",
+        "leftLines": [
+          46,
+          52
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-10/item-5",
+        "rightRangeKind": "block",
+        "rightLines": [
+          50,
+          50
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 33
+      }
+    ],
+    "truncated": false,
+    "mutationApplied": false
+  },
+  "finalistCount": 8,
+  "selectionMode": "single-pass",
+  "selectionPasses": 1,
+  "providerCalls": 1,
+  "providerConfidence": 0.98,
+  "evidenceSufficiency": 0.94,
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "providersUsed": [
+    "typesafe-jev"
+  ],
+  "modelsUsed": [
+    "jev-1.13.0"
+  ],
+  "usage": {
+    "input_tokens": 1775,
+    "output_tokens": 127
+  },
+  "requestFingerprint": "eae297f1fec1e816f4f59c975a0ff3b2674ab02b633b04f2e6754c8b987b8726",
+  "elapsedMs": 734.5,
+  "jevCallMade": true,
+  "selected": {
+    "optionId": "h003",
+    "title": "Lo que falta conseguir desde UI",
+    "headingPath": [
+      "Conectar bridge-mcp con ChatGPT por OpenAI Secure MCP Tunnel",
+      "Lo que falta conseguir desde UI"
+    ],
+    "handle": {
+      "version": 1,
+      "id": "08afdde1a84bea2ca098c1cb0b2e546412e40124709080fef43ed231697991e3",
+      "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+      "sourceRef": "CONNECT_OPENAI_TUNNEL.md",
+      "revision": "850669365e0753305680401381fae7239841ca226f2968d31002ec0f85c81537",
+      "rangeId": "block-7",
+      "rangeKind": "block",
+      "startLine": 23,
+      "endLine": 23,
+      "startOffset": 417,
+      "endOffset": 477,
+      "fingerprint": "d3e0430e4a4a5e59e901e4d9558159eafc3e1b7f46b51acb0ae3ccb9916c53e6",
+      "privacyClass": "project-metadata"
+    }
+  },
+  "choiceCalls": [
+    {
+      "questionKey": "selection",
+      "offeredOptionIds": [
+        "h001",
+        "h002",
+        "h003",
+        "h004",
+        "h005",
+        "h006",
+        "h007",
+        "h008",
+        "none"
+      ],
+      "selectedOptionId": "h003",
+      "confidence": 0.98,
+      "probabilities": {
+        "h001": 0,
+        "h002": 0.02,
+        "h003": 0.98,
+        "h004": 0,
+        "h005": 0,
+        "h006": 0,
+        "h007": 0,
+        "h008": 0,
+        "none": 0
+      }
+    }
+  ]
+}

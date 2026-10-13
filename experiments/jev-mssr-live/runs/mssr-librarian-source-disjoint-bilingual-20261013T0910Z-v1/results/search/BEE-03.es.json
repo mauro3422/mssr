@@ -1,0 +1,140 @@
+{
+  "caseId": "BEE-03",
+  "family": "BeeIncremental",
+  "arm": "es",
+  "query": "¿Cuál es el nombre público definitivo que ya se aprobó para BeeIncremental?",
+  "projectRoot": "D:\\Dev\\BeeIncremental",
+  "sourceRef": "docs/OPEN_QUESTIONS.md",
+  "expectedSourceRevision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+  "labelSpan": {
+    "start": 7,
+    "end": 9
+  },
+  "candidateCount": 4,
+  "truncated": false,
+  "targetSpanCoveredAt8": true,
+  "targetSpanOverlapAt8": true,
+  "firstTargetRank": 1,
+  "candidates": [
+    {
+      "rank": 1,
+      "handle": {
+        "version": 1,
+        "id": "01d63e0b553c5a9773712b939393e1155a4cfe9b1b1dc0e636cdb9ce345f476a",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 45,
+        "startOffset": 0,
+        "endOffset": 2308,
+        "fingerprint": "eda7483f4e5ab787a56869f7e15efa58d120f31fd7f733eda19f3252fffa44eb",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.166667,
+      "title": "Open Questions",
+      "headingPath": [
+        "Open Questions"
+      ],
+      "snippet": "…ority 1. **Working/final name** - Keep `BeeIncremental` internally for now. - Later choose whether the public name should sound scientific, cozy, funny or add…",
+      "rangeCodeUnits": 2308,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 1,
+      "endLine": 45
+    },
+    {
+      "rank": 2,
+      "handle": {
+        "version": 1,
+        "id": "b921d7bc93cd34d388e24823468f3fbb050775c6a229b31143c747844ff13536",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "startLine": 5,
+        "endLine": 10,
+        "startOffset": 157,
+        "endOffset": 357,
+        "fingerprint": "09b2d0556e59cbc4277051e8b5c3cf6218ed0c66faf9c6f1bf58432342cebed8",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.166667,
+      "title": "Highest priority",
+      "headingPath": [
+        "Open Questions",
+        "Highest priority"
+      ],
+      "snippet": "…ority 1. **Working/final name** - Keep `BeeIncremental` internally for now. - Later choose whether the public name should sound scientific, cozy, funny or add…",
+      "rangeCodeUnits": 200,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 5,
+      "endLine": 10
+    },
+    {
+      "rank": 3,
+      "handle": {
+        "version": 1,
+        "id": "3c18ecbba6ecaa5dcff5d8ea516f4a07d13e6e636c80213b11c6483428f25372",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 9,
+        "startOffset": 178,
+        "endOffset": 355,
+        "fingerprint": "4ffab5288957c0e98a69bfbc4b7da498f8c189d80d08e252653009d8a6cd6d42",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.166667,
+      "title": "Highest priority",
+      "headingPath": [
+        "Open Questions",
+        "Highest priority"
+      ],
+      "snippet": "1. **Working/final name** - Keep `BeeIncremental` internally for now. - Later choose whether the public name should sound scientific, cozy, funny or addictive/…",
+      "rangeCodeUnits": 177,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 7,
+      "endLine": 9
+    },
+    {
+      "rank": 4,
+      "handle": {
+        "version": 1,
+        "id": "8a860380562bd6e0dbd90d56e9e40c03e7d2e5acd2384266406d25057b0b31d5",
+        "owner": "d:/dev/beeincremental",
+        "sourceRef": "docs/OPEN_QUESTIONS.md",
+        "revision": "f9d014e77ee43cd7614c9ab86382feda40617ffc346013cb91c85fb9a0711dfa",
+        "rangeId": "block-2/item-1",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 9,
+        "startOffset": 178,
+        "endOffset": 355,
+        "fingerprint": "4ffab5288957c0e98a69bfbc4b7da498f8c189d80d08e252653009d8a6cd6d42",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.166667,
+      "title": "Highest priority",
+      "headingPath": [
+        "Open Questions",
+        "Highest priority"
+      ],
+      "snippet": "1. **Working/final name** - Keep `BeeIncremental` internally for now. - Later choose whether the public name should sound scientific, cozy, funny or addictive/…",
+      "rangeCodeUnits": 177,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 7,
+      "endLine": 9
+    }
+  ],
+  "responseAdvisoryOnly": true
+}

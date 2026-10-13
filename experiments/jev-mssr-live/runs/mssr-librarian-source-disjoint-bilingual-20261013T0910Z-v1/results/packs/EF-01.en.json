@@ -1,0 +1,31 @@
+{
+  "projectOwner": "d:/dev/elemental-frontier",
+  "sourceCount": 1,
+  "schemaVersion": 1,
+  "kind": "mssr-librarian-evidence-pack",
+  "assembly": "verbatim-source-ranges",
+  "paragraphs": [
+    {
+      "ordinal": 1,
+      "exactText": "# Combat Lab Version Matrix\n\nBaseline común de comparación:\n\n- Minecraft Java 1.21.8\n- NeoForge 21.8.54\n- Java 21\n- Prism Launcher 11.1.1\n\nLa versión final del servidor **no queda fijada por este baseline**. El laboratorio usa la versión común más reciente entre las referencias principales para comparar comportamiento bajo condiciones equivalentes.\n\n| Perfil | Minecraft | Build fijada | Uso | Licencia / regla |\n|---|---|---|---|---|\n| Enhanced Movement | 1.21.8 | 2.1.3 | dash, air-dash, double-tap, ledge | MIT según metadata de la build fijada |\n| ParCool stable | 1.21.8 | 3.4.3.3 | parkour, vault, wall movement, transiciones | LGPL-3.0-only |\n| Better Combat | 1.21.8 | 3.0.1 | timing, telegraph, hit window, recovery | All Rights Reserved: referencia; no copiar código/assets |\n| Bending Styles | 1.21.8 | 1.1.1 | input elemental, movilidad, animación y VFX | GPLv3 |\n| ParCool 4.0 experimental | 1.21.1 | 4.0.0.5 | estudiar el motor/animaciones 4.x | excepción aislada; no entra en comparación baseline directa |\n\n## Locks\n\n`combat-lab/locks/*.json` conserva IDs exactos, dependencias, hashes y URLs resueltas. Sólo refrescar un lock de forma deliberada con `resolve <perfil> --refresh`.\n\n## Bending Styles\n\nLa build 1.21.8 declara directamente:\n\n- Minecraft exactamente 1.21.8.\n- NeoForge >= 21.8.31.\n\nEl baseline 21.8.54 satisface esa restricción. No declara otra dependencia requerida dentro de `neoforge.mods.toml`.\n\n## Better Combat\n\nEl resolver incluye automáticamente dependencias requeridas compatibles con 1.21.8. En el lock actual se fijan Better Combat + Player Animation Library + Cloth Config.\n\n## Regla\n\nNunca actualizar un perfil a mitad de una ronda de medición. Una ronda completa conserva los mismos locks.\n",
+      "citation": {
+        "display": "combat-lab/research/VERSION_MATRIX.md:L1-L39",
+        "handleId": "2cd536f523a9c3f5d2adf7cc51b05704b2b783091511db98e995a40a772adab9",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "combat-lab/research/VERSION_MATRIX.md",
+        "revision": "fa29514bd0fe4504a1b9a8a7712fff981bf1b660e7c486a72706388588f555fd",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 39,
+        "fingerprint": "81ab4ce5b06b7a4d4013d4a1d4950b9653b20f00a62706f5cd55c8246506e6aa",
+        "privacyClass": "project-metadata"
+      }
+    }
+  ],
+  "totalFetchedChars": 1736,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "canonicalRewriteAllowed": false,
+  "ownerAndPrivacyAreCallerAsserted": true
+}

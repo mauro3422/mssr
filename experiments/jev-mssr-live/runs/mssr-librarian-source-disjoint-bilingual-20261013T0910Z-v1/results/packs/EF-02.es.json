@@ -1,0 +1,31 @@
+{
+  "projectOwner": "d:/dev/elemental-frontier",
+  "sourceCount": 1,
+  "schemaVersion": 1,
+  "kind": "mssr-librarian-evidence-pack",
+  "assembly": "verbatim-source-ranges",
+  "paragraphs": [
+    {
+      "ordinal": 1,
+      "exactText": "## Contrato obligatorio de controles\n\n- **Ctrl** sigue siendo Sprint vanilla, y genera **un solo intento de dash por flanco de pulsación**, condicionado a cooldown. No se introducen slots numéricos ni se usan Alt ni teclas incompatibles con BUILD/COMBAT.\n- Con **W/A/S/D actualmente pulsadas**, su vector gana. `A` = strafe negativo, `D` = positivo, `W` = adelante, `S` = atrás. Diagonales se normalizan y se conservan como diagonales. No forzar adelante si el jugador pidió un lateral.\n- Con **ninguna tecla pulsada**, Ctrl reutiliza la **última dirección válida en coordenadas del mundo**. Girar la cámara/personaje después de soltarlas no gira el vector almacenado. `W+S` o `A+D` que cancelan explícitamente **no** recurren a memoria. Se borra memoria al cambiar de conexión.\n- Si nunca hubo dirección válida, el dash no se ejecuta ni inventa movimiento frontal.\n- Paper recibe `(strafe,forward)` actual o reproyectado a la orientación presente. Paper sigue validando movimiento, cooldown y aplicando velocidad: **el cliente no adquiere autoridad en multiplayer**.\n- En Singleplayer ordinario, sin sincronización del canal Paper, no mostrar un DASH inmóvil. Se muestra una indicación discreta una vez y permanece Sprint vanilla.\n- **Excepción explícita QA:** únicamente el perfil aislado `ef-animation-reference-qa`, con ambos flags JVM y servidor integrado, puede aplicar un impulso equivalente para probar física local. **NO** se ejecuta cuando hay Paper dedicado y nunca afecta otros perfiles, servidores o mundos.\n\n",
+      "citation": {
+        "display": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md:L15-L24",
+        "handleId": "71216a54fe61f89aa0c63d051c37d57abb9c40188f53b4082013675b59d44142",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 15,
+        "endLine": 24,
+        "fingerprint": "c8774334cf7ea6f1a8adc9d30ee46158dfee53113f36e95e838fc7d6f63c1842",
+        "privacyClass": "project-metadata"
+      }
+    }
+  ],
+  "totalFetchedChars": 1522,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "canonicalRewriteAllowed": false,
+  "ownerAndPrivacyAreCallerAsserted": true
+}

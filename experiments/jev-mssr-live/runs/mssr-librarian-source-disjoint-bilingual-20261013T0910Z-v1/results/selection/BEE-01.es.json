@@ -1,0 +1,72 @@
+{
+  "caseId": "BEE-01",
+  "arm": "es",
+  "query": "¿Qué motor y formato visual se eligieron para el juego?",
+  "status": "selected",
+  "candidateCount": 8,
+  "selectionMode": "single-pass",
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "providerCalls": 1,
+  "choiceRaw": 0.28,
+  "noulRaw": 0.47,
+  "usage": {
+    "input_tokens": 1431,
+    "output_tokens": 127
+  },
+  "elapsedMs": 1196.1,
+  "selected": {
+    "optionId": "h002",
+    "title": "Chosen format",
+    "headingPath": [
+      "Visual Direction",
+      "Chosen format"
+    ],
+    "handle": {
+      "version": 1,
+      "id": "65217ed73443c0707b032182ca42cde55783e172277fcb443580ba0e6a2eaae1",
+      "owner": "d:/dev/beeincremental",
+      "sourceRef": "docs/VISUAL_DIRECTION.md",
+      "revision": "4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882",
+      "rangeId": "heading-2",
+      "rangeKind": "section",
+      "startLine": 3,
+      "endLine": 8,
+      "startOffset": 20,
+      "endOffset": 228,
+      "fingerprint": "aa3ccf25074b3b1aa07dae6b63c9015cfdd49887307130e033088c135363ea7a",
+      "privacyClass": "project-metadata"
+    }
+  },
+  "choiceCall": {
+    "offeredOptionIds": [
+      "h001",
+      "h002",
+      "h003",
+      "h004",
+      "h005",
+      "h006",
+      "h007",
+      "h008",
+      "none"
+    ],
+    "selectedOptionId": "h002",
+    "confidence": 0.28,
+    "probabilities": {
+      "h001": 0.09,
+      "h002": 0.36,
+      "h003": 0.23,
+      "h004": 0,
+      "h005": 0,
+      "h006": 0,
+      "h007": 0,
+      "h008": 0,
+      "none": 0.32
+    }
+  },
+  "selectedCoversTargetSpan": true,
+  "selectedSpanLineCount": 6,
+  "targetSpanLineCount": 1,
+  "fetchResponseText": "{\n  \"projectOwner\": \"d:/dev/beeincremental\",\n  \"handle\": {\n    \"version\": 1,\n    \"id\": \"65217ed73443c0707b032182ca42cde55783e172277fcb443580ba0e6a2eaae1\",\n    \"owner\": \"d:/dev/beeincremental\",\n    \"sourceRef\": \"docs/VISUAL_DIRECTION.md\",\n    \"revision\": \"4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882\",\n    \"rangeId\": \"heading-2\",\n    \"rangeKind\": \"section\",\n    \"startLine\": 3,\n    \"endLine\": 8,\n    \"startOffset\": 20,\n    \"endOffset\": 228,\n    \"fingerprint\": \"aa3ccf25074b3b1aa07dae6b63c9015cfdd49887307130e033088c135363ea7a\",\n    \"privacyClass\": \"project-metadata\"\n  },\n  \"text\": \"## Chosen format\\n\\nGodot 2D with faux-2.5D depth.\\n\\nThe honeycomb is presented almost front-on, with enough illustrated perspective to make wax walls, cells and bees feel dimensional without using a 3D world.\\n\\n\",\n  \"fingerprint\": \"aa3ccf25074b3b1aa07dae6b63c9015cfdd49887307130e033088c135363ea7a\",\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false\n}",
+  "evidencePackResponseText": "{\n  \"projectOwner\": \"d:/dev/beeincremental\",\n  \"sourceCount\": 1,\n  \"schemaVersion\": 1,\n  \"kind\": \"mssr-librarian-evidence-pack\",\n  \"assembly\": \"verbatim-source-ranges\",\n  \"paragraphs\": [\n    {\n      \"ordinal\": 1,\n      \"exactText\": \"## Chosen format\\n\\nGodot 2D with faux-2.5D depth.\\n\\nThe honeycomb is presented almost front-on, with enough illustrated perspective to make wax walls, cells and bees feel dimensional without using a 3D world.\\n\\n\",\n      \"citation\": {\n        \"display\": \"docs/VISUAL_DIRECTION.md:L3-L8\",\n        \"handleId\": \"65217ed73443c0707b032182ca42cde55783e172277fcb443580ba0e6a2eaae1\",\n        \"owner\": \"d:/dev/beeincremental\",\n        \"sourceRef\": \"docs/VISUAL_DIRECTION.md\",\n        \"revision\": \"4dbd02456cce0184f9774f7e94df51929444837348295b5275d139ed49155882\",\n        \"rangeId\": \"heading-2\",\n        \"rangeKind\": \"section\",\n        \"startLine\": 3,\n        \"endLine\": 8,\n        \"fingerprint\": \"aa3ccf25074b3b1aa07dae6b63c9015cfdd49887307130e033088c135363ea7a\",\n        \"privacyClass\": \"project-metadata\"\n      }\n    }\n  ],\n  \"totalFetchedChars\": 208,\n  \"advisoryOnly\": true,\n  \"truthAuthority\": false,\n  \"canonicalRewriteAllowed\": false,\n  \"ownerAndPrivacyAreCallerAsserted\": true\n}"
+}

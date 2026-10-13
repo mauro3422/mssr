@@ -1,0 +1,22 @@
+{
+  "projectOwner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+  "handle": {
+    "version": 1,
+    "id": "a2b49564e1df70ddc0d935c86e30eefa4054aa99e2804916600046329916da02",
+    "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+    "sourceRef": "docs/DASHBOARD_UX_V2_INFORMATION_ARCHITECTURE.md",
+    "revision": "2f1d815f09474c156e2f4f76ef9174556fb2f9cf272815e253173fee45434306",
+    "rangeId": "heading-12",
+    "rangeKind": "section",
+    "startLine": 67,
+    "endLine": 80,
+    "startOffset": 5543,
+    "endOffset": 6275,
+    "fingerprint": "ad98af4d06fc702905dd245b8f15cdfa5b9df7d411e34a6081865f1ac27210c7",
+    "privacyClass": "project-metadata"
+  },
+  "text": "### 4.1 Primary navigation\n\nReplace the seven source-oriented top-level tabs with four human-intent destinations:\n\n**Inicio** — What is happening, what requires attention, what should I continue, what changed, and a compact system pulse.\n\n**Trabajo** — Active work, projects, blockers, next gates and semantic activity over time.\n\n**Salud** — Operational health for Bridge and MSSR, trends, anomalies and actionable maintenance signals.\n\n**Explorar** — Tools, skills, traces, projects, errors and historical evidence for intentional investigation.\n\n**Inspector** is not a fifth content page. It is a global side drawer/modal opened from any item when exact IDs, raw calls, trace lifecycle, boot/PID, provenance or JSON are needed.\n\n",
+  "fingerprint": "ad98af4d06fc702905dd245b8f15cdfa5b9df7d411e34a6081865f1ac27210c7",
+  "advisoryOnly": true,
+  "truthAuthority": false
+}

@@ -1,0 +1,265 @@
+{
+  "projectOwner": "d:/dev/elemental-frontier",
+  "sourceCount": 1,
+  "status": "selected",
+  "candidateCount": 8,
+  "advisoryOnly": true,
+  "truthAuthority": false,
+  "verification": "unverified",
+  "confidenceCalibration": "uncalibrated-provider-score",
+  "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+  "exactFetchRequired": true,
+  "autoApplyAllowed": false,
+  "candidateRangeDiagnostics": {
+    "offered": 8,
+    "eligible": 8,
+    "oversizedOmitted": 0,
+    "maxFetchChars": 20000,
+    "lengthUnit": "utf16-code-units"
+  },
+  "rangeOverlapDiagnostics": {
+    "sameSourceRevisionPairs": 28,
+    "overlappingPairCount": 9,
+    "nestedPairCount": 9,
+    "exactRangePairCount": 0,
+    "partialOverlapPairCount": 0,
+    "pairs": [
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          39
+        ],
+        "rightOptionId": "h002",
+        "rightRangeId": "block-3",
+        "rightRangeKind": "block",
+        "rightLines": [
+          10,
+          10
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 211
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          39
+        ],
+        "rightOptionId": "h003",
+        "rightRangeId": "block-4",
+        "rightRangeKind": "block",
+        "rightLines": [
+          12,
+          18
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 671
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          39
+        ],
+        "rightOptionId": "h004",
+        "rightRangeId": "block-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          3,
+          3
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 30
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          39
+        ],
+        "rightOptionId": "h005",
+        "rightRangeId": "heading-3",
+        "rightRangeKind": "section",
+        "rightLines": [
+          24,
+          32
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 232
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          39
+        ],
+        "rightOptionId": "h006",
+        "rightRangeId": "block-8",
+        "rightRangeKind": "block",
+        "rightLines": [
+          31,
+          31
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 116
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          39
+        ],
+        "rightOptionId": "h007",
+        "rightRangeId": "block-2",
+        "rightRangeKind": "block",
+        "rightLines": [
+          5,
+          8
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 76
+      },
+      {
+        "leftOptionId": "h001",
+        "leftRangeId": "heading-1",
+        "leftRangeKind": "section",
+        "leftLines": [
+          1,
+          39
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-2/item-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          5,
+          5
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 23
+      },
+      {
+        "leftOptionId": "h005",
+        "leftRangeId": "heading-3",
+        "leftRangeKind": "section",
+        "leftLines": [
+          24,
+          32
+        ],
+        "rightOptionId": "h006",
+        "rightRangeId": "block-8",
+        "rightRangeKind": "block",
+        "rightLines": [
+          31,
+          31
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 116
+      },
+      {
+        "leftOptionId": "h007",
+        "leftRangeId": "block-2",
+        "leftRangeKind": "block",
+        "leftLines": [
+          5,
+          8
+        ],
+        "rightOptionId": "h008",
+        "rightRangeId": "block-2/item-1",
+        "rightRangeKind": "block",
+        "rightLines": [
+          5,
+          5
+        ],
+        "relation": "left-contains-right",
+        "overlapCodeUnits": 23
+      }
+    ],
+    "truncated": false,
+    "mutationApplied": false
+  },
+  "finalistCount": 8,
+  "selectionMode": "single-pass",
+  "selectionPasses": 1,
+  "providerCalls": 1,
+  "providerConfidence": 0.83,
+  "evidenceSufficiency": 0.91,
+  "provider": "typesafe-jev",
+  "model": "jev-1.13.0",
+  "providersUsed": [
+    "typesafe-jev"
+  ],
+  "modelsUsed": [
+    "jev-1.13.0"
+  ],
+  "usage": {
+    "input_tokens": 1493,
+    "output_tokens": 127
+  },
+  "requestFingerprint": "51c0a5753de4c2a93cae0245583fdef727545340d3e2094736c99f904dfc31bf",
+  "elapsedMs": 691.5,
+  "jevCallMade": true,
+  "selected": {
+    "optionId": "h002",
+    "title": "Combat Lab Version Matrix",
+    "headingPath": [
+      "Combat Lab Version Matrix"
+    ],
+    "handle": {
+      "version": 1,
+      "id": "e244b1cf6fe55f457758435f6f0b02f42e2372d8c3526d341337bc2527be4587",
+      "owner": "d:/dev/elemental-frontier",
+      "sourceRef": "combat-lab/research/VERSION_MATRIX.md",
+      "revision": "fa29514bd0fe4504a1b9a8a7712fff981bf1b660e7c486a72706388588f555fd",
+      "rangeId": "block-3",
+      "rangeKind": "block",
+      "startLine": 10,
+      "endLine": 10,
+      "startOffset": 139,
+      "endOffset": 350,
+      "fingerprint": "36fdc0567be777294729b497e5b2b4c9269a0e036acdb501ffe15b08f27be390",
+      "privacyClass": "project-metadata"
+    }
+  },
+  "choiceCalls": [
+    {
+      "questionKey": "selection",
+      "offeredOptionIds": [
+        "h001",
+        "h002",
+        "h003",
+        "h004",
+        "h005",
+        "h006",
+        "h007",
+        "h008",
+        "none"
+      ],
+      "selectedOptionId": "h002",
+      "confidence": 0.83,
+      "probabilities": {
+        "h001": 0.13,
+        "h002": 0.85,
+        "h003": 0,
+        "h004": 0,
+        "h005": 0,
+        "h006": 0,
+        "h007": 0,
+        "h008": 0,
+        "none": 0.02
+      }
+    }
+  ]
+}

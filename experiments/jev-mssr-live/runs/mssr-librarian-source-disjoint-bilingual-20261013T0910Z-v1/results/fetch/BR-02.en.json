@@ -1,0 +1,22 @@
+{
+  "projectOwner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+  "handle": {
+    "version": 1,
+    "id": "08afdde1a84bea2ca098c1cb0b2e546412e40124709080fef43ed231697991e3",
+    "owner": "d:/dev/bridge-mcp-candidate-0.6.160-mssr-0.2.109",
+    "sourceRef": "CONNECT_OPENAI_TUNNEL.md",
+    "revision": "850669365e0753305680401381fae7239841ca226f2968d31002ec0f85c81537",
+    "rangeId": "block-7",
+    "rangeKind": "block",
+    "startLine": 23,
+    "endLine": 23,
+    "startOffset": 417,
+    "endOffset": 477,
+    "fingerprint": "d3e0430e4a4a5e59e901e4d9558159eafc3e1b7f46b51acb0ae3ccb9916c53e6",
+    "privacyClass": "project-metadata"
+  },
+  "text": "El `tunnel_id` se crea en OpenAI Platform → Tunnel settings.",
+  "fingerprint": "d3e0430e4a4a5e59e901e4d9558159eafc3e1b7f46b51acb0ae3ccb9916c53e6",
+  "advisoryOnly": true,
+  "truthAuthority": false
+}

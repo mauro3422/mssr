@@ -1,0 +1,260 @@
+{
+  "caseId": "EF-04",
+  "family": "Elemental Frontier",
+  "arm": "es",
+  "query": "¿En qué ruta de archivo está el video lateral a 60 FPS que valida el dash?",
+  "projectRoot": "D:\\Dev\\elemental-frontier",
+  "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+  "expectedSourceRevision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+  "labelSpan": {
+    "start": 65,
+    "end": 65
+  },
+  "candidateCount": 8,
+  "truncated": true,
+  "targetSpanCoveredAt8": true,
+  "targetSpanOverlapAt8": true,
+  "firstTargetRank": 1,
+  "candidates": [
+    {
+      "rank": 1,
+      "handle": {
+        "version": 1,
+        "id": "38f4622be9bc6967f59a5ab88a554c1116b1ffc901255a067d6864453ec8b0b2",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "heading-1",
+        "rangeKind": "section",
+        "startLine": 1,
+        "endLine": 71,
+        "startOffset": 0,
+        "endOffset": 7344,
+        "fingerprint": "39c9649b6f5096a0865d9b47f0c7054c97db7c5770ba9cf79037aaedc4017026",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.75,
+      "title": "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)"
+      ],
+      "snippet": "# Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11) **Estado:** corrección en `feat/animation-studio-v1`; QA real cliente NeoForge 1.21.8 …",
+      "rangeCodeUnits": 7344,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 1,
+      "endLine": 71
+    },
+    {
+      "rank": 2,
+      "handle": {
+        "version": 1,
+        "id": "50a52bebedf29b4e4b1ef5a46091cb54669bc795a5717f3e5c353bd53b566881",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "heading-7",
+        "rangeKind": "section",
+        "startLine": 52,
+        "endLine": 66,
+        "startOffset": 5090,
+        "endOffset": 6761,
+        "fingerprint": "57d330ff0e35be6e2bfbd810aab76a3ffedba5ad90499f37e4e4a87d1e07403c",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.625,
+      "title": "QA REAL Paper, sin simulación de movimiento local",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "QA REAL Paper, sin simulación de movimiento local"
+      ],
+      "snippet": "…vamente**, directorio aislado `qa/paper-dash-lab` ignorado en Git, mundo nuevo plano `qa_flat`, plugin del worktree compilado. Cliente Prism `ef-animation-ref…",
+      "rangeCodeUnits": 1671,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 52,
+      "endLine": 66
+    },
+    {
+      "rank": 3,
+      "handle": {
+        "version": 1,
+        "id": "a2e22a26ae6790aa992b1e0d695f2e7f2c94398a05c57981b5b86f58a09a2cda",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "block-14",
+        "rangeKind": "block",
+        "startLine": 65,
+        "endLine": 65,
+        "startOffset": 6359,
+        "endOffset": 6759,
+        "fingerprint": "ebd88da3a4ee05b3cfc31079f52397c1d1ce973f020a787576f835c826d5e4df",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.625,
+      "title": "QA REAL Paper, sin simulación de movimiento local",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "QA REAL Paper, sin simulación de movimiento local"
+      ],
+      "snippet": "…amente menos evidente su traslación. Un video lateral a 60 FPS, telemetría de desplazamiento por tick en mundo con paredes reales, HUD/cámara/VFX para legibil…",
+      "rangeCodeUnits": 400,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 65,
+      "endLine": 65
+    },
+    {
+      "rank": 4,
+      "handle": {
+        "version": 1,
+        "id": "46f6a6663e5f5c47d49cf6c870fc8dcb634ad1d2ed2a0378fd0d15cbfc4d78f0",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "heading-2",
+        "rangeKind": "section",
+        "startLine": 5,
+        "endLine": 14,
+        "startOffset": 239,
+        "endOffset": 1494,
+        "fingerprint": "718b7d3c6ee76863a25dfe6556a665163b22d541af1a959ad550b7252011bf03",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.5,
+      "title": "Problema reproducido",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "Problema reproducido"
+      ],
+      "snippet": "## Problema reproducido El video del usuario `20261011-2054-41.0657131.mp4` dura 18,24 s a 30 FPS, resolución 544×522. En tercera persona se ve una pose de das…",
+      "rangeCodeUnits": 1255,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 5,
+      "endLine": 14
+    },
+    {
+      "rank": 5,
+      "handle": {
+        "version": 1,
+        "id": "a5a5279de02a4a66a90e3fa6fe1f422de52ae9852fe13d52f1810b7a7ea43afd",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "block-2",
+        "rangeKind": "block",
+        "startLine": 7,
+        "endLine": 7,
+        "startOffset": 264,
+        "endOffset": 605,
+        "fingerprint": "00e45740a20fb2d9c4322bc571deaedd16967679cb1ec03b2372d0ecc4a4b34a",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.5,
+      "title": "Problema reproducido",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "Problema reproducido"
+      ],
+      "snippet": "El video del usuario `20261011-2054-41.0657131.mp4` dura 18,24 s a 30 FPS, resolución 544×522. En tercera persona se ve una pose de dash/rotación de las pierna…",
+      "rangeCodeUnits": 341,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 7,
+      "endLine": 7
+    },
+    {
+      "rank": 6,
+      "handle": {
+        "version": 1,
+        "id": "71216a54fe61f89aa0c63d051c37d57abb9c40188f53b4082013675b59d44142",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "heading-3",
+        "rangeKind": "section",
+        "startLine": 15,
+        "endLine": 24,
+        "startOffset": 1494,
+        "endOffset": 3016,
+        "fingerprint": "c8774334cf7ea6f1a8adc9d30ee46158dfee53113f36e95e838fc7d6f63c1842",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.375,
+      "title": "Contrato obligatorio de controles",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "Contrato obligatorio de controles"
+      ],
+      "snippet": "… vanilla, y genera **un solo intento de dash por flanco de pulsación**, condicionado a cooldown. No se introducen slots numéricos ni se usan Alt ni teclas inc…",
+      "rangeCodeUnits": 1522,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 15,
+      "endLine": 24
+    },
+    {
+      "rank": 7,
+      "handle": {
+        "version": 1,
+        "id": "2c7279afe1c760c8aa06d91b1920422edbee412e18aed5b13c0cd7a2883109ce",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "block-5",
+        "rangeKind": "block",
+        "startLine": 17,
+        "endLine": 23,
+        "startOffset": 1532,
+        "endOffset": 3014,
+        "fingerprint": "291330c966334fb7bb2f4c1f84dfb586cda496efe9efd90647a98181bb317c1c",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.375,
+      "title": "Contrato obligatorio de controles",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "Contrato obligatorio de controles"
+      ],
+      "snippet": "… vanilla, y genera **un solo intento de dash por flanco de pulsación**, condicionado a cooldown. No se introducen slots numéricos ni se usan Alt ni teclas inc…",
+      "rangeCodeUnits": 1482,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 17,
+      "endLine": 23
+    },
+    {
+      "rank": 8,
+      "handle": {
+        "version": 1,
+        "id": "4febfa5393d87a900485eeff0993e5baebc64a9024eb65e0b887006624b50817",
+        "owner": "d:/dev/elemental-frontier",
+        "sourceRef": "docs/DASH_DIRECTION_AUTHORITY_CONTRACT_20261011.md",
+        "revision": "08e1242d45cab123731630507cb0e6d94b6c7243cedb1c24b7e91246af1b3564",
+        "rangeId": "heading-5",
+        "rangeKind": "section",
+        "startLine": 31,
+        "endLine": 38,
+        "startOffset": 3699,
+        "endOffset": 4271,
+        "fingerprint": "44ab0698ebf9ea615a361c6211cabeece06cb4ae80eda9907265396d05e57afa",
+        "privacyClass": "project-metadata"
+      },
+      "score": 0.375,
+      "title": "Gates automatizados",
+      "headingPath": [
+        "Elemental Frontier — DASH, dirección y autoridad (contrato 2026-10-11)",
+        "Gates automatizados"
+      ],
+      "snippet": "## Gates automatizados - `DashDirectionMemoryTest` valida lateral puro, diagonales, prioridad del input actual, memoria tras soltar, giro de cámara a 90°, cont…",
+      "rangeCodeUnits": 572,
+      "exactFetchable": true,
+      "evidenceTier": "candidate",
+      "startLine": 31,
+      "endLine": 38
+    }
+  ],
+  "responseAdvisoryOnly": true
+}
