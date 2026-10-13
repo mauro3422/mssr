@@ -198,6 +198,30 @@ const spanishLanguageDoc = {
   markdown: "# Año y señal\n\n## Señal del año\n\nLa señal conserva el año y el café.\n",
   privacyClass: "project-metadata",
 };
+const singleCharacterTermDoc = {
+  owner,
+  sourceRef: "docs/c-language.md",
+  markdown: "# Programming Languages\n\n## C\n\nThe C language uses a compact standard library.\n",
+  privacyClass: "project-metadata",
+};
+const englishSingleCharacterGlueDoc = {
+  owner,
+  sourceRef: "docs/english-glue.md",
+  markdown: "# English Glue\n\n## Articles and Pronouns\n\nA note says I can use a C API.\n",
+  privacyClass: "project-metadata",
+};
+assert.ok(searchMssrLibrarianEvidence({
+  documents: [singleCharacterTermDoc],
+  query: { query: "C" },
+}).results.some((item) => item.title === "C"), "single-character technical terms remain searchable");
+assert.equal(searchMssrLibrarianEvidence({
+  documents: [englishSingleCharacterGlueDoc],
+  query: { query: "a" },
+}).results.length, 0, "the English article a remains a query stopword");
+assert.equal(searchMssrLibrarianEvidence({
+  documents: [englishSingleCharacterGlueDoc],
+  query: { query: "I" },
+}).results.length, 0, "the English pronoun I remains a query stopword after case folding");
 const spanishMatches = searchMssrLibrarianEvidence({ documents: [spanishLanguageDoc], query: { query: "señal año cafe" } });
 assert.ok(spanishMatches.results.some((item) => item.title === "Señal del año"), "Spanish ñ, accented vowels, and ASCII query variants are tokenized consistently");
 assert.equal(searchMssrLibrarianEvidence({ documents: [spanishLanguageDoc], query: { query: "ano" } }).results.length, 0, "ñ must remain distinct from n so año cannot falsely match ano");
@@ -211,7 +235,7 @@ assert.equal(searchMssrLibrarianEvidence({
 }).results.length, 0, "incidental Spanish function words must not make an unrelated natural-language query return a candidate");
 assert.equal(searchMssrLibrarianEvidence({
   documents: [spanishLanguageDoc],
-  query: { query: "the and as for from to" },
+  query: { query: "the and as for from to a I" },
 }).results.length, 0, "a query made only of English function words has no searchable content terms");
 
 const spanishLibrarianDoc = {
