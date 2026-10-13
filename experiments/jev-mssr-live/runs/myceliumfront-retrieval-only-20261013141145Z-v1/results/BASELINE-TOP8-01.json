@@ -1,0 +1,1232 @@
+{
+  "runId": "myceliumfront-retrieval-only-20261013141145Z-v1",
+  "part": 1,
+  "totalParts": 5,
+  "fields": "candidate tuple = [handleId, sourceRef, startLine, endLine, lexicalScore, rangeFingerprint, sourceRevision]",
+  "results": [
+    {
+      "caseId": "P01",
+      "language": "es",
+      "query": "¿Qué versión del prototipo indica el README?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 7,
+          "endLine": 9
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.75,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.75,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "0a37b0263504b4a99763e3fb709c8185cfe4331cd3558888766f4b652ec27187",
+          "README.md",
+          7,
+          7,
+          0.75,
+          "22dd368ea1197052376ee2e3be9edf8d15134a3defe7e4e1030bfe3100aea777",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "8db85eb1ecdae69e4e76e44d85c31e1a205d25b30235873b8fcdde111987d728",
+          "README.md",
+          9,
+          9,
+          0.5,
+          "6359b6b6e4c9e940f511f67267d6e0e3a56867c45d3c103f288232e95047470c",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.5,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "4f2a2c3fee65b3c1582a3693506288b0dba247b0a996470ff706300a3e0c5bf5",
+          "README.md",
+          121,
+          140,
+          0.5,
+          "e41140287e18fd852e99bec8e400630ff96a51d0a405620f9bb58381f93f0063",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "9b0466922f27e94739614b320c9c9b346c67de5a31c207d5fa3c6b1a2314f949",
+          "README.md",
+          123,
+          123,
+          0.5,
+          "4289745c812c9be5f7bc1426676f24f4d597e4fad7867fd109a7ef372fe96502",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "1d7ad96884b2af65e757f66bb04c1d8ee419e507d8673ee2424ec33f06f6054a",
+          "README.md",
+          125,
+          137,
+          0.5,
+          "c2acf3eb7b85005f7e00bd554d3f64cadd132f7b36c34a0ead1da1c8bc3ee4e0",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ]
+      ]
+    },
+    {
+      "caseId": "P01",
+      "language": "en",
+      "query": "What prototype version does the README identify?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 7,
+          "endLine": 9
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.5,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.5,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "0a37b0263504b4a99763e3fb709c8185cfe4331cd3558888766f4b652ec27187",
+          "README.md",
+          7,
+          7,
+          0.5,
+          "22dd368ea1197052376ee2e3be9edf8d15134a3defe7e4e1030bfe3100aea777",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "8db85eb1ecdae69e4e76e44d85c31e1a205d25b30235873b8fcdde111987d728",
+          "README.md",
+          9,
+          9,
+          0.5,
+          "6359b6b6e4c9e940f511f67267d6e0e3a56867c45d3c103f288232e95047470c",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "4f2a2c3fee65b3c1582a3693506288b0dba247b0a996470ff706300a3e0c5bf5",
+          "README.md",
+          121,
+          140,
+          0.5,
+          "e41140287e18fd852e99bec8e400630ff96a51d0a405620f9bb58381f93f0063",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "9b0466922f27e94739614b320c9c9b346c67de5a31c207d5fa3c6b1a2314f949",
+          "README.md",
+          123,
+          123,
+          0.5,
+          "4289745c812c9be5f7bc1426676f24f4d597e4fad7867fd109a7ef372fe96502",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "1d7ad96884b2af65e757f66bb04c1d8ee419e507d8673ee2424ec33f06f6054a",
+          "README.md",
+          125,
+          137,
+          0.5,
+          "c2acf3eb7b85005f7e00bd554d3f64cadd132f7b36c34a0ead1da1c8bc3ee4e0",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "3744cb1b66df1788f375a0a698c0297e4425ca4a3bd28cc9d5a77d29043774e4",
+          "README.md",
+          125,
+          125,
+          0.5,
+          "edc2cba331ceb44f3b211c7e0699e747e552f422479c3140c657e0c3d393933b",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ]
+      ]
+    },
+    {
+      "caseId": "P02",
+      "language": "es",
+      "query": "¿Dónde vive hoy el código Luau y qué limita clonar el repo para editar scripts?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 20,
+          "endLine": 20
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.777778,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.777778,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "1c0934b0ef614cec5fa9c971536d527b93643e1d61204604fa45dca92933cb79",
+          "README.md",
+          13,
+          23,
+          0.555556,
+          "bfd769be60699331f1a07b4c50e0055c3790d30db48470f8d4584e120863d2b4",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "80c0268b91b92ad83cb922ac6080a5f4729dbedea2d8d93d1476f97275d7bafd",
+          "README.md",
+          20,
+          20,
+          0.555556,
+          "59e1b45474208404dd25a5517d9f5c21a3043aa8cb8104b9750cfb8f139e85ef",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "e8c0969a56462f29346f24a8876935e13da5acb33fc9f2f039cdd7399f1dca86",
+          "README.md",
+          173,
+          200,
+          0.444444,
+          "7cd6495c6f3629a1e1977f33fefd57acb474afdb5ebb9a3eaa5cb4d14a1a3c89",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "4de2102c32ff37d63796f9245891c67697b92bdabdec5e06464d508c31638665",
+          "README.md",
+          199,
+          199,
+          0.444444,
+          "787e812174e159e9a4343bdb82ab4b9dc8aa5ca13d91c2dec6c228c5602db9dd",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "2998942724ac03f7dc79d9575ae2e9aa35200ccdbf6a1e84e65b9e653a6c9fae",
+          "docs/PROJECT_NOTES.md",
+          142,
+          156,
+          0.222222,
+          "86e38239e1a728edaead0ea99a87be8e7a96217706b09b2f133899ec8689fb4d",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.222222,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ]
+      ]
+    },
+    {
+      "caseId": "P02",
+      "language": "en",
+      "query": "Where does the Luau code currently live, and what does cloning the repo not enable?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 3,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 20,
+          "endLine": 20
+        }
+      ],
+      "candidateHandles": [
+        [
+          "38dbb5517d8a8a35dc4a95501eb43a9ab92cc09ff0f42795ab99e4ac8e053883",
+          "docs/ARCHITECTURE.md",
+          28,
+          35,
+          0.125,
+          "5688af300d471adcb056b22cd1ecc9089d5b0032864438b53230a44dcb9b3d6d",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "a7ed1080eb831ba3f797fa0425be37c47cbb4e094682195c80e3f26bedd8e61f",
+          "docs/PROJECT_NOTES.md",
+          44,
+          57,
+          0.125,
+          "491529d3ee4a63a8a58a0d354300edaa858d666e0d6deebc3e3e346c0561d5cb",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.125,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "2963ce630dd0f066c59588edf7f0e7d0e34457fd78ba9065143e3108957b1780",
+          "ROADMAP.md",
+          54,
+          107,
+          0.125,
+          "d04e571ed0eb16df7636004c2dc9dc45067991523b15c0086fd4c8cfd2907c65",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "2342b4bffeaacb4e8d4d18d215c8f619d75a8f4ca91ec333b12a6924fd7d241b",
+          "docs/ARCHITECTURE.md",
+          39,
+          52,
+          0.125,
+          "2d0908caa460aa50b11bfcac445c3f78285182dc58104f60fe087f9a305ab858",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "607292872d43b7df83842aad170258d9ac078bfddf7102af1c11c2ae603bd281",
+          "docs/PROJECT_NOTES.md",
+          46,
+          56,
+          0.125,
+          "82fc92be25ceaa8fa353226bc4064575e4c1666ff109aa742845fa4f9f99c526",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.125,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "c44b509e0bd64cf3d45d75dcb1c960f1e3e1f6a7ca8146d9ad1fae94969d9f97",
+          "ROADMAP.md",
+          66,
+          82,
+          0.125,
+          "72e253b79293966bbe51652418a8784392cecbbdd46684983e92c8ea41e2d63f",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "P03",
+      "language": "es",
+      "query": "¿Cómo separa el dashboard los historiales de assets lógicos que comparten un paquete técnico?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 2,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 32,
+          "endLine": 32
+        }
+      ],
+      "candidateHandles": [
+        [
+          "2998942724ac03f7dc79d9575ae2e9aa35200ccdbf6a1e84e65b9e653a6c9fae",
+          "docs/PROJECT_NOTES.md",
+          142,
+          156,
+          0.75,
+          "86e38239e1a728edaead0ea99a87be8e7a96217706b09b2f133899ec8689fb4d",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.75,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "dc692d7a6eea2811db3d91bb0358f2427e00e6184c2860837660cf9d055e99a0",
+          "docs/PROJECT_NOTES.md",
+          144,
+          153,
+          0.75,
+          "6275f197d07ddaac86558bd4487f213b7582b83044cee57f798f27a270d407e9",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.75,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "9fb23d06813280440a7f526c8579ccdd6dd28bad65869b4d69360f54483ec1bb",
+          "docs/PROJECT_NOTES.md",
+          145,
+          145,
+          0.75,
+          "60c59c9447fdf4a5e72cc9a7ced44b6e68e80b3cea399d0d768c5e4a6931d9a8",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "3c10ef4ae31ec97623a442b6dd60284560be7b84f2862384d267977b4c9dde43",
+          "README.md",
+          24,
+          48,
+          0.75,
+          "2c72c17658906206fb477c87423d20daae77504a53e7f7a466754f175e67efff",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "9496b371454d70dda1dd7c67ec666bb6cec92e6c167b4f8df93c468b69ddf148",
+          "README.md",
+          32,
+          32,
+          0.75,
+          "41037de19ce13cb81c29c0a7b3f6761970a152de15dd59b561d4e8ea9119ea60",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.375,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ]
+      ]
+    },
+    {
+      "caseId": "P03",
+      "language": "en",
+      "query": "How does the dashboard keep histories separate for logical assets that share a technical package?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 3,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 32,
+          "endLine": 32
+        }
+      ],
+      "candidateHandles": [
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.222222,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "2998942724ac03f7dc79d9575ae2e9aa35200ccdbf6a1e84e65b9e653a6c9fae",
+          "docs/PROJECT_NOTES.md",
+          142,
+          156,
+          0.222222,
+          "86e38239e1a728edaead0ea99a87be8e7a96217706b09b2f133899ec8689fb4d",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.222222,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.222222,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "7500baf9b69a1e6bfd4cc807b5dc6b62e1fb8bed192fb349b6e3577ab75e808c",
+          "docs/ARCHITECTURE.md",
+          7,
+          131,
+          0.222222,
+          "13d664487060c8667a9b6b01e463161b2e0a257c72e2546a604cadc610d6d604",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "dc692d7a6eea2811db3d91bb0358f2427e00e6184c2860837660cf9d055e99a0",
+          "docs/PROJECT_NOTES.md",
+          144,
+          153,
+          0.222222,
+          "6275f197d07ddaac86558bd4487f213b7582b83044cee57f798f27a270d407e9",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.222222,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "101ac07d9e2beed9a9f9e55014118252f5cb184963f5438737943b03db5dd15c",
+          "ROADMAP.md",
+          23,
+          48,
+          0.222222,
+          "868b889af93b32f5738827ccabea1f9aa1d37ccc1c85169cce041fed75bb12e3",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "P04",
+      "language": "es",
+      "query": "¿Qué identifica de forma estable una entidad construida?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 83,
+          "endLine": 83
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 38,
+          "endLine": 38
+        },
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 26,
+          "endLine": 35
+        }
+      ],
+      "candidateHandles": [
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.6,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "7500baf9b69a1e6bfd4cc807b5dc6b62e1fb8bed192fb349b6e3577ab75e808c",
+          "docs/ARCHITECTURE.md",
+          7,
+          131,
+          0.6,
+          "13d664487060c8667a9b6b01e463161b2e0a257c72e2546a604cadc610d6d604",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "2d7967a335c5c22f8f3664af78c60d06ac856e4af993015cf019953c509a0a7e",
+          "docs/ARCHITECTURE.md",
+          24,
+          55,
+          0.4,
+          "c42a2f81079144f160ad03fb09bd8f19a7d61c9d7ecfde010b406a2eca95102a",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "159f462be21917ce140c7d42fd1c1b26cfc108504441d840eed77dc22a89f28f",
+          "docs/PROJECT_NOTES.md",
+          58,
+          118,
+          0.4,
+          "8c9662c4d9a10b002ba4c7bf8ee9557711ec0a0b6c9aa5963f13ee72ef2a5bea",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.4,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "5b5591aec20bd42f01534cb20e06636faea3b2e0340e1aa546fd6112b131abd3",
+          "docs/ARCHITECTURE.md",
+          26,
+          26,
+          0.4,
+          "aab8f735d2b5510ad4d61eb73d50a1a5ffcbc56b09f3a68b82c0ba6b108c3a95",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "2963ce630dd0f066c59588edf7f0e7d0e34457fd78ba9065143e3108957b1780",
+          "ROADMAP.md",
+          54,
+          107,
+          0.4,
+          "d04e571ed0eb16df7636004c2dc9dc45067991523b15c0086fd4c8cfd2907c65",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "55e6aae9ed557a5731af4e900958a12613da35e154b248b68aadd42d879c7def",
+          "ROADMAP.md",
+          98,
+          103,
+          0.4,
+          "4dd963cb386ce4cd7253d171c3a9263395f37461506c56d18f15751ce73500cb",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "P04",
+      "language": "en",
+      "query": "What provides stable identity for a built entity?",
+      "sourceCount": 4,
+      "returned": 0,
+      "truncated": false,
+      "anchorOverlapTop8": false,
+      "firstAnchorOverlapRank": null,
+      "anchorContainmentTop8": false,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 83,
+          "endLine": 83
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 38,
+          "endLine": 38
+        },
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 26,
+          "endLine": 35
+        }
+      ],
+      "candidateHandles": []
+    },
+    {
+      "caseId": "P05",
+      "language": "es",
+      "query": "¿Cuáles son los cuatro puertos lógicos de una planta?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 2,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 86,
+          "endLine": 86
+        }
+      ],
+      "candidateHandles": [
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.666667,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.666667,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.666667,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.666667,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "101ac07d9e2beed9a9f9e55014118252f5cb184963f5438737943b03db5dd15c",
+          "ROADMAP.md",
+          23,
+          48,
+          0.666667,
+          "868b889af93b32f5738827ccabea1f9aa1d37ccc1c85169cce041fed75bb12e3",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.5,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "2963ce630dd0f066c59588edf7f0e7d0e34457fd78ba9065143e3108957b1780",
+          "ROADMAP.md",
+          54,
+          107,
+          0.5,
+          "d04e571ed0eb16df7636004c2dc9dc45067991523b15c0086fd4c8cfd2907c65",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "2643be98011dea6bd73b296905fdc1ec4a556dd8bd5b3715b05a67c390da523a",
+          "README.md",
+          79,
+          109,
+          0.5,
+          "998e647d1444206bea1f2aed330fbf749d7afda0b4d28c7926030e37be587160",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ]
+      ]
+    },
+    {
+      "caseId": "P05",
+      "language": "en",
+      "query": "What are the four logical ports on a plant?",
+      "sourceCount": 4,
+      "returned": 3,
+      "truncated": false,
+      "anchorOverlapTop8": false,
+      "firstAnchorOverlapRank": null,
+      "anchorContainmentTop8": false,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 86,
+          "endLine": 86
+        }
+      ],
+      "candidateHandles": [
+        [
+          "0265c0e2ff3a963551b7d0e693fc85f922dbad0e6c1e7f0ec25d770c4a055bc5",
+          "ROADMAP.md",
+          108,
+          141,
+          0.25,
+          "c4a7c9247e8b7f32fe6fed5ee577db55beffadf0bdbf245063e8598a31f34495",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "a04fbf35af534dc0101d54f41a64c96a09bfd94befdc1da5609f449753352954",
+          "ROADMAP.md",
+          110,
+          138,
+          0.25,
+          "804cd233337345dcc554c2f73c6f943f942560a4a7bafffc22e092f36eda31a6",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "2bed4bf9e96ae7b7b608d06bf328a92d2cfdbc149ea434a4a5d82d5114e70a9a",
+          "ROADMAP.md",
+          1,
+          535,
+          0.25,
+          "4535dd83a36c097c0852b1a3f47d4d5a56a26332413f06389a31b30553af1a16",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "P06",
+      "language": "es",
+      "query": "¿Cuántas conexiones simultáneas admite un puerto?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 88,
+          "endLine": 88
+        },
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 87,
+          "endLine": 89
+        }
+      ],
+      "candidateHandles": [
+        [
+          "159f462be21917ce140c7d42fd1c1b26cfc108504441d840eed77dc22a89f28f",
+          "docs/PROJECT_NOTES.md",
+          58,
+          118,
+          0.6,
+          "8c9662c4d9a10b002ba4c7bf8ee9557711ec0a0b6c9aa5963f13ee72ef2a5bea",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "6dd64324d8b070c8b3681db6636cadc679b3550d9c9cb3c8637da3cbd85bb2f2",
+          "ROADMAP.md",
+          208,
+          432,
+          0.6,
+          "b98cdeff0b781949f22f641042afcdbf2ae59c3d08ff52b6fbb616358f0ae999",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "551e7d8818fa0d7ceb379ad83e1679d645fada2952cf38c41bab76dc7d3c189e",
+          "docs/PROJECT_NOTES.md",
+          85,
+          94,
+          0.6,
+          "964068741fd9555b8ad05acb28b1e6e4ed9a16006f5800f3f2f8d0f5a54d0b45",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "1ea15e992c90363679113ccdafba16b947004c72c223cb85105c5c7a7d45556b",
+          "docs/PROJECT_NOTES.md",
+          87,
+          93,
+          0.6,
+          "2722c10332d2b1e4d9570797781e18f80970cd33a81becb9655bcd19dfcd63cf",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "dc7829d7d504a5c9578f5f91b4aae1b26e3726c8ab91c5c4eaf28cc0bb6c9f41",
+          "docs/PROJECT_NOTES.md",
+          87,
+          87,
+          0.6,
+          "2256e19d356cb0d3135ea67c098c0f607c22a26faedbee9a7b6073a763a374d0",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.4,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "ae212d4c3fc9d6dadf2d26740e9279dc6e4b092bbc488658757dd4272bc7f795",
+          "docs/PROJECT_NOTES.md",
+          88,
+          88,
+          0.4,
+          "e0cdc433add76418d75bfa0a6e0683122fc3b886df44cfaac95cf59b814f8fce",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.4,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ]
+      ]
+    },
+    {
+      "caseId": "P06",
+      "language": "en",
+      "query": "How many simultaneous connections can one port accept?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 2,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 88,
+          "endLine": 88
+        },
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 87,
+          "endLine": 89
+        }
+      ],
+      "candidateHandles": [
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.166667,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.166667,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.166667,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "4970f2787c986ab31ccd42e738b4018580306e6cdb378eb50a00f62bff4ad40b",
+          "docs/ARCHITECTURE.md",
+          132,
+          180,
+          0.166667,
+          "a174ff5dbd7bf1859a699b1a4fcdd7b607287e5f9fed264eb57fde92c78fb065",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "4f2a2c3fee65b3c1582a3693506288b0dba247b0a996470ff706300a3e0c5bf5",
+          "README.md",
+          121,
+          140,
+          0.166667,
+          "e41140287e18fd852e99bec8e400630ff96a51d0a405620f9bb58381f93f0063",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "101ac07d9e2beed9a9f9e55014118252f5cb184963f5438737943b03db5dd15c",
+          "ROADMAP.md",
+          23,
+          48,
+          0.166667,
+          "868b889af93b32f5738827ccabea1f9aa1d37ccc1c85169cce041fed75bb12e3",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "d6ce65687f01f0b5b92b468a28f289615e7f147b5c90d00cf97a1c38f08fa077",
+          "docs/ARCHITECTURE.md",
+          136,
+          179,
+          0.166667,
+          "1efdc400cf789265c7a16668de106b62423d39de977207eb1068aeec62db0bd9",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "1d7ad96884b2af65e757f66bb04c1d8ee419e507d8673ee2424ec33f06f6054a",
+          "README.md",
+          125,
+          137,
+          0.166667,
+          "c2acf3eb7b85005f7e00bd554d3f64cadd132f7b36c34a0ead1da1c8bc3ee4e0",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ]
+      ]
+    },
+    {
+      "caseId": "P07",
+      "language": "es",
+      "query": "Al reubicar un extremo con `RewireConnection`, ¿qué ocurre con la identidad del enlace?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 2,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 90,
+          "endLine": 90
+        },
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 88,
+          "endLine": 89
+        }
+      ],
+      "candidateHandles": [
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.833333,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.833333,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "159f462be21917ce140c7d42fd1c1b26cfc108504441d840eed77dc22a89f28f",
+          "docs/PROJECT_NOTES.md",
+          58,
+          118,
+          0.666667,
+          "8c9662c4d9a10b002ba4c7bf8ee9557711ec0a0b6c9aa5963f13ee72ef2a5bea",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.666667,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "551e7d8818fa0d7ceb379ad83e1679d645fada2952cf38c41bab76dc7d3c189e",
+          "docs/PROJECT_NOTES.md",
+          85,
+          94,
+          0.666667,
+          "964068741fd9555b8ad05acb28b1e6e4ed9a16006f5800f3f2f8d0f5a54d0b45",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.666667,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "1ea15e992c90363679113ccdafba16b947004c72c223cb85105c5c7a7d45556b",
+          "docs/PROJECT_NOTES.md",
+          87,
+          93,
+          0.666667,
+          "2722c10332d2b1e4d9570797781e18f80970cd33a81becb9655bcd19dfcd63cf",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "2643be98011dea6bd73b296905fdc1ec4a556dd8bd5b3715b05a67c390da523a",
+          "README.md",
+          79,
+          109,
+          0.666667,
+          "998e647d1444206bea1f2aed330fbf749d7afda0b4d28c7926030e37be587160",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ]
+      ]
+    },
+    {
+      "caseId": "P07",
+      "language": "en",
+      "query": "When `RewireConnection` moves an endpoint, what happens to link identity?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 3,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 90,
+          "endLine": 90
+        },
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 88,
+          "endLine": 89
+        }
+      ],
+      "candidateHandles": [
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.166667,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "dff854eeaea5b56ee54630a78874ececfb1a3b7e52358b931fae159ff5d950b4",
+          "docs/PROJECT_NOTES.md",
+          18,
+          43,
+          0.166667,
+          "f6cdc94c77ee16bbb636f8c5e773ff85c7305b114e04121246ba30fd4e165773",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.166667,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.166667,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "4ca6ea36237c1551ccf874c2a5529ea4a07754fbfc5947ba01fc2e7e7ef92ad0",
+          "docs/ARCHITECTURE.md",
+          205,
+          228,
+          0.166667,
+          "226a6e981e0f21399f3a6469c4b7d76be969f61721f5209540fdd03aae6bbad3",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "f62b0e655a39902617579c00699d869945d2a8d9a18163df95472c1e7bbf3f8d",
+          "docs/PROJECT_NOTES.md",
+          22,
+          40,
+          0.166667,
+          "9864495a63f32bd75059cf534ece72536b33f3e45d2bda08958f481fc65575df",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.166667,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "101ac07d9e2beed9a9f9e55014118252f5cb184963f5438737943b03db5dd15c",
+          "ROADMAP.md",
+          23,
+          48,
+          0.166667,
+          "868b889af93b32f5738827ccabea1f9aa1d37ccc1c85169cce041fed75bb12e3",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    }
+  ]
+}

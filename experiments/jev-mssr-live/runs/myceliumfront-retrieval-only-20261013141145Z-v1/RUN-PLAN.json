@@ -1,0 +1,131 @@
+{
+  "runId": "myceliumfront-retrieval-only-20261013141145Z-v1",
+  "createdAt": "2026-10-13 14:11:45 UTC",
+  "kind": "deterministic-librarian-retrieval-only",
+  "system": {
+    "bridgeVersion": "0.6.178",
+    "mssrVersion": "0.2.131",
+    "tool": "mssr_librarian_search"
+  },
+  "source": {
+    "projectRoot": "D:\\Dev\\MyceliumFront",
+    "revision": "6bc411943c80be6ef844e4b5ac6847ae57465926",
+    "sourceRefs": [
+      "README.md",
+      "ROADMAP.md",
+      "docs/ARCHITECTURE.md",
+      "docs/PROJECT_NOTES.md"
+    ]
+  },
+  "sourceHashes": {
+    "README.md": "C231C3619FC62049BD5ED301DF0E80A39658031D242B760ACF8DC0381177E208",
+    "ROADMAP.md": "094E423BA73E5E0C022BC9393225E65314AC43BE1C732E9F534F8D68D0E743F9",
+    "docs/ARCHITECTURE.md": "E86150020CDF7E183B54925667F74B6E8FA54383E710A88979BA99F1E054A3F6",
+    "docs/PROJECT_NOTES.md": "89FFF1330B53F1059CE76E72C94425025955470A7D2C007415499E688026F2EF"
+  },
+  "cohort": {
+    "cases": 35,
+    "pairedLanguages": [
+      "es",
+      "en"
+    ],
+    "queryArms": 70,
+    "ownerAdjudication": "pending",
+    "anchorStatus": "provisional-candidate-anchors",
+    "independentClusterCount": 1,
+    "strictHoldout": false
+  },
+  "retrieval": {
+    "metadataMode": "off",
+    "maxResults": 8,
+    "maxSnippetChars": 160,
+    "explicitSourceRefs": true
+  },
+  "exclusions": [
+    "No Jev/provider calls",
+    "No selection or evidence-pack calls",
+    "No canonical source writes",
+    "No use of provisional dispositions as gold labels"
+  ],
+  "metrics": {
+    "languageSummary": {
+      "es": {
+        "arms": 35,
+        "nonempty": 35,
+        "anyAnchorOverlap": 35,
+        "fullAnchorContained": 35,
+        "exactAnchor": 13,
+        "empty": 0,
+        "meanResults": 8,
+        "meanAnchorRank": 1.4
+      },
+      "en": {
+        "arms": 35,
+        "nonempty": 29,
+        "anyAnchorOverlap": 26,
+        "fullAnchorContained": 26,
+        "exactAnchor": 8,
+        "empty": 6,
+        "meanResults": 6.26,
+        "meanAnchorRank": 1.65
+      }
+    },
+    "pairedAnchorOverlap": {
+      "both": 26,
+      "englishOnly": 0,
+      "spanishOnly": 9,
+      "neither": 0
+    },
+    "toolErrors": 0,
+    "queryVariantFollowup": {
+      "englishTop8Misses": 9,
+      "maxResults100": {
+        "calls": 9,
+        "anySpanishVariantAnchor": 9,
+        "SpanishVariantOnlyRescue": 8,
+        "primaryEnglishAnchorAppearedBeyondTop8": [
+          "D10"
+        ],
+        "truncated": 3
+      },
+      "maxResults8": {
+        "calls": 9,
+        "provisionalAnchorInTop8": 8,
+        "failedCases": [
+          "D10"
+        ],
+        "failedCasePrimaryOnlyResultCount": {
+          "D10": 8
+        }
+      },
+      "maxResults16": {
+        "calls": 9,
+        "provisionalAnchorInTop16": 9,
+        "fullAnchorContained": 9,
+        "exactAnchorRanges": 5,
+        "truncated": 9,
+        "rankForD10": 10
+      },
+      "note": "All follow-ups are retrieval-only against provisional anchors; not Jev outcomes or gold."
+    }
+  },
+  "interpretation": "Retrieval diagnostics against provisional author-derived anchors only; not gold recall, benchmark accuracy, Jev quality, calibration, or a holdout result.",
+  "runtimeSourceRevisions": {
+    "README.md": "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208",
+    "ROADMAP.md": "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9",
+    "docs/PROJECT_NOTES.md": "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef",
+    "docs/ARCHITECTURE.md": "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+  },
+  "outputs": [
+    "RUN-PLAN.json",
+    "inputs/QUERIES.json",
+    "inputs/sources/README.md",
+    "inputs/sources/ROADMAP.md",
+    "inputs/sources/docs/ARCHITECTURE.md",
+    "inputs/sources/docs/PROJECT_NOTES.md",
+    "results/BASELINE-TOP8-01.json through BASELINE-TOP8-05.json",
+    "results/QUERY-VARIANTS.json",
+    "OBSERVATIONS.md",
+    "SHA256SUMS.txt"
+  ]
+}

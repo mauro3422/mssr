@@ -1,0 +1,1514 @@
+{
+  "runId": "myceliumfront-retrieval-only-20261013141145Z-v1",
+  "method": "English primary plus explicit paired Spanish queryVariant; lexical metadata off; no Jev calls",
+  "summary": {
+    "englishTop8Misses": 9,
+    "maxResults100": {
+      "calls": 9,
+      "anySpanishVariantAnchor": 9,
+      "SpanishVariantOnlyRescue": 8,
+      "primaryEnglishAnchorAppearedBeyondTop8": [
+        "D10"
+      ],
+      "truncated": 3
+    },
+    "maxResults8": {
+      "calls": 9,
+      "provisionalAnchorInTop8": 8,
+      "failedCases": [
+        "D10"
+      ],
+      "failedCasePrimaryOnlyResultCount": {
+        "D10": 8
+      }
+    },
+    "maxResults16": {
+      "calls": 9,
+      "provisionalAnchorInTop16": 9,
+      "fullAnchorContained": 9,
+      "exactAnchorRanges": 5,
+      "truncated": 9,
+      "rankForD10": 10
+    },
+    "note": "All follow-ups are retrieval-only against provisional anchors; not Jev outcomes or gold."
+  },
+  "maxResults100": [
+    {
+      "caseId": "P04",
+      "primaryAnchorPresentAny": false,
+      "spanishVariantAnchorPresentAny": true,
+      "variantRescue": true,
+      "returned": 85,
+      "truncated": false,
+      "anchorVariantResults": [
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 1,
+          "endLine": 328,
+          "queryScore": 0.6,
+          "matchedTerms": [
+            "forma",
+            "entidad",
+            "construida"
+          ],
+          "title": "MyceliumFront — Arquitectura técnica"
+        },
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 7,
+          "endLine": 131,
+          "queryScore": 0.6,
+          "matchedTerms": [
+            "forma",
+            "entidad",
+            "construida"
+          ],
+          "title": "Capas principales"
+        },
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 24,
+          "endLine": 55,
+          "queryScore": 0.4,
+          "matchedTerms": [
+            "entidad",
+            "construida"
+          ],
+          "title": "2. Contratos de runtime"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 19,
+          "endLine": 53,
+          "queryScore": 0.4,
+          "matchedTerms": [
+            "forma",
+            "construida"
+          ],
+          "title": "Estado de implementación"
+        },
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 26,
+          "endLine": 26,
+          "queryScore": 0.4,
+          "matchedTerms": [
+            "entidad",
+            "construida"
+          ],
+          "title": "2. Contratos de runtime"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 1,
+          "endLine": 238,
+          "queryScore": 0.2,
+          "matchedTerms": [
+            "estable"
+          ],
+          "title": "MyceliumFront"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 5,
+          "endLine": 120,
+          "queryScore": 0.2,
+          "matchedTerms": [
+            "estable"
+          ],
+          "title": "Estado actual"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 49,
+          "endLine": 120,
+          "queryScore": 0.2,
+          "matchedTerms": [
+            "estable"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 23,
+          "endLine": 48,
+          "queryScore": 0.2,
+          "matchedTerms": [
+            "construida"
+          ],
+          "title": "Estado de implementación"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 79,
+          "endLine": 109,
+          "queryScore": 0.2,
+          "matchedTerms": [
+            "estable"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 38,
+          "endLine": 38,
+          "queryScore": 0.2,
+          "matchedTerms": [
+            "construida"
+          ],
+          "title": "Estado de implementación"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 83,
+          "endLine": 83,
+          "queryScore": 0.2,
+          "matchedTerms": [
+            "estable"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 1,
+          "endLine": 535,
+          "queryScore": 0.8,
+          "matchedTerms": [
+            "forma",
+            "estable",
+            "entidad",
+            "construida"
+          ],
+          "title": "MyceliumFront — Roadmap técnico y de producto"
+        }
+      ]
+    },
+    {
+      "caseId": "P05",
+      "primaryAnchorPresentAny": false,
+      "spanishVariantAnchorPresentAny": true,
+      "variantRescue": true,
+      "returned": 100,
+      "truncated": true,
+      "anchorVariantResults": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 1,
+          "endLine": 238,
+          "queryScore": 0.666667,
+          "matchedTerms": [
+            "cuatro",
+            "puertos",
+            "logicos",
+            "planta"
+          ],
+          "title": "MyceliumFront"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 5,
+          "endLine": 120,
+          "queryScore": 0.666667,
+          "matchedTerms": [
+            "cuatro",
+            "puertos",
+            "logicos",
+            "planta"
+          ],
+          "title": "Estado actual"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 49,
+          "endLine": 120,
+          "queryScore": 0.5,
+          "matchedTerms": [
+            "cuatro",
+            "puertos",
+            "planta"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 79,
+          "endLine": 109,
+          "queryScore": 0.5,
+          "matchedTerms": [
+            "cuatro",
+            "puertos",
+            "planta"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 86,
+          "endLine": 86,
+          "queryScore": 0.5,
+          "matchedTerms": [
+            "cuatro",
+            "puertos",
+            "planta"
+          ],
+          "title": "Visual Asset Forge"
+        }
+      ]
+    },
+    {
+      "caseId": "D02",
+      "primaryAnchorPresentAny": false,
+      "spanishVariantAnchorPresentAny": true,
+      "variantRescue": true,
+      "returned": 96,
+      "truncated": false,
+      "anchorVariantResults": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 1,
+          "endLine": 238,
+          "queryScore": 0.875,
+          "matchedTerms": [
+            "ya",
+            "estan",
+            "crecimiento",
+            "biologico",
+            "avanzado",
+            "variaciones",
+            "especie"
+          ],
+          "title": "MyceliumFront"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 5,
+          "endLine": 120,
+          "queryScore": 0.875,
+          "matchedTerms": [
+            "ya",
+            "estan",
+            "crecimiento",
+            "biologico",
+            "avanzado",
+            "variaciones",
+            "especie"
+          ],
+          "title": "Estado actual"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 49,
+          "endLine": 120,
+          "queryScore": 0.875,
+          "matchedTerms": [
+            "ya",
+            "estan",
+            "crecimiento",
+            "biologico",
+            "avanzado",
+            "variaciones",
+            "especie"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 113,
+          "endLine": 119,
+          "queryScore": 0.625,
+          "matchedTerms": [
+            "crecimiento",
+            "biologico",
+            "avanzado",
+            "variaciones",
+            "especie"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 114,
+          "endLine": 114,
+          "queryScore": 0.625,
+          "matchedTerms": [
+            "crecimiento",
+            "biologico",
+            "avanzado",
+            "variaciones",
+            "especie"
+          ],
+          "title": "Visual Asset Forge"
+        }
+      ]
+    },
+    {
+      "caseId": "D03",
+      "primaryAnchorPresentAny": false,
+      "spanishVariantAnchorPresentAny": true,
+      "variantRescue": true,
+      "returned": 95,
+      "truncated": false,
+      "anchorVariantResults": [
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 19,
+          "endLine": 53,
+          "queryScore": 0.857143,
+          "matchedTerms": [
+            "constructor",
+            "ya",
+            "busca",
+            "automaticamente",
+            "entre",
+            "nodos"
+          ],
+          "title": "Estado de implementación"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 1,
+          "endLine": 238,
+          "queryScore": 0.571429,
+          "matchedTerms": [
+            "ya",
+            "caminos",
+            "entre",
+            "nodos"
+          ],
+          "title": "MyceliumFront"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 5,
+          "endLine": 120,
+          "queryScore": 0.571429,
+          "matchedTerms": [
+            "ya",
+            "caminos",
+            "entre",
+            "nodos"
+          ],
+          "title": "Estado actual"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 50,
+          "endLine": 50,
+          "queryScore": 0.571429,
+          "matchedTerms": [
+            "constructor",
+            "busca",
+            "automaticamente",
+            "entre"
+          ],
+          "title": "Estado de implementación"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 49,
+          "endLine": 120,
+          "queryScore": 0.571429,
+          "matchedTerms": [
+            "ya",
+            "caminos",
+            "entre",
+            "nodos"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 113,
+          "endLine": 119,
+          "queryScore": 0.428571,
+          "matchedTerms": [
+            "caminos",
+            "entre",
+            "nodos"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 115,
+          "endLine": 115,
+          "queryScore": 0.428571,
+          "matchedTerms": [
+            "caminos",
+            "entre",
+            "nodos"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 1,
+          "endLine": 535,
+          "queryScore": 0.857143,
+          "matchedTerms": [
+            "constructor",
+            "ya",
+            "busca",
+            "automaticamente",
+            "entre",
+            "nodos"
+          ],
+          "title": "MyceliumFront — Roadmap técnico y de producto"
+        }
+      ]
+    },
+    {
+      "caseId": "D05",
+      "primaryAnchorPresentAny": false,
+      "spanishVariantAnchorPresentAny": true,
+      "variantRescue": true,
+      "returned": 44,
+      "truncated": false,
+      "anchorVariantResults": [
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 1,
+          "endLine": 328,
+          "queryScore": 0.75,
+          "matchedTerms": [
+            "guardan",
+            "entre",
+            "sesiones"
+          ],
+          "title": "MyceliumFront — Arquitectura técnica"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 1,
+          "endLine": 238,
+          "queryScore": 0.75,
+          "matchedTerms": [
+            "colonias",
+            "entre",
+            "sesiones"
+          ],
+          "title": "MyceliumFront"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 5,
+          "endLine": 120,
+          "queryScore": 0.75,
+          "matchedTerms": [
+            "colonias",
+            "entre",
+            "sesiones"
+          ],
+          "title": "Estado actual"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 49,
+          "endLine": 120,
+          "queryScore": 0.75,
+          "matchedTerms": [
+            "colonias",
+            "entre",
+            "sesiones"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 113,
+          "endLine": 119,
+          "queryScore": 0.75,
+          "matchedTerms": [
+            "colonias",
+            "entre",
+            "sesiones"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 117,
+          "endLine": 117,
+          "queryScore": 0.75,
+          "matchedTerms": [
+            "colonias",
+            "entre",
+            "sesiones"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 218,
+          "endLine": 229,
+          "queryScore": 0.25,
+          "matchedTerms": [
+            "colonias"
+          ],
+          "title": "Próximo incremento"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 228,
+          "endLine": 228,
+          "queryScore": 0.25,
+          "matchedTerms": [
+            "colonias"
+          ],
+          "title": "Próximo incremento"
+        },
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 306,
+          "endLine": 319,
+          "queryScore": 0.25,
+          "matchedTerms": [
+            "guardan"
+          ],
+          "title": "Persistencia futura"
+        },
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 318,
+          "endLine": 318,
+          "queryScore": 0.25,
+          "matchedTerms": [
+            "guardan"
+          ],
+          "title": "Persistencia futura"
+        }
+      ]
+    },
+    {
+      "caseId": "D06",
+      "primaryAnchorPresentAny": false,
+      "spanishVariantAnchorPresentAny": true,
+      "variantRescue": true,
+      "returned": 88,
+      "truncated": false,
+      "anchorVariantResults": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 1,
+          "endLine": 238,
+          "queryScore": 0.666667,
+          "matchedTerms": [
+            "puede",
+            "ya",
+            "superficies",
+            "materiales"
+          ],
+          "title": "MyceliumFront"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 5,
+          "endLine": 120,
+          "queryScore": 0.666667,
+          "matchedTerms": [
+            "puede",
+            "ya",
+            "superficies",
+            "materiales"
+          ],
+          "title": "Estado actual"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 49,
+          "endLine": 120,
+          "queryScore": 0.666667,
+          "matchedTerms": [
+            "puede",
+            "ya",
+            "superficies",
+            "materiales"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 113,
+          "endLine": 119,
+          "queryScore": 0.333333,
+          "matchedTerms": [
+            "superficies",
+            "materiales"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 118,
+          "endLine": 118,
+          "queryScore": 0.333333,
+          "matchedTerms": [
+            "superficies",
+            "materiales"
+          ],
+          "title": "Visual Asset Forge"
+        }
+      ]
+    },
+    {
+      "caseId": "D10",
+      "primaryAnchorPresentAny": true,
+      "spanishVariantAnchorPresentAny": true,
+      "variantRescue": false,
+      "returned": 100,
+      "truncated": true,
+      "anchorVariantResults": [
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 208,
+          "endLine": 432,
+          "queryScore": 0.375,
+          "matchedTerms": [
+            "ruta",
+            "fase",
+            "8"
+          ],
+          "title": "Fases del roadmap"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 418,
+          "endLine": 432,
+          "queryScore": 0.25,
+          "matchedTerms": [
+            "fase",
+            "8"
+          ],
+          "title": "Fase 8 — Sectores, varias bases y cooperativo"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 420,
+          "endLine": 420,
+          "queryScore": 0.25,
+          "matchedTerms": [
+            "fase",
+            "8"
+          ],
+          "title": "Fase 8 — Sectores, varias bases y cooperativo"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 422,
+          "endLine": 422,
+          "queryScore": 0.25,
+          "matchedTerms": [
+            "fase",
+            "8"
+          ],
+          "title": "Fase 8 — Sectores, varias bases y cooperativo"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 424,
+          "endLine": 429,
+          "queryScore": 0.25,
+          "matchedTerms": [
+            "fase",
+            "8"
+          ],
+          "title": "Fase 8 — Sectores, varias bases y cooperativo"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 424,
+          "endLine": 424,
+          "queryScore": 0.25,
+          "matchedTerms": [
+            "fase",
+            "8"
+          ],
+          "title": "Fase 8 — Sectores, varias bases y cooperativo"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 425,
+          "endLine": 425,
+          "queryScore": 0.25,
+          "matchedTerms": [
+            "fase",
+            "8"
+          ],
+          "title": "Fase 8 — Sectores, varias bases y cooperativo"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 426,
+          "endLine": 426,
+          "queryScore": 0.25,
+          "matchedTerms": [
+            "fase",
+            "8"
+          ],
+          "title": "Fase 8 — Sectores, varias bases y cooperativo"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 427,
+          "endLine": 427,
+          "queryScore": 0.25,
+          "matchedTerms": [
+            "fase",
+            "8"
+          ],
+          "title": "Fase 8 — Sectores, varias bases y cooperativo"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 428,
+          "endLine": 428,
+          "queryScore": 0.25,
+          "matchedTerms": [
+            "fase",
+            "8"
+          ],
+          "title": "Fase 8 — Sectores, varias bases y cooperativo"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 429,
+          "endLine": 429,
+          "queryScore": 0.25,
+          "matchedTerms": [
+            "fase",
+            "8"
+          ],
+          "title": "Fase 8 — Sectores, varias bases y cooperativo"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 431,
+          "endLine": 431,
+          "queryScore": 0.25,
+          "matchedTerms": [
+            "fase",
+            "8"
+          ],
+          "title": "Fase 8 — Sectores, varias bases y cooperativo"
+        }
+      ]
+    },
+    {
+      "caseId": "D13",
+      "primaryAnchorPresentAny": false,
+      "spanishVariantAnchorPresentAny": true,
+      "variantRescue": true,
+      "returned": 71,
+      "truncated": false,
+      "anchorVariantResults": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 1,
+          "endLine": 238,
+          "queryScore": 0.857143,
+          "matchedTerms": [
+            "rutas",
+            "alternativas",
+            "ya",
+            "forman",
+            "parte",
+            "implementado"
+          ],
+          "title": "MyceliumFront"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 5,
+          "endLine": 120,
+          "queryScore": 0.571429,
+          "matchedTerms": [
+            "rutas",
+            "alternativas",
+            "ya",
+            "implementado"
+          ],
+          "title": "Estado actual"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 49,
+          "endLine": 120,
+          "queryScore": 0.571429,
+          "matchedTerms": [
+            "rutas",
+            "alternativas",
+            "ya",
+            "implementado"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 208,
+          "endLine": 432,
+          "queryScore": 0.428571,
+          "matchedTerms": [
+            "rutas",
+            "alternativas",
+            "sencillas"
+          ],
+          "title": "Fases del roadmap"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 251,
+          "endLine": 269,
+          "queryScore": 0.428571,
+          "matchedTerms": [
+            "rutas",
+            "alternativas",
+            "sencillas"
+          ],
+          "title": "Fase 2 — Crecimiento visual y conexión automática"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 257,
+          "endLine": 264,
+          "queryScore": 0.428571,
+          "matchedTerms": [
+            "rutas",
+            "alternativas",
+            "sencillas"
+          ],
+          "title": "Fase 2 — Crecimiento visual y conexión automática"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 263,
+          "endLine": 263,
+          "queryScore": 0.428571,
+          "matchedTerms": [
+            "rutas",
+            "alternativas",
+            "sencillas"
+          ],
+          "title": "Fase 2 — Crecimiento visual y conexión automática"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 113,
+          "endLine": 113,
+          "queryScore": 0.285714,
+          "matchedTerms": [
+            "rutas",
+            "alternativas"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 113,
+          "endLine": 119,
+          "queryScore": 0.285714,
+          "matchedTerms": [
+            "rutas",
+            "alternativas"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 115,
+          "endLine": 115,
+          "queryScore": 0.142857,
+          "matchedTerms": [
+            "rutas"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 1,
+          "endLine": 535,
+          "queryScore": 0.571429,
+          "matchedTerms": [
+            "rutas",
+            "alternativas",
+            "sencillas",
+            "ya"
+          ],
+          "title": "MyceliumFront — Roadmap técnico y de producto"
+        }
+      ]
+    },
+    {
+      "caseId": "U03",
+      "primaryAnchorPresentAny": false,
+      "spanishVariantAnchorPresentAny": true,
+      "variantRescue": true,
+      "returned": 100,
+      "truncated": true,
+      "anchorVariantResults": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 1,
+          "endLine": 238,
+          "queryScore": 0.4,
+          "matchedTerms": [
+            "esporas",
+            "conexion"
+          ],
+          "title": "MyceliumFront"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 5,
+          "endLine": 120,
+          "queryScore": 0.4,
+          "matchedTerms": [
+            "esporas",
+            "conexion"
+          ],
+          "title": "Estado actual"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 49,
+          "endLine": 120,
+          "queryScore": 0.4,
+          "matchedTerms": [
+            "esporas",
+            "conexion"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 79,
+          "endLine": 109,
+          "queryScore": 0.4,
+          "matchedTerms": [
+            "esporas",
+            "conexion"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 104,
+          "endLine": 104,
+          "queryScore": 0.2,
+          "matchedTerms": [
+            "esporas"
+          ],
+          "title": "Visual Asset Forge"
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 105,
+          "endLine": 105,
+          "queryScore": 0.2,
+          "matchedTerms": [
+            "esporas"
+          ],
+          "title": "Visual Asset Forge"
+        }
+      ]
+    }
+  ],
+  "maxResults8": [
+    {
+      "caseId": "P04",
+      "anchorInTop8": true,
+      "candidateCount": 8,
+      "primaryOnlyCount": 0,
+      "variantOnlyCount": 8,
+      "truncated": true
+    },
+    {
+      "caseId": "P05",
+      "anchorInTop8": true,
+      "candidateCount": 8,
+      "primaryOnlyCount": 3,
+      "variantOnlyCount": 5,
+      "truncated": true
+    },
+    {
+      "caseId": "D02",
+      "anchorInTop8": true,
+      "candidateCount": 8,
+      "primaryOnlyCount": 5,
+      "variantOnlyCount": 3,
+      "truncated": true
+    },
+    {
+      "caseId": "D03",
+      "anchorInTop8": true,
+      "candidateCount": 8,
+      "primaryOnlyCount": 0,
+      "variantOnlyCount": 8,
+      "truncated": true
+    },
+    {
+      "caseId": "D05",
+      "anchorInTop8": true,
+      "candidateCount": 8,
+      "primaryOnlyCount": 0,
+      "variantOnlyCount": 8,
+      "truncated": true
+    },
+    {
+      "caseId": "D06",
+      "anchorInTop8": true,
+      "candidateCount": 8,
+      "primaryOnlyCount": 0,
+      "variantOnlyCount": 8,
+      "truncated": true
+    },
+    {
+      "caseId": "D10",
+      "anchorInTop8": false,
+      "candidateCount": 8,
+      "primaryOnlyCount": 8,
+      "variantOnlyCount": 0,
+      "truncated": true
+    },
+    {
+      "caseId": "D13",
+      "anchorInTop8": true,
+      "candidateCount": 8,
+      "primaryOnlyCount": 0,
+      "variantOnlyCount": 8,
+      "truncated": true
+    },
+    {
+      "caseId": "U03",
+      "anchorInTop8": true,
+      "candidateCount": 8,
+      "primaryOnlyCount": 0,
+      "variantOnlyCount": 8,
+      "truncated": true
+    }
+  ],
+  "maxResults16": [
+    {
+      "caseId": "P04",
+      "anchorOverlapTop16": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstAnchorRank": 1,
+      "primaryCount": 0,
+      "variantCount": 16,
+      "truncated": true,
+      "targetMatches": [
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 1,
+          "endLine": 328,
+          "score": 0.6,
+          "scoreQueryIndex": 1,
+          "title": "MyceliumFront — Arquitectura técnica",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 7,
+          "endLine": 131,
+          "score": 0.6,
+          "scoreQueryIndex": 1,
+          "title": "Capas principales",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 24,
+          "endLine": 55,
+          "score": 0.4,
+          "scoreQueryIndex": 1,
+          "title": "2. Contratos de runtime",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 19,
+          "endLine": 53,
+          "score": 0.4,
+          "scoreQueryIndex": 1,
+          "title": "Estado de implementación",
+          "exactFetchable": true
+        }
+      ]
+    },
+    {
+      "caseId": "P05",
+      "anchorOverlapTop16": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstAnchorRank": 5,
+      "primaryCount": 3,
+      "variantCount": 13,
+      "truncated": true,
+      "targetMatches": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 1,
+          "endLine": 238,
+          "score": 0.666667,
+          "scoreQueryIndex": 1,
+          "title": "MyceliumFront",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 5,
+          "endLine": 120,
+          "score": 0.666667,
+          "scoreQueryIndex": 1,
+          "title": "Estado actual",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 49,
+          "endLine": 120,
+          "score": 0.5,
+          "scoreQueryIndex": 1,
+          "title": "Visual Asset Forge",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 79,
+          "endLine": 109,
+          "score": 0.5,
+          "scoreQueryIndex": 1,
+          "title": "Visual Asset Forge",
+          "exactFetchable": true
+        }
+      ]
+    },
+    {
+      "caseId": "D02",
+      "anchorOverlapTop16": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstAnchorRank": 6,
+      "primaryCount": 5,
+      "variantCount": 11,
+      "truncated": true,
+      "targetMatches": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 1,
+          "endLine": 238,
+          "score": 0.875,
+          "scoreQueryIndex": 1,
+          "title": "MyceliumFront",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 5,
+          "endLine": 120,
+          "score": 0.875,
+          "scoreQueryIndex": 1,
+          "title": "Estado actual",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 49,
+          "endLine": 120,
+          "score": 0.875,
+          "scoreQueryIndex": 1,
+          "title": "Visual Asset Forge",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 113,
+          "endLine": 119,
+          "score": 0.625,
+          "scoreQueryIndex": 1,
+          "title": "Visual Asset Forge",
+          "exactFetchable": true
+        }
+      ]
+    },
+    {
+      "caseId": "D03",
+      "anchorOverlapTop16": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstAnchorRank": 1,
+      "primaryCount": 0,
+      "variantCount": 16,
+      "truncated": true,
+      "targetMatches": [
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 19,
+          "endLine": 53,
+          "score": 0.857143,
+          "scoreQueryIndex": 1,
+          "title": "Estado de implementación",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 1,
+          "endLine": 238,
+          "score": 0.571429,
+          "scoreQueryIndex": 1,
+          "title": "MyceliumFront",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 5,
+          "endLine": 120,
+          "score": 0.571429,
+          "scoreQueryIndex": 1,
+          "title": "Estado actual",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 50,
+          "endLine": 50,
+          "score": 0.571429,
+          "scoreQueryIndex": 1,
+          "title": "Estado de implementación",
+          "exactFetchable": true
+        }
+      ]
+    },
+    {
+      "caseId": "D05",
+      "anchorOverlapTop16": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstAnchorRank": 1,
+      "primaryCount": 0,
+      "variantCount": 16,
+      "truncated": true,
+      "targetMatches": [
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 1,
+          "endLine": 328,
+          "score": 0.75,
+          "scoreQueryIndex": 1,
+          "title": "MyceliumFront — Arquitectura técnica",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 1,
+          "endLine": 238,
+          "score": 0.75,
+          "scoreQueryIndex": 1,
+          "title": "MyceliumFront",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 5,
+          "endLine": 120,
+          "score": 0.75,
+          "scoreQueryIndex": 1,
+          "title": "Estado actual",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 49,
+          "endLine": 120,
+          "score": 0.75,
+          "scoreQueryIndex": 1,
+          "title": "Visual Asset Forge",
+          "exactFetchable": true
+        }
+      ]
+    },
+    {
+      "caseId": "D06",
+      "anchorOverlapTop16": true,
+      "fullAnchorContained": true,
+      "exactAnchor": true,
+      "firstAnchorRank": 1,
+      "primaryCount": 0,
+      "variantCount": 16,
+      "truncated": true,
+      "targetMatches": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 1,
+          "endLine": 238,
+          "score": 0.666667,
+          "scoreQueryIndex": 1,
+          "title": "MyceliumFront",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 5,
+          "endLine": 120,
+          "score": 0.666667,
+          "scoreQueryIndex": 1,
+          "title": "Estado actual",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 49,
+          "endLine": 120,
+          "score": 0.666667,
+          "scoreQueryIndex": 1,
+          "title": "Visual Asset Forge",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 113,
+          "endLine": 119,
+          "score": 0.333333,
+          "scoreQueryIndex": 1,
+          "title": "Visual Asset Forge",
+          "exactFetchable": true
+        }
+      ]
+    },
+    {
+      "caseId": "D10",
+      "anchorOverlapTop16": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstAnchorRank": 10,
+      "primaryCount": 16,
+      "variantCount": 0,
+      "truncated": true,
+      "targetMatches": [
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 208,
+          "endLine": 432,
+          "score": 0.285714,
+          "scoreQueryIndex": 0,
+          "title": "Fases del roadmap",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 418,
+          "endLine": 432,
+          "score": 0.285714,
+          "scoreQueryIndex": 0,
+          "title": "Fase 8 — Sectores, varias bases y cooperativo",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 420,
+          "endLine": 420,
+          "score": 0.285714,
+          "scoreQueryIndex": 0,
+          "title": "Fase 8 — Sectores, varias bases y cooperativo",
+          "exactFetchable": true
+        }
+      ]
+    },
+    {
+      "caseId": "D13",
+      "anchorOverlapTop16": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstAnchorRank": 1,
+      "primaryCount": 0,
+      "variantCount": 16,
+      "truncated": true,
+      "targetMatches": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 1,
+          "endLine": 238,
+          "score": 0.857143,
+          "scoreQueryIndex": 1,
+          "title": "MyceliumFront",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 5,
+          "endLine": 120,
+          "score": 0.571429,
+          "scoreQueryIndex": 1,
+          "title": "Estado actual",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 49,
+          "endLine": 120,
+          "score": 0.571429,
+          "scoreQueryIndex": 1,
+          "title": "Visual Asset Forge",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 208,
+          "endLine": 432,
+          "score": 0.428571,
+          "scoreQueryIndex": 1,
+          "title": "Fases del roadmap",
+          "exactFetchable": true
+        }
+      ]
+    },
+    {
+      "caseId": "U03",
+      "anchorOverlapTop16": true,
+      "fullAnchorContained": true,
+      "exactAnchor": false,
+      "firstAnchorRank": 3,
+      "primaryCount": 0,
+      "variantCount": 16,
+      "truncated": true,
+      "targetMatches": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 1,
+          "endLine": 238,
+          "score": 0.4,
+          "scoreQueryIndex": 1,
+          "title": "MyceliumFront",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 5,
+          "endLine": 120,
+          "score": 0.4,
+          "scoreQueryIndex": 1,
+          "title": "Estado actual",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 49,
+          "endLine": 120,
+          "score": 0.4,
+          "scoreQueryIndex": 1,
+          "title": "Visual Asset Forge",
+          "exactFetchable": true
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 79,
+          "endLine": 109,
+          "score": 0.4,
+          "scoreQueryIndex": 1,
+          "title": "Visual Asset Forge",
+          "exactFetchable": true
+        }
+      ]
+    }
+  ]
+}

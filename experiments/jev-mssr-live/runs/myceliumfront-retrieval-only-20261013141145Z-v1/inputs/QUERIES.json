@@ -1,0 +1,818 @@
+{
+  "runId": "myceliumfront-retrieval-only-20261013141145Z-v1",
+  "ownerAdjudication": "pending",
+  "provisionalAnchorsOnly": true,
+  "expectedAnswersOmitted": true,
+  "queries": [
+    {
+      "caseId": "P01",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 7,
+          "endLine": 9
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Qué versión del prototipo indica el README?"
+        },
+        {
+          "language": "en",
+          "query": "What prototype version does the README identify?"
+        }
+      ]
+    },
+    {
+      "caseId": "P02",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 20,
+          "endLine": 20
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Dónde vive hoy el código Luau y qué limita clonar el repo para editar scripts?"
+        },
+        {
+          "language": "en",
+          "query": "Where does the Luau code currently live, and what does cloning the repo not enable?"
+        }
+      ]
+    },
+    {
+      "caseId": "P03",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 32,
+          "endLine": 32
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Cómo separa el dashboard los historiales de assets lógicos que comparten un paquete técnico?"
+        },
+        {
+          "language": "en",
+          "query": "How does the dashboard keep histories separate for logical assets that share a technical package?"
+        }
+      ]
+    },
+    {
+      "caseId": "P04",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 83,
+          "endLine": 83
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 38,
+          "endLine": 38
+        },
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 26,
+          "endLine": 35
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Qué identifica de forma estable una entidad construida?"
+        },
+        {
+          "language": "en",
+          "query": "What provides stable identity for a built entity?"
+        }
+      ]
+    },
+    {
+      "caseId": "P05",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 86,
+          "endLine": 86
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Cuáles son los cuatro puertos lógicos de una planta?"
+        },
+        {
+          "language": "en",
+          "query": "What are the four logical ports on a plant?"
+        }
+      ]
+    },
+    {
+      "caseId": "P06",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 88,
+          "endLine": 88
+        },
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 87,
+          "endLine": 89
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Cuántas conexiones simultáneas admite un puerto?"
+        },
+        {
+          "language": "en",
+          "query": "How many simultaneous connections can one port accept?"
+        }
+      ]
+    },
+    {
+      "caseId": "P07",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 90,
+          "endLine": 90
+        },
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 88,
+          "endLine": 89
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "Al reubicar un extremo con `RewireConnection`, ¿qué ocurre con la identidad del enlace?"
+        },
+        {
+          "language": "en",
+          "query": "When `RewireConnection` moves an endpoint, what happens to link identity?"
+        }
+      ]
+    },
+    {
+      "caseId": "P08",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 94,
+          "endLine": 94
+        },
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 82,
+          "endLine": 83
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Quién calcula `Flow` y qué hace el cliente con ese valor?"
+        },
+        {
+          "language": "en",
+          "query": "Who calculates `Flow`, and what does the client do with it?"
+        }
+      ]
+    },
+    {
+      "caseId": "P09",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 97,
+          "endLine": 97
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 40,
+          "endLine": 40
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Durante cuánto tiempo se deduplica un `requestId`, y con qué clave?"
+        },
+        {
+          "language": "en",
+          "query": "For how long is a `requestId` deduplicated, and by which key?"
+        }
+      ]
+    },
+    {
+      "caseId": "P10",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 100,
+          "endLine": 100
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Qué roles cumplen `SolarBloom`, `MyceliumLink` y `CactusSentry` en el ledger?"
+        },
+        {
+          "language": "en",
+          "query": "What roles do `SolarBloom`, `MyceliumLink`, and `CactusSentry` have in the nutrient ledger?"
+        }
+      ]
+    },
+    {
+      "caseId": "P11",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 102,
+          "endLine": 102
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 304,
+          "endLine": 304
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Qué dimensiones y elementos principales documenta C002 para el arena?"
+        },
+        {
+          "language": "en",
+          "query": "What dimensions and main elements does C002 document for the arena?"
+        }
+      ]
+    },
+    {
+      "caseId": "P12",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 103,
+          "endLine": 103
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 305,
+          "endLine": 305
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Qué incluye la sesión C004 ya completada?"
+        },
+        {
+          "language": "en",
+          "query": "What does the completed C004 session include?"
+        }
+      ]
+    },
+    {
+      "caseId": "P13",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 222,
+          "endLine": 222
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Qué decisión se aprobó para B003?"
+        },
+        {
+          "language": "en",
+          "query": "What design decision was approved for B003?"
+        }
+      ]
+    },
+    {
+      "caseId": "P14",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 224,
+          "endLine": 224
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿`Tres hongos unidos` se fusionó con B003? ¿Qué relación conserva?"
+        },
+        {
+          "language": "en",
+          "query": "Was `Tres hongos unidos` merged into B003, and what relation does it retain?"
+        }
+      ]
+    },
+    {
+      "caseId": "P15",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 225,
+          "endLine": 225
+        },
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 105,
+          "endLine": 109
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Qué pieza es la única hitbox consultable del puerto-hongo visual?"
+        },
+        {
+          "language": "en",
+          "query": "Which component is the only queryable hitbox for the mushroom port visual?"
+        }
+      ]
+    },
+    {
+      "caseId": "D01",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 111,
+          "endLine": 114
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Ya están completas las prioridades, el almacenamiento especializado y la economía de nutrientes?"
+        },
+        {
+          "language": "en",
+          "query": "Are nutrient priorities, specialized storage, and the full nutrient economy complete?"
+        }
+      ]
+    },
+    {
+      "caseId": "D02",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 114,
+          "endLine": 114
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Ya están implementados el crecimiento biológico avanzado y las variaciones por especie?"
+        },
+        {
+          "language": "en",
+          "query": "Are advanced biological growth and species variations implemented?"
+        }
+      ]
+    },
+    {
+      "caseId": "D03",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 115,
+          "endLine": 115
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 50,
+          "endLine": 50
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿El constructor ya busca caminos automáticamente entre nodos?"
+        },
+        {
+          "language": "en",
+          "query": "Does the builder already search paths between nodes automatically?"
+        }
+      ]
+    },
+    {
+      "caseId": "D04",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 116,
+          "endLine": 116
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿El combate ya tiene balance final, jefe y progresión terminados?"
+        },
+        {
+          "language": "en",
+          "query": "Are final combat balance, a boss, and progression complete?"
+        }
+      ]
+    },
+    {
+      "caseId": "D05",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 117,
+          "endLine": 117
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 228,
+          "endLine": 228
+        },
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 306,
+          "endLine": 318
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Se guardan las colonias entre sesiones?"
+        },
+        {
+          "language": "en",
+          "query": "Are colonies persisted across sessions?"
+        }
+      ]
+    },
+    {
+      "caseId": "D06",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 118,
+          "endLine": 118
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Se puede plantar ya sobre varias superficies o materiales?"
+        },
+        {
+          "language": "en",
+          "query": "Can the player already plant on multiple surfaces or materials?"
+        }
+      ]
+    },
+    {
+      "caseId": "D07",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 119,
+          "endLine": 119
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 418,
+          "endLine": 431
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Ya existen el cooperativo y las múltiples bases?"
+        },
+        {
+          "language": "en",
+          "query": "Do co-op and multiple bases exist yet?"
+        }
+      ]
+    },
+    {
+      "caseId": "D08",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 98,
+          "endLine": 98
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 132,
+          "endLine": 132
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Se acepta modificar una muestra de la galería?"
+        },
+        {
+          "language": "en",
+          "query": "Is modification of a gallery sample accepted?"
+        }
+      ]
+    },
+    {
+      "caseId": "D09",
+      "anchors": [
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 176,
+          "endLine": 180
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Se midió una mejora de calidad de código con un benchmark A/B?"
+        },
+        {
+          "language": "en",
+          "query": "Was code-quality improvement measured with an A/B benchmark?"
+        }
+      ]
+    },
+    {
+      "caseId": "D10",
+      "anchors": [
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 418,
+          "endLine": 431
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Qué condición exige la hoja de ruta antes de iniciar la Fase 8?"
+        },
+        {
+          "language": "en",
+          "query": "What condition must be met before Roadmap Phase 8 begins?"
+        }
+      ]
+    },
+    {
+      "caseId": "D11",
+      "anchors": [
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 320,
+          "endLine": 328
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Una prueba en Play demuestra que el guardado llegó a Edit o al disco?"
+        },
+        {
+          "language": "en",
+          "query": "Does a Play test prove that saved state reached Edit or disk?"
+        }
+      ]
+    },
+    {
+      "caseId": "D12",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 226,
+          "endLine": 226
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 531,
+          "endLine": 531
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Está cerrada la revisión humana de C007?"
+        },
+        {
+          "language": "en",
+          "query": "Is the human review gate for C007 complete?"
+        }
+      ]
+    },
+    {
+      "caseId": "D13",
+      "anchors": [
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 258,
+          "endLine": 264
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 113,
+          "endLine": 115
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Las rutas alternativas sencillas ya forman parte de lo implementado?"
+        },
+        {
+          "language": "en",
+          "query": "Are simple alternate routes already implemented?"
+        }
+      ]
+    },
+    {
+      "caseId": "D14",
+      "anchors": [
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 105,
+          "endLine": 108
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿La geometría B003 participa en colisiones o consultas?"
+        },
+        {
+          "language": "en",
+          "query": "Does B003 geometry participate in collisions or queries?"
+        }
+      ]
+    },
+    {
+      "caseId": "D15",
+      "anchors": [
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 165,
+          "endLine": 168
+        },
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 62,
+          "endLine": 66
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿`BuildPaletteSlot` representa una posición del mundo que puede ocuparse?"
+        },
+        {
+          "language": "en",
+          "query": "Is `BuildPaletteSlot` an occupiable world position?"
+        }
+      ]
+    },
+    {
+      "caseId": "U01",
+      "anchors": [
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 135,
+          "endLine": 137
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 128,
+          "endLine": 135
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Cuál es el daño por disparo del `CactusSentry` en el runtime actual?"
+        },
+        {
+          "language": "en",
+          "query": "What is the `CactusSentry` per-shot damage in the current runtime?"
+        }
+      ]
+    },
+    {
+      "caseId": "U02",
+      "anchors": [
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 135,
+          "endLine": 137
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 128,
+          "endLine": 135
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Cuál es el cooldown exacto del `CactusSentry` en el runtime actual?"
+        },
+        {
+          "language": "en",
+          "query": "What is the exact `CactusSentry` cooldown in the current runtime?"
+        }
+      ]
+    },
+    {
+      "caseId": "U03",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 104,
+          "endLine": 105
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Cuál es el costo exacto en esporas de reparar una conexión?"
+        },
+        {
+          "language": "en",
+          "query": "What is the exact spore cost to repair a connection?"
+        }
+      ]
+    },
+    {
+      "caseId": "U04",
+      "anchors": [
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 111,
+          "endLine": 117
+        },
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 162,
+          "endLine": 162
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 526,
+          "endLine": 526
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Cada cuántos segundos ejecuta el `NutrientGraph` el tick de simulación?"
+        },
+        {
+          "language": "en",
+          "query": "How many seconds apart are `NutrientGraph` simulation ticks?"
+        }
+      ]
+    },
+    {
+      "caseId": "U05",
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 101,
+          "endLine": 103
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 303,
+          "endLine": 305
+        }
+      ],
+      "arms": [
+        {
+          "language": "es",
+          "query": "¿Cuántas hormigas aparecen en cada una de las cinco oleadas C004?"
+        },
+        {
+          "language": "en",
+          "query": "How many ants spawn in each of the five C004 waves?"
+        }
+      ]
+    }
+  ]
+}

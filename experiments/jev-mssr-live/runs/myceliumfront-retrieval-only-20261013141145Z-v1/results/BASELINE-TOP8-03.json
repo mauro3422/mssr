@@ -1,0 +1,1095 @@
+{
+  "runId": "myceliumfront-retrieval-only-20261013141145Z-v1",
+  "part": 3,
+  "totalParts": 5,
+  "fields": "candidate tuple = [handleId, sourceRef, startLine, endLine, lexicalScore, rangeFingerprint, sourceRevision]",
+  "results": [
+    {
+      "caseId": "P15",
+      "language": "es",
+      "query": "¿Qué pieza es la única hitbox consultable del puerto-hongo visual?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 225,
+          "endLine": 225
+        },
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 105,
+          "endLine": 109
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.833333,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.666667,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "159f462be21917ce140c7d42fd1c1b26cfc108504441d840eed77dc22a89f28f",
+          "docs/PROJECT_NOTES.md",
+          58,
+          118,
+          0.666667,
+          "8c9662c4d9a10b002ba4c7bf8ee9557711ec0a0b6c9aa5963f13ee72ef2a5bea",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "bd629ac2af3bd5a779d7d7020dd8d670c713e6ebb7bc7a9c916246cd24d54b68",
+          "README.md",
+          218,
+          229,
+          0.666667,
+          "1f354649f7b47bf6c59efcdc25cc8c40c048bd050bcd0a5e84d3a7897e9ca444",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "e01d393ec1b20d32f7f43eea2f2c755319b307b1af2235dab3b054877bd66ea1",
+          "docs/PROJECT_NOTES.md",
+          103,
+          110,
+          0.666667,
+          "9e30260ac1d0feb295d1a2b6277148648dee0959f63f935666b5868062ec2c3e",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "719f5d39d38b3fade2d254bdbfeaab11026444745ec94fa8689fd4a777786f40",
+          "README.md",
+          222,
+          226,
+          0.666667,
+          "e671ac943776046b521f25ccdb409b52ea65a082883f71d6ccfbdc4ff1b19502",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "604e4fc83168ae928f0d7ee74e4a80cde84f155d35b109323c346d1d0cc1ce18",
+          "docs/PROJECT_NOTES.md",
+          105,
+          109,
+          0.666667,
+          "05d89a818648092421bb58dcf18e01652d4280a45767a0c7652133964e892915",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "d5da8505b511849863dace63d85ae154914c954e106b6d105ee49da3c7d776b5",
+          "docs/PROJECT_NOTES.md",
+          107,
+          107,
+          0.666667,
+          "38d3e851dfae08e232e51ab36934758eb05ec53635c92c3d6b971f3e62ccd1c1",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ]
+      ]
+    },
+    {
+      "caseId": "P15",
+      "language": "en",
+      "query": "Which component is the only queryable hitbox for the mushroom port visual?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 2,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 225,
+          "endLine": 225
+        },
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 105,
+          "endLine": 109
+        }
+      ],
+      "candidateHandles": [
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.285714,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "159f462be21917ce140c7d42fd1c1b26cfc108504441d840eed77dc22a89f28f",
+          "docs/PROJECT_NOTES.md",
+          58,
+          118,
+          0.285714,
+          "8c9662c4d9a10b002ba4c7bf8ee9557711ec0a0b6c9aa5963f13ee72ef2a5bea",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.285714,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.285714,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "7500baf9b69a1e6bfd4cc807b5dc6b62e1fb8bed192fb349b6e3577ab75e808c",
+          "docs/ARCHITECTURE.md",
+          7,
+          131,
+          0.285714,
+          "13d664487060c8667a9b6b01e463161b2e0a257c72e2546a604cadc610d6d604",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "e01d393ec1b20d32f7f43eea2f2c755319b307b1af2235dab3b054877bd66ea1",
+          "docs/PROJECT_NOTES.md",
+          103,
+          110,
+          0.285714,
+          "9e30260ac1d0feb295d1a2b6277148648dee0959f63f935666b5868062ec2c3e",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "bd629ac2af3bd5a779d7d7020dd8d670c713e6ebb7bc7a9c916246cd24d54b68",
+          "README.md",
+          218,
+          229,
+          0.285714,
+          "1f354649f7b47bf6c59efcdc25cc8c40c048bd050bcd0a5e84d3a7897e9ca444",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "604e4fc83168ae928f0d7ee74e4a80cde84f155d35b109323c346d1d0cc1ce18",
+          "docs/PROJECT_NOTES.md",
+          105,
+          109,
+          0.285714,
+          "05d89a818648092421bb58dcf18e01652d4280a45767a0c7652133964e892915",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ]
+      ]
+    },
+    {
+      "caseId": "D01",
+      "language": "es",
+      "query": "¿Ya están completas las prioridades, el almacenamiento especializado y la economía de nutrientes?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 111,
+          "endLine": 114
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          1,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          1,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          1,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "6dd64324d8b070c8b3681db6636cadc679b3550d9c9cb3c8637da3cbd85bb2f2",
+          "ROADMAP.md",
+          208,
+          432,
+          0.75,
+          "b98cdeff0b781949f22f641042afcdbf2ae59c3d08ff52b6fbb616358f0ae999",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "159f462be21917ce140c7d42fd1c1b26cfc108504441d840eed77dc22a89f28f",
+          "docs/PROJECT_NOTES.md",
+          58,
+          118,
+          0.625,
+          "8c9662c4d9a10b002ba4c7bf8ee9557711ec0a0b6c9aa5963f13ee72ef2a5bea",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "401921884ad20d9a4808cfea5979a01dec85c2e1e55cd9a9d0354f394772ca15",
+          "README.md",
+          113,
+          113,
+          0.625,
+          "a69d6a860b013312ea30887d97c7a22788de785cf3e0e1f31899a2a70b22869f",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b8fb224acd7e23f683477bd71e5a4a0300b798bd922d087d7e13f940ce959eb4",
+          "README.md",
+          113,
+          119,
+          0.625,
+          "95637d2f8a2cc1e8739005143229baed3bd4f8260ea031cb03f4162a6cd5cd82",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.5,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ]
+      ]
+    },
+    {
+      "caseId": "D01",
+      "language": "en",
+      "query": "Are nutrient priorities, specialized storage, and the full nutrient economy complete?",
+      "sourceCount": 4,
+      "returned": 7,
+      "truncated": false,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 3,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 111,
+          "endLine": 114
+        }
+      ],
+      "candidateHandles": [
+        [
+          "0265c0e2ff3a963551b7d0e693fc85f922dbad0e6c1e7f0ec25d770c4a055bc5",
+          "ROADMAP.md",
+          108,
+          141,
+          0.285714,
+          "c4a7c9247e8b7f32fe6fed5ee577db55beffadf0bdbf245063e8598a31f34495",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "a04fbf35af534dc0101d54f41a64c96a09bfd94befdc1da5609f449753352954",
+          "ROADMAP.md",
+          110,
+          138,
+          0.285714,
+          "804cd233337345dcc554c2f73c6f943f942560a4a7bafffc22e092f36eda31a6",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.142857,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.142857,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "3c10ef4ae31ec97623a442b6dd60284560be7b84f2862384d267977b4c9dde43",
+          "README.md",
+          24,
+          48,
+          0.142857,
+          "2c72c17658906206fb477c87423d20daae77504a53e7f7a466754f175e67efff",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "38fb08b7f7cd24e9a0ca161cbc006cfbdc4a6e7c0b135a0c4146b2312bb69d4c",
+          "README.md",
+          45,
+          45,
+          0.142857,
+          "55c2a2f01756c3b20f210b5ae1ad1b7b1dfd46508d8d328f135f458e88a6c084",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "2bed4bf9e96ae7b7b608d06bf328a92d2cfdbc149ea434a4a5d82d5114e70a9a",
+          "ROADMAP.md",
+          1,
+          535,
+          0.285714,
+          "4535dd83a36c097c0852b1a3f47d4d5a56a26332413f06389a31b30553af1a16",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "D02",
+      "language": "es",
+      "query": "¿Ya están implementados el crecimiento biológico avanzado y las variaciones por especie?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 114,
+          "endLine": 114
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.875,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.875,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.875,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b8fb224acd7e23f683477bd71e5a4a0300b798bd922d087d7e13f940ce959eb4",
+          "README.md",
+          113,
+          119,
+          0.625,
+          "95637d2f8a2cc1e8739005143229baed3bd4f8260ea031cb03f4162a6cd5cd82",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "4c4f54e6240162824f99c60942cd7668131f1a5ff2c4db3d59ed0786ef1915f0",
+          "README.md",
+          114,
+          114,
+          0.625,
+          "3ad46d706dea32413d08e2b75f9b8199cde3f5943a4df01b76bb63fc9fad0315",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "61c9867a0fc27dc748debd4e0112100b72b2f724c24e1abd5a9eb0b11b595683",
+          "ROADMAP.md",
+          515,
+          535,
+          0.5,
+          "64138f893eb73683ff3d53523de475085690ecd5ebae68e73b1b1fdf3c2a8f38",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "18c85d5a737837f6cf2ca4c1b115e4156c632c01f5c992c6e201f56a41ce90b3",
+          "ROADMAP.md",
+          517,
+          517,
+          0.375,
+          "f1b4360191142f731761086ea1850693c12c8a5d0488f308cb6979dc2f82c6f8",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "e783714e4fcdd4abd834e23d16ecb93848612725c68f6bbdcda8f4eeac9a208b",
+          "ROADMAP.md",
+          519,
+          533,
+          0.375,
+          "95b6eb6face93f9c892239111c16cc7e36fd4ddd7dee4e486f1e42f932d0bfa3",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "D02",
+      "language": "en",
+      "query": "Are advanced biological growth and species variations implemented?",
+      "sourceCount": 4,
+      "returned": 5,
+      "truncated": false,
+      "anchorOverlapTop8": false,
+      "firstAnchorOverlapRank": null,
+      "anchorContainmentTop8": false,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 114,
+          "endLine": 114
+        }
+      ],
+      "candidateHandles": [
+        [
+          "0265c0e2ff3a963551b7d0e693fc85f922dbad0e6c1e7f0ec25d770c4a055bc5",
+          "ROADMAP.md",
+          108,
+          141,
+          0.166667,
+          "c4a7c9247e8b7f32fe6fed5ee577db55beffadf0bdbf245063e8598a31f34495",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "a04fbf35af534dc0101d54f41a64c96a09bfd94befdc1da5609f449753352954",
+          "ROADMAP.md",
+          110,
+          138,
+          0.166667,
+          "804cd233337345dcc554c2f73c6f943f942560a4a7bafffc22e092f36eda31a6",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "b5f0fa8e0e0832543e309804ec743e0b2ef39023aa355abaaf21827aec73a1cd",
+          "ROADMAP.md",
+          469,
+          499,
+          0.166667,
+          "3c82c18494197730bb40bb1a35c6fbcf4171cf393d0f3ae250a211d9989206d8",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "9045b544381275d4b51f42f6ec6b0b520c4f533023f16419e622bb3a9770fa98",
+          "ROADMAP.md",
+          471,
+          496,
+          0.166667,
+          "87d6b62e0fce23d555e22874b38d80b8c1960d94d9c286e7e547a65be0fc10fd",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "2bed4bf9e96ae7b7b608d06bf328a92d2cfdbc149ea434a4a5d82d5114e70a9a",
+          "ROADMAP.md",
+          1,
+          535,
+          0.166667,
+          "4535dd83a36c097c0852b1a3f47d4d5a56a26332413f06389a31b30553af1a16",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "D03",
+      "language": "es",
+      "query": "¿El constructor ya busca caminos automáticamente entre nodos?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 115,
+          "endLine": 115
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 50,
+          "endLine": 50
+        }
+      ],
+      "candidateHandles": [
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.857143,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.571429,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "101ac07d9e2beed9a9f9e55014118252f5cb184963f5438737943b03db5dd15c",
+          "ROADMAP.md",
+          23,
+          48,
+          0.571429,
+          "868b889af93b32f5738827ccabea1f9aa1d37ccc1c85169cce041fed75bb12e3",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.571429,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "1968042ef57a10b5f07b2709ff49606dfb34bfb83847684009c21b4a36dfce16",
+          "ROADMAP.md",
+          50,
+          50,
+          0.571429,
+          "f78054eeeb90093c8bd1669471accb08da49b502b32d62dd0fd65407b09d5ced",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.571429,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.428571,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "b8fb224acd7e23f683477bd71e5a4a0300b798bd922d087d7e13f940ce959eb4",
+          "README.md",
+          113,
+          119,
+          0.428571,
+          "95637d2f8a2cc1e8739005143229baed3bd4f8260ea031cb03f4162a6cd5cd82",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ]
+      ]
+    },
+    {
+      "caseId": "D03",
+      "language": "en",
+      "query": "Does the builder already search paths between nodes automatically?",
+      "sourceCount": 4,
+      "returned": 0,
+      "truncated": false,
+      "anchorOverlapTop8": false,
+      "firstAnchorOverlapRank": null,
+      "anchorContainmentTop8": false,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 115,
+          "endLine": 115
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 50,
+          "endLine": 50
+        }
+      ],
+      "candidateHandles": []
+    },
+    {
+      "caseId": "D04",
+      "language": "es",
+      "query": "¿El combate ya tiene balance final, jefe y progresión terminados?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 116,
+          "endLine": 116
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.875,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.75,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.75,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b8fb224acd7e23f683477bd71e5a4a0300b798bd922d087d7e13f940ce959eb4",
+          "README.md",
+          113,
+          119,
+          0.625,
+          "95637d2f8a2cc1e8739005143229baed3bd4f8260ea031cb03f4162a6cd5cd82",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "9b1b3d221f970b605451640756fe6f4a83dbe46d6e305d2926a31ca073705ed2",
+          "README.md",
+          116,
+          116,
+          0.625,
+          "6813281323e4122f4061596f3f52048f7b49cbf62019af173d5b9703d42ec51b",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "6bddb5d536a29f2aa72d5e6688c5135e3ec9246c05e017e639e455fc0416b9a0",
+          "ROADMAP.md",
+          5,
+          5,
+          0.375,
+          "779de43a87a5d15636d3da4f3faab92a27b05b1f8013ef161d24764a18d69b09",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "6dd64324d8b070c8b3681db6636cadc679b3550d9c9cb3c8637da3cbd85bb2f2",
+          "ROADMAP.md",
+          208,
+          432,
+          0.375,
+          "b98cdeff0b781949f22f641042afcdbf2ae59c3d08ff52b6fbb616358f0ae999",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "159f462be21917ce140c7d42fd1c1b26cfc108504441d840eed77dc22a89f28f",
+          "docs/PROJECT_NOTES.md",
+          58,
+          118,
+          0.25,
+          "8c9662c4d9a10b002ba4c7bf8ee9557711ec0a0b6c9aa5963f13ee72ef2a5bea",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ]
+      ]
+    },
+    {
+      "caseId": "D04",
+      "language": "en",
+      "query": "Are final combat balance, a boss, and progression complete?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 116,
+          "endLine": 116
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.333333,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.333333,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.333333,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b8fb224acd7e23f683477bd71e5a4a0300b798bd922d087d7e13f940ce959eb4",
+          "README.md",
+          113,
+          119,
+          0.333333,
+          "95637d2f8a2cc1e8739005143229baed3bd4f8260ea031cb03f4162a6cd5cd82",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "9b1b3d221f970b605451640756fe6f4a83dbe46d6e305d2926a31ca073705ed2",
+          "README.md",
+          116,
+          116,
+          0.333333,
+          "6813281323e4122f4061596f3f52048f7b49cbf62019af173d5b9703d42ec51b",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "159f462be21917ce140c7d42fd1c1b26cfc108504441d840eed77dc22a89f28f",
+          "docs/PROJECT_NOTES.md",
+          58,
+          118,
+          0.166667,
+          "8c9662c4d9a10b002ba4c7bf8ee9557711ec0a0b6c9aa5963f13ee72ef2a5bea",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "3c10ef4ae31ec97623a442b6dd60284560be7b84f2862384d267977b4c9dde43",
+          "README.md",
+          24,
+          48,
+          0.166667,
+          "2c72c17658906206fb477c87423d20daae77504a53e7f7a466754f175e67efff",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "6bddb5d536a29f2aa72d5e6688c5135e3ec9246c05e017e639e455fc0416b9a0",
+          "ROADMAP.md",
+          5,
+          5,
+          0.166667,
+          "779de43a87a5d15636d3da4f3faab92a27b05b1f8013ef161d24764a18d69b09",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "D05",
+      "language": "es",
+      "query": "¿Se guardan las colonias entre sesiones?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 117,
+          "endLine": 117
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 228,
+          "endLine": 228
+        },
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 306,
+          "endLine": 318
+        }
+      ],
+      "candidateHandles": [
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.75,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.75,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.75,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.75,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b8fb224acd7e23f683477bd71e5a4a0300b798bd922d087d7e13f940ce959eb4",
+          "README.md",
+          113,
+          119,
+          0.75,
+          "95637d2f8a2cc1e8739005143229baed3bd4f8260ea031cb03f4162a6cd5cd82",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "03e635df20f490842cd4a33114e7069baf60972ef546e48b1bbc3cb36fc6f2f3",
+          "README.md",
+          117,
+          117,
+          0.75,
+          "a584a526c1477f0f8ee0ec068d16cc2e91afadeeeb7dcb6bd89f8fa68fd97733",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "7500baf9b69a1e6bfd4cc807b5dc6b62e1fb8bed192fb349b6e3577ab75e808c",
+          "docs/ARCHITECTURE.md",
+          7,
+          131,
+          0.5,
+          "13d664487060c8667a9b6b01e463161b2e0a257c72e2546a604cadc610d6d604",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "6dd64324d8b070c8b3681db6636cadc679b3550d9c9cb3c8637da3cbd85bb2f2",
+          "ROADMAP.md",
+          208,
+          432,
+          0.5,
+          "b98cdeff0b781949f22f641042afcdbf2ae59c3d08ff52b6fbb616358f0ae999",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "D05",
+      "language": "en",
+      "query": "Are colonies persisted across sessions?",
+      "sourceCount": 4,
+      "returned": 0,
+      "truncated": false,
+      "anchorOverlapTop8": false,
+      "firstAnchorOverlapRank": null,
+      "anchorContainmentTop8": false,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 117,
+          "endLine": 117
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 228,
+          "endLine": 228
+        },
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 306,
+          "endLine": 318
+        }
+      ],
+      "candidateHandles": []
+    },
+    {
+      "caseId": "D06",
+      "language": "es",
+      "query": "¿Se puede plantar ya sobre varias superficies o materiales?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 118,
+          "endLine": 118
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.666667,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.666667,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.666667,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.5,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "101ac07d9e2beed9a9f9e55014118252f5cb184963f5438737943b03db5dd15c",
+          "ROADMAP.md",
+          23,
+          48,
+          0.5,
+          "868b889af93b32f5738827ccabea1f9aa1d37ccc1c85169cce041fed75bb12e3",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "f99932960dffaf9cb2319400a1067e6216416f7c02c44b40ea9c2dbdd7714490",
+          "ROADMAP.md",
+          142,
+          191,
+          0.5,
+          "738db2419077d3b46e02648faa9cefccdb046cb09356d75636ab2ceba3835f89",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "2cd1fbd050788bce96de716a13a91f9257a96d72158af2f69a2d4e9c29bebf25",
+          "ROADMAP.md",
+          150,
+          164,
+          0.5,
+          "cb42faa31178a8166b276e6c801dcc35f81aade3c54d5755e8267f1ec47e036c",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "6dd64324d8b070c8b3681db6636cadc679b3550d9c9cb3c8637da3cbd85bb2f2",
+          "ROADMAP.md",
+          208,
+          432,
+          0.5,
+          "b98cdeff0b781949f22f641042afcdbf2ae59c3d08ff52b6fbb616358f0ae999",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "D06",
+      "language": "en",
+      "query": "Can the player already plant on multiple surfaces or materials?",
+      "sourceCount": 4,
+      "returned": 0,
+      "truncated": false,
+      "anchorOverlapTop8": false,
+      "firstAnchorOverlapRank": null,
+      "anchorContainmentTop8": false,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 118,
+          "endLine": 118
+        }
+      ],
+      "candidateHandles": []
+    }
+  ]
+}

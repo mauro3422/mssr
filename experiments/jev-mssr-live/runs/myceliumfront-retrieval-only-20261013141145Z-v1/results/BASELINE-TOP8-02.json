@@ -1,0 +1,1350 @@
+{
+  "runId": "myceliumfront-retrieval-only-20261013141145Z-v1",
+  "part": 2,
+  "totalParts": 5,
+  "fields": "candidate tuple = [handleId, sourceRef, startLine, endLine, lexicalScore, rangeFingerprint, sourceRevision]",
+  "results": [
+    {
+      "caseId": "P08",
+      "language": "es",
+      "query": "¿Quién calcula `Flow` y qué hace el cliente con ese valor?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 2,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 94,
+          "endLine": 94
+        },
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 82,
+          "endLine": 83
+        }
+      ],
+      "candidateHandles": [
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.571429,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "159f462be21917ce140c7d42fd1c1b26cfc108504441d840eed77dc22a89f28f",
+          "docs/PROJECT_NOTES.md",
+          58,
+          118,
+          0.571429,
+          "8c9662c4d9a10b002ba4c7bf8ee9557711ec0a0b6c9aa5963f13ee72ef2a5bea",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "7500baf9b69a1e6bfd4cc807b5dc6b62e1fb8bed192fb349b6e3577ab75e808c",
+          "docs/ARCHITECTURE.md",
+          7,
+          131,
+          0.428571,
+          "13d664487060c8667a9b6b01e463161b2e0a257c72e2546a604cadc610d6d604",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "f16250c265340e8706d1a111a129f7540d2588ef99b2aed63e947f5f5de51ecd",
+          "docs/PROJECT_NOTES.md",
+          76,
+          84,
+          0.428571,
+          "13c6e59db2065365af3d96f512f04522548144255d642b2b22afb6b99b85a102",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "dd5c3379a7d907292872418bc9135a8bc6ceeb2ef69588bb0091f7411fade729",
+          "docs/ARCHITECTURE.md",
+          290,
+          305,
+          0.428571,
+          "43cc2aee0fb3a5de3fad630adad981cf5de8ffcc12766c7744bf64e273c27a6c",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "b496251d9d954fed0e5f1ae042716d33e2a800949721b5e660c47cc02eb61786",
+          "docs/PROJECT_NOTES.md",
+          78,
+          83,
+          0.428571,
+          "edb561b3996ac8092743326c2c81870b07fca35c4e4d4beaa8c9e0fd06760ec6",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "be0f9254c09652a78cabbedaeb1772caf2b50374063a8b24ac961e7523b38e27",
+          "docs/ARCHITECTURE.md",
+          304,
+          304,
+          0.428571,
+          "990162bc879bfb3344ad8ff829de883c2e42e708fb79352f31915b9cf5722508",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "cec08d2c0949080a8890f4054cd238ddc5a53e7cac351b52dfa325fe50226744",
+          "docs/PROJECT_NOTES.md",
+          83,
+          83,
+          0.428571,
+          "0c1920fa710b9e891cfb60e3c463e8daa183aa65689a79a7d1e6c5d1e2574996",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ]
+      ]
+    },
+    {
+      "caseId": "P08",
+      "language": "en",
+      "query": "Who calculates `Flow`, and what does the client do with it?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 2,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 94,
+          "endLine": 94
+        },
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 82,
+          "endLine": 83
+        }
+      ],
+      "candidateHandles": [
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.5,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "159f462be21917ce140c7d42fd1c1b26cfc108504441d840eed77dc22a89f28f",
+          "docs/PROJECT_NOTES.md",
+          58,
+          118,
+          0.5,
+          "8c9662c4d9a10b002ba4c7bf8ee9557711ec0a0b6c9aa5963f13ee72ef2a5bea",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.5,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.5,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "7500baf9b69a1e6bfd4cc807b5dc6b62e1fb8bed192fb349b6e3577ab75e808c",
+          "docs/ARCHITECTURE.md",
+          7,
+          131,
+          0.5,
+          "13d664487060c8667a9b6b01e463161b2e0a257c72e2546a604cadc610d6d604",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.5,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "101ac07d9e2beed9a9f9e55014118252f5cb184963f5438737943b03db5dd15c",
+          "ROADMAP.md",
+          23,
+          48,
+          0.5,
+          "868b889af93b32f5738827ccabea1f9aa1d37ccc1c85169cce041fed75bb12e3",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.5,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ]
+      ]
+    },
+    {
+      "caseId": "P09",
+      "language": "es",
+      "query": "¿Durante cuánto tiempo se deduplica un `requestId`, y con qué clave?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 3,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 97,
+          "endLine": 97
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 40,
+          "endLine": 40
+        }
+      ],
+      "candidateHandles": [
+        [
+          "6dd64324d8b070c8b3681db6636cadc679b3550d9c9cb3c8637da3cbd85bb2f2",
+          "ROADMAP.md",
+          208,
+          432,
+          0.5,
+          "b98cdeff0b781949f22f641042afcdbf2ae59c3d08ff52b6fbb616358f0ae999",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.333333,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.333333,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.333333,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.333333,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "101ac07d9e2beed9a9f9e55014118252f5cb184963f5438737943b03db5dd15c",
+          "ROADMAP.md",
+          23,
+          48,
+          0.333333,
+          "868b889af93b32f5738827ccabea1f9aa1d37ccc1c85169cce041fed75bb12e3",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.333333,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "cd6edd77dfc1a11211170d2322a61dd86ba2cd3516c8293b864e5c97e954f85e",
+          "ROADMAP.md",
+          40,
+          40,
+          0.333333,
+          "cb4a1caff7e00ea950b47cd54acff03c10d17125f18f92468774d818f3f44afc",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "P09",
+      "language": "en",
+      "query": "For how long is a `requestId` deduplicated, and by which key?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 3,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 97,
+          "endLine": 97
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 40,
+          "endLine": 40
+        }
+      ],
+      "candidateHandles": [
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.25,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "f892f965f91a1bc55c7efdfab10eb96f2b1eb02e519709ce01972aa10acbd11d",
+          "docs/PROJECT_NOTES.md",
+          242,
+          256,
+          0.25,
+          "824ee22091af0e5271bb7b736a4cb56ffc6d5cf1bf347d3bfb6e504a694a47e4",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.25,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.25,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "6ef53827bdc0e75fac358e309c6b7d5137bfecbe1e6f23bfa4c20bdc294acf68",
+          "docs/ARCHITECTURE.md",
+          181,
+          204,
+          0.25,
+          "e06b71da55c1c01de110515233678531c1e003c6f57e83ef8f822c5a355f3bdf",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "0473df46be15df4555c8c46153d80d5f952314309fefab4a5952b2f5adbe809f",
+          "docs/PROJECT_NOTES.md",
+          244,
+          253,
+          0.25,
+          "921f00c5e940006af8accd2bc719ac5bc6669bd0e3310f1c72013c86bbac5bd2",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.25,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "101ac07d9e2beed9a9f9e55014118252f5cb184963f5438737943b03db5dd15c",
+          "ROADMAP.md",
+          23,
+          48,
+          0.25,
+          "868b889af93b32f5738827ccabea1f9aa1d37ccc1c85169cce041fed75bb12e3",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "P10",
+      "language": "es",
+      "query": "¿Qué roles cumplen `SolarBloom`, `MyceliumLink` y `CactusSentry` en el ledger?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 100,
+          "endLine": 100
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.666667,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.666667,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.666667,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "2643be98011dea6bd73b296905fdc1ec4a556dd8bd5b3715b05a67c390da523a",
+          "README.md",
+          79,
+          109,
+          0.666667,
+          "998e647d1444206bea1f2aed330fbf749d7afda0b4d28c7926030e37be587160",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "4aa94133978be23784f8501845f938853b4e1ab73ab8f590dbdb34522228f409",
+          "README.md",
+          100,
+          100,
+          0.666667,
+          "45483af723fa53bc21aa9f6e00bb2eae8c2bb4f680edba510277a8c4c0a9cede",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "86a91d0f99021f7fde499fdff1b4d0806c6fdf5e0e754fb00a2b3b27fe718592",
+          "docs/PROJECT_NOTES.md",
+          119,
+          141,
+          0.333333,
+          "0f9bc7cb81c2ad7d82db364c11dfe11624ae1412ebd251203127c86c47ba0f1b",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "ced209ec8af9bbe951824730bb0d3234f96d81baec6850940d2ec2de4083462b",
+          "README.md",
+          80,
+          80,
+          0.333333,
+          "2576b3a498f2f561399f5b69f088b7e56eb331e6cd844f54719521d2d4f0192f",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.166667,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ]
+      ]
+    },
+    {
+      "caseId": "P10",
+      "language": "en",
+      "query": "What roles do `SolarBloom`, `MyceliumLink`, and `CactusSentry` have in the nutrient ledger?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 100,
+          "endLine": 100
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.666667,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.666667,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.666667,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "2643be98011dea6bd73b296905fdc1ec4a556dd8bd5b3715b05a67c390da523a",
+          "README.md",
+          79,
+          109,
+          0.666667,
+          "998e647d1444206bea1f2aed330fbf749d7afda0b4d28c7926030e37be587160",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "4aa94133978be23784f8501845f938853b4e1ab73ab8f590dbdb34522228f409",
+          "README.md",
+          100,
+          100,
+          0.666667,
+          "45483af723fa53bc21aa9f6e00bb2eae8c2bb4f680edba510277a8c4c0a9cede",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "86a91d0f99021f7fde499fdff1b4d0806c6fdf5e0e754fb00a2b3b27fe718592",
+          "docs/PROJECT_NOTES.md",
+          119,
+          141,
+          0.333333,
+          "0f9bc7cb81c2ad7d82db364c11dfe11624ae1412ebd251203127c86c47ba0f1b",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "ced209ec8af9bbe951824730bb0d3234f96d81baec6850940d2ec2de4083462b",
+          "README.md",
+          80,
+          80,
+          0.333333,
+          "2576b3a498f2f561399f5b69f088b7e56eb331e6cd844f54719521d2d4f0192f",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "0265c0e2ff3a963551b7d0e693fc85f922dbad0e6c1e7f0ec25d770c4a055bc5",
+          "ROADMAP.md",
+          108,
+          141,
+          0.333333,
+          "c4a7c9247e8b7f32fe6fed5ee577db55beffadf0bdbf245063e8598a31f34495",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "P11",
+      "language": "es",
+      "query": "¿Qué dimensiones y elementos principales documenta C002 para el arena?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 102,
+          "endLine": 102
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 304,
+          "endLine": 304
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.5,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.333333,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "6dd64324d8b070c8b3681db6636cadc679b3550d9c9cb3c8637da3cbd85bb2f2",
+          "ROADMAP.md",
+          208,
+          432,
+          0.333333,
+          "b98cdeff0b781949f22f641042afcdbf2ae59c3d08ff52b6fbb616358f0ae999",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.333333,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b508717de7bf40e4214c8071970323932dc32d8e90a9fc27236ae149b5b543c0",
+          "ROADMAP.md",
+          287,
+          366,
+          0.333333,
+          "c9bacc924407581a3dcaf544c4d97b84c9ecd883756f685ba8212f674162af7e",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "2643be98011dea6bd73b296905fdc1ec4a556dd8bd5b3715b05a67c390da523a",
+          "README.md",
+          79,
+          109,
+          0.333333,
+          "998e647d1444206bea1f2aed330fbf749d7afda0b4d28c7926030e37be587160",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "90b94b4e609cdc3fc02209ec1a762c13f0026d72d7aba099f18b120b91f3a45d",
+          "ROADMAP.md",
+          303,
+          307,
+          0.333333,
+          "ca18793b0f5f073f10bacbfa2cb154c9ae4b9d23580846e31107f50a3d7677e5",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "0c33877b41f6d68752436d6638a90529eeaf3ad6cb64971287d6fb947fed9a6d",
+          "README.md",
+          102,
+          102,
+          0.333333,
+          "1255f34a370d86c4578ca12b607e4713cf0d9db34c5552389247356d554c6aa3",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ]
+      ]
+    },
+    {
+      "caseId": "P11",
+      "language": "en",
+      "query": "What dimensions and main elements does C002 document for the arena?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 102,
+          "endLine": 102
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 304,
+          "endLine": 304
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.333333,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "6dd64324d8b070c8b3681db6636cadc679b3550d9c9cb3c8637da3cbd85bb2f2",
+          "ROADMAP.md",
+          208,
+          432,
+          0.333333,
+          "b98cdeff0b781949f22f641042afcdbf2ae59c3d08ff52b6fbb616358f0ae999",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.333333,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b508717de7bf40e4214c8071970323932dc32d8e90a9fc27236ae149b5b543c0",
+          "ROADMAP.md",
+          287,
+          366,
+          0.333333,
+          "c9bacc924407581a3dcaf544c4d97b84c9ecd883756f685ba8212f674162af7e",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.333333,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "90b94b4e609cdc3fc02209ec1a762c13f0026d72d7aba099f18b120b91f3a45d",
+          "ROADMAP.md",
+          303,
+          307,
+          0.333333,
+          "ca18793b0f5f073f10bacbfa2cb154c9ae4b9d23580846e31107f50a3d7677e5",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "2643be98011dea6bd73b296905fdc1ec4a556dd8bd5b3715b05a67c390da523a",
+          "README.md",
+          79,
+          109,
+          0.333333,
+          "998e647d1444206bea1f2aed330fbf749d7afda0b4d28c7926030e37be587160",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "6793f37fff34d27e2b8ceb509b54a689abf068d85ab330927550b2e9fec5d90a",
+          "ROADMAP.md",
+          304,
+          304,
+          0.333333,
+          "076597e14b92724b3187e981919b0585d3ce759a7b81fe78a6462ec4dfc2083f",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "P12",
+      "language": "es",
+      "query": "¿Qué incluye la sesión C004 ya completada?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 103,
+          "endLine": 103
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 305,
+          "endLine": 305
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.8,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.6,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "61c9867a0fc27dc748debd4e0112100b72b2f724c24e1abd5a9eb0b11b595683",
+          "ROADMAP.md",
+          515,
+          535,
+          0.6,
+          "64138f893eb73683ff3d53523de475085690ecd5ebae68e73b1b1fdf3c2a8f38",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.6,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "e783714e4fcdd4abd834e23d16ecb93848612725c68f6bbdcda8f4eeac9a208b",
+          "ROADMAP.md",
+          519,
+          533,
+          0.6,
+          "95b6eb6face93f9c892239111c16cc7e36fd4ddd7dee4e486f1e42f932d0bfa3",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "bd629ac2af3bd5a779d7d7020dd8d670c713e6ebb7bc7a9c916246cd24d54b68",
+          "README.md",
+          218,
+          229,
+          0.6,
+          "1f354649f7b47bf6c59efcdc25cc8c40c048bd050bcd0a5e84d3a7897e9ca444",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "aa5abf0125570f89890b61c26a258eabc9966b41e883225dcfb12ca34f1a771f",
+          "ROADMAP.md",
+          531,
+          531,
+          0.6,
+          "ffefea43849c9a068aa48c38407113a00d3a8350b6cb8238cd95879033b3a539",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.4,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ]
+      ]
+    },
+    {
+      "caseId": "P12",
+      "language": "en",
+      "query": "What does the completed C004 session include?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 103,
+          "endLine": 103
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 305,
+          "endLine": 305
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.25,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "6dd64324d8b070c8b3681db6636cadc679b3550d9c9cb3c8637da3cbd85bb2f2",
+          "ROADMAP.md",
+          208,
+          432,
+          0.25,
+          "b98cdeff0b781949f22f641042afcdbf2ae59c3d08ff52b6fbb616358f0ae999",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.25,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b508717de7bf40e4214c8071970323932dc32d8e90a9fc27236ae149b5b543c0",
+          "ROADMAP.md",
+          287,
+          366,
+          0.25,
+          "c9bacc924407581a3dcaf544c4d97b84c9ecd883756f685ba8212f674162af7e",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.25,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "90b94b4e609cdc3fc02209ec1a762c13f0026d72d7aba099f18b120b91f3a45d",
+          "ROADMAP.md",
+          303,
+          307,
+          0.25,
+          "ca18793b0f5f073f10bacbfa2cb154c9ae4b9d23580846e31107f50a3d7677e5",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "2643be98011dea6bd73b296905fdc1ec4a556dd8bd5b3715b05a67c390da523a",
+          "README.md",
+          79,
+          109,
+          0.25,
+          "998e647d1444206bea1f2aed330fbf749d7afda0b4d28c7926030e37be587160",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b2c45ca54c049b262484824373da9ad459ade4ad95560ed9f0013534e9c6483c",
+          "ROADMAP.md",
+          305,
+          305,
+          0.25,
+          "340205115bc6c1341fae6c9f9add787dc13c775c0d49ac50a051bbb647fff082",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "P13",
+      "language": "es",
+      "query": "¿Qué decisión se aprobó para B003?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 4,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 222,
+          "endLine": 222
+        }
+      ],
+      "candidateHandles": [
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.666667,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "61c9867a0fc27dc748debd4e0112100b72b2f724c24e1abd5a9eb0b11b595683",
+          "ROADMAP.md",
+          515,
+          535,
+          0.666667,
+          "64138f893eb73683ff3d53523de475085690ecd5ebae68e73b1b1fdf3c2a8f38",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "159f462be21917ce140c7d42fd1c1b26cfc108504441d840eed77dc22a89f28f",
+          "docs/PROJECT_NOTES.md",
+          58,
+          118,
+          0.333333,
+          "8c9662c4d9a10b002ba4c7bf8ee9557711ec0a0b6c9aa5963f13ee72ef2a5bea",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.333333,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "6bddb5d536a29f2aa72d5e6688c5135e3ec9246c05e017e639e455fc0416b9a0",
+          "ROADMAP.md",
+          5,
+          5,
+          0.333333,
+          "779de43a87a5d15636d3da4f3faab92a27b05b1f8013ef161d24764a18d69b09",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "e01d393ec1b20d32f7f43eea2f2c755319b307b1af2235dab3b054877bd66ea1",
+          "docs/PROJECT_NOTES.md",
+          103,
+          110,
+          0.333333,
+          "9e30260ac1d0feb295d1a2b6277148648dee0959f63f935666b5868062ec2c3e",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "bd629ac2af3bd5a779d7d7020dd8d670c713e6ebb7bc7a9c916246cd24d54b68",
+          "README.md",
+          218,
+          229,
+          0.333333,
+          "1f354649f7b47bf6c59efcdc25cc8c40c048bd050bcd0a5e84d3a7897e9ca444",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "271992a1cf01251adcfb9dbce5edebd1306c0be96b3a8fe04fee48ce20765266",
+          "ROADMAP.md",
+          21,
+          21,
+          0.333333,
+          "e4bcd2264cc17c515b18912a1f78df1e9066a840eff26a30815a11cf8ae03047",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "P13",
+      "language": "en",
+      "query": "What design decision was approved for B003?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 4,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 222,
+          "endLine": 222
+        }
+      ],
+      "candidateHandles": [
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.5,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "61c9867a0fc27dc748debd4e0112100b72b2f724c24e1abd5a9eb0b11b595683",
+          "ROADMAP.md",
+          515,
+          535,
+          0.5,
+          "64138f893eb73683ff3d53523de475085690ecd5ebae68e73b1b1fdf3c2a8f38",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "159f462be21917ce140c7d42fd1c1b26cfc108504441d840eed77dc22a89f28f",
+          "docs/PROJECT_NOTES.md",
+          58,
+          118,
+          0.25,
+          "8c9662c4d9a10b002ba4c7bf8ee9557711ec0a0b6c9aa5963f13ee72ef2a5bea",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.25,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "6bddb5d536a29f2aa72d5e6688c5135e3ec9246c05e017e639e455fc0416b9a0",
+          "ROADMAP.md",
+          5,
+          5,
+          0.25,
+          "779de43a87a5d15636d3da4f3faab92a27b05b1f8013ef161d24764a18d69b09",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "e01d393ec1b20d32f7f43eea2f2c755319b307b1af2235dab3b054877bd66ea1",
+          "docs/PROJECT_NOTES.md",
+          103,
+          110,
+          0.25,
+          "9e30260ac1d0feb295d1a2b6277148648dee0959f63f935666b5868062ec2c3e",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "bd629ac2af3bd5a779d7d7020dd8d670c713e6ebb7bc7a9c916246cd24d54b68",
+          "README.md",
+          218,
+          229,
+          0.25,
+          "1f354649f7b47bf6c59efcdc25cc8c40c048bd050bcd0a5e84d3a7897e9ca444",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "271992a1cf01251adcfb9dbce5edebd1306c0be96b3a8fe04fee48ce20765266",
+          "ROADMAP.md",
+          21,
+          21,
+          0.25,
+          "e4bcd2264cc17c515b18912a1f78df1e9066a840eff26a30815a11cf8ae03047",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "P14",
+      "language": "es",
+      "query": "¿`Tres hongos unidos` se fusionó con B003? ¿Qué relación conserva?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 224,
+          "endLine": 224
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.857143,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "bd629ac2af3bd5a779d7d7020dd8d670c713e6ebb7bc7a9c916246cd24d54b68",
+          "README.md",
+          218,
+          229,
+          0.714286,
+          "1f354649f7b47bf6c59efcdc25cc8c40c048bd050bcd0a5e84d3a7897e9ca444",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "6bddb5d536a29f2aa72d5e6688c5135e3ec9246c05e017e639e455fc0416b9a0",
+          "ROADMAP.md",
+          5,
+          5,
+          0.714286,
+          "779de43a87a5d15636d3da4f3faab92a27b05b1f8013ef161d24764a18d69b09",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "719f5d39d38b3fade2d254bdbfeaab11026444745ec94fa8689fd4a777786f40",
+          "README.md",
+          222,
+          226,
+          0.714286,
+          "e671ac943776046b521f25ccdb409b52ea65a082883f71d6ccfbdc4ff1b19502",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.714286,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "74caf00cbd4b7001a4701f260edcf71a8ebf581f46b83ba6e0708784b007db35",
+          "README.md",
+          224,
+          224,
+          0.714286,
+          "e73ae18711dafab759a61a612a5672754c41177e19534b70b89be150ca4c7e10",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "61c9867a0fc27dc748debd4e0112100b72b2f724c24e1abd5a9eb0b11b595683",
+          "ROADMAP.md",
+          515,
+          535,
+          0.714286,
+          "64138f893eb73683ff3d53523de475085690ecd5ebae68e73b1b1fdf3c2a8f38",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "e783714e4fcdd4abd834e23d16ecb93848612725c68f6bbdcda8f4eeac9a208b",
+          "ROADMAP.md",
+          519,
+          533,
+          0.714286,
+          "95b6eb6face93f9c892239111c16cc7e36fd4ddd7dee4e486f1e42f932d0bfa3",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "P14",
+      "language": "en",
+      "query": "Was `Tres hongos unidos` merged into B003, and what relation does it retain?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 224,
+          "endLine": 224
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.5,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "6bddb5d536a29f2aa72d5e6688c5135e3ec9246c05e017e639e455fc0416b9a0",
+          "ROADMAP.md",
+          5,
+          5,
+          0.5,
+          "779de43a87a5d15636d3da4f3faab92a27b05b1f8013ef161d24764a18d69b09",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "bd629ac2af3bd5a779d7d7020dd8d670c713e6ebb7bc7a9c916246cd24d54b68",
+          "README.md",
+          218,
+          229,
+          0.5,
+          "1f354649f7b47bf6c59efcdc25cc8c40c048bd050bcd0a5e84d3a7897e9ca444",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.5,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "719f5d39d38b3fade2d254bdbfeaab11026444745ec94fa8689fd4a777786f40",
+          "README.md",
+          222,
+          226,
+          0.5,
+          "e671ac943776046b521f25ccdb409b52ea65a082883f71d6ccfbdc4ff1b19502",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "a939bdff6c792b9d95c8394326453ff8f6cc8a92d9f9907d48f2741e22d0591f",
+          "ROADMAP.md",
+          52,
+          52,
+          0.5,
+          "501b71614c9a68ea9d11c2dc78fc1c816b18b2ab24ab77fc996c4f9a3f656daf",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "74caf00cbd4b7001a4701f260edcf71a8ebf581f46b83ba6e0708784b007db35",
+          "README.md",
+          224,
+          224,
+          0.5,
+          "e73ae18711dafab759a61a612a5672754c41177e19534b70b89be150ca4c7e10",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "61c9867a0fc27dc748debd4e0112100b72b2f724c24e1abd5a9eb0b11b595683",
+          "ROADMAP.md",
+          515,
+          535,
+          0.5,
+          "64138f893eb73683ff3d53523de475085690ecd5ebae68e73b1b1fdf3c2a8f38",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    }
+  ]
+}

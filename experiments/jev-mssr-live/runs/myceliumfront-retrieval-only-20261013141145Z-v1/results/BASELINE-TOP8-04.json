@@ -1,0 +1,1241 @@
+{
+  "runId": "myceliumfront-retrieval-only-20261013141145Z-v1",
+  "part": 4,
+  "totalParts": 5,
+  "fields": "candidate tuple = [handleId, sourceRef, startLine, endLine, lexicalScore, rangeFingerprint, sourceRevision]",
+  "results": [
+    {
+      "caseId": "D07",
+      "language": "es",
+      "query": "¿Ya existen el cooperativo y las múltiples bases?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 119,
+          "endLine": 119
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 418,
+          "endLine": 431
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          1,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.8,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.8,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b8fb224acd7e23f683477bd71e5a4a0300b798bd922d087d7e13f940ce959eb4",
+          "README.md",
+          113,
+          119,
+          0.6,
+          "95637d2f8a2cc1e8739005143229baed3bd4f8260ea031cb03f4162a6cd5cd82",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "1be27c901b0fd8cf81f8768d45994204a260fc17696a92ca8983609006c65a59",
+          "README.md",
+          119,
+          119,
+          0.6,
+          "e8d2ecde4359251c6e3454d3839ca91cdf2f81df80d64d4d638697132c8dd8e1",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.4,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "a7ed1080eb831ba3f797fa0425be37c47cbb4e094682195c80e3f26bedd8e61f",
+          "docs/PROJECT_NOTES.md",
+          44,
+          57,
+          0.4,
+          "491529d3ee4a63a8a58a0d354300edaa858d666e0d6deebc3e3e346c0561d5cb",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "bd629ac2af3bd5a779d7d7020dd8d670c713e6ebb7bc7a9c916246cd24d54b68",
+          "README.md",
+          218,
+          229,
+          0.4,
+          "1f354649f7b47bf6c59efcdc25cc8c40c048bd050bcd0a5e84d3a7897e9ca444",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ]
+      ]
+    },
+    {
+      "caseId": "D07",
+      "language": "en",
+      "query": "Do co-op and multiple bases exist yet?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 119,
+          "endLine": 119
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 418,
+          "endLine": 431
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.2,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "6dd64324d8b070c8b3681db6636cadc679b3550d9c9cb3c8637da3cbd85bb2f2",
+          "ROADMAP.md",
+          208,
+          432,
+          0.2,
+          "b98cdeff0b781949f22f641042afcdbf2ae59c3d08ff52b6fbb616358f0ae999",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.2,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "27e08fff820e32f13724d16d81bd3ce4025585d5effb0b56b3d4b90980cc9f46",
+          "ROADMAP.md",
+          418,
+          432,
+          0.2,
+          "1411e8c03b36ac300c9597da1c48b72bce04da4bd770fc8e51ef065c7b081afe",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.2,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "828cca7fce1a38c2ddb070fc280e8d131ee709b1ff0d4b487f56dc5da3f2c52b",
+          "ROADMAP.md",
+          420,
+          420,
+          0.2,
+          "6ebc9e318052d18068f697346d76d3f16cbabbb55d004110f9f09442473a0bfd",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "b8fb224acd7e23f683477bd71e5a4a0300b798bd922d087d7e13f940ce959eb4",
+          "README.md",
+          113,
+          119,
+          0.2,
+          "95637d2f8a2cc1e8739005143229baed3bd4f8260ea031cb03f4162a6cd5cd82",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "d8a37c1d0e38022ca544fbca37cd99a138467d9f0ec8e7af65c670e67cf180bd",
+          "ROADMAP.md",
+          422,
+          422,
+          0.2,
+          "67617c183bcb2320209be831aeb7261e3db3b2fc91d9a19381d6b97df5195d7d",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "D08",
+      "language": "es",
+      "query": "¿Se acepta modificar una muestra de la galería?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 98,
+          "endLine": 98
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 132,
+          "endLine": 132
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.75,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.75,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.5,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "1c0934b0ef614cec5fa9c971536d527b93643e1d61204604fa45dca92933cb79",
+          "README.md",
+          13,
+          23,
+          0.5,
+          "bfd769be60699331f1a07b4c50e0055c3790d30db48470f8d4584e120863d2b4",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.5,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "af38dcfd40fcf5ce68d59fd4f566ee1114223578c993ba9b98b06b4b3739016c",
+          "README.md",
+          15,
+          18,
+          0.5,
+          "1ac65b02b3ace045c5b983a526f5b806390a4cc90c036289852d9e9e641f2f13",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "101ac07d9e2beed9a9f9e55014118252f5cb184963f5438737943b03db5dd15c",
+          "ROADMAP.md",
+          23,
+          48,
+          0.5,
+          "868b889af93b32f5738827ccabea1f9aa1d37ccc1c85169cce041fed75bb12e3",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "78d2c37384165d441d6d7658cb87fe6f17762037fc187e8d9acf1a6049ab5fff",
+          "README.md",
+          16,
+          16,
+          0.5,
+          "5c6a9d0372909e7708e26b6b1dcb0b619968c9011e8abfd9c1e81d629851119d",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ]
+      ]
+    },
+    {
+      "caseId": "D08",
+      "language": "en",
+      "query": "Is modification of a gallery sample accepted?",
+      "sourceCount": 4,
+      "returned": 4,
+      "truncated": false,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 98,
+          "endLine": 98
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 132,
+          "endLine": 132
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.25,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "4f2a2c3fee65b3c1582a3693506288b0dba247b0a996470ff706300a3e0c5bf5",
+          "README.md",
+          121,
+          140,
+          0.25,
+          "e41140287e18fd852e99bec8e400630ff96a51d0a405620f9bb58381f93f0063",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "1d7ad96884b2af65e757f66bb04c1d8ee419e507d8673ee2424ec33f06f6054a",
+          "README.md",
+          125,
+          137,
+          0.25,
+          "c2acf3eb7b85005f7e00bd554d3f64cadd132f7b36c34a0ead1da1c8bc3ee4e0",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "3744cb1b66df1788f375a0a698c0297e4425ca4a3bd28cc9d5a77d29043774e4",
+          "README.md",
+          125,
+          125,
+          0.25,
+          "edc2cba331ceb44f3b211c7e0699e747e552f422479c3140c657e0c3d393933b",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ]
+      ]
+    },
+    {
+      "caseId": "D09",
+      "language": "es",
+      "query": "¿Se midió una mejora de calidad de código con un benchmark A/B?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 176,
+          "endLine": 180
+        }
+      ],
+      "candidateHandles": [
+        [
+          "448ba4d61c830c1626f8c06f17c91c3adacf441fd55001918e01494de92caa01",
+          "docs/PROJECT_NOTES.md",
+          176,
+          181,
+          1,
+          "14b637f768684a128fc5e06f0f175a8fe78f644692eb2fc1c5f9a09233f60826",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "725ca84d4f3ee756aa921987ebf4e7fe36d95e3fea1ce959c44ed9609156ccad",
+          "docs/PROJECT_NOTES.md",
+          180,
+          180,
+          1,
+          "1e27c2346325b424fc472f65655e8c6c9d60e462d75c3453a0176c171d85172a",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.333333,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.166667,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "86a91d0f99021f7fde499fdff1b4d0806c6fdf5e0e754fb00a2b3b27fe718592",
+          "docs/PROJECT_NOTES.md",
+          119,
+          141,
+          0.166667,
+          "0f9bc7cb81c2ad7d82db364c11dfe11624ae1412ebd251203127c86c47ba0f1b",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.166667,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "6bddb5d536a29f2aa72d5e6688c5135e3ec9246c05e017e639e455fc0416b9a0",
+          "ROADMAP.md",
+          5,
+          5,
+          0.166667,
+          "779de43a87a5d15636d3da4f3faab92a27b05b1f8013ef161d24764a18d69b09",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "6ef53827bdc0e75fac358e309c6b7d5137bfecbe1e6f23bfa4c20bdc294acf68",
+          "docs/ARCHITECTURE.md",
+          181,
+          204,
+          0.166667,
+          "e06b71da55c1c01de110515233678531c1e003c6f57e83ef8f822c5a355f3bdf",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ]
+      ]
+    },
+    {
+      "caseId": "D09",
+      "language": "en",
+      "query": "Was code-quality improvement measured with an A/B benchmark?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "docs/PROJECT_NOTES.md",
+          "startLine": 176,
+          "endLine": 180
+        }
+      ],
+      "candidateHandles": [
+        [
+          "448ba4d61c830c1626f8c06f17c91c3adacf441fd55001918e01494de92caa01",
+          "docs/PROJECT_NOTES.md",
+          176,
+          181,
+          0.4,
+          "14b637f768684a128fc5e06f0f175a8fe78f644692eb2fc1c5f9a09233f60826",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "725ca84d4f3ee756aa921987ebf4e7fe36d95e3fea1ce959c44ed9609156ccad",
+          "docs/PROJECT_NOTES.md",
+          180,
+          180,
+          0.4,
+          "1e27c2346325b424fc472f65655e8c6c9d60e462d75c3453a0176c171d85172a",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "86a91d0f99021f7fde499fdff1b4d0806c6fdf5e0e754fb00a2b3b27fe718592",
+          "docs/PROJECT_NOTES.md",
+          119,
+          141,
+          0.2,
+          "0f9bc7cb81c2ad7d82db364c11dfe11624ae1412ebd251203127c86c47ba0f1b",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.2,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "6bddb5d536a29f2aa72d5e6688c5135e3ec9246c05e017e639e455fc0416b9a0",
+          "ROADMAP.md",
+          5,
+          5,
+          0.2,
+          "779de43a87a5d15636d3da4f3faab92a27b05b1f8013ef161d24764a18d69b09",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "e3e61e4b0d29bd7df8118f0f79565ca72b16369362c716b80c23f233013fd4ae",
+          "docs/PROJECT_NOTES.md",
+          123,
+          131,
+          0.2,
+          "804c60317a3bb19d60dfa81543831e24cad32a2c1735b020c6af6124252fb1d8",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "f2fb5d8fac1dd36faf6c8ad5d048ca54127f40c8e0022cb40606844497e37346",
+          "README.md",
+          159,
+          172,
+          0.2,
+          "ba55fad14e85099dbcac23ff2d57ca67ff2fd89c99ac497e9903b8777c05d75a",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.2,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "D10",
+      "language": "es",
+      "query": "¿Qué condición exige la hoja de ruta antes de iniciar la Fase 8?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 3,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 418,
+          "endLine": 431
+        }
+      ],
+      "candidateHandles": [
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.375,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.375,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "6dd64324d8b070c8b3681db6636cadc679b3550d9c9cb3c8637da3cbd85bb2f2",
+          "ROADMAP.md",
+          208,
+          432,
+          0.375,
+          "b98cdeff0b781949f22f641042afcdbf2ae59c3d08ff52b6fbb616358f0ae999",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "61c9867a0fc27dc748debd4e0112100b72b2f724c24e1abd5a9eb0b11b595683",
+          "ROADMAP.md",
+          515,
+          535,
+          0.375,
+          "64138f893eb73683ff3d53523de475085690ecd5ebae68e73b1b1fdf3c2a8f38",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "7500baf9b69a1e6bfd4cc807b5dc6b62e1fb8bed192fb349b6e3577ab75e808c",
+          "docs/ARCHITECTURE.md",
+          7,
+          131,
+          0.25,
+          "13d664487060c8667a9b6b01e463161b2e0a257c72e2546a604cadc610d6d604",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "5d5658dbd2bc2a09069637efb45521224c5b05d4775211d5c7d651bf009d6506",
+          "docs/PROJECT_NOTES.md",
+          3,
+          17,
+          0.25,
+          "cab498a60089d117169be339ab6474a1aeb34d6f97995371cb4963296f37a2b2",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.25,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "ea55b2f582b142255f7a1073d0635cccef046c4f98949f738e9b32d9e545ea3a",
+          "ROADMAP.md",
+          77,
+          77,
+          0.25,
+          "97f13ef5647cb835466f9e2c04c6066b58e5aae6f7a361b6f5db4d64f914c7c3",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "D10",
+      "language": "en",
+      "query": "What condition must be met before Roadmap Phase 8 begins?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": false,
+      "firstAnchorOverlapRank": null,
+      "anchorContainmentTop8": false,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 418,
+          "endLine": 431
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.428571,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "f4646c770bd08ba538f385f5ff72f9396dab4cfc01db5b2d6a4dbdc8135b2174",
+          "ROADMAP.md",
+          30,
+          30,
+          0.285714,
+          "cebeeb248007c5c6af02da5caddc718f45a60cb3028933cada21cad9e4066f86",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "ea55b2f582b142255f7a1073d0635cccef046c4f98949f738e9b32d9e545ea3a",
+          "ROADMAP.md",
+          77,
+          77,
+          0.285714,
+          "97f13ef5647cb835466f9e2c04c6066b58e5aae6f7a361b6f5db4d64f914c7c3",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "67e1bd83aa05fe62ea3b002fb6be9f8927d68ec8b1393d228b2a9f82ab511312",
+          "ROADMAP.md",
+          94,
+          94,
+          0.285714,
+          "ade862b90286c9c5f4e58c1d3d551bda86b257c452c21f4f987bade44d2c9713",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "f99932960dffaf9cb2319400a1067e6216416f7c02c44b40ea9c2dbdd7714490",
+          "ROADMAP.md",
+          142,
+          191,
+          0.285714,
+          "738db2419077d3b46e02648faa9cefccdb046cb09356d75636ab2ceba3835f89",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "3cf71706a26c20444c87a79d7a1fe5c9352d34c2e7f2bcebc147ac96fe06b021",
+          "ROADMAP.md",
+          179,
+          191,
+          0.285714,
+          "3153069e3bc06942e443d2f2ab81ad61c08df9e35f1f452d8576693c72e98cab",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "f7e9f3598eef6067dd992091318b0a7e8627a1f811eba14bf3cee9587912ff94",
+          "ROADMAP.md",
+          181,
+          188,
+          0.285714,
+          "82f582e327e1881c749454b3af7874adaec935d2152bfa960b27401ee6e3034a",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "34ddac785d59590b442ed7f5fafcd77240b3a26428001bfef39d0ec13d7ca492",
+          "ROADMAP.md",
+          188,
+          188,
+          0.285714,
+          "82984e92498786a41c791588da74763dd9f8add4ea194d6676bb16ccc5964c0a",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "D11",
+      "language": "es",
+      "query": "¿Una prueba en Play demuestra que el guardado llegó a Edit o al disco?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 320,
+          "endLine": 328
+        }
+      ],
+      "candidateHandles": [
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.857143,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.714286,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "9796383218d56f7da487a67b3781559cd6f9d7a5182d588591ae403dc1ebcd5c",
+          "README.md",
+          230,
+          238,
+          0.714286,
+          "f4a51d33372f140f1f6a1e68fd4626848c4f59946052af37208f1cc664615cc9",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "20fdec95f1cbf78ed7de7d8100b57209926cbfb4343831084fe3c16195ef814c",
+          "docs/ARCHITECTURE.md",
+          320,
+          328,
+          0.571429,
+          "471077d3c082910f317d557de223aaa1ce6c3869fb330a6d1f7d804cf13bb5c6",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "f892f965f91a1bc55c7efdfab10eb96f2b1eb02e519709ce01972aa10acbd11d",
+          "docs/PROJECT_NOTES.md",
+          242,
+          256,
+          0.571429,
+          "824ee22091af0e5271bb7b736a4cb56ffc6d5cf1bf347d3bfb6e504a694a47e4",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "f08183367dad566f09ea51ded7567281aedf2b941bcc22777f13d53e1ee40475",
+          "README.md",
+          234,
+          236,
+          0.571429,
+          "ca08edfe6e4a8f3a84f32251a03220c8d326a612239a358a4a4f377eea1b2a5a",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "005a01906ff82b43f37c53d2ef41f08b1ce24832be883e93787df41fad5d8e91",
+          "docs/ARCHITECTURE.md",
+          322,
+          328,
+          0.571429,
+          "ec8dfc098eba26558a8d6d3f60fbf0e6ad9f47a5b50319166ca8b388161f5c01",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "0473df46be15df4555c8c46153d80d5f952314309fefab4a5952b2f5adbe809f",
+          "docs/PROJECT_NOTES.md",
+          244,
+          253,
+          0.571429,
+          "921f00c5e940006af8accd2bc719ac5bc6669bd0e3310f1c72013c86bbac5bd2",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ]
+      ]
+    },
+    {
+      "caseId": "D11",
+      "language": "en",
+      "query": "Does a Play test prove that saved state reached Edit or disk?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 320,
+          "endLine": 328
+        }
+      ],
+      "candidateHandles": [
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.375,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "7500baf9b69a1e6bfd4cc807b5dc6b62e1fb8bed192fb349b6e3577ab75e808c",
+          "docs/ARCHITECTURE.md",
+          7,
+          131,
+          0.25,
+          "13d664487060c8667a9b6b01e463161b2e0a257c72e2546a604cadc610d6d604",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "dff854eeaea5b56ee54630a78874ececfb1a3b7e52358b931fae159ff5d950b4",
+          "docs/PROJECT_NOTES.md",
+          18,
+          43,
+          0.25,
+          "f6cdc94c77ee16bbb636f8c5e773ff85c7305b114e04121246ba30fd4e165773",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.25,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "898b8e6fc65811c313e9e129a89549ca4d7bd3f500592a5c75cdac6cd54bd66a",
+          "docs/ARCHITECTURE.md",
+          268,
+          289,
+          0.25,
+          "3be2eb2fddbc187ffb372cf80f839b026176ff7750098c1d0c97d7b251e50d17",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "2d5322eb1dd1877cf33dff9fb4fe3c5e29e9b9a28716718e0080041b974a8773",
+          "docs/PROJECT_NOTES.md",
+          219,
+          229,
+          0.25,
+          "b4d9f3cc6d810a06c06143cc4e7b43e84718a7f32fe79e910e09204fcaaad3c6",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "9796383218d56f7da487a67b3781559cd6f9d7a5182d588591ae403dc1ebcd5c",
+          "README.md",
+          230,
+          238,
+          0.25,
+          "f4a51d33372f140f1f6a1e68fd4626848c4f59946052af37208f1cc664615cc9",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "f367365e9719cb56e8d6dba02b848bd12fd8440970d73d66dc1a7e022ce02261",
+          "docs/ARCHITECTURE.md",
+          285,
+          288,
+          0.25,
+          "30bcae9cb5676626a0fdc4bd8eb3322de85cb1a0ee2f3dc6e9e586a110c0a501",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ]
+      ]
+    },
+    {
+      "caseId": "D12",
+      "language": "es",
+      "query": "¿Está cerrada la revisión humana de C007?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 2,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 226,
+          "endLine": 226
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 531,
+          "endLine": 531
+        }
+      ],
+      "candidateHandles": [
+        [
+          "2d5322eb1dd1877cf33dff9fb4fe3c5e29e9b9a28716718e0080041b974a8773",
+          "docs/PROJECT_NOTES.md",
+          219,
+          229,
+          0.75,
+          "b4d9f3cc6d810a06c06143cc4e7b43e84718a7f32fe79e910e09204fcaaad3c6",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.75,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "61c9867a0fc27dc748debd4e0112100b72b2f724c24e1abd5a9eb0b11b595683",
+          "ROADMAP.md",
+          515,
+          535,
+          0.75,
+          "64138f893eb73683ff3d53523de475085690ecd5ebae68e73b1b1fdf3c2a8f38",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "dd22005bd2f1c6bd72132217c9b270b8097f86788ec42b03ce709f40b76871b6",
+          "docs/PROJECT_NOTES.md",
+          221,
+          228,
+          0.75,
+          "9cb7c4738282ec8ed260253face2c84e587154057574d6ae2e3d021e39726e1e",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "e783714e4fcdd4abd834e23d16ecb93848612725c68f6bbdcda8f4eeac9a208b",
+          "ROADMAP.md",
+          519,
+          533,
+          0.75,
+          "95b6eb6face93f9c892239111c16cc7e36fd4ddd7dee4e486f1e42f932d0bfa3",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "86a91d0f99021f7fde499fdff1b4d0806c6fdf5e0e754fb00a2b3b27fe718592",
+          "docs/PROJECT_NOTES.md",
+          119,
+          141,
+          0.5,
+          "0f9bc7cb81c2ad7d82db364c11dfe11624ae1412ebd251203127c86c47ba0f1b",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "bd629ac2af3bd5a779d7d7020dd8d670c713e6ebb7bc7a9c916246cd24d54b68",
+          "README.md",
+          218,
+          229,
+          0.5,
+          "1f354649f7b47bf6c59efcdc25cc8c40c048bd050bcd0a5e84d3a7897e9ca444",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "6bddb5d536a29f2aa72d5e6688c5135e3ec9246c05e017e639e455fc0416b9a0",
+          "ROADMAP.md",
+          5,
+          5,
+          0.5,
+          "779de43a87a5d15636d3da4f3faab92a27b05b1f8013ef161d24764a18d69b09",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "D12",
+      "language": "en",
+      "query": "Is the human review gate for C007 complete?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 2,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": true,
+      "anchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 226,
+          "endLine": 226
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 531,
+          "endLine": 531
+        }
+      ],
+      "candidateHandles": [
+        [
+          "bd120d28c371463e2a9b0157ae8f68f5f2c30d589a9ce7c5988070854bcf242e",
+          "ROADMAP.md",
+          19,
+          53,
+          0.6,
+          "6da79993e264a6550750858864ffcf457f4517c0e998c2c98175f7378cdb7494",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.4,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "a939bdff6c792b9d95c8394326453ff8f6cc8a92d9f9907d48f2741e22d0591f",
+          "ROADMAP.md",
+          52,
+          52,
+          0.4,
+          "501b71614c9a68ea9d11c2dc78fc1c816b18b2ab24ab77fc996c4f9a3f656daf",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "61c9867a0fc27dc748debd4e0112100b72b2f724c24e1abd5a9eb0b11b595683",
+          "ROADMAP.md",
+          515,
+          535,
+          0.4,
+          "64138f893eb73683ff3d53523de475085690ecd5ebae68e73b1b1fdf3c2a8f38",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "e783714e4fcdd4abd834e23d16ecb93848612725c68f6bbdcda8f4eeac9a208b",
+          "ROADMAP.md",
+          519,
+          533,
+          0.4,
+          "95b6eb6face93f9c892239111c16cc7e36fd4ddd7dee4e486f1e42f932d0bfa3",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "aa5abf0125570f89890b61c26a258eabc9966b41e883225dcfb12ca34f1a771f",
+          "ROADMAP.md",
+          531,
+          531,
+          0.4,
+          "ffefea43849c9a068aa48c38407113a00d3a8350b6cb8238cd95879033b3a539",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.2,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "86a91d0f99021f7fde499fdff1b4d0806c6fdf5e0e754fb00a2b3b27fe718592",
+          "docs/PROJECT_NOTES.md",
+          119,
+          141,
+          0.2,
+          "0f9bc7cb81c2ad7d82db364c11dfe11624ae1412ebd251203127c86c47ba0f1b",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ]
+      ]
+    },
+    {
+      "caseId": "D13",
+      "language": "es",
+      "query": "¿Las rutas alternativas sencillas ya forman parte de lo implementado?",
+      "sourceCount": 4,
+      "returned": 8,
+      "truncated": true,
+      "anchorOverlapTop8": true,
+      "firstAnchorOverlapRank": 1,
+      "anchorContainmentTop8": true,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 258,
+          "endLine": 264
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 113,
+          "endLine": 115
+        }
+      ],
+      "candidateHandles": [
+        [
+          "ebd67713fe4b0bf4f3ced56d601a8e8e9b551e4c11908daa2e89050e5cfef87e",
+          "README.md",
+          1,
+          238,
+          0.857143,
+          "bd22bfd07e3dafd386ebb33f5e1f6800eda93823c433168c75b511e20f622262",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b7fa6a8256ae1b805f2edb3488f19dee459057c48d49f7eb3500ab5a75e13fec",
+          "README.md",
+          5,
+          120,
+          0.571429,
+          "f1a5d72655a9aa605a7d0d032a3a2247322c092ce2459b2cbf700696a6c4e351",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "69b79b318c4004d91b3b3ed17bbcdbc3c249770f3d7ecc4f4c6d8b9b0c3e139f",
+          "README.md",
+          49,
+          120,
+          0.571429,
+          "ea72967671a6a7c5ac6e64915512099d008d5a2b69cb538f5971c186e2bc1e84",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "b2e1f2a217c5540a2fe09a8a6c841dbe08d4513b060363a18dac83ccac565dbb",
+          "docs/ARCHITECTURE.md",
+          1,
+          328,
+          0.428571,
+          "13d80866af156999e83e5797a8a036c84031301f7fe49a027d4cb47f85996333",
+          "e86150020cdf7e183b54925667f74b6e8fa54383e710a88979ba99f1e054a3f6"
+        ],
+        [
+          "159f462be21917ce140c7d42fd1c1b26cfc108504441d840eed77dc22a89f28f",
+          "docs/PROJECT_NOTES.md",
+          58,
+          118,
+          0.428571,
+          "8c9662c4d9a10b002ba4c7bf8ee9557711ec0a0b6c9aa5963f13ee72ef2a5bea",
+          "89fff1330b53f1059ce76e72c94425025955470a7d2c007415499e688026f2ef"
+        ],
+        [
+          "bd629ac2af3bd5a779d7d7020dd8d670c713e6ebb7bc7a9c916246cd24d54b68",
+          "README.md",
+          218,
+          229,
+          0.428571,
+          "1f354649f7b47bf6c59efcdc25cc8c40c048bd050bcd0a5e84d3a7897e9ca444",
+          "c231c3619fc62049bd5ed301df0e80a39658031d242b760acf8dc0381177e208"
+        ],
+        [
+          "6dd64324d8b070c8b3681db6636cadc679b3550d9c9cb3c8637da3cbd85bb2f2",
+          "ROADMAP.md",
+          208,
+          432,
+          0.428571,
+          "b98cdeff0b781949f22f641042afcdbf2ae59c3d08ff52b6fbb616358f0ae999",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ],
+        [
+          "b73c2748c334c6d072ba28cf45019ec2aee86ea31617a53e8bdd92645c76db8a",
+          "ROADMAP.md",
+          251,
+          269,
+          0.428571,
+          "b57083db85951d3da8f777e981d0e35a66f90b8c06029bf044d566585b35453b",
+          "094e423ba73e5e0c022bc9393225e65314ac43be1c732e9f534f8d68d0e743f9"
+        ]
+      ]
+    },
+    {
+      "caseId": "D13",
+      "language": "en",
+      "query": "Are simple alternate routes already implemented?",
+      "sourceCount": 4,
+      "returned": 0,
+      "truncated": false,
+      "anchorOverlapTop8": false,
+      "firstAnchorOverlapRank": null,
+      "anchorContainmentTop8": false,
+      "exactAnchorTop8": false,
+      "anchors": [
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 258,
+          "endLine": 264
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 113,
+          "endLine": 115
+        }
+      ],
+      "candidateHandles": []
+    }
+  ]
+}
