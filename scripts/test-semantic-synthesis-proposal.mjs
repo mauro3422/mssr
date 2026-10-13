@@ -42,12 +42,41 @@ const inputs = documents.map((doc, index) => {
 });
 const atoms = inputs.map((item) => item.atom);
 const evidence = inputs.map((item) => item.sourceEvidence);
+const thirdDocument = { sourceRef: "docs/c.md", markdown: "# Knowledge\n\n## Evidence C\n\nThe feature requires an owner-bound revision record.\n" };
+const thirdDoc = { ...thirdDocument, owner, privacyClass: "project-metadata" };
+const thirdSurface = buildMssrMarkdownDocumentSurface(thirdDocument);
+const thirdHeading = thirdSurface.headings.find((item) => item.title === "Evidence C");
+const thirdRetrieval = searchMssrLibrarianEvidence({ documents: [thirdDoc], query: { query: "feature owner-bound revision record", maxResults: 10 } });
+const thirdResult = thirdRetrieval.results.find((item) => item.handle.sourceRef === thirdDocument.sourceRef && item.handle.rangeId === thirdHeading.id);
+assert.ok(thirdResult, "retrieval returns the exact source range for docs/c.md");
+const thirdSource = fetchMssrLibrarianEvidence({ handle: thirdResult.handle, owner, sourceRef: thirdDocument.sourceRef, markdown: thirdDocument.markdown, privacyClass: "project-metadata" });
+const thirdAtom = buildMssrEvidenceAtom({
+  subject: { namespace: "document", kind: "section", identity: `${thirdDocument.sourceRef}#${thirdHeading.id}` },
+  source: {
+    ref: thirdDocument.sourceRef,
+    revision: thirdSurface.revision,
+    freshness: "fresh",
+    freshnessEvidence: { canonicalOwner: owner, ref: thirdDocument.sourceRef, revision: thirdSurface.revision, observedAt: "2026-09-30T10:00:00Z" },
+    headingPath: thirdHeading.headingPath,
+    range: { startLine: thirdHeading.startLine, endLine: thirdHeading.endLine, startOffset: thirdHeading.startOffset, endOffset: thirdHeading.endOffset },
+  },
+  provenance: { producer: "fixture", sourceClass: "canonical", canonicalOwner: owner, projectKey: "fixture-project" },
+  fingerprints: { record: "c".repeat(64), payload: thirdHeading.fingerprint },
+  reasonCodes: [],
+  lineage: { parentAtomIds: [], relatedAtomIds: [], supersedesAtomIds: [] },
+  dedupeKey: `fixture:${thirdDocument.sourceRef}:${thirdSurface.revision}`,
+  authorityClass: "observed",
+  privacyClass: "project-metadata",
+  usage: { selection: "selected", consumed: true, outcome: "unknown", reasonCodes: [] },
+  attributes: {},
+});
+const thirdEvidence = { atomId: thirdAtom.id, handle: thirdSource.handle, text: thirdSource.text };
 function reidentifyHandle(handle, changes) {
   const { id: _id, ...fields } = { ...handle, ...changes };
   return { ...fields, id: mssrLibrarianEvidenceHandleId(fields) };
 }
 
-function judgmentFor(kind, selectedAtoms = atoms) {
+function judgmentFor(kind, selectedAtoms = atoms, relationPairs = [[0, 1]], relationKinds = relationPairs.map(() => kind)) {
   const selectedProbability = kind === "supports" ? 0.95 : 0.91;
   const alternateKind = kind === "supports" ? "contradicts" : "supports";
   const citationRoles = kind === "supersedes" ? ["supersession-source", "supersession-target"] : ["supports", "supports"];
@@ -65,15 +94,15 @@ function judgmentFor(kind, selectedAtoms = atoms) {
     calibratedConfidence: null,
     claim: { validity: "current", scope: "feature-contract", validFrom: "2026-01-01T00:00:00Z", validUntil: null },
     citations: selectedAtoms.map((atom, index) => ({ atomId: atom.id, sourceRef: atom.source.ref, revision: atom.source.revision, fingerprint: atom.fingerprints.record, role: citationRoles[index] ?? "context" })),
-    relations: [{
-      leftAtomId: selectedAtoms[0].id,
-      rightAtomId: selectedAtoms[1].id,
-      kind,
+    relations: relationPairs.map(([left, right], index) => ({
+      leftAtomId: selectedAtoms[left].id,
+      rightAtomId: selectedAtoms[right].id,
+      kind: relationKinds[index],
       rawConfidence: selectedProbability,
-      citedAtomIds: selectedAtoms.map((atom) => atom.id),
+      citedAtomIds: [selectedAtoms[left].id, selectedAtoms[right].id],
       comparability: { scope: { left: "feature-contract", right: "feature-contract" }, temporal: { leftValidity: "current", leftValidFrom: "2026-01-01T00:00:00Z", leftValidUntil: null, rightValidity: "current", rightValidFrom: "2026-01-01T00:00:00Z", rightValidUntil: null } },
-      status: kind === "supports" ? "candidate" : "candidate",
-    }],
+      status: "candidate",
+    })),
     evidenceCoverage: { requestedAtomIds: selectedAtoms.map((atom) => atom.id), returnedAtomIds: selectedAtoms.map((atom) => atom.id), complete: true },
     abstainReasons: [],
     reviewReasons: [],
@@ -158,5 +187,31 @@ const unknownFreshnessPreview = buildMssrSemanticSynthesisProposal({
 assert.equal(unknownFreshnessPreview.disposition, "review");
 assert.ok(unknownFreshnessPreview.groups.every((group) => group.disposition === "review"));
 assert.ok(unknownFreshnessPreview.groups.every((group) => group.reasonCodes.includes("source-freshness-not-confirmed")));
+
+const chainAtoms = [...atoms, thirdAtom];
+const chainEvidence = [...evidence, thirdEvidence];
+const chainPreview = buildMssrSemanticSynthesisProposal({
+  judgment: judgmentFor("supports", chainAtoms, [[0, 1], [1, 2]]),
+  inputAtoms: chainAtoms,
+  sourceEvidence: chainEvidence,
+});
+assert.equal(chainPreview.groups.length, 1, "transitive supports relations form one connected synthesis group");
+assert.equal(chainPreview.groups[0].disposition, "consolidation-candidate");
+assert.deepEqual(chainPreview.groups[0].atomIds, chainAtoms.map((atom) => atom.id));
+assert.deepEqual(chainPreview.groups[0].sourceSnapshots, chainEvidence.map(({ atomId, handle, text }) => ({
+  atomId,
+  sourceRef: handle.sourceRef,
+  revision: handle.revision,
+  range: handle,
+  fingerprint: handle.fingerprint,
+  text,
+})), "the connected group retains the exact three revision-bound source snapshots");
+assert.equal(chainPreview.applyAllowed, false, "even an eligible preview cannot be applied by this advisory proposal");
+
+assert.throws(
+  () => judgmentFor("supports", chainAtoms, [[0, 1], [1, 2], [0, 2]], ["supports", "supports", "contradicts"]),
+  /Every relation edge must agree with the selected relation-kind head; split mixed relation kinds into separate judgments/i,
+  "mixed-kind edges are rejected by the single-kind judgment contract; contradiction aggregation needs a separate API",
+);
 
 console.log("semantic synthesis proposal tests passed");
