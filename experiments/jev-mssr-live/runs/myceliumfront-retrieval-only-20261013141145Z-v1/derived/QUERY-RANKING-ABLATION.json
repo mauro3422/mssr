@@ -1,0 +1,526 @@
+{
+  "schemaVersion": 1,
+  "runId": "myceliumfront-retrieval-only-20261013141145Z-v1",
+  "evaluatedAt": "2026-10-13T15:01:54.230Z",
+  "method": {
+    "implementation": "offline deterministic replay of src/librarian-retrieval.ts; no network and no Jev/provider calls",
+    "sourceRevision": "6bc411943c80be6ef844e4b5ac6847ae57465926",
+    "mssrPackageVersion": "0.2.131",
+    "sourceRefs": [
+      "README.md",
+      "ROADMAP.md",
+      "docs/ARCHITECTURE.md",
+      "docs/PROJECT_NOTES.md"
+    ],
+    "sourceSnapshotHashesVerified": true,
+    "queryInputHashVerified": true,
+    "retrievalSourceSha256": "efa10cb638ef38457c0775c71e9d21201cfa6c235e6a8af3e2e6be158e1794a2",
+    "cohort": "nine English top-8 misses from one exposed MyceliumFront project family; provisional anchors, owner adjudication pending",
+    "currentPolicy": "one combined English primary + explicit Spanish variant search; primary-query group ranks before variant-only results; maxResults=100 for replay, then inspect top 8 and top 16",
+    "candidatePolicy": "run English-only and Spanish-only searches separately (maxResults=100 each), alternate one candidate from each ranked list starting with English, deduplicate by exact handle id; this is an offline counterfactual, not a production policy",
+    "truncation": "separate top-100 pools may already be truncated; interleaving their union cannot recover candidates outside either frozen 100-result pool",
+    "targetMetrics": "any provisional anchor overlap, full anchor containment, and exact range equality, scored separately"
+  },
+  "metrics": {
+    "cases": 9,
+    "primaryFirst": {
+      "overlapAt8": 8,
+      "containmentAt8": 8,
+      "exactRangeAt8": 2,
+      "overlapAt16": 9,
+      "containmentAt16": 9,
+      "exactRangeAt16": 5
+    },
+    "roundRobinInterleave": {
+      "overlapAt8": 9,
+      "containmentAt8": 9,
+      "exactRangeAt8": 2,
+      "overlapAt16": 9,
+      "containmentAt16": 9,
+      "exactRangeAt16": 5
+    },
+    "rescuedAt8": [
+      "D10"
+    ],
+    "regressedAt8": []
+  },
+  "limitations": [
+    "All anchors are author-derived and provisional; this is not owner-gold or a holdout.",
+    "This ranks evidence candidates only; Jev was not called, so answer quality, abstention quality, and confidence calibration were not tested.",
+    "The counterfactual changes retrieval order and may change Jev behavior; this replay does not establish a safe production change.",
+    "The top-k improvements are measured within a single project family and nine linked cases."
+  ],
+  "caseResults": [
+    {
+      "caseId": "P04",
+      "provisionalAnchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 83,
+          "endLine": 83
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 38,
+          "endLine": 38
+        },
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 26,
+          "endLine": 35
+        }
+      ],
+      "primaryPool": {
+        "candidates": 0,
+        "truncatedAt100": false
+      },
+      "variantPool": {
+        "candidates": 85,
+        "truncatedAt100": false
+      },
+      "currentCombinedPool": {
+        "candidates": 85,
+        "truncatedAt100": false
+      },
+      "primaryFirst": {
+        "candidateCount": 85,
+        "firstAnchorOverlapRank": 1,
+        "overlapAt8": true,
+        "containmentAt8": true,
+        "exactRangeAt8": false,
+        "overlapAt16": true,
+        "containmentAt16": true,
+        "exactRangeAt16": false,
+        "poolExceeds16": true,
+        "primaryRankedCandidatesAt8": 0
+      },
+      "roundRobinInterleave": {
+        "candidateCount": 85,
+        "firstAnchorOverlapRank": 1,
+        "overlapAt8": true,
+        "containmentAt8": true,
+        "exactRangeAt8": false,
+        "overlapAt16": true,
+        "containmentAt16": true,
+        "exactRangeAt16": false,
+        "poolExceeds16": true,
+        "firstQueryContributionAt8": {
+          "primary": 0,
+          "variant": 8
+        }
+      }
+    },
+    {
+      "caseId": "P05",
+      "provisionalAnchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 86,
+          "endLine": 86
+        }
+      ],
+      "primaryPool": {
+        "candidates": 3,
+        "truncatedAt100": false
+      },
+      "variantPool": {
+        "candidates": 100,
+        "truncatedAt100": true
+      },
+      "currentCombinedPool": {
+        "candidates": 100,
+        "truncatedAt100": true
+      },
+      "primaryFirst": {
+        "candidateCount": 100,
+        "firstAnchorOverlapRank": 5,
+        "overlapAt8": true,
+        "containmentAt8": true,
+        "exactRangeAt8": false,
+        "overlapAt16": true,
+        "containmentAt16": true,
+        "exactRangeAt16": true,
+        "poolExceeds16": true,
+        "primaryRankedCandidatesAt8": 3
+      },
+      "roundRobinInterleave": {
+        "candidateCount": 103,
+        "firstAnchorOverlapRank": 4,
+        "overlapAt8": true,
+        "containmentAt8": true,
+        "exactRangeAt8": false,
+        "overlapAt16": true,
+        "containmentAt16": true,
+        "exactRangeAt16": true,
+        "poolExceeds16": true,
+        "firstQueryContributionAt8": {
+          "primary": 3,
+          "variant": 5
+        }
+      }
+    },
+    {
+      "caseId": "D02",
+      "provisionalAnchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 114,
+          "endLine": 114
+        }
+      ],
+      "primaryPool": {
+        "candidates": 5,
+        "truncatedAt100": false
+      },
+      "variantPool": {
+        "candidates": 92,
+        "truncatedAt100": false
+      },
+      "currentCombinedPool": {
+        "candidates": 96,
+        "truncatedAt100": false
+      },
+      "primaryFirst": {
+        "candidateCount": 96,
+        "firstAnchorOverlapRank": 6,
+        "overlapAt8": true,
+        "containmentAt8": true,
+        "exactRangeAt8": false,
+        "overlapAt16": true,
+        "containmentAt16": true,
+        "exactRangeAt16": true,
+        "poolExceeds16": true,
+        "primaryRankedCandidatesAt8": 5
+      },
+      "roundRobinInterleave": {
+        "candidateCount": 96,
+        "firstAnchorOverlapRank": 2,
+        "overlapAt8": true,
+        "containmentAt8": true,
+        "exactRangeAt8": false,
+        "overlapAt16": true,
+        "containmentAt16": true,
+        "exactRangeAt16": true,
+        "poolExceeds16": true,
+        "firstQueryContributionAt8": {
+          "primary": 4,
+          "variant": 4
+        }
+      }
+    },
+    {
+      "caseId": "D03",
+      "provisionalAnchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 115,
+          "endLine": 115
+        },
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 50,
+          "endLine": 50
+        }
+      ],
+      "primaryPool": {
+        "candidates": 0,
+        "truncatedAt100": false
+      },
+      "variantPool": {
+        "candidates": 95,
+        "truncatedAt100": false
+      },
+      "currentCombinedPool": {
+        "candidates": 95,
+        "truncatedAt100": false
+      },
+      "primaryFirst": {
+        "candidateCount": 95,
+        "firstAnchorOverlapRank": 1,
+        "overlapAt8": true,
+        "containmentAt8": true,
+        "exactRangeAt8": true,
+        "overlapAt16": true,
+        "containmentAt16": true,
+        "exactRangeAt16": true,
+        "poolExceeds16": true,
+        "primaryRankedCandidatesAt8": 0
+      },
+      "roundRobinInterleave": {
+        "candidateCount": 95,
+        "firstAnchorOverlapRank": 1,
+        "overlapAt8": true,
+        "containmentAt8": true,
+        "exactRangeAt8": true,
+        "overlapAt16": true,
+        "containmentAt16": true,
+        "exactRangeAt16": true,
+        "poolExceeds16": true,
+        "firstQueryContributionAt8": {
+          "primary": 0,
+          "variant": 8
+        }
+      }
+    },
+    {
+      "caseId": "D05",
+      "provisionalAnchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 117,
+          "endLine": 117
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 228,
+          "endLine": 228
+        },
+        {
+          "sourceRef": "docs/ARCHITECTURE.md",
+          "startLine": 306,
+          "endLine": 318
+        }
+      ],
+      "primaryPool": {
+        "candidates": 0,
+        "truncatedAt100": false
+      },
+      "variantPool": {
+        "candidates": 44,
+        "truncatedAt100": false
+      },
+      "currentCombinedPool": {
+        "candidates": 44,
+        "truncatedAt100": false
+      },
+      "primaryFirst": {
+        "candidateCount": 44,
+        "firstAnchorOverlapRank": 1,
+        "overlapAt8": true,
+        "containmentAt8": true,
+        "exactRangeAt8": true,
+        "overlapAt16": true,
+        "containmentAt16": true,
+        "exactRangeAt16": true,
+        "poolExceeds16": true,
+        "primaryRankedCandidatesAt8": 0
+      },
+      "roundRobinInterleave": {
+        "candidateCount": 44,
+        "firstAnchorOverlapRank": 1,
+        "overlapAt8": true,
+        "containmentAt8": true,
+        "exactRangeAt8": true,
+        "overlapAt16": true,
+        "containmentAt16": true,
+        "exactRangeAt16": true,
+        "poolExceeds16": true,
+        "firstQueryContributionAt8": {
+          "primary": 0,
+          "variant": 8
+        }
+      }
+    },
+    {
+      "caseId": "D06",
+      "provisionalAnchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 118,
+          "endLine": 118
+        }
+      ],
+      "primaryPool": {
+        "candidates": 0,
+        "truncatedAt100": false
+      },
+      "variantPool": {
+        "candidates": 88,
+        "truncatedAt100": false
+      },
+      "currentCombinedPool": {
+        "candidates": 88,
+        "truncatedAt100": false
+      },
+      "primaryFirst": {
+        "candidateCount": 88,
+        "firstAnchorOverlapRank": 1,
+        "overlapAt8": true,
+        "containmentAt8": true,
+        "exactRangeAt8": false,
+        "overlapAt16": true,
+        "containmentAt16": true,
+        "exactRangeAt16": true,
+        "poolExceeds16": true,
+        "primaryRankedCandidatesAt8": 0
+      },
+      "roundRobinInterleave": {
+        "candidateCount": 88,
+        "firstAnchorOverlapRank": 1,
+        "overlapAt8": true,
+        "containmentAt8": true,
+        "exactRangeAt8": false,
+        "overlapAt16": true,
+        "containmentAt16": true,
+        "exactRangeAt16": true,
+        "poolExceeds16": true,
+        "firstQueryContributionAt8": {
+          "primary": 0,
+          "variant": 8
+        }
+      }
+    },
+    {
+      "caseId": "D10",
+      "provisionalAnchors": [
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 418,
+          "endLine": 431
+        }
+      ],
+      "primaryPool": {
+        "candidates": 100,
+        "truncatedAt100": true
+      },
+      "variantPool": {
+        "candidates": 100,
+        "truncatedAt100": true
+      },
+      "currentCombinedPool": {
+        "candidates": 100,
+        "truncatedAt100": true
+      },
+      "primaryFirst": {
+        "candidateCount": 100,
+        "firstAnchorOverlapRank": 10,
+        "overlapAt8": false,
+        "containmentAt8": false,
+        "exactRangeAt8": false,
+        "overlapAt16": true,
+        "containmentAt16": true,
+        "exactRangeAt16": false,
+        "poolExceeds16": true,
+        "primaryRankedCandidatesAt8": 8
+      },
+      "roundRobinInterleave": {
+        "candidateCount": 154,
+        "firstAnchorOverlapRank": 4,
+        "overlapAt8": true,
+        "containmentAt8": true,
+        "exactRangeAt8": false,
+        "overlapAt16": true,
+        "containmentAt16": true,
+        "exactRangeAt16": false,
+        "poolExceeds16": true,
+        "firstQueryContributionAt8": {
+          "primary": 4,
+          "variant": 4
+        }
+      }
+    },
+    {
+      "caseId": "D13",
+      "provisionalAnchors": [
+        {
+          "sourceRef": "ROADMAP.md",
+          "startLine": 258,
+          "endLine": 264
+        },
+        {
+          "sourceRef": "README.md",
+          "startLine": 113,
+          "endLine": 115
+        }
+      ],
+      "primaryPool": {
+        "candidates": 0,
+        "truncatedAt100": false
+      },
+      "variantPool": {
+        "candidates": 71,
+        "truncatedAt100": false
+      },
+      "currentCombinedPool": {
+        "candidates": 71,
+        "truncatedAt100": false
+      },
+      "primaryFirst": {
+        "candidateCount": 71,
+        "firstAnchorOverlapRank": 1,
+        "overlapAt8": true,
+        "containmentAt8": true,
+        "exactRangeAt8": false,
+        "overlapAt16": true,
+        "containmentAt16": true,
+        "exactRangeAt16": false,
+        "poolExceeds16": true,
+        "primaryRankedCandidatesAt8": 0
+      },
+      "roundRobinInterleave": {
+        "candidateCount": 71,
+        "firstAnchorOverlapRank": 1,
+        "overlapAt8": true,
+        "containmentAt8": true,
+        "exactRangeAt8": false,
+        "overlapAt16": true,
+        "containmentAt16": true,
+        "exactRangeAt16": false,
+        "poolExceeds16": true,
+        "firstQueryContributionAt8": {
+          "primary": 0,
+          "variant": 8
+        }
+      }
+    },
+    {
+      "caseId": "U03",
+      "provisionalAnchors": [
+        {
+          "sourceRef": "README.md",
+          "startLine": 104,
+          "endLine": 105
+        }
+      ],
+      "primaryPool": {
+        "candidates": 0,
+        "truncatedAt100": false
+      },
+      "variantPool": {
+        "candidates": 100,
+        "truncatedAt100": true
+      },
+      "currentCombinedPool": {
+        "candidates": 100,
+        "truncatedAt100": true
+      },
+      "primaryFirst": {
+        "candidateCount": 100,
+        "firstAnchorOverlapRank": 3,
+        "overlapAt8": true,
+        "containmentAt8": true,
+        "exactRangeAt8": false,
+        "overlapAt16": true,
+        "containmentAt16": true,
+        "exactRangeAt16": false,
+        "poolExceeds16": true,
+        "primaryRankedCandidatesAt8": 0
+      },
+      "roundRobinInterleave": {
+        "candidateCount": 100,
+        "firstAnchorOverlapRank": 3,
+        "overlapAt8": true,
+        "containmentAt8": true,
+        "exactRangeAt8": false,
+        "overlapAt16": true,
+        "containmentAt16": true,
+        "exactRangeAt16": false,
+        "poolExceeds16": true,
+        "firstQueryContributionAt8": {
+          "primary": 0,
+          "variant": 8
+        }
+      }
+    }
+  ]
+}
