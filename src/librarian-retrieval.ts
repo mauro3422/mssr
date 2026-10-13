@@ -216,6 +216,22 @@ function indentationColumns(line: string): number {
   return columns;
 }
 
+// CommonMark lazy continuation applies to paragraph text, not block starts.
+function isParagraphContinuationText(value: string): boolean {
+  const line = value.trimStart();
+  if (!line) return false;
+  if (/^#{1,6}(?:[ \t]|$)/.test(line) || /^>/.test(line) || INDENTED_FENCE_RE.test(value)) return false;
+  if (/^(?:[-+*]|\d+[.)])(?:[ \t]+|$)/.test(line)) return false;
+  const compact = line.replace(/[ \t]/g, "");
+  if (/^(?:\*{3,}|-{3,}|_{3,})$/.test(compact) || /^(?:=+|-+)[ \t]*$/.test(line)) return false;
+  if (/^<(?:!--|\?|![A-Z]|\/?(?:address|article|aside|base|blockquote|body|caption|center|col|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h[1-6]|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|nav|noframes|ol|optgroup|option|p|param|search|section|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul)(?:[ \t/>]|$))/i.test(line)) return false;
+  return true;
+}
+
+function hasParagraphAfterListMarker(line: string, marker: RegExpMatchArray): boolean {
+  return isParagraphContinuationText(line.slice(marker[0].length));
+}
+
 function listItemRanges(args: {
   markdown: string;
   lines: string[];
@@ -234,11 +250,13 @@ function listItemRanges(args: {
   const starts: number[] = [blockStart];
   const ends: number[] = [];
   let currentItemEnd = blockStart;
+  let paragraphOpen = hasParagraphAfterListMarker(args.lines[blockStart] ?? "", firstMarker);
   let fence: { marker: string; length: number } | null = null;
   for (let index = blockStart + 1; index < args.lines.length;) {
     if (args.headingLines.has(index)) break;
     const line = args.lines[index] ?? "";
     if (!fence && line.trim().length === 0) {
+      paragraphOpen = false;
       let nextIndex = index + 1;
       while (nextIndex < args.lines.length && args.lines[nextIndex]!.trim().length === 0) nextIndex += 1;
       if (nextIndex >= args.lines.length || args.headingLines.has(nextIndex)) break;
@@ -248,6 +266,7 @@ function listItemRanges(args: {
         ends.push(currentItemEnd);
         starts.push(nextIndex);
         currentItemEnd = nextIndex;
+        paragraphOpen = hasParagraphAfterListMarker(next, nextMarker);
         index = nextIndex + 1;
         continue;
       }
@@ -256,15 +275,18 @@ function listItemRanges(args: {
       continue;
     }
     const fenceMatch = line.match(INDENTED_FENCE_RE);
+    if (fenceMatch && indentationColumns(line) <= baseIndentColumns) break;
     if (fence) {
       if (listFenceClose(line, fence.marker)) fence = null;
       currentItemEnd = index;
+      paragraphOpen = false;
       index += 1;
       continue;
     }
     if (fenceMatch) {
       fence = { marker: fenceMatch[2]!, length: fenceMatch[2]!.length };
       currentItemEnd = index;
+      paragraphOpen = false;
       index += 1;
       continue;
     }
@@ -273,11 +295,13 @@ function listItemRanges(args: {
       ends.push(currentItemEnd);
       starts.push(index);
       currentItemEnd = index;
+      paragraphOpen = hasParagraphAfterListMarker(line, marker);
       index += 1;
       continue;
     }
-    if (indentationColumns(line) <= baseIndentColumns) break;
+    if (indentationColumns(line) <= baseIndentColumns && (!paragraphOpen || !isParagraphContinuationText(line))) break;
     currentItemEnd = index;
+    paragraphOpen = marker ? hasParagraphAfterListMarker(line, marker) : isParagraphContinuationText(line);
     index += 1;
   }
   ends.push(currentItemEnd);

@@ -518,6 +518,102 @@ const blankLineSiblingFetch = fetchMssrLibrarianEvidence({
 assert.equal(blankLineSiblingFetch.text, "- Sibling requirement remains separate.");
 assert.equal(blankLineSiblingFetch.fingerprint, blankLineItemResults[1].handle.fingerprint);
 assert.ok(!blankLineSiblingFetch.text.includes("Unrelated prose"), "the blank-line list range stops before unrelated prose");
+const lazyContinuationListDocument = {
+  owner,
+  sourceRef: "docs/list-items-with-lazy-continuation.md",
+  markdown: [
+    "- The system reads decisions from this row.",
+    "This continuation contains the critical exception.",
+    "- A separate sibling item.",
+    "",
+    "## Following section",
+    "This section is outside the list.",
+  ].join("\n"),
+  privacyClass: "project-metadata",
+};
+const lazyContinuationSearch = searchMssrLibrarianEvidence({
+  documents: [lazyContinuationListDocument],
+  query: { query: "critical exception", maxResults: 20 },
+});
+const lazyContinuationItem = lazyContinuationSearch.results.find((item) => item.handle.rangeId === "block-1/item-1");
+assert.ok(lazyContinuationItem, "an unindented lazy continuation contributes terms to its parent list-item range");
+const lazyContinuationFetch = fetchMssrLibrarianEvidence({
+  handle: lazyContinuationItem.handle,
+  owner,
+  sourceRef: lazyContinuationListDocument.sourceRef,
+  markdown: lazyContinuationListDocument.markdown,
+  privacyClass: "project-metadata",
+});
+assert.equal(
+  lazyContinuationFetch.text,
+  "- The system reads decisions from this row.\nThis continuation contains the critical exception.",
+  "the exact list-item fetch includes lazy paragraph continuation but excludes its same-level sibling and following section",
+);
+assert.equal(lazyContinuationFetch.fingerprint, lazyContinuationItem.handle.fingerprint);
+const lazyContinuationSiblingSearch = searchMssrLibrarianEvidence({
+  documents: [lazyContinuationListDocument],
+  query: { query: "separate sibling", maxResults: 20 },
+});
+const lazyContinuationSibling = lazyContinuationSiblingSearch.results.find((item) => item.handle.rangeId === "block-1/item-2");
+assert.ok(lazyContinuationSibling, "the same-level sibling remains independently searchable");
+const lazyContinuationSiblingFetch = fetchMssrLibrarianEvidence({
+  handle: lazyContinuationSibling.handle,
+  owner,
+  sourceRef: lazyContinuationListDocument.sourceRef,
+  markdown: lazyContinuationListDocument.markdown,
+  privacyClass: "project-metadata",
+});
+assert.equal(lazyContinuationSiblingFetch.text, "- A separate sibling item.");
+assert.ok(!lazyContinuationSiblingFetch.text.includes("Following section"), "the sibling item stops before the next heading");
+const thematicBreakListDocument = {
+  owner,
+  sourceRef: "docs/list-items-before-thematic-break.md",
+  markdown: [
+    "- Keep only this list-item paragraph.",
+    "---",
+    "This paragraph follows a thematic break outside the list.",
+  ].join("\n"),
+  privacyClass: "project-metadata",
+};
+const thematicBreakSearch = searchMssrLibrarianEvidence({
+  documents: [thematicBreakListDocument],
+  query: { query: "keep list item paragraph", maxResults: 20 },
+});
+const thematicBreakItem = thematicBreakSearch.results.find((item) => item.handle.rangeId === "block-1/item-1");
+assert.ok(thematicBreakItem, "the paragraph before a thematic break remains a list-item range");
+const thematicBreakFetch = fetchMssrLibrarianEvidence({
+  handle: thematicBreakItem.handle,
+  owner,
+  sourceRef: thematicBreakListDocument.sourceRef,
+  markdown: thematicBreakListDocument.markdown,
+  privacyClass: "project-metadata",
+});
+assert.equal(thematicBreakFetch.text, "- Keep only this list-item paragraph.");
+const fencedBlockListDocument = {
+  owner,
+  sourceRef: "docs/list-items-before-unindented-fence.md",
+  markdown: [
+    "- Keep only this list-item paragraph.",
+    "```text",
+    "This code block is outside the list.",
+    "```",
+  ].join("\n"),
+  privacyClass: "project-metadata",
+};
+const fencedBlockSearch = searchMssrLibrarianEvidence({
+  documents: [fencedBlockListDocument],
+  query: { query: "keep list item paragraph", maxResults: 20 },
+});
+const fencedBlockItem = fencedBlockSearch.results.find((item) => item.handle.rangeId === "block-1/item-1");
+assert.ok(fencedBlockItem, "a list item before an unindented fence remains independently searchable");
+const fencedBlockFetch = fetchMssrLibrarianEvidence({
+  handle: fencedBlockItem.handle,
+  owner,
+  sourceRef: fencedBlockListDocument.sourceRef,
+  markdown: fencedBlockListDocument.markdown,
+  privacyClass: "project-metadata",
+});
+assert.equal(fencedBlockFetch.text, "- Keep only this list-item paragraph.");
 const mixedIndentListDocument = {
   owner,
   sourceRef: "docs/list-items-with-mixed-indent.md",
