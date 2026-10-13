@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-metadata-key-regression-adr007-20261013T1213Z-v1",
+  "createdAt": "2026-10-13T12:13:58Z",
+  "classification": "exposed-source-derived-development-diagnostic",
+  "purpose": "Test whether metadata property names create false Librarian lexical matches, then check the repaired bilingual retrieval-to-Jev path on one real MSSR source.",
+  "source": {
+    "path": "docs/decisions/0007-automatic-lifecycle-coverage.md",
+    "sha256": "92e6a35bc007060a6e8634c63e94dc638e3636ba5a7c5f46abdd2a87f8e16a69",
+    "owner": "project:mssr",
+    "exposure": "previously exposed; not holdout"
+  },
+  "repository": {
+    "baseCommit": "8911258",
+    "branch": "codex/mssr-librarian-query-variants-0.2.112",
+    "candidateVersion": "0.2.131"
+  },
+  "queries": {
+    "primarySpanish": "Si la propiedad de la traza es ambigua, incompatible o desconocida, ¿se puede migrar y qué acción de revisión debe seguirse?",
+    "explicitEnglishVariant": "If trace ownership is ambiguous, mismatched, or unknown, can the trace migrate and which review action follows?",
+    "metadataKeyProbe": "revision"
+  },
+  "frozenTarget": {
+    "rangeId": "block-9/item-7",
+    "lines": [38, 38],
+    "fingerprint": "daa123d6489f5e07ff6535ff0ca71d13951ee4e025b95a3571450ae40fad1527"
+  },
+  "limits": [
+    "One exposed document/query cluster; not independent benchmark units.",
+    "No owner-adjudicated labels or holdout claim.",
+    "Choice and Noul are descriptive and uncalibrated.",
+    "No runtime, threshold, policy, canonical source, or Bridge package activation changed."
+  ]
+}

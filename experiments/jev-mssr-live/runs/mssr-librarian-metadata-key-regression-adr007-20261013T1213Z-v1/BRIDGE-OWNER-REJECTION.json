@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "classification": "pre-provider-integration-rejection",
+  "tool": "mssr_librarian_jev_select",
+  "attempts": [
+    {
+      "result": "mssr-lifecycle-preflight-required",
+      "action": "ensure-route",
+      "providerCall": false,
+      "traceId": "mssr-20261013114330-ca83af7b-b97"
+    },
+    {
+      "result": "mssr-lifecycle-preflight-required",
+      "action": "ensure-trace-and-route",
+      "providerCall": false,
+      "traceId": null
+    },
+    {
+      "result": "candidate handle must reference an explicitly supplied document owned by the same caller",
+      "providerCall": false,
+      "cause": "the test constructed owner=project:mssr locally rather than using Bridge search's caller-derived owner and handle"
+    }
+  ],
+  "followUp": "Start with Bridge mssr_librarian_search on the canonical projectRoot/sourceRefs and pass its returned candidate handles directly to Bridge mssr_librarian_jev_select."
+}

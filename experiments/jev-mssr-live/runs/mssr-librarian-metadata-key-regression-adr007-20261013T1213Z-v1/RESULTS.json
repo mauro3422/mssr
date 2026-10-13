@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "runId": "mssr-librarian-metadata-key-regression-adr007-20261013T1213Z-v1",
+  "status": "completed-with-bridge-integration-friction",
+  "retrieval": {
+    "preFixMetadataOnlyProbe": {
+      "markdownContainsQueryToken": false,
+      "query": "revision",
+      "candidateCount": 3,
+      "interpretation": "false-positive matches from generated metadata keys"
+    },
+    "postFixMetadataOnlyProbe": {
+      "markdownContainsQueryToken": false,
+      "query": "revision",
+      "candidateCount": 0,
+      "regressionTest": "scripts/test-librarian-retrieval.mjs"
+    },
+    "adrSpanishOnly": {
+      "candidateCount": 0,
+      "interpretation": "the English source has no useful lexical overlap with this Spanish wording after the metadata-key false match is removed"
+    },
+    "adrSpanishWithExplicitEnglishVariant": {
+      "candidateCountAt54Limit": 35,
+      "candidateCountAt20Limit": 20,
+      "exactTargetRank": 5,
+      "targetRangeId": "block-9/item-7",
+      "targetVariantIndex": 1,
+      "targetLexicalOverlap": 0.6
+    }
+  },
+  "jev": {
+    "provider": "typesafe-jev",
+    "status": "selected",
+    "candidateCount": 20,
+    "selectedRangeId": "block-9/item-7",
+    "selectedLines": [38, 38],
+    "providerConfidence": 1.0,
+    "evidenceSufficiency": 0.92,
+    "inputTokens": 3317,
+    "outputTokens": 247,
+    "confidenceCalibration": "uncalibrated-provider-score",
+    "evidenceSufficiencyCalibration": "uncalibrated-provider-score",
+    "exactFetchRequired": true,
+    "autoApplyAllowed": false,
+    "calls": 2,
+    "callAccountingNote": "One successful duplicate call returned selected status, but its structured output was truncated by the host-side display. The preserved measurement above is from the captured repeat; total usage across both calls is unknown. The repeated call does not create an independent benchmark unit."
+  },
+  "exactFetch": {
+    "status": "passed",
+    "sourceRevision": "92e6a35bc007060a6e8634c63e94dc638e3636ba5a7c5f46abdd2a87f8e16a69",
+    "rangeFingerprint": "daa123d6489f5e07ff6535ff0ca71d13951ee4e025b95a3571450ae40fad1527",
+    "rangeId": "block-9/item-7",
+    "lines": [38, 38],
+    "text": "7. Ambiguous, mismatched or unknown trace ownership never migrates a trace. The decision abstains into `review`/`inspect-traces`; R1 remains the authoritative owner-integrity contract."
+  },
+  "tests": {
+    "build": "passed",
+    "librarianContract": "passed",
+    "librarianRetrieval": "passed",
+    "librarianJevSelection": "passed",
+    "librarianEvidencePack": "passed",
+    "fullVerify": "passed",
+    "releaseGate": "passed",
+    "releaseArtifact": {
+      "filename": "mauroprime-mssr-0.2.131.tgz",
+      "bytes": 1186924,
+      "sha256": "11d31ecfad4af694a3aa930db4909078034f9d57f976071a14619a4d9df64b82"
+    }
+  },
+  "bridgeIntegration": {
+    "providerCallMadeByRejectedBridgeAttempts": false,
+    "result": "Bridge rejected a local search handle whose asserted owner did not match the Bridge caller-derived owner; a lifecycle preflight also required an explicit routed trace. Use Bridge-search-returned handles for future Bridge end-to-end selection."
+  },
+  "claimBoundary": {
+    "sourceClusters": 1,
+    "ownerGold": false,
+    "holdout": false,
+    "calibrated": false,
+    "reliabilityClaim": false,
+    "productionActivation": false
+  }
+}
