@@ -73,7 +73,7 @@ Core package state: five first-party MSSR operational skill roots. Semantic evid
 <!-- mssr-state:roadmap.r2=completed -->
 <!-- mssr-state:roadmap.r3=completed -->
 <!-- mssr-state:roadmap.r4=pending -->
-<!-- mssr-version:mssr.source=0.2.132 -->
+<!-- mssr-version:mssr.source=0.2.134 -->
 <!-- mssr-version:bridge.live=0.6.179 -->
 
 <!-- mssr-owner:semantic.consistency=mssr -->
