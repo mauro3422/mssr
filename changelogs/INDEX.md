@@ -21,6 +21,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.133](0.2.133.md) - screen actual Jev-bound Librarian and relation-review requests for common accidental privacy disclosures; block before provider calls and return category/count diagnostics only.
 - [0.2.132](0.2.132.md) - add explicit round-robin ranking for host-supplied Librarian query variants while preserving primary-first by default.
 - [0.2.131](0.2.131.md) - exclude metadata field names from Librarian lexical matches while keeping metadata values searchable.
 - [0.2.130](0.2.130.md) - register the owned Git worktree-reconciliation skill with explicit routing and positive, continuation, and nearby negative fixtures.

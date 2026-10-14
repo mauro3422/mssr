@@ -532,4 +532,75 @@ assert.equal(limitResult.candidateRangeDiagnostics.eligible, 2_044);
 assert.equal(limitResult.candidateRangeDiagnostics.oversizedOmitted, 4);
 assert.equal(limitProviderCalls, 0, "a catalog exceeding the provider-call budget must fail closed before Jev use");
 
+const privacyProviderCallsBefore = providerCalls.length;
+const privacyCases = [
+  {
+    name: "private IPv4 in excerpt",
+    document: { owner, sourceRef: "docs/private-ip.md", markdown: "# Network\n\n## Endpoint\n\nThe local endpoint is 10.42.7.9 for this service.\n", privacyClass: "project-metadata" },
+    literal: "10.42.7.9",
+    category: "private-ipv4",
+  },
+  {
+    name: "Windows path in excerpt",
+    document: { owner, sourceRef: "docs/windows-path.md", markdown: String.raw`# Record
+
+## Binding
+
+The local file is C:\Users\mauro\private\record.md.
+`, privacyClass: "project-metadata" },
+    literal: "C:\\Users",
+    category: "local-path",
+  },
+  {
+    name: "UNC path in excerpt",
+    document: { owner, sourceRef: "docs/unc-path.md", markdown: String.raw`# Record
+
+## Binding
+
+The shared source is \\fileserver\private\record.md.
+`, privacyClass: "project-metadata" },
+    literal: "fileserver",
+    category: "local-path",
+  },
+  {
+    name: "credential-like value in excerpt",
+    document: { owner, sourceRef: "docs/credential.md", markdown: "# Configuration\n\n## Binding\n\nExample: OPENAI_API_KEY=sk-proj-12345678901234567890\n", privacyClass: "project-metadata" },
+    literal: "sk-proj-12345678901234567890",
+    category: "credential-like",
+  },
+];
+for (const item of privacyCases) {
+  const blocked = await selectMssrLibrarianEvidenceWithJev({
+    selectionMode: "all-headings",
+    documents: [item.document],
+    query: "What does this record describe?",
+  }, provider);
+  assert.equal(blocked.status, "not-run", `${item.name} blocks Jev selection`);
+  assert.equal(blocked.reason, "provider-input-privacy-blocked");
+  assert.equal(blocked.jevCallMade, false);
+  assert.ok(blocked.privacyPreflight.categories.includes(item.category));
+  assert.equal(JSON.stringify(blocked).includes(item.literal), false, "privacy diagnostics must not echo matched source text");
+}
+assert.equal(providerCalls.length, privacyProviderCallsBefore, "every privacy-blocked selection is stopped before the provider call");
+
+const localPathIdentityStart = providerCalls.length;
+const localPathIdentitySelection = await selectMssrLibrarianEvidenceWithJev({
+  selectionMode: "all-headings",
+  documents: [{ owner: String.raw`D:\Dev\mssr`, sourceRef: String.raw`D:\Dev\mssr\docs\local-source.md`, markdown: "# Record\n\n## Binding\n\nThis is ordinary public project documentation.\n", privacyClass: "project-metadata" }],
+  query: "What does the record describe?",
+}, provider);
+assert.equal(localPathIdentitySelection.status, "selected", "local filesystem identities are replaced rather than causing normal owner paths to block use");
+const localPathIdentityPayload = JSON.stringify(providerCalls[localPathIdentityStart]);
+assert.equal(localPathIdentityPayload.includes(String.raw`D:\Dev\mssr`), false, "provider payload must not contain local owner or source paths");
+assert.match(localPathIdentityPayload, /local-owner-1/);
+assert.match(localPathIdentityPayload, /local-source-1/);
+
+const benignPrivacyControl = await selectMssrLibrarianEvidenceWithJev({
+  selectionMode: "all-headings",
+  documents: [{ owner, sourceRef: "docs/public-resolver.md", markdown: "# Network\n\n## Public resolver\n\nThe public resolver address is 8.8.8.8.\n", privacyClass: "project-metadata" }],
+  query: "What is the public resolver address?",
+}, provider);
+assert.equal(benignPrivacyControl.status, "selected", "public IPv4 control remains eligible for Jev");
+assert.equal(providerCalls.length, privacyProviderCallsBefore + 2);
+
 console.log("librarian Jev selection tests passed");

@@ -120,6 +120,28 @@ assert.equal(linkedRequests.length, 1, "pairs sharing an atom may share one comp
 assert.equal(linked.batches[0].pairIds.length, 2);
 assert.deepEqual(linked.batches[0].pairIds, ["pair-linked-a", "pair-linked-b"]);
 
+let privacyBlockedCalls = 0;
+await assert.rejects(() => reviewMssrSemanticEvidenceRelations({
+  provider: { async executeSystemOne() { privacyBlockedCalls += 1; throw new Error("provider must not be called for blocked input"); } },
+  input: {
+    projectKey: "review-project",
+    corpusKey: "release-docs",
+    goal: "Compare release requirements at the private endpoint 10.42.7.9.",
+    inputAtoms: atoms,
+    sourceEvidence,
+    pairs,
+    traceId: "jev-evidence-review-privacy-001",
+    maxPairsPerRequest: 1,
+    maxStateChars: 24_000,
+    concurrency: 2,
+  },
+}), (error) => {
+  assert.match(error.message, /privacy preflight.*private-ipv4/i);
+  assert.equal(error.message.includes("10.42.7.9"), false, "privacy errors must not echo matched source text");
+  return true;
+});
+assert.equal(privacyBlockedCalls, 0, "all relation batches are screened before any provider call");
+
 const tampered = sourceEvidence.map((item, index) => index === 0 ? { ...item, text: `${item.text} forged` } : item);
 await assert.rejects(() => reviewMssrSemanticEvidenceRelations({ provider, input: { projectKey: "review-project", corpusKey: "release-docs", goal: "Compare.", inputAtoms: atoms, sourceEvidence: tampered, pairs, traceId: "jev-evidence-review-trace-003" } }), /fingerprint/i);
 

@@ -353,6 +353,7 @@ try {
   }));
   assert.equal(jevSelectionRequests.length, 1, "The Jev selector makes one bounded Choice call.");
   assert.deepEqual(Object.keys(jevSelectionRequests[0].state).sort(), ["evidence", "query", "stage", "task"]);
+  assert.equal(JSON.stringify(jevSelectionRequests[0]).includes(e2eOwner), false, "local project owner paths are not disclosed to Jev");
   assert.equal(Object.keys(jevSelectionRequests[0].questions.selection.options).length, 5, "Four exact headings plus one none option are offered.");
   assert.equal(selectedByJev.status, "selected");
   assert.equal(selectedByJev.selected.headingPath.join(" / "), "Evidence / Claim B");

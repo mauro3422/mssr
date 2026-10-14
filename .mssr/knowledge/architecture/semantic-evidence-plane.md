@@ -14,6 +14,8 @@ Document Surface exposes revision-bound metadata and exact source ranges. A late
 
 Librarian adapts typed, privacy-safe producer metadata while retaining caller-asserted provenance; it does not authenticate that provenance. Deterministic structural duplicate checks run before optional Jev relation judgments. Jev selections, confidence and sufficiency scores remain advisory and uncalibrated. Exact fetch, independent verification and separate permission/write gates remain required; synthesis preview never writes canonical sources.
 
+Immediately before Librarian selection and semantic relation-review calls, MSSR replaces filesystem-path owner/source/project identifiers with request-local opaque labels, then scans the exact bounded provider request for private/non-public IPv4 addresses, remaining Windows/UNC local paths, and common credential patterns. Any content match blocks the request before provider invocation; diagnostics carry only matched categories and counts, never the matching text. This is narrow deterministic defense in depth, not comprehensive DLP, a privacy classification system, or authorization. Hosts still own source classification and provider policy.
+
 ## Progressive section retrieval
 
 Eligible Markdown/skill sources may expose a revision-bound heading tree (`H1..H6`) with exact ranges. Retrieval is progressive: metadata -> top-level headings -> relevant branch -> exact section -> deeper/neighboring section only if necessary. Declared selectors, `project-context.json`, `context-modules.json`, `requiredWhen`, reviewed segments and canonical ownership outrank any derived heading index. Derived indexing is candidate/retrieval evidence only and never promotes an arbitrary document to authority.

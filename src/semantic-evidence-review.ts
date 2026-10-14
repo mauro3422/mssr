@@ -18,6 +18,7 @@ import {
   type MssrJevDecisionProvider,
   type MssrJevDecisionQuestion,
 } from "./semantic-curation-jev-contract.js";
+import { assertMssrJevProviderInputPrivacy, createMssrJevProviderLocalPathLabeler } from "./jev-provider-input-privacy.js";
 
 export const MSSR_SEMANTIC_EVIDENCE_REVIEW_LIMITS = {
   maxAtoms: 64,
@@ -105,16 +106,16 @@ type PreparedPair = {
 };
 type Batch = PreparedPair[];
 
-function stateFor(projectKey: string, corpusKey: string, goal: string, pairs: readonly PreparedPair[]) {
+function stateFor(projectKey: string, corpusKey: string, goal: string, pairs: readonly PreparedPair[], labelLocalPath?: ReturnType<typeof createMssrJevProviderLocalPathLabeler>) {
   return {
     decisionFamily: "semantic-relation-review-v1",
-    projectKey,
-    corpusKey,
+    projectKey: labelLocalPath ? labelLocalPath(projectKey, "project") : projectKey,
+    corpusKey: labelLocalPath ? labelLocalPath(corpusKey, "corpus") : corpusKey,
     goal,
     pairs: pairs.map(({ pair, left, right, leftText, rightText }) => ({
       id: pair.id,
-      left: { atomId: left.id, sourceRef: left.source.ref, revision: left.source.revision, text: leftText },
-      right: { atomId: right.id, sourceRef: right.source.ref, revision: right.source.revision, text: rightText },
+      left: { atomId: left.id, sourceRef: labelLocalPath ? labelLocalPath(left.source.ref, "source") : left.source.ref, revision: left.source.revision, text: leftText },
+      right: { atomId: right.id, sourceRef: labelLocalPath ? labelLocalPath(right.source.ref, "source") : right.source.ref, revision: right.source.revision, text: rightText },
       claim: pair.claim,
       comparability: pair.comparability,
     })),
@@ -257,7 +258,8 @@ export async function reviewMssrSemanticEvidenceRelations(args: {
     maxStateChars: input.maxStateChars,
   });
 
-  const executions = await mapConcurrent(packed.batches, input.concurrency, async (batch, batchIndex) => {
+  const labelLocalPath = createMssrJevProviderLocalPathLabeler();
+  const providerBatches = packed.batches.map((batch, batchIndex) => {
     const questions: Record<string, MssrJevDecisionQuestion> = {};
     batch.forEach(({ pair }, index) => {
       questions[`r${index}`] = {
@@ -266,9 +268,16 @@ export async function reviewMssrSemanticEvidenceRelations(args: {
         options: relationOptions,
       };
     });
-    const state = stateFor(input.projectKey, input.corpusKey, input.goal, batch);
+    const state = stateFor(input.projectKey, input.corpusKey, input.goal, batch, labelLocalPath);
     const stateChars = JSON.stringify(state).length;
     const request = mssrJevDecisionRequestSchema.parse({ state, questions, ...(input.model ? { model: input.model } : {}) });
+    assertMssrJevProviderInputPrivacy(request);
+    return { batch, batchIndex, stateChars, request };
+  });
+
+  // Prepare and screen every bounded request before the first provider call so
+  // a later blocked batch cannot leave earlier evidence partially disclosed.
+  const executions = await mapConcurrent(providerBatches, input.concurrency, async ({ batch, batchIndex, stateChars, request }) => {
     const started = performance.now();
     const response = validateMssrJevDecisionResponse(request, await args.provider.executeSystemOne(request));
     const elapsedMs = performance.now() - started;
@@ -307,7 +316,7 @@ export async function reviewMssrSemanticEvidenceRelations(args: {
     });
     return {
       judgments,
-      batch: { batchId, projectKey: input.projectKey, corpusKey: input.corpusKey, pairIds: batch.map((item) => item.pair.id), questions: Object.keys(questions).length, stateChars, provider: response.provider, model: response.model, usage: response.usage, elapsedMs },
+      batch: { batchId, projectKey: input.projectKey, corpusKey: input.corpusKey, pairIds: batch.map((item) => item.pair.id), questions: Object.keys(request.questions).length, stateChars, provider: response.provider, model: response.model, usage: response.usage, elapsedMs },
     };
   });
   return {
