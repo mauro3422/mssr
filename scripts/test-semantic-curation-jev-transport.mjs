@@ -43,7 +43,7 @@ const parent = {
   id: "project-context",
   kind: "context",
   description: "Stable project context authority.",
-  sourceRef: ".mssr/PROJECT_CONTEXT.md",
+  sourceRef: String.raw`D:\Dev\mssr\.mssr\PROJECT_CONTEXT.md`,
   selectors: { stages: [], domains: [], actions: [], artifacts: [], needs: [], signals: [] },
   priority: 1,
   required: false,
@@ -63,7 +63,8 @@ const single = new MssrJevSemanticCuratorProvider(options);
 const singleResult = await single.curate({ goal: "Classify a block.", blocks: [block("b1", "A bounded evidence block.")], pairCandidates: [] });
 assert.equal(singleResult.provider, "fixture-host");
 
-const batch = await executeMssrJevSemanticCurationJobs({ jobs: [{ ...splitJob, semanticContext: undefined }], options });
+const batchJob = { ...splitJob, projectKey: String.raw`D:\Dev\mssr`, corpusKey: String.raw`D:\Dev\mssr\docs`, semanticContext: undefined };
+const batch = await executeMssrJevSemanticCurationJobs({ jobs: [batchJob], options });
 assert.equal(batch.results.length, 1);
 assert.equal(batch.results[0].providerResult.provider, "fixture-host");
 assert.equal(batch.batches[0].usage.input_tokens, 11);
@@ -87,6 +88,26 @@ assert.equal(requests.length, 4);
 assert.ok(requests.every((request) => Object.keys(request).every((key) => ["state", "questions", "model"].includes(key))));
 assert.ok(requests.every((request) => !JSON.stringify(request).includes("fixture-secret-must-not-cross-boundary")));
 assert.ok(requests.every((request) => Object.values(request.questions).every((question) => question.kind === "choice" || question.kind === "noul")));
+assert.equal(JSON.stringify(requests[1]).includes(String.raw`D:\Dev\mssr`), false, "semantic curation replaces local project/corpus paths before transport");
+assert.match(JSON.stringify(requests[1]), /local-project-1/);
+assert.match(JSON.stringify(requests[1]), /local-corpus-1/);
+assert.equal(JSON.stringify(requests[2]).includes(String.raw`D:\Dev\mssr`), false, "Project Context split requests replace local source paths before transport");
+assert.match(JSON.stringify(requests[2]), /local-source-1/);
+
+let privacyBlockedCalls = 0;
+await assert.rejects(() => executeMssrJevSemanticCurationJobs({
+  jobs: [
+    { ...splitJob, id: "safe-bin", projectKey: "safe-project", corpusKey: "safe-corpus", semanticContext: undefined, blocks: [block("safe", "Ordinary source text.")] },
+    { ...splitJob, id: "blocked-bin", projectKey: "blocked-project", corpusKey: "blocked-corpus", semanticContext: undefined, blocks: [block("private-path", String.raw`A local file is C:\Users\mauro\private\document.md.`)] },
+  ],
+  options: { decisionProvider: { async executeSystemOne() { privacyBlockedCalls += 1; throw new Error("provider must not receive a blocked batch"); } } },
+  concurrency: 2,
+}), (error) => {
+  assert.match(error.message, /privacy preflight.*local-path/i);
+  assert.equal(error.message.includes(String.raw`C:\Users\mauro`), false, "privacy error omits matched source text");
+  return true;
+});
+assert.equal(privacyBlockedCalls, 0, "semantic curation screens all bins before starting any provider call");
 
 const validRequest = { state: {}, questions: { q0: { kind: "choice", prompt: "Choose.", options: { a: "A", b: "B" } } } };
 assert.throws(() => mssrJevDecisionRequestSchema.parse({ ...validRequest, state: "x".repeat(262_145) }), /262144-character/);

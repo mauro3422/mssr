@@ -1,16 +1,17 @@
 # MSSR project memory
 
-## Jev request privacy preflight — 0.2.133
+## Jev request privacy preflight — 0.2.134
 
 Replace local filesystem owner/source/project identifiers with request-local
-opaque labels, then screen exact bounded provider inputs for Librarian
-selection and semantic relation review immediately before invocation. Block
-private/non-public IPv4, remaining Windows/UNC paths, and common credential
-shapes without returning the matched text. Preflight every relation batch
-before starting any provider call, so a later blocked batch cannot cause partial disclosure. Keep this as narrow
-defense in depth: it is not comprehensive DLP, does not authenticate caller
-privacy labels, and does not replace host/provider policy. Regression cases
-must include punctuation-boundary IPv4s and a benign public-address control.
+opaque labels, then screen exact bounded provider inputs for semantic curation,
+Librarian selection, and semantic relation review immediately before invocation.
+Block private/non-public IPv4, remaining Windows/UNC paths, and common
+credential shapes without returning the matched text. Preflight every batch
+before starting any provider call, so a later blocked batch cannot cause partial
+disclosure. Keep this as narrow defense in depth: it is not comprehensive DLP,
+does not authenticate caller privacy labels, and does not replace host/provider
+policy. Regression cases must include punctuation-boundary IPv4s, local path
+identifiers, and a benign public-address control.
 
 ## Exact-input connector parity
 

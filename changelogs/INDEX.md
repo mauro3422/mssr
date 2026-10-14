@@ -21,6 +21,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.134](0.2.134.md) - extend Jev provider privacy preflight across semantic curation, Librarian selection, and semantic relation review; anonymize local identifiers and block unsafe content before provider calls.
 - [0.2.133](0.2.133.md) - screen actual Jev-bound Librarian and relation-review requests for common accidental privacy disclosures; block before provider calls and return category/count diagnostics only.
 - [0.2.132](0.2.132.md) - add explicit round-robin ranking for host-supplied Librarian query variants while preserving primary-first by default.
 - [0.2.131](0.2.131.md) - exclude metadata field names from Librarian lexical matches while keeping metadata values searchable.

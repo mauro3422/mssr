@@ -111,6 +111,36 @@ export function createMssrJevProviderLocalPathLabeler(): (value: string, kind: M
   };
 }
 
+const identifierKinds: Record<string, MssrJevProviderLocalIdentityKind> = {
+  owner: "owner",
+  sourceRef: "source",
+  projectKey: "project",
+  corpusKey: "corpus",
+  canonicalOwner: "owner",
+  ref: "source",
+  path: "source",
+  filePath: "source",
+  projectRoot: "source",
+  workspaceRoot: "source",
+};
+
+/** Clone structured provider input while replacing path-shaped identifier fields. */
+export function labelMssrJevProviderLocalPathIdentifiers<T>(
+  value: T,
+  labelLocalPath: ReturnType<typeof createMssrJevProviderLocalPathLabeler> = createMssrJevProviderLocalPathLabeler(),
+): T {
+  if (Array.isArray(value)) return value.map((item) => labelMssrJevProviderLocalPathIdentifiers(item, labelLocalPath)) as T;
+  if (!value || typeof value !== "object") return value;
+  const entries = Object.entries(value as Record<string, unknown>).map(([key, item]) => {
+    const kind = identifierKinds[key];
+    const next = kind && typeof item === "string"
+      ? labelLocalPath(item, kind)
+      : labelMssrJevProviderLocalPathIdentifiers(item, labelLocalPath);
+    return [key, next] as const;
+  });
+  return Object.fromEntries(entries) as T;
+}
+
 export function assertMssrJevProviderInputPrivacy(value: unknown): void {
   const scan = scanMssrJevProviderInputPrivacy(value);
   if (!scan.blocked) return;

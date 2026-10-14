@@ -8,6 +8,10 @@ import {
   type MssrJevDecisionRequest,
   type MssrJevDecisionResponse,
 } from "./semantic-curation-jev-contract.js";
+import {
+  assertMssrJevProviderInputPrivacy,
+  labelMssrJevProviderLocalPathIdentifiers,
+} from "./jev-provider-input-privacy.js";
 export { mssrJevDecisionQuestionSchema, mssrJevDecisionRequestSchema, mssrJevDecisionResponseSchema, validateMssrJevDecisionResponse } from "./semantic-curation-jev-contract.js";
 export type { MssrJevDecisionAnswer, MssrJevDecisionProvider, MssrJevDecisionQuestion, MssrJevDecisionRequest, MssrJevDecisionResponse } from "./semantic-curation-jev-contract.js";
 import {
@@ -431,7 +435,9 @@ async function executeDecision(args: {
     questions: args.questions,
     ...(args.model ? { model: args.model } : {}),
   }) as MssrJevDecisionRequest;
-  return validateMssrJevDecisionResponse(request, await args.provider.executeSystemOne(request));
+  const providerRequest = labelMssrJevProviderLocalPathIdentifiers(request);
+  assertMssrJevProviderInputPrivacy(providerRequest);
+  return validateMssrJevDecisionResponse(request, await args.provider.executeSystemOne(providerRequest));
 }
 
 export class MssrJevSemanticCuratorProvider implements MssrSemanticCuratorProvider {
@@ -566,6 +572,7 @@ export async function executeMssrJevProjectContextSplitJudgments(args: {
   }
   const concurrency = Math.max(1, Math.min(16, Math.floor(args.concurrency ?? 4)));
   const decisionProvider = args.options?.decisionProvider ?? createTypeSafeDecisionProvider(args.options ?? {}).provider;
+  assertMssrJevProviderInputPrivacy(labelMssrJevProviderLocalPathIdentifiers({ jobs, model: args.options?.model }));
 
   const judgments = await mapConcurrent(jobs, concurrency, async (job) => {
     const block = job.blocks[0];
@@ -685,6 +692,7 @@ export async function executeMssrJevProjectContextBaselineVerifier(args: {
     required: parent.required,
     maxChars: parent.maxChars,
   } as const;
+  assertMssrJevProviderInputPrivacy(labelMssrJevProviderLocalPathIdentifiers({ semanticContext, anchor, candidates, model: args.options?.model }));
   const verifications = await mapConcurrent(candidates, concurrency, async (candidate) => {
     const started = performance.now();
     const response = await executeDecision({
@@ -731,6 +739,7 @@ export async function executeMssrJevSemanticCurationJobs(args: {
   concurrency?: number;
 }): Promise<MssrJevSemanticCurationRun> {
   const jobs = args.jobs.map((job) => mssrJevSemanticCurationJobSchema.parse(job));
+  assertMssrJevProviderInputPrivacy(labelMssrJevProviderLocalPathIdentifiers({ jobs, model: args.options?.model }));
   const maxHeads = Math.max(1, Math.min(MSSR_SEMANTIC_CURATION_MAX_HEADS, Math.floor(args.maxHeadsPerRequest ?? MSSR_SEMANTIC_CURATION_MAX_HEADS)));
   const maxStateChars = Math.max(1_000, Math.min(262_144, Math.floor(args.maxStateChars ?? 24_000)));
   const concurrency = Math.max(1, Math.min(16, Math.floor(args.concurrency ?? 4)));
