@@ -6,6 +6,7 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { searchMssrLibrarianEvidence, fetchMssrLibrarianEvidence } from "../dist/librarian-retrieval.js";
+import { evaluateLibrarianCompositionReview } from "./lib/evaluate-librarian-composition-review.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const runs = path.join(root, "experiments/jev-mssr-live/runs");
@@ -74,6 +75,7 @@ const suffix = process.pid + "-" + Date.now();
 const runOutput = path.join(runs, "composed-harness-test-" + suffix);
 const allAbstainOutput = path.join(runs, "composed-harness-abstain-" + suffix);
 const liveBlockedOutput = path.join(runs, "composed-harness-live-blocked-" + suffix);
+const compositionReviewOutput = path.join(runs, "composed-harness-review-" + suffix);
 const outputJunction = path.join(runs, "composed-harness-junction-" + suffix);
 const sourceJunction = path.join(runs, "composed-harness-source-junction-" + suffix);
 const outsideOutput = path.join(scratch, "outside-output");
@@ -127,6 +129,101 @@ try {
   assert.equal(allSelectedGate.semanticCoverageStatus, "unknown", "exact fetches must not be upgraded to semantic coverage");
   assert.equal(allSelectedGate.answerSynthesisStatus, "pending-independent-semantic-review");
   assert.equal(allSelectedGate.answerSynthesisAllowed, false, "the harness must never authorize generated answer prose");
+
+  const review = {
+    schemaVersion: 1,
+    labelProvenance: "synthetic-fixture",
+    reviewer: { id: "fixture-reviewer", reviewedAt: "2026-10-14T00:00:00Z", blindToProviderScores: true },
+    requiredClaims: [
+      { id: "required-alpha", description: "A direct claim from the first facet.", facetIds: ["selected-facet"] },
+      { id: "required-beta", description: "A direct claim from the second facet.", facetIds: ["second-selected-facet"] },
+    ],
+    paragraphs: [{
+      id: "paragraph-1",
+      text: "The first selected evidence supports Alpha. The second selected evidence supports Beta. Combining Alpha and Beta is unsupported.",
+      claims: [
+        {
+          id: "claim-alpha", text: "The first selected evidence supports Alpha.", addressesFacetIds: ["selected-facet"],
+          satisfiesRequiredClaimIds: ["required-alpha"], citations: [{ facetId: "selected-facet", handleId: handle.id }],
+          supportStatus: "supported", crossFacetJoinStatus: "not-applicable", errorCodes: [],
+        },
+        {
+          id: "claim-beta", text: "The second selected evidence supports Beta.", addressesFacetIds: ["second-selected-facet"],
+          satisfiesRequiredClaimIds: ["required-beta"], citations: [{ facetId: "second-selected-facet", handleId: secondHandle.id }],
+          supportStatus: "supported", crossFacetJoinStatus: "not-applicable", errorCodes: [],
+        },
+        {
+          id: "claim-cross-facet", text: "Combining Alpha and Beta is unsupported.", addressesFacetIds: ["selected-facet", "second-selected-facet"],
+          satisfiesRequiredClaimIds: [], citations: [
+            { facetId: "selected-facet", handleId: handle.id },
+            { facetId: "second-selected-facet", handleId: secondHandle.id },
+          ], supportStatus: "unsupported", crossFacetJoinStatus: "unsupported", errorCodes: ["unsupported-claim"],
+        },
+      ],
+    }],
+  };
+  const reviewPath = path.join(scratch, "composition-review.json");
+  await fs.writeFile(reviewPath, JSON.stringify(review));
+  const allSelectedPlanPath = await writePlan("all-selected-plan.json", allSelectedPlan);
+  const reviewedReplay = invoke(allSelectedPlanPath, [
+    "--replay", allSelectedReceiptsPath, "--composition-review", reviewPath, "--output-dir", compositionReviewOutput,
+  ]);
+  assert.equal(reviewedReplay.status, 0, reviewedReplay.stderr);
+  const reviewedResult = JSON.parse(reviewedReplay.stdout);
+  assert.equal(reviewedResult.providerCalls, 0);
+  assert.equal(reviewedResult.networkRequests, 0);
+  assert.equal(reviewedResult.compositionGate.answerSynthesisAllowed, false);
+  assert.equal(reviewedResult.compositionEvaluation.ownerGold, false);
+  assert.equal(reviewedResult.compositionEvaluation.benchmark, false);
+  assert.equal(reviewedResult.compositionEvaluation.confidenceCalibration, "none");
+  assert.equal(reviewedResult.compositionEvaluation.synthesisAuthority, false);
+  assert.equal(reviewedResult.compositionEvaluation.productionWritesAllowed, false);
+  assert.equal(reviewedResult.compositionEvaluation.metrics.citationIntegrityRate, 1);
+  assert.equal(reviewedResult.compositionEvaluation.metrics.requiredClaimRecallRate, 1);
+  assert.equal(reviewedResult.compositionEvaluation.metrics.supportedFacetCoverageRate, 1);
+  assert.equal(reviewedResult.compositionEvaluation.metrics.multiFacetClaimCount, 1);
+  assert.equal(reviewedResult.compositionEvaluation.metrics.unsupportedCrossFacetJoinRate, 1);
+
+  const invalidCitationReview = structuredClone(review);
+  invalidCitationReview.paragraphs[0].claims[1].citations[0].handleId = "not-the-selected-handle";
+  const invalidCitationEvaluation = evaluateLibrarianCompositionReview({
+    plan: allSelectedPlan,
+    receipts: [selectedReceipt, secondSelectedReceipt],
+    review: invalidCitationReview,
+  });
+  assert.equal(invalidCitationEvaluation.metrics.invalidCitationCount, 1);
+  assert.equal(invalidCitationEvaluation.metrics.requiredClaimRecallRate, 0.5);
+  assert.equal(invalidCitationEvaluation.metrics.supportedFacetCoverageRate, 0.5);
+
+  const unblindedReview = structuredClone(review);
+  unblindedReview.reviewer.blindToProviderScores = false;
+  assert.throws(() => evaluateLibrarianCompositionReview({
+    plan: allSelectedPlan,
+    receipts: [selectedReceipt, secondSelectedReceipt],
+    review: unblindedReview,
+  }), /blind to provider scores/u);
+
+  const nullReviewPath = path.join(scratch, "null-composition-review.json");
+  await fs.writeFile(nullReviewPath, "null");
+  const nullReview = invoke(allSelectedPlanPath, ["--replay", allSelectedReceiptsPath, "--composition-review", nullReviewPath]);
+  assert.notEqual(nullReview.status, 0);
+  assert.match(nullReview.stderr, /must be a JSON object/u);
+
+  const reviewManifest = JSON.parse(await fs.readFile(path.join(compositionReviewOutput, "manifest.json"), "utf8"));
+  assert.equal(reviewManifest.compositionReview.reviewerBlindness, "caller-asserted");
+  assert.equal(reviewManifest.compositionReview.evaluatorSha256, createHash("sha256").update(await fs.readFile(path.join(compositionReviewOutput, "inputs", "composition-review-evaluator.mjs"))).digest("hex"));
+  const reviewCompletion = JSON.parse(await fs.readFile(path.join(compositionReviewOutput, "run-completion.json"), "utf8"));
+  assert.equal(reviewCompletion.compositionEvaluation.metrics.citationIntegrityRate, 1);
+  await fs.access(path.join(compositionReviewOutput, "composition-evaluation.json"));
+  const reviewSums = await fs.readFile(path.join(compositionReviewOutput, "SHA256SUMS"), "utf8");
+  assert.match(reviewSums, /composition-review\.input\.json/u);
+  assert.match(reviewSums, /composition-review-evaluator\.mjs/u);
+  assert.match(reviewSums, /composition-evaluation\.json/u);
+  for (const line of reviewSums.trim().split("\n")) {
+    const [expected, relative] = line.split(/\s{2}/u);
+    const actual = createHash("sha256").update(await fs.readFile(path.join(compositionReviewOutput, ...relative.split("/")))).digest("hex");
+    assert.equal(actual, expected, "composition-review checksum mismatch: " + relative);
+  }
 
   const missing = structuredClone([selectedReceipt, abstainedReceipt]);
   delete missing[0].selection;
@@ -196,6 +293,13 @@ try {
   assert.notEqual(badSpan.status, 0);
   assert.match(badSpan.stderr, /outside source bounds/u);
 
+  const overlappingPlan = structuredClone(plan);
+  overlappingPlan.facets[0].expectedLines.push({ ...overlappingPlan.facets[0].expectedLines[0] });
+  const overlappingPlanPath = await writePlan("overlapping-spans.json", overlappingPlan);
+  const overlappingSpans = invoke(overlappingPlanPath);
+  assert.notEqual(overlappingSpans.status, 0);
+  assert.match(overlappingSpans.stderr, /Expected line spans overlap/u);
+
   const sealedPlan = structuredClone(plan);
   sealedPlan.corpus.sources[0].sourceRef = "experiments/sealed/secret.md";
   sealedPlan.facets.forEach((facet) => { facet.sourceRef = "experiments/sealed/secret.md"; });
@@ -239,5 +343,6 @@ try {
   await fs.rm(runOutput, { recursive: true, force: true });
   await fs.rm(allAbstainOutput, { recursive: true, force: true });
   await fs.rm(liveBlockedOutput, { recursive: true, force: true });
+  await fs.rm(compositionReviewOutput, { recursive: true, force: true });
   await fs.rm(scratch, { recursive: true, force: true });
 }

@@ -9,10 +9,12 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { evaluateLibrarianCompositionReview } from "./lib/evaluate-librarian-composition-review.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const RUNS = path.join(ROOT, "experiments/jev-mssr-live/runs");
 const RUNNER = fileURLToPath(import.meta.url);
+const COMPOSITION_EVALUATOR = path.join(ROOT, "scripts/lib/evaluate-librarian-composition-review.mjs");
 const args = process.argv.slice(2);
 const flag = (name) => args.includes(name);
 const option = (name) => { const i = args.indexOf(name); return i < 0 ? undefined : args[i + 1]; };
@@ -94,6 +96,10 @@ function validatePlan(plan, sources) {
     if (!Array.isArray(facet.expectedLines) || !facet.expectedLines.length) fail("Each facet needs source-declared expectedLines.");
     const lineCount = sources.get(facet.sourceRef).lines;
     for (const span of facet.expectedLines) if (!record(span) || !Number.isInteger(span.start) || !Number.isInteger(span.end) || span.start < 1 || span.end < span.start || span.end > lineCount) fail("Expected line span is outside source bounds 1-" + lineCount + ".");
+    const orderedSpans = [...facet.expectedLines].sort((a, b) => a.start - b.start || a.end - b.end);
+    for (let index = 1; index < orderedSpans.length; index += 1) {
+      if (orderedSpans[index].start <= orderedSpans[index - 1].end) fail("Expected line spans overlap for facet " + facet.id + ".");
+    }
   }
 }
 function ownerForRepo() {
@@ -270,7 +276,7 @@ async function leaveFailureState(dir, mode, error) {
 }
 async function main() {
   const planPath = option("--plan");
-  if (!planPath) fail("Usage: node scripts/run-composed-librarian-experiment.mjs --plan <plan.json> [--replay <receipts.jsonl> | --allow-network --output-dir <new-dir>]");
+  if (!planPath) fail("Usage: node scripts/run-composed-librarian-experiment.mjs --plan <plan.json> [--replay <receipts.jsonl> [--composition-review <review.json>] | --allow-network --output-dir <new-dir>]");
   const absolutePlanPath = path.resolve(planPath);
   await rejectReparseComponents(absolutePlanPath);
   const planBytes = await fs.readFile(absolutePlanPath);
@@ -286,6 +292,9 @@ async function main() {
   const mssr = await distIdentity(ROOT, true);
   const head = await git(["rev-parse", "HEAD"]);
   const replayPath = option("--replay");
+  const compositionReviewPath = option("--composition-review");
+  const hasCompositionReview = Boolean(compositionReviewPath);
+  if (compositionReviewPath && !replayPath) fail("--composition-review is allowed only with --replay; it never enables a live/provider path.");
   if (replayPath) {
     const replayFile = path.resolve(replayPath);
     await rejectReparseComponents(replayFile);
@@ -293,6 +302,17 @@ async function main() {
     const raw = replayBytes.toString("utf8");
     const receipts = raw.trim().startsWith("[") ? JSON.parse(raw) : raw.split(/\r?\n/u).filter(Boolean).map((line) => JSON.parse(line));
     if (!Array.isArray(receipts)) fail("Replay must be a JSON array or JSONL.");
+    let compositionReviewBytes = null;
+    let compositionReview = null;
+    let compositionEvaluatorBytes = null;
+    if (compositionReviewPath) {
+      const reviewFile = path.resolve(compositionReviewPath);
+      await rejectReparseComponents(reviewFile);
+      compositionReviewBytes = await fs.readFile(reviewFile);
+      compositionReview = JSON.parse(compositionReviewBytes.toString("utf8"));
+      if (!record(compositionReview)) fail("Composition review must be a JSON object matching the strict review schema.");
+      compositionEvaluatorBytes = await fs.readFile(COMPOSITION_EVALUATOR);
+    }
     const byFacet = new Map();
     for (const r of receipts) {
       if (!record(r) || typeof r.facetId !== "string" || byFacet.has(r.facetId)) fail("Replay has an invalid or duplicate facet receipt.");
@@ -311,6 +331,9 @@ async function main() {
     const orderedReceipts = plan.facets.map((f) => byFacet.get(f.id));
     const coverage = coverageRows(plan, orderedReceipts);
     const composition = compositionGate(plan, orderedReceipts);
+    const compositionEvaluation = hasCompositionReview
+      ? evaluateLibrarianCompositionReview({ plan, receipts: orderedReceipts, review: compositionReview })
+      : null;
     let union = null;
     if (handles.length) {
       const docs = [...new Set(handles.map((h) => h.owner + "\u0000" + h.sourceRef))].map((key) => {
@@ -329,23 +352,39 @@ async function main() {
         sources: [...sources.values()].map((s, i) => ({ sourceRef: s.sourceRef, sha256: s.sha256, snapshot: "inputs/" + String(i + 1).padStart(2, "0") + ".md" })),
         mssrBuild: mssr, bridgeBuild: { status: "not-used-provider-off-replay" },
         coverageMetric: "line-span-coverage-only; semanticCoverage=false; ownerGold=false",
+        compositionReview: hasCompositionReview ? {
+          sha256: hash(compositionReviewBytes),
+          evaluatorSha256: hash(compositionEvaluatorBytes),
+          labelProvenance: compositionReview.labelProvenance,
+          reviewerBlindness: "caller-asserted",
+          ownerGold: false,
+          benchmark: false,
+        } : null,
       };
       try {
-        await freezeRun(dir, manifest, planBytes, runnerBytes, sources, [{ name: "facet-receipts.input", bytes: replayBytes }]);
+        await freezeRun(dir, manifest, planBytes, runnerBytes, sources, [
+          { name: "facet-receipts.input", bytes: replayBytes },
+          ...(hasCompositionReview ? [
+            { name: "composition-review.input.json", bytes: compositionReviewBytes },
+            { name: "composition-review-evaluator.mjs", bytes: compositionEvaluatorBytes },
+          ] : []),
+        ]);
         await completeRun(dir, {
           schemaVersion: 1, status: "completed", mode: "provider-off-replay", benchmark: false, providerCalls: 0,
           unionParagraphCount: union?.paragraphs.length || 0, coverageMetric: "line-span-coverage-only", semanticCoverage: false, ownerGold: false, confidenceCalibration: "none",
           compositionGate: composition,
+          compositionEvaluation: compositionEvaluation ? { metrics: compositionEvaluation.metrics, labelProvenance: compositionEvaluation.labelProvenance, ownerGold: false, synthesisAuthority: false } : null,
         }, [
           ...(union ? [{ name: "evidence-pack.json", bytes: JSON.stringify(union, null, 2) + "\n" }] : []),
           { name: "coverage.json", bytes: JSON.stringify({ schemaVersion: 1, metric: "line-span-coverage-only", semanticCoverage: false, ownerGold: false, benchmark: false, facets: coverage, compositionGate: composition }, null, 2) + "\n" },
+          ...(compositionEvaluation ? [{ name: "composition-evaluation.json", bytes: JSON.stringify(compositionEvaluation, null, 2) + "\n" }] : []),
         ]);
       } catch (error) {
         await leaveFailureState(dir, "provider-off-replay", error);
         throw error;
       }
     }
-    process.stdout.write(JSON.stringify({ status: "provider-off-replay", networkRequests: 0, providerCalls: 0, outputDir: dir, unionParagraphCount: union?.paragraphs.length || 0, metric: "line-span-coverage-only", semanticCoverage: false, ownerGold: false, compositionGate: composition, facets: coverage }, null, 2) + "\n");
+    process.stdout.write(JSON.stringify({ status: "provider-off-replay", networkRequests: 0, providerCalls: 0, outputDir: dir, unionParagraphCount: union?.paragraphs.length || 0, metric: "line-span-coverage-only", semanticCoverage: false, ownerGold: false, compositionGate: composition, compositionEvaluation, facets: coverage }, null, 2) + "\n");
     return;
   }
   if (!flag("--allow-network")) {

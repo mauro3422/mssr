@@ -177,6 +177,40 @@ The composed replay harness now reports a separate `compositionGate`: missing/ab
 
 [`scripts/run-composed-librarian-experiment.mjs`](../../scripts/run-composed-librarian-experiment.mjs) is a development harness for dry-run and provider-off receipt replay. Replay requires a strict receipt linking Jev's recorded choice, offered candidates, and an exact source fetch; it snapshots plan, runner, source bytes, MSSR build identity, and checksums. Its coverage value is explicitly line-span overlap only, not semantic support or owner-gold. Junction/reparse-point paths are refused. Live mode currently writes a checksummed `blocked` record with zero provider/network calls: the local Bridge tree is dirty and the harness cannot prove that its module build is the connected process/catalog. Do not use this prototype to make benchmark, reliability, or confidence-calibration claims.
 
+### Offline composition review
+
+The harness accepts `--composition-review <review.json>` only alongside
+`--replay`; this path performs no Jev/provider/network calls. The review packet
+contains exact paragraph text, reviewer-labeled atomic claims, required
+claims/facets, support and cross-facet-join labels, and citations by frozen
+facet/selected-handle ID. Every citation is checked against the already
+validated replay receipt. Missing, abstained, or mismatched selections cannot
+cover a required facet or claim. Expected line spans may not overlap, so the
+line-coverage denominator cannot count the same source line twice.
+
+The output reports support counts, citation integrity, required-facet coverage,
+required-claim recall, paragraph citation coverage, and unresolved/unsupported
+cross-facet joins separately. `ownerGold`, `benchmark`, and synthesis authority
+remain false; confidence calibration remains `none`, and the existing synthesis
+gate remains closed. Reviewer identity, blindness, and label provenance are
+asserted input fields, not independently authenticated facts. A review marked
+`independent-human-review` or `owner-adjudication` is not automatically an
+independent holdout or owner-gold dataset. Each frozen run includes the review
+input and exact evaluator source with SHA-256 coverage so another reviewer can
+reproduce the computed metrics. Use `synthetic-fixture` for harness checks;
+only promote separately adjudicated, exposure-audited packets through the
+project's benchmark governance.
+
+Example:
+
+```powershell
+node scripts/run-composed-librarian-experiment.mjs `
+  --plan <plan.json> `
+  --replay <receipts.jsonl> `
+  --composition-review <review.json> `
+  --output-dir experiments/jev-mssr-live/runs/<new-run>
+```
+
 Together these latest runs show that host-supplied query variants help when wording has low lexical overlap, while adding them to an already-overlapping query need not change the result. Exact retrieval integrity does not ensure complete or focused answers: measure facet coverage and overbreadth separately, and keep the no-candidate abstention distinct from a Jev selection error. Both source clusters in the four-call comparison were exposed to local artifacts; the low-overlap pair is one cluster and not an independent benchmark sample. No confidence threshold or production policy is changed.
 
 ## Run 30 serialization follow-up — 2026-10-11
