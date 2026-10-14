@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "runId": "evidence-atom-cluster-audit-20261014T011057Z-v1",
+  "manifestSha256": "a677597f44f0e09bc753827be76fe82df71ab4e51cb2a312b666ebefd0d8042c",
+  "completedAt": "2026-10-14T01:13:57Z",
+  "status": "complete",
+  "attemptedRequests": 0,
+  "successfulRequests": 0,
+  "failedRequests": 0,
+  "providerCallsMade": false,
+  "labelsExposedToProvider": false,
+  "sourceChecksumsVerified": 8,
+  "derivedArtifact": "cluster-audit.json"
+}

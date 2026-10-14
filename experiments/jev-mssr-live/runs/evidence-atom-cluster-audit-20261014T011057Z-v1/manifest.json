@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "suite": "jev-evidence-atom-cluster-audit",
+  "runId": "evidence-atom-cluster-audit-20261014T011057Z-v1",
+  "createdAt": "2026-10-14T01:13:36Z",
+  "status": "prepared",
+  "parentRunId": "benchmark-real-evidence-atom-20260930-rubricmatch-8f2c3a17",
+  "source": {
+    "repository": "MSSR",
+    "gitCommit": "b5261a290240031b622ad53e590df12bbe87e66c",
+    "workingTreeClean": false,
+    "changedPaths": [
+      "experiments/jev-mssr-live/runs/evidence-atom-cluster-audit-20261014T011057Z-v1/recompute.mjs",
+      "experiments/jev-mssr-live/runs/evidence-atom-cluster-audit-20261014T011057Z-v1/cluster-audit.json"
+    ],
+    "buildId": null,
+    "buildArtifacts": []
+  },
+  "instrument": {
+    "runnerPath": "recompute.mjs",
+    "runnerSha256": "a308f5fd8716ced675e16dbebe2d206dcb95bf1f6c8ad540cceccdf662a3f86d",
+    "casesPath": "D:/Dev/mssr-snapshots/benchmark-real-evidence-atom-20260930-rubricmatch-8f2c3a17/records.jsonl",
+    "casesSha256": "d6d035dd02748fb44136e97aca0f428e64bb84afa629938b0c6522c05948a91a",
+    "lockfileSha256": null,
+    "runtime": "node v24.16.0",
+    "requestSchemaVersion": 1
+  },
+  "corpus": {
+    "snapshotPath": "D:/Dev/mssr-snapshots/benchmark-real-evidence-atom-20260930-rubricmatch-8f2c3a17/inputs/corpus.json",
+    "sha256": "8ac4aa4c73e50ca36eb300b245d58ce3e8ba30f735a3cf56ac40a17d4c0ecae4",
+    "items": 17,
+    "sourceRevision": "dfb295653b2e3f0f2a6f0d25bb2bc5cbe9634962",
+    "redaction": "reviewed source packet; this analysis emits aggregate counts only"
+  },
+  "provider": {
+    "mode": "offline",
+    "provider": "none; local post-hoc aggregation",
+    "endpointIdentity": null,
+    "requestedModel": null,
+    "sdk": "Node.js built-ins only",
+    "timeoutMs": 0,
+    "maxRetries": 0,
+    "concurrency": 1,
+    "networkOptIn": false
+  },
+  "labels": {
+    "source": "author",
+    "frozenAt": "2026-09-30T03:14:26.493Z",
+    "adjudication": "none",
+    "labelFile": "D:/Dev/mssr-snapshots/benchmark-real-evidence-atom-20260930-rubricmatch-8f2c3a17/inputs/labels.json",
+    "labelFileSha256": "f661a9029509afec1c6865e2371a2701811dcbb6e13bcba19bb9936c9889e13d",
+    "exposedToRequests": false
+  },
+  "split": {
+    "method": "none-reused-development-data",
+    "trainIdsSha256": null,
+    "validationIdsSha256": null,
+    "holdoutIdsSha256": null,
+    "holdoutOpenedAt": "2026-09-28T21:19:51.552Z",
+    "holdoutUsedForTuning": true
+  },
+  "plan": {
+    "primaryMetric": "per-section repeated decision accuracy and exact decision stability",
+    "secondaryMetrics": [
+      "action correctness by unique section",
+      "lifecycle correctness by unique section",
+      "three-of-three correctness and two-of-three majority correctness",
+      "input artifact integrity"
+    ],
+    "thresholds": {},
+    "independentUnit": "section nested in four parent-module clusters",
+    "minimumSupport": {
+      "overall": 30,
+      "perClaimedSubgroup": 30
+    },
+    "uncertaintyMethod": "descriptive counts only; no interval because labels are unadjudicated and there are four module clusters",
+    "variants": [
+      "text",
+      "parent",
+      "evidence-atom-v2"
+    ],
+    "repetitions": 3,
+    "requestCount": 0,
+    "statePolicy": "Reuse the frozen completed source run; compare observed records with its author-created labels without provider calls."
+  },
+  "inputHashes": {
+    "sourceManifest": "1ac3ce726999ff8a9934b5e43b799701a285a32d6a334d0a6a507921658030cf",
+    "sourceSummary": "f949832e846adf0eb6fe8f86f57eefa8f7114fa298b58e5f874aefdf2e880d20",
+    "sourceRecords": "d6d035dd02748fb44136e97aca0f428e64bb84afa629938b0c6522c05948a91a",
+    "sourceLabels": "f661a9029509afec1c6865e2371a2701811dcbb6e13bcba19bb9936c9889e13d"
+  },
+  "actualRequestCount": 0,
+  "successfulRequestCount": 0,
+  "failedRequestCount": 0
+}

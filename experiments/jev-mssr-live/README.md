@@ -117,6 +117,10 @@ confidence-calibration evidence.
 
 [`mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1`](runs/mssr-real-evidence-librarian-jev-20260930T215053Z-6f26e1/) exercised live Jev 1.13.0 on four real MSSR Markdown documents: retrieval recall@5 was 4/4 but top-1 was 0/4 (MRR 0.383); exact fetch passed 8/8; relation judgments matched 3/4 author-written labels; and both synthesis previews stayed `review` with zero apply permission. The labels were not independently adjudicated, no positive contradiction case or holdout existed, and the source/build was MSSR commit `7fd0f741` / `mssr-build:sha256:cfaaa9b0f9ad1977`. This is an archived plumbing/quality diagnostic, not current Bridge 0.6.169 adoption evidence, owner-gold, or calibration. Verify the frozen payload via its `SHA256SUMS` before reuse.
 
+### Offline cluster-level reanalysis of the EvidenceAtom ablation (2026-10-14)
+
+[`evidence-atom-cluster-audit-20261014T011057Z-v1`](runs/evidence-atom-cluster-audit-20261014T011057Z-v1/ANALYSIS.md) rechecks all eight hashes in the original 153-record packet and groups its three repetitions by the 17 section IDs. EvidenceAtom is correct on all three action repeats for 16/17 sections, versus 15/17 for parent metadata; lifecycle is correct on all three repeats for 14/17 versus 17/17. The dataset has author labels, four source-module clusters, and prior holdout exposure/use for tuning. This is a descriptive offline reanalysis, made with zero provider calls; it does not establish independent reliability or calibration. The original records remain outside Git.
+
 ## Current linked diagnostic sequence
 
 1. [`mssr-librarian-live-path-unseen-20261011T111400Z-a71d3f`](runs/mssr-librarian-live-path-unseen-20261011T111400Z-a71d3f/) — ten exploratory requests across five source documents; a scorer heading-marker mismatch was corrected only in a derived analysis. Blind review found a Spanish-to-English retrieval miss and an incomplete compound preview query.

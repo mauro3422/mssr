@@ -30,6 +30,17 @@ parent metadata. The prior English-rubric run is preserved but excluded from
 direct comparison. Run artifacts are outside the repository at
 D:\Dev\mssr-snapshots\benchmark-real-evidence-atom-20260930-rubricmatch-8f2c3a17.
 
+A post-hoc grouping of the hash-verified 153 records clarifies the repeated
+unit: for action, all three repetitions were correct on 11/17 sections for
+text, 15/17 for parent metadata, and 16/17 for EvidenceAtom; choices were
+stable across the three repetitions on 16/17, 17/17, and 17/17 sections,
+respectively. For lifecycle, all three were correct on 12/17, 17/17, and
+14/17 sections; EvidenceAtom had a two-of-three majority on 15/17 and stable
+choices on 15/17. This gives EvidenceAtom a small descriptive action advantage
+over parent metadata and a lifecycle regression. Sections are nested in only
+four module clusters. Reproduction, source hashes and exact denominators are
+in the [cluster-level audit](../../../experiments/jev-mssr-live/runs/evidence-atom-cluster-audit-20261014T011057Z-v1/ANALYSIS.md).
+
 This is promising task accuracy, not a 94.1% per-decision confidence guarantee.
 The 51 calls are repeated observations over 17 labeled sections, not 51
 independent cases; the labels were author-created and not independently
