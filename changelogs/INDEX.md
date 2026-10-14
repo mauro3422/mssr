@@ -21,6 +21,7 @@ Versioned release notes are the canonical project change-history surface. Hosts 
 
 ## Current releases
 
+- [0.2.135](0.2.135.md) - distinguish absent facets, partial expected spans, and verified fetches in the offline Librarian composition gate; keep synthesis blocked and confidence uncalibrated.
 - [0.2.134](0.2.134.md) - extend Jev provider privacy preflight across semantic curation, Librarian selection, and semantic relation review; anonymize local identifiers and block unsafe content before provider calls.
 - [0.2.133](0.2.133.md) - screen actual Jev-bound Librarian and relation-review requests for common accidental privacy disclosures; block before provider calls and return category/count diagnostics only.
 - [0.2.132](0.2.132.md) - add explicit round-robin ranking for host-supplied Librarian query variants while preserving primary-first by default.

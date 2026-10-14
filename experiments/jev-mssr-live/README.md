@@ -192,6 +192,22 @@ validated replay receipt. Missing, abstained, or mismatched selections cannot
 cover a required facet or claim. Expected line spans may not overlap, so the
 line-coverage denominator cannot count the same source line twice.
 
+Plans may declare `expectedEvidenceStatus: "present"` or `"absent"` per facet;
+omitting the field preserves the legacy `present` default. Present facets need
+non-empty source-labeled `expectedLines`; absent facets need an empty array.
+Absent facets report `lineSpanCoverage: null`, not zero recall, and their
+selected/abstained outcome is compared only with the plan's declared label.
+That comparison does not prove corpus-wide absence: the label remains
+caller-authored, exact evidence remains incomplete, and synthesis stays blocked.
+For present facets, `exactEvidenceStatus` stays incomplete until every labeled
+expected line is covered by a selected, revision-validated exact fetch;
+`exactFetchedFacetCount` reports verified fetches separately from fully covered
+facets. `expectedPositiveSpanCoverageStatus` exposes that line-span gate, while
+semantic coverage remains unknown. Even complete expected spans still require
+independent semantic review before any answer synthesis can be considered.
+The offline regression uses exposed ADR text and synthetic receipts/reviews; it
+is harness coverage, not a live Jev benchmark, owner-gold, holdout, or calibration.
+
 The output reports support counts, citation integrity, required-facet coverage,
 required-claim recall, paragraph citation coverage, and unresolved/unsupported
 cross-facet joins separately. `ownerGold`, `benchmark`, and synthesis authority

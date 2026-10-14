@@ -1,5 +1,21 @@
 # MSSR project memory
 
+## Librarian composition labels and missing evidence
+
+An expected-present fact with no selected span is a retrieval/selection miss;
+an expected-absent facet has no positive line span and must not be scored as
+zero line recall. Keep those labels explicit in offline plans, report absence
+coverage as `null`, and treat a selection/abstention match only as agreement
+with a caller-authored expectation. A Jev abstention does not prove that a
+fact is absent from the corpus. Expected-absent facets remain incomplete for
+exact evidence and continue to block synthesis. For present facets, a verified
+fetch is not complete target evidence unless it covers every caller-labeled
+expected line; report fetch count separately from full-span coverage and keep
+partial spans blocking. Full span coverage still does not establish semantic
+support or authorize synthesis. Synthetic harness checks can exercise partial
+support, omission, citation scope and unsupported cross-facet joins, but do not
+create owner-gold or calibration evidence.
+
 ## Jev request privacy preflight — 0.2.134
 
 Replace local filesystem owner/source/project identifiers with request-local

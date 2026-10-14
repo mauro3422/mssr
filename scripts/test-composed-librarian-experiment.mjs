@@ -16,15 +16,24 @@ const bytes = await fs.readFile(path.join(root, sourceRef));
 const markdown = new TextDecoder("utf-8", { fatal: true }).decode(bytes);
 const sourceSha256 = createHash("sha256").update(bytes).digest("hex");
 const owner = process.platform === "win32" ? root.replace(/\\/g, "/").toLowerCase() : root;
+const query = "When are side-effectful operations managed even when scale is unknown?";
+const secondQuery = "What happens at an explicit phase boundary and when managed work has no trace?";
+const unmatchedQuery = "What numeric confidence threshold authorizes automatic project mutation?";
 const search = searchMssrLibrarianEvidence({
   documents: [{ owner, sourceRef, markdown, privacyClass: "project-metadata" }],
-  query: { query: "automatic lifecycle coverage", maxResults: 100, maxSnippetChars: 160 },
+  query: { query, maxResults: 100, maxSnippetChars: 160 },
 });
 assert.ok(search.results.length > 0);
-const handle = search.results[0].handle;
+const handle = search.results.find((result) => result.handle.startLine === 34 && result.handle.endLine === 34)?.handle;
+assert.ok(handle, "the fixture source must expose the exact side-effect lifecycle rule");
 const fetched = fetchMssrLibrarianEvidence({ handle, owner, sourceRef, markdown, privacyClass: handle.privacyClass });
-const query = "automatic lifecycle coverage";
-const unmatchedQuery = "unmatched synthetic facet";
+const secondSearch = searchMssrLibrarianEvidence({
+  documents: [{ owner, sourceRef, markdown, privacyClass: "project-metadata" }],
+  query: { query: secondQuery, maxResults: 100, maxSnippetChars: 160 },
+});
+const secondHandle = secondSearch.results.find((result) => result.handle.startLine === 36 && result.handle.endLine === 36)?.handle;
+assert.ok(secondHandle, "the fixture source must expose a disjoint exact phase-boundary rule");
+const secondFetched = fetchMssrLibrarianEvidence({ handle: secondHandle, owner, sourceRef, markdown, privacyClass: secondHandle.privacyClass });
 const selectedReceipt = {
   schemaVersion: 1, facetId: "selected-facet", sourceRef, sourceSha256, query, candidateSource: "search-handles", status: "selected",
   candidates: [handle],
@@ -38,13 +47,11 @@ const selectedReceipt = {
   },
   safeError: null,
 };
-const secondHandle = search.results.find((result) => result.handle.id !== handle.id)?.handle;
-assert.ok(secondHandle, "the fixture source must expose two distinct exact evidence handles");
-const secondFetched = fetchMssrLibrarianEvidence({ handle: secondHandle, owner, sourceRef, markdown, privacyClass: secondHandle.privacyClass });
 const secondTextHash = createHash("sha256").update(secondFetched.text, "utf8").digest("hex");
 const secondSelectedReceipt = {
   ...structuredClone(selectedReceipt),
   facetId: "second-selected-facet",
+  query: secondQuery,
   candidates: [secondHandle],
   selection: { ...structuredClone(selectedReceipt.selection), selected: { handle: secondHandle } },
   selectedHandle: secondHandle,
@@ -66,8 +73,8 @@ const plan = {
   corpus: { priorExposure: "known-exposed", priorExposureNote: "Tracked exposed ADR for local regression only.", sources: [{ sourceRef, sha256: sourceSha256 }] },
   provider: { model: "fixture-jev" },
   facets: [
-    { id: "selected-facet", sourceRef, query, expectedLines: [{ start: handle.startLine, end: handle.endLine }] },
-    { id: "abstained-facet", sourceRef, query: unmatchedQuery, expectedLines: [{ start: handle.startLine, end: handle.endLine }] },
+    { id: "selected-facet", sourceRef, query, expectedEvidenceStatus: "present", expectedLines: [{ start: 34, end: 34 }] },
+    { id: "abstained-facet", sourceRef, query: unmatchedQuery, expectedEvidenceStatus: "absent", expectedLines: [] },
   ],
 };
 const scratch = await fs.mkdtemp(path.join(os.tmpdir(), "mssr-composed-harness-"));
@@ -76,6 +83,7 @@ const runOutput = path.join(runs, "composed-harness-test-" + suffix);
 const allAbstainOutput = path.join(runs, "composed-harness-abstain-" + suffix);
 const liveBlockedOutput = path.join(runs, "composed-harness-live-blocked-" + suffix);
 const compositionReviewOutput = path.join(runs, "composed-harness-review-" + suffix);
+const incompleteReviewOutput = path.join(runs, "composed-harness-incomplete-review-" + suffix);
 const outputJunction = path.join(runs, "composed-harness-junction-" + suffix);
 const sourceJunction = path.join(runs, "composed-harness-source-junction-" + suffix);
 const outsideOutput = path.join(scratch, "outside-output");
@@ -108,14 +116,33 @@ try {
   assert.equal(replayResult.metric, "line-span-coverage-only");
   assert.equal(replayResult.semanticCoverage, false);
   assert.deepEqual(replayResult.facets.map((item) => item.status), ["selected", "abstained"]);
+  assert.deepEqual(replayResult.facets.map((item) => item.expectedEvidenceStatus), ["present", "absent"]);
+  assert.equal(replayResult.facets[1].expectedLineCount, 0);
+  assert.equal(replayResult.facets[1].lineSpanCoverage, null, "absence is not a zero-recall line span");
+  assert.equal(replayResult.facets[1].expectedSpanCoverageStatus, "not-applicable");
+  assert.equal(replayResult.facets[1].selectionOutcomeMatchesDeclaredExpectation, true);
   assert.equal(replayResult.compositionGate.exactEvidenceStatus, "incomplete");
   assert.deepEqual(replayResult.compositionGate.incompleteFacetIds, ["abstained-facet"]);
+  assert.equal(replayResult.compositionGate.expectedPositiveSpanCoverageStatus, "complete");
+  assert.deepEqual(replayResult.compositionGate.selectionOutcomeMismatches, []);
   assert.equal(replayResult.compositionGate.semanticCoverageStatus, "unknown");
   assert.equal(replayResult.compositionGate.answerSynthesisStatus, "blocked-incomplete-facet-evidence");
   assert.equal(replayResult.compositionGate.answerSynthesisAllowed, false);
 
+  const falsePositiveAbsenceReceipt = { ...structuredClone(secondSelectedReceipt), facetId: "abstained-facet", query: unmatchedQuery };
+  const falsePositiveAbsencePath = await writeReceipts("false-positive-absence.jsonl", [selectedReceipt, falsePositiveAbsenceReceipt]);
+  const falsePositiveAbsence = invoke(planPath, ["--replay", falsePositiveAbsencePath]);
+  assert.equal(falsePositiveAbsence.status, 0, falsePositiveAbsence.stderr);
+  const falsePositiveAbsenceResult = JSON.parse(falsePositiveAbsence.stdout);
+  assert.equal(falsePositiveAbsenceResult.facets[1].selectionOutcomeMatchesDeclaredExpectation, false);
+  assert.deepEqual(falsePositiveAbsenceResult.compositionGate.selectionOutcomeMismatches, ["abstained-facet"]);
+  assert.equal(falsePositiveAbsenceResult.compositionGate.exactEvidenceStatus, "incomplete", "an unexpected selection cannot satisfy a declared-absent facet");
+
   const allSelectedPlan = structuredClone(plan);
-  allSelectedPlan.facets[1] = { ...allSelectedPlan.facets[1], id: "second-selected-facet", query };
+  allSelectedPlan.facets = [
+    allSelectedPlan.facets.find((facet) => facet.id === "selected-facet"),
+    { id: "second-selected-facet", sourceRef, query: secondQuery, expectedEvidenceStatus: "present", expectedLines: [{ start: 36, end: 37 }] },
+  ];
   const allSelectedReceiptsPath = await writeReceipts("all-selected.jsonl", [
     selectedReceipt,
     secondSelectedReceipt,
@@ -123,37 +150,57 @@ try {
   const allSelected = invoke(await writePlan("all-selected-plan.json", allSelectedPlan), ["--replay", allSelectedReceiptsPath]);
   assert.equal(allSelected.status, 0, allSelected.stderr);
   const allSelectedGate = JSON.parse(allSelected.stdout).compositionGate;
-  assert.equal(allSelectedGate.exactEvidenceStatus, "complete");
+  assert.equal(allSelectedGate.exactEvidenceStatus, "incomplete", "a verified fetch covering only part of a required expected span is incomplete evidence");
   assert.equal(allSelectedGate.exactFetchedFacetCount, 2);
-  assert.deepEqual(allSelectedGate.incompleteFacetIds, []);
+  assert.equal(allSelectedGate.fullyCoveredFacetCount, 1);
+  assert.deepEqual(allSelectedGate.incompleteFacetIds, ["second-selected-facet"]);
+  assert.equal(allSelectedGate.expectedPositiveSpanCoverageStatus, "incomplete");
+  assert.deepEqual(allSelectedGate.expectedSpanIncompleteFacetIds, ["second-selected-facet"]);
   assert.equal(allSelectedGate.semanticCoverageStatus, "unknown", "exact fetches must not be upgraded to semantic coverage");
-  assert.equal(allSelectedGate.answerSynthesisStatus, "pending-independent-semantic-review");
+  assert.equal(allSelectedGate.answerSynthesisStatus, "blocked-incomplete-facet-evidence");
   assert.equal(allSelectedGate.answerSynthesisAllowed, false, "the harness must never authorize generated answer prose");
+  const allSelectedFacets = JSON.parse(allSelected.stdout).facets;
+  assert.equal(allSelectedFacets[0].lineSpanCoverage, 1);
+  assert.equal(allSelectedFacets[1].lineSpanCoverage, 0.5, "a fetched line that covers only half the expected span remains partial");
+  assert.equal(allSelectedFacets[1].expectedSpanCoverageStatus, "partial");
+
+  const fullyCoveredPlan = structuredClone(allSelectedPlan);
+  fullyCoveredPlan.facets = [allSelectedPlan.facets[0]];
+  const fullyCoveredReceiptsPath = await writeReceipts("fully-covered-span.jsonl", [selectedReceipt]);
+  const fullyCovered = invoke(await writePlan("fully-covered-span.json", fullyCoveredPlan), ["--replay", fullyCoveredReceiptsPath]);
+  assert.equal(fullyCovered.status, 0, fullyCovered.stderr);
+  const fullyCoveredGate = JSON.parse(fullyCovered.stdout).compositionGate;
+  assert.equal(fullyCoveredGate.exactEvidenceStatus, "complete");
+  assert.equal(fullyCoveredGate.exactFetchedFacetCount, 1);
+  assert.equal(fullyCoveredGate.fullyCoveredFacetCount, 1);
+  assert.equal(fullyCoveredGate.expectedPositiveSpanCoverageStatus, "complete");
+  assert.equal(fullyCoveredGate.answerSynthesisStatus, "pending-independent-semantic-review");
+  assert.equal(fullyCoveredGate.answerSynthesisAllowed, false, "full spans still require independent semantic review");
 
   const review = {
     schemaVersion: 1,
     labelProvenance: "synthetic-fixture",
     reviewer: { id: "fixture-reviewer", reviewedAt: "2026-10-14T00:00:00Z", blindToProviderScores: true },
     requiredClaims: [
-      { id: "required-alpha", description: "A direct claim from the first facet.", facetIds: ["selected-facet"] },
-      { id: "required-beta", description: "A direct claim from the second facet.", facetIds: ["second-selected-facet"] },
+      { id: "required-alpha", description: "Side-effectful operations are managed even when scale is unknown.", facetIds: ["selected-facet"] },
+      { id: "required-beta", description: "The phase-boundary rule and no-trace route-creation behavior.", facetIds: ["second-selected-facet"] },
     ],
     paragraphs: [{
       id: "paragraph-1",
-      text: "The first selected evidence supports Alpha. The second selected evidence supports Beta. Combining Alpha and Beta is unsupported.",
+      text: "Mutate, persist, publish, and external-side-effect operations are managed even when scale is unknown. An explicit phase boundary is managed and replans an existing compatible route; managed work without a trace requests ensure-trace-and-route. Combining these rules proves that every such operation can write without checking trace ownership.",
       claims: [
         {
-          id: "claim-alpha", text: "The first selected evidence supports Alpha.", addressesFacetIds: ["selected-facet"],
+          id: "claim-alpha", text: "Mutate, persist, publish, and external-side-effect operations are managed even when scale is unknown.", addressesFacetIds: ["selected-facet"],
           satisfiesRequiredClaimIds: ["required-alpha"], citations: [{ facetId: "selected-facet", handleId: handle.id }],
           supportStatus: "supported", crossFacetJoinStatus: "not-applicable", errorCodes: [],
         },
         {
-          id: "claim-beta", text: "The second selected evidence supports Beta.", addressesFacetIds: ["second-selected-facet"],
+          id: "claim-beta", text: "An explicit phase boundary is managed and replans an existing compatible route; managed work without a trace requests ensure-trace-and-route.", addressesFacetIds: ["second-selected-facet"],
           satisfiesRequiredClaimIds: ["required-beta"], citations: [{ facetId: "second-selected-facet", handleId: secondHandle.id }],
-          supportStatus: "supported", crossFacetJoinStatus: "not-applicable", errorCodes: [],
+          supportStatus: "partial", crossFacetJoinStatus: "not-applicable", errorCodes: [],
         },
         {
-          id: "claim-cross-facet", text: "Combining Alpha and Beta is unsupported.", addressesFacetIds: ["selected-facet", "second-selected-facet"],
+          id: "claim-cross-facet", text: "Combining these rules proves that every such operation can write without checking trace ownership.", addressesFacetIds: ["selected-facet", "second-selected-facet"],
           satisfiesRequiredClaimIds: [], citations: [
             { facetId: "selected-facet", handleId: handle.id },
             { facetId: "second-selected-facet", handleId: secondHandle.id },
@@ -179,10 +226,50 @@ try {
   assert.equal(reviewedResult.compositionEvaluation.synthesisAuthority, false);
   assert.equal(reviewedResult.compositionEvaluation.productionWritesAllowed, false);
   assert.equal(reviewedResult.compositionEvaluation.metrics.citationIntegrityRate, 1);
-  assert.equal(reviewedResult.compositionEvaluation.metrics.requiredClaimRecallRate, 1);
-  assert.equal(reviewedResult.compositionEvaluation.metrics.supportedFacetCoverageRate, 1);
+  assert.equal(reviewedResult.compositionEvaluation.metrics.supportCounts.partial, 1);
+  assert.equal(reviewedResult.compositionEvaluation.metrics.requiredClaimRecallRate, 0.5);
+  assert.equal(reviewedResult.compositionEvaluation.metrics.supportedFacetCoverageRate, 0.5);
   assert.equal(reviewedResult.compositionEvaluation.metrics.multiFacetClaimCount, 1);
   assert.equal(reviewedResult.compositionEvaluation.metrics.unsupportedCrossFacetJoinRate, 1);
+
+  const incompletePlan = structuredClone(allSelectedPlan);
+  incompletePlan.facets.push(structuredClone(plan.facets.find((facet) => facet.id === "abstained-facet")));
+  const incompleteReceiptsPath = await writeReceipts("incomplete-facets.jsonl", [selectedReceipt, secondSelectedReceipt, abstainedReceipt]);
+  const incompleteReview = structuredClone(review);
+  incompleteReview.requiredClaims.push({
+    id: "required-missing-threshold",
+    description: "A numeric confidence threshold authorizes automatic project mutation.",
+    facetIds: ["abstained-facet"],
+  });
+  const omittedClaim = "The source does not specify a numeric confidence threshold for automatic mutation.";
+  incompleteReview.paragraphs[0].text += " " + omittedClaim;
+  incompleteReview.paragraphs[0].claims.push({
+    id: "claim-required-facet-omission",
+    text: omittedClaim,
+    addressesFacetIds: ["abstained-facet"],
+    satisfiesRequiredClaimIds: ["required-missing-threshold"],
+    citations: [],
+    supportStatus: "unsupported",
+    crossFacetJoinStatus: "not-applicable",
+    errorCodes: ["required-facet-omission"],
+  });
+  const incompleteReviewPath = path.join(scratch, "incomplete-composition-review.json");
+  await fs.writeFile(incompleteReviewPath, JSON.stringify(incompleteReview));
+  const incompleteReviewedReplay = invoke(await writePlan("incomplete-plan.json", incompletePlan), [
+    "--replay", incompleteReceiptsPath, "--composition-review", incompleteReviewPath, "--output-dir", incompleteReviewOutput,
+  ]);
+  assert.equal(incompleteReviewedReplay.status, 0, incompleteReviewedReplay.stderr);
+  const incompleteReviewedResult = JSON.parse(incompleteReviewedReplay.stdout);
+  assert.equal(incompleteReviewedResult.compositionGate.exactEvidenceStatus, "incomplete");
+  assert.deepEqual(incompleteReviewedResult.compositionGate.incompleteFacetIds, ["second-selected-facet", "abstained-facet"]);
+  assert.deepEqual(incompleteReviewedResult.compositionGate.expectedSpanIncompleteFacetIds, ["second-selected-facet"]);
+  assert.equal(incompleteReviewedResult.compositionGate.expectedPositiveSpanCoverageStatus, "incomplete");
+  assert.deepEqual(incompleteReviewedResult.compositionGate.selectionOutcomeMismatches, []);
+  assert.equal(incompleteReviewedResult.compositionGate.answerSynthesisAllowed, false);
+  assert.equal(incompleteReviewedResult.compositionEvaluation.metrics.supportCounts.partial, 1);
+  assert.equal(incompleteReviewedResult.compositionEvaluation.metrics.requiredClaimRecallRate, 1 / 3);
+  assert.equal(incompleteReviewedResult.compositionEvaluation.metrics.supportedFacetCoverageRate, 1 / 3);
+  assert.ok(incompleteReviewedResult.compositionEvaluation.claims.find((claim) => claim.claimId === "claim-required-facet-omission").errorCodes.includes("required-facet-omission"));
 
   const invalidCitationReview = structuredClone(review);
   invalidCitationReview.paragraphs[0].claims[1].citations[0].handleId = "not-the-selected-handle";
@@ -233,7 +320,7 @@ try {
   assert.match(missingResult.stderr, /strict schema|Jev selection receipt/u);
 
   const mismatch = structuredClone([selectedReceipt, abstainedReceipt]);
-  mismatch[0].selection.selected.handle = { ...handle, startLine: handle.startLine + 1 };
+  mismatch[0].selection.selected.handle = { ...handle, startLine: handle.startLine + 1, endLine: handle.endLine + 1 };
   const mismatchFile = await writeReceipts("selection-mismatch.jsonl", mismatch);
   const mismatchResult = invoke(planPath, ["--replay", mismatchFile]);
   assert.notEqual(mismatchResult.status, 0);
@@ -344,5 +431,6 @@ try {
   await fs.rm(allAbstainOutput, { recursive: true, force: true });
   await fs.rm(liveBlockedOutput, { recursive: true, force: true });
   await fs.rm(compositionReviewOutput, { recursive: true, force: true });
+  await fs.rm(incompleteReviewOutput, { recursive: true, force: true });
   await fs.rm(scratch, { recursive: true, force: true });
 }

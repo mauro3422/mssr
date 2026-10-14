@@ -93,7 +93,11 @@ function validatePlan(plan, sources) {
     if (!record(facet) || !/^[a-z0-9][a-z0-9-]{0,79}$/.test(facet.id || "") || ids.has(facet.id)) fail("Facet ids must be unique lowercase identifiers.");
     ids.add(facet.id);
     if (!refs.has(facet.sourceRef) || typeof facet.query !== "string" || !facet.query.trim() || facet.query.length > 500) fail("Facet source/query is invalid.");
-    if (!Array.isArray(facet.expectedLines) || !facet.expectedLines.length) fail("Each facet needs source-declared expectedLines.");
+    const expectedEvidenceStatus = facet.expectedEvidenceStatus ?? "present";
+    if (!["present", "absent"].includes(expectedEvidenceStatus)) fail("Facet expectedEvidenceStatus must be present or absent.");
+    if (!Array.isArray(facet.expectedLines) || (expectedEvidenceStatus === "present" && !facet.expectedLines.length) || (expectedEvidenceStatus === "absent" && facet.expectedLines.length !== 0)) {
+      fail("Present facets need source-declared expectedLines; absent facets need an empty expectedLines array.");
+    }
     const lineCount = sources.get(facet.sourceRef).lines;
     for (const span of facet.expectedLines) if (!record(span) || !Number.isInteger(span.start) || !Number.isInteger(span.end) || span.start < 1 || span.end < span.start || span.end > lineCount) fail("Expected line span is outside source bounds 1-" + lineCount + ".");
     const orderedSpans = [...facet.expectedLines].sort((a, b) => a.start - b.start || a.end - b.end);
@@ -150,6 +154,7 @@ function coverageRows(plan, receipts) {
   return plan.facets.map((facet) => {
     const r = receipts.find((item) => item.facetId === facet.id);
     const h = r?.selectedHandle;
+    const expectedEvidenceStatus = facet.expectedEvidenceStatus ?? "present";
     const spans = facet.expectedLines.map((span) => {
       const start = h ? Math.max(span.start, h.startLine) : null;
       const end = h ? Math.min(span.end, h.endLine) : null;
@@ -158,21 +163,54 @@ function coverageRows(plan, receipts) {
     });
     const expected = spans.reduce((n, x) => n + x.end - x.start + 1, 0);
     const covered = spans.reduce((n, x) => n + (x.covered ? x.coveredEnd - x.coveredStart + 1 : 0), 0);
-    return { facetId: facet.id, status: r?.status || "missing", metric: "line-span-coverage-only", semanticCoverage: false, ownerGold: false, expectedLineCount: expected, coveredLineCount: covered, lineSpanCoverage: expected ? covered / expected : 0, spans };
+    const lineSpanCoverage = expected ? covered / expected : null;
+    return {
+      facetId: facet.id,
+      status: r?.status || "missing",
+      expectedEvidenceStatus,
+      selectionOutcomeMatchesDeclaredExpectation: expectedEvidenceStatus === "absent" ? r?.status === "abstained" : r?.status === "selected",
+      metric: "line-span-coverage-only",
+      semanticCoverage: false,
+      ownerGold: false,
+      expectedLineCount: expected,
+      coveredLineCount: covered,
+      lineSpanCoverage,
+      expectedSpanCoverageStatus: expectedEvidenceStatus === "absent"
+        ? "not-applicable"
+        : lineSpanCoverage === 1 ? "complete" : lineSpanCoverage > 0 ? "partial" : "missing",
+      spans,
+    };
   });
 }
-function compositionGate(plan, receipts) {
+function compositionGate(plan, receipts, coverage) {
   const facets = plan.facets.map((facet) => {
     const receipt = receipts.find((item) => item.facetId === facet.id);
-    return { facetId: facet.id, exactEvidence: receipt?.status === "selected" && receipt.fetch?.status === "verified" };
+    const expectedEvidenceStatus = facet.expectedEvidenceStatus ?? "present";
+    const spanCoverage = coverage.find((item) => item.facetId === facet.id);
+    const exactFetchVerified = expectedEvidenceStatus === "present" && receipt?.status === "selected" && receipt.fetch?.status === "verified";
+    const expectedSpanFullyCovered = expectedEvidenceStatus === "present" && spanCoverage?.lineSpanCoverage === 1;
+    return { facetId: facet.id, exactFetchVerified, expectedSpanFullyCovered, exactEvidence: exactFetchVerified && expectedSpanFullyCovered };
   });
   const incompleteFacetIds = facets.filter((facet) => !facet.exactEvidence).map((facet) => facet.facetId);
+  const exactFetchedFacetCount = facets.filter((facet) => facet.exactFetchVerified).length;
+  const fullyCoveredFacetCount = facets.filter((facet) => facet.exactEvidence).length;
+  const expectedSpanIncompleteFacetIds = facets.filter((facet) => !facet.expectedSpanFullyCovered && coverage.find((row) => row.facetId === facet.facetId)?.expectedEvidenceStatus === "present").map((facet) => facet.facetId);
+  const positiveFacetCount = plan.facets.filter((facet) => (facet.expectedEvidenceStatus ?? "present") === "present").length;
+  const selectionOutcomeMismatches = plan.facets.filter((facet) => {
+    const receipt = receipts.find((item) => item.facetId === facet.id);
+    const expectedEvidenceStatus = facet.expectedEvidenceStatus ?? "present";
+    return expectedEvidenceStatus === "absent" ? receipt?.status !== "abstained" : receipt?.status !== "selected";
+  }).map((facet) => facet.id);
   return {
     schemaVersion: 1,
     exactEvidenceStatus: incompleteFacetIds.length === 0 ? "complete" : "incomplete",
     requiredFacetCount: facets.length,
-    exactFetchedFacetCount: facets.length - incompleteFacetIds.length,
+    exactFetchedFacetCount,
+    fullyCoveredFacetCount,
     incompleteFacetIds,
+    expectedPositiveSpanCoverageStatus: positiveFacetCount === 0 ? "not-applicable" : expectedSpanIncompleteFacetIds.length === 0 ? "complete" : "incomplete",
+    expectedSpanIncompleteFacetIds,
+    selectionOutcomeMismatches,
     semanticCoverageStatus: "unknown",
     ownerGold: false,
     answerSynthesisStatus: incompleteFacetIds.length > 0
@@ -330,7 +368,7 @@ async function main() {
     }
     const orderedReceipts = plan.facets.map((f) => byFacet.get(f.id));
     const coverage = coverageRows(plan, orderedReceipts);
-    const composition = compositionGate(plan, orderedReceipts);
+    const composition = compositionGate(plan, orderedReceipts, coverage);
     const compositionEvaluation = hasCompositionReview
       ? evaluateLibrarianCompositionReview({ plan, receipts: orderedReceipts, review: compositionReview })
       : null;
