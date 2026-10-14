@@ -451,3 +451,20 @@ A hash-verified offline replay compared the current primary-first query-variant 
 ## Run 63 candidate-budget/filtering variant (2026-10-13, execution deviation)
 
 [mssr-librarian-source-disjoint-budget-variant-20261013T2334Z-v1](runs/mssr-librarian-source-disjoint-budget-variant-20261013T2334Z-v1/) re-used the six frozen Run 63 questions after I misread its immutable pre-call manifest; the original post-call report already records five Jev calls. This is not a new cohort or controlled replay: candidate pools changed from 12/9/9/8/5 safely filtered handles to 20/20/13/10/6 unfiltered handles, and all five request fingerprints differ. The variant selected the exact NeoPSE table (B1) and an overbroad 31-line Elemental Frontier section (C1), abstained on the three negative cases, and passed exact fetch/evidence pack 2/2. Two blind reviewers rated both selections direct, but labels are source-derived and all projects were exposed. A post-run privacy scan found one private IPv4 in a search snippet and one local path in C1's full range; whether either literal reached Jev is unresolved because the exact provider prompt was not retained. The separate packet omits snippets and fetched prose and preserves only redacted handles/results. Do not pool this variant with Run 63 or treat Choice/Noul as calibrated. See the [deviation report](runs/mssr-librarian-source-disjoint-budget-variant-20261013T2334Z-v1/REPORT.md), [structured evidence](runs/mssr-librarian-source-disjoint-budget-variant-20261013T2334Z-v1/evidence-summary.json), and [SHA-256 sums](runs/mssr-librarian-source-disjoint-budget-variant-20261013T2334Z-v1/SHA256SUMS.txt).
+
+## EvidenceAtom lifecycle/freshness diagnostic (2026-10-14)
+
+The frozen paired diagnostic sent 36 requests to Jev 1.13.0 across three
+previously exposed MSSR sections and four arms: parent, parent plus a neutral
+freshness note, parent plus EvidenceAtom, and parent plus both. All three
+author-derived labels were `current`; there were no failures or retries. Parent
+and parent-plus-note matched 9/9. The atom arm matched 2/9; atom plus note
+matched 5/9. Adding the atom changed 7/9 parent answers to mismatches; with the
+note it changed 4/9 parent answers to mismatches. The note repaired three
+`unknown` answers in the atom arm, all in one case, but left the other two
+cases' `historical` decisions unchanged. This flags a possible lifecycle-task
+regression from the full atom package, but cannot identify which metadata field
+caused it and is not a reliability or calibration estimate. EvidenceAtom
+remains advisory; no runtime or threshold changed. Full [diagnostic report](diagnostics/evidence-atom-lifecycle-freshness-20261014.md); raw packet and
+private labels remain outside Git. The one-off runner cannot resume a partial
+run; preserve interrupted artifacts and use a new run ID.
